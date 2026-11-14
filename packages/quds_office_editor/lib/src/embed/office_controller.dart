@@ -11621,8 +11621,17 @@ class SlideEditorController extends OfficeController {
     if (!config.allowsMutation) {
       return;
     }
-    slide.notes = value;
-    notifyListeners();
+    final PmlSlide target = slide;
+    final String before = target.notes;
+    if (before == value) {
+      return;
+    }
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () => target.notes = value,
+        undoFn: () => target.notes = before,
+      ),
+    );
   }
 
   /// addSlideSection API.
