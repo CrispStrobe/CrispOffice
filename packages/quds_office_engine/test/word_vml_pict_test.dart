@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
@@ -20,7 +21,11 @@ OpcPackage _package() {
   package.createPart('/word/media/legacy.png', 'image/png', _png);
   package
       .relationshipsFor('/word/document.xml')
-      .add(id: 'rId7', type: RelationshipTypes.image, target: 'media/legacy.png');
+      .add(
+        id: 'rId7',
+        type: RelationshipTypes.image,
+        target: 'media/legacy.png',
+      );
   package
       .getPart('/word/document.xml')!
       .writeText(
@@ -37,6 +42,43 @@ OpcPackage _package() {
 }
 
 void main() {
+  test(
+    'cloning and editing a host paragraph retains opaque VML and run style',
+    () {
+      final document = WordDeserializer().read(_package());
+      final copy = WmlClone.paragraph(document.paragraphs.first);
+      final opaque = copy.inlines.whereType<WmlOpaqueInline>().single;
+      expect(opaque.runPropertiesXml, contains('w:b'));
+      copy.inlines.whereType<WmlRun>().first.text = 'Edited ';
+      document.sections.first.blocks[0] = copy;
+      final saved = WordSerializer().write(document);
+      final xml = saved.getPart('/word/document.xml')!.readText();
+      expect(xml, contains('Edited '));
+      expect(xml, contains('o:hr="t"'));
+      expect(xml, contains('<w:b'));
+    },
+  );
+
+  test(
+    'missing VML relationships fail import instead of losing the picture',
+    () {
+      final package = _package();
+      final part = package.getPart('/word/document.xml')!;
+      part.writeText(
+        part.readText().replaceAll('r:id="rId7"', 'r:id="missing"'),
+      );
+      expect(() => WordDeserializer().read(package), throwsFormatException);
+    },
+  );
+
+  test('changed opaque VML payload is refused before export', () {
+    final document = WordDeserializer().read(_package());
+    document.package!
+        .getPart('/word/media/legacy.png')!
+        .writeBytes(Uint8List.fromList([9, 8, 7]));
+    expect(() => WordSerializer().writeBytes(document), throwsStateError);
+  });
+
   test('VML pictures and rules survive repeated saves', () async {
     var doc = WordDeserializer().read(_package());
     expect(doc.paragraphs.first.text, 'Before  after');
@@ -45,15 +87,14 @@ void main() {
       final saved = OpcPackage.openBytes(bytes);
       final xml = saved.getPart('/word/document.xml')!.readText();
       expect(xml, contains('o:hr="t"'), reason: '$cycle');
-      final rid = RegExp(r'<v:imagedata r:id="([^"]+)"').firstMatch(xml)!.group(1);
+      final rid = RegExp(
+        r'<v:imagedata r:id="([^"]+)"',
+      ).firstMatch(xml)!.group(1);
       final rels = saved.relationshipsFor('/word/document.xml');
       expect(rels.resolve(rels.byId(rid!)!), '/word/media/legacy.png');
       expect(saved.getPart('/word/media/legacy.png')!.readBytes(), _png);
       // The rule stays between the two text runs, in a bold run.
-      expect(
-        xml.indexOf('Before'),
-        lessThan(xml.indexOf('o:hr="t"')),
-      );
+      expect(xml.indexOf('Before'), lessThan(xml.indexOf('o:hr="t"')));
       expect(xml.indexOf('o:hr="t"'), lessThan(xml.indexOf(' after')));
       doc = WordDeserializer().readBytes(bytes);
       expect(doc.paragraphs.first.text, 'Before  after');

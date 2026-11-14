@@ -18,6 +18,8 @@
 
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
+Legacy VML pictures, rules and shapes are retained as opaque source content with relationship integrity checks; this preserves export bytes without claiming native rendering or editing of those objects.
+
 The fork now deduplicates byte-identical Word media on export, reads supported symbol characters, and keeps sibling text boxes independent during import. Legacy DOC conversion writes canonical built-in style names and offers explicit recovery for damaged auxiliary features; recovery reports degraded output and remains opt-in.
 
 The current fork also preserves spreadsheet comments, supported formula caches and frozen-pane anchors on save. Sheet sorting participates in undo/redo without losing cell locks or PDF borders; speaker-note edits participate in slide history and save revisions. Native fill regression fixtures are schema-valid and checked against independently authored expected files. See [the current capability and acceptance record](docs/office-capabilities-20261114.md) for tested behavior and remaining fidelity limits.
