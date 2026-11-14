@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "status": "passed",
+  "source_commit": "79d001522c6550a21b01f2c033fb293c372d3208",
+  "editor_tests_passed": 11,
+  "new_fill_tests_passed": 6,
+  "focused_analysis_items": 9,
+  "focused_analysis_issues": 0,
+  "recorded_inputs": 405,
+  "changed_inputs_during_validation": [],
+  "execution_receipts": [
+    "validation.json",
+    "analysis-retry.json"
+  ],
+  "setup_failure_retained": "The first analysis attempt could not list the sparse Flutter SDK dev directory. Pinned SDK dev/examples were restored and analysis alone was retried successfully. The original failed attempt remains preserved.",
+  "evidence_sha256": {
+    "validation.json": "4c62f495e8bdb4020ce538761b613fec1fb528f72291f43f626cba428b786a8a",
+    "editor-tests.log": "cac6b4d931b8e3ba51c1ebe18e32fc548dc6b0687c2f67656034819807fe43ee",
+    "focused-analysis.log": "00e1e182830d4cf738d89d20113172d8736284caeb0062f501f1d7879772f3ca",
+    "analysis-retry.json": "95ed4b852cd77dca56d996accdaecc3c5334c31914e154c7097c63d82ba9105e",
+    "analysis-retry.log": "4d620258c862921a3b65e66d248b6c74e5d18c84953d247a8ab879fd14a53c27",
+    "inputs.json.gz": "9d47762fc5d55d7fa3d05e0098ab6b40bc7ee700e43affb18de60173106d522d",
+    "pubspec.lock.gz": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "package_config.json.gz": "c9538345ec6d4408eca1b37665a7c5a5a87289b6bd9a5a1460a5bad9f7ea3931",
+    "package_graph.json.gz": "b98c72a7b7963fe88112ea8867400c4ae338117ed02ca46ce094b52ba4d785b6",
+    "runtime.json": "66ff5612c30fc4c0c692df9aa349595010d373d0a456a3a7936e411e89ed49e1",
+    "run_editor_gate.py": "9a28e585f06cec04df2f9f527ee08468ff6bd842afef3d14045fe276cf1dbc64"
+  },
+  "scope": "Focused editor controller histories and analysis of changed fill-related production/tests. No full suite, full app, browser or external schema/render run is implied."
+}

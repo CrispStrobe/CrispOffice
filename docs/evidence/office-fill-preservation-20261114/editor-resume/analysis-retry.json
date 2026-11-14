@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "name": "focused-analysis-retry",
+  "source_commit": "79d001522c6550a21b01f2c033fb293c372d3208",
+  "same_inputs_as_editor_run": true,
+  "input_manifest": "inputs.json.gz",
+  "input_manifest_sha256": "9d47762fc5d55d7fa3d05e0098ab6b40bc7ee700e43affb18de60173106d522d",
+  "files_checked": 405,
+  "command": [
+    "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+    "analyze",
+    "--no-pub",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+    "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart",
+    "packages/quds_office_engine/test/sheet_fill_fidelity_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/sheet_fill_intent_history_test.dart",
+    "packages/quds_office_editor/test/sheet_font_color_intent_test.dart",
+    "packages/quds_office_editor/test/sheet_explicit_style_history_test.dart"
+  ],
+  "working_directory": ".",
+  "started_at": "2026-11-14T18:50:00.994695+00:00",
+  "setup_recovery": "Restored pinned Flutter SDK dev/ and examples/ directories omitted by sparse checkout; no project code changed.",
+  "prior_attempt": "validation.json and focused-analysis.log",
+  "completed_at": "2026-11-14T18:50:22.183953+00:00",
+  "exit_code": 0,
+  "log": "analysis-retry.log",
+  "log_sha256": "4d620258c862921a3b65e66d248b6c74e5d18c84953d247a8ab879fd14a53c27",
+  "changed_inputs": [],
+  "passed": true
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "started_at": "2026-11-14T18:48:32.154206+00:00",
+  "source_commit": "79d001522c6550a21b01f2c033fb293c372d3208",
+  "source_tree": "27364208560689edd2039cf2bb09af2131de08a5",
+  "worktree_status_at_start": "",
+  "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "inputs": {
+    "files": 405,
+    "manifest": "inputs.json.gz",
+    "uncompressed_sha256": "fb32caf40a13ed3c3d6572303cfa227565f302760f0e0d5831e81074032310b6",
+    "archive_sha256": "9d47762fc5d55d7fa3d05e0098ab6b40bc7ee700e43affb18de60173106d522d"
+  },
+  "steps": [
+    {
+      "name": "editor-tests",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_fill_intent_history_test.dart",
+        "test/sheet_font_color_intent_test.dart",
+        "test/sheet_explicit_style_history_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "started_at": "2026-11-14T18:48:32.177951+00:00",
+      "completed_at": "2026-11-14T18:48:55.361991+00:00",
+      "exit_code": 0,
+      "log": "editor-tests.log",
+      "log_sha256": "cac6b4d931b8e3ba51c1ebe18e32fc548dc6b0687c2f67656034819807fe43ee"
+    },
+    {
+      "name": "focused-analysis",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "analyze",
+        "--no-pub",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart",
+        "packages/quds_office_engine/test/sheet_fill_fidelity_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/test/sheet_fill_intent_history_test.dart",
+        "packages/quds_office_editor/test/sheet_font_color_intent_test.dart",
+        "packages/quds_office_editor/test/sheet_explicit_style_history_test.dart"
+      ],
+      "working_directory": ".",
+      "started_at": "2026-11-14T18:48:55.362948+00:00",
+      "completed_at": "2026-11-14T18:48:55.910912+00:00",
+      "exit_code": 1,
+      "log": "focused-analysis.log",
+      "log_sha256": "00e1e182830d4cf738d89d20113172d8736284caeb0062f501f1d7879772f3ca"
+    }
+  ],
+  "completed_at": "2026-11-14T18:48:55.959397+00:00",
+  "source_commit_at_end": "79d001522c6550a21b01f2c033fb293c372d3208",
+  "changed_inputs_during_run": [],
+  "passed": false
+}
