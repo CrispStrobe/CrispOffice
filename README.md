@@ -20,6 +20,9 @@ The core suite has an engine, reports library, Flutter editor and desktop app. T
 
 The current fork also preserves spreadsheet comments, supported formula caches and frozen-pane anchors on save. Sheet sorting participates in undo/redo without losing cell locks or PDF borders; speaker-note edits participate in slide history and save revisions. Native fill regression fixtures are schema-valid and checked against independently authored expected files. See [the current capability and acceptance record](docs/office-capabilities-20261114.md) for tested behavior and remaining fidelity limits.
 
+Worksheet direction, frozen panes, row/column grid edits and selection formatting now participate in save revisions and undo/redo on their owning worksheet. Grid history preserves cell identity so earlier text and formatting commands remain usable after sorting or structural edits. DOCX import accepts block-level bookmark markers, repairs unpaired endpoints within their story, and retains duplicate content-control IDs already present in the source while rejecting additional duplicates. Decimal/unit measurements use finite fallbacks for malformed overflow values. Unsupported Word constructs and font/layout fallbacks remain fidelity boundaries.
+
+
 Hosts can register their actual font families and styles for shared Word
 layout, painting and PDF export. Unloaded families retain their names in the
 document but paint with an explicit bundled fallback; they do not claim
