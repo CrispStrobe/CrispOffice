@@ -1,0 +1,30 @@
+00:00 +0: loading test/sheet_fill_fidelity_test.dart
+00:00 +0: test/sheet_fill_fidelity_test.dart: native fills survive an unrelated bold edit and three saves
+00:00 +1: test/sheet_fill_fidelity_test.dart: native fills survive an unrelated alignment edit and three saves
+00:00 +2: test/sheet_fill_fidelity_test.dart: equal RGB commands replace native fill semantics without style growth
+00:00 +3: test/sheet_fill_fidelity_test.dart: explicit fill intent survives isolate save and reopen
+00:00 +4: test/sheet_fill_fidelity_test.dart: sorting carries fill intent with the originating cell
+00:00 +5: loading test/sheet_style_namespace_fidelity_test.dart
+00:00 +5: test/sheet_style_namespace_fidelity_test.dart: edits retain native styles and extension nodes: default namespace
+00:00 +6: test/sheet_style_namespace_fidelity_test.dart: edits retain native styles and extension nodes: prefixed namespace
+00:00 +7: test/sheet_style_namespace_fidelity_test.dart: edits retain native styles and extension nodes: foreign default namespace
+00:00 +8: test/sheet_style_namespace_fidelity_test.dart: edits retain native styles and extension nodes: rebound prefix in font
+00:00 +9: test/sheet_style_namespace_fidelity_test.dart: horizontal alignment does not introduce vertical alignment
+00:00 +10: test/sheet_style_namespace_fidelity_test.dart: new horizontal alignment retains the default vertical placement
+00:00 +11: test/sheet_style_namespace_fidelity_test.dart: returning to general alignment keeps unrelated native properties
+00:00 +12: test/sheet_style_namespace_fidelity_test.dart: font-only edits retain unmodeled horizontal alignment and size metadata
+00:00 +13: test/sheet_style_namespace_fidelity_test.dart: missing style collections are inserted in schema order with bindings
+00:00 +14: test/sheet_style_namespace_fidelity_test.dart: explicit equal RGB replaces native theme without style growth on repeated save
+00:00 +15: test/sheet_style_namespace_fidelity_test.dart: explicit equal RGB intent survives isolate serialization
+00:00 +16: test/sheet_style_namespace_fidelity_test.dart: sorting keeps explicit color intent with the originating cell
+00:00 +17: test/sheet_style_namespace_fidelity_test.dart: clearing the last direct style properties survives workbook saves
+00:00 +18: test/sheet_style_namespace_fidelity_test.dart: prefixed imported styles keep cell formatting through workbook saves
+00:00 +19: loading test/sheet_explicit_style_fidelity_test.dart
+00:00 +19: test/sheet_explicit_style_fidelity_test.dart: explicit native style zero survives three direct and isolate saves
+00:00 +20: test/sheet_explicit_style_fidelity_test.dart: an omitted source style remains omitted through repeated saves
+00:00 +21: test/sheet_explicit_style_fidelity_test.dart: mixed explicit zero nonzero and absent styles are not normalized
+00:00 +22: test/sheet_explicit_style_fidelity_test.dart: editing a native explicit style respects zero and nonzero values
+00:00 +23: test/sheet_explicit_style_fidelity_test.dart: row and column moves retain the originating cell style presence
+00:00 +24: test/sheet_explicit_style_fidelity_test.dart: sorting carries explicit style presence with each copied cell
+00:00 +25: test/sheet_explicit_style_fidelity_test.dart: an empty cell explicitly selecting style zero retains that selection
+00:00 +26: All tests passed!

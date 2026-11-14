@@ -1,0 +1,65 @@
+{
+  "format_version": 1,
+  "evidence_recovery": "Recovered from complete observed tool output after the filesystem filled; this is not a claim that inaccessible local artifacts were uploaded.",
+  "implementation_commit": "9219189e9a07103b029eaeb050658ab819356591",
+  "source_note": "At execution, two documentation-only comment edits in sml_workbook.dart and sml_styles.dart were unstaged. No production behavior differed from the implementation checkpoint.",
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "environment": {
+    "CI": "true",
+    "BOT": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "pub_cache": "workspace toolchain/pub-cache",
+    "tmpdir": "workspace toolchain/tmp"
+  },
+  "engine": {
+    "command": "dart test --concurrency=1 --reporter=expanded test/sheet_fill_fidelity_test.dart test/sheet_style_namespace_fidelity_test.dart test/sheet_explicit_style_fidelity_test.dart",
+    "working_directory": "packages/quds_office_engine",
+    "status": "passed",
+    "exit_code": 0,
+    "passed_tests": 26,
+    "new_fill_tests": 5,
+    "log": "engine-tests.log",
+    "log_sha256": "433f228ec7808a1a17822ec203baa764a4abe3fa7b8c5ad3f3bf08c09a07054e",
+    "scope": [
+      "Native fill preservation during bold/alignment edits",
+      "Three direct/isolate workbook saves",
+      "Equal-color and no-fill command semantics",
+      "Sorting fill provenance",
+      "Existing namespace and explicit-style regressions"
+    ]
+  },
+  "editor": {
+    "command": "flutter test --no-pub --concurrency=1 --reporter=expanded test/sheet_fill_intent_history_test.dart test/sheet_font_color_intent_test.dart test/sheet_explicit_style_history_test.dart",
+    "working_directory": "packages/quds_office_editor",
+    "status": "blocked_before_test_execution",
+    "reason": "ENOSPC while creating build/test_cache/build",
+    "process_exit_code_after_cancellation": 130,
+    "executed_tests": 0,
+    "new_tests_committed": 6,
+    "log": "editor-enospc-observed.log",
+    "log_scope": "Observed loader failure excerpt before the stopped process exited; not represented as the final full process log.",
+    "log_sha256": "9c47b55d7f9ecb5d739ec111f19a51f5e30ec0aec6344f13b3eef9b27535dfee"
+  },
+  "targeted_analysis": {
+    "status": "not_run",
+    "reason": "The full filesystem prevented new sandbox commands from starting."
+  },
+  "input_manifest": {
+    "observed_file_count": 899,
+    "status": "not_recoverable_from_tool_output",
+    "unavailable_artifacts": [
+      "test-inputs.json.gz",
+      "test-start.json"
+    ],
+    "note": "These local artifacts were created but their complete contents and digest were not printed. This report does not assert that they were preserved remotely."
+  },
+  "controls": {
+    "recorded_receipt": "source-controls-recorded.json",
+    "baseline_failed_checks": 9,
+    "total_checks": 13,
+    "candidate_failed_checks": 0,
+    "baseline_exit_code": 1,
+    "candidate_exit_code": 0
+  }
+}

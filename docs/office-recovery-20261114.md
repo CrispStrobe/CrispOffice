@@ -13,6 +13,27 @@ test results, but those changes were absent from the inspected remote trees.
 This continuation reconstructs the missing behavior against the latest remote
 baseline. Transcript totals are not current validation evidence.
 
+## Current continuation status
+
+Implementation checkpoint `9219189e9a07103b029eaeb050658ab819356591` fixes an
+additional spreadsheet fill-preservation defect. Unrelated formatting no longer
+replaces native theme, indexed, patterned or gradient fills. Explicit solid/no-fill
+commands retain their intent through sorting, serialization and editor history.
+
+The new [fill evidence](evidence/office-fill-preservation-20261114/README.md)
+records **26 passing focused engine tests**, a negative control with nine of
+thirteen failures on the old implementation and thirteen passing checks on the
+fix. Six new editor-history tests are committed. Their runner exhausted disk
+space before loading any test, so editor execution remains incomplete. No fresh
+full-suite, analyzer, external-schema or rendering result is claimed for this
+new increment. All counts below retain their original checkpoint scope.
+
+CrispCloud's exact canonical sync verifies **2,171 managed files** and is saved
+in app commit `394dc3199270599dd0badd91f89fdf1726c3fb46`. The app also retains
+an independently audited index of the original native evidence and a new
+continuous browser-copy CI job. Hosted jobs were queued without an assigned
+runner at the status check.
+
 ## Scoped work and acceptance
 
 | ID | Owner | Scope | Acceptance | Status |
@@ -141,9 +162,11 @@ verified declaration-only file are reported separately. The gate also passed
 41 coverage controls, 16 host-evidence controls, all source synchronization
 checks, the exact 149-file inventory and the controller corpus oracle.
 
-These results close REC-01–08 at their declared scope. Browser runtime,
-physical-device/live-provider journeys and authentic signed Office fixtures
-remain separate open acceptance gates. The app's
+These historical results close REC-01–08 at their declared source and scope.
+A separate macOS browser-adapter receipt is retained in the app; the local
+continuation compiled the same JavaScript but could not launch Chromium in its
+sandbox. Physical-device/live-provider journeys and authentic signed Office
+fixtures remain separate open acceptance gates. The app's
 [current recovery report](https://github.com/CrispStrobe/CrispCloud/blob/codex/office-recovery-20261114/docs/office-recovery-20261114.md)
 states their concrete acceptance conditions.
 
@@ -167,4 +190,5 @@ verification is outside this change.
 Signed XLSX/PPTX editing is refused on recognized package signature markers,
 including relationship and content-type declarations. These are preservation
 guards, not cryptographic authenticity checks. Real signed-file acceptance,
-physical-device journeys and browser execution remain separate open gates.
+physical-device journeys and browser execution for each new environment remain
+separate gates. The latest continuation's editor run is also explicitly blocked.

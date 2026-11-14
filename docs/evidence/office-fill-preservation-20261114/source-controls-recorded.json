@@ -1,0 +1,48 @@
+{
+  "format_version": 1,
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "harness": {
+    "path": "fill-control.dart",
+    "sha256": "2ba382fde18d308bb9158ff8329227766714cd9b9dba11e6434d344cbb0cd27e"
+  },
+  "collector_sha256": "98527ad04705f643770ea8a2ec09ffd85e718116a16f235be7d41a6b606b3f91",
+  "fixture": {
+    "path": "packages/quds_office_engine/test/fixtures/fidelity/sheet-fill-native.xml",
+    "commit": "9219189e9a07103b029eaeb050658ab819356591",
+    "sha256": "4e716eba0a385256dc2cbc5001f990f9cd16ef79a40663248dcc6cac18f52dcb"
+  },
+  "snapshots": {
+    "baseline": {
+      "commit": "6e8ee9476c99676886f9d424abdb399cffe37882",
+      "source_sha256": {
+        "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart": "dd07d46c11a6e2d4b97ffc1b80c6a9ee82c5db50ce318ac693faa3cf8afbef56",
+        "packages/quds_office_engine/lib/src/xml/namespaces.dart": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48",
+        "packages/quds_office_engine/lib/src/xml/xml_node.dart": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c",
+        "packages/quds_office_engine/lib/src/xml/xml_reader.dart": "4e1c6ffe5617835308d501b1cb66ccda5098dea7ef7e383b24b7f9edb02859b7",
+        "packages/quds_office_engine/lib/src/xml/xml_writer.dart": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b"
+      },
+      "exit_code": 1,
+      "failed_checks": 9,
+      "total_checks": 13,
+      "log": "baseline-controls.log",
+      "log_sha256": "d7d0228bd333f25ac14a615fcc0c1a0d72875389572e3184c0fc8482190bf243"
+    },
+    "candidate": {
+      "commit": "9219189e9a07103b029eaeb050658ab819356591",
+      "source_sha256": {
+        "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart": "ea4f06de86718b6a9d39367c30bf7181ebed8a3b7a84a5e9e4bdd522d246855a",
+        "packages/quds_office_engine/lib/src/xml/namespaces.dart": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48",
+        "packages/quds_office_engine/lib/src/xml/xml_node.dart": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c",
+        "packages/quds_office_engine/lib/src/xml/xml_reader.dart": "4e1c6ffe5617835308d501b1cb66ccda5098dea7ef7e383b24b7f9edb02859b7",
+        "packages/quds_office_engine/lib/src/xml/xml_writer.dart": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b"
+      },
+      "exit_code": 0,
+      "failed_checks": 0,
+      "total_checks": 13,
+      "log": "candidate-controls.log",
+      "log_sha256": "320c29c571e3d06ed32eb02ae3320e1cd46153e1bb9b27218a4bbf762fc5f644"
+    }
+  },
+  "scope": "Style derivation and native fill identity only; package/editor tests are separate.",
+  "accepted": true
+}

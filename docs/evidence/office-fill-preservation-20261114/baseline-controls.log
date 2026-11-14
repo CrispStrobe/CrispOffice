@@ -1,0 +1,14 @@
+FAIL bold style 0 expected fill 3, actual 2
+FAIL bold style 1 expected fill 4, actual 2
+FAIL bold style 2 expected fill 5, actual 0
+PASS bold style 3 expected fill 6, actual 6
+PASS bold style 4 expected fill 2, actual 2
+FAIL bold style 5 expected fill 1, actual 0
+FAIL alignment style 0 expected fill 3, actual 2
+FAIL alignment style 1 expected fill 4, actual 2
+FAIL alignment style 2 expected fill 5, actual 0
+PASS alignment style 3 expected fill 6, actual 6
+PASS alignment style 4 expected fill 2, actual 2
+FAIL alignment style 5 expected fill 1, actual 0
+FAIL requested RGB uses direct solid color: <s:fgColor indexed="2"/>
+Failures: 9/13

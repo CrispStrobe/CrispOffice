@@ -1,0 +1,14 @@
+PASS bold style 0 expected fill 3, actual 3
+PASS bold style 1 expected fill 4, actual 4
+PASS bold style 2 expected fill 5, actual 5
+PASS bold style 3 expected fill 6, actual 6
+PASS bold style 4 expected fill 2, actual 2
+PASS bold style 5 expected fill 1, actual 1
+PASS alignment style 0 expected fill 3, actual 3
+PASS alignment style 1 expected fill 4, actual 4
+PASS alignment style 2 expected fill 5, actual 5
+PASS alignment style 3 expected fill 6, actual 6
+PASS alignment style 4 expected fill 2, actual 2
+PASS alignment style 5 expected fill 1, actual 1
+PASS requested RGB uses direct solid color: <fgColor rgb="FFFF0000"/>
+Failures: 0/13

@@ -1,0 +1,31 @@
+diff --git a/packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart b/packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart
+index 55af2df..ea38fdc 100644
+--- a/packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart
++++ b/packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart
+@@ -229,9 +229,9 @@ class SmlCell {
+ 
+   String _fillRgb;
+ 
+-  /// Solid fill as `RRGGBB`; empty means no fill. Assigning this property
+-  /// explicitly replaces native theme, pattern or gradient fill semantics,
+-  /// even when the modeled RGB is unchanged.
++  /// Modeled fill color as `RRGGBB`; a native gradient has no scalar color.
++  /// Assigning this property explicitly requests a solid color (or no fill for
++  /// an empty value), even when the modeled RGB is unchanged.
+   String get fillRgb => _fillRgb;
+   set fillRgb(String value) {
+     _fillRgb = value;
+diff --git a/packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart b/packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart
+index e3ac9a1..259c72a 100644
+--- a/packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart
++++ b/packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart
+@@ -88,7 +88,8 @@ class SmlStyleSheet {
+   /// cellXfsAlign API.
+   final List<SmlHAlign> cellXfsAlign;
+ 
+-  /// Solid fill RGB (`RRGGBB`) per fills.xml entry; empty means no fill.
++  /// Modeled fill RGB (`RRGGBB`) per styles.xml entry. An empty color can also
++  /// belong to a native gradient, so it is not sufficient to identify a fill.
+   final List<String> fillRgbs;
+ 
+   /// Font RGB (`RRGGBB`) per fonts.xml entry; empty means default text.

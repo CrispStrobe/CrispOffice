@@ -1,0 +1,40 @@
+import 'dart:io';
+import 'lib/src/sheet/styles/sml_styles.dart';
+import 'lib/src/xml/xml_node.dart';
+
+void main(List<String> args) {
+  final input = File(args.single).readAsStringSync();
+  const x = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main';
+  const fillIds = [3, 4, 5, 6, 2, 1];
+  var failures = 0;
+  for (final edit in ['bold', 'alignment']) {
+    for (var base = 0; base < fillIds.length; base++) {
+      final styles = SmlStyleSheet.parse(input);
+      final index = styles.xfFor(
+        baseStyleIndex: base,
+        align: edit == 'alignment' ? SmlHAlign.center : styles.alignAt(base),
+        fillRgb: styles.fillAt(base),
+        fontRgb: styles.fontAt(base),
+        bold: edit == 'bold' ? true : styles.boldAt(base),
+        size: styles.sizeAt(base),
+      );
+      final root = XmlDocument.parse(styles.toXml()).root!;
+      final xf = root.firstChild('cellXfs', namespaceUri: x)!.childrenNamed('xf', namespaceUri: x)[index];
+      final actual = int.parse(xf.getAttribute('fillId')!);
+      final ok = actual == fillIds[base];
+      if (!ok) failures++;
+      print('${ok ? "PASS" : "FAIL"} $edit style $base expected fill ${fillIds[base]}, actual $actual');
+    }
+  }
+  final styles = SmlStyleSheet.parse(input);
+  final index = styles.xfFor(baseStyleIndex: 5, fillRgb: 'FF0000', fontRgb: styles.fontAt(5), size: styles.sizeAt(5));
+  final root = XmlDocument.parse(styles.toXml()).root!;
+  final xf = root.firstChild('cellXfs', namespaceUri: x)!.childrenNamed('xf', namespaceUri: x)[index];
+  final fill = root.firstChild('fills', namespaceUri: x)!.childrenNamed('fill', namespaceUri: x)[int.parse(xf.getAttribute('fillId')!)];
+  final color = fill.firstChild('patternFill', namespaceUri: x)!.firstChild('fgColor', namespaceUri: x)!;
+  final direct = color.getAttribute('rgb') == 'FFFF0000' && color.getAttribute('indexed') == null;
+  if (!direct) failures++;
+  print('${direct ? "PASS" : "FAIL"} requested RGB uses direct solid color: ${XmlDocument(root: color).toXmlString(declaration: false)}');
+  print('Failures: $failures/13');
+  exitCode = failures == 0 ? 0 : 1;
+}
