@@ -17,6 +17,15 @@ artifacts. `validation.json` retains exact commands, timings, exits, measured
 source and input checks. The compressed input manifest and resolved package
 lock/config/graph are retained beside the complete logs and collector.
 
+The independent [source archive audit](source-audit.json) binds all 409 recorded
+inputs to recoverable bytes: 406 Git blobs match source `c37789b` exactly, and
+three generated files match the decompressed saved lock/config/graph snapshots.
+There are zero mismatches or unrecoverable recorded inputs. The audit also
+recounts seven engine and 53 editor passes from the logs and verifies that the
+ending and evidence checkpoints changed documentation only. Installed external
+dependency and SDK payloads are outside this 409-file inventory; their resolved
+identities and runtime hashes are retained, not their complete payload bytes.
+
 The runner records the original workspace layout and expects this evidence
 directory beside `quds_office_suite` and `toolchain`. This focused gate does not
 claim a fresh full suite, app acceptance, PDF rendering or browser execution.

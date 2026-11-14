@@ -1,0 +1,2160 @@
+{
+  "version": 1,
+  "audited_at": "2026-11-14T19:01:29.674353+00:00",
+  "archive_commit": "0c30f36d955e82e1b0d841f127637e87a7477ffb",
+  "archive_directory": "docs/evidence/office-fill-preservation-20261114/integrated-followup",
+  "measured_source_commit": "c37789b596a6f6516d9e2cee78ce57ab33872b07",
+  "measured_source_tree": "419f63024cd7eb821d1c58358d7af445580054d1",
+  "method": "Read evidence from immutable archive Git blobs; SHA256 every tracked input Git blob at the recorded source commit; SHA256 decompressed saved dependency inputs; independently count archived log result lines. No tests rerun and no worktree source read to establish identity.",
+  "checks": {
+    "source_commit_consistent": true,
+    "source_tree_matches_git": true,
+    "input_count_consistent": true,
+    "source_hashes_all_match": true,
+    "all_recorded_inputs_recoverable": true,
+    "completion_reports_pass": true,
+    "all_recorded_step_exits_zero": true,
+    "final_log_totals_match_completion": true,
+    "per_file_counts_match_completion": true,
+    "analysis_log_matches_completion": true,
+    "recorded_inputs_unchanged_during_run": true,
+    "ending_head_changes_are_docs_only": true,
+    "archive_head_changes_are_docs_only": true
+  },
+  "passed": true,
+  "input_coverage": {
+    "recorded": 409,
+    "tracked_at_source": 406,
+    "generated_with_saved_snapshots": 3,
+    "tracked_categories": {
+      "package_and_analysis_configuration": 11,
+      "production_dart_libraries": 385,
+      "selected_test_sources": 8,
+      "fixtures": 2
+    }
+  },
+  "mismatches": [],
+  "unrecoverable_recorded_inputs": [],
+  "tracked_inputs": {
+    ".fvmrc": {
+      "git_blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "sha256": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+      "matches_recorded_input": true
+    },
+    "analysis_options.yaml": {
+      "git_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/analysis_options.yaml": {
+      "git_blob": "572dd239d0976799433e2a9c56e7e02be86d61b1",
+      "sha256": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/legacy_doc_parser.dart": {
+      "git_blob": "e07aa7f11f4b4eebe0d901e3babaf823ccb02f56",
+      "sha256": "5ef8f92595c74eae08b104a750559fff9dd8b62f39d989ecef74ebd881f2e0a1",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/bounded_cfb_reader.dart": {
+      "git_blob": "75fc0f42e73b514e467a84f767dbbaa30c2c8376",
+      "sha256": "34e955fbc11c25e6f7e2cc4cc5d86cdb947043ac98913249b60ae928c0b87d22",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/compound/byte_source.dart": {
+      "git_blob": "c70f20344e025de16f9653e010d83098af2081cf",
+      "sha256": "81c1106063cd0de199a40206591af203283e6f3c7e4b4e28992a2ab664b29a4a",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/compound/cfbf_names.dart": {
+      "git_blob": "cbe06bf7ce91bdad647f582d138277f9de2a998f",
+      "sha256": "113d3ef294e00f6a7e454eb6e15de4f27cd448b1e8df6fbe73d583406aa4bb4b",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/compound/cfbf_reader.dart": {
+      "git_blob": "05981649b8911affa7c8cd7420273051dcbac028",
+      "sha256": "668b5401cd185fa1077d0838d570924ede37f8c025699eb10641dfcaac53076b",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/compound/cfbf_writer.dart": {
+      "git_blob": "c29ac3e1c7d216d810919cf9c8f2b8e33ef2419a",
+      "sha256": "d3b27d1b4872274159678121a503e952b4f6e8b623d457a8c6bb69b74f34931a",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/conversion.dart": {
+      "git_blob": "9d15a464cf14c4f3d2b110d256df62fdfa9bde0b",
+      "sha256": "408591ff0d413f86ec9901604824b3fba8c5ee7fc911259adf528622ddf9f90d",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_binary_source.dart": {
+      "git_blob": "c9da30c4a48994b93b84434c9fa4d9f389e133f7",
+      "sha256": "f2e0a0ffba3c61d0ea97c2d4fc5165b4f27cf360ab85e8aa18c58b61f0f1f0c2",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_compatibility.dart": {
+      "git_blob": "dcebc9b4dcfa5c4f6f6c5392679c41c1896a6666",
+      "sha256": "a2b20b55fb0fcf7afbdc0c96f773a441d7ac44e24dc89c9517dc34ffc5639344",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_compatibility_parser.dart": {
+      "git_blob": "f960349d42e6ac592f20d007d9529f5e59b5750c",
+      "sha256": "166ab70cf56034d9bd614818552df0110d06a5e7c7335ea405bb92ad892f8940",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_decorations.dart": {
+      "git_blob": "753f7df7c11c14e3a012a8cfe8714cad1c4fe76d",
+      "sha256": "44f47d976b6dd2ba922fcf5bfedabca85043e44ce9394b7b558288eac089e793",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_document.dart": {
+      "git_blob": "180982d865ffb8b3e55e5441f9d92bc080d64c51",
+      "sha256": "ad5ae30cfbc1b6e797fc5dfbeb6273480c09a7c927d5879ca72b61cf11551872",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_fields.dart": {
+      "git_blob": "bc4cdf155407442ce8d9c71b573d58f593cd598e",
+      "sha256": "e36d74be3798fa7d11311aaed48cf0596e39a3fd8db3f617b14fda5f083c9fb1",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_format_tables.dart": {
+      "git_blob": "f6746e0d25ce677cec3cc5451a8fc405aa933135",
+      "sha256": "3d55b6cc165bf152e4732893a06af13ca44bc0dc33e989b7a9585745239d63f6",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_html_media.dart": {
+      "git_blob": "a155111300f667c5ac9ab5da75013d1c03731923",
+      "sha256": "00b2e9d3a6f0a77b91d727838f9e53028817596ebc388a523f5bd15d6a06119c",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_ink.dart": {
+      "git_blob": "c3aee0a61494842adce6eceb45b3509b035ea5fe",
+      "sha256": "ef852ce24cab013fc43ada29fac3f6673b86a88f72a08f4f4f9de2b50c46fcfd",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_layout_model.dart": {
+      "git_blob": "94b39c7cc4cc0b714cca049a0440bdd494d356a4",
+      "sha256": "9d3ec376dae848cd05b241857ceb0d94c3619a74924d421975ee214901153807",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_layout_parser.dart": {
+      "git_blob": "8c274e6307b098b854dea8b0b6d016d682cc3435",
+      "sha256": "1736b3decf1b082e08f79c22233420d0d37f2d0b622c0fc7565819ef97232965",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_lists.dart": {
+      "git_blob": "11cd8bc9470ff8d0db73d997478e2fcadb5da001",
+      "sha256": "5a653beb86bf7dd6495786faa5a6c0c284c51bfb389833778060d98bd14d0401",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_media_model.dart": {
+      "git_blob": "f63abb09e26a655a4d78844b2a100050615a8c20",
+      "sha256": "bdd1e647ab52f5caa387b0093a242efa5ed867d60d1eff3b4db211bbc994f6aa",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_media_parser.dart": {
+      "git_blob": "eff07a227c068b95c99f7d76e45835eb52b62236",
+      "sha256": "994cf22c93f85609ebb7a5ecb1da7a631c4048cb718426cd8475b82f07d29af8",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_metafile.dart": {
+      "git_blob": "d851c049db10c628ce792a0e8c0f5d4bccaed6b3",
+      "sha256": "1b852d36df20adcb846021452f58aba61aa51076f54ddd47e0f252320a6d73e1",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_metafile_render.dart": {
+      "git_blob": "abe4ffc89ff3dbc8f3a2f3e2d671706ec7516945",
+      "sha256": "56cc831a724e6d61d1bfa78a15895e5129d9615d71e59de0397f77f3911f440c",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_number_formats.dart": {
+      "git_blob": "a5158b488d4679a36218c4ea528ed6544dd01407",
+      "sha256": "3a98b56587fe4f1f72b2bcd6ca3020569d5a8f0f3b7f68fe19867b2fd19d42c8",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_numbering.dart": {
+      "git_blob": "21dcef2c9b96a09c3c3f31b5e399f1189ff3c766",
+      "sha256": "c9dbff5e7f058dec52f71cdda9bd4864cefae43c5576e932fe1ee5af7f4abc82",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_officeart_model.dart": {
+      "git_blob": "35eba111e1721d141ae7c4e0f6f17ca6ce3bdcd1",
+      "sha256": "d32a88158addb43fcca56dcff241595186670d32d71d8f480e9f3475301db71a",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_officeart_parser.dart": {
+      "git_blob": "db91fd61e0328f64062fae24bdad8d99d502af29",
+      "sha256": "017a427393a102f06cd98fa4dddadb060c6d5e8b83c38b3d5c9474af70f5a64c",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_pattern_dib.dart": {
+      "git_blob": "b752cb0b97e4e07afee080cae47172f48bd790d7",
+      "sha256": "47b2044c90f00512423409ebfc11a235e37315fe88491d560ac349a0cb02acae",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_revision_model.dart": {
+      "git_blob": "b0ffd296d0c34c92e86db13435672e27c3ba0c82",
+      "sha256": "cf39ce7f1c21de1825f340718da077e3a0f74fff4f85871fa4774792778f0fcd",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_revisions.dart": {
+      "git_blob": "258177b40eaff9f2feaaede326acc9ba222b63a0",
+      "sha256": "93b70786380df217a9f21085f0046d6ea91bae04f3dfd89f36f80da66859a830",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_section_geometry.dart": {
+      "git_blob": "fe792e09eec15d90fba23415d8f30c729cc96109",
+      "sha256": "76c61db1bc763597ad51c000b484507906444ad24c079ac52d09075f2eb8b8ec",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_sprms.dart": {
+      "git_blob": "0504ec7b16b8ea5a8d95aeb02d3fc817cfb513b6",
+      "sha256": "cad77bb97cbb44c86bd00c5172c37a846a1158cb5f561799b81bfe4e54763d2b",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_stories.dart": {
+      "git_blob": "5f9d5dca747a9c64a02b085db75857c3d00f60fc",
+      "sha256": "5b9b43fe56dbcf76f56a21beb4c8856073c2ede720d46ac384c384f072baaf25",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_structured_conversion.dart": {
+      "git_blob": "0817a1c5d2e35eb8925077396b5fdcec85a03d53",
+      "sha256": "11e2d5045fa354c5a952899d2ed3bd6f6814989b07683d1ba14ea3d57af7e889",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_structured_model.dart": {
+      "git_blob": "c24662ae295953f9336bc9f34cf09aedc3c3d55b",
+      "sha256": "7d5bf6e1c107d72d4b90af25480ec44131345240df5c426ce1dfb254041a86d3",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_structured_parser.dart": {
+      "git_blob": "af1471a41f2e01e7ec231f59f4ef886db912c761",
+      "sha256": "9dd109ad3bceb44d41eb4e0206311e2b8c757ab0758494477fe927c94cda3576",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_structured_render.dart": {
+      "git_blob": "90bd90c4a7109548b459d75774c8805c79a887e2",
+      "sha256": "3f441935a94c7161c426d8cf83325eb0e0d62583557882aeaaf7adaac23ed5b6",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_table_model.dart": {
+      "git_blob": "8804e439bfb548c0757ca64ecda95df374c9a0eb",
+      "sha256": "a7cf0c0fe01e2f3f43b6ddaff20482e8d00b4a36a94795bbeb3fc43eaf2f09fc",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_table_operations.dart": {
+      "git_blob": "ddb2ffd1080bdffce6677d26ca725dc4de542638",
+      "sha256": "3c5ee6009319cfc2aebb72d9744f72c754dcbaabaca076dd83cb830c7f67c5ff",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_table_revisions.dart": {
+      "git_blob": "cbb83ffb95c91d41a3964398177ffe0793cc6f3f",
+      "sha256": "275e1795441c96583d3d6c828bdde0356a382e6cc3447a9d20ed9806f6bc68a3",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_table_styles.dart": {
+      "git_blob": "5422cc4474d34f319ed7d6c20fb9fddc9145e28b",
+      "sha256": "115bffeed7b8e525cb734c60ebf674764c693efa55b58e0bddcce674913cea4e",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_table_text.dart": {
+      "git_blob": "9cd9387d8f333d212df6b2dd90ae39b441c99c81",
+      "sha256": "62728620de18d52de0d909f871bcc9f5786600dae418cde9d942ffa26cc1a4f7",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_tables.dart": {
+      "git_blob": "25a99b63cbdac51b8ed2103e05f426b8b5d3e242",
+      "sha256": "6c1d4ddb93e8f367f3afb70736fd853a27f548103cd2b6d86d54765eedc86a36",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/legacy_word_textbox_alias.dart": {
+      "git_blob": "c0fa7e15da1e11bf8740798bedc2358382d5bb4d",
+      "sha256": "7e6d28d480b70bf883cdaa5ed4d06f90171bd8cd891b17cc0a53828d19d1a24e",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/opc_package_writer.dart": {
+      "git_blob": "7bf08df4092b5b9d365400d217f68bceb518b965",
+      "sha256": "6852b0de555c609ace9c7bddb29de27e0a2e46e642c69c853cd49beeb66cf97c",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_comment_writer.dart": {
+      "git_blob": "6df074a5935376f1866e25979f9996b141270e90",
+      "sha256": "68b825defa56365f9857c6533bda585b08db5a8de7575b961922772f61eec078",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_compatibility_writer.dart": {
+      "git_blob": "bab1d9c2986f96619a352406b555dc09a3c9693d",
+      "sha256": "a5ef25e5476f4aaeefc7dc16d0ca75dd8d962a9eded7dc1426dafef11f971ba5",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_compound_storage_validation.dart": {
+      "git_blob": "19f55a94838a1c42efbb474a77009e5ee47e94ed",
+      "sha256": "969b2f7f2d7b01620f628f616aae491be063364c3b00761dcca498b71712cb7c",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_decoration_writer.dart": {
+      "git_blob": "c51d8e9d87663072038f514bb7097e3d552c71bf",
+      "sha256": "ae6db28240462473763f98b96dac37ba5ccb8b9a8ba817fdf7cd5f4ded7c24de",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_field_binary_metadata.dart": {
+      "git_blob": "ecdfa0da1152e45c4c22a9e9899f9262bd06b786",
+      "sha256": "699c374455efc7a9d19cb88bd6925e054c14944bfbdee704d5042c9535512366",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_font_writer.dart": {
+      "git_blob": "140f3bd8644d9493e57012d3e680231c4ddbece9",
+      "sha256": "09afb7ca08d619c164c331e3e58df17a60b6ab2755d807e4f196ea494abcd523",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_image_appearance_writer.dart": {
+      "git_blob": "8a2121a685dd5f1d46c431af3d2ad5ce2953d655",
+      "sha256": "e24db670081f3808f9d46aa730c9421f56edca44365931f4f202d34d0f67434e",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_layout_writer.dart": {
+      "git_blob": "bebff44bcaa09e1da6f5091eb4956ad8f9b1a631",
+      "sha256": "b9b30f35547fc5bdb0a7843d9d984c356dcaf398f4ef8da740752bc945fec4ef",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_media_writer.dart": {
+      "git_blob": "2d6a9abb22aed9405a27e0ce0bce0ca3d343a82e",
+      "sha256": "df60706a634340e3af2ddf737d74e66ff96b65a310a40f6bddd16d5a9160e7d4",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_numbering_writer.dart": {
+      "git_blob": "39a728451600dbd6ac0906e9e89803c2fd1307b6",
+      "sha256": "f470d5379a3b2efe67c8aa9664fd6ee61d215a23d0cb9e2c12ec5266634f370a",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_officeart_position_writer.dart": {
+      "git_blob": "2f86eb843e1b343ec88329c4dfee30b4240650fc",
+      "sha256": "e6a4dbd0621c97624dad8da26de63a5c057d96f440509a8a2dcc98e7c3f5a321",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_ole_placeholder.dart": {
+      "git_blob": "c1532dd30e6884245d3a5c8b7801f0c289bba9a0",
+      "sha256": "01ba91e6760f062420c4d0c691516627cb4aec54e5b9c69ae2db7368dbbdad72",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_revision_writer.dart": {
+      "git_blob": "710cdaae98001f5956c03fa1c0aa09bf97d33fb5",
+      "sha256": "e334579e6f3eded1a06acf14dd178cc59a21ffccc43c8b31012b638ec1e96aa2",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_shape_writer.dart": {
+      "git_blob": "8d44f72cc72e8b5e18b33319d906d931891cba51",
+      "sha256": "84879bda9bd841da1599cf5e91a971fb28e9c5538e18ccee75d6500b9d088ae6",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_story_writer.dart": {
+      "git_blob": "441249533433afed1f56a95ea527a4830526d385",
+      "sha256": "68685cc3eb22873f115e70d5b93cb1bacf39205144f6342a1670939cb0e8f50a",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_table_revision_writer.dart": {
+      "git_blob": "26598589349428c6964ad74274beac37aac9342e",
+      "sha256": "2430d40ffe5c694a53ce21f5ec2c813c6f1cb8b579fe6ee402fa32fb9d4b0740",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_table_style_writer.dart": {
+      "git_blob": "e324ab602101b960162cdbcb75d8393e37fb0547",
+      "sha256": "1e739f7f7179fbf1d3ee1b79825a779f035e7e20eb1406083466ece9d52dca99",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_table_text_writer.dart": {
+      "git_blob": "6120d7c91ff86ef1a4c63dbab5cbe9eb16bbc006",
+      "sha256": "e8c7af95651232e6c22e47f3816353e6b3126306011bf47bd55215cc18c8479b",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_table_writer.dart": {
+      "git_blob": "2564e83dacaf9bda02ac15c6acf9b17be6c96896",
+      "sha256": "e7511b11d0084b7f87e81a69d18aa53221651559b55ed333586c2c3a25e06b9b",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/lib/src/word_textbox_writer.dart": {
+      "git_blob": "de42183a377d2172fc6d385909431599e0a63f24",
+      "sha256": "f62ea5bad051d425edc275111d9927e5546e669c605ab564bc40a063e82ae79e",
+      "matches_recorded_input": true
+    },
+    "packages/legacy_doc_parser/pubspec.yaml": {
+      "git_blob": "f0389f352656d281988db1d853d6e86df67b51e7",
+      "sha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/analysis_options.yaml": {
+      "git_blob": "d0114d8fe4f50cce7222023450ae8253e70a8d99",
+      "sha256": "f42d6305af68c4bcc794fb058640b30a68ab5f8d6f3970c6669b3e5b6c55529e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/quds_office_editor.dart": {
+      "git_blob": "1d231b5732bd2660f1a3ee43a56264dfac67ef69",
+      "sha256": "aeaf43f56fae1d83eaa2a1044ece9760e5834482b5f8fdfc49d0ddf3bf64c681",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/quds_reports.dart": {
+      "git_blob": "3d57bcd9b9ed8eef9a1e6d84f146f81072b7bb24",
+      "sha256": "c821f338965b6d493ceda62d306f3d9da972af28f2f054b3a9c5924dc4d00007",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/core/command_pipeline.dart": {
+      "git_blob": "683c12080dad2cb3e3510f15db879df7d4c261db",
+      "sha256": "dfa04bb658dba1b45868feaa598bf351c4ecab5d88321af43d830f54f13ad0ce",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/core/input_bridge.dart": {
+      "git_blob": "e090931b1fff70c84d99f6ba112510f6b45eb94b",
+      "sha256": "a1edbbfec736875c53e04afd13bbe20963875fa00692bca94fc3358cd5a9543f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/core/virtual_viewport.dart": {
+      "git_blob": "6f0f1533aec5c0a66c75dbd47bc8785dec1cfbe6",
+      "sha256": "252184295c20fdee28711d5d9285c64d47d02b2b2912cc495ebacffc62fc0520",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/paint_pdf_display_list.dart": {
+      "git_blob": "063122a94b828bda5a1bf0eea3e50975f3979622",
+      "sha256": "e3815db40d1b723abb496ac3da074ecc870321c208083378cb758767bf9866ce",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_find.dart": {
+      "git_blob": "7e3a2ab3bd00cf06d3b272409e2634c2bc4d6adc",
+      "sha256": "34e25241cee19572b6cde877d02e636c677092edb41864e3e3eb42e73b69fa2f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_font_faces.dart": {
+      "git_blob": "28b2a15b2fda287ea2e0736996444252665d5c72",
+      "sha256": "313e0bc6dbe886930fdd542f1a0bea990374d7a63b7d9e4d3555a517a2b5ac18",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_layout.dart": {
+      "git_blob": "2113ebe1e96a6c8857e5002d5476f0de32ba3163",
+      "sha256": "80e1467aa4ff4ef5f95819162cae3a8f06f72ca5b8abdd51fd29454e1d35a9f6",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_rotation.dart": {
+      "git_blob": "1aa26c94e393e0f153dbad79b13a88fde84d471c",
+      "sha256": "6b1b76671cad9eced328f9ba9a4f8b905e5f2ab1b976effba7e379a1e892812e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_thumb.dart": {
+      "git_blob": "c118dca4ac78639d018265c64cfff3c65b05212f",
+      "sha256": "563a4953bcba0650970760390246c57b1161a429c95dd11972bdfce65c3e389d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_raster.dart": {
+      "git_blob": "c4f228b308711710150ab7e73a7551e823f5d6f0",
+      "sha256": "8cb17e31779e5ac5eceddeb00eb518cd169bec87a618e1d8bdbe2879439d4f8b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_text_selection.dart": {
+      "git_blob": "9d8ead6dc70effba0c789df6f8894f9b9fb56865",
+      "sha256": "6aad5e043bdd57019780fa5b132071a6b660c32e6d800c5ba8f1410bcadc8c71",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_pdf/render_pdf_canvas.dart": {
+      "git_blob": "80cb14057323199ab6526b4cc9e583b1c499d19b",
+      "sha256": "da82b429d5c056bdda39a39d480a3712cd61e4bfb3ebe71500fabbd0c22301ae",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/quds_report_designer.dart": {
+      "git_blob": "3d059d20e32858406b00892a007f7b42ed405068",
+      "sha256": "391f1f697aaa803a6bd406e3e92dbc85ef8a4c55d858bae9cd0cd4ea8c0c10bc",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/render_report_data_explorer.dart": {
+      "git_blob": "de2cc97454a843b72696c7110fb97fa7a80d9b3b",
+      "sha256": "690fd1fb887143ec6ad155ce46dbbd556d32e097c85787015b3f5e254dd1b4d3",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/render_report_designer.dart": {
+      "git_blob": "9fa5045a99d96c468228339ed684a54b69bdc4ed",
+      "sha256": "46d88799c06bbcad7069b49b2e053ed58df6ad54e02ca55a8892610e4a521f2e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/render_report_inspector.dart": {
+      "git_blob": "12e9b218812f9f371cd2fa68ff045e70a0ae532c",
+      "sha256": "6fa0259f426aaa1a26e94adc73d0fec76064a8d2dede03da138a8b562d248d81",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/render_report_preview.dart": {
+      "git_blob": "42154bc19ed0469db882d59fa9bf2ede4c739e89",
+      "sha256": "493f50b4bf4a51af7ea18a57e2c618f6e85c6e16bf202096249636669e2dfca3",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/render_report_problems.dart": {
+      "git_blob": "15cace19fa36b89b0be137e596b0631d9689f3ea",
+      "sha256": "e3a6b56bf9e81bae5b51adbdc8c9c5a9c3aae64ff5d290cbeaadbb54487108a0",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/render_report_toolbar.dart": {
+      "git_blob": "1dc94aeb0562b0149c0a4f36ba8592d9f7d39487",
+      "sha256": "0e6913fab02d90053369fa6d391dc379ca2e53d6669a7966cfc74b5ff4df30c4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/render_report_toolbox.dart": {
+      "git_blob": "9f9a8ca6a29f8e86de4d7c0ed3372ee3156d3618",
+      "sha256": "60912695205e05fac6675f788b3bdc4b8a07a43921842916637b4fdb598c1a77",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_bundled_fonts.dart": {
+      "git_blob": "9088dd394c245c56379b0f03a620a75317bc076b",
+      "sha256": "04b73c2c74566b964ad507f3c0acc69cee781fd7826cb81fc0cca5cbec096eb2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_completion_popup.dart": {
+      "git_blob": "c63ce60364f545f8b02e17755da099f3ad017e70",
+      "sha256": "6a70ff8fa1df9f4daed2900e57c832ec403868b6786b1cce5ee04cbfad3bb16c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_design_layout.dart": {
+      "git_blob": "81172125824419769d94c990cb4e2ce53a6af96a",
+      "sha256": "edd7f9563a3908cf8a8813e4e52c891874afcdf0052ac12668fdd5572fc125fe",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_designer_controller.dart": {
+      "git_blob": "2c35579c5732732e75d6cdad6e83c195871d9b94",
+      "sha256": "6082f0b793a0bf5fe29924049bb45333fbc2784b18b7125bded4815e2ef51d5d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_designer_strings.dart": {
+      "git_blob": "7290c2be6b0b7a22737e7d6fc665b01056c42ee4",
+      "sha256": "f85939f0243d2a8f24d71db47c12e5f6c51e7a66f5d58be30ef5c079a51ec3db",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_element_painter.dart": {
+      "git_blob": "153109cb76fea581f0551580aeb2f510a77a855f",
+      "sha256": "9e8414cd477dec6406950a943df9906b97069cd49f76a60e4fe7513f7eadb52b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_inspector_glyphs.dart": {
+      "git_blob": "19e47d3eb9864f114ce77edc87ae0c7bbabe1417",
+      "sha256": "f611db65c43fc52b8a7d7ef08cbb51e144a32cd5f533e25168ee670953dfcc41",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_layout_painter.dart": {
+      "git_blob": "a5fb65838bc14f104ce6453500af82d13dc2178a",
+      "sha256": "48ff3b9e268c2354604919b495cbbfc6288a48fe371ac63a3258fe6d768c3c04",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_pinch_zoom.dart": {
+      "git_blob": "6552c6cf7c0d1a1cfed68c77028d9bf2d2dbd176",
+      "sha256": "4b0d6a23f9f2d5a58efa912a63e093deeb42fe4f58ab2fbf17edd3ef6148587e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_reports/report_template_library.dart": {
+      "git_blob": "cec33c949c4ebccdde103149e848cdc2cf043299",
+      "sha256": "1246b7a72eabc2770409fe339da37e6a82b4e4646ac912fa99409e7b1f880cc5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_sheet/formula_ref_style.dart": {
+      "git_blob": "e22337508749ec55ce1a13ba3fa2dab71277c160",
+      "sha256": "63ecbd1f2f83d3f23b8fc4db465ace7e3e22918fed4d2d9f1e67850f9ccfc53e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_sheet/inline_cell_editor.dart": {
+      "git_blob": "f975276a8a0c31e64f3f91c398677b28a38d4e82",
+      "sha256": "9cbb237d30ca4eae3b1fcf3d8ec5036e4e690ca69043b6df76919eac6c830f5d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart": {
+      "git_blob": "2c81089faeec29228b64b5ba362a31f3719997ce",
+      "sha256": "dde600201484a04a07e922b12d0098b3334bb3c3289476a7ea4e88a28cd4e9f4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_sheet/selection_matrix.dart": {
+      "git_blob": "b201d8f02611818abda7292533f1b138150419a4",
+      "sha256": "0be3af078d18dbf34f47b647dbf69d9b318567e4f3295eaa83ca73ad4d6418e5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_sheet/sheet_font_metrics.dart": {
+      "git_blob": "474c89df59a7c896231b10d70e22b95962f002b6",
+      "sha256": "433dc0ae1ba3bba52fd1ea25bd3c9640960aa4d289ecd38987c78a9467476eaa",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_sheet/sheet_scroll_extent.dart": {
+      "git_blob": "c7d9a291873ca8f08e5b6a5706a0c0049331836b",
+      "sha256": "afe344279c6b2e167b8d5809770c3e8879082a7c0de09040b0bf75bf88d9e300",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_slide/paint_slide_motion.dart": {
+      "git_blob": "62a277685db80b8c57e28161d5e1959b84be7ee0",
+      "sha256": "b759895cb94747c67c3f3dee9935277c1ed980ba18aaddd3ed05fad1a4d32ae5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": {
+      "git_blob": "f49cbbd637bae23d8255b985e9b2b6b697da58a7",
+      "sha256": "b179045c740e241ac24b81b5a9637d1425855603682b83c479fec0c05d4963b9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_slide/snap_guidelines.dart": {
+      "git_blob": "700816dfbd7c483f165224cf448c7b5a2723674d",
+      "sha256": "124f8f3ee7869d2adf235525811ca4e20a64e8a62f3a6a2a1c9eba9314510424",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_slide/transform_handles.dart": {
+      "git_blob": "72150490a8cfcedede00723f8ba81b87e9318da0",
+      "sha256": "c098afda7369b6fc793364008dff98523dd3a5226657af12609579dddaead0b5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/caret_engine.dart": {
+      "git_blob": "e6614873a9d70b8f00b1ab745057fe00768f0c27",
+      "sha256": "32018a11911304e7b8a68a60ce0529ff7d402c8bf0c0e26fa7e2f52911cfbbcd",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart": {
+      "git_blob": "f789e6e79a6ec9f989ae3d138e84275be38917af",
+      "sha256": "5d46776d60b1c922886d5f7544d819090db6ad8948fadda4d309945442e6daf9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/paint_equation.dart": {
+      "git_blob": "e467eca873fadb0dd75881415887c402faa392f2",
+      "sha256": "960c62ddad9e03649908a9f852f01fc70bbc2b7e270f18369e8106469f7c94f5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": {
+      "git_blob": "c6d751b7e176bf41c1dbde2d45165887059e5af3",
+      "sha256": "9092c8c58220e3a3af1e02dad845d675857e44ece5f3d19a3373e21eefc15f99",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": {
+      "git_blob": "6afa84af409856cf8f68fc24cb64436982a2bd91",
+      "sha256": "09a6554b609871ba9b530f7722ae83e5d47c0babce68a7f45e5892b28f9bf1e1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/table_history.dart": {
+      "git_blob": "6f0882d5d032832279825333caa817ec65a49166",
+      "sha256": "5bb83807c45fd62aa5e3ae55def7538fb5da904c7237f43c51311994fa0c8640",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/table_resizer.dart": {
+      "git_blob": "c8f98d3c0ff4623d96f885dcbaa1080be66b7ab9",
+      "sha256": "e9a1d3d50273617f8a4cde893c0e0dff652c02cad6fa72abb25ff90c9f54b57f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_clipboard.dart": {
+      "git_blob": "4426a65e30e09e3fd5353c8d5371297c72d24a1c",
+      "sha256": "3a1f6c259ed2f414de01e0d4db82456d2f01457f33b0117789d033786fe12193",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_context_menu.dart": {
+      "git_blob": "6aa036d142d7f7c59d0ca463d1abdbadb7382937",
+      "sha256": "6eefbfa5ef5cc9db6ad109c43271357797f22903bcd86351cc3e8e9a9ad55915",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "git_blob": "3bbbde21c9a84370e8a2a93403530569088aed8a",
+      "sha256": "660c1b510290df03ba5237c380eeb6fa3e8b42f0ba083db94094c5bb7e48a07c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_direction_keys.dart": {
+      "git_blob": "a3968d6fdb92bf4149510c27307b8eba9e392ac2",
+      "sha256": "462900eca7b6ac33cbc7e614fe725909e3621b3a13cdb1412b13d798cf14cd79",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_editors.dart": {
+      "git_blob": "7cce3bd066fbadffccffc74d122e6b3338a4cf40",
+      "sha256": "d08a59b06398267c1bd8216ead8888943b19b41f7f1cec25557eeb83cf0c5afb",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart": {
+      "git_blob": "573af1731bc1dc88c8ad25ccfec48e7bd76ae565",
+      "sha256": "0f983d3bd127f986ff06c2e9ef0d836062e99262c72a3fa48d62b01061818a55",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_theme.dart": {
+      "git_blob": "91ae645c693087f69f03397b09bb432f19fff418",
+      "sha256": "c348085114f089cb2cf83bdcf2f20607d988c12e9bf1cb09bab307e2227092b7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_uri.dart": {
+      "git_blob": "d4c960665f3bf7b630588aefdd512ff5752a4f49",
+      "sha256": "49a67998cb9266938b1e9b4d9a353ce61c352e6305db2beb3c6eb0f76ec4cd38",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_uri_io.dart": {
+      "git_blob": "ce2cb778ec0b95b260fa88f8cc93c5de1c03175c",
+      "sha256": "4993a5a1dcd8daa4fd693c5c55d6a93093f1a9b2a0038e9635d1c90a7041dceb",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_uri_stub.dart": {
+      "git_blob": "df286252389f0e161168fb9b0ef7ec51daba76a2",
+      "sha256": "56c6ea19476145c5f8f13af746c3fc20bd7f7e6559101bae54d2a035a729f821",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/pdf_controller.dart": {
+      "git_blob": "80fa719aafb602ca64b6395f9c36c5c52bde8c52",
+      "sha256": "9f85b2e28d8476a69207140fab4d537dd599ae6fa43fa1ea3f5ce39954026375",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/pdf_editors.dart": {
+      "git_blob": "9cdbdc9b227402fe96680dd3dd7d58c2c99eca08",
+      "sha256": "b710c80e9c0d3ad4d93c178a66b2e6a2af4eded0aac828f23aa7e773b98b247b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/pdf_viewer_options.dart": {
+      "git_blob": "7948d28fe2922a17f115abb525efabcd462209c7",
+      "sha256": "22e6c92711db9e964a657fdaaf434066c8cd663e7177f5524baa3cc23eff1679",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart": {
+      "git_blob": "e5b9a443baed79eac83abffeb13732cd7cc033b1",
+      "sha256": "8311a405ec1bf8082284c4a79337d16abc96033bb78e7a789065805d0504b5b8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embed/word_tab_stops_editor.dart": {
+      "git_blob": "f888163fd1c72b667cfd641136917c50e700e5d7",
+      "sha256": "7af38384bd4abec5163b257506a87fa889313acb911d1bcf0e2622710e7d05d5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/embedded/embedded_object_host.dart": {
+      "git_blob": "fe2a2545469b485681b1838521da6be3adff2d1a",
+      "sha256": "5b23a02608ddd69854f522f7dff99d3c02df7d4f6e11fa97d39632f541b494f4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart": {
+      "git_blob": "20b6cab75cb4843e8f808cf1e2cc8a5c56b45ccb",
+      "sha256": "190abb22387a26e63bf9f91f7ad3921b56bfe9f2c2d1455cd09147db62a9163b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/visual/paint_drawing_line.dart": {
+      "git_blob": "67e0263a9e3a73a69efee4df43f19fd94cc31f78",
+      "sha256": "5acccaa56defa41226c5f4bc2b757b9cb906dddc95a0065fcfd3ba7d7d6fd70a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart": {
+      "git_blob": "e0f0a2d7e8e754c454466d960d8539739fa8a126",
+      "sha256": "0a790252e7eda94a910ac9073a391710017139864e8fcb70453d1e3b106c124b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/pubspec.yaml": {
+      "git_blob": "b5ce396826a085e04308a9917693ff33b47f795a",
+      "sha256": "f3cbfae1226252ba650d206e9f58eb0792d0cec6e8518355f47a8a9fc970b03d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/test/pending_edit_save_test.dart": {
+      "git_blob": "3cc1a642bc114fdc2b9e302cc3105a59c0c50ae7",
+      "sha256": "15b601d2e1c08b974e2ecf8b4ea95a6802f831e40e8ccbe28617b28711fb0de3",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/test/sheet_cell_state_history_test.dart": {
+      "git_blob": "2fb1cf40cfa933087d1f1925b20afccfce91c8bf",
+      "sha256": "11874da0d12cbc6964bcf3a21953151c2f296c930b2c3319385c227e6741546d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/test/sheet_explicit_style_history_test.dart": {
+      "git_blob": "2f5a695dab454721d5568d11d8fddb1dba724cad",
+      "sha256": "85daba158d05b4ac1f6cbdcc84b348dc534e5d569a833a30488cf22e241c07e1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/test/sheet_fill_intent_history_test.dart": {
+      "git_blob": "f8d6103fb0bafd404e10d296c7d299d6baa4e60d",
+      "sha256": "4c8ceda7de9eb76acec24ca752db3599fa87300cf2bc62f92df30878451d5f62",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/test/sheet_font_color_intent_test.dart": {
+      "git_blob": "47148972cf0cdfc4a5270505685ddff86febb30b",
+      "sha256": "a2bb842c2331136867b6610cfeac03eb3788df50c2a42b14c6fc002131934398",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_editor/test/slide_notes_history_test.dart": {
+      "git_blob": "ffdfe514c7450b26516dd1f9a87e25b32aff7328",
+      "sha256": "6f8eaeb509b2e0d04f927667073ec4fc1df07f68dbf3a792a31c38f4a4187132",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/analysis_options.yaml": {
+      "git_blob": "f04c6cf0f30d4f8306eabe5dfd00f2a4c902b838",
+      "sha256": "bf7d17dfdbc3aa4dcba00ef52506c50fd798bbcf3d0f907e875fa38bdfa9846f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/pdf_file.dart": {
+      "git_blob": "e2b6c62c40a6e16aa24b676b481d7ea17565560f",
+      "sha256": "52ef0127bb6fa2378ed7e01b2d536483f2b9acbefba6387a30f3bb50de9b0422",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/pdf_templates.dart": {
+      "git_blob": "6c4059729a87e7c080c74191e72bcab6ab251bff",
+      "sha256": "dd182a645531f5794632314c5fea6cb53509502d3f4398a10886a63c47594b9b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/pdf_widgets.dart": {
+      "git_blob": "01733a8bc9a980e03c17afd34743a66b1ce14686",
+      "sha256": "d41e91e2e9b1e1973a9f620dae13d5bb183745e935dfdb12386232653f9e549c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/pdf_widgets_samples.dart": {
+      "git_blob": "644cb8535eda4d967f701cc3d54476986c80995a",
+      "sha256": "f34c9c4eb05ef7ca61b5571f433aef9ba44b0a0addfccd92e923c8b689e8bbec",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/quds_office_engine.dart": {
+      "git_blob": "127f1da372faeec76d8d3a85038f2d43978745f5",
+      "sha256": "4d1c7459ccc09940c6f30cea863ba6903e91a3bce780d7db4860150c9d19ed7a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/quds_office_engine_optional.dart": {
+      "git_blob": "15aa7e749b6f1e9baade2b7def40547968e54381",
+      "sha256": "1f397c7f0703e03b7beade08779b5dfc916b7d147b98c959ac35f4a193d6679c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/quds_reports.dart": {
+      "git_blob": "e712486f81830a9e3899794e0289c4138e3b3de1",
+      "sha256": "2918c0d989f42c9705b6ca085eaf402aba7ca8278764e293f916069e653a7759",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/bidi/arabic_shaping.dart": {
+      "git_blob": "6ef5c39ac333a2867d502e7ac74e8cd7903957cb",
+      "sha256": "defaf787d5363c4da45b3524a0d4732ef15153987f93658b20fd615388de74b0",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/bidi/grapheme_clusters.dart": {
+      "git_blob": "f38d56ef9aa60fed29ccb810bc3fa46973b837b7",
+      "sha256": "f04618334611bb31abcf34a7388c45c0068b161f09a56303d3c39226f859ce60",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/bidi/line_breaker.dart": {
+      "git_blob": "0502736ede7f79aa602893f7b1249ab1bd4e068f",
+      "sha256": "0975948413b06e984c31b88f85da21977b139305fb50923a36b1c31297bed8d4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/bidi/office_direction.dart": {
+      "git_blob": "43fe552ea39cd1e94286f0641fedaeaafed579df",
+      "sha256": "3937995152a52a6796a9229540ca4fe9f527a062e374d38108154d557d79d673",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/bidi/uax9_bidi.dart": {
+      "git_blob": "4872f03845fa9bcfbc35e61a4ad68aca7acff8b0",
+      "sha256": "708a616f9a28abb7d86fb9de1f975d5fa637c55cf29206b770f32113e5acb04a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/builders/docx_builder.dart": {
+      "git_blob": "72e7763004a608b0b77ad02623abd5902b3889d7",
+      "sha256": "d58a9c8b1757208065e1f68a3368118b040ea2cf2116e79c0f0fac95ba1ebe3f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/builders/drawingml_charts.dart": {
+      "git_blob": "199bb2dd9612b00e42df7388e7cfd9f5f2e45f72",
+      "sha256": "dcd333224d534f528bc218a56b9297375286b24ef92016307ad45035e257993d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/builders/image_fit.dart": {
+      "git_blob": "7a0bc198bc87df6d43d5c20e438236a17a7186d4",
+      "sha256": "1018b829fcc78d85b891f1c29e9287ef267ddea4d9befc76750fc31f161f53a8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/builders/office_document_theme.dart": {
+      "git_blob": "8c2f297175f2133f9d39c255d778bdf60a09e3f5",
+      "sha256": "fe9ce8d4ca691c429d37dde98a476f6561a5cd93a9520bd67fb18dad832ad020",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/builders/office_markup.dart": {
+      "git_blob": "5b706744d172a6b3c97ce6cee3b2200b4e881130",
+      "sha256": "3b11bbd6ec7fb2203a058cf9780358128f04459bf8c240bdce186d5f6c52384e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/builders/pptx_builder.dart": {
+      "git_blob": "5ace5977749fae8f5de9828421bbd8ebe750b489",
+      "sha256": "58771591344e8f06d66009971913d64809e4ff5609b50f6df32a683905367ba8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/builders/xlsx_io.dart": {
+      "git_blob": "c9705002a6a294f110208588dd465c3bc37b141f",
+      "sha256": "b8eb4d80b5c62c17bede5d3b2320d5466690c088b3583898c2827c7e71ffb9f2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/crypto/aes.dart": {
+      "git_blob": "10c1a383d6761aaa28d8730854080e0acda660ac",
+      "sha256": "638967fdf0683328de6c385221fedc7be6e08be3c3e948e6f634967f01007cdd",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/extract/office_search_text.dart": {
+      "git_blob": "e92abd3d05898444dc0f2a54af07766f00454db1",
+      "sha256": "97dc650cee6bb7e6ee4e234207b07f5b225fd7f682892751b599d4553893cb6f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart": {
+      "git_blob": "fd7c85fce7ce664e45cb986c107fa4c07d13c0df",
+      "sha256": "d45c6219e5e7793bd12152eef307dddf70bb4fb4a1a3dfd20675882ed594a768",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/cff_raster.dart": {
+      "git_blob": "a783c16ac60312d004e751cfc4ac3a02f2537a41",
+      "sha256": "ca6c60a925e1e6be3bd512ad26ae8ef04a71cab55a8d68c5ce0724b391f0a238",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/font_metrics.dart": {
+      "git_blob": "bf4ed25515f6ad1630c959d81b9227090cbc27e3",
+      "sha256": "70251ec7a527fecf872e10ff038fe0cd5eb7a5e3b327319c98f0d0248680c9c1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/font_subsetter.dart": {
+      "git_blob": "e397ceb40bb47e53aa497c1c96ed2c4352e89698",
+      "sha256": "ebaa644f807453bb4ad00451387b0293478c1c3db44a03a46d2991bf0fe2feab",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/glyph_outlines.dart": {
+      "git_blob": "5d73ad29fb96e76ad33638e80cfbfeab3c577ca1",
+      "sha256": "3e7b75e8031d5b0edee2cef8032c7727a97258e7587544d82fa7870f595dabc6",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/gpos_mark_to_base.dart": {
+      "git_blob": "b7a1f6120ab4f684cb9e66be19aaabf7d97911e2",
+      "sha256": "9e7f093e9e409d3a07d4df1470d29e1a42574d985933f6584f27a3ab8021e75b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/gsub_ligature.dart": {
+      "git_blob": "b3f0c25743ba000dc5fcdc5bbcf2ec139d34fac3",
+      "sha256": "5954daa62892b542404f327128e7a9901fdcf08e70eb2f21fefaa24bd352bc22",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/office_font_set.dart": {
+      "git_blob": "b6885dbe34516767fe6bcb6f3543df6b71921b18",
+      "sha256": "aec925e9acbdfe07770461f1a956f3a53c1b3b91e5be08741291b9bcfdbf6b8a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/office_typeface.dart": {
+      "git_blob": "344ed90769d9173c859b7aa37c2582084e160a9c",
+      "sha256": "2ac82a1d909a9e399764e25dda4ddad026c4d329272eb22bce736fc941cddc9b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/fonts/sfnt_parser.dart": {
+      "git_blob": "e39f94d66d410cf1c8aa8c99a14a4d38a40411f6",
+      "sha256": "5e6d0ec9bba6e5c0be8d6763c6773a4b2e2afa136e3787b915ad2b7742b062d6",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/io/byte_source.dart": {
+      "git_blob": "837c6e78ed41bea1236afc1922f2609e607f418c",
+      "sha256": "bfd604c766efa0a4ab052f85f9a6da1efa5a0cfd801b25419f8f89bb842c48cf",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/office/office_document_properties.dart": {
+      "git_blob": "c4889d76841e72564460150fd885bf660ba4d62b",
+      "sha256": "7a90bfcbc02e36409e8f0c8474195bf2dd4d95e89cb79458213b53b14030ed9b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/office/office_find.dart": {
+      "git_blob": "d30ec3cb2041ed3c03450e4f25bdb282a034bd4e",
+      "sha256": "c1efa253780033067ad551aec02ebc2fb9c95ab4b28b8287a5657b513df337e3",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/office/office_print.dart": {
+      "git_blob": "76c6598741a28dcd78b72ed18e22a0c0c6a4c09d",
+      "sha256": "81c9351edd6fcdbb784cf49969a2737b0e459c3cf14fd811b9d05b3cd125c464",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/office/office_spell.dart": {
+      "git_blob": "f444ff4971514c6e20bb6334f922fc06dbbc5382",
+      "sha256": "83552b83dc8d9401f9b800c97dd0f56ee19efb7c0bb7257486905d255b502ac2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/office/office_text_stats.dart": {
+      "git_blob": "1313f594b48ee08040b9078b059a40e470b2c3ad",
+      "sha256": "13c398ceafa068532880ea813ab1a24f438d8be8cc04c3e9245afd9c8bf65a82",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/content_types.dart": {
+      "git_blob": "27da1626e5a5ca29b6552504912edaa8599e8fd0",
+      "sha256": "a6c27fa73cb7be272246d8cfde12af1eba4ad7b1548454f2a6ea371874662b46",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/crypto/office_crypto.dart": {
+      "git_blob": "b5c29641ba1109ae6610e8e6f3b30ada020475b3",
+      "sha256": "b14a302282ddeeeb818cda9931858a1f556c1b57e31a29a0afc7cd11d2980107",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_isolate_open.dart": {
+      "git_blob": "686b16db56c4d1ecff08db203a7cb55d00c3d498",
+      "sha256": "5b80a374d75cf5374b750cdbbba31eae8facf8ae604a815c5b91ac02165c4ffb",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_isolate_run.dart": {
+      "git_blob": "2bf62acfb5bca8dcd115e54e0d141a631a639e95",
+      "sha256": "e8ff20077f107d26f1d78a05703e33b8b4f64ec234a3060a39dcf27c6fea7453",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_isolate_run_io.dart": {
+      "git_blob": "9a2107012b100495c6e44351e3568e3916dfed30",
+      "sha256": "8bebf64f33829e03a95660ad663aa8c333ef0413290c60fce26c5e19b4429504",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_isolate_save.dart": {
+      "git_blob": "fc5e2e0abd63a88b3544f94f89da7b74e98bab8c",
+      "sha256": "ef1d4d91e91a45aaba9abc2aeb1fd4cc670381ce8348de92465f97b14cb17d8d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_isolate_spawn.dart": {
+      "git_blob": "f487e978db6c654ba3a8927ef2fece97c92daa7c",
+      "sha256": "0cad8efa10e71084e6d0ab7978e73d2e8ce6c6b40925ea1dbaabfaf25cd6c8a6",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_isolate_spawn_io.dart": {
+      "git_blob": "6920f74125acb8e7a824b345b02f81bfc5cd4a01",
+      "sha256": "33fffaa9a6b8c273acbf80513440c3183d2224816748d78c4e94d5180f672211",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_open_decode.dart": {
+      "git_blob": "b1dcd2f3d13541613527bbc8d4f2a618f25e0b69",
+      "sha256": "fa8ce198614b9704a61688be5609d7c55073af172a1dadccf53bb82839367205",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_open_types.dart": {
+      "git_blob": "e8298e569557525accc66b57f37495dd39be4dba",
+      "sha256": "994a2cfe04cad7f0293316438efd298e588e4634ade41a924d2528a280aa5813",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/office_package_parts.dart": {
+      "git_blob": "1075136cdc18000d3c103ab13507038944ba4e45",
+      "sha256": "7134c027e846e122aadf78bf1d870ba41e1093269bb3a949adc37fdaf1ae70c3",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/ole/bounded_cfb_reader.dart": {
+      "git_blob": "4c47f041c0e8502f133d985b4ffe3b2aa4751ebd",
+      "sha256": "4641762d4c59fd45f3b790ac2b41afe31db64cedd8686eff7975ec736a115f7c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/ole/cfbf_reader.dart": {
+      "git_blob": "4de1dc84f2f00273856505162743d7305df0b2f4",
+      "sha256": "3fd389a63fa0c735b872365ad82c8f9128eee51e8e4964dc654b1c3022580cbc",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/ole/cfbf_writer.dart": {
+      "git_blob": "da730303d6f9d3677364093e682c476621adc0d4",
+      "sha256": "156b1bdb09829f4c20683ff4871cbc7dbe24ed8ce93e1a660b5336df051b5ec5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/ole/embedded_part.dart": {
+      "git_blob": "97f9a8d7a3341687e53cb34ca3a78f674b513546",
+      "sha256": "2f964475b13d06aa268ba906d541e1c8b4d02cb6b10a992fcb7a02795c3f1ab0",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/opc_archive.dart": {
+      "git_blob": "38f7d7bec5bf852eb063538c3c38106efb84f3a5",
+      "sha256": "038c553db1487ce5c879245189e50afa3934055f2962d783d213878530b942aa",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/package_part.dart": {
+      "git_blob": "05994292ccb5fec5297e26f42e0911d189ec82d2",
+      "sha256": "02e6338ba76cef47c8fc351590b55f6eccc3908f365a62e5dce291907a3b71ba",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/relationships.dart": {
+      "git_blob": "050cb22dba8f85fccdb2c0f09595385594e5e0b5",
+      "sha256": "e767ebdce03d7c08fe4c37503f88bd4bb9cb27130c700d1e3694f3fb7acabd0c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/repair/office_repair.dart": {
+      "git_blob": "ec4984bb29c09577a07776c8afcba2f6c154fa64",
+      "sha256": "dd9186249869819eb05708f4ec1ce88347b010a7881d1606b42ac30f3a35f7f9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/repair/xml_repair.dart": {
+      "git_blob": "ba2a1cfeb64f66a6f3277436d9aeb6ef4fe4147b",
+      "sha256": "f6a822db5c3800826c970c3160af8041cf1524502a158a4864f4c8f2c44005de",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/repair/zip_recovery.dart": {
+      "git_blob": "c65212b471b95a4a30ffee104ecf2ad34d31856b",
+      "sha256": "9e19d5dbbb2ccce36d388833823002b29ad54f877d2243823240cc15bffaa95e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": {
+      "git_blob": "93b9171763b80d2a612b25e40dd9269e8e913b9b",
+      "sha256": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": {
+      "git_blob": "d4b6a29d8171191c8728e492cb98f1f8a418d9fe",
+      "sha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": {
+      "git_blob": "df8e786b4af01c83babcbec6e77ed81485dd1135",
+      "sha256": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": {
+      "git_blob": "468be87142a2c12fbdcb825626a1adae13a69894",
+      "sha256": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/optional/pptx_media.dart": {
+      "git_blob": "8fea96582673e278287b65b0af7d04fd54fdef87",
+      "sha256": "8916827335419a88f0bff141e23492da454be00b91728fdb710072a3e897207a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_cos.dart": {
+      "git_blob": "1b782f5f5fc45a3916f416507c8e25040364e2af",
+      "sha256": "f1ae143582f1cc51a47cfb15976c96fecf024d4487cb3b08d70a298fc4613264",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_cos_reader.dart": {
+      "git_blob": "b055a7a72c1470c0ce4366c423c29ce0bc066efd",
+      "sha256": "67004bae5a4e0a4247a80688ba0ec399d688b4b0577ac7652b818bc9644c2c83",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_cos_write.dart": {
+      "git_blob": "18b5a57ebc40f3546484a0e8a8e743da61cc696e",
+      "sha256": "9ad1436adcae03bd5ace09fefbc54c2b7453852da624747a71255a2273fbd50c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_open_error.dart": {
+      "git_blob": "ec767dbf4b8ddfb564339978c0b55744798b3b08",
+      "sha256": "4b2d82d7f931677ff7343a74e13662a7ca1f7957c122970bfc7ae5979f08ec47",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_store.dart": {
+      "git_blob": "4b91dae6e169c5eed259fdd27996840c1d7181cc",
+      "sha256": "9aacae2c2e77c86954fe6833760f7151230ce3279afdb7b063f9c967623f807a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_xref.dart": {
+      "git_blob": "7531f420552da922a1fac3fe894a9cac75d35e61",
+      "sha256": "dc5be45a511394fde851f23ab7c8ff7fbd1c596daa46c8543f9cd74938a9d62e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/crypto/pdf_rc4.dart": {
+      "git_blob": "cf40290dfea89b75cd7ac7b538c73de6937e4f03",
+      "sha256": "b2e7e84e7852e81008a83ca09f48b9e1001f65330373bf1ce1d0141bff75bdcc",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/crypto/pdf_security.dart": {
+      "git_blob": "9f437f9942bfcfa96fee36f76c180829cd8248bf",
+      "sha256": "889d24940b271f454b9ab3041e1270830fea852119ccf7032f79c9112eb980fc",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_ccitt.dart": {
+      "git_blob": "77cf66d749f864aa124eecade5495a5fff903fa5",
+      "sha256": "402149c19a31e35f326cb9a3b60cffc4fb5a0b5a852c1f2fdd75d42412719af4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_cms.dart": {
+      "git_blob": "806e433b0c34b8a2ddb9eb0a393fd8e23b263ddd",
+      "sha256": "8a69c059ef9633ad183d2d76268751143741a3f224a15bbfe060d04d4da3a1dd",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_filters.dart": {
+      "git_blob": "3f66677710263fd946749b29c3d7c9b68ac94b51",
+      "sha256": "7999a93e4be17b2c9a2a4e714b6493cbf14dc11c9c6a50530fd0aec5512ddba5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/decode/pdf_jbig2.dart": {
+      "git_blob": "63ddf16060c60f17fdb0ecb8c0f30332cef34d48",
+      "sha256": "ddfd8b1889b90bc913da73fcab7acd407cf95ac97504944945f4309420006596",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/interp/pdf_display_list.dart": {
+      "git_blob": "bc89406260b343a74f16cde69b9e1c154c35f962",
+      "sha256": "042f57bd80b65dd86f4281601e5f497ca695b4373d8a16426c8fe4f81371b321",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/interp/pdf_interpreter.dart": {
+      "git_blob": "dedaeb5e2bb00c3da8c71fc6cd9187dbf5ff93fe",
+      "sha256": "8c0fb1b4ff236925be22f620555ecef616d6a4fb813051cdfce1bb3443c6bd9f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/io/pdf_appearance.dart": {
+      "git_blob": "d774abb7b45a8ee4c6cd7af2b6a6efc76f4a68d7",
+      "sha256": "ad331187e6af292b3239742b001ce810b53b72a19fabfec797677dc2c7afb87f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/io/pdf_incremental_save.dart": {
+      "git_blob": "6f10e5e3d5bf73cd41e20c10a4b3d0d57e1ef939",
+      "sha256": "6eec5e002e9c57fb672560cedb6da3db1351d96ba5fc8c3a9d05ccdc10f7ea54",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/io/pdf_open_payload.dart": {
+      "git_blob": "66149a4b967a8b7e5e06fcb08359f4e31bc13ca8",
+      "sha256": "b10545144995425ba7d2c076052e8ee21c5e22de0e0cc83ed07573faa61f74e0",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/io/pdf_page_io.dart": {
+      "git_blob": "ca19c242d61ee6fd126607d597a0d59618f78787",
+      "sha256": "05dd69d7119206c904a9082976e33322f223256bdcb52b76e8c34ec4debf167f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/io/pdf_xfdf.dart": {
+      "git_blob": "b182ff22477cf9fb392989277e1dba92c04a5226",
+      "sha256": "2ffd9ba1eb195c77687fe6946878ef40e275e58c01e48c489088c201880ec831",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/model/pdf_annot.dart": {
+      "git_blob": "469df08137d62087f7b1248385b45e855c071c12",
+      "sha256": "514a7129e70f0f321e2e7b39fc6a9d3a1c71c5782e1026048ce0669b3588b49a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/model/pdf_extra.dart": {
+      "git_blob": "8b1e3388bec7d8389d3920271dc6b1405ec0be64",
+      "sha256": "ab39fe4078eb11b5b803a91ac24d2fcd4a7d1901f509472fc06ceaf5ef10125b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/model/pdf_file.dart": {
+      "git_blob": "f51b1a0c8d1ef7a2e96688467118c8a55aee7737",
+      "sha256": "21c272d223d78b9bc962d66a84d91169a13581bdb57fd1d35cf6d8d13b7bcb90",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/model/pdf_form.dart": {
+      "git_blob": "7828972ba904bfad16e51d3931bc4c9005b83139",
+      "sha256": "0fda5540082c14e9daa420f9d32f5aaf2487339c688e63765edec4d70fb71ff9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/model/pdf_page_info.dart": {
+      "git_blob": "c7a622b62d4f4444b3442610de50575729060bc4",
+      "sha256": "8ab944da5b0fe8bfb4ffc9869e49e1933464f2989908ee6f9d965e8dadc61ea2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/text/pdf_cff_host.dart": {
+      "git_blob": "547fd5aa1642a16541aafc0565ff6b431ce261e5",
+      "sha256": "4404a96aae54609d2d6c50fa75fb7abe021551c83d54a36cfd73510027c8578b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/text/pdf_extract.dart": {
+      "git_blob": "1a9cf5677e1bf3ce91f2b1fc764817a8447bc52f",
+      "sha256": "54564001c9afae96ae5a3302b9f9e85361b09d00701efe79eaa932405097a4b7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/text/pdf_std14.dart": {
+      "git_blob": "64db5566af8265ee538de51f366145037ad5be2f",
+      "sha256": "0566f502fc111e9628033f602f0da774b0becd8e14e64a74e54b17c1846bf7d6",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/text/pdf_stream_redact.dart": {
+      "git_blob": "1cafb1e7e9cd67ef5a7cbb938347c93d19d90943",
+      "sha256": "54408fa640bfb70aa65b017c4195b51ff1ef1ad590a66d3a68be895a7196eaa8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/text/pdf_tounicode.dart": {
+      "git_blob": "4329cd4df4829861c8d035ff9f268b076b76b15d",
+      "sha256": "f91ac6be7dbcac9186ab469f84e0d38f4bfb245a47a21d1f5e8af80902deb6ea",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/tools/pdf_page_graft.dart": {
+      "git_blob": "5ebc60c09168532d818aac2cda9d212218d00168",
+      "sha256": "ba490dc2494662a4f1cb3d29169d79a3b63d5a811f30077eef78e96e961939d7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/tools/pdf_page_view.dart": {
+      "git_blob": "e9889458f04e1f35225820f0ac864deee7d3619b",
+      "sha256": "86e98283b22d1d9db05630d410c10074a550100855219e7ac8fcc083209516a2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/file/tools/pdf_toolbox.dart": {
+      "git_blob": "f0bd0a808736c6c73d517fd9442908ae0b898571",
+      "sha256": "54573c89df47aa7f206af8e4e568037314520675f00290d7bc3597cfec884fc4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/office/pdf_office_isolate.dart": {
+      "git_blob": "0e3c9a7743965fa2654c63aedd1f7fe0e2de1e8f",
+      "sha256": "7402c7cca85d4487949a9134afd0a7e041989be973d57da707eb6e5d8ebecd33",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/office/pdf_office_layout.dart": {
+      "git_blob": "e7a555b10aa35841c4cbb7cdf1ec64465c6371c6",
+      "sha256": "6076b05032f217da2eee8c3dd95fcd3479ec647dcab8943b5e938181239702da",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/office/pdf_office_model.dart": {
+      "git_blob": "3eb490e8f0d045e96e8569a143c9cbe1a60ca9dc",
+      "sha256": "5d9aae4311886aa909304a1c480c99d5d0cfe834b1e2bb6c9c49444aa7748fb7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/office/pdf_to_office.dart": {
+      "git_blob": "c1d4b086bbdf729ea8c7c00f2eee652c52d907e1",
+      "sha256": "ea9d59e9056ed17c6d01adc7b5262c3092328b68b82511a63d0b362bd1c4ef15",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": {
+      "git_blob": "71abf15bba4b3259a8e7b095e2d8a2130f092e07",
+      "sha256": "24ef1778129b637fdc348047c4d5b46667295b60fc9263e4342760cf7ff0f96e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart": {
+      "git_blob": "e8e4a7c8fc9af1809234808bcc3a3d847a7c043c",
+      "sha256": "8093a3b55be98bd79bca0999d5bcecefdecb9aaf4c540d213942f46a2002a86e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart": {
+      "git_blob": "2b70dfbae00c40397a48df3ea53aa1dcf2a18362",
+      "sha256": "10f7bf3a587eb0d5e2c923b28764761061c9452b0dcae50a3d9f32327fb9683a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_document.dart": {
+      "git_blob": "586fecc33ee03f3fe154e98efc11565d910554e7",
+      "sha256": "7f2f6c3f4523a2266278ccd6d002eddc87b8e7d97847fd0be02fe9c60b50ba1c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_font.dart": {
+      "git_blob": "491ebe88ae296338531ed404d142140423b0ea87",
+      "sha256": "1ed8efee3dba6ded9a97deb38306f8a95492f1edb4eda6d53ff2700b1a2907fe",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_image.dart": {
+      "git_blob": "15b9859fea102afe8a748431401199f8bb585ffb",
+      "sha256": "87370cda7fbbdfd26abe7bdd76c98b209a2a07124f7b28e686d992b107f9cfd1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_report_builder.dart": {
+      "git_blob": "8bbc8ffb15e59485faad7b5b288409c45468617e",
+      "sha256": "f4f35c838fb40e67c2ff1ef3ec34419938ab5a5b68481391b6dfce75b6a0426f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_save_options.dart": {
+      "git_blob": "939db104b61676c6d527ad7486d2c1ed2b1fdd44",
+      "sha256": "247ffe16a09fad27c397574b6ae45bc126c81a9a563a62f808d7a085111e6d49",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_stream.dart": {
+      "git_blob": "755d41b7d6896bf0dc64d7969b98ff9cbbaa3a47",
+      "sha256": "fa24007793f6dab3454d9c80db8d8b33d081a0338767de4a27db5e742d502b28",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/samples/literary_arabic.dart": {
+      "git_blob": "c281544949b6bda89ab9fba1a8aa3d6a856834ad",
+      "sha256": "d37c258f981ef238a57ebaadd2c72a681e1fc2b05ccad557849fed0bb46b7f09",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/samples/widgets_catalog.dart": {
+      "git_blob": "16bdc51a1a2a6112f24fda43adbb84e61a681547",
+      "sha256": "27aa55c2f5cceb3688deaec69bf81cbd1ca57f1c4899b6741b33ad8b07df54da",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/catalog.dart": {
+      "git_blob": "561d30d6e1fc79195744390bfb38bc6e20cc8d64",
+      "sha256": "e91af86fe4290377693cf48ca1e29e9d10ba17a1e4219ca580ecf20b25c0b409",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/commerce.dart": {
+      "git_blob": "bb3fe33d2be49bcb4c44d92464947db6af42f403",
+      "sha256": "53dcbac4630e198f98c4358f6ee3bb51ac1bbab1f3337f6aee427b37d9524d7d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/data_reports.dart": {
+      "git_blob": "bc287fa29056b2295ef4450e0993a3e83b04cbcf",
+      "sha256": "2c7a6977c4ebc58db853b00f9a10df80255d08e35e5a246bbaf46f1678bbbdcf",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/finance.dart": {
+      "git_blob": "9668ae13c153faf145a50c27b1cd99a5e4899016",
+      "sha256": "630982ca933805c9d9c1649a425b009d6529239da34d8d01b65043dcc5ec9873",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/kit.dart": {
+      "git_blob": "b8bdce3b5439936db7f0cebf526625b7cd334dc5",
+      "sha256": "b019ff4468e7446b273b64f4de507197f00db4b3d998bd5419f77d580d03124c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/narrative.dart": {
+      "git_blob": "a59733d07949bd7445b3a99474b6ced54aa537c3",
+      "sha256": "9414af239fcd89a321f122d4998043e9235054b2349610e0e4533ef784092e32",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/operations.dart": {
+      "git_blob": "67474440dea6bc070b7f65ad56aaf9ccb5b2ca2d",
+      "sha256": "f99d8dac0b7f75b13c2aff62e39f77cfa59ef684c41d2574730dbf9b98e19122",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/people.dart": {
+      "git_blob": "d001d33e5155e4818d3a5af08922e3b80800dc8c",
+      "sha256": "5e4ea98b8532749bc1cdcbaebab158059b968ced5425427527979bb29751c465",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/sheets.dart": {
+      "git_blob": "61459f44ecd6ca7a8ebfc047b487b415510541a1",
+      "sha256": "d76445a9a0fa5d593ec3e710a568dd1a28b6b56caf3405bd77d915aebf5dbc2d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/skins.dart": {
+      "git_blob": "0fc494d650a04bc15045391b8a98ed38a38ec4ab",
+      "sha256": "2d3392e33f9ecbd1d63193a8e411001f427bcf8ce20de9e9f26a83c11d19d1bc",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/suite.dart": {
+      "git_blob": "2081c79556d789feaf828b40cedc6a1330365b91",
+      "sha256": "7e9f653a4fdceb83acfbe0b425502c5c0e64af81f5b2fef4c6ec4ccb016c2cc9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/templates/suite_index.dart": {
+      "git_blob": "f76029ba9f4bd8d0faa20f1b870c7c412e6e1b25",
+      "sha256": "99ca5487e5cc91cfa67cba28624848532dd531de640c15ddf6123791845246e3",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_barcode.dart": {
+      "git_blob": "00af48d9e79cb97198043c49d38e1c37e1c84b2b",
+      "sha256": "5060d23f1c0fa3727c65ea75f726e29153bd15d84d644c4ec292f28b0195b9a8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_box.dart": {
+      "git_blob": "5b0b4276e9e4b867c09a28bcdd357ab9f1e20d30",
+      "sha256": "b63d2729e82cc2fca65e599accd6a4086f1f571251ad55966c91c941d37abe52",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_chrome.dart": {
+      "git_blob": "fd3b3def4db9b05a015d0c64ba4e8b0a61f0c8bd",
+      "sha256": "88ff7ed51c901b6ccabd9ffd82e56515a6a07c0a99aaff91543f4e0424f6f195",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_content.dart": {
+      "git_blob": "30d67617377f1318fee3d0ac747b0874bd3e98ae",
+      "sha256": "a10a1a99f50163edbe7b82ddfe85607fc103bbdaa64aca1a33b3157cd87016c7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_core.dart": {
+      "git_blob": "ff70add1394df6495b6bd188db05db388570eff1",
+      "sha256": "1728312e5ab1c1de9a161a8e40a1f3aa5d3db053d3b99514ca42ff65166a015d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_flutter.dart": {
+      "git_blob": "15ca4611e728aef3f3b68b93c82020967cd3fd28",
+      "sha256": "508e46ed05c8c9fd9091e2bc80745170d0ad68d91a54e6bd94dae3566976443e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_layout.dart": {
+      "git_blob": "bc926f9ce813f2dbcc5747f8b5ea3279e195f246",
+      "sha256": "37b6acd87716a5723d740fd41030be6d56c883de27df4f7ef62a2cc56bb40eac",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_media.dart": {
+      "git_blob": "37546f9b4d8c396b0800abd7a5acfc09cb8efaad",
+      "sha256": "987682606b36c68bbca090bc9bf9e56e3c91bc6f1b8bff0df095e6549d576217",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_paint.dart": {
+      "git_blob": "e59afaa8c847f88a510a4cdc0eb8026f3aafcd09",
+      "sha256": "d6473b8629a62ddbb770aa94edd263b946dbf04a70515b32f5a6adba4d544ee2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_qr.dart": {
+      "git_blob": "91ba2f32880f67502d82c6e8809daeae84047732",
+      "sha256": "c357031b3f4a11cecf851dc1b087c8322d5000ecb52d18b7bcb24a58add240cb",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_style.dart": {
+      "git_blob": "493bbe917c934f208468039476bf690cf60b810a",
+      "sha256": "983d041d7f904a71faf69493012af1e1b99be6c009ff6471dd37dc7ef837cbf8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_svg.dart": {
+      "git_blob": "449dd7b9a5ba6caf22a58ff6485520f3054006d4",
+      "sha256": "7247caa8b7ac0fe560701fd9e100051d9bfc83cc6785bd35e9627814ac7e650d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_table.dart": {
+      "git_blob": "2610d6e347414278f99336096f5fb7d4bce5961c",
+      "sha256": "d474a3aa28d89a456b7756e130e28a70196fb4ec2333a7c7d864c4383485d3bd",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_text.dart": {
+      "git_blob": "639359d3a2e2515203eb4dc0cc44ab9baf31b1fd",
+      "sha256": "83ea47338a3101557e2eafefe6fff2f1a01a667244f2ce5eecdd742274c5ec79",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/pdf/widgets/pw_types.dart": {
+      "git_blob": "16c1385e5a6488322a7f9e771291b91bec35c439",
+      "sha256": "8140b3080fea4e84906aa2c3c5caf491b0fa452bb125e85d67dbf363c8782c5c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/arabic_tafqeet.dart": {
+      "git_blob": "f4782bc1351fedc63aa91b02f782fe94f182ede1",
+      "sha256": "da894f2489fef1ae6f7fab329ca996a315d7dd1623c069d2ba8172bb2fd5ed9c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/english_words.dart": {
+      "git_blob": "51894ffbea2d72d29a951e5b5a6cd4312f6d51d7",
+      "sha256": "c9bec248c51d460e1720ae5ca5c30299bca4ddfadabc0998b691fb106e611287",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_chart.dart": {
+      "git_blob": "37ebd60abb53b7d8a2b2e262e1c2e794977afa41",
+      "sha256": "fae9b77b7f9dcb2abfb93860f6ba9afed720072b50ff38063d0dc1bfdaa84de0",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_completion.dart": {
+      "git_blob": "8b23fde25c6858a3dbc3499183ee27cf754d34d9",
+      "sha256": "479f506fbebdd9607484485edd5c2e7bd9d7e307b6295d58c3e8a67e9f053f62",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_data.dart": {
+      "git_blob": "ad531a059854a4c740500b04cd4fdbddbb559c39",
+      "sha256": "f8509a958b8856549ad986e4cebba96f36572f24964e92eace4509ca59f15eb8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_diagnostic_target.dart": {
+      "git_blob": "83ddc13e5f5d7a80159df9973f111ee96af877e4",
+      "sha256": "dce6f359be7735b9ca48b37c2911fa380a3e0046547cf34c1247517262f3cf4e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_docx_writer.dart": {
+      "git_blob": "4d04ff27b19b4ef4339f0799a7a495a9143c6e28",
+      "sha256": "d3ea5722dde7e5fe36da90b1c9ec78eea6cce6d8fc32ac74d7067e825cb5b103",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_engine.dart": {
+      "git_blob": "7ff0e1a40b1071a5603d27477372d5706bbb2a77",
+      "sha256": "55ca4071747ab6bd8a69522d05e09c49a5809262f8b66322df5579fed5d67901",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_expression.dart": {
+      "git_blob": "8e1bbded7c4cb87ef629a66346226126716b7403",
+      "sha256": "7055ef101c552873b0610ea540ff2ed92a32bddc18c3926788396d1f46e5e672",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_expression_engine.dart": {
+      "git_blob": "1b688bbd9139797cc25bb5abbb5cbc264e3ac8af",
+      "sha256": "dfbfcb9b9c22bb406e3415a69c36f78e192127c231587cea2ba0f0a249274750",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_font_file.dart": {
+      "git_blob": "417ea58b18c2d9eb70d686c7e5b29f187f43f33a",
+      "sha256": "5f235aeae9c5d9f25b15d5e1ea22544ee5d0f835f949b59d07cad05c8c74251a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_fonts.dart": {
+      "git_blob": "e805633214df2f68e6e01d8be8bb47694576c413",
+      "sha256": "94fcd79218dddb5471d88a2ad2441909cab33ae5f2abc85aed3f0a96386e2200",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_format.dart": {
+      "git_blob": "5241117423727fee752b9686afb99039a484dc0c",
+      "sha256": "d92126415bac12f8c01d89fb0cfda026e33a3bbc417add2d18a85c79aba99ae7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_generator.dart": {
+      "git_blob": "1db7fd4ce923f54062a2ab1843d7f941767fd1ed",
+      "sha256": "a4a5fd0f13f9f2389f196e69ddb38fa7b9e0eee176fa7a16aab38076a4a9b09a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_layout.dart": {
+      "git_blob": "dbb74c9d8878412d3e4f40e4a047a77326039570",
+      "sha256": "dcc29102c68ed02e6a304955dcb04242af17a1794948d73161062c18798f5c21",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_mock_data.dart": {
+      "git_blob": "18a6e561ac64febb1ec2403c43907057f1a22384",
+      "sha256": "3b8d0a8c7b652453033e647b30dbaffee2eec40a5cd4f1763cde8a5f3db8e535",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_package.dart": {
+      "git_blob": "d11801b2090303aeb025424e835e34c692b44f4c",
+      "sha256": "d7fe45275f2113392ce94b283353b8a42df5484fee86c37822d1e1620258fc75",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_pdf_writer.dart": {
+      "git_blob": "d0297f181d23663db57e8372649d3bae292ec9df",
+      "sha256": "26fb8a808adcca5a369316889e396a445ce8c2ab4a995172a1d401783bea0f7b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_png.dart": {
+      "git_blob": "df0c5a09aa92e478a21e689f1df9e65af7a6f050",
+      "sha256": "451e7f40df483c5e42dcdf830cbe2072423ec06d97e057c2df1c542ffe78d688",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_shape.dart": {
+      "git_blob": "b76d233240dd6c8461b97abbf531721d69141627",
+      "sha256": "e7ba9a3d094cc51e5a2bc2d187385e8e896b7e9a60cf49b756947d6024009c27",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_template.dart": {
+      "git_blob": "31472a0fe8d917f8d1f646eedd5844afb16ad584",
+      "sha256": "13895fdc90c6e60df49bbb3f245b6e25fd8a22ad88ac27dc8fb4915a7802ecc7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_template_art.dart": {
+      "git_blob": "e2157d0f7368daef548a29db137390eb33b793b3",
+      "sha256": "a114998f93e7567dd5fa79df490ad84ccbee9dc1fa0c9582973ac15fd7b3f969",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_template_manifest.dart": {
+      "git_blob": "bc8b2f1df05bd3c8dab17c8c3c6d24b98b6a9834",
+      "sha256": "462d375401e0eba1713df6f892b936a05e797564a88ad66a02c39ce3236e07b3",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_templates.dart": {
+      "git_blob": "5a03edbf1f3f6a636937a8910b5e89f25b8267be",
+      "sha256": "1062f004b3e69666dbe5f8ab0e29a315f9f024976393436b30a142a4406bad5d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_units.dart": {
+      "git_blob": "7bf460f79d880a0a8f7f9e5ec7399ba59977472a",
+      "sha256": "c21ca263d00ded7d2d3e19c4b4aceaabb656e9d4d8a647940a4125dfa4e2f7ba",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_value.dart": {
+      "git_blob": "2e93b383220bdbc49ea06f555b5ea2cacc250e0e",
+      "sha256": "3a8ecea02011ef329e0fac77966f4fa7d37a16e79fa060c144c6503ff6e984aa",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_xlsx_writer.dart": {
+      "git_blob": "3951fc902d0523a8878948925e20d35b9a2f5658",
+      "sha256": "0c60392d90db8e6c6319f035eae94998e85a365284af34052115e91761d08d99",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/report_xml.dart": {
+      "git_blob": "4d40fee590ffd0d3af8e639c99ae5296002f51b9",
+      "sha256": "dcd3ff512297fafe22232b71cc2bf1921bc86f51496645b744e5a2df055fb9e8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/reports/world_countries.dart": {
+      "git_blob": "c73a0fa6fe725d29a07e49443da5813f3a842b01",
+      "sha256": "a4e9fd7f17760e0fc85fc502bffeb36374fddd613d8d5f6ae2e39b9f3721da90",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/formula/dep_graph.dart": {
+      "git_blob": "f529349185113d19daea527917ddb3f8f915dd3f",
+      "sha256": "5f3ee9dc9bbebe01a037f2a52362f3f61213b67012d27b0a13d94b94b1bdf2de",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_ast.dart": {
+      "git_blob": "1c68efcd165d3eca56f2c80d52fb1b254e559e45",
+      "sha256": "ad6c6e96375c0a68269a593e6dc74fd09314514f6abbc8c9a2e49f21a0f301b8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_eval.dart": {
+      "git_blob": "4667f8a3e412f9e595639cee010b43ab644e5f61",
+      "sha256": "c9d13f08e8388c22e12567d50cc57c4f1ed70f340b338bfed39facac59c1d45b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_functions.dart": {
+      "git_blob": "4f38480e725fd4a47b7bbd7bb90d981532d4cde0",
+      "sha256": "53f4270baaa0aadf5b18da06fb86b81a084a199abdb2e9edb734e24f3a6f5d92",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_guide.dart": {
+      "git_blob": "d57dc1c8d5687e713733fe80274c636c0c8ec307",
+      "sha256": "13d8d4e9090fb3a4a5ca66509cf59b1a47132a2033b5419a35e1060bc7e21047",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/formula/formula_refs.dart": {
+      "git_blob": "efd175331019ef78c673a15c4ca2bc7e38d01812",
+      "sha256": "1c1eac769bd2657dd65a78351ce41ff69a6d6c3c52e31ad48696144a383daa22",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sheet_rename.dart": {
+      "git_blob": "b1ede0c35a795cc07db2e1065cbb1b6eeaef435f",
+      "sha256": "93e0c9103222bc05ddbc08929983129f3285da15839695bc3a2384c68a91089f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": {
+      "git_blob": "07c8ba8ddc0db0a438c845e53438d3401e756cbf",
+      "sha256": "e4e27832e082d1e6409153e09678dd6c6c556527e666047d837c88e034a0116a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_power_query.dart": {
+      "git_blob": "3ce11bd7640a02a1679f480c522f53681892d912",
+      "sha256": "610f105eef406d0b80f0ac9e8c9c22fb7972a5cf82a9e28e618ce0bf4a19aae7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_solver.dart": {
+      "git_blob": "89da79c3d5d288325d0aaf2bfcded146d18943d6",
+      "sha256": "ab723570ce9ae44b63a846e8bde2bdcdcffaa03d0a8f92d8e3cbdc4f5210c292",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_sparkline.dart": {
+      "git_blob": "7a06598c20fe506f58ee029449d96cbf64536c7a",
+      "sha256": "e60f743c048b6436033921da16068938b703083397ce3d38f103ecf9f4118a03",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": {
+      "git_blob": "55af2df0f2d56182db684095ccd03c7f7bb4de4a",
+      "sha256": "6121b253b4475636976ca7ccf39b1db0eb4663bf53dfcc444f884b813dbeeb0d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_drawing_io.dart": {
+      "git_blob": "fe634f89a15110ff9c793b6b7cda8dd049c856dd",
+      "sha256": "12bdcd3963ce4acb83bc6465f7d4343d9c4a0303d17d124ea76dbe5e83ac9f77",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_package_fidelity.dart": {
+      "git_blob": "95ebebedb071606b27330b3394907da63006941b",
+      "sha256": "f8984392e9f886bdbc121880643f05d22a28d451cc79a7a85f74962f9ad81864",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": {
+      "git_blob": "aae84aef2420b2f296e968a099dbd570ed37a563",
+      "sha256": "49fcc29fac6ae2e723a3e0de80a38ec8edc0d18bea9d9469d8ba512533a98989",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/shared_strings.dart": {
+      "git_blob": "dfc1f1eb0caa52f35f5dda7d199efcf52fe0aea6",
+      "sha256": "f9b284994c4de672abe5d7f305dc10f58c6abd94e259509e6f80d87ed0950a79",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/sheet/styles/sml_styles.dart": {
+      "git_blob": "e3ac9a1aa75676384e0070251406008f44efd575",
+      "sha256": "ea4f06de86718b6a9d39367c30bf7181ebed8a3b7a84a5e9e4bdd522d246855a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/anim/pml_morph.dart": {
+      "git_blob": "a161126f355e1b1514f831ce00db8903cac08fa1",
+      "sha256": "635d239f0732e64b8ab2c4a1bc1c0a500f87219738c52ba9ced4453c8fe8d4fe",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/anim/pml_motion.dart": {
+      "git_blob": "a5ab1347b2961741bb640a30a02279887d6bc930",
+      "sha256": "45f8fca83b6eb1a403d3d8f4387fc96af60b960034bf1232bc9bc41acb8063a1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/anim/pml_motion_io.dart": {
+      "git_blob": "66bdad4ad144a8634ff769d963cf2680f6951a09",
+      "sha256": "c651ee0235ed5c96b47398ac86fa5ba8f414aad1bc2ae8066752de01af42e88c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart": {
+      "git_blob": "ebcff59a509613a5f14d575fc024eab32d1ea0bd",
+      "sha256": "55b511cf38d76de917fcbde0d80990a2e5eb99f7caf80d5c9c51da48a05948b7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+      "git_blob": "d8fd9bb3479baa2b416dc7a45a7609ca56b82f32",
+      "sha256": "c18bfea9cc8db55de0e9c823d82539a1e9738a7b6c16e8a2eb26d361a05a5de0",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/serial/slide_section_io.dart": {
+      "git_blob": "d6dfb9d0d091f7ca3ce969cc95d6d8e1b5a7bfaa",
+      "sha256": "c00aeed36b9a30c1d7a50b9b831d368c7cf07475c757e371b9bed10f424df7bd",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+      "git_blob": "e2ffb9ef6ba976d328b4c16d4a52764dd9c9afa1",
+      "sha256": "7de3bdd8c8fb7285080766b98c0fe89a6808744d792dd05b6fe9e517318f2165",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": {
+      "git_blob": "7c5c13518a28ae53a0cb267745d86ef7e548dab5",
+      "sha256": "db979f21e10238a4c87731f35e29c267bda82891b0809c8c27ed206a83c8da37",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/visual/drawing_line_style.dart": {
+      "git_blob": "4c288fbafc703e94fff45ffc774b096c85512222",
+      "sha256": "d4dbf492555193c51f9fe63e844c77b8834e9aed518f2199d59226b7bbd78384",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/visual/drawingml_visual_io.dart": {
+      "git_blob": "4eef27b0b146eeda217a2979020f29f60dc5aad2",
+      "sha256": "84e7e37982ffeb7d90db8d1488210066692f69b8c7cc075747c3c61aa9482884",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/visual/office_visual.dart": {
+      "git_blob": "73d56440ff9d6cfbe82a2ead4520ccd985f1b98f",
+      "sha256": "a3b8f8ece59b04275fba456803072de1aa84e602f6dedb6f69a51a4090daa949",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/visual/png_bytes.dart": {
+      "git_blob": "246db3010b5d2ab5625dfde3eb6930e2d63ffaca",
+      "sha256": "8407ce49c50be4267c68232ad6465eeadae754c5204c9497c7028ca4b5313b12",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/visual/sheet_chart_data.dart": {
+      "git_blob": "0e65ef785ac45001e9b21ed87fb0fe488079b931",
+      "sha256": "5a46d7e32acaf4bc62a391975eef53e79b4c2f5345fa64f3871af0cecee1cbcd",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_contained_layout.dart": {
+      "git_blob": "70f92dc7da0dc153f31ff6db78e1d8ec6c0c4ee9",
+      "sha256": "23aef5888b747f1d36b1ce605809425ea119531988ff0177f35886f57f4facb9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+      "git_blob": "c86a683f663a3342f9b1094c90cab6cc84b4f90d",
+      "sha256": "033c9bac38221f0ffdd2d5bb8aa5a30c01a66e14c518972a850afc1d513d0690",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": {
+      "git_blob": "042e46f998a7e31940e29c1d0b7fb71372497ee2",
+      "sha256": "013f8c32ae8ecb2dc11994b5583ed0bd3d899943fadad2f15d74d48ccad8e32d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": {
+      "git_blob": "dc09e79910a0ea9fff3145d346856ecf2d965026",
+      "sha256": "0fe024b8de36dc401bd6ab869a6698f3e4f80901109bdb613d6e6c12b7cc59ee",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_wrap_layout.dart": {
+      "git_blob": "8002fa1c1cf05227e03b8cac635f30bb046ad0a2",
+      "sha256": "b4f1d789f93d4c8d37e44d0b9a9270f1282e29cad927e10594e77187b91a22af",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/legacy/legacy_word_conversion.dart": {
+      "git_blob": "08a84b15390bc10deec4602fd682521f546bd757",
+      "sha256": "5ba402ba6094655584d8f16573f0c52c8327d86054c28ec01cd522ebf0a8f364",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/legacy/legacy_word_document.dart": {
+      "git_blob": "a912cf1d0f57a3624e09621a6586202e9ddbab71",
+      "sha256": "5cb6c5c61f2d38082adad5b4809f8892aaa228b517f7af11a2d1409ab06edff8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/legacy/legacy_word_structured_render.dart": {
+      "git_blob": "a912cf1d0f57a3624e09621a6586202e9ddbab71",
+      "sha256": "5cb6c5c61f2d38082adad5b4809f8892aaa228b517f7af11a2d1409ab06edff8",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/math/omml_document.dart": {
+      "git_blob": "5d1a417c5ebb214dd6e25cefb91368c48a138784",
+      "sha256": "81be3a1ad74fa883b4774be7f96cb3883c7dfb2768a56eadaf8a5ca8c8d2c380",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/math/omml_edit.dart": {
+      "git_blob": "322bed8656c55826fb4df41014e0e29240540416",
+      "sha256": "275e6c2c73c054ae21a56a3f2eee893f5857199b4be95d93ae2358c40dbedc75",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/math/omml_gallery.dart": {
+      "git_blob": "9d122265b4a2bad9cf4b4a5e75d263131f2ba774",
+      "sha256": "837c5bf486e74f747642dc5d18704accb6619eb298712b2b7c6a28b511c2a027",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/math/omml_io.dart": {
+      "git_blob": "5685a5f5deaa1ea98e41bb664667d25d3b136d15",
+      "sha256": "e5ab0496063bd85e6e17643aa064aa3c5d7030ea65d0aeaf6560086f6ed8d8ed",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/math/omml_layout.dart": {
+      "git_blob": "73c1aa6151e7ff705de0ae4a46f9eecffe7672c9",
+      "sha256": "ac4cb3f066c09c011142cfa3e0b6e4915aab68043025d4349d483fd374a38ee9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/math/omml_linear.dart": {
+      "git_blob": "35dae436bc4e7ed3baa129dfcee2514747985c2b",
+      "sha256": "810de8e1bcbbae88b7641060563ed12c9e815a1d1571e4f8ce37c582b0fa0e9c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/wml_clone.dart": {
+      "git_blob": "221448de5a6d05b8e78bd1184889583fa23f3df8",
+      "sha256": "24953ade7527d448bc028a623a6cc5babc4700764b312e83f7290e213e48fbdb",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/wml_document.dart": {
+      "git_blob": "aae0a4963ffe5662bd436a6e12527a73a712643f",
+      "sha256": "61ccbb94ba04ab1fb3413c29a09a4207f77ec65f0a649fba4d8bd65d3ae85e8e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart": {
+      "git_blob": "fa774b60d06e14c6abe9e59a5402be9937b6ba9a",
+      "sha256": "022855e049e9f18aba5bc5512f29ff5bf5db60ae9a68d7d7196214c2583011e2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart": {
+      "git_blob": "d3b7d896568b46c47b27d51ab610f15e0a20958c",
+      "sha256": "4f62a976fd8afbf15ae66721a693f515462a1e6d21f23cc821ad0884e8babac1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_captions.dart": {
+      "git_blob": "2ded1e19fbab26d7fdd89fbefa001b856c66d5f3",
+      "sha256": "7edd44419e2353456ae738272451f01979c7f37d1739f66dc3fc18bb094e73ae",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_citations.dart": {
+      "git_blob": "3e616418a7d6d4bfbc2ee72dd9b7e88125881010",
+      "sha256": "7efeded806a0f183a9671a18938a38841af440a89473d69a807d210fb14ed245",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_comment.dart": {
+      "git_blob": "d8e0916d0f1e835169f30ef4478cd9703f904002",
+      "sha256": "707febc7fb5e3a5fa4d98c44632d5320efb3cbb935f43e9c07b0bf101dac9161",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_compare.dart": {
+      "git_blob": "566cddfc2466feab227f13c0a3b9cdf960eb7f74",
+      "sha256": "9e8bcca92d439e4f4b7ef72fd8d2547165feff36a9825b21ae8b8af37ebd3eb6",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_content_controls.dart": {
+      "git_blob": "aa2ee64743f41ddf2578d76689ab181f3b7500aa",
+      "sha256": "6ce19b207e1e3449f2876fbd1821a0d76faf104c40aaa77a2ad8d8e9665d4fca",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_fields.dart": {
+      "git_blob": "58dac867721a20a50d870cecd408fe3a8e2e55eb",
+      "sha256": "1ae309cac6d8eef0ae71d852ebb9f444fb9276f0fc342dedd48c61c9b442dbba",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_link.dart": {
+      "git_blob": "0ad8e0096b221f2bd174937fa157dfddb8a67f50",
+      "sha256": "04b7b12dd5ec4578e38445ac24b84c6437c8cab8e29e2a7dfc08436142b8fd61",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_lists.dart": {
+      "git_blob": "e0e504a5b58dc4181458c3d918804f5fdf78b6eb",
+      "sha256": "0b5f16675db8f5e43d19be9ee1869a5efc11d6810a07f6fba49460e5fc8d9336",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_mail_merge.dart": {
+      "git_blob": "371371ddce174766e6cdaf8689d3547dc96a1070",
+      "sha256": "17c93cdf1112441ec78d23909f7a003e894ddd932cd8aeb3b5d406e96a145cfb",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_notes.dart": {
+      "git_blob": "b20fc14a31887b05e7ee7dc2623ffce33a762252",
+      "sha256": "2c17a2aec0a71a9490f2d5df49e443e308a8b6ce4c1502331f62167f2edd11d6",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_revision.dart": {
+      "git_blob": "f4ff0c8a926d35621001155757ae8c93e2cf92f3",
+      "sha256": "260b5d64d0c7b7e34db4d668a70c32f9a735d231e1da7037a54e01e29b8face1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_styles.dart": {
+      "git_blob": "d0bf52fe7bac7554c34ce668f1ec043fdf041f7c",
+      "sha256": "67d13ea21e64dd90400a5ce1fd6e0064d8497658aca8e6772b619a3eb8dd3b96",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_table.dart": {
+      "git_blob": "71c24179a985c21933ed8c30c5fe1989a19c0393",
+      "sha256": "70832100a936de09391ff2b38a7151503a937653fbd55ca20d8a7c3beac71c2f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_toc.dart": {
+      "git_blob": "45f0d85ebec5be257d55963c7b8a0c66b7b1398a",
+      "sha256": "3c7cd91f5c9051c7630b8c4dbc3e78ac2b843a428e615698b12625c112e7851e",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_tree.dart": {
+      "git_blob": "317d861e4a69549d46a15d0e23c0e679cd0f08d6",
+      "sha256": "5c60de3bc9620e7f357d408ed7fd7821e6167e7b21d1b6dd7f874c76186a6008",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart": {
+      "git_blob": "bbda7eba0892989a68f3bbf1e6b2a41c2a75f8be",
+      "sha256": "b5afd1b64a6f0980a41c627993d81c9b7c8a5c16296a331da30d4c2501e051d1",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_bibliography_io.dart": {
+      "git_blob": "ebc9a615d9e1af8b3d7b868b8fda665c24553059",
+      "sha256": "6abb7408be416e799e2d4845852a400622703b94cdb88b9d7bb46bec040ac285",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_bookmark_io.dart": {
+      "git_blob": "3d1c6b1c0ee70101dd1ff16a37f59900c0bafd4d",
+      "sha256": "b1c4a0f896af2f8500b607895d3f23ef204729a17361e07553a93df9961a688c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_comment_io.dart": {
+      "git_blob": "638ddbb5dca4ec48c60da5d0957b2fc3e08a74cf",
+      "sha256": "a605eda98d8f99561db02a21524db9c6a1a8d06db5bc46e33704580d856f6f59",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_content_control_io.dart": {
+      "git_blob": "ca521bee2c1b52880a8a20281ae2ffd7f91d5e0c",
+      "sha256": "d7bb3046bdb8030eee54ffb5baaece8a16688eecf9f9a056be20f0b436cebb3b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": {
+      "git_blob": "d502896038ac214bb64c921f689d30bd9fb5b254",
+      "sha256": "77081dee3d2dc0905387a3a7f9c24554b5b0dae11c145b400dc1059bfb015c61",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_drawing_io.dart": {
+      "git_blob": "b70dd5aa81f5e2214de92108e1d8b24be7ab6e9c",
+      "sha256": "1d4b57a8b3132ceafd972bca7940737c22cb55f965ff30308419c8852ea2ced4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_frame_io.dart": {
+      "git_blob": "417553dd712fef7ba03d3c48c12769c487644200",
+      "sha256": "34aa8f522f43875014d168e1c9e29de75ecaa3cfc1d188bc71ff97deeab8ed7b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_markup_compatibility.dart": {
+      "git_blob": "937c49fda6030931944dcc899fed51ed8a64312b",
+      "sha256": "24558ff5c518ffa2cb22f35e887fcab1622d2631a1f1f1ef82ecd12960783c87",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_numbering_io.dart": {
+      "git_blob": "18bebabd51344d61ac7311d01f82e7553ab47d5d",
+      "sha256": "0149afb504bd0ff5287cabd15069b1481087dcb6ce7d01b0536711af524d2df9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_opaque_io.dart": {
+      "git_blob": "c655d38cdd98be043fe62096ca4135215511d91d",
+      "sha256": "e7a1d2c190e998bdcea27387a957470b11bb61e34dcf41cd792e37df73b07896",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_package_preservation.dart": {
+      "git_blob": "eb55c0ce9084b0b9c215e9ae163f6008f6072136",
+      "sha256": "d498dba54add5833e0114978eb382a783ad7fe4cbdb6397db87fc098b3ba62f2",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": {
+      "git_blob": "22dc6b4c1b51529536b8fdb215d5253e249b78bd",
+      "sha256": "eb556e3a27554a00ea7295bbe07a65b4ef1ecc0bf5fa42c226e68ca1d9f11e38",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_section_io.dart": {
+      "git_blob": "ee1e7c9f1636b86f7112a933aa70516180897a1a",
+      "sha256": "346354c4fab12d533247d32a053966990e5446a4ebf5e73b7e755d4ef5c54e3a",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": {
+      "git_blob": "1c62ae14292fdb5b81f922062695981b752f80b8",
+      "sha256": "382fefaeb4c69cb5e8cd0c7ac5f6b22b14f01a9fb923cde35a88eb80750470ec",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_settings_io.dart": {
+      "git_blob": "254b99012897367239d5cdaeebc934eb241fb12b",
+      "sha256": "aaacff74d2c77e22ee38415b90958b965de57ac8d14d769efc80259db808353d",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+      "git_blob": "728a101c94b2baf371b447cb8d7580eafa785c57",
+      "sha256": "784c4887d0db51448e5b5d7d3798f81e8916b58ed9dcf324c38961ca344466f5",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_table_property_io.dart": {
+      "git_blob": "ec5598d4822222b8de0d452844ab8090dcc722f2",
+      "sha256": "af42a17a4a0a5e2f2c1bfd04a0f3d3aac16e2cce4ae9eebb6b0728c14d4b851b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/xml/namespaces.dart": {
+      "git_blob": "9b3d4388a597ed87a52118a9fba4ec2c9ea4d1b4",
+      "sha256": "f043295589e663e0aa8b80403cc3ffd84e162d213a8b8d81dc90dd65031e9a48",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/xml/xml_node.dart": {
+      "git_blob": "081fbd81e68a9968ca3e484c351de714558b320c",
+      "sha256": "911378e591f1092b51cce5cba72aeede115dceb06e1a3e5171687bad56a7408c",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/xml/xml_reader.dart": {
+      "git_blob": "288f2e94cdb15770ed50453ca0116f5d31195c97",
+      "sha256": "4e1c6ffe5617835308d501b1cb66ccda5098dea7ef7e383b24b7f9edb02859b7",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/lib/src/xml/xml_writer.dart": {
+      "git_blob": "361f8ed9cb271436e8f959b21a5bbb70fd9d1ad9",
+      "sha256": "8bb95958c14001e6c7f51627a5c1f28f34c9a2ff3a337a64dcb9e79828bd478b",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/pubspec.yaml": {
+      "git_blob": "1dea3d57fe97b704d57b83166dcc4bafae41eec6",
+      "sha256": "8cb49824757dd0ab110cea3a32b4c01e3437769f6913f0171d8f02eb18f78bc9",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/test/fixtures/fidelity/sheet-fill-native.xml": {
+      "git_blob": "30573f85327ed4dae1726d9c344b70e08a28f029",
+      "sha256": "4e716eba0a385256dc2cbc5001f990f9cd16ef79a40663248dcc6cac18f52dcb",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/test/fixtures/fidelity/sheet-normal-font-native.xlsx": {
+      "git_blob": "b7305b4b1500065cdca995110da82c6194b0b848",
+      "sha256": "7021b9a131d929d4ae6d4074a69056c997efa5b96f7693d4ba15d6c9a41b737f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/test/sheet_cell_state_preservation_test.dart": {
+      "git_blob": "9efc7e29c6bbad6753e601ed4d08a133b5ed3c1d",
+      "sha256": "909fe1c9002a08d68851b724c13d095dd5ea2c0e2dd48da50b036825999a7892",
+      "matches_recorded_input": true
+    },
+    "packages/quds_office_engine/test/sheet_fill_fidelity_test.dart": {
+      "git_blob": "1122c85b7f06a9e6989fd7d0e2d6c03a0395b47a",
+      "sha256": "7b014a1eafa02317cb6f13ecbdc466853b3bfc18b0198da06280221a58c0eea4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_reports/analysis_options.yaml": {
+      "git_blob": "f04c6cf0f30d4f8306eabe5dfd00f2a4c902b838",
+      "sha256": "bf7d17dfdbc3aa4dcba00ef52506c50fd798bbcf3d0f907e875fa38bdfa9846f",
+      "matches_recorded_input": true
+    },
+    "packages/quds_reports/lib/quds_reports.dart": {
+      "git_blob": "f77879e02522c9d9af005fa54a51e8d3c4ce9bdf",
+      "sha256": "de369f4fae7fb1d6d0f24381c7a9a42aa6b99cca25da540e69ebb3617665c1f4",
+      "matches_recorded_input": true
+    },
+    "packages/quds_reports/pubspec.yaml": {
+      "git_blob": "206c04007457d37895bac387ddb78ff4813b9511",
+      "sha256": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+      "matches_recorded_input": true
+    },
+    "pubspec.yaml": {
+      "git_blob": "8774ec8eca26fc4362bdd44d7b4b9d710ccecb56",
+      "sha256": "a28be038727f1340879544309b9d8f78f66ed90e5c0c8f3285a394c4c20441a2",
+      "matches_recorded_input": true
+    }
+  },
+  "generated_inputs": {
+    ".dart_tool/package_config.json": {
+      "snapshot": "docs/evidence/office-fill-preservation-20261114/integrated-followup/package_config.json.gz",
+      "uncompressed_bytes": 22798,
+      "sha256": "1cb5701f5606b7d2dd319f677a22a179410f9ecd2c5dafa83c35811734244c19",
+      "matches_recorded_input": true
+    },
+    ".dart_tool/package_graph.json": {
+      "snapshot": "docs/evidence/office-fill-preservation-20261114/integrated-followup/package_graph.json.gz",
+      "uncompressed_bytes": 18609,
+      "sha256": "958cfa3beb2e234d7ecc1285f779c6c42ac5b57fcc6d7de9d984f00f028c394b",
+      "matches_recorded_input": true
+    },
+    "pubspec.lock": {
+      "snapshot": "docs/evidence/office-fill-preservation-20261114/integrated-followup/pubspec.lock.gz",
+      "uncompressed_bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      "matches_recorded_input": true
+    }
+  },
+  "log_totals": {
+    "engine-tests.log": 7,
+    "editor-tests.log": 53
+  },
+  "tests_by_file": {
+    "pending_edit_save_test.dart": 33,
+    "sheet_cell_state_history_test.dart": 2,
+    "sheet_cell_state_preservation_test.dart": 2,
+    "sheet_explicit_style_history_test.dart": 3,
+    "sheet_fill_fidelity_test.dart": 5,
+    "sheet_fill_intent_history_test.dart": 6,
+    "sheet_font_color_intent_test.dart": 2,
+    "slide_notes_history_test.dart": 7
+  },
+  "analysis_log": "Analyzing 10 items...                                           \nNo issues found! (ran in 27.9s)",
+  "ending_commit": "23a1cc85eca2ac2322589da4b35cc6a5d1175d9d",
+  "ending_commit_changed_paths": [
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/README.md",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/analysis-retry.json",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/analysis-retry.log",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/completion.json",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/editor-tests.log",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/focused-analysis.log",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/inputs.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/package_config.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/package_graph.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/pubspec.lock.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/run_editor_gate.py",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/runtime.json",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/validation.json"
+  ],
+  "archive_commit_changed_paths": [
+    "docs/evidence/office-fill-preservation-20261114/README.md",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/README.md",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/analysis-retry.json",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/analysis-retry.log",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/completion.json",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/editor-tests.log",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/focused-analysis.log",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/inputs.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/package_config.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/package_graph.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/pubspec.lock.gz",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/run_editor_gate.py",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/runtime.json",
+    "docs/evidence/office-fill-preservation-20261114/editor-resume/validation.json",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/README.md",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/completion.json",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/editor-tests.log",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/engine-tests.log",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/focused-analysis.log",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/inputs.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/package_config.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/package_graph.json.gz",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/pubspec.lock.gz",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/run_followup_gate.py",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/runtime.json",
+    "docs/evidence/office-fill-preservation-20261114/integrated-followup/validation.json",
+    "docs/office-recovery-20261114.md"
+  ],
+  "package_config_resolution_counts": {
+    "pub_cache_packages": 94,
+    "flutter_sdk_packages": 5,
+    "workspace_or_other_packages": 8
+  },
+  "scope_limits": [
+    "This binds all 409 manifest entries. External pub-cache package contents are not included in that input manifest or archived as source; saved lock/config/graph preserve resolution metadata rather than package payload bytes.",
+    "The runtime receipt records Flutter revision, Dart version, and five binary/stamp hashes. Those runtime file payloads are not archived in this evidence directory and this audit does not revalidate or reconstruct them.",
+    "This audit checks retained evidence consistency and source identity; it does not independently reexecute the tests or prove transient execution history beyond the retained receipts and logs."
+  ]
+}
