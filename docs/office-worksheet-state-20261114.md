@@ -23,6 +23,7 @@ worksheet. Its fix will be checkpointed separately from view-setting commands.
 | WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Passed at `30cb194a`: 14 new grid cases plus the view/fill/style/cell-state/pending-save overlap group, 80 passing tests total; scoped analysis reports no issues |
 | WS-03 | Actual app toolbar, close/save and delayed-upload tests retain view changes; saved workbooks preserve the other worksheet through history. | Host acceptance pending |
 | WS-04 | Exact native-fill and worksheet-state outputs reach the CI schema job; missing/unexpected artifacts fail inventory checks. | CI integration pending |
+| WS-05 | Actual ribbon styling uses canonical owner-bound commands; undo preserves native fill/font intent as well as worksheet ownership. | Four typed APIs implemented and 20 new API tests prepared; two actual host baseline cases reproduce wrong-sheet Bold undo and gradient loss; final integrated validation pending |
 
 ## Execution boundaries
 
@@ -59,3 +60,26 @@ records all 80 passing editor tests. The exact corrected grid tests go from 14
 baseline failures to 14 passes, with the controller as the sole changed input.
 The app consumes this source at its `bd910b14` integration checkpoint; all 2,176
 managed files match the guarded source and Git index verification.
+
+## Ribbon formatting history completion
+
+The app's separate `_CellStyleCommand` still resolved the active worksheet during
+undo and assigned color setters without restoring their native-edit intent.
+Two actual ribbon baselines on app `bd910b14` reproduced the remaining defects:
+cross-sheet Bold undo left Budget bold, and same-sheet Bold undo changed an
+authored gradient to a no-fill pattern in the uploaded XLSX. The independently
+authored source passed SDK schema validation before these results were accepted.
+
+Four typed APIs now support bold, font size, horizontal alignment and the
+existing six-field clear-formatting action through the corrected grid history.
+The app will use them alongside the existing fill/font-color APIs and remove
+its duplicate style command. Scalar no-ops preserve redo and revisions without
+creating cells, font sizes must be finite and positive, and the commands respect
+interaction modes and pending drafts. Clear formatting retains its existing
+scope; this change does not redefine other cell-formatting semantics.
+
+The final canonical acceptance group includes all three new regression files
+and the relevant existing overlap cases: 100 tests across eight files. The new
+APIs have no fabricated pre-API unit baseline; the actual host ribbon supplies
+the independent failing behavior witnesses. Exact implementation metadata is
+retained in `evidence/office-worksheet-state-20261114/phase-c-implementation.json`.
