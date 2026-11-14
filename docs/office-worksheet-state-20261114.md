@@ -20,7 +20,7 @@ worksheet. Its fix will be checkpointed separately from view-setting commands.
 | Task | Acceptance | Status |
 | --- | --- | --- |
 | WS-01 | RTL and freeze/unfreeze use owner-bound commands; exact no-ops preserve redo and revisions; viewing/selecting reject mutation; pending cell drafts remain intact. | Passed: the same 20 tests go from 20 baseline failures to 20 passes at `e02feac5`; focused analysis reports no issues |
-| WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Implemented: owner-bound before/after snapshots retain cell identities and references; all 14 corrected baseline witnesses fail on the original grid implementation; positive validation pending |
+| WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Passed at `30cb194a`: 14 new grid cases plus the view/fill/style/cell-state/pending-save overlap group, 80 passing tests total; scoped analysis reports no issues |
 | WS-03 | Actual app toolbar, close/save and delayed-upload tests retain view changes; saved workbooks preserve the other worksheet through history. | Host acceptance pending |
 | WS-04 | Exact native-fill and worksheet-state outputs reach the CI schema job; missing/unexpected artifacts fail inventory checks. | CI integration pending |
 
@@ -53,3 +53,9 @@ attached. It retains empty row indices, column metadata, row heights, merges and
 every modeled cell field. The existing full-grid snapshot approach now retains
 both states for deterministic redo. The initial test-helper failure is preserved
 separately and is not counted as a product witness.
+
+The [integrated positive receipt](evidence/office-worksheet-state-20261114/phase-b-positive/README.md)
+records all 80 passing editor tests. The exact corrected grid tests go from 14
+baseline failures to 14 passes, with the controller as the sole changed input.
+The app consumes this source at its `bd910b14` integration checkpoint; all 2,176
+managed files match the guarded source and Git index verification.
