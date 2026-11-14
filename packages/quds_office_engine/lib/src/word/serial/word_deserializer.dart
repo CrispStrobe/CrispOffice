@@ -2691,7 +2691,8 @@ class WordDeserializer {
       ..restrictEditing = settings.protection
       ..restrictMode = settings.restrictMode
       ..protectionHasPassword = settings.protectionHasPassword
-      ..protectionFormattingRestricted = settings.protectionFormattingRestricted;
+      ..protectionFormattingRestricted =
+          settings.protectionFormattingRestricted;
     for (final section in document.sections) {
       section.differentOddEven = settings.oddEven;
     }
@@ -2788,7 +2789,8 @@ class WordDeserializer {
     final Match? m = _universalMeasure.firstMatch(raw);
     if (m == null) return 0;
     final double value = double.parse(m.group(1)!);
-    return switch (m.group(2)) {
+    if (!value.isFinite) return 0;
+    final double result = switch (m.group(2)) {
       'mm' => value * 1440 / 25.4,
       'cm' => value * 1440 / 2.54,
       'in' => value * 1440,
@@ -2796,6 +2798,7 @@ class WordDeserializer {
       'pc' || 'pi' => value * 240,
       _ => value,
     };
+    return result.isFinite ? result : 0;
   }
 
   static double _measurePoints(String raw) => _measureTwips(raw) / 20.0;
@@ -2807,7 +2810,8 @@ class WordDeserializer {
     final double value = m.group(2) == null
         ? double.parse(m.group(1)!)
         : _measureTwips(raw) / 10; // twips -> half-points
-    return value.round().clamp(1, 3276);
+    if (!value.isFinite) return 24;
+    return value.clamp(1, 3276).round();
   }
 
   /// Integer counts (grid spans, column counts); invalid -> 1.

@@ -51,6 +51,27 @@ void main() {
     WordSerializer().writeBytes(doc);
   });
 
+  test('non-finite parsed measurements cannot escape into layout or save', () {
+    final huge = '9' * 400;
+    final doc = WordDeserializer().read(
+      _package(
+        '<w:p><w:pPr><w:spacing w:before="${huge}pt"/></w:pPr>'
+        '<w:r><w:rPr><w:sz w:val="$huge"/></w:rPr><w:t>Text</w:t></w:r></w:p>'
+        '<w:sectPr/>',
+      ),
+    );
+    expect(doc.paragraphs.first.properties.spacingBefore, 0);
+    expect(
+      doc.paragraphs.first.inlines
+          .whereType<WmlRun>()
+          .first
+          .properties
+          .fontSizeHalfPoints,
+      24,
+    );
+    expect(WordSerializer().writeBytes(doc), isNotEmpty);
+  });
+
   test(
     'duplicate control IDs already in the source do not block saving',
     () async {
