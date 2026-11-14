@@ -59,7 +59,9 @@ void main() {
 
     // Excel writes xSplit="1" beside topLeftCell="AK2" when many narrow
     // columns fit in the frozen area; the anchor must still win on import.
-    final excelStyle = xml.replaceFirst('xSplit="36"', 'xSplit="1"');
+    final excelStyle = xml
+        .replaceFirst('xSplit="36"', 'xSplit="1"')
+        .replaceFirst('state="frozen"', 'state="frozenSplit"');
     expect(excelStyle, isNot(xml));
     final package = OpcPackage.openBytes(saved);
     package.getPart('/xl/worksheets/sheet1.xml')!.writeText(excelStyle);

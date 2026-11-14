@@ -391,7 +391,8 @@ class SheetDeserializer {
         // authoritative anchor for a frozen pane is topLeftCell.
         final String? state = reader.getAttribute('state');
         final String? topLeft = reader.getAttribute('topLeftCell');
-        if (topLeft != null && (state == null || state == 'frozen')) {
+        if (topLeft != null &&
+            (state == null || state == 'frozen' || state == 'frozenSplit')) {
           final SmlCellRef anchor = SmlCellRef.parse(topLeft);
           sheet.freezeCols = anchor.col.clamp(
             0,
