@@ -1,0 +1,89 @@
+{
+  "gate": "engine-word",
+  "source_commit": "a379ecc455890032906098b6cf58e17504581ed0",
+  "source_tree": "0b083a5019ca07503765a649e4ff5c9712f705c6",
+  "command": [
+    "/workspace/scratch/209f165653d7/toolchain/run",
+    "/workspace/scratch/209f165653d7/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/bookmark_fidelity_test.dart",
+    "test/word_block_bookmark_import_test.dart",
+    "test/word_import_tolerance_test.dart",
+    "test/word_bookmark_fidelity_test.dart",
+    "test/word_bookmark_copy_test.dart",
+    "test/word_note_bookmark_edit_test.dart",
+    "test/content_control_fidelity_test.dart",
+    "test/word_content_control_fidelity_test.dart",
+    "test/word_auxiliary_content_control_test.dart"
+  ],
+  "working_directory": "packages/quds_office_engine",
+  "started_at": "2026-11-14T21:00:14.037291+00:00",
+  "completed_at": "2026-11-14T21:00:53.567363+00:00",
+  "wall_seconds": 39.521103860999574,
+  "exit_code": 0,
+  "log": "engine-word.jsonl.gz",
+  "input_manifest": "inputs-before.json.gz",
+  "passed": 117,
+  "failed": 0,
+  "skipped": 0,
+  "tests_by_suite": {
+    "bookmark_fidelity_test.dart": {
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_block_bookmark_import_test.dart": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_import_tolerance_test.dart": {
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_bookmark_fidelity_test.dart": {
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_bookmark_copy_test.dart": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_note_bookmark_edit_test.dart": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "content_control_fidelity_test.dart": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_content_control_fidelity_test.dart": {
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0
+    },
+    "word_auxiliary_content_control_test.dart": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "errors": [],
+  "done_event": {
+    "success": true,
+    "type": "done",
+    "time": 30453
+  },
+  "log_encoding": "gzip",
+  "log_uncompressed_sha256": "9a8c419ac2e6746a9d7133370ed0a3bf44fc870ea6c6aa83b88a9055a05e6f11",
+  "log_archive_sha256": "e293b67d115bb08e7119024a60d4bf01e0cab6aa088b046a928c8ede41694804",
+  "log_uncompressed_bytes": 59568,
+  "log_archive_bytes": 5947
+}

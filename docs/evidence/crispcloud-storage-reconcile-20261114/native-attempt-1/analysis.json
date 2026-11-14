@@ -1,0 +1,19 @@
+{
+  "source_commit": "a38c7659c7485f096e5a3f6bd52d2d9482aa3265",
+  "started_at": "2026-11-14T20:21:01.606742+00:00",
+  "command": [
+    "/workspace/scratch/209f165653d7/toolchain/run",
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/sheet_sort_history_test.dart"
+  ],
+  "working_directory": ".",
+  "input_manifest": "inputs.json.gz",
+  "completed_at": "2026-11-14T20:21:16.632113+00:00",
+  "exit_code": 3,
+  "changed_inputs": [],
+  "log": "focused-analysis.log",
+  "log_sha256": "916f8f9d2c143dbf6b51a1d5365dc4196c05399e35c14d89cc766fbe22533559"
+}

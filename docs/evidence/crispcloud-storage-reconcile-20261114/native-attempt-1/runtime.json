@@ -1,0 +1,12 @@
+{
+  "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "sdk_file_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/flutter_tools.snapshot": "543ce5040e6515770488b1ef97752876d1a55a0d8796ea873159458019496f08",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+    "bin/internal/engine.version": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c"
+  },
+  "environment_wrapper_sha256": "e50ad25557c6bdb07c4b2248cdd005017ba2d2f2149d08a277db01cbaeaf2481",
+  "limitations": "Native Linux Flutter unit regression and static analysis only. SDK/dependency binaries are identified, not embedded. No browser or CrispCloud host run is claimed by this companion receipt."
+}

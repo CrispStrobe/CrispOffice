@@ -1,0 +1,18 @@
+{
+  "source_commit": "a379ecc455890032906098b6cf58e17504581ed0",
+  "source_tree": "0b083a5019ca07503765a649e4ff5c9712f705c6",
+  "completed_at": "2026-11-14T21:01:30.775637+00:00",
+  "git_status": "",
+  "input_count": 2955,
+  "changed_inputs": [],
+  "input_manifest_before": "inputs-before.json.gz",
+  "input_manifest_after": "inputs-after.json.gz",
+  "all_exit_codes_zero": true,
+  "passed": 232,
+  "failed": 0,
+  "skipped": 0,
+  "engine_word_passed": 117,
+  "editor_history_passed": 115,
+  "strict_analysis_exit": 0,
+  "limitations": "Native Linux Dart/Flutter focused tests and static analysis only; not browser, live-cloud, external schema/render qualification or a whole-repository test run. Existing CrispCloud790test receipt remains separately pinned33198164."
+}

@@ -1,0 +1,31 @@
+{
+  "branch": "integration/crispcloud-storage-reconcile-20261114",
+  "sources": {
+    "main": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+    "office_recovery": "e3e3255425c408098456f1024cd26225b93d1bf0",
+    "notes_sorting": "cc8ff1ed4dfbf170012c43704d5730490275a2c4",
+    "app_recovery_pin": "0f935a6f24ae11aa9851a5cc3498808554194446",
+    "app_sorting_pin": "217db5ea73eb2b7f22aa7cbad0371e307712b296"
+  },
+  "merge_parents": [
+    "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+    "e3e3255425c408098456f1024cd26225b93d1bf0"
+  ],
+  "conflict_resolution": {
+    "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "strategy": "Retain the recovery _SheetGridSnap, which unconditionally retains original cell objects and empty rows; adapt sorting to its ordinary capture call. Preserve main sorting, saved-file fidelity and all view/grid/style history APIs from recovery."
+  },
+  "validation_status": "Native combined-source acceptance completed; see native/validation.json and native/analysis.json. First test-fixture compile failure retained separately.",
+  "qualified_source_commit": "cb42ef232e5794ac4c147ef1992133cf8710ab01",
+  "qualified_source_tree": "74992ca733610409050e898c9ce4561c93836536",
+  "source_files": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "sha256": "b8bad5f09ebbc3fca4d3c598a3d2b3fdb4015ee06ea43ee44a8cb00d1f7d89d0",
+      "git_blob": "14944754d1744a3f764439afc11541486e1b57d0"
+    },
+    "packages/quds_office_editor/test/sheet_sort_history_test.dart": {
+      "sha256": "53aae131f3a541b2a93f3ac1299aed1e5bc37143695c3c30086eed3d639c11a9",
+      "git_blob": "21f5e549f37cc45e2d1988b0b6b19b1cfe4e1ef2"
+    }
+  }
+}

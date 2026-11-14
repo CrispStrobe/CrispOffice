@@ -1,0 +1,96 @@
+{
+  "gate": "editor-history",
+  "source_commit": "a379ecc455890032906098b6cf58e17504581ed0",
+  "source_tree": "0b083a5019ca07503765a649e4ff5c9712f705c6",
+  "command": [
+    "/workspace/scratch/209f165653d7/toolchain/run",
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/sheet_style_history_test.dart",
+    "test/sheet_grid_history_test.dart",
+    "test/sheet_view_history_test.dart",
+    "test/sheet_fill_intent_history_test.dart",
+    "test/sheet_font_color_intent_test.dart",
+    "test/sheet_explicit_style_history_test.dart",
+    "test/sheet_cell_state_history_test.dart",
+    "test/pending_edit_save_test.dart",
+    "test/sheet_sort_history_test.dart",
+    "test/slide_notes_history_test.dart"
+  ],
+  "working_directory": "packages/quds_office_editor",
+  "started_at": "2026-11-14T21:00:14.038391+00:00",
+  "completed_at": "2026-11-14T21:00:35.431897+00:00",
+  "wall_seconds": 21.388087483999698,
+  "exit_code": 0,
+  "log": "editor-history.jsonl.gz",
+  "input_manifest": "inputs-before.json.gz",
+  "passed": 115,
+  "failed": 0,
+  "skipped": 0,
+  "tests_by_suite": {
+    "sheet_style_history_test.dart": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_grid_history_test.dart": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_view_history_test.dart": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_fill_intent_history_test.dart": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_font_color_intent_test.dart": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_explicit_style_history_test.dart": {
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_cell_state_history_test.dart": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "pending_edit_save_test.dart": {
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sheet_sort_history_test.dart": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "slide_notes_history_test.dart": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "errors": [],
+  "done_event": {
+    "success": true,
+    "type": "done",
+    "time": 19957
+  },
+  "log_encoding": "gzip",
+  "log_uncompressed_sha256": "c9b971ffc7e82aee90ea755b0940477ab00c9ef6f5095dce07f8c747df3df6d8",
+  "log_archive_sha256": "82b2c1bf89f32da7d969e94b12cedbf72b930d40fb5b903b13f8e0e57263d4f5",
+  "log_uncompressed_bytes": 58207,
+  "log_archive_bytes": 5028
+}

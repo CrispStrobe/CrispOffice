@@ -1,0 +1,94 @@
+{
+  "source_commit": "a379ecc455890032906098b6cf58e17504581ed0",
+  "scope": "Integrity inventory of follow-up evidence. The manifest excludes itself.",
+  "files": {
+    "README.md": {
+      "bytes": 3795,
+      "sha256": "fccaea8e6500d6ef0c2ed3de1354286be30d243d17610654f9751d9b3e2f2a85"
+    },
+    "attempt-1-bootstrap/editor-history-receipt.json": {
+      "bytes": 1262,
+      "sha256": "35310b59a3bf2ad2250f67bcf88176f2237643c2961f1ea3582ac8d33ef33041"
+    },
+    "attempt-1-bootstrap/editor-history.jsonl": {
+      "bytes": 125,
+      "sha256": "c1b9c7b33ea1fc7aa6b3dab53230f43d283f00aa95802b054d06d45a74bd1ffb"
+    },
+    "attempt-1-bootstrap/engine-word-receipt.json": {
+      "bytes": 1214,
+      "sha256": "12a5b22fcea7c2cb63c2c83d378a769ce773b34ea1abaec7ebf890a71aa916e9"
+    },
+    "attempt-1-bootstrap/engine-word.jsonl": {
+      "bytes": 125,
+      "sha256": "c1b9c7b33ea1fc7aa6b3dab53230f43d283f00aa95802b054d06d45a74bd1ffb"
+    },
+    "attempt-1-bootstrap/inputs-before.json.gz": {
+      "bytes": 136613,
+      "sha256": "f540e5c4b004b4e8a5fa159ab6904d3588f2d4bcbdacdb632bd5dd755e0a4271"
+    },
+    "completion.json": {
+      "bytes": 769,
+      "sha256": "3213094d742e6c1e21731597ffed3c7e6c8db0d7a643650f85909653dc385edd"
+    },
+    "editor-history-receipt.json": {
+      "bytes": 2556,
+      "sha256": "5402c4760da7ff1d374f9be93d9581e81a49f80eb4a5a96bb88856deb8b1312f"
+    },
+    "editor-history.jsonl.gz": {
+      "bytes": 5028,
+      "sha256": "82b2c1bf89f32da7d969e94b12cedbf72b930d40fb5b903b13f8e0e57263d4f5"
+    },
+    "engine-word-receipt.json": {
+      "bytes": 2500,
+      "sha256": "ba186bcaad4ff8f6974243e7dea21b45db3bc6c8ddde31593c58e21d77b9cb67"
+    },
+    "engine-word.jsonl.gz": {
+      "bytes": 5947,
+      "sha256": "e293b67d115bb08e7119024a60d4bf01e0cab6aa088b046a928c8ede41694804"
+    },
+    "inputs-after.json.gz": {
+      "bytes": 136613,
+      "sha256": "f540e5c4b004b4e8a5fa159ab6904d3588f2d4bcbdacdb632bd5dd755e0a4271"
+    },
+    "inputs-before.json.gz": {
+      "bytes": 136613,
+      "sha256": "f540e5c4b004b4e8a5fa159ab6904d3588f2d4bcbdacdb632bd5dd755e0a4271"
+    },
+    "package_config.json.gz": {
+      "bytes": 1870,
+      "sha256": "d20e9675ca16d8d82603ae394399a61c57b2ecf45d2f8eacaaae7d9078a278aa"
+    },
+    "package_graph.json.gz": {
+      "bytes": 2156,
+      "sha256": "b98c72a7b7963fe88112ea8867400c4ae338117ed02ca46ce094b52ba4d785b6"
+    },
+    "pubspec.lock.gz": {
+      "bytes": 5603,
+      "sha256": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40"
+    },
+    "run_gate.py": {
+      "bytes": 4791,
+      "sha256": "958d646d15776de3750f5e7a3502f67a42d0ae6643f2b6b8b6b1a657f3df5d40"
+    },
+    "runtime.json": {
+      "bytes": 1070,
+      "sha256": "2efba84f32d8b14bc1eb4073bca633893339b5c483b2a452c43a063e1e37b082"
+    },
+    "source-reconciliation.json": {
+      "bytes": 1703,
+      "sha256": "849d234b9437927ee6f4eca795c9d09e683a8a537289206565310bfef441bde6"
+    },
+    "start.json": {
+      "bytes": 508,
+      "sha256": "13f425580a3367bca906924f9b38fbe2f7939b9f1e9973c1a5b67b98ea45a3da"
+    },
+    "strict-analysis-receipt.json": {
+      "bytes": 1762,
+      "sha256": "a7a26de7ddd1a122f1fb649af5726772a9ba9d150de7e449d07c440853f3a1e4"
+    },
+    "strict-analysis.log": {
+      "bytes": 493,
+      "sha256": "259af7f54d6d049fa0ce076a91e177810e0e7e14cdf871068a319584a8067e2f"
+    }
+  }
+}

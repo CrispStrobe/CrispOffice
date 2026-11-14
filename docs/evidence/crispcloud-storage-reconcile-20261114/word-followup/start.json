@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-11-14T20:59:19.002529+00:00",
+  "head": "a379ecc455890032906098b6cf58e17504581ed0",
+  "tree": "0b083a5019ca07503765a649e4ff5c9712f705c6",
+  "parents": [
+    "1c7b0c121ed476090def463d9bc59f5c8a3462b7",
+    "c1678ade3b5b9fd13088e94d752fd17fd14eb3e8"
+  ],
+  "git_status": "",
+  "input_count": 2955,
+  "input_manifest": "inputs-before.json.gz",
+  "input_scope": "All tracked files except historical docs/evidence, plus current workspace package_config, package_graph and pubspec.lock."
+}
