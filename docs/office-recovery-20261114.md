@@ -15,6 +15,17 @@ baseline. Transcript totals are not current validation evidence.
 
 ## Current continuation status
 
+The [worksheet and ribbon-history continuation](office-worksheet-state-20261114.md)
+is complete on canonical source `0f935a6f`, consumed by app `ccba883b`. It records
+100 passing canonical tests, eight passing app host cases, clean scoped
+analyses, 23 passing artifact controls and independent zero-error SDK validation
+of 27 exact workbooks. RTL/freeze saves and worksheet/formatting history now use
+commands that preserve their original targets and native formatting state.
+Hosted fidelity jobs remain queued at the recorded observation. All earlier
+records below retain their original checkpoint scope.
+
+## Earlier fill checkpoint
+
 Implementation checkpoint `9219189e9a07103b029eaeb050658ab819356591` fixes an
 additional spreadsheet fill-preservation defect. Unrelated formatting no longer
 replaces native theme, indexed, patterned or gradient fills. Explicit solid/no-fill
