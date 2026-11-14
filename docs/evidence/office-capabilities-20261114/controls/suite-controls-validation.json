@@ -1,0 +1,148 @@
+{
+  "recorded_at_utc": "2026-11-14T18:55:09.856329+00:00",
+  "baseline_commit": "79d001522c6550a21b01f2c033fb293c372d3208",
+  "candidate_commit": "2182916ec1ecca84832194e6f49f7ae94b703aa7",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "flutter_version": "3.47.8",
+  "unchanged_regression_tests": {
+    "packages/quds_office_engine/test/sheet_cell_state_preservation_test.dart": "909fe1c9002a08d68851b724c13d095dd5ea2c0e2dd48da50b036825999a7892",
+    "packages/quds_office_editor/test/sheet_cell_state_history_test.dart": "11874da0d12cbc6964bcf3a21953151c2f296c930b2c3319385c227e6741546d",
+    "packages/quds_office_editor/test/slide_notes_history_test.dart": "6f8eaeb509b2e0d04f927667073ec4fc1df07f68dbf3a792a31c38f4a4187132",
+    "packages/quds_office_editor/test/sheet_sort_history_test.dart": "73a21a928e0db1a52e1b8566ac4cdd2b99e5705334cb2e760e53902a1cd5d9df"
+  },
+  "source_inputs_unchanged_after_execution": true,
+  "input_manifests": {
+    "baseline": {
+      "file": "suite-baseline-control-inputs.json",
+      "file_sha256": "8ce191f4f80063ceea469a0c6501ee68697eeeda9c7c9814089ab2192f685100",
+      "input_count": 420,
+      "input_manifest_sha256": "1032b1ab4982a20592129052c96f859b76131a56cfd10ce7cd0be0b916ccc6fb"
+    },
+    "candidate": {
+      "file": "suite-candidate-control-inputs.json",
+      "file_sha256": "ef2057ba0739cd1e4193be426696699f0b8fcb253d22383d808a29928bf3516b",
+      "input_count": 420,
+      "input_manifest_sha256": "3137410f37cb64ae21038a208981edef2642f5714b2dfab9435ac96ec6a777e6"
+    }
+  },
+  "results": {
+    "baseline-engine": {
+      "passed": 0,
+      "failed": 2,
+      "exit_code": 1,
+      "log_file": "suite-baseline-engine-controls.log",
+      "log_sha256": "a37a1b583387f4dc80a3cd93591692cd2b0d0aff7a64cdd6ec54eefba0127ff4",
+      "failing_tests": [
+        "sorting up carries locks and PDF borders",
+        "sorting down carries locks and PDF borders"
+      ]
+    },
+    "baseline-editor": {
+      "passed": 5,
+      "failed": 11,
+      "exit_code": 1,
+      "log_file": "suite-baseline-editor-controls.log",
+      "log_sha256": "b67de774008d5193cab214b7b1cfdba11c320d4d0709c73d5f55fd430970403e",
+      "failing_tests": [
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/sheet_cell_state_history_test.dart: fill undo and redo retain an unlocked cell and its PDF border",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/sheet_cell_state_history_test.dart: row deletion undo restores cell lock and PDF border through redo",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/sheet_sort_history_test.dart: sort becomes dirty and history stays on its owning sheet",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/sheet_sort_history_test.dart: sort undo and redo compose with earlier and later cell text edits",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/sheet_sort_history_test.dart: a pending cell edit is committed before its sort history entry",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/sheet_sort_history_test.dart: sorted values survive saved bytes and undo remains available",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/slide_notes_history_test.dart: notes-only edits become dirty and undo on the owning slide",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/slide_notes_history_test.dart: unchanged notes retain clean state and pending redo history",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/slide_notes_history_test.dart: notes and clearing survive direct save",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/slide_notes_history_test.dart: notes and clearing survive isolate save",
+        "/workspace/scratch/43f28001a27a/suite-negative-controls/packages/quds_office_editor/test/slide_notes_history_test.dart: notes edited after an async save advance the upload revision"
+      ]
+    },
+    "candidate-engine": {
+      "passed": 2,
+      "failed": 0,
+      "exit_code": 0,
+      "log_file": "suite-candidate-engine-controls.log",
+      "log_sha256": "50359d80f65121d01650ef3ae03127cde48b2519fb3ff4967004ab1c0c95e145",
+      "failing_tests": []
+    },
+    "candidate-editor": {
+      "passed": 17,
+      "failed": 0,
+      "exit_code": 0,
+      "log_file": "suite-candidate-editor-controls.log",
+      "log_sha256": "c7fcd75804f4651293139e857a16fde8da5460569b40f8f76336bcd5c951e7ee",
+      "failing_tests": []
+    }
+  },
+  "comparison": {
+    "engine": {
+      "baseline": {
+        "passed": 0,
+        "failed": 2
+      },
+      "candidate": {
+        "passed": 2,
+        "failed": 0
+      }
+    },
+    "editor_unchanged_tests": {
+      "baseline": {
+        "passed": 5,
+        "failed": 11
+      },
+      "candidate": {
+        "passed": 16,
+        "failed": 0
+      }
+    }
+  },
+  "sort_rejected_input_probe": {
+    "file": "/workspace/scratch/43f28001a27a/tmp/suite_sort_validation_guard_test.dart",
+    "sha256": "50a8984a681549a79b81d9758b8d7b5ee48fe5c567f54558faecdd5565b050cb",
+    "passed": 1,
+    "included_in_candidate_editor_total": true,
+    "scope": "Rejected numeric validation draft causes StateError before sorting, preserves values, revision, history, visible draft and original edited-cell binding. Correcting the draft subsequently commits to A2 despite the sort selection spanning A1:A3. No extra source guard was needed."
+  },
+  "commands": {
+    "engine": [
+      "dart",
+      "test",
+      "--reporter",
+      "expanded",
+      "--timeout",
+      "2m",
+      "test/sheet_cell_state_preservation_test.dart"
+    ],
+    "baseline_editor": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "--timeout",
+      "2m",
+      "test/sheet_cell_state_history_test.dart",
+      "test/sheet_sort_history_test.dart",
+      "test/slide_notes_history_test.dart"
+    ],
+    "candidate_editor": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "--timeout",
+      "2m",
+      "test/sheet_cell_state_history_test.dart",
+      "test/sheet_sort_history_test.dart",
+      "test/slide_notes_history_test.dart",
+      "/workspace/scratch/43f28001a27a/tmp/suite_sort_validation_guard_test.dart"
+    ]
+  },
+  "scope_notes": [
+    "Baseline ran in a separate detached git worktree; active checkout production source was never replaced.",
+    "All four regression files were byte-identical across baseline and candidate.",
+    "The additional validation guard probe is candidate-only and is separated from the 16 comparable editor tests.",
+    "Lock and border coverage concerns modeled state, not new native XLSX serialization."
+  ]
+}

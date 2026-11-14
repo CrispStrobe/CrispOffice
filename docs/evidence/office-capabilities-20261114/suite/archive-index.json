@@ -1,0 +1,1562 @@
+{
+  "archive": "saved-files.tar.gz",
+  "sha256": "17a8db1fd76e7cefbf03fd1eae914df449c97101e8c3eb064eb28521fde1f3f9",
+  "entries": {
+    "dependencies/package_config.json": {
+      "bytes": 21836,
+      "sha256": "744233d2c4b422b97c095f3094bebdfa7a39a6663ccd2a9c84417ac4d0d7ad61"
+    },
+    "dependencies/pubspec.lock": {
+      "bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+    },
+    "editor/fidelity-bookmark-copy/copied-expected.docx": {
+      "bytes": 1366,
+      "sha256": "4813413bbe1ac7b1cd927d0b40b07752c0944dc272d849a4274c627ce4d969b3"
+    },
+    "editor/fidelity-bookmark-copy/editor-1.docx": {
+      "bytes": 4588,
+      "sha256": "55b3db208591e204f80dead38914c1c1609d514c1828da5409fe0f5393907bf2"
+    },
+    "editor/fidelity-bookmark-copy/editor-2.docx": {
+      "bytes": 4625,
+      "sha256": "1c0d32e08d1bf855c5360c75bedd7efb8da48d2fda3ca51777e75a29665ebae3"
+    },
+    "editor/fidelity-bookmark-copy/editor-3.docx": {
+      "bytes": 4626,
+      "sha256": "d913619ed08f13e58c04462521f98e473744bd8b4b385758d9a20002cf5afb0d"
+    },
+    "editor/fidelity-bookmarks-legacy/editor-bookmarks-1.docx": {
+      "bytes": 7614,
+      "sha256": "113e9bd4b174a848c24a36c05518c96d323c34e473afdc3b9bd41d490bf86a2d"
+    },
+    "editor/fidelity-bookmarks-legacy/editor-bookmarks-2.docx": {
+      "bytes": 7652,
+      "sha256": "d669370fe8ec56a1511f3f412a30f9d2fd52e8d18ebaa67ee1ffba2ff7e07b19"
+    },
+    "editor/fidelity-bookmarks-legacy/editor-bookmarks-3.docx": {
+      "bytes": 7652,
+      "sha256": "3a7f5d1c275d8a6eaabf1aabddec1de19489adcaa1ae9cf189985c008a168998"
+    },
+    "editor/fidelity-content-controls-legacy/editor-controls-1.docx": {
+      "bytes": 5419,
+      "sha256": "f9753ac3d41b3560ec823cc5041dd050d6069b536221947c8fcf0101882df358"
+    },
+    "editor/fidelity-content-controls-legacy/editor-controls-2.docx": {
+      "bytes": 5475,
+      "sha256": "c5cdf510d630e2a8d82a3850890f0def0d506bcaf276ad7b20aeeb17fa9138f2"
+    },
+    "editor/fidelity-content-controls-legacy/editor-controls-3.docx": {
+      "bytes": 5474,
+      "sha256": "0c6bec393596b161fb59d5352de70f69c9eae2914552ad211b5087a2c0181719"
+    },
+    "editor/fidelity-custom-tabs/editor-tabs-1.docx": {
+      "bytes": 5186,
+      "sha256": "c800b8489030a9205605d582a0365671a52f7580acbecc799255fcf75bdef852"
+    },
+    "editor/fidelity-custom-tabs/editor-tabs-2.docx": {
+      "bytes": 5196,
+      "sha256": "03129e4ff874f6d67ce0e06ee6a9a2b4087b576f9a9ad2cefab86f92a5489d14"
+    },
+    "editor/fidelity-custom-tabs/editor-tabs-3.docx": {
+      "bytes": 5197,
+      "sha256": "f791f916289b71ab2271045bcc39ec2df57017dd7960e31f5ada253a9675eb9d"
+    },
+    "editor/fidelity-layout/columns_sections-1.docx": {
+      "bytes": 5296,
+      "sha256": "3c0239a0aea80ca82ffcd642e4e6166aa8851ce42b973419b597ce26041a7d40"
+    },
+    "editor/fidelity-layout/columns_sections-2.docx": {
+      "bytes": 5355,
+      "sha256": "63dddf99cff9fe39c1eae7a227df96df5a3675cc63afe884af7a06e58ea775d0"
+    },
+    "editor/fidelity-layout/columns_sections-3.docx": {
+      "bytes": 5355,
+      "sha256": "f3de4dcdc6f1e4811ba7485cf20a2a8add226c18f723ace2c908b3400f004125"
+    },
+    "editor/fidelity-layout/continued_notes-1.docx": {
+      "bytes": 5834,
+      "sha256": "57f78b2f6c4b2be48966438c8fb18bdba0d86d46d3e15376c194f5e65cb051a7"
+    },
+    "editor/fidelity-layout/continued_notes-2.docx": {
+      "bytes": 5900,
+      "sha256": "1afb6331f8a1c41dff4d81f7f24eb38b4341beb90f880e680edef4725eb1bec1"
+    },
+    "editor/fidelity-layout/continued_notes-3.docx": {
+      "bytes": 5902,
+      "sha256": "7452db93907dab66ade0580364572913f233f3725410e8052e773fd504891bc1"
+    },
+    "editor/fidelity-layout/rtl-1.docx": {
+      "bytes": 5475,
+      "sha256": "e472be2ae9fb2fceadb2d94537b74d6eaeb614c39c2160c2ba30b0dd5bcaee4e"
+    },
+    "editor/fidelity-layout/rtl-2.docx": {
+      "bytes": 5551,
+      "sha256": "0703f9222b671598b34734edb53341361d2b28fe368c3dbd9be79d3c8751ab6f"
+    },
+    "editor/fidelity-layout/rtl-3.docx": {
+      "bytes": 5550,
+      "sha256": "738f76a3e9bbfacfa558f96769c470a9ca07930a14cde89d62c50ea51edfcf20"
+    },
+    "editor/fidelity-layout/tall_table-1.docx": {
+      "bytes": 5966,
+      "sha256": "7a5f5e118e2762435ff094cbe146d67460d108adca22af2258d25335630a1a7b"
+    },
+    "editor/fidelity-layout/tall_table-2.docx": {
+      "bytes": 6053,
+      "sha256": "1e6a7b5acc8b23a3e6e57ea3a4d68448a18f47ec9dbb4d32ea014534a31c440c"
+    },
+    "editor/fidelity-layout/tall_table-3.docx": {
+      "bytes": 6054,
+      "sha256": "07f3b49904992a60dc489f8f15a64be12d61f7eeaf7419fca1c7ab5dabbc9dd4"
+    },
+    "editor/fidelity-story-goldens/three-pages-1.docx": {
+      "bytes": 22259,
+      "sha256": "75bb16c6774e5c1391fe300ad275021c01730b48001a3135328ee457d52555f7"
+    },
+    "editor/fidelity-story-goldens/three-pages-2.docx": {
+      "bytes": 22230,
+      "sha256": "809114f5dd99e3544c69d507d5662a2ac0bc9d413c2e0ead337016412116b3c8"
+    },
+    "editor/fidelity-story-goldens/three-pages-3.docx": {
+      "bytes": 22232,
+      "sha256": "dba5303937b152713510873c88d591fdec828e114a91e75d4d09ff347a249896"
+    },
+    "editor/fidelity/unchanged-controller.docx": {
+      "bytes": 8248,
+      "sha256": "e4a68146a787aaf73bcc8de6b9569d0cb73e2af2a194cabe43817a3c24c57f5b"
+    },
+    "engine/fidelity-altchunk/altchunk-imported-1.docx": {
+      "bytes": 5491,
+      "sha256": "f3e35ba0110ae5d5b23af4d6d912534a5525af046fe01b1db86774b984d5751b"
+    },
+    "engine/fidelity-altchunk/altchunk-imported-2.docx": {
+      "bytes": 5522,
+      "sha256": "8b4401a422b8f4359ec49ce4d215b3ae79ddba7cbc4910c412d7c8a77e4da9be"
+    },
+    "engine/fidelity-altchunk/altchunk-imported-3.docx": {
+      "bytes": 5522,
+      "sha256": "35aeea552b05ad4fdadef7473b2049ebc2e5cba7e7daedd6aadb9ccd994804e7"
+    },
+    "engine/fidelity-altchunk/altchunk-moved-1.docx": {
+      "bytes": 5584,
+      "sha256": "b7a75742ddc45978b2f9b3130b2ec1e802062bfe33a8254df1cd964ce1f2eea6"
+    },
+    "engine/fidelity-altchunk/altchunk-moved-2.docx": {
+      "bytes": 5613,
+      "sha256": "438fecf44d232c5efc833a67f7fe4df3b14ea0053acdef9183920b41152c1d90"
+    },
+    "engine/fidelity-altchunk/altchunk-moved-3.docx": {
+      "bytes": 5613,
+      "sha256": "f259b5cedabe1deaaab123ae29be4025ded8c7a4cb7ace8b539e84b289de82f7"
+    },
+    "engine/fidelity-aux-controls/edited-1.docx": {
+      "bytes": 17974,
+      "sha256": "60e5155744983f4bd6fd7a55f5fcf0bf815dce53508dc983f1d29b773fe49e10"
+    },
+    "engine/fidelity-aux-controls/edited-2.docx": {
+      "bytes": 18008,
+      "sha256": "8ef2c13d7d76d599688c8903720742a46314fc4f80756ea5652b2c06a63e6ce7"
+    },
+    "engine/fidelity-aux-controls/edited-3.docx": {
+      "bytes": 18008,
+      "sha256": "a041efd84f89dace5e598c042e1b96bd051d6e51ee8692b8eebb04b222d266bd"
+    },
+    "engine/fidelity-aux-controls/imported-1.docx": {
+      "bytes": 17917,
+      "sha256": "0bccabe54478ae318352e812f5d8e86e49399a7c385c0ca9a472cafcc0a1da83"
+    },
+    "engine/fidelity-aux-controls/imported-2.docx": {
+      "bytes": 17951,
+      "sha256": "bccb4a8b1ea57a25149740d153162179d102a210f1ea3e42bfccd68894d44f58"
+    },
+    "engine/fidelity-aux-controls/imported-3.docx": {
+      "bytes": 17954,
+      "sha256": "439d36ec293b424995a843f8806c6dab44d622452d289f1f7f13dcd50091e7f9"
+    },
+    "engine/fidelity-aux-controls/source.docx": {
+      "bytes": 8995,
+      "sha256": "fba38173b5148646d8cd00d1f18baffaf4a5bed829bc8d02583dacfbf75ddf4e"
+    },
+    "engine/fidelity-aux-header-footer/edited-1.docx": {
+      "bytes": 17828,
+      "sha256": "510c70b170ab2af23393e7c4077c356d2ca708d40cfb0c029e8a2fdec555b0ed"
+    },
+    "engine/fidelity-aux-header-footer/edited-2.docx": {
+      "bytes": 17862,
+      "sha256": "355ddc125ea97dd96857bc910761392eb783768188d128ffaff9c5b03cb4224f"
+    },
+    "engine/fidelity-aux-header-footer/edited-3.docx": {
+      "bytes": 17862,
+      "sha256": "3acd6e419b2b9223bab43df33ebd6298f51c284c2d9dc67b13456dcbddcde79c"
+    },
+    "engine/fidelity-aux-header-footer/imported-1.docx": {
+      "bytes": 17770,
+      "sha256": "fb8187d54627bbf5c0c4fbd29837fdd74e9b450a5f613d565b6ab747697dafe3"
+    },
+    "engine/fidelity-aux-header-footer/imported-2.docx": {
+      "bytes": 17804,
+      "sha256": "a792403aedd3a6a3626ef48447180a0e48acf02963e262cf5aac21b267a77def"
+    },
+    "engine/fidelity-aux-header-footer/imported-3.docx": {
+      "bytes": 17805,
+      "sha256": "f359fe8943b390b985534b9092a1267adb893470dbd86fc580de0c54cd27ebf8"
+    },
+    "engine/fidelity-aux-header-footer/source.docx": {
+      "bytes": 8857,
+      "sha256": "2d26c7e85810e0c1ed50483ed16e02e2d03c43f83b182e819571f1e0a66c7036"
+    },
+    "engine/fidelity-bibliography/direct-1.docx": {
+      "bytes": 6337,
+      "sha256": "4506785a2792f4e07630ee7c5dfe9fab5f96cb06490c7f692e633f2cd154cf31"
+    },
+    "engine/fidelity-bibliography/direct-2.docx": {
+      "bytes": 6371,
+      "sha256": "760303aae06a234eb82378f56ab75610976c44b62ee1267b7c2cf8df3ac20389"
+    },
+    "engine/fidelity-bibliography/direct-3.docx": {
+      "bytes": 6371,
+      "sha256": "755dcf2b9eb9d78362a1faa17a47ec81978064703fd4fde20adfe6e32f58ae74"
+    },
+    "engine/fidelity-bibliography/isolate-1.docx": {
+      "bytes": 6337,
+      "sha256": "0cf0ebf99f676be20851eb98d96bc8907500a3355b8a8fce04380535d05c1e14"
+    },
+    "engine/fidelity-bibliography/isolate-2.docx": {
+      "bytes": 6370,
+      "sha256": "657d9f98ceccb49c5d7a1430240f5132f994a95c75e56b3c07f31215ff9ec1e7"
+    },
+    "engine/fidelity-bibliography/isolate-3.docx": {
+      "bytes": 6370,
+      "sha256": "324c395cf932ce511b12c282818e8d1a3fe3fe1dc6a912607ba844788622a5ad"
+    },
+    "engine/fidelity-bookmark-copy/copied-1.docx": {
+      "bytes": 4588,
+      "sha256": "f81d178b97d7e0cc68091349b1057eb3ed6ac51ddc868863c2d749dcf1cc8d22"
+    },
+    "engine/fidelity-bookmark-copy/copied-2.docx": {
+      "bytes": 4625,
+      "sha256": "1b24d08e273cfc5e23e05b50fd5a832daf60942e56210204e4bb39690086f2d9"
+    },
+    "engine/fidelity-bookmark-copy/copied-3.docx": {
+      "bytes": 4626,
+      "sha256": "9aa2f8fa2407ce7b95f5a52af22862a0bb70eb7645093b2ecba1ca3a63314736"
+    },
+    "engine/fidelity-bookmark-copy/copied-expected.docx": {
+      "bytes": 1366,
+      "sha256": "4813413bbe1ac7b1cd927d0b40b07752c0944dc272d849a4274c627ce4d969b3"
+    },
+    "engine/fidelity-bookmark-copy/source.docx": {
+      "bytes": 1461,
+      "sha256": "7634d9c2fc37a187b134e618a806f787fb8277ae6fd082f937e085662a3fe6ca"
+    },
+    "engine/fidelity-bookmarks-legacy/bookmarks-edited-1.docx": {
+      "bytes": 7610,
+      "sha256": "e937373449274f85bbe05d91ac66f2587f762c3e091e40b51059954f3f23f986"
+    },
+    "engine/fidelity-bookmarks-legacy/bookmarks-edited-2.docx": {
+      "bytes": 7674,
+      "sha256": "df9fa0a3e5ed659a82665250c267a2b18bfc6b0272ae960a96c0cd0efa34471a"
+    },
+    "engine/fidelity-bookmarks-legacy/bookmarks-edited-3.docx": {
+      "bytes": 7674,
+      "sha256": "943eb45b2d3fc02211a1085778eec6dd59b214a8c4ed38265936efc4976b65f1"
+    },
+    "engine/fidelity-bookmarks-legacy/bookmarks-imported-1.docx": {
+      "bytes": 7558,
+      "sha256": "f2c0ba9d367a3e53d984dc6d78499dcf2b0689bda0d555cce66da54113ec2cb4"
+    },
+    "engine/fidelity-bookmarks-legacy/bookmarks-imported-2.docx": {
+      "bytes": 7625,
+      "sha256": "232f0e2795d0cbf2f0ae24fff4e47a5f859766d4c86bf43b2a77b47c5f3f2a59"
+    },
+    "engine/fidelity-bookmarks-legacy/bookmarks-imported-3.docx": {
+      "bytes": 7625,
+      "sha256": "3fb8a0f48e875e2e043634dfd222cfc33b7631954f0a96b88b00c707ff7e9877"
+    },
+    "engine/fidelity-bookmarks-legacy/bookmarks-source.docx": {
+      "bytes": 4446,
+      "sha256": "acc4bc7ef24543b75d2295dbbd37a58b9a4ac5a2105cef13ef186e8178ec05b6"
+    },
+    "engine/fidelity-bookmarks/cloned-1.docx": {
+      "bytes": 4828,
+      "sha256": "cf1a0f1eaef47dfaef7da97e5698ccd3ec728864bd699e918999c6f124adc914"
+    },
+    "engine/fidelity-bookmarks/cloned-2.docx": {
+      "bytes": 4874,
+      "sha256": "9900da73945f946cb233b8e1706c8648bfb2f10bcb384486d3ac100eb0249719"
+    },
+    "engine/fidelity-bookmarks/cloned-3.docx": {
+      "bytes": 4874,
+      "sha256": "3b792ed266c91fceb37028679db3a96f7bce393a90f9408b60a574b20ed06d87"
+    },
+    "engine/fidelity-bookmarks/edited-1.docx": {
+      "bytes": 5417,
+      "sha256": "561b09299a3802b8436efdf38f8d62c903b1fd0598c99e255e17a690c3826103"
+    },
+    "engine/fidelity-bookmarks/edited-2.docx": {
+      "bytes": 5427,
+      "sha256": "6108b6f37d2342a1a42360e4f0ac27bde257924e3b30ea5f040c9442ea855335"
+    },
+    "engine/fidelity-bookmarks/edited-3.docx": {
+      "bytes": 5428,
+      "sha256": "8211c6307e6fabe87caa1a8520d056680ecb5c1f12e08164bf3b1b74136a196c"
+    },
+    "engine/fidelity-bookmarks/frame-1.docx": {
+      "bytes": 5208,
+      "sha256": "415d776fee24ddf116efd7646042474f11db318ffa31debb68db2d292f505f48"
+    },
+    "engine/fidelity-bookmarks/frame-2.docx": {
+      "bytes": 5251,
+      "sha256": "b3a0e232bbf6b7cf9731838a3a08beadd2c0d6c75043598db17e9db54d6eca4f"
+    },
+    "engine/fidelity-bookmarks/frame-3.docx": {
+      "bytes": 5252,
+      "sha256": "7bb6aa6c69ea02be9fde69d2f10de2babcf77beb0a3ccc6b29959d0185d4bdba"
+    },
+    "engine/fidelity-bookmarks/frame-source.docx": {
+      "bytes": 1700,
+      "sha256": "84efbba2da2751e303d812860309a701b71b6424ed13c811474f37081ce3d01a"
+    },
+    "engine/fidelity-bookmarks/imported-1.docx": {
+      "bytes": 4828,
+      "sha256": "0f4e1a6781632573f3621f2f303f6f628a803b71c22f857a72f15c4d53d841e2"
+    },
+    "engine/fidelity-bookmarks/imported-2.docx": {
+      "bytes": 4877,
+      "sha256": "bbb2f80989a828543b4964c05bc5bc94b9aea631a346929e6af5ea264d3cb8d3"
+    },
+    "engine/fidelity-bookmarks/imported-3.docx": {
+      "bytes": 4877,
+      "sha256": "d45b1e8b2301607548c21e871aec513312627dec82e75d1fbf0d68f2405493df"
+    },
+    "engine/fidelity-bookmarks/source.docx": {
+      "bytes": 2140,
+      "sha256": "b469fc9d8ffc372e8dd6d84fc506acd19e47074262f9717e1fc0c6995758ea83"
+    },
+    "engine/fidelity-comment-threads/threads-edited-1.docx": {
+      "bytes": 5589,
+      "sha256": "e33459743f06d2c8ae5426afa3c5875733c3f64f3779faccbccc31f66679d15b"
+    },
+    "engine/fidelity-comment-threads/threads-edited-2.docx": {
+      "bytes": 5623,
+      "sha256": "68bdcf7c78ac47d504aba7fd22ba2cd1fb0a493df0f4cf367537eb8158ea6f33"
+    },
+    "engine/fidelity-comment-threads/threads-edited-3.docx": {
+      "bytes": 5623,
+      "sha256": "a7042188e979191653531b0f920509e87f4561872135f194d237d8db15198e89"
+    },
+    "engine/fidelity-comment-threads/threads-imported-1.docx": {
+      "bytes": 5541,
+      "sha256": "8597b0241e48c2aa4f6e7638a7854406209cd10d5ffef3ac72c302adda1c595d"
+    },
+    "engine/fidelity-comment-threads/threads-imported-2.docx": {
+      "bytes": 5575,
+      "sha256": "b2055e13f9b86502f90ec1f5978cd5b5729716b09bd940536ee1c5f3c6228c2a"
+    },
+    "engine/fidelity-comment-threads/threads-imported-3.docx": {
+      "bytes": 5576,
+      "sha256": "a8d2631c3b830c1c2893b1e0d5b84e30d35f18368e9911d920f09b71a81ac672"
+    },
+    "engine/fidelity-comment-threads/threads-source.docx": {
+      "bytes": 2376,
+      "sha256": "d1763533e3733a93398a0cea7043b9d188f98f5a403ff5b7f3ed5869d654e9a4"
+    },
+    "engine/fidelity-content-controls-legacy/controls-edited-1.docx": {
+      "bytes": 5414,
+      "sha256": "3ae688e1c4e650dd71ff87a066cd249b70614f1a3ee6f254ddf7865a36732c7c"
+    },
+    "engine/fidelity-content-controls-legacy/controls-edited-2.docx": {
+      "bytes": 5464,
+      "sha256": "65a6e096b9c4f13c8b73b74d053cac22a84d5d0cdc1103f29645c6849c32e9e0"
+    },
+    "engine/fidelity-content-controls-legacy/controls-edited-3.docx": {
+      "bytes": 5464,
+      "sha256": "04baa28172b0cd0e62d9768cdb5b5bc31158f4aa3138bedfa4228b78a2e935ad"
+    },
+    "engine/fidelity-content-controls-legacy/controls-imported-1.docx": {
+      "bytes": 5408,
+      "sha256": "a67be8c7166dbe05f78cb44e403a0319e30921c83ddaff3f42bff3a0a85d5263"
+    },
+    "engine/fidelity-content-controls-legacy/controls-imported-2.docx": {
+      "bytes": 5461,
+      "sha256": "a943595a19d86728216b468756c67f6022a15b40b71c72ce10b09b52ea516a46"
+    },
+    "engine/fidelity-content-controls-legacy/controls-imported-3.docx": {
+      "bytes": 5461,
+      "sha256": "f4e150526a13239e0a91291c921c14bec7844b0b9c2281758cf02ac8eb5f88bb"
+    },
+    "engine/fidelity-content-controls-legacy/controls-source.docx": {
+      "bytes": 2620,
+      "sha256": "a59cb0915fdadaa579bd28f028da5be1df2c8e036362e8e1fe21b789053b5e29"
+    },
+    "engine/fidelity-content-controls-legacy/legacy-frame-1.docx": {
+      "bytes": 6326,
+      "sha256": "0ab55460e6e40337a70850e0bc33b91b83cd5feb8fab5b4e859ee32290ced8ae"
+    },
+    "engine/fidelity-content-controls-legacy/legacy-frame-2.docx": {
+      "bytes": 6405,
+      "sha256": "f6361621345dabab803d5018d5ffe5eab265cc12f06f2bad5a6de348a0f17cf6"
+    },
+    "engine/fidelity-content-controls-legacy/legacy-frame-3.docx": {
+      "bytes": 6405,
+      "sha256": "277af57837dcd33c9b1873723789464a97dcef45c176cd61c18b1094b2193c06"
+    },
+    "engine/fidelity-content-controls/direct-1.docx": {
+      "bytes": 15441,
+      "sha256": "4bd44b1f0bd6a6988bcbc24be595e0ba2c3195ca57a5e202ef7286cd682860f2"
+    },
+    "engine/fidelity-content-controls/direct-2.docx": {
+      "bytes": 15517,
+      "sha256": "c17245c17c75a151ead353b99f5dd6fcf0f2fe544ea8f8347d5dc40a7c90d9e9"
+    },
+    "engine/fidelity-content-controls/direct-3.docx": {
+      "bytes": 15517,
+      "sha256": "92788baece250c873a3d8f9050e96b0af363db9617e78c86f9aca9ddfd654310"
+    },
+    "engine/fidelity-content-controls/imported-1.docx": {
+      "bytes": 15229,
+      "sha256": "bad4738b889cc1a93129712c453e4626fc3ca174037570c9eeebfb69e42ee07e"
+    },
+    "engine/fidelity-content-controls/imported-2.docx": {
+      "bytes": 15269,
+      "sha256": "14c8e36636dac9222f618ba3c7e175461cd91a48e7fd2998fbf17f594d3334cf"
+    },
+    "engine/fidelity-content-controls/imported-3.docx": {
+      "bytes": 15270,
+      "sha256": "6a07000b5f9fdab9d340ebcf84a3984507a64f836df81f877fd43dbc98324f71"
+    },
+    "engine/fidelity-content-controls/isolate-1.docx": {
+      "bytes": 15441,
+      "sha256": "85a1f470a1f582070322c82d464ff66da2e5693f188a2511f6dc4202dc213eae"
+    },
+    "engine/fidelity-content-controls/isolate-2.docx": {
+      "bytes": 15519,
+      "sha256": "6720baf0c4b632d3d5526d711b5c92d63dea01505f3d8cd9d19ea4e3e5a30a10"
+    },
+    "engine/fidelity-content-controls/isolate-3.docx": {
+      "bytes": 15519,
+      "sha256": "994160fe895aa471168c4b5338b5d2c15454f98137930473b5b6c896e7d29fc8"
+    },
+    "engine/fidelity-content-controls/source.docx": {
+      "bytes": 8712,
+      "sha256": "5af5646742521142abb6295e0962e84a21de75f5959d66aa524f43ab48c11a40"
+    },
+    "engine/fidelity-frame-wrap/none-1.docx": {
+      "bytes": 5210,
+      "sha256": "d5e7df0e51772782ded0b73c1ac41c1224e1e835945fd435dab3588a32686f4b"
+    },
+    "engine/fidelity-frame-wrap/none-2.docx": {
+      "bytes": 5247,
+      "sha256": "6d5d6cb71823644ece454c8ac455fbb4091648d2350391458c7f596d12bcdbb7"
+    },
+    "engine/fidelity-frame-wrap/none-3.docx": {
+      "bytes": 5247,
+      "sha256": "69ed1cf61eb9e0151eb725a428ce4e1bfd1aaf7d2dfe3dba9bdfffca7b3b3bb8"
+    },
+    "engine/fidelity-frame-wrap/none-source.docx": {
+      "bytes": 1959,
+      "sha256": "956a75351e281d6fcaea42829e79262c4567eba6113ea67a82fc191a61d35543"
+    },
+    "engine/fidelity-frame-wrap/square-1.docx": {
+      "bytes": 5230,
+      "sha256": "3999d3c41f5bfd67e1160f7644e7ddc6b38a7d71ce23cf34cdf80615892eef1d"
+    },
+    "engine/fidelity-frame-wrap/square-2.docx": {
+      "bytes": 5267,
+      "sha256": "b64cab91b4af5ca30d3c97c502e422d6d87e71d9580a25896f37013226961d1a"
+    },
+    "engine/fidelity-frame-wrap/square-3.docx": {
+      "bytes": 5270,
+      "sha256": "067082516f11918efbd87b894aadd8faa9afaccdd04d2741b3f6570a16fe25b6"
+    },
+    "engine/fidelity-frame-wrap/square-source.docx": {
+      "bytes": 1979,
+      "sha256": "cc13ec6ed3be7cfe0c37c56c0bcfd5fea15b4d5e0901ca896f18b111690ad567"
+    },
+    "engine/fidelity-frame-wrap/topBottom-1.docx": {
+      "bytes": 5247,
+      "sha256": "c2ebfc46b66b25309c0337c6e8c20b29ece30efe494b8ccb7597af63c0e74559"
+    },
+    "engine/fidelity-frame-wrap/topBottom-2.docx": {
+      "bytes": 5283,
+      "sha256": "6594c01e803a969e11bc334e41934c5d36f8a0e8e9288a890d2cdad9a074505a"
+    },
+    "engine/fidelity-frame-wrap/topBottom-3.docx": {
+      "bytes": 5283,
+      "sha256": "67f253806b6c0b3494eb50574591ec5dc13128b93084993199fe51946ad66296"
+    },
+    "engine/fidelity-frame-wrap/topBottom-source.docx": {
+      "bytes": 1965,
+      "sha256": "e14aaadf28e887ae68c5492226c9d42d3954485be35511ec539bf27fe9bbf0ba"
+    },
+    "engine/fidelity-image/replaced-1.docx": {
+      "bytes": 8201,
+      "sha256": "b51434f29680d1c297b49b5f633677e744707d9e4f23f3ef473bad8c63676498"
+    },
+    "engine/fidelity-image/replaced-2.docx": {
+      "bytes": 8237,
+      "sha256": "3b2323a13d40d1ef70e606a63c97d931f390984ff8c7fe5d8ccd9f7217ae3d18"
+    },
+    "engine/fidelity-image/replaced-3.docx": {
+      "bytes": 8237,
+      "sha256": "4cf903a0b37017a79055b1ea19931ca7479d8a7363a7172f96c96a18af037c05"
+    },
+    "engine/fidelity-inline-fields/direct-1.docx": {
+      "bytes": 5634,
+      "sha256": "ac708c8c3ea6b99f1ddbab29eb813773851a86033eb047a0da65791737006be2"
+    },
+    "engine/fidelity-inline-fields/direct-2.docx": {
+      "bytes": 5681,
+      "sha256": "ecd975f25fee362e7fa5d4c8fee55cb35782097341ab72318347ca0a9cf7deff"
+    },
+    "engine/fidelity-inline-fields/direct-3.docx": {
+      "bytes": 5681,
+      "sha256": "3dd52e03f567b971bde9dafaa14e53b02884f2e47cfa1509403abbb1396bad5b"
+    },
+    "engine/fidelity-inline-fields/isolate-1.docx": {
+      "bytes": 5634,
+      "sha256": "4ab94084e1c4717c12a5a55ef02a34b946581cfaead884c052c19cc49bb888e4"
+    },
+    "engine/fidelity-inline-fields/isolate-2.docx": {
+      "bytes": 5680,
+      "sha256": "b57db5fa18480761c24f558500bc90052e829e63c9f3d7daccad30525a44d1c2"
+    },
+    "engine/fidelity-inline-fields/isolate-3.docx": {
+      "bytes": 5679,
+      "sha256": "86b5873ac442f9f4e3ba8a622c889aef8f77dc2dbc1f1dbf33fa89f01324b403"
+    },
+    "engine/fidelity-lists/restarted-0.docx": {
+      "bytes": 4562,
+      "sha256": "658706afc7c13ed8262f863d94c11ecde0162cc9ca1fbe24024f885390642817"
+    },
+    "engine/fidelity-lists/restarted-1.docx": {
+      "bytes": 4562,
+      "sha256": "b56652816410480e323fb51d214c1f682053750d22d3f0b29eb91fd4a7c65b4b"
+    },
+    "engine/fidelity-lists/restarted-2.docx": {
+      "bytes": 4562,
+      "sha256": "cfff40fe06a9473fe493c318e4ebf67b97b829fcc023ee70badc75f539e0184b"
+    },
+    "engine/fidelity-native/created-pivot-1.xlsx": {
+      "bytes": 9727,
+      "sha256": "a43d34b2f53aa165c98e5976011f2a71fd345dfa6603a5f46b7c555aa2381e82"
+    },
+    "engine/fidelity-native/created-pivot-2.xlsx": {
+      "bytes": 9739,
+      "sha256": "8a5d03003b153bc5d2f9a47db72a3aed096fa20e22e12058cef6e51cb80a1b6c"
+    },
+    "engine/fidelity-native/created-pivot-3.xlsx": {
+      "bytes": 9739,
+      "sha256": "4e4c8667f5323ba0e6911ba6390efcb25443e3902e8dd91078773600c1175312"
+    },
+    "engine/fidelity-native/native-sheet-edited-1.xlsx": {
+      "bytes": 11900,
+      "sha256": "5773f2971d09e30fe47e46bc21e47f654a0cc1c4a1e854933f033d7ca5c4b893"
+    },
+    "engine/fidelity-native/native-sheet-edited-2.xlsx": {
+      "bytes": 11897,
+      "sha256": "9148c58698b72fc42edcc17731cae8172159b8643e4da1bffc9860f1fe7d8ff0"
+    },
+    "engine/fidelity-native/native-sheet-edited-3.xlsx": {
+      "bytes": 11900,
+      "sha256": "d1c6f52d6b70bee05d8e18b1fb02b505ec33d32f45942a61d5379c309c369164"
+    },
+    "engine/fidelity-native/native-sheet-imported-1.xlsx": {
+      "bytes": 11876,
+      "sha256": "bdcbb9155c527ef10a2366c8c07cfde4e5496de140867db8a18e2850fb14619e"
+    },
+    "engine/fidelity-native/native-sheet-imported-2.xlsx": {
+      "bytes": 11877,
+      "sha256": "847307bdf87e788313fc35eb84a25e9bcfaac83151cf6d6ef9eb0320ad6c942a"
+    },
+    "engine/fidelity-native/native-sheet-imported-3.xlsx": {
+      "bytes": 11877,
+      "sha256": "dd84712af6f409f4e25bd97776c8dcc535e011e40b26b6a7b341f44503c62adb"
+    },
+    "engine/fidelity-native/native-slides-1.pptx": {
+      "bytes": 55756,
+      "sha256": "7d924c7d61c7e09d20cda1cdf010617eb66230c851b3d3ab7fd9cdfdbf412507"
+    },
+    "engine/fidelity-native/native-slides-2.pptx": {
+      "bytes": 55756,
+      "sha256": "70ec41c144660cdb54b493429d44026e2c1edd8b362957e1474c67fb427db150"
+    },
+    "engine/fidelity-native/native-slides-3.pptx": {
+      "bytes": 55757,
+      "sha256": "fc050cc7c6e38083371fefe02eeb09783201308af7d062d5e9bb8823e43925a9"
+    },
+    "engine/fidelity-native/native-slides-edited-1.pptx": {
+      "bytes": 56053,
+      "sha256": "23147583d2b93c10839afab3ef3fd6fa7ae5b6277c55dec7eda7582cbef4dd7d"
+    },
+    "engine/fidelity-native/native-slides-edited-2.pptx": {
+      "bytes": 56053,
+      "sha256": "8fd859945728e20a636e0c6c4bcb69af1763aa4e88fb7c2b97a775e80f387c4e"
+    },
+    "engine/fidelity-native/native-slides-edited-3.pptx": {
+      "bytes": 56053,
+      "sha256": "ec12ddd357566b9b444730695965da4d3fda836be0ac4fa555172ab2479a8902"
+    },
+    "engine/fidelity-note-markers-legacy/markers-edited-1.docx": {
+      "bytes": 5015,
+      "sha256": "063d8bb26f53e5ff0788e75013c812d1a300475056550528f15491b1166f5a77"
+    },
+    "engine/fidelity-note-markers-legacy/markers-edited-2.docx": {
+      "bytes": 5036,
+      "sha256": "281a26aab3b17649ef3bb1f27df7415be30dd5fe5b913d236ee6e44483c00caf"
+    },
+    "engine/fidelity-note-markers-legacy/markers-edited-3.docx": {
+      "bytes": 5037,
+      "sha256": "fc423c1109628719572af6966c69e3b54a33b7f8a6262308d3fd0d4b866e875a"
+    },
+    "engine/fidelity-note-markers-legacy/markers-imported-1.docx": {
+      "bytes": 4724,
+      "sha256": "b46cebf42f1a5e2e8605e59512afe7fd7b39305e6b33f2c623301a76e9e5780e"
+    },
+    "engine/fidelity-note-markers-legacy/markers-imported-2.docx": {
+      "bytes": 4747,
+      "sha256": "4a4082f921006ff7876bb972716a3460eaeecf3ce79ec5b5a8148f507e02d611"
+    },
+    "engine/fidelity-note-markers-legacy/markers-imported-3.docx": {
+      "bytes": 4747,
+      "sha256": "cbe69f3c0b1a7736c5d294eb9c8bd7f76f0c7eb7fdf8aa7335db4eec5fc074e0"
+    },
+    "engine/fidelity-note-markers-legacy/markers-source.docx": {
+      "bytes": 2428,
+      "sha256": "6f4e979c69c4a942796ea512490b791f8b3ea99a966c75593c1b2613880e7536"
+    },
+    "engine/fidelity-note-markers/cloned-1.docx": {
+      "bytes": 5094,
+      "sha256": "636bfba01314f0d0aab7a10eee536da285abefad6ae3eaab4b2399263c50d7c9"
+    },
+    "engine/fidelity-note-markers/cloned-2.docx": {
+      "bytes": 5136,
+      "sha256": "40896301e5600b59b45c82a42b845e0c37d8fc200ba17a7735c6a49b7a3ff595"
+    },
+    "engine/fidelity-note-markers/cloned-3.docx": {
+      "bytes": 5137,
+      "sha256": "7374d329e4b1ec3c28a68d406397bc794a0fdad76618829d3749abf037541b0c"
+    },
+    "engine/fidelity-note-markers/edited-1.docx": {
+      "bytes": 5120,
+      "sha256": "7d2957c4f5cc2c599924d1cc5289b6cd5ef01d040e5dad9ca2824fac53c7dec0"
+    },
+    "engine/fidelity-note-markers/edited-2.docx": {
+      "bytes": 5161,
+      "sha256": "0d56cf546c1665e672dcd09e27ad28d563d002095e3d3e62993c5db7365f8f51"
+    },
+    "engine/fidelity-note-markers/edited-3.docx": {
+      "bytes": 5162,
+      "sha256": "0951fb293e198c205aa1641fc6c439911ecf9c089af61bd27c399a1c43aad49b"
+    },
+    "engine/fidelity-note-markers/imported-1.docx": {
+      "bytes": 5094,
+      "sha256": "b32c0cd27ddf9030a331ee11d43aeb25c098c332ae1eaaad9493fe73f1a2c125"
+    },
+    "engine/fidelity-note-markers/imported-2.docx": {
+      "bytes": 5136,
+      "sha256": "fd7c6d0994ec6d86ff27a67b8207815b9cd333a0c0c5117da555a5203ae865b0"
+    },
+    "engine/fidelity-note-markers/imported-3.docx": {
+      "bytes": 5137,
+      "sha256": "48f78538617287f708c40592e3e1534af3b8110f4514e6f86a3d521ecaf03f1b"
+    },
+    "engine/fidelity-note-markers/source.docx": {
+      "bytes": 2987,
+      "sha256": "24d80e959d01435191ccaaa6d31bed1e214becbddef6eef8b87b69d79d357a48"
+    },
+    "engine/fidelity-notes/edited-1.docx": {
+      "bytes": 9108,
+      "sha256": "2c3b655746114e01e2af5ef1fea384fb609303c5889814eaf42ad8ec24d7bb28"
+    },
+    "engine/fidelity-notes/edited-2.docx": {
+      "bytes": 9142,
+      "sha256": "0677834248585452a6881c1a887362c96d30c31feb0154566b240fd966fed79b"
+    },
+    "engine/fidelity-notes/edited-3.docx": {
+      "bytes": 9143,
+      "sha256": "330dae00221abc78505584e3fdec8e4e865f751a416b395a40f721e69a5c5ec0"
+    },
+    "engine/fidelity-notes/source.docx": {
+      "bytes": 6100,
+      "sha256": "11550ac3f3c06bd4093b61bf16cc879827587a53c1cf0abaf8dcbdffc19da59e"
+    },
+    "engine/fidelity-notes/unchanged-1.docx": {
+      "bytes": 9102,
+      "sha256": "00f8432d5b6e6c364ca4db97da5fde044411f8d003fec1f73b2f8384633528bd"
+    },
+    "engine/fidelity-notes/unchanged-2.docx": {
+      "bytes": 9136,
+      "sha256": "4fa03723ea6531f160d2adb38e890bff464570b709c9372f5ee6d01b49584b1b"
+    },
+    "engine/fidelity-notes/unchanged-3.docx": {
+      "bytes": 9136,
+      "sha256": "ce19137b1bcc2fe2522ca41bd1c4ead85daf80bb713a985a284bcedfca8380f8"
+    },
+    "engine/fidelity-opaque/opaque-1.docx": {
+      "bytes": 4405,
+      "sha256": "15b093ff3be53665cc73aaab66f4170286130fe36d606c9265947a1c3691c34f"
+    },
+    "engine/fidelity-opaque/opaque-2.docx": {
+      "bytes": 4440,
+      "sha256": "fd89adf40722fb3a569a1d4fb372aa0b67dae6f55cfeb379661c566ee5e0624f"
+    },
+    "engine/fidelity-opaque/opaque-3.docx": {
+      "bytes": 4440,
+      "sha256": "a8e0d2b593cb20c4577fe85599c0fbd7030cbe8bb2d3270ebadbefca960efc84"
+    },
+    "engine/fidelity-revision-stories/direct-1.docx": {
+      "bytes": 11760,
+      "sha256": "3c72dc6ef7fdc4ec30278240707757292fb4beb225923fe124b67d375a7d7c09"
+    },
+    "engine/fidelity-revision-stories/direct-2.docx": {
+      "bytes": 11802,
+      "sha256": "ae019d4b77fe0f8d3ee486ef0d7d0a86e415e136903686e841dfd1801fb58945"
+    },
+    "engine/fidelity-revision-stories/direct-3.docx": {
+      "bytes": 11801,
+      "sha256": "64c34a1f75b12da686e5bf37ef5c2524dc0dbb9319956d4ca06aa40519e97fc3"
+    },
+    "engine/fidelity-revision-stories/isolate-1.docx": {
+      "bytes": 11760,
+      "sha256": "306be17a321c38bd262e58c4e8fd3318523264bac426481183d529b6cca46abf"
+    },
+    "engine/fidelity-revision-stories/isolate-2.docx": {
+      "bytes": 11802,
+      "sha256": "f6a7d531f623ffeaa929e0ffcaec357461bc1d0a5b9b1e8b1cb65100b8cda737"
+    },
+    "engine/fidelity-revision-stories/isolate-3.docx": {
+      "bytes": 11801,
+      "sha256": "58e6f63e24f0980d70b14ac4026c960ae3c2957d3cdf320b14cf91eb61151f07"
+    },
+    "engine/fidelity-schema/column-metadata-1.xlsx": {
+      "bytes": 11972,
+      "sha256": "ee2f802b5afac2e6c5bce5ed0464e18ef26593ef92df116fa39c624db8331763"
+    },
+    "engine/fidelity-schema/column-metadata-2.xlsx": {
+      "bytes": 11972,
+      "sha256": "82684d802df6948517287fd3dbb78268c01f9f96a7bb76a282ef5c33f7caf5a2"
+    },
+    "engine/fidelity-schema/column-metadata-3.xlsx": {
+      "bytes": 11972,
+      "sha256": "fe913a5fc4f00daa14a0f82a55128235996d3f0ad1f5ea497c866942e9347327"
+    },
+    "engine/fidelity-schema/namespace-style-1.xlsx": {
+      "bytes": 6115,
+      "sha256": "2b6b142f75dd3cbb0bac7db529d7d66bee1d5b5b442d76e67ae7a0dd31c3a320"
+    },
+    "engine/fidelity-schema/namespace-style-2.xlsx": {
+      "bytes": 6115,
+      "sha256": "bdc3cb2aca44b0725ad007ee4dbe87080edde71ef94fc9603c361d3d07ce8298"
+    },
+    "engine/fidelity-schema/namespace-style-3.xlsx": {
+      "bytes": 6115,
+      "sha256": "8d0f6ee6abd7996183b2c8087d849646985c805810ea3e3a750ae6e4cb566235"
+    },
+    "engine/fidelity-schema/namespace-style-reference.xlsx": {
+      "bytes": 6045,
+      "sha256": "3fa780ab1413b3078d7557638c5316e4b7cd69b4597b89fd9bb5a679575b1bf4"
+    },
+    "engine/fidelity-schema/sheet-style-1.xlsx": {
+      "bytes": 11967,
+      "sha256": "899b6879fec1f900b97ad312d6d9ece39fdef9a4156d747fecfd88bd98804032"
+    },
+    "engine/fidelity-schema/sheet-style-2.xlsx": {
+      "bytes": 11967,
+      "sha256": "eb078d915b2e22dfb1f78db70114ec31a8840cbd24af8819a27d18c5d8c0977e"
+    },
+    "engine/fidelity-schema/sheet-style-3.xlsx": {
+      "bytes": 11967,
+      "sha256": "2d38cdd1319fd3a71a02b6b7bf585de07123b7a838a06083ec865f7ed0f8ce90"
+    },
+    "engine/fidelity-script.docx": {
+      "bytes": 8746,
+      "sha256": "d0534fe8ef06d13ed8c0e654345552580699659d043ceef2cf4d47dcb111aff8"
+    },
+    "engine/fidelity-scripted/sheet/edited.xlsx": {
+      "bytes": 12101,
+      "sha256": "9b0e667c39a6b49a75a5659f1684f1923aa680c86aa238cfaf2a5d9a3e94585e"
+    },
+    "engine/fidelity-scripted/sheet/roundtrip-1.xlsx": {
+      "bytes": 12100,
+      "sha256": "416e5c7f08672ed22e8a44451efa908f01c367c93467372ba61f4f658852c15b"
+    },
+    "engine/fidelity-scripted/sheet/roundtrip-2.xlsx": {
+      "bytes": 12100,
+      "sha256": "afc5ad61d74cb9fc3ba84d7efa0d1dcd0ed14f4d88aaa122f7c2359735ff0195"
+    },
+    "engine/fidelity-scripted/sheet/roundtrip-3.xlsx": {
+      "bytes": 12100,
+      "sha256": "b443e74b0ef9e433f9824844da8bd26d0809762d2ff0e084aeefdd9a10aa6cee"
+    },
+    "engine/fidelity-scripted/slide/edited.pptx": {
+      "bytes": 55646,
+      "sha256": "bf474ec9382951e03fb227795ea5950dc65ba0489461d6ab3f587d5c0318e6de"
+    },
+    "engine/fidelity-scripted/slide/roundtrip-1.pptx": {
+      "bytes": 55647,
+      "sha256": "a761c2d1d2bbfe20610d638b4eb02eeb8064c5a3521b9cc6dd1a9d9bd1d7c0b6"
+    },
+    "engine/fidelity-scripted/slide/roundtrip-2.pptx": {
+      "bytes": 55647,
+      "sha256": "5528c959b455b62e626f3c50977bb8336c4e2ab596fd587a4d68aa1922682311"
+    },
+    "engine/fidelity-scripted/slide/roundtrip-3.pptx": {
+      "bytes": 55646,
+      "sha256": "8d843bfcff327e2f5094cc471730f3f54d7b4a670e8db3b5dd76d18c5509eb3c"
+    },
+    "engine/fidelity-scripted/word/edited.docx": {
+      "bytes": 9126,
+      "sha256": "4c430b7bec5c073fa7dc0ae456b88ab6cf511c52f18afa7a30ae9882ccf6adf2"
+    },
+    "engine/fidelity-scripted/word/roundtrip-1.docx": {
+      "bytes": 9197,
+      "sha256": "89eefc4273399db9687a217ff425757ce229b5ac106c83f749673bdd00a043a1"
+    },
+    "engine/fidelity-scripted/word/roundtrip-2.docx": {
+      "bytes": 9195,
+      "sha256": "4c67115da7fbdbdaf032759bf533f3a67994a087c4f24dfbff7056fdeb6571c5"
+    },
+    "engine/fidelity-scripted/word/roundtrip-3.docx": {
+      "bytes": 9195,
+      "sha256": "93f2c195ee5ce805f0c6363bf9a91825cdc705ba249f156ebf1179797ea2e0c4"
+    },
+    "engine/fidelity-section-clones/section-clone-1.docx": {
+      "bytes": 8402,
+      "sha256": "3b4b8d755de6e7ba6aad3e3944ae46ac086d9e9117b7691d6681677abd5f2649"
+    },
+    "engine/fidelity-section-clones/section-clone-2.docx": {
+      "bytes": 8470,
+      "sha256": "6696502c1c030e3c769a13925084ce4e84513f06070663a9b35a6f87aa572ca6"
+    },
+    "engine/fidelity-section-clones/section-clone-3.docx": {
+      "bytes": 8470,
+      "sha256": "40d7000f5c0d5ca01fec8ba97518fb6b78a23a9eaa4c9e3b0fe2edb7191af763"
+    },
+    "engine/fidelity-sheet-fill/explicit-1.xlsx": {
+      "bytes": 6373,
+      "sha256": "1d2f9315ee29c5ab5bb9395d740268398106562ab0e0072dcad8720cc3e063df"
+    },
+    "engine/fidelity-sheet-fill/explicit-2.xlsx": {
+      "bytes": 6380,
+      "sha256": "e04486d1085ccf1b302c25b9a1c6408d8daed9221ad28079933cd55123577d30"
+    },
+    "engine/fidelity-sheet-fill/explicit-3.xlsx": {
+      "bytes": 6381,
+      "sha256": "419c7328c42b98073e255cf2c91118b232f9408f2ba6296f49c76aee471ca2b4"
+    },
+    "engine/fidelity-sheet-fill/explicit-expected.xlsx": {
+      "bytes": 4452,
+      "sha256": "4c732a2dac7c25bf12c8161ba44bd7a76548b01a194db70b0d0b6552e1511888"
+    },
+    "engine/fidelity-sheet-fill/unrelated-1.xlsx": {
+      "bytes": 6378,
+      "sha256": "bdbcbd63d26e984f610bd13ca0123602a6bdf18f2da0558c8d1958945e4ffdc9"
+    },
+    "engine/fidelity-sheet-fill/unrelated-2.xlsx": {
+      "bytes": 6386,
+      "sha256": "011015dcc2b442d4f6f3dce47b78b629b4aa5ec2bf630193103251985a610090"
+    },
+    "engine/fidelity-sheet-fill/unrelated-3.xlsx": {
+      "bytes": 6386,
+      "sha256": "4c941d96212a12b48e25926d09e93bd1be20aa6d9917e9d1d5a9b7c51955493a"
+    },
+    "engine/fidelity-sheet-fill/unrelated-expected.xlsx": {
+      "bytes": 4444,
+      "sha256": "974cd8583a07f3d4e60beafe8108e08a17a8a12e23464c282d9925b491c87ed5"
+    },
+    "engine/fidelity-sheet-normal-font/normal-font-1.xlsx": {
+      "bytes": 3748,
+      "sha256": "c3d0e0c9dd3a7206dd530037948180a2a104289ffd5ed2e9955905e6419aba3d"
+    },
+    "engine/fidelity-sheet-normal-font/normal-font-2.xlsx": {
+      "bytes": 3755,
+      "sha256": "cbd8555ea44585b8f8728a8395b0047a2a426e873848b05ca539fd8710cee87c"
+    },
+    "engine/fidelity-sheet-normal-font/normal-font-3.xlsx": {
+      "bytes": 3755,
+      "sha256": "e7e1de1548ef43eaf58cd82957defa9397d2238a3abc7d752dfca9a11792bd6d"
+    },
+    "engine/fidelity-sheet-normal-font/source.xlsx": {
+      "bytes": 2258,
+      "sha256": "7021b9a131d929d4ae6d4074a69056c997efa5b96f7693d4ba15d6c9a41b737f"
+    },
+    "engine/fidelity-sheet-normal-font/unchanged-1.xlsx": {
+      "bytes": 3742,
+      "sha256": "9dd5cd461701fd75a54f9f8a9a5dc4a8fe914ecf38a763d07d28ef215d896769"
+    },
+    "engine/fidelity-sheet-normal-font/unchanged-2.xlsx": {
+      "bytes": 3750,
+      "sha256": "7dc3f715de7de7df999e2e9567625ea663b3ef895ea177d7bd304d8d1052498e"
+    },
+    "engine/fidelity-sheet-normal-font/unchanged-3.xlsx": {
+      "bytes": 3750,
+      "sha256": "a5d0a1467e2c7b6e3e7f15df6338b7f4349a6160bc2e33e1318296bb10d6087f"
+    },
+    "engine/fidelity-sheet-qualified-names/expected-recalculated.xlsx": {
+      "bytes": 2860,
+      "sha256": "ee946f7410d3aa2cdd26ec88005ebe9fdbb5d5fc2c497ca1e4f4575411f9da64"
+    },
+    "engine/fidelity-sheet-qualified-names/expected-renamed.xlsx": {
+      "bytes": 2861,
+      "sha256": "e800d3126a5c031181d7fb0fd2b86ac43a4c6b47d34f6acaf4aa3cb90dfa10d0"
+    },
+    "engine/fidelity-sheet-qualified-names/recalculated-1.xlsx": {
+      "bytes": 4464,
+      "sha256": "41fb7ae361c5b92952738c8aed76e68f68bd6894c8e85329763194e125275bed"
+    },
+    "engine/fidelity-sheet-qualified-names/recalculated-2.xlsx": {
+      "bytes": 4472,
+      "sha256": "e442f501e485effd11d64fdbbffeaba88ec719c399d086ab9f18033e3ae6828b"
+    },
+    "engine/fidelity-sheet-qualified-names/recalculated-3.xlsx": {
+      "bytes": 4472,
+      "sha256": "ce03f0cc5f790026b1c719559eb3b6d9e94aa1877c2eabf8c3706da8d74536c6"
+    },
+    "engine/fidelity-sheet-qualified-names/renamed-1.xlsx": {
+      "bytes": 4470,
+      "sha256": "d2ae7d4d63772c7dfc00ea1f60d28f77c322b8c8cfc1a6c754c289fda1d51e04"
+    },
+    "engine/fidelity-sheet-qualified-names/renamed-2.xlsx": {
+      "bytes": 4470,
+      "sha256": "47124681e6f38d1a5e6b2de753f69d088740d6959e52d846416ec032656a7e86"
+    },
+    "engine/fidelity-sheet-qualified-names/renamed-3.xlsx": {
+      "bytes": 4470,
+      "sha256": "59cb7d01500b0f9c01fefe0b79290e5b4bd657832aca25d25d177f9c3eb7b4aa"
+    },
+    "engine/fidelity-sheet-qualified-names/source.xlsx": {
+      "bytes": 2907,
+      "sha256": "aeb3b6c808a4d4ad43b61e45e8e04664e9cc3581c65c6d94eac8590030ff0d8f"
+    },
+    "engine/fidelity-sheet-rename/qualified-expected.xlsx": {
+      "bytes": 10894,
+      "sha256": "b885842cbd380e906aa58c56e01152115ae4d77e62e018764d9bec9a568f6c3d"
+    },
+    "engine/fidelity-sheet-rename/renamed-1.xlsx": {
+      "bytes": 13535,
+      "sha256": "70111f6dc09915e3e036862664fc8d1dfedce42710f5f12195dbb8cb3f0b0201"
+    },
+    "engine/fidelity-sheet-rename/renamed-2.xlsx": {
+      "bytes": 13533,
+      "sha256": "db3cbaf3813eea5c1d0121c7cc88b7e891f2769893953035579646fa2b4c43e6"
+    },
+    "engine/fidelity-sheet-rename/renamed-3.xlsx": {
+      "bytes": 13534,
+      "sha256": "cebb7344710cb923d719a2972bf76c493cc89fe542c2d93b9ab300e5a4b841c2"
+    },
+    "engine/fidelity-sheet-rename/source.xlsx": {
+      "bytes": 10758,
+      "sha256": "561a2ebf80b6f02e8b1fc00648230b341ff68e1a3ee501ea026b9e69c35fc24b"
+    },
+    "engine/fidelity-slide-arrange/direct-1.pptx": {
+      "bytes": 32172,
+      "sha256": "6cb4f7cc2972c8046b7f0e1a5fc00291a42e1dfbb47f3327cc42e115b17a0da4"
+    },
+    "engine/fidelity-slide-arrange/direct-2.pptx": {
+      "bytes": 32172,
+      "sha256": "c6a89dc517765d2159b1e0fef367f2a4c4e02a2d199df1bd65791b946f44ca59"
+    },
+    "engine/fidelity-slide-arrange/direct-3.pptx": {
+      "bytes": 32172,
+      "sha256": "54e885034589f1e9dfc6f74b418102e9311be4d5734721f1fc62fadce952275e"
+    },
+    "engine/fidelity-slide-arrange/isolate-1.pptx": {
+      "bytes": 32172,
+      "sha256": "fd5d95ca21c86a0e630b16f50f29841a901b4e7423a15848a868311a071f43a1"
+    },
+    "engine/fidelity-slide-arrange/isolate-2.pptx": {
+      "bytes": 32172,
+      "sha256": "199b5b560ea6054dd3a6f6d3680db0844de6975d039db13921e1896846187068"
+    },
+    "engine/fidelity-slide-arrange/isolate-3.pptx": {
+      "bytes": 32172,
+      "sha256": "ba091fe066a7d2d159a7811ae382d4f2106d8dcb41bb5f00cf99f4567c3493cb"
+    },
+    "engine/fidelity-slide-arrange/source.pptx": {
+      "bytes": 28416,
+      "sha256": "6d86b24c22bdaac9d2e57167f7f506626029b4060eb793f523bfe86bfe266b50"
+    },
+    "engine/fidelity-slide-sections/direct/backward-1.pptx": {
+      "bytes": 48105,
+      "sha256": "7c0e27fd15f8ab46ea6beb387d5df303d470fca76954da13c96846379f6ad5e5"
+    },
+    "engine/fidelity-slide-sections/direct/backward-2.pptx": {
+      "bytes": 48105,
+      "sha256": "2bde458b4b557a193635a841a471ca92c0d5e8faf22ac95b129eabfa2fb41cb3"
+    },
+    "engine/fidelity-slide-sections/direct/backward-3.pptx": {
+      "bytes": 48105,
+      "sha256": "0569138effe816bb841c36f65fb4a616b0dc6c626ca8be431080697281c7b21e"
+    },
+    "engine/fidelity-slide-sections/direct/emptied-1.pptx": {
+      "bytes": 48173,
+      "sha256": "9be727d48f78180881327059bfe954a585a03bfa40866bcf98abee776edc4b3f"
+    },
+    "engine/fidelity-slide-sections/direct/emptied-2.pptx": {
+      "bytes": 48173,
+      "sha256": "1ff74224f8e3d8135c84ba12f53cf5a2b4842f98f12da0f2ee742fc084c96511"
+    },
+    "engine/fidelity-slide-sections/direct/emptied-3.pptx": {
+      "bytes": 48173,
+      "sha256": "92fa3a65780344a147b775bca2e5fa42d85332448918eb7c8b213cbece3b4afd"
+    },
+    "engine/fidelity-slide-sections/direct/forward-1.pptx": {
+      "bytes": 48110,
+      "sha256": "1fd0d4f004046a39207d15563b00b8314f80459aa6e868f010cc3750e9e3ee0a"
+    },
+    "engine/fidelity-slide-sections/direct/forward-2.pptx": {
+      "bytes": 48110,
+      "sha256": "91a07aa5e457631d384e4bc23185e59520ee8f8faf5ba96d0afe7ed7b6fab52b"
+    },
+    "engine/fidelity-slide-sections/direct/forward-3.pptx": {
+      "bytes": 48110,
+      "sha256": "c134823bdc30c1213b765394f86de8fdc3b0353f582b6cf8f3e787192b4def78"
+    },
+    "engine/fidelity-slide-sections/direct/source.pptx": {
+      "bytes": 42941,
+      "sha256": "fbbaacf2b6bbc657568bb3e507e062a949ce5304d2f77fb51bd3c9f3ec5bb39c"
+    },
+    "engine/fidelity-slide-sections/direct/unchanged-1.pptx": {
+      "bytes": 48103,
+      "sha256": "dc2fbbdcc52d98e01a39586244c973f07f0a33ee1ed03f8638fda0d43d80c275"
+    },
+    "engine/fidelity-slide-sections/direct/unchanged-2.pptx": {
+      "bytes": 48103,
+      "sha256": "6e7590227e6b9688295830192ac976376d3a420d8c338a4342d66461f241a778"
+    },
+    "engine/fidelity-slide-sections/direct/unchanged-3.pptx": {
+      "bytes": 48103,
+      "sha256": "eab871df9d62ba1acae9e37343276d51e67db258a5de7130535e500beb273dbb"
+    },
+    "engine/fidelity-slide-sections/direct/within-1.pptx": {
+      "bytes": 48111,
+      "sha256": "516467e9ffe8db0ef224e03c30acbb26ea89783d48915c5c4d53b77c2ebcda7e"
+    },
+    "engine/fidelity-slide-sections/direct/within-2.pptx": {
+      "bytes": 48112,
+      "sha256": "90b113fb360a13dbe99f89b993ad2139672b426a67a9754f4943c2703cd51000"
+    },
+    "engine/fidelity-slide-sections/direct/within-3.pptx": {
+      "bytes": 48112,
+      "sha256": "d9262a986d283e98449d9a53541dd22db00b15447f82b1161740fba0eb495064"
+    },
+    "engine/fidelity-slide-sections/isolate/backward-1.pptx": {
+      "bytes": 48105,
+      "sha256": "fa85b9b4288876834bfff6cce7c281e992f55c4f7e6ca446f14474f4980f7415"
+    },
+    "engine/fidelity-slide-sections/isolate/backward-2.pptx": {
+      "bytes": 48105,
+      "sha256": "bea47f126f6134d0c3944e79bd6095742a176d85fe773a774fbfb23c971838bf"
+    },
+    "engine/fidelity-slide-sections/isolate/backward-3.pptx": {
+      "bytes": 48105,
+      "sha256": "eb99e4fdfe1af8a3fc0dac175558c1241c200282718fe811c5c74bc1c30abd43"
+    },
+    "engine/fidelity-slide-sections/isolate/emptied-1.pptx": {
+      "bytes": 48173,
+      "sha256": "51fd49ae3c5a6de10c7e41cb4f442dd0ccc90e762bff5f4873115df115c05a78"
+    },
+    "engine/fidelity-slide-sections/isolate/emptied-2.pptx": {
+      "bytes": 48173,
+      "sha256": "ab1cf3a9ba2b406dd3f68c5407dc07b5650a61113d45033fea7369b5e3b54e26"
+    },
+    "engine/fidelity-slide-sections/isolate/emptied-3.pptx": {
+      "bytes": 48173,
+      "sha256": "5f8718167672bfbbd21aa550dc61f3477dabe96ae64ffb89b6d7f9ae41bc2cea"
+    },
+    "engine/fidelity-slide-sections/isolate/forward-1.pptx": {
+      "bytes": 48110,
+      "sha256": "76f67f5b784f8145f40a154cc3def844ec257328427c7a163bb2196141646241"
+    },
+    "engine/fidelity-slide-sections/isolate/forward-2.pptx": {
+      "bytes": 48110,
+      "sha256": "84c1a2a208fa0fc76cbf023053982eee81bf68823ebdac5d989ec6147ae9214c"
+    },
+    "engine/fidelity-slide-sections/isolate/forward-3.pptx": {
+      "bytes": 48110,
+      "sha256": "953b3ffc99219891105922118703ba4dbe206a5a8a99970e76d3f49e9d99d438"
+    },
+    "engine/fidelity-slide-sections/isolate/source.pptx": {
+      "bytes": 42941,
+      "sha256": "fbbaacf2b6bbc657568bb3e507e062a949ce5304d2f77fb51bd3c9f3ec5bb39c"
+    },
+    "engine/fidelity-slide-sections/isolate/unchanged-1.pptx": {
+      "bytes": 48102,
+      "sha256": "53a56b4a5b0deed2d62eb1456a104fd146e19dacbdc3726304a203b341fbe373"
+    },
+    "engine/fidelity-slide-sections/isolate/unchanged-2.pptx": {
+      "bytes": 48103,
+      "sha256": "be2eb06166a078bd026d51a24fabb8dc498e9409da271a77ad09ef860bab5d9a"
+    },
+    "engine/fidelity-slide-sections/isolate/unchanged-3.pptx": {
+      "bytes": 48103,
+      "sha256": "984310572240f4aafd989c16f3560f976de6fd313bffcf081eec9b2434632692"
+    },
+    "engine/fidelity-slide-sections/isolate/within-1.pptx": {
+      "bytes": 48112,
+      "sha256": "896d0684aeb551f8fa8d578a6e85acfe533b0dcbeb926d69a9576ed8929ced7d"
+    },
+    "engine/fidelity-slide-sections/isolate/within-2.pptx": {
+      "bytes": 48111,
+      "sha256": "5a814806dfa0f14e593f4cdca666198affa314e4ce47f29001d58e787c4a87aa"
+    },
+    "engine/fidelity-slide-sections/isolate/within-3.pptx": {
+      "bytes": 48112,
+      "sha256": "dfdc0caec3887e460e216585a8786b628922ff3217fd23efa19fcb06900a6378"
+    },
+    "engine/fidelity-slide-text/rich-edited-1.pptx": {
+      "bytes": 6304,
+      "sha256": "9882763e8c20cbdcdf66e736b0fd4949e1da7558cdcdffe08939163a2f4778c3"
+    },
+    "engine/fidelity-slide-text/rich-edited-2.pptx": {
+      "bytes": 6311,
+      "sha256": "f3d0fd1179ca2a8c2538ccae832d5b50f0f8481a0c1635f80f3914de3f628cf2"
+    },
+    "engine/fidelity-slide-text/rich-edited-3.pptx": {
+      "bytes": 6311,
+      "sha256": "e923c4a3be35306d306178978fa2e7ac219753f6951a74503a66e8cfad1fa012"
+    },
+    "engine/fidelity-slide-text/rich-imported-1.pptx": {
+      "bytes": 6300,
+      "sha256": "2bd1f509b4d788b6be7fa1a6467b67316b68d7088a94a3460c0ed42e67eb119d"
+    },
+    "engine/fidelity-slide-text/rich-imported-2.pptx": {
+      "bytes": 6310,
+      "sha256": "d11e17f2fa596c56791bcc5ddd6a3d152cb7009242bc8a120bae2e8d0fcaa39c"
+    },
+    "engine/fidelity-slide-text/rich-imported-3.pptx": {
+      "bytes": 6310,
+      "sha256": "011fcbffe9e47013d73e4607216952381e2060239635430ad8e263c559962df5"
+    },
+    "engine/fidelity-story-media/relocated-edited-1.docx": {
+      "bytes": 22497,
+      "sha256": "d3153fa28f0d38a962b20f18427fae4206728d126066812817dd9a16bae4166d"
+    },
+    "engine/fidelity-story-media/relocated-edited-2.docx": {
+      "bytes": 22525,
+      "sha256": "faea283429c26bbbed39bb243a9abb631c1b09b46c723abf2fe3b28133afbbff"
+    },
+    "engine/fidelity-story-media/relocated-edited-3.docx": {
+      "bytes": 22525,
+      "sha256": "78392290f599851bac774d069b2c14cba563ed01a9c2cb2042d8e438af448fb9"
+    },
+    "engine/fidelity-story-media/story-edited-1.docx": {
+      "bytes": 22133,
+      "sha256": "76a37a4b694cd0bc2053d9e0c5539543154b0d3fe41e8037b53e9c4d6df16880"
+    },
+    "engine/fidelity-story-media/story-edited-2.docx": {
+      "bytes": 22171,
+      "sha256": "34e450efc52c8cecd0e8a5c4a14a7b0c563c28bb11061915e2796cfcf5ae9b1a"
+    },
+    "engine/fidelity-story-media/story-edited-3.docx": {
+      "bytes": 22171,
+      "sha256": "0c0a47d7ef6384f92de5a43dbf4947d3d32486da0638aef0eafd180385b90321"
+    },
+    "engine/fidelity-story-media/story-imported-1.docx": {
+      "bytes": 21841,
+      "sha256": "d6b30332f80ea55091fbd419136b43c73e674d83f4c5c1a8de194d72395d14d6"
+    },
+    "engine/fidelity-story-media/story-imported-2.docx": {
+      "bytes": 21871,
+      "sha256": "f0f4eda0d3e29ccb102d4d939795a3898883d0b2f15f8c74bd82c9f01640a151"
+    },
+    "engine/fidelity-story-media/story-imported-3.docx": {
+      "bytes": 21871,
+      "sha256": "92d7dd52cc93215243bbb7b6dc743e5ec44fe22a712aa2a519de7ca7c0f0d619"
+    },
+    "engine/fidelity-structure/create/edited.docx": {
+      "bytes": 8325,
+      "sha256": "c7345e5d2eeafb1bd7dbe14cee8e61545228a6d9e4041ae773eda735faa913ae"
+    },
+    "engine/fidelity-structure/create/roundtrip-1.docx": {
+      "bytes": 8404,
+      "sha256": "a1af475669338acb791e08b97174e760063868f8f844c28df723dbbf4d9a2e1f"
+    },
+    "engine/fidelity-structure/create/roundtrip-2.docx": {
+      "bytes": 8405,
+      "sha256": "a9f5f377e2fba5675d7882ddc8dc3c432b7f064907a8b6c900439e05941c4955"
+    },
+    "engine/fidelity-structure/create/roundtrip-3.docx": {
+      "bytes": 8405,
+      "sha256": "b831845f3f907b422c477c5a96bcc08b4ec6eb911bdf0121e7dd59342b11a5d4"
+    },
+    "engine/fidelity-structure/edit/edited.docx": {
+      "bytes": 8362,
+      "sha256": "b0e12659f2930d59087414899521241601511150c63e509bd049f3d6860a468a"
+    },
+    "engine/fidelity-structure/edit/roundtrip-1.docx": {
+      "bytes": 8366,
+      "sha256": "58f88adc82f30276acb73bf0fa00ccbfaa19c603d52b0282cfa28a4aaa217943"
+    },
+    "engine/fidelity-structure/edit/roundtrip-2.docx": {
+      "bytes": 8367,
+      "sha256": "ecb64c6b23c0583146baf4d65ec6ce89eadf30665487026c1dfd59d852070f5f"
+    },
+    "engine/fidelity-structure/edit/roundtrip-3.docx": {
+      "bytes": 8367,
+      "sha256": "b71bd41036fe413308955ca74de2a32b7087a8043b2016c27324c2a0de2e313d"
+    },
+    "engine/fidelity-structure/remove/edited.docx": {
+      "bytes": 6308,
+      "sha256": "cdf7aef4d9f72967d81114568766b7b6ab0a0cec5db4068a2f4b60fcb1bfebf3"
+    },
+    "engine/fidelity-structure/remove/roundtrip-1.docx": {
+      "bytes": 6304,
+      "sha256": "7535e0e87de15705d28276a22d975c077f38e2b806183c285b1eb8729a573a10"
+    },
+    "engine/fidelity-structure/remove/roundtrip-2.docx": {
+      "bytes": 6304,
+      "sha256": "c49899bd3c2b84b2473f2bb4e5a7d2ab7f65ebce388dbd23bc4613f3ba0d82f6"
+    },
+    "engine/fidelity-structure/remove/roundtrip-3.docx": {
+      "bytes": 6304,
+      "sha256": "0a77020d383f9edb1f7ca43650db2be1df720194fce4181c23395f4506107311"
+    },
+    "engine/fidelity-structure/source.docx": {
+      "bytes": 1231,
+      "sha256": "19d3d78dd6823d8b2ad7173f0eb82be7b2ccf4224d50fdb889dee758ab64e88f"
+    },
+    "engine/fidelity-style-toggles/toggle-1.docx": {
+      "bytes": 6967,
+      "sha256": "fe2368e016b52d872113a4f3d0c5e4ff6d5829f0160eba5582d50240db9098f4"
+    },
+    "engine/fidelity-style-toggles/toggle-2.docx": {
+      "bytes": 6966,
+      "sha256": "6df317db576d6a5bcd55e3ed3a7eda0a780ae8f017940fbd48907aed1731b773"
+    },
+    "engine/fidelity-style-toggles/toggle-3.docx": {
+      "bytes": 6967,
+      "sha256": "5fa5eab1833280fbe9a6d027a8c32896d4ffeaa7623cf6f2685e0dd29f50a1e8"
+    },
+    "engine/fidelity-styles/edited-1.docx": {
+      "bytes": 7167,
+      "sha256": "7ca22530d9a39657082c2185835185e5cd6018cae090c049d75d91066f6ddc31"
+    },
+    "engine/fidelity-styles/edited-2.docx": {
+      "bytes": 7168,
+      "sha256": "b51d9cc0d6a11c934655646119a4ccc6d22944f51f5d9b3cea433675e1c08350"
+    },
+    "engine/fidelity-styles/edited-3.docx": {
+      "bytes": 7168,
+      "sha256": "ec20f37d5b6f5a14e47209979367d7d6cb1cc0148b3815777885e547e35f569c"
+    },
+    "engine/fidelity-styles/unchanged-1.docx": {
+      "bytes": 7125,
+      "sha256": "ecd4dd7ce1977cfb644b1b4c8fc5ee550af1e97cf799ab75e87bee236afaec45"
+    },
+    "engine/fidelity-styles/unchanged-2.docx": {
+      "bytes": 7160,
+      "sha256": "f365071ffd8a437d69a4df53e689ffdaddbcd8f898eb839d01445f5fd394a29b"
+    },
+    "engine/fidelity-styles/unchanged-3.docx": {
+      "bytes": 7161,
+      "sha256": "fc3cfdffb4f2bef10dbfc8e36b644bec42386c808d93a2f4d461ee36569ed005"
+    },
+    "engine/fidelity-table-borders/tables-edited-1.docx": {
+      "bytes": 5131,
+      "sha256": "8fcd57733f632a33453ec9d02f12c542727764799cff51d74916e576795fd567"
+    },
+    "engine/fidelity-table-borders/tables-edited-2.docx": {
+      "bytes": 5165,
+      "sha256": "a78ee6f71f29ce5eac9181f19723e0f552a5dc29ce05c0379e580abe23490385"
+    },
+    "engine/fidelity-table-borders/tables-edited-3.docx": {
+      "bytes": 5165,
+      "sha256": "4323f8ef44d038bee0d217f0d32da76b5ae5db980e4bfb84a4b6feccc7e8a2b1"
+    },
+    "engine/fidelity-table-borders/tables-imported-1.docx": {
+      "bytes": 4970,
+      "sha256": "4b263be332f7aadbc8ec0c6416b2ff6e6757535811105a00c6bfdef347a80446"
+    },
+    "engine/fidelity-table-borders/tables-imported-2.docx": {
+      "bytes": 5009,
+      "sha256": "94ae28003e013b874545517403933be13ed86363117bbb232a3604a5f9c9eab0"
+    },
+    "engine/fidelity-table-borders/tables-imported-3.docx": {
+      "bytes": 5009,
+      "sha256": "cf6666f08aa966d4dd37c84100a051d4066e0df9b913a9ea24cf071c5e1fb6be"
+    },
+    "engine/fidelity-table-grid/edited-1.docx": {
+      "bytes": 4450,
+      "sha256": "84daa794665638c493bc183b08edd2f8edb7ef93d50930177d4709baea97cb83"
+    },
+    "engine/fidelity-table-grid/edited-2.docx": {
+      "bytes": 4505,
+      "sha256": "73534c525e777a3cf7bfa3ef8d14275f55858ddc6f39b397c3c1198dee9b1694"
+    },
+    "engine/fidelity-table-grid/edited-3.docx": {
+      "bytes": 4505,
+      "sha256": "9c91349ca7f73dba0444526adab9e825ba921c51c20dd9cfd53a937142c2993f"
+    },
+    "engine/fidelity-table-grid/omitted-1.docx": {
+      "bytes": 4230,
+      "sha256": "d75a1560449b75e264eac2e911fd87c68bc92da43836be26cdf8c955d1df4dbd"
+    },
+    "engine/fidelity-table-grid/omitted-2.docx": {
+      "bytes": 4264,
+      "sha256": "b6144e46d7f3ec0c382a6c67ff1baf471aa6563d9192b8f2118b712fc07d5d53"
+    },
+    "engine/fidelity-table-grid/omitted-3.docx": {
+      "bytes": 4264,
+      "sha256": "0560f85d79d97b48a70a79cf0e7b48a97b16aed5ef1a33f19d41fccbb1359d55"
+    },
+    "engine/fidelity-table-grid/omitted-edited-1.docx": {
+      "bytes": 4376,
+      "sha256": "b6cdf8d86236de8f71059b557236a6ebf8f36c86f11f52687e1997ffa778f050"
+    },
+    "engine/fidelity-table-grid/omitted-edited-2.docx": {
+      "bytes": 4417,
+      "sha256": "53650bc5568b62917d5169905500728c3dbdeefe138b7b3dafae79717cd3ff56"
+    },
+    "engine/fidelity-table-grid/omitted-edited-3.docx": {
+      "bytes": 4417,
+      "sha256": "dedd7077015b1ea34ea90156c084d5519b20cc3ea1e70e195388afe87cb18411"
+    },
+    "engine/fidelity-table-grid/omitted-edited-expected.docx": {
+      "bytes": 1263,
+      "sha256": "f56030b12e3b91fde86de919e9cb9ec38eb2ddadd2c00bc0aea443c1f05b6507"
+    },
+    "engine/fidelity-table-grid/omitted-source.docx": {
+      "bytes": 1116,
+      "sha256": "708b3d662d51f21ea30441df04cba4cdcb2fcad89d2da84d5dedb82a08fb0853"
+    },
+    "engine/fidelity-table-grid/source.docx": {
+      "bytes": 1200,
+      "sha256": "8f44b7cbf776d0378c5964c45708d745dcb01eed3679a025bf7225bba297f107"
+    },
+    "engine/fidelity-table-widths/direct/format-1.docx": {
+      "bytes": 4832,
+      "sha256": "553f6e01f5d3316213c9e7851fdd345213c1105ae2d2f2be11dc1e36691f3d06"
+    },
+    "engine/fidelity-table-widths/direct/format-2.docx": {
+      "bytes": 4877,
+      "sha256": "4a451c807363ca7f043bd08a1bf58ce44225442b925b0a684ceb13e23a4af558"
+    },
+    "engine/fidelity-table-widths/direct/format-3.docx": {
+      "bytes": 4877,
+      "sha256": "5905bcc81040da711ba25fae0922257d93458e8cd3ebed5f1b1049d383cb52ce"
+    },
+    "engine/fidelity-table-widths/direct/replace-1.docx": {
+      "bytes": 4733,
+      "sha256": "a8fcd2463e6c7443cd962326f52b93f193e2039c623812e9e6dd3e4a6ec81bf4"
+    },
+    "engine/fidelity-table-widths/direct/replace-2.docx": {
+      "bytes": 4780,
+      "sha256": "fb0c91e5e168264a18b2915f5a9c74730ebfce5d5ccc4a40f4f9550205849fcc"
+    },
+    "engine/fidelity-table-widths/direct/replace-3.docx": {
+      "bytes": 4779,
+      "sha256": "d07d3909f2dac1b5d072934a44ae742bdbd0086f0818e32c238fedd4b144d9fc"
+    },
+    "engine/fidelity-table-widths/direct/unchanged-1.docx": {
+      "bytes": 4647,
+      "sha256": "fa8b36dd61195dffde5f6a0fc4cdc399913b896deaf70d47e093cc9f861e37bc"
+    },
+    "engine/fidelity-table-widths/direct/unchanged-2.docx": {
+      "bytes": 4695,
+      "sha256": "0944b4b77c857fd23946ed601ebd1bac93d8705cf3be1641e7bd8fcf31e8c3e0"
+    },
+    "engine/fidelity-table-widths/direct/unchanged-3.docx": {
+      "bytes": 4694,
+      "sha256": "dba54e6ce5191dcce4abe63dcc850db11957f62ed541dcdf0def8ad7be76d98d"
+    },
+    "engine/fidelity-table-widths/direct/unmerge-1.docx": {
+      "bytes": 4818,
+      "sha256": "12ce44db13faefe1cfd8920708d37f4ee97b251e353f3093765f8de095668974"
+    },
+    "engine/fidelity-table-widths/direct/unmerge-2.docx": {
+      "bytes": 4852,
+      "sha256": "30e4ee8c03fc76588f1f88cc2e05772ced822625e0c1ed28060a8457c7c0ec50"
+    },
+    "engine/fidelity-table-widths/direct/unmerge-3.docx": {
+      "bytes": 4852,
+      "sha256": "6ee69c295b38e53357b2373e6a38e49d6446fd1f6edfc548d55e300b493e1730"
+    },
+    "engine/fidelity-table-widths/expected-format.docx": {
+      "bytes": 1801,
+      "sha256": "675e0a606bb5b625a61e63c7b89695b8d372a6b6ccae18060400d215a9632d2e"
+    },
+    "engine/fidelity-table-widths/expected-replace.docx": {
+      "bytes": 1708,
+      "sha256": "5ddbd51e2d59cf1a9644ff005a838f94a7f607570f4f40029a1d0e4baad74bfb"
+    },
+    "engine/fidelity-table-widths/expected-unmerge.docx": {
+      "bytes": 1789,
+      "sha256": "9c89a26640c653e71bdeda0d987afb5259d3fec7f63426d48db98401abef5533"
+    },
+    "engine/fidelity-table-widths/isolate/format-1.docx": {
+      "bytes": 4832,
+      "sha256": "9991a2f36a107bbfbf1298d2e1f211eb63bdc10ef8e702876787db2a2c927a64"
+    },
+    "engine/fidelity-table-widths/isolate/format-2.docx": {
+      "bytes": 4877,
+      "sha256": "5cbd694068f096a1a850051f018fac5be281cd1e052ff203c90d26a5e7520111"
+    },
+    "engine/fidelity-table-widths/isolate/format-3.docx": {
+      "bytes": 4877,
+      "sha256": "6780b807ec44ee5743c0cb1b30bd47ae4225b9776e2f77a2ef0b88c920a9fb5c"
+    },
+    "engine/fidelity-table-widths/isolate/replace-1.docx": {
+      "bytes": 4733,
+      "sha256": "56ddafcdd41736ecb84818b5d618bb9ba551ce0ef0f1490681877456fcdb9048"
+    },
+    "engine/fidelity-table-widths/isolate/replace-2.docx": {
+      "bytes": 4780,
+      "sha256": "ff0fc4c7f56da48143ef2eb5a5184a676e4990d233da567ac2dd16446ed56c85"
+    },
+    "engine/fidelity-table-widths/isolate/replace-3.docx": {
+      "bytes": 4780,
+      "sha256": "7b5033f27de341a5446361518998afcb74064a477abc1fd6e7dc6d584a5c5c5e"
+    },
+    "engine/fidelity-table-widths/isolate/unchanged-1.docx": {
+      "bytes": 4647,
+      "sha256": "9715a6b2d8148dd48e95566beb2f30a801cd5df10e3628f7a01a387649ca7265"
+    },
+    "engine/fidelity-table-widths/isolate/unchanged-2.docx": {
+      "bytes": 4695,
+      "sha256": "9ed3cc39bb52c5dd4507dbb853e4221fb3b0a4f03098a1bff5692962c60fdf0b"
+    },
+    "engine/fidelity-table-widths/isolate/unchanged-3.docx": {
+      "bytes": 4696,
+      "sha256": "20e3fc5c67590f07aba1cf799a801261d2879ce82ce31e79cf8aacbff5e45ae1"
+    },
+    "engine/fidelity-table-widths/isolate/unmerge-1.docx": {
+      "bytes": 4818,
+      "sha256": "4279b7d6ad74cc20b00ffcc8b3741fae17f56b6d2b58967b437a98cf04a317f7"
+    },
+    "engine/fidelity-table-widths/isolate/unmerge-2.docx": {
+      "bytes": 4852,
+      "sha256": "367fb9a75d6fd3e1cf8402fe4f4116773654c849203c526ddd152b08732fda7d"
+    },
+    "engine/fidelity-table-widths/isolate/unmerge-3.docx": {
+      "bytes": 4852,
+      "sha256": "ea1106f6ae5b7e7db61f88581b15280b4af643f260111da08e61546201124dbd"
+    },
+    "engine/fidelity-table-widths/source.docx": {
+      "bytes": 1617,
+      "sha256": "51de42cf2c0568dd7ff98717109755ab8a2d3e9bb091986e60e1ef97eb00053a"
+    },
+    "engine/fidelity-word-compatibility/compatibility-edited-1.docx": {
+      "bytes": 7293,
+      "sha256": "5e325e3bdd088a69be9f1ed39e220598dffa590f3e83669a6387639d5acd253b"
+    },
+    "engine/fidelity-word-compatibility/compatibility-edited-2.docx": {
+      "bytes": 7332,
+      "sha256": "0d650e40fed4eaf6b78c79451c94dcc74c8d769c2aebbec6ca3fd94bf3a2d110"
+    },
+    "engine/fidelity-word-compatibility/compatibility-edited-3.docx": {
+      "bytes": 7331,
+      "sha256": "d20873ba2acee4280bf1cd42e47546b34622c5759ebbda1724504be55c9af55c"
+    },
+    "engine/fidelity-word-compatibility/compatibility-imported-1.docx": {
+      "bytes": 7360,
+      "sha256": "5784100210f1112d4d539028c2c6d5af9df1abe395e31780f2358225caf7069d"
+    },
+    "engine/fidelity-word-compatibility/compatibility-imported-2.docx": {
+      "bytes": 7400,
+      "sha256": "ff94405e689a460c2e6c8439a28f9e0b4b5477dce08c73302dde52c2a8ae45a5"
+    },
+    "engine/fidelity-word-compatibility/compatibility-imported-3.docx": {
+      "bytes": 7400,
+      "sha256": "5fc13d841cc5ee6fb5248c292ac9880031b424ddb9eea40fe2acc71372170e70"
+    },
+    "engine/fidelity-word-edits/breaks-1.docx": {
+      "bytes": 6246,
+      "sha256": "61ab1e2cec2392df3e5a59dfa1362429ee91d0f45378ab815e06072c2a2e4ebf"
+    },
+    "engine/fidelity-word-edits/breaks-2.docx": {
+      "bytes": 6309,
+      "sha256": "b2261ba42d296b281adb179a475380075ebac70779085c15194ee971c7b5c4a8"
+    },
+    "engine/fidelity-word-edits/breaks-3.docx": {
+      "bytes": 6310,
+      "sha256": "44fae5a0c9408319376f4eeca0f0f48ca3ce81ca326f1cbdc8eb4f69e4815941"
+    },
+    "engine/fidelity-word-edits/styles-1.docx": {
+      "bytes": 5899,
+      "sha256": "ec2bde30cd923124107babd904e0ea543df991cbc59287945bc12f8db8bd571e"
+    },
+    "engine/fidelity-word-edits/styles-2.docx": {
+      "bytes": 5965,
+      "sha256": "4ba9b93933c2ede2a3b8dd59eb8e66c807aeef9a402d3165b7e4b22ad55ba055"
+    },
+    "engine/fidelity-word-edits/styles-3.docx": {
+      "bytes": 5965,
+      "sha256": "5dd862aa616669b5aedf5456ebbffad6504ead05cd862636a94fa7c41725791f"
+    },
+    "engine/fidelity/edited-1.docx": {
+      "bytes": 8217,
+      "sha256": "7a9449a701bea9da0de0c4d6f4e7df878514018db36d7a2694db9d80dce6e405"
+    },
+    "engine/fidelity/edited-2.docx": {
+      "bytes": 8251,
+      "sha256": "d527c82214f014ae250da46bd66819916105edafba8d086e6f52f2eb6125ce88"
+    },
+    "engine/fidelity/edited-3.docx": {
+      "bytes": 8252,
+      "sha256": "dc6831c9900907157923cac8e960767589e6050652e5582241370831edd29e70"
+    },
+    "engine/fidelity/sheet-edited-1.xlsx": {
+      "bytes": 3211,
+      "sha256": "fe60fe9b7ed351a58406a50957ac81f1f1c45b01de696a64eb35ac7758327549"
+    },
+    "engine/fidelity/sheet-edited-2.xlsx": {
+      "bytes": 3218,
+      "sha256": "71ed4c18548c0fdc692ff0698ee17069d34f53d7677d1c34a220ec4cd136ab2e"
+    },
+    "engine/fidelity/sheet-edited-3.xlsx": {
+      "bytes": 3220,
+      "sha256": "2e6c9ef5ec5d6f97bdca5bc4e58856ea6becf9b05eb4ba2e5aacf084f5e386b8"
+    },
+    "engine/fidelity/sheet-imported-1.xlsx": {
+      "bytes": 3211,
+      "sha256": "1fdc8919fa1634cdcf5714b904c89ff1444849bc9a8e1c1e1bd337113e7c0cde"
+    },
+    "engine/fidelity/sheet-imported-2.xlsx": {
+      "bytes": 3219,
+      "sha256": "73de0823369a9d91fea450e155a5c34909df88e5925f3506ae82d70734de9993"
+    },
+    "engine/fidelity/sheet-imported-3.xlsx": {
+      "bytes": 3219,
+      "sha256": "7132d69ef7ebb3cac2b5f0375b95792699a91bfcb0b8c63e0c1876dea8d0aac6"
+    },
+    "engine/fidelity/slide-edited-1.pptx": {
+      "bytes": 6139,
+      "sha256": "8dd238a73917b1488fafc475125062dfd7e3b8f0e38a64712f622af8c7a1c40c"
+    },
+    "engine/fidelity/slide-edited-2.pptx": {
+      "bytes": 6146,
+      "sha256": "eaedfd1b238791b06ec3f6d11d8b4180d1f50c3d96b5a485ce0ebe893d605de6"
+    },
+    "engine/fidelity/slide-edited-3.pptx": {
+      "bytes": 6149,
+      "sha256": "d4e6b9ba80c35eb3d705270bfa83019b39c9e5ef8ca63a0bd5f1a73e27c7699e"
+    },
+    "engine/fidelity/slide-imported-1.pptx": {
+      "bytes": 6138,
+      "sha256": "531f384eb2f2f25d00647aa22726c6015b39452594b9d1c6fa2e438856abd2b7"
+    },
+    "engine/fidelity/slide-imported-2.pptx": {
+      "bytes": 6145,
+      "sha256": "e1ec26777ffa005d2e7e0a86c7276b6f81041eb3715805c1da3cac19a1bd2f0f"
+    },
+    "engine/fidelity/slide-imported-3.pptx": {
+      "bytes": 6146,
+      "sha256": "6b3e4f8f1cf1dc2f64b2e15dd1b737d1a9c9ca6bc9c372a9140e5d977f635c12"
+    },
+    "engine/fidelity/unchanged-1.docx": {
+      "bytes": 8208,
+      "sha256": "9a71f429eb9bff617ff67907569c1a9f2aa8e3f7598bd2ecf0a17bee6b9a5aa3"
+    },
+    "engine/fidelity/unchanged-2.docx": {
+      "bytes": 8244,
+      "sha256": "9aa95c2803e244d6743c12befbfdb473ed2e586f918d1de678a20598a4f2a848"
+    },
+    "engine/fidelity/unchanged-3.docx": {
+      "bytes": 8244,
+      "sha256": "0b086a357289618bb5c727df50fb47cfd4e8c8a72aa95ae4168ec0f6d6c2bef7"
+    }
+  }
+}
