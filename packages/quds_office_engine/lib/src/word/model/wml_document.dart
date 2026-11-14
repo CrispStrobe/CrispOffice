@@ -141,6 +141,38 @@ final class WmlBookmarkBoundary extends WmlInline {
   final String? sourceXml;
 }
 
+/// The parts of a complex field (`w:fldChar` / `w:instrText`).
+enum WmlFieldBoundaryKind { begin, instruction, separate, end }
+
+/// A complex-field character or instruction fragment, kept in place.
+///
+/// Fields whose extent is not the whole paragraph (a cross-reference inside a
+/// sentence, several fields in one paragraph, nested fields, form fields,
+/// fields spanning paragraphs) are kept as boundaries around their result
+/// runs, which stay ordinary editable text. A paragraph holding exactly one
+/// field that wraps all of its text keeps the paragraph-level representation
+/// ([WmlParagraphProps.fieldInstruction]).
+final class WmlFieldBoundary extends WmlInline {
+  WmlFieldBoundary({
+    required this.kind,
+    this.text = '',
+    this.sourceXml,
+    this.runPropertiesXml,
+  });
+
+  final WmlFieldBoundaryKind kind;
+
+  /// Instruction text of an [WmlFieldBoundaryKind.instruction] fragment.
+  final String text;
+
+  /// The original `w:fldChar` element (a begin keeps its `w:ffData`, i.e.
+  /// form-field state, names and entries).
+  final String? sourceXml;
+
+  /// The enclosing run's `w:rPr`.
+  final String? runPropertiesXml;
+}
+
 /// Inline content the model does not interpret, kept verbatim with the
 /// provenance of the relationships it references — e.g. legacy VML
 /// pictures, shapes and horizontal rules (`w:pict`). Without it such content
