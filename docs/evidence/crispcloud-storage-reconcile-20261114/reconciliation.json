@@ -1,0 +1,19 @@
+{
+  "branch": "integration/crispcloud-storage-reconcile-20261114",
+  "sources": {
+    "main": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+    "office_recovery": "e3e3255425c408098456f1024cd26225b93d1bf0",
+    "notes_sorting": "cc8ff1ed4dfbf170012c43704d5730490275a2c4",
+    "app_recovery_pin": "0f935a6f24ae11aa9851a5cc3498808554194446",
+    "app_sorting_pin": "217db5ea73eb2b7f22aa7cbad0371e307712b296"
+  },
+  "merge_parents": [
+    "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+    "e3e3255425c408098456f1024cd26225b93d1bf0"
+  ],
+  "conflict_resolution": {
+    "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "strategy": "Retain the recovery _SheetGridSnap, which unconditionally retains original cell objects and empty rows; adapt sorting to its ordinary capture call. Preserve main sorting, saved-file fidelity and all view/grid/style history APIs from recovery."
+  },
+  "validation_status": "Implementation checkpoint; focused combined-source execution follows separately. Existing evidence retains its original source bindings."
+}

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "prepared_at": "2026-11-14T19:59:13.588675+00:00",
+  "base_source_commit": "087a17ee534742a3d1d2967320e4a485b52974d0",
+  "executed_tests": false,
+  "negative_baseline": "Not applicable: these typed APIs are newly introduced. Host widget failures are captured independently against the existing public ribbon.",
+  "production_change": "Four typed selection formatting APIs and a private range/mode/no-op helper reusing owner-bound grid history.",
+  "new_test_file": "packages/quds_office_editor/test/sheet_style_history_test.dart",
+  "new_test_count": 20,
+  "planned_positive_tests": 100,
+  "planned_test_files": [
+    "sheet_style_history_test.dart",
+    "sheet_grid_history_test.dart",
+    "sheet_view_history_test.dart",
+    "sheet_fill_intent_history_test.dart",
+    "sheet_font_color_intent_test.dart",
+    "sheet_explicit_style_history_test.dart",
+    "sheet_cell_state_history_test.dart",
+    "pending_edit_save_test.dart"
+  ],
+  "formatting": {
+    "tool": "Dart 3.13.7 format",
+    "files": [
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/test/sheet_style_history_test.dart"
+    ],
+    "exit_code": 0
+  },
+  "git_diff_check_exit_code": 0,
+  "files": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "sha256": "ed3dff97e9a45e3f03e8bfb8d909ac8e7ce1a52ccc652024f772939453c142c1",
+      "bytes": 340039
+    },
+    "packages/quds_office_editor/test/sheet_style_history_test.dart": {
+      "sha256": "4a38ca213e66ff4558da432e91780543b4fa459f699251b98afe11281f72ff53",
+      "bytes": 18162
+    }
+  },
+  "integrated_gate_reason": "Include the delivered worksheet-view regressions so all Phase A/B/C tests bind to the final integrated controller source."
+}

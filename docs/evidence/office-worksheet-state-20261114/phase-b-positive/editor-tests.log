@@ -1,0 +1,88 @@
+00:00 +0: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart
+00:00 +0: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: grid undo and redo never replace a different worksheet
+00:00 +1: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: fill redo retains its original selected range
+00:00 +2: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: font redo retains its original selected range
+00:00 +3: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: a cell edit before grid history remains attached through undo redo
+00:00 +4: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: a cell created by grid formatting retains its later edit history
+00:00 +5: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: row deletion restores cells and metadata on its owning worksheet
+00:00 +6: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: row insertion restores cells and metadata on its owning worksheet
+00:00 +7: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: column deletion restores cells and metadata on its owning worksheet
+00:00 +8: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: column insertion restores cells and metadata on its owning worksheet
+00:00 +9: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: unmerge redo keeps its original merge after selection changes
+00:00 +10: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: grid restoration retains every modeled cell field and its identity
+00:00 +11: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: interleaved cell and grid history recalculates dependent worksheets
+00:00 +12: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: interleaved grid history survives direct saves
+00:00 +13: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: interleaved grid history survives isolate saves
+00:00 +14: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart
+00:01 +14: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: RTL setter is one dirty revision and reversible command
+00:01 +15: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: RTL toggle is one dirty revision and reversible command
+00:01 +16: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: selection freeze is one dirty revision and reversible command
+00:01 +17: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: top row freeze is one dirty revision and reversible command
+00:01 +18: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: first column freeze is one dirty revision and reversible command
+00:01 +19: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: unfreeze is one dirty revision and reversible command
+00:01 +20: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: toggle unfreeze is one dirty revision and reversible command
+00:01 +21: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: toggle freeze is one dirty revision and reversible command
+00:01 +22: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: origin selection unfreeze is one dirty revision and reversible command
+00:01 +23: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: OfficeInteractionMode.viewing blocks every worksheet view mutation
+00:01 +24: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: OfficeInteractionMode.selecting blocks every worksheet view mutation
+00:01 +25: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: view history stays on its owner and reuses captured freeze counts
+00:01 +26: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: unchanged view calls preserve redo, drafts, revision and viewport
+00:01 +27: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: undoing an active freeze clamps the reduced scroll extent
+00:01 +28: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: freeze retains a cancelable cell draft
+00:01 +29: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: RTL retains a cancelable cell draft
+00:01 +30: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: view edits leave an invalid cell draft available for correction
+00:01 +31: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: view history survives direct saves
+00:01 +32: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: view history survives isolate saves
+00:01 +33: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: a view edit invalidates an older asynchronous upload revision
+00:01 +34: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart
+00:02 +34: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart: equal-color command and undo preserve native fill 0
+00:02 +35: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart: equal-color command and undo preserve native fill 1
+00:02 +36: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart: equal-color command and undo preserve native fill 3
+00:02 +37: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart: clearing an imported gradient is undoable even with an empty RGB
+00:02 +38: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart: unrelated font history retains the exact native gradient
+00:02 +39: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart: interleaved grid history retains explicit fill intent until undone
+00:02 +40: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_font_color_intent_test.dart
+00:03 +40: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_font_color_intent_test.dart: equal RGB command writes fixed color and undo restores the imported theme
+00:03 +41: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_font_color_intent_test.dart: unrelated grid history does not materialize native theme color
+00:03 +42: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_explicit_style_history_test.dart
+00:04 +42: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_explicit_style_history_test.dart: column history preserves explicit and absent native styles
+00:04 +43: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_explicit_style_history_test.dart: row history preserves explicit and absent native styles
+00:04 +44: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_explicit_style_history_test.dart: undoing deletion restores explicit style zero on the recovered cell
+00:04 +45: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_cell_state_history_test.dart
+00:05 +45: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_cell_state_history_test.dart: fill undo and redo retain an unlocked cell and its PDF border
+00:05 +46: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_cell_state_history_test.dart: row deletion undo restores cell lock and PDF border through redo
+00:05 +47: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart
+00:06 +47: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet begin, focus, caret and unchanged commit stay clean
+00:06 +48: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet drafts track text changes before any command or cell mutation
+00:06 +49: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet canceled draft restores clean state without an undo step
+00:06 +50: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: canceling a sheet draft keeps an unrelated formatting command dirty
+00:06 +51: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet undo commits the active draft as the step to undo
+00:06 +52: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet saves the edited cell even if selection changed before commit
+00:06 +53: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet synchronous save commits a formula draft once with working history
+00:06 +54: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet synchronous save retains a rejected validation draft
+00:06 +55: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: Word synchronous save uses the shared pending-edit boundary
+00:07 +56: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet asynchronous save commits a formula draft once with working history
+00:07 +57: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet asynchronous save retains a rejected validation draft
+00:07 +58: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: Word asynchronous save uses the shared pending-edit boundary
+00:07 +59: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide shape begin, focus, caret and unchanged commit stay clean
+00:07 +60: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide shape drafts advance revisions only when text changes
+00:07 +61: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide shape cancel restores the original target without history
+00:07 +62: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: canceling a slide shape draft keeps an unrelated command dirty
+00:07 +63: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide shape undo commits the active draft as the step to undo
+00:07 +64: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide shape synchronous save commits a draft once with working history
+00:07 +65: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide shape asynchronous save commits a draft once with working history
+00:07 +66: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide table cell begin, focus, caret and unchanged commit stay clean
+00:07 +67: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide table cell drafts advance revisions only when text changes
+00:07 +68: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide table cell cancel restores the original target without history
+00:07 +69: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: canceling a slide table cell draft keeps an unrelated command dirty
+00:07 +70: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide table cell undo commits the active draft as the step to undo
+00:07 +71: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide table cell synchronous save commits a draft once with working history
+00:07 +72: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: slide table cell asynchronous save commits a draft once with working history
+00:07 +73: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: switching slide table cells commits to the original edited cell
+00:07 +74: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet pending typing invalidates an older save before upload completes
+00:07 +75: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: sheet clipboard editing uses the same draft revision path
+00:07 +76: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: shape pending typing invalidates an older save before upload completes
+00:07 +77: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: shape clipboard editing uses the same draft revision path
+00:07 +78: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: table pending typing invalidates an older save before upload completes
+00:07 +79: /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/pending_edit_save_test.dart: table clipboard editing uses the same draft revision path
+00:07 +80: All tests passed!

@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "completed_at": "2026-11-14T20:05:03.892512+00:00",
+  "passed": true,
+  "source_commit": "0f935a6f24ae11aa9851a5cc3498808554194446",
+  "source_commit_at_end": "0f935a6f24ae11aa9851a5cc3498808554194446",
+  "tests_passed": 100,
+  "tests_failed": 0,
+  "tests_by_file": {
+    "pending_edit_save_test.dart": 33,
+    "sheet_cell_state_history_test.dart": 2,
+    "sheet_explicit_style_history_test.dart": 3,
+    "sheet_fill_intent_history_test.dart": 6,
+    "sheet_font_color_intent_test.dart": 2,
+    "sheet_grid_history_test.dart": 14,
+    "sheet_style_history_test.dart": 20,
+    "sheet_view_history_test.dart": 20
+  },
+  "analysis_items": 2,
+  "analysis_exit_code": 0,
+  "input_files": 409,
+  "changed_inputs_during_execution": [],
+  "tracked_inputs_bound_to_source_git": 406,
+  "untracked_generated_inputs": [
+    ".dart_tool/package_config.json",
+    ".dart_tool/package_graph.json",
+    "pubspec.lock"
+  ],
+  "prepared_source_and_test_bytes_unchanged": true,
+  "negative_baseline": "Not applicable: these typed APIs are newly introduced. Host widget failures are captured independently against the existing public ribbon.",
+  "prior_attempt": "../phase-c-positive/validation.json",
+  "harness_correction": "../phase-c-correction.json",
+  "files_sha256": {
+    "analysis.json": "d06cdd67f5a8267be1842145525ecc902022e528de8d537b5b8fb17168d386f5",
+    "editor-tests.log": "f421c6c2fb495325394b8c19c3bc626bc69f769c5d74d3ec7674fa06aded2c3b",
+    "focused-analysis.log": "129cfb7450ad8ff4fc510aeaeb41e3abce9073262b1cc52663cb07d6e41620b9",
+    "inputs.json.gz": "137c85e52b59c418c209783c24d821acbde78c8e45d2358dd1ff81f35b28dd91",
+    "package_config.json.gz": "c9538345ec6d4408eca1b37665a7c5a5a87289b6bd9a5a1460a5bad9f7ea3931",
+    "package_graph.json.gz": "b98c72a7b7963fe88112ea8867400c4ae338117ed02ca46ce094b52ba4d785b6",
+    "pubspec.lock.gz": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "runtime.json": "d54783e379917d003d2e79861b2e06ec6be17b8dc7fa6e926ca4141f9a9bd89d",
+    "sheet_style_history_test.dart.gz": "048be479bde9b48d5af3645bd7ba6200d3ae9505615a38e55bc5deb03d4e358d",
+    "validation.json": "582cb14da663651906fddd7a6c2faff5ce881396466a2993038894455ae97e42"
+  }
+}

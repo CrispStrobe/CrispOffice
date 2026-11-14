@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "phase": "baseline",
+  "captured_at": "2026-11-14T19:40:16.485626+00:00",
+  "source_commit": "ec88aa0700eff40c22e873fa0c221f98f825f011",
+  "source_tree": "e25c0e78398ec5d35ca85dfbb81205850af20f93",
+  "worktree_status_at_capture": "?? packages/quds_office_editor/test/sheet_grid_history_test.dart",
+  "controller_matches_source_git_blob": true,
+  "test_path": "packages/quds_office_editor/test/sheet_grid_history_test.dart",
+  "test_source_snapshot": "sheet_grid_history_test.dart.gz",
+  "inputs": {
+    "files": 408,
+    "manifest": "inputs.json.gz",
+    "uncompressed_sha256": "e51e80e4229937ff2efe2f244ae23ae7f9bace8a84a303540c9b6f9301f3e05a",
+    "archive_sha256": "20d01ef951c02c46bfaa060460dfbb9ed611123b62f69f79ae0011e1c2165f9d"
+  },
+  "command": [
+    "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/sheet_grid_history_test.dart"
+  ],
+  "working_directory": "packages/quds_office_editor",
+  "completed": true,
+  "started_at": "2026-11-14T19:40:29.801090+00:00",
+  "completed_at": "2026-11-14T19:40:37.024819+00:00",
+  "exit_code": 1,
+  "log": "editor-tests.log",
+  "log_sha256": "545550e29de3a929436453742e6e154bf588ca63d6bee04d168b70248b17f517",
+  "passed_tests": 0,
+  "failed_tests": 14,
+  "changed_inputs_during_run": [],
+  "source_commit_at_end": "ec88aa0700eff40c22e873fa0c221f98f825f011",
+  "expected_failure_phase": true,
+  "compile_failure_detected": false
+}
