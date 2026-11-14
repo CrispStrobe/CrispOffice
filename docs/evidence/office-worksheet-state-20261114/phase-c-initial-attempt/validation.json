@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "phase": "positive",
+  "captured_at": "2026-11-14T20:01:39.292455+00:00",
+  "source_commit": "0afbb178076ea6b081fd82fabbb8cdf974cca802",
+  "source_tree": "d7811c8c966987a73d3c464ff9103d5f6e3c4086",
+  "worktree_status_at_capture": "",
+  "tracked_inputs_bound_to_source_git": 406,
+  "untracked_generated_inputs": [
+    ".dart_tool/package_config.json",
+    ".dart_tool/package_graph.json",
+    "pubspec.lock"
+  ],
+  "source_git_mismatches": [],
+  "prepared_source_and_test_bytes_unchanged": true,
+  "negative_baseline": "Not applicable: these typed APIs are newly introduced. Host widget failures are captured independently against the existing public ribbon.",
+  "test_path": "packages/quds_office_editor/test/sheet_style_history_test.dart",
+  "test_source_snapshot": "sheet_style_history_test.dart.gz",
+  "inputs": {
+    "files": 409,
+    "manifest": "inputs.json.gz",
+    "uncompressed_sha256": "fe34c3737f280e805dcc4608635b454c4d9f015fe66ba6fe6a26473c44440e85",
+    "archive_sha256": "23a49a2eaab7637d22da9b6d74f51debdb3c10419269df708df79394dcda8e28"
+  },
+  "expected_tests": 100,
+  "expected_tests_by_file": {
+    "sheet_style_history_test.dart": 20,
+    "sheet_grid_history_test.dart": 14,
+    "sheet_view_history_test.dart": 20,
+    "sheet_fill_intent_history_test.dart": 6,
+    "sheet_font_color_intent_test.dart": 2,
+    "sheet_explicit_style_history_test.dart": 3,
+    "sheet_cell_state_history_test.dart": 2,
+    "pending_edit_save_test.dart": 33
+  },
+  "command": [
+    "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/sheet_style_history_test.dart",
+    "test/sheet_grid_history_test.dart",
+    "test/sheet_view_history_test.dart",
+    "test/sheet_fill_intent_history_test.dart",
+    "test/sheet_font_color_intent_test.dart",
+    "test/sheet_explicit_style_history_test.dart",
+    "test/sheet_cell_state_history_test.dart",
+    "test/pending_edit_save_test.dart"
+  ],
+  "working_directory": "packages/quds_office_editor",
+  "completed": true,
+  "started_at": "2026-11-14T20:01:48.473763+00:00",
+  "completed_at": "2026-11-14T20:02:04.749886+00:00",
+  "exit_code": 1,
+  "log": "editor-tests.log",
+  "log_sha256": "12f26c4fcdacfa952ade5c183ae6a0c401d0f3f90bed53aa3d6ca1068850a50a",
+  "passed_tests": 96,
+  "failed_tests": 4,
+  "changed_inputs_during_run": [],
+  "source_commit_at_end": "0afbb178076ea6b081fd82fabbb8cdf974cca802",
+  "compile_failure_detected": false
+}

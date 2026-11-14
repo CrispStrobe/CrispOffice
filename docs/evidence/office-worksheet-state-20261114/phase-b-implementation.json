@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "prepared_at": "2026-11-14T19:44:18.583450+00:00",
+  "base_commit": "ec88aa0700eff40c22e873fa0c221f98f825f011",
+  "status": "implemented; awaiting root review and remote checkpoint before positive validation",
+  "baseline": "phase-b-baseline-corrected/validation.json",
+  "baseline_failed_tests": 14,
+  "baseline_compile_failure": false,
+  "baseline_input_files_unchanged": 408,
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "90a843c324a40a799bffae06f3c01304ac460ca435d426ae4aa44016215d32a9",
+    "packages/quds_office_editor/test/sheet_grid_history_test.dart": "daf39b601a20e54aa84a11d2ebc9b4f4bdade1c63d5920ae5e167e3d8e0054f5"
+  },
+  "test_source_identical_to_corrected_baseline": true,
+  "patch_sha256": "7858af9baf094b31faea3ee14af8a0896c980b39464e00f87242b3ee860a1037",
+  "positive_validation_run": false,
+  "design": [
+    "Bind each grid mutation to its owning worksheet and capture the first applied state after recalculation.",
+    "Restore captured after state on redo instead of rerunning callbacks over current sheet or selection.",
+    "Retain original cell objects with separate copied values/ref state so interleaved history remains connected.",
+    "Rebuild row containers with their recorded indices, including empty rows, and reinsert restored original cells.",
+    "Retain existing native column snapshots, row heights, merges and every modeled cell field, including explicit style/fill/font flags, locks and borders."
+  ]
+}

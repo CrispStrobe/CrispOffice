@@ -1,0 +1,205 @@
+00:00 +0: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart
+00:00 +0: grid undo and redo never replace a different worksheet
+00:00 +0 -1: grid undo and redo never replace a different worksheet [E]
+  Expected: {
+              'rows': {0: 0},
+              'cells': {
+                'A1': {
+                  'ref': 'A1',
+                  'type': SmlCellType:SmlCellType.number,
+                  'value': 'Neighbor',
+                  'formula': null,
+                  'styleIndex': 0,
+                  'explicitStyle': false,
+                  'alignment': SmlHAlign:SmlHAlign.general,
+                  'fill': '',
+                  'explicitFill': false,
+                  'font': '',
+                  'explicitFont': false,
+                  'bold': false,
+                  'size': 11.0,
+                  'border': '',
+                  'borderWidth': 0.0,
+                  'locked': true
+                }
+              },
+              'columns': {},
+              'heights': {},
+              'merges': []
+            }
+    Actual: {
+              'rows': {0: 0},
+              'cells': {
+                'A1': {
+                  'ref': 'A1',
+                  'type': SmlCellType:SmlCellType.number,
+                  'value': 'Original',
+                  'formula': null,
+                  'styleIndex': 0,
+                  'explicitStyle': false,
+                  'alignment': SmlHAlign:SmlHAlign.general,
+                  'fill': '',
+                  'explicitFill': false,
+                  'font': '',
+                  'explicitFont': false,
+                  'bold': false,
+                  'size': 11.0,
+                  'border': '',
+                  'borderWidth': 0.0,
+                  'locked': true
+                }
+              },
+              'columns': {},
+              'heights': {},
+              'merges': []
+            }
+     Which: at location ['cells']['A1']['value'] is 'Original' instead of 'Neighbor'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 87:5              main.<fn>
+  
+00:00 +0 -1: fill redo retains its original selected range
+00:00 +0 -2: fill redo retains its original selected range [E]
+  Expected: 'FF0000'
+    Actual: ''
+     Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: FF0000
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 109:9             main.<fn>
+  
+00:00 +0 -2: font redo retains its original selected range
+00:00 +0 -3: font redo retains its original selected range [E]
+  Expected: '0070C0'
+    Actual: ''
+     Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 0070C0
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 109:9             main.<fn>
+  
+00:00 +0 -3: a cell edit before grid history remains attached through undo redo
+00:00 +0 -4: a cell edit before grid history remains attached through undo redo [E]
+  Expected: same instance as <Instance of 'SmlCell'>
+    Actual: <Instance of 'SmlCell'>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 127:7             main.<fn>
+  
+00:00 +0 -4: a cell created by grid formatting retains its later edit history
+00:00 +0 -5: a cell created by grid formatting retains its later edit history [E]
+  Expected: same instance as <Instance of 'SmlCell'>
+    Actual: <Instance of 'SmlCell'>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 149:5             main.<fn>
+  
+00:00 +0 -5: row deletion restores cells and metadata on its owning worksheet
+00:00 +0 -6: row deletion restores cells and metadata on its owning worksheet [E]
+  Expected: <Instance of 'SmlCellRef'>
+    Actual: <Instance of 'SmlCellRef'>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 71:7              _expectCellLocations
+  test/sheet_grid_history_test.dart 189:9             main.<fn>
+  
+00:00 +0 -6: row insertion restores cells and metadata on its owning worksheet
+00:00 +0 -7: row insertion restores cells and metadata on its owning worksheet [E]
+  Expected: <Instance of 'SmlCellRef'>
+    Actual: <Instance of 'SmlCellRef'>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 71:7              _expectCellLocations
+  test/sheet_grid_history_test.dart 189:9             main.<fn>
+  
+00:00 +0 -7: column deletion restores cells and metadata on its owning worksheet
+00:00 +0 -8: column deletion restores cells and metadata on its owning worksheet [E]
+  Expected: <Instance of 'SmlCellRef'>
+    Actual: <Instance of 'SmlCellRef'>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 71:7              _expectCellLocations
+  test/sheet_grid_history_test.dart 189:9             main.<fn>
+  
+00:00 +0 -8: column insertion restores cells and metadata on its owning worksheet
+00:00 +0 -9: column insertion restores cells and metadata on its owning worksheet [E]
+  Expected: <Instance of 'SmlCellRef'>
+    Actual: <Instance of 'SmlCellRef'>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 71:7              _expectCellLocations
+  test/sheet_grid_history_test.dart 189:9             main.<fn>
+  
+00:00 +0 -9: unmerge redo keeps its original merge after selection changes
+00:00 +0 -10: unmerge redo keeps its original merge after selection changes [E]
+  Expected: ['C1:D1']
+    Actual: MappedListIterable<SmlMerge, String>:['A1:B1']
+     Which: at location [0] is 'A1:B1' instead of 'C1:D1'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 224:5             main.<fn>
+  
+00:00 +0 -10: grid restoration retains every modeled cell field and its identity
+00:00 +0 -11: grid restoration retains every modeled cell field and its identity [E]
+  Expected: same instance as <Instance of 'SmlCell'>
+    Actual: <Instance of 'SmlCell'>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 254:9             main.<fn>
+  
+00:00 +0 -11: interleaved cell and grid history recalculates dependent worksheets
+00:00 +0 -12: interleaved cell and grid history recalculates dependent worksheets [E]
+  Expected: <4>
+    Actual: <2>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 282:7             main.<fn>
+  
+00:00 +0 -12: interleaved grid history survives direct saves
+00:00 +0 -13: interleaved grid history survives direct saves [E]
+  Expected: 'Original'
+    Actual: 'Edited'
+     Which: is different.
+            Expected: Original
+              Actual: Edited
+                      ^
+             Differ at offset 0
+  step 2
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 317:11            main.<fn>
+  
+00:00 +0 -13: interleaved grid history survives isolate saves
+00:00 +0 -14: interleaved grid history survives isolate saves [E]
+  Expected: 'Original'
+    Actual: 'Edited'
+     Which: is different.
+            Expected: Original
+              Actual: Edited
+                      ^
+             Differ at offset 0
+  step 2
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_grid_history_test.dart 317:11            main.<fn>
+  
+00:00 +0 -14: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: a cell created by grid formatting retains its later edit history
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: a cell edit before grid history remains attached through undo redo
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: column deletion restores cells and metadata on its owning worksheet
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart: column insertion restores cells and metadata on its owning worksheet
+  ... and 10 more

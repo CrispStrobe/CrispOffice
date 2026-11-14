@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "source_commit": "e02feac5fba98fbd7b9c20ee4a2593ac4d257400",
+  "inputs_manifest": "inputs.json.gz",
+  "command": [
+    "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+    "analyze",
+    "--no-pub",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/sheet_view_history_test.dart"
+  ],
+  "working_directory": ".",
+  "started_at": "2026-11-14T19:35:26.470486+00:00",
+  "completed_at": "2026-11-14T19:35:44.697625+00:00",
+  "exit_code": 0,
+  "log": "focused-analysis.log",
+  "log_sha256": "6d514690faaf3ce01aeba4525495e4232959ab98eadaad18336149f3b9ed3e1a",
+  "changed_inputs_during_analysis": [],
+  "source_commit_at_end": "e02feac5fba98fbd7b9c20ee4a2593ac4d257400",
+  "passed": true
+}
