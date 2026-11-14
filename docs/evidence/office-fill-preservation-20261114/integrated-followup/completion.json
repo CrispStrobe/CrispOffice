@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "completed_at": "2026-11-14T18:57:57.839411+00:00",
+  "passed": true,
+  "source_commit": "c37789b596a6f6516d9e2cee78ce57ab33872b07",
+  "source_commit_at_end": "23a1cc85eca2ac2322589da4b35cc6a5d1175d9d",
+  "input_files": 409,
+  "changed_inputs": [],
+  "engine_tests_passed": 7,
+  "editor_tests_passed": 53,
+  "tests_by_file": {
+    "pending_edit_save_test.dart": 33,
+    "sheet_cell_state_history_test.dart": 2,
+    "sheet_cell_state_preservation_test.dart": 2,
+    "sheet_explicit_style_history_test.dart": 3,
+    "sheet_fill_fidelity_test.dart": 5,
+    "sheet_fill_intent_history_test.dart": 6,
+    "sheet_font_color_intent_test.dart": 2,
+    "slide_notes_history_test.dart": 7
+  },
+  "focused_analysis_items": 10,
+  "focused_analysis_issues": 0,
+  "read_only_review": {
+    "commits": [
+      "f75a33e8beb53a7b116df4852bce6f975242b8b1",
+      "c37789b596a6f6516d9e2cee78ce57ab33872b07"
+    ],
+    "result": "No concrete correctness defect found in the reviewed changes.",
+    "cell_state": "Locked state, border color, and border width now travel with cells through sort snapshots and editor grid history.",
+    "speaker_notes": "Commands retain their owning slide, ignore no-op changes, and notify the existing dirty/revision/history pipeline.",
+    "scope": "The gate verifies modeled PDF border state preservation; it does not add a PDF rendering comparison or a full application/native test run."
+  },
+  "prior_evidence": "../editor-validation/ (preserved unchanged)",
+  "files_sha256": {
+    "editor-tests.log": "a94e9dd319f93c662c4259aecb1bacfe0b4519b58dec5bb2f81eb517a5308b95",
+    "engine-tests.log": "50c844c8cb6efd40884c104677cda8bc09bd88bfb1eca9567585cbb98581dbc3",
+    "focused-analysis.log": "f56e2953d88c7051142e71409d9d1c29168a97ccadc59cfa9be4d745aaa6538e",
+    "inputs.json.gz": "accfb3a85018187faad85088d0122217b089c8b0c49c816be2f0427b6bed3d54",
+    "package_config.json.gz": "c9538345ec6d4408eca1b37665a7c5a5a87289b6bd9a5a1460a5bad9f7ea3931",
+    "package_graph.json.gz": "b98c72a7b7963fe88112ea8867400c4ae338117ed02ca46ce094b52ba4d785b6",
+    "pubspec.lock.gz": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "run_followup_gate.py": "658295213c974d49ce9ea1d7e2050c12d1a21026dcd40bbc469a7e5cc49aa20d",
+    "runtime.json": "66ff5612c30fc4c0c692df9aa349595010d373d0a456a3a7936e411e89ed49e1",
+    "validation.json": "cef2d15d717cc755a44b4a749357e9893629d7b7dc7bac816d1ecdb609c1f592"
+  }
+}

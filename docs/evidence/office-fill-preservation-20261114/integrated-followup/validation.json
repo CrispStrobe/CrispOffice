@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "captured_at": "2026-11-14T18:56:37.548610+00:00",
+  "source_commit": "c37789b596a6f6516d9e2cee78ce57ab33872b07",
+  "source_tree": "419f63024cd7eb821d1c58358d7af445580054d1",
+  "worktree_status_at_capture": "M docs/evidence/office-fill-preservation-20261114/README.md\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/README.md\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/analysis-retry.json\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/analysis-retry.log\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/completion.json\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/editor-tests.log\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/focused-analysis.log\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/inputs.json.gz\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/package_config.json.gz\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/package_graph.json.gz\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/pubspec.lock.gz\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/run_editor_gate.py\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/runtime.json\nA  docs/evidence/office-fill-preservation-20261114/editor-resume/validation.json\n M docs/office-recovery-20261114.md",
+  "reviewed_commits": [
+    "f75a33e8beb53a7b116df4852bce6f975242b8b1",
+    "c37789b596a6f6516d9e2cee78ce57ab33872b07"
+  ],
+  "inputs": {
+    "files": 409,
+    "manifest": "inputs.json.gz",
+    "uncompressed_sha256": "15cc05f18f976976a36aedaeab23b4fff69db275a612bde27b5ddc8f06bc3b45",
+    "archive_sha256": "accfb3a85018187faad85088d0122217b089c8b0c49c816be2f0427b6bed3d54"
+  },
+  "runtime_manifest": "runtime.json",
+  "planned_commands": [
+    {
+      "name": "engine-tests",
+      "working_directory": "packages/quds_office_engine",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_cell_state_preservation_test.dart",
+        "test/sheet_fill_fidelity_test.dart"
+      ]
+    },
+    {
+      "name": "editor-tests",
+      "working_directory": "packages/quds_office_editor",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_cell_state_history_test.dart",
+        "test/slide_notes_history_test.dart",
+        "test/pending_edit_save_test.dart",
+        "test/sheet_fill_intent_history_test.dart",
+        "test/sheet_font_color_intent_test.dart",
+        "test/sheet_explicit_style_history_test.dart"
+      ]
+    },
+    {
+      "name": "focused-analysis",
+      "working_directory": ".",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "analyze",
+        "--no-pub",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_engine/test/sheet_cell_state_preservation_test.dart",
+        "packages/quds_office_engine/test/sheet_fill_fidelity_test.dart",
+        "packages/quds_office_editor/test/sheet_cell_state_history_test.dart",
+        "packages/quds_office_editor/test/slide_notes_history_test.dart",
+        "packages/quds_office_editor/test/pending_edit_save_test.dart",
+        "packages/quds_office_editor/test/sheet_fill_intent_history_test.dart",
+        "packages/quds_office_editor/test/sheet_font_color_intent_test.dart",
+        "packages/quds_office_editor/test/sheet_explicit_style_history_test.dart"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "name": "engine-tests",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_cell_state_preservation_test.dart",
+        "test/sheet_fill_fidelity_test.dart"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "started_at": "2026-11-14T18:56:43.786452+00:00",
+      "completed_at": "2026-11-14T18:57:00.272140+00:00",
+      "exit_code": 0,
+      "log": "engine-tests.log",
+      "log_sha256": "50c844c8cb6efd40884c104677cda8bc09bd88bfb1eca9567585cbb98581dbc3",
+      "passed_tests": 7
+    },
+    {
+      "name": "editor-tests",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_cell_state_history_test.dart",
+        "test/slide_notes_history_test.dart",
+        "test/pending_edit_save_test.dart",
+        "test/sheet_fill_intent_history_test.dart",
+        "test/sheet_font_color_intent_test.dart",
+        "test/sheet_explicit_style_history_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "started_at": "2026-11-14T18:57:00.290340+00:00",
+      "completed_at": "2026-11-14T18:57:13.551739+00:00",
+      "exit_code": 0,
+      "log": "editor-tests.log",
+      "log_sha256": "a94e9dd319f93c662c4259aecb1bacfe0b4519b58dec5bb2f81eb517a5308b95",
+      "passed_tests": 53
+    },
+    {
+      "name": "focused-analysis",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "analyze",
+        "--no-pub",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_engine/test/sheet_cell_state_preservation_test.dart",
+        "packages/quds_office_engine/test/sheet_fill_fidelity_test.dart",
+        "packages/quds_office_editor/test/sheet_cell_state_history_test.dart",
+        "packages/quds_office_editor/test/slide_notes_history_test.dart",
+        "packages/quds_office_editor/test/pending_edit_save_test.dart",
+        "packages/quds_office_editor/test/sheet_fill_intent_history_test.dart",
+        "packages/quds_office_editor/test/sheet_font_color_intent_test.dart",
+        "packages/quds_office_editor/test/sheet_explicit_style_history_test.dart"
+      ],
+      "working_directory": ".",
+      "started_at": "2026-11-14T18:57:13.577626+00:00",
+      "completed_at": "2026-11-14T18:57:42.102180+00:00",
+      "exit_code": 0,
+      "log": "focused-analysis.log",
+      "log_sha256": "f56e2953d88c7051142e71409d9d1c29168a97ccadc59cfa9be4d745aaa6538e"
+    }
+  ],
+  "passed": true,
+  "started_at": "2026-11-14T18:56:43.785846+00:00",
+  "free_disk_bytes_before_tests": 46299332608,
+  "changed_inputs_after_step": [],
+  "completed_at": "2026-11-14T18:57:42.163124+00:00",
+  "source_commit_at_end": "23a1cc85eca2ac2322589da4b35cc6a5d1175d9d",
+  "changed_inputs_during_run": []
+}

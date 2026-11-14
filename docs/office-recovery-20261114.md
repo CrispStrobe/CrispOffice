@@ -191,4 +191,28 @@ Signed XLSX/PPTX editing is refused on recognized package signature markers,
 including relationship and content-type declarations. These are preservation
 guards, not cryptographic authenticity checks. Real signed-file acceptance,
 physical-device journeys and browser execution for each new environment remain
-separate gates. The latest continuation's editor run is also explicitly blocked.
+separate gates.
+
+## Resumed fill-preservation validation
+
+The storage-blocked editor attempt has been replaced by an executed result,
+with the earlier failure retained. On source
+`79d001522c6550a21b01f2c033fb293c372d3208`, all **11 focused editor tests** passed,
+including six new native-fill/history regressions. Focused analysis of nine
+changed production/test items found zero issues. The
+[resumed evidence](evidence/office-fill-preservation-20261114/editor-resume/README.md)
+retains all 405 input hashes, resolved dependency snapshots, runtime, full logs,
+and both the initial sparse-SDK setup failure and the successful analysis retry.
+This adds executed editor acceptance to the earlier 26 passing engine tests;
+it does not relabel the historical full-suite, browser or renderer results as
+measurements of the new fill implementation.
+
+The later canonical source `c37789b596a6f6516d9e2cee78ce57ab33872b07` also
+preserves cell locks and modeled PDF-border state through spreadsheet sorting
+and editor history. Speaker-note edits now use the command pipeline, so notes
+participate in undo/redo, dirty state and save revision tracking. The
+[combined focused gate](evidence/office-fill-preservation-20261114/integrated-followup/README.md)
+passed all **60 tests** (seven engine, 53 editor) and analysis of ten items with
+zero issues; all 409 captured inputs remained unchanged. The earlier fill
+cohorts overlap this run. Modeled border-state preservation is tested; no new
+PDF render comparison is claimed here.

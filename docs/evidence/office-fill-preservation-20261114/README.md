@@ -20,11 +20,26 @@ The baseline fails 9 of 13 checks; the fix passes all 13. The
 the earlier collector output, including source and fixture hashes. Both control
 logs were recovered exactly: their SHA-256 hashes match that recorded receipt.
 
-The six new editor tests are committed, but this session executed zero editor
-tests. The runner failed while creating its compiler cache because the filesystem
-was full, and was stopped. The observed failure is preserved in
-[editor-enospc-observed.log](editor-enospc-observed.log). Targeted analysis and
-further compilation could not start after the filesystem filled.
+The first editor attempt executed zero tests: its compiler cache exhausted the
+available filesystem. That failure remains preserved in
+[editor-enospc-observed.log](editor-enospc-observed.log).
+
+The [resumed editor gate](editor-resume/README.md) closes that execution gap on
+source `79d001522c6550a21b01f2c033fb293c372d3208`: all **11 focused editor tests**
+passed, including the six new fill/history regressions. Focused analysis of nine
+production/test items passed with zero issues. All 405 recorded inputs remained
+unchanged. Exact input hashes, resolved dependency files, runtime, command
+receipts and complete logs are retained in that directory. Its initial sparse
+SDK analysis setup failure is preserved alongside the successful analysis-only
+retry.
+
+After the additional cell-state and speaker-note fixes arrived, the
+[combined follow-up](integrated-followup/README.md) passed **seven engine and
+53 editor tests** on source `c37789b596a6f6516d9e2cee78ce57ab33872b07`, with zero
+analysis issues across ten items and 409 unchanged recorded inputs. That cohort
+retains the native-fill regressions while checking locks and modeled PDF-border
+state through sorting/history, speaker-note history, and pending-save revision
+boundaries. Its counts overlap the earlier tests and are not additive.
 
 ## Recovery and reproducibility
 
