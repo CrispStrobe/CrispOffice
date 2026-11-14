@@ -20,7 +20,7 @@ worksheet. Its fix will be checkpointed separately from view-setting commands.
 | Task | Acceptance | Status |
 | --- | --- | --- |
 | WS-01 | RTL and freeze/unfreeze use owner-bound commands; exact no-ops preserve redo and revisions; viewing/selecting reject mutation; pending cell drafts remain intact. | Passed: the same 20 tests go from 20 baseline failures to 20 passes at `e02feac5`; focused analysis reports no issues |
-| WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Reproducer and bounded fix pending |
+| WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Implemented: owner-bound before/after snapshots retain cell identities and references; all 14 corrected baseline witnesses fail on the original grid implementation; positive validation pending |
 | WS-03 | Actual app toolbar, close/save and delayed-upload tests retain view changes; saved workbooks preserve the other worksheet through history. | Host acceptance pending |
 | WS-04 | Exact native-fill and worksheet-state outputs reach the CI schema job; missing/unexpected artifacts fail inventory checks. | CI integration pending |
 
@@ -44,3 +44,12 @@ pending cell drafts. The [positive receipt](evidence/office-worksheet-state-2026
 binds 20 passing tests and focused analysis to the published implementation
 checkpoint. The controller is the sole changed input; all 400 execution inputs
 remain stable.
+
+The [grid-history negative control](evidence/office-worksheet-state-20261114/phase-b-baseline-corrected/README.md)
+retains 14 expected assertion failures and 408 stable inputs. The grid fix keeps
+the original worksheet and selection, restores captured before/after states,
+and reuses the original cell objects so ordinary cell-edit history remains
+attached. It retains empty row indices, column metadata, row heights, merges and
+every modeled cell field. The existing full-grid snapshot approach now retains
+both states for deterministic redo. The initial test-helper failure is preserved
+separately and is not counted as a product witness.

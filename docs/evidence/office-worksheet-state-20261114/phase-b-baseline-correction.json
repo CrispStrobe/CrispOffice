@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "base_commit": "ec88aa0700eff40c22e873fa0c221f98f825f011",
+  "reason": "SmlCellRef uses identity equality. Four structural tests initially compared newly constructed references instead of their coordinate values, before reaching history assertions.",
+  "change": "Compare (cell.ref.col, cell.ref.row) with the expected row/column tuple.",
+  "initial_attempt": "phase-b-baseline/",
+  "initial_failures": {
+    "product_assertions": 10,
+    "harness_coordinate_comparison": 4
+  },
+  "corrected_attempt": "phase-b-baseline-corrected/",
+  "corrected_product_assertion_failures": 14,
+  "production_inputs_changed_between_baselines": false,
+  "changed_inputs_between_baselines": [
+    "packages/quds_office_editor/test/sheet_grid_history_test.dart"
+  ],
+  "old_test_sha256": "4d67782d2f7c9b75eb9e3b34b738b7a5c02b82e90044653b565b21224a3a4880",
+  "corrected_test_sha256": "daf39b601a20e54aa84a11d2ebc9b4f4bdade1c63d5920ae5e167e3d8e0054f5",
+  "test_diff": "--- initial\n+++ corrected\n@@ -68,7 +68,7 @@\n   for (final row in sheet.rows.entries) {\n     expect(row.value.index, row.key);\n     for (final cell in row.value.cells.entries) {\n-      expect(cell.value.ref, SmlCellRef(cell.key, row.key));\n+      expect((cell.value.ref.col, cell.value.ref.row), (cell.key, row.key));\n     }\n   }\n }\n"
+}
