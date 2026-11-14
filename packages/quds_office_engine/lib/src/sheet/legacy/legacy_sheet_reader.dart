@@ -352,6 +352,12 @@ class _BiffWorkbookParser {
     var paneCol = 0;
     var frozen = false;
     double? sheetDefaultRowHeight;
+    Uint8List? sharedTokens;
+    SmlCellRef? sharedOrigin;
+    int sharedFirstRow = 0;
+    int sharedLastRow = 0;
+    int sharedFirstCol = 0;
+    int sharedLastCol = 0;
     var pendingCol = -1;
     for (final record in records) {
       final reader = _Reader(record.data);
@@ -413,11 +419,25 @@ class _BiffWorkbookParser {
           String? formula;
           // FORMULA: rw, col, ixfe, result(8), grbit(2), chn(4), cce(2), rgce.
           if (reader.remaining >= 8) {
-            reader.u16(); // grbit
+            final grbit = reader.u16();
             reader.u32(); // chn
             final cce = reader.u16();
             if (cce > 0 && reader.remaining >= cce) {
-              formula = _decodeFormula(reader.take(cce));
+              final tokens = reader.take(cce);
+              formula = _decodeFormula(tokens, origin: SmlCellRef(col, row));
+              // A shared-formula master carries the tokens for the group.
+              if ((grbit & 0x0008) != 0) {
+                sharedTokens = tokens;
+                sharedOrigin = SmlCellRef(col, row);
+              }
+            } else if (sharedTokens != null && sharedOrigin != null) {
+              // Child of a shared group: shift the master's relative refs.
+              formula = _shiftFormula(
+                sharedTokens,
+                row - sharedOrigin.row,
+                col - sharedOrigin.col,
+                origin: sharedOrigin,
+              );
             }
           }
           Object? value;
@@ -517,6 +537,42 @@ class _BiffWorkbookParser {
           if (width > 0 && !broad) {
             for (var col = first; col <= last && col < 1024; col++) {
               sheet.importColumnWidth(col, width);
+            }
+          }
+        case 0x04BC: // SHRFMLA
+          if (reader.remaining >= 10) {
+            // ShrFmla: rwFirst(2), rwLast(2), colFirst(1), colLast(1),
+            // reserved(1), cUse(1), cce(2), rgce.
+            sharedFirstRow = reader.u16();
+            sharedLastRow = reader.u16();
+            sharedFirstCol = reader.u8();
+            sharedLastCol = reader.u8();
+            reader.u8(); // reserved
+            reader.u8(); // cUse
+            final cce = reader.u16();
+            if (cce > 0 && reader.remaining >= cce) {
+              sharedTokens = reader.take(cce);
+              sharedOrigin = SmlCellRef(sharedFirstCol, sharedFirstRow);
+              final text = _decodeFormula(
+                sharedTokens,
+                origin: SmlCellRef(sharedFirstCol, sharedFirstRow),
+              );
+              if (text != null && text.isNotEmpty) {
+                for (var r = sharedFirstRow; r <= sharedLastRow; r++) {
+                  for (var c = sharedFirstCol; c <= sharedLastCol; c++) {
+                    final target = sheet.cell(SmlCellRef(c, r));
+                    if (target.formula == null) {
+                      target.formula = _shiftFormula(
+                        sharedTokens,
+                        r - sharedFirstRow,
+                        c - sharedFirstCol,
+                        origin: SmlCellRef(sharedFirstCol, sharedFirstRow),
+                      );
+                      target.type = SmlCellType.formula;
+                    }
+                  }
+                }
+              }
             }
           }
         case 0x00E5: // MERGEDCELLS
@@ -731,12 +787,87 @@ class _BiffWorkbookParser {
     return String.fromCharCodes(bytes);
   }
 
-  String? _decodeFormula(Uint8List tokens) {
+  String? _decodeFormula(Uint8List tokens, {SmlCellRef? origin}) {
     try {
-      return _FormulaDecoder(tokens, _sheetNames).decode();
+      return _FormulaDecoder(
+        tokens,
+        _sheetNames,
+        originRow: origin?.row ?? 0,
+        originCol: origin?.col ?? 0,
+      ).decode();
     } on Object {
       return null;
     }
+  }
+
+  String? _shiftFormula(
+    Uint8List tokens,
+    int dRow,
+    int dCol, {
+    required SmlCellRef origin,
+  }) {
+    final text = _decodeFormula(tokens, origin: origin);
+    if (text == null || (dRow == 0 && dCol == 0)) return text;
+    return _shiftA1(text, dRow, dCol);
+  }
+
+  static String _shiftA1(String formula, int dRow, int dCol) {
+    final out = StringBuffer();
+    var i = 0;
+    var inString = false;
+    while (i < formula.length) {
+      final ch = formula[i];
+      if (ch == '"') {
+        inString = !inString;
+        out.write(ch);
+        i++;
+        continue;
+      }
+      if (!inString) {
+        final match = RegExp(
+          r'^(\$?)([A-Za-z]{1,3})(\$?)([0-9]+)',
+        ).firstMatch(formula.substring(i));
+        if (match != null) {
+          final before = i > 0 ? formula[i - 1] : '';
+          if (!RegExp(r'[A-Za-z0-9_]').hasMatch(before)) {
+            final colAbs = match.group(1)!.isNotEmpty;
+            final rowAbs = match.group(3)!.isNotEmpty;
+            final col = _columnIndex(match.group(2)!) + (colAbs ? 0 : dCol);
+            final row = int.parse(match.group(4)!) - 1 + (rowAbs ? 0 : dRow);
+            if (col >= 0 && row >= 0) {
+              out.write(
+                '${colAbs ? '\$' : ''}${_columnLetters(col)}'
+                '${rowAbs ? '\$' : ''}${row + 1}',
+              );
+              i += match.end;
+              continue;
+            }
+          }
+        }
+      }
+      out.write(ch);
+      i++;
+    }
+    return out.toString();
+  }
+
+  static int _columnIndex(String letters) {
+    var index = 0;
+    for (final rune in letters.toUpperCase().runes) {
+      index = index * 26 + (rune - 64);
+    }
+    return index - 1;
+  }
+
+  static String _columnLetters(int index) {
+    var value = index + 1;
+    var letters = '';
+    while (value > 0) {
+      final remainder = (value - 1) % 26;
+      letters = String.fromCharCode(65 + remainder) + letters;
+      value = (value - 1) ~/ 26;
+    }
+    return letters;
   }
 
   List<String> get _sheetNames => _sheets.map((sheet) => sheet.name).toList();
@@ -942,10 +1073,17 @@ class _SstReader {
 }
 
 class _FormulaDecoder {
-  _FormulaDecoder(this.tokens, this.sheetNames);
+  _FormulaDecoder(
+    this.tokens,
+    this.sheetNames, {
+    this.originRow = 0,
+    this.originCol = 0,
+  });
 
   final Uint8List tokens;
   final List<String> sheetNames;
+  final int originRow;
+  final int originCol;
   final List<String> _stack = <String>[];
   int _pos = 0;
 
@@ -1126,6 +1264,36 @@ class _FormulaDecoder {
       case 0x63:
         _pos += 4;
         _push('#NAME?');
+      case 0x2C:
+      case 0x4C:
+      case 0x6C: {
+        // tRefN: signed row delta (2), signed column delta (1), flags (1).
+        final int rowDelta = _int16(tokens, _pos);
+        final int colDelta = _int8(tokens[_pos + 2]);
+        _pos += 4;
+        final int row = originRow + rowDelta;
+        final int col = originCol + colDelta;
+        if (row >= 0 && col >= 0) {
+          _push('${_letters(col)}${row + 1}');
+        } else {
+          _push('#REF!');
+        }
+      }
+      case 0x2D:
+      case 0x4D:
+      case 0x6D: {
+        // tAreaN: four deltas then flags.
+        final int row1 = originRow + _int16(tokens, _pos);
+        final int row2 = originRow + _int16(tokens, _pos + 2);
+        final int col1 = originCol + _int8(tokens[_pos + 4]);
+        final int col2 = originCol + _int8(tokens[_pos + 5]);
+        _pos += 7;
+        if (row1 >= 0 && row2 >= 0 && col1 >= 0 && col2 >= 0) {
+          _push('${_letters(col1)}${row1 + 1}:${_letters(col2)}${row2 + 1}');
+        } else {
+          _push('#REF!');
+        }
+      }
       case 0x20:
       case 0x40:
       case 0x60:
@@ -1164,6 +1332,16 @@ class _FormulaDecoder {
     }
     return out;
   }
+
+  static int _int16(Uint8List bytes, int offset) {
+    if (offset + 2 > bytes.length) {
+      throw const FormatException('Truncated token');
+    }
+    final value = bytes[offset] | (bytes[offset + 1] << 8);
+    return value >= 0x8000 ? value - 0x10000 : value;
+  }
+
+  static int _int8(int value) => value >= 0x80 ? value - 0x100 : value;
 
   static String _functionName(int id) => _functions[id] ?? 'FUNC$id';
 }

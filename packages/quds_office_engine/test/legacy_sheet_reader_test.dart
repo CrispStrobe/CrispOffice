@@ -8,6 +8,7 @@ import 'package:test/test.dart';
 /// Synthetic BIFF8 workbook (no private data): two sheets, styled header,
 /// numbers, percentages, a date, formulas, a merged title and column widths.
 void main() {
+  sharedFormulaTests();
   final bytes = File(
     'test/fixtures/fidelity/legacy-sheet.xls',
   ).readAsBytesSync();
@@ -89,5 +90,18 @@ void main() {
       () => LegacySheetReader.readBytes(bytes.sublist(0, 600)),
       throwsA(isA<LegacySheetFormatException>()),
     );
+  });
+}
+
+void sharedFormulaTests() {
+  test('shared formula groups expand across their range', () {
+    final book = LegacySheetReader.readBytes(
+      File('test/fixtures/fidelity/legacy-shared-formula.xls').readAsBytesSync(),
+    );
+    final sheet = book.sheets.first;
+    expect(sheet.cellA1('B1').formula, '(A1*2)');
+    expect(sheet.cellA1('B2').formula, '(A2*2)');
+    expect(sheet.cellA1('B50').formula, '(A50*2)');
+    expect(sheet.cellA1('B50').value, 100);
   });
 }
