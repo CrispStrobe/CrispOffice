@@ -133,6 +133,10 @@ fork by a file-hash manifest). Two consequences drove the work here:
 
 ### What we changed
 
+- **Native spreadsheet fills.** Unchanged fill XML is retained when other cell
+  formatting changes. Explicit fill replacement and its undo/redo history are
+  tracked separately, preserving native solid, pattern and gradient definitions
+  that are outside the editor's simple colour controls.
 - **Office preservation and edit admission.** Unsupported spreadsheet formulas
   retain typed caches through dependent calculations; formatting edits preserve
   imported SpreadsheetML style namespaces and properties. Word keeps native
