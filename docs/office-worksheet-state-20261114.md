@@ -19,7 +19,7 @@ worksheet. Its fix will be checkpointed separately from view-setting commands.
 
 | Task | Acceptance | Status |
 | --- | --- | --- |
-| WS-01 | RTL and freeze/unfreeze use owner-bound commands; exact no-ops preserve redo and revisions; viewing/selecting reject mutation; pending cell drafts remain intact. | Implemented; all 20 new baseline witnesses fail on the original source; positive validation pending |
+| WS-01 | RTL and freeze/unfreeze use owner-bound commands; exact no-ops preserve redo and revisions; viewing/selecting reject mutation; pending cell drafts remain intact. | Passed: the same 20 tests go from 20 baseline failures to 20 passes at `e02feac5`; focused analysis reports no issues |
 | WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Reproducer and bounded fix pending |
 | WS-03 | Actual app toolbar, close/save and delayed-upload tests retain view changes; saved workbooks preserve the other worksheet through history. | Host acceptance pending |
 | WS-04 | Exact native-fill and worksheet-state outputs reach the CI schema job; missing/unexpected artifacts fail inventory checks. | CI integration pending |
@@ -40,5 +40,7 @@ The [view-setting baseline](evidence/office-worksheet-state-20261114/phase-a-bas
 retains all 20 assertion failures, the exact new test source and 400 unchanged
 input hashes. The initial implementation captures each worksheet and its scalar
 values in commands. It does not reuse the grid snapshot helper or commit/discard
-pending cell drafts. Positive results will be recorded against the published
-implementation checkpoint.
+pending cell drafts. The [positive receipt](evidence/office-worksheet-state-20261114/phase-a-positive/README.md)
+binds 20 passing tests and focused analysis to the published implementation
+checkpoint. The controller is the sole changed input; all 400 execution inputs
+remain stable.

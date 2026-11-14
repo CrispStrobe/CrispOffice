@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "completed_at": "2026-11-14T19:35:44.724813+00:00",
+  "passed": true,
+  "source_commit": "e02feac5fba98fbd7b9c20ee4a2593ac4d257400",
+  "source_commit_at_end": "e02feac5fba98fbd7b9c20ee4a2593ac4d257400",
+  "tests_passed": 20,
+  "tests_failed": 0,
+  "analysis_items": 2,
+  "analysis_exit_code": 0,
+  "input_files": 400,
+  "changed_inputs_during_execution": [],
+  "baseline_source_commit": "2d2a7be43e19b478c532025fe1f275ed7b00ef75",
+  "baseline_failed_tests": 20,
+  "inputs_changed_since_baseline": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+  ],
+  "test_source_identical_to_baseline": true,
+  "files_sha256": {
+    "analysis.json": "aff1a9f7640c246218f4dc685a79b18ea5155ff4df1824119b08f0baa91eca47",
+    "editor-tests.log": "b9b269f65278077b88f15a9d6570a87b371caba3d1f79af38ed756a96afbdbea",
+    "focused-analysis.log": "6d514690faaf3ce01aeba4525495e4232959ab98eadaad18336149f3b9ed3e1a",
+    "inputs.json.gz": "d02d83e3f3d79fc8ab8a42520485c616a3a1032eede8a3cbc2777d84dbe73929",
+    "package_config.json.gz": "c9538345ec6d4408eca1b37665a7c5a5a87289b6bd9a5a1460a5bad9f7ea3931",
+    "package_graph.json.gz": "b98c72a7b7963fe88112ea8867400c4ae338117ed02ca46ce094b52ba4d785b6",
+    "pubspec.lock.gz": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "runtime.json": "c0c8a47e3550d75f2303685ef956f34eb579187d25a5a3c0fb88499cd3966055",
+    "sheet_view_history_test.dart.gz": "23c5ce0dc3635b77939ea44e05d0a06e0c5bcf114df30c40509f813f0f3d0449",
+    "validation.json": "398e04b132fb3bc4c67fd9b6543a4c6ab5b1da9339b2234718a8824c9056f4b5"
+  }
+}
