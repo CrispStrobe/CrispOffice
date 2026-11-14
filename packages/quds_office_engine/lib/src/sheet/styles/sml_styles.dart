@@ -450,6 +450,24 @@ class SmlStyleSheet {
     return id >= 0 && id < fonts.length ? fonts[id] : null;
   }
 
+  /// Registers a format code and returns its `.xlsx` number-format id.
+  ///
+  /// Custom codes start at 164; built-in codes already in the map keep their
+  /// ids. This is the authoring counterpart to [format].
+  int numFmtId(String code) {
+    final String trimmed = code.trim();
+    if (trimmed.isEmpty || trimmed == 'General') return 0;
+    for (final entry in numFmts.entries) {
+      if (entry.value == trimmed) return entry.key;
+    }
+    var id = 164;
+    while (numFmts.containsKey(id)) {
+      id++;
+    }
+    numFmts[id] = trimmed;
+    return id;
+  }
+
   /// xfFor API.
   int xfFor({
     SmlHAlign align = SmlHAlign.general,
@@ -460,6 +478,7 @@ class SmlStyleSheet {
     bool bold = false,
     double size = 11,
     int? baseStyleIndex,
+    String? numFmtCode,
   }) {
     if (cellXfsAlign.isEmpty) {
       cellXfsNumFmt.add(0);
@@ -481,6 +500,9 @@ class SmlStyleSheet {
             baseStyleIndex < cellXfsAlign.length
         ? baseStyleIndex
         : null;
+    final int? desiredFormat = numFmtCode == null
+        ? (base == null ? null : cellXfsNumFmt[base])
+        : numFmtId(numFmtCode);
     final String fill = normalizeRgb(fillRgb);
     final String font = normalizeRgb(fontRgb);
     final explicitFill =
@@ -496,7 +518,8 @@ class SmlStyleSheet {
         fillAt(base) == fill &&
         fontAt(base) == font &&
         boldAt(base) == bold &&
-        sizeAt(base) == size) {
+        sizeAt(base) == size &&
+        (desiredFormat == null || cellXfsNumFmt[base] == desiredFormat)) {
       return base;
     }
     // The modeled RGB is not a fill's identity: gradients may have no scalar
@@ -525,15 +548,19 @@ class SmlStyleSheet {
     for (int i = 0; i < cellXfsAlign.length; i++) {
       final int xfFill = i < cellXfsFillId.length ? cellXfsFillId[i] : 0;
       final int xfFont = i < cellXfsFontId.length ? cellXfsFontId[i] : 0;
+      final int xfFormat = i < cellXfsNumFmt.length ? cellXfsNumFmt[i] : 0;
       if (base == null &&
           cellXfsAlign[i] == align &&
           xfFill == fillId &&
-          xfFont == fontId) {
+          xfFont == fontId &&
+          (desiredFormat == null || xfFormat == desiredFormat)) {
         return i;
       }
     }
     if (base != null) _xfBases[cellXfsAlign.length] = base;
-    cellXfsNumFmt.add(base == null ? 0 : cellXfsNumFmt[base]);
+    cellXfsNumFmt.add(
+      desiredFormat ?? (base == null ? 0 : cellXfsNumFmt[base]),
+    );
     cellXfsAlign.add(align);
     cellXfsFillId.add(fillId);
     cellXfsFontId.add(fontId);
@@ -1357,14 +1384,26 @@ String formatExcelDate(DateTime dt, String code) {
   ];
   String pad(int value, int width) => value.toString().padLeft(width, '0');
   final String month = months[dt.month - 1];
-  var out = code;
+  // Literal escapes (`\.`) and quoted text must not be treated as date
+  // tokens; Excel prints dd\.mm\.yyyy as 15.03.2023.
+  final List<String> literals = <String>[];
+  var out = code.replaceAllMapped(
+    RegExp(r'\\(.)|"([^"]*)"'),
+    (match) {
+      literals.add(match.group(1) ?? match.group(2) ?? '');
+      return '\u0000${literals.length - 1}\u0000';
+    },
+  );
   out = out.replaceAll('yyyy', '${dt.year}');
   out = out.replaceAll('yy', pad(dt.year % 100, 2));
   out = out.replaceAll('mmm', month);
   out = out.replaceAll('mm', pad(dt.month, 2));
   out = out.replaceAll('dd', pad(dt.day, 2));
   out = out.replaceAll('d', '${dt.day}');
-  return out;
+  return out.replaceAllMapped(
+    RegExp('\u0000(\\d+)\u0000'),
+    (match) => literals[int.parse(match.group(1)!)],
+  );
 }
 
 const Map<int, String> _builtIn = <int, String>{
