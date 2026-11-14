@@ -802,6 +802,22 @@ class WordDeserializer {
         }
       } else if (reader.localName == 'commentReference') {
         continue;
+      } else if (reader.localName == 'sym' &&
+          reader.namespaceUri == OfficeNamespaces.w) {
+        final WmlRun? symbol = _symbolRun(reader, run.properties);
+        if (symbol != null) {
+          if (run.text.isNotEmpty) {
+            inlines.add(
+              WmlRun(
+                text: run.text,
+                properties: run.properties.copy(),
+                commentIds: List<int>.of(_openCommentIds),
+              ),
+            );
+            run.text = '';
+          }
+          inlines.add(symbol);
+        }
       } else if (reader.localName == 'tab') {
         run.text += '\t';
       } else if (reader.localName == 'br' || reader.localName == 'cr') {
@@ -1320,6 +1336,71 @@ class WordDeserializer {
         );
       }
     }
+  }
+
+  /// `w:sym`: one character of a symbol font (Symbol, Wingdings, …) —
+  /// bullets, check marks, arrows. It used to be skipped, losing the glyph.
+  /// It becomes its own run whose text is the stored character code (Word
+  /// keeps these in the private-use area, F000–F0FF) with the symbol font as
+  /// *direct* formatting in the run's source properties, so the style
+  /// cascade keeps it and export writes `w:t` + `w:rFonts`, which Word
+  /// renders identically to the original `w:sym`.
+  WmlRun? _symbolRun(XmlPullReader reader, WmlRunProps base) {
+    final String? font = reader.getAttribute(
+      'font',
+      namespaceUri: OfficeNamespaces.w,
+    );
+    final int? code = int.tryParse(
+      reader.getAttribute('char', namespaceUri: OfficeNamespaces.w) ?? '',
+      radix: 16,
+    );
+    if (code == null || code <= 0 || code > 0x10FFFF) return null;
+    if (code >= 0xD800 && code <= 0xDFFF) return null;
+    final WmlRunProps props = base.copy();
+    if (font != null && font.isNotEmpty) {
+      final XmlElement source = WordPropertyIo.parse(
+        base.sourcePropertiesXml,
+        'rPr',
+      );
+      source.children.removeWhere(
+        (node) =>
+            node is XmlElement &&
+            node.localName == 'rFonts' &&
+            node.namespaceUri == OfficeNamespaces.w,
+      );
+      XmlAttribute attr(String name) => XmlAttribute(
+        localName: name,
+        prefix: 'w',
+        namespaceUri: OfficeNamespaces.w,
+        value: font,
+      );
+      // CT_RPr order: rStyle, then rFonts.
+      final int at =
+          source.children.indexWhere(
+            (node) => node is XmlElement && node.localName == 'rStyle',
+          ) +
+          1;
+      source.children.insert(
+        at,
+        XmlElement(
+          localName: 'rFonts',
+          prefix: 'w',
+          namespaceUri: OfficeNamespaces.w,
+          attributes: [attr('ascii'), attr('hAnsi'), attr('cs')],
+        ),
+      );
+      props
+        ..sourcePropertiesXml = XmlDocument(
+          root: source,
+        ).toXmlString(declaration: false)
+        ..asciiFont = font
+        ..csFont = font;
+    }
+    return WmlRun(
+      text: String.fromCharCode(code),
+      properties: props,
+      commentIds: List<int>.of(_openCommentIds),
+    );
   }
 
   void _readRPr(XmlPullReader reader, WmlRunProps props) {
