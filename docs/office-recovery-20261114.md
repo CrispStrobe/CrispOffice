@@ -224,3 +224,16 @@ order. The [corrected-fixture gate](evidence/office-fill-preservation-20261114/s
 passes five engine and six editor fill tests with 402 unchanged inputs. All 385
 production Dart files match the earlier combined source exactly. The app keeps
 the original failure, minimal diagnostic and corrected-source acceptance separate.
+
+The coordinated [app acceptance checkpoint](https://github.com/CrispStrobe/CrispCloud/tree/a3897dfbe2d3721e0ec0756a1872132daf9f6b90/docs/evidence/office-recovery-resume-20261114/host-resume)
+retains **52 passing host tests** on app `31838929`, followed by a passing rerun
+of the native-fill upload case with the corrected fixture on app `9101520b`.
+Only the fixture and canonical manifest changed between those app measurements;
+production and test code are identical. Independent OpenXML SDK validation of
+the corrected authored workbook and its three actual uploads passes **four
+files with zero errors**. All 4,739 recorded host inputs are recoverable from
+the measured source, retained temporary SQLite configuration and dependency
+snapshots. Complete logs, both raw LCOV collections, exact workbooks, source
+audit and validator receipts are saved there. This is scoped native acceptance;
+full-suite, browser, physical-device and rendered visual results retain their
+separate source and execution boundaries.
