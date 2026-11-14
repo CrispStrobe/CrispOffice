@@ -61,6 +61,7 @@ class SmlStyleSheet {
     List<String>? fontRgbs,
     List<bool>? fontBolds,
     List<double>? fontSizes,
+    List<String>? fontFamilies,
     List<int>? cellXfsFillId,
     List<int>? cellXfsFontId,
     List<String>? themeColors,
@@ -72,6 +73,7 @@ class SmlStyleSheet {
        fontRgbs = fontRgbs ?? <String>[''],
        fontBolds = fontBolds ?? <bool>[false],
        fontSizes = fontSizes ?? <double>[11],
+       fontFamilies = fontFamilies ?? <String>['Calibri'],
        cellXfsFillId = cellXfsFillId ?? <int>[0],
        cellXfsFontId = cellXfsFontId ?? <int>[0],
        themeColors = themeColors ?? List<String>.from(_officeTheme),
@@ -99,6 +101,9 @@ class SmlStyleSheet {
 
   /// Point size per fonts.xml entry.
   final List<double> fontSizes;
+
+  /// Font family per font id; generated faces default to Calibri.
+  final List<String> fontFamilies;
 
   /// cellXfsFillId API.
   final List<int> cellXfsFillId;
@@ -280,6 +285,10 @@ class SmlStyleSheet {
         double.tryParse(size == null ? '' : _attribute(size, 'val') ?? '') ??
             11,
       );
+      final name = font.firstChild('name', namespaceUri: namespace);
+      sheet.fontFamilies.add(
+        name == null ? 'Calibri' : (_attribute(name, 'val') ?? 'Calibri'),
+      );
     }
     for (final format in entries('cellXfs', 'xf')) {
       sheet.cellXfsNumFmt.add(
@@ -407,12 +416,47 @@ class SmlStyleSheet {
   /// xfForAlign API.
   int xfForAlign(SmlHAlign align) => xfFor(align: align);
 
+  String _familyOf(int id) {
+    final XmlElement? font = _nativeFontById(id);
+    if (font != null) {
+      final scheme = font
+          .firstChild('scheme', namespaceUri: font.namespaceUri)
+          ?.getAttribute('val', namespaceUri: '');
+      final resolved = themeFontFamilies[scheme] ??
+          font
+              .firstChild('name', namespaceUri: font.namespaceUri)
+              ?.getAttribute('val', namespaceUri: '');
+      if (resolved != null && resolved.isNotEmpty) return resolved;
+    }
+    if (id >= 0 && id < fontFamilies.length) return fontFamilies[id];
+    return 'Calibri';
+  }
+
+  XmlElement? _nativeFontById(int id) {
+    final visited = <int>{};
+    while (_fontBases.containsKey(id)) {
+      if (!visited.add(id)) return null;
+      id = _fontBases[id]!;
+    }
+    final root = _source?.root;
+    final fonts = _sourceFonts ??=
+        root
+            ?.firstChild('fonts', namespaceUri: root.namespaceUri)
+            ?.childrenNamed('font', namespaceUri: root.namespaceUri)
+            .toList() ??
+        [];
+    return id >= 0 && id < fonts.length ? fonts[id] : null;
+  }
+
   /// Family retained in the native cell font, with major/minor theme faces
   /// resolved. Null means the model has no declared family; it is not a claim
   /// that the host's platform default has the source font's metrics.
   String? familyAt(int styleIndex) {
+    if (styleIndex < 0 || styleIndex >= cellXfsFontId.length) return null;
     final font = _nativeFontAt(styleIndex);
-    if (font == null) return null;
+    if (font == null) {
+      return _familyOf(cellXfsFontId[styleIndex]);
+    }
     final scheme = font
         .firstChild('scheme', namespaceUri: font.namespaceUri)
         ?.getAttribute('val', namespaceUri: '');
@@ -434,20 +478,7 @@ class SmlStyleSheet {
 
   XmlElement? _nativeFontAt(int styleIndex) {
     if (styleIndex < 0 || styleIndex >= cellXfsFontId.length) return null;
-    var id = cellXfsFontId[styleIndex];
-    final visited = <int>{};
-    while (_fontBases.containsKey(id)) {
-      if (!visited.add(id)) return null;
-      id = _fontBases[id]!;
-    }
-    final root = _source?.root;
-    final fonts = _sourceFonts ??=
-        root
-            ?.firstChild('fonts', namespaceUri: root.namespaceUri)
-            ?.childrenNamed('font', namespaceUri: root.namespaceUri)
-            .toList() ??
-        [];
-    return id >= 0 && id < fonts.length ? fonts[id] : null;
+    return _nativeFontById(cellXfsFontId[styleIndex]);
   }
 
   /// Registers a format code and returns its `.xlsx` number-format id.
@@ -477,6 +508,7 @@ class SmlStyleSheet {
     bool fontColorExplicit = false,
     bool bold = false,
     double size = 11,
+    String fontFamily = '',
     int? baseStyleIndex,
     String? numFmtCode,
   }) {
@@ -500,6 +532,9 @@ class SmlStyleSheet {
             baseStyleIndex < cellXfsAlign.length
         ? baseStyleIndex
         : null;
+    final String desiredFamily = fontFamily.isEmpty
+        ? (base == null ? 'Calibri' : _familyOf(cellXfsFontId[base]))
+        : fontFamily;
     final int? desiredFormat = numFmtCode == null
         ? (base == null ? null : cellXfsNumFmt[base])
         : numFmtId(numFmtCode);
@@ -519,6 +554,7 @@ class SmlStyleSheet {
         fontAt(base) == font &&
         boldAt(base) == bold &&
         sizeAt(base) == size &&
+        _familyOf(cellXfsFontId[base]) == desiredFamily &&
         (desiredFormat == null || cellXfsNumFmt[base] == desiredFormat)) {
       return base;
     }
@@ -534,15 +570,19 @@ class SmlStyleSheet {
         (explicitColor ||
             fontRgbs[baseFont] != font ||
             fontBolds[baseFont] != bold ||
-            fontSizes[baseFont] != size)) {
+            fontSizes[baseFont] != size ||
+            _familyOf(baseFont) != desiredFamily)) {
       fontId = fontRgbs.length;
       fontRgbs.add(font);
       fontBolds.add(bold);
       fontSizes.add(size);
+      fontFamilies.add(desiredFamily);
       _fontBases[fontId] = baseFont;
       if (explicitColor) _explicitFontColors.add(fontId);
     } else {
-      fontId = baseFont ?? _fontId(rgb: font, bold: bold, size: size);
+      fontId =
+          baseFont ??
+          _fontId(rgb: font, bold: bold, size: size, family: desiredFamily);
     }
 
     for (int i = 0; i < cellXfsAlign.length; i++) {
@@ -596,7 +636,12 @@ class SmlStyleSheet {
     return normalizeRgb(_attribute(color, 'rgb') ?? '') == rgb;
   }
 
-  int _fontId({required String rgb, required bool bold, required double size}) {
+  int _fontId({
+    required String rgb,
+    required bool bold,
+    required double size,
+    String family = 'Calibri',
+  }) {
     final int n = fontRgbs.length;
     while (fontBolds.length < n) {
       fontBolds.add(false);
@@ -604,14 +649,21 @@ class SmlStyleSheet {
     while (fontSizes.length < n) {
       fontSizes.add(11);
     }
+    while (fontFamilies.length < n) {
+      fontFamilies.add('Calibri');
+    }
     for (int i = 0; i < n; i++) {
-      if (fontRgbs[i] == rgb && fontBolds[i] == bold && fontSizes[i] == size) {
+      if (fontRgbs[i] == rgb &&
+          fontBolds[i] == bold &&
+          fontSizes[i] == size &&
+          fontFamilies[i] == family) {
         return i;
       }
     }
     fontRgbs.add(rgb);
     fontBolds.add(bold);
     fontSizes.add(size);
+    fontFamilies.add(family);
     return fontRgbs.length - 1;
   }
 
@@ -707,6 +759,9 @@ class SmlStyleSheet {
     while (fontSizes.length < fontRgbs.length) {
       fontSizes.add(11);
     }
+    while (fontFamilies.length < fontRgbs.length) {
+      fontFamilies.add('Calibri');
+    }
     final StringBuffer buf = StringBuffer(
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
       '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">',
@@ -746,7 +801,7 @@ class SmlStyleSheet {
       if (font.isNotEmpty) {
         buf.write('<color rgb="FF$font"/>');
       }
-      buf.write('<name val="Calibri"/>');
+      buf.write('<name val="${_escapeFormatCode(fontFamilies[i])}"/>');
       buf.write('</font>');
     }
     buf.write('</fonts><fills count="${fillRgbs.length}">');
@@ -874,6 +929,7 @@ class SmlStyleSheet {
               if (_explicitFontColors.contains(i) ||
                   fontRgbs[i] != fontRgbs[base])
                 'color',
+              if (_familyOf(i) != _familyOf(base)) 'name',
             ];
             for (final key in changed) {
               final previous = template.firstChild(

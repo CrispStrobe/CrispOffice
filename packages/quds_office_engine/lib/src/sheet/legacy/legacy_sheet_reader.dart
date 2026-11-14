@@ -96,12 +96,15 @@ bool _looksLikeHtml(String text) {
 /// Reads the HTML-table flavour of `.xls` (Excel 2003 "Save as Web Page").
 abstract final class LegacyHtmlSheetReader {
   static SmlWorkbook read(String html) {
-    final source = html.replaceAll(RegExp(r'<!--.*?-->', dotAll: true), '');
+    // Sheet names live in an Office XML block that Excel wraps in a
+    // downlevel-revealed conditional comment, so read them before stripping
+    // comments.
     final names = RegExp(
       r'<[A-Za-z0-9]+:Name>(.*?)</[A-Za-z0-9]+:Name>',
       caseSensitive: false,
       dotAll: true,
-    ).allMatches(source).map((match) => _text(match.group(1)!)).toList();
+    ).allMatches(html).map((match) => _text(match.group(1)!)).toList();
+    final source = html.replaceAll(RegExp(r'<!--.*?-->', dotAll: true), '');
     final tables = RegExp(
       r'<table\b.*?</table>',
       caseSensitive: false,
@@ -607,6 +610,7 @@ class _BiffWorkbookParser {
         fontColorExplicit: (font?.color ?? '').isNotEmpty,
         bold: font?.bold ?? false,
         size: font?.size ?? 11,
+        fontFamily: font?.family ?? 'Calibri',
         numFmtCode: code,
       );
     });
@@ -617,6 +621,7 @@ class _BiffWorkbookParser {
     if (font != null) {
       cell.fontBold = font.bold;
       cell.fontSize = font.size;
+      cell.fontFamily = font.family;
       if (font.color.isNotEmpty) {
         cell.fontRgb = font.color;
         cell.hasExplicitFontColorEdit = true;
@@ -768,11 +773,13 @@ class _BiffFont {
     required this.size,
     required this.bold,
     required this.color,
+    required this.family,
   });
 
   final double size;
   final bool bold;
   final String color;
+  final String family;
 
   static _BiffFont parse(Uint8List data) {
     final reader = _Reader(data);
@@ -787,7 +794,11 @@ class _BiffFont {
     reader.u8(); // reserved
     final nameLength = reader.u8();
     final flags = reader.u8();
-    _BiffWorkbookParser._chars(reader, nameLength, (flags & 0x01) != 0);
+    final name = _BiffWorkbookParser._chars(
+      reader,
+      nameLength,
+      (flags & 0x01) != 0,
+    );
     final rgb = colorIndex >= 0 && colorIndex < _palette.length
         ? _palette[colorIndex]
         : null;
@@ -795,6 +806,7 @@ class _BiffFont {
       size: height / 20,
       bold: (weight >= 700) || (attributes & 0x01) != 0,
       color: rgb ?? '',
+      family: name.isEmpty ? 'Calibri' : name,
     );
   }
 }
@@ -1126,8 +1138,9 @@ class _FormulaDecoder {
   }
 
   String _cellRef(int col, int row, int flags) {
-    final colAbs = (flags & 0x8000) == 0;
-    final rowAbs = (flags & 0x4000) == 0;
+    // PtgRef col flags: bit 14 fColRel, bit 15 fRwRel.
+    final colAbs = (flags & 0x4000) == 0;
+    final rowAbs = (flags & 0x8000) == 0;
     return '${colAbs ? '\$' : ''}${_letters(col)}${rowAbs ? '\$' : ''}${row + 1}';
   }
 
