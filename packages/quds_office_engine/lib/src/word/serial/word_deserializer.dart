@@ -502,8 +502,24 @@ class WordDeserializer {
     if (reader.localName != 'drawing') {
       return false;
     }
+    // A text box's own paragraphs go through _addParagraph, which flushes
+    // pending frames/visuals into the blocks being built. Without isolation
+    // the frames already collected for the *host* paragraph were flushed
+    // into the next text box's content: with n boxes anchored in one
+    // paragraph, each box swallowed all earlier ones and export wrote
+    // 2^n - 1 boxes (4,095 for twelve). Inner content gets fresh pending
+    // lists; the host's are restored afterwards.
+    final List<WmlFrame> outerFrames = List<WmlFrame>.of(_pendingFrames);
+    final List<WmlVisual> outerVisuals = List<WmlVisual>.of(_pendingVisuals);
+    final List<WmlEquation> outerEquations = List<WmlEquation>.of(
+      _pendingEquations,
+    );
+    _pendingFrames.clear();
+    _pendingVisuals.clear();
+    _pendingEquations.clear();
     final WmlBlock? block;
     _drawingDepth++;
+
     try {
       block = WordDrawingIo.readBlock(
         reader,
@@ -516,6 +532,25 @@ class WordDeserializer {
       );
     } finally {
       _drawingDepth--;
+      // Anything the inner content left pending belongs to the host too
+      // (e.g. a picture inside a text-box paragraph that was not flushed).
+      final List<WmlFrame> innerFrames = List<WmlFrame>.of(_pendingFrames);
+      final List<WmlVisual> innerVisuals = List<WmlVisual>.of(_pendingVisuals);
+      final List<WmlEquation> innerEquations = List<WmlEquation>.of(
+        _pendingEquations,
+      );
+      _pendingFrames
+        ..clear()
+        ..addAll(outerFrames)
+        ..addAll(innerFrames);
+      _pendingVisuals
+        ..clear()
+        ..addAll(outerVisuals)
+        ..addAll(innerVisuals);
+      _pendingEquations
+        ..clear()
+        ..addAll(outerEquations)
+        ..addAll(innerEquations);
     }
     if (block is WmlVisual) {
       _pendingVisuals.add(block);
