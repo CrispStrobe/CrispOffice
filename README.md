@@ -18,6 +18,8 @@
 
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
+The current fork also preserves spreadsheet comments, supported formula caches and frozen-pane anchors on save. Sheet sorting participates in undo/redo without losing cell locks or PDF borders; speaker-note edits participate in slide history and save revisions. Native fill regression fixtures are schema-valid and checked against independently authored expected files. See [the current capability and acceptance record](docs/office-capabilities-20261114.md) for tested behavior and remaining fidelity limits.
+
 Hosts can register their actual font families and styles for shared Word
 layout, painting and PDF export. Unloaded families retain their names in the
 document but paint with an explicit bundled fallback; they do not claim
