@@ -14,6 +14,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import '../../opc/ole/bounded_cfb_reader.dart';
+import '../formula/formula_eval.dart';
 import '../model/sml_workbook.dart';
 import '../styles/sml_styles.dart';
 
@@ -97,7 +98,7 @@ abstract final class LegacyHtmlSheetReader {
   static SmlWorkbook read(String html) {
     final source = html.replaceAll(RegExp(r'<!--.*?-->', dotAll: true), '');
     final names = RegExp(
-      r'<x:Name>(.*?)</x:Name>',
+      r'<[A-Za-z0-9]+:Name>(.*?)</[A-Za-z0-9]+:Name>',
       caseSensitive: false,
       dotAll: true,
     ).allMatches(source).map((match) => _text(match.group(1)!)).toList();
@@ -444,7 +445,10 @@ class _BiffWorkbookParser {
           );
           if (formula != null && formula.isNotEmpty) {
             cell.formula = formula;
-            cell.type = SmlCellType.formula;
+            cell.type = cell.value is String &&
+                    FormulaEvaluator.hasErrorSpelling(cell.value)
+                ? SmlCellType.error
+                : SmlCellType.formula;
           }
         case 0x0207: // STRING (result of the preceding FORMULA)
           if (pendingRow >= 0) {
@@ -1175,15 +1179,15 @@ const Map<int, String> _builtInFormats = <int, String>{
   11: '0.00E+00',
   12: '# ?/?',
   13: '# ??/??',
-  14: 'DD.MM.YYYY',
-  15: 'D.MM.YYYY',
-  16: 'D.MM',
-  17: 'MMM YY',
+  14: 'mm-dd-yy',
+  15: 'd-mmm-yy',
+  16: 'd-mmm',
+  17: 'mmm-yy',
   18: 'h:mm AM/PM',
   19: 'h:mm:ss AM/PM',
   20: 'h:mm',
   21: 'h:mm:ss',
-  22: 'D.MM.YYYY h:mm',
+  22: 'm/d/yy h:mm',
   37: '#,##0 ;(#,##0)',
   38: '#,##0 ;[Red](#,##0)',
   39: '#,##0.00;(#,##0.00)',
