@@ -11815,6 +11815,9 @@ class _SheetGridSnap {
             hasExplicitFontColorEdit: cell.hasExplicitFontColorEdit,
             fontBold: cell.fontBold,
             fontSize: cell.fontSize,
+            borderRgb: cell.borderRgb,
+            borderWidth: cell.borderWidth,
+            locked: cell.locked,
           ),
       ],
       widths: sheet.captureColumns(),
@@ -11854,7 +11857,10 @@ class _SheetGridSnap {
         ..fontRgb = cell.fontRgb
         ..hasExplicitFontColorEdit = cell.hasExplicitFontColorEdit
         ..fontBold = cell.fontBold
-        ..fontSize = cell.fontSize;
+        ..fontSize = cell.fontSize
+        ..borderRgb = cell.borderRgb
+        ..borderWidth = cell.borderWidth
+        ..locked = cell.locked;
     }
     sheet.restoreColumns(widths);
     sheet.rowHeights
