@@ -23,7 +23,7 @@ worksheet. Its fix will be checkpointed separately from view-setting commands.
 | WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Passed at `30cb194a`: 14 new grid cases plus the view/fill/style/cell-state/pending-save overlap group, 80 passing tests total; scoped analysis reports no issues |
 | WS-03 | Actual app toolbar, close/save and delayed-upload tests retain view changes; saved workbooks preserve the other worksheet through history. | Host acceptance pending |
 | WS-04 | Exact native-fill and worksheet-state outputs reach the CI schema job; missing/unexpected artifacts fail inventory checks. | CI integration pending |
-| WS-05 | Actual ribbon styling uses canonical owner-bound commands; undo preserves native fill/font intent as well as worksheet ownership. | Four typed APIs implemented and 20 new API tests prepared; two actual host baseline cases reproduce wrong-sheet Bold undo and gradient loss; final integrated validation pending |
+| WS-05 | Actual ribbon styling uses canonical owner-bound commands; undo preserves native fill/font intent as well as worksheet ownership. | Canonical final gate passed at `0f935a6f`: 100 tests and clean scoped analysis; all six app routes now consume these commands at `ccba883b`; actual host acceptance pending |
 
 ## Execution boundaries
 
@@ -83,3 +83,11 @@ and the relevant existing overlap cases: 100 tests across eight files. The new
 APIs have no fabricated pre-API unit baseline; the actual host ribbon supplies
 the independent failing behavior witnesses. Exact implementation metadata is
 retained in `evidence/office-worksheet-state-20261114/phase-c-implementation.json`.
+
+The [final canonical receipt](evidence/office-worksheet-state-20261114/phase-c-positive-corrected/README.md)
+records 100/100 passing tests and zero analysis issues at `0f935a6f`. All 409
+inputs stayed unchanged: 406 tracked files matched their Git blobs, and three
+generated dependency inputs have retained payloads. The initial 96-pass/four-
+fixture-failure attempt is retained separately; its correction only normalized
+the test formula type before recording expectations. Production code did not
+change. The app's final guarded sync verifies all 2,177 managed files.
