@@ -236,6 +236,7 @@ void main() {
           ..borderWidth = 1.5
           ..locked = false;
       }
+      controller.recalculateWorkbook();
       final original = owner.cell(_a1);
       final neighbor = controller.workbook.sheets[1];
       final before = _cells(owner);
