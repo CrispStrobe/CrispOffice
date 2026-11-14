@@ -1,0 +1,96 @@
+{
+  "recorded_at_utc": "2026-11-14T19:01:08.227930+00:00",
+  "source_repository": "CrispStrobe/quds_office_suite",
+  "source_commit": "f531c98d4a4e05146a9b89dfd5570cc43ba5537c",
+  "source_branch": "codex/office-recovery-20261114-notes-sorting",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "platform": "Linux x64",
+    "openxml": "3.3.0",
+    "dotnet_sdk": "8.0.428",
+    "dotnet_runtime": "8.0.34"
+  },
+  "engine_fidelity_gate": {
+    "passed": 1265,
+    "python_controls_passed": 440,
+    "exit_code": 0,
+    "command": "bash tool/fidelity/check.sh",
+    "scope": "Declared engine fidelity cohort, not every engine test."
+  },
+  "editor_suite": {
+    "passed": 561,
+    "skipped": 1,
+    "exit_code": 0,
+    "command": "flutter test --no-pub --concurrency=2 --timeout 2m --reporter expanded",
+    "skip": "Existing optional local PDF pixel-comparison fixture; no new test skipped.",
+    "reviewed_goldens": "passed without updating references"
+  },
+  "analysis": {
+    "engine": "No issues found",
+    "editor": "No issues found",
+    "command": "dart analyze --fatal-infos"
+  },
+  "editor_semantic_oracles": "corpus, bookmarks, content controls, bookmark copy: passed",
+  "output_inventories": {
+    "engine": {
+      "required": 358,
+      "verified": 358,
+      "inventory_file": "engine-inventory.json"
+    },
+    "editor": {
+      "required": 29,
+      "verified": 29,
+      "inventory_file": "editor-inventory.json"
+    }
+  },
+  "schema_validation": {
+    "engine": {
+      "files": 358,
+      "errors": 0,
+      "report_file": "engine-schema-report.json"
+    },
+    "editor": {
+      "files": 29,
+      "errors": 0,
+      "report_file": "editor-schema-report.json"
+    }
+  },
+  "schema_self_tests": "passed",
+  "archive": {
+    "file": "saved-files.tar.gz",
+    "sha256": "17a8db1fd76e7cefbf03fd1eae914df449c97101e8c3eb064eb28521fde1f3f9",
+    "office_files": 387,
+    "dependency_files": 2,
+    "entries": 389
+  },
+  "source_input_manifest": {
+    "file": "source-inputs.json",
+    "sha256": "b4260f17cce50b0a4d6731066a52db7dbf1977ae4d656c9b100e47443380c121",
+    "input_count": 1036
+  },
+  "bounds": [
+    "No fresh engine line coverage collected.",
+    "Separate fill evidence records only the scoped native render comparisons.",
+    "No physical device, live provider, authentic signed Office, or browser execution claimed for this continuation."
+  ],
+  "supporting_files": {
+    "archive-index.json": "4e0b0f9c4f6407e25d96b8f8951c3867f89cf4afaf13046f811747c949bea24e",
+    "editor-inventory.json": "934cde275b7142c13b7c63ebcf8bf2c888337c3da34d9c9c2dd253c1f9dc344a",
+    "editor-oracles.log.gz": "7032b127c7a2c1ff76bc363d2093a30cfd042d2175987e5d4c467bb0319c9784",
+    "editor-schema-report.json": "5a039179b51e7647735ebd6164e705ea1fe3b1f84715707cd8fe4d7bfcf74410",
+    "editor-schema.log.gz": "35931db52b9c423b738e7062d9ab76636f25bf42b9e293a56d90135a2c94a8ea",
+    "engine-inventory.json": "35e6dd11ad0b044a33754ed7462daae8cae6889d1ea845c08f094523f41ddc90",
+    "engine-schema-report.json": "9af25c74a68eeb07666ae96313670197f65ea9ab8e02a3d6a8099673622e1126",
+    "openxml-selftest.log.gz": "bb07c9fee93773b8d45216fe4b1f795e2efdec711f715707aedc9aa775abd27a",
+    "saved-files.tar.gz": "17a8db1fd76e7cefbf03fd1eae914df449c97101e8c3eb064eb28521fde1f3f9",
+    "source-inputs.json": "b4260f17cce50b0a4d6731066a52db7dbf1977ae4d656c9b100e47443380c121",
+    "suite-editor-analysis.log.gz": "3fc364a408e597adb4f6cb290afd02622a721f5e67b74c1e8598d969b4fb277e",
+    "suite-editor-full.log.gz": "650630c45a3a0edec9570f2dc534d3316826a53e9456e876edc80da78d77a21c",
+    "suite-engine-analysis.log.gz": "7ebbd8664f346a74eb817ae88e3b30f2d91550e9cc7799bdf2e5d2694c1c1c5d",
+    "suite-fidelity-gate.log.gz": "6796139d556ead20198f59620f5fd06a15df5dd45eed81626941f39885f50b29",
+    "suite-focused-editor.log.gz": "0da0f359b49d871050cfb0be4f307e77a7d130e165e3c9a6fa2d2401afba4155",
+    "suite-focused-engine.log.gz": "dfff378c5795cb24bd6c3441fbe771fa6073c318dd45fa44ecb5e6568e096f1f",
+    "suite-schema.log.gz": "dcfd2ca2cce31cec08c7a4fb9734509b3902d9c5e1d9ccb8d9aa4867444d4c19"
+  }
+}

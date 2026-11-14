@@ -1,0 +1,26 @@
+00:00 +0: loading test/sheet_cell_state_preservation_test.dart
+00:00 +0: sorting up carries locks and PDF borders
+00:00 +0 -1: sorting up carries locks and PDF borders [E]
+  Expected: <true>
+    Actual: <false>
+  
+  package:matcher                                     expect
+  test/sheet_cell_state_preservation_test.dart 33:11  main.<fn>
+  
+00:00 +0 -1: sorting down carries locks and PDF borders
+00:00 +0 -2: sorting down carries locks and PDF borders [E]
+  Expected: ''
+    Actual: 'FF0000'
+     Which: is different. Both strings start the same, but the actual value also has the following trailing characters: FF0000
+  
+  package:matcher                                     expect
+  test/sheet_cell_state_preservation_test.dart 34:11  main.<fn>
+  
+00:00 +0 -2: Some tests failed.
+
+Failing tests:
+  test/sheet_cell_state_preservation_test.dart: sorting down carries locks and PDF borders
+  test/sheet_cell_state_preservation_test.dart: sorting up carries locks and PDF borders
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.

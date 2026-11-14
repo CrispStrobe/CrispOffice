@@ -1,0 +1,52 @@
+{
+  "archive": {
+    "bytes": 343102,
+    "entries": 65,
+    "format": "USTAR entries sorted by path, regular files mode 0644, uid/gid/mtime zero, empty owner names; gzip level 9, mtime zero, no filename header",
+    "index": "index.json",
+    "index_sha256": "63f2b13dc88d5ec6b2d497ea8ed0ce9a67050bdaaf28958e8d63688f7d850fd9",
+    "path": "evidence.tar.gz",
+    "sha256": "9010f3b3ef6976cb730e9d3873431914d22c014685242a6e6dc3eee57be5641a"
+  },
+  "collection_finished_at_utc": "2026-11-14T19:02:11.692273+00:00",
+  "collection_started_at_utc": "2026-11-14T19:01:54.155711+00:00",
+  "dotnet_runtime": "8.0.34",
+  "dotnet_sdk": "8.0.428",
+  "format_version": 1,
+  "implementation_commit": "2182916ec1ecca84832194e6f49f7ae94b703aa7",
+  "limits": [
+    "This archive qualifies the two declared native fill workflows, not every spreadsheet operation.",
+    "The renderer is LibreOfficeDev 26.8.0.0.alpha0; native XML identity checks and schema checks are separate from its rendered appearance.",
+    "No gradient painting capability in the Quds editor is claimed.",
+    "This is not a fresh full engine/editor/application gate, browser/device acceptance, or proof that scalar PDF-border/lock state is serialized to XLSX.",
+    "The saved-byte reports retain their original paths and bytes. Source identity is recorded at collection and is not misrepresented as a retroactive start-of-run manifest."
+  ],
+  "openxml_version": "3.3.0",
+  "renderer": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "results": {
+    "archive_reconstruction_byte_identical": true,
+    "archived_entry_hashes_verified": 64,
+    "committed_fixture_schema_errors": 0,
+    "exported_and_reference_schema_errors": 0,
+    "native_fixture_regeneration_byte_identical": true,
+    "render_controls_passed": 80,
+    "render_failures": 0,
+    "schema_render_hash_matches": 8,
+    "scoped_source_files_match_checkpoint": 1034,
+    "validator_receipt_and_official_package_hashes_verified": true
+  },
+  "scope": {
+    "committed_fixture_schema_inputs": 3,
+    "distinct_office_byte_hashes": 9,
+    "exported_and_reference_schema_inputs": 8,
+    "generated_exports": 6,
+    "independent_expected_references": 2,
+    "independent_first_save_comparisons": 2,
+    "rendered_inputs": 8,
+    "schema_overlap_expected_references": 2,
+    "three_save_series": 2,
+    "unique_office_inputs": 9
+  },
+  "source_commit": "f531c98d4a4e05146a9b89dfd5570cc43ba5537c",
+  "source_tree": "6ded983f77a2f6c3e2b14469c388f0ccedfd97e8"
+}
