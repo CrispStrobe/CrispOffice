@@ -1,5 +1,16 @@
 # CrispCloud source reconciliation — 14 November 2026
 
+## Latest follow-up
+
+The later canonical Word import source was merged at
+`a379ecc455890032906098b6cf58e17504581ed0`, retaining the original history and
+sorting regression. Its [separate qualification](word-followup/README.md)
+records 117 focused Word tests plus the repeated 115-test editor cohort,
+strict analysis and unchanged source inputs. The sections below retain the
+earlier reconciliation scope and its original source-bound results.
+
+## Initial reconciliation
+
 This companion branch combines canonical main at `4bdb70c9d86fd1ee09ed99d3114b178e965cfa01`
 with the worksheet continuation at `e3e3255425c408098456f1024cd26225b93d1bf0`.
 Both parents remain in the merge history. Main includes the notes/sorting branch

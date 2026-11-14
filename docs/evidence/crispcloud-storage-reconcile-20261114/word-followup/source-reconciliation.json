@@ -1,0 +1,32 @@
+{
+  "source_commit": "a379ecc455890032906098b6cf58e17504581ed0",
+  "source_tree": "0b083a5019ca07503765a649e4ff5c9712f705c6",
+  "parents": [
+    "1c7b0c121ed476090def463d9bc59f5c8a3462b7",
+    "c1678ade3b5b9fd13088e94d752fd17fd14eb3e8"
+  ],
+  "reason": "CrispCloud main2c373371 now imports canonical mainc1678ade; reconcile that source while retaining the previously qualified sort/history integration regression.",
+  "merge_conflicts": [],
+  "runtime_changed_files": [
+    "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_content_controls.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+  ],
+  "test_changed_files": [
+    "packages/quds_office_engine/test/bookmark_fidelity_test.dart",
+    "packages/quds_office_engine/test/word_block_bookmark_import_test.dart",
+    "packages/quds_office_engine/test/word_import_tolerance_test.dart"
+  ],
+  "other_changed_files": [
+    "README.md"
+  ],
+  "preserved_regression": "packages/quds_office_editor/test/sheet_sort_history_test.dart",
+  "excluded_open_pr_heads": {
+    "9": "58de54567d45e38c05dd77064b7607c577374b9d",
+    "10": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+    "11": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+  },
+  "previous_qualification_source": "cb42ef232e5794ac4c147ef1992133cf8710ab01",
+  "initial_launch_failure": "A shared Flutter engine.stamp temporary-file collision stopped two wrapper launches before tests. Retained in attempt-1-bootstrap; no source correction was needed. Successful engine retry used the direct pinned Dart SDK executable."
+}
