@@ -1,0 +1,7 @@
+00:00 +0: loading test/sheet_fill_fidelity_test.dart
+00:00 +0: native fills survive an unrelated bold edit and three saves
+00:00 +1: native fills survive an unrelated alignment edit and three saves
+00:00 +2: equal RGB commands replace native fill semantics without style growth
+00:00 +3: explicit fill intent survives isolate save and reopen
+00:00 +4: sorting carries fill intent with the originating cell
+00:00 +5: All tests passed!

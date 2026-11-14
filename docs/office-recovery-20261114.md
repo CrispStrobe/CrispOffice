@@ -216,3 +216,11 @@ passed all **60 tests** (seven engine, 53 editor) and analysis of ten items with
 zero issues; all 409 captured inputs remained unchanged. The earlier fill
 cohorts overlap this run. Modeled border-state preservation is tested; no new
 PDF render comparison is claimed here.
+
+The independent app schema check found an ordering error in the authored fill
+fixture's font children; the three actual host uploads were already valid.
+Canonical source `3543b29a2daa82279777802df8728d72dc96e9c5` corrects only that XML
+order. The [corrected-fixture gate](evidence/office-fill-preservation-20261114/schema-valid-fixture/README.md)
+passes five engine and six editor fill tests with 402 unchanged inputs. All 385
+production Dart files match the earlier combined source exactly. The app keeps
+the original failure, minimal diagnostic and corrected-source acceptance separate.

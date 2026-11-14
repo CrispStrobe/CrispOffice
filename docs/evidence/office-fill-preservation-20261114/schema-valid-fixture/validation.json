@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "captured_at": "2026-11-14T19:08:58.936852+00:00",
+  "source_commit": "3543b29a2daa82279777802df8728d72dc96e9c5",
+  "source_tree": "75043868228928c748b3198f4d0139650067409d",
+  "worktree_status_at_capture": "",
+  "scope": "Two direct consumers of the XML-only native-fill fixture correction; no analysis or other test cohorts.",
+  "inputs": {
+    "files": 402,
+    "manifest": "inputs.json.gz",
+    "uncompressed_sha256": "8806668be01d77cbbedaac8237ab209362b07a6403af76637f640535f45e4411",
+    "archive_sha256": "a64e5fa218610454d10317077c6545070a480517bfea9e6ff193569912e43219"
+  },
+  "fixture": {
+    "path": "packages/quds_office_engine/test/fixtures/fidelity/sheet-fill-native.xml",
+    "sha256": "96bc63cd301baa981947f7fb8fac6f7f48032c17b9d57b40e223966707a3ef6e",
+    "matches_source_git_blob": true
+  },
+  "planned_commands": [
+    {
+      "name": "engine-tests",
+      "working_directory": "packages/quds_office_engine",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_fill_fidelity_test.dart"
+      ],
+      "expected_tests": 5
+    },
+    {
+      "name": "editor-tests",
+      "working_directory": "packages/quds_office_editor",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_fill_intent_history_test.dart"
+      ],
+      "expected_tests": 6
+    }
+  ],
+  "steps": [
+    {
+      "name": "engine-tests",
+      "working_directory": "packages/quds_office_engine",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_fill_fidelity_test.dart"
+      ],
+      "expected_tests": 5,
+      "started_at": "2026-11-14T19:09:04.120459+00:00",
+      "completed_at": "2026-11-14T19:09:08.123817+00:00",
+      "exit_code": 0,
+      "log": "engine-tests.log",
+      "log_sha256": "23f4d0ec1bdea7474fcff19776edb7b99ed9b34417ce7cfcb312281011f19b4e",
+      "passed_tests": 5
+    },
+    {
+      "name": "editor-tests",
+      "working_directory": "packages/quds_office_editor",
+      "command": [
+        "/workspace/scratch/f035141943c7/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=expanded",
+        "test/sheet_fill_intent_history_test.dart"
+      ],
+      "expected_tests": 6,
+      "started_at": "2026-11-14T19:09:08.147350+00:00",
+      "completed_at": "2026-11-14T19:09:15.448693+00:00",
+      "exit_code": 0,
+      "log": "editor-tests.log",
+      "log_sha256": "6ce097b660c9e6b07c68d08767f3e019bb9673d666dee73023327efeca5ad701",
+      "passed_tests": 6
+    }
+  ],
+  "passed": true,
+  "started_at": "2026-11-14T19:09:04.119454+00:00",
+  "changed_inputs_after_step": [],
+  "completed_at": "2026-11-14T19:09:15.629805+00:00",
+  "source_commit_at_end": "3543b29a2daa82279777802df8728d72dc96e9c5",
+  "changed_inputs_during_run": []
+}

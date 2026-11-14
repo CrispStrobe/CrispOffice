@@ -1,0 +1,8 @@
+00:00 +0: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart
+00:00 +0: equal-color command and undo preserve native fill 0
+00:00 +1: equal-color command and undo preserve native fill 1
+00:00 +2: equal-color command and undo preserve native fill 3
+00:00 +3: clearing an imported gradient is undoable even with an empty RGB
+00:00 +4: unrelated font history retains the exact native gradient
+00:00 +5: interleaved grid history retains explicit fill intent until undone
+00:00 +6: All tests passed!

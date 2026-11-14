@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "completed_at": "2026-11-14T19:09:26.873650+00:00",
+  "passed": true,
+  "source_commit": "3543b29a2daa82279777802df8728d72dc96e9c5",
+  "source_commit_at_end": "3543b29a2daa82279777802df8728d72dc96e9c5",
+  "input_files": 402,
+  "changed_inputs_during_run": [],
+  "engine_tests_passed": 5,
+  "editor_tests_passed": 6,
+  "analysis_run": false,
+  "fixture": {
+    "path": "packages/quds_office_engine/test/fixtures/fidelity/sheet-fill-native.xml",
+    "sha256": "96bc63cd301baa981947f7fb8fac6f7f48032c17b9d57b40e223966707a3ef6e",
+    "matches_source_git_blob": true
+  },
+  "prior_validated_manifest_comparison": {
+    "archive_commit": "0c30f36d955e82e1b0d841f127637e87a7477ffb",
+    "archive_manifest_path": "docs/evidence/office-fill-preservation-20261114/integrated-followup/inputs.json.gz",
+    "measured_source_commit": "c37789b596a6f6516d9e2cee78ce57ab33872b07",
+    "common_input_files": 402,
+    "changed_common_inputs": [
+      "packages/quds_office_engine/test/fixtures/fidelity/sheet-fill-native.xml"
+    ],
+    "new_input_paths": [],
+    "excluded_prior_inputs": [
+      "packages/quds_office_editor/test/pending_edit_save_test.dart",
+      "packages/quds_office_editor/test/sheet_cell_state_history_test.dart",
+      "packages/quds_office_editor/test/sheet_explicit_style_history_test.dart",
+      "packages/quds_office_editor/test/sheet_font_color_intent_test.dart",
+      "packages/quds_office_editor/test/slide_notes_history_test.dart",
+      "packages/quds_office_engine/test/fixtures/fidelity/sheet-normal-font-native.xlsx",
+      "packages/quds_office_engine/test/sheet_cell_state_preservation_test.dart"
+    ],
+    "production_dart_files_identical": 385
+  },
+  "files_sha256": {
+    "editor-tests.log": "6ce097b660c9e6b07c68d08767f3e019bb9673d666dee73023327efeca5ad701",
+    "engine-tests.log": "23f4d0ec1bdea7474fcff19776edb7b99ed9b34417ce7cfcb312281011f19b4e",
+    "inputs.json.gz": "a64e5fa218610454d10317077c6545070a480517bfea9e6ff193569912e43219",
+    "package_config.json.gz": "c9538345ec6d4408eca1b37665a7c5a5a87289b6bd9a5a1460a5bad9f7ea3931",
+    "package_graph.json.gz": "b98c72a7b7963fe88112ea8867400c4ae338117ed02ca46ce094b52ba4d785b6",
+    "pubspec.lock.gz": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "run_fixture_gate.py": "b36012dd779d201e1050a886b1d1a0ede991ea9c6ebeedee55ce8b280365f854",
+    "runtime.json": "bfc136158500667c73689c3076859dba1ef837ac62eb7d37ccd62038c3d42454",
+    "validation.json": "3d0f7d39b848002b99de6eb08c3f9ae03e03c4d70088dfc7ed3ae25cfb3698e5"
+  }
+}

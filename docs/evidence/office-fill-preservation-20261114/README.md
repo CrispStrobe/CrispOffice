@@ -41,6 +41,14 @@ retains the native-fill regressions while checking locks and modeled PDF-border
 state through sorting/history, speaker-note history, and pending-save revision
 boundaries. Its counts overlap the earlier tests and are not additive.
 
+Independent app-side OpenXML validation subsequently found a font-child ordering
+error in the authored fixture; all three actual uploaded workbooks were valid.
+Checkpoint `3543b29a2daa82279777802df8728d72dc96e9c5` corrects only that ordering.
+The [schema-valid fixture gate](schema-valid-fixture/README.md) passes its five
+engine and six editor fill tests, with 402 unchanged inputs. All 385 production
+Dart files match the earlier combined run exactly. The app retains the original
+schema failure and the corrected-source acceptance as separate records.
+
 ## Recovery and reproducibility
 
 The new implementation and tests had already been saved remotely before the
