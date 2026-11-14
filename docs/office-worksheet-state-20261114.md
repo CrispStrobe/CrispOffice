@@ -15,22 +15,22 @@ An unsaved close or an older asynchronous upload can therefore miss these edits.
 A separate grid-history defect restores a snapshot through the currently active
 worksheet and re-executes callbacks that read the current selection. Switching
 tabs between a formatting/structural edit and undo/redo can mutate the wrong
-worksheet. Its fix will be checkpointed separately from view-setting commands.
+worksheet. Its fix was checkpointed separately from view-setting commands.
 
 | Task | Acceptance | Status |
 | --- | --- | --- |
-| WS-01 | RTL and freeze/unfreeze use owner-bound commands; exact no-ops preserve redo and revisions; viewing/selecting reject mutation; pending cell drafts remain intact. | Passed: the same 20 tests go from 20 baseline failures to 20 passes at `e02feac5`; focused analysis reports no issues |
-| WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Passed at `30cb194a`: 14 new grid cases plus the view/fill/style/cell-state/pending-save overlap group, 80 passing tests total; scoped analysis reports no issues |
-| WS-03 | Actual app toolbar, close/save and delayed-upload tests retain view changes; saved workbooks preserve the other worksheet through history. | Host acceptance pending |
-| WS-04 | Exact native-fill and worksheet-state outputs reach the CI schema job; missing/unexpected artifacts fail inventory checks. | CI integration pending |
-| WS-05 | Actual ribbon styling uses canonical owner-bound commands; undo preserves native fill/font intent as well as worksheet ownership. | Canonical final gate passed at `0f935a6f`: 100 tests and clean scoped analysis; all six app routes now consume these commands at `ccba883b`; actual host acceptance pending |
+| WS-01 | RTL and freeze/unfreeze use owner-bound commands; exact no-ops preserve redo and revisions; viewing/selecting reject mutation; pending cell drafts remain intact. | Passed: all 20 view tests are included in the final 100/100 gate at `0f935a6f`; original 20-failure baseline retained |
+| WS-02 | Grid undo/redo stays on the original worksheet and replays the original operation independently of later tab/selection changes. | Passed: all 14 new grid cases and relevant overlap cases are included in the final 100/100 gate; original corrected 14-failure baseline retained |
+| WS-03 | Actual app toolbar, close/save and delayed-upload tests retain view changes; saved workbooks preserve the other worksheet through history. | Passed: all five worksheet host cases complete their full positive paths on app `ccba883b`, retaining 17 exact XLSX files |
+| WS-04 | Exact native-fill, worksheet-state and style-history outputs are routed to the CI schema job; missing/unexpected artifacts fail inventory checks. | Implemented and locally validated: 23 controls pass; 176-file synthetic inventory and 149-file rendering staging pass; 27 current XLSX files independently pass SDK validation. Hosted workflow execution remains queued |
+| WS-05 | Actual ribbon styling uses canonical owner-bound commands; undo preserves native fill/font intent as well as worksheet ownership. | Passed: 20 typed-style cases in the final 100-test canonical gate; both styling host cases and the native-fill overlap pass on `ccba883b`; all six app routes use canonical commands |
 
 ## Execution boundaries
 
 The existing engine, editor and host results retain their original source and
 scope. New baseline failures, implementation checkpoints and positive validation
-will receive separate receipts. The hosted jobs remain queued without assigned
-runners; no executed failure establishes a queue cause.
+have separate receipts. At the recorded hosted-CI observation, the jobs were
+queued without assigned runners; no executed failure establishes a queue cause.
 
 Reusable controller logic stays in Quds and reaches the app only through the
 guarded source synchronization tool. Each meaningful code/evidence increment is
@@ -72,7 +72,7 @@ authored source passed SDK schema validation before these results were accepted.
 
 Four typed APIs now support bold, font size, horizontal alignment and the
 existing six-field clear-formatting action through the corrected grid history.
-The app will use them alongside the existing fill/font-color APIs and remove
+The app uses them alongside the existing fill/font-color APIs and has removed
 its duplicate style command. Scalar no-ops preserve redo and revisions without
 creating cells, font sizes must be finite and positive, and the commands respect
 interaction modes and pending drafts. Clear formatting retains its existing
@@ -91,3 +91,32 @@ generated dependency inputs have retained payloads. The initial 96-pass/four-
 fixture-failure attempt is retained separately; its correction only normalized
 the test formula type before recording expectations. Production code did not
 change. The app's final guarded sync verifies all 2,177 managed files.
+
+## Completed app acceptance
+
+App source `ccba883b3a042582d3fd80f75772c20bff9e2c4b` pins the validated canonical
+source `0f935a6f24ae11aa9851a5cc3498808554194446`. Eight focused host cases pass:
+five worksheet-setting/grid cases, two ribbon-style history cases, and the
+existing native-fill preservation case. All three collections and final scoped
+analysis use the same 4,743 unchanged inputs. Analysis of the app ribbon and
+both host test files reports no issues. The temporary CI SQLite hook restores
+the committed pubspec bytes after collection and receipt verification.
+
+The independent OpenXML SDK accepts all 27 fresh workbook files with zero
+errors: three authored inputs and 24 captured uploads. Separate cohort receipts
+retain their exact input/output hashes and validator self-tests. The final CI
+controls also preserve all original 146 rendered host outputs and three pinned
+references; the new 27 artifacts have explicit schema scope. The 176-file
+synthetic inventory/staging check is distinct from actual host/schema results.
+
+The app's [continuation record](https://github.com/CrispStrobe/CrispCloud/blob/codex/office-recovery-20261114/docs/office-worksheet-state-20261114.md)
+links the final host, inventory and independent validation bundles, including
+raw logs, LCOV, generated dependency snapshots and every captured workbook.
+Earlier baseline and test-helper failures remain immutable and honestly labeled.
+
+The [hosted-CI observation](evidence/office-worksheet-state-20261114/hosted-ci/execution-sources.json)
+at 20:10:10 UTC records the fidelity runs for these two implementation sources.
+They were queued with runner ID zero and no executed steps. Local acceptance is
+complete; a hosted workflow pass is not claimed. No new physical-device,
+browser, external-Office rendering or combined application-coverage result is
+inferred from these scoped checks.
