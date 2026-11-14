@@ -49,6 +49,13 @@ engine and six editor fill tests, with 402 unchanged inputs. All 385 production
 Dart files match the earlier combined run exactly. The app retains the original
 schema failure and the corrected-source acceptance as separate records.
 
+The [published app evidence](https://github.com/CrispStrobe/CrispCloud/tree/a3897dfbe2d3721e0ec0756a1872132daf9f6b90/docs/evidence/office-recovery-resume-20261114/host-resume)
+contains 52 passing host tests, the passing corrected-input fill rerun, and
+independent OpenXML validation of the exact authored input and three actual
+uploads: four files, zero errors. All 4,739 recorded app inputs, complete logs,
+raw LCOV and exact package bytes are retained or bound to their measured Git
+source. The original invalid-input finding remains preserved separately.
+
 ## Recovery and reproducibility
 
 The new implementation and tests had already been saved remotely before the
