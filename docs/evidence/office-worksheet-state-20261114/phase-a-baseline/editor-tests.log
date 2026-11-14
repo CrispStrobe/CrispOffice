@@ -1,0 +1,193 @@
+00:00 +0: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart
+00:00 +0: RTL setter is one dirty revision and reversible command
+00:00 +0 -1: RTL setter is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -1: RTL toggle is one dirty revision and reversible command
+00:00 +0 -2: RTL toggle is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -2: selection freeze is one dirty revision and reversible command
+00:00 +0 -3: selection freeze is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -3: top row freeze is one dirty revision and reversible command
+00:00 +0 -4: top row freeze is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -4: first column freeze is one dirty revision and reversible command
+00:00 +0 -5: first column freeze is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -5: unfreeze is one dirty revision and reversible command
+00:00 +0 -6: unfreeze is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -6: toggle unfreeze is one dirty revision and reversible command
+00:00 +0 -7: toggle unfreeze is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -7: toggle freeze is one dirty revision and reversible command
+00:00 +0 -8: toggle freeze is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -8: origin selection unfreeze is one dirty revision and reversible command
+00:00 +0 -9: origin selection unfreeze is one dirty revision and reversible command [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 128:7             main.<fn>
+  
+00:00 +0 -9: OfficeInteractionMode.viewing blocks every worksheet view mutation
+00:00 +0 -10: OfficeInteractionMode.viewing blocks every worksheet view mutation [E]
+  Expected: (bool, int, int):<(false, 0, 0)>
+    Actual: (bool, int, int):<(true, 0, 0)>
+  RTL setter
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 154:9             main.<fn>
+  
+00:00 +0 -10: OfficeInteractionMode.selecting blocks every worksheet view mutation
+00:00 +0 -11: OfficeInteractionMode.selecting blocks every worksheet view mutation [E]
+  Expected: (bool, int, int):<(false, 0, 0)>
+    Actual: (bool, int, int):<(true, 0, 0)>
+  RTL setter
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 154:9             main.<fn>
+  
+00:00 +0 -11: view history stays on its owner and reuses captured freeze counts
+00:00 +0 -12: view history stays on its owner and reuses captured freeze counts [E]
+  Expected: (bool, int, int):<(true, 0, 0)>
+    Actual: (bool, int, int):<(true, 4, 2)>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 175:5             main.<fn>
+  
+00:00 +0 -12: unchanged view calls preserve redo, drafts, revision and viewport
+00:00 +0 -13: unchanged view calls preserve redo, drafts, revision and viewport [E]
+  Expected: Offset:<Offset(10000.0, 5000.0)>
+    Actual: Offset:<Offset(0.0, 0.0)>
+  same top row
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 255:7             main.<fn>
+  
+00:00 +0 -13: undoing an active freeze clamps the reduced scroll extent
+00:00 +0 -14: undoing an active freeze clamps the reduced scroll extent [E]
+  Expected: (bool, int, int):<(false, 0, 0)>
+    Actual: (bool, int, int):<(false, 100, 20)>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 270:5             main.<fn>
+  
+00:00 +0 -14: freeze retains a cancelable cell draft
+00:00 +0 -15: freeze retains a cancelable cell draft [E]
+  Expected: <2>
+    Actual: <1>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 291:7             main.<fn>
+  
+00:00 +0 -15: RTL retains a cancelable cell draft
+00:00 +0 -16: RTL retains a cancelable cell draft [E]
+  Expected: <2>
+    Actual: <1>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 291:7             main.<fn>
+  
+00:00 +0 -16: view edits leave an invalid cell draft available for correction
+00:00 +0 -17: view edits leave an invalid cell draft available for correction [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 323:5             main.<fn>
+  
+00:00 +0 -17: view history survives direct saves
+00:00 +0 -18: view history survives direct saves [E]
+  Expected: (bool, int, int):<(true, 0, 0)>
+    Actual: (bool, int, int):<(true, 4, 2)>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 353:11            main.<fn>
+  
+00:00 +0 -18: view history survives isolate saves
+00:00 +0 -19: view history survives isolate saves [E]
+  Expected: (bool, int, int):<(true, 0, 0)>
+    Actual: (bool, int, int):<(true, 4, 2)>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 353:11            main.<fn>
+  
+00:00 +0 -19: a view edit invalidates an older asynchronous upload revision
+00:00 +0 -20: a view edit invalidates an older asynchronous upload revision [E]
+  Expected: a value greater than <0>
+    Actual: <0>
+     Which: is not a value greater than <0>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/sheet_view_history_test.dart 373:7             main.<fn>
+  
+00:00 +0 -20: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: OfficeInteractionMode.selecting blocks every worksheet view mutation
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: OfficeInteractionMode.viewing blocks every worksheet view mutation
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: RTL retains a cancelable cell draft
+  /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart: RTL setter is one dirty revision and reversible command
+  ... and 16 more

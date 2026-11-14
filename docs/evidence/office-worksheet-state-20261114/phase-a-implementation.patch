@@ -1,0 +1,115 @@
+diff --git a/packages/quds_office_editor/lib/src/embed/office_controller.dart b/packages/quds_office_editor/lib/src/embed/office_controller.dart
+index 3bbbde2..018cc96 100644
+--- a/packages/quds_office_editor/lib/src/embed/office_controller.dart
++++ b/packages/quds_office_editor/lib/src/embed/office_controller.dart
+@@ -7716,11 +7716,20 @@ class SheetEditorController extends OfficeController {
+ 
+   /// setSheetRightToLeft API.
+   void setSheetRightToLeft(bool value) {
+-    if (sheet.rightToLeft == value) {
++    if (!config.allowsMutation) {
+       return;
+     }
+-    sheet.rightToLeft = value;
+-    notifyListeners();
++    final SmlWorksheet target = sheet;
++    final bool before = target.rightToLeft;
++    if (before == value) {
++      return;
++    }
++    commands.commit(
++      _CallbackCommand(
++        executeFn: () => target.rightToLeft = value,
++        undoFn: () => target.rightToLeft = before,
++      ),
++    );
+   }
+ 
+   /// toggleSheetRightToLeft API.
+@@ -7733,13 +7742,7 @@ class SheetEditorController extends OfficeController {
+ 
+   /// unfreezePanes API.
+   void unfreezePanes() {
+-    if (!hasFrozenPanes) {
+-      return;
+-    }
+-    sheet.freezeRows = 0;
+-    sheet.freezeCols = 0;
+-    clampSheetViewport();
+-    notifyListeners();
++    _setFrozenPanes(0, 0);
+   }
+ 
+   /// Excel Freeze Panes: lock rows above and columns left of the selection.
+@@ -7747,6 +7750,9 @@ class SheetEditorController extends OfficeController {
+   /// A full row freezes from that row (no columns). A full column freezes
+   /// from that column (no rows). A cell freezes from its row and column.
+   void freezePanesFromSelection() {
++    if (!config.allowsMutation) {
++      return;
++    }
+     var rows = 0;
+     var cols = 0;
+     if (selection.isFullRowSelection && selection.isFullColumnSelection) {
+@@ -7769,10 +7775,7 @@ class SheetEditorController extends OfficeController {
+       unfreezePanes();
+       return;
+     }
+-    sheet.freezeRows = rows.clamp(0, SmlWorksheet.excelRowCount - 1);
+-    sheet.freezeCols = cols.clamp(0, SmlWorksheet.excelColumnCount - 1);
+-    clampSheetViewport();
+-    notifyListeners();
++    _setFrozenPanes(rows, cols);
+   }
+ 
+   /// toggleFreezePanes API.
+@@ -7786,18 +7789,41 @@ class SheetEditorController extends OfficeController {
+ 
+   /// freezeTopRow API.
+   void freezeTopRow() {
+-    sheet.freezeRows = 1;
+-    sheet.freezeCols = 0;
+-    clampSheetViewport();
+-    notifyListeners();
++    _setFrozenPanes(1, 0);
+   }
+ 
+   /// freezeFirstColumn API.
+   void freezeFirstColumn() {
+-    sheet.freezeRows = 0;
+-    sheet.freezeCols = 1;
+-    clampSheetViewport();
+-    notifyListeners();
++    _setFrozenPanes(0, 1);
++  }
++
++  void _setFrozenPanes(int rows, int cols) {
++    if (!config.allowsMutation) {
++      return;
++    }
++    final SmlWorksheet target = sheet;
++    final int beforeRows = target.freezeRows;
++    final int beforeCols = target.freezeCols;
++    final int afterRows = rows.clamp(0, SmlWorksheet.excelRowCount - 1);
++    final int afterCols = cols.clamp(0, SmlWorksheet.excelColumnCount - 1);
++    if (beforeRows == afterRows && beforeCols == afterCols) {
++      return;
++    }
++    void apply(int rowCount, int colCount) {
++      target
++        ..freezeRows = rowCount
++        ..freezeCols = colCount;
++      if (identical(sheet, target)) {
++        clampSheetViewport();
++      }
++    }
++
++    commands.commit(
++      _CallbackCommand(
++        executeFn: () => apply(afterRows, afterCols),
++        undoFn: () => apply(beforeRows, beforeCols),
++      ),
++    );
+   }
+ 
+   /// canMergeAndCenter API.

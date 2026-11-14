@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "completed_at": "2026-11-14T19:48:42.055434+00:00",
+  "passed": true,
+  "source_commit": "30cb194a7275e3310d07b3bab185d81f79fc8c1c",
+  "source_commit_at_end": "30cb194a7275e3310d07b3bab185d81f79fc8c1c",
+  "tests_passed": 80,
+  "tests_failed": 0,
+  "tests_by_file": {
+    "pending_edit_save_test.dart": 33,
+    "sheet_cell_state_history_test.dart": 2,
+    "sheet_explicit_style_history_test.dart": 3,
+    "sheet_fill_intent_history_test.dart": 6,
+    "sheet_font_color_intent_test.dart": 2,
+    "sheet_grid_history_test.dart": 14,
+    "sheet_view_history_test.dart": 20
+  },
+  "analysis_items": 2,
+  "analysis_exit_code": 0,
+  "input_files": 408,
+  "changed_inputs_during_execution": [],
+  "baseline_source_commit": "ec88aa0700eff40c22e873fa0c221f98f825f011",
+  "baseline_failed_tests": 14,
+  "baseline_evidence": "../phase-b-baseline-corrected/validation.json",
+  "inputs_changed_since_baseline": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+  ],
+  "test_source_identical_to_baseline": true,
+  "files_sha256": {
+    "analysis.json": "cb8e8ae7168b337c255a00f98e87e68d898eba83f621f125bbde58df747951c6",
+    "editor-tests.log": "4bb162fcdd09bdb3c48177c09bede473b91a093b12d9920d1461123a1344364d",
+    "focused-analysis.log": "0567236bde8c0d66d52bade08cc9dd7d55e0f16b617bb8103f27ec5172dba3d2",
+    "inputs.json.gz": "196ac3f9b6357edca06c22ffc796d1bc7832d7822560bbc6377f9baaf0f9c578",
+    "package_config.json.gz": "c9538345ec6d4408eca1b37665a7c5a5a87289b6bd9a5a1460a5bad9f7ea3931",
+    "package_graph.json.gz": "b98c72a7b7963fe88112ea8867400c4ae338117ed02ca46ce094b52ba4d785b6",
+    "pubspec.lock.gz": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "runtime.json": "c0c8a47e3550d75f2303685ef956f34eb579187d25a5a3c0fb88499cd3966055",
+    "sheet_grid_history_test.dart.gz": "193b33114c9cfa491d75fd81f4fc16255021a1eb4352e1a59bb73e5ab5bf2ca0",
+    "validation.json": "7e5065e4cf4546c36c379d163e8984ef59f715d66666383b5b893b4c52392037"
+  }
+}

@@ -1,0 +1,12 @@
+diff --git a/packages/quds_office_editor/test/sheet_style_history_test.dart b/packages/quds_office_editor/test/sheet_style_history_test.dart
+index f429b28..7637875 100644
+--- a/packages/quds_office_editor/test/sheet_style_history_test.dart
++++ b/packages/quds_office_editor/test/sheet_style_history_test.dart
+@@ -236,6 +236,7 @@ void main() {
+           ..borderWidth = 1.5
+           ..locked = false;
+       }
++      controller.recalculateWorkbook();
+       final original = owner.cell(_a1);
+       final neighbor = controller.workbook.sheets[1];
+       final before = _cells(owner);

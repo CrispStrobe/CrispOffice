@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "prepared_at": "2026-11-14T20:02:36.100469+00:00",
+  "initial_source_commit": "0afbb178076ea6b081fd82fabbb8cdf974cca802",
+  "prior_attempt": "phase-c-positive/validation.json",
+  "prior_attempt_log_sha256": "12f26c4fcdacfa952ade5c183ae6a0c401d0f3f90bed53aa3d6ca1068850a50a",
+  "prior_passed_tests": 96,
+  "prior_failed_tests": 4,
+  "failure_classification": "New-test fixture normalization error in the four owner/range tests: formula assigned with type number before expected snapshot. Existing grid recalculation correctly changes type to formula.",
+  "correction": "Run controller.recalculateWorkbook() after constructing formula-bearing fixture cells and before capturing before/expected state.",
+  "production_change": false,
+  "negative_baseline": "Not applicable: these typed APIs are newly introduced. Host widget failures are captured independently against the existing public ribbon.",
+  "planned_positive_tests": 100,
+  "files": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "sha256": "ed3dff97e9a45e3f03e8bfb8d909ac8e7ce1a52ccc652024f772939453c142c1",
+      "bytes": 340039
+    },
+    "packages/quds_office_editor/test/sheet_style_history_test.dart": {
+      "sha256": "e67c3f37f388b8a5edb4598ecd5540a4f7e4a581c526ede10c5c5246eac2fb2e",
+      "bytes": 18202
+    }
+  },
+  "original_test_sha256": "4a38ca213e66ff4558da432e91780543b4fa459f699251b98afe11281f72ff53",
+  "git_diff_check_exit_code": 0
+}

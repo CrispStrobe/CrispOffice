@@ -1,0 +1,22 @@
+00:00 +0: loading /workspace/scratch/f035141943c7/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart
+00:00 +0: RTL setter is one dirty revision and reversible command
+00:00 +1: RTL toggle is one dirty revision and reversible command
+00:00 +2: selection freeze is one dirty revision and reversible command
+00:00 +3: top row freeze is one dirty revision and reversible command
+00:00 +4: first column freeze is one dirty revision and reversible command
+00:00 +5: unfreeze is one dirty revision and reversible command
+00:00 +6: toggle unfreeze is one dirty revision and reversible command
+00:00 +7: toggle freeze is one dirty revision and reversible command
+00:00 +8: origin selection unfreeze is one dirty revision and reversible command
+00:00 +9: OfficeInteractionMode.viewing blocks every worksheet view mutation
+00:00 +10: OfficeInteractionMode.selecting blocks every worksheet view mutation
+00:00 +11: view history stays on its owner and reuses captured freeze counts
+00:00 +12: unchanged view calls preserve redo, drafts, revision and viewport
+00:00 +13: undoing an active freeze clamps the reduced scroll extent
+00:00 +14: freeze retains a cancelable cell draft
+00:00 +15: RTL retains a cancelable cell draft
+00:00 +16: view edits leave an invalid cell draft available for correction
+00:00 +17: view history survives direct saves
+00:00 +18: view history survives isolate saves
+00:00 +19: a view edit invalidates an older asynchronous upload revision
+00:00 +20: All tests passed!

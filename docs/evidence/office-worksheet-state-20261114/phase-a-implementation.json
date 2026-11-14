@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "prepared_at": "2026-11-14T19:31:28.202233+00:00",
+  "base_commit": "2d2a7be43e19b478c532025fe1f275ed7b00ef75",
+  "status": "implemented; awaiting root remote checkpoint before positive validation",
+  "baseline": {
+    "receipt": "phase-a-baseline/validation.json",
+    "passed_tests": 0,
+    "failed_tests": 20,
+    "compile_failure": false,
+    "inputs_unchanged": true
+  },
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "a35ee2372434d5b590a89f08ab5a772f5a9de2f74762f4f9c6302d6ac2a10942",
+    "packages/quds_office_editor/test/sheet_view_history_test.dart": "7846192a71ff8fca7dfffa25eac4249763fe79422275984dcbcc9bd78f092e17"
+  },
+  "patch_sha256": "6bb7ca68cdf6e8b5d3243d16924d1264fb2a42829f322d4879f91ceed03d4c3e",
+  "phase_b": {
+    "production_changes": false,
+    "prepared_reproducer": "phase-b-reproducer.dart",
+    "reproducer_executed": false,
+    "reproducer_sha256": "b691fe50e97d8b62346680157b17eb8b57276598e06cc94f5e42f8ac3a548c5d"
+  },
+  "positive_validation_run": false
+}
