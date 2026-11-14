@@ -1,0 +1,72 @@
+{
+  "source_commit": "a38c7659c7485f096e5a3f6bd52d2d9482aa3265",
+  "source_tree": "1b36b208b7d7c33d625a97fc6c474d1b487d1e2f",
+  "started_at": "2026-11-14T20:20:42.519867+00:00",
+  "input_count": 3667,
+  "inputs_manifest": "inputs.json.gz",
+  "command": [
+    "/workspace/scratch/209f165653d7/toolchain/run",
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/sheet_style_history_test.dart",
+    "test/sheet_grid_history_test.dart",
+    "test/sheet_view_history_test.dart",
+    "test/sheet_fill_intent_history_test.dart",
+    "test/sheet_font_color_intent_test.dart",
+    "test/sheet_explicit_style_history_test.dart",
+    "test/sheet_cell_state_history_test.dart",
+    "test/pending_edit_save_test.dart",
+    "test/sheet_sort_history_test.dart",
+    "test/slide_notes_history_test.dart"
+  ],
+  "working_directory": "packages/quds_office_editor",
+  "expected_suites": [
+    "sheet_style_history_test.dart",
+    "sheet_grid_history_test.dart",
+    "sheet_view_history_test.dart",
+    "sheet_fill_intent_history_test.dart",
+    "sheet_font_color_intent_test.dart",
+    "sheet_explicit_style_history_test.dart",
+    "sheet_cell_state_history_test.dart",
+    "pending_edit_save_test.dart",
+    "sheet_sort_history_test.dart",
+    "slide_notes_history_test.dart"
+  ],
+  "completed": true,
+  "completed_at": "2026-11-14T20:21:13.946258+00:00",
+  "exit_code": 1,
+  "passed": 107,
+  "failed": 1,
+  "skipped": 0,
+  "tests_by_suite": {
+    "sheet_style_history_test.dart": 20,
+    "sheet_grid_history_test.dart": 14,
+    "sheet_view_history_test.dart": 20,
+    "sheet_fill_intent_history_test.dart": 6,
+    "sheet_font_color_intent_test.dart": 2,
+    "sheet_explicit_style_history_test.dart": 3,
+    "sheet_cell_state_history_test.dart": 2,
+    "pending_edit_save_test.dart": 33,
+    "sheet_sort_history_test.dart": 1,
+    "slide_notes_history_test.dart": 7
+  },
+  "changed_inputs": [],
+  "source_commit_at_end": "a38c7659c7485f096e5a3f6bd52d2d9482aa3265",
+  "log": "editor-tests.jsonl.gz",
+  "errors": [
+    {
+      "testID": 125,
+      "error": "Failed to load \"/workspace/scratch/209f165653d7/quds_office_suite/packages/quds_office_editor/test/sheet_sort_history_test.dart\":\nCompilation failed for testPath=/workspace/scratch/209f165653d7/quds_office_suite/packages/quds_office_editor/test/sheet_sort_history_test.dart: test/sheet_sort_history_test.dart:112:16: Error: The method 'deleteRows' isn't defined for the type 'SheetEditorController'.\n - 'SheetEditorController' is from 'package:quds_office_editor/src/embed/office_controller.dart' ('lib/src/embed/office_controller.dart').\nTry correcting the name to the name of an existing method, or defining a method named 'deleteRows'.\n    controller.deleteRows(index: 1);\n               ^^^^^^^^^^\n.",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 26141
+    }
+  ],
+  "log_encoding": "gzip",
+  "log_uncompressed_sha256": "b934c42fe4d1af5db0b49b3114a86a7f979c1e56cc3e86a3fc448bada50944dd",
+  "log_archive_sha256": "f76323635d1489b1640bca8952466729158b46532af2adcc76c4452eacf32813"
+}

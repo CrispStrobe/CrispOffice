@@ -16,6 +16,37 @@ commands remain intact. All tests and historical evidence from both parents
 are retained.
 
 This checkpoint supplies one canonical source for CrispCloud's guarded sync.
-It adds no dependency or public API and does not alter main. Focused acceptance
-for the combined source is recorded in the subsequent validation receipt;
-historical parent results are not relabeled as combined-source passes.
+It adds no dependency or public API and does not alter main. Focused acceptance for the combined source is recorded below; historical
+parent results are not relabeled as combined-source passes.
+
+## Combined-source acceptance
+
+Qualified source: `cb42ef232e5794ac4c147ef1992133cf8710ab01`, tree
+`74992ca733610409050e898c9ce4561c93836536`. This evidence-only continuation
+preserves those tested source bytes.
+
+- All **115 tests passed**, with zero failures or skips, in the ten expected
+  suites: style, grid, view, fill intent, font-color intent, explicit style,
+  cell state, pending edits, sorting and speaker notes.
+- The new integration regression combines sort, canonical formatting, row
+  removal and history after navigating to another sheet. It checks original
+  cell objects, imported empty rows and unchanged neighboring content.
+- Strict Dart analysis (`--fatal-infos`) of the merged controller and sort
+  regression file reports **No issues found**.
+- **3,667 tracked and generated inputs** remained unchanged during the final
+  test and analysis executions, including the resolved package map and lock.
+  Flutter is pinned to 3.47.8, revision
+  `737ba8f885dc774b53b442759999a312c9461e4e`, with Dart 3.13.7.
+
+The [final native receipt](native/validation.json),
+[analysis receipt](native/analysis.json), raw compressed JSON test events,
+source inventory, dependency snapshots and runtime hashes are retained.
+The [initial attempt](native-attempt-1/validation.json) passed 107 cases but
+could not compile the sort suite because the newly added integration test used
+`deleteRows` instead of the existing `deleteSheetRows` API. The test-only
+correction was saved before the complete successful rerun. Runtime bytes did
+not change after the original merge checkpoint.
+
+This gate covers the canonical Linux unit-test profile and static analysis.
+Browser, desktop application workflows and platform acceptance are separate;
+CrispCloud's integration has its own host source pin and qualification.

@@ -15,5 +15,17 @@
     "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
     "strategy": "Retain the recovery _SheetGridSnap, which unconditionally retains original cell objects and empty rows; adapt sorting to its ordinary capture call. Preserve main sorting, saved-file fidelity and all view/grid/style history APIs from recovery."
   },
-  "validation_status": "Implementation checkpoint; focused combined-source execution follows separately. Existing evidence retains its original source bindings."
+  "validation_status": "Native combined-source acceptance completed; see native/validation.json and native/analysis.json. First test-fixture compile failure retained separately.",
+  "qualified_source_commit": "cb42ef232e5794ac4c147ef1992133cf8710ab01",
+  "qualified_source_tree": "74992ca733610409050e898c9ce4561c93836536",
+  "source_files": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "sha256": "b8bad5f09ebbc3fca4d3c598a3d2b3fdb4015ee06ea43ee44a8cb00d1f7d89d0",
+      "git_blob": "14944754d1744a3f764439afc11541486e1b57d0"
+    },
+    "packages/quds_office_editor/test/sheet_sort_history_test.dart": {
+      "sha256": "53aae131f3a541b2a93f3ac1299aed1e5bc37143695c3c30086eed3d639c11a9",
+      "git_blob": "21f5e549f37cc45e2d1988b0b6b19b1cfe4e1ef2"
+    }
+  }
 }
