@@ -851,7 +851,9 @@ class WordDeserializer {
           _flushFieldText(inlines, run);
           final boundary = WmlFieldBoundary(
             kind: kind,
-            sourceXml: XmlDocument(root: fldChar).toXmlString(declaration: false),
+            sourceXml: XmlDocument(
+              root: fldChar,
+            ).toXmlString(declaration: false),
             runPropertiesXml: run.properties.sourcePropertiesXml,
           );
           inlines.add(boundary);
@@ -2202,7 +2204,8 @@ class WordDeserializer {
           docUri,
           firstHeaderRid,
           visualsOut: section.firstHeaderVisuals,
-          preserveInto: (part) => section.preservedStories['firstHeader'] = part,
+          preserveInto: (part) =>
+              section.preservedStories['firstHeader'] = part,
         ),
       );
     }
@@ -2213,7 +2216,8 @@ class WordDeserializer {
           docUri,
           firstFooterRid,
           visualsOut: section.firstFooterVisuals,
-          preserveInto: (part) => section.preservedStories['firstFooter'] = part,
+          preserveInto: (part) =>
+              section.preservedStories['firstFooter'] = part,
         ),
       );
     }
@@ -2264,8 +2268,7 @@ class WordDeserializer {
             docUri,
             headerRel.id,
             visualsOut: section.headerVisuals,
-            preserveInto: (part) =>
-                section.preservedStories['header'] = part,
+            preserveInto: (part) => section.preservedStories['header'] = part,
           ),
         );
       }
@@ -2279,8 +2282,7 @@ class WordDeserializer {
             docUri,
             footerRel.id,
             visualsOut: section.footerVisuals,
-            preserveInto: (part) =>
-                section.preservedStories['footer'] = part,
+            preserveInto: (part) => section.preservedStories['footer'] = part,
           ),
         );
       }
@@ -2288,6 +2290,37 @@ class WordDeserializer {
   }
 
   List<WmlParagraph> _readStoryByRid(
+    OpcPackage package,
+    String docUri,
+    String rid, {
+    List<WmlVisual>? visualsOut,
+    void Function(WmlOpaqueBlock part)? preserveInto,
+  }) {
+    // Headers and footers are independent field stories, even while a body
+    // paragraph's section properties are being parsed.
+    final fields = List<(WmlFieldBoundary, bool)>.of(_openFields);
+    final toc = Set<WmlFieldBoundary>.identity()..addAll(_tocBoundaries);
+    _openFields.clear();
+    _tocBoundaries.clear();
+    try {
+      return _readStoryByRidPreserving(
+        package,
+        docUri,
+        rid,
+        visualsOut: visualsOut,
+        preserveInto: preserveInto,
+      );
+    } finally {
+      _openFields
+        ..clear()
+        ..addAll(fields);
+      _tocBoundaries
+        ..clear()
+        ..addAll(toc);
+    }
+  }
+
+  List<WmlParagraph> _readStoryByRidPreserving(
     OpcPackage package,
     String docUri,
     String rid, {
@@ -2303,6 +2336,7 @@ class WordDeserializer {
       );
     }
     final int visualCount = visualsOut?.length ?? 0;
+    final int revisionCount = _document?.revisions.length ?? 0;
     try {
       return _readStoryByRidModeled(
         package,
@@ -2315,6 +2349,10 @@ class WordDeserializer {
       // (a content control around a logo, a table or several paragraphs).
       // Keep the whole part verbatim instead of refusing the document.
       visualsOut?.removeRange(visualCount, visualsOut.length);
+      // Revisions parsed before fallback refer to abandoned paragraphs. Their
+      // native markup remains in the preserved part, not in the editable model.
+      final revisions = _document?.revisions;
+      revisions?.removeRange(revisionCount, revisions.length);
       _pendingVisuals.clear();
       _pendingFrames.clear();
       _pendingEquations.clear();
