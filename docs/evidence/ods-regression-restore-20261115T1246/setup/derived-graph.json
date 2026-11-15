@@ -1,0 +1,470 @@
+{
+  "purpose": "Focused canonical ODS qualification using the settled 55-package host engine development graph with explicit absolute-URI relocation; no dependency resolution or app writes.",
+  "source_config": "/workspace/scratch/1e19fe1d39ae/CrispCloud/packages/quds_office_engine/.dart_tool/package_config.json",
+  "target_config": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine/.dart_tool/package_config.json",
+  "source_sha256": "000d668b06c154cbfc09a8bf63efa0c7a46f8814b372c4ddc3ee3e3a7d137d6a",
+  "target_sha256": "d918ff317ca95a84dfae1b6065ccc6d85c96d455fba2357ffde27c60515cd852",
+  "canonical_source_commit": "9bb71983a4ae6bc7bb3372fd931e724ddd102fc8",
+  "parser_source_commit": "08296edbee08da013a8ff718798972552ccd03f7",
+  "mapping_changes": [
+    {
+      "name": "legacy_doc_parser",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/CrispCloud/packages/legacy_doc_parser",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/ParserCanonical",
+      "source_mapping_changed": true,
+      "package_uri": "lib/",
+      "language_version": "3.8"
+    },
+    {
+      "name": "quds_office_engine",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/CrispCloud/packages/quds_office_engine",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine",
+      "source_mapping_changed": true,
+      "package_uri": "lib/",
+      "language_version": "3.12"
+    }
+  ],
+  "all_package_bindings": [
+    {
+      "name": "_fe_analyzer_shared",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/_fe_analyzer_shared-111.0.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/_fe_analyzer_shared-111.0.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.13"
+    },
+    {
+      "name": "analyzer",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/analyzer-14.7.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/analyzer-14.7.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.13"
+    },
+    {
+      "name": "archive",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/archive-4.7.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/archive-4.7.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.0"
+    },
+    {
+      "name": "args",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/args-2.7.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/args-2.7.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.3"
+    },
+    {
+      "name": "async",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/async-2.13.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/async-2.13.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "boolean_selector",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.1"
+    },
+    {
+      "name": "characters",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/characters-1.4.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/characters-1.4.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "cli_config",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/cli_config-0.2.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/cli_config-0.2.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.0"
+    },
+    {
+      "name": "cli_util",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/cli_util-0.6.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/cli_util-0.6.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.7"
+    },
+    {
+      "name": "collection",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/collection-1.19.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/collection-1.19.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "convert",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/convert-3.1.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/convert-3.1.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "coverage",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/coverage-1.16.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/coverage-1.16.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.9"
+    },
+    {
+      "name": "crypto",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/crypto-3.0.8",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/crypto-3.0.8",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "ffi",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/ffi-2.2.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/ffi-2.2.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.7"
+    },
+    {
+      "name": "file",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/file-7.0.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/file-7.0.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.0"
+    },
+    {
+      "name": "frontend_server_client",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/frontend_server_client-4.2.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/frontend_server_client-4.2.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.13"
+    },
+    {
+      "name": "glob",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/glob-2.2.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/glob-2.2.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.3"
+    },
+    {
+      "name": "http_multi_server",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/http_multi_server-3.2.3",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/http_multi_server-3.2.3",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.2"
+    },
+    {
+      "name": "http_parser",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/http_parser-4.1.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/http_parser-4.1.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "io",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/io-1.1.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/io-1.1.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "legacy_doc_parser",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/CrispCloud/packages/legacy_doc_parser",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/ParserCanonical",
+      "source_mapping_changed": true,
+      "package_uri": "lib/",
+      "language_version": "3.8"
+    },
+    {
+      "name": "lints",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/lints-6.1.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/lints-6.1.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.8"
+    },
+    {
+      "name": "logging",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/logging-1.3.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/logging-1.3.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "matcher",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/matcher-0.12.20",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/matcher-0.12.20",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.10"
+    },
+    {
+      "name": "meta",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/meta-1.19.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/meta-1.19.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.5"
+    },
+    {
+      "name": "mime",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/mime-2.1.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/mime-2.1.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.2"
+    },
+    {
+      "name": "node_preamble",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/node_preamble-2.0.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/node_preamble-2.0.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "2.12"
+    },
+    {
+      "name": "package_config",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/package_config-3.0.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/package_config-3.0.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.11"
+    },
+    {
+      "name": "path",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/path-1.9.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/path-1.9.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "pool",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/pool-1.5.3",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/pool-1.5.3",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "posix",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/posix-6.5.4",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/posix-6.5.4",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.0"
+    },
+    {
+      "name": "pub_semver",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/pub_semver-2.2.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/pub_semver-2.2.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "shelf",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf-1.4.3",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf-1.4.3",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.9"
+    },
+    {
+      "name": "shelf_packages_handler",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf_packages_handler-3.0.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf_packages_handler-3.0.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "2.17"
+    },
+    {
+      "name": "shelf_static",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf_static-1.2.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf_static-1.2.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.9"
+    },
+    {
+      "name": "shelf_web_socket",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.5"
+    },
+    {
+      "name": "source_map_stack_trace",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/source_map_stack_trace-2.1.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/source_map_stack_trace-2.1.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.3"
+    },
+    {
+      "name": "source_maps",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/source_maps-0.10.14",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/source_maps-0.10.14",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.3"
+    },
+    {
+      "name": "source_span",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/source_span-1.10.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/source_span-1.10.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.1"
+    },
+    {
+      "name": "stack_trace",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/stack_trace-1.12.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/stack_trace-1.12.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "stream_channel",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.3"
+    },
+    {
+      "name": "string_scanner",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.1"
+    },
+    {
+      "name": "term_glyph",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.1"
+    },
+    {
+      "name": "test",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test-1.33.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test-1.33.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.11"
+    },
+    {
+      "name": "test_api",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test_api-0.7.15",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test_api-0.7.15",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.11"
+    },
+    {
+      "name": "test_core",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test_core-0.6.21",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test_core-0.6.21",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.11"
+    },
+    {
+      "name": "typed_data",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/typed_data-1.4.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/typed_data-1.4.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.5"
+    },
+    {
+      "name": "vm_service",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/vm_service-15.4.0",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/vm_service-15.4.0",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.5"
+    },
+    {
+      "name": "watcher",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/watcher-1.2.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/watcher-1.2.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "web",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/web-1.1.2",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/web-1.1.2",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.13"
+    },
+    {
+      "name": "web_socket",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/web_socket-1.0.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/web_socket-1.0.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "web_socket_channel",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/web_socket_channel-3.0.3",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/web_socket_channel-3.0.3",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.3"
+    },
+    {
+      "name": "webkit_inspection_protocol",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.0"
+    },
+    {
+      "name": "yaml",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/yaml-3.1.4",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/yaml-3.1.4",
+      "source_mapping_changed": false,
+      "package_uri": "lib/",
+      "language_version": "3.4"
+    },
+    {
+      "name": "quds_office_engine",
+      "original_root": "/workspace/scratch/1e19fe1d39ae/CrispCloud/packages/quds_office_engine",
+      "test_root": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine",
+      "source_mapping_changed": true,
+      "package_uri": "lib/",
+      "language_version": "3.12"
+    }
+  ],
+  "note": "All external dependency versions and package/language URIs are inherited unchanged. Only the engine and parser source roots are mapped to the exact canonical checkouts. The retained host lock is provenance for the source graph, not a new canonical pub resolution."
+}

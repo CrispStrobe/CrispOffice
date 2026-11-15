@@ -1,0 +1,59 @@
+{
+  "after_entries_sha256": "6f5fc7857f88ef882530e2e1320928edfb370e35eeed1452121f6e7676244fd9",
+  "after_git": {
+    "head": "9bb71983a4ae6bc7bb3372fd931e724ddd102fc8",
+    "source_changes": [],
+    "status": "",
+    "tree": "b2d390c49919c323b127d89f168d875f09c4ff96",
+    "untracked_source": []
+  },
+  "after_tools": {
+    "/workspace/scratch/1e19fe1d39ae/parser-reconcile/record_parser_gate.py": "41631c941659fd3972089f2cd944ee09c7a104e8f495a70204b7a0b4592749a0",
+    "/workspace/scratch/1e19fe1d39ae/parser-reconcile/run_delta_qualification.py": "706f3679ea91db768d7d68cecdf049357c5af45b10057187b41faf711e6ebfb1",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/env.sh": "ffa3961403c67e56b5d6fd3bbe17f4ac7519a3cd48f98b9195fbc393763b5245",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test-1.33.0/bin/test.dart": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008"
+  },
+  "before_entries_sha256": "6f5fc7857f88ef882530e2e1320928edfb370e35eeed1452121f6e7676244fd9",
+  "before_git": {
+    "head": "9bb71983a4ae6bc7bb3372fd931e724ddd102fc8",
+    "source_changes": [],
+    "status": "",
+    "tree": "b2d390c49919c323b127d89f168d875f09c4ff96",
+    "untracked_source": []
+  },
+  "before_tools": {
+    "/workspace/scratch/1e19fe1d39ae/parser-reconcile/record_parser_gate.py": "41631c941659fd3972089f2cd944ee09c7a104e8f495a70204b7a0b4592749a0",
+    "/workspace/scratch/1e19fe1d39ae/parser-reconcile/run_delta_qualification.py": "706f3679ea91db768d7d68cecdf049357c5af45b10057187b41faf711e6ebfb1",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/env.sh": "ffa3961403c67e56b5d6fd3bbe17f4ac7519a3cd48f98b9195fbc393763b5245",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test-1.33.0/bin/test.dart": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008"
+  },
+  "command": [
+    "dart",
+    "--packages=/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine/.dart_tool/package_config.json",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/pub-cache/hosted/pub.dev/test-1.33.0/bin/test.dart",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/ods_sheet_reader_test.dart"
+  ],
+  "cwd": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine",
+  "elapsed_seconds": 13.778884927000036,
+  "finished_at": "2026-11-15T12:51:06.498508+00:00",
+  "input_changes": {
+    "added": [],
+    "changed": [],
+    "removed": []
+  },
+  "input_count": 3058,
+  "inputs_and_commit_stable": true,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "qualification_success": false,
+  "repo": "/workspace/scratch/1e19fe1d39ae/QudsCanonical",
+  "returncode": 0,
+  "schema": 1,
+  "scope_note": "Before/after source and resolution-input equality, not a hermetic cache snapshot or proof against transient writes. Exit success only qualifies the recorded command's scope.",
+  "started_at": "2026-11-15T12:50:52.718141+00:00",
+  "suite_count": 1
+}
