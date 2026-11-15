@@ -1,0 +1,47 @@
+00:00 +0: loading /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart
+00:00 +0: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: citation insertion, undo and redo preserve source and advance save revisions
+00:00 +1: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: editing and unlinking are independent repeatable undo steps
+00:00 +2: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: batch refresh updates variable-length fields in one atomic undo step
+00:00 +3: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: failed refresh leaves all text, save revisions and undo history unchanged
+00:00 +4: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: foreign fields, stale handles and duplicate identities are rejected
+00:00 +5: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: bibliography creation and replacement retain field metadata through history
+00:00 +6: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: viewing mode does not mutate Zotero fields or history
+00:00 +7: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: tracked mode never silently bypasses revision history for Zotero edits
+00:00 +8: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: citation insertion cannot enter a bibliography middle paragraph
+00:00 +9: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: pending revisions protect affected paragraphs even when tracking is off
+00:00 +10: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_controller_test.dart: pending changes in other paragraphs do not block an independent citation edit
+00:00 +11: loading /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart
+00:00 +11: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import accepts single object, normal array and Zotero Web API v3 envelope
+00:00 +12: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import creates distinct offline IDs for records with no ID or URI
+00:00 +13: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import links explicit personal and group URIs without conflating identical keys
+00:00 +14: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import a canonical URI in the CSL id is a linked source
+00:00 +15: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import untrusted, local and noncanonical URLs remain offline sources
+00:00 +16: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import accepts exactly 500 records and refuses 501 or an empty export
+00:00 +17: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import the import size bound counts UTF-8 bytes, not characters
+00:00 +18: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import refuses malformed JSON and incomplete or wrongly typed records
+00:00 +19: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: refreshable source addresses recognizes personal/group HTTP and HTTPS item identifiers
+00:00 +20: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: refreshable source addresses refuses credentials, query strings, fragments, ports and invalid keys
+00:00 +21: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text removes scripts, styles and resource tags while preserving reference text
+00:00 +22: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text decodes named and numeric entities and preserves multilingual text
+00:00 +23: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text decoded markup is returned as text and never recursively evaluated
+00:00 +24: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text invalid Unicode numeric references produce replacement characters
+00:00 +25: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text recognizes uppercase variants of supported HTML entities
+00:00 +26: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text oversized formatted responses are refused
+00:00 +27: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback formats locators and affixes without claiming a CSL style
+00:00 +28: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback suppress-author leaves the year and locator, with affixes retained
+00:00 +29: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback author-only omits the year and multiple items remain separated
+00:00 +30: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback corporate authors, missing authors and missing dates have readable fallbacks
+00:00 +31: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback deduplicates repeated citations and sorts authors then titles
+00:00 +32: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback linked sources dedupe by URI while distinct libraries remain distinct
+00:00 +33: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback canonical URL aliases identify the same bibliography source
+00:00 +34: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback keeps container/DOI data, strips title markup and skips missing snapshots
+00:00 +35: loading /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart
+00:01 +35: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: offline CSL import inserts source metadata and can be undone
+00:02 +36: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling the citation composer leaves document and history unchanged
+00:02 +37: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret while the composer is open blocks stale insertion
+00:03 +38: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision while the composer is open blocks stale insertion
+00:03 +39: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: mock Web API connection, pagination and search keep the key outside the document
+00:04 +40: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: unchecking Remember removes the saved key immediately without connecting
+00:04 +41: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+00:05 +42: /workspace/scratch/fa00e2a9ca6c/zotero-engine-check/quds_office_editor/test/word_zotero_dialog_test.dart: dialog, offline import and composer fit a 320 by 640 viewport
+00:06 +43: All tests passed!

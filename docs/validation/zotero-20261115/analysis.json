@@ -1,0 +1,104 @@
+{
+  "source_commit": "9da9c638bfe3bf932a70b2268dc16ef783fc009a",
+  "checks": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing word_zotero.dart...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing word_deserializer.dart...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing word_serializer.dart...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/zotero"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing zotero...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing office_controller.dart...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing word_zotero_format.dart...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing word_zotero_dialog.dart...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/test/word_zotero_test.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing word_zotero_test.dart...\nNo issues found!\n"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+      "command": [
+        "/workspace/scratch/fa00e2a9ca6c/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/test/word_zotero_controller_test.dart"
+      ],
+      "exit_code": 0,
+      "output": "Analyzing word_zotero_controller_test.dart...\nNo issues found!\n"
+    }
+  ]
+}
