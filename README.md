@@ -19,7 +19,11 @@
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
 The current fork imports supported BIFF8 `.xls` files and Excel HTML tables into
-editable XLSX workbooks, including shared-formula groups and font families.
+editable XLSX workbooks, including shared-formula groups, palettes, font families
+and HTML captions/header emphasis. Worksheet navigation commits valid drafts
+on their original sheet and blocks navigation when a draft is invalid. Word
+selection uses platform-specific bands; heading changes respect document styles
+and theme colours. Shapes without text retain that distinction on export.
 Complex Word fields keep their spans, and unsupported header/footer structures
 retain their original XML and related payloads. Tracked-change import/save now
 avoids repeated full scans. Preserved headers remain outside the editable model;
