@@ -24,6 +24,12 @@ key. Zotero's own windows may open behind the office application.
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
 
 The style and language chosen in **Document style…** belong to the document.
+Choose them before using **Insert with Zotero…** for selected catalog sources;
+the selection is seeded into the picker with the document's existing inline,
+footnote or endnote placement. A new document can instead use **Citation in
+Zotero…**, which lets Zotero choose preferences as part of its first insertion.
+If Zotero changes note placement while opening a seeded citation, the staged
+result is discarded and the workspace asks you to select the style first.
 The **Preview / export style ID** and locale fields belong to the older
 individual-preview/export workflow; changing them does not switch the
 document's native CSL style. Zotero document preferences are saved as native
@@ -66,6 +72,9 @@ until Zotero completes successfully and the original document, revision, story,
 caret and selection are still current. The entire operation is one undo step,
 including note conversion, bibliography updates and document preferences.
 Undo restores the original selection as well as the document content.
+Zotero also sends a completion command after reporting internal errors. The
+driver recognizes its error-alert forms, acknowledges the dialog, drains the
+transaction and discards every staged change in that case.
 
 If output needs mixed character formatting or unsupported bibliography layout,
 a review explains the simplification before applying it. Uniform bold, italic,
