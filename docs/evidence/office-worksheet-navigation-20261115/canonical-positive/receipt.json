@@ -1,0 +1,64 @@
+{
+  "artifacts": {},
+  "changed_inputs": [],
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/sheet_navigation_controller_test.dart",
+    "test/sheet_navigation_widget_test.dart",
+    "test/pending_edit_save_test.dart",
+    "test/sheet_rename_controller_test.dart",
+    "test/sheet_grid_history_test.dart",
+    "test/sheet_view_history_test.dart",
+    "test/sheet_style_history_test.dart",
+    "test/sheet_sort_history_test.dart",
+    "test/word_find_replace_history_test.dart"
+  ],
+  "completed": true,
+  "completed_at": "2026-11-15T05:36:01.389537+00:00",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/9b322cd05399/toolchain/flutter",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "LD_LIBRARY_PATH": "/workspace/scratch/9b322cd05399/toolchain/lib",
+    "PUB_CACHE": "/workspace/scratch/9b322cd05399/toolchain/pub-cache",
+    "TMPDIR": "/workspace/scratch/9b322cd05399/toolchain/tmp"
+  },
+  "exit_code": 0,
+  "git_status_before": "",
+  "input_manifest_sha256": "4020e15ff1032c6d6e45e6ea9ae8f94dfc52d1dc6e0afcadb1e2f90fc052c8f7",
+  "input_payloads": {
+    ".dart_tool/package_config.json": {
+      "sha256": "8fbecf30326284b8768fe29d3c3e4746bcce1f9563f5e6df55450b6b2b7e3af4",
+      "snapshot": "input-payloads/.dart_tool/package_config.json.gz"
+    },
+    ".dart_tool/package_graph.json": {
+      "sha256": "958cfa3beb2e234d7ecc1285f779c6c42ac5b57fcc6d7de9d984f00f028c394b",
+      "snapshot": "input-payloads/.dart_tool/package_graph.json.gz"
+    },
+    "pubspec.lock": {
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      "snapshot": "input-payloads/pubspec.lock.gz"
+    }
+  },
+  "inputs": 2096,
+  "label": "canonical-navigation-and-history-positive",
+  "limits": "External dependency-cache payloads are identified by resolution, not archived; this is not a hermetic execution claim.",
+  "log_sha256": "ac79ae68cb744d6a0947aa72d956935fab98bbe29da244447741dd8631417995",
+  "runtime": {
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/flutter_tools.snapshot": "6e82cce97b649fd21803d44306e736f39faf967f667befb00f66531fb49a1b26",
+    "bin/internal/engine.version": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e"
+  },
+  "source_commit": "e6da5be3a7e085dc200e35d6300161658179463c",
+  "source_tree": "9d6baabb2c93bda5270b8bb2cb4f72d9550c475a",
+  "started_at": "2026-11-15T05:35:34.188294+00:00",
+  "version": 1,
+  "working_directory": "packages/quds_office_editor"
+}

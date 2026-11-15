@@ -1,0 +1,53 @@
+{
+  "implementation_commit": "e6da5be3a7e085dc200e35d6300161658179463c",
+  "baseline_commit": "2d33a9213e760197557fb4fabcb422446f15227a",
+  "baseline": {
+    "passed": 10,
+    "failed": 22,
+    "total": 32,
+    "receipt": "canonical-baseline/receipt.json"
+  },
+  "same_regression_tests_sha256": {
+    "packages/quds_office_editor/test/sheet_navigation_controller_test.dart": "6646b3bc0198a2dcb190191f7e32f0639b8000ff56fa117c453b11228269a0b9",
+    "packages/quds_office_editor/test/sheet_navigation_widget_test.dart": "17bc467878b2f1092c15967f06a1a12863d620e31a9ef08b92ba3e8259333eba"
+  },
+  "positive_gates": [
+    {
+      "gate": "canonical-positive",
+      "passed_tests": 148,
+      "receipt": "canonical-positive/receipt.json",
+      "input_manifest_sha256": "4020e15ff1032c6d6e45e6ea9ae8f94dfc52d1dc6e0afcadb1e2f90fc052c8f7",
+      "inputs": 2096
+    },
+    {
+      "gate": "example-positive",
+      "passed_tests": 9,
+      "receipt": "example-positive/receipt.json",
+      "input_manifest_sha256": "4020e15ff1032c6d6e45e6ea9ae8f94dfc52d1dc6e0afcadb1e2f90fc052c8f7",
+      "inputs": 2096
+    },
+    {
+      "gate": "shared-find-positive",
+      "passed_tests": 3,
+      "receipt": "shared-find-positive/receipt.json",
+      "input_manifest_sha256": "4020e15ff1032c6d6e45e6ea9ae8f94dfc52d1dc6e0afcadb1e2f90fc052c8f7",
+      "inputs": 2096
+    },
+    {
+      "gate": "engine-analysis",
+      "passed_tests": 0,
+      "receipt": "engine-analysis/receipt.json",
+      "input_manifest_sha256": "4020e15ff1032c6d6e45e6ea9ae8f94dfc52d1dc6e0afcadb1e2f90fc052c8f7",
+      "inputs": 2096
+    },
+    {
+      "gate": "scoped-analysis",
+      "passed_tests": 0,
+      "receipt": "scoped-analysis/receipt.json",
+      "input_manifest_sha256": "4020e15ff1032c6d6e45e6ea9ae8f94dfc52d1dc6e0afcadb1e2f90fc052c8f7",
+      "inputs": 2096
+    }
+  ],
+  "passed_tests": 160,
+  "limits": "Local Flutter native/widget tests and analyzer gates; hosted CI and app acceptance are recorded separately."
+}

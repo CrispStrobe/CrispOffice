@@ -93,7 +93,8 @@ def main():
         'input_payloads': payloads, 'runtime': runtime,
         'environment_overrides': {name: os.environ[name] for name in (
             'FLUTTER_ROOT', 'PUB_CACHE', 'TMPDIR', 'CI', 'BOT',
-            'FLUTTER_SUPPRESS_ANALYTICS', 'DART_SUPPRESS_ANALYTICS') if name in os.environ},
+            'FLUTTER_SUPPRESS_ANALYTICS', 'DART_SUPPRESS_ANALYTICS',
+            'LD_LIBRARY_PATH', 'CARGO_HOME', 'RUSTUP_HOME') if name in os.environ},
         'limits': 'External dependency-cache payloads are identified by resolution, not archived; this is not a hermetic execution claim.',
         'completed': False,
     }
