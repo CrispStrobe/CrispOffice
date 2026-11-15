@@ -32,7 +32,8 @@ remain outside these guarantees.
 
 The current ODS importer bounds expanded cells, XML, style and merge work;
 it preserves supported column geometry, authored date/time formats, quoted
-formula literals and cell/row/column style precedence. Unsupported repeated or
+formula literals and cell/row/column style precedence. Bounded annotations retain
+their coordinates and authors without becoming cell text. Unsupported repeated or
 matrix formulas and ambiguous merged data are declined rather than clipped.
 Word step commands accept OOXML alignment/underline names; all 18 underline
 styles survive serialization and a paragraph split retains its character style.

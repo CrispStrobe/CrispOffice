@@ -513,8 +513,9 @@ abstract final class OdsSheetReader {
         .firstOrNull
         ?.text
         .trim();
-    if (author != null && author.length > 4096)
+    if (author != null && author.length > 4096) {
       throw const OdsSheetFormatException('ODS comment author limit');
+    }
     return (
       text: text,
       author: author == null || author.isEmpty ? 'Quds Office' : author,
@@ -1096,8 +1097,9 @@ class _OdsBudget {
   int _mergeCoverageWork = 0;
 
   void comments(int count) {
-    if (count > 10000 - _comments)
+    if (count > 10000 - _comments) {
       throw const OdsSheetFormatException('ODS comment limit (10000)');
+    }
     _comments += count;
   }
 
