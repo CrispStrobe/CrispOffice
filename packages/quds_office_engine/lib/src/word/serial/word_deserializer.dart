@@ -78,6 +78,8 @@ class WordDeserializer {
     _notBold.clear();
     _notItalic.clear();
     _pendingParagraphSectPr = null;
+    _openFields.clear();
+    _tocBoundaries.clear();
     _blockMarkers.clear();
     _lastBlockParagraph = null;
     _drawingDepth = 0;
@@ -454,7 +456,8 @@ class WordDeserializer {
           (inline) =>
               inline is WmlNoteMarker ||
               inline is WmlBookmarkBoundary ||
-              inline is WmlContentControlBoundary,
+              inline is WmlContentControlBoundary ||
+              inline is WmlFieldBoundary,
         ) &&
         (_pendingVisuals.isNotEmpty || _pendingFrames.isNotEmpty);
     if (!mathOnly && !drawingHost) {
@@ -569,6 +572,7 @@ class WordDeserializer {
       ..properties.sourcePropertiesXml = '';
     final previousFrames = Set<WmlFrame>.identity()..addAll(_pendingFrames);
     _readParagraphContent(reader, package, docUri, paragraph);
+    _settleFieldSpans(paragraph);
     for (final frame in _pendingFrames) {
       if (previousFrames.contains(frame)) continue;
       frame.anchorParagraphProperties ??= paragraph.properties.copy()
@@ -823,11 +827,36 @@ class WordDeserializer {
         if (_isPageField(instr)) {
           paragraph.properties.pageNumberField = true;
         }
+        _flushFieldText(inlines, run);
+        final boundary = WmlFieldBoundary(
+          kind: WmlFieldBoundaryKind.instruction,
+          text: instr,
+          runPropertiesXml: run.properties.sourcePropertiesXml,
+        );
+        inlines.add(boundary);
+        _noteFieldInstruction(boundary);
       } else if (reader.localName == 'fldChar') {
-        final String? type = reader.getAttribute(
+        final XmlElement fldChar = XmlDocument.readElement(reader);
+        final String? type = fldChar.getAttribute(
           'fldCharType',
           namespaceUri: OfficeNamespaces.w,
         );
+        final kind = switch (type) {
+          'begin' => WmlFieldBoundaryKind.begin,
+          'separate' => WmlFieldBoundaryKind.separate,
+          'end' => WmlFieldBoundaryKind.end,
+          _ => null,
+        };
+        if (kind != null) {
+          _flushFieldText(inlines, run);
+          final boundary = WmlFieldBoundary(
+            kind: kind,
+            sourceXml: XmlDocument(root: fldChar).toXmlString(declaration: false),
+            runPropertiesXml: run.properties.sourcePropertiesXml,
+          );
+          inlines.add(boundary);
+          _noteFieldChar(boundary);
+        }
         if (type == 'begin') {
           paragraph.properties.fieldBegin = true;
         } else if (type == 'separate') {
@@ -1454,6 +1483,101 @@ class WordDeserializer {
       properties: props,
       commentIds: List<int>.of(_openCommentIds),
     );
+  }
+
+  // -- complex-field spans --------------------------------------------------
+  // Open fields across paragraphs (a TOC spans many). Each entry is the begin
+  // boundary plus whether its instruction marked it as a TOC.
+  final List<(WmlFieldBoundary, bool)> _openFields = [];
+  final Set<WmlFieldBoundary> _tocBoundaries = Set.identity();
+
+  void _flushFieldText(List<WmlInline> inlines, WmlRun run) {
+    if (run.text.isEmpty) return;
+    inlines.add(
+      WmlRun(
+        text: run.text,
+        properties: run.properties.copy(),
+        commentIds: List<int>.of(_openCommentIds),
+      ),
+    );
+    run.text = '';
+  }
+
+  bool get _insideToc => _openFields.any((entry) => entry.$2);
+
+  void _noteFieldChar(WmlFieldBoundary boundary) {
+    switch (boundary.kind) {
+      case WmlFieldBoundaryKind.begin:
+        _openFields.add((boundary, false));
+        if (_insideToc) _tocBoundaries.add(boundary);
+      case WmlFieldBoundaryKind.separate:
+        if (_insideToc) _tocBoundaries.add(boundary);
+      case WmlFieldBoundaryKind.end:
+        if (_insideToc) _tocBoundaries.add(boundary);
+        if (_openFields.isNotEmpty) _openFields.removeLast();
+      case WmlFieldBoundaryKind.instruction:
+        break;
+    }
+  }
+
+  void _noteFieldInstruction(WmlFieldBoundary boundary) {
+    if (_openFields.isNotEmpty) {
+      final (begin, toc) = _openFields.last;
+      if (!toc && WordToc.isTocInstruction(boundary.text)) {
+        _openFields[_openFields.length - 1] = (begin, true);
+        _tocBoundaries.add(begin);
+      }
+    }
+    if (_insideToc) _tocBoundaries.add(boundary);
+  }
+
+  /// Decide, once a paragraph is complete, how its fields are represented.
+  void _settleFieldSpans(WmlParagraph paragraph) {
+    final boundaries = paragraph.inlines.whereType<WmlFieldBoundary>().toList();
+    if (boundaries.isEmpty) return;
+    bool strip() {
+      paragraph.inlines.removeWhere((inline) => inline is WmlFieldBoundary);
+      return true;
+    }
+
+    // TOC fields keep the established paragraph-level machinery.
+    if (boundaries.every(_tocBoundaries.contains)) {
+      strip();
+      return;
+    }
+    // Exactly one top-level field that wraps all of the paragraph's text,
+    // no nesting and no form-field data: the paragraph model is exact.
+    final kinds = boundaries.map((b) => b.kind).toList();
+    final nested = kinds.where((k) => k == WmlFieldBoundaryKind.begin).length;
+    final firstText = paragraph.inlines.indexWhere(
+      (inline) => inline is WmlRun && inline.text.isNotEmpty,
+    );
+    final lastText = paragraph.inlines.lastIndexWhere(
+      (inline) => inline is WmlRun && inline.text.isNotEmpty,
+    );
+    final begin = paragraph.inlines.indexOf(boundaries.first);
+    final end = paragraph.inlines.indexOf(boundaries.last);
+    final simple =
+        nested == 1 &&
+        kinds.first == WmlFieldBoundaryKind.begin &&
+        kinds.last == WmlFieldBoundaryKind.end &&
+        kinds.where((k) => k == WmlFieldBoundaryKind.end).length == 1 &&
+        !(boundaries.first.sourceXml ?? '').contains('ffData') &&
+        (firstText < 0 || begin < firstText) &&
+        (lastText < 0 || end > lastText) &&
+        (paragraph.properties.fieldInstruction ?? '').trim().isNotEmpty;
+    if (simple) {
+      strip();
+      return;
+    }
+    // Inexact for the paragraph model: keep the spans and drop the
+    // paragraph-level reading, which would otherwise wrap all text.
+    paragraph.properties
+      ..fieldInstruction = null
+      ..fieldBegin = false
+      ..fieldSeparate = false
+      ..fieldEnd = false
+      ..pageNumberField = false;
   }
 
   void _readRPr(XmlPullReader reader, WmlRunProps props) {
