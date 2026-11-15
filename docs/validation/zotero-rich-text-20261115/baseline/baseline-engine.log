@@ -1,0 +1,105 @@
+00:00 +0: loading test/word_zotero_test.dart
+00:00 +0: test/word_zotero_test.dart: CSL citation metadata is immutable and retains unknown fields
+00:00 +1: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +2: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +3: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +4: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +5: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +6: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +7: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +8: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +9: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +10: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +11: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +12: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:00 +13: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +14: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +15: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +16: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +17: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +18: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +19: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +20: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +21: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:00 +22: test/word_bibliography_fidelity_test.dart: native owned bibliography imports structured authors and pages by namespace
+00:00 +23: test/word_bibliography_fidelity_test.dart: native owned bibliography imports structured authors and pages by namespace
+00:00 +24: test/word_bibliography_fidelity_test.dart: native owned bibliography imports structured authors and pages by namespace
+00:00 +25: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three isolate saves
+00:00 +26: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three isolate saves
+00:00 +27: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +28: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +29: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +30: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +31: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +32: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +33: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +34: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +35: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +36: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +37: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +38: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +39: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:00 +40: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +41: test/word_bibliography_fidelity_test.dart: isolate source edits preserve native metadata and unrelated XML through three saves
+00:00 +42: test/word_bibliography_fidelity_test.dart: isolate source edits preserve native metadata and unrelated XML through three saves
+00:00 +43: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:00 +44: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:00 +45: test/word_bibliography_fidelity_test.dart: clearing sources persists deletion without resurrecting imported native data
+00:00 +46: test/zotero_client_test.dart: key verification uses a header, strips returned secrets and resolves access
+00:00 +47: test/word_bibliography_fidelity_test.dart: new bibliography allocation preserves colliding unrelated XML and native ownership
+00:00 +48: test/zotero_client_test.dart: public library reads omit credentials; empty key cannot verify
+00:00 +49: test/word_bibliography_fidelity_test.dart: legacy unowned scalar sources are linked and normalized without overwriting item1
+00:00 +50: test/zotero_client_test.dart: search, collection keys and Unicode metadata survive paginated browse
+00:00 +51: test/zotero_client_test.dart: search, collection keys and Unicode metadata survive paginated browse
+00:00 +52: test/zotero_client_test.dart: search, collection keys and Unicode metadata survive paginated browse
+00:00 +53: test/zotero_client_test.dart: pagination falls back to totals and advances requested offset
+00:00 +54: test/zotero_client_test.dart: a pagination URL cannot redirect credentials or switch libraries
+00:00 +55: test/zotero_client_test.dart: same item key is distinct in personal and group libraries
+00:00 +56: test/zotero_client_test.dart: mismatched library or item identifiers are not silently relinked
+00:00 +57: test/zotero_client_test.dart: collections preserve parent hierarchy; groups use numeric IDs
+00:00 +58: test/zotero_client_test.dart: individual citation returns CSL and rendered snapshots with style/locale
+00:00 +59: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:00 +60: test/zotero_client_test.dart: export passes the requested format and returns Unicode unchanged
+00:00 +61: test/zotero_client_test.dart: CSL retrieval unwraps the Web API v3 items envelope
+00:00 +62: test/zotero_client_test.dart: CSL retrieval rejects malformed export payloads
+00:00 +63: test/zotero_client_test.dart: invalid library IDs, keys, page bounds and oversized selections never send
+00:00 +64: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:00 +65: test/zotero_client_test.dart: HTTP errors are typed and never expose response bodies or API keys
+00:00 +66: test/zotero_client_test.dart: Retry-After and Backoff choose the longer interval and suppress retries
+00:00 +67: test/zotero_client_test.dart: concurrent responses cannot shorten a requested Backoff
+00:00 +68: test/zotero_client_test.dart: malformed responses, mismatched keys and transport diagnostics are contained
+00:00 +69: test/zotero_client_test.dart: desktop local API plain-text handshake pins the server without an API key
+00:00 +70: test/zotero_client_test.dart: desktop local API older desktops may omit a server ID; API v3 is still required
+00:00 +71: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +72: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +73: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +74: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +75: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +76: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +77: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +78: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +79: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +80: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +81: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +82: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +83: test/zotero_client_test.dart: desktop local API local pagination cannot leave the selected loopback route
+00:00 +84: test/zotero_identity_client_test.dart: known URI scheme and hostname aliases normalize consistently
+00:00 +85: test/zotero_client_test.dart: desktop local API desktop errors explain local setup without exposing diagnostics
+00:00 +86: test/zotero_identity_client_test.dart: a colliding key from another local profile cannot refresh or preview
+00:00 +87: test/zotero_identity_client_test.dart: citation keys and missing CSL IDs cannot prove a linked local identity
+00:00 +88: test/zotero_identity_client_test.dart: invalid identity arguments fail before any request
+00:00 +89: test/zotero_identity_client_test.dart: cloud routes refuse local identities before sending credentials
+00:00 +90: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +91: test/zotero_identity_client_test.dart: bibliography verifies once then renders one complete selection
+00:00 +92: test/zotero_identity_client_test.dart: aggregate expectations reject incomplete, extra and mixed profile maps before I/O
+00:00 +93: test/zotero_identity_client_test.dart: invalid bibliography formatting fails before the identity preflight
+00:00 +94: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +95: test/zotero_identity_client_test.dart: older desktops without a database pin refuse aggregate linked output
+00:00 +96: test/zotero_identity_client_test.dart: database changes between preflight and formatting never return output
+00:00 +97: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:00 +98: test/zotero_identity_client_test.dart: numeric cloud identities use the same complete-selection verification
+00:00 +99: test/zotero_identity_client_test.dart: returned CSL identities reject explicit ports before URI normalization
+00:00 +100: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:00 +101: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +102: test/zotero_identity_client_test.dart: metadata refresh requests no style and still proves local identity
+00:00 +103: All tests passed!

@@ -1,0 +1,237 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "startingHead": "244474c688c3a49a6fbcd98acc501a06794c1370",
+  "integratedMain": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+  "mergeBase": "c210315bee537776b556ae9885e907483b6df7bd",
+  "newMainPullRequests": [
+    41,
+    42
+  ],
+  "branches": [
+    {
+      "branch": "codex/zotero-support-20261115",
+      "sha": "244474c688c3a49a6fbcd98acc501a06794c1370",
+      "relation": "starting-head",
+      "aheadBy": 0,
+      "disposition": "starting-head"
+    },
+    {
+      "branch": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "relation": "diverged",
+      "aheadBy": 1,
+      "mergeBase": "c210315bee537776b556ae9885e907483b6df7bd",
+      "disposition": "identical-squash-tree",
+      "equivalence": {
+        "number": 41,
+        "branch": "feat/conditional-between",
+        "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+        "mergedSha": "42b7f1e767454a962ef3a21342eac335bbf925db",
+        "headTree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d",
+        "mergedTree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d",
+        "equivalent": true
+      }
+    },
+    {
+      "branch": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "relation": "diverged",
+      "aheadBy": 1,
+      "mergeBase": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+      "disposition": "identical-squash-tree",
+      "equivalence": {
+        "number": 37,
+        "branch": "feat/conditional-dxf",
+        "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+        "mergedSha": "85f5109c8067133bc30942d71b0be6ea9d9bf68c",
+        "headTree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7",
+        "mergedTree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7",
+        "equivalent": true
+      }
+    },
+    {
+      "branch": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "relation": "diverged",
+      "aheadBy": 1,
+      "mergeBase": "1d7fee380def59d5a766cab106e519952d5c3292",
+      "disposition": "identical-squash-tree",
+      "equivalence": {
+        "number": 36,
+        "branch": "feat/conditional-operators",
+        "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+        "mergedSha": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+        "headTree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c",
+        "mergedTree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c",
+        "equivalent": true
+      }
+    },
+    {
+      "branch": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "relation": "diverged",
+      "aheadBy": 1,
+      "mergeBase": "85f5109c8067133bc30942d71b0be6ea9d9bf68c",
+      "disposition": "identical-squash-tree",
+      "equivalence": {
+        "number": 38,
+        "branch": "feat/conditional-text",
+        "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+        "mergedSha": "9f1efe0758f5e67f10cec05883cc587a3b08b14c",
+        "headTree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5",
+        "mergedTree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5",
+        "equivalent": true
+      }
+    },
+    {
+      "branch": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "relation": "behind",
+      "aheadBy": 0,
+      "mergeBase": "e59751246a200e7477657d0e4835bf77b153422c",
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "relation": "behind",
+      "aheadBy": 0,
+      "mergeBase": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "relation": "behind",
+      "aheadBy": 0,
+      "mergeBase": "49b447324159595c59e64d8425b54a09f79ec736",
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "relation": "behind",
+      "aheadBy": 0,
+      "mergeBase": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "relation": "diverged",
+      "aheadBy": 1,
+      "mergeBase": "9f1efe0758f5e67f10cec05883cc587a3b08b14c",
+      "disposition": "identical-squash-tree",
+      "equivalence": {
+        "number": 39,
+        "branch": "feat/ods-validations",
+        "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+        "mergedSha": "c210315bee537776b556ae9885e907483b6df7bd",
+        "headTree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5",
+        "mergedTree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5",
+        "equivalent": true
+      }
+    },
+    {
+      "branch": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "relation": "behind",
+      "aheadBy": 0,
+      "mergeBase": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "relation": "behind",
+      "aheadBy": 0,
+      "mergeBase": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "relation": "diverged",
+      "aheadBy": 1,
+      "mergeBase": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+      "disposition": "included-by-main"
+    },
+    {
+      "branch": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "relation": "behind",
+      "aheadBy": 0,
+      "mergeBase": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "main",
+      "sha": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "relation": "diverged",
+      "aheadBy": 3,
+      "mergeBase": "c210315bee537776b556ae9885e907483b6df7bd",
+      "disposition": "merged"
+    }
+  ],
+  "mainChangedPaths": [
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+    "packages/quds_office_engine/test/word_content_control_fidelity_test.dart"
+  ],
+  "overlappingPath": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+  "mergeMethod": "Apply incoming main patch hunks with unique exact context to existing Zotero file; preserve both parents. Copy other incoming blobs unchanged.",
+  "exactHunkChecks": [
+    {
+      "hunk": "@@ -37,6 +37,8 @@ import 'word_table_property_io.dart';",
+      "matchedExactly": true,
+      "removedLines": 6,
+      "insertedLines": 8
+    },
+    {
+      "hunk": "@@ -46,6 +48,7 @@ class WordDeserializer {",
+      "matchedExactly": true,
+      "removedLines": 6,
+      "insertedLines": 7
+    },
+    {
+      "hunk": "@@ -79,6 +82,7 @@ class WordDeserializer {",
+      "matchedExactly": true,
+      "removedLines": 6,
+      "insertedLines": 7
+    },
+    {
+      "hunk": "@@ -134,7 +138,10 @@ class WordDeserializer {",
+      "matchedExactly": true,
+      "removedLines": 7,
+      "insertedLines": 10
+    },
+    {
+      "hunk": "@@ -185,8 +192,9 @@ class WordDeserializer {",
+      "matchedExactly": true,
+      "removedLines": 8,
+      "insertedLines": 9
+    },
+    {
+      "hunk": "@@ -197,11 +205,25 @@ class WordDeserializer {",
+      "matchedExactly": true,
+      "removedLines": 11,
+      "insertedLines": 25
+    },
+    {
+      "hunk": "@@ -213,6 +235,57 @@ class WordDeserializer {",
+      "matchedExactly": true,
+      "removedLines": 6,
+      "insertedLines": 57
+    },
+    {
+      "hunk": "@@ -333,7 +406,7 @@ class WordDeserializer {",
+      "matchedExactly": true,
+      "removedLines": 7,
+      "insertedLines": 7
+    }
+  ],
+  "executionEnvironment": "Unavailable; no Dart/Flutter execution or CI wait."
+}
