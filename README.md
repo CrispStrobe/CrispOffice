@@ -156,6 +156,12 @@ Mixed inline formatting, note preview numbering and unsupported bibliography
 layout have documented limits. Local tests and pinned real-processor fixtures
 pass; live Zotero/Word acceptance and full native builds remain pending.
 
+ODS imports include print areas, titles, names, auto-filters and same-workbook
+range-source validation snapshots. Validation expansion has a shared two-million
+source-cell work limit, checked before iteration and multiplication. Quoted sheet
+names retain their spaces. Dynamic validation-source links remain a separate
+fidelity boundary.
+
 This fork is integrated with [CrispCloud](https://github.com/CrispStrobe/CrispCloud). Current shared features include source-preserving spreadsheet font geometry, explicit style-zero handling, guarded logical addressing for merged Word tables, custom tab controls, and feature-directed editing/validation workflows. The [follow-up report](docs/office-fidelity-followup-20261112.md) and [fidelity ledger](docs/office-fidelity-gaps.json) retain the tested contracts and remaining limits. Native receipts describe their exact original source trees.
 
 Legacy `.doc`/`.dot` parsing and separate DOCX/DOCM conversion are maintained in [legacy-doc-parser](https://github.com/CrispStrobe/legacy-doc-parser). The engine exposes compatibility exports from the pinned workspace copy in `packages/legacy_doc_parser`; its `UPSTREAM.json` records the source and workspace-only patches. The suite's MIT license does not replace that dependency's MPL-2.0 license or its third-party notices.
