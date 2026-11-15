@@ -1,0 +1,23 @@
+{
+  "archive": {
+    "file": "artifacts.tar.xz",
+    "members": 13,
+    "sha256": "ec63f08d3aa602e3c2a8f0c13df4921c256529f11dbcf1c7bbb5919749b4753e",
+    "size": 316604,
+    "verified": true
+  },
+  "input_and_commit_stable": true,
+  "missing_suites": [],
+  "observed": "Both unshared and shared relocated-comment deletion cases reimported all three unowned fixed-name decoy notes on first serialized reopen.",
+  "schema_proof_scope": "Independently authored empty comments XML validated against official ECMA-376 Transitional SpreadsheetML XSD; not whole-workbook schema certification.",
+  "source_commit": "9d1f6755a21c5d9936fd89532a4ebdbb510e9a2d",
+  "tests": {
+    "errors": 2,
+    "failed": 2,
+    "other_results": 0,
+    "passed": 0,
+    "skipped": 0,
+    "tests": 2
+  },
+  "unexpected_suites": []
+}

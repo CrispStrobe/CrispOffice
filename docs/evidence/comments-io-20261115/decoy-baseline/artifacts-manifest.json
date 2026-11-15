@@ -1,0 +1,54 @@
+{
+  "decoy-baseline-tests/artifacts-sha256.json": {
+    "sha256": "8b17bfdf34966b739c775291e221a4f04d7521e76a31aa21c1356fa7e15cd8ce",
+    "size": 1007
+  },
+  "decoy-baseline-tests/command.json": {
+    "sha256": "6db19252916613e697daf5c00c052456720ca42383ed0441e68471f6b6d98a67",
+    "size": 566
+  },
+  "decoy-baseline-tests/inputs-after.json.gz": {
+    "sha256": "9ea4742f52ab72f22386388be11dfa0bd818d5c9d73dfa6ca2c83667f961550b",
+    "size": 155623
+  },
+  "decoy-baseline-tests/inputs-before.json.gz": {
+    "sha256": "ce414d3f131dc5d09ef146855868ab857ea0134c4d5e23d3bac2839c3f01ba31",
+    "size": 155624
+  },
+  "decoy-baseline-tests/metadata.json": {
+    "sha256": "c2be162e784d944a9522d8e9117f9c77d110c3fbfa0c59d518943f595e1e03ac",
+    "size": 4465
+  },
+  "decoy-baseline-tests/stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "decoy-baseline-tests/stdout.jsonl": {
+    "sha256": "e88a0ae3bcfe7e3f62c8f87c793f9256ef6f3829147fca9ff6778ccd5befc69d",
+    "size": 2330
+  },
+  "decoy-baseline-tests/suites.txt": {
+    "sha256": "b67b61b57d0cbd90193c57fff12ba87d9295535197a7d3d9f4dece1f54f4c614",
+    "size": 68
+  },
+  "decoy-baseline-tests/summary.json": {
+    "sha256": "7377366230aed4e2fb6c24ba106c62c1903f2632e9fe5102a0918f432da1d7f0",
+    "size": 1651
+  },
+  "decoy-suites.txt": {
+    "sha256": "b67b61b57d0cbd90193c57fff12ba87d9295535197a7d3d9f4dece1f54f4c614",
+    "size": 68
+  },
+  "primary-schema/comments-types-fragment.xsd.txt": {
+    "sha256": "9eaec6167983e84c9ea8c48fbdb4ec9bef384abf1360bb3e35a909a4238295a7",
+    "size": 1764
+  },
+  "primary-schema/empty-comments-validation.json": {
+    "sha256": "4ede7a3dae0e7ba5498b3a9636d9b3a646aaf04ff866a87329d6a4cd8cffb528",
+    "size": 710
+  },
+  "record_gate-cwd.py": {
+    "sha256": "02b88f3363f66c9752056a6ff3ecbb7dd1c44a7b5342a04928a71186b55139f0",
+    "size": 10091
+  }
+}

@@ -909,7 +909,17 @@ class SheetSerializer {
     final relationships = package.relationshipsFor(sheetUri);
     final commentsPart = _sheetCommentsPart(sheet, package, sheetUri);
     final commentsLink = relationships.firstByType(RelationshipTypes.comments);
-    if (sheet.comments.isNotEmpty) {
+    final legacyPart = package.getPart('/xl/comments${sheet.sheetId}.xml');
+    // Removing an authored link can make an unrelated legacy-named part the
+    // fallback on the next import. Retain an authoritative empty part in that
+    // case, preserving the decoy and avoiding deleted comments resurfacing.
+    final keepEmptyAuthority =
+        commentsPart != null &&
+        legacyPart != null &&
+        legacyPart.uri != commentsPart.uri &&
+        legacyPart.contentType == OfficeContentTypes.sheetComments &&
+        !_hasOtherPartReference(package, legacyPart.uri);
+    if (sheet.comments.isNotEmpty || keepEmptyAuthority) {
       // A shared part must not be overwritten through only one worksheet's
       // model. Give this sheet its own part while retaining the other owner.
       String? retainedUri = commentsPart?.uri;
