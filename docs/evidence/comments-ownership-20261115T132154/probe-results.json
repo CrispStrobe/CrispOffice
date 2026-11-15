@@ -1,0 +1,64 @@
+{
+  "before": {
+    "command": [
+      "dart",
+      "--packages=/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/before/package_config.json",
+      "/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/new_sheet_collision_probe.dart"
+    ],
+    "started_at": "2026-11-15T13:15:03.714151+00:00",
+    "returncode": 0,
+    "stdout_sha256": "f241fdefdf26397e324ad4b8adef9922aa8c59744588e60cab7a81c6762892e2",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "results": {
+      "validOrphan": {
+        "malformedOrphanRoot": false,
+        "error": null,
+        "orphanPartRetained": true,
+        "orphanBytesUnchanged": true,
+        "packageChanged": true,
+        "newWorksheetPartCreated": true,
+        "newWorksheetSourceUri": "/xl/worksheets/sheet2.xml"
+      },
+      "malformedOrphan": {
+        "malformedOrphanRoot": true,
+        "error": null,
+        "orphanPartRetained": true,
+        "orphanBytesUnchanged": true,
+        "packageChanged": true,
+        "newWorksheetPartCreated": true,
+        "newWorksheetSourceUri": "/xl/worksheets/sheet2.xml"
+      }
+    }
+  },
+  "incoming": {
+    "command": [
+      "dart",
+      "--packages=/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/incoming/package_config.json",
+      "/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/new_sheet_collision_probe.dart"
+    ],
+    "started_at": "2026-11-15T13:15:08.533795+00:00",
+    "returncode": 0,
+    "stdout_sha256": "614efe99808862e02ffe62c92ea780a219655212665cb81446cb6e261ddffbd5",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "results": {
+      "validOrphan": {
+        "malformedOrphanRoot": false,
+        "error": null,
+        "orphanPartRetained": false,
+        "orphanBytesUnchanged": false,
+        "packageChanged": true,
+        "newWorksheetPartCreated": true,
+        "newWorksheetSourceUri": "/xl/worksheets/sheet2.xml"
+      },
+      "malformedOrphan": {
+        "malformedOrphanRoot": true,
+        "error": "FormatException: Invalid worksheet comments root element.",
+        "orphanPartRetained": true,
+        "orphanBytesUnchanged": true,
+        "packageChanged": true,
+        "newWorksheetPartCreated": true,
+        "newWorksheetSourceUri": "/xl/worksheets/sheet2.xml"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "parent": "7a7fd2fe776d5733ddb824315e0768d01d1cbabc",
+  "base_tree": "2d9fe94c9ea82d4818b90b90a29fc44a7405633c",
+  "tree": "9b5f9f9aeeb2fc59f46f0331037118a980b864b3",
+  "branch": "integration/comments-ownership-20261115T132154",
+  "message": "fix(sheet): preserve orphan comments through new-sheet save lifecycles [skip ci]",
+  "files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+      "local_path": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+      "size": 54851,
+      "mode": "100644",
+      "blob_sha": "4cbc5fa6bc476572253cfbd30685e6fbdece9fad",
+      "sha256": "4bfabb807ff50edf68d6e2e1d3a32623847ef10b9dc055ab392bf5614014eeb7",
+      "encoding": "base64"
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_comments_namespace_test.dart",
+      "local_path": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine/test/sheet_comments_namespace_test.dart",
+      "size": 20310,
+      "mode": "100644",
+      "blob_sha": "e09987bd9895692e46ee41334d783363e32cb561",
+      "sha256": "e9b5aad698d42df42c88d6b236ab01fa8303e61e1e2827471b882a83e7a462f0",
+      "encoding": "base64"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/fidelity/comment_schema_fixture.dart",
+      "local_path": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine/tool/fidelity/comment_schema_fixture.dart",
+      "size": 4817,
+      "mode": "100644",
+      "blob_sha": "9b545271f344d35aaf4abc8dcdcca657891a5949",
+      "sha256": "1d944b7744b445701c823fc4cf7e9e8fa2735796257e99b89cc90d9cf7a70ec3",
+      "encoding": "base64"
+    }
+  ]
+}

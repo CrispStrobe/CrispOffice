@@ -1,0 +1,53 @@
+{
+  "after_entries_sha256": "886b4834df0031addf863e0fdd5b70b655d851249c308d9a5483fd350bde781b",
+  "after_git": {
+    "head": "eade542c800b3087bf478a11976ab4111983cf4c",
+    "source_changes": [],
+    "status": "",
+    "tree": "2ac637821afb98ede62c0ac7fa82995a080feee4",
+    "untracked_source": []
+  },
+  "after_tools": {
+    "/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/analyze_selected.py": "2f35ff93ab80cfcf3505018d343c06a18845133792d772b0576b3eb7065e310b",
+    "/workspace/scratch/1e19fe1d39ae/parser-reconcile/record_parser_gate.py": "41631c941659fd3972089f2cd944ee09c7a104e8f495a70204b7a0b4592749a0",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/env.sh": "ffa3961403c67e56b5d6fd3bbe17f4ac7519a3cd48f98b9195fbc393763b5245",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+  },
+  "before_entries_sha256": "886b4834df0031addf863e0fdd5b70b655d851249c308d9a5483fd350bde781b",
+  "before_git": {
+    "head": "eade542c800b3087bf478a11976ab4111983cf4c",
+    "source_changes": [],
+    "status": "",
+    "tree": "2ac637821afb98ede62c0ac7fa82995a080feee4",
+    "untracked_source": []
+  },
+  "before_tools": {
+    "/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/analyze_selected.py": "2f35ff93ab80cfcf3505018d343c06a18845133792d772b0576b3eb7065e310b",
+    "/workspace/scratch/1e19fe1d39ae/parser-reconcile/record_parser_gate.py": "41631c941659fd3972089f2cd944ee09c7a104e8f495a70204b7a0b4592749a0",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/env.sh": "ffa3961403c67e56b5d6fd3bbe17f4ac7519a3cd48f98b9195fbc393763b5245",
+    "/workspace/scratch/1e19fe1d39ae/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+  },
+  "command": [
+    "python3",
+    "/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/analyze_selected.py"
+  ],
+  "cwd": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine",
+  "elapsed_seconds": 3.986520272999769,
+  "finished_at": "2026-11-15T13:36:09.060425+00:00",
+  "input_changes": {
+    "added": [],
+    "changed": [],
+    "removed": []
+  },
+  "input_count": 3113,
+  "inputs_and_commit_stable": true,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "qualification_success": true,
+  "repo": "/workspace/scratch/1e19fe1d39ae/QudsCanonical",
+  "returncode": 0,
+  "schema": 1,
+  "scope_note": "Before/after source and resolution-input equality, not a hermetic cache snapshot or proof against transient writes. Exit success only qualifies the recorded command's scope.",
+  "started_at": "2026-11-15T13:36:05.072335+00:00",
+  "suite_count": null
+}

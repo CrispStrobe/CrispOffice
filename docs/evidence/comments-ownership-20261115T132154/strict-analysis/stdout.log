@@ -1,0 +1,10 @@
+{"analyzing": "lib/src/sheet/serial/sheet_serial.dart", "command": ["dart", "analyze", "--fatal-infos", "--fatal-warnings", "lib/src/sheet/serial/sheet_serial.dart"]}
+Analyzing sheet_serial.dart...
+No issues found!
+{"analyzing": "test/sheet_comments_namespace_test.dart", "command": ["dart", "analyze", "--fatal-infos", "--fatal-warnings", "test/sheet_comments_namespace_test.dart"]}
+Analyzing sheet_comments_namespace_test.dart...
+No issues found!
+{"analyzing": "tool/fidelity/comment_schema_fixture.dart", "command": ["dart", "analyze", "--fatal-infos", "--fatal-warnings", "tool/fidelity/comment_schema_fixture.dart"]}
+Analyzing comment_schema_fixture.dart...
+No issues found!
+{"files": [{"path": "lib/src/sheet/serial/sheet_serial.dart", "returncode": 0}, {"path": "test/sheet_comments_namespace_test.dart", "returncode": 0}, {"path": "tool/fidelity/comment_schema_fixture.dart", "returncode": 0}], "success": true}

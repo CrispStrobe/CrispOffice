@@ -1,0 +1,11 @@
+{
+  "branch": "integration/comments-ownership-20261115T132154",
+  "base": "4e8c8f80f206e93be8530a94da478e06c0f87608",
+  "path": "packages/quds_office_engine/test/sheet_comments_namespace_test.dart",
+  "base_blob": "1f420e58eeade80886234e36dd8161e2026df8fb",
+  "test_blob": "ea7bfafa5ea6887dfe48f1b0b8ab0778b11c7643",
+  "tree": "bc8342bcbfd0002c1d6cb23da0ff2f83d5003ade",
+  "regression_cases": 4,
+  "production_changes": 0,
+  "prior_tests_preserved": true
+}

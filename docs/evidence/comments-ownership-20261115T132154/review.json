@@ -1,0 +1,31 @@
+{
+  "result": "blocking_ownership_regressions_reproduced",
+  "incoming_source": "4e8c8f80f206e93be8530a94da478e06c0f87608",
+  "incoming_app_commit": "b99a31c5a8f92df48d52bb545c4d461d9e08afcd",
+  "observed_app_head": "3e9560c9b4bd617b5346bacd8b5039493f0f2dc1",
+  "source_binding": "source-binding.json",
+  "comparative_probe": "probe-results.json",
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "data_preservation",
+      "location": "sheet_serial.dart _writeSheetExtras / _sheetCommentsPart",
+      "scenario": "Add a new sheetId2 to a workbook containing an unreferenced genuine /xl/comments2.xml part.",
+      "observed": "Predecessor retains the part; incoming writer silently deletes it when the new worksheet has no comments. Explicit new comments also overwrite the unrelated fixed-name part.",
+      "cause": "Comment ownership is re-inferred from the newly assigned sheet URI and sheetId after package mutation."
+    },
+    {
+      "id": "C2",
+      "severity": "failed_save_atomicity",
+      "location": "sheet_serial.dart write preflight and _writeSheetExtras",
+      "scenario": "Same new-sheet collision, but the unreferenced part has a malformed comments root.",
+      "observed": "Incoming throws FormatException after creating the new worksheet part and changing the package bytes; predecessor succeeds and retains the unrelated bytes.",
+      "cause": "Preflight skips new sheets with null sourcePartUri, but later fallback validates the unrelated part after mutating package contents."
+    }
+  ],
+  "proposed_scope": "Capture only validated existing source-sheet ownership before mutation; pass that captured ownership to extras writing. Keep a distinct authoritative empty part when a new empty sheet collides with a genuine legacy-named part, so preserving the orphan cannot resurrect it on reopen. Validate genuinely owned inputs before writes.",
+  "coverage_addition": "Four valid/malformed orphan \u00d7 empty/new-note cases, including save/reopen/add/clear lifecycle and exact orphan byte/content-type preservation.",
+  "runtime_scope": "Two independent in-memory comparative probes against immutable source copies; not host acceptance.",
+  "app_writes": 0,
+  "canonical_status": "Root explicitly authorized a distinct correction branch rooted at the observed pin after these reproductions."
+}
