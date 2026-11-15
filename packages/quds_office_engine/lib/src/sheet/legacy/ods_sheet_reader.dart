@@ -328,15 +328,21 @@ abstract final class OdsSheetReader {
       numberStyles,
       element.getAttribute('value-type'),
     );
+    // Inherited column/row defaults apply to real cells, but materializing
+    // every cell of a 16k-column padding run would create millions of empty
+    // cells. Only an explicit, non-default cell style can stand alone.
+    final explicitStyle = element.getAttribute('style-name');
     final styled =
-        bold ||
-        fontSize != null ||
-        color != null ||
-        fill != null ||
-        align != SmlHAlign.general ||
-        wrap ||
-        family != null ||
-        numFmt != null;
+        explicitStyle != null &&
+        explicitStyle != 'Default' &&
+        (bold ||
+            fontSize != null ||
+            color != null ||
+            fill != null ||
+            align != SmlHAlign.general ||
+            wrap ||
+            family != null ||
+            numFmt != null);
 
     if (value == null && formula == null && !styled) return null;
 
@@ -423,7 +429,20 @@ abstract final class OdsSheetReader {
       case 'percentage-style':
         return '${_zeros(style)}%';
       case 'currency-style':
-        return '#,##0.00';
+        final symbol = _descendants(
+          style,
+          'currency-symbol',
+        ).map(_text).whereType<String>().firstOrNull;
+        final decimals = _decimals(style);
+        final base = '#,##0${decimals == 0 ? '' : '.${'0' * decimals}'}';
+        if (symbol == r'$') {
+          return r'[$$-409]'
+              '$base'
+              r';[red]-[$$-409]'
+              '$base';
+        }
+        if (symbol == null || symbol.isEmpty) return base;
+        return '"$symbol"$base';
       case 'date-style':
         return 'DD.MM.YYYY';
       case 'time-style':
@@ -491,11 +510,42 @@ abstract final class OdsSheetReader {
     if (paragraphs.isEmpty) return element.text.trim();
     final buffer = StringBuffer();
     for (final paragraph in paragraphs) {
-      final text = paragraph.text.trim();
+      final text = _paragraphText(paragraph).trim();
       if (text.isNotEmpty) {
-        if (buffer.isNotEmpty) buffer.write(' ');
+        if (buffer.isNotEmpty) buffer.write('\n');
         buffer.write(text);
       }
+    }
+    return buffer.toString();
+  }
+
+  /// ODF escapes meaningful repeated spaces and breaks as elements rather
+  /// than raw characters; a plain `.text` walk would silently collapse them.
+  static String _paragraphText(XmlElement paragraph) {
+    final buffer = StringBuffer();
+    void walk(XmlNode node) {
+      if (node is XmlText) {
+        buffer.write(node.text);
+        return;
+      }
+      if (node is! XmlElement) return;
+      switch (node.localName) {
+        case 's':
+          final count = int.tryParse(node.getAttribute('c') ?? '') ?? 1;
+          buffer.write(' ' * count.clamp(1, 1024));
+        case 'tab':
+          buffer.write('\t');
+        case 'line-break':
+          buffer.write('\n');
+        default:
+          for (final child in node.children) {
+            walk(child);
+          }
+      }
+    }
+
+    for (final child in paragraph.children) {
+      walk(child);
     }
     return buffer.toString();
   }
