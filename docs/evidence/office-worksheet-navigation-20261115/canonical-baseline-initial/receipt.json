@@ -1,0 +1,64 @@
+{
+  "artifacts": {},
+  "changed_inputs": [],
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "test/sheet_navigation_controller_test.dart",
+    "test/sheet_navigation_widget_test.dart"
+  ],
+  "completed": true,
+  "completed_at": "2026-11-15T05:30:17.712377+00:00",
+  "environment_overrides": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/9b322cd05399/toolchain/flutter",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/9b322cd05399/toolchain/pub-cache",
+    "TMPDIR": "/workspace/scratch/9b322cd05399/toolchain/tmp"
+  },
+  "exit_code": 1,
+  "git_status_before": "?? packages/quds_office_editor/test/sheet_navigation_controller_test.dart\n?? packages/quds_office_editor/test/sheet_navigation_widget_test.dart\n",
+  "input_manifest_sha256": "a25cda16ba9c69714f705d0ac4778b6794904ec7a9d1aa10e0090f767973a75c",
+  "input_payloads": {
+    ".dart_tool/package_config.json": {
+      "sha256": "8fbecf30326284b8768fe29d3c3e4746bcce1f9563f5e6df55450b6b2b7e3af4",
+      "snapshot": "input-payloads/.dart_tool/package_config.json.gz"
+    },
+    ".dart_tool/package_graph.json": {
+      "sha256": "4e824d5f81ebf3bf036ec14477a59d3045889da0e61b470a156c1bcdf7e5c8bb",
+      "snapshot": "input-payloads/.dart_tool/package_graph.json.gz"
+    },
+    "packages/quds_office_editor/test/sheet_navigation_controller_test.dart": {
+      "sha256": "63fae5645e0d311f8b5b08838c92003c808014a699e6153d779148f236f601eb",
+      "snapshot": "input-payloads/packages/quds_office_editor/test/sheet_navigation_controller_test.dart.gz"
+    },
+    "packages/quds_office_editor/test/sheet_navigation_widget_test.dart": {
+      "sha256": "17bc467878b2f1092c15967f06a1a12863d620e31a9ef08b92ba3e8259333eba",
+      "snapshot": "input-payloads/packages/quds_office_editor/test/sheet_navigation_widget_test.dart.gz"
+    },
+    "pubspec.lock": {
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      "snapshot": "input-payloads/pubspec.lock.gz"
+    }
+  },
+  "inputs": 2095,
+  "label": "canonical-baseline",
+  "limits": "External dependency-cache payloads are identified by resolution, not archived; this is not a hermetic execution claim.",
+  "log_sha256": "13fd3a735a4605ea040b7b0dad3e749d13cf8795bc6d46bb499c79c5bc2cba45",
+  "runtime": {
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/flutter_tools.snapshot": "6e82cce97b649fd21803d44306e736f39faf967f667befb00f66531fb49a1b26",
+    "bin/internal/engine.version": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e"
+  },
+  "source_commit": "2d33a9213e760197557fb4fabcb422446f15227a",
+  "source_tree": "e89595543b6414845f82d2dac65f8843d7554e1d",
+  "started_at": "2026-11-15T05:30:00.517197+00:00",
+  "version": 1,
+  "working_directory": "packages/quds_office_editor"
+}
