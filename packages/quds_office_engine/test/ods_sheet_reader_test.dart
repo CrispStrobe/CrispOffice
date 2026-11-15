@@ -16,7 +16,7 @@ Uint8List _ods(String tables, {String styles = '', String? namedStyles}) {
   final zip = ZipWriter();
   const bindings =
       'xmlns:o="$_office" xmlns:t="$_table" '
-      'xmlns:x="$_text" xmlns:s="$_style" xmlns:f="$_fo" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:e="urn:foreign" '
+      'xmlns:x="$_text" xmlns:s="$_style" xmlns:f="$_fo" xmlns:dc="http://purl.org/dc/elements/1.1/" '
       'xmlns:e="urn:test:extension"';
   zip.addFile(
     'content.xml',
