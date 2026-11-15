@@ -1,6 +1,44 @@
 # Zotero validation — 15 November 2026
 
-## Local identity continuation: current code
+## Rich formatting continuation: current executed results
+
+The implementation now preserves linked multi-run simple fields, numeric
+citation caches and unchanged rich citation results, and adds reviewed rich
+bibliographies with supported Word character formatting.
+
+At canonical code commit `b09537fb34dd711118ae6df5872184b6e813d2df`:
+
+| Local check | Result |
+| --- | ---: |
+| Engine/client/parser/Word import and related regressions | 232 passed |
+| Shared Flutter controller/formatter/dialog regressions | 81 passed |
+| **Combined selected tests** | **313 passed** |
+| Changed engine and editor analyzers with `--fatal-infos` | Clean |
+| All 11 changed Dart files, formatter check | Clean |
+| Incremental Git diff, whitespace check | Clean |
+
+The final run verified unchanged tracked library/test source fingerprints.
+The preceding source was separately qualified with 171 baseline passes,
+including all **39 previously unexecuted cases**. Those baseline counts are not
+added again to the final total. This continuation adds **63 new cases**.
+
+See [the current evidence and reproduction guide](validation/zotero-rich-text-20261115/README.md),
+[exact final receipt](validation/zotero-rich-text-20261115/final/receipt.json),
+and [implementation review](validation/zotero-rich-text-20261115/REVIEW.md).
+Official Flutter 3.47.8 / Dart 3.13.7 and genuinely resolved, enforced Pub
+lockfiles were used. Repository dependency manifests were not relaxed.
+
+CrispCloud records its separate 23 actual host service/transport/ribbon tests
+and normal Python vendor guards in its companion validation guide. No GitHub
+Actions were polled, awaited or rerun; remote checkpoints use `[skip ci]`.
+
+Full native builds, live desktop/private-account access, real OS-keychain
+acceptance and native Word/Zotero refresh remain unverified. Full document-wide
+CSL processing, the native picker/HTTP citing adapter, active ODT transfer,
+small-caps/layout rendering and new mixed-format inline citation generation
+remain outside this increment.
+
+## Earlier local identity continuation: historical source review
 
 This continuation adds identity-checked desktop operations for unsynced
 `users/local/<localUserKey>/items/<itemKey>` references. It also checks numeric
