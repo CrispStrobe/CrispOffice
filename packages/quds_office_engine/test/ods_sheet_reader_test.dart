@@ -147,6 +147,48 @@ void main() {
     );
   });
 
+  test(
+    'annotations retain coordinates and do not leak into cell values',
+    () async {
+      const annotation = '<o:annotation><x:p>Review this</x:p></o:annotation>';
+      final book = OdsSheetReader.readBytes(
+        _ods(
+          '<t:table><t:table-row t:number-rows-repeated="2">'
+          '<t:table-cell o:value-type="string" t:number-columns-repeated="2">'
+          '<x:p>Actual value</x:p>$annotation</t:table-cell>'
+          '<t:table-cell>$annotation</t:table-cell>'
+          '</t:table-row></t:table>',
+        ),
+      );
+      for (final current in [book, await _roundTrip(book)]) {
+        final sheet = current.firstSheet;
+        expect(sheet.cellA1('A1').asString, 'Actual value');
+        expect(sheet.cellA1('C1').asString, isEmpty);
+        expect(sheet.comments.map((comment) => comment.ref.a1).toSet(), {
+          'A1',
+          'B1',
+          'C1',
+          'A2',
+          'B2',
+          'C2',
+        });
+        expect(
+          sheet.comments.every((comment) => comment.text == 'Review this'),
+          isTrue,
+        );
+      }
+      expect(
+        () => OdsSheetReader.readBytes(
+          _ods(
+            '<t:table><t:table-row t:number-rows-repeated="10001">'
+            '<t:table-cell>$annotation</t:table-cell></t:table-row></t:table>',
+          ),
+        ),
+        _invalidOds,
+      );
+    },
+  );
+
   final bytes = File(
     'test/fixtures/fidelity/legacy-sheet.ods',
   ).readAsBytesSync();
