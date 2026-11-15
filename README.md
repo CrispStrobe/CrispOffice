@@ -141,10 +141,13 @@ On the right is the engine's, made in pure Dart.
 ## About this fork (CrispStrobe)
 
 The fork includes [Zotero reference support](docs/zotero-support.md): online
-personal/group libraries, offline CSL JSON, linked DOCX citation fields,
-bibliographies and undoable reference editing. The shared editor exposes the
-same workflow to CrispCloud. Basic author-year text and individual style
-previews are explicit; full document-wide CSL and Zotero desktop integration
+personal/group libraries, native desktop access without an API key, offline CSL
+JSON, linked DOCX citation fields, bibliographies and undoable reference editing.
+Unsynced desktop references support identity-checked metadata refresh and
+individual previews; selected exports and formatted bibliographies require
+Zotero 10+ database/version verification. The shared editor exposes the same
+workflow to CrispCloud. Basic author-year text and individual previews are
+explicit; full document-wide CSL and the native Zotero picker/citing adapter
 remain separate work.
 
 This fork is integrated with [CrispCloud](https://github.com/CrispStrobe/CrispCloud). Current shared features include source-preserving spreadsheet font geometry, explicit style-zero handling, guarded logical addressing for merged Word tables, custom tab controls, and feature-directed editing/validation workflows. The [follow-up report](docs/office-fidelity-followup-20261112.md) and [fidelity ledger](docs/office-fidelity-gaps.json) retain the tested contracts and remaining limits. Native receipts describe their exact original source trees.

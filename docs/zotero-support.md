@@ -25,8 +25,10 @@ group in Quds Studio and CrispCloud). The workspace has three tabs:
 
 The selected references can also be copied as BibTeX, BibLaTeX, RIS, or CSL JSON
 from the Library tab. Source exports are copied as reference data, not inserted
-as document text. Library exports use numeric user/group identities from one connected library; use
-**Document → Copy embedded CSL JSON** for a mixed-library or offline document.
+as document text. Library exports accept numeric user/group identities or unsynced local identities
+from one matching connected library. Desktop exports need Zotero 10 or later
+with database and library-version headers. Use **Document → Copy embedded CSL
+JSON** for mixed-library or offline documents, or with an older desktop client.
 Set the style ID and locale in Document (defaults: `apa` and `en-US`) before
 requesting a bibliography or individual citation preview. In the citation
 composer, expand a source's title to edit its locator and affixes.
@@ -74,6 +76,26 @@ Zotero supplies a `Zotero-Server-ID`, later requests pin that database identity;
 a changed database requires reconnecting. Older desktop versions may omit the
 header. Local and online object-version numbers are not compared.
 
+Connected document operations check the complete saved source URI, including
+the local profile key, against the returned item. Matching an eight-character
+item key alone is insufficient. Scheme/hostname aliases are normalized for
+comparison, while original citation IDs, URIs, locators, affixes and unknown
+JSON members are retained. Two different local profiles are separate source
+libraries even though both are requested through `/users/0`.
+
+Before a selected-source export or formatted bibliography, the client fetches
+one bounded metadata response and verifies every requested key and identity.
+Missing, duplicate, additional or mismatched records refuse the operation.
+Desktop aggregate operations also require a pinned `Zotero-Server-ID` and a
+`Last-Modified-Version` that stays unchanged between metadata verification and
+formatted output. A reported database switch or library-version change refuses the
+result. These checks detect changes between responses; they do not create a
+server-side snapshot transaction. This requires Zotero 10+; older clients can still browse, cite, refresh
+basic citations and provide individual previews when the same JSON response
+proves the source identity. Basic refresh requests metadata only, so it does
+not require a citation style or ask Zotero to generate formatted text. Use the embedded CSL export or basic bibliography
+when a connected aggregate operation cannot be verified.
+
 Persistent item identities are separate from request addresses. `/users/0`
 selects the local user but is never written as a citation URI. Signed-in items
 use the actual numeric account URI. Unsynced items retain a validated
@@ -85,12 +107,13 @@ are accepted, while ambiguous multi-item responses are refused.
 | Desktop source | Available workflow |
 | --- | --- |
 | Numeric user/group identity | Browse, cite, refresh basic citations, selected-reference export, individual style preview and one-library bibliography |
-| Unsynced `users/local/…` identity | Browse, cite, preserve the link in DOCX and CSL import, edit basic citations, basic bibliography, and Document → Copy embedded CSL JSON |
+| Unsynced `users/local/…` identity | Browse, cite, preserve DOCX/CSL links, refresh basic citations and preview a single source through the matching desktop library; selected-reference export and Zotero bibliography with Zotero 10+ identity/version checks |
 | Citation key without a persistent URI | Browse and cite as an explicitly offline embedded source; basic formatting and embedded CSL export |
 
-The latter two cases do not yet support connected refresh, single-source style
-previews, selected-reference export or Zotero-formatted bibliographies. No
-request is redirected to another library to approximate those operations.
+Sources without a persistent identity remain offline and cannot use connected
+refresh, previews or formatted exports. Unsynced local identities require the
+matching desktop database; the online API cannot resolve them. No request is
+redirected to another library to approximate these operations.
 Browsing the desktop database works offline; a missing citation style can
 still cause Zotero itself to download that style. Desktop access is not offered
 in browser/mobile hosts. It does not provide the native Zotero citation picker
@@ -104,12 +127,14 @@ or HTTP citing transaction adapter.
 | Single-source style preview | Zotero's individual citation text for a style ID and locale | Review locators and document numbering; this is not a document-wide CSL run |
 | Zotero bibliography | One complete API rendering of up to 50 distinct sources in one library | Inserted as plain text; no separately formatted batches are concatenated |
 | Basic bibliography | Sorted, deduplicated entries from embedded source snapshots | Useful offline, without complete CSL formatting |
-| Refresh | Fetch metadata for at most 50 distinct linked sources and atomically refresh Quds basic author–year citations | Imported/custom style caches are not automatically replaced |
+| Refresh | Fetch metadata for at most 50 distinct linked sources, verify their complete saved identities, and atomically refresh Quds basic author–year citations | Local identities require the matching desktop connection; imported/custom style caches are not automatically replaced |
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and cached text | Unsupported rich/nested/locked/multi-paragraph replacements are refused |
 | Native Zotero document preferences | Preserve imported `ZOTERO_PREF_*` properties as opaque package content | New document-wide style/session preferences are not fabricated |
 
 New citations use complex Word fields with `ADDIN ZOTERO_ITEM CSL_CITATION`
-codes, durable Zotero item URIs, and embedded CSL item snapshots. Bibliographies
+codes, durable Zotero item URIs, and embedded CSL item snapshots. New linked
+sources reject `/users/0`, zero-valued group IDs and malformed local identities;
+imported opaque source metadata remains preserved without automatic repair. Bibliographies
 use `ADDIN ZOTERO_BIBL … CSL_BIBLIOGRAPHY`. Legacy `ADDIN CSL_CITATION` fields
 are recognized. Existing source JSON is retained, including members not modeled
 by this editor. Library identity includes both user/group kind and numeric ID;
@@ -172,28 +197,24 @@ to hosts through the error's `retryAfter` value.
 
 ## Development baseline and verification
 
-The desktop continuation builds on the first Zotero increment at Quds
-`1d9552697d2850cbc3b5a7f73daf44a442c4901b` and CrispCloud
-`32abdd0f9219486be60d82f97d79d0040e1fee2b`. All current branches and recent PRs
-were audited before implementation and refreshed again afterward. Quds main
-`c210315bee537776b556ae9885e907483b6df7bd` and CrispCloud main
-`50b459323fe798c3638b8b8ce499ea91b89f98c0` were already included. Retained
-feature branches were checked by ancestry, identical squash trees or exact
-feature-file equivalence.
-
-CrispCloud's separate terminal-workspace draft #140 was brought into this
-integration branch, preserving its newer guide and production changes. The
-source audit distinguishes this from the documentation-only checkpoint used
-by the first Zotero increment. The separately maintained legacy DOC parser pin
-remains unchanged.
+The current local-identity continuation builds on the desktop checkpoints
+Quds `244474c688c3a49a6fbcd98acc501a06794c1370` and CrispCloud
+`0bab4f9aa2ba79d1ed13d2d773315a108c957181`. Before feature work, all live
+branches and recent PRs were audited. Quds main through #42 and CrispCloud
+main through #152 were integrated, along with newer terminal draft #140 work.
+The standalone legacy DOC parser pin remains unchanged.
 
 Work is checkpointed incrementally on `codex/zotero-support-20261115` in both
-repositories. Checkpoint commits carry `[skip ci]`; GitHub Actions are not
-awaited. This continuation ran 34 client tests and 16 actual production host
-transport tests, with clean focused analysis. Flutter widget cases are added
-but were not executed in this workspace. Exact hashes, commands, dependencies,
-logs, branch audits and the earlier increment's separate results are recorded
-in [zotero-validation.md](zotero-validation.md).
+repositories. Checkpoints carry `[skip ci]`; GitHub Actions are not awaited.
+The execution environment was unavailable for this continuation, so its new
+Dart/Flutter tests and full builds were not run. Remote source comparisons,
+exact merge checks, source review and managed-source identity verification
+are recorded separately from runtime tests.
+
+The earlier desktop increment's 34 client and 16 transport test results belong
+to their recorded source revisions. They are historical evidence, not fresh
+qualification of this continuation. See [zotero-validation.md](zotero-validation.md)
+for current checks, pending commands and prior evidence.
 
 ## Protocol sources
 
@@ -201,7 +222,7 @@ in [zotero-validation.md](zotero-validation.md).
 - [Zotero authentication](https://www.zotero.org/support/dev/web_api/v3/oauth)
 - [Zotero local API](https://www.zotero.org/support/dev/web_api/v3/local_api)
 - [Zotero 10 developer notes](https://www.zotero.org/support/dev/zotero_10_for_developers)
-- [Local API implementation](https://github.com/zotero/zotero/blob/main/chrome/content/zotero/xpcom/server/server_localAPI.js)
+- [Local API implementation](https://github.com/zotero/zotero/blob/045d5204410f1abfd80910e1cd0aa92dceec741b/chrome/content/zotero/xpcom/server/server_localAPI.js)
 - [CSL JSON translator](https://github.com/zotero/translators/blob/master/CSL%20JSON.js)
 - [HTTP citing protocol](https://www.zotero.org/support/dev/client_coding/http_integration_protocol)
 - [Zotero integration implementation](https://github.com/zotero/zotero/blob/main/chrome/content/zotero/xpcom/integration.js)
