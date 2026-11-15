@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:quds_office_engine/src/zotero/zotero_client.dart';
@@ -199,6 +200,32 @@ void main() {
   });
 
   test(
+    'mismatched library or item identifiers are not silently relinked',
+    () async {
+      for (final record in [
+        {
+          ..._item('ABCD1234'),
+          'library': {'type': 'group', 'id': 1234},
+        },
+        {
+          ..._item('ABCD1234'),
+          'library': {'type': 'user', 'id': 9999},
+        },
+        {
+          ..._item('ABCD1234'),
+          'data': {'key': 'EFGH5678', 'itemType': 'book'},
+        },
+      ]) {
+        final client = ZoteroClient(transport: (_) async => _json(record));
+        await expectLater(
+          client.item(personal, 'ABCD1234'),
+          throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
+        );
+      }
+    },
+  );
+
+  test(
     'collections preserve parent hierarchy; groups use numeric IDs',
     () async {
       final client = ZoteroClient(
@@ -308,6 +335,21 @@ void main() {
       }
     },
   );
+
+  test('CSL retrieval unwraps the Web API v3 items envelope', () async {
+    final items = [
+      {'id': '392648/ABCD1234', 'type': 'book', 'title': 'A source'},
+    ];
+    for (final payload in [
+      {'items': items},
+      items,
+    ]) {
+      final client = ZoteroClient(transport: (_) async => _json(payload));
+      final result = await client.cslItems(personal, ['ABCD1234']);
+      expect(result.single['id'], '392648/ABCD1234');
+      expect(result.single['title'], 'A source');
+    }
+  });
 
   test('CSL retrieval rejects malformed export payloads', () async {
     for (final body in ['not-json secret', '{}', '[null]']) {
@@ -456,6 +498,32 @@ void main() {
       expect(calls, 1);
     },
   );
+
+  test('concurrent responses cannot shorten a requested Backoff', () async {
+    final slow = Completer<ZoteroHttpResponse>();
+    final fast = Completer<ZoteroHttpResponse>();
+    var calls = 0;
+    final now = DateTime.utc(2026);
+    final client = ZoteroClient(
+      clock: () => now,
+      transport: (_) {
+        calls++;
+        return calls == 1 ? fast.future : slow.future;
+      },
+    );
+    final first = client.items(personal);
+    final second = client.collections(personal);
+    fast.complete(_json([], headers: {'Backoff': '60'}));
+    await first;
+    slow.complete(_json([], headers: {'Backoff': '1'}));
+    await second;
+    expect(client.retryAfter, const Duration(seconds: 60));
+    await expectLater(
+      client.items(personal),
+      throwsA(_error(ZoteroApiErrorKind.rateLimited, seconds: 60)),
+    );
+    expect(calls, 2);
+  });
 
   test('malformed responses, mismatched keys and transport diagnostics are contained', () async {
     for (final body in ['secret-not-json', '{}', '[{"key":"BAD"}]']) {

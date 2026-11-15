@@ -742,7 +742,7 @@ Map<String, dynamic> _freezeObject(Map<String, dynamic> json) {
   }
 
   final frozen = freeze(json, 0) as Map<String, dynamic>;
-  if (jsonEncode(frozen).length > _maxJsonLength) {
+  if (utf8.encode(jsonEncode(frozen)).length > _maxJsonLength) {
     throw const FormatException('Zotero metadata exceeds the 1 MiB limit.');
   }
   return frozen;

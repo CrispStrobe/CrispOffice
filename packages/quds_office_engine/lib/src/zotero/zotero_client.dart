@@ -237,7 +237,13 @@ class ZoteroClient {
       format: ZoteroExportFormat.cslJson,
     );
     try {
-      return List.unmodifiable(_array(jsonDecode(text)).map(_object));
+      final decoded = jsonDecode(text);
+      // Web API v3 wraps format=csljson in {"items": [...]}; include=csljson
+      // above is a single object. Accept plain CSL arrays as well.
+      final items = decoded is Map<String, dynamic>
+          ? decoded['items']
+          : decoded;
+      return List.unmodifiable(_array(items).map(_object));
     } on FormatException {
       throw _invalidResponse();
     }
@@ -356,7 +362,11 @@ class ZoteroClient {
       backoff = const Duration(seconds: 30);
     }
     if (backoff != null && backoff > Duration.zero) {
-      _backoffUntil = _clock().add(backoff);
+      final until = _clock().add(backoff);
+      // Concurrent in-flight responses must not shorten an existing pause.
+      if (_backoffUntil == null || until.isAfter(_backoffUntil!)) {
+        _backoffUntil = until;
+      }
     }
     if (response.statusCode == 200) return response;
     final (kind, message) = switch (response.statusCode) {
@@ -381,11 +391,16 @@ class ZoteroClient {
         'Zotero could not complete this request.',
       ),
     };
+    final remaining = retryAfter;
+    final retryDuration =
+        remaining != null && (backoff == null || remaining > backoff)
+        ? remaining
+        : backoff;
     throw ZoteroApiException(
       kind: kind,
       message: message,
       statusCode: response.statusCode,
-      retryAfter: backoff,
+      retryAfter: retryDuration,
     );
   }
 
@@ -440,6 +455,16 @@ class ZoteroClient {
   static ZoteroItem _item(Map<String, dynamic> json, ZoteroLibrary library) {
     final data = _object(json['data']);
     final key = _responseKey(json['key'] ?? data['key']);
+    if (data['key'] != null && data['key'] != key) throw _invalidResponse();
+    final itemType = _string(data['itemType']);
+    if (itemType.isEmpty) throw _invalidResponse();
+    if (json['library'] != null) {
+      final source = _object(json['library']);
+      if (source['type'] != library.type.name ||
+          _integer(source['id']) != library.id) {
+        throw _invalidResponse();
+      }
+    }
     final creators = data['creators'];
     final csl = json['csljson'];
     Map<String, dynamic>? cslJson;
@@ -456,7 +481,7 @@ class ZoteroClient {
       library: library,
       key: key,
       title: _string(data['title'], 'Untitled item'),
-      itemType: _string(data['itemType']),
+      itemType: itemType,
       date: _string(data['date']),
       version: _integer(json['version']) ?? 0,
       doi: _string(data['DOI']),

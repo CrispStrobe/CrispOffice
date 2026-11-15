@@ -186,7 +186,7 @@ class ZoteroPage<T> {
 }
 
 enum ZoteroExportFormat {
-  cslJson('csljson', 'application/json', 'json'),
+  cslJson('csljson', 'application/vnd.citationstyles.csl+json', 'json'),
   bibtex('bibtex', 'application/x-bibtex', 'bib'),
   biblatex('biblatex', 'application/x-bibtex', 'bib'),
   ris('ris', 'application/x-research-info-systems', 'ris');

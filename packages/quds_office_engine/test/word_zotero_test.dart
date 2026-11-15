@@ -330,4 +330,26 @@ void main() {
       isNotNull,
     );
   });
+
+  test('native field locks survive import and complex-field export', () {
+    final package = _fixture();
+    final source = package.getPart('/word/document.xml')!;
+    source.writeText(
+      source.readText().replaceFirst(
+        'w:dirty="0"',
+        'w:dirty="0" w:fldLock="true"',
+      ),
+    );
+    var document = WordDeserializer().read(package);
+    for (var cycle = 0; cycle < 3; cycle++) {
+      final locked = WordZotero.fields(document).first;
+      expect(locked.locked, isTrue);
+      expect(locked.canEdit, isFalse);
+      WordFields.update(document);
+      expect(locked.cachedText, '(Lovelace, 1843)');
+      document = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+    }
+  });
 }
