@@ -35,6 +35,10 @@ it preserves supported column geometry, authored date/time formats, quoted
 formula literals and cell/row/column style precedence. Bounded annotations retain
 their coordinates and authors without becoming cell text. Unsupported repeated or
 matrix formulas and ambiguous merged data are declined rather than clipped.
+ODS pictures with supported local image references are carried into worksheet
+drawings with bounded geometry; external resources are not fetched. Macro-enabled
+and template spreadsheet saves preserve their original package type and opaque
+VBA parts without executing macros.
 Word step commands accept OOXML alignment/underline names; all 18 underline
 styles survive serialization and a paragraph split retains its character style.
 These are bounded import/edit contracts, not certification of native Word or
