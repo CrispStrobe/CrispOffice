@@ -30,6 +30,15 @@ avoids repeated full scans. Preserved headers remain outside the editable model;
 unsupported legacy spreadsheet formats, encryption and full native rendering
 remain outside these guarantees.
 
+The current ODS importer bounds expanded cells, XML, style and merge work;
+it preserves supported column geometry, authored date/time formats, quoted
+formula literals and cell/row/column style precedence. Unsupported repeated or
+matrix formulas and ambiguous merged data are declined rather than clipped.
+Word step commands accept OOXML alignment/underline names; all 18 underline
+styles survive serialization and a paragraph split retains its character style.
+These are bounded import/edit contracts, not certification of native Word or
+LibreOffice layout for every file.
+
 Legacy VML pictures, rules and shapes are retained as opaque source content with relationship integrity checks; this preserves export bytes without claiming native rendering or editing of those objects.
 
 The fork now deduplicates byte-identical Word media on export, reads supported symbol characters, and keeps sibling text boxes independent during import. Legacy DOC conversion writes canonical built-in style names and offers explicit recovery for damaged auxiliary features; recovery reports degraded output and remains opt-in.
