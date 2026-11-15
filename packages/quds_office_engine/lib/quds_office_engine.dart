@@ -106,6 +106,8 @@ export 'src/word/model/wml_run_edit.dart';
 export 'src/word/model/word_bookmarks.dart';
 export 'src/word/model/word_captions.dart';
 export 'src/word/model/word_citations.dart';
+export 'src/word/model/word_zotero.dart';
+export 'src/zotero/zotero_client.dart';
 export 'src/word/model/word_comment.dart';
 export 'src/word/model/word_compare.dart';
 export 'src/word/model/word_content_controls.dart';
