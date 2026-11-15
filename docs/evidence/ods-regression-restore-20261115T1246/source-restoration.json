@@ -1,0 +1,19 @@
+{
+  "branch": "integration/ods-regression-restore-20261115T1246",
+  "base": "6e4c3b16b4310f2c21b6d8b5e412af9850eb17ea",
+  "qualified_predecessor": "c17098d65fe5f6e2bdf9999389deb2a6b508d928",
+  "path": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+  "base_blob": "17b037e18e84d4f3312e334f5684f8b815345e2e",
+  "restored_blob": "ed5cd8985befe19b89375a63bbb73581753fda60",
+  "restored_tree": "b2d390c49919c323b127d89f168d875f09c4ff96",
+  "restored_test_titles": [
+    "currency symbols survive namespaced import and XLSX saves",
+    "inherited styled padding stays sparse while explicit blanks survive",
+    "ODS native column geometry survives a new XLSX copy"
+  ],
+  "restored_block_sha256": "ff42a01a56275111991c7b3c6b34914ad9a238b10db032b8f6f53ab4b8b4c8cd",
+  "restored_block_bytes": 3975,
+  "exact_predecessor_block_restored": true,
+  "diffstat": ".../test/ods_sheet_reader_test.dart                | 93 ++++++++++++++++++++++\n 1 file changed, 93 insertions(+)",
+  "production_source_changed": false
+}

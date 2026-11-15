@@ -1,0 +1,56 @@
+{
+  "done_events": [
+    {
+      "success": true,
+      "time": 4925,
+      "type": "done"
+    }
+  ],
+  "done_success": true,
+  "errors": [],
+  "hidden_test_done": 1,
+  "missing_suites": [
+    "packages/quds_office_engine/test/ods_sheet_reader_test.dart"
+  ],
+  "non_json_lines": 0,
+  "non_object_json_lines": 0,
+  "nonpassing_requested_suites": [
+    "packages/quds_office_engine/test/ods_sheet_reader_test.dart"
+  ],
+  "qualification_success": false,
+  "suites": [
+    {
+      "errors": 0,
+      "failed": 0,
+      "observed": false,
+      "other_results": 0,
+      "passed": 0,
+      "path": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+      "result": "not_observed",
+      "skipped": 0,
+      "tests": 0
+    },
+    {
+      "errors": 0,
+      "failed": 0,
+      "observed": true,
+      "other_results": 0,
+      "passed": 70,
+      "path": "test/ods_sheet_reader_test.dart",
+      "result": "passed",
+      "skipped": 0,
+      "tests": 70
+    }
+  ],
+  "totals": {
+    "errors": 0,
+    "failed": 0,
+    "other_results": 0,
+    "passed": 70,
+    "skipped": 0,
+    "tests": 70
+  },
+  "unexpected_suites": [
+    "test/ods_sheet_reader_test.dart"
+  ]
+}
