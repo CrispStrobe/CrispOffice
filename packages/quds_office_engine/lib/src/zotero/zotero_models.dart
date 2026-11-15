@@ -37,9 +37,7 @@ class ZoteroLibrary {
   Uri itemUri(String key) {
     validateZoteroKey(key);
     if (isLocalUser) {
-      throw StateError(
-        'The local library alias has no persistent item URI.',
-      );
+      throw StateError('The local library alias has no persistent item URI.');
     }
     return Uri.parse('http://zotero.org$apiPath/items/$key');
   }
@@ -223,4 +221,3 @@ enum ZoteroExportFormat {
   final String mimeType;
   final String extension;
 }
-

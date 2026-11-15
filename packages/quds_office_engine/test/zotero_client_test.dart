@@ -605,70 +605,82 @@ void main() {
       expect(requests, hasLength(2));
     });
 
-    test('older desktops may omit a server ID; API v3 is still required', () async {
-      final older = ZoteroClient.local(
-        transport: (_) async => ZoteroHttpResponse(
-          statusCode: 200,
-          body: 'Nothing to see here.',
-          headers: {'Zotero-API-Version': '3'},
-        ),
-      );
-      await older.probeLocal();
-      for (final version in [null, '2', 'not-zotero']) {
-        final wrongServer = ZoteroClient.local(
+    test(
+      'older desktops may omit a server ID; API v3 is still required',
+      () async {
+        final older = ZoteroClient.local(
           transport: (_) async => ZoteroHttpResponse(
             statusCode: 200,
             body: 'Nothing to see here.',
-            headers: {if (version != null) 'Zotero-API-Version': version},
+            headers: {'Zotero-API-Version': '3'},
           ),
         );
-        await expectLater(
-          wrongServer.probeLocal(),
-          throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
-        );
-      }
-    });
-
-    test('changed or missing pinned library IDs require reconnecting', () async {
-      for (final (status, returnedId) in [(412, 'other'), (200, 'other'), (200, null)]) {
-        var calls = 0;
-        final client = ZoteroClient.local(
-          transport: (request) async {
-            calls++;
-            if (calls == 1) {
-              return ZoteroHttpResponse(
-                statusCode: 200,
-                body: 'Nothing to see here.',
-                headers: {
-                  'Zotero-API-Version': '3',
-                  'Zotero-Server-ID': 'original',
-                },
-              );
-            }
-            expect(request.headers['Zotero-Server-ID'], 'original');
-            return ZoteroHttpResponse(
-              statusCode: status,
-              body: '[]',
-              headers: {if (returnedId != null) 'Zotero-Server-ID': returnedId},
-            );
-          },
-        );
-        await client.probeLocal();
-        for (var attempt = 0; attempt < 2; attempt++) {
-          await expectLater(
-            client.items(local),
-            throwsA(
-              _error(ZoteroApiErrorKind.unavailable, status: status).having(
-                (error) => error.message,
-                'recovery',
-                contains('Reconnect'),
-              ),
+        await older.probeLocal();
+        for (final version in [null, '2', 'not-zotero']) {
+          final wrongServer = ZoteroClient.local(
+            transport: (_) async => ZoteroHttpResponse(
+              statusCode: 200,
+              body: 'Nothing to see here.',
+              headers: {if (version != null) 'Zotero-API-Version': version},
             ),
           );
+          await expectLater(
+            wrongServer.probeLocal(),
+            throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
+          );
         }
-        expect(calls, 3, reason: 'Never silently adopt a replacement ID.');
-      }
-    });
+      },
+    );
+
+    test(
+      'changed or missing pinned library IDs require reconnecting',
+      () async {
+        for (final (status, returnedId) in [
+          (412, 'other'),
+          (200, 'other'),
+          (200, null),
+        ]) {
+          var calls = 0;
+          final client = ZoteroClient.local(
+            transport: (request) async {
+              calls++;
+              if (calls == 1) {
+                return ZoteroHttpResponse(
+                  statusCode: 200,
+                  body: 'Nothing to see here.',
+                  headers: {
+                    'Zotero-API-Version': '3',
+                    'Zotero-Server-ID': 'original',
+                  },
+                );
+              }
+              expect(request.headers['Zotero-Server-ID'], 'original');
+              return ZoteroHttpResponse(
+                statusCode: status,
+                body: '[]',
+                headers: {
+                  if (returnedId != null) 'Zotero-Server-ID': returnedId,
+                },
+              );
+            },
+          );
+          await client.probeLocal();
+          for (var attempt = 0; attempt < 2; attempt++) {
+            await expectLater(
+              client.items(local),
+              throwsA(
+                _error(ZoteroApiErrorKind.unavailable, status: status).having(
+                  (error) => error.message,
+                  'recovery',
+                  contains('Reconnect'),
+                ),
+              ),
+            );
+          }
+          expect(calls, 3, reason: 'Never silently adopt a replacement ID.');
+        }
+      },
+    );
 
     test('invalid server IDs are not echoed into a later request', () async {
       for (final id in ['', 'bad\r\nInjected: value', 'a' * 257]) {
@@ -692,55 +704,79 @@ void main() {
       }
     });
 
-    test('local groups, collections, query and formats stay on loopback', () async {
-      final paths = <String>[];
-      final client = ZoteroClient.local(
-        transport: (request) async {
-          paths.add(request.uri.path);
-          expect(request.uri.origin, 'http://localhost:23119');
-          expect(request.headers['Zotero-API-Key'], isNull);
-          switch (request.uri.path) {
-            case '/api/users/0/groups':
-              return _json([
-                {'id': 4321, 'data': {'name': 'Local group'}},
-              ]);
-            case '/api/users/0/collections':
-              return _json([
-                {'key': 'EFGH5678', 'data': {'name': 'Local collection'}},
-              ]);
-            case '/api/users/0/collections/EFGH5678/items/top':
-              expect(request.uri.queryParameters['q'], 'Hassan & 年');
-              return _json([localItem()], headers: {
-                'Link': '<http://localhost:23119/api/users/0/collections/EFGH5678/items/top?start=50>; rel="next"',
-              });
-            case '/api/groups/4321/items':
-              return ZoteroHttpResponse(
-                statusCode: 200,
-                body: request.uri.queryParameters['format']!,
-              );
-            default:
-              throw StateError('Unexpected path.');
-          }
-        },
-      );
-      expect((await client.groups(0)).items.single.name, 'Local group');
-      expect((await client.collections(local)).items.single.key, 'EFGH5678');
-      final page = await client.items(
-        local, collectionKey: 'EFGH5678', query: 'Hassan & 年',
-      );
-      expect(page.items.single.title, 'Research & references');
-      expect(page.nextStart, 50);
-      expect(await client.exportItems(groupLibrary, ['ABCD1234'],
-        format: ZoteroExportFormat.ris), 'ris');
-      expect(await client.bibliography(groupLibrary, itemKeys: ['ABCD1234']), 'bib');
-      expect(paths, hasLength(5));
-    });
+    test(
+      'local groups, collections, query and formats stay on loopback',
+      () async {
+        final paths = <String>[];
+        final client = ZoteroClient.local(
+          transport: (request) async {
+            paths.add(request.uri.path);
+            expect(request.uri.origin, 'http://localhost:23119');
+            expect(request.headers['Zotero-API-Key'], isNull);
+            switch (request.uri.path) {
+              case '/api/users/0/groups':
+                return _json([
+                  {
+                    'id': 4321,
+                    'data': {'name': 'Local group'},
+                  },
+                ]);
+              case '/api/users/0/collections':
+                return _json([
+                  {
+                    'key': 'EFGH5678',
+                    'data': {'name': 'Local collection'},
+                  },
+                ]);
+              case '/api/users/0/collections/EFGH5678/items/top':
+                expect(request.uri.queryParameters['q'], 'Hassan & 年');
+                return _json(
+                  [localItem()],
+                  headers: {
+                    'Link': '<http://localhost:23119/api/users/0/collections/EFGH5678/items/top?start=50>; rel="next"',
+                  },
+                );
+              case '/api/groups/4321/items':
+                return ZoteroHttpResponse(
+                  statusCode: 200,
+                  body: request.uri.queryParameters['format']!,
+                );
+              default:
+                throw StateError('Unexpected path.');
+            }
+          },
+        );
+        expect((await client.groups(0)).items.single.name, 'Local group');
+        expect((await client.collections(local)).items.single.key, 'EFGH5678');
+        final page = await client.items(
+          local,
+          collectionKey: 'EFGH5678',
+          query: 'Hassan & 年',
+        );
+        expect(page.items.single.title, 'Research & references');
+        expect(page.nextStart, 50);
+        expect(
+          await client.exportItems(groupLibrary, [
+            'ABCD1234',
+          ], format: ZoteroExportFormat.ris),
+          'ris',
+        );
+        expect(
+          await client.bibliography(groupLibrary, itemKeys: ['ABCD1234']),
+          'bib',
+        );
+        expect(paths, hasLength(5));
+      },
+    );
 
     test('local routing alias is never accepted by the cloud client', () async {
       var calls = 0;
       final cloud = ZoteroClient(
         apiKey: 'cloud-secret',
-        transport: (_) async { calls++; return _json([]); },
+        transport: (_) async {
+          calls++;
+          return _json([]);
+        },
       );
       expect(local.id, 0);
       expect(local.isLocalUser, isTrue);
@@ -752,79 +788,121 @@ void main() {
       await expectLater(cloud.items(local), throwsArgumentError);
       await expectLater(cloud.collections(local), throwsArgumentError);
       await expectLater(cloud.item(local, 'ABCD1234'), throwsArgumentError);
-      await expectLater(cloud.exportItems(local, ['ABCD1234']), throwsArgumentError);
-      await expectLater(cloud.bibliography(local, itemKeys: ['ABCD1234']), throwsArgumentError);
+      await expectLater(
+        cloud.exportItems(local, ['ABCD1234']),
+        throwsArgumentError,
+      );
+      await expectLater(
+        cloud.bibliography(local, itemKeys: ['ABCD1234']),
+        throwsArgumentError,
+      );
       expect(calls, 0);
     });
 
-    test('signed-in desktop identity uses the real account, never users/0', () async {
-      final client = ZoteroClient.local(
-        transport: (_) async => _json(localItem(
-          userId: 1234, cslId: 'Hassan2024',
-        )),
-      );
-      final result = await client.item(local, 'ABCD1234');
-      expect(result.library, local, reason: 'Keep the local request route.');
-      expect(result.citationUri.toString(), 'http://zotero.org/users/1234/items/ABCD1234');
-      expect(result.canonicalUri, result.citationUri);
-      expect(result.sourceId, isNot(contains('/users/0/')));
-      expect(result.cslJson!['id'], 'Hassan2024');
-    });
+    test(
+      'signed-in desktop identity uses the real account, never users/0',
+      () async {
+        final client = ZoteroClient.local(
+          transport: (_) async =>
+              _json(localItem(userId: 1234, cslId: 'Hassan2024')),
+        );
+        final result = await client.item(local, 'ABCD1234');
+        expect(result.library, local, reason: 'Keep the local request route.');
+        expect(
+          result.citationUri.toString(),
+          'http://zotero.org/users/1234/items/ABCD1234',
+        );
+        expect(result.canonicalUri, result.citationUri);
+        expect(result.sourceId, isNot(contains('/users/0/')));
+        expect(result.cslJson!['id'], 'Hassan2024');
+      },
+    );
 
     test('unsynced desktop preserves a verified local-user identity', () async {
       final client = ZoteroClient.local(
-        transport: (_) async => _json(localItem(
-          cslId: 'https://zotero.org/users/local/aBcD1234/items/ABCD1234',
-        )),
+        transport: (_) async => _json(
+          localItem(
+            cslId: 'https://zotero.org/users/local/aBcD1234/items/ABCD1234',
+          ),
+        ),
       );
       final result = await client.item(local, 'ABCD1234');
-      expect(result.citationUri.toString(),
-        'http://zotero.org/users/local/aBcD1234/items/ABCD1234');
+      expect(
+        result.citationUri.toString(),
+        'http://zotero.org/users/local/aBcD1234/items/ABCD1234',
+      );
       expect(result.sourceId, result.citationUri.toString());
     });
 
-    test('a citation key without local identity remains an offline source', () async {
-      for (final id in ['Hassan2024', null, 'https://example.org/ABCD1234']) {
-        final client = ZoteroClient.local(
-          transport: (_) async => _json(localItem(cslId: id)),
-        );
-        final result = await client.item(local, 'ABCD1234');
-        expect(result.citationUri, isNull);
-        expect(() => result.canonicalUri, throwsStateError);
-        expect(result.sourceId, startsWith('zotero-local:'));
-        expect(result.cslJson!['title'], 'Local research');
-      }
-    });
+    test(
+      'a citation key without local identity remains an offline source',
+      () async {
+        for (final id in ['Hassan2024', null, 'https://example.org/ABCD1234']) {
+          final client = ZoteroClient.local(
+            transport: (_) async => _json(localItem(cslId: id)),
+          );
+          final result = await client.item(local, 'ABCD1234');
+          expect(result.citationUri, isNull);
+          expect(() => result.canonicalUri, throwsStateError);
+          expect(result.sourceId, startsWith('zotero-local:'));
+          expect(result.cslJson!['title'], 'Local research');
+        }
+      },
+    );
 
-    test('single CSL export objects, arrays and envelopes are normalized', () async {
-      const source = {'id': 'ABCD1234', 'type': 'book', 'title': 'Source'};
-      for (final csl in [
-        source, [source], {'items': [source]},
-        jsonEncode(source), jsonEncode([source]), jsonEncode({'items': [source]}),
-      ]) {
-        final client = ZoteroClient.local(
-          transport: (_) async => _json({
-            ..._item('ABCD1234'),
-            'library': {'type': 'user', 'id': 1234},
-            'csljson': csl,
+    test(
+      'single CSL export objects, arrays and envelopes are normalized',
+      () async {
+        const source = {'id': 'ABCD1234', 'type': 'book', 'title': 'Source'};
+        for (final csl in [
+          source,
+          [source],
+          {
+            'items': [source],
+          },
+          jsonEncode(source),
+          jsonEncode([source]),
+          jsonEncode({
+            'items': [source],
           }),
-        );
-        expect((await client.item(local, 'ABCD1234')).cslJson, source);
-      }
-    });
+        ]) {
+          final client = ZoteroClient.local(
+            transport: (_) async => _json({
+              ..._item('ABCD1234'),
+              'library': {'type': 'user', 'id': 1234},
+              'csljson': csl,
+            }),
+          );
+          expect((await client.item(local, 'ABCD1234')).cslJson, source);
+        }
+      },
+    );
 
-    test('malformed and multi-item CSL exports do not pick an arbitrary record', () async {
-      for (final csl in [
-        'not JSON', 3, [], [null], [{}, {}], {'items': []},
-        jsonEncode([{}, {}]), jsonEncode({'items': [null]}),
-      ]) {
-        final client = ZoteroClient.local(
-          transport: (_) async => _json({...localItem(), 'csljson': csl}),
-        );
-        await expectLater(client.item(local, 'ABCD1234'),
-          throwsA(_error(ZoteroApiErrorKind.invalidResponse)));
-      }
-    });
+    test(
+      'malformed and multi-item CSL exports do not pick an arbitrary record',
+      () async {
+        for (final csl in [
+          'not JSON',
+          3,
+          [],
+          [null],
+          [{}, {}],
+          {'items': []},
+          jsonEncode([{}, {}]),
+          jsonEncode({
+            'items': [null],
+          }),
+        ]) {
+          final client = ZoteroClient.local(
+            transport: (_) async => _json({...localItem(), 'csljson': csl}),
+          );
+          await expectLater(
+            client.item(local, 'ABCD1234'),
+            throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
+          );
+        }
+      },
+    );
 
     test('canonical CSL IDs cannot change item, library or identity', () async {
       for (final id in [
@@ -839,30 +917,46 @@ void main() {
         final client = ZoteroClient.local(
           transport: (_) async => _json(localItem(cslId: id)),
         );
-        await expectLater(client.item(local, 'ABCD1234'),
-          throwsA(_error(ZoteroApiErrorKind.invalidResponse)), reason: id);
+        await expectLater(
+          client.item(local, 'ABCD1234'),
+          throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
+          reason: id,
+        );
       }
       final wrongAccount = ZoteroClient.local(
-        transport: (_) async => _json(localItem(
-          userId: 1234, cslId: 'http://zotero.org/users/9999/items/ABCD1234',
-        )),
+        transport: (_) async => _json(
+          localItem(
+            userId: 1234,
+            cslId: 'http://zotero.org/users/9999/items/ABCD1234',
+          ),
+        ),
       );
-      await expectLater(wrongAccount.item(local, 'ABCD1234'),
-        throwsA(_error(ZoteroApiErrorKind.invalidResponse)));
+      await expectLater(
+        wrongAccount.item(local, 'ABCD1234'),
+        throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
+      );
     });
 
-    test('users/0 requires a valid matching response library envelope', () async {
-      for (final library in [
-        null, {'type': 'group', 'id': 1234}, {'type': 'user', 'id': -1},
-        {'type': 'user'}, {'type': 'user', 'id': 'invalid'},
-      ]) {
-        final client = ZoteroClient.local(
-          transport: (_) async => _json({...localItem(), 'library': library}),
-        );
-        await expectLater(client.item(local, 'ABCD1234'),
-          throwsA(_error(ZoteroApiErrorKind.invalidResponse)));
-      }
-    });
+    test(
+      'users/0 requires a valid matching response library envelope',
+      () async {
+        for (final library in [
+          null,
+          {'type': 'group', 'id': 1234},
+          {'type': 'user', 'id': -1},
+          {'type': 'user'},
+          {'type': 'user', 'id': 'invalid'},
+        ]) {
+          final client = ZoteroClient.local(
+            transport: (_) async => _json({...localItem(), 'library': library}),
+          );
+          await expectLater(
+            client.item(local, 'ABCD1234'),
+            throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
+          );
+        }
+      },
+    );
 
     test('local pagination cannot leave the selected loopback route', () async {
       for (final next in [
@@ -881,33 +975,61 @@ void main() {
             return _json([], headers: {'Link': '<$next>; rel="next"'});
           },
         );
-        await expectLater(client.items(local),
-          throwsA(_error(ZoteroApiErrorKind.invalidResponse)), reason: next);
+        await expectLater(
+          client.items(local),
+          throwsA(_error(ZoteroApiErrorKind.invalidResponse)),
+          reason: next,
+        );
         expect(calls, 1);
       }
     });
 
-    test('desktop errors explain local setup without exposing diagnostics', () async {
-      final denied = ZoteroClient.local(
-        transport: (_) async => ZoteroHttpResponse(
-          statusCode: 403, body: 'sensitive local response',
-        ),
-      );
-      await expectLater(denied.probeLocal(), throwsA(
-        _error(ZoteroApiErrorKind.authentication, status: 403)
-          .having((error) => error.message, 'setup', contains('Settings → Advanced'))
-          .having((error) => error.message, 'safe message', isNot(contains('sensitive'))),
-      ));
-      final unavailable = ZoteroClient.local(
-        transport: (_) async => throw StateError('sensitive transport diagnostic'),
-      );
-      await expectLater(unavailable.probeLocal(), throwsA(
-        _error(ZoteroApiErrorKind.network)
-          .having((error) => error.message, 'recovery', contains('Open Zotero'))
-          .having((error) => error.message, 'safe message', isNot(contains('sensitive'))),
-      ));
-    });
+    test(
+      'desktop errors explain local setup without exposing diagnostics',
+      () async {
+        final denied = ZoteroClient.local(
+          transport: (_) async => ZoteroHttpResponse(
+            statusCode: 403,
+            body: 'sensitive local response',
+          ),
+        );
+        await expectLater(
+          denied.probeLocal(),
+          throwsA(
+            _error(ZoteroApiErrorKind.authentication, status: 403)
+                .having(
+                  (error) => error.message,
+                  'setup',
+                  contains('Settings → Advanced'),
+                )
+                .having(
+                  (error) => error.message,
+                  'safe message',
+                  isNot(contains('sensitive')),
+                ),
+          ),
+        );
+        final unavailable = ZoteroClient.local(
+          transport: (_) async =>
+              throw StateError('sensitive transport diagnostic'),
+        );
+        await expectLater(
+          unavailable.probeLocal(),
+          throwsA(
+            _error(ZoteroApiErrorKind.network)
+                .having(
+                  (error) => error.message,
+                  'recovery',
+                  contains('Open Zotero'),
+                )
+                .having(
+                  (error) => error.message,
+                  'safe message',
+                  isNot(contains('sensitive')),
+                ),
+          ),
+        );
+      },
+    );
   });
-
 }
-

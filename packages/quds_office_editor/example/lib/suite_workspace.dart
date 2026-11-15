@@ -2009,6 +2009,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     controller: _word,
                     session: _zoteroSession,
                     transport: studioZoteroTransport,
+                    localTransport: studioZoteroDesktopAvailable
+                        ? studioZoteroTransport
+                        : null,
                   )
                 : null,
           ),
