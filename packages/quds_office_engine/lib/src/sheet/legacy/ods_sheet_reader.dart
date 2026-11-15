@@ -31,6 +31,9 @@ class OdsSheetFormatException implements Exception {
 
 /// Reads an `.ods` package into [SmlWorkbook].
 abstract final class OdsSheetReader {
+  static const double _odfMaxDigitWidthPx = 7.4;
+  static const double _odfDefaultColumnWidthIn = 0.8898;
+  static const double _odfDefaultRowHeightPoints = 14.95;
   static const int _maxRows = 100000;
   static const int _maxColumns = 4096;
   static const _office = 'urn:oasis:names:tc:opendocument:xmlns:office:1.0';
@@ -108,6 +111,9 @@ abstract final class OdsSheetReader {
             ? 'Sheet${book.sheets.length + 1}'
             : name,
         sheetId: book.sheets.length + 1,
+      );
+      sheet.importDefaultColumnWidth(
+        excelWidth: _odfDefaultColumnWidthIn * 96 / _odfMaxDigitWidthPx,
       );
       final columnDefaults = _readColumns(table, sheet, styles, budget);
       var rowIndex = 0;
@@ -279,6 +285,8 @@ abstract final class OdsSheetReader {
         }
         if (rowHeight != null &&
             rowHeight > 0 &&
+            (entries.isNotEmpty ||
+                (rowHeight - _odfDefaultRowHeightPoints).abs() > 0.1) &&
             rowIndex + rowRepeat <= _maxRows) {
           final height = SmlWorksheet.rowHeightFromExcel(rowHeight);
           if (entries.isEmpty && rowRepeat > 1) {
@@ -417,7 +425,12 @@ abstract final class OdsSheetReader {
       if (width != null && width > 0) {
         budget.dimensions(count);
         for (var i = 0; i < count; i++) {
-          sheet.setColumnWidth(column + i, width * 96 / 72);
+          final chars = width * 96 / 72 / _odfMaxDigitWidthPx;
+          final defaultChars =
+              _odfDefaultColumnWidthIn * 96 / _odfMaxDigitWidthPx;
+          if ((chars - defaultChars).abs() > 0.05) {
+            sheet.importColumnWidth(column + i, chars);
+          }
         }
       }
       if (cellStyle != null) {
@@ -693,9 +706,15 @@ abstract final class OdsSheetReader {
       case 'percentage-style':
         return '${_zeros(style)}%';
       case 'currency-style':
-        return '#,##0.00';
+        final symbol = _descendants(
+          style,
+          'currency-symbol',
+          _number,
+        ).firstOrNull?.text;
+        final base = '#,##${_zeros(style)}';
+        return symbol == null || symbol.isEmpty ? base : '"$symbol"$base';
       case 'date-style':
-        return 'DD.MM.YYYY';
+        return _dateFormat(style);
       case 'time-style':
         return _timeFormat(style);
       case 'number-style':
@@ -740,6 +759,43 @@ abstract final class OdsSheetReader {
     }
     if (seconds != null) return elapsed ? leading(seconds, 's') : 'ss';
     return 'h:mm:ss';
+  }
+
+  /// Renders an ODF date-style in its authored component order. Dates were
+  /// previously forced to DD.MM.YYYY, which silently rewrote ISO and US dates.
+  static String _dateFormat(XmlElement style) {
+    final buffer = StringBuffer();
+    for (final child in style.childElements) {
+      if (child.namespaceUri != _number) continue;
+      switch (child.localName) {
+        case 'year':
+          buffer.write(child.getAttribute('style') == 'short' ? 'YY' : 'YYYY');
+        case 'month':
+          if (child.getAttribute('textual') == 'true') {
+            buffer.write('MMM');
+          } else {
+            buffer.write(child.getAttribute('style') == 'short' ? 'M' : 'MM');
+          }
+        case 'day':
+          buffer.write(child.getAttribute('style') == 'short' ? 'D' : 'DD');
+        case 'day-of-week':
+          buffer.write('DDD');
+        case 'hours':
+          buffer.write('HH');
+        case 'minutes':
+          buffer.write('MM');
+        case 'seconds':
+          buffer.write('SS');
+        case 'am-pm':
+          buffer.write('AM/PM');
+        case 'text':
+          // The reader skips whitespace-only text nodes, so an empty
+          // number:text is a separator (usually a space).
+          final literal = child.text;
+          buffer.write(literal.isEmpty ? ' ' : literal);
+      }
+    }
+    return buffer.isEmpty ? 'DD.MM.YYYY' : buffer.toString();
   }
 
   static String _zeros(XmlElement style) {
