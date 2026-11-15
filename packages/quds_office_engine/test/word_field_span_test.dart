@@ -38,6 +38,24 @@ Future<WmlDocument> _cycle(WmlDocument doc) async =>
     WordDeserializer().readBytes(await OfficeIsolateSave.word(doc));
 
 void main() {
+  test('non-text content before a field stays outside its result', () async {
+    var doc = _read(
+      '<w:p>'
+      '<w:r><w:pict xmlns:v="urn:schemas-microsoft-com:vml">'
+      '<v:rect id="outside-field" style="width:10pt;height:10pt"/>'
+      '</w:pict></w:r>${_field(' DATE ', 'Today')}</w:p>',
+    );
+    for (var cycle = 0; cycle < 3; cycle++) {
+      expect(doc.paragraphs.single.properties.fieldInstruction, isNull);
+      final xml = _xml(doc);
+      expect(
+        xml.indexOf('outside-field'),
+        lessThan(xml.indexOf('fldCharType="begin"')),
+      );
+      doc = await _cycle(doc);
+    }
+  });
+
   test('a cross-reference inside a sentence stays inside the sentence', () async {
     var doc = _read(
       '<w:p>${_t('See page ')}${_field(' PAGEREF _Ref1 \\h ', '5')}${_t(' for details.')}</w:p>',
@@ -48,8 +66,14 @@ void main() {
       expect(p.properties.fieldInstruction, isNull);
       final xml = _xml(doc);
       // Text before and after stays outside the field.
-      expect(xml.indexOf('See page'), lessThan(xml.indexOf('fldCharType="begin"')));
-      expect(xml.indexOf('fldCharType="end"'), lessThan(xml.indexOf('for details')));
+      expect(
+        xml.indexOf('See page'),
+        lessThan(xml.indexOf('fldCharType="begin"')),
+      );
+      expect(
+        xml.indexOf('fldCharType="end"'),
+        lessThan(xml.indexOf('for details')),
+      );
       expect('PAGEREF'.allMatches(xml), hasLength(1));
       doc = await _cycle(doc);
     }
@@ -98,24 +122,29 @@ void main() {
   });
 
   test('a field wrapping the whole paragraph keeps the paragraph model', () {
-    final doc = _read('<w:p>${_field(' DATE \\@ "d.M.yyyy" ', '1.1.2026')}</w:p>');
+    final doc = _read(
+      '<w:p>${_field(' DATE \\@ "d.M.yyyy" ', '1.1.2026')}</w:p>',
+    );
     final p = doc.paragraphs.single;
     expect(p.properties.fieldInstruction?.trim(), 'DATE \\@ "d.M.yyyy"');
     expect(p.inlines.whereType<WmlFieldBoundary>(), isEmpty);
   });
 
-  test('a field broken by an edit degrades to text, never to a corrupt package', () async {
-    final doc = _read(
-      '<w:p>${_t('See page ')}${_field(' PAGEREF _Ref1 \\h ', '5')}${_t(' for details.')}</w:p>',
-    );
-    final p = doc.paragraphs.single;
-    p.inlines.removeWhere(
-      (i) => i is WmlFieldBoundary && i.kind == WmlFieldBoundaryKind.end,
-    );
-    final xml = _xml(doc);
-    expect(xml, isNot(contains('fldChar')));
-    expect(xml, isNot(contains('instrText')));
-    final reopened = await _cycle(doc);
-    expect(reopened.paragraphs.single.text, 'See page 5 for details.');
-  });
+  test(
+    'a field broken by an edit degrades to text, never to a corrupt package',
+    () async {
+      final doc = _read(
+        '<w:p>${_t('See page ')}${_field(' PAGEREF _Ref1 \\h ', '5')}${_t(' for details.')}</w:p>',
+      );
+      final p = doc.paragraphs.single;
+      p.inlines.removeWhere(
+        (i) => i is WmlFieldBoundary && i.kind == WmlFieldBoundaryKind.end,
+      );
+      final xml = _xml(doc);
+      expect(xml, isNot(contains('fldChar')));
+      expect(xml, isNot(contains('instrText')));
+      final reopened = await _cycle(doc);
+      expect(reopened.paragraphs.single.text, 'See page 5 for details.');
+    },
+  );
 }

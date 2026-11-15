@@ -1552,11 +1552,13 @@ class WordDeserializer {
     // no nesting and no form-field data: the paragraph model is exact.
     final kinds = boundaries.map((b) => b.kind).toList();
     final nested = kinds.where((k) => k == WmlFieldBoundaryKind.begin).length;
-    final firstText = paragraph.inlines.indexWhere(
-      (inline) => inline is WmlRun && inline.text.isNotEmpty,
+    // Opaque pictures, objects and range markers outside the field must not
+    // be pulled into its result by the whole-paragraph compatibility model.
+    final firstContent = paragraph.inlines.indexWhere(
+      (inline) => inline is! WmlFieldBoundary,
     );
-    final lastText = paragraph.inlines.lastIndexWhere(
-      (inline) => inline is WmlRun && inline.text.isNotEmpty,
+    final lastContent = paragraph.inlines.lastIndexWhere(
+      (inline) => inline is! WmlFieldBoundary,
     );
     final begin = paragraph.inlines.indexOf(boundaries.first);
     final end = paragraph.inlines.indexOf(boundaries.last);
@@ -1566,8 +1568,8 @@ class WordDeserializer {
         kinds.last == WmlFieldBoundaryKind.end &&
         kinds.where((k) => k == WmlFieldBoundaryKind.end).length == 1 &&
         !(boundaries.first.sourceXml ?? '').contains('ffData') &&
-        (firstText < 0 || begin < firstText) &&
-        (lastText < 0 || end > lastText) &&
+        (firstContent < 0 || begin < firstContent) &&
+        (lastContent < 0 || end > lastContent) &&
         (paragraph.properties.fieldInstruction ?? '').trim().isNotEmpty;
     if (simple) {
       strip();

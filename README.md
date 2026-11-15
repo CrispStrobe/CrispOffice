@@ -18,6 +18,14 @@
 
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
+The current fork imports supported BIFF8 `.xls` files and Excel HTML tables into
+editable XLSX workbooks, including shared-formula groups and font families.
+Complex Word fields keep their spans, and unsupported header/footer structures
+retain their original XML and related payloads. Tracked-change import/save now
+avoids repeated full scans. Preserved headers remain outside the editable model;
+unsupported legacy spreadsheet formats, encryption and full native rendering
+remain outside these guarantees.
+
 Legacy VML pictures, rules and shapes are retained as opaque source content with relationship integrity checks; this preserves export bytes without claiming native rendering or editing of those objects.
 
 The fork now deduplicates byte-identical Word media on export, reads supported symbol characters, and keeps sibling text boxes independent during import. Legacy DOC conversion writes canonical built-in style names and offers explicit recovery for damaged auxiliary features; recovery reports degraded output and remains opt-in.
