@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:archive/archive.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
@@ -206,17 +205,13 @@ void main() {
  </table:table></office:spreadsheet></office:body>
 </office:document-content>
 ''';
-    final archive = Archive()
+    final zip = ZipWriter()
       ..addFile(
-        ArchiveFile.bytes(
-          'mimetype',
-          utf8.encode('application/vnd.oasis.opendocument.spreadsheet'),
-        ),
+        'mimetype',
+        utf8.encode('application/vnd.oasis.opendocument.spreadsheet'),
       )
-      ..addFile(ArchiveFile.bytes('content.xml', utf8.encode(content)));
-    final book = OdsSheetReader.readBytes(
-      Uint8List.fromList(ZipEncoder().encode(archive)),
-    );
+      ..addFile('content.xml', utf8.encode(content));
+    final book = OdsSheetReader.readBytes(zip.close());
     final sheet = book.sheets.single;
     expect(sheet.name, 'Budget');
     expect(sheet.cellA1('A1').asString, 'Heading');
@@ -942,6 +937,9 @@ void edgeTests() {
     expect(merge.r1, 1);
     expect(sheet.cellA1('D1').horizontalAlign, SmlHAlign.center);
     expect(book.sheets[1].cellA1('A1').value, 41);
+    expect(sheet.comments.single.ref.a1, 'A5');
+    expect(sheet.comments.single.text, 'Review this');
+    expect(sheet.comments.single.author, 'Alice');
     expect(sheet.cellA1('E3').value, 'A    B');
     expect(sheet.cellA1('E4').value, 'L1\nL2');
     expect(
@@ -963,6 +961,7 @@ void edgeTests() {
     expect(reopened.sheets.first.cellA1('A1').value, 45293);
     expect(reopened.sheets.first.cellA1('B1').formula, 'Sheet2!A1+1');
     expect(reopened.sheets.first.merges, hasLength(1));
+    expect(reopened.sheets.first.comments.single.text, 'Review this');
     expect(
       reopened.styles!.format(
         45293,
