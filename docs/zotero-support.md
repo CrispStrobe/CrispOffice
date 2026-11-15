@@ -125,10 +125,10 @@ or HTTP citing transaction adapter.
 | --- | --- | --- |
 | Basic citations | Author–year fallback, multiple sources, locators and affixes | Not a named CSL style |
 | Single-source style preview | Zotero's individual citation text for a style ID and locale | Review locators and document numbering; this is not a document-wide CSL run |
-| Zotero bibliography | One complete API rendering of up to 50 distinct sources in one library | Inserted as plain text; no separately formatted batches are concatenated |
+| Zotero bibliography | One complete API rendering of up to 50 distinct sources in one library, with supported rich character formatting | Review before insertion; small caps and paragraph layout are simplified; no separately formatted batches are concatenated |
 | Basic bibliography | Sorted, deduplicated entries from embedded source snapshots | Useful offline, without complete CSL formatting |
 | Refresh | Fetch metadata for at most 50 distinct linked sources, verify their complete saved identities, and atomically refresh Quds basic author–year citations | Local identities require the matching desktop connection; imported/custom style caches are not automatically replaced |
-| Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and cached text | Unsupported rich/nested/locked/multi-paragraph replacements are refused |
+| Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and rich cached text, including multi-run simple fields | Nested, locked, opaque and multi-paragraph replacements are refused |
 | Native Zotero document preferences | Preserve imported `ZOTERO_PREF_*` properties as opaque package content | New document-wide style/session preferences are not fabricated |
 
 New citations use complex Word fields with `ADDIN ZOTERO_ITEM CSL_CITATION`
@@ -147,6 +147,42 @@ numeric ordering, disambiguation, ibid, cross-word-processor transfer, or native
 Zotero/Word refresh certification. Those require a separate complete processor
 or desktop adapter and native acceptance checks. The UI identifies basic
 formatting and individual previews explicitly.
+
+### Rich bibliography review and imported citation preservation
+
+**Document → Zotero bibliography** now opens a formatted review. **Keep Zotero
+formatting** is selected initially. Bold, italic, underline, strike-through,
+superscript and subscript are inserted as native Word run properties and remain
+available after saving, reopening, updating, undo and redo. Numeric bibliography
+labels stay beside their entry text. Turn off **Keep Zotero formatting** to edit
+and insert a plain-text version explicitly. Cancelling the review does not
+change the document; a changed caret or document still refuses stale insertion.
+
+Small caps, hanging indents, spacing, multi-column margins and arbitrary CSS are
+not rendered faithfully. The review reports known unsupported formatting.
+Entries retain their order and text using line breaks in one bibliography
+paragraph. Links remain inert text. A bounded XHTML parser accepts only supported
+text styling, never loads images or external resources, ignores active content,
+and rejects malformed markup instead of silently replacing an existing field.
+
+Rich updates support a bibliography that occupies a complete paragraph,
+including a safe field reopened from DOCX. A bibliography mixed with surrounding
+text or outside structural markers refuses rich replacement; the plain-text
+workflow remains available. Imported bibliography additions, omissions and
+custom entries retain their existing protection.
+
+Imported multi-run `w:fldSimple` Zotero fields retain their link and styles by
+using Word complex-field boundaries internally and on export. Lock/dirty flags
+and unknown container attributes are retained; unknown attributes make
+replacement read-only. A numeric citation cache or the Zotero locator label
+`page` is not mistaken for a native Word `PAGE` field. Unchanged citation edits
+preserve the existing result runs and original `formattedCitation` value without
+trying to interpret its processor-specific syntax. The composer starts from
+the actual visible field cache even if imported `plainCitation` metadata is stale.
+
+Newly generated inline citations still use the existing atomic plain-result
+workflow. This increment does not introduce mixed-format inline citation
+generation or claim document-wide CSL processing.
 
 Ordinary save/reopen retains unsupported fields instead of replacing them with
 plain text. Converting a field to text is an explicit, undoable user action.

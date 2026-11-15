@@ -272,10 +272,7 @@ class WordDeserializer {
         'pPr',
         namespaceUri: OfficeNamespaces.w,
       );
-      if (properties?.firstChild(
-            'sectPr',
-            namespaceUri: OfficeNamespaces.w,
-          ) ==
+      if (properties?.firstChild('sectPr', namespaceUri: OfficeNamespaces.w) ==
           null) {
         return _SdtBreakLayout.opaque;
       }

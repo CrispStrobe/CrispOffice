@@ -73,12 +73,7 @@ final class ZoteroFormattedText {
     for (final rune in html.runes) {
       if (!_xmlCharacter(rune)) throw _malformed();
     }
-    final normalized = html
-        .replaceAllMapped(
-          RegExp(r'&(#(?:[xX][0-9a-fA-F]+|[0-9]+)|[A-Za-z][A-Za-z0-9]*);'),
-          _entity,
-        )
-        .replaceAll(RegExp(r'<br\s*>', caseSensitive: false), '<br/>');
+    final normalized = _normalize(html);
     final reader = XmlPullReader(
       '<quds-zotero-result>$normalized</quds-zotero-result>',
     );
@@ -108,6 +103,9 @@ final class ZoteroFormattedText {
             final classes = (attributes['class'] ?? '').split(RegExp(r'\s+'));
             final role = _role(tag, classes);
             var style = parent?.style ?? const _Style();
+            if (parent?.hidden != true && _embeddedTags.contains(tag)) {
+              unsupported.add('embedded content');
+            }
             if (!hidden) {
               style = _style(
                 tag,
@@ -117,10 +115,21 @@ final class ZoteroFormattedText {
               );
               if (role == _Role.block) out.blockBreak();
               if (tag == 'br') out.lineBreak();
-              if (classes.contains('csl-indent'))
+              if (classes.any(
+                const <String>{
+                  'csl-indent',
+                  'csl-left-margin',
+                  'csl-right-inline',
+                }.contains,
+              )) {
                 unsupported.add('paragraph layout');
-              if (_layoutTags.contains(tag))
+              }
+              if (_layoutTags.contains(tag)) {
                 unsupported.add('paragraph layout');
+              }
+              if (_unsupportedTags.contains(tag)) {
+                unsupported.add('unsupported inline style');
+              }
             }
             stack.add(_ElementState(style: style, role: role, hidden: hidden));
           case XmlEventType.endElement:
@@ -171,6 +180,69 @@ final class ZoteroFormattedText {
     'source',
   };
   static const _layoutTags = <String>{'table', 'tr', 'td', 'th', 'ul', 'ol'};
+  static const _embeddedTags = <String>{
+    'iframe',
+    'object',
+    'embed',
+    'svg',
+    'math',
+    'img',
+  };
+  static const _unsupportedTags = <String>{
+    'small',
+    'big',
+    'pre',
+    'font',
+    'tt',
+    'code',
+    'samp',
+    'kbd',
+    'mark',
+    'center',
+  };
+
+  static String _normalize(String html) {
+    final out = StringBuffer();
+    var offset = 0;
+    void fragment(String value) {
+      if (value.contains(']]>')) throw _malformed();
+      out.write(
+        value
+            .replaceAllMapped(
+              RegExp(r'&(#(?:[xX][0-9a-fA-F]+|[0-9]+)|[A-Za-z][A-Za-z0-9]*);'),
+              _entity,
+            )
+            .replaceAll(RegExp(r'<br\s*>', caseSensitive: false), '<br/>'),
+      );
+    }
+
+    // Entity and HTML-void normalization must not rewrite literal CDATA or
+    // ignored comments. In particular CDATA containing "&amp;" means those
+    // five characters, not an encoded ampersand.
+    var scan = 0;
+    while (scan < html.length) {
+      final start = html.indexOf('<', scan);
+      if (start < 0) break;
+      final comment = html.startsWith('<!--', start);
+      final cdata = html.startsWith('<![CDATA[', start);
+      if (!comment && !cdata) {
+        scan = start + 1;
+        continue;
+      }
+      final contentStart = start + (comment ? 4 : 9);
+      final end = html.indexOf(comment ? '-->' : ']]>', contentStart);
+      if (end < 0) throw _malformed();
+      if (comment && html.substring(contentStart, end).contains('--')) {
+        throw _malformed();
+      }
+      fragment(html.substring(offset, start));
+      out.write(html.substring(start, end + 3));
+      offset = end + 3;
+      scan = offset;
+    }
+    fragment(html.substring(offset));
+    return out.toString();
+  }
 
   static _Role _role(String tag, List<String> classes) {
     if (classes.contains('csl-left-margin')) return _Role.leftMargin;

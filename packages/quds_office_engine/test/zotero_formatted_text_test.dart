@@ -64,6 +64,7 @@ void main() {
 </div>''');
       expect(result.plainText, '[1] Alpha Book.\n[2] Beta.\nGamma.\nDetails.');
       expect(_at(result, 'Book').italic, isTrue);
+      expect(result.unsupportedFormatting, contains('paragraph layout'));
     },
   );
 
@@ -90,6 +91,25 @@ void main() {
   );
 
   test(
+    'CDATA literals and comments are not rewritten by entity normalization',
+    () {
+      final result = ZoteroFormattedText.fromHtml(
+        '<i><![CDATA[A&amp; <br> B]]></i><!-- ignored &unknown; <br> --> end',
+      );
+      expect(result.plainText, 'A&amp; <br> B end');
+      expect(_at(result, 'A&amp;').italic, isTrue);
+      expect(
+        () => ZoteroFormattedText.fromHtml('<!-- invalid -- comment -->'),
+        throwsFormatException,
+      );
+      expect(
+        () => ZoteroFormattedText.fromHtml('unterminated <!--' * 10000),
+        throwsFormatException,
+      );
+    },
+  );
+
+  test(
     'resources active markup and attributes cannot become document objects',
     () {
       final result = ZoteroFormattedText.fromHtml(
@@ -101,6 +121,7 @@ void main() {
         '<a href="javascript:bad()" onclick="bad()">source</a>After',
       );
       expect(result.plainText, 'BeforesourceAfter');
+      expect(result.unsupportedFormatting, contains('embedded content'));
       final runs = result.toRuns();
       expect(
         runs.every((run) => run.hyperlink == null && run.inlineVisual == null),
@@ -127,32 +148,41 @@ void main() {
         ]),
       );
       expect(result.toRuns().single.properties.color, '000000');
+      expect(
+        ZoteroFormattedText.fromHtml(
+          '<small>Small</small>',
+        ).unsupportedFormatting,
+        contains('unsupported inline style'),
+      );
     },
   );
 
-  test('result snapshots are immutable and fresh runs do not alias them or the base font', () {
-    final result = ZoteroFormattedText.fromHtml('<i>Title</i> plain');
-    expect(() => result.spans.clear(), throwsUnsupportedError);
-    expect(
-      () => result.unsupportedFormatting.add('other'),
-      throwsUnsupportedError,
-    );
-    final base = WmlRunProps(
-      asciiFont: 'Custom',
-      fontSizeHalfPoints: 28,
-      bold: true,
-    );
-    final first = result.toRuns(baseProperties: base);
-    expect(first.first.properties.asciiFont, 'Custom');
-    expect(first.first.properties.fontSizeHalfPoints, 28);
-    expect(first.first.properties.bold, isFalse);
-    first.first.text = 'changed';
-    first.first.properties.asciiFont = 'Changed';
-    expect(base.asciiFont, 'Custom');
-    expect(base.bold, isTrue);
-    expect(result.plainText, 'Title plain');
-    expect(result.toRuns().first.text, 'Title');
-  });
+  test(
+    'result snapshots are immutable and fresh runs do not alias them or the base font',
+    () {
+      final result = ZoteroFormattedText.fromHtml('<i>Title</i> plain');
+      expect(() => result.spans.clear(), throwsUnsupportedError);
+      expect(
+        () => result.unsupportedFormatting.add('other'),
+        throwsUnsupportedError,
+      );
+      final base = WmlRunProps(
+        asciiFont: 'Custom',
+        fontSizeHalfPoints: 28,
+        bold: true,
+      );
+      final first = result.toRuns(baseProperties: base);
+      expect(first.first.properties.asciiFont, 'Custom');
+      expect(first.first.properties.fontSizeHalfPoints, 28);
+      expect(first.first.properties.bold, isFalse);
+      first.first.text = 'changed';
+      first.first.properties.asciiFont = 'Changed';
+      expect(base.asciiFont, 'Custom');
+      expect(base.bold, isTrue);
+      expect(result.plainText, 'Title plain');
+      expect(result.toRuns().first.text, 'Title');
+    },
+  );
 
   for (final markup in <String>[
     '<i>unclosed',
@@ -187,8 +217,9 @@ void main() {
       throwsFormatException,
     );
     expect(
-      ZoteroFormattedText.fromHtml('${'<span>' * 64}x${'</span>' * 64}')
-          .plainText,
+      ZoteroFormattedText.fromHtml(
+        '${'<span>' * 64}x${'</span>' * 64}',
+      ).plainText,
       'x',
     );
   });

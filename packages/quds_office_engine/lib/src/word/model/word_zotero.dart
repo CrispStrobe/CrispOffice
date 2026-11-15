@@ -128,7 +128,8 @@ final class ZoteroCitation {
     'citationItems': <Map<String, dynamic>>[
       for (final item in items) item.toJson(),
     ],
-    'schema': 'https://github.com/citation-style-language/schema/raw/master/csl-citation.json',
+    'schema':
+        'https://github.com/citation-style-language/schema/raw/master/csl-citation.json',
   });
 
   ZoteroCitation.fromJson(Map<String, dynamic> json)
@@ -515,8 +516,12 @@ abstract final class WordZotero {
           paragraph.inlines.length == 1 &&
           identical(paragraph.inlines.single, field.run) &&
           field.run!.commentIds.isEmpty &&
-          paragraph.contentControlWrappers.isEmpty;
-      if (!field.wholeParagraph && !soleRun) {
+          paragraph.contentControlWrappers.isEmpty &&
+          paragraph.properties.fieldInstruction == null &&
+          !paragraph.properties.pageNumberField;
+      if (!field.wholeParagraph &&
+          !soleRun &&
+          !_standaloneComplexField(field)) {
         throw UnsupportedError(
           'This bibliography uses an inline field. Use plain text for this update, or insert a new formatted bibliography in its own paragraph.',
         );
@@ -555,6 +560,31 @@ abstract final class WordZotero {
       final last = paragraph.inlines.indexOf(boundaries.last);
       paragraph.inlines.replaceRange(first, last + 1, <WmlInline>[replacement]);
     }
+  }
+
+  // A saved rich bibliography can reopen as a complex boundary packet. Its
+  // offsets alone are insufficient: bookmarks and other zero-width markup
+  // may sit outside the field while sharing those same offsets.
+  static bool _standaloneComplexField(WmlZoteroField field) {
+    final paragraph = field.paragraph;
+    final boundaries = field._boundaries[paragraph];
+    if (field.paragraphs.length != 1 ||
+        field.start != 0 ||
+        field.end != paragraph.text.length ||
+        paragraph.contentControlWrappers.isNotEmpty ||
+        paragraph.properties.fieldInstruction != null ||
+        paragraph.properties.pageNumberField ||
+        boundaries == null ||
+        boundaries.isEmpty ||
+        !identical(paragraph.inlines.first, boundaries.first) ||
+        !identical(paragraph.inlines.last, boundaries.last)) {
+      return false;
+    }
+    final owned = Set<WmlInline>.identity()
+      ..addAll(boundaries)
+      ..addAll(field._contents);
+    return owned.length == paragraph.inlines.length &&
+        paragraph.inlines.every(owned.contains);
   }
 
   // An unchanged display cache is not an instruction to flatten its runs.
@@ -859,8 +889,9 @@ final class _OpenField {
   void addBoundary(WmlParagraph paragraph, WmlFieldBoundary boundary) {
     boundaries.putIfAbsent(paragraph, () => <WmlFieldBoundary>[]).add(boundary);
     if (boundary.kind == WmlFieldBoundaryKind.begin) {
-      locked = RegExp(r'fldLock\s*=\s*["\x27](?:1|true|on)["\x27]')
-          .hasMatch(boundary.sourceXml ?? '');
+      locked = RegExp(
+        r'fldLock\s*=\s*["\x27](?:1|true|on)["\x27]',
+      ).hasMatch(boundary.sourceXml ?? '');
     }
     if (boundary.runPropertiesXml?.trim().isNotEmpty == true) {
       opaqueMetadata = true;
