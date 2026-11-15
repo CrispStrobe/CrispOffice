@@ -137,6 +137,7 @@ abstract final class OdsSheetReader {
                 SmlCell? cell,
               })
             >[];
+        final rowMerges = <SmlMerge>[];
         var column = 0;
         var pendingCovered = 0;
         for (final element in row.childElements) {
@@ -160,9 +161,11 @@ abstract final class OdsSheetReader {
             column += repeat - reserved;
             continue;
           }
-          // Keep compatibility with producers that omit covered placeholders:
-          // a new ordinary origin begins after the preceding reserved span.
-          pendingCovered = 0;
+          if (pendingCovered > 0) {
+            throw const OdsSheetFormatException(
+              'Stored cell inside a merge requires a covered-cell token',
+            );
+          }
           final colSpan = _repeat(element, 'number-columns-spanned');
           final rowSpan = _repeat(element, 'number-rows-spanned');
           if (_repeat(element, 'number-matrix-columns-spanned') > 1 ||
@@ -212,6 +215,31 @@ abstract final class OdsSheetReader {
               if (cell?.formula != null && (repeat > 1 || rowRepeat > 1)) {
                 throw const OdsSheetFormatException(
                   'Repeated formulas are not supported',
+                );
+              }
+              if (sheet.merges.isNotEmpty || rowMerges.isNotEmpty) {
+                budget.mergeCoverage(sheet.merges.length + rowMerges.length);
+                final occupied = SmlMerge(
+                  c0: run.column,
+                  r0: rowIndex,
+                  c1: run.column + run.repeat - 1,
+                  r1: rowIndex + rowRepeat - 1,
+                );
+                if (sheet.merges.any((merge) => merge.overlaps(occupied)) ||
+                    rowMerges.any((merge) => merge.overlaps(occupied))) {
+                  throw const OdsSheetFormatException(
+                    'Stored cell inside a merge requires a covered-cell token',
+                  );
+                }
+              }
+              if (colSpan > 1 || rowSpan > 1) {
+                rowMerges.add(
+                  SmlMerge(
+                    c0: run.column,
+                    r0: rowIndex,
+                    c1: run.column + colSpan - 1,
+                    r1: rowIndex + rowRepeat + rowSpan - 2,
+                  ),
                 );
               }
               if (cell != null) {
@@ -951,6 +979,7 @@ class _OdsBudget {
   int _xmlEvents = 0;
   int _cellText = 0;
   int _styleWork = 0;
+  int _mergeCoverageWork = 0;
 
   void cells(int count) {
     if (count > 200000 - _cells) {
@@ -982,6 +1011,13 @@ class _OdsBudget {
       throw const OdsSheetFormatException('ODS style work limit');
     }
     _styleWork += count;
+  }
+
+  void mergeCoverage(int count) {
+    if (count > 4000000 - _mergeCoverageWork) {
+      throw const OdsSheetFormatException('ODS merge coverage work limit');
+    }
+    _mergeCoverageWork += count;
   }
 
   void merge() {

@@ -1,0 +1,28 @@
+{
+  "verified_at": "2026-11-15T09:48:44.981434+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "integration/storage-odf-qualification-20261115",
+  "local_tested_commit": "24804dc92dcadd81ec574fa3c38d38e8216cf6c1",
+  "remote_commit": "07842b7a116e64c75ed7e0945a6f74a9f4bdfccd",
+  "tree": "f56b2fbcf1961101de36472906f2c92a6f820735",
+  "entire_tree_identical": true,
+  "parent": "a83b2464ea081f70a69aaf3dfa746c269f9f993c",
+  "changed_paths": [
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+      "mode": "100644",
+      "blob": "129fc5d25159a354064fdc9f0588989a9d9f81a1",
+      "sha256": "4e09b69fae84fc74cc3823fd95a76bd10b33c345e7d44df080efe149e77eb369"
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+      "mode": "100644",
+      "blob": "4301151dc93c3a12c678cdb19cc42a0cfe4deaf4",
+      "sha256": "71586dcd4d2f5c1c29e3ca7dfcb9e4870d87926b5855b0d5f7b88f000c427972"
+    }
+  ],
+  "prior_52_evidence_files_unchanged": true,
+  "local_head_unchanged": true,
+  "clean_source": true,
+  "remote_url": "https://github.com/CrispStrobe/quds_office_suite/commit/07842b7a116e64c75ed7e0945a6f74a9f4bdfccd"
+}
