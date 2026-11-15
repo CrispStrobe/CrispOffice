@@ -18,6 +18,7 @@ Future<ZoteroHttpResponse> studioZoteroTransport(
   }
   final client = http.Client();
   StreamIterator<List<int>>? body;
+  var active = true;
   Future<ZoteroHttpResponse> read() async {
     final response = await client.send(
       http.Request('GET', request.uri)
@@ -25,9 +26,17 @@ Future<ZoteroHttpResponse> studioZoteroTransport(
         ..maxRedirects = 0
         ..headers.addAll(request.headers),
     );
+    if (!active) {
+      await response.stream.listen((_) {}).cancel();
+      throw StateError('The Zotero request expired.');
+    }
     final bytes = BytesBuilder(copy: false);
     body = StreamIterator(response.stream);
+    if ((response.contentLength ?? 0) > 8 * 1024 * 1024) {
+      throw StateError('The Zotero response is too large.');
+    }
     while (await body!.moveNext()) {
+      if (!active) throw StateError('The Zotero request expired.');
       if (bytes.length + body!.current.length > 8 * 1024 * 1024) {
         throw StateError('The Zotero response is too large.');
       }
@@ -43,7 +52,8 @@ Future<ZoteroHttpResponse> studioZoteroTransport(
   try {
     return await read().timeout(const Duration(seconds: 20));
   } finally {
-    if (body != null) unawaited(body!.cancel());
+    active = false;
+    if (body != null) unawaited(body!.cancel().catchError((Object _) {}));
     client.close();
   }
 }
