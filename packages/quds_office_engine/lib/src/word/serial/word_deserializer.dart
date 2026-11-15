@@ -1148,6 +1148,7 @@ class WordDeserializer {
     section.firstFooterVisuals.addAll(pending.firstFooterVisuals);
     section.evenHeaderVisuals.addAll(pending.evenHeaderVisuals);
     section.evenFooterVisuals.addAll(pending.evenFooterVisuals);
+    section.preservedStories.addAll(pending.preservedStories);
     document.sections.add(section);
     return WmlSection();
   }
@@ -2055,6 +2056,7 @@ class WordDeserializer {
           docUri,
           headerRid,
           visualsOut: section.headerVisuals,
+          preserveInto: (part) => section.preservedStories['header'] = part,
         ),
       );
     }
@@ -2065,6 +2067,7 @@ class WordDeserializer {
           docUri,
           footerRid,
           visualsOut: section.footerVisuals,
+          preserveInto: (part) => section.preservedStories['footer'] = part,
         ),
       );
     }
@@ -2075,6 +2078,7 @@ class WordDeserializer {
           docUri,
           firstHeaderRid,
           visualsOut: section.firstHeaderVisuals,
+          preserveInto: (part) => section.preservedStories['firstHeader'] = part,
         ),
       );
     }
@@ -2085,6 +2089,7 @@ class WordDeserializer {
           docUri,
           firstFooterRid,
           visualsOut: section.firstFooterVisuals,
+          preserveInto: (part) => section.preservedStories['firstFooter'] = part,
         ),
       );
     }
@@ -2095,6 +2100,7 @@ class WordDeserializer {
           docUri,
           evenHeaderRid,
           visualsOut: section.evenHeaderVisuals,
+          preserveInto: (part) => section.preservedStories['evenHeader'] = part,
         ),
       );
     }
@@ -2105,6 +2111,7 @@ class WordDeserializer {
           docUri,
           evenFooterRid,
           visualsOut: section.evenFooterVisuals,
+          preserveInto: (part) => section.preservedStories['evenFooter'] = part,
         ),
       );
     }
@@ -2125,6 +2132,7 @@ class WordDeserializer {
     for (final WmlSection section in document.sections) {
       if (section.header.isEmpty &&
           section.headerVisuals.isEmpty &&
+          !section.preservedStories.containsKey('header') &&
           headerRel != null) {
         section.header.addAll(
           _readStoryByRid(
@@ -2132,11 +2140,14 @@ class WordDeserializer {
             docUri,
             headerRel.id,
             visualsOut: section.headerVisuals,
+            preserveInto: (part) =>
+                section.preservedStories['header'] = part,
           ),
         );
       }
       if (section.footer.isEmpty &&
           section.footerVisuals.isEmpty &&
+          !section.preservedStories.containsKey('footer') &&
           footerRel != null) {
         section.footer.addAll(
           _readStoryByRid(
@@ -2144,6 +2155,8 @@ class WordDeserializer {
             docUri,
             footerRel.id,
             visualsOut: section.footerVisuals,
+            preserveInto: (part) =>
+                section.preservedStories['footer'] = part,
           ),
         );
       }
@@ -2151,6 +2164,51 @@ class WordDeserializer {
   }
 
   List<WmlParagraph> _readStoryByRid(
+    OpcPackage package,
+    String docUri,
+    String rid, {
+    List<WmlVisual>? visualsOut,
+    void Function(WmlOpaqueBlock part)? preserveInto,
+  }) {
+    if (preserveInto == null) {
+      return _readStoryByRidModeled(
+        package,
+        docUri,
+        rid,
+        visualsOut: visualsOut,
+      );
+    }
+    final int visualCount = visualsOut?.length ?? 0;
+    try {
+      return _readStoryByRidModeled(
+        package,
+        docUri,
+        rid,
+        visualsOut: visualsOut,
+      );
+    } on UnsupportedError {
+      // The paragraph-only header/footer model cannot represent this part
+      // (a content control around a logo, a table or several paragraphs).
+      // Keep the whole part verbatim instead of refusing the document.
+      visualsOut?.removeRange(visualCount, visualsOut.length);
+      _pendingVisuals.clear();
+      _pendingFrames.clear();
+      _pendingEquations.clear();
+      final RelationshipCollection rels = package.relationshipsFor(docUri);
+      final PackageRelationship rel = rels.byId(rid)!;
+      final String storyUri = rels.resolve(rel);
+      // Plain reader: a verbatim copy keeps every mc:AlternateContent
+      // branch (e.g. VML fallbacks), unlike the compatibility reader.
+      final XmlPullReader reader = XmlPullReader(
+        package.getPart(storyUri)!.readText(),
+      );
+      while (reader.next() && reader.eventType != XmlEventType.startElement) {}
+      preserveInto(WordOpaqueIo.read(reader, package, storyUri));
+      return <WmlParagraph>[];
+    }
+  }
+
+  List<WmlParagraph> _readStoryByRidModeled(
     OpcPackage package,
     String docUri,
     String rid, {

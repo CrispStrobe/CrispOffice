@@ -962,6 +962,13 @@ class WmlSection {
   /// Unmodeled imported section settings, shared safely by section clones.
   WmlSectionSource? sourceProperties;
 
+  /// Header/footer parts kept verbatim because the paragraph-only story
+  /// model cannot represent them (e.g. a content control around a logo or a
+  /// table), keyed by story: header, footer, firstHeader, firstFooter,
+  /// evenHeader, evenFooter. Written back unchanged unless that story gets
+  /// model content (the user replaced the header).
+  final Map<String, WmlOpaqueBlock> preservedStories = <String, WmlOpaqueBlock>{};
+
   /// header API.
   List<WmlParagraph> header;
 

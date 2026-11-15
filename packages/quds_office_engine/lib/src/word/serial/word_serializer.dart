@@ -1579,36 +1579,42 @@ class WordSerializer {
           visuals: section.headerVisuals,
           header: true,
           watermark: i == 0 ? watermark : '',
+          preserved: section.preservedStories['header'],
         ),
         footer: _writeHfPart(
           package,
           section.footer,
           visuals: section.footerVisuals,
           header: false,
+          preserved: section.preservedStories['footer'],
         ),
         firstHeader: _writeHfPart(
           package,
           section.firstHeader,
           visuals: section.firstHeaderVisuals,
           header: true,
+          preserved: section.preservedStories['firstHeader'],
         ),
         firstFooter: _writeHfPart(
           package,
           section.firstFooter,
           visuals: section.firstFooterVisuals,
           header: false,
+          preserved: section.preservedStories['firstFooter'],
         ),
         evenHeader: _writeHfPart(
           package,
           section.evenHeader,
           visuals: section.evenHeaderVisuals,
           header: true,
+          preserved: section.preservedStories['evenHeader'],
         ),
         evenFooter: _writeHfPart(
           package,
           section.evenFooter,
           visuals: section.evenFooterVisuals,
           header: false,
+          preserved: section.preservedStories['evenFooter'],
         ),
       );
     }
@@ -1621,7 +1627,28 @@ class WordSerializer {
     required List<WmlVisual> visuals,
     required bool header,
     String watermark = '',
+    WmlOpaqueBlock? preserved,
   }) {
+    if (preserved != null && story.isEmpty && visuals.isEmpty) {
+      // A part the story model could not represent: write it back verbatim
+      // (relationships remapped to the new part by WordOpaqueIo).
+      final int n = _hfPart++;
+      final String name = header ? 'header$n.xml' : 'footer$n.xml';
+      final String uri = OpcUris.resolve(_mainPartUri, name);
+      final String previousPart = _activePartUri;
+      _activePartUri = uri;
+      final XmlWriter w = XmlWriter();
+      w.writeStartDocument();
+      WordOpaqueIo.write(w, preserved, package, uri);
+      _activePartUri = previousPart;
+      return _putNamedPart(
+        package,
+        uri,
+        header ? OfficeContentTypes.wordHeader : OfficeContentTypes.wordFooter,
+        w.toXml(),
+        header ? RelationshipTypes.header : RelationshipTypes.footer,
+      );
+    }
     if (story.isEmpty && visuals.isEmpty && watermark.isEmpty) {
       return null;
     }
