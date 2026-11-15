@@ -170,6 +170,7 @@ abstract final class OdsSheetReader {
             >[];
         var column = 0;
         var pendingCovered = 0;
+        var hasData = false;
         for (final element in row.childElements) {
           if (element.namespaceUri != _table ||
               (element.localName != 'table-cell' &&
@@ -252,6 +253,9 @@ abstract final class OdsSheetReader {
                 );
               }
               if (cell != null) {
+                if (cell.value != null || cell.formula != null) {
+                  hasData = true;
+                }
                 final count = run.repeat * rowRepeat;
                 budget.cells(count);
                 final value = cell.value;
@@ -296,7 +300,7 @@ abstract final class OdsSheetReader {
         }
         if (rowHeight != null &&
             rowHeight > 0 &&
-            (entries.isNotEmpty ||
+            (hasData ||
                 (rowHeight - _odfDefaultRowHeightPoints).abs() > 0.1) &&
             rowIndex + rowRepeat <= _maxRows) {
           final height = SmlWorksheet.rowHeightFromExcel(rowHeight);
