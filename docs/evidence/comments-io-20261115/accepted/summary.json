@@ -1,0 +1,131 @@
+{
+  "source_commit": "25c373626368c4a800dbaff2024c7972ba8a6e50",
+  "tests": {
+    "errors": 0,
+    "failed": 0,
+    "other_results": 0,
+    "passed": 139,
+    "skipped": 0,
+    "tests": 139
+  },
+  "suites": [
+    {
+      "path": "packages/quds_office_engine/test/sheet_comments_schema_test.dart",
+      "tests": 2,
+      "result": "passed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_comments_namespace_test.dart",
+      "tests": 20,
+      "result": "passed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+      "tests": 67,
+      "result": "passed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_schema_fidelity_test.dart",
+      "tests": 9,
+      "result": "passed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_import_fidelity_test.dart",
+      "tests": 10,
+      "result": "passed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/builders_io_test.dart",
+      "tests": 3,
+      "result": "passed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_formula_test.dart",
+      "tests": 26,
+      "result": "passed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/native_spreadsheet_test.dart",
+      "tests": 2,
+      "result": "passed"
+    }
+  ],
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "nonpassing_requested_suites": [],
+  "analysis": {
+    "files": 3,
+    "fatal_infos": true,
+    "fatal_warnings": true,
+    "issues": 0
+  },
+  "external_reader": {
+    "name": "openpyxl",
+    "version": "3.1.5",
+    "cycles": 3,
+    "comments_per_cycle": 6,
+    "exact_text_and_authors": true,
+    "xml_package_checks": 339,
+    "failure_counts": {},
+    "inputs_unchanged": true,
+    "success": true
+  },
+  "gates": {
+    "corrected-related-tests": {
+      "returncode": 0,
+      "inputs_and_commit_stable": true,
+      "qualification_success": true,
+      "before_git": {
+        "head": "25c373626368c4a800dbaff2024c7972ba8a6e50",
+        "source_changes": [],
+        "status": "",
+        "tree": "a1f707255e290fa841baf324fcb114d703f9b21a",
+        "untracked_source": []
+      }
+    },
+    "corrected-strict-analysis": {
+      "returncode": 0,
+      "inputs_and_commit_stable": true,
+      "qualification_success": true,
+      "before_git": {
+        "head": "25c373626368c4a800dbaff2024c7972ba8a6e50",
+        "source_changes": [],
+        "status": "",
+        "tree": "a1f707255e290fa841baf324fcb114d703f9b21a",
+        "untracked_source": []
+      }
+    },
+    "corrected-fixture-generation": {
+      "returncode": 0,
+      "inputs_and_commit_stable": true,
+      "qualification_success": true,
+      "before_git": {
+        "head": "25c373626368c4a800dbaff2024c7972ba8a6e50",
+        "source_changes": [],
+        "status": "",
+        "tree": "a1f707255e290fa841baf324fcb114d703f9b21a",
+        "untracked_source": []
+      }
+    },
+    "corrected-independent-oracle": {
+      "returncode": 0,
+      "inputs_and_commit_stable": true,
+      "qualification_success": true,
+      "before_git": {
+        "head": "25c373626368c4a800dbaff2024c7972ba8a6e50",
+        "source_changes": [],
+        "status": "",
+        "tree": "a1f707255e290fa841baf324fcb114d703f9b21a",
+        "untracked_source": []
+      }
+    }
+  },
+  "archive": {
+    "file": "artifacts.tar.xz",
+    "size": 597780,
+    "sha256": "62b550f02f5c7d1be3bde10a77a7ecc0287158958395f440a0684339e9afe88d",
+    "members": 40,
+    "verified": true
+  },
+  "scope": "Plain comment text and authors, internal relationship ownership, deletion/preservation controls, related serializer/ODS regressions. No rich-comment formatting, VML geometry, native Excel execution or broad Open XML schema certification."
+}

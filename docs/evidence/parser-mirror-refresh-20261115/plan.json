@@ -1,0 +1,1145 @@
+{
+  "after_manifest_sha256": "968ccab0a43a499d8f3cbc15caaaed0782924f39cbfb029f98ae5baa6101e77b",
+  "before_manifest_sha256": "f7ee94d68caa2c62f3dedbd8592493de1468d84d7a15d69a7e348f10149429ee",
+  "counts": {
+    "added": 53,
+    "changed": 3,
+    "deleted": 0,
+    "mirror_after": 1833,
+    "mirror_before": 1780,
+    "upstream_target": 1832
+  },
+  "existing_customization_audit": {
+    "additional_local_metadata": [
+      "UPSTREAM.json"
+    ],
+    "difference_from_declared_upstream": {
+      "added": [
+        "UPSTREAM.json"
+      ],
+      "changed": [
+        "pubspec.yaml"
+      ],
+      "deleted": [
+        "doc/evidence/storage-carving-reconcile-20261115/baseline/stderr.log",
+        "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stderr.log",
+        "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stdout.log",
+        "doc/evidence/storage-carving-reconcile-20261115/focused-fixed/stderr.log",
+        "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stderr.log",
+        "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stdout.log"
+      ]
+    },
+    "documented_pubspec_adaptations_verified_exactly": true,
+    "mode_changes_relative_to_declared_upstream": [],
+    "previously_omitted_tracked_evidence_logs_to_restore": [
+      "doc/evidence/storage-carving-reconcile-20261115/baseline/stderr.log",
+      "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stderr.log",
+      "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stdout.log",
+      "doc/evidence/storage-carving-reconcile-20261115/focused-fixed/stderr.log",
+      "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stderr.log",
+      "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stdout.log"
+    ],
+    "undeclared_modified_files": [],
+    "undeclared_product_source_changes": []
+  },
+  "mirror_prefix": "packages/legacy_doc_parser",
+  "mode": "Read-only plan; repository writes require explicitly running apply_plan.py --apply later.",
+  "operation_after_mode_counts": {
+    "100644": 56
+  },
+  "operation_source_bytes": 4685588,
+  "operations": [
+    {
+      "after": {
+        "git_blob_sha": "c6dead205e4e82ac71a57409ac24a46b4de88458",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-directory-suites.txt",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-directory-suites.txt",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "c6dead205e4e82ac71a57409ac24a46b4de88458",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-directory-suites.txt"
+      },
+      "sha256_after": "e0b92f370dc60170ab5f907584a99d72d041e018791490577109489b2afa36a6",
+      "size_after": 6152
+    },
+    {
+      "after": {
+        "git_blob_sha": "bb36dcb2f172b73c079c8bfd2fe0ddf41400e9a4",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/artifacts-sha256.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/artifacts-sha256.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "bb36dcb2f172b73c079c8bfd2fe0ddf41400e9a4",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/artifacts-sha256.json"
+      },
+      "sha256_after": "8ea7fdd77acc4e2165d78d6214a080641f75162ac39641b5e8d1f933dd2cbd2e",
+      "size_after": 1014
+    },
+    {
+      "after": {
+        "git_blob_sha": "97826f042b716f8862f9f99f5e558456d3186215",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/command.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/command.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "97826f042b716f8862f9f99f5e558456d3186215",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/command.json"
+      },
+      "sha256_after": "ba2b628527c7ac1186537b10d8db37a64a2ab5cc7cc4c6bec01a25abcf22413e",
+      "size_after": 13580
+    },
+    {
+      "after": {
+        "git_blob_sha": "5274738b4bf095f997584d9048041a85c16d7dff",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/inputs-after.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/inputs-after.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "5274738b4bf095f997584d9048041a85c16d7dff",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/inputs-after.json.gz"
+      },
+      "sha256_after": "aa5995f19e83b68f36cbbf60c43cb7a2a66d53c523c6b171f6ea6d1da4b75ef0",
+      "size_after": 87702
+    },
+    {
+      "after": {
+        "git_blob_sha": "28c5da17d4ae60c5cf1e44da9d00c011a00c885c",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/inputs-before.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/inputs-before.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "28c5da17d4ae60c5cf1e44da9d00c011a00c885c",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/inputs-before.json.gz"
+      },
+      "sha256_after": "98f424399316dd5055f9e1992222d6d6add8ed2f8264627a2c391d3c5b125337",
+      "size_after": 87702
+    },
+    {
+      "after": {
+        "git_blob_sha": "8305154e60b14321814ca26f541266d7b2268b3b",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/metadata.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/metadata.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "8305154e60b14321814ca26f541266d7b2268b3b",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/metadata.json"
+      },
+      "sha256_after": "b09deebd5a7cb5c469ff62b80dccbbad1a234c5dabbe08aa0bb77397461eb527",
+      "size_after": 10179
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "08cb64748ad32dc7447f58e0b8a5c7e1e87e96ee",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/stdout.jsonl",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/stdout.jsonl",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "08cb64748ad32dc7447f58e0b8a5c7e1e87e96ee",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/stdout.jsonl"
+      },
+      "sha256_after": "cbdd598380bdc1c9c76c9304854b5ba0ccc825a69c170e41628ddaa8a6d028ba",
+      "size_after": 1801335
+    },
+    {
+      "after": {
+        "git_blob_sha": "d4a43a597c53ec542617af0860c6fb5c850d32f0",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/suites.txt",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/suites.txt",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "d4a43a597c53ec542617af0860c6fb5c850d32f0",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/suites.txt"
+      },
+      "sha256_after": "6080593f03a43deb7b71282bcdefb931f06fb3d741fb26c08170d831f36cccdf",
+      "size_after": 6109
+    },
+    {
+      "after": {
+        "git_blob_sha": "6bfd95ffb7509e3a9706cbcabf2d93e2e3409c9a",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/all-parser-final/summary.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/summary.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "6bfd95ffb7509e3a9706cbcabf2d93e2e3409c9a",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/all-parser-final/summary.json"
+      },
+      "sha256_after": "6cf67a38e660e140ced2dcc0cb703c5da4c3fa9f17dad2b35f9d6d384ea5a550",
+      "size_after": 35413
+    },
+    {
+      "after": {
+        "git_blob_sha": "44f9c3385e49bd0cbde8066e1576067c4d5d0f73",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/analysis-directory-files.txt",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/analysis-directory-files.txt",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "44f9c3385e49bd0cbde8066e1576067c4d5d0f73",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/analysis-directory-files.txt"
+      },
+      "sha256_after": "68289c24e4bffff2e8bf46606874a1823e37eb7a04003aa6157e7bf905c7adf7",
+      "size_after": 639
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/baseline/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/baseline/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/baseline/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "8738d2010c39c04ea66996e2c3b6972aab819d6e",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stdout.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stdout.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "8738d2010c39c04ea66996e2c3b6972aab819d6e",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/dependency-setup/stdout.log"
+      },
+      "sha256_after": "ab6544db9223e49fab35f5a633989030cb75887b2c97bbc5f966a43e436393db",
+      "size_after": 1252
+    },
+    {
+      "after": {
+        "git_blob_sha": "2d0d401df71ba2c3627ed1e50ca4e5e65900b59a",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/artifacts-sha256.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/artifacts-sha256.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "2d0d401df71ba2c3627ed1e50ca4e5e65900b59a",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/artifacts-sha256.json"
+      },
+      "sha256_after": "a950c3f7b72f252b3acedea5748f487060f7ec136234ba93064e0b03ac817af3",
+      "size_after": 1014
+    },
+    {
+      "after": {
+        "git_blob_sha": "4eaa14b7462ed6d89f26a479e8f69754fb1ea409",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/command.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/command.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "4eaa14b7462ed6d89f26a479e8f69754fb1ea409",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/command.json"
+      },
+      "sha256_after": "bd3b9bcb7443aaa82c03b09e4f825e22d49697368a016374f025a1b2a3f49097",
+      "size_after": 13673
+    },
+    {
+      "after": {
+        "git_blob_sha": "7dcb803b5e334db4680ebcb5f75d4c5b262a55c4",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/inputs-after.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/inputs-after.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "7dcb803b5e334db4680ebcb5f75d4c5b262a55c4",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/inputs-after.json.gz"
+      },
+      "sha256_after": "9bf422de58565c0d61bfb40bdcc7ffe51f426b1066ddf9901009833b1d722912",
+      "size_after": 89205
+    },
+    {
+      "after": {
+        "git_blob_sha": "f5345b8bad735057b1d93e3279cf59c27b62e7b4",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/inputs-before.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/inputs-before.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "f5345b8bad735057b1d93e3279cf59c27b62e7b4",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/inputs-before.json.gz"
+      },
+      "sha256_after": "5959208b92557e26069484047a1dbf2ea1be7d1a511a01233e9e9db7e3238bb2",
+      "size_after": 89204
+    },
+    {
+      "after": {
+        "git_blob_sha": "e4aa6db555007054a0551649c2fc3a8ce45d0e61",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/metadata.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/metadata.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e4aa6db555007054a0551649c2fc3a8ce45d0e61",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/metadata.json"
+      },
+      "sha256_after": "2ddd65d48e5c50074bf4a798628307c5149e041688552a4a49d0c797407d1f3e",
+      "size_after": 10231
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "aa1eb76eb07992f394e706db6c394a3b6f253c69",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/stdout.jsonl",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/stdout.jsonl",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "aa1eb76eb07992f394e706db6c394a3b6f253c69",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/stdout.jsonl"
+      },
+      "sha256_after": "fd341bca3875338f6e1c470c2cb15b2a99ccd0d42646ea9732d78a69f1d5987d",
+      "size_after": 1805659
+    },
+    {
+      "after": {
+        "git_blob_sha": "c6dead205e4e82ac71a57409ac24a46b4de88458",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/suites.txt",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/suites.txt",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "c6dead205e4e82ac71a57409ac24a46b4de88458",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/suites.txt"
+      },
+      "sha256_after": "e0b92f370dc60170ab5f907584a99d72d041e018791490577109489b2afa36a6",
+      "size_after": 6152
+    },
+    {
+      "after": {
+        "git_blob_sha": "824a93d7d99e671a857a999c3306bc054eea0483",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/summary.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/summary.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "824a93d7d99e671a857a999c3306bc054eea0483",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-all-parser-final/summary.json"
+      },
+      "sha256_after": "ce00bc15bea8814448695c2bc91cee70f8752c734cf896ce01f0af46787abc98",
+      "size_after": 35656
+    },
+    {
+      "after": {
+        "git_blob_sha": "07326cabdf42e920e4ad5affbf3e6aa49ec78683",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/artifacts-sha256.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/artifacts-sha256.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "07326cabdf42e920e4ad5affbf3e6aa49ec78683",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/artifacts-sha256.json"
+      },
+      "sha256_after": "9de40aafae1c5df4310c839400d7d6c29803ee91ff5390101bca37c4309b463d",
+      "size_after": 1005
+    },
+    {
+      "after": {
+        "git_blob_sha": "5ddd468be3b0eff6eee92e39082e2b7cb34ce452",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/command.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/command.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "5ddd468be3b0eff6eee92e39082e2b7cb34ce452",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/command.json"
+      },
+      "sha256_after": "e94a2dd60bc5f0b6213d3cf28ad98012dd2223c21602148f8b5f213197a664ec",
+      "size_after": 454
+    },
+    {
+      "after": {
+        "git_blob_sha": "95220b5caa6ab706c86bc31de64bb33483f48146",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/inputs-after.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/inputs-after.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "95220b5caa6ab706c86bc31de64bb33483f48146",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/inputs-after.json.gz"
+      },
+      "sha256_after": "feda052d69d5d99c0813032b1cfaae02402d3e89371e2885e2b3e0ef47048c4b",
+      "size_after": 88255
+    },
+    {
+      "after": {
+        "git_blob_sha": "ea3120f1f0d92e5e5715418209753c18714ef32b",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/inputs-before.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/inputs-before.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "ea3120f1f0d92e5e5715418209753c18714ef32b",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/inputs-before.json.gz"
+      },
+      "sha256_after": "b726a7f4594cd7ae9d950c606c369753d1240259d38bf5db53e5b9df4d91ec1a",
+      "size_after": 88255
+    },
+    {
+      "after": {
+        "git_blob_sha": "f98b0cb70bfb70516ca64f50c5b928fa7159e4b5",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/metadata.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/metadata.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "f98b0cb70bfb70516ca64f50c5b928fa7159e4b5",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/metadata.json"
+      },
+      "sha256_after": "20381178c9285b9386df8792de23a5a3e9e412aa335b74d066046ae6615b1d11",
+      "size_after": 3120
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "24bb3e64b1c001583dd90755cc4b8ab6b0403886",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/stdout.jsonl",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/stdout.jsonl",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "24bb3e64b1c001583dd90755cc4b8ab6b0403886",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/stdout.jsonl"
+      },
+      "sha256_after": "397a81d94648139bcdb40cf61012e3fcff5129521ef894993319d5877e7f989f",
+      "size_after": 6527
+    },
+    {
+      "after": {
+        "git_blob_sha": "3277406d414e1fad07f8717227aa6a2ecdb66c58",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/suites.txt",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/suites.txt",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "3277406d414e1fad07f8717227aa6a2ecdb66c58",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/suites.txt"
+      },
+      "sha256_after": "cadcb3169dbc9cb148b86c3dbda1d0bbc9f7887e7761fee097fd3d346acc1a33",
+      "size_after": 43
+    },
+    {
+      "after": {
+        "git_blob_sha": "c080cd175b9253a79575db1de889245a08f41998",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-baseline/summary.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/summary.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "c080cd175b9253a79575db1de889245a08f41998",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-baseline/summary.json"
+      },
+      "sha256_after": "f0abd22c9b5d4e054942a2cca5009ce66975d778c34110d456a80950041a9695",
+      "size_after": 2948
+    },
+    {
+      "after": {
+        "git_blob_sha": "0a4349ca5882a87e662a2f6c6f87ff76ef0617fa",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/artifacts-sha256.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/artifacts-sha256.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "0a4349ca5882a87e662a2f6c6f87ff76ef0617fa",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/artifacts-sha256.json"
+      },
+      "sha256_after": "0de0eb9dfe28575bfdd3f6cdf7196f3d56649ed4afbdbfc54df0ca25e7c0def4",
+      "size_after": 1004
+    },
+    {
+      "after": {
+        "git_blob_sha": "5ddd468be3b0eff6eee92e39082e2b7cb34ce452",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/command.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/command.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "5ddd468be3b0eff6eee92e39082e2b7cb34ce452",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/command.json"
+      },
+      "sha256_after": "e94a2dd60bc5f0b6213d3cf28ad98012dd2223c21602148f8b5f213197a664ec",
+      "size_after": 454
+    },
+    {
+      "after": {
+        "git_blob_sha": "804a65284a08c92dcd0d3dfe644dd9cc0e47932c",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/inputs-after.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/inputs-after.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "804a65284a08c92dcd0d3dfe644dd9cc0e47932c",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/inputs-after.json.gz"
+      },
+      "sha256_after": "bfd071887af9778fad32bcb27f89aada8395c6ec7ee0141f293f13e661543483",
+      "size_after": 88605
+    },
+    {
+      "after": {
+        "git_blob_sha": "da477f987150fdee1b03762368ec7d9fb8ef4b2a",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/inputs-before.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/inputs-before.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "da477f987150fdee1b03762368ec7d9fb8ef4b2a",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/inputs-before.json.gz"
+      },
+      "sha256_after": "16081275f47d5cf9ad8e93390a979a66edd110991e781c15fe913b1d327988f3",
+      "size_after": 88606
+    },
+    {
+      "after": {
+        "git_blob_sha": "e0e0cd16a2ba2f7612b0fcba1ab21a18f204d12a",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/metadata.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/metadata.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e0e0cd16a2ba2f7612b0fcba1ab21a18f204d12a",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/metadata.json"
+      },
+      "sha256_after": "e2bfbb95dc35c2cefd708f69e6871ed98511c739081fdc34c9d866cd2630e439",
+      "size_after": 3119
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "d557275f6acbffd59cba5f7efd56dd10350ef929",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/stdout.jsonl",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/stdout.jsonl",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "d557275f6acbffd59cba5f7efd56dd10350ef929",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/stdout.jsonl"
+      },
+      "sha256_after": "c6e56c8beb5d0c5c50a593ad613306d54ba30e39297f102eca11a08ebb4292f6",
+      "size_after": 4488
+    },
+    {
+      "after": {
+        "git_blob_sha": "3277406d414e1fad07f8717227aa6a2ecdb66c58",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/suites.txt",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/suites.txt",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "3277406d414e1fad07f8717227aa6a2ecdb66c58",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/suites.txt"
+      },
+      "sha256_after": "cadcb3169dbc9cb148b86c3dbda1d0bbc9f7887e7761fee097fd3d346acc1a33",
+      "size_after": 43
+    },
+    {
+      "after": {
+        "git_blob_sha": "f931626c106077a266bc37633e64f3b87f0c3ec7",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/summary.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/summary.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "f931626c106077a266bc37633e64f3b87f0c3ec7",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-focused-fixed/summary.json"
+      },
+      "sha256_after": "177bbccd2f358da807a681d35659b6f44705b1e90abcd3d41b917605d61d85f8",
+      "size_after": 730
+    },
+    {
+      "after": {
+        "git_blob_sha": "3277406d414e1fad07f8717227aa6a2ecdb66c58",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-recovery-suites.txt",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-recovery-suites.txt",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "3277406d414e1fad07f8717227aa6a2ecdb66c58",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-recovery-suites.txt"
+      },
+      "sha256_after": "cadcb3169dbc9cb148b86c3dbda1d0bbc9f7887e7761fee097fd3d346acc1a33",
+      "size_after": 43
+    },
+    {
+      "after": {
+        "git_blob_sha": "d8838069009d2b161db56b60b02713df5ad91681",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/artifacts-sha256.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/artifacts-sha256.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "d8838069009d2b161db56b60b02713df5ad91681",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/artifacts-sha256.json"
+      },
+      "sha256_after": "0d3dbd95a704f1081d6208d650a5b8ee676febfbc10e57781eba8d09024e3abf",
+      "size_after": 759
+    },
+    {
+      "after": {
+        "git_blob_sha": "d2eda3ebff1e0eea220ab8e69ae1dbdf58f78b11",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/command.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/command.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "d2eda3ebff1e0eea220ab8e69ae1dbdf58f78b11",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/command.json"
+      },
+      "sha256_after": "3b007b1f4684fc996a2c93b0051ac2bbd996aa71806673fedaced23a0c8c8c1b",
+      "size_after": 1728
+    },
+    {
+      "after": {
+        "git_blob_sha": "9ce648d8676ac6e38c1ce90b98e1e0c864d54b5d",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/inputs-after.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/inputs-after.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "9ce648d8676ac6e38c1ce90b98e1e0c864d54b5d",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/inputs-after.json.gz"
+      },
+      "sha256_after": "8cf6e3edbb8bda9c29137936de901bc9e6967e074cb4b9a48dc1ef5ff58ebe6b",
+      "size_after": 88910
+    },
+    {
+      "after": {
+        "git_blob_sha": "90241b4e219b2d3b81da678f017804efa3c69c0f",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/inputs-before.json.gz",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/inputs-before.json.gz",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "90241b4e219b2d3b81da678f017804efa3c69c0f",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/inputs-before.json.gz"
+      },
+      "sha256_after": "f59aeb6cdca892107cd22ad45a1f758d50e73f1b48e594b1423a27aee20b3ab5",
+      "size_after": 88910
+    },
+    {
+      "after": {
+        "git_blob_sha": "4f3207bf1b928fb7f5ba94f4538a2bd8ba9247fb",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/metadata.json",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/metadata.json",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "4f3207bf1b928fb7f5ba94f4538a2bd8ba9247fb",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/metadata.json"
+      },
+      "sha256_after": "96fa69ef494f57b7bce77cd37f524ca723d7c0aed2ef7f8df2385d27f86a07ad",
+      "size_after": 3512
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "852e4eb5635ce7cc0150cba6113122d5af5f1b58",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/stdout.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/stdout.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "852e4eb5635ce7cc0150cba6113122d5af5f1b58",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/directory-strict-analysis/stdout.log"
+      },
+      "sha256_after": "a7c365abda5be3e45e9a459b7b9242b6120cf9e280add3ab0411504e279798ac",
+      "size_after": 567
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/focused-fixed/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/focused-fixed/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/focused-fixed/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stderr.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stderr.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stderr.log"
+      },
+      "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_after": 0
+    },
+    {
+      "after": {
+        "git_blob_sha": "37302f6bd6374af892884ffdd2bd13c478b8aa9f",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stdout.log",
+      "operation": "add",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stdout.log",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "37302f6bd6374af892884ffdd2bd13c478b8aa9f",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/strict-analysis/stdout.log"
+      },
+      "sha256_after": "8bce3398bbd0cf6009cd38f08d1934fc0a51420d31f46c8554f933decd6ac011",
+      "size_after": 528
+    },
+    {
+      "after": {
+        "git_blob_sha": "1c29c559251ab72e291d85aba78b176c25dbbeb7",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": null,
+      "destination": "packages/legacy_doc_parser/test/compound_directory_recovery_test.dart",
+      "operation": "add",
+      "path": "test/compound_directory_recovery_test.dart",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "1c29c559251ab72e291d85aba78b176c25dbbeb7",
+        "kind": "upstream_git_blob",
+        "path": "test/compound_directory_recovery_test.dart"
+      },
+      "sha256_after": "8a14a271aea7c30846582f177a7429fd19351d4a27a51821b04bd0464010140e",
+      "size_after": 5066
+    },
+    {
+      "after": {
+        "git_blob_sha": "067825368571ea906f3878e89c87f9d02c09391b",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": {
+        "git_blob_sha": "de6b4488be62a11c4a91ed8e7449a2d61930cc4b",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "destination": "packages/legacy_doc_parser/UPSTREAM.json",
+      "operation": "modify",
+      "path": "UPSTREAM.json",
+      "payload": {
+        "kind": "plan_file",
+        "path": "payloads/UPSTREAM.json"
+      },
+      "sha256_after": "7e0c2a61187c9aa61d25cb0ce59c912f4baf9b8978d22095d894d97af1fea85a",
+      "size_after": 253
+    },
+    {
+      "after": {
+        "git_blob_sha": "f85332690fa73a00143b77c975f44d3e5164cc53",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": {
+        "git_blob_sha": "04125afc7abfadfc8a38801cd799779e2d3582ae",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "destination": "packages/legacy_doc_parser/doc/evidence/storage-carving-reconcile-20261115/qualification-status.md",
+      "operation": "modify",
+      "path": "doc/evidence/storage-carving-reconcile-20261115/qualification-status.md",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "f85332690fa73a00143b77c975f44d3e5164cc53",
+        "kind": "upstream_git_blob",
+        "path": "doc/evidence/storage-carving-reconcile-20261115/qualification-status.md"
+      },
+      "sha256_after": "a482acd545b7575c1c4c8f34979ae13c433073682a71cf147eb5c5b5eaad0ce3",
+      "size_after": 5069
+    },
+    {
+      "after": {
+        "git_blob_sha": "367e75b79b8a77e8fcc5bf5004e91d27b5e705fb",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "before": {
+        "git_blob_sha": "7ac3b44640f2b7e171888b9062b18cad4670d55e",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "destination": "packages/legacy_doc_parser/lib/src/conversion.dart",
+      "operation": "modify",
+      "path": "lib/src/conversion.dart",
+      "payload": {
+        "commit": "08296edbee08da013a8ff718798972552ccd03f7",
+        "git_blob_sha": "367e75b79b8a77e8fcc5bf5004e91d27b5e705fb",
+        "kind": "upstream_git_blob",
+        "path": "lib/src/conversion.dart"
+      },
+      "sha256_after": "a41743ac05501531b1230dfee2b727603f51ffb0958e35098d33d159b3eb9675",
+      "size_after": 10716
+    }
+  ],
+  "parser_repository": "/workspace/scratch/0b93849cdeb9/legacy-doc-parser",
+  "parser_source": "08296edbee08da013a8ff718798972552ccd03f7",
+  "parser_source_tree": "24c77e06cf1214ea54e3b5935c4329ea8a49d8bb",
+  "preserved_adaptations": [
+    "resolution: workspace",
+    "lints: ^6.0.0",
+    "xml: ^7.0.1"
+  ],
+  "previous_declared_parser_source": "ea82b13dcb0abbd151995cb7d2881789ed137286",
+  "pubspec_bytes_unchanged": true,
+  "quds_anchor": "dc613179cdc67adf3c477271346f8b75c2394837",
+  "quds_anchor_subtree": "bbb124fc20de1a504c1111f09a2dfc22ccdb449d",
+  "quds_repository": "/workspace/scratch/0b93849cdeb9/quds_office_suite",
+  "schema": 1,
+  "source_file_mode_counts": {
+    "100644": 1832
+  },
+  "upstream_metadata_preservation": "Preserve all existing fields and patches text; change only commit."
+}

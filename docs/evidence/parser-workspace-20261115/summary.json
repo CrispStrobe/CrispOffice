@@ -1,0 +1,56 @@
+{
+  "archive": {
+    "file": "artifacts.tar.xz",
+    "members": 19,
+    "sha256": "8c5cdb45990ae400373632a95082830d8ad17c6caac55bb97cf171364407835a",
+    "size": 444504,
+    "verified": true
+  },
+  "done_success": true,
+  "gate": {
+    "before_git": {
+      "head": "4e8c8f80f206e93be8530a94da478e06c0f87608",
+      "source_changes": [],
+      "status": "",
+      "tree": "b611478aaafd467d1550cb07c7bdf6d38e968382",
+      "untracked_source": []
+    },
+    "elapsed_seconds": 45.30269211199993,
+    "input_count": 3113,
+    "inputs_and_commit_stable": true,
+    "qualification_success": true,
+    "returncode": 0
+  },
+  "missing_suites": [],
+  "nonpassing_requested_suites": [],
+  "parser_source_commit": "08296edbee08da013a8ff718798972552ccd03f7",
+  "qualification_success": true,
+  "resolved_versions": {
+    "archive": "4.7.1",
+    "legacy_doc_parser": "0.1.0-dev.1",
+    "lints": "6.1.0",
+    "test": "1.31.1",
+    "xml": "7.1.0"
+  },
+  "scope": "All144 tracked unit-test files under mirrored legacy_doc_parser/test in the canonical Quds workspace graph; no integration/, external Word binary corpus, native Word UI, or application-wide claim.",
+  "source_commit": "4e8c8f80f206e93be8530a94da478e06c0f87608",
+  "source_identity": {
+    "files": 865,
+    "identical_to_parser_source": true,
+    "prefixes": [
+      "lib",
+      "test",
+      "tool"
+    ]
+  },
+  "suites": 144,
+  "tests": {
+    "errors": 0,
+    "failed": 0,
+    "other_results": 0,
+    "passed": 4132,
+    "skipped": 0,
+    "tests": 4132
+  },
+  "unexpected_suites": []
+}

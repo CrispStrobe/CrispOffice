@@ -1,0 +1,33 @@
+{
+  "source_commit": "dc613179cdc67adf3c477271346f8b75c2394837",
+  "result": "Compilation stopped before behavioral cases: mutable String? URI not promoted to non-null String at 4 callsites.",
+  "suite_load_failures": 8,
+  "behavioral_tests_executed": 0,
+  "analysis_error_count": 4,
+  "commands": {
+    "fixed-related-tests": {
+      "returncode": 1,
+      "inputs_and_commit_stable": true,
+      "qualification_success": false
+    },
+    "fixed-strict-analysis": {
+      "returncode": 3,
+      "inputs_and_commit_stable": true,
+      "qualification_success": false
+    },
+    "fixed-fixture-generation": {
+      "returncode": 254,
+      "inputs_and_commit_stable": true,
+      "qualification_success": false
+    }
+  },
+  "correction": "Keep nullable retained URI separately, infer allocated URI as non-null String before collision loop.",
+  "raw_archive": {
+    "file": "artifacts.tar.xz",
+    "sha256": "b58072667f2c173b54e19cad6cc97cea86e4d1b9fb023ff4efbd4413fda72cc2",
+    "size": 567992,
+    "members": 26,
+    "verified": true
+  },
+  "note": "Failed receipts retained unchanged; no behavioral or output success claimed."
+}

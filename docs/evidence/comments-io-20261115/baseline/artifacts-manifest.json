@@ -1,0 +1,238 @@
+{
+  "baseline-accounting-review.json": {
+    "sha256": "eedd7e2d92375867fbd91f201397901742be13ca136499de0986da09138f9a30",
+    "size": 1613
+  },
+  "baseline-fixture-generation/artifacts-sha256.json": {
+    "sha256": "a0112d409e51deabc4053d21799206b18b7daedc94b163f38e4a3d829b7428aa",
+    "size": 759
+  },
+  "baseline-fixture-generation/command.json": {
+    "sha256": "23d003efe171018e66907bb5c635b1b576c17e05ee27226f6e441d1e75a52e95",
+    "size": 565
+  },
+  "baseline-fixture-generation/inputs-after.json.gz": {
+    "sha256": "2bf997298a77cecb9123def11d79d849c46c7f644cdb143f583fda7d47b1661c",
+    "size": 155628
+  },
+  "baseline-fixture-generation/inputs-before.json.gz": {
+    "sha256": "292bcba274e46ffbd12e87e2a572242526d7abc40d8eff96bc2643c66147fa7a",
+    "size": 155627
+  },
+  "baseline-fixture-generation/metadata.json": {
+    "sha256": "69950b7cc6dd7f1e391b9e9f6106dffc396a0bfe67929cd6cdca841ff3bc894a",
+    "size": 3993
+  },
+  "baseline-fixture-generation/stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "baseline-fixture-generation/stdout.log": {
+    "sha256": "aedb29c2c97dc3a87a4107837634dc0d053f000d7bdf0add949bfc5b9a0ffaca",
+    "size": 50
+  },
+  "baseline-independent-oracle/artifacts-sha256.json": {
+    "sha256": "3198192f5f7f66e033f923560c48dc82ef0c8eced3a0364a1482e1caadfbe120",
+    "size": 760
+  },
+  "baseline-independent-oracle/command.json": {
+    "sha256": "304b96bbca09490c9a0a59637f2343d9a7737d3d0a1102c99499c75039e1dcad",
+    "size": 719
+  },
+  "baseline-independent-oracle/inputs-after.json.gz": {
+    "sha256": "86b8714db24a673ccc53fb68296afcca59f45071077c33575887b6ba03c9cc56",
+    "size": 155627
+  },
+  "baseline-independent-oracle/inputs-before.json.gz": {
+    "sha256": "d38dee3aeb18b95d92cf5245477b919a9dc957dfb96198d6eebe80cad210491c",
+    "size": 155627
+  },
+  "baseline-independent-oracle/metadata.json": {
+    "sha256": "481af7684204376141407c0f0c5224fcfdf2060c08246ba6716da386239bee0d",
+    "size": 2438
+  },
+  "baseline-independent-oracle/stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "baseline-independent-oracle/stdout.log": {
+    "sha256": "28e743c30c878f7d103ded1d5430763da0fd830f7cff68a1f679d223eb7e2d8e",
+    "size": 380
+  },
+  "baseline-independent-report.json": {
+    "sha256": "13e060344d4245c7c6694db12a6d2d103ad7f5856f72dbb090da509dcd041e59",
+    "size": 36685
+  },
+  "baseline-tests/artifacts-sha256.json": {
+    "sha256": "f864266fa0a3af7d851cb74a102f877bf46921b04015c16a1d4f6d01cf1ba25c",
+    "size": 1009
+  },
+  "baseline-tests/command.json": {
+    "sha256": "ad683b9791dfca43394aa5ea4e0130a1fb907f10ec75c35e5b85160b0d5e24c1",
+    "size": 559
+  },
+  "baseline-tests/inputs-after.json.gz": {
+    "sha256": "34f3d7c46d72fadef8295112a0ab9aead178be9e92ca2828738bdaa98bc7b08e",
+    "size": 155627
+  },
+  "baseline-tests/inputs-before.json.gz": {
+    "sha256": "426759b175353a34e33dbef0f6c8c47e436ce73b4f69d5769cd97ecf3e59d39e",
+    "size": 155627
+  },
+  "baseline-tests/metadata.json": {
+    "sha256": "7069fba1eb77695a99862e6caad6d3e112acf75c04e31790657b5330625aed5d",
+    "size": 4450
+  },
+  "baseline-tests/stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "baseline-tests/stdout.jsonl": {
+    "sha256": "5e3a9ba95abc755c087aad04dec331c79ed89ffc6a280f6c0ca30f2362feba0e",
+    "size": 11471
+  },
+  "baseline-tests/suites.txt": {
+    "sha256": "749e3c06648541efe8745a697f23f46583585276a210c9464c226fb8045f69dc",
+    "size": 133
+  },
+  "baseline-tests/summary.json": {
+    "sha256": "621678993647c909828948e256138998e348093f1ff45456936937bd54c288d6",
+    "size": 6587
+  },
+  "baseline-xlsx/comments-cycle-1.xlsx": {
+    "sha256": "7ab0b7ec3ee896e6cb1a198fcea726b2df8a4f4b2d7337ffcdb11b0b5d26697b",
+    "size": 3842
+  },
+  "baseline-xlsx/comments-cycle-2.xlsx": {
+    "sha256": "6d2a0ff63460e29c731e08c9aa5ee512cad0eff469412c16bc886e6fcf6c3cc5",
+    "size": 3851
+  },
+  "baseline-xlsx/comments-cycle-3.xlsx": {
+    "sha256": "2326d2d95ff11ecd717980c5212832aa792383c6a18ca5efa57d2a28b9ba4fb7",
+    "size": 3852
+  },
+  "baseline-xlsx/expected-comments.json": {
+    "sha256": "2650e84c00ae2f3cd99c17dd1ed6b82679956684f13a920cc70e94414eefe35f",
+    "size": 491
+  },
+  "dependency-setup/after/dart_tool-package_config.json.gz": {
+    "sha256": "8ed92c8b4200966644946b28012c08a06fc07f6b722686c157776ed0ce8d317a",
+    "size": 1872
+  },
+  "dependency-setup/after/dart_tool-package_graph.json.gz": {
+    "sha256": "1f03a4d8a36e8aa98706273d1ee9bd177814b943bfa3276d886c3104692e6931",
+    "size": 2162
+  },
+  "dependency-setup/after/pubspec.lock.gz": {
+    "sha256": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "size": 5603
+  },
+  "dependency-setup/after/pubspec.yaml.gz": {
+    "sha256": "9069a366b244d6d9451df0023a9ef74d03e5fd08f58a4398ee780beecf04094c",
+    "size": 323
+  },
+  "dependency-setup/artifacts-sha256.json": {
+    "sha256": "af8b3298ed944424966018228cfefdb6e794fb16e5c414af72e43ffc6e6e569c",
+    "size": 1065
+  },
+  "dependency-setup/before/pubspec.yaml.gz": {
+    "sha256": "9069a366b244d6d9451df0023a9ef74d03e5fd08f58a4398ee780beecf04094c",
+    "size": 323
+  },
+  "dependency-setup/receipt.json": {
+    "sha256": "69eafb7aa444ad794f5044e8cf77d4840475287652cbdb12ff294b4f1d97bcb1",
+    "size": 3252
+  },
+  "dependency-setup/stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "dependency-setup/stdout.log": {
+    "sha256": "539dcf22ce8650db943fc2502ac19e36004352770191dfef0d4e697bc2482395",
+    "size": 2642
+  },
+  "focused-suites.txt": {
+    "sha256": "749e3c06648541efe8745a697f23f46583585276a210c9464c226fb8045f69dc",
+    "size": 133
+  },
+  "oracle-controls/control-summary.json": {
+    "sha256": "401b468b2b1ea5d636c858608651a879604fc65c2dbf81e07e90f5dbc6e7e986",
+    "size": 721
+  },
+  "oracle-controls/namespace-and-bare-text-report.json": {
+    "sha256": "02be6ef613b982cdf814ac01d67307f29dee3d35c33defff385d54c149ca6ade",
+    "size": 37304
+  },
+  "oracle-controls/namespace-and-bare-text.stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "oracle-controls/namespace-and-bare-text.stdout.log": {
+    "sha256": "d60e84ef5ef91d8a3e54286296dd5b4d46ea355cfc5f3fa95397c8734584304c",
+    "size": 399
+  },
+  "oracle-controls/namespace-and-bare-text/comments-cycle-1.xlsx": {
+    "sha256": "d9be0e47c306e4f76d545a81e39aa083cab7aba0304e5c023122d197068f71ac",
+    "size": 6376
+  },
+  "oracle-controls/namespace-and-bare-text/comments-cycle-2.xlsx": {
+    "sha256": "d9be0e47c306e4f76d545a81e39aa083cab7aba0304e5c023122d197068f71ac",
+    "size": 6376
+  },
+  "oracle-controls/namespace-and-bare-text/comments-cycle-3.xlsx": {
+    "sha256": "d9be0e47c306e4f76d545a81e39aa083cab7aba0304e5c023122d197068f71ac",
+    "size": 6376
+  },
+  "oracle-controls/namespace-and-bare-text/expected-comments.json": {
+    "sha256": "31ab18c7f20e07d0ddf9565436984ceef43c4ef55712be6d60c690998ffbe1e6",
+    "size": 466
+  },
+  "oracle-controls/positive-report.json": {
+    "sha256": "83412ebef9a9c5b350b257db6c0702be3b170b60acd83ff84c66b71f99a6753b",
+    "size": 11452
+  },
+  "oracle-controls/positive.stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "oracle-controls/positive.stdout.log": {
+    "sha256": "039ee3c71c62ccda86e94a75721f4ebbb2352abc5bab07c20581e7b5a4483db8",
+    "size": 212
+  },
+  "oracle-controls/positive/comments-cycle-1.xlsx": {
+    "sha256": "0717f78bc30271a608cb77803b18e30879838b98bf38ccb4e9bdeb91cd98c53f",
+    "size": 6420
+  },
+  "oracle-controls/positive/comments-cycle-2.xlsx": {
+    "sha256": "0717f78bc30271a608cb77803b18e30879838b98bf38ccb4e9bdeb91cd98c53f",
+    "size": 6420
+  },
+  "oracle-controls/positive/comments-cycle-3.xlsx": {
+    "sha256": "0717f78bc30271a608cb77803b18e30879838b98bf38ccb4e9bdeb91cd98c53f",
+    "size": 6420
+  },
+  "oracle-controls/positive/expected-comments.json": {
+    "sha256": "31ab18c7f20e07d0ddf9565436984ceef43c4ef55712be6d60c690998ffbe1e6",
+    "size": 466
+  },
+  "primary-schema-review.json": {
+    "sha256": "91b18123f4b07bf455b0ea0bb5eaa8c024e683bea4b972a6a7ad7dbc8821ce9c",
+    "size": 1158
+  },
+  "record_gate-cwd.py": {
+    "sha256": "02b88f3363f66c9752056a6ff3ecbb7dd1c44a7b5342a04928a71186b55139f0",
+    "size": 10091
+  },
+  "record_gate.py": {
+    "sha256": "2d9234340626d56ebc4cbe82fdc801560533b14ffc6665d47084663d644c26e8",
+    "size": 9546
+  },
+  "resolution-runner.py": {
+    "sha256": "a9bce5b13c9e3febb6db45e980a36a81580012334cb2584887891e1a34812edb",
+    "size": 3550
+  },
+  "verify_comments.py": {
+    "sha256": "47389ed35e2bc2904dc201828a5d78d94272b81e53bf7b6a55f3ba6a546b6666",
+    "size": 17417
+  }
+}

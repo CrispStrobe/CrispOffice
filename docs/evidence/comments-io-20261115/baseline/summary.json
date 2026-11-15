@@ -1,0 +1,55 @@
+{
+  "source_commit": "9fbf25b1f54afd535b8633ce96122c6727c6608b",
+  "production_unchanged_from": "6e4c3b16b4310f2c21b6d8b5e412af9850eb17ea",
+  "tests": {
+    "errors": 11,
+    "failed": 11,
+    "other_results": 0,
+    "passed": 3,
+    "skipped": 0,
+    "tests": 14
+  },
+  "suite_count": 2,
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "inputs_and_commit_stable": true,
+  "external_reader": {
+    "version": "openpyxl 3.1.5",
+    "cycles": 3,
+    "comments_per_cycle": 6,
+    "nonempty_texts_read_as_empty_per_cycle": 5,
+    "failure_counts": {
+      "comments_element_namespace": 51,
+      "rst_has_no_bare_text": 15,
+      "plain_rst_text_leaf": 18,
+      "xml_comment_text": 18,
+      "openpyxl_comment_text_author": 15
+    },
+    "inputs_unchanged": true
+  },
+  "dependency_setup": {
+    "pubspec_unchanged": true,
+    "resolved_new_untracked_workspace_lock": true,
+    "committed_lock_changed": false
+  },
+  "archive": {
+    "file": "artifacts.tar.xz",
+    "size": 615140,
+    "sha256": "032a8d0d462d90d5be8987b49630a1a03435e741f6b672ac6b20a8d3b315a179",
+    "members": 59,
+    "verified": true
+  },
+  "scope": "Reproduced comments schema/relationship/removal failures before production correction. Primary sources and independent oracle controls retained. Not broad OOXML schema or native Excel rendering qualification.",
+  "original_suite_accounting": {
+    "missing_suites": [
+      "packages/quds_office_engine/test/sheet_comments_schema_test.dart",
+      "packages/quds_office_engine/test/sheet_comments_namespace_test.dart"
+    ],
+    "unexpected_suites": [
+      "test/sheet_comments_namespace_test.dart",
+      "test/sheet_comments_schema_test.dart"
+    ],
+    "reason": "Package-cwd-relative event paths were compared to repo-relative manifest paths"
+  },
+  "accounting_review": "baseline-accounting-review.json inside archive, with raw hash and recorded cwd; original summary and raw output unchanged"
+}

@@ -1,0 +1,78 @@
+{
+  "dependency-profile.json": {
+    "sha256": "79c854b5d89eb80dd1ea1e4e8290c68a3c6111edcb9c54966e7c551257a7d708",
+    "size": 1355
+  },
+  "full-parser/artifacts-sha256.json": {
+    "sha256": "22a9a7cc50c6cb998a7983e5647fe99b5dad753cd0cf5af55db69c2581f33634",
+    "size": 1017
+  },
+  "full-parser/command.json": {
+    "sha256": "12f8dae6a2f97e29939f5075c370df08fb3b6ac321386d1fc8a2e2373bee348f",
+    "size": 13702
+  },
+  "full-parser/inputs-after.json.gz": {
+    "sha256": "eed95c29b5307610e084dae691afa8338228eb7c1f3dddc28a03d485edde9485",
+    "size": 157678
+  },
+  "full-parser/inputs-before.json.gz": {
+    "sha256": "0412a6708915aa7efb6756ca3688f932aca9d627bfed3fdffd9eda8b0b14125a",
+    "size": 157678
+  },
+  "full-parser/metadata.json": {
+    "sha256": "36d4fac593fed652868bca4e8320623a29390cec260d8b3abf7e9d200c172f8c",
+    "size": 11527
+  },
+  "full-parser/stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "full-parser/stdout.jsonl": {
+    "sha256": "25fa572b8bee9d21213915e2182913661b7dec3037f487fb84227dfa75002f03",
+    "size": 1926447
+  },
+  "full-parser/suites.txt": {
+    "sha256": "cbe667feada39567f22c1a8212bead87c96ad71845e9ae19003b8e65fa9ad442",
+    "size": 10040
+  },
+  "full-parser/summary.json": {
+    "sha256": "3e9ff3bd1753e27a5fe1488ea16c3a1d8de2d522eca91283789cb4565f7631cc",
+    "size": 39544
+  },
+  "quds-parser-suites.txt": {
+    "sha256": "cbe667feada39567f22c1a8212bead87c96ad71845e9ae19003b8e65fa9ad442",
+    "size": 10040
+  },
+  "record_gate-cwd.py": {
+    "sha256": "02b88f3363f66c9752056a6ff3ecbb7dd1c44a7b5342a04928a71186b55139f0",
+    "size": 10091
+  },
+  "resolution/.dart_tool/package_config.json.gz": {
+    "sha256": "8ed92c8b4200966644946b28012c08a06fc07f6b722686c157776ed0ce8d317a",
+    "size": 1872
+  },
+  "resolution/.dart_tool/package_graph.json.gz": {
+    "sha256": "1f03a4d8a36e8aa98706273d1ee9bd177814b943bfa3276d886c3104692e6931",
+    "size": 2162
+  },
+  "resolution/packages/legacy_doc_parser/UPSTREAM.json.gz": {
+    "sha256": "acaf5000ab2c01947e0fd07c209f2dca20b982aebb23ccfeb8e7e021a4c08b18",
+    "size": 218
+  },
+  "resolution/packages/legacy_doc_parser/pubspec.yaml.gz": {
+    "sha256": "a40ad3bcc39e7ac0cff10e626afbf62138a114098aa69fea97b23faf40c97c60",
+    "size": 307
+  },
+  "resolution/pubspec.lock.gz": {
+    "sha256": "e35604ec5cdec77baa35631df236c258548b7b24f006fd309eb3482702119c40",
+    "size": 5603
+  },
+  "resolution/pubspec.yaml.gz": {
+    "sha256": "9069a366b244d6d9451df0023a9ef74d03e5fd08f58a4398ee780beecf04094c",
+    "size": 323
+  },
+  "source-identities.json": {
+    "sha256": "66a2e4a4a5c725bb6fa9b6ea7962ddbef920408c566de10c9d214ef480827912",
+    "size": 100193
+  }
+}
