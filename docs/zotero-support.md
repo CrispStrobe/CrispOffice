@@ -24,7 +24,11 @@ group in Quds Studio and CrispCloud). The workspace has three tabs:
 
 The selected references can also be copied as BibTeX, BibLaTeX, RIS, or CSL JSON
 from the Library tab. Source exports are copied as reference data, not inserted
-as document text.
+as document text. Library exports use sources from one online library; use
+**Document → Copy embedded CSL JSON** for a mixed-library or offline document.
+Set the style ID and locale in Document (defaults: `apa` and `en-US`) before
+requesting a bibliography or individual citation preview. In the citation
+composer, expand a source's title to edit its locator and affixes.
 
 ### Connection and credentials
 
@@ -54,7 +58,7 @@ and sends authentication in the `Zotero-API-Key` header.
 | Single-source style preview | Zotero's individual citation text for a style ID and locale | Review locators and document numbering; this is not a document-wide CSL run |
 | Zotero bibliography | One complete API rendering of up to 50 distinct sources in one library | Inserted as plain text; no separately formatted batches are concatenated |
 | Basic bibliography | Sorted, deduplicated entries from embedded source snapshots | Useful offline, without complete CSL formatting |
-| Refresh | Fetch source metadata and atomically refresh Quds basic author–year citations | Imported/custom style caches are not automatically replaced |
+| Refresh | Fetch metadata for at most 50 distinct linked sources and atomically refresh Quds basic author–year citations | Imported/custom style caches are not automatically replaced |
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and cached text | Unsupported rich/nested/locked/multi-paragraph replacements are refused |
 | Native Zotero document preferences | Preserve imported `ZOTERO_PREF_*` properties as opaque package content | New document-wide style/session preferences are not fabricated |
 
@@ -75,6 +79,9 @@ formatting and individual previews explicitly.
 
 Ordinary save/reopen retains unsupported fields instead of replacing them with
 plain text. Converting a field to text is an explicit, undoable user action.
+Imported bibliographies with nonempty `uncited`, `omitted`, or `custom` settings
+are preserved and refuse replacement, so these choices are not discarded.
+Update those choices in Zotero before regenerating the bibliography here.
 Citation edits refuse when Track changes is active or an unresolved revision
 affects the target paragraph. Insertion into a multi-paragraph Zotero field is
 also refused. Async operations recheck the original document, content revision,
@@ -107,9 +114,10 @@ The engine exports `ZoteroClient`, `ZoteroLibrary`, `ZoteroItem`,
 `updateZoteroBibliography`, and `unlinkZoteroField`. Live field handles must be
 re-inspected after a mutation or history operation.
 
-The client returns typed authentication, permission, pagination and rate-limit
-failures. `Backoff` and `Retry-After` are respected without waiting indefinitely
-or starting a hidden retry loop. The next attempt reports a remaining delay.
+The client returns typed errors for access, rate limits, network/server failures,
+and invalid responses. `Backoff` and `Retry-After` are respected without waiting
+indefinitely or starting a hidden retry loop. The remaining delay is available
+to hosts through the error's `retryAfter` value.
 
 ## Development baseline and verification
 
@@ -125,6 +133,14 @@ Before Zotero changes, CrispCloud's Quds mirror was synchronized from
 `3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa` to current Quds, retaining the
 UTF-16 custom-XML bibliography fix and ODS conditional formatting. Its separately
 maintained legacy DOC parser pin remains unchanged.
+
+A final refresh incorporated Quds main
+`c210315bee537776b556ae9885e907483b6df7bd` (PRs #36–39) and CrispCloud main
+`50b459323fe798c3638b8b8ce499ea91b89f98c0` (through PR #148). Their recent
+feature/docs heads were also checked for patch equivalence. CrispCloud's closed
+UTF-16 PR #143 was superseded by identical implementation/test bytes already on
+main. Concurrent terminal-workspace draft PR #140 remained active and separate;
+its later implementation was not folded into this Office change.
 
 Changes are checkpointed incrementally on `codex/zotero-support-20261115` in
 both repositories. Engine and editor changes are separate commits. Hosted CI is
