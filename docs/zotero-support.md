@@ -355,6 +355,13 @@ and terminal #140 were already included; five retained Quds branches were exact
 tree equivalents of integrated squash changes. The standalone parser pin stays
 unchanged.
 
+The final reconciliation also includes work that arrived during implementation:
+Quds main through **#46**, CrispCloud main through **#156**, and terminal #140
+through `a965bfd4a61ca01e6f50bf4d8c433c3fdc9e1423`. The main and terminal merges
+retain both parents. Quds #40 was merged during the work; a new draft PR carries
+the continuation beyond it. Final audit receipts distinguish the initial
+snapshot from this later integration.
+
 Work is checkpointed incrementally on `codex/zotero-support-20261115` in both
 repositories. Checkpoints carry `[skip ci]`; GitHub Actions are not awaited.
 Local Dart/Flutter execution is available. Current test results, exact source

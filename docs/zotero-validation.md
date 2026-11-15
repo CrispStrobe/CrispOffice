@@ -1,6 +1,46 @@
 # Zotero validation — 15 November 2026
 
-## Rich formatting continuation: current executed results
+## Native citing continuation: current executed results
+
+Native desktop controls now use Zotero's picker, document style preferences and
+complete CSL processor. The staged adapter handles inline/footnote/endnote
+citations, document-wide refresh, bibliographies, native preference storage,
+result review and one-step undo/redo.
+
+At canonical code commit `55d46a0fb5f7392dab1a604bc3c15126bd3e380d`, after
+reconciling incoming main through PR #46:
+
+| Local check | Result |
+| --- | ---: |
+| Zotero/Word engine and related import cohort | 380 passed |
+| Shared Flutter controller/formatter/dialog cohort | 117 passed |
+| Actual Studio native transport | 16 passed |
+| Incoming ODS/conditional-affix integration cohort | 80 passed |
+| **Canonical selected tests** | **593 passed** |
+| Engine, editor and Studio strict analyzers | Clean |
+| 27 changed Dart targets, formatter check | Clean |
+| Incremental diff whitespace check | Clean |
+
+All 1,558 recorded source/dependency-input hashes, HEAD and harness inputs stayed
+unchanged. Runtime: official Flutter 3.47.8 / Dart 3.13.7, with genuine locked
+dependencies and unchanged production constraints. The final documentation
+commits retain the tested implementation.
+
+See [current evidence and reproduction](validation/zotero-citing-20261115/README.md),
+[the exact receipt](validation/zotero-citing-20261115/final/receipt.json), and
+[the implementation review](validation/zotero-citing-20261115/REVIEW.md). The
+real-processor fixtures cover German *Ebd.*, numeric renumbering and APA
+disambiguation; protocol/UI transcripts remain deterministic local tests.
+CrispCloud's companion evidence records its host transport and vendor guards.
+
+Full native builds, live Zotero/private-account access, OS-keychain acceptance
+and native Word refresh remain unverified. Mixed inline styling and bibliography
+layout remain simplified with review; Quds note preview numbering follows stored
+IDs; ODT active-citation transfer remains absent. Native source and style controls
+are implemented, so the older sections' statements that those are absent describe
+only their historical source revisions. No GitHub Actions were used.
+
+## Earlier rich formatting continuation: historical executed results
 
 The implementation now preserves linked multi-run simple fields, numeric
 citation caches and unchanged rich citation results, and adds reviewed rich

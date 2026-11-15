@@ -1,0 +1,382 @@
+00:00 +0: loading test/word_zotero_test.dart
+00:00 +0: test/word_zotero_test.dart: CSL citation metadata is immutable and retains unknown fields
+00:00 +1: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +2: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +3: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +4: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +5: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +6: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +7: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +8: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +9: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +10: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +11: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +12: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +13: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +14: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +15: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +16: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +17: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +18: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +19: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +20: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +21: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +22: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +23: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +24: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +25: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +26: test/word_zotero_test.dart: new complex fields reopen as atomic runs including isolated saves
+00:00 +27: test/word_zotero_test.dart: new complex fields reopen as atomic runs including isolated saves
+00:00 +28: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +29: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +30: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +31: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +32: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +33: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +34: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +35: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +36: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +37: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +38: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +39: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +40: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +41: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +42: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +43: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +44: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +45: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +46: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +47: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +48: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +49: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +50: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +51: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:00 +52: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +53: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:00 +54: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:00 +55: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:00 +56: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:00 +57: test/word_zotero_formatted_bibliography_test.dart: rich replacement of an inline bibliography refuses without touching its neighbors
+00:00 +58: test/word_zotero_simple_field_test.dart: tracked rich simple cache retains real paragraph revision offsets
+00:00 +59: test/word_zotero_simple_field_test.dart: tracked rich simple cache retains real paragraph revision offsets
+00:00 +60: test/word_zotero_formatted_bibliography_test.dart: a reopened full-paragraph complex bibliography supports another rich update
+00:00 +61: test/word_zotero_formatted_bibliography_test.dart: a reopened full-paragraph complex bibliography supports another rich update
+00:00 +62: test/word_zotero_simple_field_test.dart: malformed rich simple metadata stays a preserved uneditable field
+00:00 +63: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +64: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +65: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +66: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +67: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +68: test/word_zotero_formatted_bibliography_test.dart: same-text citation edit preserves complex result runs and foreign formatted metadata
+00:00 +69: test/word_zotero_formatted_bibliography_test.dart: same-text citation edit preserves complex result runs and foreign formatted metadata
+00:00 +70: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:00 +71: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:00 +72: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:00 +73: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:00 +74: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:00 +75: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:00 +76: test/word_zotero_simple_field_test.dart: whole-paragraph native PAGE remains a dynamic page field
+00:00 +77: test/word_zotero_simple_field_test.dart: a PAGE fragment inside citation JSON is not a PAGE command
+00:00 +78: test/word_zotero_simple_field_test.dart: tracked native PAGE cache keeps valid revision text and boundaries
+00:00 +79: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +80: test/zotero_identity_client_test.dart: known URI scheme and hostname aliases normalize consistently
+00:00 +81: test/zotero_identity_client_test.dart: a colliding key from another local profile cannot refresh or preview
+00:00 +82: test/zotero_identity_client_test.dart: citation keys and missing CSL IDs cannot prove a linked local identity
+00:00 +83: test/zotero_identity_client_test.dart: invalid identity arguments fail before any request
+00:00 +84: test/zotero_identity_client_test.dart: cloud routes refuse local identities before sending credentials
+00:00 +85: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +86: test/zotero_identity_client_test.dart: bibliography verifies once then renders one complete selection
+00:00 +87: test/zotero_identity_client_test.dart: aggregate expectations reject incomplete, extra and mixed profile maps before I/O
+00:00 +88: test/zotero_identity_client_test.dart: invalid bibliography formatting fails before the identity preflight
+00:00 +89: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +90: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:00 +91: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:00 +92: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:00 +93: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:00 +94: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:00 +95: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:00 +96: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:00 +97: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +98: test/zotero_formatted_text_test.dart: explicit CSS resets and closing tags restore inherited emphasis
+00:00 +99: test/zotero_formatted_text_test.dart: explicit CSS resets and closing tags restore inherited emphasis
+00:00 +100: test/zotero_formatted_text_test.dart: numeric margins stay beside entries while blocks retain line breaks
+00:00 +101: test/zotero_formatted_text_test.dart: inline whitespace is collapsed without adding space between adjacent tags
+00:00 +102: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +103: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +104: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +105: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +106: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +107: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +108: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +109: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +110: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +111: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +112: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +113: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +114: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +115: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +116: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:00 +117: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +118: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +119: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +120: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +121: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +122: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +123: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +124: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +125: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +126: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +127: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +128: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +129: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +130: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +131: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +132: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +133: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +134: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +135: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +136: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:01 +137: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three direct saves
+00:01 +138: test/word_bibliography_fidelity_test.dart: direct source edits preserve native metadata and unrelated XML through three saves
+00:01 +139: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three isolate saves
+00:01 +140: test/inline_field_fidelity_test.dart: two inline citations retain surrounding text over three isolate saves
+00:01 +141: test/word_bibliography_fidelity_test.dart: tag and scalar author edits retain editor roles and unrelated source fields
+00:01 +142: test/word_bibliography_fidelity_test.dart: tag and scalar author edits retain editor roles and unrelated source fields
+00:01 +143: test/inline_field_fidelity_test.dart: native locked simple fields retain flags and cached results
+00:01 +144: test/word_bibliography_fidelity_test.dart: clearing sources persists deletion without resurrecting imported native data
+00:01 +145: test/word_bibliography_fidelity_test.dart: clearing sources persists deletion without resurrecting imported native data
+00:01 +146: test/inline_field_fidelity_test.dart: cloning, extraction, insertion and formatting preserve inline fields
+00:01 +147: test/word_bibliography_fidelity_test.dart: new bibliography allocation preserves colliding unrelated XML and native ownership
+00:01 +148: test/word_bibliography_fidelity_test.dart: new bibliography allocation preserves colliding unrelated XML and native ownership
+00:01 +149: test/word_bibliography_fidelity_test.dart: new bibliography allocation preserves colliding unrelated XML and native ownership
+00:01 +150: test/word_bibliography_fidelity_test.dart: legacy unowned scalar sources are linked and normalized without overwriting item1
+00:01 +151: test/word_bibliography_fidelity_test.dart: external custom XML relationships do not supply native bibliography ownership
+00:01 +152: test/word_bibliography_fidelity_test.dart: UTF-16LE custom XML does not block bibliography import
+00:01 +153: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:01 +154: test/word_revision_story_test.dart: detached targets and invalid recorded indices never redirect into body
+00:01 +155: test/word_revision_story_test.dart: legacy directly constructed revisions bind once and note tables resolve
+00:01 +156: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:01 +157: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:02 +158: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:02 +159: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:02 +160: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:02 +161: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:02 +162: test/word_auxiliary_content_control_test.dart: a native PAGE wrapper without sdtPr survives three saves
+00:02 +163: test/word_auxiliary_content_control_test.dart: a native PAGE wrapper without sdtPr survives three saves
+00:02 +164: test/word_auxiliary_content_control_test.dart: a native PAGE wrapper without sdtPr survives three saves
+00:02 +165: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +166: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +167: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +168: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +169: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +170: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +171: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +172: test/word_content_control_fidelity_test.dart: unsupported inline control drawing stops import without changing source
+00:02 +173: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +174: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +175: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +176: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +177: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +178: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +179: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +180: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +181: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: true)
+00:02 +182: test/word_content_control_fidelity_test.dart: header_default multi-paragraph control is preserved verbatim
+00:02 +183: test/word_fidelity_test.dart: PowerPoint pictures and charts persist on save
+00:02 +184: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +185: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +186: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +187: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +188: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +189: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +190: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +191: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +192: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +193: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +194: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +195: test/word_auxiliary_content_control_test.dart: single-paragraph auxiliary controls retain live fields and native shells (wrapped comment: false)
+00:02 +196: test/word_content_control_fidelity_test.dart: unsupported comments multi-paragraph control fails with its source part
+00:02 +197: test/word_auxiliary_content_control_test.dart: auxiliary wrapper IDs participate in clone insertion and save guards
+00:02 +198: test/word_content_control_fidelity_test.dart: frame child parsing honors selected compatibility branches
+00:02 +199: test/word_auxiliary_content_control_test.dart: auxiliary wrapper split is guarded without blocking contained edits
+00:02 +200: test/word_content_control_fidelity_test.dart: native rich controls retain editable structure, style cascade and exact owners
+00:02 +201: test/word_auxiliary_content_control_test.dart: header_default control with drawing is preserved verbatim
+00:02 +202: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +203: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +204: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +205: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +206: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +207: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +208: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +209: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +210: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +211: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +212: test/word_content_control_fidelity_test.dart: authored native source is retained before first import and three unchanged saves
+00:02 +213: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +214: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +215: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +216: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +217: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +218: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +219: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +220: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +221: test/header_footer_sdt_test.dart: a tagged footer content control keeps its exact native wrapper
+00:02 +222: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +223: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +224: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +225: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +226: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +227: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +228: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +229: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +230: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +231: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +232: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +233: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +234: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +235: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +236: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +237: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +238: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +239: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +240: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +241: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +242: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +243: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +244: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +245: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +246: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +247: test/word_content_control_fidelity_test.dart: direct preserves edited controls and rich children through three native saves
+00:02 +248: test/word_zotero_document_data_test.dart: XML adaptation retains session, style, locale and unknown data
+00:02 +249: test/word_zotero_document_data_test.dart: XML adaptation retains session, style, locale and unknown data
+00:02 +250: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +251: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +252: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +253: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +254: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +255: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +256: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +257: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +258: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +259: test/word_content_control_fidelity_test.dart: isolate preserves edited controls and rich children through three native saves
+00:02 +260: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:02 +261: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:02 +262: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:02 +263: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:02 +264: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:02 +265: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:02 +266: test/word_content_control_fidelity_test.dart: complete inline text replacement keeps metadata; format may cross boundaries
+00:02 +267: test/word_zotero_document_data_test.dart: rejects unsupported field storage Bookmark
+00:02 +268: test/word_content_control_fidelity_test.dart: complete copy retains wrapper and a partial copy reports unsupported
+00:02 +269: test/word_zotero_document_data_test.dart: rejects unsupported field storage ReferenceMark
+00:02 +270: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +271: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +272: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +273: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +274: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +275: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +276: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +277: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +278: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +279: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +280: test/word_content_control_fidelity_test.dart: malformed inline wrappers fail before direct or isolate package mutation
+00:02 +281: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:02 +282: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:02 +283: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:03 +284: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:03 +285: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:03 +286: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:03 +287: test/word_content_control_fidelity_test.dart: note line additions and removals retain surrounding block controls
+00:03 +288: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:03 +289: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:03 +290: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:03 +291: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:03 +292: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:03 +293: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:03 +294: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:03 +295: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:03 +296: test/word_zotero_document_data_test.dart: new preferences do not adopt an unowned canonical part
+00:03 +297: test/word_zotero_citing_test.dart: refresh replaces changing field lengths from the end of the paragraph
+00:03 +298: test/word_zotero_document_data_test.dart: clear and restore remain effective after an intervening save
+00:03 +299: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +300: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +301: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +302: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +303: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +304: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +305: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +306: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +307: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +308: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +309: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +310: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +311: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +312: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +313: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +314: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +315: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +316: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +317: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +318: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +319: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +320: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +321: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +322: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +323: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +324: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +325: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:03 +326: test/word_zotero_document_data_test.dart: custom-property output uses the reader UTF-8 byte limit
+00:03 +327: test/word_zotero_citing_test.dart: native text-only refresh retires basic formatting
+00:03 +328: test/word_zotero_citing_test.dart: native code-only refresh retires basic formatting
+00:03 +329: test/word_zotero_citing_test.dart: new citation inserts as note type 0 and survives DOCX
+00:03 +330: test/word_zotero_citing_test.dart: new citation inserts as note type 1 and survives DOCX
+00:03 +331: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:03 +332: test/word_zotero_citing_test.dart: caret follows inserted note type 0 after an earlier citation expands
+00:03 +333: test/word_zotero_citing_test.dart: caret follows inserted note type 1 after an earlier citation expands
+00:03 +334: test/word_zotero_citing_test.dart: caret follows inserted note type 2 after an earlier citation expands
+00:03 +335: test/word_zotero_citing_test.dart: a newly inserted note precedes existing notes in processor order
+00:03 +336: test/word_zotero_citing_test.dart: a note inserted directly before an existing marker uses its new order
+00:03 +337: test/word_zotero_citing_test.dart: a sole citation converts from note type 0 to 1 without losing text
+00:03 +338: test/word_zotero_citing_test.dart: a sole citation converts from note type 0 to 2 without losing text
+00:03 +339: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 0 without losing text
+00:03 +340: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 2 without losing text
+00:03 +341: test/word_zotero_citing_test.dart: a sole citation converts from note type 2 to 0 without losing text
+00:03 +342: test/word_zotero_citing_test.dart: a sole citation converts from note type 2 to 1 without losing text
+00:03 +343: test/word_zotero_citing_test.dart: conversion refuses extra note prose without staging earlier conversions
+00:03 +344: test/word_zotero_citing_test.dart: two citations in one note share the note index and refuse note conversion
+00:03 +345: test/word_zotero_citing_test.dart: conversion refuses a citation note with an unrelated empty PAGE field
+00:03 +346: test/word_zotero_citing_test.dart: deleting a citation keeps its note containing an unrelated empty PAGE field
+00:03 +347: test/word_zotero_citing_test.dart: conversion refuses a citation note with two note markers
+00:03 +348: test/word_zotero_citing_test.dart: deleting a citation keeps its note containing two note markers
+00:03 +349: test/word_zotero_citing_test.dart: deleting an explanatory-note citation keeps the note and surrounding prose
+00:03 +350: test/word_zotero_citing_test.dart: deleting a sole-citation note removes its body reference and updates later note indices
+00:03 +351: test/word_zotero_citing_test.dart: unlink retains processor-updated visible text and removes only native code
+00:03 +352: test/word_zotero_citing_test.dart: cancelled TEMP insertion and untouched seeded citation leave no field
+00:03 +353: test/word_zotero_citing_test.dart: seeded catalog selection is visible to Zotero and inserts only after it updates
+00:03 +354: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 0
+00:03 +355: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 1
+00:03 +356: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 2
+00:03 +357: test/word_zotero_citing_test.dart: catalog seed respects XML note type 0
+00:03 +358: test/word_zotero_citing_test.dart: catalog seed respects XML note type 1
+00:03 +359: test/word_zotero_citing_test.dart: catalog seed respects XML note type 2
+00:03 +360: test/word_zotero_citing_test.dart: native XML with omitted falsey note type seeds an inline citation
+00:03 +361: test/word_zotero_citing_test.dart: catalog seeds reject missing or invalid native style data without mutation
+00:03 +362: test/word_zotero_citing_test.dart: seed placement 0 refuses silently changed final preference 1
+00:03 +363: test/word_zotero_citing_test.dart: seed placement 0 refuses silently changed final preference 2
+00:03 +364: test/word_zotero_citing_test.dart: seed placement 1 refuses silently changed final preference 0
+00:03 +365: test/word_zotero_citing_test.dart: seed placement 1 refuses silently changed final preference 2
+00:03 +366: test/word_zotero_citing_test.dart: seed placement 2 refuses silently changed final preference 0
+00:03 +367: test/word_zotero_citing_test.dart: seed placement 2 refuses silently changed final preference 1
+00:03 +368: test/word_zotero_citing_test.dart: Zotero can explicitly convert a seed before returning matching preferences
+00:03 +369: test/word_zotero_citing_test.dart: unfinished TEMP result refuses completion and leaves the original document intact
+00:03 +370: test/word_zotero_citing_test.dart: citation and bibliography wrappers preserve metadata and rich results
+00:03 +371: test/word_zotero_citing_test.dart: new bibliography inserts a separate linked paragraph after the anchor
+00:03 +372: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:03 +373: test/word_zotero_citing_test.dart: mixed inline formatting is disclosed while preserving one atomic field
+00:03 +374: test/word_zotero_citing_test.dart: foreign document and field identities and malformed commands are rejected before mutation
+00:03 +375: test/word_zotero_citing_test.dart: changed text or replaced citation metadata invalidates a prepared result
+00:03 +376: test/word_zotero_citing_test.dart: locked documents and missing or repeated note anchors are refused
+00:03 +377: test/word_zotero_citing_test.dart: real Zotero processor German ibid and locators survive whole-document refresh
+00:03 +378: test/word_zotero_citing_test.dart: real numeric processor output renumbers existing citations after a preceding insertion
+00:03 +379: test/word_zotero_citing_test.dart: real author-year disambiguation updates both existing and newly inserted citations
+00:03 +380: All tests passed!
