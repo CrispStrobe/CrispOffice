@@ -92,6 +92,74 @@ void main() {
     expect(book.firstSheet.comments.single.text, ' authored note ');
   });
 
+  for (final shared in [false, true]) {
+    test(
+      'clearing ${shared ? 'shared ' : ''}relocated comments cannot expose a legacy decoy',
+      () {
+        var source = _relocatedPackage(keepLegacyDecoy: true);
+        if (shared) {
+          final setup = SheetDeserializer().read(source);
+          setup.sheets.add(SmlWorksheet(name: 'Other', sheetId: 2));
+          source = SheetSerializer().write(setup);
+          source
+              .relationshipsFor('/xl/worksheets/sheet2.xml')
+              .add(
+                type: RelationshipTypes.comments,
+                target: '../annotations/note42.xml',
+              );
+        }
+        final decoyBytes = source.getPart('/xl/comments1.xml')!.readBytes();
+        var book = SheetDeserializer().readBytes(source.save());
+        expect(book.firstSheet.comments.single.text, ' authored note ');
+        book.firstSheet.comments.clear();
+        for (var cycle = 1; cycle <= 3; cycle++) {
+          final saved = OpcPackage.openBytes(
+            SheetSerializer().write(book).save(),
+          );
+          expect(
+            saved.getPart('/xl/comments1.xml')!.readBytes(),
+            orderedEquals(decoyBytes),
+            reason: 'unrelated decoy bytes survive save $cycle',
+          );
+          book = SheetDeserializer().read(saved);
+          expect(
+            book.firstSheet.comments,
+            isEmpty,
+            reason: 'deleted comments stay deleted on reopen $cycle',
+          );
+          final rels = saved.relationshipsFor('/xl/worksheets/sheet1.xml');
+          final link = rels.firstByType(RelationshipTypes.comments)!;
+          final emptyPart = saved.getPart(rels.resolve(link))!;
+          expect(emptyPart.uri, isNot('/xl/comments1.xml'));
+          expect(emptyPart.contentType, OfficeContentTypes.sheetComments);
+          final root = XmlDocument.parse(emptyPart.readText()).root!;
+          expect(root.localName, 'comments');
+          expect(root.namespaceUri, OfficeNamespaces.x);
+          expect(root.childElements.map((child) => child.localName), [
+            'authors',
+            'commentList',
+          ]);
+          for (final child in root.childElements) {
+            expect(child.namespaceUri, OfficeNamespaces.x);
+            expect(child.childElements, isEmpty);
+          }
+          if (shared) {
+            expect(book.sheets[1].comments.single.text, ' authored note ');
+            expect(book.sheets[1].comments.single.author, 'Original');
+            final otherRels = saved.relationshipsFor(
+              '/xl/worksheets/sheet2.xml',
+            );
+            final otherLink = otherRels.firstByType(
+              RelationshipTypes.comments,
+            )!;
+            expect(otherRels.resolve(otherLink), _relocatedComments);
+            expect(emptyPart.uri, isNot(_relocatedComments));
+          }
+        }
+      },
+    );
+  }
+
   test('legacy fixed-name comments remain readable without a relationship', () {
     final package = SheetSerializer().write(_workbook('legacy fallback'));
     final rels = package.relationshipsFor('/xl/worksheets/sheet1.xml');
