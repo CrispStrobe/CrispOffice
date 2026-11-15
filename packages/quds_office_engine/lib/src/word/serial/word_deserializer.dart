@@ -1686,9 +1686,16 @@ class WordDeserializer {
             props.fontSizeHalfPoints = _measureHalfPoints(sz);
           }
         case 'u':
-          props.underline = WmlUnderline.fromXml(
-            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
-          );
+          props.underline = switch (reader.getAttribute(
+            'val',
+            namespaceUri: OfficeNamespaces.w,
+          )) {
+            'double' => WmlUnderline.double,
+            'dotted' => WmlUnderline.dotted,
+            'wave' => WmlUnderline.wavy,
+            'none' => WmlUnderline.none,
+            _ => WmlUnderline.single,
+          };
         case 'vertAlign':
           props.vertAlign = switch (reader.getAttribute(
             'val',

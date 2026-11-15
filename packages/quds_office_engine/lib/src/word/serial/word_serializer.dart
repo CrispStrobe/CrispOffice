@@ -1291,7 +1291,12 @@ class WordSerializer {
         'u',
         prefix: 'w',
         attributes: <String, String>{
-          'w:val': r.underline.xmlValue,
+          'w:val': switch (r.underline) {
+            WmlUnderline.double => 'double',
+            WmlUnderline.dotted => 'dotted',
+            WmlUnderline.wavy => 'wave',
+            _ => 'single',
+          },
         },
       );
     }
