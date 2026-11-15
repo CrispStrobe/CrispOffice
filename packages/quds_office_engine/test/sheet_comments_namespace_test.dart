@@ -100,6 +100,119 @@ void main() {
     expect(book.firstSheet.comments.first.text, 'legacy fallback');
   });
 
+  test('new comments resolve from a worksheet in a nested directory', () {
+    final book = _workbook('nested sheet');
+    const sheetUri = '/xl/sheets/north/data.xml';
+    book.firstSheet.sourcePartUri = sheetUri;
+    final package = OpcPackage.openBytes(SheetSerializer().write(book).save());
+    final rels = package.relationshipsFor(sheetUri);
+    final comments = rels.firstByType(RelationshipTypes.comments)!;
+    expect(rels.resolve(comments), '/xl/comments1.xml');
+    expect(package.getPart(rels.resolve(comments)), isNotNull);
+    expect(
+      SheetDeserializer().read(package).firstSheet.comments.first.text,
+      'nested sheet',
+    );
+  });
+
+  for (final invalid in ['external', 'missing', 'wrong type', 'wrong root']) {
+    test('invalid $invalid comments target cannot alter package bytes', () {
+      final book = _workbook('keep me');
+      final package = SheetSerializer().write(book);
+      final rels = package.relationshipsFor('/xl/worksheets/sheet1.xml');
+      final original = rels.firstByType(RelationshipTypes.comments)!;
+      rels.removeById(original.id);
+      var target = '../annotations/missing.xml';
+      var mode = RelationshipTargetMode.internal;
+      if (invalid == 'external') {
+        target = 'https://example.invalid/comments.xml';
+        mode = RelationshipTargetMode.external;
+      } else if (invalid == 'wrong type') {
+        target = '../styles.xml';
+      } else if (invalid == 'wrong root') {
+        target = '../annotations/wrong-root.xml';
+        package.createPart(
+          '/xl/annotations/wrong-root.xml',
+          OfficeContentTypes.sheetComments,
+          utf8.encode('<unrelated xmlns="${OfficeNamespaces.x}"/>'),
+        );
+      }
+      rels.add(
+        id: original.id,
+        type: RelationshipTypes.comments,
+        target: target,
+        targetMode: mode,
+      );
+      final before = package.save();
+      expect(() => SheetDeserializer().read(package), throwsFormatException);
+      expect(package.save(), orderedEquals(before));
+      expect(() => SheetSerializer().write(book), throwsFormatException);
+      expect(package.save(), orderedEquals(before));
+      book.firstSheet.comments.clear();
+      expect(() => SheetSerializer().write(book), throwsFormatException);
+      expect(package.save(), orderedEquals(before));
+    });
+  }
+
+  test('a non-comment part at the legacy filename is not overwritten', () {
+    final package = SheetSerializer().write(_workbook('unused'));
+    final rels = package.relationshipsFor('/xl/worksheets/sheet1.xml');
+    rels.removeById(rels.firstByType(RelationshipTypes.comments)!.id);
+    package.deletePart('/xl/comments1.xml');
+    final retained = utf8.encode('<unrelated>retain me</unrelated>');
+    package.createPart('/xl/comments1.xml', 'application/xml', retained);
+    final book = SheetDeserializer().read(package);
+    expect(book.firstSheet.comments, isEmpty);
+    book.firstSheet.comments.add(
+      SmlComment(ref: SmlCellRef.parse('A1'), text: 'new note'),
+    );
+    final saved = OpcPackage.openBytes(SheetSerializer().write(book).save());
+    expect(saved.getPart('/xl/comments1.xml')!.readBytes(), retained);
+    final savedRels = saved.relationshipsFor('/xl/worksheets/sheet1.xml');
+    final savedLink = savedRels.firstByType(RelationshipTypes.comments)!;
+    expect(savedRels.resolve(savedLink), isNot('/xl/comments1.xml'));
+    expect(
+      SheetDeserializer().read(saved).firstSheet.comments.single.text,
+      'new note',
+    );
+  });
+
+  for (final clearFirst in [false, true]) {
+    test(
+      'shared comments remain owned when one sheet ${clearFirst ? 'clears' : 'edits'}',
+      () {
+        final first = _workbook('shared original').firstSheet;
+        final second = SmlWorksheet(name: 'Other', sheetId: 2);
+        second.cellA1('A1').value = 'other sheet';
+        final package = SheetSerializer().write(
+          SmlWorkbook(sheets: [first, second]),
+        );
+        package
+            .relationshipsFor('/xl/worksheets/sheet2.xml')
+            .add(type: RelationshipTypes.comments, target: '../comments1.xml');
+        final book = SheetDeserializer().readBytes(package.save());
+        if (clearFirst) {
+          book.sheets.first.comments.clear();
+        } else {
+          book.sheets.first.comments.first.text = 'changed only first';
+        }
+        final saved = OpcPackage.openBytes(
+          SheetSerializer().write(book).save(),
+        );
+        final reopened = SheetDeserializer().read(saved);
+        expect(reopened.sheets[1].comments.first.text, 'shared original');
+        if (clearFirst) {
+          expect(reopened.sheets.first.comments, isEmpty);
+        } else {
+          expect(
+            reopened.sheets.first.comments.first.text,
+            'changed only first',
+          );
+        }
+      },
+    );
+  }
+
   for (final relocated in [false, true]) {
     test(
       'clearing ${relocated ? 'relocated' : 'standard'} comments removes them',
