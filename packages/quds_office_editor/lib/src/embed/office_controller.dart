@@ -1014,7 +1014,7 @@ class WordEditorController extends OfficeController {
         executeFn: () {
           for (final int p in targets) {
             before[p]!.restore(paras[p]);
-            WordToc.applyHeading(paras[p], level);
+            WordHeadingIo.apply(document, paras[p], level);
           }
         },
         undoFn: () {
@@ -11878,6 +11878,7 @@ class _WordNoteEditSnapshot {
 
 class _HeadingSnap {
   _HeadingSnap({
+    required this.properties,
     required this.headingLevel,
     required this.styleId,
     required this.spacingBefore,
@@ -11889,6 +11890,7 @@ class _HeadingSnap {
   /// capture API.
   factory _HeadingSnap.capture(WmlParagraph paragraph) {
     return _HeadingSnap(
+      properties: paragraph.properties.copy(),
       headingLevel: paragraph.properties.headingLevel,
       styleId: paragraph.properties.styleId,
       spacingBefore: paragraph.properties.spacingBefore,
@@ -11897,6 +11899,10 @@ class _HeadingSnap {
       inlines: WordEditorController._cloneInlines(paragraph),
     );
   }
+
+  /// Full paragraph properties: a style apply also changes alignment,
+  /// indents and numbering, which undo must restore.
+  final WmlParagraphProps properties;
 
   /// headingLevel API.
   final int? headingLevel;
@@ -11918,6 +11924,7 @@ class _HeadingSnap {
 
   /// restore API.
   void restore(WmlParagraph paragraph) {
+    paragraph.properties = properties.copy();
     paragraph.properties
       ..headingLevel = headingLevel
       ..styleId = styleId
