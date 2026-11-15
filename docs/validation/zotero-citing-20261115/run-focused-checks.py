@@ -58,6 +58,9 @@ EDITOR_TESTS = [
     "word_zotero_citing_dialog_test.dart",
 ]
 STUDIO_TESTS = ["studio_zotero_citing_transport_test.dart"]
+# Incoming main changed ODS conditional-affix import and XLSX export. Keep its
+# integration cohort separate from the Zotero/Word feature count.
+INTEGRATION_TESTS = ["ods_sheet_reader_test.dart"]
 PACKAGE_PATHS = {
     "legacy_doc_parser": "packages/legacy_doc_parser",
     "quds_office_engine": "packages/quds_office_engine",
@@ -234,6 +237,10 @@ def main():
         inputs, configs = {}, {}
         for name, harness in harnesses.items():
             inputs[name], configs[name] = harness_info(name, harness, source, tests[name])
+        for test in INTEGRATION_TESTS:
+            if not (harnesses["engine"] / "test" / test).is_file():
+                raise ValueError("Missing integration test: " + test)
+        inputs["engine"]["integration_tests"] = INTEGRATION_TESTS
         changed = sorted({
             path for path in git_paths(source, "diff", "--name-only", "--diff-filter=ACMR", "-z", BASELINE)
             if path.endswith(".dart") and (source / path).is_file()
@@ -262,6 +269,11 @@ def main():
             command += ["test"]
         command += ["--reporter", "expanded", *["test/" + p for p in tests[name]]]
         commands.append({"name": name + "-tests", "cwd": str(harness), "command": command})
+    commands.append({
+        "name": "integration-tests", "cwd": str(harnesses["engine"]),
+        "command": [str(dart), "test", "--reporter", "expanded",
+                    *["test/" + p for p in INTEGRATION_TESTS]],
+    })
     for name, paths in targets.items():
         if paths:
             commands.append({
