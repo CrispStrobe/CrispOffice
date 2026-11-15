@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Paint matching conditional-format fills and font colours in the sheet grid,
+  hide hidden rows/columns, and start on the first visible worksheet. Hidden
+  worksheet tabs are filtered by the host selector; the model and serializer
+  retain their state through XLSX saves.
+
 - Preserve explicit spreadsheet font-color intent through undo/redo and cell
   snapshots. Setting the currently resolved theme color creates a direct color;
   undoing that edit restores the native theme binding.
