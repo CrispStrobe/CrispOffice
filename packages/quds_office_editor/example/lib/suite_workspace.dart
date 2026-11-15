@@ -4814,7 +4814,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _pdfFindNext();
       return;
     }
-    _active.findNext();
+    _navigateOffice(_active, _active.findNext);
     setState(() {});
   }
 
@@ -4827,8 +4827,24 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _pdfFindPrevious();
       return;
     }
-    _active.findPrevious();
+    _navigateOffice(_active, _active.findPrevious);
     setState(() {});
+  }
+
+  void _navigateOffice(OfficeController controller, VoidCallback operation) {
+    try {
+      operation();
+    } on StateError catch (error) {
+      if (controller is! SheetEditorController ||
+          controller.lastValidationError != error.message) {
+        rethrow;
+      }
+      _toast(
+        _arabic
+            ? 'صحّح الخلية الحالية قبل المتابعة.'
+            : 'Correct the current cell before continuing.',
+      );
+    }
   }
 
   void _workspaceEscape() {
@@ -6614,8 +6630,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   void _newSheet() {
     _sheetPath = null;
     _sheetName = 'Book1.xlsx';
+    _sheet.cancelCellEdit();
     _sheet.workbook = SmlWorkbook();
     _sheet.setActiveSheet(0);
+    _resetSheetSelection();
   }
 
   void _newSlides() {
@@ -6639,8 +6657,19 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   void _resetSheet() {
     _sheetPath = null;
     _sheetName = 'Budget.xlsx';
+    _sheet.cancelCellEdit();
     _sheet.workbook = SampleLibrary.excelBudget();
     _sheet.setActiveSheet(0);
+    _resetSheetSelection();
+  }
+
+  void _resetSheetSelection() {
+    // Replacing/deleting a worksheet requires an explicit reset even when its
+    // numeric index is unchanged. Ordinary same-sheet navigation is a no-op.
+    _sheet.selectedDrawingIndex = null;
+    _sheet.selection.selectCell(const SmlCellRef(0, 0));
+    _sheet.viewport.origin = Offset.zero;
+    _sheet.refresh();
   }
 
   void _resetSlides() {
@@ -7180,7 +7209,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           children: <Widget>[
             for (int i = 0; i < _sheet.workbook.sheets.length; i++)
               InkWell(
-                onTap: () => _sheet.setActiveSheet(i),
+                onTap: () =>
+                    _navigateOffice(_sheet, () => _sheet.setActiveSheet(i)),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14),
                   alignment: Alignment.center,
@@ -7225,22 +7255,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _addSheet() {
-    _sheet.workbook.sheets.add(
-      SmlWorksheet(
-        name: 'Sheet${_sheet.workbook.sheets.length + 1}',
-        sheetId: _sheet.workbook.sheets.length + 1,
-      ),
-    );
-    _sheet.setActiveSheet(_sheet.workbook.sheets.length - 1);
+    _navigateOffice(_sheet, () {
+      _sheet.commitPendingEdits();
+      _sheet.workbook.sheets.add(
+        SmlWorksheet(
+          name: 'Sheet${_sheet.workbook.sheets.length + 1}',
+          sheetId: _sheet.workbook.sheets.length + 1,
+        ),
+      );
+      _sheet.setActiveSheet(_sheet.workbook.sheets.length - 1);
+    });
   }
 
   void _deleteSheet() {
     if (_sheet.workbook.sheets.length <= 1) {
       return;
     }
-    final int index = _sheet.activeSheetIndex;
-    _sheet.workbook.sheets.removeAt(index);
-    _sheet.setActiveSheet(index - 1);
+    _navigateOffice(_sheet, () {
+      _sheet.commitPendingEdits();
+      final int index = _sheet.activeSheetIndex;
+      _sheet.workbook.sheets.removeAt(index);
+      _sheet.setActiveSheet(index - 1);
+      _resetSheetSelection();
+    });
   }
 
   OfficeVisual? get _selectedOfficeVisual {
@@ -8389,7 +8426,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               '${_sheet.workbook.sheets[i].allCells.length} '
               '${_arabic ? 'خلية' : 'cells'}',
             ),
-            onTap: () => _sheet.setActiveSheet(i),
+            onTap: () =>
+                _navigateOffice(_sheet, () => _sheet.setActiveSheet(i)),
           ),
         const Divider(height: 1),
         Padding(

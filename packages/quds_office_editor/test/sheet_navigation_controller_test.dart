@@ -334,12 +334,12 @@ void main() {
         expect(controller.workbook.firstSheet.cell(_a1).value, 8);
         expect(controller.workbook.sheets[1].cell(_a1).value, 'Neighbor');
         expect(controller.sheet.name, destination);
-        expect(controller.selection.focus, _b2);
+        expect(controller.selection.focus.a1, 'B2');
         expect(controller.selectedDrawingIndex, isNull);
         expect(controller.cellEditor.editing, isFalse);
         controller.undo();
         expect(controller.workbook.firstSheet.cell(_a1).value, 5);
-        expect(controller.selection.focus, _b2);
+        expect(controller.selection.focus.a1, 'B2');
       },
     );
 
@@ -439,7 +439,7 @@ void main() {
         expect(controller.findSession.index, forward ? 1 : 2);
         expect(controller.findSession.current, same(hit));
         expect(controller.sheet.name, forward ? 'Budget' : 'Summary');
-        expect(controller.selection.focus, forward ? _c4 : _b2);
+        expect(controller.selection.focus.a1, forward ? 'C4' : 'B2');
         expect(controller.workbook.firstSheet.cell(_a1).value, 9);
         expect(callbacks, 1);
       },

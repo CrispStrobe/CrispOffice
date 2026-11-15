@@ -109,6 +109,26 @@ class _StudioFindPaneState extends State<StudioFindPane> {
     _debounce = Timer(const Duration(milliseconds: 160), _runFind);
   }
 
+  void _navigate(VoidCallback operation) {
+    try {
+      operation();
+    } on StateError catch (error) {
+      final controller = _c;
+      if (controller is! SheetEditorController ||
+          controller.lastValidationError != error.message) {
+        rethrow;
+      }
+    }
+    if (mounted) setState(() {});
+  }
+
+  bool get _hasPendingNavigationError {
+    final controller = _c;
+    return controller is SheetEditorController &&
+        controller.cellEditor.editing &&
+        controller.lastValidationError != null;
+  }
+
   void _runFind() {
     if (!mounted) {
       return;
@@ -121,12 +141,34 @@ class _StudioFindPaneState extends State<StudioFindPane> {
       setState(() {});
       return;
     }
-    _c.find(_options());
-    setState(() {});
+    _navigate(() => _c.find(_options()));
+  }
+
+  void _stepFind({bool forward = true}) {
+    if (_query.text.isEmpty) return;
+    _debounce?.cancel();
+    final current = _c.findSession.options;
+    if (current == null ||
+        current.query != _query.text ||
+        current.matchCase != _matchCase ||
+        current.wholeWord != _wholeWord ||
+        current.wildcards != _wildcards ||
+        _c.findSession.hits.isEmpty) {
+      // A blocked search keeps the old session. Retry the visible query and
+      // options before stepping through results from that older session.
+      _runFind();
+      return;
+    }
+    _navigate(forward ? _c.findNext : _c.findPrevious);
   }
 
   String get _status {
     final OfficeFindSession session = _c.findSession;
+    if (_hasPendingNavigationError) {
+      return widget.arabic
+          ? 'صحّح الخلية الحالية قبل المتابعة.'
+          : 'Correct the current cell before continuing.';
+    }
     if (_query.text.isEmpty) {
       return widget.arabic ? 'اكتب للبحث في المستند' : 'Type to search the document';
     }
@@ -152,23 +194,16 @@ class _StudioFindPaneState extends State<StudioFindPane> {
         bindings: <ShortcutActivator, VoidCallback>{
           const SingleActivator(LogicalKeyboardKey.escape): widget.onClose,
           const SingleActivator(LogicalKeyboardKey.enter): () {
-            if (_query.text.isEmpty) {
-              return;
-            }
-            _c.findNext();
-            setState(() {});
+            _stepFind();
           },
           const SingleActivator(LogicalKeyboardKey.enter, shift: true): () {
-            _c.findPrevious();
-            setState(() {});
+            _stepFind(forward: false);
           },
           const SingleActivator(LogicalKeyboardKey.f3): () {
-            _c.findNext();
-            setState(() {});
+            _stepFind();
           },
           const SingleActivator(LogicalKeyboardKey.f3, shift: true): () {
-            _c.findPrevious();
-            setState(() {});
+            _stepFind(forward: false);
           },
         },
         child: Focus(
@@ -233,9 +268,17 @@ class _StudioFindPaneState extends State<StudioFindPane> {
                           alignment: widget.arabic
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
-                          child: Text(
-                            _status,
-                            style: TextStyle(fontSize: 12, color: muted),
+                          child: Semantics(
+                            liveRegion: _hasPendingNavigationError,
+                            child: Text(
+                              _status,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: _hasPendingNavigationError
+                                    ? Theme.of(context).colorScheme.error
+                                    : muted,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -303,12 +346,7 @@ class _StudioFindPaneState extends State<StudioFindPane> {
       onChanged: onChanged,
       textInputAction: TextInputAction.search,
       onSubmitted: (_) {
-        if (_c.findSession.hits.isEmpty) {
-          _runFind();
-        } else {
-          _c.findNext();
-        }
-        setState(() {});
+        _stepFind();
       },
       decoration: InputDecoration(
         prefixIcon: Icon(icon, size: 18),
@@ -332,25 +370,13 @@ class _StudioFindPaneState extends State<StudioFindPane> {
           Icons.keyboard_arrow_up,
           widget.arabic ? 'السابق' : 'Previous',
           hasHits
-              ? () {
-                  _c.findPrevious();
-                  setState(() {});
-                }
+              ? () => _stepFind(forward: false)
               : null,
         ),
         _cmd(
           Icons.keyboard_arrow_down,
           widget.arabic ? 'التالي' : 'Next',
-          hasQuery
-              ? () {
-                  if (hasHits) {
-                    _c.findNext();
-                  } else {
-                    _runFind();
-                  }
-                  setState(() {});
-                }
-              : null,
+          hasQuery ? _stepFind : null,
         ),
         if (widget.replaceMode) ...<Widget>[
           _cmd(
@@ -358,7 +384,7 @@ class _StudioFindPaneState extends State<StudioFindPane> {
             widget.arabic ? 'استبدال' : 'Replace',
             hasHits && _c.config.allowsMutation
                 ? () {
-                    _c.replaceCurrent();
+                    _navigate(_c.replaceCurrent);
                     setState(() {});
                   }
                 : null,
@@ -368,7 +394,7 @@ class _StudioFindPaneState extends State<StudioFindPane> {
             widget.arabic ? 'استبدال الكل' : 'Replace all',
             hasQuery && _c.config.allowsMutation
                 ? () {
-                    _c.replaceAll(_options());
+                    _navigate(() => _c.replaceAll(_options()));
                     setState(() {});
                   }
                 : null,
@@ -465,10 +491,11 @@ class _StudioFindPaneState extends State<StudioFindPane> {
         final bool active = index == _c.findSession.index;
         return InkWell(
           onTap: () {
-            _c.findSession.index = index;
-            _c.revealFindHit(hit);
-            _c.refresh();
-            setState(() {});
+            _navigate(() {
+              _c.revealFindHit(hit);
+              _c.findSession.index = index;
+              _c.refresh();
+            });
           },
           child: ColoredBox(
             color: active
