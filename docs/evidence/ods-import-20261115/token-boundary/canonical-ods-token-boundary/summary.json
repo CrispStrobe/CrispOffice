@@ -1,0 +1,67 @@
+{
+  "totals": {
+    "tests": 42,
+    "passed": 42,
+    "skipped": 0,
+    "failed": 0,
+    "other_results": 0,
+    "errors": 0
+  },
+  "suites": [
+    {
+      "path": "test/ods_sheet_reader_test.dart",
+      "observed": true,
+      "tests": 29,
+      "passed": 29,
+      "skipped": 0,
+      "failed": 0,
+      "other_results": 0,
+      "errors": 0,
+      "result": "passed"
+    },
+    {
+      "path": "test/legacy_sheet_reader_test.dart",
+      "observed": true,
+      "tests": 6,
+      "passed": 6,
+      "skipped": 0,
+      "failed": 0,
+      "other_results": 0,
+      "errors": 0,
+      "result": "passed"
+    },
+    {
+      "path": "test/sheet_wrap_text_fidelity_test.dart",
+      "observed": true,
+      "tests": 7,
+      "passed": 7,
+      "skipped": 0,
+      "failed": 0,
+      "other_results": 0,
+      "errors": 0,
+      "result": "passed"
+    }
+  ],
+  "errors": [],
+  "hidden_test_done": 3,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 2004
+    }
+  ],
+  "done_success": true,
+  "missing_suites": [],
+  "non_json_lines": 0,
+  "non_object_json_lines": 0,
+  "reported_suite_base": "packages/quds_office_engine",
+  "expected_suites": [
+    "test/ods_sheet_reader_test.dart",
+    "test/legacy_sheet_reader_test.dart",
+    "test/sheet_wrap_text_fidelity_test.dart"
+  ],
+  "parser_sha256": "706f3679ea91db768d7d68cecdf049357c5af45b10057187b41faf711e6ebfb1",
+  "unexpected_suites": [],
+  "qualification_success": true
+}

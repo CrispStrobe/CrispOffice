@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "python3",
+    "/workspace/scratch/1f80e59755df/toolchains/run.py",
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "lib/src/sheet/legacy/ods_sheet_reader.dart",
+    "lib/src/pdf/office_pdf_export.dart",
+    "test/ods_sheet_reader_test.dart"
+  ],
+  "cwd": "/workspace/scratch/1f80e59755df/office_audit/quds_office_suite/packages/quds_office_engine",
+  "shell_display": "python3 /workspace/scratch/1f80e59755df/toolchains/run.py dart analyze --fatal-infos lib/src/sheet/legacy/ods_sheet_reader.dart lib/src/pdf/office_pdf_export.dart test/ods_sheet_reader_test.dart"
+}
