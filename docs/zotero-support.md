@@ -1,7 +1,7 @@
 # Zotero support
 
-Quds Office includes a read-only Zotero Web API client, a shared Flutter
-references workspace, and DOCX citation/bibliography field support. CrispCloud
+Quds Office includes read-only Zotero online and desktop API clients, a shared
+Flutter references workspace, and DOCX citation/bibliography field support. CrispCloud
 uses the same engine and editor source through its guarded vendor manifest.
 
 ## Using the editor
@@ -9,8 +9,9 @@ uses the same engine and editor source through its guarded vendor manifest.
 Open a Word document and choose **Insert → Zotero** (the **References** ribbon
 group in Quds Studio and CrispCloud). The workspace has three tabs:
 
-- **Library:** connect using a dedicated Zotero API key, or open a public user
-  or group library by numeric ID. Browse personal/group libraries, collections,
+- **Library:** choose an online library or, in a native desktop host, Zotero
+  desktop on this computer. Online connections use a dedicated API key or a
+  public user/group library ID; desktop connections need no API key. Browse personal/group libraries, collections,
   and paged search results. Select up to 20 sources for a citation, then review
   its text and per-source locator, label, prefix, suffix and author options.
 - **Document:** inspect existing Zotero citations and bibliographies; edit safe
@@ -24,7 +25,7 @@ group in Quds Studio and CrispCloud). The workspace has three tabs:
 
 The selected references can also be copied as BibTeX, BibLaTeX, RIS, or CSL JSON
 from the Library tab. Source exports are copied as reference data, not inserted
-as document text. Library exports use sources from one online library; use
+as document text. Library exports use numeric user/group identities from one connected library; use
 **Document → Copy embedded CSL JSON** for a mixed-library or offline document.
 Set the style ID and locale in Document (defaults: `apa` and `en-US`) before
 requesting a bibliography or individual citation preview. In the citation
@@ -43,12 +44,57 @@ and the user checks **Remember key when connecting**. Unchecking it removes the
 stored key immediately; **Disconnect & forget** also clears the session. Keys
 are never added to DOCX, CSL snapshots, reference exports, or request URLs.
 
-Hosts supply the network transport. CrispCloud uses its existing selected proxy
-and TLS policy, refuses redirects, limits each response to 8 MB, bounds the
+Hosts supply the network transport. For online access, CrispCloud uses its
+existing selected proxy and TLS policy, refuses redirects, limits each response to 8 MB, bounds the
 request to 20 seconds, closes pending requests when the editor closes, and
 displays fixed diagnostics without network response bodies or credentials.
-The shared client fixes its HTTPS origin to `api.zotero.org`, requests API v3,
+The online client fixes its HTTPS origin to `api.zotero.org`, requests API v3,
 and sends authentication in the `Zotero-API-Key` header.
+
+### Zotero desktop on this computer
+
+Native Quds Studio and CrispCloud on Linux, Windows and macOS offer
+**Reference library source → Zotero desktop (this computer)**. Open Zotero,
+then enable **Settings → Advanced → Allow other applications on this computer
+to communicate with Zotero**. Choose **Connect desktop** in the reference
+workspace. Browsing, collection navigation, pagination, search and selection use
+the locally available personal and group libraries, including unsynced items.
+The source selector and connection do not change the document.
+
+Desktop reads go directly to the fixed `http://localhost:23119/api/` endpoint,
+with API version 3 and Zotero's allowed-request header. They bypass CrispCloud's
+remote proxy and never carry an online API key, cookie or authorization header.
+They retain the same timeout, response-size, redirect and disposal limits.
+Switching sources makes no request; connecting is explicit. The saved online
+key and Remember preference stay available when switching back. **Disconnect
+desktop** closes the workspace's local connection without forgetting that key.
+
+The client probes the plain-text API root and validates its version. When
+Zotero supplies a `Zotero-Server-ID`, later requests pin that database identity;
+a changed database requires reconnecting. Older desktop versions may omit the
+header. Local and online object-version numbers are not compared.
+
+Persistent item identities are separate from request addresses. `/users/0`
+selects the local user but is never written as a citation URI. Signed-in items
+use the actual numeric account URI. Unsynced items retain a validated
+`users/local/<localUserKey>/items/<itemKey>` URI. If Zotero supplies only a
+citation key and no durable URI, the editor clearly embeds an offline source
+with a generated ID instead. Local CSL export arrays and one-item envelopes
+are accepted, while ambiguous multi-item responses are refused.
+
+| Desktop source | Available workflow |
+| --- | --- |
+| Numeric user/group identity | Browse, cite, refresh basic citations, selected-reference export, individual style preview and one-library bibliography |
+| Unsynced `users/local/…` identity | Browse, cite, preserve the link in DOCX and CSL import, edit basic citations, basic bibliography, and Document → Copy embedded CSL JSON |
+| Citation key without a persistent URI | Browse and cite as an explicitly offline embedded source; basic formatting and embedded CSL export |
+
+The latter two cases do not yet support connected refresh, single-source style
+previews, selected-reference export or Zotero-formatted bibliographies. No
+request is redirected to another library to approximate those operations.
+Browsing the desktop database works offline; a missing citation style can
+still cause Zotero itself to download that style. Desktop access is not offered
+in browser/mobile hosts. It does not provide the native Zotero citation picker
+or HTTP citing transaction adapter.
 
 ## Formatting and interoperability
 
@@ -97,13 +143,18 @@ await showWordZoteroDialog(
   controller: wordController,
   session: session,
   transport: yourZoteroTransport,
+  // Native desktop only; fixed localhost, direct connection, no credentials.
+  // localTransport: yourDirectDesktopZoteroTransport,
   // Optional: persistApiKey: yourExistingSecureStore,
 );
 ```
 
 The transport receives a `ZoteroHttpRequest` and returns a
 `ZoteroHttpResponse`. Disable redirects, set request/response bounds, and close
-owned clients on disposal. The pure Dart engine never imports Flutter or
+owned clients on disposal. `localTransport` is an explicit host opt-in and is
+never a fallback for online requests. Native hosts must bypass external proxies
+and reject credentials before creating a local client. The pure Dart engine
+never imports Flutter or
 `dart:io`. Hosts without a transport can still offer offline import, field
 management, and embedded-source export.
 
@@ -121,38 +172,37 @@ to hosts through the error's `retryAfter` value.
 
 ## Development baseline and verification
 
-The continuation started from Quds `1d7fee380def59d5a766cab106e519952d5c3292`
-and CrispCloud `ebb8d13cd7688e32c24be81dafd88c6f8de82f0c`. All branch and PR
-heads were fetched and reviewed. There were no open PRs at that cutoff. Recent
-squash-merged feature heads were verified with `git cherry` and their ancestry
-was recorded without changing the current source tree. CrispCloud also includes
-the previously unmerged terminal documentation checkpoint
-`8261a0de7290a09320129c55ae513aa061a2f7d6`.
+The desktop continuation builds on the first Zotero increment at Quds
+`1d9552697d2850cbc3b5a7f73daf44a442c4901b` and CrispCloud
+`32abdd0f9219486be60d82f97d79d0040e1fee2b`. All current branches and recent PRs
+were audited before implementation and refreshed again afterward. Quds main
+`c210315bee537776b556ae9885e907483b6df7bd` and CrispCloud main
+`50b459323fe798c3638b8b8ce499ea91b89f98c0` were already included. Retained
+feature branches were checked by ancestry, identical squash trees or exact
+feature-file equivalence.
 
-Before Zotero changes, CrispCloud's Quds mirror was synchronized from
-`3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa` to current Quds, retaining the
-UTF-16 custom-XML bibliography fix and ODS conditional formatting. Its separately
-maintained legacy DOC parser pin remains unchanged.
+CrispCloud's separate terminal-workspace draft #140 was brought into this
+integration branch, preserving its newer guide and production changes. The
+source audit distinguishes this from the documentation-only checkpoint used
+by the first Zotero increment. The separately maintained legacy DOC parser pin
+remains unchanged.
 
-A final refresh incorporated Quds main
-`c210315bee537776b556ae9885e907483b6df7bd` (PRs #36–39) and CrispCloud main
-`50b459323fe798c3638b8b8ce499ea91b89f98c0` (through PR #148). Their recent
-feature/docs heads were also checked for patch equivalence. CrispCloud's closed
-UTF-16 PR #143 was superseded by identical implementation/test bytes already on
-main. Concurrent terminal-workspace draft PR #140 remained active and separate;
-its later implementation was not folded into this Office change.
-
-Changes are checkpointed incrementally on `codex/zotero-support-20261115` in
-both repositories. Engine and editor changes are separate commits. Hosted CI is
-not awaited; checkpoint commits carry `[skip ci]` to avoid consuming a starved
-Actions queue. Local checks and their scope are recorded in
-`docs/zotero-validation.md`.
+Work is checkpointed incrementally on `codex/zotero-support-20261115` in both
+repositories. Checkpoint commits carry `[skip ci]`; GitHub Actions are not
+awaited. This continuation ran 34 client tests and 16 actual production host
+transport tests, with clean focused analysis. Flutter widget cases are added
+but were not executed in this workspace. Exact hashes, commands, dependencies,
+logs, branch audits and the earlier increment's separate results are recorded
+in [zotero-validation.md](zotero-validation.md).
 
 ## Protocol sources
 
 - [Zotero Web API v3](https://www.zotero.org/support/dev/web_api/v3/basics)
 - [Zotero authentication](https://www.zotero.org/support/dev/web_api/v3/oauth)
 - [Zotero local API](https://www.zotero.org/support/dev/web_api/v3/local_api)
+- [Zotero 10 developer notes](https://www.zotero.org/support/dev/zotero_10_for_developers)
+- [Local API implementation](https://github.com/zotero/zotero/blob/main/chrome/content/zotero/xpcom/server/server_localAPI.js)
+- [CSL JSON translator](https://github.com/zotero/translators/blob/master/CSL%20JSON.js)
 - [HTTP citing protocol](https://www.zotero.org/support/dev/client_coding/http_integration_protocol)
 - [Zotero integration implementation](https://github.com/zotero/zotero/blob/main/chrome/content/zotero/xpcom/integration.js)
 - [Word processor transfer limits](https://www.zotero.org/support/kb/moving_documents_between_word_processors)

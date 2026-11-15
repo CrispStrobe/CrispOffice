@@ -1,4 +1,50 @@
-# Zotero local validation — 15 November 2026
+# Zotero validation — 15 November 2026
+
+## Desktop continuation: current code
+
+The new desktop API work is saved at Quds code commit
+`1cc4d251ebeb3e0cce205805e9183396da0c0df4` and CrispCloud code commit
+`3c4cd0e24ab36f4fd88363cbc8521455bda811c6`. Subsequent audit/documentation or
+source-pin commits can retain these exact tested source hashes.
+
+| Fresh check | Result | Scope |
+| --- | ---: | --- |
+| Complete canonical Zotero client test file | 34 passed | 19 existing and 15 desktop protocol/identity regressions |
+| Actual production CrispCloud HTTP boundary | 16 passed | 8 existing and 8 new transport tests, using original test-group/helpers |
+| Focused Dart analysis with `--fatal-infos` | Clean | Client/models, pure host transport and the two focused test files |
+| Changed Flutter/Studio Dart parsing | Formatter succeeded | Syntax only; not Flutter type analysis or widget execution |
+
+**50 focused tests ran in this continuation.** Its source snapshots are
+byte-identical to the production client/models/test and new pure transport
+file. The host harness retains the transport tests verbatim and substitutes
+`package:test` imports for Flutter imports; it does not substitute production
+implementations or dependency stubs.
+
+The runtime was official Dart 3.13.7, with genuine Pub resolution (`test` 1.33.0,
+`http` 1.6.0). The workspace was nearly full and full repository clones failed.
+An official SDK subset enabled genuine frontend compilation, VM execution with
+assertions and static analysis. Exact installed-file hashes, CRC32 checks,
+commands, manifests/lockfiles, original logs and reproduction scripts are under
+[validation/zotero-desktop-20261115](validation/zotero-desktop-20261115/), starting
+with [SETUP.md](validation/zotero-desktop-20261115/SETUP.md) and the
+[validation receipt](validation/zotero-desktop-20261115/validation-receipt.json).
+GitHub saves used content-addressed trees and expected-head ref updates.
+
+New shared dialog and CSL import regressions are committed, including local
+credential isolation, numeric/unsynced/offline identities, source switching and
+a 320 × 640 desktop connection/error case. These Flutter cases **were not run**
+in this continuation. Full native builds, the complete application/provider
+graph, other host credential/controller/ribbon cases, live Zotero desktop and
+private-account connectivity, OS keychain acceptance, and native Word/Zotero
+refresh acceptance remain unverified. The earlier counts below are historical
+results for their recorded sources, not fresh qualification of the new UI.
+
+No GitHub Actions were awaited. Checkpoints carry `[skip ci]`.
+
+## Earlier Web API increment: historical results
+
+The following evidence belongs to the earlier implementation and is retained
+with its original source identity and limits.
 
 The implementation was qualified at Quds commit
 `9da9c638bfe3bf932a70b2268dc16ef783fc009a`, which includes canonical main
@@ -6,7 +52,7 @@ The implementation was qualified at Quds commit
 commits do not change the tested implementation. The receipt records source
 hashes so this qualification can be checked independently of branch movement.
 
-## Results
+### Results
 
 | Check | Result | Scope |
 | --- | --- | --- |
@@ -21,7 +67,7 @@ tests plus 78 ODS integration regressions**. These counts do not represent a
 full workspace, full spreadsheet suite, native application build, or desktop
 Zotero acceptance run.
 
-## Evidence and reproduction
+### Evidence and reproduction
 
 The source hashes, exact commands, dependency setup, resolved manifests and
 lockfiles, and final logs are retained under
@@ -57,7 +103,7 @@ The shared Flutter cohort comprises:
 `test/ods_sheet_reader_test.dart` was run separately after incorporating current
 main. Its 78 tests are kept separate from the feature cohort.
 
-## Important assertions
+### Important assertions
 
 The tests cover preservation of unknown native-field JSON, cached text,
 embedded CSL snapshots, and imported Zotero preferences. They exercise guarded
@@ -77,7 +123,7 @@ CSL export envelopes, inline CSL snapshots, source identity, bibliography
 responses and CORS/pagination headers. Automated tests use deterministic
 responses and do not require a private account or embed real credentials.
 
-## Boundaries
+### Boundaries
 
 No GitHub Actions jobs were awaited or used as evidence; remote checkpoints
 carry `[skip ci]`. The implementation does not supply a full document-wide CSL
