@@ -15,6 +15,7 @@ import '../math/omml_io.dart';
 import '../model/wml_document.dart';
 import '../model/word_bookmarks.dart';
 import '../model/word_content_controls.dart';
+import '../model/word_fields.dart';
 import '../model/word_link.dart';
 import '../model/word_notes.dart';
 import '../model/word_revision.dart';
@@ -959,10 +960,9 @@ class WordDeserializer {
         _readRPr(reader, run.properties);
       } else if (reader.localName == 't' || reader.localName == 'delText') {
         final String text = _elementText(reader);
-        if (paragraph.properties.pageNumberField &&
-            _cachedPageResult.hasMatch(text)) {
-          continue;
-        }
+        // A PAGE instruction elsewhere in this paragraph must not consume a
+        // numeric citation cache or ordinary text. Suppress a cached page
+        // number only after the complete paragraph is proven to be that field.
         run.text += text;
       } else if (reader.localName == 'footnoteReference' ||
           reader.localName == 'endnoteReference') {
@@ -1783,6 +1783,25 @@ class WordDeserializer {
     if (simple &&
         WordZotero.kindOfInstruction(paragraph.properties.fieldInstruction) ==
             null) {
+      final page = _isPageField(paragraph.properties.fieldInstruction!);
+      paragraph.properties.pageNumberField = page;
+      if (page) {
+        if (_document?.revisions.any(
+              (revision) =>
+                  revision.accepted == null &&
+                  identical(revision.targetParagraph, paragraph),
+            ) ==
+            true) {
+          // A tracked cached result owns real text offsets. Keep its complete
+          // field span until that revision is resolved instead of deleting the
+          // text underneath its revision range.
+          _clearParagraphField(paragraph);
+          return;
+        }
+        for (final run in paragraph.inlines.whereType<WmlRun>()) {
+          if (_cachedPageResult.hasMatch(run.text)) run.text = '';
+        }
+      }
       strip();
       return;
     }
@@ -3397,10 +3416,8 @@ class WordDeserializer {
     }
   }
 
-  static bool _isPageField(String instr) {
-    final String upper = instr.toUpperCase();
-    return RegExp(r'(^|[^A-Z])PAGE([^A-Z]|$)').hasMatch(upper);
-  }
+  static bool _isPageField(String instr) =>
+      WordFields.kindOf(instr) == WmlFieldKind.page;
 
   /// RegExp API.
   static final RegExp _cachedPageResult = RegExp(r'^\s*\d+\s*$');

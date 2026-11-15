@@ -3794,9 +3794,8 @@ class WordEditorController extends OfficeController {
           WmlRunEdit.replaceRange(last, 0, to, '');
           WordRevisions.joinParagraphs(document, first, last);
           first.inlines.addAll(
-            _cloneInlinesFrom(
-              last.inlines,
-            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(last.inlines)
+                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(first);
           parent.removeRange(range.startPara + 1, range.endPara + 1);
@@ -4413,9 +4412,8 @@ class WordEditorController extends OfficeController {
             ..addAll(_cloneInlinesFrom(keepInlines));
           WordRevisions.joinParagraphs(document, keep, drop);
           keep.inlines.addAll(
-            _cloneInlinesFrom(
-              dropInlines,
-            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(dropInlines)
+                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(keep);
           parent.remove(drop);
@@ -4521,9 +4519,8 @@ class WordEditorController extends OfficeController {
             ..addAll(_cloneInlinesFrom(keepInlines));
           WordRevisions.joinParagraphs(document, keep, drop);
           keep.inlines.addAll(
-            _cloneInlinesFrom(
-              dropInlines,
-            ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
+            _cloneInlinesFrom(dropInlines)
+                .where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
           WmlRunEdit.coalesce(keep);
           parent.remove(drop);
@@ -6891,6 +6888,7 @@ class WordEditorController extends OfficeController {
   void insertZoteroBibliography({
     required String text,
     Map<String, dynamic>? metadata,
+    ZoteroFormattedText? formattedText,
   }) {
     if (_disposed || !config.allowsMutation) return;
     _assertZoteroTrackingMode();
@@ -6904,7 +6902,11 @@ class WordEditorController extends OfficeController {
       );
     }
     _insertBlocksAfterCurrent(<WmlBlock>[
-      WordZotero.bibliography(text: text, metadata: metadata),
+      WordZotero.bibliography(
+        text: text,
+        metadata: metadata,
+        formattedText: formattedText,
+      ),
     ]);
   }
 
@@ -6913,11 +6915,17 @@ class WordEditorController extends OfficeController {
     WmlZoteroField field, {
     required String text,
     Map<String, dynamic>? metadata,
+    ZoteroFormattedText? formattedText,
   }) {
     if (_disposed || !config.allowsMutation) return;
     _assertZoteroFieldOwner(field);
     _commitZoteroChange(field.paragraphs, () {
-      WordZotero.updateBibliography(field, text: text, metadata: metadata);
+      WordZotero.updateBibliography(
+        field,
+        text: text,
+        metadata: metadata,
+        formattedText: formattedText,
+      );
     });
   }
 
@@ -7384,9 +7392,9 @@ class WordEditorController extends OfficeController {
     if (!config.allowsMutation || WordNotes.editableText(note) == text) {
       return;
     }
-    final beforeText = WordNotes.editableParagraphs(
-      note,
-    ).map((paragraph) => paragraph.text).toList();
+    final beforeText = WordNotes.editableParagraphs(note)
+        .map((paragraph) => paragraph.text)
+        .toList();
     final paragraphs = note.allParagraphs.toList();
     final hasInlineControls = paragraphs.any(
       WordContentControls.hasInlineControls,
@@ -7435,9 +7443,9 @@ class WordEditorController extends OfficeController {
     WordNotes.editText(note, text);
     if (listEquals(
       beforeText,
-      WordNotes.editableParagraphs(
-        note,
-      ).map((paragraph) => paragraph.text).toList(),
+      WordNotes.editableParagraphs(note)
+          .map((paragraph) => paragraph.text)
+          .toList(),
     )) {
       return;
     }

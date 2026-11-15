@@ -25,14 +25,22 @@ ZoteroCitation _citation(String id, String text) => ZoteroCitation.fromJson({
 String _simple(String instruction, String cache, {String attributes = ''}) =>
     '<w:fldSimple w:instr="${const HtmlEscape(HtmlEscapeMode.attribute).convert(instruction)}" $attributes>$cache</w:fldSimple>';
 
-WmlDocument _document(String field) {
+String _complex(String instruction, String cache, {List<String>? fragments}) =>
+    '<w:r><w:fldChar w:fldCharType="begin"/></w:r>'
+    '${(fragments ?? [instruction]).map((part) => '<w:r><w:instrText xml:space="preserve">${const HtmlEscape().convert(part)}</w:instrText></w:r>').join()}'
+    '<w:r><w:fldChar w:fldCharType="separate"/></w:r>'
+    '$cache<w:r><w:fldChar w:fldCharType="end"/></w:r>';
+
+WmlDocument _document(String field, {bool surroundingText = true}) {
   final package = OpcPackage.create(OpcPackageKind.word);
   package
       .getPart('/word/document.xml')!
       .writeText(
         '<w:document xmlns:w="$_w" xmlns:future="urn:quds:zotero-test">'
-        '<w:body><w:p><w:r><w:t xml:space="preserve">Before </w:t></w:r>'
-        '$field<w:r><w:t xml:space="preserve"> After</w:t></w:r>'
+        '<w:body><w:p>'
+        '${surroundingText ? '<w:r><w:t xml:space="preserve">Before </w:t></w:r>' : ''}'
+        '$field'
+        '${surroundingText ? '<w:r><w:t xml:space="preserve"> After</w:t></w:r>' : ''}'
         '</w:p></w:body></w:document>',
       );
   return WordDeserializer().read(package);
@@ -261,4 +269,151 @@ void main() {
       document = _reopen(document);
     }
   });
+
+  final base = _citation('page-locator', 'Ada 1843');
+  final pageCitation = base.withItems([
+    ZoteroCitationItem.fromJson({
+      ...base.items.single.toJson(),
+      'label': 'page',
+      'locator': '12',
+    }),
+  ], plainCitation: 'Ada 1843');
+  const numberCache =
+      '<w:r><w:rPr><w:i/></w:rPr><w:t>Ada</w:t></w:r>'
+      '<w:r><w:t xml:space="preserve"> </w:t></w:r>'
+      '<w:r><w:rPr><w:vertAlign w:val="superscript"/></w:rPr>'
+      '<w:t>1843</w:t></w:r>';
+  for (final isolate in [false, true]) {
+    test(
+      'page locator does not discard numeric citation cache: isolate=$isolate',
+      () async {
+        var document = _document(
+          _complex(pageCitation.fieldInstruction, numberCache),
+        );
+        for (var cycle = 0; cycle < 3; cycle++) {
+          final field = WordZotero.fields(document).single;
+          expect(field.cachedText, 'Ada 1843');
+          expect(field.citation!.items.single.label, 'page');
+          expect(
+            document.paragraphs.single.properties.pageNumberField,
+            isFalse,
+          );
+          final year = document.paragraphs.single.inlines
+              .whereType<WmlRun>()
+              .singleWhere((run) => run.text == '1843');
+          expect(year.properties.vertAlign, WmlVertAlign.superscript);
+          document = WordDeserializer().readBytes(
+            isolate
+                ? await OfficeIsolateSave.word(document)
+                : WordSerializer().writeBytes(document),
+          );
+        }
+      },
+    );
+
+    test(
+      'an earlier PAGE field does not consume later numbers: isolate=$isolate',
+      () async {
+        var document = _document(
+          '${_complex(' PAGE ', '<w:r><w:t>7</w:t></w:r>')}'
+          '${_complex(pageCitation.fieldInstruction, numberCache)}',
+        );
+        for (var cycle = 0; cycle < 3; cycle++) {
+          expect(document.paragraphs.single.text, 'Before 7Ada 1843 After');
+          expect(WordZotero.fields(document).single.cachedText, 'Ada 1843');
+          expect(
+            document.paragraphs.single.properties.pageNumberField,
+            isFalse,
+          );
+          document = WordDeserializer().readBytes(
+            isolate
+                ? await OfficeIsolateSave.word(document)
+                : WordSerializer().writeBytes(document),
+          );
+        }
+      },
+    );
+  }
+
+  test('PAGE used as a field argument keeps its numeric result', () {
+    var document = _document(
+      _complex(' REF PAGE ', '<w:r><w:t>123</w:t></w:r>'),
+      surroundingText: false,
+    );
+    for (var cycle = 0; cycle < 3; cycle++) {
+      expect(document.paragraphs.single.text, '123');
+      expect(document.paragraphs.single.properties.pageNumberField, isFalse);
+      expect(
+        document.paragraphs.single.properties.fieldInstruction,
+        ' REF PAGE ',
+      );
+      document = _reopen(document);
+    }
+  });
+
+  test('whole-paragraph native PAGE remains a dynamic page field', () {
+    var document = _document(
+      _complex(' PAGE \\* MERGEFORMAT ', '<w:r><w:t>7</w:t></w:r>'),
+      surroundingText: false,
+    );
+    for (var cycle = 0; cycle < 3; cycle++) {
+      expect(document.paragraphs.single.text, isEmpty);
+      expect(document.paragraphs.single.properties.pageNumberField, isTrue);
+      expect(
+        WordFields.kindOf(
+          document.paragraphs.single.properties.fieldInstruction,
+        ),
+        WmlFieldKind.page,
+      );
+      document = _reopen(document);
+    }
+  });
+
+  test('a PAGE fragment inside citation JSON is not a PAGE command', () {
+    final instruction = pageCitation.fieldInstruction;
+    final page = instruction.indexOf('page"');
+    expect(page, greaterThan(0));
+    var document = _document(
+      _complex(
+        instruction,
+        numberCache,
+        fragments: [
+          instruction.substring(0, page),
+          'page',
+          instruction.substring(page + 4),
+        ],
+      ),
+    );
+    for (var cycle = 0; cycle < 3; cycle++) {
+      expect(WordZotero.fields(document).single.cachedText, 'Ada 1843');
+      expect(document.paragraphs.single.properties.pageNumberField, isFalse);
+      document = _reopen(document);
+    }
+  });
+
+  test(
+    'tracked native PAGE cache keeps valid revision text and boundaries',
+    () {
+      var document = _document(
+        _complex(
+          ' PAGE ',
+          '<w:ins w:id="10" w:author="Reviewer" w:date="2026-11-15T12:00:00Z">'
+              '<w:r><w:t>7</w:t></w:r></w:ins>',
+        ),
+        surroundingText: false,
+      );
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final paragraph = document.paragraphs.single;
+        final revision = document.revisions.single;
+        expect(paragraph.text, '7');
+        expect(revision.targetParagraph, same(paragraph));
+        expect(revision.start, 0);
+        expect(revision.end, 1);
+        expect(revision.accepted, isNull);
+        expect(paragraph.properties.pageNumberField, isFalse);
+        expect(paragraph.inlines.whereType<WmlFieldBoundary>(), hasLength(4));
+        document = _reopen(document);
+      }
+    },
+  );
 }
