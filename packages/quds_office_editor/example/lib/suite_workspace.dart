@@ -17,6 +17,7 @@ import 'studio_pdf_office.dart';
 import 'studio_pdf_tools.dart';
 import 'studio_pdf_surface.dart';
 import 'studio_window.dart';
+import 'studio_zotero.dart';
 
 enum SuiteApp { word, excel, powerpoint, pdf }
 
@@ -68,6 +69,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   final FocusNode _slideFocus = FocusNode(debugLabel: 'studio-slide');
 
   late final WordEditorController _word;
+  final ZoteroSession _zoteroSession = ZoteroSession();
   late final SheetEditorController _sheet;
   late final SlideEditorController _slides;
   late final PdfEditorController _pdf;
@@ -2021,6 +2023,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   List<StudioRibbonGroup> _wordInsert() {
     return <StudioRibbonGroup>[
+      StudioRibbonGroup(
+        title: _arabic ? 'المراجع' : 'References',
+        children: <Widget>[
+          _cmd(
+            Icons.menu_book_outlined,
+            'Zotero',
+            _canMutate ? () => showWordZoteroDialog(
+              context,
+              controller: _word,
+              session: _zoteroSession,
+              transport: studioZoteroTransport,
+            ) : null,
+          ),
+        ],
+      ),
       StudioRibbonGroup(
         title: _arabic ? 'صفحات' : 'Pages',
         children: <Widget>[
