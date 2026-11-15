@@ -461,7 +461,7 @@ abstract final class OdsSheetReader {
         if (symbol == null || symbol.isEmpty) return base;
         return '"$symbol"$base';
       case 'date-style':
-        return 'DD.MM.YYYY';
+        return _dateFormat(style);
       case 'time-style':
         final hours = _descendants(style, 'hours').isNotEmpty;
         final minutes = _descendants(style, 'minutes').isNotEmpty;
@@ -481,6 +481,42 @@ abstract final class OdsSheetReader {
         return decimals == 0 ? integer : '$integer.${'0' * decimals}';
     }
     return null;
+  }
+
+  /// Renders an ODF date-style in its authored component order. Dates were
+  /// previously forced to DD.MM.YYYY, which silently rewrote ISO and US dates.
+  static String _dateFormat(XmlElement style) {
+    final buffer = StringBuffer();
+    for (final child in style.childElements) {
+      switch (child.localName) {
+        case 'year':
+          buffer.write(child.getAttribute('style') == 'short' ? 'YY' : 'YYYY');
+        case 'month':
+          if (child.getAttribute('textual') == 'true') {
+            buffer.write('MMM');
+          } else {
+            buffer.write(child.getAttribute('style') == 'short' ? 'M' : 'MM');
+          }
+        case 'day':
+          buffer.write(child.getAttribute('style') == 'short' ? 'D' : 'DD');
+        case 'day-of-week':
+          buffer.write('DDD');
+        case 'hours':
+          buffer.write('HH');
+        case 'minutes':
+          buffer.write('MM');
+        case 'seconds':
+          buffer.write('SS');
+        case 'am-pm':
+          buffer.write('AM/PM');
+        case 'text':
+          // The reader skips whitespace-only text nodes, so an empty
+          // number:text is a separator (usually a space).
+          final literal = child.text;
+          buffer.write(literal.isEmpty ? ' ' : literal);
+      }
+    }
+    return buffer.isEmpty ? 'DD.MM.YYYY' : buffer.toString();
   }
 
   static String _zeros(XmlElement style) {
