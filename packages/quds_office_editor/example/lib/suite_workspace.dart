@@ -1219,22 +1219,26 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   String _pdfExportNoteText(PdfOfficeExportNote note) {
     return switch (note.kind) {
-      'noExtractableText' => _arabic
-          ? 'لا يوجد نص قابل للاستخراج. الصفحات الممسوحة لا تُقرأ.'
-          : 'No extractable text on this page. Scanned pages are not read.',
-      'rotationFlattened' => _arabic
-          ? 'كُتب النص المدار كسطر أفقي.'
-          : 'Rotated text was written as a horizontal line.',
-      'jpegOnSlide' => _arabic
-          ? 'صور JPEG تُحفظ في Word. الشرائح تضمّن PNG فقط.'
-          : 'JPEG pictures are saved in Word. Slides embed PNG only.',
-      'imageSkipped' => note.message.startsWith('JPX')
-          ? (_arabic
-                ? 'صور JPX وJBIG2 لا تُضمَّن.'
-                : 'JPX and JBIG2 images are not embedded.')
-          : (_arabic
-                ? 'تُضمَّن صور JPEG وPNG فقط.'
-                : 'Only JPEG and PNG images are embedded.'),
+      'noExtractableText' =>
+        _arabic
+            ? 'لا يوجد نص قابل للاستخراج. الصفحات الممسوحة لا تُقرأ.'
+            : 'No extractable text on this page. Scanned pages are not read.',
+      'rotationFlattened' =>
+        _arabic
+            ? 'كُتب النص المدار كسطر أفقي.'
+            : 'Rotated text was written as a horizontal line.',
+      'jpegOnSlide' =>
+        _arabic
+            ? 'صور JPEG تُحفظ في Word. الشرائح تضمّن PNG فقط.'
+            : 'JPEG pictures are saved in Word. Slides embed PNG only.',
+      'imageSkipped' =>
+        note.message.startsWith('JPX')
+            ? (_arabic
+                  ? 'صور JPX وJBIG2 لا تُضمَّن.'
+                  : 'JPX and JBIG2 images are not embedded.')
+            : (_arabic
+                  ? 'تُضمَّن صور JPEG وPNG فقط.'
+                  : 'Only JPEG and PNG images are embedded.'),
       _ => note.message,
     };
   }
@@ -1400,44 +1404,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(Icons.zoom_out, _arabic ? 'تصغير' : 'Zoom out', () {
             _pdf.zoomBy(1 / 1.1);
           }),
-          _cmd(
-            Icons.fit_screen_outlined,
-            _arabic ? 'عرض' : 'Fit width',
-            () {
-              _togglePdfOption(() {
-                _pdfFitPolicy = PdfFitPolicy.width;
-                _pdf.fitVisibleWidth();
-              });
-            },
-            selected: _pdfFitPolicy == PdfFitPolicy.width,
-          ),
-          _cmd(
-            Icons.aspect_ratio,
-            _arabic ? 'صفحة' : 'Fit page',
-            () {
-              _togglePdfOption(() {
-                _pdfFitPolicy = PdfFitPolicy.page;
-                final Size e = _pdf.viewport.extent;
-                _pdf.fitPage(
-                  e.width > 0 ? e.width : 720,
-                  e.height > 0 ? e.height : 900,
-                );
-              });
-            },
-            selected: _pdfFitPolicy == PdfFitPolicy.page,
-          ),
-          _cmd(
-            Icons.height,
-            _arabic ? 'ارتفاع' : 'Fit height',
-            () {
-              _togglePdfOption(() {
-                _pdfFitPolicy = PdfFitPolicy.height;
-                final double h = _pdf.viewport.extent.height;
-                _pdf.fitHeight(h > 0 ? h : 900);
-              });
-            },
-            selected: _pdfFitPolicy == PdfFitPolicy.height,
-          ),
+          _cmd(Icons.fit_screen_outlined, _arabic ? 'عرض' : 'Fit width', () {
+            _togglePdfOption(() {
+              _pdfFitPolicy = PdfFitPolicy.width;
+              _pdf.fitVisibleWidth();
+            });
+          }, selected: _pdfFitPolicy == PdfFitPolicy.width),
+          _cmd(Icons.aspect_ratio, _arabic ? 'صفحة' : 'Fit page', () {
+            _togglePdfOption(() {
+              _pdfFitPolicy = PdfFitPolicy.page;
+              final Size e = _pdf.viewport.extent;
+              _pdf.fitPage(
+                e.width > 0 ? e.width : 720,
+                e.height > 0 ? e.height : 900,
+              );
+            });
+          }, selected: _pdfFitPolicy == PdfFitPolicy.page),
+          _cmd(Icons.height, _arabic ? 'ارتفاع' : 'Fit height', () {
+            _togglePdfOption(() {
+              _pdfFitPolicy = PdfFitPolicy.height;
+              final double h = _pdf.viewport.extent.height;
+              _pdf.fitHeight(h > 0 ? h : 900);
+            });
+          }, selected: _pdfFitPolicy == PdfFitPolicy.height),
           _cmd(Icons.search, _arabic ? 'بحث' : 'Find', _openFind),
         ],
       ),
@@ -1657,30 +1646,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       StudioRibbonGroup(
         title: _arabic ? 'وضع العمل' : 'Mode',
         children: <Widget>[
-          _cmd(
-            Icons.edit,
-            _arabic ? 'تحرير' : 'Edit',
-            () {
-              setState(() => _mode = OfficeInteractionMode.editing);
-            },
-            selected: _mode == OfficeInteractionMode.editing,
-          ),
-          _cmd(
-            Icons.select_all,
-            _arabic ? 'تحديد' : 'Select',
-            () {
-              setState(() => _mode = OfficeInteractionMode.selecting);
-            },
-            selected: _mode == OfficeInteractionMode.selecting,
-          ),
-          _cmd(
-            Icons.visibility,
-            _arabic ? 'عرض' : 'View',
-            () {
-              setState(() => _mode = OfficeInteractionMode.viewing);
-            },
-            selected: _mode == OfficeInteractionMode.viewing,
-          ),
+          _cmd(Icons.edit, _arabic ? 'تحرير' : 'Edit', () {
+            setState(() => _mode = OfficeInteractionMode.editing);
+          }, selected: _mode == OfficeInteractionMode.editing),
+          _cmd(Icons.select_all, _arabic ? 'تحديد' : 'Select', () {
+            setState(() => _mode = OfficeInteractionMode.selecting);
+          }, selected: _mode == OfficeInteractionMode.selecting),
+          _cmd(Icons.visibility, _arabic ? 'عرض' : 'View', () {
+            setState(() => _mode = OfficeInteractionMode.viewing);
+          }, selected: _mode == OfficeInteractionMode.viewing),
         ],
       ),
     ];
@@ -2029,12 +2003,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _cmd(
             Icons.menu_book_outlined,
             'Zotero',
-            _canMutate ? () => showWordZoteroDialog(
-              context,
-              controller: _word,
-              session: _zoteroSession,
-              transport: studioZoteroTransport,
-            ) : null,
+            _canMutate
+                ? () => showWordZoteroDialog(
+                    context,
+                    controller: _word,
+                    session: _zoteroSession,
+                    transport: studioZoteroTransport,
+                  )
+                : null,
           ),
         ],
       ),
