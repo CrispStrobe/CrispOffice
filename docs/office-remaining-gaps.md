@@ -8,10 +8,8 @@ is maintained in the CrispCloud repository
 
 ## Current baseline
 
-- Sheet/ODS cohort: 495 tests.
-- Full engine suite passed at 1,922 tests before the final ODS
-  conditional/validation increments; the sheet/ODS cohort is the current
-  counted result.
+- Sheet/ODS cohort: 497 tests.
+- Full engine suite: 2,117 tests.
 - Live ODS → XLSX fidelity against LibreOffice: 0.9981 on the measured BOM
   workbook; only drawing/media part names and the absent theme part differ.
 - Golden checks use exact per-host references; the last completed Linux
@@ -35,17 +33,21 @@ model kinds or native ODS rule preservation.
 
 ### 3. ODS validations
 
-Supported: literal `cell-content-is-in-list` with `allow-empty-cell`, attached
-to contiguous cell runs, with correct Excel list quoting.
+Supported: literal and range-source `cell-content-is-in-list` (resolved after
+all sheets exist), `allow-empty-cell`, contiguous cell runs and correct Excel
+list quoting.
 
-Not supported: range-source lists, whole/decimal/date/text-length/custom
-conditions, prompts/messages/error styles, and cross-sheet list sources.
+Not supported: whole/decimal/date/text-length/custom conditions,
+prompts/messages/error styles, and unmodeled cross-sheet filter cases.
 
 ### 4. ODS metadata and layout
 
-Not yet imported/modeled: named expressions, autofilter/database ranges, print
-areas/titles, tab colors, outline grouping, cell hyperlinks and several
-page-style properties.
+Imported: print areas, print-title rows/columns, global and sheet-local named
+ranges, and a basic database-range autofilter.
+
+Not yet imported/modeled: unmodeled named expressions, detailed filter
+conditions, tab colors, outline grouping, cell hyperlinks and several page-style
+properties.
 
 ### 5. ODS package parity
 
