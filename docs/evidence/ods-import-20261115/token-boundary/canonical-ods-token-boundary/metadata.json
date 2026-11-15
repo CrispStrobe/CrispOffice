@@ -1,0 +1,57 @@
+{
+  "after_entries_sha256": "a2a37391297b4e1e5f08f12250f296bb9f5052cdf0e8b9ac120f3e7c53114824",
+  "after_git": {
+    "head": "24804dc92dcadd81ec574fa3c38d38e8216cf6c1",
+    "source_changes": [],
+    "status": "",
+    "tree": "f56b2fbcf1961101de36472906f2c92a6f820735",
+    "untracked_source": []
+  },
+  "after_tools": {
+    "/workspace/scratch/1f80e59755df/CrispCloud/docs/evidence/storage-carving-20261115/record_gate.py": "922df73d2c33dc39f0cb07b77835224de50ecce008ba86062957d317f25362f7",
+    "/workspace/scratch/1f80e59755df/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/workspace/scratch/1f80e59755df/toolchains/run.py": "d845d99eb21f270387ce3953781c7b19e9d079be92a131d11dc30edc0f6b53af"
+  },
+  "before_entries_sha256": "a2a37391297b4e1e5f08f12250f296bb9f5052cdf0e8b9ac120f3e7c53114824",
+  "before_git": {
+    "head": "24804dc92dcadd81ec574fa3c38d38e8216cf6c1",
+    "source_changes": [],
+    "status": "",
+    "tree": "f56b2fbcf1961101de36472906f2c92a6f820735",
+    "untracked_source": []
+  },
+  "before_tools": {
+    "/workspace/scratch/1f80e59755df/CrispCloud/docs/evidence/storage-carving-20261115/record_gate.py": "922df73d2c33dc39f0cb07b77835224de50ecce008ba86062957d317f25362f7",
+    "/workspace/scratch/1f80e59755df/toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/workspace/scratch/1f80e59755df/toolchains/run.py": "d845d99eb21f270387ce3953781c7b19e9d079be92a131d11dc30edc0f6b53af"
+  },
+  "command": [
+    "python3",
+    "/workspace/scratch/1f80e59755df/toolchains/run.py",
+    "dart",
+    "test",
+    "--reporter=json",
+    "test/ods_sheet_reader_test.dart",
+    "test/legacy_sheet_reader_test.dart",
+    "test/sheet_wrap_text_fidelity_test.dart"
+  ],
+  "cwd": "/workspace/scratch/1f80e59755df/office_audit/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 2.7998471969999628,
+  "finished_at": "2026-11-15T09:47:51.616776+00:00",
+  "input_changes": {
+    "added": [],
+    "changed": [],
+    "removed": []
+  },
+  "input_count": 3000,
+  "inputs_and_commit_stable": true,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "qualification_success": true,
+  "repo": "/workspace/scratch/1f80e59755df/office_audit/quds_office_suite",
+  "returncode": 0,
+  "schema": 1,
+  "scope_note": "Before/after source and resolution-input equality, not a hermetic cache snapshot or proof against transient writes. Exit success only qualifies the recorded command's scope.",
+  "started_at": "2026-11-15T09:47:48.815457+00:00",
+  "suite_count": null
+}
