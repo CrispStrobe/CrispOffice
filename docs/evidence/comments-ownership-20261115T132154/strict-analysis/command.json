@@ -1,0 +1,8 @@
+{
+  "argv": [
+    "python3",
+    "/workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/analyze_selected.py"
+  ],
+  "cwd": "/workspace/scratch/1e19fe1d39ae/QudsCanonical/packages/quds_office_engine",
+  "shell_display": "python3 /workspace/scratch/1e19fe1d39ae/incoming-audit/comments-namespace-review/analyze_selected.py"
+}
