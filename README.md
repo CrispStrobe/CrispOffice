@@ -48,7 +48,7 @@ Legacy VML pictures, rules and shapes are retained as opaque source content with
 
 The fork now deduplicates byte-identical Word media on export, reads supported symbol characters, and keeps sibling text boxes independent during import. Legacy DOC conversion writes canonical built-in style names and offers explicit recovery for damaged auxiliary features; recovery reports degraded output and remains opt-in.
 
-The current fork also preserves spreadsheet comments, supported formula caches and frozen-pane anchors on save. Sheet sorting participates in undo/redo without losing cell locks or PDF borders; speaker-note edits participate in slide history and save revisions. Native fill regression fixtures are schema-valid and checked against independently authored expected files. See [the current capability and acceptance record](docs/office-capabilities-20261114.md) for tested behavior and remaining fidelity limits.
+The current fork also preserves spreadsheet comments, supported formula caches and frozen-pane anchors on save. Sheet sorting participates in undo/redo without losing cell locks or PDF borders; speaker-note edits participate in slide history and save revisions. Native fill regression fixtures are schema-valid and checked against independently authored expected files. See [the current capability and acceptance record](docs/office-capabilities-20261114.md) for tested behavior and [the remaining office-format backlog](docs/office-remaining-gaps.md) for open work.
 
 Worksheet direction, frozen panes, row/column grid edits and selection formatting now participate in save revisions and undo/redo on their owning worksheet. Grid history preserves cell identity so earlier text and formatting commands remain usable after sorting or structural edits. DOCX import accepts block-level bookmark markers, repairs unpaired endpoints within their story, and retains duplicate content-control IDs already present in the source while rejecting additional duplicates. Decimal/unit measurements use finite fallbacks for malformed overflow values. Unsupported Word constructs and font/layout fallbacks remain fidelity boundaries.
 
@@ -147,8 +147,10 @@ Unsynced desktop references support identity-checked metadata refresh and
 individual previews; selected exports and formatted bibliographies require
 Zotero 10+ database/version verification. The shared editor exposes the same
 workflow to CrispCloud. Basic author-year text and individual previews are
-explicit; full document-wide CSL and the native Zotero picker/citing adapter
-remain separate work.
+explicit. An experimental native citing protocol and staged Word transaction
+adapter are now included in the engine, with document-preference preservation
+and protocol regression tests. Production picker controls, live desktop
+acceptance and full document-wide CSL integration remain pending.
 
 This fork is integrated with [CrispCloud](https://github.com/CrispStrobe/CrispCloud). Current shared features include source-preserving spreadsheet font geometry, explicit style-zero handling, guarded logical addressing for merged Word tables, custom tab controls, and feature-directed editing/validation workflows. The [follow-up report](docs/office-fidelity-followup-20261112.md) and [fidelity ledger](docs/office-fidelity-gaps.json) retain the tested contracts and remaining limits. Native receipts describe their exact original source trees.
 
