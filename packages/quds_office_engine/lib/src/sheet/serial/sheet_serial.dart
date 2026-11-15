@@ -912,18 +912,18 @@ class SheetSerializer {
     if (sheet.comments.isNotEmpty) {
       // A shared part must not be overwritten through only one worksheet's
       // model. Give this sheet its own part while retaining the other owner.
-      String? uri = commentsPart?.uri;
-      if (uri != null &&
+      String? retainedUri = commentsPart?.uri;
+      if (retainedUri != null &&
           _hasOtherPartReference(
             package,
-            uri,
+            retainedUri,
             ignoredSourceUri: sheetUri,
             ignoredRelationshipId: commentsLink?.id,
           )) {
-        uri = null;
+        retainedUri = null;
       }
-      if (uri == null) {
-        uri = '/xl/comments${sheet.sheetId}.xml';
+      var uri = retainedUri ?? '/xl/comments${sheet.sheetId}.xml';
+      if (retainedUri == null) {
         var suffix = 1;
         while (package.getPart(uri) != null) {
           uri = '/xl/comments${sheet.sheetId}_${suffix++}.xml';
