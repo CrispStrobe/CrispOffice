@@ -1,0 +1,30 @@
+{
+  "incoming_canonical": "1c1b0af8e20bb02f7d18b4e6cb116328f4342332",
+  "incoming_app_audited": "81582d9d",
+  "latest_shared_same_canonical": "65e462b1",
+  "base_canonical": "926113e82330887c059283bf315edd5212c5efe1",
+  "source_commit": "7399b2a190855791e3d29dea39389e03c74ab2ae",
+  "source_tree": "8b223bad23ce57ff19ff8ab570330e0383a57d92",
+  "ordered_parents": [
+    "926113e82330887c059283bf315edd5212c5efe1",
+    "1c1b0af8e20bb02f7d18b4e6cb116328f4342332"
+  ],
+  "selected_changes": [
+    "Preserve existing quoted sheet identifiers in _odfReference.",
+    "Retain all six incoming formula literal/reference cases and assert imported and reopened formulas.",
+    "Explicitly decline ordinary stored cells inside prior horizontal or vertical merged coverage; two regressions."
+  ],
+  "retained_profile": [
+    "Namespace-aware spreadsheet selection and attribute lookup.",
+    "Row/column wrappers, named styles and bounded inheritance.",
+    "Explicit text whitespace, wrap semantics and vertical merges.",
+    "Workbook expansion, text, XML, dimensions, style and merge work limits.",
+    "Exact rejection of meaningful coordinates beyond supported bounds."
+  ],
+  "incoming_semantics_not_adopted": [
+    "Silent truncation of rows and spans at limits.",
+    "Repair of omitted covered-cell markers by shifting ordinary cells."
+  ],
+  "evidence_policy": "Existing 27 canonical receipts unchanged; this directory adds a separate source-bound qualification record.",
+  "remote_source_commit": "3fd05efadee4eed9a6e64b3f3dcc58755ebd0af2"
+}

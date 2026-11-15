@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "python3",
+    "/workspace/scratch/1f80e59755df/toolchains/run.py",
+    "dart",
+    "test",
+    "--reporter=json",
+    "test/ods_sheet_reader_test.dart",
+    "test/legacy_sheet_reader_test.dart",
+    "test/sheet_wrap_text_fidelity_test.dart"
+  ],
+  "cwd": "/workspace/scratch/1f80e59755df/office_audit/quds_office_suite/packages/quds_office_engine",
+  "shell_display": "python3 /workspace/scratch/1f80e59755df/toolchains/run.py dart test --reporter=json test/ods_sheet_reader_test.dart test/legacy_sheet_reader_test.dart test/sheet_wrap_text_fidelity_test.dart"
+}
