@@ -147,8 +147,10 @@ Unsynced desktop references support identity-checked metadata refresh and
 individual previews; selected exports and formatted bibliographies require
 Zotero 10+ database/version verification. The shared editor exposes the same
 workflow to CrispCloud. Basic author-year text and individual previews are
-explicit; full document-wide CSL and the native Zotero picker/citing adapter
-remain separate work.
+explicit. An experimental native citing protocol and staged Word transaction
+adapter are now included in the engine, with document-preference preservation
+and protocol regression tests. Production picker controls, live desktop
+acceptance and full document-wide CSL integration remain pending.
 
 This fork is integrated with [CrispCloud](https://github.com/CrispStrobe/CrispCloud). Current shared features include source-preserving spreadsheet font geometry, explicit style-zero handling, guarded logical addressing for merged Word tables, custom tab controls, and feature-directed editing/validation workflows. The [follow-up report](docs/office-fidelity-followup-20261112.md) and [fidelity ledger](docs/office-fidelity-gaps.json) retain the tested contracts and remaining limits. Native receipts describe their exact original source trees.
 
