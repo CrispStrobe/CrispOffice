@@ -11,3 +11,9 @@ The explicit derived package graph retains the settled 55-package host engine de
 ## Correctly bound runtime gate
 
 `ods-suite-final/` uses the absolute suite argument and preserves all raw receipts. All 70 tests passed with zero failures, errors or skips; the exact one-suite manifest was observed with no missing or unexpected suite. Exit 0 and before/after source, resolution inputs, tool hashes and HEAD were stable. The gate ran at evidence head `26dfd5c8998a07989c87980adf309043539effed`, whose source and test bytes match source pin `9bb71983a4ae6bc7bb3372fd931e724ddd102fc8`. Strict analysis follows as its own saved gate.
+
+## Completed strict analysis
+
+`strict-analysis/` records fatal-info and fatal-warning analysis of the ODS reader and restored test suite. Both reported no issues; the combined command exited 0 with source, resolution inputs, tool hashes and HEAD stable. It ran at evidence head `0ee5c4f1793fbcb55a6a43ced10296bcb00829e3`, with unchanged source pin `9bb71983a4ae6bc7bb3372fd931e724ddd102fc8`. The exact recorder, machine-event parser and selected-analysis driver are retained under `tools/`.
+
+Both focused gates are complete. They qualify the recorded canonical ODS scope, not the wider host application. The branch retains all observed 6e4 source, new bounded-import behavior and goldens, plus the three restored predecessor tests. No further upstream refresh or production correction was introduced.

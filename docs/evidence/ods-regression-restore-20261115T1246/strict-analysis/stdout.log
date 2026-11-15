@@ -1,0 +1,7 @@
+{"analyzing": "lib/src/sheet/legacy/ods_sheet_reader.dart", "command": ["dart", "analyze", "--fatal-infos", "--fatal-warnings", "lib/src/sheet/legacy/ods_sheet_reader.dart"]}
+Analyzing ods_sheet_reader.dart...
+No issues found!
+{"analyzing": "test/ods_sheet_reader_test.dart", "command": ["dart", "analyze", "--fatal-infos", "--fatal-warnings", "test/ods_sheet_reader_test.dart"]}
+Analyzing ods_sheet_reader_test.dart...
+No issues found!
+{"files": [{"path": "lib/src/sheet/legacy/ods_sheet_reader.dart", "returncode": 0}, {"path": "test/ods_sheet_reader_test.dart", "returncode": 0}], "success": true}
