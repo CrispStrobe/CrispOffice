@@ -2004,15 +2004,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             Icons.menu_book_outlined,
             'Zotero',
             _canMutate
-                ? () => showWordZoteroDialog(
-                    context,
-                    controller: _word,
-                    session: _zoteroSession,
-                    transport: studioZoteroTransport,
-                    localTransport: studioZoteroDesktopAvailable
-                        ? studioZoteroTransport
-                        : null,
-                  )
+                ? () async {
+                    final transport = StudioZoteroTransport();
+                    try {
+                      await showWordZoteroDialog(
+                        context,
+                        controller: _word,
+                        session: _zoteroSession,
+                        transport: transport.send,
+                        localTransport: transport.supportsLocal
+                            ? transport.send
+                            : null,
+                      );
+                    } finally {
+                      transport.dispose();
+                    }
+                  }
                 : null,
           ),
         ],

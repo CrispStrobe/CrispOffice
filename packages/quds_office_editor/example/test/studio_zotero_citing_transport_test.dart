@@ -44,6 +44,91 @@ http.StreamedResponse _ok() => http.StreamedResponse(
 );
 
 void main() {
+  test('Studio online catalog GET keeps the cloud client and key', () async {
+    var locals = 0;
+    final cloud = _Client((request) async {
+      expect(request.method, 'GET');
+      expect(request.url.host, 'api.zotero.org');
+      expect(request.headers['Zotero-API-Key'], 'test-key');
+      expect((request as http.Request).bodyBytes, isEmpty);
+      expect(request.followRedirects, isFalse);
+      return http.StreamedResponse(Stream.value(utf8.encode('[]')), 200);
+    });
+    final transport = StudioZoteroTransport(
+      createClient: () => cloud,
+      createLocalClient: () {
+        locals++;
+        throw StateError('Online requests do not use the local client.');
+      },
+    );
+    addTearDown(transport.dispose);
+    final result = await transport.send(
+      ZoteroHttpRequest(
+        uri: Uri.parse('https://api.zotero.org/users/1/items'),
+        headers: const {
+          'Zotero-API-Version': '3',
+          'Zotero-API-Key': 'test-key',
+        },
+      ),
+    );
+    expect(result.body, '[]');
+    expect(locals, 0);
+    expect(cloud.closeCount, 1);
+  });
+
+  test(
+    'Studio local catalog GET stays direct with validated API headers',
+    () async {
+      var locals = 0;
+      final local = _Client((request) async {
+        expect(request.method, 'GET');
+        expect(request.url.path, '/api/');
+        expect(request.headers['Zotero-API-Key'], isNull);
+        expect(request.headers['Authorization'], isNull);
+        expect((request as http.Request).bodyBytes, isEmpty);
+        return http.StreamedResponse(
+          const Stream.empty(),
+          200,
+          headers: const {'Zotero-Server-ID': 'database-1'},
+        );
+      });
+      final transport = StudioZoteroTransport(
+        createClient: () => throw StateError('must not use proxy'),
+        createLocalClient: () {
+          locals++;
+          return local;
+        },
+      );
+      addTearDown(transport.dispose);
+      const safe = {'Zotero-API-Version': '3', 'Zotero-Allowed-Request': '1'};
+      final result = await transport.send(
+        ZoteroHttpRequest(
+          uri: Uri.parse('http://localhost:23119/api/'),
+          headers: safe,
+        ),
+      );
+      expect(result.header('Zotero-Server-ID'), 'database-1');
+      for (final headers in <Map<String, String>>[
+        {...safe, 'zotero-api-version': '3'},
+        {...safe, 'Zotero-API-Version': '2'},
+        {...safe, 'Zotero-API-Key': 'secret'},
+        {...safe, 'Zotero-Server-ID': 'invalid\r\nsecret'},
+      ]) {
+        await expectLater(
+          transport.send(
+            ZoteroHttpRequest(
+              uri: Uri.parse('http://localhost:23119/api/'),
+              headers: headers,
+            ),
+          ),
+          throwsA(isA<StudioZoteroException>()),
+        );
+      }
+      expect(locals, 1);
+      expect(local.closeCount, 1);
+    },
+  );
+
   for (final route in ['execCommand', 'respond']) {
     test(
       'citing $route sends only local UTF-8 JSON without redirects',
