@@ -556,12 +556,21 @@ abstract final class PaintRunText {
     required String paragraph,
     String? themeFamily,
   }) {
-    final List<List<LaidOutGlyph>> segments = paintSegments(line)
-        .toList(growable: false);
+    final List<List<LaidOutGlyph>> segments = paintSegments(
+      line,
+    ).toList(growable: false);
     for (int s = 0; s < segments.length; s++) {
       final List<LaidOutGlyph> run = segments[s];
       final LaidOutGlyph first = run.first;
       final (:int min, :int max) = _runSpan(run);
+      if (first.glyph.isDiscretionaryHyphen &&
+          logicalIndex >= min &&
+          logicalIndex <= max) {
+        final after = logicalIndex >= first.logicalEnd;
+        return after == first.glyph.level.isEven
+            ? first.x + first.advance
+            : first.x;
+      }
       final bool lastRun = s == segments.length - 1;
       final bool inRun =
           logicalIndex >= min &&
@@ -645,6 +654,9 @@ abstract final class PaintRunText {
       final double left = origin;
       final double right = origin + painter.width;
       if (x >= left && x <= right) {
+        if (first.glyph.isDiscretionaryHyphen) {
+          return _hyphenHit(first, x <= left + painter.width / 2);
+        }
         if (first.displayText != null) {
           return x <= left + painter.width / 2
               ? first.glyph.logicalIndex
@@ -668,16 +680,25 @@ abstract final class PaintRunText {
     if (bestPainter == null) {
       return CaretEngine.hitLogicalIndex(line, x);
     }
-    if (bestRun?.first.displayText != null) {
+    final first = bestRun!.first;
+    if (first.glyph.isDiscretionaryHyphen) {
+      return _hyphenHit(first, x <= bestOrigin + bestPainter.width / 2);
+    }
+    if (first.displayText != null) {
       return x <= bestOrigin + bestPainter.width / 2
-          ? bestRun!.first.glyph.logicalIndex
-          : bestRun!.first.logicalEnd;
+          ? first.glyph.logicalIndex
+          : first.logicalEnd;
     }
     final double localX = (x - bestOrigin).clamp(0.0, bestPainter.width);
     final int local = hitIndex(bestPainter, Offset(localX, 0), bestText.length);
     final int max = paragraph.isEmpty ? 0 : paragraph.length;
     return (bestBase + local).clamp(0, max);
   }
+
+  static int _hyphenHit(LaidOutGlyph glyph, bool leftHalf) =>
+      leftHalf == glyph.glyph.level.isEven
+      ? glyph.glyph.logicalIndex
+      : glyph.logicalEnd;
 
   static ({int min, int max}) _runSpan(List<LaidOutGlyph> run) {
     var min = run.first.glyph.logicalIndex;

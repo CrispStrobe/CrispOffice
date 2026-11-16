@@ -1,0 +1,58 @@
+{
+  "recorded_utc": "2026-11-16T13:23:51.962443+00:00",
+  "source_receipt_sha256": "ec8b29ac0b1b0fe39e92deaaef9e34342d05670229dffb1c2ae43e8e61e2d3e5",
+  "scope": "One behavioral before/after control; excluded from final qualification test counts.",
+  "canonical_source_or_harness_mutations": false,
+  "previous_control_mutations": false,
+  "github_actions_queried_awaited_or_rerun": false,
+  "runs": [
+    {
+      "version": "before",
+      "source_commit": "357f7a3e87d8536c03ecca2a860a0a564b1659f0",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_backoff_session_test.dart",
+        "--plain-name",
+        "reconnecting and reopening keep an online session pause"
+      ],
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/backoff-controls/before/packages/quds_office_editor",
+      "exit_code": 1,
+      "elapsed_seconds": 20.255,
+      "expected_behavioral_failure": true,
+      "expected_observation_confirmed": true,
+      "log": "logs/backoff-before.log",
+      "log_sha256": "9100cf43abd138d1df8fb3d0209ef0d643a117483e9f3c884cca0e5b04165e39",
+      "test_sha256": "1fb5449f1a26ca5df41a73a196e28618ab447182d823109331420e4b81fc0d92"
+    },
+    {
+      "version": "after",
+      "source_commit": "039c1e293052f548367f9ea3b0fa5ff56949ccaa",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_backoff_session_test.dart",
+        "--plain-name",
+        "reconnecting and reopening keep an online session pause"
+      ],
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/backoff-controls/after/packages/quds_office_editor",
+      "exit_code": 0,
+      "elapsed_seconds": 19.113,
+      "expected_behavioral_failure": false,
+      "expected_observation_confirmed": true,
+      "log": "logs/backoff-after.log",
+      "log_sha256": "ca490fcb2d9d28527c3c4ef12b0d43c0e3dbe9deff1c860f0968f8b4cf0a3b71",
+      "test_sha256": "1fb5449f1a26ca5df41a73a196e28618ab447182d823109331420e4b81fc0d92"
+    }
+  ],
+  "verification_sha256": "e31c81935b500770705c9c0a8bcf74787d98127d525e9126d6b1815b2ba26ce5",
+  "all_expected_observations_confirmed": true
+}

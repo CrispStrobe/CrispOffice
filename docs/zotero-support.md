@@ -371,6 +371,15 @@ by this editor. Library identity includes both user/group kind and numeric ID;
 an item key alone is not a unique source identifier. Known URI scheme/hostname
 aliases are deduplicated without rewriting imported metadata.
 
+**Basic bibliography** and **Copy embedded CSL JSON** resolve all source aliases
+declared by the document before choosing an embedded snapshot. If citations for
+source A and source B appear before a later citation carrying both A and B as
+URIs, they produce one exported source or bibliography entry. Longer alias
+chains and alias declarations without their own CSL snapshot also work. The
+first available embedded snapshot is retained in full; citation IDs, URI order,
+locators, affixes and unknown metadata are left intact. Equal item keys or CSL
+IDs in unrelated linked libraries or desktop profiles remain distinct.
+
 The new desktop adapter delegates complete CSL processing to Zotero. Basic
 formatting and individual previews remain available when the desktop is not
 connected, and remain explicitly identified. A citation processed by native
@@ -512,6 +521,16 @@ The client returns typed errors for access, rate limits, network/server failures
 and invalid responses. `Backoff` and `Retry-After` are respected without waiting
 indefinitely or starting a hidden retry loop. The remaining delay is available
 to hosts through the error's `retryAfter` value.
+
+The online pause belongs to the host's `ZoteroSession`. Reconnecting, changing
+public libraries, forgetting credentials, or closing and reopening the dialog
+with that same session retains an unexpired pause. A late response from a closed
+dialog can still extend it, and concurrent responses cannot shorten it. Desktop
+catalog access keeps independent state and remains available during an online
+pause. The deadline is checked on the next attempted request; it creates no
+background timer, automatic retry, credential persistence or document data.
+Custom hosts that replace online clients can pass the same `ZoteroBackoffState`
+to each new client. Clients sharing that state must use the same clock.
 
 ## Previous continuation evidence and current qualification
 

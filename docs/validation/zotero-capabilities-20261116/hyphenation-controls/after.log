@@ -1,0 +1,17 @@
+00:00 +0: loading /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_caret_test.dart
+00:00 +0: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_caret_test.dart: (setUpAll)
+00:00 +0: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_caret_test.dart: manual hyphen respects LTR source boundaries
+00:00 +1: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_caret_test.dart: manual hyphen respects RTL source boundaries
+00:00 +2: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an LTR paragraph
+00:00 +3: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an RTL paragraph
+00:00 +4: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_caret_test.dart: (tearDownAll)
+00:00 +4: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:00 +4: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: paints manual break with source-aware hit testing
+00:00 +5: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: paints automatic break with source-aware hit testing
+00:00 +6: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: unselected soft hyphen has the same width and caret position as plain text
+00:00 +7: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: automatic hyphen keeps the preceding formatting at a run boundary
+00:00 +8: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: last non-BMP source character is painted as a complete scalar
+00:00 +9: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: presentation labels retain adjacent invisible authored controls
+00:00 +10: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: RTL paragraph paints each German discretionary hyphen as its own run
+00:00 +11: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_hyphenation_paint_test.dart: (tearDownAll)
+00:00 +11: All tests passed!

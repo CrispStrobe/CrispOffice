@@ -1,0 +1,110 @@
+{
+  "recorded_utc": "2026-11-16T13:17:31.147190+00:00",
+  "commits": {
+    "before": "e5e1e9af6beb0972a010d8208c1690a642809113",
+    "after": "357f7a3e87d8536c03ecca2a860a0a564b1659f0"
+  },
+  "source_receipt_sha256": "4816db68c65ec3fc82785e10d4d4fe8fe6fb25f7886c1056f97ca3febba98bba",
+  "scope": "Behavioral before/after controls, not additional final-cohort test counts.",
+  "production_sources_or_manifests_modified": false,
+  "github_actions_queried_awaited_or_rerun": false,
+  "runs": [
+    {
+      "suite": "alias",
+      "version": "before",
+      "source_commit": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/behavioral-controls/before/packages/quds_office_engine",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "test/alias_bridge_control_test.dart"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 13.763,
+      "expected_behavioral_failure": true,
+      "expected_observation_confirmed": true,
+      "log": "logs/alias-before.log",
+      "log_sha256": "30019926f96e433212fbd7d45be408438af19580e2c76c7dd11498495d5d1a4a",
+      "test_sha256": "631d90865e16e6caec649f59676634c0af508cea345d11ec876c9a25a7e1d5d4",
+      "manifest_sha256": "09ab3b5abb15bacd2d398bb543640b531f92ffdd9796763cfbca14df496462c2",
+      "lockfile_sha256": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+      "package_config_sha256": "4d328be156866cca5b4e900f979b0b427e0285140a8d93670562082deae63efb"
+    },
+    {
+      "suite": "alias",
+      "version": "after",
+      "source_commit": "357f7a3e87d8536c03ecca2a860a0a564b1659f0",
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/behavioral-controls/after/packages/quds_office_engine",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "test/alias_bridge_control_test.dart"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 12.429,
+      "expected_behavioral_failure": false,
+      "expected_observation_confirmed": true,
+      "log": "logs/alias-after.log",
+      "log_sha256": "52237287621d4486189789df29c4fed241bcba0a4f1e0465c9c857d81410d7f8",
+      "test_sha256": "631d90865e16e6caec649f59676634c0af508cea345d11ec876c9a25a7e1d5d4",
+      "manifest_sha256": "09ab3b5abb15bacd2d398bb543640b531f92ffdd9796763cfbca14df496462c2",
+      "lockfile_sha256": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+      "package_config_sha256": "e9ca23716bb6041ce96acad53d4ac705b1702b835e2cf9b9110fa5b6e8e7a151"
+    },
+    {
+      "suite": "dialog",
+      "version": "before",
+      "source_commit": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/behavioral-controls/before/packages/quds_office_editor",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_dialog_scaling_test.dart"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 19.663,
+      "expected_behavioral_failure": true,
+      "expected_observation_confirmed": true,
+      "log": "logs/dialog-before.log",
+      "log_sha256": "489a0bcc343ffeb018afdcd600f8913b20494d49f7cf77c61f24873366df7934",
+      "test_sha256": "7c9fc82b24e10f970a8b77147920bbd2d1acbb4724270c39f143d6159dc1dbb4",
+      "manifest_sha256": "70f33c82ce2616264e63bb203db1c7cff18286c489ad55e38979c683cf5db2c8",
+      "lockfile_sha256": "110e7e8e57a36c6292502866e0656cdb89dfbf16576c3503f9571576d480796d",
+      "package_config_sha256": "219af56ed9cecf892339d1d44bfac172700b0382d45f290094c008c19094ad7b"
+    },
+    {
+      "suite": "dialog",
+      "version": "after",
+      "source_commit": "357f7a3e87d8536c03ecca2a860a0a564b1659f0",
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/behavioral-controls/after/packages/quds_office_editor",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_dialog_scaling_test.dart"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 20.592,
+      "expected_behavioral_failure": false,
+      "expected_observation_confirmed": true,
+      "log": "logs/dialog-after.log",
+      "log_sha256": "fc3c7e89eeb76e45e6ef4b4ba6e14858b51f17fdbdd547da4d2dbdcfa572e248",
+      "test_sha256": "7c9fc82b24e10f970a8b77147920bbd2d1acbb4724270c39f143d6159dc1dbb4",
+      "manifest_sha256": "70f33c82ce2616264e63bb203db1c7cff18286c489ad55e38979c683cf5db2c8",
+      "lockfile_sha256": "110e7e8e57a36c6292502866e0656cdb89dfbf16576c3503f9571576d480796d",
+      "package_config_sha256": "455a71e5e3430a6ad9345d18ad8850ab7dec61e109cceb7ffa8848d7fbca3ad9"
+    }
+  ],
+  "all_expected_observations_confirmed": true
+}

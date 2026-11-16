@@ -477,6 +477,16 @@ class CaretEngine {
       return line.x;
     }
     for (final glyph in line.glyphs) {
+      if (glyph.glyph.isDiscretionaryHyphen &&
+          logicalIndex >= glyph.glyph.logicalIndex &&
+          logicalIndex <= glyph.logicalEnd) {
+        // A generated hyphen has one source boundary, after its visible ink.
+        // An authored soft hyphen has two boundaries in the run's direction.
+        final after = logicalIndex >= glyph.logicalEnd;
+        return after == glyph.glyph.level.isEven
+            ? glyph.x + glyph.advance
+            : glyph.x;
+      }
       if (glyph.displayText == null ||
           logicalIndex < glyph.glyph.logicalIndex ||
           logicalIndex > glyph.logicalEnd) {
@@ -599,7 +609,9 @@ class CaretEngine {
       return 0;
     }
     for (final glyph in line.glyphs) {
-      if (glyph.displayText == null) continue;
+      if (glyph.displayText == null || glyph.glyph.isDiscretionaryHyphen) {
+        continue;
+      }
       final group = line.glyphs.where(
         (g) =>
             g.displayText != null &&
