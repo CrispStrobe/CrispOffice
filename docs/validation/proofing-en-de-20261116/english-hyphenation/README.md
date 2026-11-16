@@ -1,6 +1,6 @@
 # English hyphenation continuation evidence
 
-Source checkpoint: **d90176bb142e1d26379d228cf924c1a8cae346f8**. Integration base:
+Source checkpoint: **377e312a2fd4a0d5e87b7abbe8f464aaedf9b15b**. Integration base:
 `dbf5ff000d66bd6e2833ade990ab84de009e3ad8`.
 
 ## Delivered changes
@@ -38,7 +38,7 @@ checked-in source data and the actual Dart token/protected-span expressions:
 | American trie versus independent flat-pattern oracle | 442 word comparisons passed |
 | British trie versus independent flat-pattern oracle | 741 word comparisons passed |
 | Fixed dialect, exception, casing and lexical controls | 21 passed |
-| Paragraph offsets, language aliases, protected spans, identifiers and join controls | 32 passed |
+| Paragraph offsets, language aliases, protected spans, identifiers and join controls | 33 passed |
 | Exact generated pattern/exception equality and original license prefaces | Both languages passed |
 | Pattern letter-key uniqueness | Both languages passed |
 | Fresh GitHub content readback | All 14 owned source inputs matched |
@@ -89,3 +89,9 @@ dart test test/english_hyphenation_test.dart test/proofing_hyphenation_test.dart
 generator process ran in this continuation.** Prior qualification receipts
 remain attached to their original commits. GitHub Actions were not queried
 or awaited.
+
+Final static source-offset review corrected one unexecuted Dart fixture:
+`Silbentrennung` has 14 letters, so the last English word in the mixed fixture
+starts at offset 26 and has British candidates 29 and 33. A corresponding
+English paragraph control was added to the reference checker. Runtime source
+is unchanged by that correction.

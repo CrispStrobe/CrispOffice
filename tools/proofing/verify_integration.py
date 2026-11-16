@@ -41,7 +41,8 @@ EDITOR_TESTS = [
     "word_zotero_source_identity",
 ]
 INCOMING_ENGINE_TESTS = [
-    "ods_sheet_reader", "zotero_backoff_state", "word_zotero_source_identity",
+    "ods_sheet_reader", "ods_sheet_writer", "sheet_save_cache_and_freeze",
+    "zotero_backoff_state", "word_zotero_source_identity",
     "zotero_client", "zotero_identity_client",
 ]
 HARPER_WEB_FILES = [

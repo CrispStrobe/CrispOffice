@@ -1,7 +1,7 @@
 {
-  "recorded_utc": "2026-11-16 20:09:57 UTC",
-  "source_commit": "d90176bb142e1d26379d228cf924c1a8cae346f8",
-  "source_tree": "83a6acc1e0819c55abe7674e0a0c27ec14ee2de0",
+  "recorded_utc": "2026-11-16 20:11:06 UTC",
+  "source_commit": "377e312a2fd4a0d5e87b7abbe8f464aaedf9b15b",
+  "source_tree": "986375eb7922b077ecdfe6e3bc67bd8a5396e512",
   "integration_base": "dbf5ff000d66bd6e2833ade990ab84de009e3ad8",
   "branch": "codex/proofing-en-hyphenation-20261116",
   "environment": "functions.exec V8 JavaScript isolate",
@@ -25,7 +25,7 @@
     }
   },
   "golden_assertions": 21,
-  "paragraph_assertions": 32,
+  "paragraph_assertions": 33,
   "remote_exact_content_checks": 14,
   "original_upstream_git_blobs_preserved": true,
   "unexecuted": {
@@ -35,5 +35,6 @@
     "flutter_editor_and_pdf_runtime": true
   },
   "github_actions": "No status or workflow endpoints queried; no queue waiting.",
-  "reference_verifier_sha256": "8cf0489a79be7d20368226618d7f65f95c2bc59df40ea32f7fcace4a76ad3cb6"
+  "reference_verifier_sha256": "896cda3b499cf88d99e7220fd88727a48bc9ee802624c6b851df4b97db9c3bfd",
+  "static_review_correction": "Corrected an unexecuted mixed-language Dart fixture: final word starts at UTF-16 26; British candidates are 29 and 33. Added corresponding English paragraph reference control."
 }

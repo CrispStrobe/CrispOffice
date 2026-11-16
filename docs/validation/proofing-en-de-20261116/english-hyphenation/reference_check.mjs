@@ -234,6 +234,7 @@ function validateEnglishHyphenation({sources, generated, implementation}) {
     ['dictionary', 'en-US', at => at < 4 ? 'en-US' : 'en-GB', []],
     ['dictionary', null, () => 'EN_us', [3, 6]],
     ['dictionary', null, at => at < 4 ? 'en' : 'en-US', [3, 6]],
+    ['dictionary Silbentrennung dictionary', null, offset => offset < 11 ? 'en-US' : offset < 25 ? 'de-DE' : 'en-GB', [3, 6, 29, 33]],
     ['dictionary (HTTPS://example.invalid). hyphenation', 'en-US', null, [3, 6, 40, 44]],
     ['`dictionary', 'en-US', null, [4, 7]],
     ['``dictionary`', 'en-US', null, [5, 8]],

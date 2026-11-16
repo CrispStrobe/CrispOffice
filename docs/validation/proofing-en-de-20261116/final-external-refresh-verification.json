@@ -1,0 +1,788 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-16T20:13:44.444Z",
+  "verified_commit": "a6921f66fff583002b1a2ecfc47ff2949502e196",
+  "verified_tree": "9162b0fc37121e0b5951168e5a5e310e924bcaba",
+  "snapshot_file": "final-external-refresh.json",
+  "named_refs": 185,
+  "unique_heads": 126,
+  "ancestry": [
+    {
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 81
+    },
+    {
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 161
+    },
+    {
+      "sha": "bdd752e01b4c97cf0cd1248af8a4e544f18ea863",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 10
+    },
+    {
+      "sha": "20fb6872d13c32ebcff5db734ed07880ed821ada",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 17
+    },
+    {
+      "sha": "3ebe347f8d3c9577d44ac51b1f1fc92a544f1bf4",
+      "status": "diverged",
+      "ahead_by": 3,
+      "behind_by": 21
+    },
+    {
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 18
+    },
+    {
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 262
+    },
+    {
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 277
+    },
+    {
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 280
+    },
+    {
+      "sha": "5ed98a033b8d2efe24778649f190d559df3d5f74",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 35
+    },
+    {
+      "sha": "f23675a4e6443c2958d0eef274bc3e301e6ff201",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 35
+    },
+    {
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 193
+    },
+    {
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 259
+    },
+    {
+      "sha": "b87f9d6c3a2532c9695024adf48ca9fbd3c0927a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 38
+    },
+    {
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 311
+    },
+    {
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 282
+    },
+    {
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 61
+    },
+    {
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 214
+    },
+    {
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 216
+    },
+    {
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 303
+    },
+    {
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 218
+    },
+    {
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 53
+    },
+    {
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 46
+    },
+    {
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 51
+    },
+    {
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 195
+    },
+    {
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 55
+    },
+    {
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 48
+    },
+    {
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 321
+    },
+    {
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 321
+    },
+    {
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 49
+    },
+    {
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 288
+    },
+    {
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 291
+    },
+    {
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 370
+    },
+    {
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 373
+    },
+    {
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 376
+    },
+    {
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 377
+    },
+    {
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 375
+    },
+    {
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 380
+    },
+    {
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 290
+    },
+    {
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 389
+    },
+    {
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 390
+    },
+    {
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 54
+    },
+    {
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 215
+    },
+    {
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 217
+    },
+    {
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 47
+    },
+    {
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 220
+    },
+    {
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 398
+    },
+    {
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 315
+    },
+    {
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 286
+    },
+    {
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 219
+    },
+    {
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 52
+    },
+    {
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 287
+    },
+    {
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 289
+    },
+    {
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 292
+    },
+    {
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 374
+    },
+    {
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 204
+    },
+    {
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 203
+    },
+    {
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 196
+    },
+    {
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 204
+    },
+    {
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 381
+    },
+    {
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 388
+    },
+    {
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 50
+    },
+    {
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 221
+    },
+    {
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 194
+    },
+    {
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 324
+    },
+    {
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 376
+    },
+    {
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 390
+    },
+    {
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 56
+    },
+    {
+      "sha": "63194d8e482892f284eaccb95ce48a8a8132376d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 46
+    },
+    {
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 291
+    },
+    {
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 193
+    },
+    {
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 62
+    },
+    {
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 217
+    },
+    {
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 218
+    },
+    {
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 59
+    },
+    {
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 287
+    },
+    {
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 220
+    },
+    {
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 369
+    },
+    {
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 322
+    },
+    {
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 288
+    },
+    {
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 219
+    },
+    {
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 61
+    },
+    {
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 289
+    },
+    {
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 321
+    },
+    {
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 292
+    },
+    {
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 290
+    },
+    {
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 216
+    },
+    {
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 198
+    },
+    {
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 197
+    },
+    {
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 215
+    },
+    {
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 194
+    },
+    {
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 60
+    },
+    {
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 340
+    },
+    {
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 429
+    },
+    {
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 477
+    },
+    {
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 494
+    },
+    {
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 527
+    },
+    {
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 527
+    },
+    {
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 467
+    },
+    {
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 469
+    },
+    {
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 527
+    },
+    {
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 524
+    },
+    {
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 470
+    },
+    {
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 485
+    },
+    {
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 520
+    },
+    {
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 527
+    },
+    {
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 527
+    },
+    {
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 527
+    },
+    {
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 529
+    },
+    {
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 546
+    },
+    {
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 564
+    },
+    {
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 564
+    },
+    {
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 551
+    },
+    {
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 564
+    },
+    {
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 618
+    },
+    {
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 633
+    },
+    {
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 660
+    },
+    {
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 640
+    },
+    {
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 715
+    },
+    {
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 694
+    },
+    {
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 724
+    },
+    {
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 817
+    },
+    {
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 810
+    },
+    {
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 820
+    },
+    {
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 804
+    },
+    {
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 822
+    }
+  ],
+  "contained_heads": 125,
+  "pending_task_owned_heads": [
+    {
+      "sha": "3ebe347f8d3c9577d44ac51b1f1fc92a544f1bf4",
+      "status": "diverged",
+      "ahead_by": 3,
+      "behind_by": 21
+    }
+  ],
+  "all_external_heads_contained": true,
+  "tree_checks": {
+    "preserved_or_imported_entries": 5489,
+    "actual_entries": 5491,
+    "missing_or_modified_paths": [],
+    "unexpected_paths": [],
+    "audit_contents_exact": true,
+    "truncated": false
+  },
+  "dart_flutter_run": false,
+  "github_actions_used": false,
+  "passed": true
+}

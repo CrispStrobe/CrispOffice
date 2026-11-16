@@ -1,5 +1,5 @@
 {
-  "source_commit": "d90176bb142e1d26379d228cf924c1a8cae346f8",
+  "source_commit": "377e312a2fd4a0d5e87b7abbe8f464aaedf9b15b",
   "scope": "Fourteen new or changed English hyphenation data, implementation, test, provenance and verifier inputs. This is not a complete build dependency manifest.",
   "inputs": {
     "packages/quds_office_engine/third_party/hyphenation/hyph-en-us.tex": {
@@ -39,8 +39,8 @@
       "git_blob": "fdec98fe6a409f71113debfa66307c94d0f01cfb"
     },
     "packages/quds_office_engine/test/english_hyphenation_test.dart": {
-      "sha256": "ae8bec4ea3db1fd39f99ede7d173d263532e8465851f8949898094ed653b3364",
-      "git_blob": "9b60ad3f4eed813663ea1d9995ee732d40e5615d"
+      "sha256": "7875064f59526f8b7878f75111e8e2d2d07701b0284edbdaac06af044a94f2fd",
+      "git_blob": "0e22e63cbfd13236c36f5c1102a0203a823d6ded"
     },
     "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
       "sha256": "2994b7326b8aad9d73f7eca07d0add5e7d6832f8ae46b3a61118a2c3db127ee6",
