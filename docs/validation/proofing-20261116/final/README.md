@@ -1,8 +1,51 @@
 # Final local proofing integration
 
-This directory describes the final integration verifier. The verifier writes a
-dated, source-bound receipt when it is run; this README alone is not a passing
-test result. No GitHub Actions are started or waited for.
+The [final integration receipt](receipt.json) passed on 16 November 2026,
+13:48:45–13:51:08 UTC, against source commit
+`f4d52e5b0f04aa0a57cef2074f0b5ee3d2868f48`. All 2,025 recorded workspace
+inputs and all captured runtime hashes stayed unchanged. The final evidence
+commit adds documentation and receipts without changing the validated source.
+No GitHub Actions were started or waited for.
+
+## Recorded results
+
+| Gate | Actual result |
+| --- | --- |
+| Engine, editor and example strict analysis | All three passed with `--fatal-infos`. |
+| [Hyphenation](engine-hyphenation/hyphenation-validation.json) | 232 tests passed; exact pinned pattern regeneration and strict analysis passed. |
+| [German proofing](german/receipt.json) | 38 tests and ten compiled JavaScript checks passed; pinned dictionary regeneration matched byte-for-byte. |
+| [Incoming ODS/Zotero regressions](incoming-engine-tests.log) | 173 tests passed. |
+| [Combined editor regressions](editor-tests.log) | 165 tests passed, including session, review UI, source-mapped context menus, both hyphenation suites, mocked platform spelling and incoming Zotero cases. |
+| [IME reattachment](editor-ime-reattachment.log) | One focused test passed. |
+| [Merged Harper](harper/receipt.json) | Five Rust, 12 actual-native Dart, eight Node provider, five Wasm worker, eight compiled Dart web transport, three license-policy and two host-packaging checks passed; strict analysis passed. |
+| [Release web build](example-web-build.log) and packaging | Passed; all six installed Harper runtime/notice/receipt files matched their validated hashes. The complete 123-file, 70,470,323-byte bundle is identified by [its manifest](web-bundle-sha256.json.gz). |
+| [Incoming history](integration-ancestry.json) | All 48 exact branch heads from the fixed audit cutoff are ancestors of the tested source commit. |
+
+The Harper build and its nine verification commands ran earlier in this same
+continuation. The final verifier reused that evidence only after matching the
+complete current source inventory, all six artifact hashes, every command log,
+successful license verification and the unchanged source maps. It did not
+present those commands as a second fresh runtime run. The notice bundle covers
+226 packages and preserves three MPL source distributions.
+
+Counts overlap with the earlier focused receipts and should not be summed into
+a unique total. The [30-case navigation/session check](navigation-ime/receipt.json)
+and [41-case renderer check](hyphenation-merge/receipt.json) remain available.
+The first navigation attempt is retained under `navigation-ime-initial`: its
+tests passed, but its source-stability gate correctly rejected a controller
+change made during the run. The final navigation and integration receipts
+supersede that attempt.
+
+The web build emitted a nonfatal warning about the `CupertinoIcons` font family;
+the exact warning is retained in its log. Compilation and packaging passed.
+Interactive browser rendering, browser HTTP/CSP deployment and real mobile
+devices remain separate acceptance checks.
+
+The [remote audit](remote-freshness.json) and [reconciliation](reconciliation.json)
+record the incoming main/ODS, Zotero and sibling proofing heads and the merge
+decisions. The ancestry record distinguishes proven local ancestry from three
+older PR heads whose local history crosses the shallow-checkout boundary;
+their earlier remote API ancestry results are retained separately.
 
 ## Run after the source checkpoint
 
