@@ -1,0 +1,20 @@
+00:00 +0: loading /workspace/scratch/4156e4a05f09/zotero-toolchain/harness/quds_office_studio/test/studio_zotero_citing_transport_test.dart
+00:00 +0: Studio online catalog GET keeps the cloud client and key
+00:00 +1: Studio local catalog GET stays direct with validated API headers
+00:00 +2: saved-search reads stay on direct loopback with the pinned database
+00:00 +3: saved-search writes and encoded route injection are refused before sending
+00:00 +4: citing execCommand sends only local UTF-8 JSON without redirects
+00:00 +5: citing respond sends only local UTF-8 JSON without redirects
+00:00 +6: citing rejects other origins and protocol routes before sending
+00:00 +7: citing requires POST and rejects cloud or catalog request bodies
+00:00 +8: citing accepts case-insensitive names but no secrets or extra headers
+00:00 +9: citing request bodies are valid JSON with a UTF-8 byte bound
+00:00 +10: citing redirects return once without forwarding document data
+00:00 +11: citing responses reject declared and streamed excess bytes
+00:00 +12: native dialog uses its own longer timeout
+00:00 +13: request timeout can shorten but cannot extend host limit
+00:00 +14: dispose settles pending citing immediately and ignores late response
+00:00 +15: dispose cancels a response body already being read
+00:00 +16: citing network failures never expose document or credential data
+00:00 +17: citing and catalog limits must be positive before client creation
+00:00 +18: All tests passed!

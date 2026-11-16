@@ -1,0 +1,23 @@
+{
+  "result": "passed",
+  "actual_studio_transport": true,
+  "actual_citing_client": true,
+  "same_word_session_for_both_commands": true,
+  "commands_completed": [
+    "setDocPrefs",
+    "addEditCitation"
+  ],
+  "initial_document_has_style": false,
+  "source_unchanged_after_each_command": true,
+  "seed_selected_from_actual_local_catalog": true,
+  "initial_seed_locator": "12",
+  "native_picker_accepted_locator": "12",
+  "accepted_seed_flag": true,
+  "apply_count": 1,
+  "docx_saved_reopened": true,
+  "footnotes": 1,
+  "citation": "Anna Beispiel, Synthetic Native Acceptance Alpha (Acceptance Test Publisher, 2024), 12.",
+  "citation_uri": "http://zotero.org/users/local/R5NNmaf1/items/98PBWM24",
+  "native_preferences": "<data data-version=\"3\" zotero-version=\"10.0.8\"><session id=\"gyxNalOO\"/><style id=\"http://www.zotero.org/styles/chicago-notes-bibliography-subsequent-ibid\" locale=\"de-DE\" hasBibliography=\"1\" bibliographyStyleHasBeenSet=\"0\"/><prefs><pref name=\"fieldType\" value=\"Field\"/><pref name=\"automaticJournalAbbreviations\" value=\"true\"/><pref name=\"noteType\" value=\"1\"/></prefs></data>",
+  "review_warnings": []
+}

@@ -1,0 +1,51 @@
+{
+  "result": "passed",
+  "source_commit": "ca4011de0e17783f12bcff07336e318adc1db99c",
+  "source_files": 439,
+  "source_unchanged": true,
+  "kernel_unchanged": true,
+  "kernel_sha256": "03f53d286ee4d8f0c6353a0cba7426f9d10c013b693d73cbf40167fabe737e93",
+  "started_utc": "2026-11-16T07:27:31.605976+00:00",
+  "finished_utc": "2026-11-16T07:27:38.074854+00:00",
+  "official_zotero": "10.0.8",
+  "flutter": "3.47.8",
+  "dart": "3.13.7",
+  "live_catalog_saved_search_scenarios": 1,
+  "native_style_scenarios": 2,
+  "native_refresh_transactions": 4,
+  "docx_save_reopen_transactions": 4,
+  "isolated_synthetic_items": 3,
+  "native_german_repeated_citations": [
+    "Ebd.",
+    "Ebd., 34."
+  ],
+  "bibliography_entry_paragraphs": 2,
+  "bibliography_fields": 1,
+  "linked_note_citation_fields": 4,
+  "native_layout": {
+    "left_twips": 720,
+    "hanging_twips": 720,
+    "spacing_after_twips": 240,
+    "line_twips": [
+      240,
+      480
+    ]
+  },
+  "native_small_caps": true,
+  "mixed_italics": true,
+  "simplification_warnings": 0,
+  "saved_search_query_remained_scoped": true,
+  "staged_until_apply": true,
+  "prior_unsuccessful_attempts_retained": true,
+  "uses_github_actions": false,
+  "full_native_application_build": false,
+  "word_or_libreoffice_interoperability_tested": false,
+  "private_account_connected": false,
+  "profile_or_database_included": false,
+  "binaries_included": false,
+  "native_process_lifecycle": "Existing isolated fixture GUI from desktop preparation; explicitly quit through native controls after final passing run.",
+  "cold_profile_csl_readiness_proved": false,
+  "evidence": "logs/acceptance-receipt.json",
+  "source_proof": "delivery-source-proof.json",
+  "xml_parts_manifest": "xml/manifest.json"
+}

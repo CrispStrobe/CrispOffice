@@ -1,0 +1,72 @@
+00:00 +0: loading test/word_layout_test.dart
+00:00 +0: test/word_layout_test.dart: table cells are laid out in columns, not stacked
+00:00 +1: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +2: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +3: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +4: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +5: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +6: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +7: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +8: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +9: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +10: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +11: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +12: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +13: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +14: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +15: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +16: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +17: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +18: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +19: test/office_named_fonts_test.dart: Word measures each run before wrapping with real face and size
+00:00 +20: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +21: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +22: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +23: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +24: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +25: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +26: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +27: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +28: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +29: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +30: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +31: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +32: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +33: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +34: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +35: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +36: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +37: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +38: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +39: test/word_pdf_test.dart: round-trips a Word document and emits a PDF 1.7 file
+00:00 +40: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:00 +41: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:00 +42: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:00 +43: test/arabic_pdf_export_test.dart: Word PDF embeds Arabic as Identity-H, not WinAnsi mojibake
+00:00 +44: test/arabic_pdf_export_test.dart: Word PDF embeds Arabic as Identity-H, not WinAnsi mojibake
+00:00 +45: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +46: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +47: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +48: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:01 +49: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:01 +50: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:01 +51: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:01 +52: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:01 +53: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:01 +54: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:01 +55: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +56: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +57: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +58: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +59: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +60: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +61: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +62: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +63: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +64: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +65: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +66: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +67: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +68: test/office_pdf_export_test.dart: chart serializers honor ChartDisplay.rtl
+00:01 +69: test/word_referenced_styles_and_breaks_test.dart: line feeds become Word breaks and imported break types survive three saves
+00:01 +70: All tests passed!

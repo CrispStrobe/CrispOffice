@@ -1,0 +1,88 @@
+{
+  "result": "passed",
+  "actual_zotero_client": true,
+  "actual_studio_transport": true,
+  "catalog_count": 3,
+  "saved_search": {
+    "key": "QUDSABCD",
+    "name": "Synthetic Alpha saved search"
+  },
+  "saved_search_matches": [
+    "Synthetic Native Fidelity Alpha"
+  ],
+  "additional_query_matches": 0,
+  "items": [
+    {
+      "key": "IWVS9D8T",
+      "title": "Synthetic Native Fidelity Alpha",
+      "uri": "http://zotero.org/users/local/mQoqtiEz/items/IWVS9D8T",
+      "csl": {
+        "id": "http://zotero.org/users/local/mQoqtiEz/items/IWVS9D8T",
+        "type": "book",
+        "publisher": "Acceptance Test Publisher",
+        "title": "Synthetic Native Fidelity Alpha",
+        "author": [
+          {
+            "family": "Beispiel",
+            "given": "Anna"
+          }
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              "2024"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "key": "YFCKR3WB",
+      "title": "Synthetic Native Fidelity Beta",
+      "uri": "http://zotero.org/users/local/mQoqtiEz/items/YFCKR3WB",
+      "csl": {
+        "id": "http://zotero.org/users/local/mQoqtiEz/items/YFCKR3WB",
+        "type": "book",
+        "publisher": "Acceptance Test Publisher",
+        "title": "Synthetic Native Fidelity Beta",
+        "author": [
+          {
+            "family": "Muster",
+            "given": "Bert"
+          }
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              "2023"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "key": "LPB3WMWD",
+      "title": "Synthetic Native Fidelity Gamma",
+      "uri": "http://zotero.org/users/local/mQoqtiEz/items/LPB3WMWD",
+      "csl": {
+        "id": "http://zotero.org/users/local/mQoqtiEz/items/LPB3WMWD",
+        "type": "book",
+        "publisher": "Acceptance Test Publisher",
+        "title": "Synthetic Native Fidelity Gamma",
+        "author": [
+          {
+            "family": "Probe",
+            "given": "Carla"
+          }
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              "2022"
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "source_docx": "chicago-first-refreshed.docx",
+    "source_docx_sha256": "ebbf8f9be9c24c42ce9e83c88041d0693a2e861bec86d3e5a70d80badaec6d99",
+    "zip_part": "word/document.xml",
+    "extracted_path": "xml/chicago-first-refreshed-document.xml",
+    "sha256": "62d460a2898c807513c1826637f22b150abdf5f4160e83b3ce826bd81558cb67",
+    "bytes": 5064
+  },
+  {
+    "source_docx": "chicago-first-refreshed.docx",
+    "source_docx_sha256": "ebbf8f9be9c24c42ce9e83c88041d0693a2e861bec86d3e5a70d80badaec6d99",
+    "zip_part": "word/footnotes.xml",
+    "extracted_path": "xml/chicago-first-refreshed-footnotes.xml",
+    "sha256": "33fecce53871bbddc59793fbcc4946f8d6bbac6258ce77a59acb91c79167386b",
+    "bytes": 8928
+  },
+  {
+    "source_docx": "chicago-repeat-refreshed.docx",
+    "source_docx_sha256": "d009ab20df94d814d2a08bdbda99233525a5cb7b0fc64747716c8ad22e7fc634",
+    "zip_part": "word/document.xml",
+    "extracted_path": "xml/chicago-repeat-refreshed-document.xml",
+    "sha256": "85a7eb8eeaaf59c353135a26a4c793dddd93a6f78c867c0f428580bbfa215b4d",
+    "bytes": 6200
+  },
+  {
+    "source_docx": "chicago-repeat-refreshed.docx",
+    "source_docx_sha256": "d009ab20df94d814d2a08bdbda99233525a5cb7b0fc64747716c8ad22e7fc634",
+    "zip_part": "word/footnotes.xml",
+    "extracted_path": "xml/chicago-repeat-refreshed-footnotes.xml",
+    "sha256": "e5be05d98e40669475c68e8ebf453ab92d2a9da60cd1f5f3cf0c631e115a38b8",
+    "bytes": 9670
+  },
+  {
+    "source_docx": "smallcaps-first-refreshed.docx",
+    "source_docx_sha256": "d7c63c136221c3598dee34f585f18edb43e167cb2b3aec588693c14553597851",
+    "zip_part": "word/document.xml",
+    "extracted_path": "xml/smallcaps-first-refreshed-document.xml",
+    "sha256": "88e873168792a59601ddc649761cc93f0ad4167b9a09423e0c60f564ae2557fe",
+    "bytes": 5490
+  },
+  {
+    "source_docx": "smallcaps-first-refreshed.docx",
+    "source_docx_sha256": "d7c63c136221c3598dee34f585f18edb43e167cb2b3aec588693c14553597851",
+    "zip_part": "word/footnotes.xml",
+    "extracted_path": "xml/smallcaps-first-refreshed-footnotes.xml",
+    "sha256": "db75f03c73765586432f728300f6286b88328a2615a958076219b60eb3e18fe2",
+    "bytes": 9276
+  },
+  {
+    "source_docx": "smallcaps-repeat-refreshed.docx",
+    "source_docx_sha256": "040c67d571fa77a9976e7a37ddb76d43b6ffc6100c7645a86fbf6673b79fd262",
+    "zip_part": "word/document.xml",
+    "extracted_path": "xml/smallcaps-repeat-refreshed-document.xml",
+    "sha256": "e6eed144c6738efd47ae465155536d504c945a109a6bc9575490d96f5b151ed4",
+    "bytes": 6768
+  },
+  {
+    "source_docx": "smallcaps-repeat-refreshed.docx",
+    "source_docx_sha256": "040c67d571fa77a9976e7a37ddb76d43b6ffc6100c7645a86fbf6673b79fd262",
+    "zip_part": "word/footnotes.xml",
+    "extracted_path": "xml/smallcaps-repeat-refreshed-footnotes.xml",
+    "sha256": "378e19563e09d2f21d6d5787bce3f2d7a338a8550c1a08d6e8604a12cb7e7d9a",
+    "bytes": 10160
+  }
+]

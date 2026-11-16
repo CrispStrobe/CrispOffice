@@ -1,0 +1,14 @@
+{
+  "setup": "Inserted only into the new disposable synthetic database while Zotero was stopped; production app APIs are used for final list and execution acceptance.",
+  "key": "QUDSABCD",
+  "name": "Synthetic Alpha saved search",
+  "conditions": [
+    {
+      "condition": "title",
+      "operator": "contains",
+      "value": "Alpha"
+    }
+  ],
+  "synthetic_items": 3,
+  "private_account_connected": false
+}

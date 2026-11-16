@@ -1,0 +1,23 @@
+{
+  "result": "passed",
+  "body_sequence": [
+    {
+      "text": "Before "
+    },
+    {
+      "footnote_id": "1"
+    },
+    {
+      "text": "After"
+    }
+  ],
+  "footnote_references": [
+    "1"
+  ],
+  "title_runs": [
+    {
+      "text": " Synthetic Native Acceptance Alpha",
+      "italic": true
+    }
+  ]
+}

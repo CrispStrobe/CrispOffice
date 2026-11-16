@@ -1,0 +1,8 @@
+Unhandled exception:
+Could not reach Zotero desktop. Open Zotero on this computer and try again.
+#0      ZoteroClient._request (package:quds_office_engine/src/zotero/zotero_client.dart:663:7)
+<asynchronous suspension>
+#1      ZoteroClient._items (package:quds_office_engine/src/zotero/zotero_client.dart:341:22)
+<asynchronous suspension>
+#2      main (file:///workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/scripts/fidelity-live.dart:318:19)
+<asynchronous suspension>

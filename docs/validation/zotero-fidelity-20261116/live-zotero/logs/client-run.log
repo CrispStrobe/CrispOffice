@@ -1,0 +1,5 @@
+PASS: live local catalog and saved-search listing, condition execution and filtered query
+PASS: chicago-first native refresh, Ebd., entry paragraphs/layout, rich runs, DOCX reopen
+PASS: chicago-repeat native refresh, Ebd., entry paragraphs/layout, rich runs, DOCX reopen
+PASS: smallcaps-first native refresh, Ebd., entry paragraphs/layout, rich runs, DOCX reopen
+PASS: smallcaps-repeat native refresh, Ebd., entry paragraphs/layout, rich runs, DOCX reopen

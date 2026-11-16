@@ -1,0 +1,106 @@
+{
+  "result": "passed",
+  "real_native_processor": true,
+  "actual_studio_transport": true,
+  "actual_word_adapter": true,
+  "staged_until_apply": true,
+  "docx_saved_reopened": true,
+  "native_layout_callbacks": [],
+  "layout_callback_expected": false,
+  "expected_lines": 1.0,
+  "small_caps_expected": false,
+  "warnings": [],
+  "citations": [
+    "Anna Beispiel, Synthetic Native Fidelity Alpha (Acceptance Test Publisher, 2024), 12.",
+    "Ebd.",
+    "Ebd., 34.",
+    "Bert Muster, Synthetic Native Fidelity Beta (Acceptance Test Publisher, 2023), 12."
+  ],
+  "bibliography_entries": [
+    {
+      "text": "Beispiel, Anna. Synthetic Native Fidelity Alpha. Acceptance Test Publisher, 2024.",
+      "left": 36.0,
+      "hanging": 36.0,
+      "firstLine": 0.0,
+      "spacingBefore": 0.0,
+      "spacingAfter": 12.0,
+      "lineSpacing": 1.0,
+      "lineSpacingRule": "auto",
+      "tabs": [],
+      "runs": [
+        {
+          "text": "Beispiel, Anna.",
+          "italic": false,
+          "bold": false,
+          "smallCaps": false
+        },
+        {
+          "text": " Synthetic Native Fidelity Alpha",
+          "italic": true,
+          "bold": false,
+          "smallCaps": false
+        },
+        {
+          "text": ". Acceptance Test Publisher, 2024.",
+          "italic": false,
+          "bold": false,
+          "smallCaps": false
+        }
+      ]
+    },
+    {
+      "text": "Muster, Bert. Synthetic Native Fidelity Beta. Acceptance Test Publisher, 2023.",
+      "left": 36.0,
+      "hanging": 36.0,
+      "firstLine": 0.0,
+      "spacingBefore": 0.0,
+      "spacingAfter": 12.0,
+      "lineSpacing": 1.0,
+      "lineSpacingRule": "auto",
+      "tabs": [],
+      "runs": [
+        {
+          "text": "Muster, Bert.",
+          "italic": false,
+          "bold": false,
+          "smallCaps": false
+        },
+        {
+          "text": " Synthetic Native Fidelity Beta",
+          "italic": true,
+          "bold": false,
+          "smallCaps": false
+        },
+        {
+          "text": ". Acceptance Test Publisher, 2023.",
+          "italic": false,
+          "bold": false,
+          "smallCaps": false
+        }
+      ]
+    }
+  ],
+  "first_citation_runs": [
+    {
+      "text": " ",
+      "italic": false,
+      "smallCaps": false
+    },
+    {
+      "text": "Anna Beispiel,",
+      "italic": false,
+      "smallCaps": false
+    },
+    {
+      "text": " Synthetic Native Fidelity Alpha",
+      "italic": true,
+      "smallCaps": false
+    },
+    {
+      "text": " (Acceptance Test Publisher, 2024), 12.",
+      "italic": false,
+      "smallCaps": false
+    }
+  ],
+  "native_preferences": "<data data-version=\"3\" zotero-version=\"10.0.8\"><session id=\"UbUvKpXI\"/><style id=\"http://www.zotero.org/styles/chicago-notes-bibliography-subsequent-ibid\" locale=\"de-DE\" hasBibliography=\"1\" bibliographyStyleHasBeenSet=\"1\"/><prefs><pref name=\"fieldType\" value=\"Field\"/><pref name=\"automaticJournalAbbreviations\" value=\"true\"/><pref name=\"noteType\" value=\"1\"/></prefs></data>"
+}

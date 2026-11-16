@@ -1,0 +1,94 @@
+{
+  "README.md": {
+    "bytes": 6001,
+    "sha256": "059d15d7cca365d75b4a315580ea7e49464be72b7e58373c2893b469a905f84c"
+  },
+  "attempt-1-locator-edit/before.docx": {
+    "bytes": 5128,
+    "sha256": "49883cd07f388d43eadf91c54a4b7982048be6825f4ca884892bf443ef211c32"
+  },
+  "attempt-1-locator-edit/client-run.log.gz": {
+    "bytes": 278,
+    "sha256": "bde01e6f014993a34713815f7812e1dbc58349204de383257bdda2445143ef4d"
+  },
+  "attempt-1-locator-edit/failure.txt.gz": {
+    "bytes": 262,
+    "sha256": "847613021f6d54e7c1a8c8e1b61dd0d420b2ff38b6e988dbcafae578b7881a1d"
+  },
+  "attempt-1-locator-edit/first-insertion.dart": {
+    "bytes": 6010,
+    "sha256": "593fb7996e0e72be1c162fbb163a48cc196d9403e4ac39b80f639494914a867a"
+  },
+  "attempt-1-locator-edit/protocol.jsonl.gz": {
+    "bytes": 1973,
+    "sha256": "680647360ba9a7993039f05cc2c73176546f47a63168c4edfb67833b48b5f005"
+  },
+  "attempt-1-locator-edit/run-first-insertion.sh": {
+    "bytes": 315,
+    "sha256": "c7d9d64798fc50d4e83bb19a96441114e36935d5a21ff1d98840c1d09755d7a9"
+  },
+  "attempt-1-locator-edit/source-before.json.gz": {
+    "bytes": 23199,
+    "sha256": "e8b482e2e562a7615452c403eff4cd9172ced9d2e14b958dd616a4bf056f206d"
+  },
+  "attempt-1-locator-edit/zotero-native.log.gz": {
+    "bytes": 199,
+    "sha256": "836e1769b9c0077171ede0f1abb605065878fe04170f79b91d0c92c1c03c627b"
+  },
+  "before.docx": {
+    "bytes": 5128,
+    "sha256": "b660374a7cefc03a6562aa2ae0204091958b64d21b747315c4bd120aacbc96be"
+  },
+  "compressed-integrity.json": {
+    "bytes": 3058,
+    "sha256": "181cf134982f3f6805bcb7dac35fed90d7079191ecf962baae1ad39703f25130"
+  },
+  "docx-verification.json": {
+    "bytes": 308,
+    "sha256": "b56d2f2f1b0f03a7bf3ae5d27577f3cfe9d8f75ce0cf0b466e7500d94c758f7a"
+  },
+  "inserted.docx": {
+    "bytes": 6731,
+    "sha256": "f2ed0811d4a730bb2c35d87c6147f28a7290b5713a1e9c3fee8ca0b91e3da571"
+  },
+  "raw-logs/client-run.log.gz": {
+    "bytes": 127,
+    "sha256": "baa8c9b3cd27a246f1dd203fc098ff30d3dfe4cab5aa1f6689005996160e5e82"
+  },
+  "raw-logs/kernel-compile.log.gz": {
+    "bytes": 122,
+    "sha256": "c1e17f043adea17cd6f2eba78d96a24ab8da0857d7d07934b2618b175452d71d"
+  },
+  "raw-logs/protocol.jsonl.gz": {
+    "bytes": 2142,
+    "sha256": "3bc486a44cb7642013f73dc97796e4fb9e063fe3e206f3c11f6b0281040f8ee8"
+  },
+  "raw-logs/zotero-native.log.gz": {
+    "bytes": 199,
+    "sha256": "1cf91579e317bfc3023270e731e0c4734fcda8867b626f4cbb6db72e2f731431"
+  },
+  "receipt.json": {
+    "bytes": 2042,
+    "sha256": "f59ff51c9d345519c18aed15c2fec7905e31095719ea05c809af32d04a3128b8"
+  },
+  "result.json": {
+    "bytes": 1152,
+    "sha256": "cbd564fd3209cdf5f54c732e6dd38be6a8aca7b75de8c564c1a30a314cc20628"
+  },
+  "scripts/first-insertion.dart": {
+    "bytes": 6016,
+    "sha256": "4293156ddd50cc5b34811d4cb846c6c61daf5149194b3547af6a4119018d129c"
+  },
+  "scripts/run-first-insertion.sh": {
+    "bytes": 315,
+    "sha256": "c7d9d64798fc50d4e83bb19a96441114e36935d5a21ff1d98840c1d09755d7a9"
+  },
+  "scripts/start-existing-isolated.sh": {
+    "bytes": 321,
+    "sha256": "3456da6a3c82c8b21633b82749768a711ce3390513b4ce4db7773375beed3420"
+  },
+  "source-before.json.gz": {
+    "bytes": 23300,
+    "sha256": "c7755cb12da369c6cccccd94713342cb78312e141e8af50d6c5a4c7a5e42b872"
+  }
+}

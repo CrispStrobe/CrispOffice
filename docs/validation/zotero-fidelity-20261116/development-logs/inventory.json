@@ -1,0 +1,239 @@
+{
+  "scope": "Development/review logs, including failures and overlapping reruns. Not added to final qualification counts.",
+  "logs": [
+    {
+      "log": "bibliography-controller-analysis.log.gz",
+      "original_name": "bibliography-controller-analysis.log",
+      "sha256_uncompressed": "445b80bb7453c988df1dc742423145f4aef13928dc5c6661030324a5dd02bcf6",
+      "bytes_uncompressed": 76
+    },
+    {
+      "log": "bibliography-controller-final.log.gz",
+      "original_name": "bibliography-controller-final.log",
+      "sha256_uncompressed": "0f00575a6c35362950e649f499e4003047558e21518ef66b0869c81934196765",
+      "bytes_uncompressed": 1169
+    },
+    {
+      "log": "bibliography-controller-initial.log.gz",
+      "original_name": "bibliography-controller-initial.log",
+      "sha256_uncompressed": "d25af517ffd657e0703840d35a4c15b6634f788c65037d6b9f40ce52991e46a1",
+      "bytes_uncompressed": 1857
+    },
+    {
+      "log": "bibliography-controller-retry.log.gz",
+      "original_name": "bibliography-controller-retry.log",
+      "sha256_uncompressed": "174abb10b2690e4f55083046f6ef46028cf3169b23ea8cfef6fba8ee016b8fc2",
+      "bytes_uncompressed": 1669
+    },
+    {
+      "log": "bibliography-legacy-review-final.log.gz",
+      "original_name": "bibliography-legacy-review-final.log",
+      "sha256_uncompressed": "0ac2af7d69fb89d509e0d00a8e9a38efba845b258db67eef874f22000756e90d",
+      "bytes_uncompressed": 1292
+    },
+    {
+      "log": "saved-search-canonical-analysis-final.log.gz",
+      "original_name": "saved-search-canonical-analysis-final.log",
+      "sha256_uncompressed": "caeee31b8e8039fc83b5b50d32301006a52eabc21d9cdd09f3fe79d121aa9f60",
+      "bytes_uncompressed": 199
+    },
+    {
+      "log": "saved-search-canonical-analysis.log.gz",
+      "original_name": "saved-search-canonical-analysis.log",
+      "sha256_uncompressed": "995816097dda92721cee0328bb5aaa9ce05fc2a88b0e29936399f3fbbdea959e",
+      "bytes_uncompressed": 633
+    },
+    {
+      "log": "saved-search-crisp-analysis-retry.log.gz",
+      "original_name": "saved-search-crisp-analysis-retry.log",
+      "sha256_uncompressed": "9f75c12af39fc26ce4a0779c2ffe5e3ff10d7d7f2bc679bfa49e0d8946708786",
+      "bytes_uncompressed": 71
+    },
+    {
+      "log": "saved-search-crisp-analysis.log.gz",
+      "original_name": "saved-search-crisp-analysis.log",
+      "sha256_uncompressed": "ffafcdf32768455d87ed8469f3f9f1e72c5c53cf6a7c2ed9edee1885169212d5",
+      "bytes_uncompressed": 51711
+    },
+    {
+      "log": "saved-search-crisp.log.gz",
+      "original_name": "saved-search-crisp.log",
+      "sha256_uncompressed": "256c11248483c84ae0c97e8883d8532e6396c658d3d7c46c665614964d3780ef",
+      "bytes_uncompressed": 1327
+    },
+    {
+      "log": "saved-search-editor-analysis.log.gz",
+      "original_name": "saved-search-editor-analysis.log",
+      "sha256_uncompressed": "fec174b6779e069efb7bba05d54e067f6e69286eaaf638648b9d4e54b6d18f9a",
+      "bytes_uncompressed": 271758
+    },
+    {
+      "log": "saved-search-editor-final.log.gz",
+      "original_name": "saved-search-editor-final.log",
+      "sha256_uncompressed": "e52746606f182f43a5e810bc99c4f851ea6bbd2b263c3c1a7a2854774505d297",
+      "bytes_uncompressed": 10068
+    },
+    {
+      "log": "saved-search-editor.log.gz",
+      "original_name": "saved-search-editor.log",
+      "sha256_uncompressed": "d34aac210f34357fad427fb8680bc5bbf6fee66dd06491db260cb8c80388aa69",
+      "bytes_uncompressed": 10233
+    },
+    {
+      "log": "saved-search-engine-analysis.log.gz",
+      "original_name": "saved-search-engine-analysis.log",
+      "sha256_uncompressed": "58b07fbbb737ab92794e79b467861d396fd8fb6d299a3fa85a50df3adc356b59",
+      "bytes_uncompressed": 36316
+    },
+    {
+      "log": "saved-search-engine-final.log.gz",
+      "original_name": "saved-search-engine-final.log",
+      "sha256_uncompressed": "5f56d46d44774c52ad156f24892a8ff7adf217bc51cdde540fcb004299fa936d",
+      "bytes_uncompressed": 7084
+    },
+    {
+      "log": "saved-search-engine-retry.log.gz",
+      "original_name": "saved-search-engine-retry.log",
+      "sha256_uncompressed": "5bc39d34060b3a1b592a52ea8f7a2aa7a9698a293ec598bb8a8f61041bc3f823",
+      "bytes_uncompressed": 6932
+    },
+    {
+      "log": "saved-search-engine.log.gz",
+      "original_name": "saved-search-engine.log",
+      "sha256_uncompressed": "210c26783301f8d21e5cd7753dcb4b77bdfeef9554904a7dcff7e1c69608ace2",
+      "bytes_uncompressed": 136
+    },
+    {
+      "log": "saved-search-studio-analysis-retry.log.gz",
+      "original_name": "saved-search-studio-analysis-retry.log",
+      "sha256_uncompressed": "df72a13ff595cd38d78832964c969a3a9a97b1724c6660af9393f985c1883f2e",
+      "bytes_uncompressed": 71
+    },
+    {
+      "log": "saved-search-studio-analysis.log.gz",
+      "original_name": "saved-search-studio-analysis.log",
+      "sha256_uncompressed": "a6d2420296a4cc686e0091760f54ef960199f958749591607801712d476a6c18",
+      "bytes_uncompressed": 58158
+    },
+    {
+      "log": "saved-search-studio-retry.log.gz",
+      "original_name": "saved-search-studio-retry.log",
+      "sha256_uncompressed": "0bcabc16f1085e7af07aa8223e77ed1bc22ed3ce9490338d4e10caf8e4bb7777",
+      "bytes_uncompressed": 1479
+    },
+    {
+      "log": "saved-search-studio.log.gz",
+      "original_name": "saved-search-studio.log",
+      "sha256_uncompressed": "210c26783301f8d21e5cd7753dcb4b77bdfeef9554904a7dcff7e1c69608ace2",
+      "bytes_uncompressed": 136
+    },
+    {
+      "log": "small-caps-analysis.log.gz",
+      "original_name": "small-caps-analysis.log",
+      "sha256_uncompressed": "ba4dcec921d7fbd42ebd0b4b1947361ff9bb33cb4e9427e00825deefcbed7b42",
+      "bytes_uncompressed": 427
+    },
+    {
+      "log": "small-caps-dialog-analysis.log.gz",
+      "original_name": "small-caps-dialog-analysis.log",
+      "sha256_uncompressed": "a7643032625c4b6616cc9ebe5ff919e97c5b312598c9be6772916612773b3667",
+      "bytes_uncompressed": 66
+    },
+    {
+      "log": "small-caps-editor.log.gz",
+      "original_name": "small-caps-editor.log",
+      "sha256_uncompressed": "8387e9be6ff1cca0728e9b69c4b20a7e1b40fe453ae8490ec1129dbe0e018fc4",
+      "bytes_uncompressed": 7465
+    },
+    {
+      "log": "small-caps-engine-regression.log.gz",
+      "original_name": "small-caps-engine-regression.log",
+      "sha256_uncompressed": "42a24c84842bb4588a14a7e22ae26b5f6d5dbd601606b2dd6da0ea93bda09ca6",
+      "bytes_uncompressed": 12683
+    },
+    {
+      "log": "small-caps-expansion.log.gz",
+      "original_name": "small-caps-expansion.log",
+      "sha256_uncompressed": "c7c6a4547711857792cfe1c6d33b5db7629099345da664a8fdaa60d005460d2e",
+      "bytes_uncompressed": 973
+    },
+    {
+      "log": "small-caps-final-analysis.log.gz",
+      "original_name": "small-caps-final-analysis.log",
+      "sha256_uncompressed": "efef772b00942577f4f21dec10136245fbcab67f246b983ded887205cbaba6ce",
+      "bytes_uncompressed": 219
+    },
+    {
+      "log": "small-caps-final-editor-v2.log.gz",
+      "original_name": "small-caps-final-editor-v2.log",
+      "sha256_uncompressed": "06b7994c9988416910be4558d691e99e0e1d60d0866322274228a109d0c2bb19",
+      "bytes_uncompressed": 7650
+    },
+    {
+      "log": "small-caps-final-editor.log.gz",
+      "original_name": "small-caps-final-editor.log",
+      "sha256_uncompressed": "210c26783301f8d21e5cd7753dcb4b77bdfeef9554904a7dcff7e1c69608ace2",
+      "bytes_uncompressed": 136
+    },
+    {
+      "log": "small-caps-final-engine-v2.log.gz",
+      "original_name": "small-caps-final-engine-v2.log",
+      "sha256_uncompressed": "a26fb514fdead5be9e073aa60e261fc63b8b5a42cca976db4e63971ab01f4758",
+      "bytes_uncompressed": 15976
+    },
+    {
+      "log": "small-caps-final-engine.log.gz",
+      "original_name": "small-caps-final-engine.log",
+      "sha256_uncompressed": "9895ace86b2bd101cda6ec4c8c9797f5120028e6f56ac09e2bfd117d4f57505f",
+      "bytes_uncompressed": 16831
+    },
+    {
+      "log": "small-caps-native-dialog-final.log.gz",
+      "original_name": "small-caps-native-dialog-final.log",
+      "sha256_uncompressed": "2fe2b8a4ad6df36100f7763576fe39a04f90669f500da4e0f5283b59c9e3ad5d",
+      "bytes_uncompressed": 1342
+    },
+    {
+      "log": "small-caps-native-dialog.log.gz",
+      "original_name": "small-caps-native-dialog.log",
+      "sha256_uncompressed": "b62b63bd4707a0f0c4727b44faf3fd2fc129d4104d027c413cbdb5581f437121",
+      "bytes_uncompressed": 3392
+    },
+    {
+      "log": "small-caps-pdf-extension.log.gz",
+      "original_name": "small-caps-pdf-extension.log",
+      "sha256_uncompressed": "6f520773008b384385913a3ed2961ca4220a4a5e2127c4aa6ff50629c9659b13",
+      "bytes_uncompressed": 697
+    },
+    {
+      "log": "bibliography-first-test.log.gz",
+      "original_name": "bibliography-first-test.log",
+      "sha256_uncompressed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes_uncompressed": 0
+    },
+    {
+      "log": "bibliography-focused-pass.log.gz",
+      "original_name": "bibliography-focused-pass.log",
+      "sha256_uncompressed": "c8ca8b2a616922c82c67fee55c4bf5f1ff17c000f5ee97482b36e6e9396caf83",
+      "bytes_uncompressed": 8079
+    },
+    {
+      "log": "bibliography-layout-test.log.gz",
+      "original_name": "bibliography-layout-test.log",
+      "sha256_uncompressed": "f1e6e9838e3f58e97d5fe9101d0634a46f610e71183e4b7056fd9cbe6ad2475c",
+      "bytes_uncompressed": 1692
+    },
+    {
+      "log": "bibliography-second-test.log.gz",
+      "original_name": "bibliography-second-test.log",
+      "sha256_uncompressed": "9e3027e32c2e14c1c177e558b55a8e4a2e2e4932d3d3cc1a3625baccd6f46a51",
+      "bytes_uncompressed": 5970
+    },
+    {
+      "log": "bibliography-third-test.log.gz",
+      "original_name": "bibliography-third-test.log",
+      "sha256_uncompressed": "478c306a7e9817b829d9b2612160806dd2381dab60167a9f41b79c8b6475cd4c",
+      "bytes_uncompressed": 4572
+    }
+  ]
+}
