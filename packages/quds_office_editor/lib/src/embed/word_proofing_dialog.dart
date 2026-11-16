@@ -40,6 +40,16 @@ class _WordProofingDialogState extends State<WordProofingDialog> {
     'en-GB': 'English (United Kingdom)',
   };
 
+  static const Map<String, String> _ruleLabels = <String, String>{
+    'de.spacing.repeated': 'Repeated spaces',
+    'de.spacing.before-punctuation': 'Spaces before punctuation',
+    'de.spacing.after-punctuation': 'Spaces after punctuation',
+    'de.repetition.conjunction': 'Repeated conjunctions',
+    'de.grammar.pronoun-verb': 'Pronoun and verb agreement',
+    'de.delimiter.balance': 'Matching brackets',
+    'de.quote.balance': 'Matching quotation marks',
+  };
+
   String? _notice;
 
   WordEditorController get _controller => widget.controller;
@@ -245,6 +255,7 @@ class _WordProofingDialogState extends State<WordProofingDialog> {
                         ),
                       ),
                       SliverToBoxAdapter(child: _personalWords(session)),
+                      SliverToBoxAdapter(child: _ignoredChecks(session)),
                     ],
                   ),
                 ),
@@ -430,7 +441,7 @@ class _WordProofingDialogState extends State<WordProofingDialog> {
                     onPressed: canApply
                         ? () => _apply(issue, replacement)
                         : null,
-                    child: Text(replacement.isEmpty ? 'Delete' : replacement),
+                    child: Text(_replacementLabel(finding, replacement)),
                   ),
                 TextButton(
                   onPressed: checking ? null : () => _show(issue),
@@ -458,6 +469,91 @@ class _WordProofingDialogState extends State<WordProofingDialog> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  String _replacementLabel(OfficeProofingFinding finding, String replacement) {
+    if (replacement.isEmpty) return 'Delete';
+    final String? whitespace = switch (replacement) {
+      ' ' => 'space',
+      '\u00a0' => 'nonbreaking space',
+      '\u202f' => 'narrow nonbreaking space',
+      '\t' => 'tab',
+      _ => null,
+    };
+    if (whitespace == null) return replacement;
+    return '${finding.originalText.isEmpty ? 'Insert' : 'Use'} $whitespace';
+  }
+
+  Widget _ignoredChecks(WordProofingSession session) {
+    final Map<String, Object?> ignored =
+        session.vocabulary.toJson()['ignoredWords']! as Map<String, Object?>;
+    final List<({String language, String word})> words =
+        <({String language, String word})>[
+          for (final MapEntry<String, Object?> entry in ignored.entries)
+            for (final String word in entry.value! as List<String>)
+              (language: entry.key, word: word),
+        ]..sort((a, b) {
+          final int language = a.language.compareTo(b.language);
+          return language == 0 ? a.word.compareTo(b.word) : language;
+        });
+    final List<String> rules = session.ignoredRuleIds.toList()..sort();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      child: ExpansionTile(
+        key: const ValueKey<String>('proofing-ignored-checks'),
+        title: const Text('Ignored checks'),
+        childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text(
+            'Restore a word, rule or skipped occurrence to review it again. '
+            'Personal dictionary entries stay unchanged.',
+          ),
+          if (words.isEmpty && rules.isEmpty && !session.hasIgnoredOccurrences)
+            const Padding(
+              padding: EdgeInsets.only(top: 8),
+              child: Text('No ignored checks.'),
+            ),
+          for (final entry in words)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(entry.word),
+              subtitle: Text(_languages[entry.language] ?? entry.language),
+              trailing: IconButton(
+                tooltip: 'Check ${entry.word} again (${entry.language})',
+                onPressed: () {
+                  session.unignoreWord(entry.word, language: entry.language);
+                  unawaited(_check());
+                },
+                icon: const Icon(Icons.restore),
+              ),
+            ),
+          for (final String rule in rules)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(_ruleLabels[rule] ?? rule),
+              subtitle: const Text('Ignored rule'),
+              trailing: IconButton(
+                tooltip: 'Restore ${_ruleLabels[rule] ?? rule}',
+                onPressed: () {
+                  session.restoreRule(rule);
+                  unawaited(_check());
+                },
+                icon: const Icon(Icons.restore),
+              ),
+            ),
+          if (session.hasIgnoredOccurrences)
+            TextButton.icon(
+              onPressed: () {
+                session.clearIgnoredOnce();
+                unawaited(_check());
+              },
+              icon: const Icon(Icons.restore),
+              label: const Text('Review ignored occurrences again'),
+            ),
+        ],
       ),
     );
   }

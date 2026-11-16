@@ -253,21 +253,18 @@ void main() {
       await service.dispose();
     },
   );
-  test(
-    'unmatched delimiters and quotes remain advisory with no guessed correction',
-    () async {
-      final OfficeProofingResult result = await GermanWritingRulesProvider()
-          .check(input('Das (offene [Zitat] lautet „Hallo.'));
-      expect(
-        result.findings.map((OfficeProofingFinding f) => f.ruleId),
-        containsAll(<String>['de.delimiter.balance', 'de.quote.balance']),
-      );
-      expect(
-        result.findings.map((OfficeProofingFinding f) => f.replacements),
-        everyElement(isEmpty),
-      );
-    },
-  );
+  test('unmatched delimiters and quotes remain advisory with no guessed correction', () async {
+    final OfficeProofingResult result = await GermanWritingRulesProvider()
+        .check(input('Das (offene [Zitat] lautet „Hallo.'));
+    expect(
+      result.findings.map((OfficeProofingFinding f) => f.ruleId),
+      containsAll(<String>['de.delimiter.balance', 'de.quote.balance']),
+    );
+    expect(
+      result.findings.map((OfficeProofingFinding f) => f.replacements),
+      everyElement(isEmpty),
+    );
+  });
   test('URLs, inline code and rule opt-outs remain untouched', () async {
     final OfficeProofingResult result = await GermanWritingRulesProvider()
         .check(
@@ -278,6 +275,77 @@ void main() {
         );
     expect(result.findings, isEmpty);
   });
+  test(
+    'protected tokens cannot supply a subject for following prose',
+    () async {
+      final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+      for (final String prefix in <String>[
+        'https://example.invalid/ich',
+        'HTTPS://example.invalid/ich',
+        'www.example.invalid/ich',
+        'name@example.ich',
+      ]) {
+        final String text = '🙂 $prefix bist. Ich bist hier.';
+        final OfficeProofingResult result = await provider.check(input(text));
+        expect(result.status, OfficeProofingStatus.success);
+        expect(result.findings, hasLength(1), reason: prefix);
+        expect(result.findings.single.ruleId, 'de.grammar.pronoun-verb');
+        expect(result.findings.single.start, text.lastIndexOf('bist'));
+        expect(result.findings.single.replacements, <String>['bin']);
+      }
+      await provider.dispose();
+    },
+  );
+  test(
+    'URL protection preserves enclosing brackets and typographic quotes',
+    () async {
+      final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+      for (final String text in <String>[
+        '(https://example.invalid/path)',
+        '[https://example.invalid/path]',
+        '{https://example.invalid/path}',
+        '(https://example.invalid/a(b))',
+        '(https://example.invalid/a(b)).',
+        'https://example.invalid/a(b)',
+        '(http://[::1]/a(b)).',
+        '„https://example.invalid/path“',
+        '“https://example.invalid/path”',
+        '‘https://example.invalid/path’',
+        '«https://example.invalid/path»',
+        '»https://example.invalid/path«',
+        '(„HTTPS://example.invalid/a(b)“).',
+        '`(https://example.invalid/unbalanced`',
+      ]) {
+        final OfficeProofingResult result = await provider.check(input(text));
+        expect(result.status, OfficeProofingStatus.success);
+        expect(result.findings, isEmpty, reason: text);
+      }
+      await provider.dispose();
+    },
+  );
+  test(
+    'unmatched punctuation after a URL still has exact source ranges',
+    () async {
+      final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+      const String text = '🙂 (https://example.invalid/a(b)))';
+      final OfficeProofingResult result = await provider.check(
+        OfficeProofingRequest(
+          documentId: 'doc',
+          blockId: 'p',
+          revision: 1,
+          text: text,
+          startOffset: 20,
+        ),
+      );
+      expect(result.status, OfficeProofingStatus.success);
+      expect(result.findings.single.ruleId, 'de.delimiter.balance');
+      expect(result.findings.single.originalText, ')');
+      expect(result.findings.single.start, 20 + text.length - 1);
+      expect(result.findings.single.end, 20 + text.length);
+      expect(result.findings.single.replacements, isEmpty);
+      await provider.dispose();
+    },
+  );
   test('language and disposed availability are explicit', () async {
     final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
     expect(
@@ -290,37 +358,33 @@ void main() {
       OfficeProofingStatus.unavailable,
     );
   });
-  test(
-    'terminology uses literal terms, Unicode word boundaries and correct offsets',
-    () async {
-      final OfficeTerminologyProvider provider = OfficeTerminologyProvider(
-        rules: <OfficeTerminologyRule>[
-          OfficeTerminologyRule(
-            id: 'brand',
-            term: 'Quds+',
-            message: 'Use the preferred product name.',
-            replacements: <String>['Quds Office'],
-            languages: <String>{'de-DE'},
-          ),
-        ],
-      );
-      final OfficeProofingResult result = await provider.check(
-        input('🙂 Quds+ und XQuds+ und Quds+X'),
-      );
-      expect(result.findings, hasLength(1));
-      expect(result.findings.single.start, 3);
-      expect(result.findings.single.originalText, 'Quds+');
-      expect(result.findings.single.replacements, <String>['Quds Office']);
-      expect(
-        (await provider.check(
-          input('Quds+', ignored: <String>{'brand'}),
-        )).findings,
-        isEmpty,
-      );
-      expect(
-        (await provider.check(input('Quds+', language: 'en-US'))).status,
-        OfficeProofingStatus.unsupported,
-      );
-    },
-  );
+  test('terminology uses literal terms, Unicode word boundaries and correct offsets', () async {
+    final OfficeTerminologyProvider provider = OfficeTerminologyProvider(
+      rules: <OfficeTerminologyRule>[
+        OfficeTerminologyRule(
+          id: 'brand',
+          term: 'Quds+',
+          message: 'Use the preferred product name.',
+          replacements: <String>['Quds Office'],
+          languages: <String>{'de-DE'},
+        ),
+      ],
+    );
+    final OfficeProofingResult result = await provider.check(
+      input('🙂 Quds+ und XQuds+ und Quds+X'),
+    );
+    expect(result.findings, hasLength(1));
+    expect(result.findings.single.start, 3);
+    expect(result.findings.single.originalText, 'Quds+');
+    expect(result.findings.single.replacements, <String>['Quds Office']);
+    expect(
+      (await provider.check(input('Quds+', ignored: <String>{'brand'})))
+          .findings,
+      isEmpty,
+    );
+    expect(
+      (await provider.check(input('Quds+', language: 'en-US'))).status,
+      OfficeProofingStatus.unsupported,
+    );
+  });
 }

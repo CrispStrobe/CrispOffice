@@ -51,7 +51,7 @@ class _DialogProvider extends OfficeProofingProvider {
 
 Future<WordEditorController> _open(
   WidgetTester tester, {
-  _DialogProvider? provider,
+  OfficeProofingProvider? provider,
   WmlDocument? document,
   OfficeSurfaceConfig? config,
   Size size = const Size(1000, 900),
@@ -95,6 +95,133 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
 }
 
 void main() {
+  for (final scenario in <({String source, String label})>[
+    (source: 'Hallo,Welt.', label: 'Insert space'),
+    (source: 'Hallo  Welt.', label: 'Use space'),
+  ]) {
+    testWidgets(
+      'spacing correction ${scenario.label} is visible and undoable',
+      (WidgetTester tester) async {
+        final controller = await _open(
+          tester,
+          document: WmlDocument.empty(text: scenario.source),
+          provider: GermanWritingRulesProvider(),
+        );
+        final correction = find.widgetWithText(OutlinedButton, scenario.label);
+        expect(correction, findsOneWidget);
+        await _tap(tester, correction);
+        await tester.pumpAndSettle();
+        expect(
+          controller.document.paragraphs.first.text,
+          scenario.source.contains(',') ? 'Hallo, Welt.' : 'Hallo Welt.',
+        );
+        expect(controller.proofing.summary.issues, isEmpty);
+        controller.undo();
+        expect(controller.document.paragraphs.first.text, scenario.source);
+      },
+    );
+  }
+
+  testWidgets(
+    'ignored words can be restored in their run language without clearing other preferences',
+    (WidgetTester tester) async {
+      final document = WmlDocument.empty(text: 'Feler');
+      document.proofingLanguage = 'de-DE';
+      document.paragraphs.first.inlines
+              .whereType<WmlRun>()
+              .first
+              .properties
+              .proofingLanguage =
+          'de-CH';
+      final controller = await _open(tester, document: document);
+      final session = controller.proofing;
+      session.vocabulary
+        ..addWord('Quds', language: 'de-DE')
+        ..ignoreWord('Feler', language: 'de-DE');
+      session.refresh();
+      unawaited(session.checkNow());
+      await tester.pumpAndSettle();
+      final snapshots = <Map<String, Object?>>[];
+      session.onVocabularyChanged = snapshots.add;
+
+      await _tap(tester, find.text('Ignore word'));
+      await tester.pumpAndSettle();
+      expect(session.summary.issues, isEmpty);
+      await _tap(tester, find.text('Ignored checks'));
+      await tester.pumpAndSettle();
+      final restore = find.byTooltip('Check Feler again (de-CH)');
+      expect(restore, findsOneWidget);
+      await _tap(tester, restore);
+      await tester.pumpAndSettle();
+
+      expect(session.summary.issues.single.language, 'de-CH');
+      expect(session.vocabulary.ignoredWordsFor('de-CH'), isEmpty);
+      expect(session.vocabulary.ignoredWordsFor('de-DE'), <String>{'Feler'});
+      expect(session.vocabulary.wordsFor('de-DE'), <String>{'Quds'});
+      expect(snapshots, hasLength(2));
+      expect(
+        (snapshots.last['ignoredWords']! as Map<String, Object?>)['de-CH'],
+        isEmpty,
+      );
+      expect(document.proofingLanguage, 'de-DE');
+      expect(document.paragraphs.first.text, 'Feler');
+      expect(controller.canUndo, isFalse);
+    },
+  );
+
+  testWidgets('an ignored writing rule can be restored from review', (
+    WidgetTester tester,
+  ) async {
+    final controller = await _open(
+      tester,
+      document: WmlDocument.empty(text: 'ich bist.'),
+      provider: GermanWritingRulesProvider(),
+    );
+    await _tap(tester, find.text('Ignore rule'));
+    await tester.pumpAndSettle();
+    expect(controller.proofing.summary.issues, isEmpty);
+    await _tap(tester, find.text('Ignored checks'));
+    await tester.pumpAndSettle();
+    await _tap(tester, find.byTooltip('Restore Pronoun and verb agreement'));
+    await tester.pumpAndSettle();
+    expect(
+      controller.proofing.summary.issues.single.finding.ruleId,
+      'de.grammar.pronoun-verb',
+    );
+    expect(controller.proofing.ignoredRuleIds, isEmpty);
+    expect(controller.document.paragraphs.first.text, 'ich bist.');
+    expect(controller.canUndo, isFalse);
+  });
+
+  testWidgets(
+    'ignored occurrences can be reviewed again in a read-only document',
+    (WidgetTester tester) async {
+      final controller = await _open(
+        tester,
+        config: const OfficeSurfaceConfig(mode: OfficeInteractionMode.viewing),
+      );
+      await _tap(tester, find.text('Ignore once'));
+      await tester.pumpAndSettle();
+      expect(controller.proofing.summary.issues, isEmpty);
+      await _tap(tester, find.text('Ignored checks'));
+      await tester.pumpAndSettle();
+      await _tap(tester, find.text('Review ignored occurrences again'));
+      await tester.pumpAndSettle();
+      expect(controller.proofing.summary.issues, hasLength(1));
+      expect(controller.proofing.hasIgnoredOccurrences, isFalse);
+      expect(controller.document.paragraphs.first.text, 'Ein Feler.');
+      expect(controller.canUndo, isFalse);
+      expect(
+        tester
+            .widget<OutlinedButton>(
+              find.widgetWithText(OutlinedButton, 'Fehler'),
+            )
+            .onPressed,
+        isNull,
+      );
+    },
+  );
+
   testWidgets(
     'swapping the dialog controller checks its document and clears old notices',
     (WidgetTester tester) async {

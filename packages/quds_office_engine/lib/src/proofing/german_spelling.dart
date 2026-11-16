@@ -218,6 +218,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
   );
   static final RegExp _webTokens = RegExp(
     r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}',
+    caseSensitive: false,
   );
   static const String _alphabet = 'abcdefghijklmnopqrstuvwxyzäöüß';
 
@@ -321,7 +322,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
           start: token.start,
           end: token.end,
           ruleId: 'de.spelling.unknown',
-          message: swiss && word.contains('ß')
+          message: swiss && (word.contains('ß') || word.contains('ẞ'))
               ? 'Die Schweizer Schreibweise verwendet ss statt ß.'
               : 'Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.',
           category: OfficeProofingCategory.spelling,
@@ -379,6 +380,9 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     candidate(lower);
     candidate(_title(lower));
     candidate(word.replaceAll('ß', 'ss').replaceAll('ẞ', 'SS'));
+    // Uppercase source may use capital sharp-s. The finite lexicon normally
+    // stores title/lowercase forms, so check those before restoring capitals.
+    if (lower.contains('ß')) candidateCase(lower.replaceAll('ß', 'ss'));
     if (!swiss) {
       for (final RegExpMatch match in RegExp('ss').allMatches(lower)) {
         candidateCase(lower.replaceRange(match.start, match.end, 'ß'));
