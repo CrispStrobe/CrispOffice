@@ -85,3 +85,26 @@ Dart tests, Flutter tests or builds are reported as passing.
 
 Source and test changes were saved through GitHub's Git-data API with expected
 branch heads and without force updates. GitHub Actions remain unused.
+
+## Bounded late incoming update
+
+A subsequent inventory, acquired between 14:21:39 and 14:26:47 UTC, covered
+**58 branches and 66 PRs**. It is pinned in
+[late-remote-audit.json](late-remote-audit.json). Before final validation the
+continuation also incorporates:
+
+- Main `90024d5`: PR #65 ODS filter comparisons and PR #66 documentation.
+- Zotero `2480f09`: a historical qualification checkpoint with explicit raw-log
+  limitations; its test totals are not attributed to this continuation.
+- The original documentation/feature/vendor filter-operator histories, whose
+  source patches are already represented by main.
+
+The incoming source paths matched the previous main blobs byte for byte in the
+continuation, so this update does not overlap the new proofing code. The source
+is then frozen for local validation rather than following concurrent pushes.
+The inherited ODS tests establish their stated numeric-comparison/export scope;
+empty/not-empty semantics were not qualified by this proofing work.
+
+A fresh execution environment became available after the earlier disconnect.
+Validation is being rebuilt from the saved remote source. The failure record
+above is preserved; a later source-bound receipt records any successful checks.

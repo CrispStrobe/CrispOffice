@@ -55,11 +55,11 @@ decline rather than being approximated.
 ### 4. ODS metadata and layout
 
 Imported: print areas/titles, global and sheet-local named ranges and named
-expressions, tab colors, cell hyperlinks, row/column outline groups and simple
-database-range filter predicates.
+expressions, tab colors, cell hyperlinks, row/column outline groups and database-range filter predicates with
+equality, comparison and empty checks.
 
-Not yet imported/modeled: filter operators outside the equality/not-equality
-subset and several page-style properties.
+Not yet imported/modeled: exotic filter grammar and several page-style
+properties.
 
 ### 5. ODS package parity
 
