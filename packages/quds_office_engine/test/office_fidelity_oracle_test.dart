@@ -140,7 +140,7 @@ void main() {
     () {
       final WmlDocument doc = openFixture();
       final WmlParagraph p = doc.paragraphs.elementAt(1);
-      final int start = 'Body text'.length;
+      const int start = 'Body text'.length;
       WmlRunEdit.applyRange(
         p,
         start,
