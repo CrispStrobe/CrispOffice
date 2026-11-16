@@ -1,0 +1,39 @@
+{
+  "recorded_utc": "2026-11-16 20:09:57 UTC",
+  "source_commit": "d90176bb142e1d26379d228cf924c1a8cae346f8",
+  "source_tree": "83a6acc1e0819c55abe7674e0a0c27ec14ee2de0",
+  "integration_base": "dbf5ff000d66bd6e2833ade990ab84de009e3ad8",
+  "branch": "codex/proofing-en-hyphenation-20261116",
+  "environment": "functions.exec V8 JavaScript isolate",
+  "execution_limit": "Attached execution environment unavailable; no Dart, Flutter, Python or Node process was run.",
+  "kind": "JavaScript data and reference-algorithm validation",
+  "dart_executed": false,
+  "variants": {
+    "us": {
+      "patterns": 4938,
+      "exceptions": 14,
+      "oracle_comparisons": 442,
+      "lossless_data": true,
+      "original_license_preface": true
+    },
+    "gb": {
+      "patterns": 8527,
+      "exceptions": 8,
+      "oracle_comparisons": 741,
+      "lossless_data": true,
+      "original_license_preface": true
+    }
+  },
+  "golden_assertions": 21,
+  "paragraph_assertions": 32,
+  "remote_exact_content_checks": 14,
+  "original_upstream_git_blobs_preserved": true,
+  "unexecuted": {
+    "dart_regression_tests": 17,
+    "dart_analysis": true,
+    "python_generator": true,
+    "flutter_editor_and_pdf_runtime": true
+  },
+  "github_actions": "No status or workflow endpoints queried; no queue waiting.",
+  "reference_verifier_sha256": "8cf0489a79be7d20368226618d7f65f95c2bc59df40ea32f7fcace4a76ad3cb6"
+}
