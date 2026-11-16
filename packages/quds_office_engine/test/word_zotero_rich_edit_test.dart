@@ -372,7 +372,7 @@ void main() {
           ..._packet(code: _citation('b').fieldInstruction),
         ]);
       WmlRunEdit.insertRuns(paragraph, 7, [WmlRun(text: ' gap ')]);
-      var fields = WordZotero.fields(document);
+      final fields = WordZotero.fields(document);
       expect(fields.map((f) => f.cachedText), ['Book 12', 'Book 12']);
       expect(fields.map((f) => f.nested), [false, false]);
       expect(paragraph.text, 'Book 12 gap Book 12');
@@ -389,7 +389,9 @@ void main() {
       final document = WmlDocument.empty();
       final paragraph = document.paragraphs.single;
       final packet = _packet();
-      for (final run in packet.whereType<WmlRun>()) run.text = '';
+      for (final run in packet.whereType<WmlRun>()) {
+        run.text = '';
+      }
       paragraph.inlines
         ..clear()
         ..addAll([...packet, WmlRun(text: 'After')]);

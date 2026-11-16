@@ -619,7 +619,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
           );
           return;
         }
-        transaction.session.continueWithCitation(seed!);
+        transaction.session.continueWithCitation(seed);
       }
       await execute(command);
       _checkTarget();

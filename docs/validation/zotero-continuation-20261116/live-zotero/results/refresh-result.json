@@ -1,0 +1,23 @@
+{
+  "result": "passed",
+  "real_native_processor": true,
+  "actual_studio_transport": true,
+  "actual_word_adapter": true,
+  "staged_until_apply": true,
+  "docx_saved_reopened": true,
+  "citations": [
+    "Anna Beispiel, Synthetic Native Acceptance Alpha (Acceptance Test Publisher, 2024), 12.",
+    "Ebd.",
+    "Ebd., 34."
+  ],
+  "bibliography": "Beispiel, Anna. Synthetic Native Acceptance Alpha. Acceptance Test Publisher, 2024.",
+  "review_warnings": [
+    "Bibliography hanging indents, paragraph spacing and tab stops are simplified."
+  ],
+  "native_preferences": "<data data-version=\"3\" zotero-version=\"10.0.8\"><session id=\"eSSk4Qjc\"/><style id=\"http://www.zotero.org/styles/chicago-notes-bibliography-subsequent-ibid\" locale=\"de-DE\" hasBibliography=\"1\" bibliographyStyleHasBeenSet=\"1\"/><prefs><pref name=\"fieldType\" value=\"Field\"/><pref name=\"automaticJournalAbbreviations\" value=\"true\"/><pref name=\"noteType\" value=\"1\"/></prefs></data>",
+  "note_ids": [
+    1,
+    2,
+    3
+  ]
+}

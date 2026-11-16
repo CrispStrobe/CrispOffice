@@ -63,7 +63,9 @@ abstract final class WordFieldSpans {
       if (inline is WmlFieldBoundary) {
         switch (inline.kind) {
           case WmlFieldBoundaryKind.begin:
-            for (final open in stack) open.valid = false;
+            for (final open in stack) {
+              open.valid = false;
+            }
             stack.add(_ZoteroSpanScan(index, offset, stack.isEmpty));
           case WmlFieldBoundaryKind.instruction:
             if (stack.isNotEmpty) {

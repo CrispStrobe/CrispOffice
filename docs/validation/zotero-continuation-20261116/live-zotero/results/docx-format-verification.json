@@ -1,0 +1,70 @@
+{
+  "result": "passed",
+  "checks": [
+    "Citation title and bibliography title retain italics in DOCX XML",
+    "Immediate repeated-source and changed-page text remain roman",
+    "Full native adapter harness verified staged application and DOCX reopen"
+  ],
+  "runs": [
+    {
+      "story": "footnotes",
+      "text": " ",
+      "italic": false
+    },
+    {
+      "story": "footnotes",
+      "text": "Anna Beispiel,",
+      "italic": false
+    },
+    {
+      "story": "footnotes",
+      "text": " Synthetic Native Acceptance Alpha",
+      "italic": true
+    },
+    {
+      "story": "footnotes",
+      "text": " (Acceptance Test Publisher, 2024), 12.",
+      "italic": false
+    },
+    {
+      "story": "footnotes",
+      "text": " ",
+      "italic": false
+    },
+    {
+      "story": "footnotes",
+      "text": "Ebd.",
+      "italic": false
+    },
+    {
+      "story": "footnotes",
+      "text": " ",
+      "italic": false
+    },
+    {
+      "story": "footnotes",
+      "text": "Ebd., 34.",
+      "italic": false
+    },
+    {
+      "story": "body",
+      "text": "Synthetic native acceptance ",
+      "italic": false
+    },
+    {
+      "story": "body",
+      "text": "Beispiel, Anna.",
+      "italic": false
+    },
+    {
+      "story": "body",
+      "text": " Synthetic Native Acceptance Alpha",
+      "italic": true
+    },
+    {
+      "story": "body",
+      "text": ". Acceptance Test Publisher, 2024.",
+      "italic": false
+    }
+  ]
+}

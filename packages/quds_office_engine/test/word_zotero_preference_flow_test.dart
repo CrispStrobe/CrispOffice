@@ -51,7 +51,9 @@ void main() {
         noteType: noteType,
       ));
       expect(WordZoteroDocumentData.citationNoteType(data), noteType);
-      expect(jsonDecode(data)['extension'], {'keep': 'unchanged'});
+      expect((jsonDecode(data) as Map<String, dynamic>)['extension'], {
+        'keep': 'unchanged',
+      });
     });
 
     test('style then seeded placement $noteType remain staged until apply', () {

@@ -1,0 +1,88 @@
+{
+  "result": "passed",
+  "uses_actual_studio_transport": true,
+  "uses_actual_zotero_client": true,
+  "catalog_count": 3,
+  "search_count": 1,
+  "collection_count": 1,
+  "collection_members": 3,
+  "items": [
+    {
+      "key": "98PBWM24",
+      "title": "Synthetic Native Acceptance Alpha",
+      "uri": "http://zotero.org/users/local/R5NNmaf1/items/98PBWM24",
+      "csl": {
+        "id": "http://zotero.org/users/local/R5NNmaf1/items/98PBWM24",
+        "type": "book",
+        "publisher": "Acceptance Test Publisher",
+        "publisher-place": "Berlin",
+        "title": "Synthetic Native Acceptance Alpha",
+        "author": [
+          {
+            "family": "Beispiel",
+            "given": "Anna"
+          }
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              "2024"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "key": "5KPDZ6U5",
+      "title": "Synthetic Native Acceptance Beta",
+      "uri": "http://zotero.org/users/local/R5NNmaf1/items/5KPDZ6U5",
+      "csl": {
+        "id": "http://zotero.org/users/local/R5NNmaf1/items/5KPDZ6U5",
+        "type": "book",
+        "publisher": "Acceptance Test Publisher",
+        "publisher-place": "Berlin",
+        "title": "Synthetic Native Acceptance Beta",
+        "author": [
+          {
+            "family": "Beispiel",
+            "given": "Anna"
+          }
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              "2024"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "key": "J4UM2LTY",
+      "title": "Synthetic Native Acceptance Gamma",
+      "uri": "http://zotero.org/users/local/R5NNmaf1/items/J4UM2LTY",
+      "csl": {
+        "id": "http://zotero.org/users/local/R5NNmaf1/items/J4UM2LTY",
+        "type": "article-journal",
+        "container-title": "Journal of Synthetic Acceptance",
+        "issue": "2",
+        "page": "11–38",
+        "title": "Synthetic Native Acceptance Gamma",
+        "volume": "7",
+        "author": [
+          {
+            "family": "Muster",
+            "given": "Berta"
+          }
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              "2025"
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}
