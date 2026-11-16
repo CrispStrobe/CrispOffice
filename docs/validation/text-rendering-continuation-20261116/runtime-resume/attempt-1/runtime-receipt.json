@@ -1,0 +1,54 @@
+{
+  "status": "failed",
+  "sdk_root": "/workspace/scratch/0caf1983021b/toolchain/flutter-source",
+  "dart": "/workspace/scratch/0caf1983021b/toolchain/flutter-source/bin/cache/dart-sdk/bin/dart",
+  "commands": [
+    {
+      "name": "dart-version",
+      "args": [
+        "/workspace/scratch/0caf1983021b/toolchain/flutter-source/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/0caf1983021b/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 0.2508845160009514,
+      "log": "dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "name": "generate-engine-stamp",
+      "args": [
+        "/workspace/scratch/0caf1983021b/toolchain/flutter-source/bin/internal/update_engine_version.sh"
+      ],
+      "cwd": "/workspace/scratch/0caf1983021b/toolchain/flutter-source",
+      "exit_code": 0,
+      "seconds": 2.179997146999085,
+      "log": "generate-engine-stamp.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "flutter-tools-offline",
+      "args": [
+        "/workspace/scratch/0caf1983021b/toolchain/flutter-source/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "--suppress-analytics",
+        "--directory",
+        "/workspace/scratch/0caf1983021b/toolchain/flutter-source/packages/flutter_tools",
+        "get",
+        "--offline"
+      ],
+      "cwd": "/workspace/scratch/0caf1983021b/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 4.818904404997738,
+      "log": "flutter-tools-offline.log",
+      "log_sha256": "4e91ece3f74c99d1e1f58678aedc3d6bb47f155c601fd85cbbb94856994ed898"
+    }
+  ],
+  "runtime_method": "genuine pinned Flutter source and selected unmodified SDK archive members; direct tool-source launcher",
+  "github_actions_used": false,
+  "engine_cache_stamp": {
+    "value": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "source": "actual verified installed official engine artifacts; no SDK identity override"
+  },
+  "error": "Command '['/workspace/scratch/0caf1983021b/toolchain/bin/flutter', '--version', '--machine']' timed out after 299.9999846410028 seconds"
+}

@@ -1,0 +1,67 @@
+{
+  "status": "ready",
+  "env_file": "/workspace/scratch/0caf1983021b/toolchain/env.sh",
+  "sdk_root": "/workspace/scratch/0caf1983021b/toolchain/flutter-source",
+  "actual_runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8"
+  },
+  "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "framework_tracked_sources_unmodified": true,
+  "dart_install_method": "Selected unmodified members from the official pinned engine Dart SDK ZIP; full-archive SHA256 was not computed. Every selected ZIP member size and CRC was checked, and per-file SHA256 is in dart-selected-install.json.",
+  "dart_install_manifest_sha256": "ef7d8b4bbd0f8bf5497316788c66b18fb4c947529668133ffed7353baa7c157e",
+  "engine_install_receipt_sha256": "42436023c71e72eb007c1c40bf563015ff352999e1ac1d76a9536912a9a3594e",
+  "common_install_receipt_sha256": "618c546e1825b9513df6651cc793eb76fe33f847f8dc85f7b7c9e2380cffb6e4",
+  "official_engine_metadata": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/flutter/cf636b1dfb818dd6a3ff16e390e93b1a036969c8/engine_stamp.json",
+    "sha256": "00adfb4cd85c87da165d9cccfcb6d238e34ada530fd12e3d458431b38ddd1e5b"
+  },
+  "executables_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/dart-sdk/bin/dartvm": "ec532a0620beed626fbf89234f1dcc857c15f4e064fb8e99715345027bfb129d",
+    "bin/cache/dart-sdk/bin/dartaotruntime": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "prior_full_sdk_executable_matches": [
+    "bin/cache/dart-sdk/bin/dart",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester"
+  ],
+  "package_archive_count": 162,
+  "package_archives_hash_verified": true,
+  "workspace_package_count": 108,
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_offline_enforce_lockfile_exit_code": 0,
+  "workspace_pub_log": "workspace-dart-offline-retry.log",
+  "workspace_pub_log_sha256": "58b74d92d2248e4836800207c4c97819878899e397e06b5518f914e76f1ebe4b",
+  "dart_source_smoke_exit_code": 0,
+  "dart_source_smoke_log_sha256": "b9b47560f3ba6bd0beac382d7b3783b9cef7ea818ab2a1f692cd419c2cafa0d7",
+  "flutter_version_exit_code": 0,
+  "flutter_version_log": "flutter-version-retry.log",
+  "flutter_version_log_sha256": "6d121aa7f9cb46f1252d1d27389c303358b06d0ffc355b094f09d3b461f095fc",
+  "known_setup_failures": "First source-mode Flutter version invocation timed out at300s with an empty log; official engine metadata was installed during recovery and a bounded retry succeeded. Initial direct workspace Pub failed before Flutter generated its version metadata. Optional app-jit snapshot build timed out at180s and produced no completed snapshot. Actual failed logs are retained.",
+  "scope": "Runtime setup only; no editor or engine qualification tests are counted here.",
+  "github_actions_used": false,
+  "production_manifests_modified": false,
+  "flutter_launcher_method": "direct unmodified Flutter tool Dart source with actual offline package configuration",
+  "optional_app_jit_snapshot": {
+    "exit_code": 124,
+    "timeout_seconds": 180,
+    "completed_snapshot": false,
+    "log": "flutter-snapshot-build.log"
+  },
+  "flutter_launcher_sha256": "9a1ec9885dd77d8e84072b41d733bc01de57c1d5899f07ffe0e211cc6496271e",
+  "dart_launcher_method": "shell shim execs exact genuine SDK binary",
+  "dart_launcher_sha256": "0c92fffbf8e34fc0663067644ea053035d485e08ded26cdb6413abe2cddc96c5",
+  "dart_launcher_checks": "receipts/dart-launcher-checks.json",
+  "test_help_probe_conclusion": "Inconclusive: help probes overlapped the original cohort cold compilation/cache warming. The original cohort subsequently passed. No symlink defect is established."
+}

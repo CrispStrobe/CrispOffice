@@ -1,0 +1,7 @@
+{
+  "url": "https://storage.googleapis.com/flutter_infra_release/flutter/cf636b1dfb818dd6a3ff16e390e93b1a036969c8/linux-x64/artifacts.zip",
+  "archive_sha256": "7cfd5a97e514ee6bde9ba1010d62954289115f662ac2042af799641e515083af",
+  "archive_bytes": 29277022,
+  "flutter_tester_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+  "matches_prior_full_sdk_qualification": true
+}
