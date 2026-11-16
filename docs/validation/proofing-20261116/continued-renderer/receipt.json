@@ -1,0 +1,56 @@
+{
+  "base_commit": "4d395da7c1253dbebfce4a5065fdfd257939ce1c",
+  "checked_utc": "2026-11-16T13:30:37.557242+00:00",
+  "flutter_version": "3.47.8",
+  "dart_version": "3.13.7",
+  "checks": [
+    {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "test/word_proofing_geometry_test.dart",
+        "test/platform_spelling_provider_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "log": "analysis.log",
+      "log_sha256": "eae19bcf8ade431db4be69744b16924ca4902b00bbfd99fbc64798ab7c024c72"
+    },
+    {
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--timeout",
+        "30s",
+        "--reporter",
+        "expanded",
+        "test/word_proofing_geometry_test.dart",
+        "test/platform_spelling_provider_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "log": "tests.log",
+      "log_sha256": "166ac84d53c877fc8033acf930861a9fda48156aa44a6b5cd6c8badfb044b223",
+      "passed_tests": 19
+    }
+  ],
+  "source_sha256": {
+    "packages/quds_office_editor/test/word_proofing_geometry_test.dart": "1a2ab501e235ec8da226dfc725e2a85d9151f894935d10283acea83a879f4623",
+    "packages/quds_office_editor/test/platform_spelling_provider_test.dart": "60c7e423c22adfe1401058288f933ced336c502efd9d1d8a564730d282a15f85",
+    "packages/quds_office_editor/lib/src/editor_word/proofing_geometry.dart": "8210a778704748cd52783e32832949d1c6e69010139eaef1bedaf3bde26970ea",
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "e5c236ab6579306ae0e7e13ab34ccc16e710eb2f68a925003733285ee702c364",
+    "packages/quds_office_editor/lib/src/editor_word/caret_engine.dart": "d29342278095f24bf64f347f4b35214dbc0ecc91335b13780b90e30ea9f5d74d",
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": "aa90f9d2f3d3b2402dc4b35c4bc4586faba95f78663784afe65514c2e181c28e",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "f36e21dec0a21c93ef364528424a27f33d35664295287a9f7d2ab9aa19bd55c2",
+    "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart": "f1485eeacfa32a1b7d955577f7ff014f9d0251be3cd8f9c1abfbb93791a89ea3",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "e06bb852603b0f36298ce788d388f4bef585a8bb2be8f86e0da84e22c6faccc1",
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": "d2c85d776ed7dee4820007c9477a7bfbe4bee454393e83b6868b97d335b6949b",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "0ee4b795c444b4e8699f85c17f0c1ded538428de61edbc3bf9264d3ca565bcdf"
+  },
+  "github_actions": "Not used or waited for.",
+  "started_utc": "2026-11-16T13:30:20.327215+00:00",
+  "source_unchanged_after_checks": true,
+  "passed": true
+}

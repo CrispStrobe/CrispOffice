@@ -159,6 +159,10 @@ final class WordProofingSession extends ChangeNotifier {
     final document = _document();
     final revision = _revision();
     final configuration = _configurationKey;
+    if (!identical(document, _observedDocument)) {
+      _cache.clear();
+      _ignoredOnce.clear();
+    }
     if (identical(document, _observedDocument) &&
         revision == _observedRevision &&
         configuration == _observedConfiguration) {
@@ -173,6 +177,10 @@ final class WordProofingSession extends ChangeNotifier {
   /// Hosts call this after direct model edits or changes to host-owned words.
   void refresh() {
     if (_disposed) return;
+    if (!identical(_observedDocument, _document())) {
+      _cache.clear();
+      _ignoredOnce.clear();
+    }
     _observedDocument = _document();
     _observedRevision = _revision();
     _observedConfiguration = _configurationKey;
@@ -343,6 +351,10 @@ final class WordProofingSession extends ChangeNotifier {
     final document = _document();
     final revision = _revision();
     final configuration = _configurationKey;
+    if (!identical(document, _observedDocument)) {
+      _cache.clear();
+      _ignoredOnce.clear();
+    }
     _observedDocument = document;
     _observedRevision = revision;
     _observedConfiguration = configuration;

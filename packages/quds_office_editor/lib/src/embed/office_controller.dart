@@ -7763,7 +7763,10 @@ class WordEditorController extends OfficeController {
   /// untagged document actually receives linguistic line breaking. One undo
   /// restores both source settings.
   void setAutomaticHyphenation(bool enabled) {
-    if (!config.allowsMutation || document.autoHyphenation == enabled) return;
+    if (!config.allowsMutation ||
+        (document.autoHyphenation == enabled &&
+            (!enabled || document.proofingLanguage != null)))
+      return;
     final before = document.autoHyphenation;
     final previousLanguage = document.proofingLanguage;
     final language = proofing.language;

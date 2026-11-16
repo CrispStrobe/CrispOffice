@@ -112,6 +112,121 @@ WmlTable _table(WmlParagraph paragraph) => WmlTable(
 
 void main() {
   test(
+    'a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state',
+    () async {
+      final h = _Harness();
+      final first = (await h.session.checkNow()).issues.single;
+      final paragraph = first.paragraph;
+      final firstDocumentId = first.finding.documentId;
+      h.session.ignoreOnce(first);
+      expect((await h.session.checkNow()).issues, isEmpty);
+      expect(h.provider.requests, hasLength(1));
+
+      h.document = WmlDocument(
+        sections: <WmlSection>[
+          WmlSection(blocks: <WmlBlock>[paragraph]),
+        ],
+      );
+      final next = await h.session.checkNow();
+      expect(h.provider.requests, hasLength(2));
+      expect(next.issues.single.paragraph, same(paragraph));
+      expect(next.issues.single.finding.documentId, isNot(firstDocumentId));
+      expect(
+        h.provider.requests.last.documentId,
+        next.issues.single.finding.documentId,
+      );
+      expect(h.session.isCurrent(first), isFalse);
+      expect(h.session.isCurrent(next.issues.single), isTrue);
+    },
+  );
+
+  test(
+    'language changes inside a combining cluster retain the full cluster and its first language',
+    () async {
+      final paragraph = WmlParagraph(
+        inlines: <WmlInline>[
+          WmlRun(
+            text: 'a',
+            properties: WmlRunProps(proofingLanguage: 'de-DE'),
+          ),
+          WmlRun(
+            text: '\u0308',
+            properties: WmlRunProps(proofingLanguage: 'en-US'),
+          ),
+        ],
+      );
+      final h = _Harness(
+        document: WmlDocument(
+          sections: <WmlSection>[
+            WmlSection(blocks: <WmlBlock>[paragraph]),
+          ],
+        ),
+      );
+      final summary = await h.session.checkNow();
+      expect(h.provider.requests, hasLength(1));
+      expect(h.provider.requests.single.text, 'a\u0308');
+      expect(h.provider.requests.single.language, 'de-DE');
+      expect(summary.complete, isTrue);
+    },
+  );
+
+  test(
+    'a surrogate pair split across runs and languages remains one emoji in provider input',
+    () async {
+      final paragraph = WmlParagraph(
+        inlines: <WmlInline>[
+          WmlRun(
+            text: '\uD83D',
+            properties: WmlRunProps(proofingLanguage: 'de-DE'),
+          ),
+          WmlRun(
+            text: '\uDE00',
+            properties: WmlRunProps(proofingLanguage: 'en-US'),
+          ),
+        ],
+      );
+      final h = _Harness(
+        document: WmlDocument(
+          sections: <WmlSection>[
+            WmlSection(blocks: <WmlBlock>[paragraph]),
+          ],
+        ),
+      );
+      final summary = await h.session.checkNow();
+      expect(h.provider.requests, hasLength(1));
+      expect(h.provider.requests.single.text, '😀');
+      expect(h.provider.requests.single.language, 'de-DE');
+      expect(summary.complete, isTrue);
+    },
+  );
+
+  test(
+    'noProof on part of a combining cluster excludes the entire cluster',
+    () async {
+      final paragraph = WmlParagraph(
+        inlines: <WmlInline>[
+          WmlRun(text: 'a'),
+          WmlRun(text: '\u0308', properties: WmlRunProps(noProof: true)),
+          WmlRun(text: ' tail'),
+        ],
+      );
+      final h = _Harness(
+        document: WmlDocument(
+          sections: <WmlSection>[
+            WmlSection(blocks: <WmlBlock>[paragraph]),
+          ],
+        ),
+      );
+      final summary = await h.session.checkNow();
+      expect(h.provider.requests, hasLength(1));
+      expect(h.provider.requests.single.text, ' tail');
+      expect(h.provider.requests.single.startOffset, 2);
+      expect(summary.complete, isFalse);
+      expect(summary.skippedContentCount, greaterThan(0));
+    },
+  );
+
+  test(
     'review traverses body, nested tables, frames, all headers/footers, notes and comments',
     () async {
       final paragraphs = <String, WmlParagraph>{
