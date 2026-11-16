@@ -1,0 +1,44 @@
+{
+  "baseline": "9d9051859f0aa0fdf43dec938d31642ea3c67133",
+  "source": "8b93e866b4661d19f4bbad4e1069c0a609441ebb",
+  "method": "git diff --name-only BASE SOURCE -- each recorded source scope",
+  "scopes": {
+    "german_lexicon_data": {
+      "paths": [
+        "packages/quds_office_engine/lib/src/proofing/data",
+        "packages/quds_office_engine/third_party/proofing",
+        "packages/quds_office_engine/tool/proofing/generate_german_lexicon.py",
+        "packages/quds_office_engine/tool/proofing/german_common_words.txt"
+      ],
+      "changed": [],
+      "unchanged": true
+    },
+    "hyphenation_patterns": {
+      "paths": [
+        "packages/quds_office_engine/lib/src/bidi/german_hyphenation_data.dart",
+        "packages/quds_office_engine/lib/src/bidi/german_hyphenator.dart",
+        "packages/quds_office_engine/third_party/hyphenation",
+        "packages/quds_office_engine/tool/proofing/generate_hyphenation.py"
+      ],
+      "changed": [],
+      "unchanged": true
+    },
+    "harper_package": {
+      "paths": [
+        "packages/quds_proofing_harper"
+      ],
+      "changed": [],
+      "unchanged": true
+    },
+    "german_model_evaluation": {
+      "paths": [
+        "tools/proofing/german_model"
+      ],
+      "changed": [],
+      "unchanged": true
+    }
+  },
+  "package_manifests": {
+    "changed": []
+  }
+}

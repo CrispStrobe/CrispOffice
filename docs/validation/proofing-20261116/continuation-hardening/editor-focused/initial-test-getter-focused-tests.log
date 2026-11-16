@@ -1,0 +1,70 @@
+00:00 +0: loading /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart
+test/word_proofing_dialog_test.dart:130:33: Error: The getter 'runs' isn't defined for the type 'WmlParagraph'.
+ - 'WmlParagraph' is from 'package:quds_office_engine/src/word/model/wml_document.dart' ('../quds_office_engine/lib/src/word/model/wml_document.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'runs'.
+      document.paragraphs.first.runs.first.properties.proofingLanguage =
+                                ^^^^
+00:00 +0 -1: loading /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart [E]
+  Failed to load "/workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart":
+  Compilation failed for testPath=/workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: test/word_proofing_dialog_test.dart:130:33: Error: The getter 'runs' isn't defined for the type 'WmlParagraph'.
+   - 'WmlParagraph' is from 'package:quds_office_engine/src/word/model/wml_document.dart' ('../quds_office_engine/lib/src/word/model/wml_document.dart').
+  Try correcting the name to the name of an existing getter, or defining a getter or field named 'runs'.
+        document.paragraphs.first.runs.first.properties.proofingLanguage =
+                                  ^^^^
+  .
+00:00 +0 -2: loading /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart [E]
+  Error: The Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 34:3  throwToolExit
+  package:flutter_tools/src/compile.dart 1024:11   DefaultResidentCompiler._compile.<fn>
+  dart:async/zone_root.dart 48:47                  _rootRunUnary
+  dart:async/zone.dart 816:35                      _CustomZone.runUnary
+  dart:async/future_impl.dart 948:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 977:13               Future._propagateToListeners
+  dart:async/future_impl.dart 862:9                Future._propagateToListeners
+  dart:async/future_impl.dart 720:5                Future._completeWithValue
+  dart:async/future_impl.dart 804:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone_root.dart 35:13                  _rootRun
+  dart:async/zone.dart 810:35                      _CustomZone.run
+  dart:async/zone.dart 702:7                       _CustomZone.runGuarded
+  dart:async/zone.dart 743:23                      _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:35         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 127:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 193:5      _RawReceivePort._handleMessage
+  
+00:00 +0 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: closed empty complex fields never reach providers
+00:00 +1 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked
+00:00 +2 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: generated page-number paragraphs never reach providers
+00:00 +3 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: page-number metadata invalidates findings without a text edit
+00:00 +4 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: pending page-number metadata changes discard provider results
+00:00 +5 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: nonempty findings use half-open hit ranges
+00:00 +6 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state
+00:00 +7 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: language changes inside a combining cluster retain the full cluster and its first language
+00:00 +8 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a surrogate pair split across runs and languages remains one emoji in provider input
+00:00 +9 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: noProof on part of a combining cluster excludes the entire cluster
+00:00 +10 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: review traverses body, nested tables, frames, all headers/footers, notes and comments
+00:00 +11 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: formatting fragments join while language and noProof boundaries preserve UTF-16 offsets
+00:00 +12 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: run language overrides paragraph language, which overrides the document default
+00:00 +13 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: late results after a revision change never become current findings
+00:00 +14 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: direct model edits during a pending check invalidate its snapshot even without revision notification
+00:00 +15 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: replacing a document with identical text and revision rejects the old document result
+00:00 +16 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider reconfiguration cancels pending publication and disposes the previous provider
+00:00 +17 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unchanged paragraphs reuse results while rebinding findings to the current revision
+00:00 +18 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider configuration revisions invalidate otherwise identical cached text
+00:00 +19 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: moving a paragraph between stories invalidates its old finding and cache
+00:00 +20 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a document with no checkable paragraphs never claims a clean completed check
+00:00 +21 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: no configured provider is visibly unavailable
+00:00 +22 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unavailable checks are incomplete and can be retried instead of cached as clean
+00:00 +23 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unsupported checks are incomplete and can be retried instead of cached as clean
+00:00 +24 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: failed checks are incomplete and can be retried instead of cached as clean
+00:00 +25 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: an unsupported document language reports its locale without calling the checker
+00:00 +26 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: opaque body blocks and preserved header stories are explicit coverage gaps
+00:00 +27 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: personal words are language-scoped and host snapshots preserve owner identity
+00:00 +28 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignore once suppresses one occurrence and resets when its paragraph text changes
+00:00 +29 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignored rules can be restored without changing source text or personal words
+00:00 +30 -2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: restoring ignored occurrences preserves word and rule preferences
+00:00 +31 -2: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: loading /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart
+  /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: loading /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart

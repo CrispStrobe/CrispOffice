@@ -1,0 +1,8 @@
+{
+  "baseline": "9d9051859f0aa0fdf43dec938d31642ea3c67133",
+  "integrated_source": "e9bb38e93726f6b5eab5688aee125bc182c05ed7",
+  "scope": "docs/validation/proofing-20261116",
+  "files_checked": 228,
+  "changed_or_missing": [],
+  "method": "compare Git blob IDs for every baseline file"
+}

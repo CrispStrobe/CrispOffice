@@ -1,0 +1,7 @@
+{
+  "source_commit": "731d3708513d00fde9ac32dcb32bac1d39631214",
+  "german_inputs": 37,
+  "german_inputs_match_receipt": true,
+  "runtime_setup_sha256": "0d594abc05d3d5deb2a7c219a3818105b5212d6a434df1b110990e8d9a0b13ed",
+  "note": "Component runs began before committing; exact recorded bytes match this source. Final combined qualification is recorded separately."
+}

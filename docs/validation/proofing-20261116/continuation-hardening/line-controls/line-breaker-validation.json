@@ -1,0 +1,43 @@
+{
+  "scope": "Bounded invisible line-break controls fix; root owns final whole-source validation.",
+  "baseline_commit": "e9bb38e",
+  "owned_sources_sha256": {
+    "packages/quds_office_engine/lib/src/bidi/line_breaker.dart": "326731d2e568a9c626b59814381731e7e0f1a9d6df7529dffdccadbca291ee48",
+    "packages/quds_office_engine/test/line_breaker_controls_test.dart": "44e64c8e55af8b112da4b9fb4ab6856ba47d5da7d8e55b631a0b49f2a6540fd7"
+  },
+  "commands": [
+    {
+      "working_directory": "packages/quds_office_engine",
+      "command": "dart test test/line_breaker_controls_test.dart test/line_breaker_measure_line_test.dart test/variable_line_breaker_test.dart test/proofing_hyphenation_test.dart --reporter expanded",
+      "exit_code": 0,
+      "passed": 70,
+      "failed": 0,
+      "log": "line-breaker-targeted.log"
+    },
+    {
+      "working_directory": "packages/quds_office_engine",
+      "command": "dart analyze --fatal-infos lib/src/bidi/line_breaker.dart test/line_breaker_controls_test.dart",
+      "exit_code": 0,
+      "log": "line-breaker-analysis.log"
+    },
+    {
+      "working_directory": "packages/quds_office_engine",
+      "command": "dart test /workspace/scratch/a450b8f86aed/remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart --reporter expanded",
+      "exit_code": 1,
+      "passed": 3,
+      "failed": 13,
+      "log": "line-breaker-baseline.log",
+      "note": "New test with import redirected to an isolated copy of e9bb38e line_breaker.dart and its three relative imports, without modifying the live checkout."
+    }
+  ],
+  "logs_sha256": {
+    "line-breaker-targeted.log": "caab672ad77dee54400dd0b99da9bf51a315b7fbb1334a702c108872d28a69d9",
+    "line-breaker-analysis.log": "8735edb90bb862a089d2bbd01b7d8127be08be414ddffca1df99f2bff83d07a7",
+    "line-breaker-baseline.log": "488296aeda2a2ef0dc0352a0cc76c84c93a65a958aea504de6f6bf8464df62b6"
+  },
+  "unicode_reference": "https://www.unicode.org/reports/tr14/tr14-57.html",
+  "unicode_rules": [
+    "LB8: zero width space opportunity",
+    "LB11: word joiner and zero-width no-break space"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/word_proofing_session_test.dart",
+    "test/word_proofing_dialog_test.dart"
+  ],
+  "exit_code": 1,
+  "duration_seconds": 46.157463788986206
+}
