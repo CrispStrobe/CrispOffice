@@ -393,9 +393,28 @@ abstract final class PaintRunText {
     }
     final start = indices.first;
     final end = indices.last + _utf16Len(paragraph, indices.last);
+    // The breaker omits invisible format controls and unselected soft
+    // hyphens. Preserve those gaps regardless of length: they affect shaping
+    // and their UTF-16 offsets still belong to this logical source span.
+    // Any omitted visible scalar instead belongs to another run; do not
+    // borrow it merely because the gap is short.
+    var next = start;
+    var hasOnlyInvisibleGaps = true;
+    for (final index in indices) {
+      while (next < index) {
+        final codePoint = paragraph.codeUnitAt(next);
+        if (codePoint != 0x00ad && !Uax9Bidi.isInvisibleFormat(codePoint)) {
+          hasOnlyInvisibleGaps = false;
+          break;
+        }
+        next++;
+      }
+      if (!hasOnlyInvisibleGaps) break;
+      next = math.max(next, index + _utf16Len(paragraph, index));
+    }
     // Every authored mark has its own source glyph. Extending past the final
     // scalar would draw a following, differently styled mark a second time.
-    if (end - start <= indices.length + 8) {
+    if (hasOnlyInvisibleGaps) {
       return paragraph.substring(start, end.clamp(0, paragraph.length));
     }
     final StringBuffer buffer = StringBuffer();

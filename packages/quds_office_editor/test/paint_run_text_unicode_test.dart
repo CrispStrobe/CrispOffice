@@ -86,6 +86,102 @@ void main() {
     );
   });
 
+  test('paint runs retain long gaps made only of omitted source controls', () {
+    for (final control in ['\u200b', '\u200c', '\u200d', '\u2060', '\u00ad']) {
+      final source = 'A${control * 10}V';
+      final glyphs = [_glyph(source, 0), _glyph(source, source.length - 1)];
+      expect(PaintRunText.runText(source, glyphs), source);
+      expect(PaintRunText.runText(source, glyphs.reversed.toList()), source);
+    }
+  });
+
+  test('short sparse runs do not borrow visible text or styled marks', () {
+    for (final source in ['AVX', 'A\u2067אב\u2069V', 'ب\u064eب']) {
+      expect(
+        PaintRunText.runText(source, [
+          _glyph(source, 0),
+          _glyph(source, source.length - 1),
+        ]),
+        '${source[0]}${source[source.length - 1]}',
+      );
+    }
+  });
+
+  for (final sample in [
+    (name: 'Latin ZWSP', text: 'A${'\u200b' * 10}V', rtl: false),
+    (name: 'Arabic ZWNJ', text: 'ب${'\u200c' * 10}ب', rtl: true),
+  ]) {
+    test(
+      '${sample.name} retain source offsets through paint and hit testing',
+      () {
+        final paragraph = WmlParagraph(
+          inlines: [
+            WmlRun(
+              text: sample.text,
+              properties: WmlRunProps(
+                asciiFont: 'Liberation Serif',
+                csFont: 'Noto Naskh Arabic',
+                fontSizeHalfPoints: 64,
+              ),
+            ),
+          ],
+        )..properties.rightToLeft = sample.rtl;
+        final controller = WordEditorController(
+          document: WmlDocument(
+            sections: [
+              WmlSection(blocks: [paragraph])
+                ..pageSize = const WmlPageSize(width: 500, height: 400)
+                ..margins = const WmlPageMargins(
+                  left: 10,
+                  right: 10,
+                  top: 10,
+                  bottom: 10,
+                ),
+            ],
+          ),
+        );
+        addTearDown(controller.dispose);
+        final line = controller.documentLaidOut.pages.single.lines.single;
+        final before = line.width;
+        final segments = PaintRunText.paintSegments(line).toList();
+        expect(segments, hasLength(1));
+        expect(PaintRunText.runText(sample.text, segments.single), sample.text);
+        controller.fitPaintMetrics();
+        expect(line.width, closeTo(before, 0.001));
+        final sourceStart = sample.rtl ? line.x + line.width : line.x;
+        final sourceEnd = sample.rtl ? line.x : line.x + line.width;
+        expect(
+          PaintRunText.hitLogicalIndexOnLine(
+            line,
+            sourceStart,
+            paragraph: sample.text,
+          ),
+          0,
+        );
+        expect(
+          PaintRunText.hitLogicalIndexOnLine(
+            line,
+            sourceEnd,
+            paragraph: sample.text,
+          ),
+          sample.text.length,
+        );
+        expect(
+          PaintRunText.caretXOnLine(line, 0, paragraph: sample.text),
+          closeTo(sourceStart, 0.001),
+        );
+        expect(
+          PaintRunText.caretXOnLine(
+            line,
+            sample.text.length,
+            paragraph: sample.text,
+          ),
+          closeTo(sourceEnd, 0.001),
+        );
+      },
+    );
+  }
+
   test('paint runs normalize offsets within valid surrogate pairs', () {
     const source = '😀!';
     expect(PaintRunText.runText(source, [_glyph(source, 1)]), '😀');

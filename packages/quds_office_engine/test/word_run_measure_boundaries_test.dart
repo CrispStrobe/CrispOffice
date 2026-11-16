@@ -59,7 +59,8 @@ void main() {
       },
     ).layout(_document([paragraph])).pages.single.lines.single;
 
-    expect(calls, [('لا', 1)]);
+    expect(calls, isNotEmpty);
+    expect(calls.toSet(), {('لا', 1)});
     expect(line.width, 7);
     expect(line.text, 'لا');
     expect(line.glyphs.map((glyph) => glyph.fontFamily).toSet(), {
@@ -94,7 +95,8 @@ void main() {
         },
       ).layout(_document([_paragraph(source)])).pages.single.lines.single;
 
-      expect(calls, [source]);
+      expect(calls, isNotEmpty);
+      expect(calls.toSet(), {source});
       expect(line.width, 7);
       expect(line.sourceText, source);
       expect(line.text, source);

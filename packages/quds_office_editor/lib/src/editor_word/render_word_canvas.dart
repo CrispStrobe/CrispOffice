@@ -1623,8 +1623,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     for (final section in document.sections) {
       for (final block in WordTree.descendants(section.blocks)) {
         if (block is WmlFrame &&
-            WordTree.paragraphs(block.blocks)
-                .any((p) => identical(p, target))) {
+            WordTree.paragraphs(
+              block.blocks,
+            ).any((p) => identical(p, target))) {
           // Descendants follow their parent, so the innermost frame wins.
           result = block;
         }
@@ -3940,15 +3941,16 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       if (box.kind == LaidOutBoxKind.frame &&
           box.frame != null &&
           identical(box.frame, selectedFrame)) {
-        TransformHandles(Rect.fromLTWH(box.x, box.y, box.width, box.height))
-            .paint(
-              canvas,
-              strokeColor: _theme.focusRing,
-              fillColor: _theme.pageBackground,
-              showKnobs: !editingFrame,
-              showRotate: false,
-              knobSize: 9,
-            );
+        TransformHandles(
+          Rect.fromLTWH(box.x, box.y, box.width, box.height),
+        ).paint(
+          canvas,
+          strokeColor: _theme.focusRing,
+          fillColor: _theme.pageBackground,
+          showKnobs: !editingFrame,
+          showRotate: false,
+          knobSize: 9,
+        );
         continue;
       }
       final OfficeVisual? visual = box.visual;
@@ -3961,18 +3963,19 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         // In-range pictures are tinted in [_paintFrames], not handled.
         continue;
       }
-      TransformHandles(Rect.fromLTWH(box.x, box.y, box.width, box.height))
-          .paint(
-            canvas,
-            strokeColor: pictureCropMode
-                ? const Color(0xFFFF8C1A)
-                : _theme.focusRing,
-            fillColor: _theme.pageBackground,
-            showKnobs: true,
-            showRotate: !pictureCropMode,
-            cropMode: pictureCropMode && visual.isPicture,
-            knobSize: 9,
-          );
+      TransformHandles(
+        Rect.fromLTWH(box.x, box.y, box.width, box.height),
+      ).paint(
+        canvas,
+        strokeColor: pictureCropMode
+            ? const Color(0xFFFF8C1A)
+            : _theme.focusRing,
+        fillColor: _theme.pageBackground,
+        showKnobs: true,
+        showRotate: !pictureCropMode,
+        cropMode: pictureCropMode && visual.isPicture,
+        knobSize: 9,
+      );
     }
   }
 
@@ -4425,8 +4428,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         canvas.drawRect(
           Rect.fromLTWH(x0, line.y, x1 - x0, line.height),
           Paint()
-            ..color = Color(active ? 0xFFF4B183 : 0xFFFFF2CC)
-                .withValues(alpha: 0.88),
+            ..color = Color(
+              active ? 0xFFF4B183 : 0xFFFFF2CC,
+            ).withValues(alpha: 0.88),
         );
       }
       if (first.highlight != null) {

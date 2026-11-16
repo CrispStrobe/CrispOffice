@@ -1437,24 +1437,52 @@ class WordLayoutEngine {
       return result;
     }
 
+    // An actual line can be unsupported even when the full paragraph was
+    // measurable. Preserve the original font/scalar advances before applying
+    // host metrics so a declined fragment does not reuse a different context.
+    // Repeated display-label scalars share this source/style and scalar width.
+    final fallbackAdvances = <(int, int, int), double>{};
     List<ShapedGlyph> measuredLine(List<ShapedGlyph> presented) {
       final host = measureRun;
-      return host == null
-          ? presented
-          : _measureWordRuns(
-              glyphs: presented,
-              text: text,
-              paragraph: paragraph,
-              propsAt: propsAt,
-              labels: displayLabels,
-              pictures: inlinePictures.keys.toSet(),
-              measure: host,
-            );
+      if (host == null) return presented;
+      final fallback = <ShapedGlyph>[
+        for (final glyph in presented)
+          if (fallbackAdvances[(
+                glyph.logicalIndex,
+                glyph.codePoint,
+                glyph.glyphId,
+              )]
+              case final advance?)
+            advance == glyph.advance
+                ? glyph
+                : _withMeasuredAdvance(glyph, advance)
+          else
+            // Selected hyphens are created after paragraph measurement and
+            // retain their independent scalar metrics and source ownership.
+            glyph,
+      ];
+      return _measureWordRuns(
+        glyphs: fallback,
+        text: text,
+        paragraph: paragraph,
+        propsAt: propsAt,
+        labels: displayLabels,
+        pictures: inlinePictures.keys.toSet(),
+        measure: host,
+      );
     }
 
-    List<ShapedGlyph> measuredRuns(List<ShapedGlyph> source) => measuredLine(
-      displayLabels.isEmpty ? source : displayReplacements(source),
-    );
+    List<ShapedGlyph> measuredRuns(List<ShapedGlyph> source) {
+      final presented = displayLabels.isEmpty
+          ? source
+          : displayReplacements(source);
+      if (measureRun == null) return presented;
+      for (final glyph in presented) {
+        fallbackAdvances[(glyph.logicalIndex, glyph.codePoint, glyph.glyphId)] =
+            glyph.advance;
+      }
+      return measuredLine(presented);
+    }
 
     // Widths and glyph IDs are resolved before wrapping, using each run's
     // actual family, style and size. Scaling only after wrapping lets bold or

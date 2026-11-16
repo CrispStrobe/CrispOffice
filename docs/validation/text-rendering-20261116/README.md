@@ -3,11 +3,12 @@
 Work branch: [`codex/text-rendering-20261116`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/text-rendering-20261116).
 Integration baseline: `bfb24bf57d5efd52f00ab7079b4ac8968259a478`.
 
-**Incremental qualification record.** The contextual line correction is saved
-at `48123bf78dd0c23fe17e675306e047f1c993060b`. Full engine qualification and
-two additional source/fallback edge-case corrections are in progress at this
-documentation checkpoint. Passing results below apply only to their stated
-source snapshots; this intermediate record is not a final all-green claim.
+**Incremental qualification record.** The full initial engine run has finished
+against source `48123bf78dd0c23fe17e675306e047f1c993060b`. Two additional
+source/fallback corrections and the resulting test updates are now applied;
+final local qualification follows this source checkpoint. Passing results
+below apply only to their stated source snapshots; this intermediate record
+is not a final all-green claim.
 
 ## Incoming work
 
@@ -45,6 +46,12 @@ boundaries, preserve styled combining-mark ownership and exact bidi embedding
 levels, invalidate width caches after font registration, and release temporary
 native text painters. Cached run metrics contain immutable Dart values and
 have explicit entry and text-size bounds.
+
+Two further reviewed edge cases now have regressions. A shortened line that a
+host declines recovers its original scalar/font advances instead of retaining
+metrics from the longer paragraph context. Long spans of omitted invisible
+controls remain in paint text and preserve source caret offsets; genuinely
+sparse visible text owned by another run remains excluded.
 
 ## Actual rendered comparison
 
@@ -85,8 +92,8 @@ jobs were polled, awaited or rerun.
 | Run metrics / strict controller integration checks | 13 / 8 passed before the broad cohort; these overlap the cohort and are not additive totals |
 | Actual Flutter comparison render | 1 passed |
 | Scoped static analysis of 18 changed Dart files | No issues |
-| Formatting check | Four layout-only formatting differences in `render_word_canvas.dart` identified for correction |
-| Entire engine test directory, 185 files | Running locally; final receipt follows |
+| Initial formatting check | Four layout-only differences in `render_word_canvas.dart`, now formatted; final check follows |
+| Entire engine test directory, 185 files, source `48123bf` | 2,481 passed; seven outdated callback-count assertions failed; one CLI test timed out; one host-font-dependent PDF test skipped |
 
 The initial editor cohort excluded only the two tests named `Word-like selection
 golden`, whose platform-specific image baselines were not regenerated. Selection
@@ -101,6 +108,17 @@ The existing public mode contract reserves viewing for scroll/zoom and uses
 selecting for selection/copy without mutation. Both the original test and mode
 policy were byte-identical to the integration baseline. The test now requests
 selecting mode; the production interaction policy has not changed.
+
+The [initial engine summary](engine-full-initial-summary.json) preserves all
+2,490 distinct visible test outcomes and the full compressed event/log streams.
+Its 740 recorded inputs were unchanged during execution. Seven new tests still
+expected a single callback invocation even though actual-line remeasurement
+intentionally calls the host again; their input/style/direction invariants now
+allow repeat calls, with every geometry assertion unchanged. The CLI timeout
+will be replayed with a longer execution budget. The two-font PDF test now
+prefers the audited bundled fonts so an incidental system face cannot cause
+the distinct-resource assertion to skip. The focused final engine cohort also
+includes six new declined-fragment regression cases.
 
 ## State of the art and licenses
 

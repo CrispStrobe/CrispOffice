@@ -15,6 +15,8 @@ All notable changes to `quds_office_engine` are documented here.
   at legal source boundaries with bounded host measurements. Use the same
   checks for adaptive frame widths, preserve discretionary hyphen ownership,
   and prevent ordinary breaks inside decorated-space graphemes.
+- Restore original scalar/font advances when a shortened line fragment is
+  declined by the host shaper, including zero-width ligature continuations.
 
 - Import spreadsheet-level ODS list-validation definitions for all referring
   worksheets, including lists resolved from a later source sheet. Retain

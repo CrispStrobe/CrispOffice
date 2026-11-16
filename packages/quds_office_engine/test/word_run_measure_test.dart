@@ -42,7 +42,8 @@ void main() {
     expect(shaped.pages.single.lines, hasLength(1));
     expect(shaped.pages.single.lines.single.width, 18);
     expect(shaped.pages.single.lines.single.text, 'AV AV');
-    expect(inputs, ['AV AV']);
+    expect(inputs, isNotEmpty);
+    expect(inputs.toSet(), {'AV AV'});
   });
 
   test('host metrics override font advances without changing glyph IDs', () {
@@ -71,7 +72,8 @@ void main() {
         return _measure(text, 5);
       },
     ).layout(_doc([WmlRun(text: 'A'), WmlRun(text: 'V')]));
-    expect(calls, ['AV']);
+    expect(calls, isNotEmpty);
+    expect(calls.toSet(), {'AV'});
   });
 
   test('paint style changes and tabs keep independent metrics', () {
@@ -91,7 +93,8 @@ void main() {
         ),
       ]),
     );
-    expect(calls, [('AV', 11.0, false), ('To', 20.0, true)]);
+    expect(calls, isNotEmpty);
+    expect(calls.toSet(), {('AV', 11.0, false), ('To', 20.0, true)});
   });
 
   test('combining and supplementary text retains source ownership', () {
@@ -122,7 +125,8 @@ void main() {
         return _measure(text, 6);
       },
     ).layout(doc).pages.single.lines.single;
-    expect(calls, [('سَلَام', 1)]);
+    expect(calls, isNotEmpty);
+    expect(calls.toSet(), {('سَلَام', 1)});
     expect(line.width, 24);
     expect(line.sourceText, 'سَلَام');
   });
@@ -152,7 +156,8 @@ void main() {
             .single
             .lines
             .single;
-    expect(calls.map((call) => call.$1).join(), 'AV');
+    expect(calls, isNotEmpty);
+    expect(calls.map((call) => call.$1).toSet(), {'A', 'V'});
     expect(calls.every((call) => call.$2 < 20), isTrue);
     expect(line.sourceText, 'av');
     expect(line.width, 10);

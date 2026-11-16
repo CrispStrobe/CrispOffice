@@ -13,6 +13,9 @@ All notable changes to `quds_office_editor` are documented here.
 - Preserve Unicode grapheme slices and styled combining-mark ownership, keep
   nested bidi embeddings in separate paint runs, and dispose temporary native
   text painters after fitting, caret/hit testing and document painting.
+- Retain invisible source controls across long paint-run gaps so caret and hit
+  testing keep their authored UTF-16 offsets; exclude visible text owned by
+  another sparse run regardless of gap length.
 - Include full OFL notices and recorded provenance for the existing Liberation
   2.1.5 and Noto Naskh Arabic 2.004 font assets; font binaries are unchanged.
 
