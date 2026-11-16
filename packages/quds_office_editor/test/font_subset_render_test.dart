@@ -131,8 +131,9 @@ void main() {
 
       if (_output.isNotEmpty) {
         final output = Directory(_output)..createSync(recursive: true);
-        File('${output.path}/unicode-subset.pdf')
-            .writeAsBytesSync(exported.pdf);
+        File(
+          '${output.path}/unicode-subset.pdf',
+        ).writeAsBytesSync(exported.pdf);
         await _writeDiagnostic(output, actual, reference);
         final metrics = <String, Object>{
           'scope':

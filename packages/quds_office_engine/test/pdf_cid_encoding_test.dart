@@ -145,8 +145,9 @@ void main() {
       if (_output.isNotEmpty) {
         Directory(_output).createSync(recursive: true);
         File('$_output/encoded-aliases.pdf').writeAsBytesSync(encodedBytes);
-        File('$_output/identity-glyph-reference.pdf')
-            .writeAsBytesSync(legacyBytes);
+        File(
+          '$_output/identity-glyph-reference.pdf',
+        ).writeAsBytesSync(legacyBytes);
         File('$_output/authored-text.txt').writeAsStringSync(text);
       }
     },

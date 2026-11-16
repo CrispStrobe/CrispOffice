@@ -74,30 +74,33 @@ void main() {
     },
   );
 
-  test('composite instructions follow the last component even when flagged earlier', () {
-    final composite = _composite([3, 1], instructionsOnFirst: true);
-    final font = _fixture(
-      source,
-      [
-        Uint8List(0),
-        _triangle(),
-        _triangle(),
-        _composite([1]),
-        composite,
-      ],
-      {0xc1: 4},
-    );
-    final subset = FontSubsetter(font).subset([0xc1]);
-    final parsed = SfntFont.parse(subset.bytes);
-    final actual = _glyphBytes(parsed, subset.oldToNewGlyph[4]!);
-    final expected = Uint8List.fromList(composite);
-    final data = ByteData.sublistView(expected);
-    data.setUint16(12, subset.oldToNewGlyph[3]!);
-    data.setUint16(20, subset.oldToNewGlyph[1]!);
-    expect(actual.sublist(0, expected.length), expected);
-    expect(actual.skip(expected.length), everyElement(0));
-    expect(subset.oldToNewGlyph.keys, [0, 1, 3, 4]);
-  });
+  test(
+    'composite instructions follow the last component even when flagged earlier',
+    () {
+      final composite = _composite([3, 1], instructionsOnFirst: true);
+      final font = _fixture(
+        source,
+        [
+          Uint8List(0),
+          _triangle(),
+          _triangle(),
+          _composite([1]),
+          composite,
+        ],
+        {0xc1: 4},
+      );
+      final subset = FontSubsetter(font).subset([0xc1]);
+      final parsed = SfntFont.parse(subset.bytes);
+      final actual = _glyphBytes(parsed, subset.oldToNewGlyph[4]!);
+      final expected = Uint8List.fromList(composite);
+      final data = ByteData.sublistView(expected);
+      data.setUint16(12, subset.oldToNewGlyph[3]!);
+      data.setUint16(20, subset.oldToNewGlyph[1]!);
+      expect(actual.sublist(0, expected.length), expected);
+      expect(actual.skip(expected.length), everyElement(0));
+      expect(subset.oldToNewGlyph.keys, [0, 1, 3, 4]);
+    },
+  );
 
   test(
     'component argument and transform formats retain the complete records',
@@ -146,8 +149,9 @@ void main() {
         [Uint8List(0), _triangle(), _triangle()],
         {0x41: 1, 0x42: -1, 0x43: 3, 0x44: 0xffff},
       );
-      final subset = FontSubsetter(font)
-          .subset('ABCD'.runes, extraGlyphIds: [-1, 0, 2, 3, 0xffff]);
+      final subset = FontSubsetter(
+        font,
+      ).subset('ABCD'.runes, extraGlyphIds: [-1, 0, 2, 3, 0xffff]);
       expect(subset.oldToNewGlyph, {0: 0, 1: 1, 2: 2});
       expect(subset.unicodeToNewGlyph, {0x41: 1});
       final parsed = SfntFont.parse(subset.bytes);
@@ -225,28 +229,32 @@ void main() {
     },
   );
 
-  test('truncated simple-glyph endpoints, instructions, flags and coordinates fail', () {
-    final complete = _triangle(withInstruction: true);
-    for (final length in [10, 12, 14, 15, 17, complete.length - 1]) {
-      final font = _fixture(
-        source,
-        [Uint8List(0), Uint8List.sublistView(complete, 0, length)],
-        {0x41: 1},
-      );
+  test(
+    'truncated simple-glyph endpoints, instructions, flags and coordinates fail',
+    () {
+      final complete = _triangle(withInstruction: true);
+      for (final length in [10, 12, 14, 15, 17, complete.length - 1]) {
+        final font = _fixture(
+          source,
+          [Uint8List(0), Uint8List.sublistView(complete, 0, length)],
+          {0x41: 1},
+        );
+        expect(
+          () => FontSubsetter(font).subset([0x41]),
+          throwsA(isA<SfntException>()),
+        );
+      }
+      final invalidRepeat = Uint8List.fromList(_triangle());
+      invalidRepeat[14] = 0x39; // A repeated zero-delta point.
+      invalidRepeat[15] =
+          4; // Five points do not fit the contour's three points.
+      final font = _fixture(source, [Uint8List(0), invalidRepeat], {0x41: 1});
       expect(
         () => FontSubsetter(font).subset([0x41]),
         throwsA(isA<SfntException>()),
       );
-    }
-    final invalidRepeat = Uint8List.fromList(_triangle());
-    invalidRepeat[14] = 0x39; // A repeated zero-delta point.
-    invalidRepeat[15] = 4; // Five points do not fit the contour's three points.
-    final font = _fixture(source, [Uint8List(0), invalidRepeat], {0x41: 1});
-    expect(
-      () => FontSubsetter(font).subset([0x41]),
-      throwsA(isA<SfntException>()),
-    );
-  });
+    },
+  );
 
   test('subsets preserve font-wide OS/2 metrics and embedding metadata', () {
     for (final name in [
@@ -275,37 +283,40 @@ void main() {
     }
   });
 
-  test('OS/2 repertoire metadata describes the subset instead of the source face', () {
-    final parsed = SfntFont.parse(
-      FontSubsetter(source).subset('AB'.runes).bytes,
-    );
-    final data = ByteData.sublistView(parsed.tableBytes('OS/2'));
-    expect(data.getUint16(64), 0x41);
-    expect(data.getUint16(66), 0x42);
-    expect(
-      [for (var i = 0; i < 4; i++) data.getUint32(42 + 4 * i)],
-      [1, 0, 0, 0],
-    );
-    expect(data.getUint32(78), 0);
-    expect(data.getUint32(82), 0);
+  test(
+    'OS/2 repertoire metadata describes the subset instead of the source face',
+    () {
+      final parsed = SfntFont.parse(
+        FontSubsetter(source).subset('AB'.runes).bytes,
+      );
+      final data = ByteData.sublistView(parsed.tableBytes('OS/2'));
+      expect(data.getUint16(64), 0x41);
+      expect(data.getUint16(66), 0x42);
+      expect(
+        [for (var i = 0; i < 4; i++) data.getUint32(42 + 4 * i)],
+        [1, 0, 0, 0],
+      );
+      expect(data.getUint32(78), 0);
+      expect(data.getUint32(82), 0);
 
-    final aliased = _fixture(
-      source,
-      [Uint8List(0), _triangle(), _triangle()],
-      {0x1f600: 1, 0x20000: 2},
-    );
-    final supplementary = SfntFont.parse(
-      FontSubsetter(aliased).subset([0x1f600, 0x20000]).bytes,
-    );
-    final full = ByteData.sublistView(supplementary.tableBytes('OS/2'));
-    expect(full.getUint16(64), 0xffff);
-    expect(full.getUint16(66), 0xffff);
-    // Non-Plane 0 (57) and CJK unified ideographs (59, including Extension B).
-    expect(full.getUint32(46), (1 << 25) | (1 << 27));
-    expect(full.getUint32(42), 0);
-    expect(full.getUint32(50), 0);
-    expect(full.getUint32(54), 0);
-  });
+      final aliased = _fixture(
+        source,
+        [Uint8List(0), _triangle(), _triangle()],
+        {0x1f600: 1, 0x20000: 2},
+      );
+      final supplementary = SfntFont.parse(
+        FontSubsetter(aliased).subset([0x1f600, 0x20000]).bytes,
+      );
+      final full = ByteData.sublistView(supplementary.tableBytes('OS/2'));
+      expect(full.getUint16(64), 0xffff);
+      expect(full.getUint16(66), 0xffff);
+      // Non-Plane 0 (57) and CJK unified ideographs (59, including Extension B).
+      expect(full.getUint32(46), (1 << 25) | (1 << 27));
+      expect(full.getUint32(42), 0);
+      expect(full.getUint32(50), 0);
+      expect(full.getUint32(54), 0);
+    },
+  );
 
   test('an empty subset clears coverage without changing embedding rights', () {
     final table = Uint8List.fromList(source.tableBytes('OS/2'));
