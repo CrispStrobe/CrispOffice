@@ -1,0 +1,57 @@
+{
+  "started_at": "2026-11-16T13:45:12.779195+00:00",
+  "completed_at": "2026-11-16T13:45:26.440419+00:00",
+  "scope": "Focused source snapshots for proofing navigation, IME synchronization and non-mutating caret-issue lookup; not a whole-workspace or device acceptance run.",
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "4b80d82aaa2702b2db0c7eb67b005f35081ed1d26613b3556a4c4f7047eab4af",
+    "packages/quds_office_editor/lib/src/embed/word_proofing.dart": "0eb2c8a8636e302664b6c4c911e5c897fede301f027dd4cb9ee25f85c4761bed",
+    "packages/quds_office_editor/lib/src/core/input_bridge.dart": "a1edbbfec736875c53e04afd13bbe20963875fa00692bca94fc3358cd5a9543f",
+    "packages/quds_office_editor/test/word_proofing_test.dart": "34856f133c610150325c3efe28312d235612929da388d6e8d87264263455933a",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "ac2b92afc35dcbe79a763f5d920184f90fbd214535f9b9f09c294c766331e911"
+  },
+  "source_after_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "4b80d82aaa2702b2db0c7eb67b005f35081ed1d26613b3556a4c4f7047eab4af",
+    "packages/quds_office_editor/lib/src/embed/word_proofing.dart": "0eb2c8a8636e302664b6c4c911e5c897fede301f027dd4cb9ee25f85c4761bed",
+    "packages/quds_office_editor/lib/src/core/input_bridge.dart": "a1edbbfec736875c53e04afd13bbe20963875fa00692bca94fc3358cd5a9543f",
+    "packages/quds_office_editor/test/word_proofing_test.dart": "34856f133c610150325c3efe28312d235612929da388d6e8d87264263455933a",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "ac2b92afc35dcbe79a763f5d920184f90fbd214535f9b9f09c294c766331e911"
+  },
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "commands": [
+    {
+      "name": "analysis",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_proofing.dart",
+        "packages/quds_office_editor/test/word_proofing_test.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 13.66,
+      "log": "analysis.log",
+      "log_sha256": "e023bdab0b68fac9a6cb0d1b8e04b40f14a4c17eb8f618e3f0d437a0173c817f"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/word_proofing_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "packages/quds_office_editor",
+      "exit_code": 0,
+      "elapsed_seconds": 7.052,
+      "log": "tests.log",
+      "log_sha256": "007c20ddde54ef0e71cf4ca1cfa97ef7909308aa8daf6825bce0fc79a77beba2",
+      "test_count": 30
+    }
+  ],
+  "passed": true
+}

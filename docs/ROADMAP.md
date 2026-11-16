@@ -5,18 +5,49 @@ and [MISSION.md](MISSION.md) honest as coverage changes.
 
 ## Proofing and German hyphenation — 16 November 2026
 
-The accepted [proofing roadmap](PROOFING.md) adds actual offline German
-spelling, automatic German hyphenation, original German style/limited grammar
-rules, Word diagnostics and corrections, and optional English Harper/mobile
-spelling adapters. It starts by separating an unavailable checker from a
-successful clean result. The experimental German ONNX backend is a separate
-evaluation and is not enabled by default.
+The accepted [P1–P8 proofing plan](PROOFING.md) is now implemented in the fork:
+offline German spelling, source-preserving German hyphenation, seven original
+writing checks, configurable terminology, Word squiggles/F7 review, undoable
+suggestions and optional English Harper/mobile spelling adapters. The shared
+contract keeps unavailable, unsupported, failed and successful checks distinct.
 
-Implement P1–P8 in the linked plan. Preserve the pure Dart engine, custom editor
-surfaces, source offsets and shared PDF layout. Code and each language asset
-must independently satisfy the MIT/BSD/Apache/MPL allowlist. Current baseline
-capabilities and acceptance gates are recorded in the plan; planned work is
-not a claim of implemented coverage.
+The Word session checks all modeled body/table/frame, note, header/footer and
+comment stories, honors language overrides and `noProof`, rejects stale results,
+and protects generated fields, locked content and active IME composition.
+Personal vocabulary has an explicit host persistence contract. The dialog's
+language and hyphenation controls save Word settings; full-story checking does
+not imply navigation to every auxiliary-story canvas. See the plan's user and
+host guidance for exact limits.
+
+New local continuation evidence records [232 hyphenation/layout/export engine
+checks](validation/proofing-20261116/hyphenation-resume/engine/hyphenation-validation.json),
+[19 editor painting/note/small-capital checks](validation/proofing-20261116/hyphenation-resume/editor/receipt.json),
+a fresh [38-test German core run with ten JavaScript checks and exact dictionary
+regeneration](validation/proofing-20261116/german-resume/receipt.json), and
+[real Harper native/Wasm, adapter and license checks](validation/proofing-20261116/harper-resume/receipt.json).
+The [final integration receipt](validation/proofing-20261116/final/receipt.json)
+records consolidated session/UI/context-menu, affected-package and release web
+packaging checks. The [later remote audit](validation/proofing-20261116/final/remote-freshness.json)
+and [reconciliation record](validation/proofing-20261116/final/reconciliation.json)
+cover the concurrent ODS hyperlink, Zotero and sibling proofing work. All eight
+incoming hyphenation cases are retained; they exposed and now cover LTR/RTL
+caret and hit-testing fixes. Harper was rebuilt and verified after merging its
+source-bound packaging and notice changes.
+These are scoped, source-bound records; overlapping suites are not summed.
+The earlier German core receipt and model probe are retained separately.
+No GitHub Actions queue was waited for.
+
+The German lexicon is finite and based on a pinned 2016 MIT word-list snapshot,
+not complete morphology or contemporary universal vocabulary. The experimental
+German ONNX model stays evaluation-only: its retained probe corrected 9/18
+error cases exactly and changed 1/12 valid controls, including Swiss spelling.
+No model inference is enabled in the application. Browser HTTP/CSP/painting,
+non-Linux native Harper targets and real mobile dictionary behavior retain
+separate acceptance gates; Node Wasm tests do not discharge them.
+
+The initial roadmap and its acceptance criteria remain in [PROOFING.md](PROOFING.md),
+with delivered component/data licenses, release behavior, retained-versus-new
+validation provenance and remaining coverage boundaries.
 
 ## Office preservation continuation — 14 November 2026
 

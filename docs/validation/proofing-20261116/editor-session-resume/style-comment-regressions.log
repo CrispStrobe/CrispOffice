@@ -1,0 +1,26 @@
+00:00 +0: loading test/style_cascade_test.dart
+00:00 +0: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +1: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +2: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +3: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +4: test/comment_thread_fidelity_test.dart: comment thread imports survive three async saves
+00:00 +5: test/comment_thread_fidelity_test.dart: comment thread imports survive three async saves
+00:00 +6: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +7: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +8: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +9: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +10: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +11: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +12: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +13: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +14: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:00 +15: test/style_cascade_test.dart: custom style part location stays authoritative after style edits
+00:00 +16: test/word_style_introduction_test.dart: unrelated style catalog false retains native paragraph defaults
+00:00 +17: test/word_style_introduction_test.dart: unrelated style catalog true retains native paragraph defaults
+00:00 +18: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:00 +19: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +20: test/styleless_import_fidelity_test.dart: deliberate formatting writes without introducing unrelated defaults
+00:01 +21: test/styleless_import_fidelity_test.dart: an empty imported style catalog does not acquire the global Normal defaults
+00:01 +22: test/styleless_import_fidelity_test.dart: explicit missing Heading1 still resolves and exports only the referenced style
+00:01 +23: test/styleless_import_fidelity_test.dart: new documents retain their intentional default style catalog
+00:01 +24: All tests passed!

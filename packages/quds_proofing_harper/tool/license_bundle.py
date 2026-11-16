@@ -107,7 +107,7 @@ def selection(expression: str) -> list[str]:
 
 
 def cargo(*args: str) -> str:
-    return subprocess.check_output(["cargo", *args, "--manifest-path", str(MANIFEST), "--locked"], text=True)
+    return subprocess.check_output(["cargo", *args, "--manifest-path", str(MANIFEST), "--locked"], cwd=MANIFEST.parent, text=True)
 
 
 def active_packages(target: str) -> tuple[dict, set[tuple[str, str]]]:
@@ -147,6 +147,9 @@ def main() -> None:
         name, version = key
         selected = selection(package["license"])
         source = Path(package["manifest_path"]).parent
+        vcs_path = source / ".cargo_vcs_info.json"
+        vcs = json.loads(vcs_path.read_text()) if vcs_path.is_file() else None
+        revision = vcs.get("git", {}).get("sha1") if vcs else None
         notices = []
         # Actual files, including subdirectory notices, remain byte-for-byte.
         for path in sorted(source.rglob("*")):
@@ -159,17 +162,12 @@ def main() -> None:
                 notices.append({"file": destination, "sha256": sha256(content)})
         if not notices and name in FALLBACK_REVISIONS:
             validate_fallback_revision(name, source)
-        if not notices and name in {"harper-core", "harper-brill", "harper-pos-utils"}:
-            content = (PACKAGE / "licenses" / "upstream" / "HARPER-LICENSE").read_bytes()
-            destination = f"notices/{name}-{version}/LICENSE"
-            archive_files[destination] = content
-            notices.append({"file": destination, "sha256": sha256(content),
-                "source": "https://github.com/Automattic/harper/blob/ea9ab1b8f95be99a5d4040c53be92a6c2ad7f7f3/LICENSE"})
-        if not notices and name in {"burn-ir", "burn-nn", "burn-optim", "cubecl-quant", "embassy-futures"}:
-            prefix = "BURN" if name.startswith("burn-") else "CUBECL" if name == "cubecl-quant" else "EMBASSY"
+            prefix = "HARPER" if name.startswith("harper-") else "BURN" if name.startswith("burn-") else "CUBECL" if name == "cubecl-quant" else "EMBASSY"
             fallback_rows = json.loads((PACKAGE / "licenses" / "upstream" / "fallback-notices.json").read_text())
             for item in fallback_rows:
                 if not item["file"].startswith(prefix + "-"): continue
+                if not revision or f"/{revision}/" not in item["url"]:
+                    raise ValueError(f"Fallback notice does not match the crate source revision: {name}-{version}")
                 content = (PACKAGE / "licenses" / "upstream" / item["file"]).read_bytes()
                 if sha256(content) != item["sha256"]: raise ValueError("Changed upstream notice")
                 destination = f"notices/{name}-{version}/{item['file']}"
@@ -184,6 +182,7 @@ def main() -> None:
             missing_notices.append(f"{name}-{version}")
         record = {"name": name, "version": version, "declared_license": package["license"],
                   "selected_licenses": selected, "source": package["source"], "repository": package["repository"],
+                  "source_revision": revision,
                   "crate_sha256": checksums.get(key), "targets": sorted(entry["targets"]), "notices": notices}
         if "MPL-2.0" in selected:
             url = f"https://static.crates.io/crates/{name}/{name}-{version}.crate"

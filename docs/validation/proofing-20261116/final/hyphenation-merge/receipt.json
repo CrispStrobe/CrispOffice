@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/workspace/scratch/21fc989ecea7/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "test/word_hyphenation_paint_test.dart",
+    "test/word_hyphenation_resume_test.dart",
+    "test/word_small_caps_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_notes_editing_test.dart",
+    "test/word_selection_paint_test.dart",
+    "--reporter",
+    "expanded"
+  ],
+  "cwd": "/workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor",
+  "exit_code": 0,
+  "elapsed_seconds": 7.849,
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/editor_word/caret_engine.dart": "6f8f082fa5812dadefe12fcae8f6f2ef27cdc6732b32463c7ec1094552450730",
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": "d37e2f03e9900fc0b3b1376112089a37f83ee4721520c490c28a1ebde32c81d6",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "ac2b92afc35dcbe79a763f5d920184f90fbd214535f9b9f09c294c766331e911",
+    "packages/quds_office_editor/test/word_hyphenation_paint_test.dart": "41ee4aa1cb97b799330c5ef8273e0f895e48928c95774319a73d36f20dd8b54a",
+    "packages/quds_office_editor/test/word_hyphenation_resume_test.dart": "71b2ca337f2b75e91507772ba1ca797b978cf1aca5139056ffff8421ffa1fc62",
+    "packages/quds_office_editor/test/word_small_caps_test.dart": "b3c0c63278163ae391f5712eba74b187592a36aeab4487c97765e1b75a41cc39",
+    "packages/quds_office_editor/test/word_note_numbering_test.dart": "e6219eec357284406dabd1ea47955463179e18fe17b1e8aa5ebcf185fa624bdd",
+    "packages/quds_office_editor/test/word_notes_editing_test.dart": "5a4dd0fa0e2a6ca5af7af288cbe3ca54821570089a218a3829246353570a7619",
+    "packages/quds_office_editor/test/word_selection_paint_test.dart": "280dd716c79960b002710795f87b0b83681c075e30994583a6a09bb39c4d8437"
+  },
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "log": "tests.log",
+  "log_sha256": "07ec200a09288b683fcadca40245387efdbdbc42040df893004ad0dc7aaa74b7",
+  "test_count": 41
+}

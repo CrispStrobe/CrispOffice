@@ -18,9 +18,9 @@ final class _Transport implements HarperTransport {
   }
 
   @override
-  Future<void> dispose() async {
+  Future<void> dispose() {
     disposed = true;
-    await onDispose?.call();
+    return onDispose?.call() ?? Future<void>.value();
   }
 }
 
@@ -50,6 +50,18 @@ String response({int start = 10, int end = 12}) => jsonEncode({
 });
 
 void main() {
+  test('rejects zero and negative timeouts before using a transport', () {
+    final transport = _Transport((_) async => response());
+    for (final timeout in [Duration.zero, const Duration(microseconds: -1)]) {
+      expect(
+        () => HarperProofingProvider(transport: transport, timeout: timeout),
+        throwsArgumentError,
+      );
+    }
+    expect(transport.calls, 0);
+    expect(transport.disposed, isFalse);
+  });
+
   test(
     'converts scalar offsets after emoji and preserves segment identity',
     () async {
@@ -146,7 +158,8 @@ void main() {
 
   test('timeout result survives throwing and stuck disposal', () async {
     for (final onDispose in <Future<void> Function()>[
-      () async => throw StateError('broken shutdown'),
+      () => throw StateError('broken shutdown'),
+      () async => throw StateError('broken async shutdown'),
       () => Completer<void>().future,
     ]) {
       final transport = _Transport(

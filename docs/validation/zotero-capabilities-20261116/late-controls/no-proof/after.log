@@ -1,0 +1,21 @@
+00:00 +0: loading test/word_comment_proofing_styles_test.dart
+00:00 +0: test/word_comment_proofing_styles_test.dart: comments inherit document, paragraph and character proofing settings on import
+00:00 +1: test/word_comment_proofing_styles_test.dart: inherited and explicit comment proofing values survive three DOCX saves
+00:00 +2: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +3: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +4: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +5: test/word_styles_layout_test.dart: Word body layout paragraph indents are subtracted once
+00:00 +6: test/word_styles_layout_test.dart: Word body layout a host measure drives the line breaks
+00:00 +7: test/word_styles_layout_test.dart: Word body layout table cells keep the wider em so text stays inside the border
+00:00 +8: test/word_styles_layout_test.dart: Word styles numbering defined in a paragraph style gives a list marker
+00:00 +9: test/word_styles_layout_test.dart: Word styles a direct numId 0 switches the style list off
+00:00 +10: test/word_styles_layout_test.dart: Word styles paragraph w:start / w:end indents are read
+00:00 +11: test/word_styles_layout_test.dart: Word table styles borders and region shading come from the style
+00:00 +12: test/word_styles_layout_test.dart: Word table styles direct tblBorders win over the style
+00:00 +13: test/word_styles_layout_test.dart: Word table styles a style whose borders are all nil draws no borders
+00:00 +14: test/word_styles_layout_test.dart: Word table styles a style missing from styles.xml falls back to the id guess
+00:00 +15: test/word_styles_layout_test.dart: files saved by LibreOffice a "none" outline level adds no label
+00:00 +16: test/word_styles_layout_test.dart: files saved by LibreOffice runs inherit bold, italic, and color from the style chain
+00:00 +17: test/word_styles_layout_test.dart: files saved by LibreOffice a run that turns bold off keeps it off
+00:00 +18: test/word_styles_layout_test.dart: files saved by LibreOffice a style with w:b="false" is not bold
+00:00 +19: All tests passed!

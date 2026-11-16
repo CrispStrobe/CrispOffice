@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "785da6071f4db03cf83c3fe5feb0cc8be86c6bef7cc0a28ba6ee9e045f04b2a4",
+    "packages/quds_office_editor/lib/src/editor_word/word_proofing_geometry.dart": "efd855eb63c9b6ccbcf350ec7d453dde01cd31ba1ee88ef504ebe5303fa19877",
+    "packages/quds_office_editor/test/word_proofing_context_test.dart": "a0ca5760510e6ae9cbf3eaf06cd7fb91f1cab7a4a5d3c7cc0fab983b9c212647"
+  },
+  "commands": [
+    {
+      "command": "flutter test --no-pub test/word_proofing_context_test.dart --reporter expanded",
+      "exit_code": 0,
+      "passed_tests": 6,
+      "log": "context-tests.log"
+    },
+    {
+      "command": "dart analyze --fatal-infos lib/src/editor_word/render_word_canvas.dart test/word_proofing_context_test.dart",
+      "exit_code": 0,
+      "log": "context-analyze.log"
+    },
+    {
+      "command": "flutter test --no-pub test/word_note_numbering_test.dart test/word_selection_paint_test.dart --reporter expanded",
+      "exit_code": 0,
+      "passed_tests": 17,
+      "log": "context-regressions.log"
+    }
+  ],
+  "working_directory": "packages/quds_office_editor",
+  "log_sha256": {
+    "context-tests.log": "44e5e34f6727d09182f4ffe122083d5776e0704979c39dc7103f35f40c30db52",
+    "context-regressions.log": "4aa96cd3c03b777dc9df98ed62551e1791621e0966a038faf3f35636ed85dfb0",
+    "context-analyze.log": "f59ab7af21aa5dbcf1e2479bc767266bebe4d520a1fdeda876b1de398bb300ef"
+  },
+  "scope": "Context hits use actual painted finding rectangles and current source; proportional/right/center header overlays share TextPainter geometry with drawing; note labels remain generated and following text keeps original source offsets."
+}

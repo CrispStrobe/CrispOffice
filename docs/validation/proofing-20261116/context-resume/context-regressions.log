@@ -1,0 +1,20 @@
+00:00 +0: loading /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart
+00:00 +0: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 1 for native ID 999 paints and hit-tests atomically
+00:00 +1: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 108 for native ID 7 paints and hit-tests atomically
+00:00 +2: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 10 for native ID 10 paints and hit-tests atomically
+00:00 +3: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: editing after a shortened label still uses the original source range
+00:00 +4: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: earlier inserted notes renumber on insert, undo and redo without ID changes
+00:00 +5: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_selection_paint_test.dart: (setUpAll)
+00:00 +5: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +6: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +7: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +8: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +9: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +10: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +11: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +12: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:00 +13: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:01 +14: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:01 +15: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:01 +16: /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: limited and orphaned note labels identify source IDs explicitly
+00:01 +17: All tests passed!

@@ -1,0 +1,71 @@
+{
+  "recorded_utc": "2026-11-16T13:57:11.454024+00:00",
+  "source_path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+  "test_path": "packages/quds_office_engine/test/word_comment_proofing_styles_test.dart",
+  "primary_source_commit": "f4d52e5b0f04aa0a57cef2074f0b5ee3d2868f48",
+  "incoming_commit": "ca294cf8668706b45f40031ed9a2db52e5737cd2",
+  "primary_source_blob": "caf96b49dc2ad56ca8eab57cc7fb33f5378a6739",
+  "before_source_sha256": "79be22ea7f16ed6ae796ee766f41b6068bc6d1530d4147c2edc2249b90621e69",
+  "incoming_test_blob": "41fe56ccc9e6afbea44814a29539d235d5c32374",
+  "test_sha256": "9f8540226bf42c13461be97e4a36ad84d7a2553faaab39acee6eb6030029974f",
+  "baseline_context": "Bounded engine control during a pending integration merge; the measured cascade is byte-identical to the published primary proofing source. This is not final combined-source qualification.",
+  "harness_inputs_before": {
+    "pubspec.yaml": "09ab3b5abb15bacd2d398bb543640b531f92ffdd9796763cfbca14df496462c2",
+    "pubspec.lock": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+    ".dart_tool/package_config.json": "5c54a5fe58f889478392b8fbbe2a332a88c3e99595f1d04ef8d11c98aff03e70"
+  },
+  "runs": [
+    {
+      "name": "before",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=2",
+        "--reporter",
+        "expanded",
+        "test/word_comment_proofing_styles_test.dart"
+      ],
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_engine",
+      "exit_code": 1,
+      "passed_tests": 1,
+      "failed_tests": 3,
+      "expected_behavioral_failure": true,
+      "log": "before.log",
+      "log_sha256": "47d49e4eb606a0098a6860baa6254420c8f44766997bf4835734e03ec24d6347"
+    },
+    {
+      "name": "after",
+      "command": [
+        "/workspace/scratch/c17add9bb04f/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=2",
+        "--reporter",
+        "expanded",
+        "test/word_comment_proofing_styles_test.dart",
+        "test/word_styles_layout_test.dart"
+      ],
+      "cwd": "/workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_engine",
+      "exit_code": 0,
+      "passed_tests": 19,
+      "failed_tests": 0,
+      "new_comment_tests": 4,
+      "existing_style_layout_tests": 15,
+      "log": "after.log",
+      "log_sha256": "cca2912b1e842a5268e6f5120cf709090a0a5fa50b856de8d44619bb844fdf6d"
+    }
+  ],
+  "github_actions_queried_awaited_or_rerun": false,
+  "after_source_sha256": "ee778127464c1cfcc793877383fc9ea2a620f21c0230ec76140ffb11b2ad312e",
+  "after_source_blob": "503f13740dad5593ecda99989de6fda025edbc9a",
+  "source_diff_numstat": "12\t0\tpackages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+  "test_bytes_unchanged_from_incoming": true,
+  "after_source_bytes_match_exact_incoming_file": true,
+  "harness_inputs_after": {
+    "pubspec.yaml": "09ab3b5abb15bacd2d398bb543640b531f92ffdd9796763cfbca14df496462c2",
+    "pubspec.lock": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+    ".dart_tool/package_config.json": "5c54a5fe58f889478392b8fbbe2a332a88c3e99595f1d04ef8d11c98aff03e70"
+  },
+  "harness_inputs_unchanged": true,
+  "completed_utc": "2026-11-16T13:59:05.441040+00:00",
+  "counts_excluded_from_final_qualification": true
+}

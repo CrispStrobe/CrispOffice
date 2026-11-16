@@ -1,5 +1,10 @@
 [
   {
+    "file": "HARPER-LICENSE",
+    "url": "https://raw.githubusercontent.com/Automattic/harper/ea9ab1b8f95be99a5d4040c53be92a6c2ad7f7f3/LICENSE",
+    "sha256": "fbc8f1bffe04ab962340fabb1324d57d8b875070f67759d606516144ee53ac19"
+  },
+  {
     "file": "BURN-LICENSE-MIT",
     "url": "https://raw.githubusercontent.com/tracel-ai/burn/a6da424feacf6d82d6a0e81db197310796267c2b/LICENSE-MIT",
     "sha256": "ef31f0b689aa7e2edb5883c7617361de37b05030389e876d91be6c2f2306bb35"
