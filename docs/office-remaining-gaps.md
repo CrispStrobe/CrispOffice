@@ -82,8 +82,8 @@ new XLSX copy; the host also exposes an explicit **Export as ODS** action.
 `OdsSheetWriter` exports the modeled workbook subset (values, formulas, styles,
 number formats, merges, geometry, hidden state, comments, links, names, print
 areas/titles, autofilter ranges and predicates, pictures, conditional formats,
-validations, row outline groups and a default page layout). Authored page-style serialization remains open; an
-ODT/ODP writer remains a separate project.
+validations, row outline groups and authored page setup). An ODT/ODP writer
+remains a separate project.
 
 ### 8. ODP slide fidelity
 
