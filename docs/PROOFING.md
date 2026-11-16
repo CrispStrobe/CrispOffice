@@ -344,7 +344,7 @@ single unique-test total. No GitHub Actions queue was waited for.
 | [Merged renderer receipt](validation/proofing-20261116/final/hyphenation-merge/receipt.json) | 41 renderer/note/selection cases; all eight incoming cases retained; strict targeted analysis clean | New local merge validation |
 | [German core continuation receipt](validation/proofing-20261116/german-resume/receipt.json) | 38 shared/German tests, dictionary byte-for-byte regeneration, strict analysis and ten compiled-JavaScript checks; source unchanged during checks | New local continuation run |
 | [Earlier German core receipt](validation/proofing-20261116/german-core/receipt.json) | Earlier 38-test/ten-JavaScript run retained for its own source snapshot | Retained recovered-checkpoint evidence |
-| [Final integration receipt](validation/proofing-20261116/final/receipt.json) | Consolidated session, UI, context-menu and affected-package checks; exact counts, source hashes and commands in the receipt | Final local continuation evidence |
+| [Final integration receipt](validation/proofing-20261116/final/receipt.json) | 232 hyphenation, 38 German plus ten JavaScript, 173 incoming engine, 165 editor and one IME test; three strict package analyses and release web/Harper packaging passed; all 2,025 recorded inputs unchanged | Fresh local checks at `f4d52e5`, with separately identified matching Harper evidence reused |
 | [German model probe](validation/proofing-20261116/german-model-evaluation.json) | 9/18 exact error corrections; 1/12 valid controls changed | Retained evaluation only; not rerun or enabled |
 
 The [hyphenation validation notes](validation/proofing-20261116/hyphenation-resume/README.md)
