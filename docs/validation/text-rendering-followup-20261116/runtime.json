@@ -1,0 +1,70 @@
+{
+  "status": "ready",
+  "env_file": "/workspace/scratch/51b89fd39d6a/text-toolchain/env.sh",
+  "sdk_root": "/workspace/scratch/51b89fd39d6a/text-toolchain/flutter",
+  "pub_cache": "/workspace/scratch/51b89fd39d6a/text-toolchain/pub-cache",
+  "tmpdir": "/workspace/scratch/51b89fd39d6a/text-toolchain/tmp",
+  "sdk_archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "archive_bytes": 1581444364,
+    "extracted_bytes": 1363358854,
+    "excluded_members": 17779
+  },
+  "actual_runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/51b89fd39d6a/text-toolchain/flutter"
+  },
+  "sdk_executables": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "package_archive_count": 162,
+  "package_archives_all_hash_verified": true,
+  "workspace_package_count": 108,
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "previous_qualified_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "enforce_lockfile_exit_code": 0,
+  "smoke_scope": "Runtime setup verification only; these are not final qualification of changed source.",
+  "smoke_checks": [
+    {
+      "file": "/workspace/scratch/51b89fd39d6a/text-toolchain/setup/dart-smoke-2.jsonl",
+      "sha256": "850751e8205eb63714ec4055806b94ff77585a72f06bd1cc9040ac6ecdaa2654",
+      "test_outcomes": 2,
+      "successes": 2,
+      "skips": 0,
+      "done": {
+        "success": true,
+        "type": "done",
+        "time": 11398
+      }
+    },
+    {
+      "file": "/workspace/scratch/51b89fd39d6a/text-toolchain/setup/flutter-smoke-2.jsonl",
+      "sha256": "9ec69cebd0d6d9024b47301cd795078a31afe850c263c141d8babf91b76ce524",
+      "test_outcomes": 5,
+      "successes": 5,
+      "skips": 0,
+      "done": {
+        "success": true,
+        "type": "done",
+        "time": 29919
+      }
+    }
+  ],
+  "initial_smoke_failures": "Both runners initially could not create /tmp; TMPDIR was set to a writable directory under this workspace and the unchanged test commands passed.",
+  "github_actions_used": false,
+  "production_manifests_modified": false,
+  "sdk_sources_modified": false
+}

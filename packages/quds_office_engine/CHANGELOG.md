@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve supplementary Unicode in embedded TrueType subsets with a complete
+  format 12 cmap; correct format 4 lengths and avoid overflowing their 16-bit
+  length field for large sparse mappings. Ignore invalid scalar requests.
+- Encode PDF ToUnicode destinations as UTF-16BE, preserving supplementary
+  characters through export, reopening, search and text extraction.
+
 - Keep protected URL/email text out of German agreement context, retain
   surrounding URL punctuation for balance checks, recognize uppercase URL
   prefixes, and suggest Swiss `SS` for uppercase sharp-s spellings.

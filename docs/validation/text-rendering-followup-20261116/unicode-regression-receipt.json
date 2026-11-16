@@ -1,0 +1,37 @@
+{
+  "recorded_at_utc": "2026-11-16T16:56:06.650733+00:00",
+  "baseline_revision": "b3b5006c44dd8e0de96fe05b563f3fcfa1b107c0",
+  "test_file": "packages/quds_office_engine/test/font_subset_unicode_test.dart",
+  "command": "dart test --reporter json test/font_subset_unicode_test.dart",
+  "runtime": "runtime.json",
+  "before": {
+    "test_cases": 7,
+    "passed": 0,
+    "failed": 7,
+    "skipped": 0,
+    "runner_success": false,
+    "expected_regressions": true
+  },
+  "after_initial_fix": {
+    "test_cases": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "runner_success": true
+  },
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/fonts/font_subsetter.dart": {
+      "after_initial_fix": "2682ccc19182b53d7e1b383ee100f95a2c3cddc8b74cea95d58e823ae87d78a0",
+      "before": "ebaa644f807453bb4ad00451387b0293478c1c3db44a03a46d2991bf0fe2feab"
+    },
+    "packages/quds_office_engine/lib/src/pdf/pdf_font.dart": {
+      "after_initial_fix": "8435d1f70682a45a5c1454f425ccbd8795bc5ede606d912b3b5a1f853873f0c1",
+      "before": "1ed8efee3dba6ded9a97deb38306f8a95492f1edb4eda6d53ff2700b1a2907fe"
+    },
+    "packages/quds_office_engine/test/font_subset_unicode_test.dart": {
+      "after_initial_fix": "0c6586b8527c1c93326e2a80d5a745e346b5e11eab95d430575ead560745afb1",
+      "before": "0c6586b8527c1c93326e2a80d5a745e346b5e11eab95d430575ead560745afb1"
+    }
+  },
+  "test_fixture": "Required bundled Liberation Sans outlines with explicit synthetic supplementary cmap aliases; tests Unicode transport, not emoji or CJK font coverage."
+}

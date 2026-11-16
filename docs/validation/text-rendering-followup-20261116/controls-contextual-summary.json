@@ -1,0 +1,29 @@
+{
+  "cwd": "packages/quds_office_engine",
+  "command": "dart test --reporter json test/line_breaker_controls_test.dart test/line_breaker_measure_line_test.dart test/variable_line_breaker_test.dart test/word_run_measure_test.dart test/word_run_measure_boundaries_test.dart",
+  "passed": 72,
+  "skipped": 0,
+  "failed": 0,
+  "runner_done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 10903
+    }
+  ],
+  "reviewed_and_test_paths_sha256": {
+    "lib/src/bidi/line_breaker.dart": "326731d2e568a9c626b59814381731e7e0f1a9d6df7529dffdccadbca291ee48",
+    "lib/src/word/layout/word_layout.dart": "caf88cf7c164ea1c4fe24cdffc2beb9bb5b98bb3bc53ee20519b5ba03895a0d4",
+    "lib/src/word/layout/word_run_measure.dart": "3aa42a3ffb3eef67bee936e68dcef3fd24b8498b4c4df9e8ea7dd8de553c5f29",
+    "test/line_breaker_controls_test.dart": "44e64c8e55af8b112da4b9fb4ab6856ba47d5da7d8e55b631a0b49f2a6540fd7",
+    "test/line_breaker_measure_line_test.dart": "dca32c9d89a7e68273e79ad04c3faef37a4fdb8c960836c7e52874e5e3996748",
+    "test/variable_line_breaker_test.dart": "4507476c9ee73af58560a692b75ce73a47df44365803d1795d33ba0ca20233e7",
+    "test/word_run_measure_test.dart": "8301933426ba566593b989118cea30ae86b1fe8193979c49b227b8848f4173fe",
+    "test/word_run_measure_boundaries_test.dart": "57e5e26e2e9bab01407eff01190d775a71bbb0b089c9997e1d681b68e39a96af"
+  },
+  "metadata_collected_head": "b3b5006c44dd8e0de96fe05b563f3fcfa1b107c0",
+  "metadata_collected_status": " M packages/quds_office_editor/lib/src/editor_pdf/pdf_font_faces.dart\n?? packages/quds_office_engine/test/font_subset_unicode_test.dart\n",
+  "reviewed_source_commit": "3196e49bea45de49fb7a4ab85163e953cca58d11",
+  "attribution_note": "Executed against integrated line-breaker/contextual source; reviewed and test paths match 3196e49. Summary metadata was captured later, after a documentation checkpoint and concurrent work began.",
+  "reviewed_paths_equal_source_commit": true
+}
