@@ -8,7 +8,7 @@ is maintained in the CrispCloud repository
 
 ## Current baseline
 
-- Sheet/ODS cohort: 503 tests.
+- Sheet/ODS cohort: 507 tests.
 - Last clean full engine run: 2,205 tests. Two unrelated CLI
   bookmark/content-control tests currently fail on main.
 - Live ODS → XLSX fidelity against LibreOffice: 0.9981 on the measured BOM
@@ -48,17 +48,17 @@ custom-formula rules; comparison operators, Excel date serials,
 title/message/style and correct Excel list quoting. Range sources resolve after
 all sheets exist.
 
-Not supported: ODF condition types outside the shared model (for example time
-or arbitrary multi-condition expressions); these decline rather than being
-approximated.
+Not supported: ODF condition grammar outside the shared model (for example time
+or arbitrary multi-condition expressions) and dynamic source-range links; these
+decline rather than being approximated.
 
 ### 4. ODS metadata and layout
 
-Imported: print areas, print-title rows/columns, global and sheet-local named
-ranges, and a basic database-range autofilter.
+Imported: print areas/titles, global and sheet-local named ranges and named
+expressions, tab colors, cell hyperlinks, row/column outline groups and database-range filter predicates with
+equality, comparison and empty checks.
 
-Not yet imported/modeled: unmodeled named expressions, detailed filter
-conditions, tab colors, outline grouping, cell hyperlinks and several page-style
+Not yet imported/modeled: exotic filter grammar and several page-style
 properties.
 
 ### 5. ODS package parity
