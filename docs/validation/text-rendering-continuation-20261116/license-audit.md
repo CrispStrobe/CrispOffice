@@ -5,6 +5,10 @@ Date: **16 November 2026**. Integrated base:
 Audited implementation:
 [`097f6153906e246d33a72382bfc5454fd8e40b9d`](https://github.com/CrispStrobe/quds_office_suite/commit/097f6153906e246d33a72382bfc5454fd8e40b9d).
 
+The original audit below retains its exact scope. The final pinned integration
+in `c6aab884` also brings English pattern data; its additional terms and source
+checks are recorded in the **Final integration addendum** at the end of this file.
+
 ## Result and boundary
 
 The audited delta adds **no GPL/LGPL component, package dependency, native library,
@@ -184,3 +188,35 @@ FreeType as diagnostic tooling. Its receipt records Matplotlib's bundled
 **FreeType 2.6.1**. The experiment demonstrates cmap-sensitive auto-hinting in
 that runtime; it is **not proof of Flutter 3.47.8's exact native rasterization
 cause** and does not justify an original-font/subset bitmap-parity claim.
+
+## Final integration addendum
+
+The frozen 185-ref snapshot at **2026-11-16 20:10:54.959 UTC** was integrated in
+[`c6aab884eb478672d36da5c03cd20873d7e8c42c`](https://github.com/CrispStrobe/quds_office_suite/commit/c6aab884eb478672d36da5c03cd20873d7e8c42c).
+The new English and German paths were reviewed at their pinned incoming heads,
+and the en-de/Harper adapter changes were reviewed separately. Incoming Dart
+formatting was normalized without changing the pattern data or license notices.
+
+| Newly integrated material | License/source result |
+| --- | --- |
+| American English hyphenation patterns | **LicenseRef-Kuiken-permissive**: royalty-free copying and distribution, with or without modification, retaining copyright and permission notices. The custom grant is identified accurately and is not relabeled MIT. |
+| British English hyphenation patterns | **MIT**, with the complete notice preserved. The restricted underlying Oxford University Press word list is not shipped. |
+| Handwritten English/German code and tooling | Covered by the unchanged root and engine MIT licenses. |
+| Harper source projection and dialect UI additions | No new dependency manifests, lockfiles, native implementation, font, dictionary/data asset or license file in this delta. Existing package terms remain unchanged. |
+
+Both English sources are exact upstream files from tex-hyphen commit
+[`5684c0f51c0b81133db2efbe60a408b4155a3ff5`](https://github.com/hyphenation/tex-hyphen/tree/5684c0f51c0b81133db2efbe60a408b4155a3ff5).
+The original files and generated Dart prefaces retain their complete notices.
+The deterministic generator passed `--check` for 4,938 US patterns with 14
+exceptions and 8,527 GB patterns with eight exceptions, with source and output
+hashes matching the manifest. The German dictionary blob is unchanged.
+
+The [English source notice](../../../packages/quds_office_engine/third_party/hyphenation/ENGLISH.md)
+and [manifest](../../../packages/quds_office_engine/third_party/hyphenation/english-manifest.json)
+provide the pinned URLs and exact digests. The
+[English/German review](integration-185/late-proofing-review.json) records direct
+upstream identity checks and 35 unchanged guarded manifest/font/license paths;
+the [Harper review](integration-185/late-harper-review.json) records its separate
+source and dependency boundary. These reviews found no GPL/LGPL addition in
+the incoming shipped code/data. They do not extend the historical audit into a
+certification of every inherited dependency or of a future native shaping build.
