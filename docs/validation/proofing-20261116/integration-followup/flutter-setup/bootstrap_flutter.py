@@ -244,7 +244,7 @@ def main():
                 if target.exists():
                     shutil.rmtree(target)
                 temporary.rename(target)
-                hash_file.write_text(actual + "\n")
+                hash_file.write_text(actual)
                 result.update({
                     "status": "verified-download", "actual_sha256": actual,
                     "archive_bytes": len(payload),

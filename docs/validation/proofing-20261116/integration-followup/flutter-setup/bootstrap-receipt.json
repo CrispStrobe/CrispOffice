@@ -1,0 +1,78 @@
+{
+  "started": "2026-11-16T15:05:00.193341+00:00",
+  "sdk_archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+  "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "repo": "/workspace/scratch/72fe03e29337/quds_office_suite",
+  "sdk_root": "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter",
+  "pub_cache": "/workspace/scratch/72fe03e29337/runtime/pub-cache",
+  "commands": [
+    {
+      "label": "flutter-version",
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/flutter",
+        "--version",
+        "--machine"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1387674808502197,
+      "log": "flutter-version.log",
+      "log_sha256": "d0feeeb8349782295fc35c346fa640b0b997aaeb432fc9927dbf96941c00abd8"
+    },
+    {
+      "label": "flutter-tools-offline",
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "--suppress-analytics",
+        "--directory",
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/packages/flutter_tools",
+        "get",
+        "--example",
+        "--offline"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite",
+      "exit_code": 0,
+      "elapsed_seconds": 1.7479405403137207,
+      "log": "flutter-tools-offline.log",
+      "log_sha256": "73db0765be2f99cd7fbd511587c6327ec6c7102583ffe67e2401a054180ad220"
+    },
+    {
+      "label": "workspace-offline",
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/flutter",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite",
+      "exit_code": 0,
+      "elapsed_seconds": 5.660831928253174,
+      "log": "workspace-offline.log",
+      "log_sha256": "01aa901241468b911e39f83102b6cf85275496a0f465fd19705c5955adda86eb"
+    }
+  ],
+  "status": "passed",
+  "sdk_install_receipt_sha256": "25cfcf7ec381743c795583c20acd26e16e8bd7860213cb394ee3f4dd41c107bd",
+  "actual_runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter"
+  },
+  "pub_cache_receipt_sha256": "2ddea5ccc3aec8fced38142c409e6ef699a58ce75d29adb0a07d4dbd09f63c60",
+  "project_package_config_sha256": "96752428309e3347b06a7b73cf85f0caaa381a537a746455138af9183aa9ab06",
+  "project_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "project_package_count": 108,
+  "finished": "2026-11-16T15:05:09.459740+00:00",
+  "free_bytes": 2481725440
+}
