@@ -373,11 +373,7 @@ abstract final class LineBreaker {
     final boundaries = <int>[
       0,
       for (var i = 1; i < logical.length; i++)
-        if (clusterStarts.contains(logical[i].logicalIndex) &&
-            logical[i].logicalIndex != logical[i - 1].logicalIndex &&
-            // A lam-alef ghost belongs to the preceding painted ligature.
-            logical[i].codePoint != 0)
-          i,
+        if (_isClusterBoundary(logical, i, clusterStarts)) i,
       logical.length,
     ];
     final boundaryIndex = <int, int>{
@@ -435,6 +431,9 @@ abstract final class LineBreaker {
   ) =>
       at == logical.length ||
       (at > 0 &&
+          // All soft-break paths consume ordinary spaces with their preceding
+          // line, including a host-measured oversized grapheme fallback.
+          logical[at].codePoint != 0x0020 &&
           clusterStarts.contains(logical[at].logicalIndex) &&
           logical[at].logicalIndex != logical[at - 1].logicalIndex &&
           // The continuation of a lam-alef ligature has no independent ink.
@@ -885,6 +884,10 @@ abstract final class LineBreaker {
     }
     if (hyphens.containsKey(glyphs[i + 1].logicalIndex)) return true;
     final int next = glyphs[i + 1].codePoint;
+    // A soft wrap owns the following ordinary spaces. In particular, a
+    // hyphen followed by a space must not leave that space at the beginning
+    // of the next line. Keep tabs and nonbreaking spaces distinct.
+    if (next == 0x0020) return false;
     if (_isBreakSpace(cp)) {
       return true;
     }

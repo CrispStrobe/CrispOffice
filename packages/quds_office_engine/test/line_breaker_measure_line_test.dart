@@ -190,6 +190,64 @@ void main() {
     expect(second.nextOffset, 3);
   });
 
+  for (final spaces in [' ', '   ']) {
+    test('contextual emergency repair consumes boundary spaces: "$spaces"', () {
+      final text = 'A\u0308${spaces}BC';
+      List<ShapedGlyph> actual(List<ShapedGlyph> glyphs) => [
+        for (final glyph in glyphs)
+          _advance(
+            glyph,
+            glyph.logicalIndex == 0
+                ? 10
+                : glyph.logicalIndex == 1
+                ? 0
+                : 3,
+          ),
+      ];
+
+      final fixed = LineBreaker.breakLines(
+        text: text,
+        maxWidth: 5,
+        widthOf: (_) => 0.1,
+        justify: false,
+        breakLongWords: true,
+        measureLine: actual,
+      );
+      final prepared = LineBreaker.prepare(
+        text: text,
+        widthOf: (_) => 0.1,
+        justify: false,
+        breakLongWords: true,
+        measureLine: actual,
+      );
+      final first = prepared.breakNext(start: 0, maxWidth: 5);
+      // The oversized grapheme stays whole, with its following spaces owned
+      // by the same line instead of becoming a blank or indented next line.
+      expect(first.nextOffset, 2 + spaces.length);
+      final variable = <BrokenLine>[];
+      var offset = 0;
+      while (offset < text.length) {
+        final next = prepared.breakNext(start: offset, maxWidth: 5);
+        expect(next.nextOffset, greaterThan(offset));
+        variable.add(next.line);
+        offset = next.nextOffset;
+      }
+      for (final lines in [fixed, variable]) {
+        expect(lines.map(_painted), ['A\u0308', 'B', 'C']);
+        expect(
+          lines.every(
+            (line) =>
+                line.glyphs.isNotEmpty && line.glyphs.first.codePoint != 32,
+          ),
+          isTrue,
+        );
+        expect(_sourceInk(lines), [0, 1, 2 + spaces.length, 3 + spaces.length]);
+        expect(lines.first.width, 10);
+        expect(lines.skip(1).map((line) => line.width), everyElement(3));
+      }
+    });
+  }
+
   test('natural breaks never detach a mark from a source space grapheme', () {
     final lines = LineBreaker.breakLines(
       text: 'A \u0308B C',
