@@ -1,0 +1,34 @@
+{
+  "flutter-version": {
+    "exit_code": 0,
+    "command": "flutter --version --machine"
+  },
+  "engine-pub-get": {
+    "exit_code": 0,
+    "command": "dart pub get --enforce-lockfile"
+  },
+  "editor-pub-get": {
+    "exit_code": 0,
+    "command": "dart flutter_tools.snapshot pub get --enforce-lockfile"
+  },
+  "studio-pub-get": {
+    "exit_code": 0,
+    "command": "dart pub get --enforce-lockfile"
+  },
+  "host-pub-get": {
+    "exit_code": 0,
+    "command": "dart pub get --enforce-lockfile"
+  },
+  "engine-smoke": {
+    "exit_code": 0,
+    "command": "dart test test/zotero_formatted_text_test.dart --reporter expanded",
+    "passed_tests": 21,
+    "purpose": "toolchain setup smoke; not final feature qualification"
+  },
+  "editor-smoke": {
+    "exit_code": 0,
+    "command": "dart flutter_tools.snapshot test --no-pub --concurrency=1 --reporter expanded test/word_zotero_format_test.dart",
+    "passed_tests": 31,
+    "purpose": "toolchain setup smoke; not final feature qualification"
+  }
+}

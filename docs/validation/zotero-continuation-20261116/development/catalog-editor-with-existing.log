@@ -1,0 +1,46 @@
+00:00 +0: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart
+00:00 +0: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced refresh keeps URI aliases and unknown citation data
+00:02 +1: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: wrong desktop profile with the same item key cannot refresh
+00:02 +2: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: online operations reject local-only references before a request
+00:02 +3: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: online refresh can use a numeric alias while retaining old local URI
+00:03 +4: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: different local profiles are not combined through the same route
+00:03 +5: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+00:04 +6: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch true
+00:04 +7: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced selected export verifies sources before copying reference data
+00:04 +8: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: changed profile cannot copy another source under a selected item key
+00:04 +9: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced bibliography verifies selection and requires review before insertion
+00:05 +10: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: reviewed bibliography keeps rich runs through save and undo
+00:05 +11: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: bibliography review offers an explicit editable plain result
+00:06 +12: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling rich bibliography review keeps history unchanged
+00:06 +13: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret rejects a reviewed rich bibliography
+00:07 +14: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision rejects a reviewed rich bibliography
+00:07 +15: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: rich review and format limitation fit a narrow viewport
+00:07 +16: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unchanged imported citation keeps its rich cache and native formatting metadata
+00:08 +17: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: older desktop cannot render an unverified aggregate bibliography
+00:08 +18: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: local source without CSL or identity is not refetched by a bare key
+00:08 +19: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop account source inserts without using the saved cloud key
+00:09 +20: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop unsynced source inserts without using the saved cloud key
+00:09 +21: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop citation-key source inserts without using the saved cloud key
+00:09 +22: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: switching sources makes no requests and preserves the cloud credential
+00:10 +23: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a host without desktop transport offers only the supported source
+00:10 +24: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop connection and errors fit a 320 by 640 viewport
+00:10 +25: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: offline CSL import inserts source metadata and can be undone
+00:11 +26: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling the citation composer leaves document and history unchanged
+00:11 +27: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret while the composer is open blocks stale insertion
+00:11 +28: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision while the composer is open blocks stale insertion
+00:12 +29: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: mock Web API connection, pagination and search keep the key outside the document
+00:12 +30: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unchecking Remember removes the saved key immediately without connecting
+00:12 +31: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+00:13 +32: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: dialog, offline import and composer fit a 320 by 640 viewport
+00:13 +33: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart
+00:14 +33: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 0 in one undo
+00:16 +34: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 1 in one undo
+00:16 +35: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 2 in one undo
+00:17 +36: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: saved document style goes directly to the seeded native picker
+00:17 +37: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the first style chooser retains catalog selection
+00:18 +38: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the following picker also discards staged style
+00:18 +39: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a failed picker never commits the preceding style choice
+00:18 +40: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: preferences stay detached while the next native dialog waits
+00:19 +41: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: Cancel operation discards both native stages
+00:19 +42: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a changed insertion point discards both native stages
+00:19 +43: All tests passed!

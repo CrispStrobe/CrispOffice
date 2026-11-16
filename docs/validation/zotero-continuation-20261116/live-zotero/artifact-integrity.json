@@ -1,0 +1,110 @@
+{
+  "README.md": {
+    "bytes": 7095,
+    "sha256": "3030445e7a4ef1f895bc6ca6e1aae1c5855cdf9dd532df1ea2265560e71a6b17"
+  },
+  "fixtures/isolated-profile-user.js": {
+    "bytes": 516,
+    "sha256": "5cf634a5771c77582e371950c5fa9681525d982ad85223407b61d7ee7561370a"
+  },
+  "fixtures/native-before.docx": {
+    "bytes": 6861,
+    "sha256": "ebc0d2b747c5c067264b0ebf123ac71d15039cb95d886df3274f35359967b77a"
+  },
+  "fixtures/native-refreshed.docx": {
+    "bytes": 7070,
+    "sha256": "7b89dc7c4691f5ac6b8d5df7d275a8578b4163056bcb85667f36fc00f960862a"
+  },
+  "fixtures/synthetic-sources.bib": {
+    "bytes": 582,
+    "sha256": "bd36174ec3777ee30e13a556e6cb53fcd9796c19a181429a5262c1a4e7cb7a66"
+  },
+  "native-setup-receipt.json": {
+    "bytes": 7443,
+    "sha256": "ab113bc9096b2dea9ee625e0ca8e61d8b1ef1fc4c4bf3245b1f48e862402af3a"
+  },
+  "prepare-replay.py": {
+    "bytes": 2001,
+    "sha256": "19191d201225ec8773bd8af1b36efdd49ebcb05991e21f5830bccbfac5d4b6c1"
+  },
+  "raw-log-integrity.json": {
+    "bytes": 2185,
+    "sha256": "7c03b5750bfb19cb3e8b820e657965d82fb5fbcfff89ab91a3d27a99821c42d3"
+  },
+  "raw-logs/catalog-client-run.log.gz": {
+    "bytes": 91,
+    "sha256": "11ab59d8485328959971b01ec33cbdf402f009a1e3a8f149bdb2f8f5780ed312"
+  },
+  "raw-logs/catalog-client-setup-attempt.log.gz": {
+    "bytes": 947,
+    "sha256": "d0201e939bc34e5d5f4d217e8b0f133d5914c12402732b3d0bb47cea0791af33"
+  },
+  "raw-logs/catalog-headers.txt.gz": {
+    "bytes": 239,
+    "sha256": "26e2e23655f22dea92c05ce9b332228ea92825139ec19a7e34372a25e325b907"
+  },
+  "raw-logs/catalog-response.json.gz": {
+    "bytes": 640,
+    "sha256": "52e625e3682b15d6496d90f9069c6b049d8d5e358cf9b4d09558b15b76027897"
+  },
+  "raw-logs/refresh-client-run.log.gz": {
+    "bytes": 118,
+    "sha256": "dfff554c7ef3b1c23c877f522d1ef7cf68bacc9c2da4695070fab4efc56ce1dc"
+  },
+  "raw-logs/refresh-protocol.jsonl.gz": {
+    "bytes": 1952,
+    "sha256": "eea35eb4f49b7d762d89b33cc89581ca96fa93080c389077b64791ce268def86"
+  },
+  "raw-logs/zotero-native.log.gz": {
+    "bytes": 218,
+    "sha256": "c7427b2425456fef581205bbed12e42520f6fa6d58e2aa1865803dd1351d9922"
+  },
+  "results/catalog-client-result.json": {
+    "bytes": 2227,
+    "sha256": "e7845355f185f40deffeeed252a6c30a66d71cc3a837a4cd002bb1bad5f62c00"
+  },
+  "results/docx-format-verification.json": {
+    "bytes": 1442,
+    "sha256": "36a01b7c1b37c338040e94d6d6283785443243a3036bf97be0a4d91058fd9154"
+  },
+  "results/refresh-result.json": {
+    "bytes": 1014,
+    "sha256": "940c42277690e5eba2ed07dc43e989bf518faac86e64549948dc5a8577889110"
+  },
+  "runtime/package_config.json": {
+    "bytes": 14248,
+    "sha256": "a4b425e0b230f9305ac5b70132f9fc30a307cc4366e509439d4afb84eec8ac8e"
+  },
+  "runtime/pubspec.lock": {
+    "bytes": 14238,
+    "sha256": "52e39372b41c6a3892649f089e15516ddba66c3fc9679fa13a233a25ba61d12f"
+  },
+  "runtime/pubspec.yaml": {
+    "bytes": 558,
+    "sha256": "6e749a1e3d04caae82d25dab38f3cfb498535e2b06ddb405253085cd63dd1761"
+  },
+  "scripts/catalog-live.dart": {
+    "bytes": 1905,
+    "sha256": "2436115d0494f57d470ba9e106c4c6615162e1f9f42665c4216079d2a140b23a"
+  },
+  "scripts/launch-isolated.sh": {
+    "bytes": 381,
+    "sha256": "d8370a75ee9174d54689871e66c8ebf78643fa7948468bf8fdab1702a868e573"
+  },
+  "scripts/probe-native.sh": {
+    "bytes": 419,
+    "sha256": "ed22e7745847d3c2178991e942d82a5bcb76f6e4dfb2a745beb0cb5bf28992f8"
+  },
+  "scripts/refresh-live.dart": {
+    "bytes": 4895,
+    "sha256": "bb262aa72996bda374029eaad8599470bffd1b116ed7340e8ab0635c83932856"
+  },
+  "scripts/run-catalog-live.sh": {
+    "bytes": 485,
+    "sha256": "d309a7e6ec372673f4ceb5bfa81d5ed638436df57d4ef6346c8f2288fb7b0b8c"
+  },
+  "scripts/run-refresh-live.sh": {
+    "bytes": 427,
+    "sha256": "7b4c91ca758070e8ca635508267c4c0a839be71b84c7a3129b41daab5c18f6c2"
+  }
+}

@@ -1,0 +1,20 @@
+00:00 +0: loading test/word_zotero_rich_edit_test.dart
+00:00 +0: native insertion retains mixed citation formatting as one field
+00:00 +1: native replacement upgrades a simple field without losing neighbors
+00:00 +2: a caret inside a mixed citation moves after the complete packet
+00:00 +3: partial mixed citation replacement removes its entire packet: ""
+00:00 +4: partial mixed citation replacement removes its entire packet: "Replacement"
+00:00 +5: paste at citation position 7 keeps the field packet intact
+00:00 +6: paste at citation position 9 keeps the field packet intact
+00:00 +7: paste at citation position 14 keeps the field packet intact
+00:00 +8: paragraph split at citation edge 7 keeps every marker together
+00:00 +9: paragraph split at citation edge 14 keeps every marker together
+00:00 +10: paragraph split within a mixed citation refuses before mutation
+00:00 +11: formatting a partial citation selects all result runs without splitting it
+00:00 +12: locked Zotero packets refuse generic interior editing without mutation
+00:00 +13: malformed Zotero packets refuse generic interior editing without mutation
+00:00 +14: unbalanced Zotero packets refuse generic interior editing without mutation
+00:00 +15: nested Zotero packets refuse generic interior editing without mutation
+00:00 +16: mixed citation styles survive repeated direct DOCX saves
+00:00 +17: mixed citation styles survive repeated isolate DOCX saves
+00:00 +18: All tests passed!

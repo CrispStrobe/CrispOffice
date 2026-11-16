@@ -1,0 +1,8 @@
+Analyzing line_breaker.dart, word_layout.dart, word_note_layout.dart, word_table_row_layout.dart, wml_clone.dart, wml_document.dart, wml_run_edit.dart, word_field_spans.dart, word_note_numbering.dart, word_notes.dart, word_revision.dart, word_zotero.dart, word_zotero_citing.dart, word_zotero_data.dart, word_deserializer.dart, word_serializer.dart, note_marker_fidelity_test.dart, word_note_numbering_test.dart, word_zotero_citing_test.dart, word_zotero_preference_flow_test.dart, word_zotero_rich_edit_test.dart, word_zotero_simple_field_test.dart, word_zotero_style_preferences_review_test.dart...
+
+  error - packages/quds_office_engine/test/word_zotero_preference_flow_test.dart:54:14 - Method invocation or property access on a 'dynamic' target. Try giving the target a type. - avoid_dynamic_calls
+   info - packages/quds_office_engine/lib/src/word/model/word_field_spans.dart:66:39 - Statements in a for should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - packages/quds_office_engine/test/word_zotero_rich_edit_test.dart:375:7 - Local variables should be final. Try making the variable final. - prefer_final_locals
+   info - packages/quds_office_engine/test/word_zotero_rich_edit_test.dart:392:53 - Statements in a for should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+4 issues found.

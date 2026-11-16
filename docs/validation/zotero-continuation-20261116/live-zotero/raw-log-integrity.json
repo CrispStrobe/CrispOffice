@@ -1,0 +1,51 @@
+{
+  "raw-logs/catalog-client-run.log.gz": {
+    "original_name": "catalog-client-run.log",
+    "raw_bytes": 73,
+    "raw_sha256": "a85c2436ddbef55b2609823d2786c498883e96eaac71b6f522c110f0d4e15e32",
+    "gzip_bytes": 91,
+    "gzip_sha256": "11ab59d8485328959971b01ec33cbdf402f009a1e3a8f149bdb2f8f5780ed312"
+  },
+  "raw-logs/catalog-client-setup-attempt.log.gz": {
+    "original_name": "catalog-client-setup-attempt.log",
+    "raw_bytes": 7306,
+    "raw_sha256": "17955b50e3f18ed0ef20150aa569860d4f4a0dd62ab0f8160d53833342283658",
+    "gzip_bytes": 947,
+    "gzip_sha256": "d0201e939bc34e5d5f4d217e8b0f133d5914c12402732b3d0bb47cea0791af33"
+  },
+  "raw-logs/catalog-headers.txt.gz": {
+    "original_name": "catalog-headers.txt",
+    "raw_bytes": 316,
+    "raw_sha256": "7973087864ad6ed2d2f989a2a398be8e7386aca20ccb821ab6390fb85bc167b9",
+    "gzip_bytes": 239,
+    "gzip_sha256": "26e2e23655f22dea92c05ce9b332228ea92825139ec19a7e34372a25e325b907"
+  },
+  "raw-logs/catalog-response.json.gz": {
+    "original_name": "catalog-response.json",
+    "raw_bytes": 4302,
+    "raw_sha256": "7783e963eaf9c81fb2eea33a906d44226e58b1b5523570be56f115f33a9d4a0b",
+    "gzip_bytes": 640,
+    "gzip_sha256": "52e625e3682b15d6496d90f9069c6b049d8d5e358cf9b4d09558b15b76027897"
+  },
+  "raw-logs/refresh-client-run.log.gz": {
+    "original_name": "refresh-client-run.log",
+    "raw_bytes": 105,
+    "raw_sha256": "fbd7c5feaeca2c43222a703f0329c2bbdbc889673dac432186af4b27aa17d548",
+    "gzip_bytes": 118,
+    "gzip_sha256": "dfff554c7ef3b1c23c877f522d1ef7cf68bacc9c2da4695070fab4efc56ce1dc"
+  },
+  "raw-logs/refresh-protocol.jsonl.gz": {
+    "original_name": "refresh-protocol.jsonl",
+    "raw_bytes": 20400,
+    "raw_sha256": "9340148448565ce9085ea16e56a1a23bf4f45b271ff49272cd00e94b6ac8b6b6",
+    "gzip_bytes": 1952,
+    "gzip_sha256": "eea35eb4f49b7d762d89b33cc89581ca96fa93080c389077b64791ce268def86"
+  },
+  "raw-logs/zotero-native.log.gz": {
+    "original_name": "zotero-native.log",
+    "raw_bytes": 339,
+    "raw_sha256": "191bd26232676353e9df549ce46820e9aa69474a247519ba19238e423608ce39",
+    "gzip_bytes": 218,
+    "gzip_sha256": "c7427b2425456fef581205bbed12e42520f6fa6d58e2aa1865803dd1351d9922"
+  }
+}

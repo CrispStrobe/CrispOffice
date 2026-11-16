@@ -1,0 +1,118 @@
+{
+  "observed_at_utc": "2026-11-16T05:17:47.454747+00:00",
+  "official_download": "https://download.zotero.org/client/release/10.0.8/Zotero-10.0.8_linux-x86_64.tar.xz",
+  "archive_sha256": "a704cfd49f5de65507910e0cada4acf72097572201b3576583f0a92a32c1032b",
+  "version": "10.0.8",
+  "build_id": "20261106171756",
+  "gecko_version": "140",
+  "isolated_profile": "/workspace/scratch/7b8555dd0115/zotero-native-acceptance/profile",
+  "isolated_data": "/workspace/scratch/7b8555dd0115/zotero-native-acceptance/data",
+  "personal_account_connected": false,
+  "synthetic_sources_only": true,
+  "native_transport_execution": "Dart script launched in native Xfce terminal; desktop loopback namespace is separate from exec runner",
+  "base_commit": "63512fa554a0c8b81e1f8984ef171cf8bf275631",
+  "files": {
+    "synthetic-sources.bib": "bd36174ec3777ee30e13a556e6cb53fcd9796c19a181429a5262c1a4e7cb7a66",
+    "profile/user.js": "5cf634a5771c77582e371950c5fa9681525d982ad85223407b61d7ee7561370a",
+    "launch-isolated.sh": "d8370a75ee9174d54689871e66c8ebf78643fa7948468bf8fdab1702a868e573",
+    "probe-native.sh": "ed22e7745847d3c2178991e942d82a5bcb76f6e4dfb2a745beb0cb5bf28992f8",
+    "catalog-live.dart": "2436115d0494f57d470ba9e106c4c6615162e1f9f42665c4216079d2a140b23a",
+    "run-catalog-live.sh": "d309a7e6ec372673f4ceb5bfa81d5ed638436df57d4ef6346c8f2288fb7b0b8c",
+    "refresh-live.dart": "bb262aa72996bda374029eaad8599470bffd1b116ed7340e8ab0635c83932856",
+    "run-refresh-live.sh": "7b4c91ca758070e8ca635508267c4c0a839be71b84c7a3129b41daab5c18f6c2",
+    "chicago-notes-bibliography-subsequent-ibid.csl": "39c868e65da74bff51f5be6cbaefc39f809841ab81758a378b883ef767eb500a"
+  },
+  "production_source_sha256": {
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart": "2b578627f33ddefe04e2598f00d97bf5a258c1eb69f76a1c7be737a19463cf60",
+    "packages/quds_office_engine/lib/src/zotero/zotero_models.dart": "4b5a269df98ab0ea17c370f6c6b39f3ac7aee239774e8eca8e671c84925abc6b",
+    "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart": "b044dd7dda4a78235aa0fb3933738593c23f1ee4c0712b0908774cd3ea34e492",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart": "e690fb97bf2f79d9d51cc0ea3562c862b30a981cbea879f2c386dd51ab841f42",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart": "a5b78c9bf81ac0211a889d58b6cfae725eabc387e89110130ed5b10348b5043d",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "974e113c72e0a281689362f7331a011709761abc7b7f3d4b6b4163c39fd6256f",
+    "packages/quds_office_editor/example/lib/studio_zotero.dart": "5ffb69be4764e90f4641eb9c4a32d4b0efe2d04af1d59741ae3a044d2c26dd5f",
+    "packages/quds_office_editor/example/lib/studio_zotero_local_io.dart": "663f326abc531c917d48eb02f41579777e2d2fd6c15c480b73950876e09b3d3a"
+  },
+  "completed_at_utc": "2026-11-16T05:19:42.830090+00:00",
+  "closed_native_application": true,
+  "installed_style_sha256": "39c868e65da74bff51f5be6cbaefc39f809841ab81758a378b883ef767eb500a",
+  "style_source": "https://raw.githubusercontent.com/citation-style-language/styles/d16ba6427ca3c5dada6578a6f7a0f98bd3ea03b3/chicago-notes-bibliography-subsequent-ibid.csl",
+  "observed_native_preferences_selection": {
+    "style": "Chicago Manual of Style 18th edition (notes and bibliography, subsequent ibid.)",
+    "locale": "Deutsch (Deutschland)",
+    "placement": "Footnotes"
+  },
+  "results": {
+    "catalog": "passed",
+    "native_refresh": "passed",
+    "docx_mixed_inline_formatting": "passed"
+  },
+  "artifact_sha256": {
+    "native-before.docx": "ebc0d2b747c5c067264b0ebf123ac71d15039cb95d886df3274f35359967b77a",
+    "native-refreshed.docx": "7b89dc7c4691f5ac6b8d5df7d275a8578b4163056bcb85667f36fc00f960862a",
+    "logs/catalog-client-result.json": "e7845355f185f40deffeeed252a6c30a66d71cc3a837a4cd002bb1bad5f62c00",
+    "logs/catalog-client-run.log": "a85c2436ddbef55b2609823d2786c498883e96eaac71b6f522c110f0d4e15e32",
+    "logs/catalog-client-setup-attempt.log": "17955b50e3f18ed0ef20150aa569860d4f4a0dd62ab0f8160d53833342283658",
+    "logs/catalog-headers.txt": "7973087864ad6ed2d2f989a2a398be8e7386aca20ccb821ab6390fb85bc167b9",
+    "logs/catalog-response.json": "7783e963eaf9c81fb2eea33a906d44226e58b1b5523570be56f115f33a9d4a0b",
+    "logs/docx-format-verification.json": "36a01b7c1b37c338040e94d6d6283785443243a3036bf97be0a4d91058fd9154",
+    "logs/refresh-client-run.log": "fbd7c5feaeca2c43222a703f0329c2bbdbc889673dac432186af4b27aa17d548",
+    "logs/refresh-protocol.jsonl": "9340148448565ce9085ea16e56a1a23bf4f45b271ff49272cd00e94b6ac8b6b6",
+    "logs/refresh-result.json": "940c42277690e5eba2ed07dc43e989bf518faac86e64549948dc5a8577889110",
+    "logs/zotero-native.log": "191bd26232676353e9df549ce46820e9aa69474a247519ba19238e423608ce39"
+  },
+  "comparison_to_saved_commit": {
+    "commit": "35829317dc6d946244c96b2bf179f349853f1939",
+    "captured_eight_native_sources_match_byte_for_byte": true,
+    "source_changes_since_observed_head": [
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart"
+    ],
+    "source_change_is_only_whitespace": true,
+    "kernel_artifact_captured": false,
+    "scope_note": "Eight native integration source hashes were captured while the live refresh ran. Dart executed source JIT; no complete compiled kernel fingerprint was retained. Do not describe this as a full native Quds/Crisp application build or proof of exact final compiled kernel identity."
+  },
+  "runtime": {
+    "framework_commit": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "runtime": {
+      "frameworkVersion": "3.47.8",
+      "channel": "[user-branch]",
+      "repositoryUrl": "https://github.com/flutter/flutter.git",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineBuildDate": "2026-10-23 05:34:48.330",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "flutterVersion": "3.47.8"
+    },
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "sdk_artifacts": {
+      "bin/cache/dart-sdk/bin/dart": {
+        "bytes": 4835712,
+        "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+      },
+      "bin/cache/artifacts/engine/linux-x64/flutter_tester": {
+        "bytes": 36051744,
+        "sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+      },
+      "bin/cache/flutter_tools.snapshot": {
+        "bytes": 47263728,
+        "sha256": "8fbd22d8c360a724b4e0ffb217813c9d340d346b07b0f2c817d5b9f582beb52d"
+      },
+      "bin/cache/flutter.version.json": {
+        "bytes": 566,
+        "sha256": "10152dd193953eb8b6ea46c7f7b802626b608d5d658b904f47a0ee38af76b0cf"
+      },
+      "bin/internal/engine.version": {
+        "bytes": 41,
+        "sha256": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c"
+      }
+    }
+  },
+  "studio_harness_inputs": {
+    "pubspec.yaml": "6e749a1e3d04caae82d25dab38f3cfb498535e2b06ddb405253085cd63dd1761",
+    "pubspec.lock": "52e39372b41c6a3892649f089e15516ddba66c3fc9679fa13a233a25ba61d12f",
+    ".dart_tool/package_config.json": "a4b425e0b230f9305ac5b70132f9fc30a307cc4366e509439d4afb84eec8ac8e"
+  }
+}

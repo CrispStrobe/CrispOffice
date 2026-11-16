@@ -24,10 +24,14 @@ key. Zotero's own windows may open behind the office application.
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
 
 The style and language chosen in **Document style…** belong to the document.
-Choose them before using **Insert with Zotero…** for selected catalog sources;
-the selection is seeded into the picker with the document's existing inline,
-footnote or endnote placement. A new document can instead use **Citation in
-Zotero…**, which lets Zotero choose preferences as part of its first insertion.
+The Document tab shows the saved style ID, language and inline/footnote/endnote
+placement. **Insert with Zotero…** is the primary catalog action in a native
+desktop host. If no document style has been selected, it opens Zotero's style
+chooser first and then carries the selected sources into the citation picker.
+Both stages stay detached from the document and become one undo step. Cancelling
+either stage, losing the connection or changing the insertion point keeps the
+document and source selection. You can also choose **Document style…** first,
+or use **Citation in Zotero…** without selecting catalog sources.
 If Zotero changes note placement while opening a seeded citation, the staged
 result is discarded and the workspace asks you to select the style first.
 The **Preview / export style ID** and locale fields belong to the older
@@ -58,12 +62,13 @@ multiple citations or additional structural fields is kept intact and refuses
 conversion; ordinary refresh can still update supported citations in such a
 note. Ordinary non-citation notes count toward processor note positions.
 
-Quds currently renders note references using their stored IDs. After inserting
-or converting notes, those preview labels can differ from their sequence.
-Processor note indices use body order, and DOCX retains native automatic note
-references rather than renumbering stored identities. Check displayed note
-numbers in the target word processor; Quds preview numbering is a remaining
-layout limitation.
+Quds renders automatic note references and note bodies in document order, and
+the Notes pane follows that order. Inserting an earlier note or converting a
+citation updates the visible numbering while preserving native note IDs and
+links. Common decimal, letter and Roman formats, starting numbers and section
+restarts are supported; custom marks remain authored text. Page-based restarts
+and unsupported native number formats retain their settings and are identified
+by source ID in the Notes pane. Check those formats in the target word processor.
 
 ### Apply, cancel and undo
 
@@ -76,11 +81,13 @@ Zotero also sends a completion command after reporting internal errors. The
 driver recognizes its error-alert forms, acknowledges the dialog, drains the
 transaction and discards every staged change in that case.
 
-If output needs mixed character formatting or unsupported bibliography layout,
-a review explains the simplification before applying it. Uniform bold, italic,
-underline, strike-through, superscript or subscript can stay in one protected
-inline field. Mixed inline styling is simplified; formatted bibliography runs
-retain the supported styles. Cancelling the review leaves the document alone.
+Bold, italic, underline, strike-through, superscript and subscript are retained
+inside citations, including mixed styling such as italic book titles beside
+ordinary author text. The complete citation remains a protected field when
+typing, deleting, copying, pasting or splitting paragraphs. Native refresh,
+safe note conversion, DOCX save/reopen and undo/redo preserve these styles.
+Small caps and unsupported bibliography layout still require a review before
+simplification. Cancelling that review leaves the document alone.
 An untouched catalog seed is discarded if the native picker is cancelled.
 
 Only one desktop citing transaction runs at a time. While Zotero is waiting in
@@ -280,9 +287,10 @@ preserve the existing result runs and original `formattedCitation` value without
 trying to interpret its processor-specific syntax. The composer starts from
 the actual visible field cache even if imported `plainCitation` metadata is stale.
 
-Newly generated inline citations still use the existing atomic plain-result
-workflow. This increment does not introduce mixed-format inline citation
-generation or claim document-wide CSL processing.
+The native document workflow also generates protected mixed-format inline
+citations and performs complete CSL processing through Zotero. **Insert basic
+citation** remains an explicit author–year fallback in desktop hosts; hosts
+without native transport retain **Insert citation** for the same basic workflow.
 
 Ordinary save/reopen retains unsupported fields instead of replacing them with
 plain text. Converting a field to text is an explicit, undoable user action.

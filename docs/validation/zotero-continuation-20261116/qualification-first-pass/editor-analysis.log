@@ -1,0 +1,5 @@
+Analyzing caret_engine.dart, paint_run_text.dart, word_notes_pane.dart, word_zotero_dialog.dart, word_note_numbering_test.dart, word_zotero_catalog_citing_test.dart, word_zotero_citing_dialog_test.dart, word_zotero_dialog_test.dart, word_zotero_rich_controller_test.dart...
+
+warning - packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart:622:54 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+
+1 issue found.

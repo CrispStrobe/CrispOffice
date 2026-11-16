@@ -1,0 +1,8 @@
+{
+  "engine-tests.log": {
+    "stored_as": "engine-tests.log.gz",
+    "original_sha256": "3b35749413873f9889c8bef9a353e57a1c20672973c0c26b8cd4658dc84db33b",
+    "compressed_sha256": "375974c36ee07bd61e75c7217fc6b85169528e5e89796c5f1bf08704ac25791b",
+    "reason": "Preserve the exact reporter output with trailing whitespace while keeping repository whitespace checks clean."
+  }
+}

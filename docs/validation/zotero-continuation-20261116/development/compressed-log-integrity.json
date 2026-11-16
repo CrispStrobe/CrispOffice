@@ -1,0 +1,23 @@
+[
+  {
+    "file": "style-preference-review-baseline.log.gz",
+    "original_file": "style-preference-review-baseline.log",
+    "original_sha256": "671c2e89ed3d16f18025f75f859d97d906e1d94525a9d25579c2a7709145f7c2",
+    "original_bytes": 4748,
+    "gzip_sha256": "becd6cc3b11f9c770d3caa125b2a926d10e7424a30146738b9ad01aeeb4b6118"
+  },
+  {
+    "file": "zotero-rich-baseline.log.gz",
+    "original_file": "zotero-rich-baseline.log",
+    "original_sha256": "796b267259aa9e6e6ba4f4491cd35629d153911428e5cb8430931fdd8042c66a",
+    "original_bytes": 8243,
+    "gzip_sha256": "5428aa77a725cffdde15ef90ef37c1a715ee2f62dc3379a22df6d7d57cd9d4dc"
+  },
+  {
+    "file": "zotero-rich-regressions.log.gz",
+    "original_file": "zotero-rich-regressions.log",
+    "original_sha256": "03eb93f571057e5932b03ddcf1d70fe720ce5f5e9d7ad710534eefd31dd0d160",
+    "original_bytes": 14743,
+    "gzip_sha256": "02801c0547165ed332c1eb878d86ce08319598164336f18bb213454c01ada96e"
+  }
+]

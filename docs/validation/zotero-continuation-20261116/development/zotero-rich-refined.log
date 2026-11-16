@@ -1,0 +1,131 @@
+00:00 +0: loading test/word_zotero_rich_edit_test.dart
+00:00 +0: test/word_zotero_rich_edit_test.dart: native insertion retains mixed citation formatting as one field
+00:00 +1: test/word_zotero_rich_edit_test.dart: native replacement upgrades a simple field without losing neighbors
+00:00 +2: test/word_zotero_rich_edit_test.dart: a caret inside a mixed citation moves after the complete packet
+00:00 +3: test/word_zotero_rich_edit_test.dart: partial mixed citation replacement removes its entire packet: ""
+00:00 +4: test/word_zotero_rich_edit_test.dart: partial mixed citation replacement removes its entire packet: "Replacement"
+00:00 +5: test/word_zotero_rich_edit_test.dart: paste at citation position 7 keeps the field packet intact
+00:00 +6: test/word_zotero_citing_test.dart: application and field objects expose the current HTTP contract
+00:00 +7: test/word_zotero_citing_test.dart: application and field objects expose the current HTTP contract
+00:00 +8: test/word_zotero_citing_test.dart: application and field objects expose the current HTTP contract
+00:00 +9: test/word_zotero_rich_edit_test.dart: paragraph split at citation edge 7 keeps every marker together
+00:00 +10: test/word_zotero_rich_edit_test.dart: paragraph split at citation edge 7 keeps every marker together
+00:00 +11: test/word_zotero_rich_edit_test.dart: paragraph split at citation edge 7 keeps every marker together
+00:00 +12: test/word_zotero_rich_edit_test.dart: paragraph split at citation edge 7 keeps every marker together
+00:00 +13: test/word_zotero_rich_edit_test.dart: paragraph split at citation edge 7 keeps every marker together
+00:00 +14: test/word_zotero_rich_edit_test.dart: paragraph split at citation edge 7 keeps every marker together
+00:00 +15: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +16: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +17: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +18: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +19: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +20: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +21: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +22: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +23: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +24: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +25: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +26: test/word_zotero_rich_edit_test.dart: mixed citation styles survive repeated direct DOCX saves
+00:00 +27: test/word_zotero_test.dart: independent native fields and preferences survive three isolate saves
+00:00 +28: test/word_zotero_test.dart: independent native fields and preferences survive three isolate saves
+00:00 +29: test/word_zotero_test.dart: independent native fields and preferences survive three isolate saves
+00:00 +30: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:00 +31: test/word_zotero_citing_test.dart: native code-only refresh retires basic formatting
+00:00 +32: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:00 +33: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:00 +34: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:00 +35: test/word_zotero_test.dart: new complex fields reopen as atomic runs including isolated saves
+00:00 +36: test/word_zotero_test.dart: new complex fields reopen as atomic runs including isolated saves
+00:00 +37: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +38: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +39: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +40: test/word_zotero_citing_test.dart: caret follows inserted note type 0 after an earlier citation expands
+00:00 +41: test/word_zotero_test.dart: explicit unlink of a multi-paragraph bibliography keeps its cache
+00:00 +42: test/word_zotero_test.dart: explicit unlink of a multi-paragraph bibliography keeps its cache
+00:00 +43: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +44: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +45: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +46: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +47: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +48: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +49: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +50: test/word_zotero_test.dart: new source URIs and contradictory author options are validated
+00:00 +51: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 0 without losing text
+00:00 +52: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 0 without losing text
+00:00 +53: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +54: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +55: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +56: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +57: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +58: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +59: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:00 +60: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:00 +61: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:00 +62: test/word_zotero_simple_field_test.dart: rich simple bibliographies keep their field metadata and styles
+00:00 +63: test/word_zotero_simple_field_test.dart: rich simple bibliographies keep their field metadata and styles
+00:00 +64: test/word_zotero_simple_field_test.dart: rich simple bibliographies keep their field metadata and styles
+00:00 +65: test/word_zotero_citing_test.dart: deleting a citation keeps its note containing two note markers
+00:00 +66: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:00 +67: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:00 +68: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:00 +69: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:00 +70: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:00 +71: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:00 +72: test/word_zotero_simple_field_test.dart: tracked rich simple cache retains real paragraph revision offsets
+00:00 +73: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 0
+00:00 +74: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +75: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +76: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:00 +77: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +78: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +79: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +80: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +81: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +82: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +83: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +84: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +85: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +86: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +87: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +88: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +89: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +90: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +91: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:00 +92: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +93: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +94: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +95: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +96: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +97: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +98: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +99: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +100: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +101: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +102: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +103: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +104: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +105: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +106: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +107: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +108: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +109: test/word_zotero_citing_test.dart: real Zotero processor German ibid and locators survive whole-document refresh
+00:01 +110: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:01 +111: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:01 +112: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three isolate saves
+00:01 +113: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +114: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +115: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +116: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +117: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +118: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +119: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +120: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +121: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +122: test/word_field_span_test.dart: non-text content before a field stays outside its result
+00:01 +123: test/word_field_span_test.dart: a cross-reference inside a sentence stays inside the sentence
+00:01 +124: test/word_field_span_test.dart: two hyperlinks in one paragraph stay two fields
+00:01 +125: test/word_field_span_test.dart: form fields keep their ffData
+00:01 +126: test/word_field_span_test.dart: nested fields keep their structure
+00:01 +127: test/word_field_span_test.dart: a field wrapping the whole paragraph keeps the paragraph model
+00:01 +128: test/word_field_span_test.dart: a field broken by an edit degrades to text, never to a corrupt package
+00:01 +129: All tests passed!

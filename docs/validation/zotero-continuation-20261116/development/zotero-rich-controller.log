@@ -1,0 +1,25 @@
+00:00 +0: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart
+00:00 +0: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: native mixed refresh is one undo step and survives DOCX
+00:00 +1: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:00 +2: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:00 +3: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:00 +4: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:00 +5: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:00 +6: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:00 +7: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:00 +8: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:01 +9: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native picker inserts a linked footnote and preferences as one undo
+00:02 +10: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Document style invokes Zotero preferences and persists its chosen locale
+00:02 +11: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native cancel without changes leaves the undo history clean
+00:03 +12: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: unsupported small caps are reviewed before mutation and can be discarded
+00:03 +13: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+00:03 +14: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: moving the caret during review prevents a stale insertion
+00:04 +15: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 0 returns its exact OK code
+00:04 +16: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 1 returns its exact Cancel code
+00:05 +17: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 2 returns its exact No code
+00:05 +18: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 3 returns its exact Yes code
+00:05 +19: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop error alert 0 discards staged fields even after complete
+00:06 +20: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop error alert 2 discards staged fields even after complete
+00:06 +21: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: cancel waits for a native response then drains without live mutation
+00:06 +22: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: stale editor target reports an error and drains the native transaction
+00:06 +23: All tests passed!

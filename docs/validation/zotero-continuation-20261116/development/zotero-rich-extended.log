@@ -1,0 +1,49 @@
+00:00 +0: loading test/word_zotero_rich_edit_test.dart
+00:00 +0: test/word_zotero_rich_edit_test.dart: native insertion retains mixed citation formatting as one field
+00:00 +1: test/word_zotero_rich_edit_test.dart: native replacement upgrades a simple field without losing neighbors
+00:00 +2: test/word_zotero_rich_edit_test.dart: a caret inside a mixed citation moves after the complete packet
+00:00 +3: test/word_zotero_rich_edit_test.dart: partial mixed citation replacement removes its entire packet: ""
+00:00 +4: test/word_zotero_rich_edit_test.dart: partial mixed citation replacement removes its entire packet: "Replacement"
+00:00 +5: test/word_zotero_rich_edit_test.dart: paste at citation position 7 keeps the field packet intact
+00:00 +6: test/word_zotero_rich_edit_test.dart: paste at citation position 9 keeps the field packet intact
+00:00 +7: test/word_zotero_rich_edit_test.dart: paste at citation position 14 keeps the field packet intact
+00:00 +8: test/word_zotero_rich_edit_test.dart: paragraph split at citation edge 7 keeps every marker together
+00:00 +9: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +10: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +11: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +12: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +13: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +14: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +15: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +16: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +17: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:00 +18: test/word_zotero_rich_edit_test.dart: mixed citation styles survive repeated isolate DOCX saves
+00:00 +19: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:00 +20: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:00 +21: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:00 +22: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:00 +23: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:00 +24: test/word_zotero_rich_edit_test.dart: clone split at 9 keeps complete Zotero packets on one side
+00:00 +25: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:00 +26: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:00 +27: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:00 +28: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:00 +29: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:00 +30: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:00 +31: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:00 +32: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:00 +33: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:00 +34: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:00 +35: test/word_zotero_simple_field_test.dart: rich simple bibliographies keep their field metadata and styles
+00:00 +36: test/word_zotero_simple_field_test.dart: tracked rich simple cache retains real paragraph revision offsets
+00:00 +37: test/word_zotero_simple_field_test.dart: malformed rich simple metadata stays a preserved uneditable field
+00:00 +38: test/word_zotero_simple_field_test.dart: disjoint imported tracked ranges inside one rich citation remain exact
+00:00 +39: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=false
+00:00 +40: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=false
+00:00 +41: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:00 +42: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:00 +43: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:00 +44: test/word_zotero_simple_field_test.dart: whole-paragraph native PAGE remains a dynamic page field
+00:00 +45: test/word_zotero_simple_field_test.dart: a PAGE fragment inside citation JSON is not a PAGE command
+00:00 +46: test/word_zotero_simple_field_test.dart: tracked native PAGE cache keeps valid revision text and boundaries
+00:00 +47: All tests passed!

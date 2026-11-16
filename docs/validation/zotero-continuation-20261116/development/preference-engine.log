@@ -1,0 +1,71 @@
+00:00 +0: loading test/word_zotero_preference_flow_test.dart
+00:00 +0: test/word_zotero_preference_flow_test.dart: reads native JSON style, locale and placement 0
+00:00 +1: test/word_zotero_document_data_test.dart: new document has no preference data
+00:00 +2: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +3: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +4: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +5: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +6: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +7: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +8: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +9: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +10: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +11: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +12: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +13: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +14: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +15: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +16: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +17: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +18: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +19: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +20: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +21: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +22: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +23: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +24: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +25: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +26: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +27: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:00 +28: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +29: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +30: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +31: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +32: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +33: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +34: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +35: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +36: test/word_zotero_preference_flow_test.dart: preferences must finish before continuing with catalog sources
+00:00 +37: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:00 +38: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:00 +39: test/word_zotero_document_data_test.dart: updates the source-owned nonstandard part and preserves unrelated data
+00:00 +40: test/word_zotero_document_data_test.dart: new preferences do not adopt an unowned canonical part
+00:00 +41: test/word_zotero_document_data_test.dart: clear and restore remain effective after an intervening save
+00:00 +42: test/word_zotero_document_data_test.dart: null override preserves an imported custom part byte for byte
+00:00 +43: test/word_zotero_document_data_test.dart: reads UTF-16 custom properties before saving as UTF-8
+00:00 +44: test/word_zotero_document_data_test.dart: rejects external and duplicate custom-property ownership
+00:00 +45: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 1003737062
+00:00 +46: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 751715465
+00:00 +47: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 399466396
+00:00 +48: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 707804480
+00:00 +49: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 721356789
+00:00 +50: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 430169314
+00:00 +51: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 256649029
+00:00 +52: test/word_zotero_document_data_test.dart: excessive document data is rejected before persistence
+00:00 +53: test/word_zotero_document_data_test.dart: a surrogate pair at the native chunk boundary stays intact
+00:00 +54: test/word_zotero_document_data_test.dart: all-space native chunks retain significant JSON string whitespace
+00:00 +55: test/word_zotero_document_data_test.dart: XML adaptation retains unknown all-space text and comments
+00:00 +56: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 830213317
+00:00 +57: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 907203696
+00:00 +58: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 309234631
+00:00 +59: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 585809883
+00:00 +60: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 1048441131
+00:00 +61: test/word_zotero_document_data_test.dart: JSON strings may contain escaped quotes and nesting characters
+00:00 +62: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 1
+00:00 +63: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 361688422
+00:00 +64: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 589417670
+00:00 +65: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 883780703
+00:00 +66: test/word_zotero_document_data_test.dart: truncated UTF-16 custom properties are refused
+00:00 +67: test/word_zotero_document_data_test.dart: Field adaptation cannot exceed the bounded input size
+00:00 +68: test/word_zotero_document_data_test.dart: custom-property output uses the reader UTF-8 byte limit
+00:00 +69: All tests passed!
