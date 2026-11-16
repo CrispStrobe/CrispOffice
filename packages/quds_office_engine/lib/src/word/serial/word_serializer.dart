@@ -458,6 +458,7 @@ class WordSerializer {
               noteRefId: inline.noteRefId,
               inlineVisual: inline.inlineVisual,
               noteRefEndnote: inline.noteRefEndnote,
+              noteRefCustomMark: inline.noteRefCustomMark,
               fieldInstruction: inline.fieldInstruction,
               fieldLocked: inline.fieldLocked,
               fieldDirty: inline.fieldDirty,
@@ -834,9 +835,8 @@ class WordSerializer {
         case WmlNoteMarker():
           w.writeStartElement('r', prefix: 'w');
           final marker = inline.properties;
-          final changed = WordPropertyIo.runValues(marker).entries.any(
-            (entry) => marker.importedValues?[entry.key] != entry.value,
-          );
+          final changed = WordPropertyIo.runValues(marker).entries
+              .any((entry) => marker.importedValues?[entry.key] != entry.value);
           if (marker.sourcePropertiesXml != '' || changed) {
             _writeRPr(w, marker);
           }
@@ -1040,7 +1040,10 @@ class WordSerializer {
       w.writeEmptyElement(
         inline.noteRefEndnote ? 'endnoteReference' : 'footnoteReference',
         prefix: 'w',
-        attributes: <String, String>{'w:id': '${inline.noteRefId}'},
+        attributes: <String, String>{
+          'w:id': '${inline.noteRefId}',
+          if (inline.noteRefCustomMark) 'w:customMarkFollows': '1',
+        },
       );
     } else {
       _writeRunContent(w, inline.text, deleted: deleted);

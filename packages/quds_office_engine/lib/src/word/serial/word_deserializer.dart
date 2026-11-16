@@ -1092,18 +1092,39 @@ class WordDeserializer {
               reader.getAttribute('id', namespaceUri: OfficeNamespaces.w) ?? '',
             ) ??
             1;
-        run.noteRefId = id;
-        run.noteRefEndnote = reader.localName == 'endnoteReference';
-        if (run.text.isEmpty) {
-          run.text = '$id';
+        final endnote = reader.localName == 'endnoteReference';
+        final custom = const {'1', 'true', 'on'}.contains(
+          reader.getAttribute(
+            'customMarkFollows',
+            namespaceUri: OfficeNamespaces.w,
+          ),
+        );
+        // Keep the marker separate from adjacent native text, including a
+        // custom symbol in the same w:r. The invisible custom reference still
+        // owns one stable editor offset and the link to its note story.
+        if (run.text.isNotEmpty) {
+          inlines.add(
+            WmlRun(
+              text: run.text,
+              properties: run.properties.copy(),
+              commentIds: List<int>.of(_openCommentIds),
+            ),
+          );
+          run.text = '';
         }
-        // A footnote/endnote mark is superscript by definition. Word stores
-        // this in the FootnoteReference character style, which the importer
-        // does not resolve, so apply it directly or the mark renders as a
-        // normal baseline digit.
-        run.properties.vertAlign = WmlVertAlign.superscript;
+        inlines.add(
+          WmlRun(
+            text: custom ? '\uFFFC' : '$id',
+            noteRefId: id,
+            noteRefEndnote: endnote,
+            noteRefCustomMark: custom,
+            properties: run.properties.copy()
+              ..vertAlign = WmlVertAlign.superscript,
+            commentIds: List<int>.of(_openCommentIds),
+          ),
+        );
         paragraph.properties.noteId = id;
-        paragraph.properties.endnoteRef = run.noteRefEndnote;
+        paragraph.properties.endnoteRef = endnote;
       } else if (reader.localName == 'footnoteRef' ||
           reader.localName == 'endnoteRef') {
         if (run.text.isNotEmpty) {
@@ -1162,9 +1183,8 @@ class WordDeserializer {
           _flushFieldText(inlines, run);
           final boundary = WmlFieldBoundary(
             kind: kind,
-            sourceXml: XmlDocument(
-              root: fldChar,
-            ).toXmlString(declaration: false),
+            sourceXml: XmlDocument(root: fldChar)
+                .toXmlString(declaration: false),
             runPropertiesXml: run.properties.sourcePropertiesXml,
           );
           inlines.add(boundary);
@@ -1336,9 +1356,8 @@ class WordDeserializer {
 
   void _readPPr(XmlPullReader reader, WmlParagraphProps props) {
     final XmlElement node = XmlDocument.readElement(reader);
-    props.sourcePropertiesXml = XmlDocument(
-      root: node,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: node)
+        .toXmlString(declaration: false);
     final XmlPullReader source = WordMarkupCompatibilityReader(
       props.sourcePropertiesXml!,
     )..next();
@@ -1801,9 +1820,8 @@ class WordDeserializer {
         ),
       );
       props
-        ..sourcePropertiesXml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false)
+        ..sourcePropertiesXml = XmlDocument(root: source)
+            .toXmlString(declaration: false)
         ..asciiFont = font
         ..csFont = font;
     }
@@ -2077,9 +2095,8 @@ class WordDeserializer {
 
   void _readRPr(XmlPullReader reader, WmlRunProps props) {
     final XmlElement node = XmlDocument.readElement(reader);
-    props.sourcePropertiesXml = XmlDocument(
-      root: node,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: node)
+        .toXmlString(declaration: false);
     final XmlPullReader source = WordMarkupCompatibilityReader(
       props.sourcePropertiesXml!,
     )..next();
@@ -2175,9 +2192,8 @@ class WordDeserializer {
       }
       if (reader.localName == 'tblPr') {
         final XmlElement source = XmlDocument.readElement(reader);
-        final String xml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false);
+        final String xml = XmlDocument(root: source)
+            .toXmlString(declaration: false);
         table.properties.sourcePropertiesXml = xml;
         _readTableProperties(WordMarkupCompatibilityReader(xml)..next(), table);
       } else if (reader.localName == 'gridCol') {
@@ -2470,9 +2486,8 @@ class WordDeserializer {
           );
         }
         final source = XmlDocument.readElement(reader);
-        cell.sourceWidthXml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false);
+        cell.sourceWidthXml = XmlDocument(root: source)
+            .toXmlString(declaration: false);
         final type =
             source.getAttribute('type', namespaceUri: OfficeNamespaces.w) ??
             'dxa';
@@ -2567,9 +2582,8 @@ class WordDeserializer {
     String docUri,
   ) {
     final XmlElement source = XmlDocument.readElement(reader);
-    final String sourceXml = XmlDocument(
-      root: source,
-    ).toXmlString(declaration: false);
+    final String sourceXml = XmlDocument(root: source)
+        .toXmlString(declaration: false);
     reader = WordMarkupCompatibilityReader(sourceXml)..next();
     String? headerRid;
     String? footerRid;
@@ -3123,9 +3137,8 @@ class WordDeserializer {
     final PackagePart? part = package.getPart('/word/watermark.xml');
     if (part != null) {
       final String xml = part.readText();
-      final Match? match = RegExp(
-        r'<w:watermark[^>]*>([^<]*)</w:watermark>',
-      ).firstMatch(xml);
+      final Match? match = RegExp(r'<w:watermark[^>]*>([^<]*)</w:watermark>')
+          .firstMatch(xml);
       if (match != null) {
         document.watermark = match
             .group(1)!

@@ -275,6 +275,7 @@ abstract final class WmlClone {
             ? null
             : WmlClone.block(inline.inlineVisual!) as WmlVisual,
         noteRefEndnote: inline.noteRefEndnote,
+        noteRefCustomMark: inline.noteRefCustomMark,
         fieldInstruction: inline.fieldInstruction,
         fieldLocked: inline.fieldLocked,
         fieldDirty: inline.fieldDirty,
@@ -339,6 +340,7 @@ abstract final class WmlClone {
               ? null
               : WmlClone.block(inline.inlineVisual!) as WmlVisual,
           noteRefEndnote: inline.noteRefEndnote,
+          noteRefCustomMark: inline.noteRefCustomMark,
           fieldInstruction: inline.fieldInstruction,
           fieldLocked: inline.fieldLocked,
           fieldDirty: inline.fieldDirty,

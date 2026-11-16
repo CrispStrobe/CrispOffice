@@ -133,6 +133,12 @@ abstract final class PaintRunText {
     if (_isTab(a) || _isTab(b)) {
       return false;
     }
+    if (a.displayText != b.displayText ||
+        (a.displayText != null &&
+            (a.glyph.logicalIndex != b.glyph.logicalIndex ||
+                a.sourceEnd != b.sourceEnd))) {
+      return false;
+    }
     return a.color == b.color &&
         a.fontSize == b.fontSize &&
         a.bold == b.bold &&
@@ -337,6 +343,9 @@ abstract final class PaintRunText {
 
   /// runText API.
   static String runText(String paragraph, List<LaidOutGlyph> run) {
+    if (run.isNotEmpty && run.first.displayText != null) {
+      return run.first.displayText!;
+    }
     if (paragraph.isEmpty || run.isEmpty) {
       return '';
     }
@@ -386,7 +395,9 @@ abstract final class PaintRunText {
       return first.x;
     }
     final int base = _runTextBase(paragraph, run, text);
-    final int offset = (first.glyph.logicalIndex - base).clamp(0, text.length);
+    final int offset = first.displayText != null
+        ? first.displayOffset
+        : (first.glyph.logicalIndex - base).clamp(0, text.length);
     final int extent = math.min(text.length, offset + _utf16Len(text, offset));
     final List<ui.TextBox> boxes = extent > offset
         ? painter.getBoxesForSelection(
@@ -418,7 +429,9 @@ abstract final class PaintRunText {
     final int base = _runTextBase(paragraph, run, text);
     for (final LaidOutGlyph glyph in run) {
       final int li = glyph.glyph.logicalIndex;
-      final int offset = (li - base).clamp(0, text.length);
+      final int offset = glyph.displayText != null
+          ? glyph.displayOffset
+          : (li - base).clamp(0, text.length);
       final int extent = math.min(
         text.length,
         offset + _utf16Len(text, offset),
@@ -542,9 +555,8 @@ abstract final class PaintRunText {
     required String paragraph,
     String? themeFamily,
   }) {
-    final List<List<LaidOutGlyph>> segments = paintSegments(
-      line,
-    ).toList(growable: false);
+    final List<List<LaidOutGlyph>> segments = paintSegments(line)
+        .toList(growable: false);
     for (int s = 0; s < segments.length; s++) {
       final List<LaidOutGlyph> run = segments[s];
       final LaidOutGlyph first = run.first;
@@ -574,7 +586,9 @@ abstract final class PaintRunText {
         themeFamily: themeFamily,
       )..layout();
       final int base = _runTextBase(paragraph, run, text);
-      final int offset = (logicalIndex - base).clamp(0, text.length);
+      final int offset = first.displayText != null
+          ? (logicalIndex <= min ? 0 : text.length)
+          : (logicalIndex - base).clamp(0, text.length);
       final double origin = runPaintOrigin(run, painter, text, paragraph);
       return origin + caretDx(painter, offset);
     }
@@ -592,6 +606,7 @@ abstract final class PaintRunText {
       return 0;
     }
     TextPainter? bestPainter;
+    List<LaidOutGlyph>? bestRun;
     String bestText = '';
     var bestBase = 0;
     var bestOrigin = line.x;
@@ -629,6 +644,11 @@ abstract final class PaintRunText {
       final double left = origin;
       final double right = origin + painter.width;
       if (x >= left && x <= right) {
+        if (first.displayText != null) {
+          return x <= left + painter.width / 2
+              ? first.glyph.logicalIndex
+              : first.logicalEnd;
+        }
         final int local = hitIndex(painter, Offset(x - left, 0), text.length);
         final int base = _runTextBase(paragraph, run, text);
         final int max = paragraph.isEmpty ? 0 : paragraph.length;
@@ -638,6 +658,7 @@ abstract final class PaintRunText {
       if (dist < bestDist) {
         bestDist = dist;
         bestPainter = painter;
+        bestRun = run;
         bestText = text;
         bestBase = _runTextBase(paragraph, run, text);
         bestOrigin = left;
@@ -645,6 +666,11 @@ abstract final class PaintRunText {
     }
     if (bestPainter == null) {
       return CaretEngine.hitLogicalIndex(line, x);
+    }
+    if (bestRun?.first.displayText != null) {
+      return x <= bestOrigin + bestPainter.width / 2
+          ? bestRun!.first.glyph.logicalIndex
+          : bestRun!.first.logicalEnd;
     }
     final double localX = (x - bestOrigin).clamp(0.0, bestPainter.width);
     final int local = hitIndex(bestPainter, Offset(localX, 0), bestText.length);
@@ -659,7 +685,7 @@ abstract final class PaintRunText {
       if (glyph.glyph.logicalIndex < min) {
         min = glyph.glyph.logicalIndex;
       }
-      final int end = glyph.glyph.logicalIndex + 1;
+      final int end = glyph.logicalEnd;
       if (end > max) {
         max = end;
       }

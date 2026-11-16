@@ -154,18 +154,7 @@ final class WordZoteroCitingSession {
       );
     }
     if (seedCitation != null) {
-      if (_selected != null) {
-        throw UnsupportedError(
-          'Move the caret outside the existing citation before inserting selected sources.',
-        );
-      }
-      final field = _insert(
-        WordZoteroDocumentData.citationNoteType(_nativeData),
-      );
-      field.code = _toHttp(seedCitation.fieldInstruction);
-      field.text = seedCitation.plainCitation;
-      field.seeded = true;
-      _selected = field;
+      _seedCitation(seedCitation);
     }
   }
 
@@ -193,6 +182,14 @@ final class WordZoteroCitingSession {
   ({WmlParagraph paragraph, int offset})? get caretAfter => _caretAfter;
 
   bool get isComplete => _complete;
+  String get documentData => _nativeData;
+  bool get hasAcceptedSeedCitation => _fields.any(
+    (field) =>
+        field.seeded &&
+        !field.deleted &&
+        !field.unlinked &&
+        (field.codeWasSet || field.textWasSet),
+  );
   bool get hasChanges =>
       _nativeData != _originalData || _fields.any((f) => f.changed);
   int get changedFieldCount => _fields.where((f) => f.changed).length;
@@ -204,6 +201,34 @@ final class WordZoteroCitingSession {
   /// The editor also snapshots the owning block lists and note buckets.
   List<WmlParagraph> get affectedParagraphs =>
       List.unmodifiable(_sourceParagraphs);
+
+  /// Continue a completed preferences operation in the same staged edit.
+  /// The first native picker can therefore choose a style before a catalog
+  /// seed is placed, without saving preferences or changing the document if
+  /// the following citation picker is cancelled or fails.
+  void continueWithCitation(ZoteroCitation citation) {
+    if (!_complete || _applied) {
+      throw StateError('Finish choosing the Zotero document style first.');
+    }
+    assertUnchanged();
+    _seedCitation(citation);
+    _complete = false;
+  }
+
+  void _seedCitation(ZoteroCitation citation) {
+    if (_selected != null) {
+      throw UnsupportedError(
+        'Move the caret outside the existing citation before inserting selected sources.',
+      );
+    }
+    final field = _insert(
+      WordZoteroDocumentData.citationNoteType(_nativeData),
+    );
+    field.code = _toHttp(citation.fieldInstruction);
+    field.text = citation.plainCitation;
+    field.seeded = true;
+    _selected = field;
+  }
 
   /// Document.displayAlert is handled by the host UI, with Zotero's exact
   /// button return codes. It must not be silently acknowledged here.
@@ -386,12 +411,6 @@ final class WordZoteroCitingSession {
           (v) => 'Unsupported formatting: $v.',
         ),
       );
-      if (_kind(field) == ZoteroFieldKind.citation &&
-          !formatted.hasUniformCharacterFormatting) {
-        formattingWarnings.add(
-          'Mixed character formatting within a citation is simplified to one protected text run.',
-        );
-      }
       if (_kind(field) == ZoteroFieldKind.bibliography &&
           field.original != null &&
           !WordZotero.canReplaceFormattedBibliography(field.original!)) {
