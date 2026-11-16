@@ -6,8 +6,9 @@ import 'package:quds_proofing_harper/quds_proofing_harper.dart';
 import 'package:test/test.dart';
 
 final class _Transport implements HarperTransport {
-  _Transport(this.answer);
+  _Transport(this.answer, {this.onDispose});
   final Future<String> Function(String) answer;
+  final Future<void> Function()? onDispose;
   bool disposed = false;
   int calls = 0;
   @override
@@ -19,6 +20,7 @@ final class _Transport implements HarperTransport {
   @override
   Future<void> dispose() async {
     disposed = true;
+    await onDispose?.call();
   }
 }
 
@@ -68,9 +70,8 @@ void main() {
 
   test('unsupported language never invokes English backend', () async {
     final transport = _Transport((_) async => response());
-    final result = await HarperProofingProvider(
-      transport: transport,
-    ).check(request(language: 'de-DE'));
+    final result = await HarperProofingProvider(transport: transport)
+        .check(request(language: 'de-DE'));
     expect(result.status, OfficeProofingStatus.unsupported);
     expect(transport.calls, 0);
   });
@@ -140,5 +141,30 @@ void main() {
     await provider.dispose();
     gate.complete(response());
     expect((await pending).status, OfficeProofingStatus.unavailable);
+  });
+
+  test('timeout result survives throwing and stuck disposal', () async {
+    for (final onDispose in <Future<void> Function()>[
+      () async => throw StateError('broken shutdown'),
+      () => Completer<void>().future,
+    ]) {
+      final transport = _Transport(
+        (_) => Completer<String>().future,
+        onDispose: onDispose,
+      );
+      final provider = HarperProofingProvider(
+        transport: transport,
+        timeout: const Duration(milliseconds: 10),
+      );
+      final result = await provider
+          .check(request())
+          .timeout(const Duration(seconds: 1));
+      expect(result.status, OfficeProofingStatus.failed);
+      expect(transport.disposed, isTrue);
+      expect(
+        (await provider.check(request())).status,
+        OfficeProofingStatus.unavailable,
+      );
+    }
   });
 }

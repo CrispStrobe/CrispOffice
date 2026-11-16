@@ -97,7 +97,15 @@ final class _WebTransport implements HarperTransport {
     final id = ++_sequence;
     final result = Completer<String>();
     _pending[id] = result;
-    worker.postMessage({'id': id, 'request': request}.jsify());
+    try {
+      worker.postMessage({'id': id, 'request': request}.jsify());
+    } on Object {
+      _fail(
+        const HarperUnavailableException(
+          'The local Harper browser worker could not accept the request.',
+        ),
+      );
+    }
     return result.future;
   }
 

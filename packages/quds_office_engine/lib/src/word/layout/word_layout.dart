@@ -100,7 +100,8 @@ class LaidOutGlyph {
   /// commentIds API.
   final List<int> commentIds;
 
-  /// Automatic field text painted in place of a cached source range.
+  /// Presentation text painted in place of a source range, including an
+  /// automatic field label or a selected discretionary hyphen.
   /// All glyphs in one label share the source start/end; [displayOffset]
   /// identifies this glyph within [displayText] for shaping and hit testing.
   final String? displayText;
@@ -220,7 +221,22 @@ class LaidOutLine {
       });
       final out = StringBuffer();
       var lastDisplayStart = -1;
+      var sourceOffset = logical.first.glyph.logicalIndex;
       for (final glyph in logical) {
+        final at = glyph.glyph.logicalIndex;
+        if (source != null && sourceOffset < at) {
+          // Invisible authored controls (such as an unselected U+00AD)
+          // can lie between painted glyphs and still belong to this text.
+          out.write(source.substring(sourceOffset, at.clamp(0, source.length)));
+          sourceOffset = at;
+        }
+        if (glyph.glyph.isDiscretionaryHyphen) {
+          // A selected break has visible presentation, but contributes only
+          // its authored source (U+00AD or nothing) to logical line text.
+          out.write(glyph.actualText ?? '');
+          sourceOffset = math.max(sourceOffset, glyph.logicalEnd);
+          continue;
+        }
         if (glyph.displayText case final String display) {
           if (glyph.glyph.logicalIndex != lastDisplayStart) out.write(display);
           lastDisplayStart = glyph.glyph.logicalIndex;
@@ -234,6 +250,7 @@ class LaidOutLine {
         } else if (glyph.glyph.codePoint != 0) {
           out.writeCharCode(glyph.glyph.codePoint);
         }
+        sourceOffset = math.max(sourceOffset, glyph.logicalEnd);
       }
       return out.toString();
     }
@@ -243,9 +260,7 @@ class LaidOutLine {
         source.length,
       );
       final LaidOutGlyph last = logical.last;
-      final int end =
-          (last.glyph.logicalIndex + (last.glyph.codePoint > 0xffff ? 2 : 1))
-              .clamp(start, source.length);
+      final int end = last.logicalEnd.clamp(start, source.length);
       return source.substring(start, end);
     }
     return String.fromCharCodes(
@@ -742,8 +757,11 @@ const double kDefaultTabWidth = 36;
 /// Hosts that paint with their own text stack (for example Flutter's
 /// `TextPainter`) pass this to [WordLayoutEngine.measure] so line breaks use
 /// the same widths the painter will use.
-typedef WordGlyphMeasure =
-    double Function(int codePoint, double sizePoints, WmlRunProps props);
+typedef WordGlyphMeasure = double Function(
+  int codePoint,
+  double sizePoints,
+  WmlRunProps props,
+);
 
 /// Flowable pagination: Knuth-Plass lines accumulated into physical pages.
 class WordLayoutEngine {
@@ -1728,7 +1746,10 @@ class WordLayoutEngine {
         glyphs.add(
           LaidOutGlyph(
             glyph: g,
-            displayText: display?.text,
+            // Isolate the synthetic hyphen in the same presentation mapping
+            // used for note labels. Painting source text at this offset would
+            // hide an explicit U+00AD or duplicate the next authored letter.
+            displayText: g.isDiscretionaryHyphen ? '-' : display?.text,
             displayOffset: displayOffsets[g.logicalIndex] ?? 0,
             sourceEnd: g.isDiscretionaryHyphen
                 ? g.logicalIndex + (g.sourceLength ?? 0)
@@ -1789,7 +1810,7 @@ class WordLayoutEngine {
         listLabel: listLabel,
         listMarkerX: markerX,
         isParagraphStart: lineNumber == 0,
-        sourceText: sourceText,
+        sourceText: sourceText ?? text,
         sourceParagraph: paragraph,
         tocTargetParagraph: tocTargetParagraph,
         overlayText:
@@ -3073,8 +3094,11 @@ class WordLayoutEngine {
       final WmlParagraph paragraph = story[i];
       final WmlRunProps run = WmlRunEdit.propsAt(paragraph, 0);
       final WmlDocument? doc = _layoutDoc;
-      final String raw = paragraph.text.trim();
+      final String source = paragraph.text;
+      final String raw = source.trim();
+      final int rawStart = source.length - source.trimLeft().length;
       final String text;
+      var generated = false;
       if (doc != null &&
           (paragraph.properties.pageNumberField ||
               paragraph.properties.fieldInstruction != null)) {
@@ -3085,31 +3109,78 @@ class WordLayoutEngine {
           pageCount: math.max(pageNumber, 1),
         );
         text = resolved.isEmpty ? raw : resolved;
+        generated = true;
       } else if (_looksLikePageCache(raw)) {
         text = '$pageNumber';
+        generated = true;
       } else {
         text = raw;
       }
+      // These overlay lines have no glyphs. Their character positions must
+      // map to the untrimmed source, not to a body paragraph or a repeated
+      // label elsewhere in the same header/footer. Generated labels expose
+      // no authored offsets, even when their cache happens to match the text.
+      final offsets = List<int?>.generate(
+        text.length + 1,
+        (index) => generated ? null : rawStart + index,
+      );
       final double size = run.fontSizePoints.clamp(8, 16);
       final String overlayColor = run.color.isEmpty
           ? (isFooter ? '222222' : '6B7280')
           : run.color;
       final List<String> tabParts = text.split('\t');
       if (tabParts.length >= 2) {
-        final List<String> parts = <String>[
-          for (final String part in tabParts)
-            _looksLikePageCache(part.trim()) ? '$pageNumber' : part.trim(),
-        ];
-        final String left = parts.first;
-        final String mid = parts.length >= 3 ? parts[1] : '';
-        final String right = parts.length >= 3
-            ? parts.sublist(2).join(' ')
-            : parts.last;
-        void addPart(String part, WmlJustification align) {
-          if (part.isEmpty) {
+        final parts = <({String text, List<int?> offsets})>[];
+        var partStart = 0;
+        for (final part in tabParts) {
+          final trimmed = part.trim();
+          final leading = part.length - part.trimLeft().length;
+          if (_looksLikePageCache(trimmed)) {
+            parts.add((
+              text: '$pageNumber',
+              offsets: List<int?>.filled('$pageNumber'.length + 1, null),
+            ));
+          } else {
+            parts.add((
+              text: trimmed,
+              offsets: offsets.sublist(
+                partStart + leading,
+                partStart + leading + trimmed.length + 1,
+              ),
+            ));
+          }
+          partStart += part.length + 1;
+        }
+        final left = parts.first;
+        final mid = parts.length >= 3
+            ? parts[1]
+            : (text: '', offsets: <int?>[null]);
+        final ({String text, List<int?> offsets}) right;
+        if (parts.length >= 3) {
+          final rightParts = parts.sublist(2);
+          final rightOffsets = <int?>[];
+          for (var j = 0; j < rightParts.length; j++) {
+            if (j > 0) rightOffsets.add(null); // Presentation-only join space.
+            rightOffsets.addAll(
+              rightParts[j].offsets.take(rightParts[j].text.length),
+            );
+          }
+          rightOffsets.add(rightParts.last.offsets.last);
+          right = (
+            text: rightParts.map((part) => part.text).join(' '),
+            offsets: rightOffsets,
+          );
+        } else {
+          right = parts.last;
+        }
+        void addPart(
+          ({String text, List<int?> offsets}) part,
+          WmlJustification align,
+        ) {
+          if (part.text.isEmpty) {
             return;
           }
-          final double width = part.length * size * 0.52;
+          final double width = part.text.length * size * 0.52;
           var x = section.margins.left;
           if (align == WmlJustification.center) {
             x = (section.pageSize.width - width) / 2;
@@ -3126,9 +3197,11 @@ class WordLayoutEngine {
               pageIndex: pageNumber - 1,
               paragraphIndex: i,
               sourceParagraph: paragraph,
+              sourceText: source,
+              proofingOffsets: part.offsets,
               justification: align,
               isFooter: isFooter,
-              overlayText: part,
+              overlayText: part.text,
               overlayColor: overlayColor,
               overlaySize: size,
               overlayBold: run.bold,
@@ -3164,6 +3237,8 @@ class WordLayoutEngine {
           pageIndex: pageNumber - 1,
           paragraphIndex: i,
           sourceParagraph: paragraph,
+          sourceText: source,
+          proofingOffsets: offsets,
           justification: paragraph.properties.justification,
           isFooter: isFooter,
           overlayText: text,

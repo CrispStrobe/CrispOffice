@@ -24,7 +24,33 @@ void main() {
         ),
       );
       expect(result.status, OfficeProofingStatus.unavailable);
+      expect(
+        (await provider.check(result.request)).status,
+        OfficeProofingStatus.unavailable,
+      );
       await provider.dispose();
+    },
+  );
+
+  test(
+    'disposal while the native worker starts completes queued checks',
+    () async {
+      final provider = HarperProofingProvider(
+        nativeLibraryPath: '/missing/quds_harper_library',
+      );
+      final request = OfficeProofingRequest(
+        documentId: 'd',
+        blockId: 'b',
+        revision: 1,
+        text: 'This is an test.',
+        language: 'en-US',
+      );
+      final first = provider.check(request);
+      final second = provider.check(request);
+      await provider.dispose();
+      for (final result in await Future.wait([first, second])) {
+        expect(result.status, OfficeProofingStatus.unavailable);
+      }
     },
   );
 
