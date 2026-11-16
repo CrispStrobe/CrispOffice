@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-16T20:23:04.576Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/proofing-en-de-20261116",
+  "trigger": "PR #87 creation showed that its base had advanced. Inspect and merge this concrete incoming main commit; do not repeat broad remote polling.",
+  "previous_shared_head": "6cc6c07369ca1c7f33bf1715d88222ab685530be",
+  "previous_shared_tree": "42ca485965f5cdb9ac386fc627f8fe9a0aa4b670",
+  "previous_main": "63194d8e482892f284eaccb95ce48a8a8132376d",
+  "incoming_main": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+  "incoming_main_tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07",
+  "merge_base": "63194d8e482892f284eaccb95ce48a8a8132376d",
+  "parents": [
+    "6cc6c07369ca1c7f33bf1715d88222ab685530be",
+    "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+    "001367e89cb0034cf33467783d7258bb0800deb9"
+  ],
+  "source_tree_before_receipt": "5e75e36879c5c6106a7232274841c196d3a91e6a",
+  "incoming_pr": {
+    "number": 86,
+    "title": "Import and export top, bottom and average conditional rules",
+    "head": "001367e89cb0034cf33467783d7258bb0800deb9",
+    "head_ref": "feat/conditional-top-bottom",
+    "merge_commit": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+    "merged_at": "2026-11-16T20:11:30Z",
+    "head_tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07",
+    "head_complete_tree_equals_main": true
+  },
+  "three_way_paths": [
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+      "base_blob": "9a326cfc3a7e662dce5fddb3108ed741d48083d0",
+      "ours_blob": "9a326cfc3a7e662dce5fddb3108ed741d48083d0",
+      "incoming_blob": "49f33121c68fc8fea880cb20afbef62195d4cd96",
+      "mode": "100644",
+      "type": "blob",
+      "disposition": "take-incoming"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+      "base_blob": "4a614fe0d7677f708de753ca4b0cf73f63b93dee",
+      "ours_blob": "4a614fe0d7677f708de753ca4b0cf73f63b93dee",
+      "incoming_blob": "adf9ebda4677ebc8086484a993ee3f12989b3553",
+      "mode": "100644",
+      "type": "blob",
+      "disposition": "take-incoming"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+      "base_blob": "6bc81f6ca7292709df4ef82d64b37152e97d48ea",
+      "ours_blob": "6bc81f6ca7292709df4ef82d64b37152e97d48ea",
+      "incoming_blob": "9e42dedaac3a017eca562c0b1c7c828bc807d28c",
+      "mode": "100644",
+      "type": "blob",
+      "disposition": "take-incoming"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+      "base_blob": "d239a50412284f100ed05c7476bc90ade871cc58",
+      "ours_blob": "d239a50412284f100ed05c7476bc90ade871cc58",
+      "incoming_blob": "3dd54b354b8ebded3adda74060602d430d6fff0f",
+      "mode": "100644",
+      "type": "blob",
+      "disposition": "take-incoming"
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+      "base_blob": "a7d871e6a3902f217a57ded35ecc75db82befbe1",
+      "ours_blob": "a7d871e6a3902f217a57ded35ecc75db82befbe1",
+      "incoming_blob": "0ac87a6dc5e86320fff184633ee6b72e0a856ed2",
+      "mode": "100644",
+      "type": "blob",
+      "disposition": "take-incoming"
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+      "base_blob": "90f8fce3d7f280957c1cf5c25edbb09ec87cb0f6",
+      "ours_blob": "90f8fce3d7f280957c1cf5c25edbb09ec87cb0f6",
+      "incoming_blob": "58a59e0f312ea720850bdd826861b7446ca863e4",
+      "mode": "100644",
+      "type": "blob",
+      "disposition": "take-incoming"
+    }
+  ],
+  "conflicts": [],
+  "resolution": "Every shared-branch incoming path exactly equals the merge-base blob. Take the six incoming main blobs unchanged. The PR feature head has the same complete tree as its main squash commit, so preserve that ancestry without a second source application.",
+  "production_files": [
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart"
+  ],
+  "incoming_engine_tests": [
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+    "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+  ],
+  "prior_proofing_source_freeze": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+  "validation": {
+    "execution_environment": "unavailable",
+    "dart_flutter_tests_run": false,
+    "github_actions_queried": false,
+    "github_actions_waited": false,
+    "prior_evidence_attribution": "Existing proofing evidence remains bound to source freeze 1199750e and its recorded input blobs. Four incoming sheet production files and two tests have not been run in this conversation. Root will refresh the final integrity/report and local reproduction gate after this merge.",
+    "git_verification": "Exact three-way blob equality for all six changed paths; complete tree equality of PR #86 head and main; parent preservation. No textual conflict resolution."
+  }
+}
