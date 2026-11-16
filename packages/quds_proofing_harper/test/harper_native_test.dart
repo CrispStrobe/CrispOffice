@@ -85,6 +85,24 @@ void main() {
         expect(article.replacements, contains('a'));
         expect(article.revision, revision);
       }
+      final discretionary = await provider.check(
+        OfficeProofingRequest(
+          documentId: 'd',
+          blockId: 'discretionary',
+          revision: 4,
+          text: '😀 This is a\u00adn test.',
+          language: 'en-US',
+          startOffset: 3,
+        ),
+      );
+      expect(discretionary.status, OfficeProofingStatus.success);
+      final projectedArticle = discretionary.findings.firstWhere(
+        (finding) => finding.ruleId == 'harper.AnA',
+      );
+      expect(projectedArticle.originalText, 'a\u00adn');
+      expect(projectedArticle.start, 14);
+      expect(projectedArticle.end, 17);
+      expect(projectedArticle.replacements, contains('a'));
       final concurrent = await Future.wait(
         List.generate(
           8,

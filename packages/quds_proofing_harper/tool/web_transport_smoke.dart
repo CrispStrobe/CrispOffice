@@ -52,6 +52,23 @@ Future<void> main() async {
           article.replacements.contains('a'),
       'Dart web transport maps scalar offsets to source UTF16',
     );
+    final discretionary = await provider.check(
+      request(text: '😀 This is a\u00adn test.'),
+    );
+    verify(
+      discretionary.status == OfficeProofingStatus.success,
+      'real Wasm checks across an authored discretionary hyphen',
+    );
+    final projectedArticle = discretionary.findings.firstWhere(
+      (finding) => finding.ruleId == 'harper.AnA',
+    );
+    verify(
+      projectedArticle.originalText == 'a\u00adn' &&
+          projectedArticle.start == 18 &&
+          projectedArticle.end == 21 &&
+          projectedArticle.replacements.contains('a'),
+      'real Wasm correction retains original soft-hyphen source span',
+    );
     final results = await Future.wait([
       provider.check(request(ignored: {'harper.AnA'})),
       provider.check(request(language: 'en-GB')),
