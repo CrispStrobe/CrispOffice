@@ -1,0 +1,53 @@
+00:00 +0: loading /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/platform_spelling_provider_test.dart
+00:00 +0: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/platform_spelling_provider_test.dart: platform absence and undeclared language are explicit
+00:00 +1: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/platform_spelling_provider_test.dart: null is failure, empty successful list is clean
+00:00 +2: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/platform_spelling_provider_test.dart: platform UTF16 offsets preserve emoji and segment origin
+00:00 +3: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/platform_spelling_provider_test.dart: requests are serialized and disposal invalidates pending result
+00:00 +4: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_context_test.dart: (setUpAll)
+00:00 +4: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_context_test.dart: right half of final misspelled glyph keeps its context finding
+00:00 +5: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: imported body and comment style languages/noProof have effective inherited semantics
+00:00 +6: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: imported body and comment style languages/noProof have effective inherited semantics
+00:00 +7: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: imported body and comment style languages/noProof have effective inherited semantics
+00:00 +8: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: imported body and comment style languages/noProof have effective inherited semantics
+00:00 +9: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: imported body and comment style languages/noProof have effective inherited semantics
+00:00 +10: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: imported body and comment style languages/noProof have effective inherited semantics
+00:00 +11: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: last detached view cancels debounce while leaving its controller usable
+00:01 +12: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: a remaining view and explicit host start keep independent ownership
+00:01 +13: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: checks all modeled stories and nested tables/frames, not only caret paragraph
+00:01 +14: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: joins formatting runs and uses UTF-16 source offsets after emoji
+00:01 +15: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: run languages and noProof boundaries produce exact source segments
+00:01 +16: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: a shortening correction rebases selection before typing and restores it on undo
+00:01 +17: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: unsupported paragraph prevents a partial check from claiming clean
+00:01 +18: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: unavailable, failed, clean and disabled are distinct
+00:01 +19: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: opaque content is reported as unchecked
+00:01 +20: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: reuses unchanged paragraphs but rechecks edited source and provider configuration
+00:01 +21: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: asynchronous result is rejected after controller edit
+00:01 +22: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: direct text and language mutations reject asynchronous result without revision notification
+00:01 +23: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: replacing document with identical text rejects old findings
+00:01 +24: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: stale same-text language and generated-field changes block corrections
+00:01 +25: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: complex field results spanning paragraphs are excluded while surrounding text is checked
+00:01 +26: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: read-only host and active IME block correction without adding history
+00:01 +27: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: native content lock blocks inline correction
+00:01 +28: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: native content lock blocks block correction
+00:01 +29: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: native content lock blocks paragraph correction
+00:01 +30: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: a control-only lock permits text correction while preserving its shell
+00:01 +31: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: correction in a footnote changes its actual paragraph and undoes independently of focus
+00:01 +32: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: tracked correction preserves deletion and insertion with valid nonoverlapping ranges
+00:01 +33: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: existing tracked changes are not overwritten by a proofreading correction
+00:01 +34: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: document language and hyphenation toggle save fallback in one undo step
+00:01 +35: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_test.dart: default German checker supports personal vocabulary persistence and owner isolation
+00:01 +36: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: unavailable is shown without claiming clean text
+00:01 +37: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: unavailable is shown without claiming clean text
+00:02 +38: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: unsupported is shown without claiming clean text
+00:02 +39: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: failed is shown without claiming clean text
+00:02 +40: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: no configured provider is explicitly unavailable
+00:02 +41: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: suggestion applies to source and remains undoable
+00:03 +42: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: read-only review exposes findings but disables replacements
+00:03 +43: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: language and hyphenation controls save an undoable document setting
+00:03 +44: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: review fits a narrow viewport
+00:03 +45: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: standalone editor handles F7 and releases background timers on detach
+00:03 +46: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: underline wraps at discretionary hyphen without owning the following letter
+00:03 +47: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: bidi underline follows the visual Hebrew run after a non-BMP prefix
+00:03 +48: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: repeated header tab text maps a finding only to its actual fragment
+00:03 +49: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_proofing_ui_test.dart: (tearDownAll)
+00:03 +49: All tests passed!

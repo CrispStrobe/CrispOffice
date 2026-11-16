@@ -1,0 +1,392 @@
+00:00 +0: loading test/word_zotero_bibliography_layout_test.dart
+00:00 +0: test/word_zotero_bibliography_layout_test.dart: entry paragraphs, soft breaks and twip layout survive repeated DOCX saves
+00:00 +1: test/word_zotero_citing_test.dart: application and field objects expose the current HTTP contract
+00:00 +2: test/word_zotero_bibliography_layout_test.dart: second native refresh preserves layout without another style callback
+00:00 +3: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +4: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +5: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +6: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +7: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +8: test/word_zotero_bibliography_layout_test.dart: no citation insertion is permitted inside any bibliography entry
+00:00 +9: test/word_zotero_citing_test.dart: body table fields retain reading order with surrounding paragraphs
+00:00 +10: test/word_zotero_bibliography_layout_test.dart: mixed, locked, nested and cross-container ranges remain refused
+00:00 +11: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +12: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +13: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +14: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +15: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +16: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +17: test/word_zotero_bibliography_layout_test.dart: invalid layout values are rejected before any document mutation
+00:00 +18: test/word_zotero_citing_test.dart: refresh replaces changing field lengths from the end of the paragraph
+00:00 +19: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +20: test/word_zotero_citing_test.dart: native text-only refresh retires basic formatting
+00:00 +21: test/word_zotero_citing_test.dart: native code-only refresh retires basic formatting
+00:00 +22: test/word_zotero_citing_test.dart: new citation inserts as note type 0 and survives DOCX
+00:00 +23: test/word_zotero_citing_test.dart: new citation inserts as note type 1 and survives DOCX
+00:00 +24: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:00 +25: test/word_zotero_citing_test.dart: caret follows inserted note type 0 after an earlier citation expands
+00:00 +26: test/word_zotero_citing_test.dart: caret follows inserted note type 1 after an earlier citation expands
+00:00 +27: test/word_zotero_citing_test.dart: caret follows inserted note type 2 after an earlier citation expands
+00:00 +28: test/word_zotero_citing_test.dart: a newly inserted note precedes existing notes in processor order
+00:00 +29: test/word_zotero_citing_test.dart: a note inserted directly before an existing marker uses its new order
+00:00 +30: test/word_zotero_citing_test.dart: a sole citation converts from note type 0 to 1 without losing text
+00:00 +31: test/word_zotero_citing_test.dart: a sole citation converts from note type 0 to 2 without losing text
+00:00 +32: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 0 without losing text
+00:00 +33: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 2 without losing text
+00:00 +34: test/word_zotero_citing_test.dart: a sole citation converts from note type 2 to 0 without losing text
+00:00 +35: test/word_zotero_citing_test.dart: a sole citation converts from note type 2 to 1 without losing text
+00:00 +36: test/word_zotero_citing_test.dart: conversion refuses extra note prose without staging earlier conversions
+00:00 +37: test/word_zotero_citing_test.dart: two citations in one note share the note index and refuse note conversion
+00:00 +38: test/word_zotero_citing_test.dart: conversion refuses a citation note with an unrelated empty PAGE field
+00:00 +39: test/word_zotero_citing_test.dart: deleting a citation keeps its note containing an unrelated empty PAGE field
+00:00 +40: test/word_zotero_citing_test.dart: conversion refuses a citation note with two note markers
+00:00 +41: test/word_zotero_citing_test.dart: deleting a citation keeps its note containing two note markers
+00:00 +42: test/word_zotero_citing_test.dart: deleting an explanatory-note citation keeps the note and surrounding prose
+00:00 +43: test/word_zotero_citing_test.dart: deleting a sole-citation note removes its body reference and updates later note indices
+00:00 +44: test/word_zotero_citing_test.dart: unlink retains processor-updated visible text and removes only native code
+00:00 +45: test/word_zotero_citing_test.dart: cancelled TEMP insertion and untouched seeded citation leave no field
+00:00 +46: test/word_zotero_citing_test.dart: seeded catalog selection is visible to Zotero and inserts only after it updates
+00:00 +47: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 0
+00:00 +48: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 1
+00:00 +49: test/word_zotero_document_data_test.dart: new document has no preference data
+00:00 +50: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 2
+00:00 +51: test/word_zotero_document_data_test.dart: XML adaptation retains session, style, locale and unknown data
+00:00 +52: test/word_zotero_citing_test.dart: catalog seed respects XML note type 0
+00:00 +53: test/word_zotero_document_data_test.dart: JSON adaptation preserves unknown objects and boolean preferences
+00:00 +54: test/word_zotero_citing_test.dart: catalog seed respects XML note type 1
+00:00 +55: test/word_zotero_citing_test.dart: catalog seed respects XML note type 1
+00:00 +56: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +57: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +58: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +59: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +60: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +61: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +62: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +63: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +64: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +65: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +66: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +67: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +68: test/word_zotero_document_data_test.dart: native override actually replaces a stored HTTP field preference
+00:00 +69: test/word_zotero_citing_test.dart: new bibliography inserts a separate linked paragraph after the anchor
+00:00 +70: test/word_zotero_document_data_test.dart: rejects unsupported field storage Bookmark
+00:00 +71: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +72: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +73: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +74: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +75: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +76: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +77: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +78: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +79: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +80: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +81: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +82: test/word_zotero_citing_test.dart: uniform superscript survives native result replacement and DOCX reopening
+00:00 +83: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +84: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +85: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +86: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:00 +87: test/word_zotero_document_data_test.dart: native property chunks survive save reopen and repeated save
+00:01 +88: test/word_zotero_citing_test.dart: real Zotero processor German ibid and locators survive whole-document refresh
+00:01 +89: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:01 +90: test/word_zotero_document_data_test.dart: preference override crosses isolate save
+00:01 +91: test/word_zotero_citing_test.dart: real author-year disambiguation updates both existing and newly inserted citations
+00:01 +92: test/word_zotero_document_data_test.dart: updates the source-owned nonstandard part and preserves unrelated data
+00:01 +93: test/word_zotero_document_data_test.dart: new preferences do not adopt an unowned canonical part
+00:01 +94: test/word_zotero_document_data_test.dart: clear and restore remain effective after an intervening save
+00:01 +95: test/word_zotero_document_data_test.dart: null override preserves an imported custom part byte for byte
+00:01 +96: test/word_zotero_document_data_test.dart: reads UTF-16 custom properties before saving as UTF-8
+00:01 +97: test/word_zotero_document_data_test.dart: rejects external and duplicate custom-property ownership
+00:01 +98: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 628546095
+00:01 +99: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 666507852
+00:01 +100: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 320043538
+00:01 +101: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 1039968583
+00:01 +102: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 246346996
+00:01 +103: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 367736991
+00:01 +104: test/word_zotero_document_data_test.dart: damaged native chunk refuses read and replacement 845656275
+00:01 +105: test/word_zotero_document_data_test.dart: excessive document data is rejected before persistence
+00:01 +106: test/word_zotero_document_data_test.dart: a surrogate pair at the native chunk boundary stays intact
+00:01 +107: test/word_zotero_document_data_test.dart: all-space native chunks retain significant JSON string whitespace
+00:01 +108: test/word_zotero_document_data_test.dart: XML adaptation retains unknown all-space text and comments
+00:01 +109: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 830213317
+00:01 +110: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 907203696
+00:01 +111: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 309234631
+00:01 +112: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 585809883
+00:01 +113: test/word_zotero_document_data_test.dart: ambiguous or excessive preferences are refused 1048441131
+00:01 +114: test/word_zotero_document_data_test.dart: JSON strings may contain escaped quotes and nesting characters
+00:01 +115: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 1
+00:01 +116: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 361688422
+00:01 +117: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 589417670
+00:01 +118: test/word_zotero_document_data_test.dart: invalid XML characters cannot be silently replaced 883780703
+00:01 +119: test/word_zotero_document_data_test.dart: truncated UTF-16 custom properties are refused
+00:01 +120: test/word_zotero_document_data_test.dart: Field adaptation cannot exceed the bounded input size
+00:01 +121: test/word_zotero_document_data_test.dart: custom-property output uses the reader UTF-8 byte limit
+00:01 +122: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +123: test/word_zotero_formatted_bibliography_test.dart: rich bibliography retains styles and metadata through three direct saves
+00:01 +124: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +125: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +126: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +127: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +128: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +129: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +130: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +131: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +132: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +133: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +134: test/word_zotero_preference_flow_test.dart: style then seeded placement 0 remain staged until apply
+00:01 +135: test/word_zotero_preference_flow_test.dart: reads native JSON style, locale and placement 1
+00:01 +136: test/word_zotero_preference_flow_test.dart: style then seeded placement 1 remain staged until apply
+00:01 +137: test/word_zotero_preference_flow_test.dart: reads native JSON style, locale and placement 2
+00:01 +138: test/word_zotero_preference_flow_test.dart: style then seeded placement 2 remain staged until apply
+00:01 +139: test/word_zotero_preference_flow_test.dart: native XML summary handles omitted inline placement and locale
+00:01 +140: test/word_zotero_preference_flow_test.dart: unset and incomplete styles cannot place catalog seeds
+00:01 +141: test/word_zotero_preference_flow_test.dart: cancelled second picker leaves preferences and sources detached
+00:01 +142: test/word_zotero_preference_flow_test.dart: preferences must finish before continuing with catalog sources
+00:01 +143: test/word_zotero_preference_flow_test.dart: continuation refuses a changed document before creating a seed
+00:02 +144: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +145: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +146: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +147: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +148: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +149: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +150: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +151: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +152: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +153: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +154: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +155: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +156: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +157: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +158: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +159: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +160: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +161: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +162: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +163: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +164: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +165: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +166: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +167: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +168: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +169: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +170: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +171: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +172: test/word_zotero_scaling_test.dart: large mixed-story field snapshots preserve reading order and guards
+00:02 +173: test/word_zotero_rich_edit_test.dart: bookmarks and content controls surrounding a deleted citation survive
+00:02 +174: test/word_zotero_scaling_test.dart: note snapshots follow deletes, conversions and new field identities
+00:02 +175: test/word_zotero_scaling_test.dart: note snapshots follow deletes, conversions and new field identities
+00:02 +176: test/word_zotero_scaling_test.dart: equal codes in different notes cannot replace original field identity
+00:02 +177: test/word_zotero_scaling_test.dart: same-length metadata changes cannot hide among duplicate citations
+00:02 +178: test/word_zotero_scaling_test.dart: duplicate anchored note IDs remain invalid within their own bucket
+00:02 +179: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +180: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +181: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +182: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +183: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +184: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +185: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +186: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +187: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +188: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +189: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +190: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +191: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +192: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +193: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +194: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +195: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +196: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:03 +197: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:03 +198: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:03 +199: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:03 +200: test/word_zotero_simple_field_test.dart: rich simple bibliographies keep their field metadata and styles
+00:03 +201: test/word_zotero_simple_field_test.dart: tracked rich simple cache retains real paragraph revision offsets
+00:03 +202: test/word_zotero_simple_field_test.dart: malformed rich simple metadata stays a preserved uneditable field
+00:03 +203: test/word_zotero_simple_field_test.dart: disjoint imported tracked ranges inside one rich citation remain exact
+00:03 +204: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=false
+00:03 +205: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=false
+00:03 +206: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:03 +207: test/word_zotero_style_preferences_review_test.dart: truly unset style remains distinguishable from damaged preferences
+00:03 +208: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +209: test/word_zotero_style_preferences_review_test.dart: damaged non-object style cannot be treated as an unset document style
+00:03 +210: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +211: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +212: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +213: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +214: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +215: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +216: test/word_zotero_style_preferences_review_test.dart: damaged duplicate XML styles cannot be treated as an unset document style
+00:03 +217: test/word_zotero_simple_field_test.dart: whole-paragraph native PAGE remains a dynamic page field
+00:03 +218: test/word_zotero_simple_field_test.dart: whole-paragraph native PAGE remains a dynamic page field
+00:03 +219: test/word_zotero_simple_field_test.dart: a PAGE fragment inside citation JSON is not a PAGE command
+00:03 +220: test/word_zotero_simple_field_test.dart: tracked native PAGE cache keeps valid revision text and boundaries
+00:03 +221: test/word_zotero_test.dart: CSL citation metadata is immutable and retains unknown fields
+00:03 +222: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +223: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +224: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +225: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +226: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +227: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +228: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +229: test/word_zotero_test.dart: independent native fields and preferences survive three direct saves
+00:03 +230: test/word_zotero_test.dart: independent native fields and preferences survive three isolate saves
+00:03 +231: test/word_zotero_test.dart: insert, save, edit and unlink preserve surrounding rich text
+00:03 +232: test/word_zotero_test.dart: new complex fields reopen as atomic runs including isolated saves
+00:03 +233: test/word_zotero_test.dart: inserting at rich field boundaries does not nest or split fields
+00:03 +234: test/word_zotero_test.dart: explicit unlink of a multi-paragraph bibliography keeps its cache
+00:03 +235: test/word_zotero_test.dart: malformed, locked, stale, and over-budget metadata are not rewritten
+00:03 +236: test/word_zotero_test.dart: new source URIs and contradictory author options are validated
+00:03 +237: test/word_zotero_test.dart: new linked sources reject request aliases and malformed identities
+00:03 +238: test/word_zotero_test.dart: local profile identities remain distinct through DOCX saves
+00:03 +239: test/zotero_citing_test.dart: replays command shapes generated by the pinned Zotero HTTP wrapper
+00:03 +240: test/zotero_citing_test.dart: replays command shapes generated by the pinned Zotero HTTP wrapper
+00:03 +241: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +242: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +243: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +244: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +245: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +246: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +247: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +248: test/word_zotero_test.dart: native field locks survive import and complex-field export
+00:03 +249: test/zotero_citing_test.dart: initial 503 never responds to somebody else’s transaction
+00:03 +250: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +251: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +252: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +253: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +254: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +255: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +256: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +257: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +258: test/word_zotero_test.dart: unknown field attributes and instruction-run properties stay opaque
+00:03 +259: test/zotero_citing_test.dart: cancelling a desktop error prompt aborts without committing
+00:03 +260: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +261: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +262: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +263: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +264: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +265: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +266: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +267: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +268: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +269: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +270: test/word_zotero_test.dart: canonical URI aliases deduplicate embedded items without rewriting metadata
+00:03 +271: test/zotero_citing_test.dart: command limit accepts completion but refuses further document work
+00:03 +272: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +273: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +274: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +275: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +276: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +277: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +278: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +279: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +280: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +281: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +282: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:03 +283: test/word_zotero_test.dart: citations in notes and header stories retain their ownership on save
+00:04 +284: test/zotero_client_test.dart: key verification uses a header, strips returned secrets and resolves access
+00:04 +285: test/zotero_client_test.dart: public library reads omit credentials; empty key cannot verify
+00:04 +286: test/zotero_client_test.dart: search, collection keys and Unicode metadata survive paginated browse
+00:04 +287: test/zotero_client_test.dart: pagination falls back to totals and advances requested offset
+00:04 +288: test/zotero_client_test.dart: a pagination URL cannot redirect credentials or switch libraries
+00:04 +289: test/zotero_client_test.dart: same item key is distinct in personal and group libraries
+00:04 +290: test/zotero_client_test.dart: mismatched library or item identifiers are not silently relinked
+00:04 +291: test/zotero_client_test.dart: collections preserve parent hierarchy; groups use numeric IDs
+00:04 +292: test/zotero_client_test.dart: individual citation returns CSL and rendered snapshots with style/locale
+00:04 +293: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:04 +294: test/zotero_client_test.dart: export passes the requested format and returns Unicode unchanged
+00:04 +295: test/zotero_client_test.dart: CSL retrieval unwraps the Web API v3 items envelope
+00:04 +296: test/zotero_client_test.dart: CSL retrieval rejects malformed export payloads
+00:04 +297: test/zotero_client_test.dart: invalid library IDs, keys, page bounds and oversized selections never send
+00:04 +298: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:04 +299: test/zotero_client_test.dart: HTTP errors are typed and never expose response bodies or API keys
+00:04 +300: test/zotero_client_test.dart: Retry-After and Backoff choose the longer interval and suppress retries
+00:04 +301: test/zotero_client_test.dart: concurrent responses cannot shorten a requested Backoff
+00:04 +302: test/zotero_client_test.dart: malformed responses, mismatched keys and transport diagnostics are contained
+00:04 +303: test/zotero_client_test.dart: desktop local API plain-text handshake pins the server without an API key
+00:04 +304: test/zotero_client_test.dart: desktop local API older desktops may omit a server ID; API v3 is still required
+00:04 +305: test/zotero_client_test.dart: desktop local API changed or missing pinned library IDs require reconnecting
+00:04 +306: test/zotero_client_test.dart: desktop local API invalid server IDs are not echoed into a later request
+00:04 +307: test/zotero_client_test.dart: desktop local API local groups, collections, query and formats stay on loopback
+00:04 +308: test/zotero_client_test.dart: desktop local API local routing alias is never accepted by the cloud client
+00:04 +309: test/zotero_client_test.dart: desktop local API signed-in desktop identity uses the real account, never users/0
+00:04 +310: test/zotero_client_test.dart: desktop local API unsynced desktop preserves a verified local-user identity
+00:04 +311: test/zotero_client_test.dart: desktop local API a citation key without local identity remains an offline source
+00:04 +312: test/zotero_client_test.dart: desktop local API single CSL export objects, arrays and envelopes are normalized
+00:04 +313: test/zotero_client_test.dart: desktop local API malformed and multi-item CSL exports do not pick an arbitrary record
+00:04 +314: test/zotero_client_test.dart: desktop local API canonical CSL IDs cannot change item, library or identity
+00:04 +315: test/zotero_client_test.dart: desktop local API users/0 requires a valid matching response library envelope
+00:04 +316: test/zotero_client_test.dart: desktop local API local pagination cannot leave the selected loopback route
+00:04 +317: test/zotero_client_test.dart: desktop local API desktop errors explain local setup without exposing diagnostics
+00:04 +318: test/zotero_formatted_text_test.dart: nested inline emphasis becomes independent supported Word properties
+00:04 +319: test/zotero_formatted_text_test.dart: explicit CSS resets and closing tags restore inherited emphasis
+00:04 +320: test/zotero_formatted_text_test.dart: numeric margins stay beside entries while blocks retain line breaks
+00:04 +321: test/zotero_formatted_text_test.dart: inline whitespace is collapsed without adding space between adjacent tags
+00:04 +322: test/zotero_formatted_text_test.dart: entities preserve no-break spaces Unicode and literal angle brackets
+00:04 +323: test/zotero_formatted_text_test.dart: CDATA literals and comments are not rewritten by entity normalization
+00:04 +324: test/zotero_formatted_text_test.dart: resources active markup and attributes cannot become document objects
+00:04 +325: test/zotero_formatted_text_test.dart: small caps preserve letters while unsupported layout remains reported
+00:04 +326: test/zotero_formatted_text_test.dart: result snapshots are immutable and fresh runs do not alias them or the base font
+00:04 +327: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 105, 62, 117, 110, 99, 108, 111, 115, 101, 100]
+00:04 +328: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 105, 62, 120, 60, 47, 98, 62]
+00:04 +329: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 115, 112, 97, 110, 32, 116, 105, 116, 108, 101, 61, 34, 120, 34, 62, 120, 60, 47, 115, 112, 97, 110]
+00:04 +330: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 115, 112, 97, 110, 32, 99, 108, 97, 115, 115, 61, 34, 97, 34, 32, 99, 108, 97, 115, 115, 61, 34, 98, 34, 62, 120, 60, 47, 115, 112, 97, 110, 62]
+00:04 +331: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 33, 68, 79, 67, 84, 89, 80, 69, 32, 120, 62, 60, 105, 62, 84, 105, 116, 108, 101, 60, 47, 105, 62]
+00:04 +332: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 63, 112, 114, 111, 99, 101, 115, 115, 105, 110, 103, 32, 120, 63, 62, 60, 105, 62, 84, 105, 116, 108, 101, 60, 47, 105, 62]
+00:04 +333: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 105, 62, 38, 117, 110, 107, 110, 111, 119, 110, 59, 60, 47, 105, 62]
+00:04 +334: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 105, 62, 38, 35, 48, 59, 60, 47, 105, 62]
+00:04 +335: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 105, 62, 38, 35, 53, 53, 50, 57, 54, 59, 60, 47, 105, 62]
+00:04 +336: test/zotero_formatted_text_test.dart: malformed or unsupported XHTML fails closed: [60, 105, 62, 0, 60, 47, 105, 62]
+00:04 +337: test/zotero_formatted_text_test.dart: size bound measures UTF-8 bytes and nesting is bounded
+00:04 +338: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +339: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +340: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +341: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +342: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +343: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +344: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +345: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +346: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +347: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +348: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +349: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +350: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +351: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +352: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +353: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +354: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +355: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +356: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +357: test/zotero_formatted_text_test.dart: independent element and span bounds prevent tiny-node expansion
+00:04 +358: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:04 +359: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:04 +360: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:04 +361: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:04 +362: test/zotero_paragraph_runs_test.dart: structural offsets use UTF-16 and splitting does not share properties
+00:04 +363: test/zotero_metadata_batch_test.dart: group requests retain their distinct library identity
+00:04 +364: test/zotero_metadata_batch_test.dart: local metadata proves every profile identity without new-version headers
+00:04 +365: test/zotero_metadata_batch_test.dart: aliases in expected identities normalize without changing the input
+00:04 +366: test/zotero_metadata_batch_test.dart: invalid selections fail before any network request
+00:04 +367: test/zotero_metadata_batch_test.dart: two desktop profiles cannot be combined behind users zero
+00:04 +368: test/zotero_metadata_batch_test.dart: missing source refuses the whole batch
+00:04 +369: test/zotero_metadata_batch_test.dart: duplicate source refuses the whole batch
+00:04 +370: test/zotero_metadata_batch_test.dart: additional source refuses the whole batch
+00:04 +371: test/zotero_metadata_batch_test.dart: substituted source refuses the whole batch
+00:04 +372: test/zotero_metadata_batch_test.dart: wrong library kind refuses the whole batch
+00:04 +373: test/zotero_metadata_batch_test.dart: wrong account refuses the whole batch
+00:04 +374: test/zotero_metadata_batch_test.dart: malformed entry refuses the whole batch
+00:04 +375: test/zotero_metadata_batch_test.dart: same item keys from another desktop profile refuse the batch
+00:04 +376: test/zotero_metadata_batch_test.dart: a local citation key cannot prove a durable identity
+00:04 +377: test/zotero_metadata_batch_test.dart: inconsistent or malformed result totals refuse complete-looking data
+00:04 +378: test/zotero_metadata_batch_test.dart: missing CSL remains visible for the host to refuse atomic refresh
+00:04 +379: test/zotero_metadata_batch_test.dart: argument mutation while waiting cannot change verified identities
+00:04 +380: test/zotero_metadata_batch_test.dart: metadata requests retain database pinning and reject a switched desktop
+00:04 +381: test/zotero_metadata_batch_test.dart: server backoff blocks the next batch without retries
+00:05 +382: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:05 +383: test/zotero_saved_search_test.dart: saved searches use the pinned local group library
+00:05 +384: test/zotero_saved_search_test.dart: online connections cannot list or execute the local saved-search workflow
+00:05 +385: test/zotero_saved_search_test.dart: saved-search keys and query/page limits are checked before transport
+00:05 +386: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:05 +387: test/zotero_saved_search_test.dart: saved-search pagination cannot change search, library, or destination
+00:05 +388: test/zotero_saved_search_test.dart: a desktop database switch cannot reuse a saved search key
+00:05 +389: test/zotero_saved_search_test.dart: deleted searches return a safe actionable error without a cloud retry
+00:05 +390: All tests passed!

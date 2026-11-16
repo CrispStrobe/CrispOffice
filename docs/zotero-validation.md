@@ -1,6 +1,42 @@
 # Zotero validation — 16 November 2026
 
-## Current optimization: verified batching and native scaling
+## Current capabilities: source aliases, dialog scaling and session backoff
+
+The combined implementation at `8e017e8c148517fea61f8d55eaafc7f070b82bba`
+passed **825 distinct local tests with zero skips**: 390 engine Zotero,
+186 editor Zotero, and 249 proofing/ODS/layout/caret integration tests.
+Strict analysis and Dart 3.12 formatting pass for 12 canonical targets.
+All 1,505 canonical inputs and 3,857 external dependency/runtime inputs
+remained unchanged and match the recorded source and locked graph.
+
+The shared embedded-source collector now deduplicates complete URI alias
+components, including late/transitive bridges, while preserving unrelated
+library/profile identities and the first available CSL snapshot. The real
+1,000-citation document dialog performs one full field scan per build instead
+of four. Online session backoff survives reconnects, key changes and dialog
+reopening; local desktop clients retain independent state. Isolated before/
+after controls compiled on both source pins and demonstrate each improvement.
+
+This qualification includes main through ODS hyperlink PR #59, the primary
+proofing continuation, and two selected caret fixes from an alternate
+proofing branch. The incoming inventory distinguishes retained ancestry
+from source-reviewed supersession and intentionally unmerged alternatives.
+The previously integrated 1,000-source refresh cap and batches of at most 50
+per library remain covered by the complete Zotero suites.
+
+See the [current report, receipts and reproduction](validation/zotero-capabilities-20261116/README.md)
+and the [support guide](zotero-support.md). CrispCloud pins this exact qualified
+implementation and records its host validation separately. Later delivery
+commits add documentation/evidence without changing the qualified source.
+A fresh full application build and live Zotero/Word acceptance are outside
+this increment. No GitHub Actions jobs or CI status checks were queried,
+awaited or rerun; checkpoint messages include `[skip ci]`.
+
+The sections below are historical evidence for their stated commits and do
+not override the current report or support guide.
+
+
+## Historical optimization: verified batching and native scaling
 
 Canonical source `0dd09811b1c02514c32c33bd13744dadb202e7af` passed
 **364 unique local tests**: 119 native Word/citing, 81 catalog/identity/batch,

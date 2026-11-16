@@ -1,0 +1,188 @@
+00:00 +0: loading /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart
+00:00 +0: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:00 +1: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +2: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +3: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +4: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +5: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +6: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +7: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +8: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +9: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +10: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +11: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +12: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +13: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +14: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: disconnect and public library switching do not discard backoff
+00:02 +15: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_backoff_session_test.dart: desktop works during online backoff and does not clear it
+00:03 +16: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:03 +17: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:03 +18: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +19: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +20: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +21: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +22: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +23: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +24: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +25: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:04 +26: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +27: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +28: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +29: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +30: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +31: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +32: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +33: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +34: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +35: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +36: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +37: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +38: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +39: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+00:05 +40: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 0 in one undo
+00:05 +41: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 1 in one undo
+00:06 +42: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:06 +43: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:07 +44: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:07 +45: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:07 +46: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the following picker also discards staged style
+00:07 +47: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native picker inserts a linked footnote and preferences as one undo
+00:08 +48: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native picker inserts a linked footnote and preferences as one undo
+00:08 +49: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: preferences stay detached while the next native dialog waits
+00:08 +50: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Document style invokes Zotero preferences and persists its chosen locale
+00:08 +51: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: Cancel operation discards both native stages
+00:08 +52: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native cancel without changes leaves the undo history clean
+00:08 +53: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a changed insertion point discards both native stages
+00:09 +54: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: unsupported capital variants are reviewed before mutation and can be discarded
+00:09 +55: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+00:10 +56: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:10 +57: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:10 +58: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:11 +59: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:11 +60: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+00:11 +61: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 2 returns its exact No code
+00:12 +62: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: later collection pages replace duplicate metadata and retain selected keys
+00:12 +63: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: later collection pages replace duplicate metadata and retain selected keys
+00:12 +64: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop error alert 0 discards staged fields even after complete
+00:12 +65: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: a changed library discards its pending collection page
+00:12 +66: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop error alert 2 discards staged fields even after complete
+00:13 +67: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: closing during collection pagination discards the response
+00:13 +68: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_collection_pagination_test.dart: closing during collection pagination discards the response
+00:13 +69: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: stale editor target reports an error and drains the native transaction
+00:13 +70: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: citation insertion, undo and redo preserve source and advance save revisions
+00:14 +71: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +72: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +73: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +74: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +75: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +76: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +77: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +78: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +79: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +80: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +81: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +82: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +83: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +84: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +85: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +86: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:14 +87: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:15 +88: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +89: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +90: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +91: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +92: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +93: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +94: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +95: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:16 +96: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +97: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +98: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +99: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +100: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +101: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +102: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +103: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +104: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +105: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +106: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +107: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +108: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +109: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +110: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +111: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +112: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +113: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +114: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +115: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +116: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +117: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +118: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +119: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +120: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+00:17 +121: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:17 +122: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:17 +123: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:17 +124: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:17 +125: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:17 +126: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:18 +127: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:18 +128: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:18 +129: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+00:18 +130: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 101 sources and duplicate citations into one undo
+00:19 +131: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+00:21 +132: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:21 +133: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+00:22 +134: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:22 +135: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:22 +136: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_saved_search_test.dart: group library resets the saved-search view without losing other selected sources
+00:22 +137: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:23 +138: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:23 +139: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:23 +140: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:24 +141: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+00:24 +142: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_saved_search_test.dart: switching to the online source removes saved-search navigation
+00:24 +143: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:25 +144: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:25 +145: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+00:25 +146: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+00:26 +147: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+00:27 +148: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: closing during the second batch stops further refresh requests
+00:29 +149: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: stale target after the second batch stops the third request
+00:30 +150: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: refresh refuses 1001 distinct sources before any request
+00:31 +151: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: missing CSL in a later library refuses all staged updates
+00:31 +152: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: changed edit target stops refresh before the next library
+00:31 +153: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced refresh keeps URI aliases and unknown citation data
+00:32 +154: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: wrong desktop profile with the same item key cannot refresh
+00:32 +155: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: online operations reject local-only references before a request
+00:32 +156: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: online refresh can use a numeric alias while retaining old local URI
+00:32 +157: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: different local profiles are not combined through the same route
+00:33 +158: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+00:33 +159: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch true
+00:34 +160: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced selected export verifies sources before copying reference data
+00:34 +161: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: changed profile cannot copy another source under a selected item key
+00:34 +162: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced bibliography verifies selection and requires review before insertion
+00:35 +163: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: reviewed bibliography keeps rich runs through save and undo
+00:35 +164: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: bibliography review offers an explicit editable plain result
+00:36 +165: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling rich bibliography review keeps history unchanged
+00:36 +166: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret rejects a reviewed rich bibliography
+00:36 +167: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision rejects a reviewed rich bibliography
+00:37 +168: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: rich review and format limitation fit a narrow viewport
+00:37 +169: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unchanged imported citation keeps its rich cache and native formatting metadata
+00:37 +170: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: older desktop cannot render an unverified aggregate bibliography
+00:37 +171: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: local source without CSL or identity is not refetched by a bare key
+00:37 +172: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop account source inserts without using the saved cloud key
+00:38 +173: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop unsynced source inserts without using the saved cloud key
+00:38 +174: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop citation-key source inserts without using the saved cloud key
+00:38 +175: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: switching sources makes no requests and preserves the cloud credential
+00:38 +176: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a host without desktop transport offers only the supported source
+00:38 +177: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop connection and errors fit a 320 by 640 viewport
+00:38 +178: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: offline CSL import inserts source metadata and can be undone
+00:39 +179: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling the citation composer leaves document and history unchanged
+00:39 +180: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret while the composer is open blocks stale insertion
+00:39 +181: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision while the composer is open blocks stale insertion
+00:40 +182: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: mock Web API connection, pagination and search keep the key outside the document
+00:40 +183: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unchecking Remember removes the saved key immediately without connecting
+00:40 +184: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+00:41 +185: /workspace/scratch/c17add9bb04f/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: dialog, offline import and composer fit a 320 by 640 viewport
+00:41 +186: All tests passed!
