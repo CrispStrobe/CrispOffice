@@ -1,0 +1,42 @@
+{
+  "fixture": {
+    "text": "AV AV",
+    "font": "Liberation Serif",
+    "font_size_points": 32.0,
+    "content_width_points": 95.140625,
+    "scalar_width_points": 100.4375,
+    "shaped_width_points": 89.84375,
+    "raster_pixels_per_point": 2.7
+  },
+  "previous_scalar_path": {
+    "line_count": 2,
+    "line_text": [
+      "AV",
+      "AV"
+    ],
+    "widths_before_paint_fit": [
+      46.21875,
+      46.21875
+    ],
+    "widths_after_paint_fit": [
+      42.09375,
+      42.09375
+    ]
+  },
+  "improved_shaped_path": {
+    "line_count": 1,
+    "line_text": [
+      "AV AV"
+    ],
+    "widths_before_paint_fit": [
+      89.84375
+    ],
+    "widths_after_paint_fit": [
+      89.84375
+    ]
+  },
+  "renderer": "Flutter test engine; Canvas and PaintRunText TextPainter",
+  "dart_runtime": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "scope": "Deterministic typography diagnostic, not a full application screenshot.",
+  "reproduce": "flutter test --no-pub tool/render_text_comparison.dart --dart-define=QUDS_TEXT_RENDERING_OUTPUT=/absolute/output/directory"
+}

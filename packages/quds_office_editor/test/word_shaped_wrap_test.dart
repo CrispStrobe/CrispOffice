@@ -81,37 +81,108 @@ void main() {
     });
   }
 
-  test('narrow table cells wrap shaped runs inside their content box', () {
-    final paragraphs = [
-      _paragraph('AV To AV To AV To', 18),
-      _paragraph('السلام عليكم السلام عليكم', 18, rtl: true),
-      _paragraph('Cafe\u0301 😀 Cafe\u0301 😀', 18),
-    ];
+  for (final cellWidth in [88.0, 84.0]) {
+    test('narrow $cellWidth point cells contain reshaped line fragments', () {
+      final paragraphs = [
+        _paragraph('AV To AV To AV To', 18),
+        _paragraph('السلام عليكم السلام عليكم', 18, rtl: true),
+        _paragraph('Cafe\u0301 😀 Cafe\u0301 😀', 18),
+      ];
+      final document = WmlDocument(
+        sections: [
+          WmlSection(
+              blocks: [
+                WmlTable(
+                  grid: [cellWidth],
+                  properties: WmlTableProps(cellMargin: 4),
+                  rows: [
+                    WmlTableRow(cells: [WmlTableCell(blocks: paragraphs)]),
+                  ],
+                ),
+              ],
+            )
+            ..pageSize = const WmlPageSize(width: 300, height: 600)
+            ..margins = const WmlPageMargins(
+              left: 10,
+              right: 10,
+              top: 10,
+              bottom: 10,
+            ),
+        ],
+      );
+      final controller = _controller(document);
+      final before = _lines(controller);
+      expect(before.length, greaterThan(paragraphs.length));
+      if (cellWidth == 84) {
+        expect(before.first.boxWidth, closeTo(73.2, 0.001));
+        expect(
+          before.first.text,
+          isNot('AV To AV'),
+          reason:
+              'This fragment grows from 73.125 to 73.4502 after trimming; '
+              'the actual line must be reshaped and rebroken before painting.',
+        );
+      }
+      final widths = before.map((line) => line.width).toList();
+      for (final line in before) {
+        expect(line.width, lessThanOrEqualTo(line.boxWidth + 0.01));
+      }
+      controller.fitPaintMetrics();
+      final after = _lines(controller);
+      expect(after, hasLength(before.length));
+      for (var i = 0; i < after.length; i++) {
+        final line = after[i];
+        expect(
+          line.width,
+          closeTo(widths[i], 0.01),
+          reason: 'Line $i: ${line.text}, paragraph ${line.paragraphIndex}',
+        );
+        expect(line.x, greaterThanOrEqualTo(line.boxX - 0.01));
+        expect(
+          line.x + line.width,
+          lessThanOrEqualTo(line.boxX + line.boxWidth + 0.01),
+        );
+      }
+      expect(document.paragraphs.map((paragraph) => paragraph.text), [
+        'AV To AV To AV To',
+        'السلام عليكم السلام عليكم',
+        'Cafe\u0301 😀 Cafe\u0301 😀',
+      ]);
+    });
+  }
+
+  test('adaptive frame wrapping remeasures a narrow accepted fragment', () {
+    const source = 'AV To AV To AV To AV To AV To AV To AV To AV To';
     final document = WmlDocument(
       sections: [
         WmlSection(
-            blocks: [
-              WmlTable(
-                grid: [88],
-                properties: WmlTableProps(cellMargin: 4),
-                rows: [
-                  WmlTableRow(cells: [WmlTableCell(blocks: paragraphs)]),
-                ],
-              ),
-            ],
-          )
-          ..pageSize = const WmlPageSize(width: 300, height: 600)
-          ..margins = const WmlPageMargins(
+          pageSize: const WmlPageSize(width: 193.2, height: 400),
+          margins: const WmlPageMargins(
             left: 10,
             right: 10,
             top: 10,
             bottom: 10,
           ),
+          blocks: [
+            WmlFrame(
+              x: 0,
+              y: 0,
+              width: 100,
+              height: 64,
+              anchor: WmlFrameAnchor.margin,
+              wrap: WmlFrameWrap.square,
+              hasTextBox: false,
+            ),
+            _paragraph(source, 18),
+          ],
+        ),
       ],
     );
     final controller = _controller(document);
     final before = _lines(controller);
-    expect(before.length, greaterThan(paragraphs.length));
+    expect(before.first.boxWidth, closeTo(73.2, 0.001));
+    expect(before.first.text, isNot('AV To AV'));
+    expect(before.any((line) => line.boxWidth > 73.3), isTrue);
     final widths = before.map((line) => line.width).toList();
     for (final line in before) {
       expect(line.width, lessThanOrEqualTo(line.boxWidth + 0.01));
@@ -120,23 +191,13 @@ void main() {
     final after = _lines(controller);
     expect(after, hasLength(before.length));
     for (var i = 0; i < after.length; i++) {
-      final line = after[i];
+      expect(after[i].width, closeTo(widths[i], 0.01));
       expect(
-        line.width,
-        closeTo(widths[i], 0.01),
-        reason: 'Line $i: ${line.text}, paragraph ${line.paragraphIndex}',
-      );
-      expect(line.x, greaterThanOrEqualTo(line.boxX - 0.01));
-      expect(
-        line.x + line.width,
-        lessThanOrEqualTo(line.boxX + line.boxWidth + 0.01),
+        after[i].x + after[i].width,
+        lessThanOrEqualTo(after[i].boxX + after[i].boxWidth + 0.01),
       );
     }
-    expect(document.paragraphs.map((paragraph) => paragraph.text), [
-      'AV To AV To AV To',
-      'السلام عليكم السلام عليكم',
-      'Cafe\u0301 😀 Cafe\u0301 😀',
-    ]);
+    expect(after.map((line) => line.text).join(' '), source);
   });
 }
 

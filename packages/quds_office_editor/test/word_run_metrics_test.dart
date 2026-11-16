@@ -119,6 +119,17 @@ void main() {
   });
 
   test(
+    'unbounded document font names are measured without retaining cache keys',
+    () {
+      final props = WmlRunProps(asciiFont: 'Missing ${'x' * 300}');
+      final first = WordRunMetrics.measure('Text', 12, props, 0)!;
+      final second = WordRunMetrics.measure('Text', 12, props, 0)!;
+      expect(identical(first, second), isFalse);
+      expect(_width(first), closeTo(_width(second), 0.001));
+    },
+  );
+
+  test(
     'layout controls and malformed input decline without invented metrics',
     () {
       final props = WmlRunProps();

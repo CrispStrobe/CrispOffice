@@ -32,19 +32,20 @@ typedef _RunMetricsKey = ({
 /// retain shaping context and remeasure when text, style or boundaries change.
 abstract final class WordRunMetrics {
   static const int _maxEntries = 256;
-  static const int _maxTextUnits = 65536;
+  static const int _maxKeyUnits = 65536;
+  static const int _maxFamilyUnits = 256;
 
   // Only immutable Dart values are cached. Native paragraphs are released at
   // the end of every measurement, including unsuccessful measurements.
   static final _cache = <_RunMetricsKey, List<WordMeasuredCluster>>{};
-  static var _retainedTextUnits = 0;
+  static var _retainedKeyUnits = 0;
   static var _fontRevision = -1;
   static final _layoutControl = RegExp(r'[\t\n\r\v\f\u0085\u2028\u2029]');
 
   /// Releases cached values. Font registration also invalidates them lazily.
   static void clearCache() {
     _cache.clear();
-    _retainedTextUnits = 0;
+    _retainedKeyUnits = 0;
   }
 
   /// Measures a run with one style, script font and bidi level.
@@ -143,13 +144,17 @@ abstract final class WordRunMetrics {
         return null;
       }
       final result = List<WordMeasuredCluster>.unmodifiable(measured);
-      if (text.length <= _maxTextUnits) {
+      final keyUnits = _keyUnits(key);
+      if (keyUnits <= _maxKeyUnits &&
+          requestedFamily.length <= _maxFamilyUnits &&
+          family.length <= _maxFamilyUnits &&
+          (themeFamily?.length ?? 0) <= _maxFamilyUnits) {
         _cache[key] = result;
-        _retainedTextUnits += text.length;
+        _retainedKeyUnits += keyUnits;
         while (_cache.length > _maxEntries ||
-            _retainedTextUnits > _maxTextUnits) {
+            _retainedKeyUnits > _maxKeyUnits) {
           final oldest = _cache.keys.first;
-          _retainedTextUnits -= oldest.text.length;
+          _retainedKeyUnits -= _keyUnits(oldest);
           _cache.remove(oldest);
         }
       }
@@ -158,6 +163,12 @@ abstract final class WordRunMetrics {
       painter.dispose();
     }
   }
+
+  static int _keyUnits(_RunMetricsKey key) =>
+      key.text.length +
+      key.requestedFamily.length +
+      key.family.length +
+      (key.themeFamily?.length ?? 0);
 
   static double? _clusterAdvance(TextPainter painter, int start, int end) {
     final boxes = painter.getBoxesForSelection(

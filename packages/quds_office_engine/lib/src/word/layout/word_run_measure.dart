@@ -65,7 +65,9 @@ List<double>? _clusterAdvances(
         cluster.end > text.length ||
         cluster.end != graphemes[i].end ||
         !cluster.advance.isFinite ||
-        cluster.advance < 0) {
+        cluster.advance < 0 ||
+        (text.substring(cluster.start, cluster.end) == '\u00ad' &&
+            cluster.advance != 0)) {
       return null;
     }
     total += cluster.advance;
@@ -116,6 +118,7 @@ List<ShapedGlyph> _measureWordRuns({
 }) {
   final result = List<ShapedGlyph>.of(glyphs);
   bool separator(ShapedGlyph glyph) =>
+      glyph.isDiscretionaryHyphen ||
       glyph.codePoint == 0x09 ||
       glyph.codePoint == 0x0a ||
       glyph.codePoint == 0x0d ||

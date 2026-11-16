@@ -1437,10 +1437,7 @@ class WordLayoutEngine {
       return result;
     }
 
-    List<ShapedGlyph> measuredRuns(List<ShapedGlyph> source) {
-      final presented = displayLabels.isEmpty
-          ? source
-          : displayReplacements(source);
+    List<ShapedGlyph> measuredLine(List<ShapedGlyph> presented) {
       final host = measureRun;
       return host == null
           ? presented
@@ -1454,6 +1451,10 @@ class WordLayoutEngine {
               measure: host,
             );
     }
+
+    List<ShapedGlyph> measuredRuns(List<ShapedGlyph> source) => measuredLine(
+      displayLabels.isEmpty ? source : displayReplacements(source),
+    );
 
     // Widths and glyph IDs are resolved before wrapping, using each run's
     // actual family, style and size. Scaling only after wrapping lets bold or
@@ -1517,6 +1518,7 @@ class WordLayoutEngine {
             markAttachOf: markAttach,
             baseLevel: paragraph.properties.bidiBaseLevel,
             justify: justify,
+            measureLine: measureRun == null ? null : measuredLine,
             ligate: displayLabels.isEmpty && measureRun == null
                 ? null
                 : measuredRuns,
@@ -1534,6 +1536,7 @@ class WordLayoutEngine {
             markAttachOf: markAttach,
             baseLevel: paragraph.properties.bidiBaseLevel,
             justify: justify,
+            measureLine: measureRun == null ? null : measuredLine,
             breakLongWords: !allowBreak,
             ligate: displayLabels.isEmpty && measureRun == null
                 ? null

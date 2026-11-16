@@ -7,6 +7,9 @@ All notable changes to `quds_office_editor` are documented here.
 - Measure complete Word text runs with Flutter's shaping before wrapping,
   including contextual kerning, Arabic and grapheme advances. Cache immutable
   metrics with bounded storage and invalidate them after font registration.
+- Recheck the shaped width of each painted line fragment so trimmed spaces
+  and changed joining/kerning context cannot silently overflow narrow table
+  cells or variable-width text bands around floating frames.
 - Preserve Unicode grapheme slices and styled combining-mark ownership, keep
   nested bidi embeddings in separate paint runs, and dispose temporary native
   text painters after fitting, caret/hit testing and document painting.

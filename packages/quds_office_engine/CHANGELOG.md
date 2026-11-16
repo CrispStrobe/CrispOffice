@@ -11,6 +11,10 @@ All notable changes to `quds_office_engine` are documented here.
 - Keep lam–alef continuation glyphs in their source complex-script family.
   Compute natural line widths for left, center and right alignment; reserve
   justification expansion for justified/distributed paragraphs.
+- Remeasure actual trimmed line fragments before emission and repair overflow
+  at legal source boundaries with bounded host measurements. Use the same
+  checks for adaptive frame widths, preserve discretionary hyphen ownership,
+  and prevent ordinary breaks inside decorated-space graphemes.
 
 - Import spreadsheet-level ODS list-validation definitions for all referring
   worksheets, including lists resolved from a later source sheet. Retain
