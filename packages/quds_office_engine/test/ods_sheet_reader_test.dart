@@ -1899,6 +1899,35 @@ void validationTests() {
 }
 
 void metadataTests() {
+  test('ODS external and internal hyperlinks survive XLSX', () async {
+    final book = OdsSheetReader.readBytes(
+      _ods(
+        '<t:table t:name="Data"><t:table-row><t:table-cell>'
+        '<x:p>Visit <x:a xl:href="https://example.com">example</x:a>'
+        '</x:p></t:table-cell><t:table-cell>'
+        '<x:p><x:a xl:href="#Data.A1">back</x:a></x:p></t:table-cell>'
+        '</t:table-row></t:table>',
+      ),
+    );
+    final sheet = book.sheets.first;
+    expect(sheet.cellA1('A1').hyperlink, 'https://example.com');
+    expect(sheet.cellA1('B1').hyperlink, 'Data!A1');
+
+    final saved = await OfficeIsolateSave.workbook(book, recalculate: false);
+    final archive = ZipDecoder().decodeBytes(saved);
+    final sheetXml = utf8.decode(
+      archive.findFile('xl/worksheets/sheet1.xml')!.content as List<int>,
+    );
+    final relsXml = utf8.decode(
+      archive.findFile('xl/worksheets/_rels/sheet1.xml.rels')!.content
+          as List<int>,
+    );
+    expect(sheetXml, contains('<hyperlinks>'));
+    expect(sheetXml, contains('r:id='));
+    expect(sheetXml, contains('location="Data!A1"'));
+    expect(relsXml, contains('Target="https://example.com"'));
+  });
+
   test('ODS named expressions translate to XLSX formulas', () async {
     final book = OdsSheetReader.readBytes(
       _ods(

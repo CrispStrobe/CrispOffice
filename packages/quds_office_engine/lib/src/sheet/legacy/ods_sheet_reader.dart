@@ -47,6 +47,7 @@ typedef _OdsCellContent = ({
   String? valueType,
   _OdsAnnotation? annotation,
   List<_OdsImage> images,
+  String? hyperlink,
 });
 
 /// Thrown when an ODS package cannot be read safely.
@@ -612,7 +613,8 @@ abstract final class OdsSheetReader {
       ..hasExplicitFontColorEdit = source.hasExplicitFontColorEdit
       ..fontBold = source.fontBold
       ..fontSize = source.fontSize
-      ..fontFamily = source.fontFamily;
+      ..fontFamily = source.fontFamily
+      ..hyperlink = source.hyperlink;
   }
 
   static Map<int, String> _readColumns(
@@ -1260,7 +1262,19 @@ abstract final class OdsSheetReader {
       valueType: valueType,
       annotation: _readAnnotation(element),
       images: _readImages(element, zip, budget),
+      hyperlink: _readHyperlink(element),
     );
+  }
+
+  static String? _readHyperlink(XmlElement element) {
+    final link = _descendants(element, 'a', _textNs).firstOrNull;
+    final href = link == null ? null : _attribute(link, 'href', _xlink);
+    if (href == null || href.isEmpty) return null;
+    if (href.startsWith('#')) {
+      final target = href.substring(1).replaceFirst('.', '!');
+      return target.isEmpty ? null : target;
+    }
+    return href;
   }
 
   static List<_OdsImage> _readImages(
@@ -1339,12 +1353,14 @@ abstract final class OdsSheetReader {
     _OdsBudget budget, {
     required bool preserveEmptyStyle,
   }) {
-    final (:value, :formula, :valueType, :annotation, images: _) = content;
+    final (:value, :formula, :valueType, :annotation, images: _, :hyperlink) =
+        content;
     // The named Default style on empty spreadsheet padding is not cell data.
     if (value == null &&
         formula == null &&
         annotation == null &&
         content.images.isEmpty &&
+        hyperlink == null &&
         (styleName == null || styleName == 'Default')) {
       return null;
     }
@@ -1407,6 +1423,7 @@ abstract final class OdsSheetReader {
       cell.formula = formula;
       cell.type = SmlCellType.formula;
     }
+    if (hyperlink != null) cell.hyperlink = hyperlink;
     cell
       ..fontBold = bold
       ..horizontalAlign = align
