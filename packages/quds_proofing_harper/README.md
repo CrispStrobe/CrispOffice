@@ -18,7 +18,9 @@ to a server. The browser fetches its locally hosted code/Wasm assets only.
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_proofing_harper/quds_proofing_harper.dart';
 
+final vocabulary = OfficeProofingVocabulary(ownerId: 'your-account-id');
 final english = HarperProofingProvider(
+  vocabulary: vocabulary,
   nativeLibraryPath: '/application/lib/libquds_proofing_harper.so',
   workerUrl: Uri.base.resolve('proofing/harper_worker.mjs'),
 );
@@ -40,6 +42,21 @@ rule names under `harper.` so rule ignores are request-scoped. Invalid data,
 backend failures and timeouts report **failed**, with no fabricated clean
 result. A timeout disposes the worker. Dispose the provider when its host
 document/service closes.
+
+English checks omit U+00AD discretionary soft hyphens from checker input, so a
+word such as `hy\u00adphenation` is checked as one word. A single indexed source
+projection maps every backend scalar interval back to original UTF-16 positions,
+including emoji, segment origins and controls inside words. Other punctuation
+and no-break controls remain literal. A finding that would split a grapheme in
+either representation is omitted; invalid offsets still fail the result.
+This follows the conservative source-boundary policy used by German proofing.
+
+Supply the Word session's `OfficeProofingVocabulary` to share personal and
+ignored words with standalone English checks. Membership remains language-scoped
+and case-sensitive after the existing canonicalization. Vocabulary entries
+suppress spelling findings only; grammar and style still run. Changes invalidate
+the provider configuration, and an in-flight vocabulary change requires a new
+check. The host owns persistence; the provider adds no network or storage access.
 
 A request is limited to 32,768 Unicode scalar characters and 2,000 findings.
 Exceeding either bound is an explicit failure. This keeps oversized paragraphs
