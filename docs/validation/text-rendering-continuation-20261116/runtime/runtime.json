@@ -1,0 +1,62 @@
+{
+  "started_at_utc": "2026-11-16T19:32:49.634793+00:00",
+  "commands": [
+    {
+      "name": "universal-artifacts",
+      "args": [
+        "precache",
+        "--informative",
+        "--no-web",
+        "--no-android",
+        "--no-ios",
+        "--no-linux",
+        "--no-windows",
+        "--no-macos",
+        "--no-fuchsia"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.177272646000347,
+      "log_sha256": "42e02063ff21bbddb9256d0ea4af644ef2d1d8c1521e97ec6cdf54b1d2586a7d"
+    },
+    {
+      "name": "version",
+      "args": [
+        "--version",
+        "--machine"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 4.148228973001096,
+      "log_sha256": "ae2b77f98bc5b9b21bf6ed4de551750660ac34f15f4d4b91fe0e56fd9267ad93"
+    }
+  ],
+  "framework_source_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "flutter_cli": "/workspace/scratch/796b63b8623e/toolchain/flutter_cli.sh",
+  "cli_kernel_sha256": "10f2f4aecac58c5b018bab546fb67316466ed1896ee4570525210745690944d2",
+  "cli_build": "dart compile kernel --packages=packages/flutter_tools/.dart_tool/package_config.json packages/flutter_tools/bin/flutter_tools.dart",
+  "native_binaries_rebuilt": false,
+  "sdk_source_changes": [],
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_package_config_sha256": "dbb4c84cfe77c79a9a7ac57e1e873b7d59f6b8213d89ee1a5a4bb149aa56eb8f",
+  "workspace_package_count": 108,
+  "actual_runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/796b63b8623e/toolchain/flutter-runtime"
+  },
+  "executable_hashes": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "status": "ready",
+  "finished_at_utc": "2026-11-16T19:33:01.089091+00:00"
+}

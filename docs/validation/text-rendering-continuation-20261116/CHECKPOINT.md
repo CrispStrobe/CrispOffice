@@ -31,3 +31,26 @@ dependency or bundled font. Shared editor/headless shaping remains future work.
 
 GitHub Actions are not queried, awaited, polled or rerun. Checkpoints use
 `[skip ci]`; qualification is local.
+
+## Subsequent local evidence and incoming refresh
+
+Checkpoint `6bf486ee0bbcd2025c3a42cae7d7003b8c9324a4` saves the first current
+engine qualification: 169 passing tests, strict changed-file analysis and
+formatting, with 397 input hashes unchanged. The pre-change snapshot fails or
+errors on 19 of the same 20 compatible regression probes; its one control
+passes. The external PDF comparison has zero differing pixels at 72 dpi and
+extracts the exact authored text from both encoded and Word PDFs.
+
+The first Flutter cohort subsequently passed all 66 tests, changed-file analysis
+and formatting, with 462 input hashes unchanged. These initial receipts remain
+under `engine-attempt1/`, `editor/`, `baseline/` and `poppler/`; later overlapping
+cohorts must not be added to their counts.
+
+A refresh observed 166 branch/PR heads, including newly arrived ODS filter and
+row-outline work and a font-fixture path correction. Main-only integration has
+tree `754fd323403c79e822f33421d132cdc9c022b0e4`. The reviewed nine-head simulation
+has the same tree: eight non-main heads have exact patch-equivalent squash
+commits on main. The four documentation/test conflicts retain main's combined,
+later contents. See `incoming-refresh-before-merge.json` and
+`incoming-merge-review.json`. The canonical integration records all nine heads
+as parents, followed by final local qualification of the combined source.

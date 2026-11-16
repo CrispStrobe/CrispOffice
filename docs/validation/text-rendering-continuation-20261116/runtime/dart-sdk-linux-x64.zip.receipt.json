@@ -1,0 +1,361 @@
+{
+  "url": "https://storage.googleapis.com/flutter_infra_release/flutter/cf636b1dfb818dd6a3ff16e390e93b1a036969c8/dart-sdk-linux-x64.zip",
+  "expected_bytes": 238851283,
+  "expected_sha256": null,
+  "chunk_bytes": 4194304,
+  "workers": 24,
+  "parts": [
+    {
+      "start": 0,
+      "end": 4194303,
+      "sha256": "1357464fa595f985414a4500a102f49b3882a15708683cde6953765d4dea8023",
+      "reused": true
+    },
+    {
+      "start": 4194304,
+      "end": 8388607,
+      "sha256": "580febd24c9449111ae7de5153528d2ba3de81cc43be33b047f8016ff0b2ee43",
+      "requests": 1
+    },
+    {
+      "start": 8388608,
+      "end": 12582911,
+      "sha256": "dfe1e15a5f538420ba387d304edb41a534612b6d43e1bf7984cfbd21fe285f2d",
+      "reused": true
+    },
+    {
+      "start": 12582912,
+      "end": 16777215,
+      "sha256": "861a975c65ea62ade74a05ad22964306a119675a1cf4a38bbf36bdc56223ae5f",
+      "requests": 9
+    },
+    {
+      "start": 16777216,
+      "end": 20971519,
+      "sha256": "7222a6f6cd013ed50aa61f72700c98d4dc689299f7c403182b847f0e20b7a8bc",
+      "requests": 3
+    },
+    {
+      "start": 20971520,
+      "end": 25165823,
+      "sha256": "484e543f8830f47d017bc9286c918052cdff7bd5153b9ba779dafaea3b85abeb",
+      "requests": 4
+    },
+    {
+      "start": 25165824,
+      "end": 29360127,
+      "sha256": "0878dea4cd8fd26565c036198bac3f9970a0b12414c9a804e7cea2c6428065b2",
+      "requests": 1
+    },
+    {
+      "start": 29360128,
+      "end": 33554431,
+      "sha256": "146e41d746f3593b8837589fca711723ab61066703f3361bff6af25974d18021",
+      "requests": 9
+    },
+    {
+      "start": 33554432,
+      "end": 37748735,
+      "sha256": "9dfb00061adebf6108e5f8f1339189133eab88d1e23b0fc65fd183cf4cd23574",
+      "requests": 3
+    },
+    {
+      "start": 37748736,
+      "end": 41943039,
+      "sha256": "5f7916bf27ae4d842bc7e60e431be9d6460243072e426d75de47a9d503b587c3",
+      "reused": true
+    },
+    {
+      "start": 41943040,
+      "end": 46137343,
+      "sha256": "8377891baa1fde160bcc4b13fd7896a8f43120fb001be17b5fcb10657b761a44",
+      "requests": 1
+    },
+    {
+      "start": 46137344,
+      "end": 50331647,
+      "sha256": "3a7a02d1a0f1fe50967c744da285746fbcd495fcc56fe934c7dd3fdbc3e45f5a",
+      "reused": true
+    },
+    {
+      "start": 50331648,
+      "end": 54525951,
+      "sha256": "4920a747fdde1772ebad73becf300aa989b14db83e4672781d24de895350ec1a",
+      "requests": 4
+    },
+    {
+      "start": 54525952,
+      "end": 58720255,
+      "sha256": "3df1aea675bb234317b6a9e294adb18525a1b779e674e62991e9da488ff78776",
+      "reused": true
+    },
+    {
+      "start": 58720256,
+      "end": 62914559,
+      "sha256": "603852cc45c8f8b2e0a50de28174ab9ee315e023c43749650db268c640265cdd",
+      "reused": true
+    },
+    {
+      "start": 62914560,
+      "end": 67108863,
+      "sha256": "3a5cbf0b28ade12554d537668fa35a6c097dfba2c5d8fe7d1407ca6b0b624cfb",
+      "reused": true
+    },
+    {
+      "start": 67108864,
+      "end": 71303167,
+      "sha256": "c5b26bcf6bc29d64fd008fb2d785e3317cede614ecca179b685f2f28164bfbff",
+      "requests": 16
+    },
+    {
+      "start": 71303168,
+      "end": 75497471,
+      "sha256": "95e1c9176525d1c1f4305033687b323acc2c6e3db2c97bde884e2697e1301f30",
+      "requests": 18
+    },
+    {
+      "start": 75497472,
+      "end": 79691775,
+      "sha256": "fcc63c65855d6a49fee1d023ea3459f9ea5cea8b2ace9a04c3e1692094cc02c9",
+      "requests": 21
+    },
+    {
+      "start": 79691776,
+      "end": 83886079,
+      "sha256": "a6317320ce7ed6c1e956f3ecead30293c50be096d66b3a39fd9c496d9a44edc1",
+      "requests": 21
+    },
+    {
+      "start": 83886080,
+      "end": 88080383,
+      "sha256": "8d4bebd7aa26d0f9954f47f9f65775c4f603a93e8979121f17d7410486f49c4c",
+      "requests": 16
+    },
+    {
+      "start": 88080384,
+      "end": 92274687,
+      "sha256": "002e5f0dc68cb6503d8859d4fe615570c50bad1395c550f4d2b8b39c3e5dcbc5",
+      "requests": 23
+    },
+    {
+      "start": 92274688,
+      "end": 96468991,
+      "sha256": "073782f80981767bdaeaf51204147e12d3d79289c90c03ddf0d54aad8b000cb1",
+      "requests": 19
+    },
+    {
+      "start": 96468992,
+      "end": 100663295,
+      "sha256": "a3f1ab3957738cad9f689a81237a0acab6c06394b01dc34a37f0da0682ec0a64",
+      "requests": 21
+    },
+    {
+      "start": 100663296,
+      "end": 104857599,
+      "sha256": "1a4f8b604cb886f3f55dba3ab6b53cb7a00f42f59abd61e34a3fd8ffaea0dd85",
+      "requests": 19
+    },
+    {
+      "start": 104857600,
+      "end": 109051903,
+      "sha256": "9a959167c92bd427be8f5a7a88aa1848ac248b02adb752aa379c52f5f7c3a040",
+      "requests": 18
+    },
+    {
+      "start": 109051904,
+      "end": 113246207,
+      "sha256": "baf5bb1ee0fd2191259e5dbdd45ecc5c47c5331db4bc1721c9eae10e653bb1c3",
+      "requests": 23
+    },
+    {
+      "start": 113246208,
+      "end": 117440511,
+      "sha256": "158e02b5e55025de6a669fe485d5bbbe2680886a3c33008f2fcf451c6aebbd97",
+      "requests": 20
+    },
+    {
+      "start": 117440512,
+      "end": 121634815,
+      "sha256": "d4cf1540c9e442ac7916ceda95cebfc1452e7ebaf0ddfb39ec29c35a5ad3919f",
+      "requests": 24
+    },
+    {
+      "start": 121634816,
+      "end": 125829119,
+      "sha256": "0e7ba1dc3c2ef9f9e3493541eaa463099f4e9ac5f8843e1928b6bb5412af517b",
+      "requests": 20
+    },
+    {
+      "start": 125829120,
+      "end": 130023423,
+      "sha256": "b03674b29ce79b6043241c1d7d5e0a351264562218bf6397a478dba0ff3d45a8",
+      "requests": 21
+    },
+    {
+      "start": 130023424,
+      "end": 134217727,
+      "sha256": "19c07d8822433fe75b27469eabf708570e3e80cea23a8262e5335bfb92c2f5fc",
+      "requests": 19
+    },
+    {
+      "start": 134217728,
+      "end": 138412031,
+      "sha256": "b88bbe122fd0d97b5e9b981bbdc95e4c73525856a9acf8154efef8ce8dcc9524",
+      "requests": 18
+    },
+    {
+      "start": 138412032,
+      "end": 142606335,
+      "sha256": "611d0f0f0cb9a35fac447d3cb35d8a2d4e078d86060e4d078549d0639b3f3e2f",
+      "requests": 17
+    },
+    {
+      "start": 142606336,
+      "end": 146800639,
+      "sha256": "59972728ff25ecdf304507b7bd7cb05e5d028b8a93bf2e36f34dd5fb58feedbc",
+      "requests": 17
+    },
+    {
+      "start": 146800640,
+      "end": 150994943,
+      "sha256": "c6603c82c3328cd35dca649d1c25ec9c11e6df405b2ab3b44e309e873d01582e",
+      "requests": 18
+    },
+    {
+      "start": 150994944,
+      "end": 155189247,
+      "sha256": "3b33461c4c084c767d097e0ad84b97402c736693ee2a0a047bfd32889841c4f1",
+      "requests": 20
+    },
+    {
+      "start": 155189248,
+      "end": 159383551,
+      "sha256": "0ceea1be7b010b7e397304040676fa7fe0e6b9926ba13b3c718b14cd0053a176",
+      "requests": 24
+    },
+    {
+      "start": 159383552,
+      "end": 163577855,
+      "sha256": "a10746240b311af38c1a916b0b7b4085b53d4b966a6e58ff06d6287a8a0778aa",
+      "requests": 23
+    },
+    {
+      "start": 163577856,
+      "end": 167772159,
+      "sha256": "a0f4d399be50e196fe61634bc1de51841299b9e30906bf35e4e356a4f1eb0514",
+      "requests": 26
+    },
+    {
+      "start": 167772160,
+      "end": 171966463,
+      "sha256": "d86537ba38aca2784028c6d7ea0ad96a1b7a97ced27708f9edd4baa399444785",
+      "requests": 22
+    },
+    {
+      "start": 171966464,
+      "end": 176160767,
+      "sha256": "0f34c91dd73b9ae54723fef6975d1dc2ba8c255e10f0965b1b37f7671caf4eed",
+      "requests": 21
+    },
+    {
+      "start": 176160768,
+      "end": 180355071,
+      "sha256": "939e3619ae6b3d21c3b3cd9c35822667a272efbbacbcb8615fe031f4eb91fbb9",
+      "requests": 17
+    },
+    {
+      "start": 180355072,
+      "end": 184549375,
+      "sha256": "ba6193897e9ea0b09c6efe32ee1ed1e1c69454ef4d10c0ef8ece8ab026a1a547",
+      "requests": 18
+    },
+    {
+      "start": 184549376,
+      "end": 188743679,
+      "sha256": "b0d01d2c8eeb80103879964beed5da0cc2fb8339049b3d1230db951b994bcc2b",
+      "requests": 17
+    },
+    {
+      "start": 188743680,
+      "end": 192937983,
+      "sha256": "07fb95e13f8c3a9a220f8f95012b4c4b731ec47f6ff243d50a0a9d095d5f0e74",
+      "requests": 18
+    },
+    {
+      "start": 192937984,
+      "end": 197132287,
+      "sha256": "9fcfd89c62483ea3fd52eb33cb3a4af2c7d6ec0c75f3786590c4d7fc1571f257",
+      "requests": 19
+    },
+    {
+      "start": 197132288,
+      "end": 201326591,
+      "sha256": "6d0e21da7de5b728c9a639ed47597767f40979fdce7b5b986b8dfa3478676a9a",
+      "requests": 16
+    },
+    {
+      "start": 201326592,
+      "end": 205520895,
+      "sha256": "d6f0e3f7aca69990b15fa1860decb6b83d6cfe106c6c05b1c8f852e334b38a25",
+      "requests": 15
+    },
+    {
+      "start": 205520896,
+      "end": 209715199,
+      "sha256": "81390ef904698bec5c762f6d8e7acf20c9a8f380cae26492ee1374f7326bbd6f",
+      "requests": 18
+    },
+    {
+      "start": 209715200,
+      "end": 213909503,
+      "sha256": "6e78e03bdb33b1c83c34dc2f943cec8a8a85f089e6b8d2ae2dbf11c95f3c7488",
+      "requests": 16
+    },
+    {
+      "start": 213909504,
+      "end": 218103807,
+      "sha256": "c3dc4b95b95288b9d5a20515c7f67232e4c17575dc990e54af52b38ac13a8e35",
+      "requests": 15
+    },
+    {
+      "start": 218103808,
+      "end": 222298111,
+      "sha256": "49c17d4f8a0ff722af07b649a2840c3791cfa3656579a8e48e9071c82b8685e0",
+      "requests": 14
+    },
+    {
+      "start": 222298112,
+      "end": 226492415,
+      "sha256": "2787a5e0c2e0dfb97ca6a1c641b8d561de47097d64ce2b8e553bc74235e99363",
+      "requests": 13
+    },
+    {
+      "start": 226492416,
+      "end": 230686719,
+      "sha256": "f2ea5b87fb45a475a10b46bd305e48b0bc900bd89e4f89545cf878b3de6cc47f",
+      "requests": 14
+    },
+    {
+      "start": 230686720,
+      "end": 234881023,
+      "sha256": "dfa7f77309ad9643e94aec2ffaced69793791c93b1891f4ab4a3468d9c3e47ad",
+      "requests": 15
+    },
+    {
+      "start": 234881024,
+      "end": 238851282,
+      "sha256": "5f427f31780a7dafd93e9cc2ca403f8dd71704a0030dadb680ab89e6cbb92bc4",
+      "requests": 14
+    }
+  ],
+  "status": "passed",
+  "official_headers": {
+    "last-modified": "Fri, 23 Oct 2026 03:31:06 GMT",
+    "etag": "\"adaa86f63770c8107b4ab5d84c63e6bf\"",
+    "x-goog-hash": "md5=raqG9jdwyBB7SrXYTGPmvw==",
+    "content-length": "238851283"
+  },
+  "downloaded_bytes": 209491155,
+  "elapsed_seconds": 837.854310494,
+  "sha256": "b52a1d890575d6c286079bd51650dc77f90c2dddfdcb073a052ae06a5fdb276d"
+}

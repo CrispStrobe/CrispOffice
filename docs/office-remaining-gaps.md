@@ -8,7 +8,7 @@ is maintained in the CrispCloud repository
 
 ## Current baseline
 
-- Sheet/ODS cohort: 507 tests.
+- Sheet/ODS cohort: 509 tests.
 - Last clean full engine run: 2,205 tests. Two unrelated CLI
   bookmark/content-control tests currently fail on main.
 - Live ODS → XLSX fidelity against LibreOffice: 0.9981 on the measured BOM
@@ -70,18 +70,20 @@ it.
 
 ### 6. ODT pictures
 
-Raster pictures are embedded as data URIs with a 2 MiB total budget; larger or
-unsupported images remain markers. Position/crop/caption/linked/vector media are
-not modeled. A bounded image registry would remove the Markdown cap.
+The host keeps supported raster pictures in a bounded image registry (8 MiB per
+image, 24 MiB total) and references them from markup by synthetic keys; larger
+or unsupported images remain markers. Position/crop/caption/linked/vector media
+are not modeled.
 
 ### 7. ODF serialization
 
-ODT and ODP are intentionally read-only in the host. ODS edits save a new XLSX
-copy. `OdsSheetWriter` now exports the modeled workbook subset (values, formulas,
-styles, number formats, merges, geometry, hidden state, comments, links, names,
-print areas/titles and autofilter ranges, conditional formats and validations).
-Page-style serialization remains open; an ODT/ODP writer remains a separate
-project.
+ODT and ODP are intentionally read-only in the host. Ordinary ODS Save writes a
+new XLSX copy; the host also exposes an explicit **Export as ODS** action.
+`OdsSheetWriter` exports the modeled workbook subset (values, formulas, styles,
+number formats, merges, geometry, hidden state, comments, links, names, print
+areas/titles, autofilter ranges and predicates, pictures, conditional formats,
+validations, row outline groups and a default page layout). Authored page-style serialization remains open; an
+ODT/ODP writer remains a separate project.
 
 ### 8. ODP slide fidelity
 
