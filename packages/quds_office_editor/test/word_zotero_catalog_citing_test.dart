@@ -190,6 +190,14 @@ Future<WordEditorController> _open(
     find.widgetWithText(CheckboxListTile, 'Local catalog source'),
   );
   expect(find.text('1 selected'), findsOneWidget);
+  expect(
+    find.widgetWithText(FilledButton, 'Insert with Zotero…'),
+    findsOneWidget,
+  );
+  expect(
+    find.widgetWithText(OutlinedButton, 'Insert basic citation'),
+    findsOneWidget,
+  );
   return controller;
 }
 

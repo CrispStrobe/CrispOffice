@@ -71,10 +71,8 @@ class ShapedGlyph {
 }
 
 /// Offset applied after the base advance so a combining mark sits on it.
-typedef MarkAttachFn = ({double dx, double dy}) Function(
-  ShapedGlyph base,
-  ShapedGlyph mark,
-);
+typedef MarkAttachFn =
+    ({double dx, double dy}) Function(ShapedGlyph base, ShapedGlyph mark);
 
 /// Width provider used by the breaker (typically [FontMetrics.characterWidth]).
 typedef GlyphWidthFn = double Function(int codePoint);

@@ -1,0 +1,12 @@
+00:00 +0: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart
+00:00 +0: first catalog insertion chooses placement 0 in one undo
+00:02 +1: first catalog insertion chooses placement 1 in one undo
+00:03 +2: first catalog insertion chooses placement 2 in one undo
+00:04 +3: saved document style goes directly to the seeded native picker
+00:04 +4: cancelling the first style chooser retains catalog selection
+00:04 +5: cancelling the following picker also discards staged style
+00:05 +6: a failed picker never commits the preceding style choice
+00:05 +7: preferences stay detached while the next native dialog waits
+00:05 +8: Cancel operation discards both native stages
+00:06 +9: a changed insertion point discards both native stages
+00:07 +10: All tests passed!

@@ -835,8 +835,9 @@ class WordSerializer {
         case WmlNoteMarker():
           w.writeStartElement('r', prefix: 'w');
           final marker = inline.properties;
-          final changed = WordPropertyIo.runValues(marker).entries
-              .any((entry) => marker.importedValues?[entry.key] != entry.value);
+          final changed = WordPropertyIo.runValues(marker).entries.any(
+            (entry) => marker.importedValues?[entry.key] != entry.value,
+          );
           if (marker.sourcePropertiesXml != '' || changed) {
             _writeRPr(w, marker);
           }

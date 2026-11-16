@@ -13,7 +13,8 @@ final class WordNoteNumbering {
       definitions.putIfAbsent((note.endnote, note.id), () => []).add(note);
     }
     final defaults = _documentOptions(document);
-    final counts = <bool, int>{false: 0, true: 0};
+    final nextNumbers = <bool, int>{};
+    final unknownCounters = <bool>{};
     final seen = <(bool, int)>{};
     for (final section in document.sections) {
       final sectionRoot = _xml(section.sourceProperties?.xml);
@@ -26,7 +27,12 @@ final class WordNoteNumbering {
             ),
           ),
       };
-      final sectionCounts = <bool, int>{false: 0, true: 0};
+      for (final entry in options.entries) {
+        if (entry.value.restart == 'eachSect') {
+          nextNumbers[entry.key] = entry.value.start;
+          unknownCounters.remove(entry.key);
+        }
+      }
       for (final paragraph in _bodyParagraphs(section.blocks)) {
         for (final run in paragraph.inlines.whereType<WmlRun>()) {
           final id = run.noteRefId;
@@ -50,16 +56,26 @@ final class WordNoteNumbering {
             continue;
           }
           final setting = options[note.endnote]!;
-          final index = setting.restart == 'eachSect'
-              ? sectionCounts[note.endnote]!
-              : counts[note.endnote]!;
-          final number = setting.start + index;
-          counts[note.endnote] = counts[note.endnote]! + 1;
-          sectionCounts[note.endnote] = sectionCounts[note.endnote]! + 1;
-          final label =
-              const {'continuous', 'eachSect'}.contains(setting.restart)
-              ? _format(number, setting.format)
-              : null;
+          // numStart applies at the first automatic mark and at restart
+          // points. A continuous section carries the previous section's next
+          // number, even if that section used a different start or restart.
+          final number = nextNumbers.putIfAbsent(
+            note.endnote,
+            () => setting.start,
+          );
+          if (!const {'continuous', 'eachSect'}.contains(setting.restart) ||
+              number < 0 ||
+              number > 1000000) {
+            unknownCounters.add(note.endnote);
+          } else {
+            nextNumbers[note.endnote] = number + 1;
+          }
+          // Page numbering cannot be inferred before pagination. Its unknown
+          // counter also propagates into following continuous sections until
+          // an explicit section restart restores a known start.
+          final label = unknownCounters.contains(note.endnote)
+              ? null
+              : _format(number, setting.format);
           if (label == null) {
             _labels[note] = '$id';
             _limited.add(note);

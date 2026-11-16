@@ -294,8 +294,9 @@ abstract final class WmlRunEdit {
   static ({int start, int end}) normalizeRange(
     WmlParagraph paragraph,
     int start,
-    int end,
-  ) {
+    int end, {
+    bool protectZoteroCitations = true,
+  }) {
     if (start > end) {
       final int swap = start;
       start = end;
@@ -305,7 +306,9 @@ abstract final class WmlRunEdit {
     start = start.clamp(0, length);
     end = end.clamp(0, length);
     final bool collapsed = start == end;
-    final citations = WordFieldSpans.zoteroCitations(paragraph);
+    final citations = protectZoteroCitations
+        ? WordFieldSpans.zoteroCitations(paragraph)
+        : const <WmlZoteroEditSpan>[];
     for (final span in citations) {
       if (!span.canEdit && span.touches(start, end)) {
         throw UnsupportedError(

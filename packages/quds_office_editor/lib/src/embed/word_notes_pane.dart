@@ -139,6 +139,11 @@ class _WordNotesPaneState extends State<WordNotesPane> {
                 final String identity = note.endnote
                     ? 'E${note.id}'
                     : '${note.id}';
+                final String title = numbering.hasExactLabel(note)
+                    ? (widget.arabic ? 'حاشية $mark' : 'Note $mark')
+                    : (widget.arabic
+                          ? 'حاشية (معرّف المصدر $identity)'
+                          : 'Note (source ID $identity)');
                 final TextEditingController edit = _editFor(note);
                 return Padding(
                   key: ValueKey<WmlNote>(note),
@@ -152,7 +157,7 @@ class _WordNotesPaneState extends State<WordNotesPane> {
                             child: GestureDetector(
                               onTap: () => _c.jumpToNote(note),
                               child: Text(
-                                widget.arabic ? 'حاشية $mark' : 'Note $mark',
+                                title,
                                 style: TextStyle(
                                   color: theme.focusRing,
                                   fontSize: 11,

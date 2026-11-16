@@ -242,7 +242,10 @@ void main() {
     'unsupported small caps are reviewed before mutation and can be discarded',
     (tester) async {
       final desktop = _Desktop(
-        _insertScript(html: '<span style="font-variant: small-caps">Title</span>, 34.', noteType: 0),
+        _insertScript(
+          html: '<span style="font-variant: small-caps">Title</span>, 34.',
+          noteType: 0,
+        ),
       );
       final controller = await _open(tester, desktop: desktop);
       await _tap(tester, 'Citation in Zotero…');
@@ -271,8 +274,11 @@ void main() {
       expect(field.run, isNull);
       expect(field.canEdit, isTrue);
       expect(
-        field.paragraph.inlines.whereType<WmlRun>()
-            .singleWhere((run) => run.text == 'Title').properties.italic,
+        field.paragraph.inlines
+            .whereType<WmlRun>()
+            .singleWhere((run) => run.text == 'Title')
+            .properties
+            .italic,
         isTrue,
       );
       expect(field.citation!.citationId, 'native-citation');
@@ -291,7 +297,10 @@ void main() {
     tester,
   ) async {
     final desktop = _Desktop(
-      _insertScript(html: '<span style="font-variant: small-caps">Title</span>, 34.', noteType: 0),
+      _insertScript(
+        html: '<span style="font-variant: small-caps">Title</span>, 34.',
+        noteType: 0,
+      ),
     );
     final controller = await _open(tester, desktop: desktop);
     await _tap(tester, 'Citation in Zotero…');

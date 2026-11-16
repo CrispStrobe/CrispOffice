@@ -11,19 +11,22 @@ String _json({Object? style, Object? noteType = 0}) => jsonEncode({
 });
 
 void main() {
-  test('truly unset style remains distinguishable from damaged preferences', () {
-    expect(WordZoteroDocumentData.stylePreferences(''), isNull);
-    expect(
-      WordZoteroDocumentData.stylePreferences(
-        '{"prefs":{"fieldType":"Field"}}',
-      ),
-      isNull,
-    );
-    expect(
-      WordZoteroDocumentData.stylePreferences(_json(style: {'styleID': ''})),
-      isNull,
-    );
-  });
+  test(
+    'truly unset style remains distinguishable from damaged preferences',
+    () {
+      expect(WordZoteroDocumentData.stylePreferences(''), isNull);
+      expect(
+        WordZoteroDocumentData.stylePreferences(
+          '{"prefs":{"fieldType":"Field"}}',
+        ),
+        isNull,
+      );
+      expect(
+        WordZoteroDocumentData.stylePreferences(_json(style: {'styleID': ''})),
+        isNull,
+      );
+    },
+  );
 
   for (final (name, data) in <(String, String)>[
     ('non-object style', _json(style: [_style])),

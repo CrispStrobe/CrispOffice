@@ -1151,12 +1151,19 @@ void main() {
       expect(result.run, isNull);
       expect(result.canEdit, isTrue);
       expect(
-        result.paragraph.inlines.whereType<WmlRun>()
-            .singleWhere((run) => run.text == 'Book').properties.italic,
+        result.paragraph.inlines
+            .whereType<WmlRun>()
+            .singleWhere((run) => run.text == 'Book')
+            .properties
+            .italic,
         isTrue,
       );
       expect(
-        WmlRunEdit.normalizeRange(result.paragraph, result.start + 1, result.end - 1),
+        WmlRunEdit.normalizeRange(
+          result.paragraph,
+          result.start + 1,
+          result.end - 1,
+        ),
         (start: result.start, end: result.end),
       );
     },

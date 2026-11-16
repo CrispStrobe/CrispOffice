@@ -1,0 +1,140 @@
+00:00 +0: loading test/word_note_numbering_test.dart
+00:00 +0: test/word_note_numbering_test.dart: IDs and storage order do not determine body, note, or pane order
+00:00 +1: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:00 +2: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:00 +3: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:00 +4: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:00 +5: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:00 +6: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:00 +7: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +8: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +9: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +10: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +11: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +12: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +13: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +14: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +15: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +16: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +17: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +18: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +19: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +20: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +21: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +22: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +23: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +24: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +25: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +26: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +27: test/note_marker_fidelity_test.dart: authored note-marker stories retain position, kind and properties for three export cycles
+00:00 +28: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +29: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +30: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +31: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +32: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +33: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +34: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +35: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +36: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +37: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +38: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +39: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +40: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +41: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +42: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +43: test/note_marker_legacy_fidelity_test.dart: native note markers retain imported positions over three saves
+00:00 +44: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +45: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +46: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +47: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +48: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +49: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +50: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +51: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +52: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +53: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +54: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +55: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +56: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +57: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +58: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +59: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +60: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +61: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +62: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +63: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=false
+00:00 +64: test/note_marker_legacy_fidelity_test.dart: new notes retain one generated mark and their conventional separator
+00:01 +65: test/note_marker_legacy_fidelity_test.dart: new notes retain one generated mark and their conventional separator
+00:01 +66: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=true
+00:01 +67: test/note_separator_fidelity_test.dart: inserting notes reserves native special IDs through three saves: endnote=false relocatedMain=true
+00:01 +68: test/note_separator_fidelity_test.dart: legacy unowned note part reserves its retained special IDs: endnote=false
+00:01 +69: test/note_separator_fidelity_test.dart: an unrelated high special ID does not renumber the next note: endnote=false
+00:01 +70: test/note_separator_fidelity_test.dart: native separator definitions preserve absence, metadata and owner through clone/edit/save: endnote=false custom=false aliases=false
+00:01 +71: test/note_separator_fidelity_test.dart: native separator definitions preserve absence, metadata and owner through clone/edit/save: endnote=false custom=true aliases=false
+00:01 +72: test/note_chrome_fidelity_test.dart: footnote absent separator definitions stay absent through direct saves
+00:01 +73: test/note_chrome_fidelity_test.dart: footnote absent separator definitions stay absent through direct saves
+00:01 +74: test/note_chrome_fidelity_test.dart: footnote absent separator definitions stay absent through direct saves
+00:01 +75: test/note_chrome_fidelity_test.dart: footnote absent separator definitions stay absent through direct saves
+00:01 +76: test/note_edit_test.dart: editing a rich note keeps formatting, tables, pictures and links
+00:01 +77: test/note_edit_test.dart: editing a rich note keeps formatting, tables, pictures and links
+00:01 +78: test/note_edit_test.dart: editing a rich note keeps formatting, tables, pictures and links
+00:01 +79: test/note_edit_test.dart: editing a rich note keeps formatting, tables, pictures and links
+00:01 +80: test/note_edit_test.dart: editing a rich note keeps formatting, tables, pictures and links
+00:01 +81: test/rich_note_test.dart: dense body reserves footnotes and continues long notes without loss
+00:01 +82: test/rich_note_test.dart: dense body reserves footnotes and continues long notes without loss
+00:01 +83: test/rich_note_test.dart: dense body reserves footnotes and continues long notes without loss
+00:01 +84: test/rich_note_test.dart: dense body reserves footnotes and continues long notes without loss
+00:01 +85: test/rich_note_test.dart: dense body reserves footnotes and continues long notes without loss
+00:01 +86: test/note_edit_test.dart: edited note text survives save and reopen
+00:01 +87: test/note_edit_test.dart: edited note text survives save and reopen
+00:01 +88: test/note_edit_test.dart: edited note text survives save and reopen
+00:01 +89: test/note_edit_test.dart: edited note text survives save and reopen
+00:01 +90: test/note_edit_test.dart: edited note text survives save and reopen
+00:01 +91: test/note_edit_test.dart: edited note text survives save and reopen
+00:01 +92: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +93: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +94: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +95: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +96: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +97: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +98: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +99: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +100: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +101: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:01 +102: test/note_separator_fidelity_test.dart: native separator definitions preserve absence, metadata and owner through clone/edit/save: endnote=true custom=true aliases=false
+00:01 +103: test/note_chrome_fidelity_test.dart: endnote custom separators retain namespace context: direct/q
+00:01 +104: test/rich_note_test.dart: column flow leaves the note band clear
+00:01 +105: test/note_separator_fidelity_test.dart: native separator definitions preserve absence, metadata and owner through clone/edit/save: endnote=true custom=true aliases=true
+00:01 +106: test/note_separator_fidelity_test.dart: native separator definitions preserve absence, metadata and owner through clone/edit/save: endnote=true custom=true aliases=true
+00:01 +107: test/note_chrome_fidelity_test.dart: endnote custom separators retain namespace context: direct/
+00:01 +108: test/rich_note_test.dart: body pictures skip pages occupied by continuing footnotes
+00:01 +109: test/note_separator_fidelity_test.dart: imported note spacing remains exact: endnote=true prefix=[]
+00:01 +110: test/note_separator_fidelity_test.dart: imported note spacing remains exact: endnote=true prefix=[]
+00:01 +111: test/note_separator_fidelity_test.dart: imported note spacing remains exact: endnote=true prefix=[]
+00:01 +112: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +113: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +114: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +115: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +116: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +117: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +118: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +119: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:01 +120: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:01 +121: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:01 +122: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:01 +123: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:01 +124: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:01 +125: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:01 +126: test/word_note_bookmark_edit_test.dart: footnote rejects orphaned end before earlier paragraph text can change
+00:01 +127: test/word_note_script_break_test.dart: footnote whole-note replacement keeps its automatic mark through three hard-break exports
+00:02 +128: test/word_note_script_break_test.dart: footnote whole-note replacement keeps its automatic mark through three hard-break exports
+00:02 +129: test/word_note_bookmark_edit_test.dart: footnote permits complete cross-paragraph range removal through three exports
+00:02 +130: test/word_note_bookmark_edit_test.dart: footnote permits complete cross-paragraph range removal through three exports
+00:02 +131: test/word_note_bookmark_edit_test.dart: footnote permits complete cross-paragraph range removal through three exports
+00:02 +132: test/word_note_bookmark_edit_test.dart: endnote rejects orphaned end before earlier paragraph text can change
+00:02 +133: test/word_note_bookmark_edit_test.dart: endnote rejects orphaned start when the retained endpoint is in a table
+00:02 +134: test/word_note_bookmark_edit_test.dart: endnote permits complete cross-paragraph range removal through three exports
+00:02 +135: test/word_note_bookmark_edit_test.dart: a complete bookmark in a single removed paragraph remains a legal edit
+00:02 +136: test/word_note_bookmark_edit_test.dart: appended paragraphs inherit formatting but clear generated bookmark identity
+00:02 +137: test/word_note_bookmark_edit_test.dart: appended paragraphs inherit formatting but clear native bookmark identity
+00:02 +138: All tests passed!

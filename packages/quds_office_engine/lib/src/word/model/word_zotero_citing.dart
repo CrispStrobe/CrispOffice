@@ -221,9 +221,7 @@ final class WordZoteroCitingSession {
         'Move the caret outside the existing citation before inserting selected sources.',
       );
     }
-    final field = _insert(
-      WordZoteroDocumentData.citationNoteType(_nativeData),
-    );
+    final field = _insert(WordZoteroDocumentData.citationNoteType(_nativeData));
     field.code = _toHttp(citation.fieldInstruction);
     field.text = citation.plainCitation;
     field.seeded = true;
@@ -610,6 +608,7 @@ final class WordZoteroCitingSession {
       text: field.text,
       index: at,
       formattedText: field.formatted,
+      preservedResultRuns: field.textWasSet ? null : field.originalRuns,
     );
     if (field.original == null) _insertedParagraph = paragraph;
     if (field.unlinked) {
@@ -940,7 +939,10 @@ final class _CitingField {
            ? 2
            : 1,
        code = WordZoteroCitingSession._toHttp(original.instruction),
-       text = original.cachedText;
+       text = original.cachedText,
+       originalRuns = original.kind == ZoteroFieldKind.citation
+           ? WordZotero.copyCitationResult(original)
+           : null;
   _CitingField.inserted({
     required this.id,
     required this.bodyIndex,
@@ -952,9 +954,11 @@ final class _CitingField {
        note = null,
        noteOrder = -1,
        code = 'TEMP',
-       text = '';
+       text = '',
+       originalRuns = null;
   final String id;
   final WmlZoteroField? original;
+  final List<WmlRun>? originalRuns;
   final int bodyIndex;
   final WmlParagraph anchor;
   final int anchorOffset;

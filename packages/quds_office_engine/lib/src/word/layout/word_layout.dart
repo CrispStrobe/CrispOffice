@@ -716,11 +716,8 @@ const double kDefaultTabWidth = 36;
 /// Hosts that paint with their own text stack (for example Flutter's
 /// `TextPainter`) pass this to [WordLayoutEngine.measure] so line breaks use
 /// the same widths the painter will use.
-typedef WordGlyphMeasure = double Function(
-  int codePoint,
-  double sizePoints,
-  WmlRunProps props,
-);
+typedef WordGlyphMeasure =
+    double Function(int codePoint, double sizePoints, WmlRunProps props);
 
 /// Flowable pagination: Knuth-Plass lines accumulated into physical pages.
 class WordLayoutEngine {
@@ -1327,7 +1324,7 @@ class WordLayoutEngine {
     for (final inline in paragraph.inlines) {
       if (inline is WmlRun) {
         final label = _noteNumbering?.referenceLabel(inline);
-        if (label != null && label != inline.text) {
+        if (label != null) {
           noteLabels[sourceOffset] = (
             text: label,
             end: sourceOffset + inline.text.length,
@@ -2864,9 +2861,13 @@ class WordLayoutEngine {
   }
 
   void _appendEndnotes(WmlDocument document, List<LaidOutPage> pages) {
+    // Temporary table-row documents inherit labels, but never own the outer
+    // document's note stories. Only append definitions belonging to this story.
+    final owned = document.endnotes.toSet();
+    if (owned.isEmpty) return;
     final List<WmlNote> notes = <WmlNote>[
-      for (final WmlNote note in _noteNumbering!.notes.where((n) => n.endnote))
-        if (note.id > 0 &&
+      for (final WmlNote note in _noteNumbering!.notes)
+        if (owned.contains(note) &&
             (note.text.trim().isNotEmpty ||
                 note.addReference ||
                 note.hasReferenceMarkers))

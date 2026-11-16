@@ -19,8 +19,9 @@ OpcPackage _source() {
   for (final endnote in [false, true]) {
     final kind = endnote ? 'endnote' : 'footnote';
     final uri = '/word/${kind}s.xml';
-    final bytes = File('$_fixtures/note_markers_${kind}s.xml')
-        .readAsBytesSync();
+    final bytes = File(
+      '$_fixtures/note_markers_${kind}s.xml',
+    ).readAsBytesSync();
     final part = package.getPart(uri);
     if (part == null) {
       package.createPart(
@@ -142,62 +143,66 @@ WmlDocument _singleNote(bool endnote, int id) {
   return doc;
 }
 
-List<LaidOutLine> _noteLines(WmlDocument doc) =>
-    WordLayoutEngine(font: null)
-        .layout(doc)
-        .pages
-        .expand((p) => p.notes)
-        .where((line) => line.overlayText != 'Endnotes')
-        .toList();
+List<LaidOutLine> _noteLines(WmlDocument doc) => WordLayoutEngine(font: null)
+    .layout(doc)
+    .pages
+    .expand((p) => p.notes)
+    .where((line) => line.overlayText != 'Endnotes')
+    .toList();
 
 void main() {
-  final expected = jsonDecode(
-    File('$_fixtures/note_markers_expected.json').readAsStringSync(),
-  ) as Map<String, Object?>;
+  final expected =
+      jsonDecode(
+            File('$_fixtures/note_markers_expected.json').readAsStringSync(),
+          )
+          as Map<String, Object?>;
 
-  test('authored note-marker stories retain position, kind and properties for three export cycles', () async {
-    const root = 'build/fidelity-note-markers';
-    final source = _source().save();
-    writeOutput('$root/source.docx', source);
-    for (final phase in ['imported', 'cloned', 'edited']) {
-      var doc = WordDeserializer().readBytes(source);
-      if (phase == 'cloned') _cloneStories(doc);
-      if (phase == 'edited') _editStories(doc);
-      for (var cycle = 1; cycle <= 3; cycle++) {
-        final bytes = await OfficeIsolateSave.word(doc);
-        writeOutput('$root/$phase-$cycle.docx', bytes);
-        doc = WordDeserializer().readBytes(bytes);
-        for (final endnote in [false, true]) {
-          final notes = _notes(doc, endnote);
-          expect(notes.map((n) => n.id), [1, 2, 3, 4, 5, 6]);
-          expect(_positions(notes), expected['marker_offsets']);
-          expect(notes.every((note) => !note.addReference), isTrue);
-          expect(
-            notes.firstWhere((n) => n.id == 4).blocks.first,
-            isA<WmlTable>(),
-          );
-          expect(
-            notes.firstWhere((n) => n.id == 5).hasReferenceMarkers,
-            isFalse,
-          );
-          expect(notes.firstWhere((n) => n.id == 3).text, isEmpty);
-          for (final note in notes) {
+  test(
+    'authored note-marker stories retain position, kind and properties for three export cycles',
+    () async {
+      const root = 'build/fidelity-note-markers';
+      final source = _source().save();
+      writeOutput('$root/source.docx', source);
+      for (final phase in ['imported', 'cloned', 'edited']) {
+        var doc = WordDeserializer().readBytes(source);
+        if (phase == 'cloned') _cloneStories(doc);
+        if (phase == 'edited') _editStories(doc);
+        for (var cycle = 1; cycle <= 3; cycle++) {
+          final bytes = await OfficeIsolateSave.word(doc);
+          writeOutput('$root/$phase-$cycle.docx', bytes);
+          doc = WordDeserializer().readBytes(bytes);
+          for (final endnote in [false, true]) {
+            final notes = _notes(doc, endnote);
+            expect(notes.map((n) => n.id), [1, 2, 3, 4, 5, 6]);
+            expect(_positions(notes), expected['marker_offsets']);
+            expect(notes.every((note) => !note.addReference), isTrue);
             expect(
-              _markers(note).every((marker) => marker.endnote == endnote),
-              isTrue,
+              notes.firstWhere((n) => n.id == 4).blocks.first,
+              isA<WmlTable>(),
             );
+            expect(
+              notes.firstWhere((n) => n.id == 5).hasReferenceMarkers,
+              isFalse,
+            );
+            expect(notes.firstWhere((n) => n.id == 3).text, isEmpty);
+            for (final note in notes) {
+              expect(
+                _markers(note).every((marker) => marker.endnote == endnote),
+                isTrue,
+              );
+            }
+            final middle = _markers(
+              notes.firstWhere((n) => n.id == 2),
+            ).single.properties;
+            expect(middle.color, '335577');
+            expect(middle.italic, isTrue);
+            expect(middle.fontSizeHalfPoints, 20);
+            expect(middle.sourcePropertiesXml, contains('fr-FR'));
           }
-          final middle = _markers(notes.firstWhere((n) => n.id == 2))
-              .single
-              .properties;
-          expect(middle.color, '335577');
-          expect(middle.italic, isTrue);
-          expect(middle.fontSizeHalfPoints, 20);
-          expect(middle.sourcePropertiesXml, contains('fr-FR'));
         }
       }
-    }
-  });
+    },
+  );
 
   test(
     'zero-width marker clones do not share mutable run property snapshots',
@@ -219,45 +224,51 @@ void main() {
     },
   );
 
-  test('paragraph-scoped note script edit preserves nested content and exact unnumbered whitespace', () {
-    final doc = _document();
-    final unnumbered = doc.footnotes.firstWhere((n) => n.id == 5);
-    expect(WordNotes.editableText(unnumbered), '  Intentionally unnumbered');
-    _editStories(doc);
-    expect(
-      unnumbered.paragraphs.single.text,
-      '  Intentionally unnumbered edited',
-    );
-    expect(unnumbered.hasReferenceMarkers, isFalse);
-    final nested = doc.footnotes.firstWhere((n) => n.id == 4);
-    expect(nested.blocks.single, isA<WmlTable>());
-    expect(nested.allParagraphs.map((p) => p.text), [
-      'Cell before',
-      'Cell  tail edited',
-    ]);
-    expect(_positions(doc.footnotes), expected['marker_offsets']);
-  });
+  test(
+    'paragraph-scoped note script edit preserves nested content and exact unnumbered whitespace',
+    () {
+      final doc = _document();
+      final unnumbered = doc.footnotes.firstWhere((n) => n.id == 5);
+      expect(WordNotes.editableText(unnumbered), '  Intentionally unnumbered');
+      _editStories(doc);
+      expect(
+        unnumbered.paragraphs.single.text,
+        '  Intentionally unnumbered edited',
+      );
+      expect(unnumbered.hasReferenceMarkers, isFalse);
+      final nested = doc.footnotes.firstWhere((n) => n.id == 4);
+      expect(nested.blocks.single, isA<WmlTable>());
+      expect(nested.allParagraphs.map((p) => p.text), [
+        'Cell before',
+        'Cell  tail edited',
+      ]);
+      expect(_positions(doc.footnotes), expected['marker_offsets']);
+    },
+  );
 
-  test('legacy whole-story replacement retains its automatic marker or source absence', () async {
-    var doc = _document();
-    final marked = doc.footnotes.firstWhere((note) => note.id == 1);
-    marked.text = 'Replacement';
-    final absent = doc.footnotes.firstWhere((note) => note.id == 5);
-    absent.text = 'Replacement without marker';
-    expect(marked.blocks, hasLength(1));
-    expect(marked.text, 'Replacement');
-    expect(_markers(marked).single.properties.color, '123456');
-    expect(absent.hasReferenceMarkers, isFalse);
-    doc = WordDeserializer().readBytes(await OfficeIsolateSave.word(doc));
-    expect(
-      _markers(doc.footnotes.firstWhere((note) => note.id == 1)),
-      hasLength(1),
-    );
-    expect(
-      doc.footnotes.firstWhere((note) => note.id == 5).hasReferenceMarkers,
-      isFalse,
-    );
-  });
+  test(
+    'legacy whole-story replacement retains its automatic marker or source absence',
+    () async {
+      var doc = _document();
+      final marked = doc.footnotes.firstWhere((note) => note.id == 1);
+      marked.text = 'Replacement';
+      final absent = doc.footnotes.firstWhere((note) => note.id == 5);
+      absent.text = 'Replacement without marker';
+      expect(marked.blocks, hasLength(1));
+      expect(marked.text, 'Replacement');
+      expect(_markers(marked).single.properties.color, '123456');
+      expect(absent.hasReferenceMarkers, isFalse);
+      doc = WordDeserializer().readBytes(await OfficeIsolateSave.word(doc));
+      expect(
+        _markers(doc.footnotes.firstWhere((note) => note.id == 1)),
+        hasLength(1),
+      );
+      expect(
+        doc.footnotes.firstWhere((note) => note.id == 5).hasReferenceMarkers,
+        isFalse,
+      );
+    },
+  );
 
   test(
     'minimal note edits retain all source spacing after a leading marker',
@@ -334,9 +345,9 @@ void main() {
           final bytes = await OfficeIsolateSave.word(doc);
           final kind = endnote ? 'endnote' : 'footnote';
           final root = XmlDocument.parse(
-            OpcPackage.openBytes(bytes)
-                .getPart('/word/${kind}s.xml')!
-                .readText(),
+            OpcPackage.openBytes(
+              bytes,
+            ).getPart('/word/${kind}s.xml')!.readText(),
           ).root!;
           final note = root
               .childrenNamed(kind)

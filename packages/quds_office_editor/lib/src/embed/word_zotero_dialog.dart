@@ -183,7 +183,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             StateError e => e.message,
             ArgumentError _ =>
               'Check the library ID, selected sources, style, and locale.',
-            _ => 'The operation could not finish. Existing document content was kept.',
+            _ =>
+              'The operation could not finish. Existing document content was kept.',
           };
         });
       }
@@ -249,7 +250,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     await _loadLibrary();
     if (mounted) {
       setState(
-        () => _notice = 'Connected to Zotero desktop. Local library access is read-only; no API key is used.',
+        () => _notice =
+            'Connected to Zotero desktop. Local library access is read-only; no API key is used.',
       );
     }
   });
@@ -360,7 +362,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
         ? null
         : ZoteroClient(transport: widget.transport!);
     setState(
-      () => _notice = 'Disconnected. The saved key was removed; citations remain in the document.',
+      () => _notice =
+          'Disconnected. The saved key was removed; citations remain in the document.',
     );
   });
 
@@ -445,7 +448,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     });
     if (uri == null) {
       setState(
-        () => _notice = 'This source will be embedded without a Zotero link because the desktop library did not provide a persistent item URI.',
+        () => _notice =
+            'This source will be embedded without a Zotero link because the desktop library did not provide a persistent item URI.',
       );
     }
   });
@@ -610,7 +614,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             ) ==
             null) {
           setState(
-            () => _notice = 'No document style was selected. The document and selected sources were kept.',
+            () => _notice =
+                'No document style was selected. The document and selected sources were kept.',
           );
           return;
         }
@@ -623,7 +628,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       result.prepareReview();
       if (seed != null && !result.hasAcceptedSeedCitation) {
         setState(
-          () => _notice = 'No citation was inserted. The document and selected sources were kept.',
+          () => _notice =
+              'No citation was inserted. The document and selected sources were kept.',
         );
         return;
       }
@@ -693,7 +699,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       _write(transaction.apply);
       if (items != null) _selected.clear();
       setState(
-        () => _notice = 'Zotero updated the document using its selected style. You can undo the complete operation.',
+        () => _notice =
+            'Zotero updated the document using its selected style. You can undo the complete operation.',
       );
     } finally {
       if (mounted) setState(() => _citingCancellation = null);
@@ -801,84 +808,86 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     _session.locale = _locale.text.trim();
   }
 
-  Future<void> _bibliography({required bool online, WmlZoteroField? field}) =>
-      _run(() async {
-        _checkTarget();
-        if (field != null &&
-            const ['uncited', 'omitted', 'custom'].any((name) {
-              final value = field.metadata?[name];
-              return value != null && (value is! List || value.isNotEmpty);
-            })) {
-          throw UnsupportedError(
-            'This bibliography has Zotero additions, exclusions, or custom entries. Update it with Zotero to retain those choices.',
-          );
-        }
-        _saveFormat();
-        final items = _documentItems;
-        if (items.isEmpty) {
+  Future<void> _bibliography({
+    required bool online,
+    WmlZoteroField? field,
+  }) => _run(() async {
+    _checkTarget();
+    if (field != null &&
+        const ['uncited', 'omitted', 'custom'].any((name) {
+          final value = field.metadata?[name];
+          return value != null && (value is! List || value.isNotEmpty);
+        })) {
+      throw UnsupportedError(
+        'This bibliography has Zotero additions, exclusions, or custom entries. Update it with Zotero to retain those choices.',
+      );
+    }
+    _saveFormat();
+    final items = _documentItems;
+    if (items.isEmpty) {
+      throw const FormatException(
+        'Insert a citation before creating its bibliography.',
+      );
+    }
+    String text;
+    ZoteroFormattedText? formattedText;
+    if (online) {
+      final addresses = <String, ZoteroSourceAddress>{};
+      for (final item in items) {
+        final address = _addressOf(item);
+        if (address == null) {
           throw const FormatException(
-            'Insert a citation before creating its bibliography.',
+            'Some sources cannot be resolved through this library connection. Use the basic bibliography or copy embedded CSL JSON.',
           );
         }
-        String text;
-        ZoteroFormattedText? formattedText;
-        if (online) {
-          final addresses = <String, ZoteroSourceAddress>{};
-          for (final item in items) {
-            final address = _addressOf(item);
-            if (address == null) {
-              throw const FormatException(
-                'Some sources cannot be resolved through this library connection. Use the basic bibliography or copy embedded CSL JSON.',
-              );
-            }
-            addresses[address.canonicalUri.toString()] = address;
-          }
-          final first = addresses.values.first;
-          if (addresses.values.any((item) => item.scope != first.scope) ||
-              addresses.length > 50) {
-            throw const FormatException(
-              'A Zotero-formatted bibliography needs at most 50 sources in one library. Use basic format or export CSL JSON.',
-            );
-          }
-          formattedText = ZoteroFormattedText.fromHtml(
-            await _connectedClient(first).bibliography(
-              first.library,
-              itemKeys: addresses.values.map((item) => item.key).toList(),
-              expectedItemUris: {
-                for (final address in addresses.values)
-                  address.key: address.canonicalUri,
-              },
-              style: _session.style,
-              locale: _session.locale,
+        addresses[address.canonicalUri.toString()] = address;
+      }
+      final first = addresses.values.first;
+      if (addresses.values.any((item) => item.scope != first.scope) ||
+          addresses.length > 50) {
+        throw const FormatException(
+          'A Zotero-formatted bibliography needs at most 50 sources in one library. Use basic format or export CSL JSON.',
+        );
+      }
+      formattedText = ZoteroFormattedText.fromHtml(
+        await _connectedClient(first).bibliography(
+          first.library,
+          itemKeys: addresses.values.map((item) => item.key).toList(),
+          expectedItemUris: {
+            for (final address in addresses.values)
+              address.key: address.canonicalUri,
+          },
+          style: _session.style,
+          locale: _session.locale,
+        ),
+      );
+      text = formattedText.plainText;
+    } else {
+      text = zoteroBasicBibliography(items);
+    }
+    if (!mounted) return;
+    if (text.trim().isEmpty) {
+      throw const FormatException('No bibliography text was returned.');
+    }
+    final reviewed = await _reviewBibliography(
+      online ? 'Review Zotero bibliography' : 'Basic bibliography',
+      text,
+      formattedText: formattedText,
+    );
+    if (!mounted || reviewed == null) return;
+    _write(
+      () => field == null
+          ? _controller.insertZoteroBibliography(
+              text: reviewed.text,
+              formattedText: reviewed.formattedText,
+            )
+          : _controller.updateZoteroBibliography(
+              field,
+              text: reviewed.text,
+              formattedText: reviewed.formattedText,
             ),
-          );
-          text = formattedText.plainText;
-        } else {
-          text = zoteroBasicBibliography(items);
-        }
-        if (!mounted) return;
-        if (text.trim().isEmpty) {
-          throw const FormatException('No bibliography text was returned.');
-        }
-        final reviewed = await _reviewBibliography(
-          online ? 'Review Zotero bibliography' : 'Basic bibliography',
-          text,
-          formattedText: formattedText,
-        );
-        if (!mounted || reviewed == null) return;
-        _write(
-          () => field == null
-              ? _controller.insertZoteroBibliography(
-                  text: reviewed.text,
-                  formattedText: reviewed.formattedText,
-                )
-              : _controller.updateZoteroBibliography(
-                  field,
-                  text: reviewed.text,
-                  formattedText: reviewed.formattedText,
-                ),
-        );
-      });
+    );
+  });
 
   Future<void> _refresh() => _run(() async {
     _checkTarget();
@@ -971,8 +980,9 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   Future<void> _copySources({ZoteroExportFormat? format}) => _run(() async {
     String text;
     if (format == null) {
-      text = const JsonEncoder.withIndent('  ')
-          .convert(WordZotero.embeddedItems(_controller.document));
+      text = const JsonEncoder.withIndent(
+        '  ',
+      ).convert(WordZotero.embeddedItems(_controller.document));
     } else {
       final addresses = _selected.values.map(_addressOf).toList();
       if (addresses.isEmpty ||
@@ -1521,15 +1531,8 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                   : () => setState(_selected.clear),
               child: const Text('Clear selection'),
             ),
-            FilledButton.icon(
-              onPressed: _busy || !_canEdit || _selected.isEmpty
-                  ? null
-                  : () => _compose(_selected.values.toList()),
-              icon: const Icon(Icons.format_quote),
-              label: const Text('Insert citation'),
-            ),
             if (widget.localTransport != null)
-              OutlinedButton(
+              FilledButton(
                 onPressed:
                     _busy ||
                         !_canEdit ||
@@ -1541,9 +1544,26 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                         items: _selected.values.toList(),
                       ),
                 child: const Tooltip(
-                  message: 'Insert selected sources using the document style. Zotero asks for a style when none has been selected.',
+                  message:
+                      'Insert selected sources using the document style. Zotero asks for a style when none has been selected.',
                   child: Text('Insert with Zotero…'),
                 ),
+              ),
+            if (widget.localTransport != null)
+              OutlinedButton.icon(
+                onPressed: _busy || !_canEdit || _selected.isEmpty
+                    ? null
+                    : () => _compose(_selected.values.toList()),
+                icon: const Icon(Icons.format_quote),
+                label: const Text('Insert basic citation'),
+              )
+            else
+              FilledButton.icon(
+                onPressed: _busy || !_canEdit || _selected.isEmpty
+                    ? null
+                    : () => _compose(_selected.values.toList()),
+                icon: const Icon(Icons.format_quote),
+                label: const Text('Insert citation'),
               ),
             PopupMenuButton<ZoteroExportFormat>(
               enabled: !_busy && _selected.isNotEmpty,
@@ -2073,7 +2093,8 @@ class _CitationComposerState extends State<_CitationComposer> {
             ZoteroApiException e => e.message,
             FormatException e => e.message,
             StateError e => e.message,
-            _ => 'The style preview could not be loaded. Your current text was kept.',
+            _ =>
+              'The style preview could not be loaded. Your current text was kept.',
           },
         );
       }
