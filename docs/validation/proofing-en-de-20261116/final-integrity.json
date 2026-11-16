@@ -1,0 +1,481 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-16 20:19:25 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/proofing-en-de-20261116",
+  "source_commit": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+  "source_tree": "c87f09b373cd137ed501e1e23cc1f644cf582157",
+  "qualification_state": "Implementation and remote integrity verified; Dart/Flutter/native/Wasm execution pending",
+  "snapshot": {
+    "captured_at_utc": "2026-11-16T20:10:47.865Z",
+    "counts": {
+      "fork_branches": 92,
+      "fork_pull_requests": 85,
+      "upstream_branches": 4,
+      "upstream_pull_requests": 4,
+      "named_refs": 185,
+      "unique_heads": 126
+    },
+    "inventory": "final-external-refresh.json",
+    "previous_ancestry_receipt": "final-external-refresh-verification.json",
+    "previously_verified_commit": "a6921f66fff583002b1a2ecfc47ff2949502e196",
+    "previously_contained_unique_heads": 125,
+    "previously_pending_task_owned_heads": [
+      {
+        "sha": "3ebe347f8d3c9577d44ac51b1f1fc92a544f1bf4",
+        "status": "diverged",
+        "ahead_by": 3,
+        "behind_by": 21
+      }
+    ],
+    "final_all_126_snapshot_heads_contained": true,
+    "proof": "The frozen source descends from the prior verified commit containing 125 heads and separately from its sole remaining German head. Git ancestry is transitive.",
+    "fresh_ancestor_comparisons": [
+      {
+        "base": "a6921f66fff583002b1a2ecfc47ff2949502e196",
+        "head": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+        "status": "ahead",
+        "ahead_by": 7,
+        "behind_by": 0,
+        "ancestor": true
+      },
+      {
+        "base": "3ebe347f8d3c9577d44ac51b1f1fc92a544f1bf4",
+        "head": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+        "status": "ahead",
+        "ahead_by": 25,
+        "behind_by": 0,
+        "ancestor": true
+      },
+      {
+        "base": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+        "head": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+        "status": "ahead",
+        "ahead_by": 22,
+        "behind_by": 0,
+        "ancestor": true
+      },
+      {
+        "base": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+        "head": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+        "status": "ahead",
+        "ahead_by": 24,
+        "behind_by": 0,
+        "ancestor": true
+      },
+      {
+        "base": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+        "head": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+        "status": "ahead",
+        "ahead_by": 25,
+        "behind_by": 0,
+        "ancestor": true
+      },
+      {
+        "base": "63194d8e482892f284eaccb95ce48a8a8132376d",
+        "head": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+        "status": "ahead",
+        "ahead_by": 53,
+        "behind_by": 0,
+        "ancestor": true
+      }
+    ]
+  },
+  "tree_verification": {
+    "expected_blob_entries": 5496,
+    "actual_blob_entries": 5496,
+    "missing_or_unexpected_or_changed_entries": [],
+    "method": "Compare every non-tree path, mode and Git blob/object ID with the independently assembled prior tree plus reviewed merge entries. Final four documentation/UI writes were also fetched and matched exact staged UTF-8 content.",
+    "final_written_content_readbacks": [
+      {
+        "path": "docs/PROOFING.md",
+        "git_blob": "636297af2fbbaf920bf5b1a5e182ac509c86ed53",
+        "content_matches_staged": true
+      },
+      {
+        "path": "packages/quds_office_engine/CHANGELOG.md",
+        "git_blob": "fdbd2974c7e4d8b0e299d4fdcc90ccbb97b6c771",
+        "content_matches_staged": true
+      },
+      {
+        "path": "packages/quds_office_editor/CHANGELOG.md",
+        "git_blob": "76c2082c33e3040c350f6683c6cabdf12dc8cc4c",
+        "content_matches_staged": true
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+        "git_blob": "fda8d27474e8da3a46811fabd67880a1f21e945d",
+        "content_matches_staged": true
+      }
+    ]
+  },
+  "component_source_bindings": [
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/third_party/hyphenation/hyph-en-us.tex",
+      "git_blob": "bd9b757d89074e3e11b590311ce13ba6667544aa",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/lib/src/bidi/english_us_hyphenation_data.dart",
+      "git_blob": "4398544149b0e7da21e36c3d9aaafd8696ce76ae",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/third_party/hyphenation/hyph-en-gb.tex",
+      "git_blob": "a668f67d756532694a5d160740487cda435ee1f7",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/lib/src/bidi/english_gb_hyphenation_data.dart",
+      "git_blob": "44af454c915b8653b3701b4c038138ecbe8f1d62",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/third_party/hyphenation/english-manifest.json",
+      "git_blob": "0b20ffb501908c7519ff111e89b706151a02294b",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/tool/proofing/generate_english_hyphenation.py",
+      "git_blob": "27213ed1b15dac8020139e6e0bb4dbfa364ca7aa",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/third_party/hyphenation/ENGLISH.md",
+      "git_blob": "e8c70e7b77387b221d0b75c190b5479050ac366e",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart",
+      "git_blob": "539e09041fdb930ef6358e3d9252d73561d7b6dc",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/lib/src/bidi/office_hyphenator.dart",
+      "git_blob": "fdec98fe6a409f71113debfa66307c94d0f01cfb",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/test/english_hyphenation_test.dart",
+      "git_blob": "0e22e63cbfd13236c36f5c1102a0203a823d6ded",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "git_blob": "9964637f6abb2614514ad31783caa3683ab61856",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/lib/quds_office_engine.dart",
+      "git_blob": "abcf1b596dc389281632374acfa770344a353ae7",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/third_party/hyphenation/README.md",
+      "git_blob": "5d2be8fc0bd6c4d190fa322a88c59094a8a364d9",
+      "match": true
+    },
+    {
+      "component": "English hyphenation",
+      "path": "packages/quds_office_engine/tool/proofing/validate_hyphenation.py",
+      "git_blob": "6727ad7f1f62f65a555354334d71dec426980b63",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "git_blob": "4ff341269fae6cedb4b65f5b72bee7f7a6f57f6f",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+      "git_blob": "e4b80fe9712ed18e05211cd570e167b8e59fe1d4",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+      "git_blob": "10993e76d60706e843c14a60eaeddd5403aa5566",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+      "git_blob": "9183791f5079f3c01bfc033d2a90c9ac54cc8983",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "git_blob": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart",
+      "git_blob": "035283d30116ad6c848a08bf1ff8ca37c731f704",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart",
+      "git_blob": "04c3c29326db061b112056929620f0c945d9f383",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart",
+      "git_blob": "23626dd5de7a13cc47a343db868406b07141d3d3",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart",
+      "git_blob": "39dcf2dddb717030d42334e5df980a2620906ed8",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart",
+      "git_blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart",
+      "git_blob": "88d250fb4b76f9b839cf6014444206988d21ca67",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart",
+      "git_blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart",
+      "git_blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart",
+      "git_blob": "1de49879083874f929be5057caf23c859bbdc348",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart",
+      "git_blob": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart",
+      "git_blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart",
+      "git_blob": "e21532a43d39cbc79489198d1453c824af41b431",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart",
+      "git_blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart",
+      "git_blob": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart",
+      "git_blob": "565a4e8df2db99547454b22882d030ad0628ce57",
+      "match": true
+    },
+    {
+      "component": "German proofing",
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart",
+      "git_blob": "bf40de2844f45e770a41db1493e2d9f667622701",
+      "match": true
+    },
+    {
+      "component": "Harper English projection",
+      "path": "packages/quds_proofing_harper/lib/src/harper_provider.dart",
+      "git_blob": "70b9243e64cfe4c6d2055e0d7224fd9bb614a7a7",
+      "match": true
+    },
+    {
+      "component": "Harper English projection",
+      "path": "packages/quds_proofing_harper/lib/src/harper_source_text.dart",
+      "git_blob": "a2c15500aa8ebd32c78eab74f71674c98a919cc7",
+      "match": true
+    },
+    {
+      "component": "Harper English projection",
+      "path": "packages/quds_proofing_harper/test/harper_source_text_test.dart",
+      "git_blob": "8566ee512b37fc237b7fb5cc5ff1825e52617007",
+      "match": true
+    },
+    {
+      "component": "Harper English projection",
+      "path": "packages/quds_proofing_harper/test/harper_source_contract_test.dart",
+      "git_blob": "373c5435cd0e65a747426a61e5fbb7dc498f1ba2",
+      "match": true
+    }
+  ],
+  "protected_existing_inputs": {
+    "count": 66,
+    "paths": [
+      "LICENSE",
+      "apps/quds_report_studio/pubspec.yaml",
+      "docs/validation/proofing-20261116/final/pubspec.lock",
+      "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.lock",
+      "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.yaml",
+      "docs/validation/zotero-desktop-20261115/pubspec.lock",
+      "docs/validation/zotero-desktop-20261115/pubspec.yaml",
+      "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.lock",
+      "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.yaml",
+      "packages/legacy_doc_parser/LICENSE",
+      "packages/legacy_doc_parser/NOTICE",
+      "packages/legacy_doc_parser/doc/evidence/crisp-docx-oracles-20261113/LICENSE-crisp-docx.txt",
+      "packages/legacy_doc_parser/pubspec.yaml",
+      "packages/legacy_doc_parser/third_party/wpf-isf/LICENSE.txt",
+      "packages/legacy_doc_parser/tool/office-validation/LICENSE.quds",
+      "packages/quds_office_editor/LICENSE",
+      "packages/quds_office_editor/example/fonts/NOTICE.txt",
+      "packages/quds_office_editor/example/pubspec.yaml",
+      "packages/quds_office_editor/fonts/LICENSE-Liberation",
+      "packages/quds_office_editor/fonts/LICENSE-NotoNaskhArabic",
+      "packages/quds_office_editor/pubspec.yaml",
+      "packages/quds_office_engine/LICENSE",
+      "packages/quds_office_engine/example/pubspec.yaml",
+      "packages/quds_office_engine/lib/src/bidi/german_hyphenation_data.dart",
+      "packages/quds_office_engine/lib/src/bidi/german_hyphenator.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart",
+      "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart",
+      "packages/quds_office_engine/pubspec.yaml",
+      "packages/quds_office_engine/third_party/fonttools/LICENSE",
+      "packages/quds_office_engine/third_party/hyphenation/LICENSE",
+      "packages/quds_proofing_harper/LICENSE",
+      "packages/quds_proofing_harper/licenses/manifest.json",
+      "packages/quds_proofing_harper/licenses/notices-and-mpl-sources.tar.gz",
+      "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-APACHE",
+      "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-MIT",
+      "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-APACHE",
+      "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-MIT",
+      "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-APACHE",
+      "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-MIT",
+      "packages/quds_proofing_harper/licenses/upstream/HARPER-LICENSE",
+      "packages/quds_proofing_harper/licenses/upstream/fallback-notices.json",
+      "packages/quds_proofing_harper/native/Cargo.lock",
+      "packages/quds_proofing_harper/native/Cargo.toml",
+      "packages/quds_proofing_harper/native/rust-toolchain.toml",
+      "packages/quds_proofing_harper/native/src/lib.rs",
+      "packages/quds_proofing_harper/pubspec.yaml",
+      "packages/quds_reports/LICENSE",
+      "packages/quds_reports/pubspec.yaml",
+      "pubspec.yaml",
+      "tools/proofing/german_model/vendor/LICENSE",
+      "tools/proofing/german_model/vendor/NOTICE"
+    ],
+    "unchanged": true
+  },
+  "retained_previous_proofing_evidence": {
+    "baseline_main": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+    "files": 346,
+    "unchanged": true
+  },
+  "executed_evidence": {
+    "english_hyphenation": {
+      "source": "377e312a2fd4a0d5e87b7abbe8f464aaedf9b15b",
+      "receipt": "english-hyphenation/reference-receipt.json",
+      "kind": "V8 data/reference algorithms, not production Dart",
+      "us_oracle_comparisons": 442,
+      "gb_oracle_comparisons": 741,
+      "golden_checks": 21,
+      "paragraph_checks": 33
+    },
+    "german": {
+      "source": "3ebe347f8d3c9577d44ac51b1f1fc92a544f1bf4",
+      "receipt": "../proofing-20261116/german-quality/receipt.json",
+      "kind": "Source-derived/translated V8 models with exact shipped dictionary, not production Dart",
+      "grammar_checks": 182,
+      "spelling_and_protected_span_checks": 27,
+      "standard_forms": 444123,
+      "swiss_additions": 9451,
+      "dictionary_chunks": 113
+    },
+    "harper_projection": {
+      "source": "7fea11ddf60fc081038c58c8d907c6d6463c6f21",
+      "receipt": "harper-projection-reference.json",
+      "kind": "Independent V8 semantic reference, not production Dart",
+      "checks": 28,
+      "range_stress_samples": 2000,
+      "executed_probe_matches_frozen_source": true
+    }
+  },
+  "added_dart_regressions": {
+    "english_hyphenation": 17,
+    "german_spelling_and_writing": 10,
+    "harper_source_and_provider": 15,
+    "total": 42,
+    "status": "Written and independently reviewed; not executed in this session"
+  },
+  "not_executed": [
+    "Dart formatting/analyzer/test processes",
+    "Flutter tests or release build",
+    "Python generator process",
+    "Real native Harper or Wasm provider acceptance",
+    "Browser delivery/CSP or mobile dictionary acceptance"
+  ],
+  "resolved_source_review_findings": [
+    "Equivalent en/en-US run tags canonicalized before word homogeneity checks",
+    "Relative-clause coordinated German subjects excluded from false singular agreement corrections",
+    "Mixed-language hyphenation fixture corrected to original UTF-16 offsets 29/33"
+  ],
+  "dependencies_or_existing_german_data_changed": false,
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "rerun": false,
+    "commit_skip_ci": true
+  },
+  "passed_remote_integrity_checks": true
+}

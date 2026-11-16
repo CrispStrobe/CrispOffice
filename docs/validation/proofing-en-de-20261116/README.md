@@ -1,33 +1,224 @@
-# English and German proofing continuation: reconciled starting point
+# English and German proofing continuation
 
-This remote checkpoint imports the recent fork and upstream histories before new proofing work.
+**Implementation source:** [`1199750e3a0a6118336f6c3daf0e4467ff3eeb59`](https://github.com/CrispStrobe/quds_office_suite/commit/1199750e3a0a6118336f6c3daf0e4467ff3eeb59)  
+**Branch:** [`codex/proofing-en-de-20261116`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/proofing-en-de-20261116)
 
-## Pinned snapshot
+The continuation is implemented and saved incrementally to GitHub. It adds
+automatic American/British English hyphenation, expands conservative German
+agreement and spelling corrections, and improves English Harper source mapping
+and shared vocabulary. The recent fork/upstream histories were reconciled
+before implementation and refreshed once before completion.
 
-- Captured: 2026-11-16T19:59:03.698Z.
-- Fork main: `6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195`.
-- Text-rendering PR #72: `6a07cb8f8f7db2007c694c167b861b05d1d58d00`.
-- Snapshot: 177 named refs (120 unique heads), comprising 86 fork branches, 83 fork PRs, four upstream branches and four upstream PRs.
-- All upstream heads were already present. The refresh also brought in main's newly merged ODS header/footer PR #83.
+**Dart/Flutter/runtime qualification is pending.** The attached execution
+environment reported that no usable execution environment was available.
+JavaScript reference/data checks, source review and exact remote integrity
+checks ran; they do not establish a passing Dart build or production runtime.
+Earlier retained validation receipts keep their original source attribution.
+No GitHub Actions endpoints were queried, waited on or rerun.
 
-## Integration decisions
+## Remote reconciliation and durability
 
-The tree starts from current main and imports 102 exact rendering blob entries. Those paths have no conflicting changes on main since the rendering merge base `be9eeec`. The five proofing recovery files and two unique Zotero recovery files are retained. Main's current ODS page setup and header/footer code remains intact.
+The final bounded external snapshot at **2026-11-16 20:10:47 UTC / 21:10:47 CET**
+contains **185 named refs and 126 unique heads**: 92 fork branches, 85 fork PRs,
+four upstream branches and four upstream PRs. The frozen source includes all
+126 heads, including the subsequently integrated German implementation.
 
-The newer rendering continuation checkpoint supersedes the older pending-validation copy in the Zotero recovery branch. Shared production and regression-test blobs on those two branches match exactly.
+The integrated base includes main through `63194d8`, text-rendering PR #72
+through `f23675a`, the proofing recovery `738f0b6`, Zotero recovery
+`c6b9856`, and PR #85 `b87f9d6`. Equivalent/squashed histories were checked
+against their actual changes before their ancestry was retained. Unique source
+and evidence changes were imported; no unique changes were discarded by
+attaching empty merge parents.
 
-Fifteen divergent feature, documentation and vendor heads were compared with their canonical main commits. Their incoming per-file patches are identical. Ten feature/documentation heads also have identical complete trees; four vendor heads have identical changed-file blobs. The old vendor filter branch contains one pre-existing unused test binding; current main retains the cleaned test and later features. Histories already included by the rendering head remain included, and the newer equivalent page-setup/header/footer heads are recorded as parents.
+| Implementation track | Final component head | Source/evidence |
+| --- | --- | --- |
+| English automatic hyphenation | `ffc672fec2df9919233b4ee5b0ba783ef1758f99` | [English report](english-hyphenation/README.md) |
+| German spelling and agreement | `a916bbf09169f6906a89bd2ca3e3c42120ead466` | [German report](../proofing-20261116/german-quality/README.md) |
+| Harper source projection and shared vocabulary | `65d5815e4866549fe7f03b145b626f2c4aaba8e0` | [Reference receipt](harper-projection-reference.json) |
 
-The complete inventory, per-path incoming blob identities, comparison dispositions and equivalence checks are in [reconciliation.json](reconciliation.json). This checkpoint does not change `main`.
+[final-integrity.json](final-integrity.json) binds the final source and records:
 
-## Validation scope
+- All **5,496 expected repository blob entries** match the remote frozen tree,
+  with no missing, unexpected or changed entries.
+- All **39 component source/data bindings** match their recorded reference
+  checkpoints after integration.
+- All **66 protected existing inputs** checked are unchanged: package manifests
+  and locks, existing notices, German data/implementation, and Harper native
+  source/license inputs.
+- All **346 proofing-evidence files** already present in the initial observed
+  main snapshot remain unchanged.
+- Fresh ancestry comparisons prove the final source descends from the earlier
+  125-head verification anchor and the sole then-pending German head. All 126
+  pinned snapshot heads are therefore retained.
 
-The attached execution environment is unavailable. No Dart, Flutter, native-library or browser test was run for this combined checkpoint. Earlier source-bound validation artifacts are retained with their original source attribution. This reconciliation uses GitHub ancestry, exact Git blob/tree identities, per-file patch comparisons and three-way changed-path checks.
+The full starting inventory and integration decisions are preserved in
+[reconciliation.json](reconciliation.json),
+[reconciliation-refresh.json](reconciliation-refresh.json), and
+[reconciliation-verification.json](reconciliation-verification.json).
+The last external refresh is recorded in
+[final-external-refresh.json](final-external-refresh.json),
+[its explanation](final-external-refresh.md), and
+[its verification](final-external-refresh-verification.json).
+These are bounded snapshots, not a claim about future remote commits.
 
-No GitHub Actions were queried, awaited, polled or rerun. The commit uses `[skip ci]`. No new dependency, model or dictionary is introduced by this reconciliation. New English/German proofing work and its verification will follow this pinned integration.
+## English automatic hyphenation
 
-## Final refresh before proofing implementation
+`EnglishHyphenator` supplies separate American and British patterns.
+`OfficeHyphenator` routes those and the unchanged German implementation
+through existing shared Word layout used by the editor and PDF export.
 
-A final snapshot captured 182 named refs (123 unique heads). It adds main `63194d8` and its exact-tree-equivalent header/footer documentation PR #84, plus rendering continuation `5ed98a0` with editor/runtime evidence. These 59 distinct incoming paths contain documentation, saved validation evidence and validation tooling; no new product source is introduced by this refresh. All incoming paths merge by exact blob identity without conflicts.
+| Language | Automatic patterns | Boundary |
+| --- | --- | --- |
+| `en`, `en-US` | American: 4,938 patterns, 14 exceptions | Equivalent aliases, including within one word across runs |
+| `en-GB` | British: 8,527 patterns, eight exceptions | Distinct British break choices |
+| `de`, `de-DE`, `de-AT`, `de-CH` | Existing modern German patterns | Existing implementation and data unchanged |
+| Other English dialects/languages | No automatic pattern fallback | Authored soft hyphens remain available |
 
-Before that refresh, all 120 originally pinned heads were verified as ancestors of `dbf5ff000d66bd6e2833ade990ab84de009e3ad8`. All 5,398 expected repository blob entries matched the merged tree; only the two intended audit files were additional. See [reconciliation-refresh.json](reconciliation-refresh.json) for the final inventory, three-way checks and complete prior-checkpoint verification. Final ancestry/tree verification is recorded separately in [reconciliation-verification.json](reconciliation-verification.json).
+English preserves the upstream exceptions, including words with no allowed
+break, and leaves at least two letters before and three after a break.
+Original source text and UTF-16 ownership are preserved. The existing layout
+engine chooses fitting candidates and measures/paints the discretionary hyphen.
+
+Contractions, unsupported accented words, identifiers, oversized words,
+words with authored soft hyphens, genuinely mixed-language words and unsafe
+join-control-adjacent fragments are conservatively excluded. URLs, email
+addresses and closed matching-backtick spans are protected. Ordinary
+punctuation-wrapped words and U+200B source breaks remain usable.
+
+The English implementation has 17 new Dart regression definitions, including
+mixed-language Word layout, explicit exceptions, language aliases, source
+offsets, code/URL guards and paragraph suppression. These tests are unrun here.
+
+## German grammar and spelling
+
+The existing agreement rule now covers finite present-indicative forms of
+**sein, haben, werden, können, müssen, dürfen, sollen, wollen and mögen** for
+adjacent **ich, du and wir**. Examples include:
+
+| Input | Offered replacement |
+| --- | --- |
+| `ich hast` | `ich habe` |
+| `du wird` | `du wirst` |
+| `wir kann` | `wir können` |
+| `Huas-Tür` | `Haus-Tür` |
+| `HUAS-TÜR` | `HAUS-TÜR` |
+| Swiss `Straße-Tür` | `Strasse-Tür` |
+
+The finite agreement rule preserves uppercase replacements and accepts spaces,
+tabs, NBSP and narrow NBSP. It avoids false corrections in comparisons,
+nominalized pronouns, coordinated subjects and relative-clause coordination.
+Examples that remain accepted include `Ihr ist kalt`, `Ihr bin ich dankbar`,
+`Du und ich sind hier`, and
+`Mein Bruder, den du kennst, und ich haben Zeit`.
+
+Existing narrow `ihr`/`sein` checks now have additional dative/impersonal
+guards. Ambiguous `sie`/`es`, unlisted verbs, subjunctives, imperative
+inference and full sentence parsing are not added.
+
+Spelling repairs one unknown constituent of an explicit hyphen compound,
+retaining the other constituents' case and each occurrence's ASCII/U+2010/U+2011
+separator style. This runs one ordinary bounded suggestion search; there is
+no unrestricted compound or morphology expansion. Spelling and writing both
+protect closed code spans whose backtick-run lengths match. Unmatched
+delimiters do not hide the remaining prose.
+
+Ten Dart regression definitions were added. No German dictionary, generated
+data, source manifest or original license notice was changed.
+
+## English Harper source mapping and vocabulary
+
+Harper receives complete words after U+00AD discretionary soft hyphens are
+removed from checker input only. A per-request scalar index maps findings back
+to the exact original UTF-16 source, including emoji, nonzero segment origins
+and soft hyphens inside a correction. Both source and projected grapheme
+boundaries are enforced. This avoids repeatedly rescanning the paragraph for
+every finding; no measured runtime speedup is claimed.
+
+`HarperProofingProvider` accepts the host's
+`OfficeProofingVocabulary`. Matching-dialect personal/ignored words suppress
+spelling findings only; grammar and style still run. Vocabulary changes
+invalidate cached configuration and stale in-flight results. The example host
+shares the same vocabulary with German and English providers.
+
+The review language selector now exposes Harper's Canadian, Australian and
+Indian English choices alongside US/UK English and German regions. Automatic
+hyphenation remains scoped to the table above. Harper still requires installed
+local native/Wasm assets; missing assets report unavailable, not a clean check.
+No backend ABI, Rust implementation or dependency graph changed.
+
+Fifteen Dart source/provider regression definitions were added. Existing real
+native and Wasm smoke paths also now include a soft-hyphen article case.
+
+## Licensing
+
+No GPL, AGPL or LGPL-only code, dictionary, model or rule corpus was added.
+
+| New material | Terms and provenance |
+| --- | --- |
+| American patterns | Kuiken's explicit royalty-free copying/distribution grant, with or without modification, preserving copyright/permission notices; recorded as `LicenseRef-Kuiken-permissive`, not relabeled MIT |
+| British patterns | MIT, with complete original copyright and permission text |
+| New grammar/algorithm code | Independently authored within the fork's existing MIT code |
+| New runtime dependencies | None |
+
+Both English originals are pinned to tex-hyphen
+`5684c0f51c0b81133db2efbe60a408b4155a3ff5`; checked-in Git blob identities match
+upstream. Source prefaces/notices survive generation. The restricted underlying
+OUP word list is not shipped. [English provenance](../../../packages/quds_office_engine/third_party/hyphenation/ENGLISH.md)
+records hashes, minima, exceptions, license distinctions and reproduction.
+Existing German and Harper dependency/license boundaries remain in force.
+
+## What actually ran
+
+All algorithm probes below ran in the available **V8 JavaScript isolate**.
+
+| Check | Observed result | Scope |
+| --- | --- | --- |
+| US/GB hyphenation | 442 US + 741 GB trie-versus-flat-oracle comparisons; 21 fixed word controls; 33 paragraph controls | Exact data and source-derived/reference algorithms |
+| German proofing | 182 grammar + 27 spelling/protection checks | Actual regex/paradigm literals and translated control flow; actual shipped dictionary |
+| German data decoding | All 113 chunks decoded; 444,123 standard forms and 9,451 Swiss additions | Existing data integrity, not a new corpus |
+| Harper projection | 28 semantic checks, including 2,000 source ranges | Independent range-mapping reference |
+| Remote integrity | 5,496 matching entries; all 126 snapshot heads retained; 39 source bindings match | Git tree/blob/ancestry checks |
+| Independent source review | Completed; identified issues corrected before final source freeze | Static review, not compilation |
+
+The earlier isolated German delimiter probes overlap the 27 spelling/protection
+checks and are not added again. These groups are not a repository-wide test
+total. **The 42 new Dart regression definitions were written and reviewed but
+not executed.** No new Dart analysis, Python generator process, Flutter test,
+release build, actual native/Wasm check, browser/CSP or mobile dictionary
+acceptance is claimed.
+
+## Reproduce and complete local qualification
+
+In a functioning, dependency-resolved checkout, the reference probes can be
+repeated with Node:
+
+```sh
+node docs/validation/proofing-en-de-20261116/english-hyphenation/reference_check.mjs
+node docs/validation/proofing-20261116/german-quality/probe.mjs .
+node packages/quds_proofing_harper/tool/source_projection_probe.mjs
+```
+
+The actual local qualification gate remains the existing source-bound tool:
+
+```sh
+python3 tools/proofing/verify_integration.py \
+  --flutter flutter \
+  --dart dart \
+  --node node \
+  --output docs/validation/proofing-en-de-20261116/local-qualification \
+  --build-web
+```
+
+Use Dart from the prepared Flutter SDK. The tool requires committed source and
+already resolved dependencies, preserves source/runtime/log hashes, and refuses
+to overwrite an existing receipt. Supply `--german-wordlist` with the exact
+pinned source file to avoid its normal pinned download. A matching built Harper
+distribution supplied through `--harper-build` additionally exercises the real
+native/Wasm and packaging gates.
+
+The existing hyphenation verifier now includes English sources/data/provenance,
+the English generator's `--check`, strict analysis and the new Dart suite.
+Integration validation now analyzes Harper and runs its source/provider
+contracts even without optional native assets. The Harper runtime verifier
+also includes the new tests on the compiled-JavaScript path. No GitHub Actions
+queue is needed for any of these commands.
