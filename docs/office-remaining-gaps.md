@@ -8,8 +8,9 @@ is maintained in the CrispCloud repository
 
 ## Current baseline
 
-- Sheet/ODS cohort: 497 tests.
-- Full engine suite: 2,117 tests.
+- Sheet/ODS cohort: 503 tests.
+- Last clean full engine run: 2,205 tests. Two unrelated CLI
+  bookmark/content-control tests currently fail on main.
 - Live ODS → XLSX fidelity against LibreOffice: 0.9981 on the measured BOM
   workbook; only drawing/media part names and the absent theme part differ.
 - Golden checks use exact per-host references; the last completed Linux
@@ -33,12 +34,15 @@ model kinds or native ODS rule preservation.
 
 ### 3. ODS validations
 
-Supported: literal and range-source `cell-content-is-in-list` (resolved after
-all sheets exist), `allow-empty-cell`, contiguous cell runs and correct Excel
-list quoting.
+Supported: literal/range-source lists, whole/decimal/date/text-length and
+custom-formula rules; comparison operators, Excel date serials,
+`allow-empty-cell`, contiguous cell runs, input prompts, error
+title/message/style and correct Excel list quoting. Range sources resolve after
+all sheets exist.
 
-Not supported: whole/decimal/date/text-length/custom conditions,
-prompts/messages/error styles, and unmodeled cross-sheet filter cases.
+Not supported: ODF condition types outside the shared model (for example time
+or arbitrary multi-condition expressions); these decline rather than being
+approximated.
 
 ### 4. ODS metadata and layout
 
