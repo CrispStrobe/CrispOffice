@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-16T13:48:45.560270+00:00",
+  "status": "passed",
+  "passed": true,
+  "source_commit": "f4d52e5b0f04aa0a57cef2074f0b5ee3d2868f48",
+  "commands": [
+    {
+      "label": "flutter-version",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/flutter",
+        "--version",
+        "--machine"
+      ],
+      "working_directory": ".",
+      "exit_code": 0,
+      "duration_seconds": 0.215,
+      "log": "flutter-version.log",
+      "log_sha256": "877b35e7e5a2c5c5cb55099cdd32a1a30507a06f999d2f2bd49d1192407fabfa"
+    },
+    {
+      "label": "dart-version",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "working_directory": ".",
+      "exit_code": 0,
+      "duration_seconds": 0.004,
+      "log": "dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "label": "node-version",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--version"
+      ],
+      "working_directory": ".",
+      "exit_code": 0,
+      "duration_seconds": 0.008,
+      "log": "node-version.log",
+      "log_sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    {
+      "label": "engine-analyze",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib",
+        "test",
+        "tool"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 10.677,
+      "log": "engine-analyze.log",
+      "log_sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    {
+      "label": "editor-analyze",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib",
+        "test"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "duration_seconds": 12.688,
+      "log": "editor-analyze.log",
+      "log_sha256": "95a28819c918db92d8f3f7dfadfc18f1248f79ab8313759391ad318fe94cf093"
+    },
+    {
+      "label": "example-analyze",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib",
+        "test",
+        "tool"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "exit_code": 0,
+      "duration_seconds": 4.522,
+      "log": "example-analyze.log",
+      "log_sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    {
+      "label": "engine-hyphenation",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "tool/proofing/validate_hyphenation.py",
+        "--dart",
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "--output",
+        "/workspace/scratch/21fc989ecea7/quds_office_suite/docs/validation/proofing-20261116/final/engine-hyphenation"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 9.847,
+      "log": "engine-hyphenation.log",
+      "log_sha256": "496f8deffaf70af33d009c759dadb3c1be74b0b1612bf3f13ac4ff55fc712100",
+      "test_summary": {
+        "passed": 232,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    {
+      "label": "german-proofing",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "tool/proofing/verify_german.py",
+        "--dart",
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "--node",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--output",
+        "/workspace/scratch/21fc989ecea7/quds_office_suite/docs/validation/proofing-20261116/final/german",
+        "--download-wordlist"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 13.678,
+      "log": "german-proofing.log",
+      "log_sha256": "ab317db5d4925202fe3be9a1e4cbdee50a820c48606bdfcff4db8860f55e45c5"
+    },
+    {
+      "label": "incoming-engine-tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=expanded",
+        "test/ods_sheet_reader_test.dart",
+        "test/zotero_backoff_state_test.dart",
+        "test/word_zotero_source_identity_test.dart",
+        "test/zotero_client_test.dart",
+        "test/zotero_identity_client_test.dart"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 2.987,
+      "log": "incoming-engine-tests.log",
+      "log_sha256": "19fa55892e831c6b046d5441d5dc0dfade39dea146fdc37fe4ba068942ea13b2",
+      "test_summary": {
+        "passed": 173,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    {
+      "label": "editor-tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=2",
+        "--reporter=expanded",
+        "test/word_proofing_test.dart",
+        "test/word_proofing_ui_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_hyphenation_paint_test.dart",
+        "test/word_hyphenation_resume_test.dart",
+        "test/platform_spelling_provider_test.dart",
+        "test/word_find_replace_history_test.dart",
+        "test/word_content_control_history_test.dart",
+        "test/word_protection_history_test.dart",
+        "test/word_operation_history_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_selection_paint_test.dart",
+        "test/content_revision_test.dart",
+        "test/word_zotero_backoff_session_test.dart",
+        "test/word_zotero_dialog_scaling_test.dart",
+        "test/word_zotero_source_identity_test.dart"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "duration_seconds": 15.817,
+      "log": "editor-tests.log",
+      "log_sha256": "b57f97aa31f49ddc81b52ae9040e2e516b5f820352dedf9637d07b5586acff1d",
+      "test_summary": {
+        "passed": 165,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    {
+      "label": "editor-ime-reattachment",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=expanded",
+        "test/embed_test.dart",
+        "--plain-name",
+        "tapping the canvas reattaches IME after another client steals it"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "duration_seconds": 3.751,
+      "log": "editor-ime-reattachment.log",
+      "log_sha256": "19085760f284cd289af06135c2d96bdc3122c39514351f994bcda9ecc1c9410b",
+      "test_summary": {
+        "passed": 1,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    {
+      "label": "example-web-build",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/flutter",
+        "build",
+        "web",
+        "--release",
+        "--no-pub",
+        "--no-wasm-dry-run"
+      ],
+      "working_directory": "packages/quds_office_editor/example",
+      "exit_code": 0,
+      "duration_seconds": 66.964,
+      "log": "example-web-build.log",
+      "log_sha256": "a03b9e716c8c29c128d6a988ffd994c55831bfd74451db88373f39ff0ed77fb8"
+    }
+  ],
+  "child_receipts": {
+    "engine_hyphenation": {
+      "receipt_sha256": "ba7c7b10ff523e502a54b8ce8fae1b22833a17691c5cb08b025b0fb98b85299f",
+      "log_sha256": {
+        "hyphenation-generator.log": "31b22f23e621121c3bd9dcb44b64f5a7778358bc291f3869f0e2f07c42f74e6b",
+        "hyphenation-analysis.log": "4c4de805525f366626cb0ffdd65e5e1e77b27543d09a32645cf58ecea89ae47a",
+        "hyphenation-tests.log": "aea62af963e03377ac2524c192747fed8e1babb26f2e8aada6472f6b5e49a24a"
+      },
+      "test_summaries": {
+        "hyphenation-tests.log": {
+          "passed": 232,
+          "skipped": 0,
+          "failed": 0
+        }
+      },
+      "path": "engine-hyphenation/hyphenation-validation.json"
+    },
+    "german": {
+      "receipt_sha256": "1ef81de6ec07b778b56f952645a343d9715a6450a8cf1bc73dab4589849b4831",
+      "log_sha256": {
+        "dart-version.log": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+        "node-version.log": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+        "analyze.log": "b1815c7fe8a919e9cb2c49f704c11b0021b874efc7096e550f8e15a049383e75",
+        "tests.log": "f9d4d0d6c22b9632b580fecc8970394ecc3fdcac4f2ae25e060e832140e426aa",
+        "dictionary-reproducibility.log": "4059ad7a68351285a140fc9c0aaa5c62a4bc7189d29e1a6e9f1f3a868b84f132",
+        "compile-javascript.log": "58d6e75601fb81510a55883022068cd8a2c6989725b50a17e1c4a5152114f512",
+        "javascript-smoke.log": "70d54cd1123232e6237c73391fa8bd6617592b4c9409c0c1d1b2e0161c4385a0"
+      },
+      "test_summaries": {
+        "tests.log": {
+          "passed": 38,
+          "skipped": 0,
+          "failed": 0
+        }
+      },
+      "path": "german/receipt.json"
+    },
+    "harper": {
+      "receipt_sha256": "b0a7421c0e6d50cc26a29b7fe91a31224ea743b64311a96dfbd90f64e69bfadc",
+      "log_sha256": {
+        "rust-tests.log": "e561c68ce5389a6c83b1cebb895b9982f50f984729fcf044213b694e17220696",
+        "dart-analyze.log": "50c363f7897d8b7e14d7d46e0a0bb20afeecb46731bfa724c5a1f30a2badd71e",
+        "dart-native-tests.log": "39701b2687a22b230e618124e32f278b9e6f3e3d39cd52e13badb18a3256e69b",
+        "dart-javascript-tests.log": "1965ebb76b81276e855b32328b5c0c555e22d2b725187ec9e3267fb89b85c935",
+        "wasm-worker.log": "d0c6966d0cc4997de1496bd34e65f3a72e47dfe567938aad73156d1ab3d23b6b",
+        "compile-web-transport.log": "8e959a0ec64c8c1dc4b5aa2fca485de70377cdd261546265d86bb926688115c9",
+        "web-transport.log": "b6309a92835f11da7b54b2aa1e92b6197ddf062cd06f3078d8fa1fab01f5cb6c",
+        "license-policy.log": "7aa793a0866a9c4ebd8c07adeb1b9c18637729c0502dcdc1e1d2994315de08bb",
+        "host-packaging.log": "b646dd35ca69739287b23d8036d554daa6b8b30fd9f9d34418a0f03ad1231e1b"
+      },
+      "test_summaries": {
+        "dart-native-tests.log": {
+          "passed": 12,
+          "skipped": 0,
+          "failed": 0
+        },
+        "dart-javascript-tests.log": {
+          "passed": 8,
+          "skipped": 0,
+          "failed": 0
+        }
+      },
+      "path": "harper/receipt.json"
+    }
+  },
+  "scope": "Local proofing/editor integration, incoming ODS/Zotero regressions, and optional Harper/web distribution checks.",
+  "source_policy": "Tracked and untracked workspace source/test/tool/runtime inputs; excludes docs, evidence and generated build/cache outputs. The ignored root pubspec.lock is an additional exact input.",
+  "environment_paths": {
+    "TMPDIR": "/workspace/scratch/21fc989ecea7/runtime-tmp",
+    "PUB_CACHE": "/workspace/scratch/21fc989ecea7/pub-cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/21fc989ecea7/setup/config"
+  },
+  "limits": [
+    "No GitHub Actions are used or waited for.",
+    "This is a focused regression set, not the complete repository test suite.",
+    "Compiled Dart JavaScript and Wasm executed by Node do not establish browser/CSP/HTTP acceptance.",
+    "A web build and asset manifest establish packaging only; no interactive browser or mobile device acceptance is claimed.",
+    "The optional German correction model is not evaluated or enabled by this verifier."
+  ],
+  "source_before": {
+    "path": "source-sha256.before.json.gz",
+    "sha256": "7790ccf9586f9766787a0c706061d48cce2e29a102be8bb50031edd8adef4a81",
+    "entries": 2025,
+    "uncompressed_sha256": "a46b02486875e3e5d4df37475b949c060fefab5298a61f0d99b402673cb85704"
+  },
+  "runtime_sha256_before": {
+    "/workspace/scratch/21fc989ecea7/flutter/bin/flutter": "7d486c33b30a0cf1ea5146231c68bb8f966cdb4e087c5cd8b37e14513f536e7d",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dartaotruntime": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/flutter_tools.snapshot": "4c25e0c0d63cafb4bb24232b48bcca9d7e31812709af707c59e912b01216ebd5",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/internal/engine.version": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c",
+    "/workspace/scratch/21fc989ecea7/quds_office_suite/.dart_tool/package_config.json": "8e8e8a51390de361abaa26b6e259d29a117abf224f8c761f24a5b7af00836cf6"
+  },
+  "workspace_lock": {
+    "path": "pubspec.lock",
+    "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+  },
+  "harper_validation_origin": {
+    "mode": "retained matching source/artifacts/logs",
+    "receipt": "/workspace/scratch/21fc989ecea7/quds_office_suite/docs/validation/proofing-20261116/final/harper-merged/receipt.json"
+  },
+  "harper_build_receipt_sha256": "bdc9fe40786d3c95b00c45888ec386663ade887f9ab536ec734e5c9cd0475ff4",
+  "web_bundle": {
+    "directory": "packages/quds_office_editor/example/build/web",
+    "file_count": 123,
+    "total_bytes": 70470323,
+    "manifest": {
+      "path": "web-bundle-sha256.json.gz",
+      "sha256": "61b732f53965ba6e61fe09a5dba84eed90e3cc3a6436fd5c673a4e2d0c0f6957",
+      "entries": 123,
+      "uncompressed_sha256": "844e28c12a309122ea043065c523cd19254c1c205170c4563c642ee72b6915d4"
+    },
+    "harper_asset_sha256": {
+      "proofing/harper_worker.mjs": "b58f5ea84dbe2b0fc4fd0d8eaee96664267bb1603691a7c27e8d1b6631fdae1b",
+      "proofing/quds_proofing_harper.js": "28a796884341f72cb387d300c0da734ced25a16d7de42fcd8aef525c33657591",
+      "proofing/quds_proofing_harper_bg.wasm": "0fcfeb284a5515844f8912405109f14f53de31a2212b45594bee65acd974a264",
+      "proofing/licenses/manifest.json": "b63e7e67fa307683b9582756fe876d0724797bc2cc5f1dab388000b5d84c1b21",
+      "proofing/licenses/notices-and-mpl-sources.tar.gz": "cd4c3cf344c5077b4ae94dcc9e42a328463a6f4254b92bbf1f1062bcd9ee6608",
+      "proofing/build-receipt.json": "bdc9fe40786d3c95b00c45888ec386663ade887f9ab536ec734e5c9cd0475ff4"
+    },
+    "harper_default_worker_url": "Uri.base.resolve('proofing/harper_worker.mjs')"
+  },
+  "source_after": {
+    "path": "source-sha256.after.json.gz",
+    "sha256": "7790ccf9586f9766787a0c706061d48cce2e29a102be8bb50031edd8adef4a81",
+    "entries": 2025,
+    "uncompressed_sha256": "a46b02486875e3e5d4df37475b949c060fefab5298a61f0d99b402673cb85704"
+  },
+  "runtime_sha256_after": {
+    "/workspace/scratch/21fc989ecea7/flutter/bin/flutter": "7d486c33b30a0cf1ea5146231c68bb8f966cdb4e087c5cd8b37e14513f536e7d",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dartaotruntime": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/flutter_tools.snapshot": "4c25e0c0d63cafb4bb24232b48bcca9d7e31812709af707c59e912b01216ebd5",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+    "/workspace/scratch/21fc989ecea7/flutter/bin/internal/engine.version": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c",
+    "/workspace/scratch/21fc989ecea7/quds_office_suite/.dart_tool/package_config.json": "8e8e8a51390de361abaa26b6e259d29a117abf224f8c761f24a5b7af00836cf6"
+  },
+  "source_commit_after": "f4d52e5b0f04aa0a57cef2074f0b5ee3d2868f48",
+  "inputs_unchanged_during_validation": true,
+  "runtime_unchanged_during_validation": true,
+  "changed_inputs": [],
+  "finished_at_utc": "2026-11-16T13:51:08.446998+00:00"
+}
