@@ -1,0 +1,1175 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "audited_at_utc": "2026-11-16T13:05:12.338Z",
+  "main_sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+  "proofing_sha": "066e07979d9e710c314158fe9909c9210769cb3b",
+  "branch_count": 43,
+  "pr_count": 58,
+  "open_pr_count": 0,
+  "conclusion": "All 42 non-proofing branch heads and all 58 pull-request heads are ancestors of current main or identical to it. Proofing is three commits ahead of main and includes it. No additional integration is needed at this snapshot.",
+  "sources": [
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=updated&direction=desc&per_page=100",
+    "https://github.com/CrispStrobe/quds_office_suite/compare/e5e1e9af6beb0972a010d8208c1690a642809113...066e07979d9e710c314158fe9909c9210769cb3b"
+  ],
+  "branches": [
+    {
+      "branch": "codex/proofing-20261116",
+      "sha": "066e07979d9e710c314158fe9909c9210769cb3b",
+      "status": "ahead",
+      "ahead_by": 3,
+      "behind_by": 0,
+      "base_sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "branch": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 41,
+      "base_sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "branch": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 56,
+      "base_sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "branch": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 59,
+      "base_sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "branch": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 38,
+      "base_sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "branch": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 90,
+      "base_sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "branch": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 61,
+      "base_sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "branch": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 82,
+      "base_sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "branch": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 100,
+      "base_sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "branch": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 100,
+      "base_sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "branch": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 67,
+      "base_sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "branch": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 70,
+      "base_sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "branch": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 149,
+      "base_sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "branch": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 152,
+      "base_sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "branch": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 155,
+      "base_sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "branch": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 156,
+      "base_sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "branch": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 154,
+      "base_sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "branch": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 159,
+      "base_sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "branch": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 69,
+      "base_sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "branch": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 168,
+      "base_sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "branch": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 169,
+      "base_sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "branch": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 177,
+      "base_sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "branch": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 94,
+      "base_sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "branch": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 65,
+      "base_sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "branch": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 66,
+      "base_sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "branch": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 68,
+      "base_sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "branch": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 71,
+      "base_sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "branch": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 153,
+      "base_sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "branch": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 160,
+      "base_sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "branch": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 167,
+      "base_sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "branch": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "status": "identical",
+      "ahead_by": 0,
+      "behind_by": 0
+    },
+    {
+      "branch": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 103,
+      "base_sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "branch": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 155,
+      "base_sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "branch": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 169,
+      "base_sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "branch": "main",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "status": "identical",
+      "ahead_by": 0,
+      "behind_by": 0
+    },
+    {
+      "branch": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 70,
+      "base_sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "branch": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 148,
+      "base_sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "branch": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 101,
+      "base_sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "branch": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 67,
+      "base_sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "branch": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 68,
+      "base_sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "branch": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 100,
+      "base_sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "branch": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 71,
+      "base_sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "branch": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 69,
+      "base_sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    }
+  ],
+  "prs": [
+    {
+      "number": 56,
+      "title": "Optimize Zotero metadata refresh and native citation scaling",
+      "state": "closed",
+      "head": "codex/zotero-optimization-20261116",
+      "head_sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "base": "main",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/56"
+    },
+    {
+      "number": 50,
+      "title": "Improve Zotero catalog insertion, rich citations and note numbering [skip ci]",
+      "state": "closed",
+      "head": "codex/zotero-support-20261116",
+      "head_sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "base": "main",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/50"
+    },
+    {
+      "number": 58,
+      "title": "Import ODS named expressions",
+      "state": "closed",
+      "head": "feat/ods-named-expressions",
+      "head_sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "base": "main",
+      "merged_at": "2026-11-16T10:37:36Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/58"
+    },
+    {
+      "number": 57,
+      "title": "Preserve ODS worksheet tab colours",
+      "state": "closed",
+      "head": "feat/ods-tab-color",
+      "head_sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "base": "main",
+      "merged_at": "2026-11-16T10:30:10Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/57"
+    },
+    {
+      "number": 55,
+      "title": "Close the modeled ODS validation backlog",
+      "state": "closed",
+      "head": "docs/validation-complete",
+      "head_sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "base": "main",
+      "merged_at": "2026-11-16T09:17:36Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/55"
+    },
+    {
+      "number": 54,
+      "title": "Import ODS validation prompts and error styles",
+      "state": "closed",
+      "head": "feat/ods-validation-messages",
+      "head_sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "base": "main",
+      "merged_at": "2026-11-16T09:10:51Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/54"
+    },
+    {
+      "number": 53,
+      "title": "Import ODS custom formula validations",
+      "state": "closed",
+      "head": "feat/ods-custom-validation",
+      "head_sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "base": "main",
+      "merged_at": "2026-11-16T09:04:41Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/53"
+    },
+    {
+      "number": 52,
+      "title": "Record numeric validation progress",
+      "state": "closed",
+      "head": "docs/validation-operators",
+      "head_sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "base": "main",
+      "merged_at": "2026-11-16T08:41:03Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/52"
+    },
+    {
+      "number": 51,
+      "title": "Import ODS numeric, date and length validations",
+      "state": "closed",
+      "head": "feat/ods-validation-operators",
+      "head_sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "base": "main",
+      "merged_at": "2026-11-16T08:32:57Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/51"
+    },
+    {
+      "number": 49,
+      "title": "Record ODS metadata and validation progress",
+      "state": "closed",
+      "head": "docs/metadata-closed",
+      "head_sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "base": "main",
+      "merged_at": "2026-11-15T23:08:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/49"
+    },
+    {
+      "number": 48,
+      "title": "Import ODS workbook metadata",
+      "state": "closed",
+      "head": "feat/ods-metadata",
+      "head_sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "base": "main",
+      "merged_at": "2026-11-15T23:02:25Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/48"
+    },
+    {
+      "number": 47,
+      "title": "Add native Zotero citation tools and document-wide style refresh",
+      "state": "closed",
+      "head": "codex/zotero-support-20261115",
+      "head_sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "base": "main",
+      "merged_at": "2026-11-15T22:52:54Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/47"
+    },
+    {
+      "number": 46,
+      "title": "Link the remaining office-format backlog",
+      "state": "closed",
+      "head": "docs/readme-remaining-gaps",
+      "head_sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "base": "main",
+      "merged_at": "2026-11-15T22:24:09Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/46"
+    },
+    {
+      "number": 45,
+      "title": "Document remaining Office engine work and update changelogs",
+      "state": "closed",
+      "head": "docs/remaining-gaps",
+      "head_sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "base": "main",
+      "merged_at": "2026-11-15T22:22:34Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/45"
+    },
+    {
+      "number": 44,
+      "title": "Split content controls across multiple document sections",
+      "state": "closed",
+      "head": "fix/sdt-multi-section-control",
+      "head_sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "base": "main",
+      "merged_at": "2026-11-15T22:18:54Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/44"
+    },
+    {
+      "number": 40,
+      "title": "Add Zotero online and desktop libraries with DOCX citation fields",
+      "state": "closed",
+      "head": "codex/zotero-support-20261115",
+      "head_sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "base": "main",
+      "merged_at": "2026-11-15T22:12:58Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/40"
+    },
+    {
+      "number": 43,
+      "title": "Support begins-with and ends-with conditions",
+      "state": "closed",
+      "head": "feat/conditional-affix",
+      "head_sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "base": "main",
+      "merged_at": "2026-11-15T22:05:48Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/43"
+    },
+    {
+      "number": 42,
+      "title": "Lift a trailing section break out of a body content control",
+      "state": "closed",
+      "head": "fix/sdt-trailing-section-break",
+      "head_sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "base": "main",
+      "merged_at": "2026-11-15T20:24:56Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/42"
+    },
+    {
+      "number": 41,
+      "title": "Support between conditional rules",
+      "state": "closed",
+      "head": "feat/conditional-between",
+      "head_sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "base": "main",
+      "merged_at": "2026-11-15T20:23:40Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/41"
+    },
+    {
+      "number": 39,
+      "title": "Import ODS list validations",
+      "state": "closed",
+      "head": "feat/ods-validations",
+      "head_sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "base": "main",
+      "merged_at": "2026-11-15T19:18:34Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/39"
+    },
+    {
+      "number": 38,
+      "title": "Import ODS contains-text and duplicate rules",
+      "state": "closed",
+      "head": "feat/conditional-text",
+      "head_sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "base": "main",
+      "merged_at": "2026-11-15T19:13:56Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/38"
+    },
+    {
+      "number": 37,
+      "title": "Emit conditional dxf styles for generated rules",
+      "state": "closed",
+      "head": "feat/conditional-dxf",
+      "head_sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "base": "main",
+      "merged_at": "2026-11-15T19:10:36Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/37"
+    },
+    {
+      "number": 36,
+      "title": "Support the full numeric conditional comparators",
+      "state": "closed",
+      "head": "feat/conditional-operators",
+      "head_sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "base": "main",
+      "merged_at": "2026-11-15T19:01:57Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/36"
+    },
+    {
+      "number": 35,
+      "title": "Import ODS conditional formats and paint matches",
+      "state": "closed",
+      "head": "feat/ods-conditional",
+      "head_sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "base": "main",
+      "merged_at": "2026-11-15T18:57:27Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/35"
+    },
+    {
+      "number": 34,
+      "title": "Accept UTF-16 custom XML while probing bibliography ownership",
+      "state": "closed",
+      "head": "fix/utf16-custom-xml",
+      "head_sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "base": "main",
+      "merged_at": "2026-11-15T18:49:26Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/34"
+    },
+    {
+      "number": 33,
+      "title": "Preserve hidden ODS worksheets",
+      "state": "closed",
+      "head": "feat/sheet-hidden-sheets",
+      "head_sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "base": "main",
+      "merged_at": "2026-11-15T18:39:22Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/33"
+    },
+    {
+      "number": 32,
+      "title": "Preserve hidden ODS rows and columns",
+      "state": "closed",
+      "head": "feat/sheet-hidden-state",
+      "head_sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "base": "main",
+      "merged_at": "2026-11-15T16:51:32Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/32"
+    },
+    {
+      "number": 31,
+      "title": "Honor nameless ODS default styles and geometry",
+      "state": "closed",
+      "head": "feat/ods-default-geometry",
+      "head_sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "base": "main",
+      "merged_at": "2026-11-15T16:45:53Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/31"
+    },
+    {
+      "number": 30,
+      "title": "Apply ODS document default cell styles",
+      "state": "closed",
+      "head": "feat/ods-default-style",
+      "head_sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "base": "main",
+      "merged_at": "2026-11-15T16:25:32Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/30"
+    },
+    {
+      "number": 28,
+      "title": "Prove edited XLSM/XLTX saves preserve package type",
+      "state": "closed",
+      "head": "test/xlsm-preservation",
+      "head_sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "base": "main",
+      "merged_at": "2026-11-15T14:17:35Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/28"
+    },
+    {
+      "number": 25,
+      "title": "Accept OOXML step vocabulary, keep all Word underline styles, continue formatting after a split",
+      "state": "closed",
+      "head": "fix/word-steps-vocabulary",
+      "head_sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "base": "main",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/25"
+    },
+    {
+      "number": 22,
+      "title": "Keep inline pictures inside their line of text",
+      "state": "closed",
+      "head": "fix/word-inline-pictures",
+      "head_sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "base": "main",
+      "merged_at": "2026-11-15T07:11:20Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/22"
+    },
+    {
+      "number": 21,
+      "title": "Apply headings the way Word does; shade theme colours in HSL",
+      "state": "closed",
+      "head": "fix/word-heading-like-word",
+      "head_sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "base": "main",
+      "merged_at": "2026-11-15T06:24:52Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/21"
+    },
+    {
+      "number": 20,
+      "title": "Keep shapes without text free of empty text boxes on save",
+      "state": "closed",
+      "head": "fix/word-shape-no-textbox",
+      "head_sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "base": "main",
+      "merged_at": "2026-11-15T06:24:51Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/20"
+    },
+    {
+      "number": 27,
+      "title": "Fix the reviewed Word golden checks on Linux",
+      "state": "closed",
+      "head": "fix/linux-goldens",
+      "head_sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "base": "main",
+      "merged_at": "2026-11-15T12:23:53Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/27"
+    },
+    {
+      "number": 26,
+      "title": "Declare archive for the ODS fixture builder",
+      "state": "closed",
+      "head": "fix/odf-legacy-spreadsheets",
+      "head_sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "base": "main",
+      "merged_at": "2026-11-15T11:41:44Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/26"
+    },
+    {
+      "number": 19,
+      "title": "Word-like text selection in the Word editor",
+      "state": "closed",
+      "head": "feat/word-like-selection",
+      "head_sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "base": "main",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/19"
+    },
+    {
+      "number": 18,
+      "title": "Preserve cell drafts during worksheet and find navigation",
+      "state": "closed",
+      "head": "codex/office-recovery-20261115",
+      "head_sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "base": "main",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/18"
+    },
+    {
+      "number": 29,
+      "title": "Carry ODS pictures into worksheet drawings",
+      "state": "closed",
+      "head": "feat/ods-images",
+      "head_sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "base": "main",
+      "merged_at": "2026-11-15T14:12:12Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/29"
+    },
+    {
+      "number": 24,
+      "title": "Finish ODS fidelity: geometry and date formats",
+      "state": "closed",
+      "head": "fix/odf-legacy-spreadsheets",
+      "head_sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "base": "main",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/24"
+    },
+    {
+      "number": 23,
+      "title": "Read OpenDocument spreadsheets into the workbook model",
+      "state": "closed",
+      "head": "fix/odf-legacy-spreadsheets",
+      "head_sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "base": "main",
+      "merged_at": "2026-11-15T08:57:53Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/23"
+    },
+    {
+      "number": 16,
+      "title": "Import legacy .xls workbooks and harden spreadsheet saves",
+      "state": "closed",
+      "head": "fix/excel-legacy-import",
+      "head_sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "base": "main",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/16"
+    },
+    {
+      "number": 15,
+      "title": "Make tracked-change import and save linear instead of quadratic",
+      "state": "closed",
+      "head": "fix/word-revision-quadratic",
+      "head_sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "base": "main",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/15"
+    },
+    {
+      "number": 17,
+      "title": "Keep unmodelable header/footer parts verbatim instead of refusing documents",
+      "state": "closed",
+      "head": "fix/word-header-controls",
+      "head_sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "base": "main",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/17"
+    },
+    {
+      "number": 14,
+      "title": "Keep complex fields as spans instead of wrapping whole paragraphs",
+      "state": "closed",
+      "head": "fix/word-field-loss",
+      "head_sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "base": "main",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/14"
+    },
+    {
+      "number": 13,
+      "title": "Preserve legacy VML content (w:pict) instead of dropping it on import",
+      "state": "closed",
+      "head": "fix/word-preserve-vml-pict",
+      "head_sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "base": "main",
+      "merged_at": "2026-11-14T22:11:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/13"
+    },
+    {
+      "number": 12,
+      "title": "test(office): preserve combined sorting and worksheet history regression",
+      "state": "closed",
+      "head": "integration/crispcloud-storage-reconcile-20261114",
+      "head_sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "base": "main",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/12"
+    },
+    {
+      "number": 10,
+      "title": "Stop text boxes anchored in one paragraph from nesting exponentially",
+      "state": "closed",
+      "head": "fix/word-textbox-nesting",
+      "head_sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "base": "main",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/10"
+    },
+    {
+      "number": 9,
+      "title": "Keep symbol-font characters (w:sym) through import and save",
+      "state": "closed",
+      "head": "fix/word-sym-chars",
+      "head_sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "base": "main",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/9"
+    },
+    {
+      "number": 11,
+      "title": "Reuse identical media payloads instead of storing a copy on every save",
+      "state": "closed",
+      "head": "fix/word-media-dedupe",
+      "head_sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "base": "main",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/11"
+    },
+    {
+      "number": 8,
+      "title": "Import real-world Word packages the importer used to refuse (17.3% → 3.3%)",
+      "state": "closed",
+      "head": "fix/word-block-bookmarks",
+      "head_sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "base": "main",
+      "merged_at": "2026-11-14T20:19:59Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/8"
+    },
+    {
+      "number": 7,
+      "title": "Resolve Office fonts consistently across layout and PDF export",
+      "state": "closed",
+      "head": "feature/document-fonts-20261113",
+      "head_sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "base": "main",
+      "merged_at": "2026-11-13T21:16:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/7"
+    },
+    {
+      "number": 6,
+      "title": "Pin canonical parser d14f03f and record complete workspace validation",
+      "state": "closed",
+      "head": "feature/legacy-doc-fidelity-continuation-20261112",
+      "head_sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "base": "main",
+      "merged_at": "2026-11-12T20:58:32Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/6"
+    },
+    {
+      "number": 4,
+      "title": "Update vendored legacy DOC parser fidelity checkpoint",
+      "state": "closed",
+      "head": "feature/legacy-doc-fidelity-20261112",
+      "head_sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "base": "main",
+      "merged_at": "2026-11-12T18:25:32Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/4"
+    },
+    {
+      "number": 5,
+      "title": "Continue legacy DOC fidelity integration from current main",
+      "state": "closed",
+      "head": "feature/legacy-doc-fidelity-continuation-20261112",
+      "head_sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "base": "main",
+      "merged_at": "2026-11-12T20:10:12Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/5"
+    },
+    {
+      "number": 2,
+      "title": "Preserve spreadsheet font metrics and add Word grid and tab controls",
+      "state": "closed",
+      "head": "feature/office-fidelity-followup-20261112",
+      "head_sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "base": "main",
+      "merged_at": "2026-11-12T15:25:55Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/2"
+    },
+    {
+      "number": 3,
+      "title": "Expand shared Office fidelity and recover interrupted workflows",
+      "state": "closed",
+      "head": "feature/office-fidelity-expansion-20261112",
+      "head_sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "base": "feature/office-fidelity-followup-20261112",
+      "merged_at": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/3"
+    },
+    {
+      "number": 1,
+      "title": "Preserve worksheet cache types and add bounded legacy Word conversion",
+      "state": "closed",
+      "head": "feature/office-fidelity-gap-closure-20261112",
+      "head_sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "base": "main",
+      "merged_at": "2026-11-12T11:37:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/1"
+    }
+  ],
+  "additional_pr_head_comparisons": [
+    {
+      "pr": 40,
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 119,
+      "base_sha": "8855b88a96b5c94349e3b5278c339228a1688c3e"
+    },
+    {
+      "pr": 28,
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 208,
+      "base_sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4"
+    },
+    {
+      "pr": 25,
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 256,
+      "base_sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8"
+    },
+    {
+      "pr": 22,
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 273,
+      "base_sha": "4637ddce4154f4b50105c7322fedc1c75fd02193"
+    },
+    {
+      "pr": 21,
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 306,
+      "base_sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2"
+    },
+    {
+      "pr": 20,
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 306,
+      "base_sha": "5278aafd512640608fe06b8f7d357c4cffe8520a"
+    },
+    {
+      "pr": 27,
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 246,
+      "base_sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7"
+    },
+    {
+      "pr": 26,
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 248,
+      "base_sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae"
+    },
+    {
+      "pr": 19,
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 306,
+      "base_sha": "e8227569a3b90fb21db598483690bd13fe74ddef"
+    },
+    {
+      "pr": 18,
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 303,
+      "base_sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0"
+    },
+    {
+      "pr": 24,
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 249,
+      "base_sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661"
+    },
+    {
+      "pr": 23,
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 264,
+      "base_sha": "e002b9584bead9761fac8c7cf818431966d1b1c3"
+    },
+    {
+      "pr": 16,
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 299,
+      "base_sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e"
+    },
+    {
+      "pr": 15,
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 306,
+      "base_sha": "448eff5aac55054a34eccd4f8a1e79e754909a05"
+    },
+    {
+      "pr": 17,
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 306,
+      "base_sha": "89c7f06c592edde0c67774e9c7e087d96f52184b"
+    },
+    {
+      "pr": 14,
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 306,
+      "base_sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da"
+    },
+    {
+      "pr": 13,
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 308,
+      "base_sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e"
+    },
+    {
+      "pr": 12,
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 325,
+      "base_sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5"
+    },
+    {
+      "pr": 10,
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 343,
+      "base_sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a"
+    },
+    {
+      "pr": 9,
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 343,
+      "base_sha": "58de54567d45e38c05dd77064b7607c577374b9d"
+    },
+    {
+      "pr": 11,
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 330,
+      "base_sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+    },
+    {
+      "pr": 8,
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 343,
+      "base_sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7"
+    },
+    {
+      "pr": 7,
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 397,
+      "base_sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80"
+    },
+    {
+      "pr": 6,
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 412,
+      "base_sha": "78ed85f5fd19d44f672dee11420fed261c974f4a"
+    },
+    {
+      "pr": 4,
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 439,
+      "base_sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468"
+    },
+    {
+      "pr": 5,
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 419,
+      "base_sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f"
+    },
+    {
+      "pr": 2,
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 494,
+      "base_sha": "08b09485588d2b6270f594a07c983689c087587d"
+    },
+    {
+      "pr": 3,
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 473,
+      "base_sha": "e550723b0f2a7cd849970f58820d260c36857502"
+    },
+    {
+      "pr": 1,
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 503,
+      "base_sha": "54f0f8de01416640560519aa9d732f668f603709"
+    }
+  ]
+}
