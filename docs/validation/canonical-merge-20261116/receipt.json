@@ -1,0 +1,11 @@
+{
+  "qualified_source": "315f4ec2c5263b76b17e9f982bf31157f3918f73",
+  "engine_passed": 538,
+  "engine_failed": 0,
+  "engine_scope": "sheet_* tests, legacy_sheet_reader, ods_sheet_reader, sml_styles_date, word_zotero_scaling and zotero_metadata_batch",
+  "engine_execution": "Actual vendored identical engine under Flutter 3.47.8 / Dart 3.13.7; normal package graph with SHA-256 verified locked archives restored after external cache volume disappeared.",
+  "editor_evidence": "docs/validation/zotero-large-library-20261116/receipt.json",
+  "editor_passed_in_retained_evidence": 177,
+  "editor_source_equivalent_to": "ca9e4f0",
+  "github_actions_queried_or_awaited": false
+}
