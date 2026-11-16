@@ -1,7 +1,6 @@
 {
   "repository": "CrispStrobe/quds_office_suite",
   "captured_at_utc": "2026-11-16T10:43:22.910340+00:00",
-  "integration_head_at_capture": "9f674c9875106a288038fa668bb0f1ad70b08059",
   "integration_tree_at_capture": "31c3473fe678f832d1d4aad972c8ecf197a31dc0",
   "branch_count": 40,
   "pr_head_count": 58,
@@ -564,5 +563,7 @@
       "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
       "status": "ancestor"
     }
-  ]
+  ],
+  "local_integration_head_at_capture": "9f674c9875106a288038fa668bb0f1ad70b08059",
+  "qualified_remote_source_commit": "98079023680a549cb126752c1d4f539749f46938"
 }

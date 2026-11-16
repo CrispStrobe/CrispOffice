@@ -1,0 +1,51 @@
+{
+  "baseline_editor_commit": "18c76e886623ae3be9a41addd80e7f6837c2d3b0",
+  "baseline_editor_lib_tree": "8ee000440d6d208d1993ab2b7487041f9ebfa8cb",
+  "current_test_source_commit": "92391bfc28c7ef75598588f7c91680f7caf6c4a0",
+  "canonical_source_or_manifests_modified": false,
+  "harness": "/workspace/scratch/1e8827a47266/zotero-toolchain/harness/quds_office_editor_baseline",
+  "package_config_sha256": "878cdffed97cca4c6d8db5fbd1c9dabd0c2a001e08f90fcd68f811bf94536013",
+  "setup_attempts": "First attempt lacked copied package_graph.json; setup-only errors retained separately and excluded from regression findings. Final harness includes package_graph.json.",
+  "checks": [
+    {
+      "test": "word_zotero_collection_pagination_test.dart",
+      "name": "initial collection duplicates keep one selectable latest entry",
+      "test_sha256": "dd4ebf279033cd62cce38121bfa124e46140130e0a19d5b6626f88d39888c56a",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_collection_pagination_test.dart",
+        "--plain-name",
+        "initial collection duplicates keep one selectable latest entry"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "reason": "Old menu retains duplicate COLL0001 key.",
+      "log": "baseline-collection-duplicates.log",
+      "log_sha256": "6abef83d51281de7cfee1e4e607940e06826499a70065dc15c70ed29329b7518"
+    },
+    {
+      "test": "word_zotero_dialog_test.dart",
+      "name": "refresh batches 51 sources and duplicate citations into one undo",
+      "test_sha256": "65a0073c7c4ef980554332c2f6c4fec5054d2febc4db19712389c81b5d479c13",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_dialog_test.dart",
+        "--plain-name",
+        "refresh batches 51 sources and duplicate citations into one undo"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "reason": "Old operation bound makes zero metadata requests for 51 distinct sources instead of two.",
+      "log": "baseline-refresh-51.log",
+      "log_sha256": "177b8e4100bbd105ad83acc08e90678adef2560334eb0e25c0eb2d2fd8ed7a66"
+    }
+  ]
+}
