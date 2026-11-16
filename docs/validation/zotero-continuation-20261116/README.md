@@ -39,7 +39,10 @@ mutation paths found no additional concrete defect after the recorded fixes.
 
 Strict analysis passed for all **32 changed Dart targets**; formatter and Git
 whitespace checks passed. All **1,568 recorded source/dependency-input hashes**,
-HEAD and genuine harness inputs stayed unchanged. The recorded native-evidence
+HEAD and genuine harness inputs stayed unchanged. The
+[delivery source proof](delivery-source-proof.json) confirms that later evidence
+and documentation retain every measured input and the entire production/test
+tree. The recorded native-evidence
 scripts are explicitly listed as archived execution evidence, separate from
 production/test analyzer targets. No application or package paths are excluded.
 
@@ -63,10 +66,11 @@ counts are not added to the final total.
 
 ## Real native Zotero acceptance
 
-[Live evidence and replay instructions](live-zotero/README.md) record two
+[Live evidence and replay instructions](live-zotero/INDEX.md) record **three**
 successful scenarios against official **Zotero 10.0.8** in an isolated profile
 with three synthetic sources: local catalog browse/search/collection membership,
-and native document preferences plus full citation/bibliography refresh.
+native document preferences plus full citation/bibliography refresh, and
+first-use catalog insertion through the real native picker.
 
 The actual Quds client, citing driver, Word adapter and Studio HTTP transport
 communicated with the running application. After choosing the pinned Chicago
@@ -81,8 +85,19 @@ original document stayed unchanged until staged application. Bibliography
 paragraph-layout simplification produced its expected review warning. The
 actual before/after DOCX files, protocol transcript and source/runtime receipts
 are preserved; archive/profile databases and application binaries are not.
-These scenarios are counted separately from unit/widget totals. See the live
-README for the exact measured source scope and the source-JIT fingerprint limit.
+The first-use scenario starts without a document style, runs `setDocPrefs` and
+`addEditCitation` through the same staged session, and accepts the selected
+catalog source and page 12 in Zotero's picker. Both commands leave the original
+document unchanged until one apply; DOCX roundtrip retains the linked footnote,
+exact caret position, style and locator. This run captures 455 production input
+hashes before compilation and verifies the exact executed kernel hash afterward.
+
+These scenarios are counted separately from unit/widget totals. The earlier
+catalog/refresh runs have a narrower source-JIT fingerprint, described in their
+original receipt. A bounded initial locator-popup editing attempt timed out
+without application; the successful retry accepts the displayed page 12.
+Native locator-popup editing remains unverified. The detailed evidence retains
+both outcomes and does not add the failed attempt to pass counts.
 
 ## Reproduce locally
 

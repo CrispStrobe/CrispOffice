@@ -22,6 +22,8 @@ runner.BASELINE = "dc5f93b673e6087cccc6d66b33dfbfd099668f77"
 runner.ARCHIVED_DART_INPUTS = (
     "docs/validation/zotero-continuation-20261116/live-zotero/scripts/catalog-live.dart",
     "docs/validation/zotero-continuation-20261116/live-zotero/scripts/refresh-live.dart",
+    "docs/validation/zotero-continuation-20261116/live-zotero/first-insertion/scripts/first-insertion.dart",
+    "docs/validation/zotero-continuation-20261116/live-zotero/first-insertion/attempt-1-locator-edit/first-insertion.dart",
 )
 runner.ENGINE_TESTS = list(dict.fromkeys(runner.ENGINE_TESTS + [
     "word_zotero_preference_flow_test.dart",

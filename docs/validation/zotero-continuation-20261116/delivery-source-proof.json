@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-11-16T05:32:39.807305+00:00",
+  "qualified_commit": "72691877bd9bafab761e655c13d0c9a0936b55bb",
+  "candidate_parent_commit": "0c5644f32251dd8a0f881814719321e3b7d15672",
+  "qualified_recorded_input_count": 1568,
+  "changed_recorded_inputs": [],
+  "production_comparison_command": [
+    "git",
+    "diff",
+    "--name-only",
+    "72691877bd9bafab761e655c13d0c9a0936b55bb",
+    "--",
+    "packages",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml"
+  ],
+  "changed_production_or_test_paths": [],
+  "untracked_production_or_test_paths": [],
+  "qualification_receipt": "final/receipt.json",
+  "scope": "All recorded qualification inputs plus the entire packages tree and root dependency/analysis manifests; documentation/evidence additions may advance HEAD.",
+  "implementation_unchanged": true
+}

@@ -35,11 +35,17 @@ synthetic local sources. The actual citing driver and Word adapter opened
 native Document Preferences and refreshed a German Chicago subsequent-ibid
 document. Its saved/reopened DOCX contains a full first citation, `Ebd.`, and
 `Ebd., 34.`; mixed italics and the regenerated bibliography survive.
-These live scenarios are reported separately from unit/widget test totals.
+A third live scenario verified the new first-use sequence: native preferences,
+same-session seeded picker acceptance with page 12, one staged apply, and linked
+footnote/style/locator persistence through DOCX roundtrip. Its 455 production
+input hashes and exact executed kernel hash were captured and verified.
+These three live scenarios are reported separately from unit/widget test totals.
+Native locator-popup editing remains unverified; the bounded unsuccessful input
+automation attempt is retained separately from the successful acceptance.
 
 See [current evidence and reproduction](validation/zotero-continuation-20261116/README.md),
 [the final receipt](validation/zotero-continuation-20261116/final/receipt.json),
-[the live desktop evidence](validation/zotero-continuation-20261116/live-zotero/README.md),
+[the live desktop evidence](validation/zotero-continuation-20261116/live-zotero/INDEX.md),
 and [the final incoming-work audit](validation/zotero-continuation-20261116/final-integration.json).
 The first pass and focused development runs are retained without adding their
 overlapping counts to the final totals.

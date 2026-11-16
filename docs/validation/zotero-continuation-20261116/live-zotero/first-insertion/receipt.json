@@ -1,0 +1,31 @@
+{
+  "completed_at_utc": "2026-11-16T05:31:49.785878+00:00",
+  "result": "passed",
+  "source_commit": "2b71c2f9bf8cddc1a84ce910e917655e69cbb783",
+  "source_files_captured_before_compilation": 455,
+  "source_files_changed_after_execution": [],
+  "source_after_head": "0c5644f32251dd8a0f881814719321e3b7d15672",
+  "compiled_kernel": {
+    "sha256": "4a1a9f915df18bbe5587100827377fb8b303a068fe2d0c3684462b97dae02bb6",
+    "bytes": 27437408,
+    "path": "/workspace/scratch/7b8555dd0115/zotero-native-acceptance/first-insertion/first-insertion.dill",
+    "recorded_before_native_execution_at_utc": "2026-11-16T05:30:16.618466+00:00"
+  },
+  "runtime_dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "package_inputs_sha256": {
+    "pubspec.yaml": "6e749a1e3d04caae82d25dab38f3cfb498535e2b06ddb405253085cd63dd1761",
+    "pubspec.lock": "52e39372b41c6a3892649f089e15516ddba66c3fc9679fa13a233a25ba61d12f",
+    ".dart_tool/package_config.json": "a4b425e0b230f9305ac5b70132f9fc30a307cc4366e509439d4afb84eec8ac8e"
+  },
+  "native_version": "10.0.8",
+  "native_archive_sha256": "a704cfd49f5de65507910e0cada4acf72097572201b3576583f0a92a32c1032b",
+  "installed_style_sha256": "39c868e65da74bff51f5be6cbaefc39f809841ab81758a378b883ef767eb500a",
+  "isolated_profile": "/workspace/scratch/7b8555dd0115/zotero-native-acceptance/profile",
+  "isolated_data": "/workspace/scratch/7b8555dd0115/zotero-native-acceptance/data",
+  "private_account_connected": false,
+  "synthetic_sources_only": true,
+  "native_application_closed": true,
+  "successful_native_locator_action": "Accepted the displayed seeded page12 without editing its popup",
+  "earlier_bounded_attempt": "Native page-input automation did not change the seeded locator; unaccepted picker hit120-second request timeout. Logs preserved under attempt-1-locator-edit. Not counted as a pass.",
+  "scope": "Precompiled Dart acceptance harness using actual Quds client/citing driver/Word adapter and Studio native transport. Full Flutter app and undo UI are not exercised."
+}

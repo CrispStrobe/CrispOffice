@@ -1,0 +1,72 @@
+{
+  "source-before.json.gz": {
+    "original_name": "source-before.json",
+    "raw_bytes": 65399,
+    "raw_sha256": "5709fb0ddc650680928c70e7ed0875ce92557fb9a263ce2b4bfb4c2e32710231",
+    "gzip_bytes": 23300,
+    "gzip_sha256": "c7755cb12da369c6cccccd94713342cb78312e141e8af50d6c5a4c7a5e42b872"
+  },
+  "raw-logs/client-run.log.gz": {
+    "original_name": "client-run.log",
+    "raw_bytes": 131,
+    "raw_sha256": "e4130f2fd9499b730a0e8ee065c199f24db855fca23a9c8acc331290c3584375",
+    "gzip_bytes": 127,
+    "gzip_sha256": "baa8c9b3cd27a246f1dd203fc098ff30d3dfe4cab5aa1f6689005996160e5e82"
+  },
+  "raw-logs/protocol.jsonl.gz": {
+    "original_name": "protocol.jsonl",
+    "raw_bytes": 14916,
+    "raw_sha256": "0efba5bc1bb562a0f302d02610a6510df93ab23805b53ba452ec15c2bb11e101",
+    "gzip_bytes": 2142,
+    "gzip_sha256": "3bc486a44cb7642013f73dc97796e4fb9e063fe3e206f3c11f6b0281040f8ee8"
+  },
+  "raw-logs/kernel-compile.log.gz": {
+    "original_name": "kernel-compile.log",
+    "raw_bytes": 214,
+    "raw_sha256": "3bcf0ecb2354c679db6c80dfbea8e433da6c356a4d8af4f90660f2e6bde2498d",
+    "gzip_bytes": 122,
+    "gzip_sha256": "c1e17f043adea17cd6f2eba78d96a24ab8da0857d7d07934b2618b175452d71d"
+  },
+  "raw-logs/zotero-native.log.gz": {
+    "original_name": "zotero-native.log",
+    "raw_bytes": 274,
+    "raw_sha256": "c2e27c9901832c6af45dc6eaa7c3a1a3bcdb1adfb7a1fc3f896b232919de2a2a",
+    "gzip_bytes": 199,
+    "gzip_sha256": "1cf91579e317bfc3023270e731e0c4734fcda8867b626f4cbb6db72e2f731431"
+  },
+  "attempt-1-locator-edit/source-before.json.gz": {
+    "original_name": "source-before.json",
+    "raw_bytes": 65228,
+    "raw_sha256": "5017c2ed78b800f3d0824c95c9550aa8fa2fa060634439f870d9a60d6d938f04",
+    "gzip_bytes": 23199,
+    "gzip_sha256": "e8b482e2e562a7615452c403eff4cd9172ced9d2e14b958dd616a4bf056f206d"
+  },
+  "attempt-1-locator-edit/protocol.jsonl.gz": {
+    "original_name": "protocol.jsonl",
+    "raw_bytes": 11993,
+    "raw_sha256": "26ca87f9dfbc8bd7318882a2cc137173a2b05bed69603eff54f3cc0940425978",
+    "gzip_bytes": 1973,
+    "gzip_sha256": "680647360ba9a7993039f05cc2c73176546f47a63168c4edfb67833b48b5f005"
+  },
+  "attempt-1-locator-edit/client-run.log.gz": {
+    "original_name": "client-run.log",
+    "raw_bytes": 526,
+    "raw_sha256": "1e8dda1b9aa25533f4aaa52fedbc29f50fb3d45710f7a65f65022a7a8628d3c0",
+    "gzip_bytes": 278,
+    "gzip_sha256": "bde01e6f014993a34713815f7812e1dbc58349204de383257bdda2445143ef4d"
+  },
+  "attempt-1-locator-edit/failure.txt.gz": {
+    "original_name": "failure.txt",
+    "raw_bytes": 505,
+    "raw_sha256": "faa2d6641f8ddf9a6337267fd8440c552c8be9c8ff57fd48bcdb7a3f8cd789c9",
+    "gzip_bytes": 262,
+    "gzip_sha256": "847613021f6d54e7c1a8c8e1b61dd0d420b2ff38b6e988dbcafae578b7881a1d"
+  },
+  "attempt-1-locator-edit/zotero-native.log.gz": {
+    "original_name": "zotero-native.log",
+    "raw_bytes": 274,
+    "raw_sha256": "85eba16481a70584e1f9b1989d0db99a47e47a8d1184aba3ad12302f828f09e7",
+    "gzip_bytes": 199,
+    "gzip_sha256": "836e1769b9c0077171ede0f1abb605065878fe04170f79b91d0c92c1c03c627b"
+  }
+}

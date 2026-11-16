@@ -108,7 +108,7 @@ body paragraphs, 20,000 commands and 8 MiB command payloads.
 This integration is covered by local protocol, engine, controller and dialog
 tests plus outputs from Zotero's pinned real CSL processor. The actual catalog,
 transport and document adapter also passed live desktop Zotero style-selection,
-refresh and DOCX save/reopen checks. Full compiled application builds and opening
+refresh, first-use seeded picker acceptance and DOCX save/reopen checks. Full compiled application builds and opening
 the exported file in Microsoft Word or LibreOffice remain separate acceptance
 steps. See [current validation](zotero-validation.md).
 
@@ -377,7 +377,9 @@ repositories. Checkpoints carry `[skip ci]`; no GitHub Actions are queried,
 polled, awaited or rerun. Local verification uses official Flutter/Dart and
 genuine locked dependency graphs. The actual local catalog and document-refresh
 path also passed against running Zotero 10.0.8 with synthetic sources, including
-German `Ebd.`/page locators, native style selection and DOCX save/reopen.
+German `Ebd.`/page locators, native style selection, first-use catalog insertion
+and DOCX save/reopen. Native locator-popup editing remains outside the successful
+live acceptance scope; the seeded locator was accepted and preserved.
 
 See [zotero-validation.md](zotero-validation.md) for the exact tested source,
 current results, reproduction commands and native acceptance scope. Full
