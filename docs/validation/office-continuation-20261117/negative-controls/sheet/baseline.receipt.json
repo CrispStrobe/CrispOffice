@@ -1,0 +1,173 @@
+{
+  "command": [
+    "dart",
+    "test",
+    "--reporter=json",
+    "test/sheet_conditional_fidelity_test.dart"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 12.529509782791138,
+  "inputs": {
+    "lib/src/sheet/model/sml_workbook.dart": "099358ae26351f2899bf37832b4f31b0f52e796d921be88fb28e4b17ce2f2249",
+    "lib/src/sheet/model/sheet_rename.dart": "93e0c9103222bc05ddbc08929983129f3285da15839695bc3a2384c68a91089f",
+    "lib/src/sheet/serial/sheet_serial.dart": "73439393a0a2d7dc94a07c8126fad730898d15c4aeda6f7df1204204c3d56baf",
+    "test/sheet_conditional_fidelity_test.dart": "434a147258840f1faeeb68a8dbca562cba63cbc20037d94d95475a99f8fc8af7"
+  },
+  "source_commit": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+  "done": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 5531
+    }
+  ],
+  "results": {
+    "success": 12,
+    "failure": 17,
+    "error": 0
+  },
+  "errors": [
+    {
+      "testID": 4,
+      "error": "Expected: '1'\n  Actual: '3'\n   Which: is different.\n          Expected: 1\n            Actual: 3\n                    ^\n           Differ at offset 0\n",
+      "stackTrace": "package:matcher                                  expect\ntest/sheet_conditional_fidelity_test.dart 28:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5261
+    },
+    {
+      "testID": 5,
+      "error": "Expected: '1'\n  Actual: '3'\n   Which: is different.\n          Expected: 1\n            Actual: 3\n                    ^\n           Differ at offset 0\n",
+      "stackTrace": "package:matcher                                  expect\ntest/sheet_conditional_fidelity_test.dart 28:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5283
+    },
+    {
+      "testID": 6,
+      "error": "Expected: '1'\n  Actual: '3'\n   Which: is different.\n          Expected: 1\n            Actual: 3\n                    ^\n           Differ at offset 0\n",
+      "stackTrace": "package:matcher                                  expect\ntest/sheet_conditional_fidelity_test.dart 28:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5304
+    },
+    {
+      "testID": 7,
+      "error": "Expected: '1'\n  Actual: '3'\n   Which: is different.\n          Expected: 1\n            Actual: 3\n                    ^\n           Differ at offset 0\n",
+      "stackTrace": "package:matcher                                  expect\ntest/sheet_conditional_fidelity_test.dart 28:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5313
+    },
+    {
+      "testID": 8,
+      "error": "Expected: ['1', '2']\n  Actual: MappedListIterable<XmlElement, String>:['1', '3']\n   Which: at location [1] is '3' instead of '2'\n",
+      "stackTrace": "package:matcher                                 expect\ntest/sheet_conditional_fidelity_test.dart 52:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5332
+    },
+    {
+      "testID": 9,
+      "error": "Expected: ['1', '2']\n  Actual: MappedListIterable<XmlElement, String>:['1', '3']\n   Which: at location [1] is '3' instead of '2'\n",
+      "stackTrace": "package:matcher                                 expect\ntest/sheet_conditional_fidelity_test.dart 52:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5339
+    },
+    {
+      "testID": 15,
+      "error": "Expected: SmlConditionalKind:<SmlConditionalKind.bottom>\n  Actual: SmlConditionalKind:<SmlConditionalKind.top>\n",
+      "stackTrace": "package:matcher                                 expect\ntest/sheet_conditional_fidelity_test.dart 82:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5353
+    },
+    {
+      "testID": 17,
+      "error": "Expected: SmlConditionalKind:<SmlConditionalKind.topPercent>\n  Actual: SmlConditionalKind:<SmlConditionalKind.top>\n",
+      "stackTrace": "package:matcher                                 expect\ntest/sheet_conditional_fidelity_test.dart 82:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5359
+    },
+    {
+      "testID": 19,
+      "error": "Expected: SmlConditionalKind:<SmlConditionalKind.bottomPercent>\n  Actual: SmlConditionalKind:<SmlConditionalKind.top>\n",
+      "stackTrace": "package:matcher                                 expect\ntest/sheet_conditional_fidelity_test.dart 82:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5365
+    },
+    {
+      "testID": 24,
+      "error": "Expected: SmlConditionalKind:<SmlConditionalKind.belowAverage>\n  Actual: SmlConditionalKind:<SmlConditionalKind.aboveAverage>\n",
+      "stackTrace": "package:matcher                                 expect\ntest/sheet_conditional_fidelity_test.dart 98:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5389
+    },
+    {
+      "testID": 26,
+      "error": "Expected: '\\'O\\'\\'Brien\\'!A2'\n  Actual: 'Data!A2'\n   Which: is different.\n          Expected: 'O''Brien' ...\n            Actual: Data!A2\n                    ^\n           Differ at offset 0\n",
+      "stackTrace": "package:matcher                                  expect\ntest/sheet_conditional_fidelity_test.dart 211:3  _expectRenamedBounds\ntest/sheet_conditional_fidelity_test.dart 113:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5421
+    },
+    {
+      "testID": 27,
+      "error": "Expected: '\\'O\\'\\'Brien\\'!A2'\n  Actual: 'Data!A2'\n   Which: is different.\n          Expected: 'O''Brien' ...\n            Actual: Data!A2\n                    ^\n           Differ at offset 0\n",
+      "stackTrace": "package:matcher                                  expect\ntest/sheet_conditional_fidelity_test.dart 211:3  _expectRenamedBounds\ntest/sheet_conditional_fidelity_test.dart 113:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5431
+    },
+    {
+      "testID": 28,
+      "error": "Expected: '\\'Next\\'!A2'\n  Actual: 'Data!A2'\n   Which: is different.\n          Expected: 'Next'!A2\n            Actual: Data!A2\n                    ^\n           Differ at offset 0\n",
+      "stackTrace": "package:matcher                                  expect\ntest/sheet_conditional_fidelity_test.dart 211:3  _expectRenamedBounds\ntest/sheet_conditional_fidelity_test.dart 128:7  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5449
+    },
+    {
+      "testID": 29,
+      "error": "Expected: throws <Instance of 'StateError'>\n  Actual: <Closure: () => void from Function 'apply':.>\n   Which: returned <null>\n",
+      "stackTrace": "package:matcher                                   expect\ntest/sheet_conditional_fidelity_test.dart 151:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5466
+    },
+    {
+      "testID": 30,
+      "error": "Expected: throws <Instance of 'StateError'>\n  Actual: <Closure: () => void from Function 'apply':.>\n   Which: returned <null>\n",
+      "stackTrace": "package:matcher                                   expect\ntest/sheet_conditional_fidelity_test.dart 151:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5475
+    },
+    {
+      "testID": 31,
+      "error": "Expected: throws <Instance of 'StateError'>\n  Actual: <Closure: () => void from Function 'undo':.>\n   Which: returned <null>\n",
+      "stackTrace": "package:matcher                                   expect\ntest/sheet_conditional_fidelity_test.dart 151:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5492
+    },
+    {
+      "testID": 32,
+      "error": "Expected: throws <Instance of 'StateError'>\n  Actual: <Closure: () => void from Function 'undo':.>\n   Which: returned <null>\n",
+      "stackTrace": "package:matcher                                   expect\ntest/sheet_conditional_fidelity_test.dart 151:11  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5498
+    }
+  ],
+  "canonical_results": {
+    "success": 11,
+    "failure": 17,
+    "error": 0
+  },
+  "exact_test_source": "baseline-regression-used.dart"
+}

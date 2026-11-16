@@ -1,0 +1,30 @@
+{
+  "kind": "reconstructed invocation; no original command receipt or runner script was retained",
+  "command": [
+    "dart",
+    "test",
+    "--reporter",
+    "json",
+    "test/sfnt_cmap_validation_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f423a275b479/quds_office_suite/packages/quds_office_engine",
+  "environment": "Genuine activated Dart 3.13.7 toolchain; test runner 1.31.1 is recorded in baseline.jsonl",
+  "basis": "Original author's report during collection; JSON test log confirms the main checkout file URL and runner version",
+  "baseline_parser_commit": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+  "baseline_parser_sha256": "5e6d0ec9bba6e5c0be8d6763c6773a4b2e2afa136e3787b915ad2b7742b062d6",
+  "baseline_test_sha256": "a6610e10d9004192f87271aeff996f0d6e952a18e7647ff7305e0ab04766c271",
+  "executed_during_collection": false,
+  "final_only_probes": [
+    "invalid explicit glyph counts",
+    "Windows Symbol fallback ahead of Mac",
+    "legacy Big5 keys are not Unicode surrogates",
+    "unselected legacy bodies are ignored",
+    "subtable offsets relative to cursor table start",
+    "compact format 12 supports the scalar space without eager expansion",
+    "duplicate SFNT tags",
+    "format 12 rejects uint32-sized range before iteration",
+    "truncated required tables give typed errors",
+    "format 4 missing-glyph surrogate entries are not exposed"
+  ],
+  "withheld_from_old_parser": "The uint32-sized range and full scalar-space probes were added only after the fix because the old parser would eagerly expand those ranges. Their post-fix coverage is not claimed as a negative-control result."
+}
