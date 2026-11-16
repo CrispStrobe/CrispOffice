@@ -1,9 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:characters/characters.dart';
+
 import '../opc/zip/deflate_codec.dart';
 import 'data/german_lexicon_data.dart';
 import 'office_proofing.dart';
+
+Set<int> _sourceGraphemeBoundaries(String text) {
+  final Set<int> boundaries = <int>{0};
+  int end = 0;
+  for (final String cluster in text.characters) {
+    end += cluster.length;
+    boundaries.add(end);
+  }
+  return boundaries;
+}
 
 /// Canonicalizes common decomposed Latin letters without changing source text.
 /// This comparison helper is deliberately separate from source-offset handling.
@@ -171,6 +183,8 @@ class OfficeProofingVocabulary {
 /// Pinned finite German word forms; this is not a morphological/compound parser.
 /// Initialization and checking yield to the event loop in bounded batches,
 /// including when compiled for JavaScript (where Dart isolates are unavailable).
+/// Token fragments that would cut a grapheme are skipped. In particular, a
+/// letter joined to an adjacent control must not offer a partial replacement.
 class GermanSpellingProvider extends OfficeProofingProvider {
   GermanSpellingProvider({
     OfficeProofingVocabulary? vocabulary,
@@ -196,7 +210,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
   bool _disposed = false;
   static Future<_GermanLexicon>? _sharedLexicon;
   static final RegExp _tokens = RegExp(
-    r"[\p{L}\p{M}\u00ad]+(?:[-\u2010\u2011'’][\p{L}\p{M}\u00ad]+)*",
+    // A mark or discretionary hyphen by itself is not a word. Requiring a
+    // letter at the start also keeps combining marks attached to punctuation
+    // out of a finding that would split that punctuation's grapheme.
+    r"\p{L}[\p{L}\p{M}\u00ad]*(?:[-\u2010\u2011'’]\p{L}[\p{L}\p{M}\u00ad]*)*",
     unicode: true,
   );
   static final RegExp _webTokens = RegExp(
@@ -254,6 +271,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         _GermanLexicon.load());
     final bool swiss = request.language == 'de-CH';
     final List<OfficeProofingFinding> findings = <OfficeProofingFinding>[];
+    final Set<int> boundaries = _sourceGraphemeBoundaries(request.text);
     final List<RegExpMatch> webRanges = _webTokens
         .allMatches(request.text)
         .toList();
@@ -268,6 +286,13 @@ class GermanSpellingProvider extends OfficeProofingProvider {
             message: 'German spelling provider is disposed.',
           );
         }
+      }
+      // Do not widen a lexical replacement over an adjacent mark or joiner.
+      // Unsupported token fragments must not invalidate ordinary findings
+      // elsewhere in the same paragraph.
+      if (!boundaries.contains(token.start) ||
+          !boundaries.contains(token.end)) {
+        continue;
       }
       if (webRanges.any(
         (RegExpMatch range) =>
@@ -329,7 +354,9 @@ class GermanSpellingProvider extends OfficeProofingProvider {
   }
 
   List<String> _suggest(String word, _GermanLexicon lexicon, bool swiss) {
-    if (maximumSuggestions == 0 || word.length > 64) return const <String>[];
+    if (maximumSuggestions == 0 || word.isEmpty || word.length > 64) {
+      return const <String>[];
+    }
     final Set<String> found = <String>{};
     int examined = 0;
     void candidate(String value) {

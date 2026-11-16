@@ -186,6 +186,26 @@ text without a user-selected correction.
 with language scope, case/whole-word options, stable IDs, explanations and
 replacements. No external terminology or grammar-rule corpus is bundled.
 
+### Conservative source-boundary checks
+
+Spelling tokens must begin with a letter; standalone soft hyphens and combining
+marks do not become empty lookup candidates. Internal apostrophes in quoted
+names or contractions (for example `‘O’Connor’` and `‘geht’s’`) do not close the
+surrounding quotation.
+
+The existing pronoun/verb rule also recognizes lowercase `ich ist` and
+`du ist`, while preserving capitalized nominal uses such as `das Ich ist`.
+Immediate comparison phrases beginning with `wie` or `als` are excluded, and
+an all-capital verb receives an all-capital replacement.
+
+Spelling, writing and terminology findings are emitted only at whole source
+grapheme boundaries. A pattern match ending inside a combining sequence or
+next to a joiner is omitted, rather than failing all findings for the paragraph
+or extending a replacement over neighboring marks. Decorated unmatched
+punctuation and lexical fragments adjoining joiners can therefore be omitted.
+This conservative range policy is not a claim that every such fragment has
+been checked.
+
 ### German model evaluation
 
 The `proofbird/gector-bert-de` v2.1.0 ONNX model was evaluated separately at

@@ -63,3 +63,25 @@ No GitHub Actions, workflow, check-run or commit-status endpoints were queried.
 The experimental German model remains disabled; its retained evaluation was
 not rerun. Browser/CSP, mobile dictionaries and non-Linux native acceptance
 remain separate platform checks.
+
+## Additional checking fixes
+
+The next checkpoint fixes standalone soft-hyphen/mark tokenization, apostrophes
+inside quoted words, lowercase `ich ist` / `du ist` agreement, comparison
+phrase false positives, and uppercase replacement preservation. Built-in
+spelling, writing and terminology providers omit pattern matches whose endpoints
+split a grapheme, preserving ordinary findings elsewhere in the paragraph.
+They do not widen replacements over adjacent combining marks or joiners.
+
+Eleven new German-core regression tests cover these cases through the real
+provider/service contract. Six caret ownership tests (four inherited and two
+new), four navigation tests, and five input-ownership widget tests accompany
+the integrated editor work. Added tests have not been executed in this session.
+
+The executor subsequently disconnected and is explicitly **unavailable**.
+Dart 3.13.7 was installed and identified, but dependency resolution failed with
+ENOSPC before producing a runnable test configuration. No new Dart analysis,
+Dart tests, Flutter tests or builds are reported as passing.
+
+Source and test changes were saved through GitHub's Git-data API with expected
+branch heads and without force updates. GitHub Actions remain unused.

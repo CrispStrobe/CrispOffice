@@ -71,7 +71,7 @@ void _expectStaleInputRejected(WordEditorController controller) {
 
 Future<void> _finishDialog(
   WidgetTester tester,
-  Future<void?> closed,
+  Future<void> closed,
 ) async {
   Navigator.of(tester.element(find.byKey(_editorKey))).pop();
   // The editor runs a caret ticker, so an unbounded pumpAndSettle is unsuitable.
@@ -157,7 +157,16 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
     expect(editorFocus.hasPrimaryFocus, isTrue);
     _expectStaleInputRejected(controller);
-    expect(controller.document.paragraphs.single.text, 'Preserve this');
+    final revision = controller.contentRevision;
+    await tester.sendKeyEvent(LogicalKeyboardKey.backspace);
+    await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+    await tester.sendKeyEvent(LogicalKeyboardKey.keyX, character: 'x');
+    await tester.pump();
+    expect(
+      controller.document.paragraphs.map((paragraph) => paragraph.text),
+      ['Preserve this'],
+    );
+    expect(controller.contentRevision, revision);
 
     await _finishDialog(tester, closed);
     controller.attachInput();
@@ -235,5 +244,40 @@ void main() {
     tester.testTextInput.enterText('Reopen this safely');
     await tester.pump();
     expect(controller.document.paragraphs.single.text, 'Reopen this safely');
+  });
+
+  testWidgets('focused viewing mode preserves navigation and rejects edits', (
+    tester,
+  ) async {
+    final controller = _controller('Read only');
+    final editorFocus = FocusNode(debugLabel: 'viewing word focus');
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      controller.dispose();
+      editorFocus.dispose();
+    });
+
+    await tester.pumpWidget(_app(_editor(controller, editorFocus)));
+    await _focusEditor(tester, controller, editorFocus);
+    controller.setMode(OfficeInteractionMode.viewing);
+    await tester.pump();
+    expect(editorFocus.hasPrimaryFocus, isTrue);
+    expect(controller.input.isAttached, isFalse);
+    expect(controller.config.allowsSelection, isTrue);
+
+    final end = controller.document.paragraphs.single.text.length;
+    controller.caret
+      ..logicalIndex = end
+      ..collapseSelection();
+    await tester.sendKeyEvent(LogicalKeyboardKey.arrowLeft);
+    await tester.pump();
+    expect(controller.caret.logicalIndex, end - 1);
+
+    await tester.sendKeyEvent(LogicalKeyboardKey.backspace);
+    await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+    await tester.sendKeyEvent(LogicalKeyboardKey.keyX, character: 'x');
+    await tester.pump();
+    expect(controller.document.paragraphs.single.text, 'Read only');
+    expect(controller.canUndo, isFalse);
   });
 }

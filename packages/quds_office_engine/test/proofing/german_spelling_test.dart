@@ -54,6 +54,69 @@ void main() {
     );
     expect(result.findings, isEmpty);
   });
+  test('standalone soft hyphens and combining marks are not words', () async {
+    final OfficeProofingService service = OfficeProofingService(
+      providers: <OfficeProofingProvider>[provider],
+    );
+    for (final String text in <String>[
+      '\u00ad',
+      '\u00ad \u00ad\u00ad \u0308',
+      '.\u0308 !\u0301',
+      '\u00adRecht\u00adschreibung\u00ad',
+    ]) {
+      final OfficeProofingReport report = await service.check(input(text));
+      expect(report.results.single.status, OfficeProofingStatus.success);
+      expect(report.isClean, isTrue, reason: text);
+    }
+  });
+  test('ignored nonwords retain subsequent spelling source offsets', () async {
+    const String text = '\u00ad .\u0308 🙂 Huas';
+    final OfficeProofingRequest request = OfficeProofingRequest(
+      documentId: 'doc',
+      blockId: 'p',
+      revision: 1,
+      text: text,
+      startOffset: 20,
+    );
+    final OfficeProofingReport report = await OfficeProofingService(
+      providers: <OfficeProofingProvider>[provider],
+    ).check(request);
+    expect(report.complete, isTrue);
+    final OfficeProofingFinding finding = report.findings.single;
+    expect(finding.originalText, 'Huas');
+    expect(finding.start, 20 + text.indexOf('Huas'));
+    expect(finding.end, 20 + text.length);
+    expect(finding.replacements, contains('Haus'));
+  });
+  test(
+    'joiner-adjacent spelling fragments do not fail the paragraph',
+    () async {
+      final OfficeProofingService service = OfficeProofingService(
+        providers: <OfficeProofingProvider>[provider],
+      );
+      for (final String joiner in <String>['\u200d', '\u200c']) {
+        for (final String word in <String>['Haus', 'Huas']) {
+          final String text = '$word$joiner Haus Huas';
+          final OfficeProofingReport report = await service.check(
+            OfficeProofingRequest(
+              documentId: 'doc',
+              blockId: 'p',
+              revision: 1,
+              text: text,
+              startOffset: 20,
+            ),
+          );
+          expect(report.results.single.status, OfficeProofingStatus.success);
+          expect(report.complete, isTrue);
+          final OfficeProofingFinding finding = report.findings.single;
+          expect(finding.originalText, 'Huas');
+          expect(finding.start, 20 + text.lastIndexOf('Huas'));
+          expect(finding.end, 20 + text.length);
+          expect(finding.replacements, contains('Haus'));
+        }
+      }
+    },
+  );
   test(
     'all-capitals sharp-s words are valid in German and Swiss forms',
     () async {

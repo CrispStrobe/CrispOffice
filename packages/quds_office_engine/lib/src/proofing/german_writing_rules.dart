@@ -1,8 +1,22 @@
+import 'package:characters/characters.dart';
+
 import 'office_proofing.dart';
+
+Set<int> _sourceGraphemeBoundaries(String text) {
+  final Set<int> boundaries = <int>{0};
+  int end = 0;
+  for (final String cluster in text.characters) {
+    end += cluster.length;
+    boundaries.add(end);
+  }
+  return boundaries;
+}
 
 /// Seven independently authored writing checks; not a general grammar parser.
 /// Findings are advisory and never rewrite text. Unbalanced quotes can be valid
 /// across paragraph boundaries and are explicitly described as review items.
+/// A pattern with an endpoint inside a source grapheme is omitted rather than
+/// offering a partial range or widening a replacement over adjacent marks.
 class GermanWritingRulesProvider extends OfficeProofingProvider {
   bool _disposed = false;
   @override
@@ -22,6 +36,34 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
     'de.delimiter.balance',
     'de.quote.balance',
   };
+  static final RegExp _letterBefore = RegExp(
+    r'[\p{L}\p{M}]$',
+    unicode: true,
+  );
+  static final RegExp _letterAfter = RegExp(
+    r'^\p{L}',
+    unicode: true,
+  );
+  static final RegExp _comparisonPrefix = RegExp(
+    r'(?<![\p{L}\p{M}])(?:wie|als)[ \t\u00a0]+$',
+    caseSensitive: false,
+    unicode: true,
+  );
+
+  static bool _hasLetterBefore(String text, int offset) =>
+      offset > 0 &&
+      _letterBefore.hasMatch(
+        text.substring(offset > 1 ? offset - 2 : 0, offset),
+      );
+
+  static bool _hasLetterAfter(String text, int offset) =>
+      offset + 1 < text.length &&
+      _letterAfter.hasMatch(
+        text.substring(
+          offset + 1,
+          offset + 3 < text.length ? offset + 3 : text.length,
+        ),
+      );
 
   @override
   Future<OfficeProofingResult> check(OfficeProofingRequest request) async {
@@ -39,6 +81,7 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
     }
     final String text = request.text;
     final List<OfficeProofingFinding> findings = <OfficeProofingFinding>[];
+    final Set<int> boundaries = _sourceGraphemeBoundaries(request.text);
     final List<RegExpMatch> protected = RegExp(
       r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}|`[^`]*`',
     ).allMatches(text).toList();
@@ -64,7 +107,9 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
       OfficeProofingCategory category = OfficeProofingCategory.style,
       List<String> replacements = const <String>[],
     }) {
-      if (request.ignoredRuleIds.contains(ruleId) ||
+      if (!boundaries.contains(start) ||
+          !boundaries.contains(end) ||
+          request.ignoredRuleIds.contains(ruleId) ||
           isProtected(start, end == start ? end + 1 : end)) {
         return;
       }
@@ -133,9 +178,11 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
     }
     const Map<String, String> agreement = <String, String>{
       'ich bist': 'bin',
+      'ich ist': 'bin',
       'ich sind': 'bin',
       'ich seid': 'bin',
       'du bin': 'bist',
+      'du ist': 'bist',
       'du sind': 'bist',
       'du seid': 'bist',
       'wir bin': 'sind',
@@ -154,14 +201,33 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
     ).allMatches(text)) {
       final String? replacement =
           agreement['${m.group(1)!.toLowerCase()} ${m.group(2)!.toLowerCase()}'];
+      // In "wie du ist er" or "als ich sind sie", the verb belongs to the
+      // following subject. These comparisons are not adjacent-subject errors.
+      if (_comparisonPrefix.hasMatch(
+        text.substring(m.start > 32 ? m.start - 32 : 0, m.start),
+      )) {
+        continue;
+      }
+      // "das Ich ist" / "das Du ist" are valid nominal uses. Without a
+      // parser, only add the unambiguous lowercase forms of these two pairs.
+      if (m.group(2)!.toLowerCase() == 'ist' &&
+          const <String>{'ich', 'du'}.contains(m.group(1)!.toLowerCase()) &&
+          m.group(1) != m.group(1)!.toLowerCase()) {
+        continue;
+      }
       if (replacement != null) {
+        final String verb = m.group(2)!;
         add(
           'de.grammar.pronoun-verb',
           m.end - m.group(2)!.length,
           m.end,
           'Diese Form von „sein“ passt normalerweise nicht zum unmittelbar vorangehenden Pronomen.',
           category: OfficeProofingCategory.grammar,
-          replacements: <String>[replacement],
+          replacements: <String>[
+            verb == verb.toUpperCase()
+                ? replacement.toUpperCase()
+                : replacement,
+          ],
         );
       }
     }
@@ -208,15 +274,22 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
           );
         }
       }
+      // An apostrophe inside a name or contraction must not consume the
+      // enclosing English single quote: ‘O’Connor’ and ‘geht’s’ are balanced.
+      // Inspect whole neighboring scalars, including supplementary letters
+      // and decomposed accents, while leaving all source offsets unchanged.
+      if (char == '’' &&
+          _hasLetterBefore(text, i) &&
+          _hasLetterAfter(text, i)) {
+        continue;
+      }
       if (quotes.isNotEmpty && quotes.last.$1 == char) {
         quotes.removeLast();
       } else if (quotePairs.containsKey(char)) {
         quotes.add((quotePairs[char]!, i));
       } else if (char == '”' || char == '’') {
         final bool apostrophe =
-            char == '’' &&
-            i > 0 &&
-            RegExp(r'\p{L}', unicode: true).hasMatch(text[i - 1]);
+            char == '’' && _hasLetterBefore(text, i);
         if (!apostrophe) {
           add(
             'de.quote.balance',
@@ -323,6 +396,7 @@ class OfficeTerminologyProvider extends OfficeProofingProvider {
       );
     }
     final List<OfficeProofingFinding> findings = <OfficeProofingFinding>[];
+    final Set<int> boundaries = _sourceGraphemeBoundaries(request.text);
     for (final OfficeTerminologyRule rule in rules) {
       await Future<void>.delayed(Duration.zero);
       if (_disposed) {
@@ -347,6 +421,11 @@ class OfficeTerminologyProvider extends OfficeProofingProvider {
         unicode: true,
       );
       for (final RegExpMatch m in expression.allMatches(request.text)) {
+        // Literal substring rules still may not replace part of a visible
+        // character (for example Cafe within decomposed Café).
+        if (!boundaries.contains(m.start) || !boundaries.contains(m.end)) {
+          continue;
+        }
         findings.add(
           OfficeProofingFinding.forRequest(
             request,
