@@ -1452,7 +1452,7 @@ dart run example/rich_export_gallery.dart
 | `.pptx` | Yes | Yes | Shapes, notes, hidden slides, motion |
 | `.ppt` / `.pps` / `.pot` | Partial | — | Current-slide text in the engine; rich preview is a host integration |
 | `.odt` | Yes | — | Formatted read-only model: headings, lists, tables, notes, pictures, text boxes, headers/footers |
-| `.ods` | Yes | Yes | Typed modeled subset; `OdsSheetWriter` emits a new package, not an in-place ODF rewrite |
+| `.ods` | Yes | Yes | Typed modeled subset including pictures, conditional formats, validations, row groups and page setup; `OdsSheetWriter` emits a new package, not an in-place ODF rewrite |
 | `.odp` | Yes | — | Positioned read-only deck: page size, shapes, text, fills, images, notes |
 | `.pdf` | Yes | Yes | `PdfFile` open; native 1.7 write and toolbox graft |
 | `.qrep` | Yes | Yes | Band-report XML with line:column diagnostics; exports PDF, XLSX, DOCX |
