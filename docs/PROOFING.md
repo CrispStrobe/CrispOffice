@@ -18,11 +18,15 @@ second parent. The subsequent reconciliation includes `main` through
 `7edb096d3328263c75dc0229ff43bb77183e1ad3` (the four incoming ODS PRs), the
 independent Zotero improvements from
 `b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb`, and the useful original-branch
-proofing fixes through `93c13aa1315298c0f85a5a8b757042eb9ac435e1`. Its new
-merge identity and combined validation are recorded separately when complete.
-The [remote audit](validation/proofing-20261116/resume-remote-audit.json)
-and [local validation records](#verification-record) distinguish preserved
-evidence from freshly executed checks. No GitHub Actions queue is required.
+proofing fixes through `93c13aa1315298c0f85a5a8b757042eb9ac435e1`. The final
+integrated source is **`ca294cf8668706b45f40031ed9a2db52e5737cd2`**, whose
+parents retain those three incoming histories and the continuation checkpoint.
+The remote inventory covered **53 branches and 62 pull requests** at the
+**2026-11-16 13:40:49 UTC** cutoff. The earlier
+[remote audit](validation/proofing-20261116/resume-remote-audit.json) and
+[final integration evidence](validation/proofing-20261116/integration-resume/README.md)
+distinguish preserved evidence from freshly executed checks. No GitHub Actions
+queue was required.
 
 ## Scope and license policy
 
@@ -78,7 +82,7 @@ live model properties and Word serialization coverage.
 | P5 | Word proofing UI and lifecycle | Implemented | Whole-story traversal, manual/background checks, stale-result rejection, squiggles, F7 review, correction menu and guarded undoable corrections. |
 | P6 | Optional English Harper and mobile spelling adapters | Implemented with runtime limits | Actual Linux native and Node/Wasm integration exercised; browser startup blocked before loading a page; mobile adapter protocol tested without Android/iOS device acceptance. |
 | P7 | German model evaluation | Evaluated; not enabled | Exact artifacts and original notices retained; recorded probe matched 9/18 error cases and changed 1/12 valid controls. No application provider or automatic model download. |
-| P8 | Integration and documentation | Component checks recorded; integration receipt maintained separately | Source-bound local receipts cover core, rendering, serialization, adapters and licenses. The final integration receipt records the combined checkout's exact commands and results. |
+| P8 | Integration and documentation | Implemented; scoped integration validated | The integrated source passed all six local validation groups, including 189 selected editor tests, full-engine/editor/host analysis and a host web build. Component receipts retain the separate engine, backend and license checks and runtime limits. |
 
 ## Chosen components and data
 
@@ -445,21 +449,38 @@ added together as a unique repository-wide test total.
 | Shared proofing, German spelling, writing rules and terminology | 38 Dart tests; focused analysis with no issues; 10 compiled-JavaScript checks in Node; all 18 generated dictionary files reproduced byte for byte from a fresh pinned download. | [German core receipt and scope](validation/proofing-20261116/german-resume/README.md) |
 | Hyphenation, bidi, Word layout, notes/tables, DOCX and PDF | 231 engine tests; focused analysis and exact pattern regeneration passed. | [Hyphenation validation](validation/proofing-20261116/continued-hyphenation/README.md) |
 | Editor hyphenation, caret/source presentation, small caps, note labels and existing editor regressions | 85 tests and focused analysis passed. | [Editor validation](validation/proofing-20261116/continued-hyphenation/editor-validation.json) |
-| Proofing session and review dialog | The current suites contain 30 session tests and 13 dialog tests, covering stale/cancelled work, whole-story coverage, vocabulary/controls, graphemes split across language runs, page-number metadata and controller swaps. The combined run is pending. | [Combined checkout command results](validation/proofing-20261116/integration-resume/receipt.json) |
-| Correction guards and undo/tracking | The current 33-case suite covers source/revision guards, protected/control/field boundaries, pending revisions, caret/selection restoration, undo and tracking. The combined run is pending. | [Combined checkout command results](validation/proofing-20261116/integration-resume/receipt.json) |
+| Proofing session and review dialog | 30 session tests and 13 dialog tests passed in the final combined run, covering stale/cancelled work, whole-story coverage, vocabulary/controls, graphemes split across language runs, page-number metadata and controller swaps. | [Final integration evidence](validation/proofing-20261116/integration-resume/README.md) |
+| Correction guards and undo/tracking | 33 tests passed in the final combined run, covering source/revision guards, protected/control/field boundaries, pending revisions, caret/selection restoration, undo and tracking. | [Final integration evidence](validation/proofing-20261116/integration-resume/README.md) |
 | Proofing geometry and mobile adapter | 19 tests passed: 10 geometry/rendering and 9 platform-protocol tests; focused analysis had no issues. Mobile results use mock services/channels. | [Renderer/platform receipt and scope](validation/proofing-20261116/continued-renderer/README.md) |
+| Incoming engine reconciliation and comment proofing styles | 212 selected engine tests passed, full-engine fatal-info analysis had no issues, and current hyphenation output regenerated exactly. Includes comment style/`noProof` inheritance, repeated DOCX saves, ODS and Zotero regressions. | [Engine reconciliation evidence](validation/proofing-20261116/continued-comments-and-merges/README.md) |
+| Incoming Zotero editor integration | 9 tests passed: 5 session-backoff, 2 dialog-scaling and 2 source-identity checks. Focused fatal-info analysis had no issues; the same nine tests also passed in the final combined editor run. | [Zotero editor evidence](validation/proofing-20261116/incoming-zotero-editor/README.md) |
 | Optional Harper native/web | 5 Rust tests, 10 Dart VM tests with the real Linux library and no native skips, 7 compiled-JavaScript adapter tests, 5 real shipped worker/Wasm checks, 8 compiled-Dart web-transport checks, 3 license regression tests; analysis and notice/MPL source checks passed. | [Harper receipt and scope](validation/proofing-20261116/harper-resume/README.md) |
 | German model | Preserved evaluation: 9/18 expected error corrections, 1/12 valid controls changed. No recovery rerun or application activation. | [Model evaluation record](validation/proofing-20261116/german-model-evaluation.json) |
 
-The [integration receipt](validation/proofing-20261116/integration-resume/receipt.json)
-is the authority for combined-checkout analysis, tests and host-build results.
-It binds the engine, editor, host, Harper and related source inputs plus the
-resolved workspace lockfile. A command with a nonzero exit code is a failed
-attempt, even when an earlier component receipt passed. Consult that record's
-commands and source hashes before treating a later checkout as validated.
-The planned combined editor run contains 189 tests; that count describes the
-selected suite, not a completed pass. The integration record will also bind
-the incoming ODS/Zotero reconciliation and inherited-comment style fixes.
+At integrated source **`ca294cf8668706b45f40031ed9a2db52e5737cd2`**, all six
+local command groups passed: toolchain identification, full-engine fatal-info
+analysis, editor-library and 13 selected test-file fatal-info analysis,
+host-library fatal-info analysis, **189 selected editor tests**, and the host
+web build. All **684 recorded source inputs** were unchanged during validation.
+The [integration README](validation/proofing-20261116/integration-resume/README.md)
+and [receipt](validation/proofing-20261116/integration-resume/receipt.json)
+bind the engine, editor, host, Harper and related inputs plus the resolved
+workspace lockfile and generated web artifact hashes.
+
+The editor total comprises 30 session, 33 correction, 13 dialog, 10 geometry,
+9 platform-protocol, 85 existing editor/rendering and 9 incoming Zotero tests.
+It is the selected integrated suite, not every test in the repository. The
+separate 212-test engine reconciliation suite overlaps other component checks
+and is not added to them as a unique total. The successful final results
+supersede earlier failed attempts only for the exact recorded source inputs;
+a later checkout needs its own source comparison or validation.
+
+The [component source comparison](validation/proofing-20261116/integration-resume/component-source-comparison.json)
+found all 31 recorded Harper inputs unchanged. Of the German receipt's 36
+inputs, only the auxiliary hyphenation generator's notice whitespace changed;
+the German providers, dictionary, original word-list inputs, lexicon generation
+code and tests are unchanged. The current hyphenation generator was separately
+[verified against its exact output](validation/proofing-20261116/continued-comments-and-merges/generator-receipt.json).
 
 The component verifiers can be repeated independently from the repository root:
 

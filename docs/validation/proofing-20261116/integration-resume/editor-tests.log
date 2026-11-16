@@ -1,0 +1,211 @@
+00:00 +0: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart
+00:00 +0: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: closed empty complex fields never reach providers
+00:00 +1: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked
+00:00 +2: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: generated page-number paragraphs never reach providers
+00:00 +3: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: page-number metadata invalidates findings without a text edit
+00:00 +4: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: pending page-number metadata changes discard provider results
+00:00 +5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: nonempty findings use half-open hit ranges
+00:00 +6: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state
+00:00 +7: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: language changes inside a combining cluster retain the full cluster and its first language
+00:00 +8: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a surrogate pair split across runs and languages remains one emoji in provider input
+00:00 +9: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: noProof on part of a combining cluster excludes the entire cluster
+00:00 +10: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: review traverses body, nested tables, frames, all headers/footers, notes and comments
+00:00 +11: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: formatting fragments join while language and noProof boundaries preserve UTF-16 offsets
+00:00 +12: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: run language overrides paragraph language, which overrides the document default
+00:00 +13: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: late results after a revision change never become current findings
+00:00 +14: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: direct model edits during a pending check invalidate its snapshot even without revision notification
+00:00 +15: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: replacing a document with identical text and revision rejects the old document result
+00:00 +16: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider reconfiguration cancels pending publication and disposes the previous provider
+00:00 +17: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unchanged paragraphs reuse results while rebinding findings to the current revision
+00:00 +18: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider configuration revisions invalidate otherwise identical cached text
+00:00 +19: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: moving a paragraph between stories invalidates its old finding and cache
+00:00 +20: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a document with no checkable paragraphs never claims a clean completed check
+00:00 +21: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: no configured provider is visibly unavailable
+00:00 +22: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unavailable checks are incomplete and can be retried instead of cached as clean
+00:00 +23: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unsupported checks are incomplete and can be retried instead of cached as clean
+00:00 +24: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: failed checks are incomplete and can be retried instead of cached as clean
+00:00 +25: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: an unsupported document language reports its locale without calling the checker
+00:00 +26: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: opaque body blocks and preserved header stories are explicit coverage gaps
+00:00 +27: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: personal words are language-scoped and host snapshots preserve owner identity
+00:00 +28: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignore once suppresses one occurrence and resets when its paragraph text changes
+00:00 +29: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignored rules can be restored without changing source text or personal words
+00:00 +30: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart
+00:01 +30: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:02 +31: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: a previous controller completing its check cannot replace the new results
+00:02 +32: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:02 +33: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:03 +34: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unavailable provider never produces a clean-document message
+00:03 +35: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unsupported provider never produces a clean-document message
+00:03 +36: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: failed provider never produces a clean-document message
+00:03 +37: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:03 +38: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: adding a personal word dismisses its finding without changing document text
+00:03 +39: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:03 +40: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: language and hyphenation controls save source settings with undo
+00:04 +41: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unsupported existing language and a narrow viewport remain reviewable
+00:04 +42: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: show in document selects the current finding and closes review
+00:04 +43: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart
+00:05 +43: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction history preserves the selection after switching comments
+00:05 +44: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction history preserves the selection after switching header/footer stories
+00:05 +45: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction restores caret and selection through undo/redo (tracking: false)
+00:05 +46: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction restores caret and selection through undo/redo (tracking: true)
+00:05 +47: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: zero-width findings are hit only at their insertion point
+00:05 +48: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: already-enabled hyphenation on an untagged document saves the default language with reversible history
+00:05 +49: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: a correction across styled runs after emoji preserves source styles and one undo/redo step
+00:05 +50: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: empty replacement suggestions delete text and remain undoable
+00:05 +51: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: zero-width punctuation suggestions use a UTF-16 boundary after emoji
+00:05 +52: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: unoffered and multiline replacements do not open an undo transaction
+00:05 +53: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: a host switching to read-only prevents applying an existing result
+00:05 +54: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: live document protection prevents a result even before host mode synchronization
+00:05 +55: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: active IME composition blocks correction without invalidating the unchanged result
+00:05 +56: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: same-length source edits reject stale suggestions without a revision callback
+00:05 +57: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: a replaced document with the same text does not accept findings from the prior document
+00:05 +58: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: changing only noProof semantics invalidates an old finding and excludes a fresh check
+00:05 +59: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: live inline content-control locks reject old and freshly checked corrections
+00:05 +60: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: live container content-control locks reject old and freshly checked corrections
+00:05 +61: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: live wrapper content-control locks reject old and freshly checked corrections
+00:05 +62: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: data-bound content is reviewable but cannot be rewritten even without a content lock
+00:05 +63: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: an sdtLocked container still permits edits to its unlocked text content
+00:05 +64: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: simple generic field results are excluded while adjacent ordinary text remains correctable
+00:05 +65: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: complex fields spanning paragraphs and sections exclude cached results but permit text after the end
+00:05 +66: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: paragraph-level generic fields never produce editable cached-text findings
+00:05 +67: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction immediately before simple field cannot insert into that field
+00:05 +68: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction immediately before complex field cannot insert into that field
+00:05 +69: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction immediately before empty complex field cannot insert into that field
+00:05 +70: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction ending at a locked inline control boundary cannot inherit its insertion affinity
+00:05 +71: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction creates separate valid deletion and insertion with undo and DOCX accept/reject
+00:05 +72: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked deletion suggestions create only a deletion and preserve accept/reject semantics
+00:05 +73: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: legacy pending insert revisions without targetParagraph block overlapping proofing edits
+00:05 +74: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: hyphenation on an untagged document saves its displayed language in the same undo step
+00:05 +75: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: adding a zero-width field with identical paragraph text invalidates prior structure-bound findings
+00:05 +76: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart
+00:06 +76: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: (setUpAll)
+00:06 +76: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: mixed bidi source ranges have disjoint boxes and span wrapped lines
+00:06 +77: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: repeated header text maps only to its matching source occurrence
+00:06 +78: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: note presentation labels cannot acquire authored source ranges
+00:06 +79: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: squiggles follow paragraph identity through body and table text and clear on refresh
+00:06 +80: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: generated field text receives no findings or squiggles
+00:06 +81: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: generated header labels cannot paint source squiggles
+00:06 +82: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: right-click source hits distinguish repeated body, table, and footnote text
+00:06 +83: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: right-click header hits use measured glyphs and alignment
+00:06 +84: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: zero-length finding at body end remains visible
+00:06 +85: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: zero-length finding at header end remains visible
+00:06 +86: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: (tearDownAll)
+00:06 +86: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart
+00:07 +86: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: unavailable and undeclared dictionaries never claim a clean check
+00:07 +87: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: an empty successful response remains distinct from an incomplete response
+00:07 +88: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: platform exceptions and malformed ranges fail the request
+00:07 +89: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: UTF-16 offsets, locale and bounded suggestions survive adapter mapping
+00:07 +90: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: concurrent paragraphs serialize requests on the platform channel
+00:07 +91: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: timeout retires a provider before another channel request starts
+00:07 +92: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: a result completing after disposal is unavailable
+00:07 +93: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: real Flutter channel failures remain failed instead of successful empty responses
+00:07 +94: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: real Flutter service checks the same text independently across locales
+00:07 +95: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart
+00:08 +95: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:08 +95: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: automatic break paints a hyphen and owns only its source boundary
+00:08 +96: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: selected soft hyphen paints visibly with its original UTF-16 span
+00:08 +97: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: selecting the next source span does not select an automatic hyphen
+00:08 +98: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: unselected soft hyphen remains invisible without shifting caret
+00:08 +99: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: surrogate pairs and combining marks next to a break stay complete
+00:08 +100: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: RTL discretionary breaks have no fabricated source unit
+00:08 +101: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: manual and automatic breaks keep distinct source offsets together
+00:08 +102: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: RTL explicit break hit testing follows the source direction
+00:08 +103: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:08 +104: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (tearDownAll)
+00:08 +104: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart
+00:09 +104: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: (setUpAll)
+00:09 +104: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: paints manual break with source-aware hit testing
+00:09 +105: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: paints automatic break with source-aware hit testing
+00:09 +106: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: unselected soft hyphen has the same width and caret position as plain text
+00:09 +107: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: automatic hyphen keeps the preceding formatting at a run boundary
+00:09 +108: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: last non-BMP source character is painted as a complete scalar
+00:09 +109: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: presentation labels retain adjacent invisible authored controls
+00:09 +110: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: RTL paragraph paints each German discretionary hyphen as its own run
+00:09 +111: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: (tearDownAll)
+00:09 +111: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart
+00:10 +111: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: command pipeline undo/redo insert and delete
+00:10 +112: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: paint run rebuilds logical Arabic for HarfBuzz
+00:10 +113: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: script runs stay in their own paint group and sit off the baseline
+00:10 +114: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret selects a word and a paragraph
+00:10 +115: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: flagged caret points with the writing direction
+00:10 +116: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: justified caret and selection share the same word X
+00:10 +117: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: justified hitTest and range rects stay on word edges
+00:10 +118: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret X snaps to TextPainter glyph edges after fitLine
+00:10 +119: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret stays on an RTL line whose visual order is reversed
+00:10 +120: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret covers a contiguous range of table paragraphs
+00:10 +121: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: selection matrix and table resizer
+00:10 +122: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:10 +123: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header edit paints a usable header band
+00:10 +124: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:10 +125: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas cursor follows handles, objects, and text
+00:10 +126: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: word canvas click hits the second table cell
+00:10 +127: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret coversIndex includes the selected range
+00:10 +128: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: right click inside a text selection keeps the range
+00:10 +129: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: right click outside a text selection keeps the range
+00:10 +130: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: right click keeps a multi-cell table selection
+00:10 +131: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: sheet drag extends a contiguous cell range
+00:10 +132: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:10 +133: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rtl sheet places column A on the right
+00:10 +134: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: sheet scroll and hit-test reach past the used-range window
+00:11 +135: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: frozen row stays put after vertical scroll
+00:11 +136: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: frozen column stays put and hides scrolled columns under it
+00:11 +137: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: dragging a column header edge resizes the column
+00:11 +138: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: dragging a row header edge resizes the row
+00:11 +139: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: viewport clamp stops endless scrolling
+00:11 +140: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: slide snap guidelines and transform handles
+00:11 +141: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Slide stage mounts as a RenderBox
+00:11 +142: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: leaving slide text edit does not rotate the shape
+00:11 +143: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: styled runs do not overlap after paint fit
+00:11 +144: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: paint fit keeps justified wrapped lines flush to the column
+00:11 +145: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: paint fit places glyphs next to each other without justify gaps
+00:11 +146: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: embedded host unpacks a nested workbook
+00:11 +147: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word controller inserts and edits an equation
+00:11 +148: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word equation cells navigate and stay editable after reopen
+00:11 +149: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: equation arrows move by character and cross cells at the edges
+00:11 +150: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: equation backspace deletes letters then the empty tool
+00:11 +151: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: clicking an equation cell routes IME into that cell
+00:11 +152: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word text frame can be selected, moved, and resized
+00:11 +153: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word text frame edit mode keeps the box and hides transform
+00:11 +154: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word picture handles resize, move, and crop on the canvas
+00:11 +155: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word comments can be inserted, edited, and deleted
+00:11 +156: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ribbon formatting bolds only the selected comment range
+00:11 +157: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rejected native TOC refresh preserves heading aliases, selection and history
+00:11 +158: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word headings feed a live table of contents
+00:11 +159: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler first-line drag sets firstLine and hanging stays exclusive
+00:11 +160: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler hanging drag keeps the first-line page position
+00:11 +161: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler left-indent square moves both markers together
+00:11 +162: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler tab alignment cycles left-center-right-decimal
+00:11 +163: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler zero sits at the content origin
+00:11 +164: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler drag guide follows the active marker
+00:11 +165: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler paragraph box follows page, cell, column, and frame
+00:11 +166: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler selected frame follows native insets and the laid-out width
+00:11 +167: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ruler focus line follows the active page caret
+00:11 +168: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart
+00:12 +168: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: (setUpAll)
+00:12 +168: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: editor paints measured capitals while keeping the source and caret
+00:12 +169: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: expanded display clusters have only their original caret boundaries
+00:12 +170: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: mixed strikethrough does not share one paint run
+00:12 +171: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: expanded capitals paint once and expose only authored caret stops
+00:12 +172: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: native small-capital refresh supports one undo step and DOCX reopen
+00:12 +173: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: (tearDownAll)
+00:12 +173: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart
+00:13 +173: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 1 for native ID 999 paints and hit-tests atomically
+00:13 +174: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 108 for native ID 7 paints and hit-tests atomically
+00:13 +175: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 10 for native ID 10 paints and hit-tests atomically
+00:13 +176: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: editing after a shortened label still uses the original source range
+00:13 +177: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: earlier inserted notes renumber on insert, undo and redo without ID changes
+00:13 +178: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:14 +179: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: limited and orphaned note labels identify source IDs explicitly
+00:14 +180: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart
+00:14 +180: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:16 +181: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: disconnect and public library switching do not discard backoff
+00:16 +182: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: desktop works during online backoff and does not clear it
+00:17 +183: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: a response after closing the dialog still pauses the same session
+00:17 +184: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: successful Backoff survives public library recreation
+00:17 +185: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart
+00:18 +185: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:19 +186: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: bibliography-only documents keep source actions disabled
+00:20 +187: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart
+00:20 +187: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart: late alias bridges join bibliography entries and keep first data
+00:20 +188: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart: transitive aliases without CSL still deduplicate the bibliography
+00:20 +189: All tests passed!

@@ -1,0 +1,31 @@
+{
+  "source_commit": "ca294cf8668706b45f40031ed9a2db52e5737cd2",
+  "records": [
+    {
+      "receipt": "german-resume/receipt.json",
+      "source_path_base": ".",
+      "recorded_source_count": 36,
+      "changed_or_missing": [
+        "packages/quds_office_engine/tool/proofing/generate_hyphenation.py"
+      ],
+      "change_explanation": "Only the shared hyphenation generator notice whitespace changed during the Zotero reconciliation. German provider, dictionary, original inputs, generation code and tests are unchanged. Current hyphenation data regeneration is separately verified in continued-comments-and-merges/generator-receipt.json."
+    },
+    {
+      "receipt": "harper-resume/receipt.json",
+      "source_path_base": "packages/quds_proofing_harper",
+      "recorded_source_count": 31,
+      "changed_or_missing": []
+    },
+    {
+      "receipt": "incoming-zotero-editor/receipt.json",
+      "source_path_base": ".",
+      "recorded_source_count": 11,
+      "changed_or_missing": []
+    },
+    {
+      "receipt": "continued-comments-and-merges/receipt.json",
+      "recorded_source_count": 301,
+      "changed_or_missing": []
+    }
+  ]
+}

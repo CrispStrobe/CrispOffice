@@ -30,11 +30,22 @@ and 85 editor rendering/caret regressions](validation/proofing-20261116/continue
 regeneration](validation/proofing-20261116/german-resume/README.md),
 [19 proofing geometry/mobile-protocol tests](validation/proofing-20261116/continued-renderer/README.md),
 and [real Harper native/Wasm, adapter and license checks](validation/proofing-20261116/harper-resume/README.md).
-The current proofing suites contain 30 session, 33 correction and 13 dialog
-tests. The planned 189-test combined editor run is pending; its result belongs
-to the [integration receipt](validation/proofing-20261116/integration-resume/receipt.json).
-These are scoped records tied to source hashes, and overlapping suites are
-not summed. No GitHub Actions queue was waited for.
+The final integrated source `ca294cf8668706b45f40031ed9a2db52e5737cd2`
+passed all six local validation groups: toolchain identification, full-engine
+fatal-info analysis, editor library/13 selected test-file fatal-info analysis,
+host-library fatal-info analysis, **189 selected editor tests**, and the host
+web build. The editor total includes 30 session, 33 correction and 13 dialog
+tests. All 684 recorded source inputs remained unchanged during validation;
+see the [final integration evidence](validation/proofing-20261116/integration-resume/README.md).
+A separate [212-test engine reconciliation run](validation/proofing-20261116/continued-comments-and-merges/README.md)
+passed, including comment styles, incoming ODS/Zotero behavior and exact
+hyphenation regeneration. These are scoped checks, not a claim that every
+repository test ran; overlapping suites are not summed.
+
+The integrated commit reconciles `main` at `7edb096`, Zotero at `b6a6b4c`, and
+the original proofing branch at `93c13aa`. The remote inventory covered 53
+branches and 62 pull requests at the **2026-11-16 13:40:49 UTC** cutoff.
+No GitHub Actions queue was waited for.
 
 The German lexicon is finite and based on a pinned 2016 MIT word-list snapshot;
 it does not provide complete morphology or contemporary universal vocabulary.

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "source_commit": "ca294cf8668706b45f40031ed9a2db52e5737cd2",
+  "source_tree": "abbdf5cb3c1ca53e6669b103751494361b376f38",
+  "passed": true,
+  "source_file_count": 684,
+  "inputs_unchanged_during_validation": true,
+  "editor_tests": {
+    "session": 30,
+    "correction": 33,
+    "dialog": 13,
+    "geometry": 10,
+    "platform_protocol": 9,
+    "existing_editor_hyphenation_caret_small_caps_notes": 85,
+    "incoming_zotero_editor": 9,
+    "total": 189
+  },
+  "local_gates": [
+    {
+      "name": "flutter-version",
+      "exit_code": 0,
+      "seconds": 0.149,
+      "log": "flutter-version.log"
+    },
+    {
+      "name": "engine-analysis",
+      "exit_code": 0,
+      "seconds": 10.113,
+      "log": "engine-analysis.log"
+    },
+    {
+      "name": "editor-analysis",
+      "exit_code": 0,
+      "seconds": 11.604,
+      "log": "editor-analysis.log"
+    },
+    {
+      "name": "host-analysis",
+      "exit_code": 0,
+      "seconds": 3.015,
+      "log": "host-analysis.log"
+    },
+    {
+      "name": "editor-tests",
+      "exit_code": 0,
+      "seconds": 24.513,
+      "log": "editor-tests.log"
+    },
+    {
+      "name": "host-web-build",
+      "exit_code": 0,
+      "seconds": 60.27,
+      "log": "host-web-build.log"
+    }
+  ],
+  "engine_reconciliation_tests": 212,
+  "github_actions_used": false,
+  "runtime_boundaries": [
+    "Host web compilation succeeded; actual browser execution remains unverified because Chromium aborted before loading a page.",
+    "Native Harper was executed on Linux; no Windows, macOS, Android or iOS runtime acceptance is claimed.",
+    "Node executes the shipped Wasm/module worker and compiled Dart adapter through a local Worker/fetch bridge; this is not browser HTTP/CSP acceptance.",
+    "German model evaluation remains disabled and was not rerun."
+  ],
+  "evidence_only_commit_follows": true
+}
