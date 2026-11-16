@@ -329,8 +329,15 @@ class Binder:
 
     def preserved_inputs(self):
         prefix = "packages/quds_office_editor/fonts/"
+
+        def is_manifest(path):
+            return path == "pubspec.yaml" or path.endswith("/pubspec.yaml")
+
         categories = {
-            "manifests": (9, lambda p: p == "pubspec.yaml" or p.endswith("/pubspec.yaml")),
+            "project_manifests": (9, lambda p: is_manifest(p) and
+                                  (p == "pubspec.yaml" or p.startswith(("apps/", "packages/")))),
+            "validation_fixture_manifests": (3, lambda p: is_manifest(p) and
+                                             p.startswith("docs/validation/")),
             "fonts": (14, lambda p: p.startswith(prefix)
                       and Path(p).suffix.lower() in {".ttf", ".otf", ".ttc", ".woff", ".woff2"}),
             "font_notices": (2, lambda p: p.startswith(prefix) and Path(p).name.startswith("LICENSE")),
@@ -343,6 +350,16 @@ class Binder:
             self.check(label + "_inventory", baseline == current and len(baseline) == count,
                        expected_count=count, base_paths=sorted(baseline), head_paths=sorted(current))
             selected[label] = sorted(baseline | current)
+        project_manifests = set(selected["project_manifests"])
+        fixture_manifests = set(selected["validation_fixture_manifests"])
+        self.check("manifest_categories_disjoint", project_manifests.isdisjoint(fixture_manifests))
+        classified_manifests = project_manifests | fixture_manifests
+        for revision, entries in (("base", self.base_tree), ("head", self.head_tree)):
+            all_manifests = {p for p in entries if is_manifest(p)}
+            self.check("all_manifests_classified", all_manifests == classified_manifests,
+                       revision=revision, total_count=len(all_manifests),
+                       unclassified=sorted(all_manifests - classified_manifests),
+                       absent=sorted(classified_manifests - all_manifests))
         all_paths = {p for paths in selected.values() for p in paths} | {LOCK_SNAPSHOT}
         self.cache_blobs(
             mapping[p]["oid"] for mapping in (self.base_tree, self.head_tree)

@@ -21,6 +21,7 @@ records the shipping-material comparison and retained attribution.
 | Final editor cohort | **66 tests passed** across 8 test files using the actual Flutter test engine; analysis and formatting checks passed; **462 input hashes unchanged** | [editor-final/receipt.json](editor-final/receipt.json) |
 | Independent PDF validation | Passed: exact raster equality and exact authored Unicode extraction from the encoded and Word-export PDFs; source and input snapshots unchanged | [poppler-final/receipt.json](poppler-final/receipt.json), [producer receipt](poppler-final/producer-receipt.json) |
 | Differential baseline probes | 20 completed probes: **1 success, 10 failures, 9 errors** against the exact integrated pre-change source | [baseline/receipt.json](baseline/receipt.json) |
+| Final source and evidence binding | **Passed, zero mismatches**: 483 unique recorded input files, 40 runtime evidence files, and ancestry of all 166 observed refs checked at `103a18d` | [source-binding.json](source-binding.json) |
 
 The engine gate finished at 19:59:50 UTC, the independent PDF check at 20:02:07
 UTC, and the editor gate at 20:04:19 UTC. These are scoped local qualifications,
@@ -237,6 +238,27 @@ same production/test bytes. Gate receipts retain their actual `head_before` and
 The [binding verifier](verify_binding.py) checks the completed receipts, raw-log
 hashes, current source, runtime bundle, preserved license inputs, and all 166
 observed incoming heads against a fixed checkout.
+
+### Completed source binding
+
+The [source-binding receipt](source-binding.json) passed at
+`103a18d4919cf830c6193c986648e16301b3b17d` with **zero mismatches**. It derives the
+279 engine and 66 editor outcomes from the actual saved test-event logs, verifies
+their raw log hashes, and binds the 483 unique recorded input files to the
+working tree and committed source where tracked. It also verifies all 40 runtime
+evidence files, preserved dependency/font inputs, independent PDF artifacts,
+and ancestry of every head in the saved 166-ref snapshot. The subsequent
+publication of this receipt and documentation does not change the tested
+production or test bytes. The verifier's own SHA-256 is retained in the receipt.
+
+The [first binding attempt](source-binding-attempt1.json.gz) is preserved. Its
+only mismatch was an audit-script classification error: a repository-wide
+manifest predicate counted 12 files against the expected nine project manifests.
+All 12 were unchanged. The corrected verifier separately checks the nine root,
+app and package manifests and the three historical validation-fixture manifests,
+then requires their disjoint union to cover every tracked `pubspec.yaml` at both
+revisions. No source, test, dependency, or expected byte comparison was relaxed.
+This audit correction required no application test rerun.
 
 ## Runtime provenance and local reproduction
 

@@ -19,7 +19,8 @@ baseline, and independent PDF evidence:
   OS/2 coverage transcription retains its MIT notice.
 
 The engine receipt remains attributed to its recorded source and inputs.
-The new incoming ODS source/test changes require their own qualification.
+The later final qualification below also covers the incoming ODS source/test
+changes.
 
 ## Resumption integration
 
@@ -37,7 +38,7 @@ ancestry without reapplying duplicate source changes; the cleaned vendor
 test is preserved. See `resume/complete-patch-equivalence.json`, the pinned
 `resume/remote-snapshot.json`, and `resume/merge-plan.json`.
 
-## Remaining local qualification at this checkpoint
+## Completed local qualification and source binding
 
 The first real Flutter editor cohort has completed: all 66 tests, strict
 changed-file analysis and formatting passed, with 462 input hashes unchanged.
@@ -63,6 +64,16 @@ A concurrent branch update published this integration as `3a8306e` while a
 separately prepared checkpoint `0634236` contained the same production changes
 plus runtime/editor evidence. Their reconciliation preserves both commit
 histories and audit sets; it introduces no additional production change.
+
+The final receipts and both audit histories are saved at `103a18d` on
+`codex/text-rendering-20261116-continuation`. `source-binding.json` passed at that
+commit with zero mismatches, binding 483 unique source/input files, 40 runtime
+evidence files, and all 166 observed incoming heads. The only failed initial
+binding check was a manifest-classification error; its complete receipt is
+preserved in `source-binding-attempt1.json.gz`. The corrected verifier checks
+all twelve manifests as nine project files plus three historical fixtures,
+with exact byte equality and exhaustive path-set coverage. The follow-up
+publication changes only verification tooling, evidence and documentation.
 
 Shared editor/headless shaping remains a separate future integration. The
 current export changes fix character-code/glyph-ID aliasing and subset
