@@ -1,0 +1,24 @@
+{
+  "source_commit": "ca4011de0e17783f12bcff07336e318adc1db99c",
+  "source_files": 439,
+  "compiled_kernel_sha256": "03f53d286ee4d8f0c6353a0cba7426f9d10c013b693d73cbf40167fabe737e93",
+  "retained_executed_kernel_sha256": "03f53d286ee4d8f0c6353a0cba7426f9d10c013b693d73cbf40167fabe737e93",
+  "source_unchanged_after_run": true,
+  "kernel_unchanged_after_run": true,
+  "post_run_source_files_missing": [],
+  "post_run_source_hash_mismatches": [],
+  "synthetic_native_gui_observed": {
+    "application": "Zotero 10.0.8",
+    "visible_catalog_items": 3,
+    "visible_saved_search": "Synthetic Alpha saved search",
+    "private_account_used": false,
+    "final_terminal_result": "passed",
+    "closed_with_native_quit": true
+  },
+  "native_process_lifecycle_note": "The GUI opened during desktop preparation remained available after its launcher process terminated. The successful run used that same isolated native profile and local service. Its own launch command exited0; the GUI was explicitly quit through native controls after final acceptance. No separate user profile was opened.",
+  "source_receipt": "logs/acceptance-receipt.json",
+  "source_before": "logs/source-before.json",
+  "source_after": "logs/source-after.json",
+  "binary_archived": false,
+  "profile_or_database_archived": false
+}

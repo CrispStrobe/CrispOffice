@@ -1,0 +1,28 @@
+{
+  "started_utc": "2026-11-16T07:25:43.739713+00:00",
+  "setup_only": true,
+  "synthetic_only": true,
+  "display_present": true,
+  "isolated_profile": "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/profile",
+  "isolated_data": "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/data",
+  "saved_search_api": {
+    "status": 200,
+    "headers": {
+      "X-Zotero-Version": "10.0.8",
+      "X-Zotero-Connector-API-Version": "3",
+      "Total-Results": "1",
+      "Link": "<http://127.0.0.1:23119/api/users/0/searches?format=json&limit=100>; rel=\"last\"",
+      "Last-Modified-Version": "1",
+      "Content-Type": "application/json",
+      "Zotero-API-Version": "3",
+      "Zotero-Schema-Version": "44",
+      "Zotero-Server-ID": "FMgsLIWmq6d3"
+    },
+    "body": "[\n    {\n        \"key\": \"QUDSABCD\",\n        \"version\": 0,\n        \"library\": {\n            \"type\": \"user\",\n            \"id\": 0,\n            \"name\": \"My Library\",\n            \"links\": {\n                \"self\": {\n                    \"href\": \"http://localhost:23119/api/users/0\",\n                    \"type\": \"application/json\"\n                }\n            }\n        },\n        \"links\": {\n            \"self\": {\n                \"href\": \"http://localhost:23119/api/users/0/searches/QUDSABCD\",\n                \"type\": \"application/json\"\n            }\n        },\n        \"meta\": {},\n        \"data\": {\n            \"key\": \"QUDSABCD\",\n            \"version\": 0,\n            \"name\": \"Synthetic Alpha saved search\",\n            \"conditions\": [\n                {\n                    \"condition\": \"title\",\n                    \"operator\": \"contains\",\n                    \"value\": \"Alpha\"\n                }\n            ]\n        }\n    }\n]"
+  },
+  "result": "failed",
+  "error": "timed out",
+  "error_type": "TimeoutError",
+  "native_exit": -15,
+  "finished_utc": "2026-11-16T07:26:30.877219+00:00"
+}

@@ -1,0 +1,1 @@
+{"result":"failed before compilation or native launch","reason":"Acceptance runner looked for application.ini at the binary root; official archive stores it under app/application.ini.","fix":"Corrected only the acceptance runner metadata path.","production_source_changed":false}

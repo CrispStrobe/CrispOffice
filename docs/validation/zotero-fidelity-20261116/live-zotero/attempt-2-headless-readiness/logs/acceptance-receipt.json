@@ -1,0 +1,82 @@
+{
+  "started_utc": "2026-11-16T07:20:53.794263+00:00",
+  "source_commit": "9b31295bbf705b7aff8a732c16f9d010edbb4e3a",
+  "source_status": " M packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart\n M packages/quds_office_engine/lib/src/word/layout/word_layout.dart\n M packages/quds_office_engine/lib/src/word/model/word_small_caps.dart\n M packages/quds_office_engine/test/word_small_caps_test.dart\n?? packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart\n?? packages/quds_office_engine/lib/src/word/model/word_small_caps_case_data.dart\n",
+  "source_files": 439,
+  "source_before_sha256": "8f042973a515a6df2df91988124b26e43ab552a78cc18d99c371f37d3307f899",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8"
+  },
+  "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "runner_sha256": "ebb2872404ad5dd258af76bb6cf5c355245f51df6ced7f73b650af95ef847fa8",
+  "zotero_archive_sha256": "a704cfd49f5de65507910e0cada4acf72097572201b3576583f0a92a32c1032b",
+  "zotero_application_ini": "[App]\nVendor=Zotero\nName=Zotero\nVersion=10.0.8\nBuildID=20261106171756\nCopyright=Copyright (c) 2006-2025 Contributors\nID=zotero@zotero.org\n\n[Gecko]\nMinVersion=140.0\nMaxVersion=140.99.*\n\n[XRE]\nEnableExtensionManager=1\nEnableProfileMigrator=1\n\n[AppUpdate]\nURL=https://www.zotero.org/download/client/update/%VERSION%/%BUILD_ID%/%BUILD_TARGET%/%LOCALE%/%CHANNEL%/%OS_VERSION%/update.xml\n",
+  "uses_github_actions": false,
+  "personal_account_connected": false,
+  "synthetic_sources_only": true,
+  "full_native_application_build": false,
+  "microsoft_word_or_libreoffice_interoperability_tested": false,
+  "compile_command": [
+    "/workspace/scratch/4156e4a05f09/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "compile",
+    "kernel",
+    "--packages=/workspace/scratch/4156e4a05f09/zotero-toolchain/harness/quds_office_studio/.dart_tool/package_config.json",
+    "--output=/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/fidelity-live.dill",
+    "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/scripts/fidelity-live.dart"
+  ],
+  "compile_exit": 0,
+  "kernel_sha256": "3dab002932de8c1a9d5fdeacdda025a566dfe6e4be96c9f1a7509a982b7713c6",
+  "kernel_bytes": 27507672,
+  "native_command": [
+    "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/binary/Zotero_linux-x86_64/zotero",
+    "-no-remote",
+    "-headless",
+    "-profile",
+    "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/profile",
+    "-datadir",
+    "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/data",
+    "-debug-text"
+  ],
+  "native_readiness": {
+    "status": 200,
+    "headers": {
+      "X-Zotero-Version": "10.0.8",
+      "X-Zotero-Connector-API-Version": "3",
+      "Total-Results": "1",
+      "Link": "<http://127.0.0.1:23119/api/users/0/searches?format=json&limit=100>; rel=\"last\"",
+      "Last-Modified-Version": "1",
+      "Content-Type": "application/json",
+      "Zotero-API-Version": "3",
+      "Zotero-Schema-Version": "44",
+      "Zotero-Server-ID": "FMgsLIWmq6d3"
+    },
+    "body": "[\n    {\n        \"key\": \"QUDSABCD\",\n        \"version\": 0,\n        \"library\": {\n            \"type\": \"user\",\n            \"id\": 0,\n            \"name\": \"My Library\",\n            \"links\": {\n                \"self\": {\n                    \"href\": \"http://localhost:23119/api/users/0\",\n                    \"type\": \"application/json\"\n                }\n            }\n        },\n        \"links\": {\n            \"self\": {\n                \"href\": \"http://localhost:23119/api/users/0/searches/QUDSABCD\",\n                \"type\": \"application/json\"\n            }\n        },\n        \"meta\": {},\n        \"data\": {\n            \"key\": \"QUDSABCD\",\n            \"version\": 0,\n            \"name\": \"Synthetic Alpha saved search\",\n            \"conditions\": [\n                {\n                    \"condition\": \"title\",\n                    \"operator\": \"contains\",\n                    \"value\": \"Alpha\"\n                }\n            ]\n        }\n    }\n]"
+  },
+  "result": "failed",
+  "error": "Production/script inputs changed during acceptance",
+  "native_exit": -15,
+  "source_after_sha256": "b370e9abe508aea4e33a5aeda7d72df9b8b62ec9bda390a7a4be73569b0b5f64",
+  "source_unchanged": false,
+  "kernel_unchanged": true,
+  "finished_utc": "2026-11-16T07:21:45.680506+00:00",
+  "artifact_hashes": {
+    "logs/catalog-protocol.jsonl": "a6a1f6354ebfdd0b01d1dd5a7d903e1310608b38b99b74a5481e75eab83f7ae1",
+    "logs/client-run.log": "3d4d5916dcf6eea537f3f9dd1efa1fa84ab7bbd2cf58e69c6c26b9f688fd907a",
+    "logs/download.log": "e831963f15bf2a8d2a211ac0640d00506fcd82fee15043dce723310d6b71e222",
+    "logs/headless-startup.log": "da19a376608208ed362884f812daa88badcb50d2057385c8b7ecabeeb4281d77",
+    "logs/kernel-compile.log": "fc97040d52ee1a7fbef68512653fbbd99dee18cfcedfa00ef70c598094b821ee",
+    "logs/style-download.log": "848a0cbcfc6501a9b62de4ef2d130de453225fc14c3272cf98476b4bcc0c5ebb",
+    "logs/zotero-native.log": "0205e95385f7223ccc5db82765b1ba3f18d1e78c0d98c1a7feea5d341f3c1528"
+  }
+}

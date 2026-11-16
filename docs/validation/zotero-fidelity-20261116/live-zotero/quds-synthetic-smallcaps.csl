@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="de-DE">
+  <info>
+    <title>Quds Synthetic Small Caps and Layout Acceptance</title>
+    <id>http://www.zotero.org/styles/quds-synthetic-smallcaps</id>
+    <link href="http://www.zotero.org/styles/quds-synthetic-smallcaps" rel="self"/>
+    <author><name>Quds synthetic acceptance fixture</name></author>
+    <category citation-format="note"/>
+    <updated>2026-11-16T00:00:00+00:00</updated>
+  </info>
+  <macro name="author">
+    <names variable="author" font-variant="small-caps">
+      <name and="text" delimiter=", " name-as-sort-order="all"/>
+    </names>
+  </macro>
+  <citation>
+    <layout suffix=".">
+      <choose>
+        <if position="ibid-with-locator">
+          <text term="ibid" text-case="capitalize-first"/>
+          <text variable="locator" prefix=", "/>
+        </if>
+        <else-if position="ibid"><text term="ibid" text-case="capitalize-first"/></else-if>
+        <else>
+          <group delimiter=", ">
+            <text macro="author"/>
+            <text variable="title" font-style="italic"/>
+            <text variable="locator"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </citation>
+  <bibliography hanging-indent="true" line-spacing="2" entry-spacing="1">
+    <sort><key variable="author"/><key variable="title"/></sort>
+    <layout suffix=".">
+      <group delimiter=". ">
+        <text macro="author"/>
+        <text variable="title" font-style="italic"/>
+        <text variable="publisher"/>
+        <date variable="issued"><date-part name="year"/></date>
+      </group>
+    </layout>
+  </bibliography>
+</style>

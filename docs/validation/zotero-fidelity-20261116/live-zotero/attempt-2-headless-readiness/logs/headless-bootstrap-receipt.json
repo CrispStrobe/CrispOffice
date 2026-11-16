@@ -1,0 +1,50 @@
+{
+  "isolated_profile": "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/profile",
+  "isolated_data": "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/data",
+  "synthetic_only": true,
+  "uses_private_account": false,
+  "headless_attempt": true,
+  "official_version": "10.0.8",
+  "initial_catalog": {
+    "status": 200,
+    "headers": {
+      "X-Zotero-Version": "10.0.8",
+      "X-Zotero-Connector-API-Version": "3",
+      "Total-Results": "0",
+      "Link": "<http://127.0.0.1:23119/api/users/0/items?format=json&limit=100>; rel=\"last\"",
+      "Last-Modified-Version": "0",
+      "Content-Type": "application/json",
+      "Zotero-API-Version": "3",
+      "Zotero-Schema-Version": "44",
+      "Zotero-Server-ID": "FMgsLIWmq6d3"
+    },
+    "body": "[]"
+  },
+  "save_items": {
+    "status": 201,
+    "headers": {
+      "X-Zotero-Version": "10.0.8",
+      "X-Zotero-Connector-API-Version": "3",
+      "Content-Type": "application/json",
+      "Content-Length": "0"
+    },
+    "body": ""
+  },
+  "catalog_after_seed": {
+    "status": 200,
+    "headers": {
+      "X-Zotero-Version": "10.0.8",
+      "X-Zotero-Connector-API-Version": "3",
+      "Total-Results": "3",
+      "Link": "<http://127.0.0.1:23119/api/users/0/items?format=json&limit=100>; rel=\"last\"",
+      "Last-Modified-Version": "1",
+      "Content-Type": "application/json",
+      "Zotero-API-Version": "3",
+      "Zotero-Schema-Version": "44",
+      "Zotero-Server-ID": "FMgsLIWmq6d3"
+    },
+    "body": "[\n    {\n        \"key\": \"IWVS9D8T\",\n        \"version\": 1,\n        \"library\": {\n            \"type\": \"user\",\n            \"id\": 0,\n            \"name\": \"My Library\",\n            \"links\": {\n                \"self\": {\n                    \"href\": \"http://localhost:23119/api/users/0\",\n                    \"type\": \"application/json\"\n                }\n            }\n        },\n        \"links\": {\n            \"self\": {\n                \"href\": \"http://localhost:23119/api/users/0/items/IWVS9D8T\",\n                \"type\": \"application/json\"\n            }\n        },\n        \"meta\": {\n            \"creatorSummary\": \"Beispiel\",\n            \"parsedDate\": \"2024\",\n            \"numChildren\": 0\n        },\n        \"data\": {\n            \"key\": \"IWVS9D8T\",\n            \"version\": 1,\n            \"itemType\": \"book\",\n            \"title\": \"Synthetic Native Fidelity Alpha\",\n            \"date\": \"2024\",\n            \"publisher\": \"Acceptance Test Publisher\",\n            \"creators\": [\n                {\n                    \"firstName\": \"Anna\",\n                    \"lastName\": \"Beispiel\",\n                    \"creatorType\": \"author\"\n                }\n            ],\n            \"tags\": [\n                {\n                    \"tag\": \"fidelity-acceptance\",\n                    \"type\": 1\n                }\n            ],\n            \"collections\": [],\n            \"relations\": {},\n            \"dateAdded\": \"2026-11-16T07:12:34Z\",\n            \"dateModified\": \"2026-11-16T07:12:34Z\"\n        }\n    },\n    {\n        \"key\": \"YFCKR3WB\",\n        \"version\": 1,\n        \"library\": {\n            \"type\": \"user\",\n            \"id\": 0,\n            \"name\": \"My Library\",\n            \"links\": {\n                \"self\": {\n                    \"href\": \"http://localhost:23119/api/users/0\",\n                    \"type\": \"application/json\"\n                }\n            }\n        },\n        \"links\": {\n            \"self\": {\n                \"href\": \"http://localhost:23119/api/users/0/items/YFCKR3WB\",\n                \"type\": \"application/json\"\n            }\n        },\n        \"meta\": {\n            \"creatorSummary\": \"Muster\",\n            \"parsedDate\": \"2023\",\n            \"numChildren\": 0\n        },\n        \"data\": {\n            \"key\": \"YFCKR3WB\",\n            \"version\": 1,\n            \"itemType\": \"book\",\n            \"title\": \"Synthetic Native Fidelity Beta\",\n            \"date\": \"2023\",\n            \"publisher\": \"Acceptance Test Publisher\",\n            \"creators\": [\n                {\n                    \"firstName\": \"Bert\",\n                    \"lastName\": \"Muster\",\n                    \"creatorType\": \"author\"\n                }\n            ],\n            \"tags\": [\n                {\n                    \"tag\": \"fidelity-acceptance\",\n                    \"type\": 1\n                }\n            ],\n            \"collections\": [],\n            \"relations\": {},\n            \"dateAdded\": \"2026-11-16T07:12:34Z\",\n            \"dateModified\": \"2026-11-16T07:12:34Z\"\n        }\n    },\n    {\n        \"key\": \"LPB3WMWD\",\n        \"version\": 1,\n        \"library\": {\n            \"type\": \"user\",\n            \"id\": 0,\n            \"name\": \"My Library\",\n            \"links\": {\n                \"self\": {\n                    \"href\": \"http://localhost:23119/api/users/0\",\n                    \"type\": \"application/json\"\n                }\n            }\n        },\n        \"links\": {\n            \"self\": {\n                \"href\": \"http://localhost:23119/api/users/0/items/LPB3WMWD\",\n                \"type\": \"application/json\"\n            }\n        },\n        \"meta\": {\n            \"creatorSummary\": \"Probe\",\n            \"parsedDate\": \"2022\",\n            \"numChildren\": 0\n        },\n        \"data\": {\n            \"key\": \"LPB3WMWD\",\n            \"version\": 1,\n            \"itemType\": \"book\",\n            \"title\": \"Synthetic Native Fidelity Gamma\",\n            \"date\": \"2022\",\n            \"publisher\": \"Acceptance Test Publisher\",\n            \"creators\": [\n                {\n                    \"firstName\": \"Carla\",\n                    \"lastName\": \"Probe\",\n                    \"creatorType\": \"author\"\n                }\n            ],\n            \"tags\": [\n                {\n                    \"tag\": \"fidelity-acceptance\",\n                    \"type\": 1\n                }\n            ],\n            \"collections\": [],\n            \"relations\": {},\n            \"dateAdded\": \"2026-11-16T07:12:34Z\",\n            \"dateModified\": \"2026-11-16T07:12:34Z\"\n        }\n    }\n]"
+  },
+  "result": "passed",
+  "process_exit": -15
+}

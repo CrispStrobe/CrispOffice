@@ -16,6 +16,11 @@ continuation = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(continuation)
 runner = continuation.runner
 runner.BASELINE = 'b24718cc1468c34f494805eb7fb433a87f565503'
+runner.ARCHIVED_DART_INPUTS += (
+    'docs/validation/zotero-fidelity-20261116/live-zotero/attempt-1-cold-profile/scripts/fidelity-live.dart',
+    'docs/validation/zotero-fidelity-20261116/live-zotero/attempt-2-headless-readiness/scripts/fidelity-live.dart',
+    'docs/validation/zotero-fidelity-20261116/live-zotero/scripts/fidelity-live.dart',
+)
 runner.ENGINE_TESTS = list(dict.fromkeys(runner.ENGINE_TESTS + [
     'zotero_saved_search_test.dart',
     'zotero_paragraph_runs_test.dart',

@@ -1,0 +1,54 @@
+[
+  {
+    "path": "chicago-first-refreshed.docx",
+    "sha256": "ebbf8f9be9c24c42ce9e83c88041d0693a2e861bec86d3e5a70d80badaec6d99",
+    "native_bibliography_fields": 1,
+    "bibliography_paragraphs": 2,
+    "citation_fields": 4,
+    "indent_twips": 720,
+    "hanging_twips": 720,
+    "line_twips": 240,
+    "entry_spacing_twips": 240,
+    "small_caps_runs": 0,
+    "no_inline_breaks_between_entries": true
+  },
+  {
+    "path": "chicago-repeat-refreshed.docx",
+    "sha256": "d009ab20df94d814d2a08bdbda99233525a5cb7b0fc64747716c8ad22e7fc634",
+    "native_bibliography_fields": 1,
+    "bibliography_paragraphs": 2,
+    "citation_fields": 4,
+    "indent_twips": 720,
+    "hanging_twips": 720,
+    "line_twips": 240,
+    "entry_spacing_twips": 240,
+    "small_caps_runs": 0,
+    "no_inline_breaks_between_entries": true
+  },
+  {
+    "path": "smallcaps-first-refreshed.docx",
+    "sha256": "d7c63c136221c3598dee34f585f18edb43e167cb2b3aec588693c14553597851",
+    "native_bibliography_fields": 1,
+    "bibliography_paragraphs": 2,
+    "citation_fields": 4,
+    "indent_twips": 720,
+    "hanging_twips": 720,
+    "line_twips": 480,
+    "entry_spacing_twips": 240,
+    "small_caps_runs": 2,
+    "no_inline_breaks_between_entries": true
+  },
+  {
+    "path": "smallcaps-repeat-refreshed.docx",
+    "sha256": "040c67d571fa77a9976e7a37ddb76d43b6ffc6100c7645a86fbf6673b79fd262",
+    "native_bibliography_fields": 1,
+    "bibliography_paragraphs": 2,
+    "citation_fields": 4,
+    "indent_twips": 720,
+    "hanging_twips": 720,
+    "line_twips": 480,
+    "entry_spacing_twips": 240,
+    "small_caps_runs": 2,
+    "no_inline_breaks_between_entries": true
+  }
+]
