@@ -1,0 +1,5 @@
+Analyzing lib, word_proofing_session_test.dart, word_proofing_dialog_test.dart, word_proofing_correction_test.dart, word_proofing_geometry_test.dart, platform_spelling_provider_test.dart, word_hyphenation_paint_test.dart, word_hyphenation_source_presentation_test.dart, editor_test.dart, word_small_caps_test.dart, word_note_numbering_test.dart...
+
+   info - lib/src/embed/office_controller.dart:7769:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+1 issue found.

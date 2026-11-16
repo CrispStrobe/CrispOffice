@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "base_continuation": "54155845dfda909981e73f274a2550b265e2498b",
+  "audit_cutoff_utc": "2026-11-16T13:40:49Z",
+  "integrated_parents": {
+    "main": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+    "original_proofing": "93c13aa1315298c0f85a5a8b757042eb9ac435e1",
+    "zotero_capabilities": "b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb"
+  },
+  "main": "Clean merge of ODS hyperlinks, outline groups, metadata documentation, and filter predicates (PR59-62).",
+  "zotero": "Independent source identity, shared backoff, dialog scan caching, five test files, and standalone hyphenation license/generator notice cleanup applied without overwriting local changes.",
+  "proofing": [
+    "Read comments before applying styles; include comments in both style traversals.",
+    "Exclude generated page-number paragraphs, including empty ones; bind cached and pending results to this metadata.",
+    "Restore active caret and full selection during correction undo/redo.",
+    "Check a replacement dialog controller and ignore old-controller asynchronous completions.",
+    "Use half-open nonempty issue hit ranges and exact zero-width insertion points.",
+    "Adopt strict analyzer fixes for engine exports and Zotero test fixtures.",
+    "Treat noProof as an absolute XML on/off value, so an explicit empty element overrides inherited false.",
+    "Exclude closed and spanning empty complex-field paragraphs, retaining zero-width guards and coverage accounting.",
+    "Bind correction caret restoration to comment/header/footer story identity; preserve unrelated-story selection on undo/redo."
+  ],
+  "semantic_resolution": "Continuation session/controller/renderer APIs and additional protection, grapheme, pending-revision, real-renderer and stale-document regressions retained; overlapping alternative proofing implementations and their receipts remain accessible through merge ancestry.",
+  "actions_used": false,
+  "concurrent_writer_boundary": "This is an explicit timestamped snapshot, not a claim that remote writers have stopped."
+}

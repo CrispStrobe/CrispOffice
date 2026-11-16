@@ -1,0 +1,258 @@
+00:00 +0: loading test/word_comment_proofing_styles_test.dart
+00:00 +0: test/word_comment_proofing_styles_test.dart: comments inherit document, paragraph and character proofing settings on import
+00:00 +0 -1: test/word_comment_proofing_styles_test.dart: comments inherit document, paragraph and character proofing settings on import [E]
+  Expected: [true, false, true]
+    Actual: MappedListIterable<WmlRun, bool?>:[true, false, false]
+     Which: at location [2] is <false> instead of <true>
+  
+  package:matcher                                   expect
+  test/word_comment_proofing_styles_test.dart 57:3  _check
+  test/word_comment_proofing_styles_test.dart 64:7  main.<fn>
+  
+00:00 +0 -1: test/word_comment_proofing_styles_test.dart: inherited and explicit comment proofing values survive three DOCX saves
+00:00 +0 -2: test/word_comment_proofing_styles_test.dart: inherited and explicit comment proofing values survive three DOCX saves [E]
+  Expected: [true, false, true]
+    Actual: MappedListIterable<WmlRun, bool?>:[true, false, false]
+     Which: at location [2] is <false> instead of <true>
+  
+  package:matcher                                   expect
+  test/word_comment_proofing_styles_test.dart 57:3  _check
+  test/word_comment_proofing_styles_test.dart 76:9  main.<fn>
+  
+00:00 +0 -2: test/word_comment_proofing_styles_test.dart: document language changes remain live for comments without overrides
+00:00 +0 -3: test/word_comment_proofing_styles_test.dart: document language changes remain live for comments without overrides [E]
+  Expected: [true, false, true]
+    Actual: MappedListIterable<WmlRun, bool?>:[true, false, false]
+     Which: at location [2] is <false> instead of <true>
+  
+  package:matcher                                   expect
+  test/word_comment_proofing_styles_test.dart 57:3  _check
+  test/word_comment_proofing_styles_test.dart 87:7  main.<fn>
+  
+00:00 +0 -3: test/word_comment_proofing_styles_test.dart: style refresh updates comments while retaining explicit run settings
+00:00 +1 -3: loading test/word_comment_test.dart
+00:00 +1 -3: test/word_comment_test.dart: comments attach to a range and survive a docx round-trip
+00:00 +2 -3: test/word_comment_test.dart: a comment can cover a multi-paragraph range
+00:00 +3 -3: test/word_comment_test.dart: rich comment threads round-trip with replies and resolve state
+00:00 +4 -3: loading test/style_cascade_test.dart
+00:01 +4 -3: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:01 +5 -3: test/style_cascade_test.dart: defaults basedOn theme character table and direct values survive 3 cycles
+00:01 +6 -3: test/style_cascade_test.dart: direct edits survive style refresh and inherited values remain editable
+00:01 +7 -3: test/style_cascade_test.dart: style toggles compose while direct on/off is absolute
+00:01 +8 -3: test/style_cascade_test.dart: custom style part location stays authoritative after style edits
+00:01 +9 -3: loading test/styleless_import_fidelity_test.dart
+00:01 +9 -3: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:02 +10 -3: test/styleless_import_fidelity_test.dart: deliberate formatting writes without introducing unrelated defaults
+00:02 +11 -3: test/styleless_import_fidelity_test.dart: an empty imported style catalog does not acquire the global Normal defaults
+00:02 +12 -3: test/styleless_import_fidelity_test.dart: explicit missing Heading1 still resolves and exports only the referenced style
+00:02 +13 -3: test/styleless_import_fidelity_test.dart: new documents retain their intentional default style catalog
+00:02 +14 -3: loading test/proofing_hyphenation_test.dart
+00:02 +14 -3: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:02 +15 -3: test/proofing_hyphenation_test.dart: licensed German patterns decomposed umlauts preserve original UTF-16 source
+00:02 +16 -3: test/proofing_hyphenation_test.dart: licensed German patterns manual opportunities and language boundaries are respected
+00:02 +17 -3: test/proofing_hyphenation_test.dart: source-preserving discretionary layout soft hyphen is invisible and zero-width when text fits
+00:02 +18 -3: test/proofing_hyphenation_test.dart: source-preserving discretionary layout selected manual break consumes soft hyphen exactly once
+00:02 +19 -3: test/proofing_hyphenation_test.dart: source-preserving discretionary layout hyphen width participates in fitting instead of overflowing
+00:02 +20 -3: test/proofing_hyphenation_test.dart: source-preserving discretionary layout automatic hyphen owns no source units and keeps end offsets
+00:02 +21 -3: test/proofing_hyphenation_test.dart: source-preserving discretionary layout invalid candidates cannot split a surrogate pair or grapheme
+00:02 +22 -3: test/proofing_hyphenation_test.dart: source-preserving discretionary layout prepared variable-width layout matches fixed lines and exact consumption
+00:02 +23 -3: test/proofing_hyphenation_test.dart: source-preserving discretionary layout RTL context retains all authored glyph positions around German breaks
+00:02 +24 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:02 +25 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings generated header and footer labels expose no authored offsets
+00:02 +26 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:02 +27 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:02 +28 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings language edits preserve independent native language and marker metadata
+00:02 +29 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings proofing source identity and offsets survive note display labels
+00:02 +30 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings document defaults, paragraph and run overrides survive two DOCX cycles
+00:02 +31 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings changing document default stays live for inherited runs
+00:02 +32 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings settings toggle preserves other native controls and absence
+00:02 +33 -3: test/proofing_hyphenation_test.dart: Word language and hyphenation settings Word layout uses document setting and paragraph suppression without editing source
+00:02 +34 -3: loading test/zotero_client_test.dart
+00:03 +34 -3: test/zotero_client_test.dart: key verification uses a header, strips returned secrets and resolves access
+00:03 +35 -3: test/zotero_client_test.dart: public library reads omit credentials; empty key cannot verify
+00:03 +36 -3: test/zotero_client_test.dart: search, collection keys and Unicode metadata survive paginated browse
+00:03 +37 -3: test/zotero_client_test.dart: pagination falls back to totals and advances requested offset
+00:03 +38 -3: test/zotero_client_test.dart: a pagination URL cannot redirect credentials or switch libraries
+00:03 +39 -3: test/zotero_client_test.dart: same item key is distinct in personal and group libraries
+00:03 +40 -3: test/zotero_client_test.dart: mismatched library or item identifiers are not silently relinked
+00:03 +41 -3: test/zotero_client_test.dart: collections preserve parent hierarchy; groups use numeric IDs
+00:03 +42 -3: test/zotero_client_test.dart: individual citation returns CSL and rendered snapshots with style/locale
+00:03 +43 -3: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:03 +44 -3: test/zotero_client_test.dart: export passes the requested format and returns Unicode unchanged
+00:03 +45 -3: test/zotero_client_test.dart: CSL retrieval unwraps the Web API v3 items envelope
+00:03 +46 -3: test/zotero_client_test.dart: CSL retrieval rejects malformed export payloads
+00:03 +47 -3: test/zotero_client_test.dart: invalid library IDs, keys, page bounds and oversized selections never send
+00:03 +48 -3: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:03 +49 -3: test/zotero_client_test.dart: HTTP errors are typed and never expose response bodies or API keys
+00:03 +50 -3: test/zotero_client_test.dart: Retry-After and Backoff choose the longer interval and suppress retries
+00:03 +51 -3: test/zotero_client_test.dart: concurrent responses cannot shorten a requested Backoff
+00:03 +52 -3: test/zotero_client_test.dart: malformed responses, mismatched keys and transport diagnostics are contained
+00:03 +53 -3: test/zotero_client_test.dart: desktop local API plain-text handshake pins the server without an API key
+00:03 +54 -3: test/zotero_client_test.dart: desktop local API older desktops may omit a server ID; API v3 is still required
+00:03 +55 -3: test/zotero_client_test.dart: desktop local API changed or missing pinned library IDs require reconnecting
+00:03 +56 -3: test/zotero_client_test.dart: desktop local API invalid server IDs are not echoed into a later request
+00:03 +57 -3: test/zotero_client_test.dart: desktop local API local groups, collections, query and formats stay on loopback
+00:03 +58 -3: test/zotero_client_test.dart: desktop local API local routing alias is never accepted by the cloud client
+00:03 +59 -3: test/zotero_client_test.dart: desktop local API signed-in desktop identity uses the real account, never users/0
+00:03 +60 -3: test/zotero_client_test.dart: desktop local API unsynced desktop preserves a verified local-user identity
+00:03 +61 -3: test/zotero_client_test.dart: desktop local API a citation key without local identity remains an offline source
+00:03 +62 -3: test/zotero_client_test.dart: desktop local API single CSL export objects, arrays and envelopes are normalized
+00:03 +63 -3: test/zotero_client_test.dart: desktop local API malformed and multi-item CSL exports do not pick an arbitrary record
+00:03 +64 -3: test/zotero_client_test.dart: desktop local API canonical CSL IDs cannot change item, library or identity
+00:03 +65 -3: test/zotero_client_test.dart: desktop local API users/0 requires a valid matching response library envelope
+00:03 +66 -3: test/zotero_client_test.dart: desktop local API local pagination cannot leave the selected loopback route
+00:03 +67 -3: test/zotero_client_test.dart: desktop local API desktop errors explain local setup without exposing diagnostics
+00:03 +68 -3: loading test/zotero_identity_client_test.dart
+00:03 +68 -3: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:03 +69 -3: test/zotero_identity_client_test.dart: known URI scheme and hostname aliases normalize consistently
+00:03 +70 -3: test/zotero_identity_client_test.dart: a colliding key from another local profile cannot refresh or preview
+00:03 +71 -3: test/zotero_identity_client_test.dart: citation keys and missing CSL IDs cannot prove a linked local identity
+00:03 +72 -3: test/zotero_identity_client_test.dart: invalid identity arguments fail before any request
+00:03 +73 -3: test/zotero_identity_client_test.dart: cloud routes refuse local identities before sending credentials
+00:03 +74 -3: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:03 +75 -3: test/zotero_identity_client_test.dart: bibliography verifies once then renders one complete selection
+00:03 +76 -3: test/zotero_identity_client_test.dart: aggregate expectations reject incomplete, extra and mixed profile maps before I/O
+00:03 +77 -3: test/zotero_identity_client_test.dart: invalid bibliography formatting fails before the identity preflight
+00:03 +78 -3: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:03 +79 -3: test/zotero_identity_client_test.dart: older desktops without a database pin refuse aggregate linked output
+00:03 +80 -3: test/zotero_identity_client_test.dart: database changes between preflight and formatting never return output
+00:03 +81 -3: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:03 +82 -3: test/zotero_identity_client_test.dart: numeric cloud identities use the same complete-selection verification
+00:03 +83 -3: test/zotero_identity_client_test.dart: returned CSL identities reject explicit ports before URI normalization
+00:03 +84 -3: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:03 +85 -3: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:03 +86 -3: test/zotero_identity_client_test.dart: metadata refresh requests no style and still proves local identity
+00:03 +87 -3: loading test/word_zotero_source_identity_test.dart
+00:03 +87 -3: test/word_zotero_source_identity_test.dart: late URI bridge joins previously distinct embedded snapshots
+00:04 +88 -3: test/word_zotero_source_identity_test.dart: alias groups retain their first snapshot for order [0, 1, 2]
+00:04 +89 -3: test/word_zotero_source_identity_test.dart: alias groups retain their first snapshot for order [0, 2, 1]
+00:04 +90 -3: test/word_zotero_source_identity_test.dart: alias groups retain their first snapshot for order [1, 0, 2]
+00:04 +91 -3: test/word_zotero_source_identity_test.dart: alias groups retain their first snapshot for order [1, 2, 0]
+00:04 +92 -3: test/word_zotero_source_identity_test.dart: alias groups retain their first snapshot for order [2, 0, 1]
+00:04 +93 -3: test/word_zotero_source_identity_test.dart: alias groups retain their first snapshot for order [2, 1, 0]
+00:04 +94 -3: test/word_zotero_source_identity_test.dart: missing-snapshot bridges resolve transitive aliases
+00:04 +95 -3: test/word_zotero_source_identity_test.dart: source groups keep first-available-snapshot ordering
+00:04 +96 -3: test/word_zotero_source_identity_test.dart: canonical aliases join while unrelated keys and CSL IDs do not
+00:04 +97 -3: test/word_zotero_source_identity_test.dart: unknown URI values cannot collide with another identity namespace
+00:04 +98 -3: test/word_zotero_source_identity_test.dart: malformed imported URI paths are not normalized into source aliases
+00:04 +99 -3: test/word_zotero_source_identity_test.dart: groups without embedded snapshots are omitted
+00:04 +100 -3: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:04 +101 -3: loading test/zotero_backoff_state_test.dart
+00:04 +101 -3: test/zotero_backoff_state_test.dart: shared 429 pause survives new credentials and expires exactly
+00:04 +102 -3: test/zotero_backoff_state_test.dart: successful Backoff also pauses replacement clients and libraries
+00:04 +103 -3: test/zotero_backoff_state_test.dart: replacement preserves pause for HTTP 429 with {}
+00:04 +104 -3: test/zotero_backoff_state_test.dart: replacement preserves pause for HTTP 503 with {Retry-After: 20}
+00:04 +105 -3: test/zotero_backoff_state_test.dart: replacement preserves pause for HTTP 429 with {Retry-After: 20, Backoff: 40}
+00:04 +106 -3: test/zotero_backoff_state_test.dart: late responses across clients cannot shorten a shared pause
+00:04 +107 -3: test/zotero_backoff_state_test.dart: online shared state does not pause desktop or independent sessions
+00:04 +108 -3: loading test/ods_sheet_reader_test.dart
+00:04 +108 -3: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:05 +109 -3: test/ods_sheet_reader_test.dart: ambiguous and foreign annotations are refused without inventing a value
+00:05 +110 -3: test/ods_sheet_reader_test.dart: repeated annotation text and author consume the expanded text budget
+00:05 +111 -3: test/ods_sheet_reader_test.dart: annotation-only cells obey materialized-cell and grid bounds
+00:05 +112 -3: test/ods_sheet_reader_test.dart: covered cells cannot silently discard annotations
+00:05 +113 -3: test/ods_sheet_reader_test.dart: authored date literals retain spaces quotes and format-like text
+00:05 +114 -3: test/ods_sheet_reader_test.dart: authored textual dates use namespace-aware widths and weekday names
+00:05 +115 -3: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:05 +116 -3: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:05 +117 -3: test/ods_sheet_reader_test.dart: currency symbols survive namespaced import and XLSX saves
+00:05 +118 -3: test/ods_sheet_reader_test.dart: inherited styled padding stays sparse while explicit blanks survive
+00:05 +119 -3: test/ods_sheet_reader_test.dart: ODS native column geometry survives a new XLSX copy
+00:05 +120 -3: test/ods_sheet_reader_test.dart: cell then row then per-column styles survive repeated cells
+00:05 +121 -3: test/ods_sheet_reader_test.dart: Default column and row padding stays sparse at large repeats
+00:05 +122 -3: test/ods_sheet_reader_test.dart: column default bookkeeping shares the workbook dimension budget
+00:05 +123 -3: test/ods_sheet_reader_test.dart: ODS hour and minute format survives XLSX save
+00:05 +124 -3: test/ods_sheet_reader_test.dart: ODS minute and second format survives XLSX save
+00:05 +125 -3: test/ods_sheet_reader_test.dart: ODS full clock format survives XLSX save
+00:05 +126 -3: test/ods_sheet_reader_test.dart: ODS elapsed hours format survives XLSX save
+00:05 +127 -3: test/ods_sheet_reader_test.dart: ODS elapsed minutes format survives XLSX save
+00:05 +128 -3: test/ods_sheet_reader_test.dart: ODS elapsed minutes and seconds format survives XLSX save
+00:05 +129 -3: test/ods_sheet_reader_test.dart: ODS elapsed seconds format survives XLSX save
+00:05 +130 -3: test/ods_sheet_reader_test.dart: ODS pictures become worksheet drawings and survive save
+00:05 +131 -3: test/ods_sheet_reader_test.dart: ODS tab colour and picture survive save together
+00:05 +132 -3: test/ods_sheet_reader_test.dart: ODS document default style supplies the Normal cell font
+00:05 +133 -3: test/ods_sheet_reader_test.dart: ODS document defaults supply column width and row height
+00:05 +134 -3: test/ods_sheet_reader_test.dart: ODS hidden sheets survive save and reopen
+00:05 +135 -3: test/ods_sheet_reader_test.dart: ODS hidden columns and rows survive save
+00:05 +136 -3: test/ods_sheet_reader_test.dart: ODS text and duplicate conditions keep their type
+00:05 +137 -3: test/ods_sheet_reader_test.dart: ODS begins-with and ends-with conditions keep their text
+00:05 +138 -3: test/ods_sheet_reader_test.dart: ODS between conditions keep both bounds
+00:05 +139 -3: test/ods_sheet_reader_test.dart: ODS conditional comparison operators keep their meaning
+00:05 +140 -3: test/ods_sheet_reader_test.dart: ODS conditional formats import and serialize
+00:05 +141 -3: test/ods_sheet_reader_test.dart: shared numeric rules on blank input cells survive an XLSX copy
+00:05 +142 -3: test/ods_sheet_reader_test.dart: blank validation references obey expansion and grid limits
+00:05 +143 -3: test/ods_sheet_reader_test.dart: spreadsheet-level list validations apply to every referring sheet
+00:05 +144 -3: test/ods_sheet_reader_test.dart: spreadsheet-level range lists resolve a later source sheet
+00:05 +145 -3: test/ods_sheet_reader_test.dart: table-local definitions stay isolated and override shared names
+00:05 +146 -3: test/ods_sheet_reader_test.dart: foreign validation containers cannot define spreadsheet rules
+00:05 +147 -3: test/ods_sheet_reader_test.dart: ODS validation prompts and error styles round-trip
+00:05 +148 -3: test/ods_sheet_reader_test.dart: ODS custom formula validations translate relative refs
+00:05 +149 -3: test/ods_sheet_reader_test.dart: ODS whole, decimal, date and text-length validations import
+00:05 +150 -3: test/ods_sheet_reader_test.dart: ODS list source preserves spaces in quoted sheet names
+00:05 +151 -3: test/ods_sheet_reader_test.dart: ODS validation source range is bounded before scanning empty cells
+00:05 +152 -3: test/ods_sheet_reader_test.dart: ODS range-source list validations resolve across sheets
+00:05 +153 -3: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:05 +154 -3: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:05 +155 -3: test/ods_sheet_reader_test.dart: ODS outline groups survive XLSX and reopen
+00:05 +156 -3: test/ods_sheet_reader_test.dart: ODS external and internal hyperlinks survive XLSX
+00:05 +157 -3: test/ods_sheet_reader_test.dart: ODS named expressions translate to XLSX formulas
+00:05 +158 -3: test/ods_sheet_reader_test.dart: ODS filter predicates become XLSX filter columns
+00:05 +159 -3: test/ods_sheet_reader_test.dart: ODS tab colour survives save and reopen
+00:05 +160 -3: test/ods_sheet_reader_test.dart: ODS print areas, titles, names and autofilter survive save
+00:05 +161 -3: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:="a;b"
+00:05 +162 -3: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:="literal [.A1];COM.MICROSOFT.SUM"
+00:05 +163 -3: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=IF([.A1]="a;b";"say ""[.B2];""";COM.MICROSOFT.SUM([.A1:.A2];1))
+00:05 +164 -3: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=CONCATENATE("";"a;b";"[.A1]")
+00:05 +165 -3: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=SUM(['Semi;Colon'.A1];1)
+00:05 +166 -3: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=SUM(['COM.MICROSOFT.Data'.A1];1)
+00:05 +167 -3: test/ods_sheet_reader_test.dart: formula namespace COM.MICROSOFT. only changes at a token boundary
+00:05 +168 -3: test/ods_sheet_reader_test.dart: formula namespace ORG.OPENOFFICE. only changes at a token boundary
+00:05 +169 -3: test/ods_sheet_reader_test.dart: declines a stored cell where a horizontal covered token is missing
+00:05 +170 -3: test/ods_sheet_reader_test.dart: declines a stored cell inside an earlier vertical merged region
+00:05 +171 -3: test/ods_sheet_reader_test.dart: annotations retain coordinates and do not leak into cell values
+00:05 +172 -3: test/ods_sheet_reader_test.dart: reads ODS values, formulas, styles and merges
+00:05 +173 -3: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:05 +174 -3: test/ods_sheet_reader_test.dart: covered cells and internal repeated empty rows keep positions
+00:05 +175 -3: test/ods_sheet_reader_test.dart: rejects a non-ODF package
+00:05 +176 -3: test/ods_sheet_reader_test.dart: merged covered cells consume one coordinate and retain row spans
+00:05 +177 -3: test/ods_sheet_reader_test.dart: repeated blank rows retain later data at exact coordinates
+00:05 +178 -3: test/ods_sheet_reader_test.dart: row headers and groups retain blank row coordinates
+00:05 +179 -3: test/ods_sheet_reader_test.dart: foreign lookalike elements and attributes cannot change sheet values
+00:05 +180 -3: test/ods_sheet_reader_test.dart: named inherited cell wrap styles survive an XLSX roundtrip
+00:05 +181 -3: test/ods_sheet_reader_test.dart: column groups retain dimensions and repeated values
+00:05 +182 -3: test/ods_sheet_reader_test.dart: blank trailing padding is skipped without truncating data silently
+00:05 +183 -3: test/ods_sheet_reader_test.dart: rejects cross-product expansion before materializing repeated cells
+00:05 +184 -3: test/ods_sheet_reader_test.dart: workbook budget is shared by multiple individually small sheets
+00:06 +185 -3: test/ods_sheet_reader_test.dart: repeated text is bounded before it can expand during XLSX save
+00:06 +186 -3: test/ods_sheet_reader_test.dart: rejects invalid or out-of-range meaningful repeats instead of clipping
+00:06 +187 -3: test/ods_sheet_reader_test.dart: formula conversion preserves delimiters and brackets inside literals
+00:06 +188 -3: test/ods_sheet_reader_test.dart: repeated formulas decline rather than cloning incorrect references
+00:06 +189 -3: test/ods_sheet_reader_test.dart: preserves ODF explicit spaces, tabs and paragraph boundaries
+00:06 +190 -3: test/ods_sheet_reader_test.dart: rejects XML with spreadsheet local names in the wrong namespace
+00:06 +191 -3: test/ods_sheet_reader_test.dart: rejects cyclic named styles and excessive XML nesting
+00:06 +192 -3: test/ods_sheet_reader_test.dart: keeps internal repeated blank rows without expanding trailing padding
+00:06 +193 -3: test/ods_sheet_reader_test.dart: blank runs retain in-range cells and refuse later out-of-range data
+00:06 +194 -3: test/ods_sheet_reader_test.dart: horizontal merge consumes explicit placeholder once
+00:06 +195 -3: test/ods_sheet_reader_test.dart: horizontal merge consumes repeated placeholders once
+00:06 +196 -3: test/ods_sheet_reader_test.dart: horizontal merge consumes additional covered column once
+00:06 +197 -3: test/ods_sheet_reader_test.dart: consecutive merged origins retain explicit covered positions
+00:06 +198 -3: test/ods_sheet_reader_test.dart: merge spans retain in-range cells and refuse column overflow
+00:06 +199 -3: test/ods_sheet_reader_test.dart: styled trailing row padding stays sparse within the admitted grid
+00:06 +200 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=MYCOM.MICROSOFT.FUNC(1)
+00:06 +201 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:="a;b"
+00:06 +202 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:="literal [.A1];COM.MICROSOFT.SUM"
+00:06 +203 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=IF([.A1]="a;b";"say ""[.B2];""";COM.MICROSOFT.SUM([.A1:.A2];1))
+00:06 +204 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=CONCATENATE("";"a;b";"[.A1]")
+00:06 +205 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=SUM(['Semi;Colon'.A1];1)
+00:06 +206 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=SUM(['COM.MICROSOFT.Data'.A1];1)
+00:06 +207 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=[$Sheet2.A1]+[.$A$1]
+00:06 +208 -3: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=[$'Semi;Colon'.$A$1]
+00:06 +209 -3: Some tests failed.
+
+Failing tests:
+  test/word_comment_proofing_styles_test.dart: comments inherit document, paragraph and character proofing settings on import
+  test/word_comment_proofing_styles_test.dart: document language changes remain live for comments without overrides
+  test/word_comment_proofing_styles_test.dart: inherited and explicit comment proofing values survive three DOCX saves
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.

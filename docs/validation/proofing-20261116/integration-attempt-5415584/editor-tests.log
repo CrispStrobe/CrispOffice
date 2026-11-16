@@ -1,0 +1,186 @@
+00:00 +0: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart
+00:00 +0: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state
+00:00 +1: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: language changes inside a combining cluster retain the full cluster and its first language
+00:00 +2: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a surrogate pair split across runs and languages remains one emoji in provider input
+00:00 +3: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: noProof on part of a combining cluster excludes the entire cluster
+00:00 +4: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: review traverses body, nested tables, frames, all headers/footers, notes and comments
+00:00 +5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: formatting fragments join while language and noProof boundaries preserve UTF-16 offsets
+00:00 +6: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: run language overrides paragraph language, which overrides the document default
+00:00 +7: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: late results after a revision change never become current findings
+00:00 +8: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: direct model edits during a pending check invalidate its snapshot even without revision notification
+00:00 +9: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: replacing a document with identical text and revision rejects the old document result
+00:00 +10: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider reconfiguration cancels pending publication and disposes the previous provider
+00:00 +11: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unchanged paragraphs reuse results while rebinding findings to the current revision
+00:00 +12: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider configuration revisions invalidate otherwise identical cached text
+00:00 +13: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: moving a paragraph between stories invalidates its old finding and cache
+00:00 +14: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a document with no checkable paragraphs never claims a clean completed check
+00:00 +15: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: no configured provider is visibly unavailable
+00:00 +16: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unavailable checks are incomplete and can be retried instead of cached as clean
+00:00 +17: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unsupported checks are incomplete and can be retried instead of cached as clean
+00:00 +18: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: failed checks are incomplete and can be retried instead of cached as clean
+00:00 +19: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: an unsupported document language reports its locale without calling the checker
+00:00 +20: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: opaque body blocks and preserved header stories are explicit coverage gaps
+00:00 +21: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: personal words are language-scoped and host snapshots preserve owner identity
+00:00 +22: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignore once suppresses one occurrence and resets when its paragraph text changes
+00:00 +23: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignored rules can be restored without changing source text or personal words
+00:00 +24: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +25: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +26: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +27: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +28: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +29: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +30: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +31: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +32: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +33: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +34: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +35: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +36: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +37: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +38: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +39: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +40: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +41: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +42: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +43: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +44: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +45: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +46: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +47: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +48: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +49: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +50: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +51: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +52: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +53: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +53 -1: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart [E]
+  Failed to load "/workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart":
+  Flutter failed to create a temporary directory with prefix "flutter_test_listener.". The target device is full.
+  FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/88f807a13fcd/toolchains/tmp/flutter_tools.UCDTZM/flutter_test_listener.' (OS Error: No space left on device, errno = 28)
+  Free up space and try again.
+  package:flutter_tools/src/base/common.dart 34:3               throwToolExit
+  package:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException
+  package:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync
+  package:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync
+  package:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart
+  package:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest
+  package:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel
+  package:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load
+  package:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>
+  ===== asynchronous gap ===========================
+  package:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>
+  
+00:01 +54 -1: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +54 -2: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart [E]
+  Failed to load "/workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart":
+  Flutter failed to create a temporary directory with prefix "flutter_test_listener.". The target device is full.
+  FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/88f807a13fcd/toolchains/tmp/flutter_tools.UCDTZM/flutter_test_listener.' (OS Error: No space left on device, errno = 28)
+  Free up space and try again.
+  package:flutter_tools/src/base/common.dart 34:3               throwToolExit
+  package:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException
+  package:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync
+  package:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync
+  package:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart
+  package:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest
+  package:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel
+  package:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load
+  package:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>
+  ===== asynchronous gap ===========================
+  package:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>
+  
+00:01 +54 -3: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart [E]
+  Failed to load "/workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart":
+  Flutter failed to create a temporary directory with prefix "flutter_test_listener.". The target device is full.
+  FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/88f807a13fcd/toolchains/tmp/flutter_tools.UCDTZM/flutter_test_listener.' (OS Error: No space left on device, errno = 28)
+  Free up space and try again.
+  package:flutter_tools/src/base/common.dart 34:3               throwToolExit
+  package:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException
+  package:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync
+  package:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync
+  package:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart
+  package:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest
+  package:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel
+  package:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load
+  package:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>
+  ===== asynchronous gap ===========================
+  package:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>
+  
+00:01 +54 -4: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart [E]
+  Failed to load "/workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart":
+  Flutter failed to create a temporary directory with prefix "flutter_test_listener.". The target device is full.
+  FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/88f807a13fcd/toolchains/tmp/flutter_tools.UCDTZM/flutter_test_listener.' (OS Error: No space left on device, errno = 28)
+  Free up space and try again.
+  package:flutter_tools/src/base/common.dart 34:3               throwToolExit
+  package:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException
+  package:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync
+  package:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync
+  package:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart
+  package:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest
+  package:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel
+  package:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load
+  package:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>
+  ===== asynchronous gap ===========================
+  package:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>
+  
+00:01 +54 -5: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart [E]
+  Failed to load "/workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart":
+  Flutter failed to create a temporary directory with prefix "flutter_test_listener.". The target device is full.
+  FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/88f807a13fcd/toolchains/tmp/flutter_tools.UCDTZM/flutter_test_listener.' (OS Error: No space left on device, errno = 28)
+  Free up space and try again.
+  package:flutter_tools/src/base/common.dart 34:3               throwToolExit
+  package:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException
+  package:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException
+  package:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync
+  package:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync
+  package:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart
+  package:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest
+  package:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel
+  package:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load
+  package:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>
+  ===== asynchronous gap ===========================
+  package:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>
+  
+00:01 +55 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +56 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +57 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +58 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +59 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +60 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +61 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +62 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +63 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +64 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +65 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +66 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +67 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +68 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +69 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +70 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +71 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:01 +72 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:02 +73 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unavailable provider never produces a clean-document message
+00:02 +74 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unsupported provider never produces a clean-document message
+00:02 +75 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: failed provider never produces a clean-document message
+00:02 +76 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:02 +77 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: adding a personal word dismisses its finding without changing document text
+00:02 +78 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:02 +79 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: language and hyphenation controls save source settings with undo
+00:03 +80 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unsupported existing language and a narrow viewport remain reviewable
+00:03 +81 -5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: show in document selects the current finding and closes review
+00:03 +82 -5: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart
+  /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart
+  /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart
+  /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart
+  /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart

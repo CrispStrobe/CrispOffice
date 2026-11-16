@@ -47,16 +47,33 @@ class _WordProofingDialogState extends State<WordProofingDialog> {
   @override
   void initState() {
     super.initState();
+    _scheduleCheck();
+  }
+
+  @override
+  void didUpdateWidget(WordProofingDialog oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.controller, _controller)) {
+      _notice = null;
+      _scheduleCheck();
+    }
+  }
+
+  void _scheduleCheck() {
+    final WordEditorController controller = _controller;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) unawaited(_check());
+      if (mounted && identical(controller, _controller)) {
+        unawaited(_check());
+      }
     });
   }
 
   Future<void> _check() async {
+    final WordEditorController controller = _controller;
     try {
-      await _controller.checkDocumentProofing();
+      await controller.checkDocumentProofing();
     } catch (_) {
-      if (mounted) {
+      if (mounted && identical(controller, _controller)) {
         setState(
           () => _notice = 'The document check could not finish. Try again.',
         );

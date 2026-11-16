@@ -1,11 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
 class _DialogProvider extends OfficeProofingProvider {
-  _DialogProvider({this.status = OfficeProofingStatus.success});
+  _DialogProvider({
+    this.status = OfficeProofingStatus.success,
+    this.beforeResult,
+  });
 
   final OfficeProofingStatus status;
+  final Future<void>? beforeResult;
   final List<OfficeProofingRequest> requests = <OfficeProofingRequest>[];
 
   @override
@@ -17,6 +23,7 @@ class _DialogProvider extends OfficeProofingProvider {
   @override
   Future<OfficeProofingResult> check(OfficeProofingRequest request) async {
     requests.add(request);
+    if (beforeResult != null) await beforeResult;
     final int start = request.text.indexOf('Feler');
     return OfficeProofingResult(
       request: request,
@@ -88,6 +95,111 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
 }
 
 void main() {
+  testWidgets(
+    'swapping the dialog controller checks its document and clears old notices',
+    (WidgetTester tester) async {
+      tester.view.devicePixelRatio = 1;
+      tester.view.physicalSize = const Size(1000, 900);
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final _DialogProvider firstProvider = _DialogProvider();
+      final _DialogProvider secondProvider = _DialogProvider();
+      final WordEditorController first = WordEditorController(
+        document: WmlDocument.empty(text: 'Ein Feler.'),
+        proofingService: OfficeProofingService(providers: [firstProvider]),
+      );
+      final WordEditorController second = WordEditorController(
+        document: WmlDocument.empty(text: 'Ein sauberer Text.'),
+        proofingService: OfficeProofingService(providers: [secondProvider]),
+      );
+      addTearDown(first.dispose);
+      addTearDown(second.dispose);
+      Widget dialog(WordEditorController controller) => MaterialApp(
+        home: Scaffold(body: WordProofingDialog(controller: controller)),
+      );
+
+      await tester.pumpWidget(dialog(first));
+      await tester.pumpAndSettle();
+      expect(firstProvider.requests, hasLength(1));
+      expect(find.text('Check this spelling.'), findsOneWidget);
+      await _tap(tester, find.text('Add to dictionary'));
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Word added to your personal dictionary.'),
+        findsOneWidget,
+      );
+      final State<StatefulWidget> previousState = tester.state(
+        find.byType(WordProofingDialog),
+      );
+
+      await tester.pumpWidget(dialog(second));
+      await tester.pumpAndSettle();
+      expect(
+        tester.state(find.byType(WordProofingDialog)),
+        same(previousState),
+      );
+      expect(secondProvider.requests, hasLength(1));
+      expect(secondProvider.requests.single.text, 'Ein sauberer Text.');
+      expect(second.proofing.summary.complete, isTrue);
+      expect(find.text('No issues found in the checked text.'), findsOneWidget);
+      expect(
+        find.text('Word added to your personal dictionary.'),
+        findsNothing,
+      );
+
+      await tester.pumpWidget(dialog(second));
+      await tester.pumpAndSettle();
+      expect(secondProvider.requests, hasLength(1));
+      first.insertText('Changed ');
+      await tester.pumpAndSettle();
+      expect(find.text('No issues found in the checked text.'), findsOneWidget);
+      expect(secondProvider.requests, hasLength(1));
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'a previous controller completing its check cannot replace the new results',
+    (WidgetTester tester) async {
+      final Completer<void> pending = Completer<void>();
+      final _DialogProvider firstProvider = _DialogProvider(
+        beforeResult: pending.future,
+      );
+      final _DialogProvider secondProvider = _DialogProvider();
+      final WordEditorController first = WordEditorController(
+        document: WmlDocument.empty(text: 'Ein Feler.'),
+        proofingService: OfficeProofingService(providers: [firstProvider]),
+      );
+      final WordEditorController second = WordEditorController(
+        document: WmlDocument.empty(text: 'Ein sauberer Text.'),
+        proofingService: OfficeProofingService(providers: [secondProvider]),
+      );
+      addTearDown(first.dispose);
+      addTearDown(second.dispose);
+      Widget dialog(WordEditorController controller) => MaterialApp(
+        home: Scaffold(body: WordProofingDialog(controller: controller)),
+      );
+
+      await tester.pumpWidget(dialog(first));
+      await tester.pump(const Duration(milliseconds: 1));
+      expect(firstProvider.requests, hasLength(1));
+      expect(first.proofing.checking, isTrue);
+      await tester.pumpWidget(dialog(second));
+      await tester.pumpAndSettle();
+      expect(secondProvider.requests, hasLength(1));
+      expect(find.text('No issues found in the checked text.'), findsOneWidget);
+
+      pending.complete();
+      await tester.pumpAndSettle();
+      expect(first.proofing.summary.issues, hasLength(1));
+      expect(second.proofing.summary.issues, isEmpty);
+      expect(find.text('Check this spelling.'), findsNothing);
+      expect(find.text('No issues found in the checked text.'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
   testWidgets(
     'ignore once dismisses a finding without adding or ignoring its word',
     (WidgetTester tester) async {

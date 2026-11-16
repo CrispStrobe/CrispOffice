@@ -111,6 +111,155 @@ WmlTable _table(WmlParagraph paragraph) => WmlTable(
 );
 
 void main() {
+  test('closed empty complex fields never reach providers', () async {
+    for (final includeEmptyRun in <bool>[false, true]) {
+      final paragraph = WmlParagraph(
+        inlines: <WmlInline>[
+          WmlFieldBoundary(kind: WmlFieldBoundaryKind.begin),
+          WmlFieldBoundary(
+            kind: WmlFieldBoundaryKind.instruction,
+            text: ' QUDS_TEST_FIELD ',
+          ),
+          WmlFieldBoundary(kind: WmlFieldBoundaryKind.separate),
+          if (includeEmptyRun) WmlRun(text: ''),
+          WmlFieldBoundary(kind: WmlFieldBoundaryKind.end),
+        ],
+      );
+      final h = _Harness(
+        document: WmlDocument(
+          sections: <WmlSection>[
+            WmlSection(blocks: <WmlBlock>[paragraph]),
+          ],
+        ),
+      );
+      final summary = await h.session.checkNow();
+      expect(h.provider.requests, isEmpty);
+      expect(summary.issues, isEmpty);
+      expect(summary.paragraphCount, 1);
+      expect(summary.checkedParagraphCount, 0);
+      expect(summary.skippedContentCount, 1);
+      expect(summary.complete, isFalse);
+      expect(paragraph.text, isEmpty);
+    }
+  });
+
+  test(
+    'empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked',
+    () async {
+      final beginning = WmlParagraph(
+        inlines: <WmlInline>[
+          WmlFieldBoundary(kind: WmlFieldBoundaryKind.begin),
+          WmlFieldBoundary(
+            kind: WmlFieldBoundaryKind.instruction,
+            text: ' QUDS_TEST_FIELD ',
+          ),
+          WmlFieldBoundary(kind: WmlFieldBoundaryKind.separate),
+        ],
+      );
+      final ending = WmlParagraph(
+        inlines: <WmlInline>[WmlFieldBoundary(kind: WmlFieldBoundaryKind.end)],
+      );
+      final authored = _paragraph('Feler');
+      final h = _Harness(
+        document: WmlDocument(
+          sections: <WmlSection>[
+            WmlSection(
+              blocks: <WmlBlock>[
+                beginning,
+                _paragraph(''),
+                ending,
+                _paragraph(''),
+                authored,
+              ],
+            ),
+          ],
+        ),
+      );
+      final summary = await h.session.checkNow();
+      expect(h.provider.requests.map((request) => request.text), <String>[
+        '',
+        'Feler',
+      ]);
+      expect(summary.issues.single.paragraph, same(authored));
+      expect(summary.paragraphCount, 5);
+      expect(summary.checkedParagraphCount, 2);
+      expect(summary.skippedContentCount, 3);
+      expect(summary.complete, isFalse);
+    },
+  );
+
+  test('generated page-number paragraphs never reach providers', () async {
+    for (final text in <String>['Feler', '']) {
+      final paragraph = _paragraph(
+        text,
+        properties: WmlParagraphProps(pageNumberField: true),
+      );
+      final h = _Harness(
+        document: WmlDocument(
+          sections: <WmlSection>[
+            WmlSection(blocks: <WmlBlock>[paragraph]),
+          ],
+        ),
+      );
+      final summary = await h.session.checkNow();
+      expect(h.provider.requests, isEmpty);
+      expect(summary.issues, isEmpty);
+      expect(summary.checkedParagraphCount, 0);
+      expect(summary.skippedContentCount, 1);
+      expect(summary.complete, isFalse);
+    }
+  });
+
+  test(
+    'page-number metadata invalidates findings without a text edit',
+    () async {
+      final h = _Harness();
+      final issue = (await h.session.checkNow()).issues.single;
+      issue.paragraph.properties.pageNumberField = true;
+      expect(h.session.isCurrent(issue), isFalse);
+      expect(h.session.canCorrect(issue), isFalse);
+      expect((await h.session.checkNow()).issues, isEmpty);
+      expect(h.provider.requests, hasLength(1));
+      issue.paragraph.properties.pageNumberField = false;
+      expect((await h.session.checkNow()).issues, hasLength(1));
+      expect(h.provider.requests, hasLength(2));
+    },
+  );
+
+  test(
+    'pending page-number metadata changes discard provider results',
+    () async {
+      final gate = Completer<void>();
+      final provider = _ProbeProvider(gate: gate);
+      final h = _Harness(provider: provider);
+      final pending = h.session.checkNow();
+      await provider.started.future;
+      h.document.paragraphs.first.properties.pageNumberField = true;
+      gate.complete();
+      await pending;
+      expect(h.session.summary.issues, isEmpty);
+      expect(h.session.summary.hasResults, isFalse);
+      expect(h.session.findingsByParagraph, isEmpty);
+    },
+  );
+
+  test('nonempty findings use half-open hit ranges', () async {
+    final h = _Harness(document: WmlDocument.empty(text: 'Feler Feler'));
+    final summary = await h.session.checkNow();
+    final paragraph = summary.issues.first.paragraph;
+    expect(h.session.issuesAt(paragraph, 0), <WordProofingIssue>[
+      summary.issues.first,
+    ]);
+    expect(h.session.issuesAt(paragraph, 4), <WordProofingIssue>[
+      summary.issues.first,
+    ]);
+    expect(h.session.issuesAt(paragraph, 5), isEmpty);
+    expect(h.session.issuesAt(paragraph, 6), <WordProofingIssue>[
+      summary.issues.last,
+    ]);
+    expect(h.session.issuesAt(paragraph, 11), isEmpty);
+  });
+
   test(
     'a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state',
     () async {

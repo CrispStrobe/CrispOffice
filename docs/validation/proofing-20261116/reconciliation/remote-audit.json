@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "audit_kind": "read_only_final_remote_refresh",
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_at_utc": "2026-11-16T13:40:49.189873+00:00",
+  "observed_continuation": "54155845dfda909981e73f274a2550b265e2498b",
+  "requested_continuation_baseline": "d3b37a99ff039730472ff33ba31db2ed4606a1ae",
+  "integrated_original_baseline": "976d05a351e818f0b5a261e458cc6d99347c1602",
+  "integrated_original_is_actual_ancestor": true,
+  "heads": {
+    "main": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+    "upstream_main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+    "original_proofing": "93c13aa1315298c0f85a5a8b757042eb9ac435e1",
+    "zotero_capabilities": "b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb"
+  },
+  "pull_requests": {
+    "total": 62,
+    "open": [],
+    "new_since_initial_audit": [
+      {
+        "number": 62,
+        "title": "Preserve ODS filter predicates",
+        "state": "closed",
+        "merged_at": "2026-11-16T13:37:17Z",
+        "merge_commit_sha": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+        "head_sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+      },
+      {
+        "number": 61,
+        "title": "Record ODS metadata and hyperlink progress",
+        "state": "closed",
+        "merged_at": "2026-11-16T13:35:44Z",
+        "merge_commit_sha": "3624a9702054f6f64f7132b374bbcf827bfcf232",
+        "head_sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+      },
+      {
+        "number": 60,
+        "title": "Preserve ODS outline groups",
+        "state": "closed",
+        "merged_at": "2026-11-16T13:32:40Z",
+        "merge_commit_sha": "0969b2203a6758116bf42b53d7348898cc79d7ea",
+        "head_sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+      },
+      {
+        "number": 59,
+        "title": "Preserve ODS cell hyperlinks",
+        "state": "closed",
+        "merged_at": "2026-11-16T13:26:38Z",
+        "merge_commit_sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+        "head_sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+      }
+    ]
+  },
+  "original_new_commits": [
+    "93c13aa1315298c0f85a5a8b757042eb9ac435e1 fix: complete guarded proofing UI and source-mapped corrections [skip ci]",
+    "52d6ae43b659875e92b06cbabdd8f206aabbad6c feat: wire proofing review and save resumed local verification [skip ci]"
+  ],
+  "main_new_commits": [
+    "7edb096d3328263c75dc0229ff43bb77183e1ad3 feat(sheet): preserve ODS filter predicates (#62)",
+    "3624a9702054f6f64f7132b374bbcf827bfcf232 Record ODS metadata and hyperlink progress (#61)",
+    "0969b2203a6758116bf42b53d7348898cc79d7ea feat(sheet): preserve ODS outline groups (#60)",
+    "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2 feat(sheet): preserve ODS cell hyperlinks (#59)"
+  ],
+  "findings": [
+    {
+      "id": "main_ods_changes",
+      "status": "absent_from_audited_continuation",
+      "action": "Integrate main at 7edb096d3328263c75dc0229ff43bb77183e1ad3; four new merged PRs preserve ODS hyperlinks, outline groups, filter predicates, and update progress docs.",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_reader_test.dart"
+      ]
+    },
+    {
+      "id": "comments_style_cascade",
+      "status": "missing_in_audited_continuation",
+      "source_commit": "52d6ae43b659875e92b06cbabdd8f206aabbad6c",
+      "action": "Adapt comment deserialization before style application and comment traversal in both style passes; otherwise comment inherited language/noProof is lost.",
+      "paths": [
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart"
+      ]
+    },
+    {
+      "id": "generated_page_field_exclusion",
+      "status": "missing_in_audited_continuation",
+      "source_commit": "93c13aa1315298c0f85a5a8b757042eb9ac435e1",
+      "action": "Add pageNumberField to semantic signatures and exclude generated page-number field text/empty paragraphs from provider requests and stale corrections.",
+      "target_path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+    },
+    {
+      "id": "caret_history",
+      "status": "review_for_adaptation",
+      "source_commit": "52d6ae43b659875e92b06cbabdd8f206aabbad6c",
+      "action": "Incoming correction command captures/restores active caret and selection during undo and reapplies corrected caret on redo; current code sets caret after the initial command only.",
+      "target_path": "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+    },
+    {
+      "id": "dialog_controller_replacement",
+      "status": "review_for_adaptation",
+      "action": "Incoming UI tests cover replacement of a mounted dialog controller; current dialog has no didUpdateWidget check trigger, so replacement controller can remain unchecked.",
+      "target_path": "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart"
+    },
+    {
+      "id": "issue_hit_range",
+      "status": "review_for_adaptation",
+      "action": "Incoming issuesAt uses half-open nonempty ranges and exact matching for zero-width findings; current issuesAt includes end boundary.",
+      "target_path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
+    },
+    {
+      "id": "proofing_overlap",
+      "status": "predominantly_already_reimplemented",
+      "action": "Preserve current controller/session API, tracked-insertion/grapheme/locking/stale-document safety regressions, responsive lazy dialog, and renderer implementation when reconciling original branch. Incoming Harper/platform changes are already present or superseded."
+    },
+    {
+      "id": "zotero_source_changes",
+      "status": "absent_from_audited_continuation",
+      "action": "Integrate independent Zotero alias-group deduplication, persistent session server-backoff state and cached dialog field scan, with their five tests.",
+      "paths": [
+        "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart",
+        "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+        "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+        "packages/quds_office_engine/test/zotero_backoff_state_test.dart"
+      ]
+    },
+    {
+      "id": "hyphenation_notice_copy",
+      "status": "additional_incoming_nonbehavioral",
+      "action": "Zotero branch adds standalone third_party/hyphenation/LICENSE and removes trailing whitespace from generated notice via generator; current generated data already retains the notice."
+    },
+    {
+      "id": "vendor_hyperlinks_predecessor",
+      "status": "equivalent_production_change",
+      "action": "95debbc is not an exact git patch-id match because it was based on older source; its added/removed production lines across all four source files exactly equal be6aa3c, whose patch is already merged in main. No distinct production behavior remains."
+    }
+  ],
+  "branch_count": 53,
+  "branches": [
+    {
+      "branch": "codex/proofing-20261116",
+      "sha": "93c13aa1315298c0f85a5a8b757042eb9ac435e1",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": false
+    },
+    {
+      "branch": "codex/proofing-20261116-resume",
+      "sha": "54155845dfda909981e73f274a2550b265e2498b",
+      "in_main": false,
+      "in_continuation": true
+    },
+    {
+      "branch": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "codex/zotero-capabilities-20261116",
+      "sha": "b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": false
+    },
+    {
+      "branch": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": true
+    },
+    {
+      "branch": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": true
+    },
+    {
+      "branch": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": true
+    },
+    {
+      "branch": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": true
+    },
+    {
+      "branch": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "main",
+      "sha": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+      "in_main": true,
+      "in_continuation": false
+    },
+    {
+      "branch": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": true
+    },
+    {
+      "branch": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": false
+    },
+    {
+      "branch": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": true
+    },
+    {
+      "branch": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "in_main": false,
+      "in_continuation": false,
+      "patch_equivalent_to_main": true
+    },
+    {
+      "branch": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "in_main": true,
+      "in_continuation": true
+    },
+    {
+      "branch": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "in_main": true,
+      "in_continuation": true
+    }
+  ],
+  "limits": [
+    "Point-in-time snapshot: concurrent writers advanced main and added two branches during this audit; newer changes after the recorded snapshot require a later refresh.",
+    "This audit did not run source validation; root owns final combined source-bound validation.",
+    "No local head/index/worktree changes were made by this audit. Only remote-tracking refs were refreshed with git fetch and this scratch JSON was written.",
+    "No GitHub Actions queries or waits were performed."
+  ]
+}

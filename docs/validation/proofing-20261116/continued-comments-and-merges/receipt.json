@@ -1,0 +1,62 @@
+{
+  "started_utc": "2026-11-16T13:48:46.277034+00:00",
+  "base_commit": "54155845dfda909981e73f274a2550b265e2498b",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "source_manifest": "source-manifest.json",
+  "source_file_count": 301,
+  "checks": [
+    {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "log": "analysis.log",
+      "log_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    {
+      "command": [
+        "dart",
+        "test",
+        "--concurrency=1",
+        "--reporter",
+        "expanded",
+        "test/word_comment_proofing_styles_test.dart",
+        "test/word_comment_test.dart",
+        "test/style_cascade_test.dart",
+        "test/styleless_import_fidelity_test.dart",
+        "test/proofing_hyphenation_test.dart",
+        "test/zotero_client_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/word_zotero_source_identity_test.dart",
+        "test/zotero_backoff_state_test.dart",
+        "test/ods_sheet_reader_test.dart"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "log": "tests.log",
+      "log_sha256": "b34bdcdaf3a139cf8f373f55ff1bbb0d7e9973577c2ca5aca4674c39e8964c90",
+      "passed_tests": 212
+    }
+  ],
+  "github_actions": "Not used or waited for.",
+  "source_manifest_sha256": "d1d7db2ee58c154698af21beb3fafaa421fd135912a2279ed64fa3ad4e89eb3a",
+  "generator": {
+    "checked_utc": "2026-11-16T13:47:56.668259+00:00",
+    "command": [
+      "python3",
+      "tool/proofing/generate_hyphenation.py"
+    ],
+    "exit_code": 0,
+    "before_sha256": "fdd6a9520d9dc26a240d69f01c74eb879659b21ec2431784a4660fe6db87a3e4",
+    "after_sha256": "fdd6a9520d9dc26a240d69f01c74eb879659b21ec2431784a4660fe6db87a3e4",
+    "reproducible": true,
+    "log": "generator.log",
+    "log_sha256": "31b22f23e621121c3bd9dcb44b64f5a7778358bc291f3869f0e2f07c42f74e6b"
+  },
+  "source_unchanged_after_checks": true,
+  "finished_utc": "2026-11-16T13:49:28.717243+00:00",
+  "passed": true
+}

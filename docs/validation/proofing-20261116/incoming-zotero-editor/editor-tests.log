@@ -1,0 +1,13 @@
+00:00 +0: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart
+00:00 +0: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:01 +1: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: disconnect and public library switching do not discard backoff
+00:02 +2: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: desktop works during online backoff and does not clear it
+00:02 +3: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: a response after closing the dialog still pauses the same session
+00:03 +4: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: successful Backoff survives public library recreation
+00:03 +5: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart
+00:04 +5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+00:05 +6: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: bibliography-only documents keep source actions disabled
+00:06 +7: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart
+00:06 +7: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart: late alias bridges join bibliography entries and keep first data
+00:06 +8: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart: transitive aliases without CSL still deduplicate the bibliography
+00:06 +9: All tests passed!

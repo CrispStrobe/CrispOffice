@@ -1,0 +1,13 @@
+{
+  "checked_utc": "2026-11-16T13:47:56.668259+00:00",
+  "command": [
+    "python3",
+    "tool/proofing/generate_hyphenation.py"
+  ],
+  "exit_code": 0,
+  "before_sha256": "fdd6a9520d9dc26a240d69f01c74eb879659b21ec2431784a4660fe6db87a3e4",
+  "after_sha256": "fdd6a9520d9dc26a240d69f01c74eb879659b21ec2431784a4660fe6db87a3e4",
+  "reproducible": true,
+  "log": "generator.log",
+  "log_sha256": "31b22f23e621121c3bd9dcb44b64f5a7778358bc291f3869f0e2f07c42f74e6b"
+}

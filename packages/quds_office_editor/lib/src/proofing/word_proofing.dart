@@ -212,7 +212,9 @@ final class WordProofingSession extends ChangeNotifier {
             (issue) =>
                 identical(issue.paragraph, paragraph) &&
                 offset >= issue.finding.start &&
-                offset <= issue.finding.end,
+                (issue.finding.start == issue.finding.end
+                    ? offset == issue.finding.end
+                    : offset < issue.finding.end),
           )
           .toList();
 
@@ -496,12 +498,15 @@ final class WordProofingSession extends ChangeNotifier {
         final insertionBarriers = <int>{};
         final structure = <Object?>[];
         final languageRuns = <({int start, int end, String language})>[];
+        var hasField = fieldDepth > 0;
         var offset = 0;
         var locked =
             entry.locked ||
             paragraph.contentControlWrappers.any(_lockedControl);
         var generated =
-            entry.generated || paragraph.properties.fieldInstruction != null;
+            entry.generated ||
+            paragraph.properties.fieldInstruction != null ||
+            paragraph.properties.pageNumberField;
         if (generated && text.isNotEmpty) {
           exclusions.add((start: 0, end: text.length));
         }
@@ -516,6 +521,7 @@ final class WordProofingSession extends ChangeNotifier {
         }
         for (final inline in paragraph.inlines) {
           if (inline is WmlFieldBoundary) {
+            hasField = true;
             barriers.add(offset);
             insertionBarriers.add(offset);
             structure.add(['field', inline.kind.name, inline.text]);
@@ -559,11 +565,19 @@ final class WordProofingSession extends ChangeNotifier {
             if (inline is WmlOpaqueInline || inline is WmlObject) skipped++;
           }
         }
+        // A closed empty field has depth zero again, but its insertion point
+        // still belongs to generated content. Also retain field coverage for
+        // empty paragraphs inside or ending a field from the previous paragraph.
+        final emptyField = text.isEmpty && hasField;
+        if (emptyField) {
+          exclusions.add((start: 0, end: 0));
+          insertionBarriers.add(0);
+        }
         guards.addAll(exclusions);
         // Existing insert revisions are not rewritten by a second command.
         guards.addAll(pending[paragraph] ?? const []);
         final ranges = <({int start, int end, String language})>[];
-        var paragraphSkipped = generated;
+        var paragraphSkipped = generated || emptyField;
         var languageIndex = 0;
         // A language or noProof boundary inside a Unicode grapheme must never
         // give a provider half a surrogate pair, accent, or joined emoji.
@@ -603,7 +617,7 @@ final class WordProofingSession extends ChangeNotifier {
             ),
         ];
         if (paragraphSkipped) skipped++;
-        if (text.isEmpty && !generated) {
+        if (text.isEmpty && !paragraphSkipped) {
           segments.add(
             _Segment(
               0,
@@ -618,6 +632,8 @@ final class WordProofingSession extends ChangeNotifier {
           name,
           text,
           locked,
+          paragraph.properties.fieldInstruction,
+          paragraph.properties.pageNumberField,
           structure,
           for (final range in guards) [range.start, range.end],
           for (final segment in segments)

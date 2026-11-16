@@ -28,6 +28,9 @@ TESTS = [
     "test/editor_test.dart",
     "test/word_small_caps_test.dart",
     "test/word_note_numbering_test.dart",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_source_identity_test.dart",
 ]
 
 
@@ -45,6 +48,8 @@ def sources() -> dict[str, str]:
         if (directory / "analysis_options.yaml").exists():
             paths.add(directory / "analysis_options.yaml")
     paths.update((EDITOR / "example/lib").rglob("*.dart"))
+    paths.update((ROOT / "packages/quds_office_engine/test").rglob("*.dart"))
+    paths.update(p for p in (EDITOR / "example/web").rglob("*") if p.is_file())
     paths.add(EDITOR / "example/pubspec.yaml")
     paths.update(EDITOR / name for name in TESTS)
     for directory in [ROOT / "packages/quds_office_engine/third_party/proofing",
@@ -85,7 +90,7 @@ def main() -> int:
         ("engine-analysis", ROOT / "packages/quds_office_engine", ["dart", "analyze", "--fatal-infos"]),
         ("editor-analysis", EDITOR, ["dart", "analyze", "--fatal-infos", "lib", *TESTS]),
         ("host-analysis", EDITOR / "example", ["dart", "analyze", "--fatal-infos", "lib"]),
-        ("editor-tests", EDITOR, ["flutter", "test", "--no-pub", "--reporter", "expanded", *TESTS]),
+        ("editor-tests", EDITOR, ["flutter", "test", "--no-pub", "--concurrency=1", "--reporter", "expanded", *TESTS]),
     ]
     if not args.skip_web_build:
         commands.append(("host-web-build", EDITOR / "example", ["flutter", "build", "web", "--no-pub"]))

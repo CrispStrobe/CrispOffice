@@ -8,7 +8,7 @@ is maintained in the CrispCloud repository
 
 ## Current baseline
 
-- Sheet/ODS cohort: 503 tests.
+- Sheet/ODS cohort: 505 tests.
 - Last clean full engine run: 2,205 tests. Two unrelated CLI
   bookmark/content-control tests currently fail on main.
 - Live ODS → XLSX fidelity against LibreOffice: 0.9981 on the measured BOM
@@ -54,12 +54,12 @@ approximated.
 
 ### 4. ODS metadata and layout
 
-Imported: print areas, print-title rows/columns, global and sheet-local named
-ranges, and a basic database-range autofilter.
+Imported: print areas/titles, global and sheet-local named ranges and named
+expressions, tab colors, cell hyperlinks, row/column outline groups and a basic
+database-range autofilter.
 
-Not yet imported/modeled: unmodeled named expressions, detailed filter
-conditions, tab colors, outline grouping, cell hyperlinks and several page-style
-properties.
+Not yet imported/modeled: detailed filter value predicates and several
+page-style properties.
 
 ### 5. ODS package parity
 

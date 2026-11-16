@@ -1,0 +1,15 @@
+Analyzing quds_office_engine...
+
+  error - test/zotero_client_test.dart:887:11 - The type argument(s) of 'List' can't be inferred. Use explicit type argument(s) for 'List'. - inference_failure_on_collection_literal
+  error - test/zotero_client_test.dart:889:12 - The type argument(s) of 'Map' can't be inferred. Use explicit type argument(s) for 'Map'. - inference_failure_on_collection_literal
+  error - test/zotero_client_test.dart:889:16 - The type argument(s) of 'Map' can't be inferred. Use explicit type argument(s) for 'Map'. - inference_failure_on_collection_literal
+  error - test/zotero_client_test.dart:890:21 - The type argument(s) of 'List' can't be inferred. Use explicit type argument(s) for 'List'. - inference_failure_on_collection_literal
+  error - test/zotero_client_test.dart:891:23 - The type argument(s) of 'Map' can't be inferred. Use explicit type argument(s) for 'Map'. - inference_failure_on_collection_literal
+  error - test/zotero_client_test.dart:891:27 - The type argument(s) of 'Map' can't be inferred. Use explicit type argument(s) for 'Map'. - inference_failure_on_collection_literal
+   info - lib/quds_office_engine.dart:37:1 - Sort directive sections alphabetically. Try sorting the directives. - directives_ordering
+   info - lib/quds_office_engine.dart:39:1 - Sort directive sections alphabetically. Try sorting the directives. - directives_ordering
+   info - test/zotero_client_test.dart:624:25 - Use the null-aware marker '?' rather than a null check via an 'if'. Try using '?'. - use_null_aware_elements
+   info - test/zotero_client_test.dart:662:19 - Use the null-aware marker '?' rather than a null check via an 'if'. Try using '?'. - use_null_aware_elements
+   info - test/zotero_identity_client_test.dart:548:15 - Use the null-aware marker '?' rather than a null check via an 'if'. Try using '?'. - use_null_aware_elements
+
+11 issues found.

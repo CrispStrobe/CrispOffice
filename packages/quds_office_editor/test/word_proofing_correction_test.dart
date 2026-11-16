@@ -133,6 +133,134 @@ void _reject(WordEditorController controller, WordProofingIssue issue) {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  for (final comment in <bool>[true, false]) {
+    test(
+      'correction history preserves the selection after switching ${comment ? 'comments' : 'header/footer stories'}',
+      () async {
+        final corrected = _paragraph('Prefix Feler suffix');
+        final other = _paragraph('OK');
+        final document = WmlDocument(
+          sections: <WmlSection>[
+            WmlSection(
+              blocks: <WmlBlock>[_paragraph('Body')],
+              header: comment ? <WmlParagraph>[] : <WmlParagraph>[corrected],
+              footer: comment ? <WmlParagraph>[] : <WmlParagraph>[other],
+            ),
+          ],
+          comments: comment
+              ? <WmlComment>[
+                  WmlComment(id: 1, paragraphs: <WmlParagraph>[corrected]),
+                  WmlComment(id: 2, paragraphs: <WmlParagraph>[other]),
+                ]
+              : <WmlComment>[],
+        );
+        final controller = _controller(document: document);
+        void selectStory(bool first) {
+          if (comment) {
+            controller.beginCommentEdit(first ? 1 : 2);
+          } else {
+            controller.beginHeaderFooterEdit(0, footer: !first);
+          }
+        }
+
+        selectStory(true);
+        controller.caret
+          ..logicalIndex = 12
+          ..selectionAnchor = 7;
+        final issue = await _issue(controller);
+        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+        expect(corrected.text, 'Prefix Fehler suffix');
+        selectStory(false);
+        controller.caret
+          ..logicalIndex = 2
+          ..selectionAnchor = 1;
+        void expectOtherSelection() {
+          expect(controller.caret.paragraphIndex, 0);
+          expect(controller.caret.logicalIndex, 2);
+          expect(controller.caret.selectionAnchorParagraph, 0);
+          expect(controller.caret.selectionAnchor, 1);
+          if (comment) {
+            expect(controller.selectedCommentId, 2);
+          } else {
+            expect(controller.isEditingFooter, isTrue);
+          }
+        }
+
+        controller.undo();
+        expect(corrected.text, 'Prefix Feler suffix');
+        expectOtherSelection();
+        controller.redo();
+        expect(corrected.text, 'Prefix Fehler suffix');
+        expectOtherSelection();
+        selectStory(true);
+        controller.undo();
+        expect(corrected.text, 'Prefix Feler suffix');
+        expect(controller.caret.logicalIndex, 12);
+        expect(controller.caret.selectionAnchor, 7);
+      },
+    );
+  }
+
+  for (final tracked in <bool>[false, true]) {
+    test(
+      'correction restores caret and selection through undo/redo (tracking: $tracked)',
+      () async {
+        final paragraph = _paragraph('😀 Feler Ende');
+        final controller = _controller(
+          document: WmlDocument(
+            sections: <WmlSection>[
+              WmlSection(blocks: <WmlBlock>[_paragraph('Intro'), paragraph]),
+            ],
+          ),
+        );
+        controller.document.trackRevisions = tracked;
+        controller.caret
+          ..paragraphIndex = 1
+          ..logicalIndex = 8
+          ..selectionAnchorParagraph = 0
+          ..selectionAnchor = 2;
+        final issue = await _issue(controller);
+        expect(controller.applyProofingSuggestion(issue, 'Fehler'), isTrue);
+        expect(controller.caret.paragraphIndex, 1);
+        expect(controller.caret.logicalIndex, tracked ? 14 : 9);
+        expect(controller.caret.isCollapsed, isTrue);
+        controller.undo();
+        expect(paragraph.text, '😀 Feler Ende');
+        expect(controller.caret.paragraphIndex, 1);
+        expect(controller.caret.logicalIndex, 8);
+        expect(controller.caret.selectionAnchorParagraph, 0);
+        expect(controller.caret.selectionAnchor, 2);
+        controller.caret
+          ..paragraphIndex = 0
+          ..logicalIndex = 0
+          ..collapseSelection();
+        controller.redo();
+        expect(
+          paragraph.text,
+          tracked ? '😀 FelerFehler Ende' : '😀 Fehler Ende',
+        );
+        expect(controller.caret.paragraphIndex, 1);
+        expect(controller.caret.logicalIndex, tracked ? 14 : 9);
+        expect(controller.caret.isCollapsed, isTrue);
+      },
+    );
+  }
+
+  test('zero-width findings are hit only at their insertion point', () async {
+    final controller = _controller(
+      text: 'Text',
+      insertAtEnd: true,
+      replacements: <String>['.'],
+    );
+    final issue = await _issue(controller);
+    expect(controller.proofing.issuesAt(issue.paragraph, 3), isEmpty);
+    expect(
+      controller.proofing.issuesAt(issue.paragraph, 4),
+      <WordProofingIssue>[issue],
+    );
+    expect(controller.proofing.issuesAt(issue.paragraph, 5), isEmpty);
+  });
+
   test(
     'already-enabled hyphenation on an untagged document saves the default language with reversible history',
     () {

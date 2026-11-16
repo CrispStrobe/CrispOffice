@@ -7765,8 +7765,9 @@ class WordEditorController extends OfficeController {
   void setAutomaticHyphenation(bool enabled) {
     if (!config.allowsMutation ||
         (document.autoHyphenation == enabled &&
-            (!enabled || document.proofingLanguage != null)))
+            (!enabled || document.proofingLanguage != null))) {
       return;
+    }
     final before = document.autoHyphenation;
     final previousLanguage = document.proofingLanguage;
     final language = proofing.language;
@@ -7822,6 +7823,56 @@ class WordEditorController extends OfficeController {
     WmlRevisionSnapshot? afterRevisions;
     final tracked = document.trackRevisions;
     final previousText = paragraph.text;
+    final activeCaret = caret;
+    final activeParagraphs = _paragraphs;
+    final activeComment = isEditingComment ? selectedComment : null;
+    final activeHeaderFooter = isEditingHeaderFooter ? activeParagraphs : null;
+    bool sameCaretStory() =>
+        identical(caret, activeCaret) &&
+        (activeComment != null
+            ? isEditingComment && identical(selectedComment, activeComment)
+            : activeHeaderFooter != null
+            ? isEditingHeaderFooter &&
+                  identical(_paragraphs, activeHeaderFooter)
+            : !isEditingComment && !isEditingHeaderFooter);
+    final activeAffected =
+        activeCaret.paragraphIndex >= 0 &&
+        activeCaret.paragraphIndex < activeParagraphs.length &&
+        identical(activeParagraphs[activeCaret.paragraphIndex], paragraph);
+    final beforeCaret = (
+      paragraph: activeCaret.paragraphIndex,
+      offset: activeCaret.logicalIndex,
+      anchorParagraph: activeCaret.selectionAnchorParagraph,
+      anchor: activeCaret.selectionAnchor,
+    );
+    void correctedCaret() {
+      // Comments and headers/footers share a caret across distinct stories.
+      // Undo/redo must not apply one story's offsets to another story.
+      if (!activeAffected || !sameCaretStory()) {
+        _historyRestoredSelection = true;
+        return;
+      }
+      activeCaret
+        ..paragraphIndex = beforeCaret.paragraph
+        ..logicalIndex = (tracked ? end : start) + replacement.length
+        ..collapseSelection();
+    }
+
+    void originalCaret() {
+      if (!activeAffected || !sameCaretStory()) {
+        _historyRestoredSelection = true;
+        return;
+      }
+      activeCaret
+        ..paragraphIndex = beforeCaret.paragraph
+        ..logicalIndex = beforeCaret.offset
+        ..selectionAnchorParagraph = beforeCaret.anchorParagraph
+        ..selectionAnchor = beforeCaret.anchor;
+      if (identical(caret, activeCaret)) {
+        _historyRestoredSelection = true;
+      }
+    }
+
     void restoreBefore() {
       paragraph.inlines
         ..clear()
@@ -7840,6 +7891,7 @@ class WordEditorController extends OfficeController {
               ..clear()
               ..addAll(_cloneInlinesFrom(after!));
             afterRevisions!.restore(document);
+            correctedCaret();
             return;
           }
           restoreBefore();
@@ -7893,17 +7945,20 @@ class WordEditorController extends OfficeController {
             }
             after = _cloneInlines(paragraph);
             afterRevisions = WordRevisions.capture(document);
+            correctedCaret();
           } on Object {
             restoreBefore();
+            originalCaret();
             rethrow;
           }
         },
-        undoFn: restoreBefore,
+        undoFn: () {
+          restoreBefore();
+          originalCaret();
+        },
       ),
     );
-    if (identical(_activeParagraph, paragraph)) {
-      caret.logicalIndex = (tracked ? end : start) + replacement.length;
-      caret.collapseSelection();
+    if (activeAffected) {
       _markLocalEdit(previousText: previousText);
     }
     relayout();
