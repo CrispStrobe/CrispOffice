@@ -45,7 +45,7 @@ still disable citation-dependent actions. This removes repeated traversal
 within a build without introducing a persistent document cache.
 
 The same counting-controller fixture was executed against both source pins;
-see the [controls and exact request counts](behavioral-controls/README.md).
+see the [controls and exact field-scan counts](behavioral-controls/README.md).
 This is a traversal-count measurement, not an end-to-end latency benchmark.
 
 ### Online server pauses survive client replacement
