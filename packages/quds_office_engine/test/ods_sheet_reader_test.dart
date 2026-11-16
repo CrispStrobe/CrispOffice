@@ -1649,6 +1649,111 @@ void conditionalFormatTests() {
 }
 
 void validationTests() {
+  test('ODS whole, decimal, date and text-length validations import', () async {
+    final book = OdsSheetReader.readBytes(
+      _ods(
+        '<t:table t:name="Data">'
+        '<t:table-row><t:table-cell t:content-validation-name="v1">'
+        '<x:p>5</x:p></t:table-cell></t:table-row>'
+        '<t:table-row><t:table-cell t:content-validation-name="v2">'
+        '<x:p>2.5</x:p></t:table-cell></t:table-row>'
+        '<t:table-row><t:table-cell t:content-validation-name="v3">'
+        '<x:p>2024-01-02</x:p></t:table-cell></t:table-row>'
+        '<t:table-row><t:table-cell t:content-validation-name="v4">'
+        '<x:p>abc</x:p></t:table-cell></t:table-row>'
+        '<t:content-validations>'
+        '<t:content-validation t:name="v1" t:title="Whole" '
+        't:message="Enter 1-10" t:condition="of:cell-content-is-whole-number() '
+        'and cell-content-is-between(1,10)"/>'
+        '<t:content-validation t:name="v2" '
+        't:condition="of:cell-content-is-decimal-number() '
+        'and cell-content()&gt;1.5"/>'
+        '<t:content-validation t:name="v3" '
+        't:condition="of:cell-content-is-date() '
+        'and cell-content()&gt;=2024-1-1"/>'
+        '<t:content-validation t:name="v4" '
+        't:condition="of:cell-content-text-length()&lt;=5"/>'
+        '</t:content-validations></t:table>',
+      ),
+    );
+    final sheet = book.sheets.first;
+    expect(sheet.validations.length, 4);
+    expect(sheet.validations[0].kind, SmlValidationKind.whole);
+    expect(sheet.validations[0].operator, SmlValidationOperator.between);
+    expect(sheet.validations[0].errorTitle, 'Whole');
+    expect(sheet.validations[0].error, 'Enter 1-10');
+    expect(sheet.validations[0].accepts('5'), isTrue);
+    expect(sheet.validations[0].accepts('11'), isFalse);
+    expect(sheet.validations[1].operator, SmlValidationOperator.greaterThan);
+    expect(sheet.validations[1].accepts('2'), isTrue);
+    expect(sheet.validations[1].accepts('1'), isFalse);
+    expect(sheet.validations[2].kind, SmlValidationKind.date);
+    expect(
+      sheet.validations[2].operator,
+      SmlValidationOperator.greaterThanOrEqual,
+    );
+    expect(sheet.validations[2].accepts('2024-01-02'), isTrue);
+    expect(sheet.validations[2].accepts('2023-12-31'), isFalse);
+    expect(sheet.validations[3].kind, SmlValidationKind.textLength);
+    expect(sheet.validations[3].accepts('abc'), isTrue);
+    expect(sheet.validations[3].accepts('abcdef'), isFalse);
+
+    final saved = await OfficeIsolateSave.workbook(book, recalculate: false);
+    final archive = ZipDecoder().decodeBytes(saved);
+    final sheetXml = utf8.decode(
+      archive.findFile('xl/worksheets/sheet1.xml')!.content as List<int>,
+    );
+    expect(sheetXml, contains('operator="greaterThan"'));
+    expect(sheetXml, contains('operator="greaterThanOrEqual"'));
+    expect(sheetXml, contains('operator="lessThanOrEqual"'));
+    expect(sheetXml, contains('type="textLength"'));
+    final reopened = SheetDeserializer().readBytes(saved);
+    expect(
+      reopened.sheets.first.validations[1].operator,
+      SmlValidationOperator.greaterThan,
+    );
+  });
+
+  test('ODS list source preserves spaces in quoted sheet names', () {
+    final book = OdsSheetReader.readBytes(
+      _ods(
+        '<t:table t:name="Data"><t:table-row><t:table-cell '
+        't:content-validation-name="v"><x:p>Pick</x:p></t:table-cell></t:table-row><t:content-validations>'
+        '<t:content-validation t:name="v" '
+        "t:condition=\"of:cell-content-is-in-list(\$'Choice List'.\$A\$1:.\$A\$2)\"/>"
+        '</t:content-validations></t:table>'
+        '<t:table t:name="Choice List"><t:table-row><t:table-cell>'
+        '<x:p>Red</x:p></t:table-cell></t:table-row>'
+        '<t:table-row><t:table-cell><x:p>Green</x:p></t:table-cell>'
+        '</t:table-row></t:table>',
+      ),
+    );
+    expect(book.sheets.first.validations.single.listItems, ['Red', 'Green']);
+  });
+
+  test('ODS validation source range is bounded before scanning empty cells', () {
+    expect(
+      () => OdsSheetReader.readBytes(
+        _ods(
+          '<t:table t:name="Data"><t:table-row><t:table-cell '
+          't:content-validation-name="v"><x:p>Pick</x:p></t:table-cell></t:table-row><t:content-validations>'
+          '<t:content-validation t:name="v" '
+          't:condition="of:cell-content-is-in-list(\$Lists.\$A\$1:.\$C\$1000000)"/>'
+          '</t:content-validations></t:table>'
+          '<t:table t:name="Lists"><t:table-row><t:table-cell>'
+          '<x:p>Red</x:p></t:table-cell></t:table-row></t:table>',
+        ),
+      ),
+      throwsA(
+        isA<OdsSheetFormatException>().having(
+          (error) => error.toString(),
+          'reason',
+          contains('validation source work limit'),
+        ),
+      ),
+    );
+  });
+
   test('ODS range-source list validations resolve across sheets', () {
     final book = OdsSheetReader.readBytes(
       _ods(
