@@ -1183,9 +1183,8 @@ class WordDeserializer {
           _flushFieldText(inlines, run);
           final boundary = WmlFieldBoundary(
             kind: kind,
-            sourceXml: XmlDocument(
-              root: fldChar,
-            ).toXmlString(declaration: false),
+            sourceXml: XmlDocument(root: fldChar)
+                .toXmlString(declaration: false),
             runPropertiesXml: run.properties.sourcePropertiesXml,
           );
           inlines.add(boundary);
@@ -1358,9 +1357,8 @@ class WordDeserializer {
 
   void _readPPr(XmlPullReader reader, WmlParagraphProps props) {
     final XmlElement node = XmlDocument.readElement(reader);
-    props.sourcePropertiesXml = XmlDocument(
-      root: node,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: node)
+        .toXmlString(declaration: false);
     final XmlPullReader source = WordMarkupCompatibilityReader(
       props.sourcePropertiesXml!,
     )..next();
@@ -1382,6 +1380,14 @@ class WordDeserializer {
           props.justification = _jc(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
           );
+        case 'suppressAutoHyphens':
+          props.suppressAutoHyphens = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
+        case 'rPr':
+          final marker = WmlRunProps();
+          _parseRPr(reader, marker);
+          props.proofingLanguage = marker.proofingLanguage;
         case 'bidi':
           props.rightToLeft = _onOff(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
@@ -1823,9 +1829,8 @@ class WordDeserializer {
         ),
       );
       props
-        ..sourcePropertiesXml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false)
+        ..sourcePropertiesXml = XmlDocument(root: source)
+            .toXmlString(declaration: false)
         ..asciiFont = font
         ..csFont = font;
     }
@@ -2099,9 +2104,8 @@ class WordDeserializer {
 
   void _readRPr(XmlPullReader reader, WmlRunProps props) {
     final XmlElement node = XmlDocument.readElement(reader);
-    props.sourcePropertiesXml = XmlDocument(
-      root: node,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: node)
+        .toXmlString(declaration: false);
     final XmlPullReader source = WordMarkupCompatibilityReader(
       props.sourcePropertiesXml!,
     )..next();
@@ -2119,6 +2123,15 @@ class WordDeserializer {
       }
       props.explicitProperties.add(reader.localName);
       switch (reader.localName) {
+        case 'lang':
+          props.proofingLanguage = reader.getAttribute(
+            'val',
+            namespaceUri: OfficeNamespaces.w,
+          );
+        case 'noProof':
+          props.noProof = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
         case 'rStyle':
           props.styleId = reader.getAttribute(
             'val',
@@ -2201,9 +2214,8 @@ class WordDeserializer {
       }
       if (reader.localName == 'tblPr') {
         final XmlElement source = XmlDocument.readElement(reader);
-        final String xml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false);
+        final String xml = XmlDocument(root: source)
+            .toXmlString(declaration: false);
         table.properties.sourcePropertiesXml = xml;
         _readTableProperties(WordMarkupCompatibilityReader(xml)..next(), table);
       } else if (reader.localName == 'gridCol') {
@@ -2496,9 +2508,8 @@ class WordDeserializer {
           );
         }
         final source = XmlDocument.readElement(reader);
-        cell.sourceWidthXml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false);
+        cell.sourceWidthXml = XmlDocument(root: source)
+            .toXmlString(declaration: false);
         final type =
             source.getAttribute('type', namespaceUri: OfficeNamespaces.w) ??
             'dxa';
@@ -2593,9 +2604,8 @@ class WordDeserializer {
     String docUri,
   ) {
     final XmlElement source = XmlDocument.readElement(reader);
-    final String sourceXml = XmlDocument(
-      root: source,
-    ).toXmlString(declaration: false);
+    final String sourceXml = XmlDocument(root: source)
+        .toXmlString(declaration: false);
     reader = WordMarkupCompatibilityReader(sourceXml)..next();
     String? headerRid;
     String? footerRid;
@@ -3149,9 +3159,8 @@ class WordDeserializer {
     final PackagePart? part = package.getPart('/word/watermark.xml');
     if (part != null) {
       final String xml = part.readText();
-      final Match? match = RegExp(
-        r'<w:watermark[^>]*>([^<]*)</w:watermark>',
-      ).firstMatch(xml);
+      final Match? match = RegExp(r'<w:watermark[^>]*>([^<]*)</w:watermark>')
+          .firstMatch(xml);
       if (match != null) {
         document.watermark = match
             .group(1)!
@@ -3295,6 +3304,12 @@ class WordDeserializer {
     if (part == null) {
       return;
     }
+    document.proofingLanguage = XmlDocument.parse(part.readText()).root
+        ?.firstChild('docDefaults', namespaceUri: OfficeNamespaces.w)
+        ?.firstChild('rPrDefault', namespaceUri: OfficeNamespaces.w)
+        ?.firstChild('rPr', namespaceUri: OfficeNamespaces.w)
+        ?.firstChild('lang', namespaceUri: OfficeNamespaces.w)
+        ?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
     document.styles.clear();
     final XmlPullReader reader = WordMarkupCompatibilityReader(part.readText());
     String? id;
@@ -3552,6 +3567,7 @@ class WordDeserializer {
     }
     final settings = WordSettingsIo.read(part.readText());
     document
+      ..autoHyphenation = settings.autoHyphenation
       ..trackRevisions = settings.tracking
       ..restrictEditing = settings.protection
       ..restrictMode = settings.restrictMode
