@@ -8,6 +8,17 @@ vendor product.
 See also [MISSION.md](MISSION.md) (Phases 1–6), [ROADMAP.md](ROADMAP.md),
 and the PDF-as-a-file program in [PDF.md](PDF.md).
 
+## Proofing baseline and active work
+
+The [proofing implementation plan](PROOFING.md) tracks spelling, automatic
+hyphenation and grammar separately. At its initial roadmap checkpoint,
+`OfficeSpell` requires a host checker or supplied word set; the example's empty
+result is not evidence that spelling ran. The line breaker recognizes explicit
+hyphen/soft-hyphen positions but has no language-pattern hyphenation. Grammar
+checking is absent. Native XML preservation of language/proofing/hyphenation
+settings does not imply active interpretation. Replace these baseline statements
+only after their corresponding behavior is implemented and verified.
+
 ## Supported (engine)
 
 | Area | Coverage |
