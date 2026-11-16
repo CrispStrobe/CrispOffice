@@ -313,7 +313,7 @@ void main() {
             return 'en-GB';
           },
         ),
-        [3, 6, 14, 17, 21, 28, 32],
+        [3, 6, 14, 17, 21, 29, 33],
       );
       expect(OfficeHyphenator.supports('de-CH'), isTrue);
       expect(OfficeHyphenator.supports('en-GB'), isTrue);
