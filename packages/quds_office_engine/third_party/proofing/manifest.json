@@ -18,9 +18,9 @@
     "path": "tool/proofing/german_common_words.txt",
     "license": "MIT",
     "authorship": "Independently authored Quds Office basic-word supplement, 2026",
-    "sha256": "adcc09d68f350c4b608e27a776a09fa4fd1b992c765e98d140c2185ee5176bd3",
-    "forms": 482,
-    "additional_forms": 97
+    "sha256": "0c9a0116ff47f9a071410be3d4edc1a1ecb63f798f35cef778f8dd6c1d2f36ed",
+    "forms": 1264,
+    "additional_forms": 198
   },
   "selection": {
     "standard": "Shared field 2, otherwise reformed field 4; excludes absent -N- placeholders.",
@@ -28,31 +28,32 @@
     "scope": "Finite word forms; no unrestricted compound decomposition or complete morphology. DE and AT share this source vocabulary. The old source snapshot has no claim to contemporary completeness."
   },
   "data": {
-    "standard_count": 444022,
-    "swiss_additions_count": 9446,
-    "standard_sha256": "f8901eb60328d8d2c01395a0130447883002a548d3c6321d526db308e73da73f",
-    "swiss_additions_sha256": "10ea638ce3007d85c0f3e8d292f9f9ca2f653a27a5622308d94e0539c8476d8b"
+    "standard_count": 444123,
+    "swiss_additions_count": 9451,
+    "standard_sha256": "687559f48fa11f2cc8191488fe8aa86453385ed5b2f68c7142a164f402ec49da",
+    "swiss_additions_sha256": "47983d1ea48a7c3a0328b071b9d2beab1ffed7ac6f33b209dcc6f80afe4be760"
   },
   "encoding": {
     "format": "base64 raw DEFLATE of newline-separated UTF-8, <=4096 words/chunk",
     "zlib_version": "1.3.2"
   },
   "generated_files": {
-    "lib/src/proofing/data/german_lexicon_data.dart": "d1a38a61686c34a3da1eb17c112012938318f7901637f441c080f5c9f6d0f776",
+    "lib/src/proofing/data/german_common_00.dart": "8617711b9765cd8efcb9af4686aaf982eeeb7bab2d29db8e6f8ca7889f5362ab",
+    "lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
     "lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
     "lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
     "lib/src/proofing/data/german_standard_02.dart": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
     "lib/src/proofing/data/german_standard_03.dart": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
     "lib/src/proofing/data/german_standard_04.dart": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
     "lib/src/proofing/data/german_standard_05.dart": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
-    "lib/src/proofing/data/german_standard_06.dart": "794795e9f7414834117ebf693f41c08f74641457d78762d2ad10fc930e94e857",
-    "lib/src/proofing/data/german_standard_07.dart": "c8a94579258a669f0f141d0dfc8f41eeda7c3e42f43b4a5814c9a7ff300998ca",
-    "lib/src/proofing/data/german_standard_08.dart": "4c1e38ea287ee1fd5e8c4893d95155202a765826d878707a6af454470406aabd",
-    "lib/src/proofing/data/german_standard_09.dart": "0a869cb25649a1f30b2ad63fabfae63dde592fc34249ab7a887998ebc3577337",
-    "lib/src/proofing/data/german_standard_10.dart": "dd37b202c52d95064f8b4723b7e1e8bf4a4bd7f9b297b56a7ac5b22d8042d9ad",
-    "lib/src/proofing/data/german_standard_11.dart": "afbaa267e4f97f8c96b1f0977c3d102090553a8e536dac923c3c0244d6979c75",
-    "lib/src/proofing/data/german_standard_12.dart": "6b07de205f925d01a7b59e7ceadda21af5cc1b6471a96c1b9e849344fd6f48a8",
-    "lib/src/proofing/data/german_standard_13.dart": "4acb51157fa5b39bcc5e5181efab4741abb7ec2b6c3d71e7cced00595c2b7c7e",
-    "lib/src/proofing/data/german_swiss_00.dart": "713834e1a46cf8df4ff6de85418beedce15d6e85bb38fe0d0bef2e50a47fa31c"
+    "lib/src/proofing/data/german_standard_06.dart": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+    "lib/src/proofing/data/german_standard_07.dart": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+    "lib/src/proofing/data/german_standard_08.dart": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+    "lib/src/proofing/data/german_standard_09.dart": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+    "lib/src/proofing/data/german_standard_10.dart": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+    "lib/src/proofing/data/german_standard_11.dart": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+    "lib/src/proofing/data/german_standard_12.dart": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+    "lib/src/proofing/data/german_standard_13.dart": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+    "lib/src/proofing/data/german_swiss_00.dart": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6"
   }
 }

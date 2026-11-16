@@ -1,5 +1,5 @@
-import 'grapheme_clusters.dart';
 import 'german_hyphenation_data.dart';
+import 'grapheme_clusters.dart';
 
 /// German reformed-orthography break opportunities in original UTF-16 units.
 ///
@@ -31,8 +31,9 @@ abstract final class GermanHyphenator {
       final normalized = _composeUmlaut(
         word.substring(cluster.start, cluster.end),
       ).toLowerCase();
-      if (!_letter.hasMatch(normalized) || normalized.runes.length != 1)
+      if (!_letter.hasMatch(normalized) || normalized.runes.length != 1) {
         return const [];
+      }
       letters.add(normalized);
       sourceOffsets.add(cluster.end);
     }

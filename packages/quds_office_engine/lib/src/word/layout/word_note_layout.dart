@@ -29,8 +29,9 @@ class _NoteStory {
         if (inline is WmlNoteMarker) {
           offsets.addAll(List<int?>.filled(label.length, null));
         } else if (inline is WmlRun) {
-          for (var j = 0; j < inline.text.length; j++)
+          for (var j = 0; j < inline.text.length; j++) {
             offsets.add(sourceOffset++);
+          }
         }
       }
       offsets.add(sourceOffset);

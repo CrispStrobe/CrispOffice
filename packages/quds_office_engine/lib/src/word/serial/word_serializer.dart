@@ -835,8 +835,9 @@ class WordSerializer {
         case WmlNoteMarker():
           w.writeStartElement('r', prefix: 'w');
           final marker = inline.properties;
-          final changed = WordPropertyIo.runValues(marker).entries
-              .any((entry) => marker.importedValues?[entry.key] != entry.value);
+          final changed = WordPropertyIo.runValues(marker).entries.any(
+            (entry) => marker.importedValues?[entry.key] != entry.value,
+          );
           if (marker.sourcePropertiesXml != '' || changed) {
             _writeRPr(w, marker);
           }
@@ -1060,20 +1061,29 @@ class WordSerializer {
   }
 
   void _writeRunContent(XmlWriter w, String text, {required bool deleted}) {
-    if (!text.contains(RegExp(r'[\t\r\n]'))) {
+    if (!text.contains(RegExp(r'[\t\r\n\u00ad\u2011]'))) {
       _writeTextNode(w, text, deleted: deleted);
       return;
     }
     var start = 0;
     for (int i = 0; i < text.length; i++) {
       final int code = text.codeUnitAt(i);
-      if (code != 0x09 && code != 0x0a && code != 0x0d) {
+      if (code != 0x09 &&
+          code != 0x0a &&
+          code != 0x0d &&
+          code != 0x00ad &&
+          code != 0x2011) {
         continue;
       }
       if (i > start) {
         _writeTextNode(w, text.substring(start, i), deleted: deleted);
       }
-      w.writeEmptyElement(code == 0x09 ? 'tab' : 'br', prefix: 'w');
+      w.writeEmptyElement(switch (code) {
+        0x09 => 'tab',
+        0x00ad => 'softHyphen',
+        0x2011 => 'noBreakHyphen',
+        _ => 'br',
+      }, prefix: 'w');
       if (code == 0x0d &&
           i + 1 < text.length &&
           text.codeUnitAt(i + 1) == 0x0a) {
@@ -2102,8 +2112,9 @@ class WordSerializer {
     );
     if (importedWithoutStyles &&
         current.isEmpty &&
-        document.proofingLanguage == null)
+        document.proofingLanguage == null) {
       return;
+    }
     final XmlWriter w = XmlWriter();
     w.writeStartDocument();
     w.writeStartElement('styles', prefix: 'w');

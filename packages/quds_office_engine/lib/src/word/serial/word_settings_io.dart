@@ -44,8 +44,9 @@ abstract final class WordSettingsIo {
         !tracking &&
         !protection &&
         !oddEven &&
-        autoHyphenation != true)
+        autoHyphenation != true) {
       return null;
+    }
     final document = source == null
         ? XmlDocument.parse('<w:settings xmlns:w="${OfficeNamespaces.w}"/>')
         : XmlDocument.parse(source);
@@ -56,7 +57,7 @@ abstract final class WordSettingsIo {
       'trackRevisions': tracking,
       'documentProtection': protection,
       'evenAndOddHeaders': oddEven,
-      if (autoHyphenation != null) 'autoHyphenation': autoHyphenation,
+      'autoHyphenation': ?autoHyphenation,
     };
     for (final entry in values.entries) {
       var element = root.firstChild(

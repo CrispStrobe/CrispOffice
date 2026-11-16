@@ -13,6 +13,7 @@ environment:
 workspace:
   - packages/legacy_doc_parser
   - packages/quds_office_engine
+  - packages/quds_proofing_harper
   - packages/quds_office_engine/example
   - packages/quds_reports
   - packages/quds_office_editor

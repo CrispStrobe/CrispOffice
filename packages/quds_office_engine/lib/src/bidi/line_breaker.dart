@@ -80,10 +80,8 @@ class ShapedGlyph {
 }
 
 /// Offset applied after the base advance so a combining mark sits on it.
-typedef MarkAttachFn = ({double dx, double dy}) Function(
-  ShapedGlyph base,
-  ShapedGlyph mark,
-);
+typedef MarkAttachFn =
+    ({double dx, double dy}) Function(ShapedGlyph base, ShapedGlyph mark);
 
 /// Width provider used by the breaker (typically [FontMetrics.characterWidth]).
 typedef GlyphWidthFn = double Function(int codePoint);
@@ -722,7 +720,9 @@ abstract final class LineBreaker {
         // An indivisible word may overflow; a discretionary hyphen that
         // does not fit is not a usable break. Keep its candidate unreachable.
         var previous = j - 1;
-        while (previous > 0 && demerits[previous].isInfinite) previous--;
+        while (previous > 0 && demerits[previous].isInfinite) {
+          previous--;
+        }
         demerits[j] = demerits[previous] + 10000;
         pred[j] = previous;
       }
@@ -789,22 +789,25 @@ abstract final class LineBreaker {
       if (offset <= 0 ||
           offset >= text.length ||
           !boundaries.contains(offset) ||
-          !bySource.containsKey(offset))
+          !bySource.containsKey(offset)) {
         continue;
+      }
       final explicit = text.codeUnitAt(offset - 1) == 0x00ad;
       var owner = offset - 1;
       if (owner > 0 &&
           text.codeUnitAt(owner) >= 0xdc00 &&
-          text.codeUnitAt(owner) <= 0xdfff)
+          text.codeUnitAt(owner) <= 0xdfff) {
         owner--;
+      }
       final prior = bySource[owner];
       final next = bySource[offset]!;
       if (prior == null ||
           prior.isSpace ||
           next.isSpace ||
           next.codePoint == 0x0a ||
-          next.codePoint == 0x0d)
+          next.codePoint == 0x0d) {
         continue;
+      }
       result[offset] = ShapedGlyph(
         codePoint: 0x2d,
         glyphId: glyphIdAt(0x2d, owner),
@@ -833,8 +836,7 @@ abstract final class LineBreaker {
   ) => [
     for (var at = from; at < paintedTo; at++)
       if (logical[at].codePoint != 0x00ad) logical[at],
-    if (_hyphenForBreak(logical, consumedTo, hyphens) case final hyphen?)
-      hyphen,
+    ?_hyphenForBreak(logical, consumedTo, hyphens),
   ];
 
   static bool _isBreakSpace(int cp) =>

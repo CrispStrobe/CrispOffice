@@ -2,6 +2,7 @@
 // Pinned MIT data; see third_party/proofing/manifest.json and licenses.
 // Raw DEFLATE chunks contain sorted UTF-8 word forms. Do not edit.
 
+import 'german_common_00.dart';
 import 'german_standard_00.dart';
 import 'german_standard_01.dart';
 import 'german_standard_02.dart';
@@ -33,6 +34,7 @@ const List<String> germanLexiconChunks = <String>[
   ...germanStandardChunks11,
   ...germanStandardChunks12,
   ...germanStandardChunks13,
+  ...germanCommonChunks0,
 ];
 
 const List<String> germanSwissLexiconChunks = <String>[

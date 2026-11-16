@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
-import '../../bidi/line_breaker.dart';
 import '../../bidi/german_hyphenator.dart';
+import '../../bidi/line_breaker.dart';
 import '../../fonts/font_metrics.dart';
 import '../../fonts/gpos_mark_to_base.dart';
 import '../../fonts/office_font_set.dart';
@@ -742,11 +742,8 @@ const double kDefaultTabWidth = 36;
 /// Hosts that paint with their own text stack (for example Flutter's
 /// `TextPainter`) pass this to [WordLayoutEngine.measure] so line breaks use
 /// the same widths the painter will use.
-typedef WordGlyphMeasure = double Function(
-  int codePoint,
-  double sizePoints,
-  WmlRunProps props,
-);
+typedef WordGlyphMeasure =
+    double Function(int codePoint, double sizePoints, WmlRunProps props);
 
 /// Flowable pagination: Knuth-Plass lines accumulated into physical pages.
 class WordLayoutEngine {

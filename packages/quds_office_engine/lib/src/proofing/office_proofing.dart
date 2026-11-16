@@ -13,7 +13,11 @@ String normalizeProofingLanguage(String language) {
   final List<String> parts = language.trim().replaceAll('_', '-').split('-');
   final String base = parts.first.toLowerCase();
   if (parts.length == 1) {
-    return switch (base) { 'de' => 'de-DE', 'en' => 'en-US', _ => base };
+    return switch (base) {
+      'de' => 'de-DE',
+      'en' => 'en-US',
+      _ => base,
+    };
   }
   return <String>[
     base,
@@ -153,7 +157,8 @@ class OfficeProofingReport {
        findings = List<OfficeProofingFinding>.unmodifiable(
          <OfficeProofingFinding>[
            for (final OfficeProofingResult result in results)
-             if (result.status == OfficeProofingStatus.success) ...result.findings,
+             if (result.status == OfficeProofingStatus.success)
+               ...result.findings,
          ]..sort((OfficeProofingFinding a, OfficeProofingFinding b) {
            final int byStart = a.start.compareTo(b.start);
            return byStart == 0 ? a.end.compareTo(b.end) : byStart;
@@ -167,10 +172,14 @@ class OfficeProofingReport {
   /// Every applicable configured provider completed. Unsupported providers do
   /// not invalidate another language's checker, but at least one must succeed.
   bool get complete =>
-      results.any((OfficeProofingResult r) => r.status == OfficeProofingStatus.success) &&
-      results.every((OfficeProofingResult r) =>
-          r.status == OfficeProofingStatus.success ||
-          r.status == OfficeProofingStatus.unsupported);
+      results.any(
+        (OfficeProofingResult r) => r.status == OfficeProofingStatus.success,
+      ) &&
+      results.every(
+        (OfficeProofingResult r) =>
+            r.status == OfficeProofingStatus.success ||
+            r.status == OfficeProofingStatus.unsupported,
+      );
   bool get isClean => complete && findings.isEmpty;
 }
 
@@ -208,13 +217,17 @@ class OfficeProofingService {
             request: request,
             providerId: 'proofing',
             status: OfficeProofingStatus.unavailable,
-            message: _disposed ? 'Proofing service is disposed.' : 'No proofing provider is configured.',
+            message: _disposed
+                ? 'Proofing service is disposed.'
+                : 'No proofing provider is configured.',
           ),
         ],
       );
     }
     final List<OfficeProofingResult> results = await Future.wait(
-      providers.map((OfficeProofingProvider provider) => _checkProvider(provider, request)),
+      providers.map(
+        (OfficeProofingProvider provider) => _checkProvider(provider, request),
+      ),
     );
     return OfficeProofingReport(request: request, results: results);
   }
@@ -241,7 +254,9 @@ class OfficeProofingService {
           message: '${provider.id} does not support ${request.language}.',
         );
       }
-      final OfficeProofingResult result = await provider.check(request).timeout(timeout);
+      final OfficeProofingResult result = await provider
+          .check(request)
+          .timeout(timeout);
       if (_disposed) return unavailable('Proofing service is disposed.');
       final String? invalid = _invalidResult(provider, request, result);
       if (invalid != null) throw FormatException(invalid);
@@ -258,7 +273,7 @@ class OfficeProofingService {
     } on TimeoutException {
       _timedOut.add(provider);
       // A failing disposal must not prevent the timeout result from returning.
-      unawaited(provider.dispose().catchError((Object _) {}));
+      unawaited(Future<void>.sync(provider.dispose).catchError((Object _) {}));
       return OfficeProofingResult(
         request: request,
         providerId: provider.id,
@@ -280,10 +295,12 @@ class OfficeProofingService {
     OfficeProofingRequest request,
     OfficeProofingResult result,
   ) {
-    if (result.providerId != provider.id || !identical(result.request, request)) {
+    if (result.providerId != provider.id ||
+        !identical(result.request, request)) {
       return 'Provider returned a result for a different request or provider.';
     }
-    if (result.status != OfficeProofingStatus.success && result.findings.isNotEmpty) {
+    if (result.status != OfficeProofingStatus.success &&
+        result.findings.isNotEmpty) {
       return 'An incomplete provider result must not contain findings.';
     }
     final Set<int> boundaries = <int>{0};
@@ -299,8 +316,11 @@ class OfficeProofingService {
           finding.blockId != request.blockId ||
           finding.revision != request.revision ||
           finding.providerId != provider.id ||
-          start < 0 || end < start || end > request.text.length ||
-          !boundaries.contains(start) || !boundaries.contains(end) ||
+          start < 0 ||
+          end < start ||
+          end > request.text.length ||
+          !boundaries.contains(start) ||
+          !boundaries.contains(end) ||
           request.text.substring(start, end) != finding.originalText) {
         return 'Provider returned an invalid or stale source range.';
       }
@@ -311,13 +331,15 @@ class OfficeProofingService {
   Future<void> dispose() async {
     if (_disposed) return;
     _disposed = true;
-    await Future.wait(providers.map((OfficeProofingProvider provider) async {
-      if (_timedOut.contains(provider)) return;
-      try {
-        await provider.dispose().timeout(timeout);
-      } catch (_) {
-        // Disposal is best effort; subsequent checks still report unavailable.
-      }
-    }));
+    await Future.wait(
+      providers.map((OfficeProofingProvider provider) async {
+        if (_timedOut.contains(provider)) return;
+        try {
+          await provider.dispose().timeout(timeout);
+        } catch (_) {
+          // Disposal is best effort; subsequent checks still report unavailable.
+        }
+      }),
+    );
   }
 }
