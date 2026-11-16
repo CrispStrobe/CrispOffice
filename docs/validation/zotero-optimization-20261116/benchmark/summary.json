@@ -1,0 +1,84 @@
+{
+  "baseline_commit": "428679a33381f943a8ae63117d4207f01dd15462",
+  "optimized_file": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+  "method": "JIT warmup: 80 groups x 3; each measurement uses 3 fields and 2 notes per group, 5 repetitions; microseconds, no performance assertions",
+  "runtime": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "results": [
+    {
+      "fields": 300,
+      "notes": 200,
+      "identical_wire_sha256": "c310f30f13ae76e397a6f8215e796795f91123548376f45640c9fcb6db933caa",
+      "initialization_us": {
+        "baseline_median": 22064,
+        "optimized_median": 22802,
+        "speedup": 0.97
+      },
+      "get_fields_us": {
+        "baseline_median": 2726,
+        "optimized_median": 436,
+        "speedup": 6.25
+      },
+      "assert_unchanged_us": {
+        "baseline_median": 7057,
+        "optimized_median": 7629,
+        "speedup": 0.93
+      },
+      "select_fields_five_passes_us": {
+        "baseline_median": 2359,
+        "optimized_median": 168,
+        "speedup": 14.04
+      }
+    },
+    {
+      "fields": 1200,
+      "notes": 800,
+      "identical_wire_sha256": "d7bd142ba44545d449e7dc9c46db726351bcb0097bb106387bba8e7d12453120",
+      "initialization_us": {
+        "baseline_median": 89082,
+        "optimized_median": 85573,
+        "speedup": 1.04
+      },
+      "get_fields_us": {
+        "baseline_median": 53254,
+        "optimized_median": 1273,
+        "speedup": 41.83
+      },
+      "assert_unchanged_us": {
+        "baseline_median": 41605,
+        "optimized_median": 31097,
+        "speedup": 1.34
+      },
+      "select_fields_five_passes_us": {
+        "baseline_median": 37443,
+        "optimized_median": 667,
+        "speedup": 56.14
+      }
+    },
+    {
+      "fields": 2400,
+      "notes": 1600,
+      "identical_wire_sha256": "28e7e2b7282d69cadd9465ef14f6a42dce7d01bd8f63484f638e80a3c0d527d1",
+      "initialization_us": {
+        "baseline_median": 165762,
+        "optimized_median": 179471,
+        "speedup": 0.92
+      },
+      "get_fields_us": {
+        "baseline_median": 228704,
+        "optimized_median": 1773,
+        "speedup": 128.99
+      },
+      "assert_unchanged_us": {
+        "baseline_median": 83643,
+        "optimized_median": 79806,
+        "speedup": 1.05
+      },
+      "select_fields_five_passes_us": {
+        "baseline_median": 115496,
+        "optimized_median": 1639,
+        "speedup": 70.47
+      }
+    }
+  ],
+  "scope": "Synthetic engine-only local JIT microbenchmark. Not application or live Zotero latency; no timing threshold is a regression gate."
+}

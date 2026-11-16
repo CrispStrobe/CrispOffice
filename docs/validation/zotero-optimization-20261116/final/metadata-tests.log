@@ -1,0 +1,83 @@
+00:00 +0: loading test/zotero_metadata_batch_test.dart
+00:00 +0: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +1: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +2: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +3: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +4: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +5: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +6: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +7: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +8: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +9: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +10: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +11: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +12: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +13: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +14: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +15: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +16: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +17: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +18: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +19: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +20: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +21: test/zotero_metadata_batch_test.dart: additional source refuses the whole batch
+00:00 +22: test/zotero_metadata_batch_test.dart: additional source refuses the whole batch
+00:00 +23: test/zotero_identity_client_test.dart: invalid identity arguments fail before any request
+00:00 +24: test/zotero_saved_search_test.dart: saved searches use the pinned local group library
+00:00 +25: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:00 +26: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:00 +27: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:00 +28: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:00 +29: test/zotero_client_test.dart: bibliography makes one globally formatted request and deduplicates keys
+00:00 +30: test/zotero_saved_search_test.dart: online connections cannot list or execute the local saved-search workflow
+00:00 +31: test/zotero_saved_search_test.dart: online connections cannot list or execute the local saved-search workflow
+00:00 +32: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +33: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +34: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +35: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +36: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +37: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +38: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +39: test/zotero_metadata_batch_test.dart: inconsistent or malformed result totals refuse complete-looking data
+00:00 +40: test/zotero_metadata_batch_test.dart: inconsistent or malformed result totals refuse complete-looking data
+00:00 +41: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:00 +42: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:00 +43: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:00 +44: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:00 +45: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:00 +46: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:00 +47: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:00 +48: test/zotero_client_test.dart: successful Backoff is honored without waiting, retries or discarding data
+00:00 +49: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +50: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +51: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +52: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +53: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +54: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +55: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +56: test/zotero_client_test.dart: concurrent responses cannot shorten a requested Backoff
+00:00 +57: test/zotero_identity_client_test.dart: older desktops without a database pin refuse aggregate linked output
+00:00 +58: test/zotero_identity_client_test.dart: older desktops without a database pin refuse aggregate linked output
+00:00 +59: test/zotero_client_test.dart: desktop local API plain-text handshake pins the server without an API key
+00:00 +60: test/zotero_identity_client_test.dart: database changes between preflight and formatting never return output
+00:00 +61: test/zotero_client_test.dart: desktop local API older desktops may omit a server ID; API v3 is still required
+00:00 +62: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:00 +63: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:00 +64: test/zotero_client_test.dart: desktop local API invalid server IDs are not echoed into a later request
+00:00 +65: test/zotero_identity_client_test.dart: numeric cloud identities use the same complete-selection verification
+00:00 +66: test/zotero_client_test.dart: desktop local API local groups, collections, query and formats stay on loopback
+00:00 +67: test/zotero_client_test.dart: desktop local API local groups, collections, query and formats stay on loopback
+00:00 +68: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:00 +69: test/zotero_client_test.dart: desktop local API local routing alias is never accepted by the cloud client
+00:00 +70: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +71: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +72: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +73: test/zotero_client_test.dart: desktop local API a citation key without local identity remains an offline source
+00:00 +74: test/zotero_identity_client_test.dart: metadata refresh requests no style and still proves local identity
+00:00 +75: test/zotero_client_test.dart: desktop local API single CSL export objects, arrays and envelopes are normalized
+00:00 +76: test/zotero_client_test.dart: desktop local API malformed and multi-item CSL exports do not pick an arbitrary record
+00:00 +77: test/zotero_client_test.dart: desktop local API canonical CSL IDs cannot change item, library or identity
+00:00 +78: test/zotero_client_test.dart: desktop local API users/0 requires a valid matching response library envelope
+00:00 +79: test/zotero_client_test.dart: desktop local API local pagination cannot leave the selected loopback route
+00:00 +80: test/zotero_client_test.dart: desktop local API desktop errors explain local setup without exposing diagnostics
+00:00 +81: All tests passed!

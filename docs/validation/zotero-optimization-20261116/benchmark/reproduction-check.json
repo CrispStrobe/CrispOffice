@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-11-16T10:22:04.798880+00:00",
+  "mode": "prepare-only; no new performance run",
+  "result": "passed",
+  "runner_sha256": "012208672cab96a3f07eddaddb250b9f7a1ac411c46ef7f4651c296369b3dc5c",
+  "materialized_source_provenance": {
+    "prepared_at_utc": "2026-11-16T10:21:36.988374+00:00",
+    "baseline_target_file_ref": "428679a33381f943a8ae63117d4207f01dd15462",
+    "optimized_common_source_ref": "91c725feb5517db3c5f686e80662e2cb4f77f0d4",
+    "target_file": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "baseline_target_sha256": "a18893904d03f1e8a5b02f65653e6a981a87cb18451a6195da00ee82ad73d416",
+    "optimized_target_sha256": "ea9288994003cb32bccfbfc7ab6a4ced541858c849324a8d8816ca5151113492",
+    "engine_lib_manifest_sha256": "e3e8f0cef454f36f9a5f6f46e3963a54917b6480e842b0c3522caf47ea415004",
+    "fixture_sha256": "fe835a1f0c7255e4aef8f628f32bd4d73be33ea3b4a727252337bbd10d9f4e53",
+    "harness_lock_sha256": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+    "only_differing_engine_lib_file": "src/word/model/word_zotero_citing.dart",
+    "comparison": "Common optimized engine source with only the baseline native-session target file substituted; not two full historical repository trees."
+  },
+  "recorded_raw_result_hashes": "matched source-provenance.json",
+  "recalculated_medians_and_wire_equality": "matched summary.json"
+}

@@ -1,0 +1,7 @@
+[
+  "word_zotero_scaling_test.dart",
+  "word_zotero_citing_test.dart",
+  "word_zotero_bibliography_layout_test.dart",
+  "word_zotero_preference_flow_test.dart",
+  "word_zotero_rich_edit_test.dart"
+]
