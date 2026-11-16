@@ -35,6 +35,13 @@ contents were read with `git show REV:PATH`. Equality checks compared actual
 bytes, then recorded identifiers below. Manifest and bundled-font path sets
 also matched, so the comparison did not merely overlook an added file.
 
+Here, project manifests means the root workspace and paths under `apps/` and
+`packages/`, including their examples. Three additional historical
+`docs/validation/` fixture manifests are outside that nine-file count. The final
+[source binding](source-binding.json) checks all three separately, preserves
+the nine-project-manifest comparison, and verifies that the two disjoint groups
+cover every tracked `pubspec.yaml` at the integrated base and bound HEAD.
+
 The complete delta contains 15 paths: five production Dart files, Dart tests
 and support code, documentation/validation tooling, a changelog, and one MIT
 notice. No build configuration, package manifest, tracked lockfile, native
@@ -42,7 +49,7 @@ source, native binary, or font binary changed. Review of new production imports
 found no new external package import, FFI binding, process execution, or runtime
 download. The one added source URL is a specification citation in a comment.
 
-### Nine unchanged manifests
+### Nine unchanged project manifests
 
 The following Git blob is shared by the base and audited revision for each path:
 

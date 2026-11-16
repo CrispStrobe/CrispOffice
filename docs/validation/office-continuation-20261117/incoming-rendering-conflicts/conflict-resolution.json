@@ -1,0 +1,76 @@
+{
+  "source_commit": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+  "canonical_parent": "ad3c6edce16fd0e02ad43e0d4e176b22d334f21d",
+  "files": [
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/CHECKPOINT.md",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/CHECKPOINT.md",
+      "retained_sha256": "5aab4f4be1093546b3bbaf863850ea5a182e00bba5a937c96f98560d120d5480",
+      "incoming_sha256": "ec5870cadd36df8c3267a7b94fa2c988a3331380dd95f874d77ee8c432821c9e",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/README.md",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/README.md",
+      "retained_sha256": "022f32abae9e2fcb7aea356b9960787dddb90eccc9db98010c57b47cecf265a8",
+      "incoming_sha256": "db5a18f57aed17fd55c5595e01a7e9fee08bb080bb9d0dcfe5830f0fd9741a43",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/editor-final/format.stdout.gz",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/editor-final/format.stdout.gz",
+      "retained_sha256": "3897c556200f9ab084dd77518f8cf879dce763f6abb3072b99832434b6c0fd5d",
+      "incoming_sha256": "c800df7813caa61a939ecc870e02a779e196df1be91076c7ce9ac636085ad00a",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/editor-final/receipt.json",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/editor-final/receipt.json",
+      "retained_sha256": "71c61a2032b5926c27c48948888f918047391ac2132ac70836bf1c72d16a21ba",
+      "incoming_sha256": "fdec813142c910b5377a129e10c114818f37e631a507f8922138c5235b77e226",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/editor-final/tests.stdout.gz",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/editor-final/tests.stdout.gz",
+      "retained_sha256": "6c239db2fc2caebda8bb6da0fdc90fcf4fa73f55a470735d7ea19d678f1f8e92",
+      "incoming_sha256": "2c1d04322ae7346d143814ddbbae1b800072263b4752173275db73e2f905e573",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/editor-final/validate-used.py",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/editor-final/validate-used.py",
+      "retained_sha256": "6a1e9096e62681a987852729e0c2b0ff80da092dc41e88171c17575ab354feb5",
+      "incoming_sha256": "4be8614adadb7be7e677243311352006d14fed678964135137720c7ca125ea35",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/engine-final/format.stdout.gz",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/engine-final/format.stdout.gz",
+      "retained_sha256": "c19f48e1433150af1a116b53060061b8389b407f92a6c42570988ae57c69133c",
+      "incoming_sha256": "cad0b2befd69a48b989a642f5eac2e54a95df036806b46b20095e2baf5b7abc1",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/engine-final/receipt.json",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/engine-final/receipt.json",
+      "retained_sha256": "8fd6b0cc58fd037f78dad2b14db89d39f25d859b81d938915b556ba3fbb03051",
+      "incoming_sha256": "b8030e6373da4d3337a016c30298de8cfc991aa490ddfe1938a1f11d78e41ed8",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/engine-final/tests.stdout.gz",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/engine-final/tests.stdout.gz",
+      "retained_sha256": "9d5c57b565f8f9ca6e2d9de902313cc43e3b51b4fa56932ed12de7fa55451508",
+      "incoming_sha256": "4eb4de285ce75603712d93baffdfd5ec4ddbee9c9a7e85f4f60ad323cd0a1814",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    },
+    {
+      "canonical_path": "docs/validation/text-rendering-continuation-20261116/engine-final/validate-used.py",
+      "historical_copy": "docs/validation/office-continuation-20261117/incoming-rendering-conflicts/engine-final/validate-used.py",
+      "retained_sha256": "6a1e9096e62681a987852729e0c2b0ff80da092dc41e88171c17575ab354feb5",
+      "incoming_sha256": "4be8614adadb7be7e677243311352006d14fed678964135137720c7ca125ea35",
+      "resolution": "Keep final canonical qualification; retain incoming variant verbatim in attributed archive."
+    }
+  ]
+}
