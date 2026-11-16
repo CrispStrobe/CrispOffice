@@ -1,0 +1,11 @@
+{
+  "verified_at_utc": "2026-11-16T19:38:36.185522+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "head": "95185d2f803215d768d440cbbc2ee74789574005",
+  "tracked_blob_count": 5206,
+  "working_tree_blob_mismatches": [],
+  "handoff_base": "9d9051859f0aa0fdf43dec938d31642ea3c67133",
+  "handoff_file_count": 228,
+  "handoff_changed_or_missing": [],
+  "scope": "Local downloaded checkpoint compared byte-for-byte to Git tree; original handoff evidence compared by Git blob ID. No Flutter/Dart tests rerun."
+}

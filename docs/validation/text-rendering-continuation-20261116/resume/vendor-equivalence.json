@@ -1,0 +1,143 @@
+{
+  "method": "GitHub per-commit REST diffs and resulting changed-file blob identities; exact equality of per-file patch strings and changed-file blobs checked",
+  "groups": [
+    {
+      "name": "ODS autofilter predicates",
+      "commits": [
+        {
+          "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+          "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+          "parents": [
+            "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "c77e81725fa0d17bb3f5dd756d46e9f8894749d5"
+            }
+          ]
+        },
+        {
+          "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+          "tree": "12543395e4f423ac6327fdff709a89bfa9a01169",
+          "parents": [
+            "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "f8384a68d354ca50369ae93c455a193ee9d26dba"
+            }
+          ]
+        },
+        {
+          "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+          "tree": "1f2119192dd82eb633ce9445d64da8e41608b200",
+          "parents": [
+            "9de9b4fb1287e935328dc6e653f7457eef7defa1"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "c77e81725fa0d17bb3f5dd756d46e9f8894749d5"
+            }
+          ]
+        },
+        {
+          "sha": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+          "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+          "parents": [
+            "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "c77e81725fa0d17bb3f5dd756d46e9f8894749d5"
+            }
+          ]
+        }
+      ],
+      "all_changed_file_blobs_equal": false
+    },
+    {
+      "name": "ODS row groups and off-extent geometry",
+      "commits": [
+        {
+          "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+          "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+          "parents": [
+            "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f"
+            }
+          ]
+        },
+        {
+          "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+          "tree": "9cfcbbbc904b9baa2ca5c51ddbb5cc421f9a3b59",
+          "parents": [
+            "817982d580e990a5ca21d74c35135db4817e54b5"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f"
+            }
+          ]
+        },
+        {
+          "sha": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+          "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+          "parents": [
+            "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f"
+            }
+          ]
+        }
+      ],
+      "all_changed_file_blobs_equal": true
+    }
+  ]
+}

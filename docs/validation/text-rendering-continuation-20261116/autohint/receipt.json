@@ -1,0 +1,726 @@
+{
+  "scope": "FreeType diagnostic; not a claim about Flutter hint settings",
+  "source_font": "/workspace/scratch/796b63b8623e/quds_office_suite/packages/quds_office_editor/fonts/LiberationSans-Regular.ttf",
+  "source_sha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8",
+  "font_size_points": 64,
+  "dpi": 72,
+  "hinting_factor": 1,
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "fonttools": "4.61.1",
+    "matplotlib": "3.10.8",
+    "freetype": "2.6.1"
+  },
+  "table_checks": {
+    "full": {
+      "changed_tables": [],
+      "glyf_identical": true,
+      "hmtx_identical": true,
+      "font_sha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8",
+      "cmap": {
+        "U+41": "U+41",
+        "U+42": "U+42",
+        "U+43": "U+43",
+        "U+5A": "U+5A"
+      }
+    },
+    "latin_cmap": {
+      "changed_tables": [
+        "head",
+        "cmap"
+      ],
+      "glyf_identical": true,
+      "hmtx_identical": true,
+      "font_sha256": "46397b388889beca9bbd9858639a5078fd865b82e00227e3b63fdf54f4c89728",
+      "cmap": {
+        "U+41": "U+41",
+        "U+42": "U+42",
+        "U+43": "U+43",
+        "U+5A": "U+5A"
+      }
+    },
+    "alias_cmap": {
+      "changed_tables": [
+        "head",
+        "cmap"
+      ],
+      "glyf_identical": true,
+      "hmtx_identical": true,
+      "font_sha256": "e034782a38fe6601e8015e7f73c02391ef9ad941c284d4bb9f1d865965986859",
+      "cmap": {
+        "U+41": "U+41",
+        "U+42": "U+1F600",
+        "U+43": "U+20000",
+        "U+5A": "U+5A"
+      }
+    }
+  },
+  "native_and_unhinted_controls_equal": true,
+  "cmap_only_change_affects_auto_hinting": true,
+  "results": {
+    "native": {
+      "A": {
+        "full": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 685,
+          "bitmap_sha256": "d9fcf186b3654c95438321165edf4cec6786af88a36bf3e97f2096d998c729cd",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 685,
+          "bitmap_sha256": "d9fcf186b3654c95438321165edf4cec6786af88a36bf3e97f2096d998c729cd",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 685,
+          "bitmap_sha256": "d9fcf186b3654c95438321165edf4cec6786af88a36bf3e97f2096d998c729cd",
+          "equal_to_full": true
+        }
+      },
+      "B": {
+        "full": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 882,
+          "bitmap_sha256": "d46b77ec0f9c66441afdcf3f654f02705f967654b14d7584a57c005d07217086",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 882,
+          "bitmap_sha256": "d46b77ec0f9c66441afdcf3f654f02705f967654b14d7584a57c005d07217086",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 882,
+          "bitmap_sha256": "d46b77ec0f9c66441afdcf3f654f02705f967654b14d7584a57c005d07217086",
+          "equal_to_full": true
+        }
+      },
+      "C": {
+        "full": {
+          "width_and_height_26_6": [
+            2944,
+            2944
+          ],
+          "bitmap_shape": [
+            48,
+            42
+          ],
+          "nonzero_pixels": 682,
+          "bitmap_sha256": "9a1cf1393b53c44f20d6c094b4755dbc07696557e921ab0cc55ee0232fc0ce8a",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2944,
+            2944
+          ],
+          "bitmap_shape": [
+            48,
+            42
+          ],
+          "nonzero_pixels": 682,
+          "bitmap_sha256": "9a1cf1393b53c44f20d6c094b4755dbc07696557e921ab0cc55ee0232fc0ce8a",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2944,
+            2944
+          ],
+          "bitmap_shape": [
+            48,
+            42
+          ],
+          "nonzero_pixels": 682,
+          "bitmap_sha256": "9a1cf1393b53c44f20d6c094b4755dbc07696557e921ab0cc55ee0232fc0ce8a",
+          "equal_to_full": true
+        }
+      },
+      "Z": {
+        "full": {
+          "width_and_height_26_6": [
+            2496,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 607,
+          "bitmap_sha256": "cc157802cd85dc9e440927dfdefaa632e607c7c767513b2981164ebd57e0c8d4",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2496,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 607,
+          "bitmap_sha256": "cc157802cd85dc9e440927dfdefaa632e607c7c767513b2981164ebd57e0c8d4",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2496,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 607,
+          "bitmap_sha256": "cc157802cd85dc9e440927dfdefaa632e607c7c767513b2981164ebd57e0c8d4",
+          "equal_to_full": true
+        }
+      }
+    },
+    "light": {
+      "A": {
+        "full": {
+          "width_and_height_26_6": [
+            2752,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            44
+          ],
+          "nonzero_pixels": 709,
+          "bitmap_sha256": "364c1e5543c2477189f75bcf592c0605c2b702136fc36cae9da9f8a4fe689fa0",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 687,
+          "bitmap_sha256": "3041d3d8a4fe9f9835bca4094fe7b6fd4b9a7cb5a1b6762acdcdac824595654a",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 687,
+          "bitmap_sha256": "3041d3d8a4fe9f9835bca4094fe7b6fd4b9a7cb5a1b6762acdcdac824595654a",
+          "equal_to_full": false
+        }
+      },
+      "B": {
+        "full": {
+          "width_and_height_26_6": [
+            2752,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            36
+          ],
+          "nonzero_pixels": 895,
+          "bitmap_sha256": "ec05847343451d5deed5a55d8f01dc9b9a8a7971209ca58ed0e40869b559d315",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 874,
+          "bitmap_sha256": "3338c6a25a7c03abfefb2e1d19259e34a4d852694eed2dea2b0cbed185816e8d",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 900,
+          "bitmap_sha256": "a5cfe30750005a5bca879417802fb36f81a31ee22712e7b68d94d060445c90f3",
+          "equal_to_full": false
+        }
+      },
+      "C": {
+        "full": {
+          "width_and_height_26_6": [
+            2944,
+            2944
+          ],
+          "bitmap_shape": [
+            48,
+            42
+          ],
+          "nonzero_pixels": 703,
+          "bitmap_sha256": "7cce04728660c35ff1071d0e3f7710604f8ce070020e8bb0664e26a55cda4aca",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2944,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            42
+          ],
+          "nonzero_pixels": 692,
+          "bitmap_sha256": "d7c4ab368c42475834dc837b5000794b0b987bec8407153669ef133ca90714ee",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2944,
+            2912
+          ],
+          "bitmap_shape": [
+            47,
+            42
+          ],
+          "nonzero_pixels": 695,
+          "bitmap_sha256": "88ed8b62839c1192e817cabb775ec3d89abbc4b663e6c4647a819befca4042d3",
+          "equal_to_full": false
+        }
+      },
+      "Z": {
+        "full": {
+          "width_and_height_26_6": [
+            2496,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            37
+          ],
+          "nonzero_pixels": 622,
+          "bitmap_sha256": "6dde5c628b836445a296c7ace0dd6f6f84ecf7ac104c859e382e5842bba0acd7",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2496,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            37
+          ],
+          "nonzero_pixels": 613,
+          "bitmap_sha256": "8009e1b2b47d2b787f8dd88091292d0419682392372521bda610f6493366a7db",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2496,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            37
+          ],
+          "nonzero_pixels": 613,
+          "bitmap_sha256": "8009e1b2b47d2b787f8dd88091292d0419682392372521bda610f6493366a7db",
+          "equal_to_full": false
+        }
+      }
+    },
+    "auto_light": {
+      "A": {
+        "full": {
+          "width_and_height_26_6": [
+            2752,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            44
+          ],
+          "nonzero_pixels": 709,
+          "bitmap_sha256": "364c1e5543c2477189f75bcf592c0605c2b702136fc36cae9da9f8a4fe689fa0",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 687,
+          "bitmap_sha256": "3041d3d8a4fe9f9835bca4094fe7b6fd4b9a7cb5a1b6762acdcdac824595654a",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 687,
+          "bitmap_sha256": "3041d3d8a4fe9f9835bca4094fe7b6fd4b9a7cb5a1b6762acdcdac824595654a",
+          "equal_to_full": false
+        }
+      },
+      "B": {
+        "full": {
+          "width_and_height_26_6": [
+            2752,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            36
+          ],
+          "nonzero_pixels": 895,
+          "bitmap_sha256": "ec05847343451d5deed5a55d8f01dc9b9a8a7971209ca58ed0e40869b559d315",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 874,
+          "bitmap_sha256": "3338c6a25a7c03abfefb2e1d19259e34a4d852694eed2dea2b0cbed185816e8d",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2752,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 900,
+          "bitmap_sha256": "a5cfe30750005a5bca879417802fb36f81a31ee22712e7b68d94d060445c90f3",
+          "equal_to_full": false
+        }
+      },
+      "C": {
+        "full": {
+          "width_and_height_26_6": [
+            2944,
+            2944
+          ],
+          "bitmap_shape": [
+            48,
+            42
+          ],
+          "nonzero_pixels": 703,
+          "bitmap_sha256": "7cce04728660c35ff1071d0e3f7710604f8ce070020e8bb0664e26a55cda4aca",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2944,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            42
+          ],
+          "nonzero_pixels": 692,
+          "bitmap_sha256": "d7c4ab368c42475834dc837b5000794b0b987bec8407153669ef133ca90714ee",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2944,
+            2912
+          ],
+          "bitmap_shape": [
+            47,
+            42
+          ],
+          "nonzero_pixels": 695,
+          "bitmap_sha256": "88ed8b62839c1192e817cabb775ec3d89abbc4b663e6c4647a819befca4042d3",
+          "equal_to_full": false
+        }
+      },
+      "Z": {
+        "full": {
+          "width_and_height_26_6": [
+            2496,
+            2880
+          ],
+          "bitmap_shape": [
+            47,
+            37
+          ],
+          "nonzero_pixels": 622,
+          "bitmap_sha256": "6dde5c628b836445a296c7ace0dd6f6f84ecf7ac104c859e382e5842bba0acd7",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2496,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            37
+          ],
+          "nonzero_pixels": 613,
+          "bitmap_sha256": "8009e1b2b47d2b787f8dd88091292d0419682392372521bda610f6493366a7db",
+          "equal_to_full": false
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2496,
+            2816
+          ],
+          "bitmap_shape": [
+            46,
+            37
+          ],
+          "nonzero_pixels": 613,
+          "bitmap_sha256": "8009e1b2b47d2b787f8dd88091292d0419682392372521bda610f6493366a7db",
+          "equal_to_full": false
+        }
+      }
+    },
+    "unhinted": {
+      "A": {
+        "full": {
+          "width_and_height_26_6": [
+            2732,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 717,
+          "bitmap_sha256": "ca541b70695a858dad75decbb1436d14bc23d2460255018a941206dfb718c6ca",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2732,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 717,
+          "bitmap_sha256": "ca541b70695a858dad75decbb1436d14bc23d2460255018a941206dfb718c6ca",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2732,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            44
+          ],
+          "nonzero_pixels": 717,
+          "bitmap_sha256": "ca541b70695a858dad75decbb1436d14bc23d2460255018a941206dfb718c6ca",
+          "equal_to_full": true
+        }
+      },
+      "B": {
+        "full": {
+          "width_and_height_26_6": [
+            2732,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 901,
+          "bitmap_sha256": "5d7fe8c77cef0efddaa99dc47cb169324951d7f909acd2c8491f1c967acc9b30",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2732,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 901,
+          "bitmap_sha256": "5d7fe8c77cef0efddaa99dc47cb169324951d7f909acd2c8491f1c967acc9b30",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2732,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            36
+          ],
+          "nonzero_pixels": 901,
+          "bitmap_sha256": "5d7fe8c77cef0efddaa99dc47cb169324951d7f909acd2c8491f1c967acc9b30",
+          "equal_to_full": true
+        }
+      },
+      "C": {
+        "full": {
+          "width_and_height_26_6": [
+            2958,
+            2900
+          ],
+          "bitmap_shape": [
+            47,
+            42
+          ],
+          "nonzero_pixels": 692,
+          "bitmap_sha256": "d8a649319b0408be44170a3e8463d0dc942135032c57dfb325aa4acfe6b7dc2d",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2958,
+            2900
+          ],
+          "bitmap_shape": [
+            47,
+            42
+          ],
+          "nonzero_pixels": 692,
+          "bitmap_sha256": "d8a649319b0408be44170a3e8463d0dc942135032c57dfb325aa4acfe6b7dc2d",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2958,
+            2900
+          ],
+          "bitmap_shape": [
+            47,
+            42
+          ],
+          "nonzero_pixels": 692,
+          "bitmap_sha256": "d8a649319b0408be44170a3e8463d0dc942135032c57dfb325aa4acfe6b7dc2d",
+          "equal_to_full": true
+        }
+      },
+      "Z": {
+        "full": {
+          "width_and_height_26_6": [
+            2502,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            37
+          ],
+          "nonzero_pixels": 645,
+          "bitmap_sha256": "1014665c0781c7608869fc71f4a9c4ef6d67182ad1e24bfa346bea6f1c478216",
+          "equal_to_full": true
+        },
+        "latin_cmap": {
+          "width_and_height_26_6": [
+            2502,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            37
+          ],
+          "nonzero_pixels": 645,
+          "bitmap_sha256": "1014665c0781c7608869fc71f4a9c4ef6d67182ad1e24bfa346bea6f1c478216",
+          "equal_to_full": true
+        },
+        "alias_cmap": {
+          "width_and_height_26_6": [
+            2502,
+            2818
+          ],
+          "bitmap_shape": [
+            46,
+            37
+          ],
+          "nonzero_pixels": 645,
+          "bitmap_sha256": "1014665c0781c7608869fc71f4a9c4ef6d67182ad1e24bfa346bea6f1c478216",
+          "equal_to_full": true
+        }
+      }
+    }
+  }
+}

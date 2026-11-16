@@ -1,0 +1,276 @@
+{
+  "schema": "quds-recovered-evidence-audit-v1",
+  "checked_utc": "2026-11-16T19:52:23.395745+00:00",
+  "current_head": "65f943d70260ad634ffd9f0d36a2a3790061a137",
+  "recovered_receipts": {
+    "docs/validation/text-rendering-continuation-20261116/baseline/receipt.json": "e0578997bb2b51a1618d9230b9de0886b4f4e6173a7b5d4a0a22b8cf4ec8e9d3",
+    "docs/validation/text-rendering-continuation-20261116/engine-attempt1/receipt.json": "75b6ebf6f4a3865bd13d48363336d3592bf87af6d7e795a8e7c1831639e95f25",
+    "docs/validation/text-rendering-continuation-20261116/poppler/receipt.json": "5ac73376c9f149bf59733beff0240f806f44844dfc44834b1e8f36522e92d6b2"
+  },
+  "limits": "Checks recovered receipt/log/fixture integrity and binds source hashes; does not claim the old engine gate covers changed incoming ODS sources.",
+  "checks": {
+    "harness_integrity": {
+      "baseline": {
+        "current_script": "validate_baseline.py",
+        "current_script_matches": true,
+        "captured_script": null,
+        "captured_script_matches": null
+      },
+      "engine": {
+        "current_script": "validate.py",
+        "current_script_matches": false,
+        "captured_script": "engine-attempt1/validate-used.py",
+        "captured_script_matches": true
+      },
+      "poppler": {
+        "current_script": "verify_pdf_rendering.py",
+        "current_script_matches": true,
+        "captured_script": "poppler/verify-pdf-rendering-used.py",
+        "captured_script_matches": true
+      }
+    },
+    "baseline_log_integrity": [
+      {
+        "name": "resolve",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "tests",
+        "exit_code": 1,
+        "stdout_matches": true,
+        "test_summary_matches": true,
+        "outcomes": {
+          "failure": 10,
+          "success": 1,
+          "error": 9
+        },
+        "runner_success": false,
+        "stderr_matches": true
+      }
+    ],
+    "engine-attempt1_log_integrity": [
+      {
+        "name": "tests",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "test_summary_matches": true,
+        "outcomes": {
+          "success": 169
+        },
+        "runner_success": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "analyze",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "format",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      }
+    ],
+    "poppler_log_integrity": [
+      {
+        "name": "pdftoppm-version",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "pdftotext-version",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "source-head",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "raster-encoded-aliases",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "raster-identity-glyph-reference",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "text-encoded-aliases",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "text-word-unicode-aliases",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      }
+    ],
+    "baseline_source": {
+      "commit": "0d19b16e10c6bc8492f47880321df2d9f2561223",
+      "checked_paths": 508,
+      "mismatches": [],
+      "unchanged_during_original_run": true,
+      "probe_hashes_match_current": {
+        "packages/quds_office_engine/test/font_subset_structure_test.dart": true,
+        "packages/quds_office_engine/test/pdf_unicode_alias_export_test.dart": true,
+        "packages/quds_office_engine/test/support/pdf_alias_fixture.dart": true
+      },
+      "recorded_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      "lock_hash_matches_current": true,
+      "committed_saved_lock": {
+        "path": "docs/validation/proofing-20261116/integration-resume/workspace-pubspec.lock",
+        "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+        "matches_recorded": true
+      }
+    },
+    "engine_current_source_binding": {
+      "recorded_paths": 397,
+      "before_after_match": true,
+      "current_mismatches": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "current_missing": [
+        ".dart_tool/package_config.json"
+      ],
+      "original_passed": true
+    },
+    "poppler_current_source_binding": {
+      "recorded_paths": 12,
+      "before_after_match": true,
+      "current_mismatches": [],
+      "current_missing": [],
+      "original_passed": true
+    },
+    "poppler_artifact_integrity": {
+      "authored-text.txt": true,
+      "encoded-aliases.pdf": true,
+      "encoded-aliases.png": true,
+      "encoded-aliases.txt": true,
+      "identity-glyph-reference.pdf": true,
+      "identity-glyph-reference.png": true,
+      "pdftoppm-version.stderr.txt": true,
+      "pdftoppm-version.stdout.txt": true,
+      "pdftotext-version.stderr.txt": true,
+      "pdftotext-version.stdout.txt": true,
+      "producer-receipt.json": true,
+      "raster-difference.png": true,
+      "raster-encoded-aliases.stderr.txt": true,
+      "raster-encoded-aliases.stdout.txt": true,
+      "raster-identity-glyph-reference.stderr.txt": true,
+      "raster-identity-glyph-reference.stdout.txt": true,
+      "source-head.stderr.txt": true,
+      "source-head.stdout.txt": true,
+      "text-encoded-aliases.stderr.txt": true,
+      "text-encoded-aliases.stdout.txt": true,
+      "text-word-unicode-aliases.stderr.txt": true,
+      "text-word-unicode-aliases.stdout.txt": true,
+      "verify-pdf-rendering-used.py": true,
+      "word-unicode-aliases.pdf": true,
+      "word-unicode-aliases.txt": true
+    },
+    "poppler_input_producer_binding": {
+      "encoded-aliases.pdf": true,
+      "identity-glyph-reference.pdf": true,
+      "word-unicode-aliases.pdf": true,
+      "authored-text.txt": true,
+      "producer-receipt.json": true
+    },
+    "poppler_inputs_unchanged": true,
+    "poppler_recomputed": {
+      "raster": {
+        "dimensions": [
+          320,
+          112
+        ],
+        "same_dimensions": true,
+        "rgb_sha256": "23a35dc4f1e1ebc78dd2af458e9524143c3555d49f5167ebc57b374d018f825b",
+        "nonwhite_ink_pixels": 2109,
+        "difference_bbox": null,
+        "identical_rgb": true
+      },
+      "text": {
+        "expected_code_points": [
+          "U+0041",
+          "U+1F600",
+          "U+20000",
+          "U+0041",
+          "U+005A"
+        ],
+        "normalization": "Extracted text: remove trailing U+000A/U+000C only; authored text unchanged",
+        "identity_control": "Raster only; deliberately not an extraction oracle",
+        "results": {
+          "encoded-aliases": {
+            "text_file": "encoded-aliases.txt",
+            "raw_sha256": "d991886630ee8133aa0b97d30abb809fdbd3bcc5ca3625f8f81a01c237f9b82a",
+            "raw_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A",
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "compared_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A"
+            ],
+            "trimmed_trailing_code_points": [
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "passed": true
+          },
+          "word-unicode-aliases": {
+            "text_file": "word-unicode-aliases.txt",
+            "raw_sha256": "d991886630ee8133aa0b97d30abb809fdbd3bcc5ca3625f8f81a01c237f9b82a",
+            "raw_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A",
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "compared_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A"
+            ],
+            "trimmed_trailing_code_points": [
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "passed": true
+          }
+        },
+        "passed": true
+      }
+    }
+  }
+}
