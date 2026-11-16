@@ -8,7 +8,7 @@ is maintained in the CrispCloud repository
 
 ## Current baseline
 
-- Sheet/ODS cohort: 511 tests.
+- Sheet/ODS cohort: 512 tests.
 - Last clean full engine run: 2,205 tests. Two unrelated CLI
   bookmark/content-control tests currently fail on main.
 - Live ODS → XLSX fidelity against LibreOffice: 0.9981 on the measured BOM
@@ -82,8 +82,8 @@ new XLSX copy; the host also exposes an explicit **Export as ODS** action.
 `OdsSheetWriter` exports the modeled workbook subset (values, formulas, styles,
 number formats, merges, geometry, hidden state, comments, links, names, print
 areas/titles, autofilter ranges and predicates, pictures, conditional formats,
-validations, row outline groups and authored page setup). An ODT/ODP writer
-remains a separate project.
+validations, row outline groups, authored page setup and header/footer
+sections). An ODT/ODP writer remains a separate project.
 
 ### 8. ODP slide fidelity
 
