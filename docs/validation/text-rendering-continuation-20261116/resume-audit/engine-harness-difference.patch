@@ -1,0 +1,21 @@
+diff --git a/docs/validation/text-rendering-continuation-20261116/engine-attempt1/validate-used.py b/docs/validation/text-rendering-continuation-20261116/validate.py
+index 1c31ac0..f623bfe 100644
+--- a/docs/validation/text-rendering-continuation-20261116/engine-attempt1/validate-used.py
++++ b/docs/validation/text-rendering-continuation-20261116/validate.py
+@@ -75,6 +75,7 @@ def main():
+     parser = argparse.ArgumentParser()
+     parser.add_argument('--cohort', choices=['engine', 'editor'], required=True)
+     parser.add_argument('--output', type=Path, required=True)
++    parser.add_argument('--flutter', default='flutter', help='Flutter CLI executable or verified offline launcher')
+     args = parser.parse_args()
+     output = args.output.resolve()
+     output.mkdir(parents=True, exist_ok=True)
+@@ -96,7 +97,7 @@ def main():
+     changed = sorted(set(changed))
+     relative = [str((REPO / p).relative_to(package)) for p in changed]
+     test_command = (['dart', 'test'] if args.cohort == 'engine'
+-                    else ['flutter', 'test', '--no-pub', '--dart-define=QUDS_SUBSET_RENDER_OUTPUT=' + str(output / 'render')])
++                    else [args.flutter, 'test', '--no-pub', '--dart-define=QUDS_SUBSET_RENDER_OUTPUT=' + str(output / 'render')])
+     commands = [('tests', test_command + ['--reporter', 'json'] + ['test/' + p for p in tests]),
+                 ('analyze', ['dart', 'analyze', '--fatal-infos'] + relative),
+                 ('format', ['dart', 'format', '--output=none', '--set-exit-if-changed'] + relative)]

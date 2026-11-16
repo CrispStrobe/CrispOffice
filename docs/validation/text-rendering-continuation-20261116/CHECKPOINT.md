@@ -44,11 +44,14 @@ changed-file analysis and formatting passed, with 462 input hashes unchanged.
 Its source-bound receipts and rendered fixtures are preserved in `editor/`.
 The verified Flutter 3.47.8 / Dart 3.13.7 runtime provenance is in `runtime/`.
 
-The newly combined ODS source/test changes are being qualified with 19 engine
-and eight editor test files. These overlapping final cohorts supersede the
-initial qualification for the combined source; their counts are not added to
-the earlier totals. Final receipts and the report state exact source bindings,
-results and remaining limitations.
+The final combined-source qualification passed: **279 engine tests** across
+19 files and **66 Flutter tests** across eight files, with strict analysis and
+formatting passing in both cohorts. All 399 engine and 462 editor input hashes
+stayed unchanged. The final independent PDF check again produced zero differing
+pixels and exact authored Unicode extraction. See `README.md`, `engine-final/`,
+`editor-final/` and `poppler-final/`. These overlapping final cohorts supersede
+the initial qualification for the combined source; their counts are not added
+to earlier totals.
 
 The independent merge-tree review in `incoming-merge-review.json` also verifies
 that all nine incoming heads yield the same source tree as main-only integration,
