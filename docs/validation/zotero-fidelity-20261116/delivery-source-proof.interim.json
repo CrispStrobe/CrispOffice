@@ -1,0 +1,530 @@
+{
+  "all_available_sections_verified": false,
+  "blocked_supplemental_attempt": {
+    "included_in_qualified_test_count": false,
+    "note": "A blocked attempt is retained as a limitation, not treated as a passing qualification.",
+    "original_qualified": false,
+    "reason": "The unchanged crisp_catalog native build hook required cargo, which was unavailable; Flutter failed native-assets preparation before emitting any test-protocol completion.",
+    "receipt": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/terminal-integration/supplemental/receipt.json",
+    "recorded_passed_tests": 0,
+    "selected_suites": [
+      "ssh_agent_widget_test.dart",
+      "terminal_mount_localization_test.dart",
+      "ssh_terminal_transport_test.dart",
+      "ssh_tmux_panel_lifecycle_test.dart",
+      "tmux_control_workspace_test.dart"
+    ],
+    "status": "blocked_before_test_execution"
+  },
+  "companion": "/workspace/scratch/4156e4a05f09/CrispCloud",
+  "companion_head": "fc09d3f5e0ecb74ca91f3c416b401b0897dc04da",
+  "companion_head_after": "fc09d3f5e0ecb74ca91f3c416b401b0897dc04da",
+  "finished_at_utc": "2026-11-16T07:43:49.663323+00:00",
+  "issues": [],
+  "missing_optional_sections": [],
+  "network_used": false,
+  "passed": false,
+  "quds_head": "c0e6e79cbe37d9490bab629cbd7a6c939fe0d1d5",
+  "quds_head_after": "c0e6e79cbe37d9490bab629cbd7a6c939fe0d1d5",
+  "read_only_verification": true,
+  "requested_quds_commit": "HEAD",
+  "resolved_quds_commit": "c0e6e79cbe37d9490bab629cbd7a6c939fe0d1d5",
+  "schema": 1,
+  "sections": {
+    "canonical": {
+      "available": true,
+      "inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 1577,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 1577
+      },
+      "inventory": {
+        "additional_documentation_inputs": [],
+        "additional_production_inputs": [],
+        "production_changes_from_current_head": []
+      },
+      "issues": [],
+      "logs": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 9
+      },
+      "passed": true,
+      "qualified_commit": "ca4011de0e17783f12bcff07336e318adc1db99c",
+      "receipt": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/final/receipt.json",
+      "recorded_tests_passed": 928,
+      "required": true,
+      "source_after": {
+        "aggregate_sha256": "d8487fd97f5ed1e90351d01c64f8a4939c0dd6d2e81f4be18d98be9e7796b534",
+        "files": 1577,
+        "map": "source-after.json",
+        "map_sha256": "fdc3c3c547b436383aa13b3c9bf042574c675cbc32fcd0099b244f0d273da576",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/final/source-after.json"
+      },
+      "source_before": {
+        "aggregate_sha256": "d8487fd97f5ed1e90351d01c64f8a4939c0dd6d2e81f4be18d98be9e7796b534",
+        "files": 1577,
+        "map": "source-before.json",
+        "map_sha256": "fdc3c3c547b436383aa13b3c9bf042574c675cbc32fcd0099b244f0d273da576",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/final/source-before.json"
+      }
+    },
+    "companion_application_kernel": {
+      "available": true,
+      "broad_source_inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 6981,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 6981
+      },
+      "compiler_evidence": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 3
+      },
+      "compiler_inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 8266,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 8266
+      },
+      "declared_generated_localization_outputs": [
+        "lib/l10n/app_localizations_ar.dart",
+        "lib/l10n/app_localizations_de.dart",
+        "lib/l10n/app_localizations_en.dart",
+        "lib/l10n/app_localizations_es.dart",
+        "lib/l10n/app_localizations_fr.dart",
+        "lib/l10n/app_localizations_ja.dart",
+        "lib/l10n/app_localizations_ko.dart",
+        "lib/l10n/app_localizations_pt.dart",
+        "lib/l10n/app_localizations_zh.dart",
+        "lib/l10n/app_localizations.dart"
+      ],
+      "isolated_project_remapping": {
+        "current": "/workspace/scratch/4156e4a05f09/zotero-toolchain/full-crisp-app",
+        "recorded": "/workspace/scratch/4156e4a05f09/zotero-toolchain/full-crisp-app"
+      },
+      "issues": [],
+      "logs": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 2
+      },
+      "native_assets": {
+        "command": [
+          "cargo",
+          "build",
+          "--release",
+          "--locked",
+          "--manifest-path",
+          "/workspace/scratch/4156e4a05f09/zotero-toolchain/full-crisp-app/packages/crisp_catalog/native/Cargo.toml",
+          "--target",
+          "x86_64-unknown-linux-gnu"
+        ],
+        "hooks_disabled": false,
+        "missing_executable": "cargo",
+        "native_toolchain_installed": false,
+        "package": "crisp_catalog",
+        "production_configuration_modified": false,
+        "status": "failed"
+      },
+      "original_bundle_passed": false,
+      "original_kernel_compilation_status": "passed",
+      "passed": true,
+      "qualified_commit": "de1259080074ca7918122d4790e9255269944b25",
+      "receipt": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/full-app-build/receipt.json",
+      "required": false,
+      "retained_kernel": {
+        "available": true,
+        "bytes": 241861864,
+        "matches_compiled_kernel": true,
+        "path": "/workspace/scratch/4156e4a05f09/zotero-toolchain/full-crisp-app/.dart_tool/flutter_build/ad833f6fe41764e7ef07a4dacd9211b1/app.dill",
+        "sha256": "3e89525d6f2b153d9958de5c3eebe8f5df4dba3b3a24b36977c3b3b0ca73c3d9"
+      },
+      "scope": "Full application Dart kernel only; the required Cargo native-assets hook blocked the complete bundle.",
+      "source_code_and_build_inputs_continuity_verified": true
+    },
+    "companion_host": {
+      "available": true,
+      "inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 1611,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 1611
+      },
+      "inventory": {
+        "additional": [],
+        "removed": []
+      },
+      "issues": [],
+      "logs": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 7
+      },
+      "passed": true,
+      "qualified_commit": "de1259080074ca7918122d4790e9255269944b25",
+      "receipt": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/final/host-validation-receipt.json",
+      "recorded_tests_passed": 39,
+      "required": true,
+      "scope": "Focused host tests against genuine locked dependencies; live native and canonical tests are separate.",
+      "source_after": {
+        "aggregate_sha256": "3599cb5fbcb9beb1b843c2799a04f41c7952c70610f1ca5193772a7d01ea8fa3",
+        "files": 1611,
+        "map": "host-source-after.json",
+        "map_sha256": "2b8e6a52e381609f167c78f2b4e9f0036e839e5b6b9d5d30f94943c9cc2ad054",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/final/host-source-after.json"
+      },
+      "source_before": {
+        "aggregate_sha256": "3599cb5fbcb9beb1b843c2799a04f41c7952c70610f1ca5193772a7d01ea8fa3",
+        "files": 1611,
+        "map": "host-source-before.json",
+        "map_sha256": "2b8e6a52e381609f167c78f2b4e9f0036e839e5b6b9d5d30f94943c9cc2ad054",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/final/host-source-before.json"
+      }
+    },
+    "companion_vendor": {
+      "available": true,
+      "final_quds_pin": "ca4011de0e17783f12bcff07336e318adc1db99c",
+      "host_qualified_quds_pin": "ca4011de0e17783f12bcff07336e318adc1db99c",
+      "index": {
+        "checked_files": 2412,
+        "matches_index": true,
+        "mismatched": []
+      },
+      "issues": [
+        {
+          "message": "Companion Office pin is not the current requested Quds HEAD"
+        }
+      ],
+      "managed_files": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 2409,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 2409
+      },
+      "managed_inventory_sha256": "1d914c8740b37a56d6de6eb73118a163bb82429debea19492697a66053e2d16c",
+      "manifest": "/workspace/scratch/4156e4a05f09/CrispCloud/tool/office_fidelity_manifest.json",
+      "passed": false,
+      "pin_only_metadata_change_permitted": true,
+      "quds_files": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 552,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 552
+      },
+      "required": true,
+      "required_quds_pin": "c0e6e79cbe37d9490bab629cbd7a6c939fe0d1d5",
+      "standalone_sources": {
+        "packages/legacy_doc_parser": {
+          "commit": "4895712158127b2fc930d796e17035c3ca0dac62",
+          "repository": "CrispStrobe/legacy-doc-parser"
+        }
+      }
+    },
+    "live_native": {
+      "archived_input_remappings": {
+        "zotero-native-fidelity-acceptance/chicago-notes-bibliography-subsequent-ibid.csl": "chicago-notes-bibliography-subsequent-ibid.csl",
+        "zotero-native-fidelity-acceptance/quds-synthetic-smallcaps.csl": "quds-synthetic-smallcaps.csl",
+        "zotero-native-fidelity-acceptance/scripts/fidelity-live.dart": "scripts/fidelity-live.dart",
+        "zotero-toolchain/harness/quds_office_studio/.dart_tool/package_config.json": "inputs/studio-package_config.json",
+        "zotero-toolchain/harness/quds_office_studio/pubspec.lock": "inputs/studio-pubspec.lock",
+        "zotero-toolchain/harness/quds_office_studio/pubspec.yaml": "inputs/studio-pubspec.yaml"
+      },
+      "artifacts": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 24
+      },
+      "available": true,
+      "inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 439,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 439
+      },
+      "issues": [],
+      "original_result": "passed",
+      "passed": true,
+      "qualified_commit": "ca4011de0e17783f12bcff07336e318adc1db99c",
+      "receipt": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/live-zotero/logs/acceptance-receipt.json",
+      "required": true,
+      "retained_kernel": {
+        "available": true,
+        "matches_executed_kernel": true,
+        "path": "/workspace/scratch/4156e4a05f09/zotero-native-fidelity-acceptance/fidelity-live.dill",
+        "sha256": "03f53d286ee4d8f0c6353a0cba7426f9d10c013b693d73cbf40167fabe737e93"
+      },
+      "scope": "Actual native component acceptance with an isolated warm synthetic profile; no full native app or cold-start claim.",
+      "source_after": {
+        "aggregate_sha256": "72e373158c9486a79d0995d376956d87dba9d65492ce7087fbcdbb6e46675132",
+        "files": 439,
+        "map": "source-after.json",
+        "map_sha256": "72e373158c9486a79d0995d376956d87dba9d65492ce7087fbcdbb6e46675132",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/live-zotero/logs/source-after.json"
+      },
+      "source_before": {
+        "aggregate_sha256": "72e373158c9486a79d0995d376956d87dba9d65492ce7087fbcdbb6e46675132",
+        "files": 439,
+        "map": "source-before.json",
+        "map_sha256": "72e373158c9486a79d0995d376956d87dba9d65492ce7087fbcdbb6e46675132",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/live-zotero/logs/source-before.json"
+      }
+    },
+    "studio_bundle": {
+      "available": true,
+      "inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 1577,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 1577
+      },
+      "inventory": {
+        "additional_documentation_inputs": [],
+        "additional_production_inputs": [],
+        "production_changes_from_current_head": []
+      },
+      "issues": [],
+      "logs": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 1
+      },
+      "passed": true,
+      "qualified_commit": "ca4011de0e17783f12bcff07336e318adc1db99c",
+      "receipt": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/studio-bundle/receipt.json",
+      "required": true,
+      "retained_bundle": {
+        "additional_files": [],
+        "all_recorded_bytes_match": true,
+        "available": true,
+        "checked_files": 90,
+        "kernel_sha256": "9634b2b812c16b4fb20c1d04e341706f96a60d95c00c03abbc160018c2341383",
+        "mismatched": [],
+        "missing": [],
+        "path": "/workspace/scratch/4156e4a05f09/zotero-toolchain/harness/quds_office_studio/build/flutter_assets",
+        "recorded_files": 90
+      },
+      "scope": "Complete Studio Dart/assets compilation; not a native executable or GUI acceptance.",
+      "source_after": {
+        "aggregate_sha256": "d8487fd97f5ed1e90351d01c64f8a4939c0dd6d2e81f4be18d98be9e7796b534",
+        "files": 1577,
+        "map": "source-after.json",
+        "map_sha256": "fdc3c3c547b436383aa13b3c9bf042574c675cbc32fcd0099b244f0d273da576",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/studio-bundle/source-after.json"
+      },
+      "source_before": {
+        "aggregate_sha256": "d8487fd97f5ed1e90351d01c64f8a4939c0dd6d2e81f4be18d98be9e7796b534",
+        "files": 1577,
+        "map": "source-before.json",
+        "map_sha256": "fdc3c3c547b436383aa13b3c9bf042574c675cbc32fcd0099b244f0d273da576",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/quds_office_suite/docs/validation/zotero-fidelity-20261116/studio-bundle/source-before.json"
+      }
+    },
+    "terminal": {
+      "additional_reachable_inputs": [],
+      "available": true,
+      "inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 221,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 221
+      },
+      "issues": [],
+      "logs": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 3
+      },
+      "passed": true,
+      "qualified_commit": "de1259080074ca7918122d4790e9255269944b25",
+      "receipt": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/terminal-integration/receipt.json",
+      "recorded_command_counts": [
+        {
+          "name": "dartssh2-vendor",
+          "passed": true,
+          "seconds": 0.048
+        },
+        {
+          "failed_tests": 0,
+          "name": "terminal-tests",
+          "passed": true,
+          "passed_tests": 402,
+          "seconds": 45.136,
+          "skipped_tests": 0
+        },
+        {
+          "name": "terminal-shell-smoke",
+          "passed": true,
+          "seconds": 0.078
+        }
+      ],
+      "required": false,
+      "scope": "The 29 selected core tests, 3 optional live tests, their transitive local Dart imports (including conditional imports), complete tracked dartssh2 vendor/provenance, production manifests and lock, storage hook, and smoke/vendor runners. Full app and Office qualification are separate.",
+      "selected_tests": [
+        "terminal_pane_layout_test.dart",
+        "terminal_arrangements_test.dart",
+        "terminal_arrangements_dialog_test.dart",
+        "ssh_config_import_test.dart",
+        "ssh_config_import_dialog_test.dart",
+        "terminal_key_bindings_test.dart",
+        "terminal_user_input_test.dart",
+        "terminal_broadcast_test.dart",
+        "ssh_jump_transport_test.dart",
+        "terminal_session_test.dart",
+        "ssh_port_forwarding_model_test.dart",
+        "ssh_port_forwarding_test.dart",
+        "ssh_port_forwarding_widget_test.dart",
+        "terminal_trigger_session_test.dart",
+        "terminal_triggers_test.dart",
+        "terminal_triggers_widget_test.dart",
+        "ssh_agent_channel_test.dart",
+        "ssh_agent_profiles_test.dart",
+        "ssh_agent_route_test.dart",
+        "ssh_agent_test.dart",
+        "ssh_public_key_auth_test.dart",
+        "ssh_forwarding_profiles_test.dart",
+        "ssh_forwarding_profiles_widget_test.dart",
+        "ssh_terminal_profiles_test.dart",
+        "ssh_native_tmux_persistence_test.dart",
+        "terminal_input_budget_test.dart",
+        "tmux_control_client_test.dart",
+        "tmux_control_protocol_test.dart",
+        "tmux_session_options_test.dart"
+      ],
+      "selection": "core-and-shell",
+      "source_after": {
+        "aggregate_sha256": "072ddd78a68e0fd2e3083ed56490b22c9ac65d7cb6052666ff5df1e8dc5abd4f",
+        "files": 221,
+        "map": "source-after.json",
+        "map_sha256": "ac6aa2ea4df5011cacd210e8a7b7c87bb5d2d24bca2901036d898bccabfd052c",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/terminal-integration/source-after.json"
+      },
+      "source_before": {
+        "aggregate_sha256": "072ddd78a68e0fd2e3083ed56490b22c9ac65d7cb6052666ff5df1e8dc5abd4f",
+        "files": 221,
+        "map": "source-before.json",
+        "map_sha256": "ac6aa2ea4df5011cacd210e8a7b7c87bb5d2d24bca2901036d898bccabfd052c",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/terminal-integration/source-before.json"
+      }
+    },
+    "terminal_loopback": {
+      "additional_reachable_inputs": [],
+      "available": true,
+      "inputs": {
+        "all_recorded_bytes_match": true,
+        "checked_files": 221,
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 221
+      },
+      "issues": [],
+      "logs": {
+        "lossless_gzip_remappings": [],
+        "mismatched": [],
+        "missing": [],
+        "recorded_files": 2
+      },
+      "passed": true,
+      "qualified_commit": "de1259080074ca7918122d4790e9255269944b25",
+      "receipt": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/terminal-integration/loopback/receipt.json",
+      "recorded_command_counts": [
+        {
+          "name": "dartssh2-vendor",
+          "passed": true,
+          "seconds": 0.052
+        },
+        {
+          "failed_tests": 0,
+          "name": "terminal-loopback",
+          "passed": true,
+          "passed_tests": 17,
+          "seconds": 60.424,
+          "skipped_tests": 2
+        }
+      ],
+      "required": false,
+      "scope": "The 29 selected core tests, 3 optional live tests, their transitive local Dart imports (including conditional imports), complete tracked dartssh2 vendor/provenance, production manifests and lock, storage hook, and smoke/vendor runners. Full app and Office qualification are separate.",
+      "selected_tests": [
+        "terminal_pane_layout_test.dart",
+        "terminal_arrangements_test.dart",
+        "terminal_arrangements_dialog_test.dart",
+        "ssh_config_import_test.dart",
+        "ssh_config_import_dialog_test.dart",
+        "terminal_key_bindings_test.dart",
+        "terminal_user_input_test.dart",
+        "terminal_broadcast_test.dart",
+        "ssh_jump_transport_test.dart",
+        "terminal_session_test.dart",
+        "ssh_port_forwarding_model_test.dart",
+        "ssh_port_forwarding_test.dart",
+        "ssh_port_forwarding_widget_test.dart",
+        "terminal_trigger_session_test.dart",
+        "terminal_triggers_test.dart",
+        "terminal_triggers_widget_test.dart",
+        "ssh_agent_channel_test.dart",
+        "ssh_agent_profiles_test.dart",
+        "ssh_agent_route_test.dart",
+        "ssh_agent_test.dart",
+        "ssh_public_key_auth_test.dart",
+        "ssh_forwarding_profiles_test.dart",
+        "ssh_forwarding_profiles_widget_test.dart",
+        "ssh_terminal_profiles_test.dart",
+        "ssh_native_tmux_persistence_test.dart",
+        "terminal_input_budget_test.dart",
+        "tmux_control_client_test.dart",
+        "tmux_control_protocol_test.dart",
+        "tmux_session_options_test.dart"
+      ],
+      "selection": "loopback-only",
+      "source_after": {
+        "aggregate_sha256": "072ddd78a68e0fd2e3083ed56490b22c9ac65d7cb6052666ff5df1e8dc5abd4f",
+        "files": 221,
+        "map": "source-after.json",
+        "map_sha256": "ac6aa2ea4df5011cacd210e8a7b7c87bb5d2d24bca2901036d898bccabfd052c",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/terminal-integration/loopback/source-after.json"
+      },
+      "source_before": {
+        "aggregate_sha256": "072ddd78a68e0fd2e3083ed56490b22c9ac65d7cb6052666ff5df1e8dc5abd4f",
+        "files": 221,
+        "map": "source-before.json",
+        "map_sha256": "ac6aa2ea4df5011cacd210e8a7b7c87bb5d2d24bca2901036d898bccabfd052c",
+        "storage": "original",
+        "stored_path": "/workspace/scratch/4156e4a05f09/CrispCloud/docs/validation/zotero-fidelity-20261116/terminal-integration/loopback/source-before.json"
+      }
+    }
+  },
+  "source": "/workspace/scratch/4156e4a05f09/quds_office_suite",
+  "started_at_utc": "2026-11-16T07:43:46.504048+00:00",
+  "tests_or_builds_reexecuted": false,
+  "uses_github_actions": false,
+  "verifier_sha256": "29a8ddae266fbd77b31ace46ff538813a7de4b609c7222b2e854e27c86ee9bcf"
+}

@@ -108,6 +108,7 @@ Relevant implementation and regressions:
 | Running Zotero small-capital/bibliography-layout acceptance | Passed two style scenarios and four native refresh transactions, including reopen |
 | CrispCloud host qualification and vendor guard | Recorded separately in the companion repository |
 | Complete Quds Studio Dart/assets compilation | Passed Linux debug bundle; 90 output files, source unchanged |
+| Complete CrispCloud application Dart kernel | Passed from the merged actual application; required Cargo hook blocked the overall bundle |
 | Full compiled Quds/CrispCloud application acceptance | Not claimed |
 | Microsoft Word/LibreOffice interoperability and external PDF-reader extraction | Not claimed |
 
@@ -122,6 +123,19 @@ assets with the genuine resolved graph. Its source inventory stayed unchanged.
 The [bundle runner](run-studio-bundle.py) retains the command and output hashes.
 This establishes Dart/assets compilation; it does not build the native desktop
 executable or exercise the full application GUI.
+
+The [companion application compilation evidence](https://github.com/CrispStrobe/CrispCloud/tree/codex/zotero-support-20261116/docs/validation/zotero-fidelity-20261116/full-app-build)
+records its genuine locked graph, successful complete Dart kernel, compiler
+inputs and the separate Cargo/native-assets failure. No native hook was disabled.
+
+The read-only [delivery verifier](verify-delivery.py) compares current bytes
+with all independently qualified source maps and retained compilation outputs.
+After the final Quds documentation commit, its authoritative
+[cross-repository receipt](https://github.com/CrispStrobe/CrispCloud/blob/codex/zotero-support-20261116/docs/validation/zotero-fidelity-20261116/delivery-source-proof.json)
+is saved in CrispCloud, so the exact Quds pin can be checked without making a
+receipt depend on its own commit hash. The local interim receipt is explicitly
+named and retains the expected pre-delivery pin mismatch; it is not the final
+delivery result.
 
 ### Running desktop Zotero
 
