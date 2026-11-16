@@ -1,0 +1,68 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 16966,
+      "sha256": "98002a6ebf0c1f1eed897beb0fcd76300560c759011df0eeabc25b95534dd018"
+    },
+    "REPRODUCE.md": {
+      "bytes": 7578,
+      "sha256": "3e210c574bc94fe2b4698ba9dfad00597c546b9016e1195c5249bfced339c2de"
+    },
+    "canonical-evidence.tar.gz": {
+      "bytes": 554019,
+      "sha256": "3a88b2a059db9d8af23e107d7bb71b3c39afe584f4058b942293b5ad24eeb0a4"
+    },
+    "canonical-receipt.json": {
+      "bytes": 35979,
+      "sha256": "95f9c6fcdb510e481c65d0fa856c5b4cf1fe51f57892e361f28a335a674bebc8"
+    },
+    "checkpoints/local-qualification-progress.tar.gz": {
+      "bytes": 742828,
+      "sha256": "374254ebe8b1b2ae975980d965a7f4a2b2d22ff74c9f6162353e618bce9d4020"
+    },
+    "checkpoints/progress.json": {
+      "bytes": 5867,
+      "sha256": "ee3284068c1101d4613b1e037d2684250c39ffdf536de7a6a3bc66c9b7617602"
+    },
+    "english-notice-final-check.json": {
+      "bytes": 889,
+      "sha256": "284a836c6c4073d488aad22b83ca834c06d1cb9c8e7d1a2c8a0404525e280440"
+    },
+    "harper-studio-evidence.tar.gz": {
+      "bytes": 723804,
+      "sha256": "0b2b6727be349d46415b1b6f3f2bb00224382e728ba1774ffc20425af06714c8"
+    },
+    "harper-studio-receipt.json": {
+      "bytes": 7498,
+      "sha256": "112ca2ef4491a5c9adac369f1a62c8fe011cb70e2860eeb37d6e92d3b4b81ee4"
+    },
+    "host-receipt.json": {
+      "bytes": 19118,
+      "sha256": "c867aabfbf89440ad2c79ba882ef5767d8b6019c20ac3b477af5836b38258ce7"
+    },
+    "incoming-audit-evidence.tar.gz": {
+      "bytes": 89595,
+      "sha256": "db8aac526fc281b070f5db4d42df93bf1a7453bd5d3e5ec16e26ed8d5b8c5459"
+    },
+    "incoming-quds-audit.json": {
+      "bytes": 46851,
+      "sha256": "65b9e27e02f2c92502a00003b4dc389a1c11ec0c1ceb65cda821bf24124ab7e9"
+    },
+    "qualification-summary.json": {
+      "bytes": 3422,
+      "sha256": "3ee9833948cb80c30aa7b9ee5495a279799ff936b7afa4e66437616d1209f0d8"
+    },
+    "quds-independent-review.json": {
+      "bytes": 19047,
+      "sha256": "2a1beaf9e3c31eb6199214f9e91dca508528a53eb2058d1d9953694c773f0610"
+    },
+    "setup-evidence.tar.gz": {
+      "bytes": 88719,
+      "sha256": "6460cef2b61683afb80c6df9264d11ef27a3ed0ca5f230049caed7a7ce4aa4f8"
+    },
+    "tools/package-final-evidence.py": {
+      "bytes": 6862,
+      "sha256": "633e89b441b8cf063c4d584cd76d2f86d57dc9e30738ac7f9ea4a4a1b8525405"
+    }
+  }
+}

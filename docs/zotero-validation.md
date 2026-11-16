@@ -1,6 +1,28 @@
-# Zotero validation — 16 November 2026
+# Zotero validation — 17 November 2026
 
-## Current capabilities: source aliases, dialog scaling and session backoff
+## Current integrated-source qualification
+
+The resumed implementation is qualified at canonical Quds
+`5b05664357eead5ddc86922bab248224dbd4da6d` and actual CrispCloud host
+`342b744a3cb66e3ee9387733ebcf8613cdb23a33`. **1,128 fresh, disjoint tests
+passed**: 576 canonical Zotero, 460 canonical integration, 23 Harper adapter,
+41 actual-host and 28 Python sync/verifier cases. All selected strict analysis,
+formatting, vendor guards and source/dependency/harness integrity checks passed.
+
+All 189 frozen Quds refs are ancestors of the delivered source; all 274 host
+refs are accounted for by ancestry or exact whole-tree equivalence. The host
+verifies 2,521 managed files while retaining the parser pin and existing host
+customizations. The original English hyphenation notices now reach its actual
+asset bundle and license registry.
+
+See the [completed report, receipts, raw logs and reproduction inputs](validation/zotero-finalization-20261117/README.md).
+All 50 Zotero source/example/test/fixture paths preserve the completed recovery
+implementation. Earlier counts below remain historical results at their
+stated sources; none is added to the fresh total. No GitHub Actions or CI
+status endpoints were queried or awaited. New full application builds and
+live Zotero/Word/LibreOffice acceptance are outside this focused qualification.
+
+## Historical capabilities: source aliases, dialog scaling and session backoff
 
 The combined implementation at `8e017e8c148517fea61f8d55eaafc7f070b82bba`
 passed **825 distinct local tests with zero skips**: 390 engine Zotero,
