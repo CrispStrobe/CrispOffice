@@ -170,13 +170,16 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
       match.start,
     );
     // "wie du haben wir" and "du und ich sind" do not assign the verb
-    // exclusively to the last pronoun. A comma immediately before a simple
-    // conjunction instead introduces a new clause: "... , und du ist ...".
+    // exclusively to the last pronoun. A preceding comma can also close a
+    // relative clause: "Mein Bruder, den du kennst, und ich haben Zeit".
+    // Keep plausible plural forms untouched even after that comma.
     if (_comparisonPrefix.hasMatch(prefix)) return true;
     final RegExpMatch? coordination = _coordinationPrefix.firstMatch(prefix);
+    final _GermanPresentParadigm? paradigm = _presentByForm[verb];
     if (coordination != null &&
         (coordination.group(1) == null ||
-            !prefix.substring(0, coordination.start).trimRight().endsWith(','))) {
+            !prefix.substring(0, coordination.start).trimRight().endsWith(',') ||
+            paradigm != null && (verb == paradigm.wir || verb == paradigm.ihr))) {
       return true;
     }
     final String originalSubject = match.group(1)!;

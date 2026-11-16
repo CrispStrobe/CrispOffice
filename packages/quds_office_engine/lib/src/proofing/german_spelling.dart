@@ -327,7 +327,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
               ? 'Die Schweizer Schreibweise verwendet ss statt ß.'
               : 'Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.',
           category: OfficeProofingCategory.spelling,
-          replacements: replacements,
+          replacements: _withSourceHyphens(original, replacements),
         ),
       );
     }
@@ -358,6 +358,38 @@ class GermanSpellingProvider extends OfficeProofingProvider {
   List<String> _suggest(String word, _GermanLexicon lexicon, bool swiss) {
     if (maximumSuggestions == 0 || word.isEmpty || word.length > 64) {
       return const <String>[];
+    }
+    // Repair one unknown component of an explicitly joined compound. Other
+    // components keep their source case, and every component must be known.
+    // Only one ordinary suggestion search is performed, so the existing
+    // per-token candidate budget also bounds this path.
+    if (word.contains('-')) {
+      final List<String> parts = word.split('-');
+      int unknown = -1;
+      if (parts.length <= 8 && parts.every((String part) => part.isNotEmpty)) {
+        for (int i = 0; i < parts.length; i++) {
+          if (lexicon.contains(parts[i], swiss: swiss, sentenceInitial: false)) {
+            continue;
+          }
+          if (unknown >= 0) {
+            unknown = -2;
+            break;
+          }
+          unknown = i;
+        }
+        if (unknown >= 0) {
+          final List<String> compounds = <String>[];
+          for (final String replacement in _suggest(parts[unknown], lexicon, swiss)) {
+            final List<String> corrected = List<String>.of(parts);
+            corrected[unknown] = replacement;
+            final String candidate = corrected.join('-');
+            if (lexicon.contains(candidate, swiss: swiss, sentenceInitial: false)) {
+              compounds.add(candidate);
+            }
+          }
+          return List<String>.unmodifiable(compounds);
+        }
+      }
     }
     final Set<String> found = <String>{};
     int examined = 0;
@@ -431,6 +463,31 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     }
     return List<String>.unmodifiable(
       found.map((String value) => upper ? _upper(value) : value).toSet(),
+    );
+  }
+
+  static List<String> _withSourceHyphens(
+    String source,
+    List<String> replacements,
+  ) {
+    final List<String> separators = RegExp(r'[-\u2010\u2011]')
+        .allMatches(source)
+        .map((RegExpMatch match) => match.group(0)!)
+        .toList();
+    if (separators.every((String separator) => separator == '-')) {
+      return replacements;
+    }
+    return List<String>.unmodifiable(
+      replacements.map((String replacement) {
+        if ('-'.allMatches(replacement).length != separators.length) {
+          return replacement;
+        }
+        int index = 0;
+        return replacement.replaceAllMapped(
+          RegExp('-'),
+          (Match _) => separators[index++],
+        );
+      }),
     );
   }
 

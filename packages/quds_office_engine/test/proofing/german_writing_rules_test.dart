@@ -202,6 +202,8 @@ void main() {
       'Sei ruhig! Seid ruhig! Hab Geduld! Werde gesund!',
       'Du, hab Geduld! Ihr, seid ruhig!',
       'Du und ich sind hier. Peter und ich haben Zeit.',
+      'Mein Bruder, den du kennst, und ich haben Zeit.',
+      'Meine Schwester, die du kennst, sowie ich können helfen.',
       'Weder du noch ich haben Zeit. Du sowie ich können kommen.',
       'Nicht nur du, sondern auch ich haben Zeit.',
       'Wie du haben wir Zeit. Anders als ich hast du Zeit.',

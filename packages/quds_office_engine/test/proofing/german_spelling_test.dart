@@ -220,6 +220,53 @@ void main() {
     );
     expect((await provider.check(input('HAUS-TÜR'))).findings, isEmpty);
   });
+  test('explicit compound suggestions preserve other nouns and hyphen styles',
+      () async {
+    const List<(String, String)> cases = <(String, String)>[
+      ('Huas-Tür', 'Haus-Tür'),
+      ('Haus-Tür-Huas', 'Haus-Tür-Haus'),
+      ('HUAS-TÜR', 'HAUS-TÜR'),
+      ('Huas\u2010Tür', 'Haus\u2010Tür'),
+      ('Huas\u2011Tür', 'Haus\u2011Tür'),
+      ('Huas-Tür\u2011Haus', 'Haus-Tür\u2011Haus'),
+    ];
+    for (final (String, String) entry in cases) {
+      final String text = '🙂 ${entry.$1}';
+      final OfficeProofingResult result = await provider.check(input(text));
+      expect(result.findings, hasLength(1), reason: text);
+      final OfficeProofingFinding finding = result.findings.single;
+      expect(finding.originalText, entry.$1);
+      expect(finding.start, 3);
+      expect(finding.end, text.length);
+      expect(finding.replacements, contains(entry.$2));
+      expect(finding.replacements.length, lessThanOrEqualTo(5));
+    }
+  });
+  test('explicit compound repair honors the ordinary candidate budget',
+      () async {
+    final GermanSpellingProvider bounded = GermanSpellingProvider(
+      maximumSuggestions: 1,
+      maximumCandidateChecks: 100,
+    );
+    final OfficeProofingResult result = await bounded.check(input('Huas-Tür'));
+    expect(result.findings.single.replacements, <String>['Haus-Tür']);
+    await bounded.dispose();
+  });
+  test('compound suggestions keep per-occurrence separators and Swiss forms',
+      () async {
+    final OfficeProofingResult mixed = await provider.check(
+      input('Huas-Tür Huas\u2011Tür'),
+    );
+    expect(mixed.findings, hasLength(2));
+    expect(mixed.findings[0].replacements, contains('Haus-Tür'));
+    expect(mixed.findings[1].replacements, contains('Haus\u2011Tür'));
+    final OfficeProofingResult swiss = await provider.check(
+      input('Straße-Tür STRAẞE-TÜR', language: 'de-CH'),
+    );
+    expect(swiss.findings, hasLength(2));
+    expect(swiss.findings[0].replacements, contains('Strasse-Tür'));
+    expect(swiss.findings[1].replacements, contains('STRASSE-TÜR'));
+  });
   test(
     'known explicit compounds and URL/email tokens avoid spurious findings',
     () async {
