@@ -25,3 +25,9 @@ The complete inventory, per-path incoming blob identities, comparison dispositio
 The attached execution environment is unavailable. No Dart, Flutter, native-library or browser test was run for this combined checkpoint. Earlier source-bound validation artifacts are retained with their original source attribution. This reconciliation uses GitHub ancestry, exact Git blob/tree identities, per-file patch comparisons and three-way changed-path checks.
 
 No GitHub Actions were queried, awaited, polled or rerun. The commit uses `[skip ci]`. No new dependency, model or dictionary is introduced by this reconciliation. New English/German proofing work and its verification will follow this pinned integration.
+
+## Final refresh before proofing implementation
+
+A final snapshot captured 182 named refs (123 unique heads). It adds main `63194d8` and its exact-tree-equivalent header/footer documentation PR #84, plus rendering continuation `5ed98a0` with editor/runtime evidence. These 59 distinct incoming paths contain documentation, saved validation evidence and validation tooling; no new product source is introduced by this refresh. All incoming paths merge by exact blob identity without conflicts.
+
+Before that refresh, all 120 originally pinned heads were verified as ancestors of `dbf5ff000d66bd6e2833ade990ab84de009e3ad8`. All 5,398 expected repository blob entries matched the merged tree; only the two intended audit files were additional. See [reconciliation-refresh.json](reconciliation-refresh.json) for the final inventory, three-way checks and complete prior-checkpoint verification. Final ancestry/tree verification is recorded separately in [reconciliation-verification.json](reconciliation-verification.json).

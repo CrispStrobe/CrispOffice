@@ -1,0 +1,593 @@
+{
+  "schema_version": 1,
+  "saved_at_utc": "2026-11-16T19:47:54.555632+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "scope": "Read-only merge preflight against a fixed target. Git tree/commit objects were written without references; no actual branch merge was performed by this reviewer.",
+  "target_commit": "6bf486ee0bbcd2025c3a42cae7d7003b8c9324a4",
+  "origin_main_commit": "be9eeec9ea3455018de26fff5874c558dbc66798",
+  "main_only_tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+  "observed_heads": [
+    {
+      "name": "main",
+      "sha": "be9eeec9ea3455018de26fff5874c558dbc66798"
+    },
+    {
+      "name": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "name": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "name": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "name": "vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "name": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "name": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "name": "vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "name": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    }
+  ],
+  "source_inventory": "docs/validation/text-rendering-continuation-20261116/incoming-refresh-before-merge.json",
+  "patch_equivalence_method": {
+    "diff_command": [
+      "git",
+      "show",
+      "--pretty=format:",
+      "--no-ext-diff",
+      "<commit>"
+    ],
+    "patch_id_command": [
+      "git",
+      "patch-id",
+      "--stable"
+    ],
+    "comparison": "Complete incoming top-commit diff versus corresponding squash commit diff on main. Stable patch IDs compare patches rather than commit ancestry and ignore whitespace/line numbers; separate hunk review and exact final-tree comparisons support the resolution."
+  },
+  "patch_equivalence_pairs": [
+    {
+      "head_name": "docs/current-office-capabilities",
+      "incoming_commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "main_squash_commit": "ba79d47028d70b4124ced59cb9d34583ff0a9514",
+      "incoming_patch_id": "03ca097646a73f80747b773dd1dce0c069098230",
+      "main_patch_id": "03ca097646a73f80747b773dd1dce0c069098230",
+      "equivalent": true
+    },
+    {
+      "head_name": "docs/odt-image-registry",
+      "incoming_commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "main_squash_commit": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "incoming_patch_id": "3b87f26c04109ece2f5cb393a4757a6e4ba2e4b9",
+      "main_patch_id": "3b87f26c04109ece2f5cb393a4757a6e4ba2e4b9",
+      "equivalent": true
+    },
+    {
+      "head_name": "feat/ods-filter-conditions",
+      "incoming_commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "main_squash_commit": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "incoming_patch_id": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "main_patch_id": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "equivalent": true
+    },
+    {
+      "head_name": "vendor/ods-filter-conditions",
+      "incoming_commit": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "main_squash_commit": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "incoming_patch_id": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "main_patch_id": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "equivalent": true
+    },
+    {
+      "head_name": "docs/ods-filter-predicates",
+      "incoming_commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "main_squash_commit": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "incoming_patch_id": "c77c061190c9ef900c5a1b6c65badb188d4bc5cf",
+      "main_patch_id": "c77c061190c9ef900c5a1b6c65badb188d4bc5cf",
+      "equivalent": true
+    },
+    {
+      "head_name": "feat/ods-row-groups",
+      "incoming_commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "main_squash_commit": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "incoming_patch_id": "d3f848789d93581176b5d1b13129f3d1f1207eb6",
+      "main_patch_id": "d3f848789d93581176b5d1b13129f3d1f1207eb6",
+      "equivalent": true
+    },
+    {
+      "head_name": "vendor/ods-row-groups",
+      "incoming_commit": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "main_squash_commit": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "incoming_patch_id": "d3f848789d93581176b5d1b13129f3d1f1207eb6",
+      "main_patch_id": "d3f848789d93581176b5d1b13129f3d1f1207eb6",
+      "equivalent": true
+    },
+    {
+      "head_name": "docs/ods-row-groups",
+      "incoming_commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "main_squash_commit": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "incoming_patch_id": "80c40d5f0585362480359c1a831fbf01315504ad",
+      "main_patch_id": "80c40d5f0585362480359c1a831fbf01315504ad",
+      "equivalent": true
+    }
+  ],
+  "raw_merge_sequence": [
+    {
+      "head_name": "main",
+      "head_sha": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "left_commit": "6bf486ee0bbcd2025c3a42cae7d7003b8c9324a4",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "6bf486ee0bbcd2025c3a42cae7d7003b8c9324a4",
+        "be9eeec9ea3455018de26fff5874c558dbc66798"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "conflict_files": [],
+      "all_paths_differing_from_main_only_tree": [],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "78e57b32cddd89c055369642e4c3b01c534b534b"
+    },
+    {
+      "head_name": "docs/current-office-capabilities",
+      "head_sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "left_commit": "78e57b32cddd89c055369642e4c3b01c534b534b",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "78e57b32cddd89c055369642e4c3b01c534b534b",
+        "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+      ],
+      "exit_code": 1,
+      "tree": "4d53a847c4b07418148c9f3be1e8f44c615774ba",
+      "conflict_files": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "all_paths_differing_from_main_only_tree": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": false,
+      "unreferenced_virtual_commit": null,
+      "conflict_hunks_vs_main_only_tree": "diff --git a/docs/office-remaining-gaps.md b/docs/office-remaining-gaps.md\nindex 7e03bfa..a18b785 100644\n--- a/docs/office-remaining-gaps.md\n+++ b/docs/office-remaining-gaps.md\n@@ -81,8 +81,13 @@ ODT and ODP are intentionally read-only in the host. Ordinary ODS Save writes a\n new XLSX copy; the host also exposes an explicit **Export as ODS** action.\n `OdsSheetWriter` exports the modeled workbook subset (values, formulas, styles,\n number formats, merges, geometry, hidden state, comments, links, names, print\n+<<<<<<< 78e57b32cddd89c055369642e4c3b01c534b534b\n areas/titles, autofilter ranges and predicates, pictures, conditional formats,\n validations, row outline groups and a default page layout). Authored page-style serialization remains open; an\n+=======\n+areas/titles, autofilter ranges, pictures, conditional formats, validations and\n+a default page layout). Authored page-style serialization remains open; an\n+>>>>>>> 1675bbbb7c03090a87b6df783e3741e2cbc1768f\n ODT/ODP writer remains a separate project.\n \n ### 8. ODP slide fidelity",
+      "reviewed_resolution": "The older ODS capability list lacks autofilter predicates and row outline groups. Retain the main-combined list, which includes this branch's exact patch plus later filter and row-group updates."
+    },
+    {
+      "head_name": "docs/odt-image-registry",
+      "head_sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "left_commit": "78e57b32cddd89c055369642e4c3b01c534b534b",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "78e57b32cddd89c055369642e4c3b01c534b534b",
+        "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "conflict_files": [],
+      "all_paths_differing_from_main_only_tree": [],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "776981e45146a7296300f808807ef8d2175c6a5e"
+    },
+    {
+      "head_name": "feat/ods-filter-conditions",
+      "head_sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "left_commit": "776981e45146a7296300f808807ef8d2175c6a5e",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "776981e45146a7296300f808807ef8d2175c6a5e",
+        "1deb61cf78add61f5d26bea36ff596d769d06a87"
+      ],
+      "exit_code": 1,
+      "tree": "3b9af5334bbf9703d0005e472e8db50c1630b208",
+      "conflict_files": [
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "all_paths_differing_from_main_only_tree": [
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": false,
+      "unreferenced_virtual_commit": null,
+      "conflict_hunks_vs_main_only_tree": "diff --git a/packages/quds_office_engine/test/ods_sheet_writer_test.dart b/packages/quds_office_engine/test/ods_sheet_writer_test.dart\nindex e18a1f5..9df4aac 100644\n--- a/packages/quds_office_engine/test/ods_sheet_writer_test.dart\n+++ b/packages/quds_office_engine/test/ods_sheet_writer_test.dart\n@@ -80,6 +80,7 @@ void main() {\n     expect(reopened.formulaNames.single.name, 'Total');\n   });\n \n+<<<<<<< 776981e45146a7296300f808807ef8d2175c6a5e\n   test('writes row outline groups and geometry outside the cell extent', () {\n     final sheet = SmlWorksheet(name: 'Data', sheetId: 1);\n     sheet.cellA1('A1').value = 'Header';\n@@ -105,6 +106,8 @@ void main() {\n     expect(written.columnWidths[8], closeTo(114, 0.01));\n   });\n \n+=======\n+>>>>>>> 1deb61cf78add61f5d26bea36ff596d769d06a87\n   test('writes autofilter predicate values', () {\n     final sheet = SmlWorksheet(name: 'Data', sheetId: 1);\n     sheet.cellA1('A1').value = 'Name';",
+      "reviewed_resolution": "The conflict is the later row-outline test on the main side versus an empty older insertion point. The autofilter test itself is identical and present on both sides. Retain the combined main-side file with both tests."
+    },
+    {
+      "head_name": "vendor/ods-filter-conditions",
+      "head_sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "left_commit": "776981e45146a7296300f808807ef8d2175c6a5e",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "776981e45146a7296300f808807ef8d2175c6a5e",
+        "928f85483ec1cb85e468ca9381585875137ba8d5"
+      ],
+      "exit_code": 1,
+      "tree": "c0beddae9be1766d03419ea1c32c1b329250a67e",
+      "conflict_files": [
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "all_paths_differing_from_main_only_tree": [
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": false,
+      "unreferenced_virtual_commit": null,
+      "conflict_hunks_vs_main_only_tree": "diff --git a/packages/quds_office_engine/test/ods_sheet_writer_test.dart b/packages/quds_office_engine/test/ods_sheet_writer_test.dart\nindex e18a1f5..ed89850 100644\n--- a/packages/quds_office_engine/test/ods_sheet_writer_test.dart\n+++ b/packages/quds_office_engine/test/ods_sheet_writer_test.dart\n@@ -80,6 +80,7 @@ void main() {\n     expect(reopened.formulaNames.single.name, 'Total');\n   });\n \n+<<<<<<< 776981e45146a7296300f808807ef8d2175c6a5e\n   test('writes row outline groups and geometry outside the cell extent', () {\n     final sheet = SmlWorksheet(name: 'Data', sheetId: 1);\n     sheet.cellA1('A1').value = 'Header';\n@@ -105,6 +106,8 @@ void main() {\n     expect(written.columnWidths[8], closeTo(114, 0.01));\n   });\n \n+=======\n+>>>>>>> 928f85483ec1cb85e468ca9381585875137ba8d5\n   test('writes autofilter predicate values', () {\n     final sheet = SmlWorksheet(name: 'Data', sheetId: 1);\n     sheet.cellA1('A1').value = 'Name';",
+      "reviewed_resolution": "Same insertion-point conflict as the feature head: retain both the filter predicate test and the later row-outline test. The vendor patch matches the same main squash patch exactly."
+    },
+    {
+      "head_name": "docs/ods-filter-predicates",
+      "head_sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "left_commit": "776981e45146a7296300f808807ef8d2175c6a5e",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "776981e45146a7296300f808807ef8d2175c6a5e",
+        "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+      ],
+      "exit_code": 1,
+      "tree": "09a019c6e8270b51277dc39dee8b9881d0e9e2f3",
+      "conflict_files": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "all_paths_differing_from_main_only_tree": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": false,
+      "unreferenced_virtual_commit": null,
+      "conflict_hunks_vs_main_only_tree": "diff --git a/docs/office-remaining-gaps.md b/docs/office-remaining-gaps.md\nindex 7e03bfa..a12e9aa 100644\n--- a/docs/office-remaining-gaps.md\n+++ b/docs/office-remaining-gaps.md\n@@ -8,7 +8,11 @@ is maintained in the CrispCloud repository\n \n ## Current baseline\n \n+<<<<<<< 776981e45146a7296300f808807ef8d2175c6a5e\n - Sheet/ODS cohort: 509 tests.\n+=======\n+- Sheet/ODS cohort: 508 tests.\n+>>>>>>> bb9866d25bf98e5aa42c10ce4679835dbc8617f1\n - Last clean full engine run: 2,205 tests. Two unrelated CLI\n   bookmark/content-control tests currently fail on main.\n - Live ODS \u2192 XLSX fidelity against LibreOffice: 0.9981 on the measured BOM\n@@ -82,7 +86,11 @@ new XLSX copy; the host also exposes an explicit **Export as ODS** action.\n `OdsSheetWriter` exports the modeled workbook subset (values, formulas, styles,\n number formats, merges, geometry, hidden state, comments, links, names, print\n areas/titles, autofilter ranges and predicates, pictures, conditional formats,\n+<<<<<<< 776981e45146a7296300f808807ef8d2175c6a5e\n validations, row outline groups and a default page layout). Authored page-style serialization remains open; an\n+=======\n+validations and a default page layout). Authored page-style serialization remains open; an\n+>>>>>>> bb9866d25bf98e5aa42c10ce4679835dbc8617f1\n ODT/ODP writer remains a separate project.\n \n ### 8. ODP slide fidelity",
+      "reviewed_resolution": "The older document reports a Sheet/ODS cohort of 508 and lacks row outline groups. Retain the later main wording reporting 509 and row outline groups. These are inherited documentation claims; this preflight did not rerun that historical cohort."
+    },
+    {
+      "head_name": "feat/ods-row-groups",
+      "head_sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "left_commit": "776981e45146a7296300f808807ef8d2175c6a5e",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "776981e45146a7296300f808807ef8d2175c6a5e",
+        "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "conflict_files": [],
+      "all_paths_differing_from_main_only_tree": [],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "2f854c4b42fc3d63e9718f209f3e7fab55258e49"
+    },
+    {
+      "head_name": "vendor/ods-row-groups",
+      "head_sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "left_commit": "2f854c4b42fc3d63e9718f209f3e7fab55258e49",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "2f854c4b42fc3d63e9718f209f3e7fab55258e49",
+        "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "conflict_files": [],
+      "all_paths_differing_from_main_only_tree": [],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "a15405a9194fed28d8a4c5fb249ff8660e6accec"
+    },
+    {
+      "head_name": "docs/ods-row-groups",
+      "head_sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "left_commit": "a15405a9194fed28d8a4c5fb249ff8660e6accec",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "a15405a9194fed28d8a4c5fb249ff8660e6accec",
+        "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "conflict_files": [],
+      "all_paths_differing_from_main_only_tree": [],
+      "only_conflict_files_differ": true,
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "d96ab640654d77bf39c92b213a8dc397eea992cc"
+    }
+  ],
+  "raw_sequence_note": "Clean merges were attached to unreferenced simulation commits. Conflicted heads were left unattached during this first pass, so the next raw check used the last clean virtual merge.",
+  "conflict_summary": {
+    "conflicted_heads": 4,
+    "distinct_conflict_files": [
+      "docs/office-remaining-gaps.md",
+      "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+    ],
+    "production_code_conflicts": 0,
+    "reason": "Older documentation wording and an older test insertion point conflict with subsequent ODS row-group additions already on main."
+  },
+  "reviewed_resolution_sequence": [
+    {
+      "head_name": "docs/current-office-capabilities",
+      "head_sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "left_commit": "d96ab640654d77bf39c92b213a8dc397eea992cc",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "-Xours",
+        "d96ab640654d77bf39c92b213a8dc397eea992cc",
+        "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "a9f7f31343e260f0a95ceb56ff7e9fb8a4fd860d",
+      "verified_commit_parents": [
+        "d96ab640654d77bf39c92b213a8dc397eea992cc",
+        "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+      ],
+      "resolution": "The older ODS capability list lacks autofilter predicates and row outline groups. Retain the main-combined list, which includes this branch's exact patch plus later filter and row-group updates."
+    },
+    {
+      "head_name": "feat/ods-filter-conditions",
+      "head_sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "left_commit": "a9f7f31343e260f0a95ceb56ff7e9fb8a4fd860d",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "-Xours",
+        "a9f7f31343e260f0a95ceb56ff7e9fb8a4fd860d",
+        "1deb61cf78add61f5d26bea36ff596d769d06a87"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "2425145104f09d93cecce70a1f3fa0a736cdbb85",
+      "verified_commit_parents": [
+        "a9f7f31343e260f0a95ceb56ff7e9fb8a4fd860d",
+        "1deb61cf78add61f5d26bea36ff596d769d06a87"
+      ],
+      "resolution": "The conflict is the later row-outline test on the main side versus an empty older insertion point. The autofilter test itself is identical and present on both sides. Retain the combined main-side file with both tests."
+    },
+    {
+      "head_name": "vendor/ods-filter-conditions",
+      "head_sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "left_commit": "2425145104f09d93cecce70a1f3fa0a736cdbb85",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "-Xours",
+        "2425145104f09d93cecce70a1f3fa0a736cdbb85",
+        "928f85483ec1cb85e468ca9381585875137ba8d5"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "614908d7e0092539d2f683256c0e9838f93f0b76",
+      "verified_commit_parents": [
+        "2425145104f09d93cecce70a1f3fa0a736cdbb85",
+        "928f85483ec1cb85e468ca9381585875137ba8d5"
+      ],
+      "resolution": "Same insertion-point conflict as the feature head: retain both the filter predicate test and the later row-outline test. The vendor patch matches the same main squash patch exactly."
+    },
+    {
+      "head_name": "docs/ods-filter-predicates",
+      "head_sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "left_commit": "614908d7e0092539d2f683256c0e9838f93f0b76",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "--name-only",
+        "--no-messages",
+        "-Xours",
+        "614908d7e0092539d2f683256c0e9838f93f0b76",
+        "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+      ],
+      "exit_code": 0,
+      "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+      "matches_main_only_tree": true,
+      "unreferenced_virtual_commit": "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4",
+      "verified_commit_parents": [
+        "614908d7e0092539d2f683256c0e9838f93f0b76",
+        "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+      ],
+      "resolution": "The older document reports a Sheet/ODS cohort of 508 and lacks row outline groups. Retain the later main wording reporting 509 and row outline groups. These are inherited documentation claims; this preflight did not rerun that historical cohort."
+    }
+  ],
+  "final_simulation": {
+    "commit": "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4",
+    "tree": "754fd323403c79e822f33421d132cdc9c022b0e4",
+    "matches_main_only_tree": true,
+    "all_nine_observed_heads_are_ancestors": true,
+    "ancestor_checks": [
+      {
+        "head_name": "main",
+        "sha": "be9eeec9ea3455018de26fff5874c558dbc66798",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "be9eeec9ea3455018de26fff5874c558dbc66798",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "docs/current-office-capabilities",
+        "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "docs/odt-image-registry",
+        "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "feat/ods-filter-conditions",
+        "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "1deb61cf78add61f5d26bea36ff596d769d06a87",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "vendor/ods-filter-conditions",
+        "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "928f85483ec1cb85e468ca9381585875137ba8d5",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "docs/ods-filter-predicates",
+        "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "feat/ods-row-groups",
+        "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "vendor/ods-row-groups",
+        "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      },
+      {
+        "head_name": "docs/ods-row-groups",
+        "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+          "206c917c8a9fa270f1d61afb0203c1c5b9d85aa4"
+        ],
+        "exit_code": 0,
+        "is_ancestor": true
+      }
+    ]
+  },
+  "preflight_state_attestation": {
+    "head_before": "6bf486ee0bbcd2025c3a42cae7d7003b8c9324a4",
+    "head_after": "6bf486ee0bbcd2025c3a42cae7d7003b8c9324a4",
+    "index_sha256_before": "7e19baa2f064113f261f84b606c8373938a5c122dc0b58c4c23f21d2b7107c28",
+    "index_sha256_after": "7e19baa2f064113f261f84b606c8373938a5c122dc0b58c4c23f21d2b7107c28",
+    "index_unchanged": true,
+    "worktree_edits_during_preflight": false,
+    "remote_writes": false,
+    "github_actions_or_checks_used": false
+  },
+  "artifact_creation_note": "This JSON was saved after the preflight at root's request. The attestation above describes the completed preflight, not any subsequent real merge performed by root. Evidence objects were re-read and resolved trees/parents and ancestry rechecked while saving this file.",
+  "limitations": [
+    "No test suite was run by this preflight. Root owns local test receipts.",
+    "The simulation commits are unreferenced objects and may eventually be garbage-collected. This record preserves hashes, exact commands, conflict hunks, patch IDs and conclusions.",
+    "Final real-merge ancestry and validation must be bound separately to the actual published commit."
+  ]
+}

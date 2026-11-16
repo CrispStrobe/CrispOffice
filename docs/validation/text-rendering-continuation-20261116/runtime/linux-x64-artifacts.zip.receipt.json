@@ -1,0 +1,61 @@
+{
+  "url": "https://storage.googleapis.com/flutter_infra_release/flutter/cf636b1dfb818dd6a3ff16e390e93b1a036969c8/linux-x64/artifacts.zip",
+  "expected_bytes": 29277022,
+  "expected_sha256": null,
+  "chunk_bytes": 4194304,
+  "workers": 8,
+  "parts": [
+    {
+      "start": 0,
+      "end": 4194303,
+      "sha256": "5cc9c76f094978bd42ff6c60d84bcb0bacf73364dcdc23b5590174741a9f9385",
+      "requests": 14
+    },
+    {
+      "start": 4194304,
+      "end": 8388607,
+      "sha256": "faf2e5d9eaa3c020c48212e0e460c92d77c7010215762e96e0f640f08a003a3d",
+      "requests": 18
+    },
+    {
+      "start": 8388608,
+      "end": 12582911,
+      "sha256": "fd8b9f5baba3e8bbcf9f210705c5f9921b34c8a52d5455fcd0448bdb95282bde",
+      "requests": 10
+    },
+    {
+      "start": 12582912,
+      "end": 16777215,
+      "sha256": "a001747370ef1bbc63759f11179ad920f5dbae6d269b166b83681c8f33118c33",
+      "requests": 6
+    },
+    {
+      "start": 16777216,
+      "end": 20971519,
+      "sha256": "64fe72407f2736733a68ffb948bb84c0ba0d444295b1824fa0778f216c544b9c",
+      "requests": 18
+    },
+    {
+      "start": 20971520,
+      "end": 25165823,
+      "sha256": "5113ff47974c9215452192c90fb988f4605f429741a9962585dea8e5ec1ca81c",
+      "requests": 12
+    },
+    {
+      "start": 25165824,
+      "end": 29277021,
+      "sha256": "fc20b815d71174d21e4a30211efc8952466df100fdca67ff418b084dabae333e",
+      "requests": 15
+    }
+  ],
+  "status": "passed",
+  "official_headers": {
+    "last-modified": "Fri, 23 Oct 2026 03:31:19 GMT",
+    "etag": "\"2c90376b5b50dee678fb791f802d9a41\"",
+    "x-goog-hash": "md5=LJA3a1tQ3uZ4+3kfgC2aQQ==",
+    "content-length": "29277022"
+  },
+  "downloaded_bytes": 29277022,
+  "elapsed_seconds": 433.3405786129988,
+  "sha256": "7cfd5a97e514ee6bde9ba1010d62954289115f662ac2042af799641e515083af"
+}
