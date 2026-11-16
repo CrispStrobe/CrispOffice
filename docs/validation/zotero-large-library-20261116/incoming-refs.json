@@ -1,0 +1,569 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_at_utc": "2026-11-16T10:43:22.910340+00:00",
+  "integration_tree_at_capture": "31c3473fe678f832d1d4aad972c8ecf197a31dc0",
+  "branch_count": 40,
+  "pr_head_count": 58,
+  "commands": [
+    "git fetch origin '+refs/heads/*:refs/remotes/origin/*' '+refs/pull/*/head:refs/remotes/pull/*'",
+    "git for-each-ref refs/remotes",
+    "git merge-base --is-ancestor REF HEAD",
+    "git cherry HEAD REF"
+  ],
+  "github_actions_queried_or_awaited": false,
+  "refs": [
+    {
+      "ref": "origin",
+      "sha": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-optimization-20261116",
+      "sha": "11c45dbc90607fd8efae991c69518c2525775c4a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- f5b67cc296b7d27e4f3a480dc46160f472d78694"
+      ]
+    },
+    {
+      "ref": "origin/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 01f62eb1812ca54827cc14e074e03abd82f963d7"
+      ]
+    },
+    {
+      "ref": "origin/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 2e3074c8e1860f9503b059a87870911afc3eee7d"
+      ]
+    },
+    {
+      "ref": "origin/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 864e674795eb422855df2b26ccc375d3255e61a2"
+      ]
+    },
+    {
+      "ref": "origin/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+      ]
+    },
+    {
+      "ref": "origin/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 49ba086251ba61032f15b3e7b726fc921874fd12"
+      ]
+    },
+    {
+      "ref": "origin/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 8769019fb8be5483939edd4655dd88005e2515c4"
+      ]
+    },
+    {
+      "ref": "origin/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/main",
+      "sha": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 375390c3853ce26f43d6ac3f71c592acf3e094dc",
+        "- 388a1c76339507d493bab577424affd80732446c"
+      ]
+    },
+    {
+      "ref": "origin/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 375390c3853ce26f43d6ac3f71c592acf3e094dc"
+      ]
+    },
+    {
+      "ref": "origin/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "status": "superseded_draft",
+      "reason": "Older ODS validation draft superseded by the already integrated bounded-range and quoted-sheet-name successor; do not reintroduce its implementation.",
+      "prior_audit": "docs/validation/zotero-optimization-20261116/README.md"
+    },
+    {
+      "ref": "origin/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "status": "ancestor"
+    },
+    {
+      "ref": "origin/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/1",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/10",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/11",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/12",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/13",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/14",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/15",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/16",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/17",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/18",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/19",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/2",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/20",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/21",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/22",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/23",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/24",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/25",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/26",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/27",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/28",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/29",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/3",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/30",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/31",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/32",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/33",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/34",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/35",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/36",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/37",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/38",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/39",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/4",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/40",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/41",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/42",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/43",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/44",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/45",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/46",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/47",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/48",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/49",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/5",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/50",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/51",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 8769019fb8be5483939edd4655dd88005e2515c4"
+      ]
+    },
+    {
+      "ref": "pull/52",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 01f62eb1812ca54827cc14e074e03abd82f963d7"
+      ]
+    },
+    {
+      "ref": "pull/53",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 2e3074c8e1860f9503b059a87870911afc3eee7d"
+      ]
+    },
+    {
+      "ref": "pull/54",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 49ba086251ba61032f15b3e7b726fc921874fd12"
+      ]
+    },
+    {
+      "ref": "pull/55",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- f5b67cc296b7d27e4f3a480dc46160f472d78694"
+      ]
+    },
+    {
+      "ref": "pull/56",
+      "sha": "11c45dbc90607fd8efae991c69518c2525775c4a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/57",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+      ]
+    },
+    {
+      "ref": "pull/58",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "status": "patch_equivalent",
+      "git_cherry": [
+        "- 864e674795eb422855df2b26ccc375d3255e61a2"
+      ]
+    },
+    {
+      "ref": "pull/6",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/7",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/8",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "pull/9",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "status": "ancestor"
+    }
+  ],
+  "local_integration_head_at_capture": "9f674c9875106a288038fa668bb0f1ad70b08059",
+  "qualified_remote_source_commit": "98079023680a549cb126752c1d4f539749f46938"
+}

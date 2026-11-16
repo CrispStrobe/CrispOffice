@@ -1,0 +1,173 @@
+00:00 +0: loading test/zotero_client_test.dart
+00:00 +0: test/zotero_client_test.dart: key verification uses a header, strips returned secrets and resolves access
+00:00 +1: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +2: test/zotero_client_test.dart: public library reads omit credentials; empty key cannot verify
+00:00 +3: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +4: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +5: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +6: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +7: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +8: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +9: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +10: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +11: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +12: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +13: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +14: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +15: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +16: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +17: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +18: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +19: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +20: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +21: test/zotero_metadata_batch_test.dart: fifty sources use one bounded metadata request and retain order
+00:00 +22: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +23: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +24: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +25: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +26: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +27: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +28: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +29: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +30: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +31: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +32: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +33: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +34: test/zotero_saved_search_test.dart: saved searches use the pinned local user library
+00:00 +35: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:00 +36: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:00 +37: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:00 +38: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:00 +39: test/zotero_metadata_batch_test.dart: two desktop profiles cannot be combined behind users zero
+00:00 +40: test/zotero_client_test.dart: malformed responses, mismatched keys and transport diagnostics are contained
+00:00 +41: test/zotero_client_test.dart: malformed responses, mismatched keys and transport diagnostics are contained
+00:00 +42: test/zotero_saved_search_test.dart: online connections cannot list or execute the local saved-search workflow
+00:00 +43: test/zotero_metadata_batch_test.dart: missing source refuses the whole batch
+00:00 +44: test/zotero_metadata_batch_test.dart: missing source refuses the whole batch
+00:00 +45: test/zotero_metadata_batch_test.dart: missing source refuses the whole batch
+00:00 +46: test/zotero_saved_search_test.dart: saved-search keys and query/page limits are checked before transport
+00:00 +47: test/zotero_client_test.dart: desktop local API older desktops may omit a server ID; API v3 is still required
+00:00 +48: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:00 +49: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:00 +50: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:00 +51: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:00 +52: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:00 +53: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:00 +54: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:00 +55: test/zotero_saved_search_test.dart: malformed saved searches do not create ambiguous navigation entries
+00:00 +56: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +57: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +58: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +59: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +60: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +61: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +62: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:00 +63: test/zotero_saved_search_test.dart: a desktop database switch cannot reuse a saved search key
+00:00 +64: test/zotero_metadata_batch_test.dart: a local citation key cannot prove a durable identity
+00:00 +65: test/zotero_client_test.dart: desktop local API signed-in desktop identity uses the real account, never users/0
+00:00 +66: test/zotero_identity_client_test.dart: metadata refresh requests no style and still proves local identity
+00:00 +67: test/zotero_identity_client_test.dart: metadata refresh requests no style and still proves local identity
+00:00 +68: test/zotero_identity_client_test.dart: metadata refresh requests no style and still proves local identity
+00:00 +69: test/zotero_metadata_batch_test.dart: inconsistent or malformed result totals refuse complete-looking data
+00:00 +70: test/zotero_client_test.dart: desktop local API a citation key without local identity remains an offline source
+00:00 +71: test/zotero_metadata_batch_test.dart: missing CSL remains visible for the host to refuse atomic refresh
+00:00 +72: test/zotero_client_test.dart: desktop local API single CSL export objects, arrays and envelopes are normalized
+00:00 +73: test/zotero_client_test.dart: desktop local API single CSL export objects, arrays and envelopes are normalized
+00:00 +74: test/zotero_metadata_batch_test.dart: metadata requests retain database pinning and reject a switched desktop
+00:00 +75: test/zotero_client_test.dart: desktop local API malformed and multi-item CSL exports do not pick an arbitrary record
+00:00 +76: test/zotero_metadata_batch_test.dart: server backoff blocks the next batch without retries
+00:00 +77: test/zotero_client_test.dart: desktop local API canonical CSL IDs cannot change item, library or identity
+00:00 +78: test/zotero_client_test.dart: desktop local API users/0 requires a valid matching response library envelope
+00:00 +79: test/zotero_client_test.dart: desktop local API local pagination cannot leave the selected loopback route
+00:00 +80: test/zotero_client_test.dart: desktop local API desktop errors explain local setup without exposing diagnostics
+00:00 +81: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +82: test/ods_sheet_reader_test.dart: ambiguous and foreign annotations are refused without inventing a value
+00:00 +83: test/ods_sheet_reader_test.dart: repeated annotation text and author consume the expanded text budget
+00:00 +84: test/ods_sheet_reader_test.dart: annotation-only cells obey materialized-cell and grid bounds
+00:00 +85: test/ods_sheet_reader_test.dart: covered cells cannot silently discard annotations
+00:00 +86: test/ods_sheet_reader_test.dart: authored date literals retain spaces quotes and format-like text
+00:00 +87: test/ods_sheet_reader_test.dart: authored textual dates use namespace-aware widths and weekday names
+00:00 +88: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +89: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +90: test/ods_sheet_reader_test.dart: currency symbols survive namespaced import and XLSX saves
+00:00 +91: test/ods_sheet_reader_test.dart: inherited styled padding stays sparse while explicit blanks survive
+00:00 +92: test/ods_sheet_reader_test.dart: ODS native column geometry survives a new XLSX copy
+00:00 +93: test/ods_sheet_reader_test.dart: cell then row then per-column styles survive repeated cells
+00:00 +94: test/ods_sheet_reader_test.dart: Default column and row padding stays sparse at large repeats
+00:00 +95: test/ods_sheet_reader_test.dart: column default bookkeeping shares the workbook dimension budget
+00:00 +96: test/ods_sheet_reader_test.dart: ODS hour and minute format survives XLSX save
+00:00 +97: test/ods_sheet_reader_test.dart: ODS minute and second format survives XLSX save
+00:00 +98: test/ods_sheet_reader_test.dart: ODS full clock format survives XLSX save
+00:00 +99: test/ods_sheet_reader_test.dart: ODS elapsed hours format survives XLSX save
+00:00 +100: test/ods_sheet_reader_test.dart: ODS elapsed minutes format survives XLSX save
+00:00 +101: test/ods_sheet_reader_test.dart: ODS elapsed minutes and seconds format survives XLSX save
+00:00 +102: test/ods_sheet_reader_test.dart: ODS elapsed seconds format survives XLSX save
+00:00 +103: test/ods_sheet_reader_test.dart: ODS document default style supplies the Normal cell font
+00:00 +104: test/ods_sheet_reader_test.dart: ODS document defaults supply column width and row height
+00:00 +105: test/ods_sheet_reader_test.dart: ODS hidden sheets survive save and reopen
+00:00 +106: test/ods_sheet_reader_test.dart: ODS hidden columns and rows survive save
+00:00 +107: test/ods_sheet_reader_test.dart: ODS text and duplicate conditions keep their type
+00:00 +108: test/ods_sheet_reader_test.dart: ODS begins-with and ends-with conditions keep their text
+00:00 +109: test/ods_sheet_reader_test.dart: ODS between conditions keep both bounds
+00:00 +110: test/ods_sheet_reader_test.dart: ODS conditional comparison operators keep their meaning
+00:00 +111: test/ods_sheet_reader_test.dart: ODS conditional formats import and serialize
+00:00 +112: test/ods_sheet_reader_test.dart: ODS validation prompts and error styles round-trip
+00:00 +113: test/ods_sheet_reader_test.dart: ODS custom formula validations translate relative refs
+00:00 +114: test/ods_sheet_reader_test.dart: ODS whole, decimal, date and text-length validations import
+00:00 +115: test/ods_sheet_reader_test.dart: ODS list source preserves spaces in quoted sheet names
+00:00 +116: test/ods_sheet_reader_test.dart: ODS validation source range is bounded before scanning empty cells
+00:00 +117: test/ods_sheet_reader_test.dart: ODS range-source list validations resolve across sheets
+00:00 +118: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +119: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:01 +120: test/ods_sheet_reader_test.dart: ODS named expressions translate to XLSX formulas
+00:01 +121: test/ods_sheet_reader_test.dart: ODS tab colour survives save and reopen
+00:01 +122: test/ods_sheet_reader_test.dart: ODS print areas, titles, names and autofilter survive save
+00:01 +123: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:="a;b"
+00:01 +124: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:="literal [.A1];COM.MICROSOFT.SUM"
+00:01 +125: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=IF([.A1]="a;b";"say ""[.B2];""";COM.MICROSOFT.SUM([.A1:.A2];1))
+00:01 +126: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=CONCATENATE("";"a;b";"[.A1]")
+00:01 +127: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=SUM(['Semi;Colon'.A1];1)
+00:01 +128: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=SUM(['COM.MICROSOFT.Data'.A1];1)
+00:01 +129: test/ods_sheet_reader_test.dart: formula namespace COM.MICROSOFT. only changes at a token boundary
+00:01 +130: test/ods_sheet_reader_test.dart: formula namespace ORG.OPENOFFICE. only changes at a token boundary
+00:01 +131: test/ods_sheet_reader_test.dart: declines a stored cell where a horizontal covered token is missing
+00:01 +132: test/ods_sheet_reader_test.dart: declines a stored cell inside an earlier vertical merged region
+00:01 +133: test/ods_sheet_reader_test.dart: annotations retain coordinates and do not leak into cell values
+00:01 +134: test/ods_sheet_reader_test.dart: reads ODS values, formulas, styles and merges
+00:01 +135: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:01 +136: test/ods_sheet_reader_test.dart: covered cells and internal repeated empty rows keep positions
+00:01 +137: test/ods_sheet_reader_test.dart: rejects a non-ODF package
+00:01 +138: test/ods_sheet_reader_test.dart: merged covered cells consume one coordinate and retain row spans
+00:01 +139: test/ods_sheet_reader_test.dart: repeated blank rows retain later data at exact coordinates
+00:01 +140: test/ods_sheet_reader_test.dart: row headers and groups retain blank row coordinates
+00:01 +141: test/ods_sheet_reader_test.dart: foreign lookalike elements and attributes cannot change sheet values
+00:01 +142: test/ods_sheet_reader_test.dart: named inherited cell wrap styles survive an XLSX roundtrip
+00:01 +143: test/ods_sheet_reader_test.dart: column groups retain dimensions and repeated values
+00:01 +144: test/ods_sheet_reader_test.dart: blank trailing padding is skipped without truncating data silently
+00:01 +145: test/ods_sheet_reader_test.dart: rejects cross-product expansion before materializing repeated cells
+00:01 +146: test/ods_sheet_reader_test.dart: workbook budget is shared by multiple individually small sheets
+00:01 +147: test/ods_sheet_reader_test.dart: repeated text is bounded before it can expand during XLSX save
+00:01 +148: test/ods_sheet_reader_test.dart: rejects invalid or out-of-range meaningful repeats instead of clipping
+00:01 +149: test/ods_sheet_reader_test.dart: formula conversion preserves delimiters and brackets inside literals
+00:01 +150: test/ods_sheet_reader_test.dart: repeated formulas decline rather than cloning incorrect references
+00:01 +151: test/ods_sheet_reader_test.dart: preserves ODF explicit spaces, tabs and paragraph boundaries
+00:01 +152: test/ods_sheet_reader_test.dart: rejects XML with spreadsheet local names in the wrong namespace
+00:01 +153: test/ods_sheet_reader_test.dart: rejects cyclic named styles and excessive XML nesting
+00:01 +154: test/ods_sheet_reader_test.dart: keeps internal repeated blank rows without expanding trailing padding
+00:01 +155: test/ods_sheet_reader_test.dart: blank runs retain in-range cells and refuse later out-of-range data
+00:01 +156: test/ods_sheet_reader_test.dart: horizontal merge consumes explicit placeholder once
+00:01 +157: test/ods_sheet_reader_test.dart: horizontal merge consumes repeated placeholders once
+00:01 +158: test/ods_sheet_reader_test.dart: horizontal merge consumes additional covered column once
+00:01 +159: test/ods_sheet_reader_test.dart: consecutive merged origins retain explicit covered positions
+00:01 +160: test/ods_sheet_reader_test.dart: merge spans retain in-range cells and refuse column overflow
+00:01 +161: test/ods_sheet_reader_test.dart: styled trailing row padding stays sparse within the admitted grid
+00:01 +162: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=MYCOM.MICROSOFT.FUNC(1)
+00:01 +163: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:="a;b"
+00:01 +164: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:="literal [.A1];COM.MICROSOFT.SUM"
+00:01 +165: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=IF([.A1]="a;b";"say ""[.B2];""";COM.MICROSOFT.SUM([.A1:.A2];1))
+00:01 +166: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=CONCATENATE("";"a;b";"[.A1]")
+00:01 +167: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=SUM(['Semi;Colon'.A1];1)
+00:01 +168: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=SUM(['COM.MICROSOFT.Data'.A1];1)
+00:01 +169: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=[$Sheet2.A1]+[.$A$1]
+00:01 +170: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=[$'Semi;Colon'.$A$1]
+00:01 +171: All tests passed!

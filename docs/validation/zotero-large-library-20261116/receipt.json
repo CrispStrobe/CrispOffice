@@ -1,0 +1,130 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "qualified_remote_source_commit": "98079023680a549cb126752c1d4f539749f46938",
+  "qualified_source_tree": "d61b97d1386ddf44ffe89a222be70c2db9642717",
+  "canonical_quds_source_commit": "98079023680a549cb126752c1d4f539749f46938",
+  "companion_crispcloud_source_commit": "07c54fe650d5dbcba664cedd8e5324176f5c7ada",
+  "commands": [
+    {
+      "command": [
+        "dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "test/zotero_client_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/zotero_metadata_batch_test.dart",
+        "test/zotero_saved_search_test.dart",
+        "test/ods_sheet_reader_test.dart"
+      ],
+      "workspace_relative_cwd": "zotero-toolchain/harness/quds_office_engine",
+      "exit_code": 0,
+      "passed_tests": 171,
+      "log": "logs/engine-tests-final.log",
+      "log_sha256": "e255ca6021f5cf18e7884fadd40e09852ee76a155e06184837c6bcdd047979b0"
+    },
+    {
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_bibliography_controller_test.dart",
+        "test/word_zotero_catalog_citing_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_collection_pagination_test.dart",
+        "test/word_zotero_controller_test.dart",
+        "test/word_zotero_dialog_test.dart",
+        "test/word_zotero_format_test.dart",
+        "test/word_zotero_rich_controller_test.dart",
+        "test/word_zotero_saved_search_test.dart"
+      ],
+      "workspace_relative_cwd": "zotero-toolchain/harness/quds_office_editor",
+      "exit_code": 0,
+      "passed_tests": 177,
+      "log": "logs/editor-final.log",
+      "log_sha256": "33a582464922e4cc7104ec028f7e4fb33650985d1faac478834504c1760a67a7"
+    },
+    {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/test/ods_sheet_reader_test.dart"
+      ],
+      "workspace_relative_cwd": "quds_office_suite",
+      "exit_code": 0,
+      "passed_tests": null,
+      "log": "logs/scoped-analysis.log",
+      "log_sha256": "aa6ce4bf3cb0289258ff6c2333778445e43fbf9a2ba3024e8143e534fbd38854"
+    },
+    {
+      "command": [
+        "dart",
+        "format",
+        "--language-version=3.12",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart"
+      ],
+      "workspace_relative_cwd": "quds_office_suite",
+      "exit_code": 0,
+      "passed_tests": null,
+      "log": "logs/format-final.log",
+      "log_sha256": "0f345a77e70134b73f904eb92718f065cfaf500d67d9a5fba389aecd17bc173a"
+    }
+  ],
+  "passed_tests_this_repository": 348,
+  "passed_tests_across_both_repositories": 457,
+  "counts_exclude_setup_smokes_overlapping_runs_and_expected_failure_controls": true,
+  "measured_files_match_qualified_commit_at_recording": true,
+  "source_file_sha256": {
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "19c134fd897980ba7fb0212744f3a98f45a27b35ae4f9f70702f4689e207bfea",
+    "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": "40f8356d305050033c0dff978768cc6e0b64dd3e73b2092023019c1ee3634749",
+    "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart": "2aec3dd55d00751c82e08051173eeedbd726b328f1eb1b925a25ff81951fbd5d",
+    "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": "f41b8894e31a8d3a7b893e074984ffd998e715a2107159e6150672051ef50cc6",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": "09183cc80824c03afd954c954667214538d47611bdadddf9440bb74aa3cff8fb",
+    "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart": "dd4ebf279033cd62cce38121bfa124e46140130e0a19d5b6626f88d39888c56a",
+    "packages/quds_office_editor/test/word_zotero_controller_test.dart": "fc838a2e3efabdb75b290bd33b5d5a8cc4a7b3181a7b3eb20cd3802612d084d0",
+    "packages/quds_office_editor/test/word_zotero_dialog_test.dart": "65a0073c7c4ef980554332c2f6c4fec5054d2febc4db19712389c81b5d479c13",
+    "packages/quds_office_editor/test/word_zotero_format_test.dart": "6c9cd8a8130c1fcbdca6a4834e18c08590994ceb970efe6a0a6209e70025c650",
+    "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": "8be7430271ea255a2891b36118dafdd7032e7146225717305b591783cbe42d00",
+    "packages/quds_office_editor/test/word_zotero_saved_search_test.dart": "2d939076b8817ab151987b33ab9fd99ea29aeace87974e647709732c48d967b2",
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart": "43ff01ac899d2b02d6f5ea12f59cf387633ba7703964b83eadbb85e50aaddefe",
+    "packages/quds_office_engine/test/ods_sheet_reader_test.dart": "084f9ec3b7f891d8ef4f3c91069c9cb09efec1848bd46b3f6bada5990cc8cfc9",
+    "packages/quds_office_engine/test/zotero_client_test.dart": "8502e4921897cfa3f9c89170f64dd6e60e97e7eecba886935bf6db64fb76ad68",
+    "packages/quds_office_engine/test/zotero_identity_client_test.dart": "3b34bceac0d57dd4ba616eefc26f3a8168936435828db2568a840a0ad8285010",
+    "packages/quds_office_engine/test/zotero_metadata_batch_test.dart": "71810ac6333e81c6090650322a12f791eae645bb2b785fb165db4593b7923e37",
+    "packages/quds_office_engine/test/zotero_saved_search_test.dart": "f69e461446f5eb5c12e125121f7308077a9c5bd7543c3775355faa7f81c338ce"
+  },
+  "locked_harness_input_sha256": {
+    "harness/quds_office_engine": {
+      "pubspec.yaml": "09ab3b5abb15bacd2d398bb543640b531f92ffdd9796763cfbca14df496462c2",
+      "pubspec.lock": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+      ".dart_tool/package_config.json": "d9ee86e18cab59d1df9fe74a866f1913e2be6b1a223783f011193b02a7fdc2dc"
+    },
+    "harness/quds_office_editor": {
+      "pubspec.yaml": "70f33c82ce2616264e63bb203db1c7cff18286c489ad55e38979c683cf5db2c8",
+      "pubspec.lock": "110e7e8e57a36c6292502866e0656cdb89dfbf16576c3503f9571576d480796d",
+      ".dart_tool/package_config.json": "878cdffed97cca4c6d8db5fbd1c9dabd0c2a001e08f90fcd68f811bf94536013"
+    }
+  },
+  "analysis_configuration": "Temporarily normalized absolute package roots from the enforced harness graph; original canonical .dart_tool/package_config.json restored afterward.",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "framework": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "engine": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8"
+  },
+  "production_dependency_manifests_changed": false,
+  "github_actions_queried_awaited_or_rerun": false,
+  "qualification_scope": "Focused local production-code tests with synthetic documents and mocked network/protocol responses. No new full-app build or live external-service acceptance."
+}
