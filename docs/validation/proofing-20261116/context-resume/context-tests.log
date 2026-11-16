@@ -1,0 +1,10 @@
+00:00 +0: loading /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: right half of final misspelled glyph keeps its context finding
+00:00 +1: neighboring whitespace does not borrow the next word finding
+00:00 +2: right header uses painted proportional text bounds
+00:00 +3: center header uses painted proportional text bounds
+00:00 +4: stale source findings cannot supply a correction context
+00:00 +5: note labels stay generated and following text maps to original source
+00:00 +6: (tearDownAll)
+00:00 +6: All tests passed!

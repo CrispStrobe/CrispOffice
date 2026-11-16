@@ -602,6 +602,7 @@ class WordProofingSession extends ChangeNotifier {
   /// Reveals paragraphs supported by the current canvas. Notes and first/even
   /// header variants remain reviewable/correctable in the results dialog.
   bool canSelectIssue(WordProofingIssue issue) =>
+      controller.config.allowsSelection &&
       _publishedCurrent(issue) &&
       (issue.story == 'Body' || issue.story.startsWith('Comment '));
 
@@ -778,6 +779,7 @@ class WordProofingSession extends ChangeNotifier {
               block.properties.proofingLanguage,
               document.proofingLanguage,
               block.properties.fieldInstruction,
+              block.properties.pageNumberField,
               for (final control in block.contentControlWrappers) control.xml,
             ];
             final lockedParagraph =
@@ -801,6 +803,7 @@ class WordProofingSession extends ChangeNotifier {
                 final skip =
                     fieldDepth > 0 ||
                     block.properties.fieldInstruction != null ||
+                    block.properties.pageNumberField ||
                     inline.isAtomic ||
                     inline.properties.noProof == true;
                 shape.addAll([
@@ -872,6 +875,7 @@ class WordProofingSession extends ChangeNotifier {
             }
             if (text.isEmpty &&
                 block.properties.fieldInstruction == null &&
+                !block.properties.pageNumberField &&
                 fieldDepth == 0) {
               segments.add(
                 _WordProofingSegment(

@@ -466,6 +466,25 @@ void main() {
   );
 
   test(
+    'page-number field metadata invalidates stale suggestions and excludes its cache',
+    () async {
+      final header = _paragraph('Feler');
+      final doc = _document([_paragraph('Gut.')]);
+      doc.sections.single.header.add(header);
+      final c = _controller(doc);
+      await c.proofing.checkDocument();
+      final issue = c.proofing.issues.single;
+      header.properties.pageNumberField = true;
+      expect(c.proofing.canApply(issue), isFalse);
+      expect(c.proofing.applySuggestion(issue, 'Fehler'), isFalse);
+      final report = await c.proofing.checkDocument();
+      expect(report.issues, isEmpty);
+      expect(report.excludedSpanCount, 1);
+      expect(header.text, 'Feler');
+    },
+  );
+
+  test(
     'complex field results spanning paragraphs are excluded while surrounding text is checked',
     () async {
       final first = WmlParagraph(
