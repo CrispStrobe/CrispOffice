@@ -1,0 +1,208 @@
+00:00 +0: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart
+00:00 +0: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: citation insertion, undo and redo preserve source and advance save revisions
+00:00 +1: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: editing and unlinking are independent repeatable undo steps
+00:00 +2: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: batch refresh updates variable-length fields in one atomic undo step
+00:00 +3: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: failed refresh leaves all text, save revisions and undo history unchanged
+00:00 +4: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: foreign fields, stale handles and duplicate identities are rejected
+00:00 +5: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: bibliography creation and replacement retain field metadata through history
+00:00 +6: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: rich bibliography insertion and replacement survive history and DOCX save
+00:00 +7: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: mismatched rich bibliography insertion preserves redo and revision
+00:00 +8: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: mismatched rich bibliography update retains cache, metadata and history
+00:00 +9: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: viewing mode protects rich bibliography operations
+00:00 +10: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: tracked mode protects rich bibliography operations
+00:00 +11: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: same-text citation metadata edits retain imported rich cache styles
+00:00 +12: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: viewing mode does not mutate Zotero fields or history
+00:00 +13: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: tracked mode never silently bypasses revision history for Zotero edits
+00:00 +14: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: citation insertion cannot enter a bibliography middle paragraph
+00:00 +15: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: pending revisions protect affected paragraphs even when tracking is off
+00:00 +16: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_controller_test.dart: pending changes in other paragraphs do not block an independent citation edit
+00:00 +17: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart
+00:01 +17: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import accepts single object, normal array and Zotero Web API v3 envelope
+00:01 +18: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import creates distinct offline IDs for records with no ID or URI
+00:01 +19: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import links explicit personal and group URIs without conflating identical keys
+00:01 +20: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import a canonical URI in the CSL id is a linked source
+00:01 +21: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import preserves unsynced identity separately from the desktop API route
+00:01 +22: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import rejects local routing aliases and malformed desktop identities
+00:01 +23: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import untrusted and noncanonical URLs remain offline sources
+00:01 +24: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import accepts exactly 500 records and refuses 501 or an empty export
+00:01 +25: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import the import size bound counts UTF-8 bytes, not characters
+00:01 +26: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: CSL JSON import refuses malformed JSON and incomplete or wrongly typed records
+00:01 +27: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: refreshable source addresses recognizes personal/group HTTP and HTTPS item identifiers
+00:01 +28: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: refreshable source addresses refuses credentials, query strings, fragments, ports and invalid keys
+00:01 +29: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: desktop source identity normalizes aliases without changing the original imported source
+00:01 +30: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: desktop source identity same request route and item key do not conflate desktop profiles
+00:01 +31: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: desktop source identity local and numeric identities have distinct scopes
+00:01 +32: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: desktop source identity the source-compatible remote constructor retains canonical identity
+00:01 +33: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text removes scripts, styles and resource tags while preserving reference text
+00:01 +34: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text decodes named and numeric entities and preserves multilingual text
+00:01 +35: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text decoded markup is returned as text and never recursively evaluated
+00:01 +36: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text invalid Unicode numeric references produce replacement characters
+00:01 +37: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text recognizes uppercase variants of supported HTML entities
+00:01 +38: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: formatted references become inert text oversized formatted responses are refused
+00:01 +39: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback formats locators and affixes without claiming a CSL style
+00:01 +40: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback suppress-author leaves the year and locator, with affixes retained
+00:01 +41: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback author-only omits the year and multiple items remain separated
+00:01 +42: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic citation fallback corporate authors, missing authors and missing dates have readable fallbacks
+00:01 +43: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback deduplicates repeated citations and sorts authors then titles
+00:01 +44: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback linked sources dedupe by URI while distinct libraries remain distinct
+00:01 +45: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback canonical URL aliases identify the same bibliography source
+00:01 +46: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback local URI aliases dedupe while identical keys in other profiles do not
+00:01 +47: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_format_test.dart: basic bibliography fallback keeps container/DOI data, strips title markup and skips missing snapshots
+00:01 +48: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart
+00:03 +48: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced refresh keeps URI aliases and unknown citation data
+00:05 +49: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: wrong desktop profile with the same item key cannot refresh
+00:06 +50: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: online operations reject local-only references before a request
+00:06 +51: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: online refresh can use a numeric alias while retaining old local URI
+00:06 +52: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: different local profiles are not combined through the same route
+00:07 +53: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+00:07 +54: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch true
+00:08 +55: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced selected export verifies sources before copying reference data
+00:09 +56: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: changed profile cannot copy another source under a selected item key
+00:09 +57: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced bibliography verifies selection and requires review before insertion
+00:10 +58: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: reviewed bibliography keeps rich runs through save and undo
+00:10 +59: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: bibliography review offers an explicit editable plain result
+00:11 +60: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling rich bibliography review keeps history unchanged
+00:11 +61: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret rejects a reviewed rich bibliography
+00:11 +62: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision rejects a reviewed rich bibliography
+00:12 +63: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: rich review and format limitation fit a narrow viewport
+00:12 +64: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unchanged imported citation keeps its rich cache and native formatting metadata
+00:13 +65: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: older desktop cannot render an unverified aggregate bibliography
+00:13 +66: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: local source without CSL or identity is not refetched by a bare key
+00:13 +67: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop account source inserts without using the saved cloud key
+00:14 +68: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop unsynced source inserts without using the saved cloud key
+00:15 +69: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop citation-key source inserts without using the saved cloud key
+00:15 +70: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: switching sources makes no requests and preserves the cloud credential
+00:16 +71: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a host without desktop transport offers only the supported source
+00:16 +72: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: desktop connection and errors fit a 320 by 640 viewport
+00:16 +73: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: offline CSL import inserts source metadata and can be undone
+00:17 +74: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling the citation composer leaves document and history unchanged
+00:17 +75: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret while the composer is open blocks stale insertion
+00:17 +76: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision while the composer is open blocks stale insertion
+00:17 +77: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: mock Web API connection, pagination and search keep the key outside the document
+00:18 +78: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unchecking Remember removes the saved key immediately without connecting
+00:18 +79: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+00:19 +80: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: dialog, offline import and composer fit a 320 by 640 viewport
+00:19 +81: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart
+00:20 +81: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:20 +82: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: refresh undo restores the original noncollapsed text selection
+00:20 +83: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: an explicitly selected citation edits in place without a new field
+00:20 +84: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: new catalog citation, preferences and formatting form one undo step
+00:20 +85: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: native picker insertion into note type 1 is fully undoable
+00:20 +86: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: native picker insertion into note type 2 is fully undoable
+00:20 +87: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: two citations convert in descending order without losing surrounding text
+00:20 +88: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: citation conversion retains an unrelated note reference in the same paragraph
+00:20 +89: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: undo after DOCX save restores native preferences and note ownership
+00:20 +90: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: late insertion refusal rolls back earlier field updates and leaves history clean
+00:20 +91: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: locked field introduced during review refuses the whole result
+00:20 +92: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: caret change invalidates a pending processor result
+00:20 +93: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: selection change invalidates a pending processor result
+00:20 +94: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: revision change invalidates a pending processor result
+00:20 +95: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: view mode change invalidates a pending processor result
+00:20 +96: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: track changes change invalidates a pending processor result
+00:20 +97: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: protection change invalidates a pending processor result
+00:21 +98: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: document change invalidates a pending processor result
+00:21 +99: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: dispose change invalidates a pending processor result
+00:21 +100: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: processor cancellation, canceled seed and no-op keep clean history
+00:21 +101: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_controller_test.dart: new bibliography block and preferences have one undo and retain paragraph identities
+00:21 +102: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart
+00:21 +102: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop tools are absent when the host has no local transport
+00:23 +103: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native picker inserts a linked footnote and preferences as one undo
+00:23 +104: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Document style invokes Zotero preferences and persists its chosen locale
+00:24 +105: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native cancel without changes leaves the undo history clean
+00:24 +106: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: unsupported small caps are reviewed before mutation and can be discarded
+00:24 +107: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+00:25 +108: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: moving the caret during review prevents a stale insertion
+00:26 +109: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 0 returns its exact OK code
+00:26 +110: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 1 returns its exact Cancel code
+00:27 +111: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 2 returns its exact No code
+00:27 +112: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: Zotero alert button set 3 returns its exact Yes code
+00:28 +113: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop error alert 0 discards staged fields even after complete
+00:28 +114: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: desktop error alert 2 discards staged fields even after complete
+00:28 +115: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: cancel waits for a native response then drains without live mutation
+00:29 +116: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_citing_dialog_test.dart: stale editor target reports an error and drains the native transaction
+00:29 +117: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart
+00:29 +117: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 0 in one undo
+00:32 +118: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 1 in one undo
+00:33 +119: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 2 in one undo
+00:34 +120: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: saved document style goes directly to the seeded native picker
+00:34 +121: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the first style chooser retains catalog selection
+00:34 +122: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the following picker also discards staged style
+00:34 +123: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a failed picker never commits the preceding style choice
+00:35 +124: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: preferences stay detached while the next native dialog waits
+00:35 +125: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: Cancel operation discards both native stages
+00:36 +126: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a changed insertion point discards both native stages
+00:36 +127: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart
+00:37 +127: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: native mixed refresh is one undo step and survives DOCX
+00:37 +128: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: typing inside a mixed citation appends outside it and undo restores the packet
+00:37 +129: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: partial selection deletion removes one complete citation with undo and redo
+00:37 +130: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: Enter inside the citation splits after its complete field and is undoable
+00:37 +131: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: multiline paste inside the citation starts outside the complete field
+00:37 +132: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: partial citation copy retains linked mixed content through internal paste and undo
+00:37 +133: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: mixed cache moves inline to note type 1 and back without setText
+00:37 +134: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_zotero_rich_controller_test.dart: mixed cache moves inline to note type 2 and back without setText
+00:37 +135: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart
+00:38 +135: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart: display 1 for native ID 999 paints and hit-tests atomically
+00:38 +136: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart: display 108 for native ID 7 paints and hit-tests atomically
+00:38 +137: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart: display 10 for native ID 10 paints and hit-tests atomically
+00:38 +138: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart: editing after a shortened label still uses the original source range
+00:38 +139: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart: earlier inserted notes renumber on insert, undo and redo without ID changes
+00:39 +140: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:42 +141: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_note_numbering_test.dart: limited and orphaned note labels identify source IDs explicitly
+00:48 +142: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_notes_editing_test.dart
+00:54 +142: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_notes_editing_test.dart: note edits keep formatting and undo as one step
+00:56 +143: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_notes_editing_test.dart: undo commits a pending note edit before undoing it
+00:56 +144: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_notes_editing_test.dart: deleting a note removes its mark and undo restores both
+00:56 +145: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_notes_editing_test.dart: the notes pane edits, adds and deletes notes
+01:06 +146: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart
+01:07 +146: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: header tracked typing rejects in its own story after close and reopen
+01:07 +147: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: header tracked link rejects in its own story after close and reopen
+01:07 +148: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: header tracked backspace accepts only its own text with history
+01:07 +149: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: header tracked range keeps paragraphs and body drawings until accepted
+01:07 +150: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: footer tracked typing rejects in its own story after close and reopen
+01:07 +151: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: footer tracked link rejects in its own story after close and reopen
+01:07 +152: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: footer tracked backspace accepts only its own text with history
+01:07 +153: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: footer tracked range keeps paragraphs and body drawings until accepted
+01:07 +154: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: comment tracked typing rejects in its own story after close and reopen
+01:07 +155: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: comment tracked link rejects in its own story after close and reopen
+01:07 +156: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: comment tracked backspace accepts only its own text with history
+01:07 +157: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: comment tracked range keeps paragraphs and body drawings until accepted
+01:07 +158: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: revision retains body target after an unrelated paragraph split
+01:07 +159: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_story_test.dart: auxiliary revisions do not paint changes over body text
+01:08 +160: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart
+01:10 +160: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: repeated text uses the actual edit coordinates
+01:10 +161: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: insert inside a change preserves typing and blocks unsafe resolution
+01:10 +162: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: delete inside a change preserves typing and blocks unsafe resolution
+01:10 +163: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: a split through a pending range is an undoable conflict
+01:10 +164: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: overlapping tracked deletion restores prior attribution on undo
+01:10 +165: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: insertion at 0 preserves the exact pending span
+01:10 +166: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: insertion at 2 preserves the exact pending span
+01:10 +167: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: insertion at 5 preserves the exact pending span
+01:10 +168: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: insertion at 7 preserves the exact pending span
+01:10 +169: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: tracked prefix and prior insertion can be resolved separately
+01:10 +170: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: deleting an untracked prefix moves the pending span and undoes exactly
+01:10 +171: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: accepting an earlier deletion rebases the surviving insertion
+01:10 +172: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: character formatting and hyperlinks retain exact revision boundaries
+01:10 +173: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: paragraph split at 0 transfers whole pending spans
+01:10 +174: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: paragraph split at 2 transfers whole pending spans
+01:10 +175: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: paragraph split at 5 transfers whole pending spans
+01:10 +176: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: paragraph split at 7 transfers whole pending spans
+01:10 +177: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: body join transfers a revision from the removed paragraph
+01:10 +178: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: header join transfers a revision from the removed paragraph
+01:10 +179: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: story selection joins a surviving tail revision with exact history
+01:10 +180: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: removing a pending note paragraph records an undoable conflict
+01:10 +181: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: note history preserves rich marker order, links, tables and revision targets
+01:10 +182: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_revision_rebase_test.dart: note prefix edits preserve pending revision identity through history
+01:10 +183: loading /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart
+01:11 +183: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: body rejects a generated bookmark property merge before any mutation
+01:11 +184: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: header rejects a generated bookmark property merge before any mutation
+01:11 +185: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: header rejects a generated bookmark property merge before any mutation in a later paragraph
+01:11 +186: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: footer rejects a generated bookmark property merge before any mutation
+01:11 +187: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: footer rejects a generated bookmark property merge before any mutation in a later paragraph
+01:11 +188: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: comment rejects a generated bookmark property merge before any mutation
+01:11 +189: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: comment rejects a generated bookmark property merge before any mutation in a later paragraph
+01:11 +190: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: an empty target paragraph retains the generated bookmark and history
+01:11 +191: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: an empty document retains the generated bookmark and history
+01:11 +192: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: selection ending in an empty paragraph rejects before a retained prefix can lose the bookmark
+01:11 +193: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: a later complete generated paragraph stays a separate block
+01:11 +194: /workspace/scratch/7b8555dd0115/zotero-toolchain/harness/quds_office_editor/test/word_generated_bookmark_paste_test.dart: native endpoint bookmarks still merge into a header with history
+01:12 +195: All tests passed!

@@ -1,6 +1,62 @@
-# Zotero validation — 15 November 2026
+# Zotero validation — 16 November 2026
 
-## Native citing continuation: current executed results
+## Current continuation: first-use insertion, rich fields and note numbering
+
+The canonical implementation at `72691877bd9bafab761e655c13d0c9a0936b55bb`
+passed the following complete local selection. Later evidence/documentation
+commits retain these production and test bytes.
+
+| Executed local check | Result |
+| --- | ---: |
+| Zotero/Word engine, field editing, revisions and note regressions | 579 passed |
+| Shared editor controller, formatter, dialog, notes and paste regressions | 195 passed |
+| Actual Quds Studio native transport | 16 passed |
+| Incoming ODS metadata/conditional-affix integration | 85 passed |
+| **Canonical selected tests** | **875 passed** |
+| Strict engine/editor analysis of 32 changed Dart targets | Clean |
+| Formatting and whitespace | Clean |
+
+The final run measured **1,568 unchanged source/dependency-input files**;
+HEAD and all three genuine harness inputs stayed unchanged. The runtime was
+official Flutter 3.47.8 / Dart 3.13.7, and production dependency constraints
+were not relaxed. CrispCloud separately passed **37 actual host tests** and
+eight-target strict analysis against this exact Quds implementation.
+
+New behavior includes first-use catalog insertion that chooses native document
+preferences and inserts the selected source in one staged transaction; supported
+mixed character formatting in a protected Zotero field; safe typing, deletion,
+copy/paste and paragraph splitting around that field; and automatic note labels
+from body order with supported document/section numbering preferences. Custom
+note marks keep their authored identity and do not consume automatic numbering.
+
+**Real desktop acceptance also passed against official Zotero 10.0.8.** The
+actual Quds catalog client and Studio transport browsed and searched three
+synthetic local sources. The actual citing driver and Word adapter opened
+native Document Preferences and refreshed a German Chicago subsequent-ibid
+document. Its saved/reopened DOCX contains a full first citation, `Ebd.`, and
+`Ebd., 34.`; mixed italics and the regenerated bibliography survive.
+These live scenarios are reported separately from unit/widget test totals.
+
+See [current evidence and reproduction](validation/zotero-continuation-20261116/README.md),
+[the final receipt](validation/zotero-continuation-20261116/final/receipt.json),
+[the live desktop evidence](validation/zotero-continuation-20261116/live-zotero/README.md),
+and [the final incoming-work audit](validation/zotero-continuation-20261116/final-integration.json).
+The first pass and focused development runs are retained without adding their
+overlapping counts to the final totals.
+
+Full compiled application builds, private-account/keychain acceptance and
+opening the exported file in Microsoft Word or LibreOffice remain unverified.
+Small caps and bibliography paragraph layout still require reviewed
+simplification. Page-based note restarts and unsupported numbering formats
+show an explicit source-ID fallback. Active ODT citation transfer remains absent.
+Unsupported/protected stories and ambiguous fields continue to refuse processing.
+
+All sections below are historical evidence for their recorded source commits;
+their older limitations and counts do not supersede this current section.
+No GitHub Actions were queried, polled, awaited or rerun. New checkpoints use
+`[skip ci]`.
+
+## Earlier native citing continuation: historical executed results
 
 Native desktop controls now use Zotero's picker, document style preferences and
 complete CSL processor. The staged adapter handles inline/footnote/endnote

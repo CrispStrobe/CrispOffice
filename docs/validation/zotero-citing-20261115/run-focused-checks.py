@@ -23,6 +23,9 @@ from urllib.parse import unquote, urljoin, urlparse
 
 
 BASELINE = "f40aa887325982ea70c8285b25f8ff5b92a46eb9"
+# A continuation can name exact archived execution scripts. These are evidence,
+# not production/test targets; all package and application paths remain gated.
+ARCHIVED_DART_INPUTS = ()
 RUNTIME_PINS = {
     "frameworkVersion": "3.47.8",
     "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
@@ -248,6 +251,10 @@ def main():
             path for path in git_paths(source, "ls-files", "--others", "--exclude-standard", "-z")
             if is_source_input(path) and path.endswith(".dart")
         })
+        archived = sorted(set(changed) & set(ARCHIVED_DART_INPUTS))
+        if any(not path.startswith("docs/validation/") for path in archived):
+            raise ValueError("Archived Dart evidence must be inside docs/validation")
+        changed = [path for path in changed if path not in archived]
     except (OSError, ValueError, subprocess.CalledProcessError) as error:
         parser.error(str(error))
 
@@ -295,6 +302,7 @@ def main():
             "source": str(source), "baseline": BASELINE, "output": str(output),
             "runtime_pins": runtime["pins"], "harnesses": {k: str(v) for k, v in harnesses.items()},
             "changed_dart_files": changed, "commands": commands,
+            "archived_execution_scripts": archived,
             "will_run_tests": False,
         }, indent=2))
         return 0
@@ -316,6 +324,7 @@ def main():
             "FLUTTER_SUPPRESS_ANALYTICS", "DART_SUPPRESS_ANALYTICS",
         )},
         "changed_dart_files": changed, "commands": [],
+        "archived_execution_scripts": archived,
         "runner_sha256": sha256(Path(__file__).read_bytes()),
         "uses_github_actions": False, "resolves_dependencies": False,
     }

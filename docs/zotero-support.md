@@ -106,9 +106,11 @@ incomplete citation sequence. The session is bounded to 10,000 fields, 100,000
 body paragraphs, 20,000 commands and 8 MiB command payloads.
 
 This integration is covered by local protocol, engine, controller and dialog
-tests plus outputs from Zotero's pinned real CSL processor. A live desktop
-session, full native application build and native Word/Zotero refresh acceptance
-remain to be checked. See [current validation](zotero-validation.md).
+tests plus outputs from Zotero's pinned real CSL processor. The actual catalog,
+transport and document adapter also passed live desktop Zotero style-selection,
+refresh and DOCX save/reopen checks. Full compiled application builds and opening
+the exported file in Microsoft Word or LibreOffice remain separate acceptance
+steps. See [current validation](zotero-validation.md).
 
 ## Using the editor
 
@@ -229,7 +231,7 @@ document tools above use the separate HTTP Citing Protocol.
 
 | Operation | Supported behavior | Boundary |
 | --- | --- | --- |
-| Native document processing | Zotero picker, document style/locale, complete citation refresh, numeric ordering, disambiguation and style-dependent ibid | Running desktop Zotero required; supported stories and safe note conversions only; live native acceptance pending |
+| Native document processing | Zotero picker, document style/locale, complete citation refresh, numeric ordering, disambiguation and style-dependent ibid | Running desktop Zotero required; supported stories and safe note conversions only; full app/Word interoperability remains a separate acceptance step |
 | Basic citations | Author–year fallback, multiple sources, locators and affixes | Not a named CSL style |
 | Single-source style preview | Zotero's individual citation text for a style ID and locale | Review locators and document numbering; this is not a document-wide CSL run |
 | Zotero bibliography | One complete API rendering of up to 50 distinct sources in one library, with supported rich character formatting | Review before insertion; small caps and paragraph layout are simplified; no separately formatted batches are concatenated |
@@ -252,8 +254,9 @@ The new desktop adapter delegates complete CSL processing to Zotero. Basic
 formatting and individual previews remain available when the desktop is not
 connected, and remain explicitly identified. A citation processed by native
 Zotero is marked separately so **Refresh basic citations** cannot overwrite
-its CSL result. Active citation transfer through ODT and native Zotero/Word
-refresh certification remain outside the executed acceptance scope.
+its CSL result. Active citation transfer through ODT and opening the exported
+file in Microsoft Word or LibreOffice remain outside the executed acceptance
+scope.
 
 ### Rich bibliography review and imported citation preservation
 
@@ -354,29 +357,33 @@ to hosts through the error's `retryAfter` value.
 
 ## Development baseline and verification
 
-The native-citing continuation starts from Quds
-`f40aa887325982ea70c8285b25f8ff5b92a46eb9` and CrispCloud
-`fe22a0458acfa90c0cce457d20fecbaa85a260e6`. Before feature work, all 45 live
-branches and all 42 Quds/recent 50 CrispCloud PR heads were reconciled. No new
-distinct work was missing: Quds main through #42, CrispCloud main through #152
-and terminal #140 were already included; five retained Quds branches were exact
-tree equivalents of integrated squash changes. The standalone parser pin stays
-unchanged.
+This continuation starts from Quds
+`dc5f93b673e6087cccc6d66b33dfbfd099668f77` and CrispCloud
+`45ed126a6d7da0ecd80f3a765155f54008b278f3`, after the prior Zotero PRs #47
+and #149 and terminal PR #140 were merged. Before feature work, the initial
+snapshot accounted for all **60 branch heads and 198 PR heads** across both
+repositories. Main includes the subsequent ODS metadata work.
 
-The final reconciliation also includes work that arrived during implementation:
-Quds main through **#46**, CrispCloud main through **#156**, and terminal #140
-through `a965bfd4a61ca01e6f50bf4d8c433c3fdc9e1423`. The main and terminal merges
-retain both parents. Quds #40 was merged during the work; a new draft PR carries
-the continuation beyond it. Final audit receipts distinguish the initial
-snapshot from this later integration.
+The final incoming-work cutoff is **16 November 2026 at 05:17:13 UTC**. It
+accounts for **62 branch heads and 199 PR heads**. The two continuation branches
+are recorded separately; all **259 external refs** are actual ancestors after
+merging the new CrispCloud terminal PR #160 at
+`49d63f78d0b854ba76289dba69fdb6584f8a1260`. That merge preserves both parents.
+The standalone parser pin is unchanged. The explicit cutoff bounds concurrent
+work; it does not claim to include commits created after the snapshot.
 
-Work is checkpointed incrementally on `codex/zotero-support-20261115` in both
-repositories. Checkpoints carry `[skip ci]`; GitHub Actions are not awaited.
-Local Dart/Flutter execution is available. Current test results, exact source
-fingerprints, runtime/dependency receipts and reproduction commands are recorded
-in [zotero-validation.md](zotero-validation.md). Historical validation retains
-its original source identity. Full builds and live native acceptance are
-reported separately from local source qualification.
+Work is saved incrementally on `codex/zotero-support-20261116` in both
+repositories. Checkpoints carry `[skip ci]`; no GitHub Actions are queried,
+polled, awaited or rerun. Local verification uses official Flutter/Dart and
+genuine locked dependency graphs. The actual local catalog and document-refresh
+path also passed against running Zotero 10.0.8 with synthetic sources, including
+German `Ebd.`/page locators, native style selection and DOCX save/reopen.
+
+See [zotero-validation.md](zotero-validation.md) for the exact tested source,
+current results, reproduction commands and native acceptance scope. Full
+compiled application builds and Microsoft Word/LibreOffice interoperability
+remain separate acceptance steps. Historical evidence retains its original
+source identity.
 
 ## Protocol sources
 
