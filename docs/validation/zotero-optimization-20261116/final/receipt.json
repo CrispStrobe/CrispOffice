@@ -1,0 +1,226 @@
+{
+  "all_passed": true,
+  "analysis_config_restored": true,
+  "baseline": "933dff0833b9aa2f6daa350c57bca93d57c6fd7f",
+  "changed_dart_targets": [
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+    "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+    "packages/quds_office_engine/test/zotero_metadata_batch_test.dart"
+  ],
+  "cohort_passed_tests": {
+    "editor-tests": 164,
+    "metadata-tests": 81,
+    "native-tests": 119
+  },
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/60be9067b9f9/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_scaling_test.dart",
+        "test/word_zotero_citing_test.dart",
+        "test/word_zotero_bibliography_layout_test.dart",
+        "test/word_zotero_preference_flow_test.dart",
+        "test/word_zotero_rich_edit_test.dart"
+      ],
+      "cwd": "/workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_engine",
+      "exit_code": 0,
+      "log": "native-tests.log",
+      "log_sha256": "8f7944fade8640f539257fa228b6e2097335c282fbc90d82130513339e1971d5",
+      "name": "native-tests",
+      "passed_tests": 119,
+      "seconds": 3.879,
+      "tail": [
+        "00:01 +116: test/word_zotero_rich_edit_test.dart: empty citation packets are not captured by text inserted at their offset",
+        "00:01 +117: test/word_zotero_rich_edit_test.dart: bookmarks and content controls surrounding a deleted citation survive",
+        "00:01 +118: test/word_zotero_rich_edit_test.dart: mixed native replacement refuses annotated cache text without losing comment ownership",
+        "00:01 +119: All tests passed!"
+      ]
+    },
+    {
+      "command": [
+        "/workspace/scratch/60be9067b9f9/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "test/zotero_metadata_batch_test.dart",
+        "test/zotero_client_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/zotero_saved_search_test.dart"
+      ],
+      "cwd": "/workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_engine",
+      "exit_code": 0,
+      "log": "metadata-tests.log",
+      "log_sha256": "172e05ac34ab77056bfb2eee41152249e88788aa04a15563ee63bacdbf878d7b",
+      "name": "metadata-tests",
+      "passed_tests": 81,
+      "seconds": 1.51,
+      "tail": [
+        "00:00 +78: test/zotero_client_test.dart: desktop local API users/0 requires a valid matching response library envelope",
+        "00:00 +79: test/zotero_client_test.dart: desktop local API local pagination cannot leave the selected loopback route",
+        "00:00 +80: test/zotero_client_test.dart: desktop local API desktop errors explain local setup without exposing diagnostics",
+        "00:00 +81: All tests passed!"
+      ]
+    },
+    {
+      "command": [
+        "/workspace/scratch/60be9067b9f9/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/word_zotero_bibliography_controller_test.dart",
+        "test/word_zotero_catalog_citing_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_controller_test.dart",
+        "test/word_zotero_dialog_test.dart",
+        "test/word_zotero_format_test.dart",
+        "test/word_zotero_rich_controller_test.dart",
+        "test/word_zotero_saved_search_test.dart"
+      ],
+      "cwd": "/workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_editor",
+      "exit_code": 0,
+      "log": "editor-tests.log",
+      "log_sha256": "e28aed80fccd118631ff655c3ddbc801796478f79212aa74ae14f8ca4427e8c1",
+      "name": "editor-tests",
+      "passed_tests": 164,
+      "seconds": 22.895,
+      "tail": [
+        "00:16 +161: /workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: unchecking Remember removes the saved key immediately without connecting",
+        "00:16 +162: /workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update",
+        "00:17 +163: /workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_editor/test/word_zotero_dialog_test.dart: dialog, offline import and composer fit a 320 by 640 viewport",
+        "00:18 +164: All tests passed!"
+      ]
+    },
+    {
+      "command": [
+        "/workspace/scratch/60be9067b9f9/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+        "packages/quds_office_engine/test/zotero_metadata_batch_test.dart"
+      ],
+      "cwd": "/workspace/scratch/60be9067b9f9/quds_office_suite",
+      "exit_code": 0,
+      "log": "engine-analysis.log",
+      "log_sha256": "377c5c6b84f5dda6661827b43f3716d56e7e689f0d16635e773e53b1cefd18a1",
+      "name": "engine-analysis",
+      "seconds": 4.116,
+      "tail": [
+        "Analyzing word_zotero_citing.dart, zotero_client.dart, word_zotero_scaling_test.dart, zotero_metadata_batch_test.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "command": [
+        "/workspace/scratch/60be9067b9f9/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_test.dart"
+      ],
+      "cwd": "/workspace/scratch/60be9067b9f9/quds_office_suite",
+      "exit_code": 0,
+      "log": "editor-analysis.log",
+      "log_sha256": "a2ac86f423f4af170c53da5ec676ba685aa43adae9e09c8e603d24ecaf7f182b",
+      "name": "editor-analysis",
+      "seconds": 10.844,
+      "tail": [
+        "Analyzing word_zotero_dialog.dart, word_zotero_dialog_test.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "command": [
+        "/workspace/scratch/60be9067b9f9/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--language-version=3.12",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+        "packages/quds_office_engine/test/zotero_metadata_batch_test.dart"
+      ],
+      "cwd": "/workspace/scratch/60be9067b9f9/quds_office_suite",
+      "exit_code": 0,
+      "log": "format-check.log",
+      "log_sha256": "9ee55f4141454ed1838dfe588a14026f80645b229f565c8cc43f6bf671dc9a2f",
+      "name": "format-check",
+      "seconds": 0.202,
+      "tail": [
+        "Formatted 6 files (0 changed) in 0.18 seconds."
+      ]
+    }
+  ],
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "editor_tests": [
+    "word_zotero_bibliography_controller_test.dart",
+    "word_zotero_catalog_citing_test.dart",
+    "word_zotero_citing_controller_test.dart",
+    "word_zotero_citing_dialog_test.dart",
+    "word_zotero_controller_test.dart",
+    "word_zotero_dialog_test.dart",
+    "word_zotero_format_test.dart",
+    "word_zotero_rich_controller_test.dart",
+    "word_zotero_saved_search_test.dart"
+  ],
+  "harness_input_sha256_after": {
+    "editor": {
+      ".dart_tool/package_config.json": "c6ba1cc15c50646606890581dd1e332a0d394a4cb98c37d8a5cfd942de104b39",
+      "pubspec.lock": "110e7e8e57a36c6292502866e0656cdb89dfbf16576c3503f9571576d480796d",
+      "pubspec.yaml": "70f33c82ce2616264e63bb203db1c7cff18286c489ad55e38979c683cf5db2c8"
+    },
+    "engine": {
+      ".dart_tool/package_config.json": "94b293ae899f75f3863daf63eef6394a91b8c0a4dda9fe2ee65b541d8961eed4",
+      "pubspec.lock": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+      "pubspec.yaml": "09ab3b5abb15bacd2d398bb543640b531f92ffdd9796763cfbca14df496462c2"
+    }
+  },
+  "harness_input_sha256_before": {
+    "editor": {
+      ".dart_tool/package_config.json": "c6ba1cc15c50646606890581dd1e332a0d394a4cb98c37d8a5cfd942de104b39",
+      "pubspec.lock": "110e7e8e57a36c6292502866e0656cdb89dfbf16576c3503f9571576d480796d",
+      "pubspec.yaml": "70f33c82ce2616264e63bb203db1c7cff18286c489ad55e38979c683cf5db2c8"
+    },
+    "engine": {
+      ".dart_tool/package_config.json": "94b293ae899f75f3863daf63eef6394a91b8c0a4dda9fe2ee65b541d8961eed4",
+      "pubspec.lock": "3b55c7eb8535653c0733db7abc99934bf3f23fdf3835eb5fb673c1044a848379",
+      "pubspec.yaml": "09ab3b5abb15bacd2d398bb543640b531f92ffdd9796763cfbca14df496462c2"
+    }
+  },
+  "harness_inputs_unchanged": true,
+  "head_after": "0dd09811b1c02514c32c33bd13744dadb202e7af",
+  "head_unchanged": true,
+  "metadata_tests": [
+    "zotero_metadata_batch_test.dart",
+    "zotero_client_test.dart",
+    "zotero_identity_client_test.dart",
+    "zotero_saved_search_test.dart"
+  ],
+  "native_tests": [
+    "word_zotero_scaling_test.dart",
+    "word_zotero_citing_test.dart",
+    "word_zotero_bibliography_layout_test.dart",
+    "word_zotero_preference_flow_test.dart",
+    "word_zotero_rich_edit_test.dart"
+  ],
+  "normalization_runner_sha256": "3a82ca75d4218a0ade2b78f81081e35d11033e2a331ab55aed664cb062476d39",
+  "passed_tests": 364,
+  "prior_run_counts_included": false,
+  "source_commit": "0dd09811b1c02514c32c33bd13744dadb202e7af",
+  "source_inputs_unchanged": true,
+  "source_scope": "Canonical package lib/test trees, Studio example, and dependency/analysis manifests outside docs/. Concurrent docs evidence manifests are excluded because they are not compiled by this cohort.",
+  "source_tree": "aa4785d46584b3f48cc48ee20415857552966814",
+  "uses_github_actions": false
+}

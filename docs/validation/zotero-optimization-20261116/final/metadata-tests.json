@@ -1,0 +1,6 @@
+[
+  "zotero_metadata_batch_test.dart",
+  "zotero_client_test.dart",
+  "zotero_identity_client_test.dart",
+  "zotero_saved_search_test.dart"
+]

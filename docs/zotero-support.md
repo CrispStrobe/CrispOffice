@@ -294,8 +294,23 @@ result. These checks detect changes between responses; they do not create a
 server-side snapshot transaction. This requires Zotero 10+; older clients can still browse, cite, refresh
 basic citations and provide individual previews when the same JSON response
 proves the source identity. Basic refresh requests metadata only, so it does
-not require a citation style or ask Zotero to generate formatted text. Use the embedded CSL export or basic bibliography
-when a connected aggregate operation cannot be verified.
+not require a citation style or ask Zotero to generate formatted text. Use the
+embedded CSL export or basic bibliography when a connected aggregate operation
+cannot be verified.
+
+**Refresh basic citations** fetches up to 50 distinct linked sources in one
+request per library, including repeated citations of the same source. Personal,
+group and unsynced local libraries retain separate identities even when item
+keys match. The full response must contain every requested source exactly once
+with usable CSL data. All library results stay staged until the complete
+refresh succeeds, and applying it remains one undo step. A changed document or
+insertion point stops the operation before another library is requested.
+
+Native document refresh also avoids repeatedly scanning all field IDs and
+rebuilding note positions for every citation. Each field-list response computes
+the current reading order once; later commands recalculate it after insertions,
+deletions or note conversion. The [optimization evidence](validation/zotero-optimization-20261116/README.md)
+contains the measured engine scope, correctness checks and remaining limits.
 
 Persistent item identities are separate from request addresses. `/users/0`
 selects the local user but is never written as a citation URI. Signed-in items
@@ -331,7 +346,7 @@ document tools above use the separate HTTP Citing Protocol.
 | Single-source style preview | Zotero's individual citation text for a style ID and locale | Review locators and document numbering; this is not a document-wide CSL run |
 | Zotero bibliography API preview | One complete API rendering of up to 50 distinct sources in one library, with supported rich character formatting including small capitals | Single-paragraph review; paragraph CSS layout is simplified; no separately formatted batches are concatenated |
 | Basic bibliography | Sorted, deduplicated entries from embedded source snapshots | Useful offline, without complete CSL formatting |
-| Refresh | Fetch metadata for at most 50 distinct linked sources, verify their complete saved identities, and atomically refresh Quds basic author–year citations | Local identities require the matching desktop connection; imported/custom style caches are not automatically replaced |
+| Refresh | Fetch metadata for at most 50 distinct linked sources in one verified batch per library, and atomically refresh Quds basic author–year citations | Local identities require the matching desktop connection; imported/custom style caches are not automatically replaced |
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and rich cached text, including multi-run simple fields | Nested, locked and opaque replacement is refused; multi-paragraph replacement is limited to complete native bibliography ranges |
 | Native Zotero document preferences | Read and write Zotero's XML/JSON preferences in chunked `ZOTERO_PREF_*` custom properties; translate native `Field` and wire `Http` types | Unknown preferences and unrelated properties are retained; malformed, duplicate, incomplete or ambiguously owned data is refused |
 

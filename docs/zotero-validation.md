@@ -1,6 +1,30 @@
 # Zotero validation — 16 November 2026
 
-## Current continuation: first-use insertion, rich fields and note numbering
+## Current optimization: verified batching and native scaling
+
+Canonical source `0dd09811b1c02514c32c33bd13744dadb202e7af` passed
+**364 unique local tests**: 119 native Word/citing, 81 catalog/identity/batch,
+and 164 shared editor Zotero tests. All six changed Dart targets pass strict
+analysis and formatting. All 1,575 measured source/dependency inputs remained
+unchanged. See the [complete optimization receipt and reproduction](validation/zotero-optimization-20261116/README.md).
+
+Basic refresh now uses one verified metadata batch per library for up to 50
+distinct linked sources, with whole-operation rollback and one undo step.
+Native field enumeration calculates note order once per response and resolves
+field identities directly while retaining stale-document and ownership guards.
+The recorded synthetic 2,400-field/1,600-note benchmark reduced field enumeration
+from 228.704 ms to 1.773 ms with identical protocol output. It does not measure
+overall application or live Zotero latency.
+
+Current functionality also includes saved searches, small capitals and native
+bibliography paragraphs, qualified in the later [fidelity continuation](validation/zotero-fidelity-20261116/README.md).
+The sections below are historical receipts for their stated commits; their
+older limitations do not override the current [support guide](zotero-support.md).
+This optimization pass did not repeat a live Zotero or full application build.
+All checkpoints were saved remotely with `[skip ci]`; GitHub Actions were not
+queried or awaited.
+
+## Historical continuation: first-use insertion, rich fields and note numbering
 
 The canonical implementation at `72691877bd9bafab761e655c13d0c9a0936b55bb`
 passed the following complete local selection. Later evidence/documentation

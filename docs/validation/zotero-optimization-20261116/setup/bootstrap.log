@@ -1,0 +1,53 @@
+Cloning into '/workspace/scratch/60be9067b9f9/zotero-toolchain/flutter-sdk'...
+Note: switching to '737ba8f885dc774b53b442759999a312c9461e4e'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Reconstructed engine, editor, Studio and host harness manifests/locks; canonical sources are symlinked.
+{
+  "harnesses": {
+    "engine": {
+      "directory": "/workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_engine",
+      "resolved_package_count": 55,
+      "package_config_sha256": "94b293ae899f75f3863daf63eef6394a91b8c0a4dda9fe2ee65b541d8961eed4",
+      "source_lib": "/workspace/scratch/60be9067b9f9/quds_office_suite/packages/quds_office_engine/lib",
+      "source_test": "/workspace/scratch/60be9067b9f9/quds_office_suite/packages/quds_office_engine/test"
+    },
+    "editor": {
+      "directory": "/workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_editor",
+      "resolved_package_count": 79,
+      "package_config_sha256": "c6ba1cc15c50646606890581dd1e332a0d394a4cb98c37d8a5cfd942de104b39",
+      "source_lib": "/workspace/scratch/60be9067b9f9/quds_office_suite/packages/quds_office_editor/lib",
+      "source_test": "/workspace/scratch/60be9067b9f9/quds_office_suite/packages/quds_office_editor/test"
+    },
+    "studio": {
+      "directory": "/workspace/scratch/60be9067b9f9/zotero-toolchain/harness/quds_office_studio",
+      "resolved_package_count": 64,
+      "package_config_sha256": "fd8518ee2eff5697fc82cab3edbe42bb1e6bbb8a4626bfd8691e3ff6376322f9",
+      "source_lib": "/workspace/scratch/60be9067b9f9/quds_office_suite/packages/quds_office_editor/example/lib",
+      "source_test": "/workspace/scratch/60be9067b9f9/quds_office_suite/packages/quds_office_editor/example/test"
+    },
+    "host": {
+      "directory": "/workspace/scratch/60be9067b9f9/zotero-toolchain/crisp-host-harness",
+      "resolved_package_count": 96,
+      "package_config_sha256": "00100172ae89037072c996e17d2229e42278f9b76011a9edca68f10c38ee93a8",
+      "source_lib": "/workspace/scratch/60be9067b9f9/CrispCloud/lib",
+      "source_test": "/workspace/scratch/60be9067b9f9/zotero-toolchain/crisp-host-harness/test"
+    }
+  },
+  "inputs_changed": [],
+  "sdk_tracked_status": ""
+}
