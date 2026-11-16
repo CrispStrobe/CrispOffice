@@ -1,0 +1,164 @@
+{
+  "captured_utc": "2026-11-16T23:25:46.014937+00:00",
+  "status": "intermediate journal checkpoint; not terminal qualification",
+  "canonical_source": "5b05664357eead5ddc86922bab248224dbd4da6d",
+  "host_source": "342b744a3cb66e3ee9387733ebcf8613cdb23a33",
+  "completed_commands": {
+    "canonical-final": [
+      {
+        "name": "engine-zotero",
+        "status": "passed",
+        "passed_tests": 390,
+        "exit_code": 0,
+        "log_sha256": "1c502f56cd6816faaed8276e5a798cb7e895baa6252729e01e7e6c988cd24ba0"
+      }
+    ],
+    "host-final": [
+      {
+        "name": "vendor-source",
+        "status": "passed",
+        "passed_tests": null,
+        "exit_code": 0,
+        "log_sha256": "cdb9d9e0477b4a4adb6ae5ff2b83e2422fdc43f952e3787e7bc6bb8896e7bd33"
+      },
+      {
+        "name": "vendor-tracked",
+        "status": "passed",
+        "passed_tests": null,
+        "exit_code": 0,
+        "log_sha256": "cdb9d9e0477b4a4adb6ae5ff2b83e2422fdc43f952e3787e7bc6bb8896e7bd33"
+      },
+      {
+        "name": "host-tests",
+        "status": "passed",
+        "passed_tests": null,
+        "exit_code": 0,
+        "log_sha256": "1b0d9fc398d810c43d4a13e5a6554dff47a0d12c28eab4cd30cb1e5cfd9d4581"
+      },
+      {
+        "name": "host-analysis",
+        "status": "passed",
+        "passed_tests": null,
+        "exit_code": 0,
+        "log_sha256": "455a7c6aaf0b32ad7bf110903173144dbd1e4f55ddb786914ffc1b9f21eaea38"
+      }
+    ]
+  },
+  "counts_not_added_again_to_final_totals": true,
+  "files": {
+    "canonical-final/receipt.json": {
+      "bytes": 16037,
+      "sha256": "3c6f0221ca9fe5cba7a60f5f5a845168dd476abc22f8f73461de1ce003d29abe"
+    },
+    "canonical-final/source-before.json": {
+      "bytes": 234789,
+      "sha256": "e8513a654b2d09dfa8dbd61c4c28c8867c7573a33684331091fabf5d3d5df704"
+    },
+    "canonical-final/dependencies-before.json": {
+      "bytes": 572647,
+      "sha256": "ecb082255f0261dfa1e6d76060e7634afd454fbbca2bf67d2aa1ef75a94c2e98"
+    },
+    "canonical-final/fixtures-before.json": {
+      "bytes": 769,
+      "sha256": "e2216b8e1576badc020585bb5b04af2c9dbe08a40cf07445a133964f6e81d157"
+    },
+    "canonical-final/invocation.json": {
+      "bytes": 14504,
+      "sha256": "e191f8768a92ad725988184f914e36f27a2a6a42b3796ac235ef65a4d171d9a0"
+    },
+    "canonical-final/run-qualification.py": {
+      "bytes": 25738,
+      "sha256": "1de6db2104986a155430f35a375b22a53b69f015b3c076cab316a9d1be7620d3"
+    },
+    "canonical-final/runner-delta.patch": {
+      "bytes": 1953,
+      "sha256": "f6c6966840011876a2044f2cfa97b905087692288a0b918a9458d978b7606d5f"
+    },
+    "canonical-final/launch.py": {
+      "bytes": 2048,
+      "sha256": "2fcb6c51bc29df6422768cfe390391b4f3b1dd6fd75b8713348a2e4a976a419c"
+    },
+    "canonical-final/launch.sh": {
+      "bytes": 396,
+      "sha256": "57471b4074b07bfbed0d4e46ca8f53aa65504166462afb4d7917f53aa9a77ae5"
+    },
+    "canonical-final/engine-zotero-execution.log": {
+      "bytes": 45294,
+      "sha256": "1c502f56cd6816faaed8276e5a798cb7e895baa6252729e01e7e6c988cd24ba0"
+    },
+    "host-final/receipt.json": {
+      "bytes": 12056,
+      "sha256": "8a546857f00877b2e76527585543bb2a7692f3b85edd112edb819c7d964d3dce"
+    },
+    "host-final/source-before.json": {
+      "bytes": 526489,
+      "sha256": "1a2eeeb680a5dba035099884a04d7381f48496b62b511ee0de84b341cb0ab400"
+    },
+    "host-final/dependencies-before.json": {
+      "bytes": 766813,
+      "sha256": "bb623986adba0730dcf480bba9150faea54c0f08d11e9f840901e6d32c277075"
+    },
+    "host-final/invocation.json": {
+      "bytes": 4901,
+      "sha256": "a212900ffd8d30f97ec219e946f83a0a6ebef3866f28b49e42228e373eb24dd6"
+    },
+    "host-final/run-expanded-host.py": {
+      "bytes": 23153,
+      "sha256": "46a77ebd7254314715e82f08ec77a98408fa0a528d3e1df043c8eaf67f9739b8"
+    },
+    "host-final/runner-delta.patch": {
+      "bytes": 1080,
+      "sha256": "93a08d151b44ac0eedfcebac86dbb1dbd437d7830952aab538f0802c3b331209"
+    },
+    "host-final/launch.py": {
+      "bytes": 2048,
+      "sha256": "2fcb6c51bc29df6422768cfe390391b4f3b1dd6fd75b8713348a2e4a976a419c"
+    },
+    "host-final/launch.sh": {
+      "bytes": 391,
+      "sha256": "146a0630909970e3d59fdf01098f54d124ae26878125a0b08e4eaac3f287f5cb"
+    },
+    "host-final/vendor-source.log": {
+      "bytes": 203,
+      "sha256": "cdb9d9e0477b4a4adb6ae5ff2b83e2422fdc43f952e3787e7bc6bb8896e7bd33"
+    },
+    "host-final/vendor-tracked.log": {
+      "bytes": 203,
+      "sha256": "cdb9d9e0477b4a4adb6ae5ff2b83e2422fdc43f952e3787e7bc6bb8896e7bd33"
+    },
+    "host-final/host-tests.log": {
+      "bytes": 7885,
+      "sha256": "1b0d9fc398d810c43d4a13e5a6554dff47a0d12c28eab4cd30cb1e5cfd9d4581"
+    },
+    "host-final/host-analysis.log": {
+      "bytes": 273,
+      "sha256": "455a7c6aaf0b32ad7bf110903173144dbd1e4f55ddb786914ffc1b9f21eaea38"
+    },
+    "setup/setup-ready.json": {
+      "bytes": 609,
+      "sha256": "4fe91c122144d9ee8be4b33807b99f2cc948554036e3511b12913030f61b2f43"
+    },
+    "setup/current-setup-receipt.json": {
+      "bytes": 5989,
+      "sha256": "4a318cb7cfe3f8df068fecc341765838e4d37b9125255ef6bb2f0163a617a0d5"
+    },
+    "setup/harper-workspace-resolution.json": {
+      "bytes": 1765,
+      "sha256": "ec9e837c6622fe138002cb0a362d9959a3a78ad8801ce099166fb8e6ec003be2"
+    },
+    "setup/runtime-download.json": {
+      "bytes": 434,
+      "sha256": "d03346d204867ba9882a489f9139ca7614f0ab8ed6138c81cc1848b9aed7b136"
+    },
+    "setup/host-six-notice-assets.json": {
+      "bytes": 1809,
+      "sha256": "b4fc23cacdfa9a443febfec873665c965ce01d39632d0d33058746332a8801b5"
+    },
+    "setup/env.sh": {
+      "bytes": 389,
+      "sha256": "d69d30f3a76470315674f85fa84f53833b555ac28303981b120d9b581e79fe29"
+    }
+  },
+  "archive": "local-qualification-progress.tar.gz",
+  "archive_sha256": "374254ebe8b1b2ae975980d965a7f4a2b2d22ff74c9f6162353e618bce9d4020"
+}
