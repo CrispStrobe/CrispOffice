@@ -490,6 +490,10 @@ class CaretEngine {
       if (glyph.glyph.logicalIndex != logicalIndex) {
         continue;
       }
+      if (glyph.glyph.isDiscretionaryHyphen &&
+          glyph.logicalEnd == logicalIndex) {
+        return glyph.glyph.level.isOdd ? glyph.x : glyph.x + glyph.advance;
+      }
       return glyph.glyph.level.isOdd ? glyph.x + glyph.advance : glyph.x;
     }
     LaidOutGlyph? before;
@@ -634,7 +638,7 @@ class CaretEngine {
       return (min: 0, max: 0);
     }
     var min = line.glyphs.first.glyph.logicalIndex;
-    var max = min + 1;
+    var max = line.glyphs.first.logicalEnd;
     for (final LaidOutGlyph glyph in line.glyphs) {
       if (glyph.glyph.logicalIndex < min) {
         min = glyph.glyph.logicalIndex;

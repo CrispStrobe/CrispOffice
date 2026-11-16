@@ -24,6 +24,10 @@ void main() {
         ),
       );
       expect(result.status, OfficeProofingStatus.unavailable);
+      final repeated = await provider
+          .check(result.request)
+          .timeout(const Duration(seconds: 1));
+      expect(repeated.status, OfficeProofingStatus.unavailable);
       await provider.dispose();
     },
   );
@@ -59,9 +63,65 @@ void main() {
         expect(article.replacements, contains('a'));
         expect(article.revision, revision);
       }
+      final concurrent = await Future.wait(
+        List.generate(
+          8,
+          (index) => provider.check(
+            OfficeProofingRequest(
+              documentId: 'd',
+              blockId: 'concurrent-$index',
+              revision: index,
+              text: '😀 This is an test.',
+              language: 'en-US',
+              ignoredRuleIds: index.isEven ? {'harper.AnA'} : {},
+            ),
+          ),
+        ),
+      );
+      for (var index = 0; index < concurrent.length; index++) {
+        final result = concurrent[index];
+        expect(
+          result.status,
+          OfficeProofingStatus.success,
+          reason: result.message,
+        );
+        expect(result.request.blockId, 'concurrent-$index');
+        expect(
+          result.findings.any((f) => f.ruleId == 'harper.AnA'),
+          index.isOdd,
+        );
+      }
     },
     skip: path == null
         ? 'Set QUDS_HARPER_TEST_LIBRARY to the built native library.'
         : false,
+  );
+
+  test(
+    'disposal while the isolate starts settles outstanding checks',
+    () async {
+      final provider = HarperProofingProvider(
+        nativeLibraryPath: path ?? '/missing/quds_harper_library',
+      );
+      final pending = List.generate(
+        4,
+        (index) => provider.check(
+          OfficeProofingRequest(
+            documentId: 'd',
+            blockId: '$index',
+            revision: 1,
+            text: 'This is an test.',
+            language: 'en-US',
+          ),
+        ),
+      );
+      await provider.dispose();
+      final results = await Future.wait(pending)
+          .timeout(const Duration(seconds: 1));
+      expect(
+        results.every((r) => r.status == OfficeProofingStatus.unavailable),
+        isTrue,
+      );
+    },
   );
 }

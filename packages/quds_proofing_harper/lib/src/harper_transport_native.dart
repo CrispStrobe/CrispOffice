@@ -65,21 +65,33 @@ final class _NativeTransport implements HarperTransport {
           }
           return isolate;
         }),
-      ]);
+      ], eagerError: true);
       return results.first! as SendPort;
-    } on Object {
+    } on HarperUnavailableException {
       await dispose();
       rethrow;
+    } on Object {
+      await dispose();
+      throw const HarperUnavailableException(
+        'The local Harper worker could not be started.',
+      );
     }
   }
 
   void _fail(Object error) {
+    // A dead isolate cannot accept later requests. Mark the transport terminal
+    // before failing listeners, including requests still awaiting its SendPort.
+    _disposed = true;
     final ready = _ready;
     if (ready != null && !ready.isCompleted) ready.completeError(error);
     for (final request in _pending.values) {
       request.completeError(error);
     }
     _pending.clear();
+    _isolate?.kill(priority: Isolate.immediate);
+    _isolate = null;
+    _messages?.close();
+    _errors?.close();
   }
 
   @override
@@ -99,12 +111,7 @@ final class _NativeTransport implements HarperTransport {
   @override
   Future<void> dispose() async {
     if (_disposed) return;
-    _disposed = true;
     _fail(const HarperUnavailableException('Harper worker was disposed.'));
-    _isolate?.kill(priority: Isolate.immediate);
-    _isolate = null;
-    _messages?.close();
-    _errors?.close();
   }
 }
 

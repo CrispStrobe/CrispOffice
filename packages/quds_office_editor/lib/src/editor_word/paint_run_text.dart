@@ -130,7 +130,10 @@ abstract final class PaintRunText {
 
   /// samePaintRun API.
   static bool samePaintRun(LaidOutGlyph a, LaidOutGlyph b) {
-    if (_isTab(a) || _isTab(b)) {
+    if (_isTab(a) ||
+        _isTab(b) ||
+        a.glyph.isDiscretionaryHyphen ||
+        b.glyph.isDiscretionaryHyphen) {
       return false;
     }
     if (a.displayText != b.displayText ||
@@ -344,6 +347,12 @@ abstract final class PaintRunText {
 
   /// runText API.
   static String runText(String paragraph, List<LaidOutGlyph> run) {
+    // A selected break paints a hyphen while retaining its source ownership:
+    // automatic breaks own no text; manual breaks own U+00AD, not '-'.
+    // These glyphs form individual paint runs (see samePaintRun).
+    if (run.isNotEmpty && run.first.glyph.isDiscretionaryHyphen) {
+      return String.fromCharCode(run.first.glyph.codePoint);
+    }
     if (run.isNotEmpty && run.first.displayText != null) {
       return run.first.displayText!;
     }
@@ -360,7 +369,7 @@ abstract final class PaintRunText {
       return '';
     }
     var start = indices.first;
-    var end = indices.last + 1;
+    var end = indices.last + _utf16Len(paragraph, indices.last);
     if (end < paragraph.length && _isMark(paragraph.codeUnitAt(end))) {
       while (end < paragraph.length && _isMark(paragraph.codeUnitAt(end))) {
         end++;
@@ -375,7 +384,7 @@ abstract final class PaintRunText {
       if (i == last) {
         continue;
       }
-      buffer.writeCharCode(paragraph.codeUnitAt(i));
+      buffer.write(paragraph.substring(i, i + _utf16Len(paragraph, i)));
       last = i;
     }
     return buffer.toString();
@@ -492,6 +501,9 @@ abstract final class PaintRunText {
     if (paragraph.isEmpty || run.isEmpty || text.isEmpty) {
       return 0;
     }
+    if (run.first.glyph.isDiscretionaryHyphen) {
+      return run.first.glyph.logicalIndex;
+    }
     var min = run.first.glyph.logicalIndex;
     for (final LaidOutGlyph glyph in run) {
       if (glyph.glyph.logicalIndex < min) {
@@ -556,9 +568,8 @@ abstract final class PaintRunText {
     required String paragraph,
     String? themeFamily,
   }) {
-    final List<List<LaidOutGlyph>> segments = paintSegments(
-      line,
-    ).toList(growable: false);
+    final List<List<LaidOutGlyph>> segments = paintSegments(line)
+        .toList(growable: false);
     for (int s = 0; s < segments.length; s++) {
       final List<LaidOutGlyph> run = segments[s];
       final LaidOutGlyph first = run.first;
@@ -566,9 +577,17 @@ abstract final class PaintRunText {
       final bool lastRun = s == segments.length - 1;
       final bool inRun =
           logicalIndex >= min &&
-          (logicalIndex < max || (logicalIndex == max && lastRun));
+          (logicalIndex < max ||
+              (logicalIndex == max &&
+                  (lastRun || first.glyph.isDiscretionaryHyphen)));
       if (!inRun) {
         continue;
+      }
+      if (first.glyph.isDiscretionaryHyphen) {
+        final after = logicalIndex >= first.logicalEnd;
+        return after == first.glyph.level.isEven
+            ? first.x + first.advance
+            : first.x;
       }
       if (logicalIndex == max && !lastRun) {
         continue;
@@ -646,6 +665,9 @@ abstract final class PaintRunText {
       final double left = origin;
       final double right = origin + painter.width;
       if (x >= left && x <= right) {
+        if (first.glyph.isDiscretionaryHyphen) {
+          return _hyphenHit(first, x <= left + painter.width / 2);
+        }
         if (first.displayText != null) {
           return x <= left + painter.width / 2
               ? first.glyph.logicalIndex
@@ -669,6 +691,12 @@ abstract final class PaintRunText {
     if (bestPainter == null) {
       return CaretEngine.hitLogicalIndex(line, x);
     }
+    if (bestRun?.first.glyph.isDiscretionaryHyphen ?? false) {
+      return _hyphenHit(
+        bestRun!.first,
+        x <= bestOrigin + bestPainter.width / 2,
+      );
+    }
     if (bestRun?.first.displayText != null) {
       return x <= bestOrigin + bestPainter.width / 2
           ? bestRun!.first.glyph.logicalIndex
@@ -682,7 +710,7 @@ abstract final class PaintRunText {
 
   static ({int min, int max}) _runSpan(List<LaidOutGlyph> run) {
     var min = run.first.glyph.logicalIndex;
-    var max = min + 1;
+    var max = run.first.logicalEnd;
     for (final LaidOutGlyph glyph in run) {
       if (glyph.glyph.logicalIndex < min) {
         min = glyph.glyph.logicalIndex;
@@ -694,6 +722,11 @@ abstract final class PaintRunText {
     }
     return (min: min, max: max);
   }
+
+  static int _hyphenHit(LaidOutGlyph glyph, bool leftHalf) =>
+      leftHalf == glyph.glyph.level.isEven
+      ? glyph.glyph.logicalIndex
+      : glyph.logicalEnd;
 
   /// plain API.
   static TextPainter plain({

@@ -22,7 +22,9 @@ final class HarperProofingProvider extends OfficeProofingProvider {
            platform.createHarperTransport(
              nativeLibraryPath: nativeLibraryPath,
              workerUrl: workerUrl,
-           );
+           ) {
+    if (timeout <= Duration.zero) throw ArgumentError.value(timeout, 'timeout');
+  }
 
   final HarperTransport _transport;
   final Duration timeout;
@@ -151,7 +153,10 @@ final class HarperProofingProvider extends OfficeProofingProvider {
     } on HarperUnavailableException catch (error) {
       return _result(request, OfficeProofingStatus.unavailable, error.message);
     } on TimeoutException {
-      await dispose();
+      // The deadline must remain effective even if a transport's cleanup
+      // throws or never completes. dispose() marks this provider unavailable
+      // synchronously, before awaiting the backend.
+      unawaited(dispose().catchError((Object _) {}));
       return _result(
         request,
         OfficeProofingStatus.failed,

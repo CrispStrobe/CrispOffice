@@ -15,6 +15,9 @@ to a server. The browser fetches its locally hosted code/Wasm assets only.
 ## Use
 
 ```dart
+import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_proofing_harper/quds_proofing_harper.dart';
+
 final english = HarperProofingProvider(
   nativeLibraryPath: '/application/lib/libquds_proofing_harper.so',
   workerUrl: Uri.base.resolve('proofing/harper_worker.mjs'),
@@ -69,6 +72,35 @@ Ship `build/licenses/manifest.json` and
 them in the host's third-party notices. The build helper creates those files
 only after the active dependency licenses and original notices pass the audit.
 `build-receipt.json` records the compiler, lockfile and generated artifact hashes.
+It also records hashes of the exact wrapper, Dart adapters, worker, build tools
+and upstream notice inputs, so the receipt remains tied to the source that was
+built even when other editor work is still in progress.
+
+### Install into a host application
+
+Host installation is explicit and opt-in. The build helper can copy the audited
+outputs and notices into application directories after the build succeeds:
+
+```sh
+# Run from the repository root before `flutter build web` in the example host.
+python3 packages/quds_proofing_harper/tool/build.py --web \
+  --install-web packages/quds_office_editor/example/web/proofing
+
+# Package a Linux host after its Flutter release build has created the bundle.
+python3 packages/quds_proofing_harper/tool/build.py --native \
+  --install-native /path/to/flutter/release/bundle/lib
+```
+
+Both destinations receive `licenses/manifest.json`,
+`licenses/notices-and-mpl-sources.tar.gz`, and `build-receipt.json` alongside
+the backend. Generated assets should be built as part of host packaging and
+kept out of source control. An explicit `workerUrl` supports hosts served from
+a path prefix; the default resolves `proofing/harper_worker.mjs` against the
+application's base URI. For native hosts, point `nativeLibraryPath` (or the
+`QUDS_HARPER_LIBRARY` Dart define) at the packaged library when the platform
+loader does not search its directory. Only enable the provider when the host
+has opted into this optional backend. Choosing English without an installed
+backend must show unavailable proofing, rather than a successful clean check.
 
 ### License boundary
 
@@ -90,6 +122,21 @@ GPL/AGPL/LGPL-only components are rejected. New platforms require the same
 audit for their actual target graph.
 
 ## Validation
+
+After building both backends, run the source-bound local suite from the
+repository root. This command does not use or wait for GitHub Actions:
+
+```sh
+python3 packages/quds_proofing_harper/tool/verify.py \
+  --output /path/to/harper-validation
+```
+
+It rejects changed source or changed generated artifacts, then runs the Rust
+suite, static analysis, Dart tests against the real native library, compiled
+JavaScript adapter tests, the exact shipped Wasm worker, and notice/MPL-source
+checks. Each command's output and digest is retained in the validation directory.
+`--dart` and `--node` can select explicit executable paths. The commands can
+also be run separately while developing:
 
 ```sh
 cargo test --locked --manifest-path packages/quds_proofing_harper/native/Cargo.toml
