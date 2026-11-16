@@ -248,11 +248,11 @@ void main() {
     },
   );
 
-  testWidgets('focused viewing mode preserves navigation and rejects edits', (
+  testWidgets('focused selecting mode preserves navigation and rejects edits', (
     tester,
   ) async {
     final controller = _controller('Read only');
-    final editorFocus = FocusNode(debugLabel: 'viewing word focus');
+    final editorFocus = FocusNode(debugLabel: 'selecting word focus');
     addTearDown(() async {
       await tester.pumpWidget(const SizedBox.shrink());
       controller.dispose();
@@ -261,10 +261,12 @@ void main() {
 
     await tester.pumpWidget(_app(_editor(controller, editorFocus)));
     await _focusEditor(tester, controller, editorFocus);
-    controller.setMode(OfficeInteractionMode.viewing);
+    // Selecting mode permits caret navigation while keeping mutation disabled.
+    controller.setMode(OfficeInteractionMode.selecting);
     await tester.pump();
     expect(editorFocus.hasPrimaryFocus, isTrue);
     expect(controller.input.isAttached, isFalse);
+    expect(controller.config.allowsMutation, isFalse);
     expect(controller.config.allowsSelection, isTrue);
 
     final end = controller.document.paragraphs.single.text.length;
