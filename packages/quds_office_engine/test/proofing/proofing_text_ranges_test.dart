@@ -42,6 +42,23 @@ void main() {
     },
   );
 
+  test(
+    'decomposed email letters and apostrophes in URL paths stay protected',
+    () {
+      for (final text in [
+        'Huas@ba\u0308r.de',
+        'mu\u0308ller@büro.example',
+        "https://example.invalid/'Silbentrennung",
+        "https://example.invalid/a'/Silbentrennung",
+      ]) {
+        expect(protectedText(text), [text]);
+      }
+      const quoted = "'https://example.invalid/a' ordinary";
+      expect(protectedText(quoted), ['https://example.invalid/a']);
+      expect(OfficeProofingTextRanges(quoted).overlaps(0, 1), isFalse);
+    },
+  );
+
   test('matching backtick runs own nested ticks and multiline contents', () {
     for (final text in [
       '`ich hast`',

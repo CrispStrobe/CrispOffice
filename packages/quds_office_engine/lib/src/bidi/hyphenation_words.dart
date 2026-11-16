@@ -6,7 +6,7 @@ final RegExp hyphenationWords = RegExp(
 );
 
 final RegExp _identifierPart = RegExp(
-  r'[\p{N}_@\u200c\u200d\u2060\ufeff]',
+  r'[\p{N}\p{Pc}@\u200c\u200d\u2060\ufeff]',
   unicode: true,
 );
 

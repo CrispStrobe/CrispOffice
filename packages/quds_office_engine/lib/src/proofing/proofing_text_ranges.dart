@@ -52,8 +52,8 @@ final class OfficeProofingTextRanges {
   late final List<({int start, int end})> ranges;
 
   static final RegExp _links = RegExp(
-    r'(?:https?://|www\.)[^\s<>\u0022\u0027\u0060]+|'
-    r"(?<![\p{L}\p{N}._%+'-])[\p{L}\p{N}._%+'-]+@[\p{L}\p{N}.-]+\.[\p{L}]{2,}",
+    r'(?:https?://|www\.)[^\s<>\u0022\u0060]+|'
+    r"(?<![\p{L}\p{M}\p{N}._%+'-])[\p{L}\p{M}\p{N}._%+'-]+@[\p{L}\p{M}\p{N}.-]+\.[\p{L}\p{M}]{2,}",
     unicode: true,
     caseSensitive: false,
   );
@@ -74,7 +74,7 @@ final class OfficeProofingTextRanges {
     }
     while (end > start) {
       final char = text[end - 1];
-      if ('.,;:!?“”‘’«»'.contains(char)) {
+      if (".,;:!?'“”‘’«»".contains(char)) {
         end--;
         continue;
       }

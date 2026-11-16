@@ -60,6 +60,98 @@ String _response(List<Map<String, Object?>> findings) =>
 
 void main() {
   test(
+    'English code findings do not hide ordinary prose corrections',
+    () async {
+      final provider = HarperProofingProvider(
+        transport: _ReplyTransport(
+          (_) async => _response([
+            _finding(3, 5, category: 'grammar', rule: 'harper.AnA'),
+            _finding(7, 9, category: 'grammar', rule: 'harper.AnA'),
+          ]),
+        ),
+      );
+      addTearDown(provider.dispose);
+      final report = await OfficeProofingService(
+        providers: [provider],
+      ).check(_request('😀 `an` an test.', startOffset: 3));
+      expect(report.complete, isTrue);
+      expect(report.findings.single.originalText, 'an');
+      expect(report.findings.single.start, 11);
+      expect(report.findings.single.end, 13);
+    },
+  );
+
+  test(
+    'protected English spans use original source after soft hyphens',
+    () async {
+      for (final text in [
+        '`sp\u00adeling`',
+        '``sp\u00adeling `nested` words``',
+        '```sp\u00adeling\nwords```',
+        'HTTPS://example.invalid/sp\u00adeling',
+        'müller+speling@büro.example',
+      ]) {
+        final provider = HarperProofingProvider(
+          transport: _ReplyTransport(
+            (_) async => _response([
+              _finding(0, text.replaceAll('\u00ad', '').runes.length),
+            ]),
+          ),
+        );
+        addTearDown(provider.dispose);
+        final result = await provider.check(_request(text));
+        expect(
+          result.status,
+          OfficeProofingStatus.success,
+          reason: result.message,
+        );
+        expect(result.findings, isEmpty, reason: text);
+      }
+    },
+  );
+
+  test(
+    'unmatched backticks and punctuation following links remain checkable',
+    () async {
+      for (final text in ['`an', '``an`']) {
+        final start = text.indexOf('an');
+        final provider = HarperProofingProvider(
+          transport: _ReplyTransport(
+            (_) async =>
+                _response([_finding(start, start + 2, category: 'grammar')]),
+          ),
+        );
+        addTearDown(provider.dispose);
+        expect(
+          (await provider.check(_request(text))).findings.single.originalText,
+          'an',
+        );
+      }
+      const url = 'https://example.invalid';
+      final provider = HarperProofingProvider(
+        transport: _ReplyTransport(
+          (_) async =>
+              _response([_finding(url.length, url.length, category: 'style')]),
+        ),
+      );
+      addTearDown(provider.dispose);
+      final result = await provider.check(_request(url));
+      expect(result.findings.single.start, url.length);
+      expect(result.findings.single.originalText, isEmpty);
+    },
+  );
+
+  test('code protection never conceals malformed backend ranges', () async {
+    final provider = HarperProofingProvider(
+      transport: _ReplyTransport((_) async => _response([_finding(1, 100)])),
+    );
+    addTearDown(provider.dispose);
+    final result = await provider.check(_request('`code`'));
+    expect(result.status, OfficeProofingStatus.failed);
+    expect(result.findings, isEmpty);
+  });
+
+  test(
     'backend sees complete English words and findings retain Word offsets',
     () async {
       const source = '😀 hy\u00adphen an test.';
