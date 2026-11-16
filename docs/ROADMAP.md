@@ -26,8 +26,10 @@ a fresh [38-test German core run with ten JavaScript checks and exact dictionary
 regeneration](validation/proofing-20261116/german-resume/receipt.json), and
 [real Harper native/Wasm, adapter and license checks](validation/proofing-20261116/harper-resume/receipt.json).
 The [final integration receipt](validation/proofing-20261116/final/receipt.json)
-records consolidated session/UI/context-menu, affected-package and release web
-packaging checks. The [later remote audit](validation/proofing-20261116/final/remote-freshness.json)
+passes against source `f4d52e5`: 232 hyphenation, 38 German plus ten JavaScript,
+173 incoming engine, 165 editor and one IME test, three strict package analyses,
+and release web/Harper packaging. All 2,025 recorded inputs stayed unchanged.
+The [later remote audit](validation/proofing-20261116/final/remote-freshness.json)
 and [reconciliation record](validation/proofing-20261116/final/reconciliation.json)
 cover the concurrent ODS hyperlink, Zotero and sibling proofing work. All eight
 incoming hyphenation cases are retained; they exposed and now cover LTR/RTL
