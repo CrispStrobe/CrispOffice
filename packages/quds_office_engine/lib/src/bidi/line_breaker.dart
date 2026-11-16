@@ -310,7 +310,8 @@ abstract final class LineBreaker {
     final boundaries = <int>[
       0,
       for (var i = 1; i < logical.length; i++)
-        if (clusterStarts.contains(logical[i].logicalIndex) &&
+        if (logical[i].codePoint != 0x0020 &&
+            clusterStarts.contains(logical[i].logicalIndex) &&
             logical[i].logicalIndex != logical[i - 1].logicalIndex &&
             // A lam-alef ghost belongs to the preceding painted ligature.
             logical[i].codePoint != 0)

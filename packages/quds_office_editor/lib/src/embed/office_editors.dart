@@ -255,9 +255,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
       _c.syncConfig(widget.config!);
     }
     if (_c.config.autofocus) {
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => _focus.requestFocus(),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
+      });
     }
   }
 
@@ -271,6 +271,18 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   /// didUpdateWidget API.
   void didUpdateWidget(QudsWordEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.controller, _c)) {
+      oldWidget.controller.removeListener(_onCtrl);
+      oldWidget.controller.input.inputAllowed = () => false;
+      oldWidget.controller.detachInput();
+      oldWidget.controller.onRequestFocus = null;
+      _c.input.inputAllowed = _inputGuard;
+      _c.detachInput();
+      _c.addListener(_onCtrl);
+      _c.onRequestFocus = () {
+        if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
+      };
+    }
     if (widget.config != null && !identical(widget.config, _c.config)) {
       _c.syncConfig(widget.config!);
     }
@@ -577,6 +589,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     }
     if (event.logicalKey == LogicalKeyboardKey.enter ||
         event.logicalKey == LogicalKeyboardKey.numpadEnter) {
+      // Modified Enter belongs to host actions such as page/column breaks.
+      if (ctrl || HardwareKeyboard.instance.isAltPressed)
+        return KeyEventResult.ignored;
       _c.insertParagraphBreak();
       return KeyEventResult.handled;
     }
@@ -986,9 +1001,9 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
       _c.syncConfig(widget.config!);
     }
     if (_c.config.autofocus) {
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => _focus.requestFocus(),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
+      });
     }
   }
 
@@ -1003,6 +1018,10 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
   void didUpdateWidget(QudsSheetEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (!identical(oldWidget.controller, _c)) {
+      oldWidget.controller.cellEditor.bridge.inputAllowed = () => false;
+      oldWidget.controller.cellEditor.bridge.detach();
+      _c.cellEditor.bridge.inputAllowed = _inputGuard;
+      _c.cellEditor.bridge.detach();
       oldWidget.controller.removeListener(_rebuild);
       _c.addListener(_rebuild);
       _stopNavRepeat();
@@ -1736,6 +1755,16 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
   /// didUpdateWidget API.
   void didUpdateWidget(QudsSlideEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.controller, _c)) {
+      oldWidget.controller.removeListener(_rebuild);
+      oldWidget.controller.motionFrame.removeListener(_onMotionFrame);
+      oldWidget.controller.textEditor.bridge.inputAllowed = () => false;
+      oldWidget.controller.textEditor.bridge.detach();
+      _c.textEditor.bridge.inputAllowed = _inputGuard;
+      _c.textEditor.bridge.detach();
+      _c.addListener(_rebuild);
+      _c.motionFrame.addListener(_onMotionFrame);
+    }
     if (widget.config != null && !identical(widget.config, _c.config)) {
       _c.syncConfig(widget.config!);
     }
