@@ -1,0 +1,40 @@
+00:00 +0: loading test/proofing/german_writing_rules_test.dart
+00:00 +0: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +1: test/proofing/german_writing_rules_test.dart: spacing checks return precise reviewable replacements
+00:00 +2: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +3: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +4: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +5: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +6: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +7: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +8: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +9: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +10: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +11: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +12: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +13: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +14: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +15: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +16: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +17: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +18: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +19: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +20: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +21: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +22: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +23: test/proofing/german_spelling_test.dart: transposed letters receive a useful bounded suggestion
+00:00 +24: test/proofing/german_spelling_test.dart: offsets preserve emoji and decomposed source characters
+00:00 +25: test/proofing/german_spelling_test.dart: explicit soft hyphens do not split logical spelling tokens
+00:00 +26: test/proofing/german_spelling_test.dart: all-capitals sharp-s words are valid in German and Swiss forms
+00:00 +27: test/proofing/german_spelling_test.dart: obsolete source variants are excluded from modern spelling
+00:00 +28: test/proofing/german_spelling_test.dart: Swiss spellings are locale-scoped and sharp-s receives ss suggestion
+00:00 +29: test/proofing/german_spelling_test.dart: Austrian source forms and canonical locale tags are supported
+00:00 +30: test/proofing/german_spelling_test.dart: unsupported languages and disposed backend are explicit
+00:00 +31: test/proofing/german_spelling_test.dart: noun casing remains meaningful; all-capitals remain accepted
+00:00 +32: test/proofing/german_spelling_test.dart: explicit compounds keep German noun case significant
+00:00 +33: test/proofing/german_spelling_test.dart: known explicit compounds and URL/email tokens avoid spurious findings
+00:00 +34: test/proofing/german_spelling_test.dart: personal words and ignores stay owned, reversible and language-scoped
+00:00 +35: test/proofing/german_spelling_test.dart: vocabulary snapshots round-trip with revision notification
+00:00 +36: test/proofing/german_spelling_test.dart: vocabulary parser rejects corrupt or mismatched data
+00:00 +37: test/proofing/german_spelling_test.dart: suggestions and long unknown tokens remain bounded
+00:00 +38: All tests passed!
