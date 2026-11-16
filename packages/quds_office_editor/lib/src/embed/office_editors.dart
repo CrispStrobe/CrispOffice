@@ -221,7 +221,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   bool _proofingOpen = false;
   ModalRoute<dynamic>? _inputRoute;
   bool? _inputRouteWasCurrent;
-  late final bool Function() _inputGuard = () =>
+  late final bool Function() _inputGuard = _allowsWordInput;
+
+  bool _allowsWordInput() =>
       mounted &&
       _focus.hasPrimaryFocus &&
       (_inputRoute?.isCurrent ?? true) &&
