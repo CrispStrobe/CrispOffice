@@ -38,6 +38,9 @@ class _WordProofingDialogState extends State<WordProofingDialog> {
     'de-CH': 'Deutsch (Schweiz)',
     'en-US': 'English (United States)',
     'en-GB': 'English (United Kingdom)',
+    'en-CA': 'English (Canada)',
+    'en-AU': 'English (Australia)',
+    'en-IN': 'English (India)',
   };
 
   static const Map<String, String> _ruleLabels = <String, String>{
