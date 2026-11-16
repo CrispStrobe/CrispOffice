@@ -169,8 +169,16 @@ void main() {
     expect(controller.contentRevision, revision);
 
     await _finishDialog(tester, closed);
-    controller.attachInput();
+    expect(editorFocus.hasPrimaryFocus, isTrue);
     expect(controller.input.isAttached, isTrue);
+    // Restored route ownership must revive the platform client without a
+    // click, a focus change, or an explicit controller attachment.
+    tester.testTextInput.enterText('Preserve this resumed');
+    await tester.pump();
+    expect(
+      controller.document.paragraphs.single.text,
+      'Preserve this resumed',
+    );
   });
 
   testWidgets('controller replacement transfers the focused input guard', (

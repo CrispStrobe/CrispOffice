@@ -220,6 +220,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   OverlayEntry? _contextMenu;
   bool _proofingOpen = false;
   ModalRoute<dynamic>? _inputRoute;
+  bool? _inputRouteWasCurrent;
   late final bool Function() _inputGuard = () =>
       mounted &&
       _focus.hasPrimaryFocus &&
@@ -268,7 +269,19 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _inputRoute = ModalRoute.of(context);
+    final route = ModalRoute.of(context);
+    final isCurrent = route?.isCurrent ?? true;
+    final routeChanged =
+        !identical(_inputRoute, route) || _inputRouteWasCurrent != isCurrent;
+    _inputRoute = route;
+    _inputRouteWasCurrent = isCurrent;
+    if (!routeChanged) return;
+    // A route can cover or reveal Word without changing its primary focus
+    // (for example a requestFocus:false dialog). Reconcile the IME after the
+    // route update even when no FocusNode notification will arrive.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _onFocus();
+    });
   }
 
   @override

@@ -108,3 +108,21 @@ empty/not-empty semantics were not qualified by this proofing work.
 A fresh execution environment became available after the earlier disconnect.
 Validation is being rebuilt from the saved remote source. The failure record
 above is preserved; a later source-bound receipt records any successful checks.
+
+## Ancestry confirmation and final review
+
+The independent final inventory at **14:27:44 UTC** still showed 58 branches
+and 66 PRs. Its exact ref and blob equality evidence is preserved in
+[remote-refresh-142744.json](remote-refresh-142744.json). GitHub comparison of
+each observed head against `bfb24bf57d5efd52f00ab7079b4ac8968259a478` confirmed
+that **all 58 heads are ancestors**, with no exceptions; see
+[ancestry-verification.json](ancestry-verification.json).
+
+Final review adds two bounded fixes before testing. The editor reconciles IME
+attachment when the route becomes current even if its FocusNode never changed.
+It performs this only for route identity/current-state changes, avoiding
+unrelated MediaQuery updates reopening the keyboard. Body proofing navigation
+clears equation, visual, frame and table selection using the existing
+controller helpers before selecting the target text. The focus test now
+requires automatic reattachment, and two additional navigation tests exercise
+actual equation and visual/frame editing targets.

@@ -130,6 +130,86 @@ void main() {
     expect(controller.headerFooterParagraphs[1], same(footer));
   });
 
+  test('body navigation leaves equation editing and routes subsequent IME text', () async {
+    final body = _paragraph('Feler body');
+    final equation = WmlEquation(
+      math: OmmlGallery.byId('quadratic').build(),
+    );
+    final document = WmlDocument(
+      sections: [
+        WmlSection(blocks: [body, equation]),
+      ],
+    );
+    final controller = _controller(document);
+    controller.selectEquation(equation, caret: 1);
+    expect(controller.selectedEquation, same(equation));
+    expect(controller.input.isAttached, isTrue);
+    final equationBefore = OmmlLinear.write(equation.math.root);
+    final summary = await controller.checkDocumentProofing();
+    final issue = summary.issues.singleWhere(
+      (issue) => identical(issue.paragraph, body),
+    );
+
+    expect(controller.revealProofingIssue(issue), isTrue);
+    expect(controller.selectedEquation, isNull);
+    expect(controller.equationSlot, 0);
+    expect(controller.equationCaret, 0);
+    expect(controller.input.value.text, 'Feler body');
+    expect(
+      controller.input.value.selection,
+      const TextSelection(baseOffset: 0, extentOffset: 5),
+    );
+
+    controller.applyImeText('Fehler body');
+    expect(body.text, 'Fehler body');
+    expect(OmmlLinear.write(equation.math.root), equationBefore);
+  });
+
+  test('body navigation clears picture cropping and frame editing states', () async {
+    final body = _paragraph('Feler body');
+    final picture = WmlVisual(
+      visual: OfficeVisual(
+        kind: OfficeVisualKind.picture,
+        title: 'Picture',
+        width: 20,
+        height: 20,
+      ),
+    );
+    final frame = WmlFrame(blocks: [_paragraph('Frame context')]);
+    final document = WmlDocument(
+      sections: [
+        WmlSection(blocks: [body, picture, frame]),
+      ],
+    );
+    final controller = _controller(document);
+    final summary = await controller.checkDocumentProofing();
+    final issue = summary.issues.singleWhere(
+      (issue) => identical(issue.paragraph, body),
+    );
+
+    controller.selectVisual(picture);
+    controller.togglePictureCropMode();
+    expect(controller.selectedVisual, same(picture));
+    expect(controller.pictureCropMode, isTrue);
+    expect(controller.revealProofingIssue(issue), isTrue);
+    expect(controller.selectedVisual, isNull);
+    expect(controller.pictureCropMode, isFalse);
+
+    for (final editing in [false, true]) {
+      controller.selectFrame(frame, editing: editing);
+      expect(controller.selectedFrame, same(frame));
+      expect(controller.editingFrame, editing);
+      expect(controller.revealProofingIssue(issue), isTrue);
+      expect(controller.selectedFrame, isNull);
+      expect(controller.editingFrame, isFalse);
+      expect(controller.caret.paragraphIndex, 0);
+      expect(controller.caret.selectionAnchor, 0);
+      expect(controller.caret.logicalIndex, 5);
+    }
+    expect(body.text, 'Feler body');
+    expect(controller.canUndo, isFalse);
+  });
+
   test('body navigation replaces a prior header IME selection', () async {
     final document = WmlDocument(
       sections: [

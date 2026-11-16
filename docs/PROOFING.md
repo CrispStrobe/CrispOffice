@@ -31,14 +31,19 @@ queue was required.
 ## Continuation reconciliation after both handoffs
 
 The later continuation integrates the original branch through `c040389`,
-Zotero capabilities through `9de4366`, current main through `47aa74a`,
+Zotero capabilities through `2480f09`, main through `90024d5`,
 and dialog input/ruler work through `2e92a49`. The
 [new reconciliation record](validation/proofing-20261116/continuation-next/README.md)
-accounts for all 55 observed branches and 64 PRs at the 14:07:59 UTC cutoff.
-Both prior source-bound validation histories are retained, including the
-complete original logs and compressed manifests. New combined validation is
-recorded separately; the historical test totals below do not establish the
-status of a later source tree.
+accounts for **58 observed branches and 66 PRs** at the
+**2026-11-16 14:27:44 UTC** cutoff. All 58 observed heads are ancestors of
+`bfb24bf`, as independently confirmed by GitHub comparisons. Both prior
+source-bound validation histories are retained, including complete original
+logs and compressed manifests. Historical test totals below do not establish
+the status of a later source tree.
+
+New changes also restore input ownership when a covered route becomes current
+without a FocusNode change, and clear object-editing state before selecting a
+body proofing finding. Actual new validation is recorded separately.
 
 ## Scope and license policy
 
