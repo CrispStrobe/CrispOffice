@@ -1,0 +1,35 @@
+00:00 +0: loading test/english_hyphenation_test.dart
+00:00 +0: loading test/german_hyphenation_context_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 17,157,888 input bytes (13,997,568 characters source) to 2,179,364 characters JavaScript in 10.6 seconds
+
+00:00 +0: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +1: test/german_hyphenation_context_test.dart: German technical tokens never gain automatic lexical breaks
+00:00 +2: test/german_hyphenation_context_test.dart: German join controls protect both adjoining word fragments
+00:00 +3: test/german_hyphenation_context_test.dart: surrounding prose, quotes and explicit compounds remain hyphenatable
+00:00 +4: test/german_hyphenation_context_test.dart: mixed English and German runs share protected source ranges
+00:00 +5: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +6: loading test/english_hyphenation_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 17,166,038 input bytes (14,005,718 characters source) to 2,204,164 characters JavaScript in 11.8 seconds
+
+00:01 +6: test/english_hyphenation_test.dart: licensed English patterns American and British patterns preserve distinct break choices
+00:01 +7: test/english_hyphenation_test.dart: licensed English patterns only explicitly supported dialects receive automatic candidates
+00:01 +8: test/english_hyphenation_test.dart: licensed English patterns US upstream exceptions override patterns including no-break entries
+00:01 +9: test/english_hyphenation_test.dart: licensed English patterns British upstream exceptions remain unchanged
+00:01 +10: test/english_hyphenation_test.dart: licensed English patterns English minimum fragments are two before and three after
+00:01 +11: test/english_hyphenation_test.dart: licensed English patterns casing does not change positions or expose mutable cache storage
+00:01 +12: test/english_hyphenation_test.dart: licensed English patterns manual hyphens and non-ASCII words are not partially normalized
+00:01 +13: test/english_hyphenation_test.dart: licensed English patterns paragraph offsets retain emoji prefixes and surrounding quotation
+00:01 +14: test/english_hyphenation_test.dart: licensed English patterns apostrophes keep contractions whole while compounds use components
+00:02 +15: test/english_hyphenation_test.dart: licensed English patterns identifiers and number-adjacent fragments are not ordinary words
+00:02 +16: test/english_hyphenation_test.dart: licensed English patterns URL, email and closed backtick spans do not gain dictionary breaks
+00:02 +17: test/english_hyphenation_test.dart: licensed English patterns join controls suppress adjoining lexical fragments
+00:02 +18: test/english_hyphenation_test.dart: licensed English patterns unqualified English and US aliases share the same dialect
+00:02 +19: test/english_hyphenation_test.dart: licensed English patterns words crossing run language boundaries receive no candidates
+00:02 +20: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:02 +21: test/english_hyphenation_test.dart: English and German shared layout dispatch English selected hyphens own no authored units
+00:02 +22: test/english_hyphenation_test.dart: English and German shared layout dispatch Word layout dispatches English defaults and paragraph suppression
+00:02 +23: All tests passed!

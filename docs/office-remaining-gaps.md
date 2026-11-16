@@ -72,9 +72,9 @@ it.
 ### 6. ODT pictures
 
 The host keeps supported raster pictures in a bounded image registry (8 MiB per
-image, 24 MiB total) and references them from markup by synthetic keys; larger
-or unsupported images remain markers. Position/crop/caption/linked/vector media
-are not modeled.
+image, 24 MiB total), references them from markup by synthetic keys and applies
+the ODF frame width/height; larger or unsupported images remain markers.
+Position/crop/caption/linked/vector media are not modeled.
 
 ### 7. ODF serialization
 

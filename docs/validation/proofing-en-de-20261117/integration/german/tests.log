@@ -1,0 +1,97 @@
+00:00 +0: loading test/proofing/german_writing_rules_test.dart
+00:00 +0: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +1: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +2: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +3: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +4: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +5: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +6: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +7: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +8: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +9: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +10: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +11: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +12: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +13: test/proofing/office_proofing_test.dart: deadline disposes stalled backend and prevents reusing it
+00:00 +14: test/proofing/office_proofing_test.dart: deadline disposes stalled backend and prevents reusing it
+00:00 +15: test/proofing/german_writing_rules_test.dart: only conservative repeated conjunctions are flagged
+00:00 +16: test/proofing/office_proofing_test.dart: disposed service stays unavailable and duplicate provider ids rejected
+00:00 +17: test/proofing/german_writing_rules_test.dart: selected pronoun-verb disagreement is grammar, not a broad parser claim
+00:00 +18: test/proofing/german_writing_rules_test.dart: lowercase ich and du receive missing sein agreement corrections
+00:00 +19: test/proofing/german_writing_rules_test.dart: nominal Ich and Du remain outside the limited agreement rule
+00:00 +20: test/proofing/german_writing_rules_test.dart: comparison pronouns are not mistaken for the following subject
+00:00 +21: test/proofing/german_writing_rules_test.dart: agreement suggestions preserve all-capital verb casing
+00:00 +22: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +23: test/proofing/proofing_text_ranges_test.dart: Unicode emails and uppercase URLs retain original UTF-16 positions
+00:00 +24: test/proofing/proofing_text_ranges_test.dart: Unicode emails and uppercase URLs retain original UTF-16 positions
+00:00 +25: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +26: test/proofing/proofing_text_ranges_test.dart: URL punctuation keeps prose delimiters available to grammar checks
+00:00 +27: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:00 +28: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:00 +29: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:00 +30: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:00 +31: test/proofing/proofing_text_ranges_test.dart: empty input and invalid source intervals have explicit semantics
+00:00 +32: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +33: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +34: test/proofing/german_writing_rules_test.dart: lexical verb corrections retain regional and uppercase behavior
+00:00 +35: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +36: test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +37: test/proofing/german_writing_rules_test.dart: seit-seid remains opt-out, protected and source-grapheme safe
+00:00 +38: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection retains exact original UTF-16 ranges
+00:00 +39: test/proofing/german_writing_rules_test.dart: soft-hyphen projection preserves phrase and insertion ownership
+00:00 +40: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection preserves adjacent controls and valid text
+00:00 +41: test/proofing/german_writing_rules_test.dart: projected findings never replace part of a joined or accented grapheme
+00:00 +42: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +43: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +44: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +45: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +46: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +47: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +48: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +49: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +50: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +51: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +52: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +53: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +54: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +55: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +56: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +57: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:01 +58: test/proofing/german_spelling_test.dart: transposed letters receive a useful bounded suggestion
+00:01 +59: test/proofing/german_spelling_test.dart: offsets preserve emoji and decomposed source characters
+00:01 +60: test/proofing/german_spelling_test.dart: explicit soft hyphens do not split logical spelling tokens
+00:01 +61: test/proofing/german_spelling_test.dart: standalone soft hyphens and combining marks are not words
+00:01 +62: test/proofing/german_spelling_test.dart: ignored nonwords retain subsequent spelling source offsets
+00:01 +63: test/proofing/german_spelling_test.dart: joiner-adjacent spelling fragments do not fail the paragraph
+00:01 +64: test/proofing/german_spelling_test.dart: all-capitals sharp-s words are valid in German and Swiss forms
+00:01 +65: test/proofing/german_spelling_test.dart: obsolete source variants are excluded from modern spelling
+00:01 +66: test/proofing/german_spelling_test.dart: Swiss spellings are locale-scoped and sharp-s receives ss suggestion
+00:01 +67: test/proofing/german_spelling_test.dart: Austrian source forms and canonical locale tags are supported
+00:01 +68: test/proofing/german_spelling_test.dart: Swiss capital sharp-s offers the matching SS replacement
+00:01 +69: test/proofing/german_spelling_test.dart: unsupported languages and disposed backend are explicit
+00:01 +70: test/proofing/german_spelling_test.dart: noun casing remains meaningful; all-capitals remain accepted
+00:01 +71: test/proofing/german_spelling_test.dart: explicit compounds keep German noun case significant
+00:01 +72: test/proofing/german_spelling_test.dart: explicit compound suggestions preserve other nouns and hyphen styles
+00:01 +73: test/proofing/german_spelling_test.dart: explicit compound repair honors the ordinary candidate budget
+00:01 +74: test/proofing/german_spelling_test.dart: compound suggestions keep per-occurrence separators and Swiss forms
+00:01 +75: test/proofing/german_spelling_test.dart: known explicit compounds and URL/email tokens avoid spurious findings
+00:01 +76: test/proofing/german_spelling_test.dart: URL schemes and www prefixes are protected without case folding text
+00:01 +77: test/proofing/german_spelling_test.dart: matching backtick spans protect code without hiding following prose
+00:01 +78: test/proofing/german_spelling_test.dart: unmatched backtick delimiters do not suppress the remaining paragraph
+00:01 +79: test/proofing/german_spelling_test.dart: personal words and ignores stay owned, reversible and language-scoped
+00:01 +80: test/proofing/german_spelling_test.dart: vocabulary snapshots round-trip with revision notification
+00:01 +81: test/proofing/german_spelling_test.dart: vocabulary parser rejects corrupt or mismatched data
+00:01 +82: test/proofing/german_spelling_test.dart: suggestions and long unknown tokens remain bounded
+00:01 +83: test/proofing/german_spelling_test.dart: combined keyboard transliterations offer dictionary-backed words
+00:01 +84: test/proofing/german_spelling_test.dart: combined orthography respects Swiss spelling and source capitals
+00:01 +85: test/proofing/german_spelling_test.dart: orthographic suggestions share the configured search and result caps
+00:01 +86: test/proofing/german_spelling_test.dart: suggestion cache preserves sentence-initial adjective capitals
+00:01 +87: test/proofing/german_spelling_test.dart: personal words compose explicit compounds in their declared locale
+00:01 +88: test/proofing/german_spelling_test.dart: compound correction preserves personal components and source ranges
+00:01 +89: test/proofing/german_spelling_test.dart: ignored tokens do not turn into declared compound vocabulary
+00:01 +90: test/proofing/german_spelling_test.dart: a vocabulary edit invalidates an in-flight compound check
+00:01 +91: test/proofing/german_spelling_test.dart: identifier fragments are protected while separate prose is checked
+00:01 +92: test/proofing/german_spelling_test.dart: Unicode email and delimited URLs preserve following spelling checks
+00:01 +93: test/proofing/german_spelling_test.dart: vocabulary restore merges aliases and canonicalizes like live edits
+00:01 +94: test/proofing/german_spelling_test.dart: vocabulary restore rejects empty normalized words and empty languages
+00:01 +95: All tests passed!

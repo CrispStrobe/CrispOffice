@@ -14,9 +14,10 @@ experimental German model remains a separate evaluation.
 
 The [current continuation report](validation/proofing-en-de-20261117/README.md)
 records the integrated incoming histories, incremental remote checkpoints,
-local runtime receipts and qualification boundaries. The starting head
-`becfa07c1be62429a8bcf78910aa1ffb46248b1a` preserves all 128 unique commit
-heads represented by 189 audited fork/upstream branch and PR references.
+local runtime receipts and qualification boundaries. The qualified source is
+`b9ac68fbbb33c7731a3241e4065f6dfb71e36a57`: all 135 distinct heads across the
+initial and later inventories are ancestors. The later documentation-only main
+`f57d8f5` is also retained, with unchanged qualified source inputs.
 
 This continuation adds:
 
@@ -35,11 +36,20 @@ This continuation adds:
 - Review-dialog correction/undo and rule-ignore regressions for the new German
   behavior, and local compiled-JavaScript coverage alongside Dart VM tests.
 
-All dictionary/pattern inputs, Cargo/Pub dependency constraints and original
-license notices remain unchanged. The current report distinguishes fresh local
-qualification from preserved historical evidence. No GitHub Actions queue is
-used or waited on. The [16 November handoff](validation/proofing-en-de-20261116/README.md)
-retains its original source/reference-only qualification limits.
+All dictionary/pattern inputs, Cargo/Pub dependency constraints and existing
+license notices remain unchanged; incoming standalone original English notices
+are retained and verified. The fresh local gate passed strict analysis, 258
+hyphenation/layout/export tests, 23 compiled-JavaScript hyphenation tests, 95
+German proofing tests on each of VM and Node, 376 incoming engine regressions,
+304 selected editor tests, a separate IME regression, and a release web build
+with verified Harper assets/notices. The same-turn real Linux native and
+Node/Wasm qualification remains bound to matching source/artifact hashes.
+All 2,083 recorded inputs and runtime hashes stayed unchanged. Groups overlap;
+this is not a repository-wide test count. Real Chromium startup was blocked by
+the workspace before loading a page; no browser/CSP or mobile-device acceptance
+is claimed. No GitHub Actions queue is used or waited on. The
+[16 November handoff](validation/proofing-en-de-20261116/README.md) retains its
+original source/reference-only qualification limits.
 
 The earlier locally qualified proofing source is
 **`8b93e866b4661d19f4bbad4e1069c0a609441ebb`**. Its
@@ -199,7 +209,7 @@ live model properties and Word serialization coverage.
 | P5 | Word proofing UI and lifecycle | Implemented | Whole-story traversal, manual/background checks, stale-result rejection, squiggles, F7 review, correction menu and guarded undoable corrections. |
 | P6 | Optional English Harper and mobile spelling adapters | Implemented with runtime limits | Actual Linux native and Node/Wasm integration exercised; browser startup blocked before loading a page; mobile adapter protocol tested without Android/iOS device acceptance. |
 | P7 | German model evaluation | Evaluated; not enabled | Exact artifacts and original notices retained; recorded probe matched 9/18 error cases and changed 1/12 valid controls. No application provider or automatic model download. |
-| P8 | Integration and documentation | Current source saved; new runtime qualification pending | Prior qualified source passed strict engine/editor/host analysis, 347 selected editor tests, a separate IME regression and a release web build. Those results retain their original source attribution. The English/German continuation has source/data/reference checks and new local test gates, with Dart/Flutter/runtime execution pending. |
+| P8 | Integration and documentation | Current source locally qualified and remotely saved | Source `b9ac68f` passed strict analysis, VM/JavaScript language checks, 376 incoming regressions, 304 selected editor tests, separate IME regression and release web packaging. Matching-source real Linux native and Node/Wasm Harper evidence is verified. All 2,083 input hashes stayed unchanged; browser startup and device acceptance limits are explicit in the current report. |
 
 ## Chosen components and data
 

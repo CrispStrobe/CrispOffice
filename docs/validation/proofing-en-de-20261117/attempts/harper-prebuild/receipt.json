@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "scope": "Real Rust native and Wasm precompilation and license audit; final source-bound Dart/provider qualification remains separate.",
+  "source_sha256": {
+    "native/Cargo.toml": "8e33f603f3c3af077aedd4ad22bcb954879a725ebb4ab8b5933c565d07cd87d7",
+    "native/Cargo.lock": "3c79cb218867c8e028e2b7364a90d1a4ca3bee41214f20ed16048cb337e937f6",
+    "native/rust-toolchain.toml": "7fa5da9da36242a926b0025d5229b9edca83e7d1edebf7ee2b487b7d2bcfac44",
+    "native/src/lib.rs": "221afcdb7a16cf4a4c4ea1f8b32de538584b4c20b75b1ceee7e060cd1ed3957e"
+  },
+  "commands": [
+    {
+      "name": "rust-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--release",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "log": "rust-tests.log",
+      "log_sha256": "bac502adc4effc096224cb0fe2e231eb41746e2c852626e9d26bb65dc46a43ee"
+    },
+    {
+      "name": "native-build",
+      "command": [
+        "cargo",
+        "build",
+        "--release",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "log": "native-build.log",
+      "log_sha256": "d1235ea4563620b53ef5bdd2da5f595fec9d54f9efb48376378c20547dd95e57"
+    },
+    {
+      "name": "wasm-build",
+      "command": [
+        "cargo",
+        "build",
+        "--release",
+        "--locked",
+        "--target",
+        "wasm32-unknown-unknown"
+      ],
+      "RUSTFLAGS": "--cfg getrandom_backend=\"wasm_js\"",
+      "exit_code": 0,
+      "log": "wasm-build.log",
+      "log_sha256": "0a846ac51c19794e657f854c175010bc2c6e61dcc844b28088337276ac6ceb1c"
+    },
+    {
+      "name": "license-audit",
+      "command": [
+        "python3",
+        "tool/license_bundle.py",
+        "--target",
+        "x86_64-unknown-linux-gnu",
+        "--target",
+        "wasm32-unknown-unknown",
+        "--output",
+        "/workspace/scratch/65e4ff9d3bff/validation-20261117/harper-prebuild/licenses"
+      ],
+      "exit_code": 0,
+      "log": "license-audit.log",
+      "log_sha256": "194f34b511ac43dcb032c18e381a50a4111c3b80e258d5cf5270eb24893f0b45"
+    }
+  ],
+  "license_package_count": 226,
+  "license_files_identical_to_committed": {
+    "manifest.json": true,
+    "notices-and-mpl-sources.tar.gz": true
+  }
+}

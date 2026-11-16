@@ -1,0 +1,8 @@
+cargo build --release --locked
+    Finished `release` profile [optimized] target(s) in 0.80s
+cargo build --release --locked --target wasm32-unknown-unknown
+    Finished `release` profile [optimized] target(s) in 1.03s
+wasm-bindgen /workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_proofing_harper/native/target/wasm32-unknown-unknown/release/quds_proofing_harper.wasm --target web --out-dir /workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_proofing_harper/build/web --out-name quds_proofing_harper
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 /workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_proofing_harper/tool/license_bundle.py --output /workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_proofing_harper/build/licenses --target x86_64-unknown-linux-gnu --target wasm32-unknown-unknown
+{"packages": 226, "output": "/workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_proofing_harper/build/licenses", "status": "passed"}
+{"status": "passed", "output": "/workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_proofing_harper/build", "installed": []}

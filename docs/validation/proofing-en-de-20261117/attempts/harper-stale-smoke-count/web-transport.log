@@ -1,0 +1,30 @@
+PASS real Wasm success
+PASS Dart web transport maps scalar offsets to source UTF16
+PASS real Wasm checks across an authored discretionary hyphen
+PASS real Wasm correction retains original soft-hyphen source span
+PASS real Wasm leaves code untouched and checks following English prose
+PASS concurrent checks keep dialects, ignores and unsupported status separate
+PASS oversized paragraph reports failure
+PASS missing worker reports unavailable on attempt 1
+PASS missing worker reports unavailable on attempt 2
+PASS disposal invalidates an outstanding web request
+PASS disposed web provider rejects future requests
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+11 !== 8
+
+    at file:///workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_proofing_harper/tool/run_web_transport_smoke.mjs:50:10
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 11,
+  expected: 8,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
