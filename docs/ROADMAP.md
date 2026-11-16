@@ -3,6 +3,21 @@
 Waves 1–4 are implemented in-tree. Later work should keep [STANDARDS.md](STANDARDS.md)
 and [MISSION.md](MISSION.md) honest as coverage changes.
 
+## Proofing and German hyphenation — 16 November 2026
+
+The accepted [proofing roadmap](PROOFING.md) adds actual offline German
+spelling, automatic German hyphenation, original German style/limited grammar
+rules, Word diagnostics and corrections, and optional English Harper/mobile
+spelling adapters. It starts by separating an unavailable checker from a
+successful clean result. The experimental German ONNX backend is a separate
+evaluation and is not enabled by default.
+
+Implement P1–P8 in the linked plan. Preserve the pure Dart engine, custom editor
+surfaces, source offsets and shared PDF layout. Code and each language asset
+must independently satisfy the MIT/BSD/Apache/MPL allowlist. Current baseline
+capabilities and acceptance gates are recorded in the plan; planned work is
+not a claim of implemented coverage.
+
 ## Office preservation continuation — 14 November 2026
 
 The interrupted session described additional fixes, but those changes were not

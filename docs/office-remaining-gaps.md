@@ -18,6 +18,14 @@ is maintained in the CrispCloud repository
 
 ## Open engine/editor work
 
+### Proofing and automatic German hyphenation
+
+The accepted [PROOFING.md](PROOFING.md) roadmap covers a real spelling provider,
+language and provider availability, German lexicon and suggestions, German
+pattern hyphenation, original grammar/style rules, diagnostic UI and undoable
+corrections, and optional English/mobile backends. The initial implementation
+status is planned. The experimental German model remains an evaluation.
+
 ### 1. `.xlsb`
 
 No BIFF12 reader or writer. `.xlsb` is preview-only in the host. Do not route

@@ -14,6 +14,12 @@ phases, and do not leave `TODO` stubs or untyped/`dynamic` APIs.
 Editor prohibition: no `TextField`, `TextFormField`, `EditableText`,
 `SelectableRegion`, `SingleChildScrollView`, `ListView`, or `InteractiveViewer`.
 
+Proofing and automatic German hyphenation follow [PROOFING.md](PROOFING.md).
+Keep language/data licenses independent from engine licenses. Proofing findings
+are ephemeral ranges over logical source text; corrections use normal undoable
+commands. Automatic hyphens affect layout only. Optional platform/Harper
+adapters must not introduce Flutter or `dart:ui` into the document engine.
+
 Prefer `Uint8List` views, index slicing, and object pooling over heap-heavy
 DOM-style trees.
 
