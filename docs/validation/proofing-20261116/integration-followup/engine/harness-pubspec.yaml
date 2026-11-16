@@ -1,0 +1,13 @@
+name: quds_proofing_validation
+publish_to: none
+environment:
+  sdk: ^3.13.0
+dependencies:
+  quds_office_engine:
+    path: ../../quds_office_suite/packages/quds_office_engine
+  quds_proofing_harper:
+    path: ../../quds_office_suite/packages/quds_proofing_harper
+dev_dependencies:
+  test: ^1.26.0
+  lints: ^6.0.0
+  archive: ^4.0.0
