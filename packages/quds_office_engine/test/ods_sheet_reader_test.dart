@@ -1765,6 +1765,46 @@ void validationTests() {
     expect(book.firstSheet.validations, isEmpty);
   });
 
+  test('ODS list source preserves spaces in quoted sheet names', () {
+    final book = OdsSheetReader.readBytes(
+      _ods(
+        '<t:table t:name="Data"><t:table-row><t:table-cell '
+        't:content-validation-name="v"><x:p>Pick</x:p></t:table-cell></t:table-row><t:content-validations>'
+        '<t:content-validation t:name="v" '
+        "t:condition=\"of:cell-content-is-in-list(\$'Choice List'.\$A\$1:.\$A\$2)\"/>"
+        '</t:content-validations></t:table>'
+        '<t:table t:name="Choice List"><t:table-row><t:table-cell>'
+        '<x:p>Red</x:p></t:table-cell></t:table-row>'
+        '<t:table-row><t:table-cell><x:p>Green</x:p></t:table-cell>'
+        '</t:table-row></t:table>',
+      ),
+    );
+    expect(book.sheets.first.validations.single.listItems, ['Red', 'Green']);
+  });
+
+  test('ODS validation source range is bounded before scanning empty cells', () {
+    expect(
+      () => OdsSheetReader.readBytes(
+        _ods(
+          '<t:table t:name="Data"><t:table-row><t:table-cell '
+          't:content-validation-name="v"><x:p>Pick</x:p></t:table-cell></t:table-row><t:content-validations>'
+          '<t:content-validation t:name="v" '
+          't:condition="of:cell-content-is-in-list(\$Lists.\$A\$1:.\$C\$1000000)"/>'
+          '</t:content-validations></t:table>'
+          '<t:table t:name="Lists"><t:table-row><t:table-cell>'
+          '<x:p>Red</x:p></t:table-cell></t:table-row></t:table>',
+        ),
+      ),
+      throwsA(
+        isA<OdsSheetFormatException>().having(
+          (error) => error.toString(),
+          'reason',
+          contains('validation source work limit'),
+        ),
+      ),
+    );
+  });
+
   test('ODS range-source list validations resolve across sheets', () {
     final book = OdsSheetReader.readBytes(
       _ods(
@@ -1784,6 +1824,35 @@ void validationTests() {
     expect(validation.listItems, ['Red', 'Green']);
     expect(validation.accepts('Green'), isTrue);
     expect(validation.accepts('Blue'), isFalse);
+  });
+
+  test('ODS validation source work is shared across definitions', () {
+    final cells = [
+      for (var i = 0; i < 3; i++)
+        '<t:table-cell t:content-validation-name="v$i"><x:p>Pick</x:p></t:table-cell>',
+    ].join();
+    final rules = [
+      for (var i = 0; i < 3; i++)
+        '<t:content-validation t:name="v$i" '
+            't:condition="of:cell-content-is-in-list(\$Lists.\$A\$1:.\$A\$1000000)"/>',
+    ].join();
+    expect(
+      () => OdsSheetReader.readBytes(
+        _ods(
+          '<t:table t:name="Data"><t:table-row>$cells</t:table-row>'
+          '<t:content-validations>$rules</t:content-validations></t:table>'
+          '<t:table t:name="Lists"><t:table-row><t:table-cell>'
+          '<x:p>Red</x:p></t:table-cell></t:table-row></t:table>',
+        ),
+      ),
+      throwsA(
+        isA<OdsSheetFormatException>().having(
+          (error) => error.toString(),
+          'reason',
+          contains('validation source work limit'),
+        ),
+      ),
+    );
   });
 
   test('ODS list validations become typed XLSX validations', () async {

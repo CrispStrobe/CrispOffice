@@ -527,6 +527,18 @@ abstract final class OdsSheetReader {
       if (sourceName == null || sourceRange == null) continue;
       final source = book.sheetByName(sourceName);
       if (source == null) continue;
+      if (sourceRange.minRow < 0 ||
+          sourceRange.minCol < 0 ||
+          sourceRange.maxRow >= 1048576 ||
+          sourceRange.maxCol >= 16384) {
+        throw const OdsSheetFormatException(
+          'Invalid ODS validation source range',
+        );
+      }
+      budget.validationSourceCells(
+        sourceRange.maxRow - sourceRange.minRow + 1,
+        sourceRange.maxCol - sourceRange.minCol + 1,
+      );
       final items = <String>[];
       for (final ref in sourceRange.cells) {
         final value = source.cellOrNull(ref)?.asString ?? '';
@@ -963,7 +975,7 @@ abstract final class OdsSheetReader {
 
   static ({String sheet, SmlRange range})? _odsRangeAddress(String? raw) {
     if (raw == null || raw.isEmpty) return null;
-    final text = raw.trim().replaceAll(' ', '');
+    final text = raw.trim();
     final parts = text.split(':');
     if (parts.length > 2 || parts.isEmpty) return null;
     ({String sheet, String cell})? point(
@@ -1726,6 +1738,20 @@ class _OdsBudget {
   int _images = 0;
   int _conditionalFormats = 0;
   int _validations = 0;
+  int _validationSourceCells = 0;
+
+  void validationSourceCells(int rows, int columns) {
+    // Check before multiplying: hostile coordinates must not wrap an int and
+    // turn an enormous range into an apparently small work charge.
+    if (rows <= 0 ||
+        columns <= 0 ||
+        rows > (2000000 - _validationSourceCells) ~/ columns) {
+      throw const OdsSheetFormatException(
+        'ODS validation source work limit (2000000 cells)',
+      );
+    }
+    _validationSourceCells += rows * columns;
+  }
 
   void comments(int count) {
     if (count > 10000 - _comments) {

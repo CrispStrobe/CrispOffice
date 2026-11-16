@@ -9,6 +9,17 @@ All notable changes to `quds_office_engine` are documented here.
   table-local definition compatibility without leaking it into other sheets;
   foreign-namespace containers do not define shared rules.
 
+
+- Add Zotero's native HTTP Citing Protocol with bounded, credential-free
+  loopback transactions, exact command/field validation, cooperative cancellation
+  and error cleanup. Stage complete Word citation/bibliography refreshes,
+  inline/footnote/endnote insertion and safe note conversions without live
+  mutation. Preserve native XML/JSON document preferences in owned, chunked
+  `ZOTERO_PREF_*` custom properties. Keep processor-managed citations separate
+  from the basic fallback. Verify German ibid., numeric ordering and
+  disambiguation against pinned real Zotero CSL output; live native acceptance
+  remains pending.
+
 - Verify persistent source identities before connected Zotero item reads and
   selected-source exports. Check complete selections before formatting; pin
   desktop database identity and library version across aggregate requests.
@@ -24,7 +35,18 @@ All notable changes to `quds_office_engine` are documented here.
 - Add Zotero CSL citation and bibliography field inspection, bounded JSON
   metadata, embedded CSL items, explicit cached-text insertion/editing, and
   deliberate unlinking. Write native complex ADDIN fields and preserve rich
-  imported caches and unknown Zotero metadata without automatic CSL processing.
+  imported caches and unknown Zotero metadata. Cached-text operations remain
+  available without a running native Zotero processor.
+
+- Complete the bounded ODS picture and spreadsheet-state pass: embed package
+  pictures as worksheet drawings, apply nameless document default styles and
+  default column/row geometry, preserve hidden rows/columns/sheets, import
+  conditional formats (numeric, between, contains-text, begins/ends-with and
+  duplicate) with generated dxf styling, and import literal/range-source list validations
+  with corrected Excel list quoting. Import ODS print areas/titles, named ranges
+  and basic database-range autofilters, and add XLSX print-area read/write. Documented limits remain for range-source
+  validations, expression/visual conditional rules, ODS metadata and package
+  part naming.
 
 - Preserve ODS authored date-component order, literal separators, full month and
   weekday names, and cell annotations through XLSX copies. Annotation text stays
