@@ -18,8 +18,8 @@ second parent. The subsequent reconciliation includes `main` through
 `7edb096d3328263c75dc0229ff43bb77183e1ad3` (the four incoming ODS PRs), the
 independent Zotero improvements from
 `b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb`, and the useful original-branch
-proofing fixes through `93c13aa1315298c0f85a5a8b757042eb9ac435e1`. The final
-integrated source is **`ca294cf8668706b45f40031ed9a2db52e5737cd2`**, whose
+proofing fixes through `93c13aa1315298c0f85a5a8b757042eb9ac435e1`. The earlier
+integrated source was **`ca294cf8668706b45f40031ed9a2db52e5737cd2`**, whose
 parents retain those three incoming histories and the continuation checkpoint.
 The remote inventory covered **53 branches and 62 pull requests** at the
 **2026-11-16 13:40:49 UTC** cutoff. The earlier
@@ -30,20 +30,44 @@ queue was required.
 
 ## Continuation reconciliation after both handoffs
 
-The later continuation integrates the original branch through `c040389`,
+The completed continuation integrates the original branch through `c040389`,
 Zotero capabilities through `2480f09`, main through `90024d5`,
 and dialog input/ruler work through `2e92a49`. The
-[new reconciliation record](validation/proofing-20261116/continuation-next/README.md)
+[reconciliation record](validation/proofing-20261116/continuation-next/README.md)
 accounts for **58 observed branches and 66 PRs** at the
 **2026-11-16 14:27:44 UTC** cutoff. All 58 observed heads are ancestors of
-`bfb24bf`, as independently confirmed by GitHub comparisons. Both prior
-source-bound validation histories are retained, including complete original
-logs and compressed manifests. Historical test totals below do not establish
-the status of a later source tree.
+`bfb24bf`, confirmed by individual GitHub comparisons; the final source
+descends from that integration.
 
-New changes also restore input ownership when a covered route becomes current
-without a FocusNode change, and clear object-editing state before selecting a
-body proofing finding. Actual new validation is recorded separately.
+Both prior validation histories are retained, including the complete original
+`c040389` logs and compressed manifests. Their
+[evidence-integrity check](validation/proofing-20261116/integration-followup/evidence-integrity.json)
+found all original files unchanged.
+
+The fresh editor/host run passed at **`3bd4657b1c1cccfad8adbcf5928e30b90e4a1aaa`**:
+strict engine, editor and example analysis; **294 selected editor tests**;
+the separate IME regression; and a successful release web build. All
+**2,032 source inputs**, runtime hashes, workspace lock and package
+configuration remained unchanged. The earlier fresh engine component run at
+`6f87a4e` passed **49 German tests**, **10 compiled-JavaScript checks**,
+**231 hyphenation/layout/export tests**, **496 incoming ODS/Zotero/comment
+regressions**, and exact dictionary/pattern regeneration. The
+[source comparison](validation/proofing-20261116/integration-followup/source-scope-comparison.json)
+confirms unchanged engine and Harper inputs between those tested revisions.
+
+This continuation improves standalone mark/soft-hyphen handling, internal
+apostrophes, conservative German agreement checks, grapheme-safe findings,
+hyphen caret/hit ownership, empty-document and header/footer navigation, and
+input ownership across route/controller changes. Body finding navigation
+clears object-editing targets before selecting source text. Non-mutating
+selecting mode retains keyboard navigation.
+
+The [current verification report](validation/proofing-20261116/integration-followup/README.md)
+links the complete receipts, commands, logs, compressed manifests, reproducible
+runtime setup and retained failed attempts. Test groups overlap and are not a
+repository-wide total. The fresh Harper results cover provider/lifecycle and
+packaging/license tests; no new real-library/Wasm execution is claimed.
+The experimental German model remains disabled and was not rerun.
 
 ## Scope and license policy
 
@@ -474,6 +498,13 @@ Check real behavior rather than mirroring implementation:
   output when executable, with unsupported cases reported rather than faked.
 
 ## Verification record
+
+The latest continuation results are in the
+[current verification report](validation/proofing-20261116/integration-followup/README.md)
+and the current section above. The following tables preserve the earlier
+component runs against the exact sources identified in their receipts.
+
+### Earlier component results
 
 Validation was run locally on Linux using Flutter 3.47.8 and Dart 3.13.7,
 with Rust 1.100.0 for Harper. GitHub Actions were neither used nor waited for.

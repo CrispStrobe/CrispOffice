@@ -1,5 +1,12 @@
 # Proofing continuation reconciliation — 16 November 2026
 
+**Completed.** Fresh engine validation passed at `6f87a4e`; final editor/host
+validation passed at `3bd4657`, including strict analysis, 294 selected editor
+tests, the separate IME regression and the release web build. The
+[completed verification report](../integration-followup/README.md) contains
+the receipts and limits. The chronology below records the intermediate
+reconciliation and recovery checkpoints.
+
 ## Inputs and ancestry
 
 The starting continuation was `81f4b77a9e77b0f08439ab13c2799ed1ee3e8efd`.
@@ -43,17 +50,17 @@ validation evidence only. A single-base API comparison overstates new code.
   ownership when a mounted editor receives a different controller, and reject
   stale selector traffic as well as text/action callbacks.
 
-## Validation status at the integration checkpoint
+## Validation status at the integration checkpoint (historical)
 
-This checkpoint is saved before new combined Dart/Flutter verification.
+This checkpoint was saved before new combined Dart/Flutter verification.
 The environment exhausted its shared filesystem while preparing Dart and
 dependency resolution. Subsequent sandbox processes, including cleanup,
 could not start. An escalation request to remove an optional task-owned runtime
 asset was rejected because escalated shell execution is disabled.
 
-The exact combined source has **not** inherited passing status from either
-previous session. New Dart/Flutter source and regression tests must be run
-against this checkpoint or a later recorded source.
+The combined checkpoint did **not** inherit passing status from either
+previous session. New Dart/Flutter source and regression tests still needed to
+run against this checkpoint or a later recorded source.
 
 Before disk exhaustion, the five Harper Python packaging/license tests passed,
 the five Harper Python tools parsed, and the scoped diff check passed. These
@@ -76,12 +83,12 @@ They do not widen replacements over adjacent combining marks or joiners.
 Eleven new German-core regression tests cover these cases through the real
 provider/service contract. Six caret ownership tests (four inherited and two
 new), four navigation tests, and five input-ownership widget tests accompany
-the integrated editor work. Added tests have not been executed in this session.
+the integrated editor work. Those tests had not yet been executed at that checkpoint.
 
-The executor subsequently disconnected and is explicitly **unavailable**.
+The executor subsequently disconnected and became **unavailable**.
 Dart 3.13.7 was installed and identified, but dependency resolution failed with
 ENOSPC before producing a runnable test configuration. No new Dart analysis,
-Dart tests, Flutter tests or builds are reported as passing.
+Dart tests, Flutter tests or builds had yet passed at that point.
 
 Source and test changes were saved through GitHub's Git-data API with expected
 branch heads and without force updates. GitHub Actions remain unused.
@@ -106,8 +113,9 @@ The inherited ODS tests establish their stated numeric-comparison/export scope;
 empty/not-empty semantics were not qualified by this proofing work.
 
 A fresh execution environment became available after the earlier disconnect.
-Validation is being rebuilt from the saved remote source. The failure record
-above is preserved; a later source-bound receipt records any successful checks.
+Validation was rebuilt from the saved remote source. The failure record
+above is preserved; the completed report linked at the top records the
+subsequent successful checks.
 
 ## Ancestry confirmation and final review
 
@@ -126,3 +134,18 @@ clears equation, visual, frame and table selection using the existing
 controller helpers before selecting the target text. The focus test now
 requires automatic reattachment, and two additional navigation tests exercise
 actual equation and visual/frame editing targets.
+
+## Completed local validation
+
+The final run passed all eight stages at `3bd4657`, with 294 selected editor
+tests and the separate IME regression passing. Strict engine/editor/example
+analysis and the release web build succeeded. All 2,032 captured source inputs,
+runtime hashes, the lock and package configuration remained unchanged.
+
+The first executable editor pass found an analyzer style issue in the stable
+input-guard closure and an incorrect test assumption about viewing mode. The
+final guard retains a stable callback via a named method, and the test now
+uses selecting mode while explicitly requiring mutation to remain disabled.
+The prior failure logs and incomplete first build are retained alongside the
+uninterrupted final pass. Engine/Harper inputs did not change during these
+editor-only final fixes. See the [complete report](../integration-followup/README.md).
