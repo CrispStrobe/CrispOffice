@@ -1,0 +1,20 @@
+{
+  "graphs": {
+    "before": {
+      "source_files_verified_against_git": 463,
+      "source_hashes_unchanged": true,
+      "manifest_lock_config_and_test_hashes_unchanged": true
+    },
+    "after": {
+      "source_files_verified_against_git": 463,
+      "source_hashes_unchanged": true,
+      "manifest_lock_config_and_test_hashes_unchanged": true
+    }
+  },
+  "common_dependencies_unchanged": true,
+  "copied_inputs_unchanged": true,
+  "dependency_packages_verified": 75,
+  "dependency_files_verified": 3018,
+  "tests_identical": true,
+  "all_checks_passed": true
+}

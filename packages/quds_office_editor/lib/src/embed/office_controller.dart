@@ -7971,6 +7971,8 @@ class WordEditorController extends OfficeController {
   /// headers remain fully reviewable and correctable in the proofing dialog.
   bool revealProofingIssue(WordProofingIssue issue) {
     if (!config.allowsSelection || !proofing.isCurrent(issue)) return false;
+    commitPendingEdits();
+    if (!proofing.isCurrent(issue)) return false;
     final paragraph = issue.paragraph;
     for (final comment in document.comments) {
       if (comment.paragraphs.contains(paragraph)) {
@@ -7980,6 +7982,7 @@ class WordEditorController extends OfficeController {
           ..logicalIndex = issue.finding.end
           ..selectionAnchorParagraph = comment.paragraphs.indexOf(paragraph)
           ..selectionAnchor = issue.finding.start;
+        _syncImeSelection();
         notifyListeners();
         return true;
       }
@@ -7994,15 +7997,21 @@ class WordEditorController extends OfficeController {
         final paragraphs = footer ? section.footer : section.header;
         final index = paragraphs.indexOf(paragraph);
         if (index < 0) continue;
-        final page = documentLaidOut.pages.indexWhere(
-          (page) => page.sectionIndex == sectionIndex,
-        );
-        beginHeaderFooterEdit(page < 0 ? 0 : page, footer: footer);
+        // A default header/footer may be absent on the first or even page.
+        // Navigate only to a page that actually renders this source paragraph.
+        final page = documentLaidOut.pages.indexWhere((page) {
+          final lines = footer ? page.footer : page.header;
+          return page.sectionIndex == sectionIndex &&
+              lines.any((line) => identical(line.sourceParagraph, paragraph));
+        });
+        if (page < 0) return false;
+        beginHeaderFooterEdit(page, footer: footer);
         headerFooterCaret
           ..paragraphIndex = index
           ..logicalIndex = issue.finding.end
           ..selectionAnchorParagraph = index
           ..selectionAnchor = issue.finding.start;
+        _syncImeSelection();
         notifyListeners();
         return true;
       }
@@ -8021,18 +8030,21 @@ class WordEditorController extends OfficeController {
           page.lines.any((line) => identical(line.sourceParagraph, paragraph)),
     );
     if (page >= 0) _revealPage(page);
+    _syncImeSelection();
     notifyListeners();
     return true;
   }
 
-  List<WordProofingIssue> get proofingIssuesAtCaret => proofing.summary.issues
-      .where(
-        (issue) =>
-            identical(issue.paragraph, _activeParagraph) &&
-            caret.logicalIndex >= issue.finding.start &&
-            caret.logicalIndex <= issue.finding.end,
-      )
-      .toList();
+  /// Reading findings must not create a paragraph in an empty document.
+  /// Use the session's half-open hit ranges, including exact insertion points.
+  List<WordProofingIssue> get proofingIssuesAtCaret {
+    final paragraphs = _paragraphs;
+    final index = caret.paragraphIndex;
+    if (index < 0 || index >= paragraphs.length) {
+      return const <WordProofingIssue>[];
+    }
+    return proofing.issuesAt(paragraphs[index], caret.logicalIndex);
+  }
 
   /// Legacy caller-supplied spelling callback. New hosts should use
   /// [checkDocumentProofing] to distinguish unavailable and clean results.

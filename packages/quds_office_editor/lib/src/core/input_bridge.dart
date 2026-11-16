@@ -13,6 +13,10 @@ class OfficeInputBridge with TextInputClient {
 
   /// Function API.
   final void Function(String selector)? onSelector;
+
+  /// Set by a mounted editor to reject stale IME traffic while a dialog or
+  /// another input owns focus. Headless controller use keeps its prior policy.
+  bool Function()? inputAllowed;
   TextInputConnection? _connection;
 
   /// empty API.
@@ -33,6 +37,10 @@ class OfficeInputBridge with TextInputClient {
     TextInputAction action = TextInputAction.newline,
     bool autocorrect = true,
   }) {
+    if (inputAllowed?.call() == false) {
+      detach();
+      return;
+    }
     if (isAttached) {
       _connection!
         ..show()
@@ -71,7 +79,9 @@ class OfficeInputBridge with TextInputClient {
     _value = value;
     composing = value.composing;
     final TextInputConnection? connection = _connection;
-    if (connection != null && connection.attached) {
+    if (connection != null &&
+        connection.attached &&
+        inputAllowed?.call() != false) {
       connection.setEditingState(_value);
     }
   }
@@ -79,6 +89,7 @@ class OfficeInputBridge with TextInputClient {
   @override
   /// updateEditingValue API.
   void updateEditingValue(TextEditingValue value) {
+    if (inputAllowed?.call() == false) return;
     _value = value;
     composing = value.composing;
     onValue(value);
@@ -87,6 +98,7 @@ class OfficeInputBridge with TextInputClient {
   @override
   /// performAction API.
   void performAction(TextInputAction action) {
+    if (inputAllowed?.call() == false) return;
     onAction?.call(action);
   }
 
@@ -127,6 +139,7 @@ class OfficeInputBridge with TextInputClient {
   @override
   /// performSelector API.
   void performSelector(String selectorName) {
+    if (inputAllowed?.call() == false) return;
     onSelector?.call(selectorName);
   }
 

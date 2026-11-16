@@ -1,0 +1,61 @@
+00:00 +0: loading test/proofing/german_spelling_test.dart
+00:00 +0: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +1: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +2: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +3: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +4: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +5: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +6: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +7: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +8: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +9: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +10: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +11: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +12: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +13: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +14: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +15: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +16: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +17: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +18: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +19: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +20: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +21: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +22: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:00 +23: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +24: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +25: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +26: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +27: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +28: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +29: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +30: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +31: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +32: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +33: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +34: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +35: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +36: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +37: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +38: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +39: test/proofing_hyphenation_test.dart: licensed German patterns decomposed umlauts preserve original UTF-16 source
+00:00 +40: test/proofing_hyphenation_test.dart: licensed German patterns manual opportunities and language boundaries are respected
+00:00 +41: test/proofing_hyphenation_test.dart: source-preserving discretionary layout soft hyphen is invisible and zero-width when text fits
+00:00 +42: test/proofing_hyphenation_test.dart: source-preserving discretionary layout selected manual break consumes soft hyphen exactly once
+00:00 +43: test/proofing_hyphenation_test.dart: source-preserving discretionary layout hyphen width participates in fitting instead of overflowing
+00:00 +44: test/proofing_hyphenation_test.dart: source-preserving discretionary layout automatic hyphen owns no source units and keeps end offsets
+00:00 +45: test/proofing_hyphenation_test.dart: source-preserving discretionary layout invalid candidates cannot split a surrogate pair or grapheme
+00:00 +46: test/proofing_hyphenation_test.dart: source-preserving discretionary layout prepared variable-width layout matches fixed lines and exact consumption
+00:00 +47: test/proofing_hyphenation_test.dart: source-preserving discretionary layout RTL context retains all authored glyph positions around German breaks
+00:00 +48: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header overlay fragments retain exact offsets for repeated labels
+00:00 +49: test/proofing_hyphenation_test.dart: Word language and hyphenation settings trimmed footer offsets count complete UTF-16 source positions
+00:00 +50: test/proofing_hyphenation_test.dart: Word language and hyphenation settings generated header/footer page labels never claim authored offsets
+00:00 +51: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:01 +52: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:01 +53: test/proofing_hyphenation_test.dart: Word language and hyphenation settings language edits preserve independent native language and marker metadata
+00:01 +54: test/proofing_hyphenation_test.dart: Word language and hyphenation settings proofing source identity and offsets survive note display labels
+00:01 +55: test/proofing_hyphenation_test.dart: Word language and hyphenation settings document defaults, paragraph and run overrides survive two DOCX cycles
+00:01 +56: test/proofing_hyphenation_test.dart: Word language and hyphenation settings changing document default stays live for inherited runs
+00:01 +57: test/proofing_hyphenation_test.dart: Word language and hyphenation settings settings toggle preserves other native controls and absence
+00:01 +58: test/proofing_hyphenation_test.dart: Word language and hyphenation settings Word layout uses document setting and paragraph suppression without editing source
+00:01 +59: All tests passed!

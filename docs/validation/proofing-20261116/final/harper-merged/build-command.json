@@ -1,0 +1,19 @@
+{
+  "started_at_utc": "2026-11-16T13:37:30.102227+00:00",
+  "finished_at_utc": "2026-11-16T13:37:35.547844+00:00",
+  "command": [
+    "python3",
+    "tool/build.py",
+    "--native",
+    "--web",
+    "--install-web",
+    "/workspace/scratch/21fc989ecea7/harper-merged-host/web/proofing",
+    "--install-native",
+    "/workspace/scratch/21fc989ecea7/harper-merged-host/native"
+  ],
+  "working_directory": "packages/quds_proofing_harper",
+  "exit_code": 0,
+  "duration_seconds": 5.446,
+  "log": "build.log",
+  "log_sha256": "73ed6dc178be90580a5068d3688e915f8a6aec52481533c4990d573e64bad789"
+}

@@ -1,0 +1,1364 @@
+{
+  "schema_version": 2,
+  "recorded_utc": "2026-11-16T13:41:20.649412+00:00",
+  "inventory_read_completed_utc": "2026-11-16T13:41:21.388238+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "continuation_branch": "codex/zotero-capabilities-20261116",
+  "integration_source": "8e017e8c148517fea61f8d55eaafc7f070b82bba",
+  "integration_source_scope": "Published continuation checkpoint used to re-evaluate ancestry against the unchanged observed-ref inventory. All reproduction steps use this published commit; earlier local checkpoint identities are retained only as local provenance.",
+  "fetched_main": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+  "previous_user_checkpoint": "629e0ffbff52e6859d2d99c30dd5b5add52489e6",
+  "previous_checkpoint_is_ancestor": true,
+  "commits_since_previous_checkpoint": 59,
+  "initial_inventory": {
+    "recorded_utc": "2026-11-16T13:10:00.702276+00:00",
+    "integration_source": "d626d50580bda3a369588a6cb2fea1819770b0d2",
+    "total_incoming_refs": 109,
+    "preserved_files": {
+      "initial-incoming-refs.json": {
+        "sha256": "f135f3a919ca5be8813c6b2f047d4ad46b46a6950ed5f8bd5c9b6d9a259e4e02",
+        "bytes": 44823,
+        "source_commit": "8e017e8c148517fea61f8d55eaafc7f070b82bba",
+        "source_path": "docs/validation/zotero-capabilities-20261116/incoming-refs.json",
+        "preserved_byte_for_byte": true
+      },
+      "initial-incoming-work.md": {
+        "sha256": "2da282cd0aa254d16daf6da73619e1ed6dc4d5d28784fad37efcfbf3de3060a9",
+        "bytes": 2764,
+        "source_commit": "8e017e8c148517fea61f8d55eaafc7f070b82bba",
+        "source_path": "docs/validation/zotero-capabilities-20261116/incoming-work.md",
+        "preserved_byte_for_byte": true
+      }
+    }
+  },
+  "delta_from_initial_inventory": {
+    "added": [
+      {
+        "remote": "origin",
+        "remote_ref": "refs/heads/codex/proofing-20261116-resume",
+        "local_ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+        "kind": "branch",
+        "sha": "4d395da7c1253dbebfce4a5065fdfd257939ce1c",
+        "ancestor_of_integration_source": false,
+        "ancestor_of_fetched_main": false,
+        "disposition": "selected_fixes_ported_remote_branch_retained",
+        "all_branch_changes_merged": false,
+        "disposition_summary": "Only the demonstrated discretionary-hyphen caret and direction fixes were adapted and are present in the published checkpoint. The integrated proofing architecture remains; the alternate session and optional Harper packaging work remain on the retained remote branch.",
+        "evidence_report": "resume-disposition.md",
+        "selected_fix_published_checkpoint": "8e017e8c148517fea61f8d55eaafc7f070b82bba"
+      },
+      {
+        "remote": "origin",
+        "remote_ref": "refs/heads/feat/ods-hyperlinks",
+        "local_ref": "refs/remotes/origin/feat/ods-hyperlinks",
+        "kind": "branch",
+        "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+        "ancestor_of_integration_source": true,
+        "ancestor_of_fetched_main": false,
+        "disposition": "retained_squashed_feature_head",
+        "integration_merge": "8e017e8c148517fea61f8d55eaafc7f070b82bba",
+        "disposition_summary": "The feature head and PR #59 head are retained as an explicit parent of the published checkpoint. Main already contains the same five hyperlink files; ancestry is recorded separately from that source comparison.",
+        "evidence_report": "ods-vendor-disposition.md"
+      },
+      {
+        "remote": "origin",
+        "remote_ref": "refs/pull/59/head",
+        "local_ref": "refs/remotes/origin/pr/59",
+        "kind": "pull_request_head",
+        "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+        "ancestor_of_integration_source": true,
+        "ancestor_of_fetched_main": false,
+        "disposition": "retained_squashed_feature_head",
+        "integration_merge": "8e017e8c148517fea61f8d55eaafc7f070b82bba",
+        "disposition_summary": "The feature head and PR #59 head are retained as an explicit parent of the published checkpoint. Main already contains the same five hyperlink files; ancestry is recorded separately from that source comparison.",
+        "evidence_report": "ods-vendor-disposition.md"
+      },
+      {
+        "remote": "origin",
+        "remote_ref": "refs/heads/vendor/ods-hyperlinks",
+        "local_ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+        "kind": "branch",
+        "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+        "ancestor_of_integration_source": false,
+        "ancestor_of_fetched_main": false,
+        "disposition": "behaviorally_superseded_remote_branch_retained",
+        "superseded_by": [
+          "e5daa20587e10971e8cb97d82a5495584b5c1553",
+          "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2"
+        ],
+        "whole_branch_patch_equivalence_claimed": false,
+        "disposition_summary": "All vendor hyperlink behavior is present in feature/main. Keep main’s newer validation handling, namespace placement and regression tests. The old vendor head remains nonancestral and retained remotely.",
+        "evidence_report": "ods-vendor-disposition.md"
+      }
+    ],
+    "updated": [
+      {
+        "local_ref": "refs/remotes/origin/codex/proofing-20261116",
+        "previous_sha": "066e07979d9e710c314158fe9909c9210769cb3b",
+        "sha": "52d6ae43b659875e92b06cbabdd8f206aabbad6c"
+      },
+      {
+        "local_ref": "refs/remotes/origin/main",
+        "previous_sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+        "sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2"
+      }
+    ],
+    "removed": []
+  },
+  "fetch_head_last_updated_utc": "2026-11-16T13:31:52.421782+00:00",
+  "fetch_head_sha256": "ebbae32ec89e20f5b67a007fa5b966e8cef9e3e6037a33a90b7cc1a53dd1afb1",
+  "fetch_head_entries": [
+    {
+      "sha": "b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb",
+      "description": "branch 'codex/zotero-capabilities-20261116'"
+    }
+  ],
+  "fetch_head_timestamp_caveat": "FETCH_HEAD now contains only a later verification fetch of the continuation branch. Its mtime is not the cutoff or completion time of the earlier full incoming-ref fetch.",
+  "full_refspec_fetch_reflog_evidence": [
+    {
+      "remote": "origin",
+      "ref": "refs/remotes/origin/main",
+      "sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "ref_update_recorded_utc": "2026-11-16T13:28:03+00:00",
+      "reflog_entry": "refs/remotes/origin/main@{2026-11-16T14:28:03+01:00}\t14b13980e0005f4a56e0d0790ed3a2c1fa4798e2\tfetch origin +refs/heads/*:refs/remotes/origin/* +refs/pull/*/head:refs/remotes/origin/pr/*: fast-forward",
+      "interpretation": "A ref update made by a fetch whose command includes heads and PR-head refspecs. This records the observed update, not the finish time of every fetch or a guarantee that unchanged refs were refreshed at this time."
+    },
+    {
+      "remote": "upstream",
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ref_update_recorded_utc": "2026-11-16T13:07:45+00:00",
+      "reflog_entry": "refs/remotes/upstream/main@{2026-11-16T14:07:45+01:00}\t15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba\tfetch upstream +refs/heads/*:refs/remotes/upstream/* +refs/pull/*/head:refs/remotes/upstream/pr/*: storing head",
+      "interpretation": "A ref update made by a fetch whose command includes heads and PR-head refspecs. This records the observed update, not the finish time of every fetch or a guarantee that unchanged refs were refreshed at this time."
+    }
+  ],
+  "fetch_scope": "Read-only observation of already-fetched local origin/upstream remote-tracking heads and PR heads at recorded_utc. No fetch or remote metadata request was made for this refresh. Exact local refs and SHAs below define this inventory; it does not assert current remote availability or capture work advertised later.",
+  "remotes": {
+    "origin": "CrispStrobe/quds_office_suite",
+    "upstream": "MohammedAsaadAsaad/quds_office_suite"
+  },
+  "counts": {
+    "origin": {
+      "branches": 46,
+      "pull_request_heads": 59,
+      "ancestors_of_integration_source": 103,
+      "nonancestor_refs_with_explicit_disposition": 2
+    },
+    "upstream": {
+      "branches": 4,
+      "pull_request_heads": 4,
+      "ancestors_of_integration_source": 8,
+      "nonancestor_refs_with_explicit_disposition": 0
+    }
+  },
+  "total_incoming_refs": 113,
+  "ancestor_incoming_refs": 111,
+  "nonancestor_incoming_refs": 2,
+  "all_incoming_refs_are_ancestors": false,
+  "all_incoming_refs_have_recorded_disposition": true,
+  "disposition_counts": {
+    "behaviorally_superseded_remote_branch_retained": 1,
+    "contained_in_fetched_main": 108,
+    "integrated_concurrent_proofing": 1,
+    "retained_squashed_feature_head": 2,
+    "selected_fixes_ported_remote_branch_retained": 1
+  },
+  "ref_snapshot_sha256": "d61cead91686d4a6180d6cba8ac423a2d08039a703cd015386583227cdb08ae6",
+  "ref_snapshot_encoding": "UTF-8 output of git for-each-ref --sort=refname --format=%(refname)%09%(objectname)%09%(symref), including final newlines and excluded refs.",
+  "raw_ref_snapshot": "refs/remotes/origin/HEAD\t14b13980e0005f4a56e0d0790ed3a2c1fa4798e2\trefs/remotes/origin/main\nrefs/remotes/origin/codex/proofing-20261116\t52d6ae43b659875e92b06cbabdd8f206aabbad6c\t\nrefs/remotes/origin/codex/proofing-20261116-resume\t4d395da7c1253dbebfce4a5065fdfd257939ce1c\t\nrefs/remotes/origin/codex/terminal-integration-ods-20261116\t4fadcc68d52d51e72e8d782765a0dd5086b982c6\t\nrefs/remotes/origin/codex/terminal-recovery-office-20261116\tbe2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a\t\nrefs/remotes/origin/codex/terminal-sharing-office-20261116\t4235e690602195cc504438a6b937972c71f1ad39\t\nrefs/remotes/origin/codex/zotero-capabilities-20261116\tb6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb\t\nrefs/remotes/origin/codex/zotero-optimization-20261116\tca9e4f052d988d77f9ded3a6b13f840f76a26159\t\nrefs/remotes/origin/codex/zotero-support-20261115\tfc37658c907edf6687eccb9564d3046283b49a3a\t\nrefs/remotes/origin/codex/zotero-support-20261116\t428679a33381f943a8ae63117d4207f01dd15462\t\nrefs/remotes/origin/docs/metadata-closed\ta5febc3362d2fccdb979f012a5296af72e465797\t\nrefs/remotes/origin/docs/readme-remaining-gaps\te6fdd16849aaf7ccbaf50f2593d7a92b6a82e630\t\nrefs/remotes/origin/docs/remaining-gaps\t0a26be7f136ad3e57dbe894b0bc4cdb0602addd0\t\nrefs/remotes/origin/docs/validation-complete\tf5b67cc296b7d27e4f3a480dc46160f472d78694\t\nrefs/remotes/origin/docs/validation-operators\t01f62eb1812ca54827cc14e074e03abd82f963d7\t\nrefs/remotes/origin/feat/conditional-affix\t20681b8658392212c128f51b4c91f0b638942448\t\nrefs/remotes/origin/feat/conditional-between\tb69bad50fb235118a5334b325683cd1524b3e3d1\t\nrefs/remotes/origin/feat/conditional-dxf\tb0efe6c661009ffa463f2bf6d7945216ce1dae4c\t\nrefs/remotes/origin/feat/conditional-operators\t21de3c3963b0334068b87fb1c25c787660cb17cf\t\nrefs/remotes/origin/feat/conditional-text\t752a94dfddf69522429f3025f9d25702499cb6da\t\nrefs/remotes/origin/feat/ods-conditional\te59751246a200e7477657d0e4835bf77b153422c\t\nrefs/remotes/origin/feat/ods-custom-validation\t2e3074c8e1860f9503b059a87870911afc3eee7d\t\nrefs/remotes/origin/feat/ods-default-geometry\t912f26f21446ef9bdbf4f542535438dae0ded9a9\t\nrefs/remotes/origin/feat/ods-default-style\t49b447324159595c59e64d8425b54a09f79ec736\t\nrefs/remotes/origin/feat/ods-hyperlinks\te5daa20587e10971e8cb97d82a5495584b5c1553\t\nrefs/remotes/origin/feat/ods-images\t7fe296e29e2e1b173580f6854507fc060cb4f080\t\nrefs/remotes/origin/feat/ods-metadata\td6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea\t\nrefs/remotes/origin/feat/ods-named-expressions\t864e674795eb422855df2b26ccc375d3255e61a2\t\nrefs/remotes/origin/feat/ods-tab-color\t0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b\t\nrefs/remotes/origin/feat/ods-validation-messages\t49ba086251ba61032f15b3e7b726fc921874fd12\t\nrefs/remotes/origin/feat/ods-validation-operators\t8769019fb8be5483939edd4655dd88005e2515c4\t\nrefs/remotes/origin/feat/ods-validations\tb85501b2810e537e21040d82528d8dbaa6fdcf15\t\nrefs/remotes/origin/feat/sheet-hidden-sheets\t4c8036bbf16ac224c3fc102b5c44d8913a512b18\t\nrefs/remotes/origin/feat/sheet-hidden-state\t46850ae47e0241733750decb22417a0150e4b0e4\t\nrefs/remotes/origin/fix/ods-global-validations-20261116\te5e1e9af6beb0972a010d8208c1690a642809113\t\nrefs/remotes/origin/fix/sdt-multi-section-control\t866c14f0b3a876e11732bc544dc25a05d8f10524\t\nrefs/remotes/origin/fix/sdt-trailing-section-break\t8fc3d06be36da5c2176feb107c14245f61650d75\t\nrefs/remotes/origin/fix/utf16-custom-xml\t09a05d7d60d2a2e1d2547487ad4545c50472834b\t\nrefs/remotes/origin/main\t14b13980e0005f4a56e0d0790ed3a2c1fa4798e2\t\nrefs/remotes/origin/pr/1\t54f0f8de01416640560519aa9d732f668f603709\t\nrefs/remotes/origin/pr/10\t1b1bac125f426b05f868d482e9fbd657d4ffb73a\t\nrefs/remotes/origin/pr/11\t5c1ab430c6911bb11f71d29efa35027ead5ac1d5\t\nrefs/remotes/origin/pr/12\t579f2105cf7fca61536f7e3f9b59004929bdb6c5\t\nrefs/remotes/origin/pr/13\t73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e\t\nrefs/remotes/origin/pr/14\td4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da\t\nrefs/remotes/origin/pr/15\t448eff5aac55054a34eccd4f8a1e79e754909a05\t\nrefs/remotes/origin/pr/16\t78a7b6f4e613c7d18d4bcc6434cda12b50ed184e\t\nrefs/remotes/origin/pr/17\t89c7f06c592edde0c67774e9c7e087d96f52184b\t\nrefs/remotes/origin/pr/18\tf31cf308013ceb4527e3f4de677785894bb1bfc0\t\nrefs/remotes/origin/pr/19\te8227569a3b90fb21db598483690bd13fe74ddef\t\nrefs/remotes/origin/pr/2\t08b09485588d2b6270f594a07c983689c087587d\t\nrefs/remotes/origin/pr/20\t5278aafd512640608fe06b8f7d357c4cffe8520a\t\nrefs/remotes/origin/pr/21\t1f30a823b30678e3684c98fee6a2cd5c4945c4f2\t\nrefs/remotes/origin/pr/22\t4637ddce4154f4b50105c7322fedc1c75fd02193\t\nrefs/remotes/origin/pr/23\te002b9584bead9761fac8c7cf818431966d1b1c3\t\nrefs/remotes/origin/pr/24\t9cc8c6e91ff9acf0f52a68aea7c0da69934a2661\t\nrefs/remotes/origin/pr/25\tb6d27c84a72d622f670a7e646e36ba4bd920cfc8\t\nrefs/remotes/origin/pr/26\t5b9ac71db1934252c4b8ae48ac03d4cd976e15ae\t\nrefs/remotes/origin/pr/27\tcde05b85bcd00c26d519d43283fcc6b55a1884e7\t\nrefs/remotes/origin/pr/28\ta8cd28d8af8ca966e8c4259862587ecc9aade2f4\t\nrefs/remotes/origin/pr/29\t7fe296e29e2e1b173580f6854507fc060cb4f080\t\nrefs/remotes/origin/pr/3\te550723b0f2a7cd849970f58820d260c36857502\t\nrefs/remotes/origin/pr/30\t49b447324159595c59e64d8425b54a09f79ec736\t\nrefs/remotes/origin/pr/31\t912f26f21446ef9bdbf4f542535438dae0ded9a9\t\nrefs/remotes/origin/pr/32\t46850ae47e0241733750decb22417a0150e4b0e4\t\nrefs/remotes/origin/pr/33\t4c8036bbf16ac224c3fc102b5c44d8913a512b18\t\nrefs/remotes/origin/pr/34\t09a05d7d60d2a2e1d2547487ad4545c50472834b\t\nrefs/remotes/origin/pr/35\te59751246a200e7477657d0e4835bf77b153422c\t\nrefs/remotes/origin/pr/36\t21de3c3963b0334068b87fb1c25c787660cb17cf\t\nrefs/remotes/origin/pr/37\tb0efe6c661009ffa463f2bf6d7945216ce1dae4c\t\nrefs/remotes/origin/pr/38\t752a94dfddf69522429f3025f9d25702499cb6da\t\nrefs/remotes/origin/pr/39\tb85501b2810e537e21040d82528d8dbaa6fdcf15\t\nrefs/remotes/origin/pr/4\t09f5ec4b8eba290ff4d65678179854fb6ff6a468\t\nrefs/remotes/origin/pr/40\t8855b88a96b5c94349e3b5278c339228a1688c3e\t\nrefs/remotes/origin/pr/41\tb69bad50fb235118a5334b325683cd1524b3e3d1\t\nrefs/remotes/origin/pr/42\t8fc3d06be36da5c2176feb107c14245f61650d75\t\nrefs/remotes/origin/pr/43\t20681b8658392212c128f51b4c91f0b638942448\t\nrefs/remotes/origin/pr/44\t866c14f0b3a876e11732bc544dc25a05d8f10524\t\nrefs/remotes/origin/pr/45\t0a26be7f136ad3e57dbe894b0bc4cdb0602addd0\t\nrefs/remotes/origin/pr/46\te6fdd16849aaf7ccbaf50f2593d7a92b6a82e630\t\nrefs/remotes/origin/pr/47\tfc37658c907edf6687eccb9564d3046283b49a3a\t\nrefs/remotes/origin/pr/48\td6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea\t\nrefs/remotes/origin/pr/49\ta5febc3362d2fccdb979f012a5296af72e465797\t\nrefs/remotes/origin/pr/5\tda0979a5c6c4273ea68f360ce9a079bfa747384f\t\nrefs/remotes/origin/pr/50\t428679a33381f943a8ae63117d4207f01dd15462\t\nrefs/remotes/origin/pr/51\t8769019fb8be5483939edd4655dd88005e2515c4\t\nrefs/remotes/origin/pr/52\t01f62eb1812ca54827cc14e074e03abd82f963d7\t\nrefs/remotes/origin/pr/53\t2e3074c8e1860f9503b059a87870911afc3eee7d\t\nrefs/remotes/origin/pr/54\t49ba086251ba61032f15b3e7b726fc921874fd12\t\nrefs/remotes/origin/pr/55\tf5b67cc296b7d27e4f3a480dc46160f472d78694\t\nrefs/remotes/origin/pr/56\tca9e4f052d988d77f9ded3a6b13f840f76a26159\t\nrefs/remotes/origin/pr/57\t0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b\t\nrefs/remotes/origin/pr/58\t864e674795eb422855df2b26ccc375d3255e61a2\t\nrefs/remotes/origin/pr/59\te5daa20587e10971e8cb97d82a5495584b5c1553\t\nrefs/remotes/origin/pr/6\t78ed85f5fd19d44f672dee11420fed261c974f4a\t\nrefs/remotes/origin/pr/7\te82c997b6df8746fe86fb83b9f416a89bb3e3b80\t\nrefs/remotes/origin/pr/8\ta86a360bf9bd45c729e00b31dd9a97492e23f2e7\t\nrefs/remotes/origin/pr/9\t58de54567d45e38c05dd77064b7607c577374b9d\t\nrefs/remotes/origin/vendor/ods-custom-validation\t90acedb9835cb5bdef30606301e74482f5977448\t\nrefs/remotes/origin/vendor/ods-hyperlinks\t95debbcce02c1e24d6e8159cd1f524bbf68afeba\t\nrefs/remotes/origin/vendor/ods-metadata\t18dc693fbf4e39fc6c38e3d655d1e5b35eeef273\t\nrefs/remotes/origin/vendor/ods-metadata-zotero\t4fbd1687d3c0ada22d460cf5cadb9586c4f62905\t\nrefs/remotes/origin/vendor/ods-named-expressions\t388a1c76339507d493bab577424affd80732446c\t\nrefs/remotes/origin/vendor/ods-tab-color\t375390c3853ce26f43d6ac3f71c592acf3e094dc\t\nrefs/remotes/origin/vendor/ods-validation\tc7bb6d6f51885e4082882252f502bbf2de81d552\t\nrefs/remotes/origin/vendor/ods-validation-current\t4ffdf113803806ba5f8ade4a0846eee85dcfbe68\t\nrefs/remotes/origin/vendor/ods-validation-messages\t14fde4b1bd2539f0c6168be4569ac1adcc5105cd\t\nrefs/remotes/upstream/ci/flutter-workspace\taca2f66941832bd0b19b436baeab1656a1b7de98\t\nrefs/remotes/upstream/cursor/class-certificates-2db8\tf45099688e7a3f67a1302efdb442830d052f2240\t\nrefs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h\t9930be8df44ffe117fb22778c514eea0ee73ce21\t\nrefs/remotes/upstream/main\t15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba\t\nrefs/remotes/upstream/pr/1\t48c5156f459597ce3f8ec486b3c9a20fc5543807\t\nrefs/remotes/upstream/pr/5\t9930be8df44ffe117fb22778c514eea0ee73ce21\t\nrefs/remotes/upstream/pr/6\taca2f66941832bd0b19b436baeab1656a1b7de98\t\nrefs/remotes/upstream/pr/7\tf45099688e7a3f67a1302efdb442830d052f2240\t\n",
+  "verification_commands": [
+    "git for-each-ref --sort=refname --format=\"%(refname)%09%(objectname)%09%(symref)\" refs/remotes/origin refs/remotes/upstream",
+    "git merge-base --is-ancestor <sha> <integration_source>",
+    "git merge-base --is-ancestor <sha> <fetched_main>",
+    "git reflog show -1 --format=\"%gD%09%H%09%gs\" --date=iso-strict refs/remotes/<remote>/main"
+  ],
+  "excluded_local_refs": [
+    {
+      "local_ref": "refs/remotes/origin/HEAD",
+      "sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "target": "refs/remotes/origin/main",
+      "reason": "Symbolic remote HEAD alias, not an independent incoming ref."
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/zotero-capabilities-20261116",
+      "sha": "b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb",
+      "reason": "Current continuation branch, not incoming work."
+    }
+  ],
+  "excluded_scope": [
+    "Current continuation branches are outgoing work and excluded from incoming counts.",
+    "Remote HEAD symbolic aliases are not independent branches.",
+    "Tags, local-only branches and GitHub synthetic refs/pull/*/merge are outside this inventory.",
+    "PR-head availability alone does not establish PR state, review approval or unique source work.",
+    "No GitHub Actions, workflow jobs, commit statuses or branch checks were queried.",
+    "No remote fetch, merge, ref update, commit or push was performed by this audit refresh."
+  ],
+  "refs": [
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/proofing-20261116",
+      "local_ref": "refs/remotes/origin/codex/proofing-20261116",
+      "kind": "branch",
+      "sha": "52d6ae43b659875e92b06cbabdd8f206aabbad6c",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": false,
+      "disposition": "integrated_concurrent_proofing",
+      "integration_merge": "b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb",
+      "disposition_summary": "Integrated as a parent of the combined Zotero/main/proofing checkpoint; the coherent proofing session and review UI are retained."
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/proofing-20261116-resume",
+      "local_ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+      "kind": "branch",
+      "sha": "4d395da7c1253dbebfce4a5065fdfd257939ce1c",
+      "ancestor_of_integration_source": false,
+      "ancestor_of_fetched_main": false,
+      "disposition": "selected_fixes_ported_remote_branch_retained",
+      "all_branch_changes_merged": false,
+      "disposition_summary": "Only the demonstrated discretionary-hyphen caret and direction fixes were adapted and are present in the published checkpoint. The integrated proofing architecture remains; the alternate session and optional Harper packaging work remain on the retained remote branch.",
+      "evidence_report": "resume-disposition.md",
+      "selected_fix_published_checkpoint": "8e017e8c148517fea61f8d55eaafc7f070b82bba"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/terminal-integration-ods-20261116",
+      "local_ref": "refs/remotes/origin/codex/terminal-integration-ods-20261116",
+      "kind": "branch",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/terminal-recovery-office-20261116",
+      "local_ref": "refs/remotes/origin/codex/terminal-recovery-office-20261116",
+      "kind": "branch",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/terminal-sharing-office-20261116",
+      "local_ref": "refs/remotes/origin/codex/terminal-sharing-office-20261116",
+      "kind": "branch",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/zotero-optimization-20261116",
+      "local_ref": "refs/remotes/origin/codex/zotero-optimization-20261116",
+      "kind": "branch",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/zotero-support-20261115",
+      "local_ref": "refs/remotes/origin/codex/zotero-support-20261115",
+      "kind": "branch",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/codex/zotero-support-20261116",
+      "local_ref": "refs/remotes/origin/codex/zotero-support-20261116",
+      "kind": "branch",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/docs/metadata-closed",
+      "local_ref": "refs/remotes/origin/docs/metadata-closed",
+      "kind": "branch",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/docs/readme-remaining-gaps",
+      "local_ref": "refs/remotes/origin/docs/readme-remaining-gaps",
+      "kind": "branch",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/docs/remaining-gaps",
+      "local_ref": "refs/remotes/origin/docs/remaining-gaps",
+      "kind": "branch",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/docs/validation-complete",
+      "local_ref": "refs/remotes/origin/docs/validation-complete",
+      "kind": "branch",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/docs/validation-operators",
+      "local_ref": "refs/remotes/origin/docs/validation-operators",
+      "kind": "branch",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/conditional-affix",
+      "local_ref": "refs/remotes/origin/feat/conditional-affix",
+      "kind": "branch",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/conditional-between",
+      "local_ref": "refs/remotes/origin/feat/conditional-between",
+      "kind": "branch",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/conditional-dxf",
+      "local_ref": "refs/remotes/origin/feat/conditional-dxf",
+      "kind": "branch",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/conditional-operators",
+      "local_ref": "refs/remotes/origin/feat/conditional-operators",
+      "kind": "branch",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/conditional-text",
+      "local_ref": "refs/remotes/origin/feat/conditional-text",
+      "kind": "branch",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-conditional",
+      "local_ref": "refs/remotes/origin/feat/ods-conditional",
+      "kind": "branch",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-custom-validation",
+      "local_ref": "refs/remotes/origin/feat/ods-custom-validation",
+      "kind": "branch",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-default-geometry",
+      "local_ref": "refs/remotes/origin/feat/ods-default-geometry",
+      "kind": "branch",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-default-style",
+      "local_ref": "refs/remotes/origin/feat/ods-default-style",
+      "kind": "branch",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-hyperlinks",
+      "local_ref": "refs/remotes/origin/feat/ods-hyperlinks",
+      "kind": "branch",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": false,
+      "disposition": "retained_squashed_feature_head",
+      "integration_merge": "8e017e8c148517fea61f8d55eaafc7f070b82bba",
+      "disposition_summary": "The feature head and PR #59 head are retained as an explicit parent of the published checkpoint. Main already contains the same five hyperlink files; ancestry is recorded separately from that source comparison.",
+      "evidence_report": "ods-vendor-disposition.md"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-images",
+      "local_ref": "refs/remotes/origin/feat/ods-images",
+      "kind": "branch",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-metadata",
+      "local_ref": "refs/remotes/origin/feat/ods-metadata",
+      "kind": "branch",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-named-expressions",
+      "local_ref": "refs/remotes/origin/feat/ods-named-expressions",
+      "kind": "branch",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-tab-color",
+      "local_ref": "refs/remotes/origin/feat/ods-tab-color",
+      "kind": "branch",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-validation-messages",
+      "local_ref": "refs/remotes/origin/feat/ods-validation-messages",
+      "kind": "branch",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-validation-operators",
+      "local_ref": "refs/remotes/origin/feat/ods-validation-operators",
+      "kind": "branch",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/ods-validations",
+      "local_ref": "refs/remotes/origin/feat/ods-validations",
+      "kind": "branch",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/sheet-hidden-sheets",
+      "local_ref": "refs/remotes/origin/feat/sheet-hidden-sheets",
+      "kind": "branch",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/feat/sheet-hidden-state",
+      "local_ref": "refs/remotes/origin/feat/sheet-hidden-state",
+      "kind": "branch",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/fix/ods-global-validations-20261116",
+      "local_ref": "refs/remotes/origin/fix/ods-global-validations-20261116",
+      "kind": "branch",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/fix/sdt-multi-section-control",
+      "local_ref": "refs/remotes/origin/fix/sdt-multi-section-control",
+      "kind": "branch",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/fix/sdt-trailing-section-break",
+      "local_ref": "refs/remotes/origin/fix/sdt-trailing-section-break",
+      "kind": "branch",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/fix/utf16-custom-xml",
+      "local_ref": "refs/remotes/origin/fix/utf16-custom-xml",
+      "kind": "branch",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/main",
+      "local_ref": "refs/remotes/origin/main",
+      "kind": "branch",
+      "sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/1/head",
+      "local_ref": "refs/remotes/origin/pr/1",
+      "kind": "pull_request_head",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/10/head",
+      "local_ref": "refs/remotes/origin/pr/10",
+      "kind": "pull_request_head",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/11/head",
+      "local_ref": "refs/remotes/origin/pr/11",
+      "kind": "pull_request_head",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/12/head",
+      "local_ref": "refs/remotes/origin/pr/12",
+      "kind": "pull_request_head",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/13/head",
+      "local_ref": "refs/remotes/origin/pr/13",
+      "kind": "pull_request_head",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/14/head",
+      "local_ref": "refs/remotes/origin/pr/14",
+      "kind": "pull_request_head",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/15/head",
+      "local_ref": "refs/remotes/origin/pr/15",
+      "kind": "pull_request_head",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/16/head",
+      "local_ref": "refs/remotes/origin/pr/16",
+      "kind": "pull_request_head",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/17/head",
+      "local_ref": "refs/remotes/origin/pr/17",
+      "kind": "pull_request_head",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/18/head",
+      "local_ref": "refs/remotes/origin/pr/18",
+      "kind": "pull_request_head",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/19/head",
+      "local_ref": "refs/remotes/origin/pr/19",
+      "kind": "pull_request_head",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/2/head",
+      "local_ref": "refs/remotes/origin/pr/2",
+      "kind": "pull_request_head",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/20/head",
+      "local_ref": "refs/remotes/origin/pr/20",
+      "kind": "pull_request_head",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/21/head",
+      "local_ref": "refs/remotes/origin/pr/21",
+      "kind": "pull_request_head",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/22/head",
+      "local_ref": "refs/remotes/origin/pr/22",
+      "kind": "pull_request_head",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/23/head",
+      "local_ref": "refs/remotes/origin/pr/23",
+      "kind": "pull_request_head",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/24/head",
+      "local_ref": "refs/remotes/origin/pr/24",
+      "kind": "pull_request_head",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/25/head",
+      "local_ref": "refs/remotes/origin/pr/25",
+      "kind": "pull_request_head",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/26/head",
+      "local_ref": "refs/remotes/origin/pr/26",
+      "kind": "pull_request_head",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/27/head",
+      "local_ref": "refs/remotes/origin/pr/27",
+      "kind": "pull_request_head",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/28/head",
+      "local_ref": "refs/remotes/origin/pr/28",
+      "kind": "pull_request_head",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/29/head",
+      "local_ref": "refs/remotes/origin/pr/29",
+      "kind": "pull_request_head",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/3/head",
+      "local_ref": "refs/remotes/origin/pr/3",
+      "kind": "pull_request_head",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/30/head",
+      "local_ref": "refs/remotes/origin/pr/30",
+      "kind": "pull_request_head",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/31/head",
+      "local_ref": "refs/remotes/origin/pr/31",
+      "kind": "pull_request_head",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/32/head",
+      "local_ref": "refs/remotes/origin/pr/32",
+      "kind": "pull_request_head",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/33/head",
+      "local_ref": "refs/remotes/origin/pr/33",
+      "kind": "pull_request_head",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/34/head",
+      "local_ref": "refs/remotes/origin/pr/34",
+      "kind": "pull_request_head",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/35/head",
+      "local_ref": "refs/remotes/origin/pr/35",
+      "kind": "pull_request_head",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/36/head",
+      "local_ref": "refs/remotes/origin/pr/36",
+      "kind": "pull_request_head",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/37/head",
+      "local_ref": "refs/remotes/origin/pr/37",
+      "kind": "pull_request_head",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/38/head",
+      "local_ref": "refs/remotes/origin/pr/38",
+      "kind": "pull_request_head",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/39/head",
+      "local_ref": "refs/remotes/origin/pr/39",
+      "kind": "pull_request_head",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/4/head",
+      "local_ref": "refs/remotes/origin/pr/4",
+      "kind": "pull_request_head",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/40/head",
+      "local_ref": "refs/remotes/origin/pr/40",
+      "kind": "pull_request_head",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/41/head",
+      "local_ref": "refs/remotes/origin/pr/41",
+      "kind": "pull_request_head",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/42/head",
+      "local_ref": "refs/remotes/origin/pr/42",
+      "kind": "pull_request_head",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/43/head",
+      "local_ref": "refs/remotes/origin/pr/43",
+      "kind": "pull_request_head",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/44/head",
+      "local_ref": "refs/remotes/origin/pr/44",
+      "kind": "pull_request_head",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/45/head",
+      "local_ref": "refs/remotes/origin/pr/45",
+      "kind": "pull_request_head",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/46/head",
+      "local_ref": "refs/remotes/origin/pr/46",
+      "kind": "pull_request_head",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/47/head",
+      "local_ref": "refs/remotes/origin/pr/47",
+      "kind": "pull_request_head",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/48/head",
+      "local_ref": "refs/remotes/origin/pr/48",
+      "kind": "pull_request_head",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/49/head",
+      "local_ref": "refs/remotes/origin/pr/49",
+      "kind": "pull_request_head",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/5/head",
+      "local_ref": "refs/remotes/origin/pr/5",
+      "kind": "pull_request_head",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/50/head",
+      "local_ref": "refs/remotes/origin/pr/50",
+      "kind": "pull_request_head",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/51/head",
+      "local_ref": "refs/remotes/origin/pr/51",
+      "kind": "pull_request_head",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/52/head",
+      "local_ref": "refs/remotes/origin/pr/52",
+      "kind": "pull_request_head",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/53/head",
+      "local_ref": "refs/remotes/origin/pr/53",
+      "kind": "pull_request_head",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/54/head",
+      "local_ref": "refs/remotes/origin/pr/54",
+      "kind": "pull_request_head",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/55/head",
+      "local_ref": "refs/remotes/origin/pr/55",
+      "kind": "pull_request_head",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/56/head",
+      "local_ref": "refs/remotes/origin/pr/56",
+      "kind": "pull_request_head",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/57/head",
+      "local_ref": "refs/remotes/origin/pr/57",
+      "kind": "pull_request_head",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/58/head",
+      "local_ref": "refs/remotes/origin/pr/58",
+      "kind": "pull_request_head",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/59/head",
+      "local_ref": "refs/remotes/origin/pr/59",
+      "kind": "pull_request_head",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": false,
+      "disposition": "retained_squashed_feature_head",
+      "integration_merge": "8e017e8c148517fea61f8d55eaafc7f070b82bba",
+      "disposition_summary": "The feature head and PR #59 head are retained as an explicit parent of the published checkpoint. Main already contains the same five hyperlink files; ancestry is recorded separately from that source comparison.",
+      "evidence_report": "ods-vendor-disposition.md"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/6/head",
+      "local_ref": "refs/remotes/origin/pr/6",
+      "kind": "pull_request_head",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/7/head",
+      "local_ref": "refs/remotes/origin/pr/7",
+      "kind": "pull_request_head",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/8/head",
+      "local_ref": "refs/remotes/origin/pr/8",
+      "kind": "pull_request_head",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/pull/9/head",
+      "local_ref": "refs/remotes/origin/pr/9",
+      "kind": "pull_request_head",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-custom-validation",
+      "local_ref": "refs/remotes/origin/vendor/ods-custom-validation",
+      "kind": "branch",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-hyperlinks",
+      "local_ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+      "kind": "branch",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "ancestor_of_integration_source": false,
+      "ancestor_of_fetched_main": false,
+      "disposition": "behaviorally_superseded_remote_branch_retained",
+      "superseded_by": [
+        "e5daa20587e10971e8cb97d82a5495584b5c1553",
+        "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2"
+      ],
+      "whole_branch_patch_equivalence_claimed": false,
+      "disposition_summary": "All vendor hyperlink behavior is present in feature/main. Keep main’s newer validation handling, namespace placement and regression tests. The old vendor head remains nonancestral and retained remotely.",
+      "evidence_report": "ods-vendor-disposition.md"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-metadata",
+      "local_ref": "refs/remotes/origin/vendor/ods-metadata",
+      "kind": "branch",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-metadata-zotero",
+      "local_ref": "refs/remotes/origin/vendor/ods-metadata-zotero",
+      "kind": "branch",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-named-expressions",
+      "local_ref": "refs/remotes/origin/vendor/ods-named-expressions",
+      "kind": "branch",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-tab-color",
+      "local_ref": "refs/remotes/origin/vendor/ods-tab-color",
+      "kind": "branch",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-validation",
+      "local_ref": "refs/remotes/origin/vendor/ods-validation",
+      "kind": "branch",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-validation-current",
+      "local_ref": "refs/remotes/origin/vendor/ods-validation-current",
+      "kind": "branch",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "origin",
+      "remote_ref": "refs/heads/vendor/ods-validation-messages",
+      "local_ref": "refs/remotes/origin/vendor/ods-validation-messages",
+      "kind": "branch",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/heads/ci/flutter-workspace",
+      "local_ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "kind": "branch",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/heads/cursor/class-certificates-2db8",
+      "local_ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "kind": "branch",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "local_ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "kind": "branch",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/heads/main",
+      "local_ref": "refs/remotes/upstream/main",
+      "kind": "branch",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/pull/1/head",
+      "local_ref": "refs/remotes/upstream/pr/1",
+      "kind": "pull_request_head",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/pull/5/head",
+      "local_ref": "refs/remotes/upstream/pr/5",
+      "kind": "pull_request_head",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/pull/6/head",
+      "local_ref": "refs/remotes/upstream/pr/6",
+      "kind": "pull_request_head",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    },
+    {
+      "remote": "upstream",
+      "remote_ref": "refs/pull/7/head",
+      "local_ref": "refs/remotes/upstream/pr/7",
+      "kind": "pull_request_head",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_integration_source": true,
+      "ancestor_of_fetched_main": true,
+      "disposition": "contained_in_fetched_main"
+    }
+  ],
+  "ancestry_evaluated_utc": "2026-11-16T13:45:05.938340+00:00",
+  "integration_source_tree": "17eecf8b8c8558c78dbbefe9ffc9b1249e2455cf",
+  "integration_source_parents": [
+    "b6a6b4c42ad03eb8d0f8567e7800bb9e4e038fdb",
+    "e5daa20587e10971e8cb97d82a5495584b5c1553"
+  ],
+  "integration_source_url": "https://github.com/CrispStrobe/quds_office_suite/commit/8e017e8c148517fea61f8d55eaafc7f070b82bba",
+  "local_provenance": {
+    "original_local_ancestry_anchor": "6d73ecf109e3d8a95c0e9d8ae5219bf77cee59ff",
+    "original_local_anchor_tree": "17eecf8b8c8558c78dbbefe9ffc9b1249e2455cf",
+    "published_checkpoint_has_identical_tree": true,
+    "local_commit_required_for_reproduction": false,
+    "unpublished_intermediate_action_commits": {
+      "retained_feature_ancestry": "2a9ad2b9f94423aa50ac5eea89e1445d0446ca98",
+      "selected_caret_fix_port": "4852704a4413031ed7b15a6e3d276063dfce8078"
+    }
+  }
+}

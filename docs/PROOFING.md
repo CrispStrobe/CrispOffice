@@ -28,6 +28,18 @@ The remote inventory covered **53 branches and 62 pull requests** at the
 distinguish preserved evidence from freshly executed checks. No GitHub Actions
 queue was required.
 
+## Continuation reconciliation after both handoffs
+
+The later continuation integrates the original branch through `c040389`,
+Zotero capabilities through `9de4366`, current main through `47aa74a`,
+and dialog input/ruler work through `2e92a49`. The
+[new reconciliation record](validation/proofing-20261116/continuation-next/README.md)
+accounts for all 55 observed branches and 64 PRs at the 14:07:59 UTC cutoff.
+Both prior source-bound validation histories are retained, including the
+complete original logs and compressed manifests. New combined validation is
+recorded separately; the historical test totals below do not establish the
+status of a later source tree.
+
 ## Scope and license policy
 
 - Keep `quds_office_engine` pure Dart and document surfaces custom RenderBox.

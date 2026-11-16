@@ -8,6 +8,7 @@ backend cannot be mistaken for a successful integration check.
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import json
 import os
@@ -29,6 +30,8 @@ def digest(path: Path) -> str:
 
 def verify_distribution(directory: Path) -> dict:
     receipt = json.loads((directory / "build-receipt.json").read_text())
+    if receipt.get("schema_version") != 2 or not receipt.get("source_unchanged_during_build"):
+        raise ValueError("Rebuild with source stability checks before recording validation.")
     if receipt.get("source_sha256") != source_hashes():
         raise ValueError("Build source has changed. Rebuild before recording validation.")
     for name, expected in receipt["files"].items():
@@ -89,48 +92,74 @@ def main() -> int:
     build_output = args.build_output.resolve()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
-    build_receipt = verify_distribution(build_output)
-    licenses = verify_licenses(build_output)
-    name = {"Windows": "quds_proofing_harper.dll", "Darwin": "libquds_proofing_harper.dylib"}.get(platform.system(), "libquds_proofing_harper.so")
-    library = build_output / "native" / name
-    if not library.is_file() or not (build_output / "web" / "harper_worker.mjs").is_file():
-        raise ValueError("Build both --native and --web before verification")
-    environment = os.environ.copy()
-    environment["QUDS_HARPER_TEST_LIBRARY"] = str(library)
-    environment["PATH"] = str(Path(args.node).resolve().parent) + os.pathsep + environment.get("PATH", "")
-    commands = [
-        ("rust-tests", ["cargo", "test", "--release", "--locked"], NATIVE),
-        ("dart-analyze", [args.dart, "analyze", "--fatal-infos"], PACKAGE),
-        ("dart-native-tests", [args.dart, "test", "--reporter", "expanded"], PACKAGE),
-        ("dart-javascript-tests", [args.dart, "test", "--platform", "node", "--reporter", "expanded", "test/harper_provider_test.dart"], PACKAGE),
-        ("wasm-worker", [args.node, "tool/smoke_worker.mjs", str(build_output / "web" / "harper_worker.mjs")], PACKAGE),
-        ("compile-web-transport", [args.dart, "compile", "js", "tool/web_transport_smoke.dart", "-o", str(build_output / "web_transport_smoke.js")], PACKAGE),
-        ("web-transport", [args.node, "tool/run_web_transport_smoke.mjs", str(build_output / "web_transport_smoke.js"), str(build_output / "web" / "harper_worker.mjs")], PACKAGE),
-        ("license-policy-tests", [sys.executable, "-m", "unittest", "discover", "-s", "tool", "-p", "test_license_bundle.py", "-v"], PACKAGE),
-    ]
+    started_at = datetime.now(timezone.utc).isoformat()
+    before = source_hashes()
+    build_receipt = {}
+    licenses = None
     records = []
-    for name, command, cwd in commands:
-        print(f"Running {name}", flush=True)
-        started = time.monotonic()
-        result = subprocess.run(command, cwd=cwd, env=environment, stdout=subprocess.PIPE,
-                                stderr=subprocess.STDOUT, text=True)
-        log = output / f"{name}.log"
-        log.write_text(result.stdout)
-        records.append({"name": name, "command": command,
-                        "cwd": cwd.relative_to(PACKAGE).as_posix(),
-                        "exit_code": result.returncode,
-                        "seconds": round(time.monotonic() - started, 3),
-                        "log": log.name, "log_sha256": digest(log)})
-        print(f"{name}: exit {result.returncode}", flush=True)
-    # Detect an edit made while commands were running rather than attributing
-    # these results to whatever source happened to be present at the end.
-    verify_distribution(build_output)
-    shutil.copyfile(build_output / "build-receipt.json", output / "build-receipt.json")
+    errors = []
+    try:
+        build_receipt = verify_distribution(build_output)
+        licenses = verify_licenses(build_output)
+        name = {"Windows": "quds_proofing_harper.dll", "Darwin": "libquds_proofing_harper.dylib"}.get(platform.system(), "libquds_proofing_harper.so")
+        library = build_output / "native" / name
+        worker = build_output / "web" / "harper_worker.mjs"
+        if not library.is_file() or not worker.is_file():
+            raise ValueError("Build both --native and --web before verification")
+        required = {f"native/{name}", "web/harper_worker.mjs",
+                    "web/quds_proofing_harper.js", "web/quds_proofing_harper_bg.wasm",
+                    "licenses/manifest.json", "licenses/notices-and-mpl-sources.tar.gz"}
+        if not required.issubset(build_receipt["files"]):
+            raise ValueError("Build receipt omits a required runtime or license artifact")
+        environment = os.environ.copy()
+        environment["QUDS_HARPER_TEST_LIBRARY"] = str(library)
+        environment["PATH"] = str(Path(args.node).resolve().parent) + os.pathsep + environment.get("PATH", "")
+        smoke = build_output / "web_transport_smoke.js"
+        commands = [
+            ("rust-tests", ["cargo", "test", "--release", "--locked"], NATIVE),
+            ("dart-analyze", [args.dart, "analyze", "--fatal-infos"], PACKAGE),
+            ("dart-native-tests", [args.dart, "test", "--reporter", "expanded"], PACKAGE),
+            ("dart-javascript-tests", [args.dart, "test", "--platform", "node", "--reporter", "expanded", "test/harper_provider_test.dart"], PACKAGE),
+            ("wasm-worker", [args.node, "tool/smoke_worker.mjs", str(worker)], PACKAGE),
+            ("compile-web-transport", [args.dart, "compile", "js", "-O2", "tool/web_transport_smoke.dart", "-o", str(smoke)], PACKAGE),
+            ("web-transport", [args.node, "tool/run_web_transport_smoke.mjs", str(smoke), str(worker)], PACKAGE),
+            ("license-policy", [sys.executable, "tool/test_license_bundle.py", "-v"], PACKAGE),
+            ("host-packaging", [sys.executable, "tool/test_build_packaging.py", "-v"], PACKAGE),
+        ]
+        for name, command, cwd in commands:
+            print(f"Running {name}", flush=True)
+            started = time.monotonic()
+            result = subprocess.run(command, cwd=cwd, env=environment, stdout=subprocess.PIPE,
+                                    stderr=subprocess.STDOUT, text=True)
+            log = output / f"{name}.log"
+            log.write_text(result.stdout)
+            records.append({"name": name, "command": command,
+                            "cwd": cwd.relative_to(PACKAGE).as_posix(),
+                            "exit_code": result.returncode,
+                            "seconds": round(time.monotonic() - started, 3),
+                            "log": log.name, "log_sha256": digest(log)})
+            print(f"{name}: exit {result.returncode}", flush=True)
+        verify_distribution(build_output)
+    except Exception as error:
+        errors.append(f"{type(error).__name__}: {error}")
+    # Preserve the observed before/after state even when a command or source
+    # integrity check fails. A failed run still produces an inspectable receipt.
+    after = source_hashes()
+    unchanged = before == after
+    if not unchanged:
+        errors.append("Source changed while verification commands were running")
+    if (build_output / "build-receipt.json").is_file():
+        shutil.copyfile(build_output / "build-receipt.json", output / "build-receipt.json")
     result = {
-        "schema_version": 1,
-        "status": "passed" if all(row["exit_code"] == 0 for row in records) else "failed",
-        "source_sha256": build_receipt["source_sha256"],
-        "artifacts_sha256": build_receipt["files"],
+        "schema_version": 2,
+        "started_at_utc": started_at,
+        "finished_at_utc": datetime.now(timezone.utc).isoformat(),
+        "status": "passed" if not errors and records and all(row["exit_code"] == 0 for row in records) else "failed",
+        "source_sha256": before,
+        "source_sha256_after": after,
+        "source_unchanged_during_commands": unchanged,
+        "artifacts_sha256": build_receipt.get("files", {}),
+        "errors": errors,
         "license_check": licenses,
         "checks": records,
         "limits": [

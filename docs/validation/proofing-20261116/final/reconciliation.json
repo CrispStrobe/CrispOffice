@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-16T13:42:36.907205+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "destination_branch": "codex/proofing-20261116",
+  "prior_saved_checkpoint": "93c13aa1315298c0f85a5a8b757042eb9ac435e1",
+  "cutoff_audit": "remote-freshness.json",
+  "incoming_heads": [
+    {
+      "branch": "main",
+      "sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf"
+    },
+    {
+      "branch": "codex/zotero-capabilities-20261116",
+      "sha": "039c1e293052f548367f9ea3b0fa5ff56949ccaa",
+      "tree": "14c6c4f3ffcd212703a4fb24b93e6bc26c001a21"
+    },
+    {
+      "branch": "codex/proofing-20261116-resume",
+      "sha": "4d395da7c1253dbebfce4a5065fdfd257939ce1c",
+      "tree": "d2ad6e0d2d6d1ba00c283e346ef9e5f34f97ca6a"
+    },
+    {
+      "branch": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf"
+    },
+    {
+      "branch": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "tree": "e7eef908f33db35306b2392568225edf972d4101"
+    },
+    {
+      "branch": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf"
+    }
+  ],
+  "decisions": [
+    {
+      "scope": "main and ODS hyperlink branches",
+      "resolution": "Integrate main PR #59. feat/ods-hyperlinks and vendor/ods-hyperlinks-current have the exact same source tree as main. The original vendor branch implements the same five-file feature on an older base; preserve current namespace ordering and the subsequent shared/blank validation fixes. Preserve all three branch ancestries without reverting the current implementation.",
+      "evidence": "remote-freshness.json"
+    },
+    {
+      "scope": "concurrent Zotero work",
+      "resolution": "Merge source identity aliases, persistent server backoff, dialog scan caching/scaling and their regressions. Keep the added full MIT hyphenation notice and generated-file notice correction."
+    },
+    {
+      "scope": "sibling proofing session",
+      "resolution": "Retain the integrated controller part and review UI, which cover the full story traversal, strict mutation guards, stale ranges, mounted-view lifecycle and source-aware decorations. Consolidate the alternative standalone session instead of leaving duplicate incompatible session classes. Retain its controller convenience APIs, no-op/paragraph-separator correction rejection, rule restoration and exact rendered standard header/footer navigation. Navigation synchronizes the IME with the selected source paragraph."
+    },
+    {
+      "scope": "sibling hyphenation renderer",
+      "resolution": "Keep the displayText/actualText and source ownership contract. Retain all seven existing tests and all eight incoming cases as separate suites; use the actual layout presentation metadata in the incoming helper. Fix automatic zero-source hyphen caret placement in both directions and RTL soft-hyphen hit testing. Retain sourceParagraph fallback in engine layout.",
+      "evidence": "hyphenation-merge/receipt.json"
+    },
+    {
+      "scope": "sibling Harper transport and packaging",
+      "resolution": "Retain bounded timeout/disposal and worker lifecycle behavior; incorporate positive timeout checks, native startup/recovery coverage, current notice revision validation, source-bound schema 2 build receipts, explicit audited host installation and local verification tools. Rebuild Linux native and WebAssembly, regenerate notices, and verify the exact distribution.",
+      "evidence": "harper-merged/receipt.json"
+    }
+  ],
+  "validation_policy": "The final receipt records the exact committed source, unchanged input/runtime hashes, actual local commands, separate reused matching Harper evidence, and release web packaging. No GitHub Actions queue is required. Earlier receipts remain scoped to their own measured source.",
+  "history_policy": "The remote consolidation uses the prior saved proofing checkpoint as first parent and the exact incoming remote heads as additional parents. Temporary local merge commits are represented by this same resulting tree and incoming ancestry.",
+  "limits": [
+    "The fixed audit is a finite cutoff; later remote updates are outside this integration.",
+    "No interactive browser/CSP/HTTP or mobile device acceptance is claimed."
+  ]
+}

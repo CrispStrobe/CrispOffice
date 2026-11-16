@@ -48,24 +48,28 @@ final class _NativeTransport implements HarperTransport {
       );
     });
     try {
-      final results = await Future.wait<Object?>([
-        ready.future,
-        Isolate.spawn<List<Object?>>(
-          _workerMain,
-          [messages.sendPort, libraryPath],
-          onError: errors.sendPort,
-          onExit: messages.sendPort,
-          errorsAreFatal: true,
-          debugName: 'Quds Harper',
-        ).then((isolate) {
-          if (_disposed) {
-            isolate.kill(priority: Isolate.immediate);
-          } else {
-            _isolate = isolate;
-          }
-          return isolate;
-        }),
-      ], eagerError: true);
+      final results = await Future.wait<Object?>(
+        [
+          ready.future,
+          Isolate.spawn<List<Object?>>(
+            _workerMain,
+            [messages.sendPort, libraryPath],
+            onError: errors.sendPort,
+            onExit: messages.sendPort,
+            errorsAreFatal: true,
+            debugName: 'Quds Harper',
+          ).then((isolate) {
+            if (_disposed) {
+              isolate.kill(priority: Isolate.immediate);
+            } else {
+              _isolate = isolate;
+            }
+            return isolate;
+          }),
+        ],
+        // If spawning itself fails there can never be a ready message.
+        eagerError: true,
+      );
       return results.first! as SendPort;
     } on HarperUnavailableException {
       await dispose();
@@ -79,8 +83,9 @@ final class _NativeTransport implements HarperTransport {
   }
 
   void _fail(Object error) {
-    // A dead isolate cannot accept later requests. Mark the transport terminal
-    // before failing listeners, including requests still awaiting its SendPort.
+    // Once an isolate fails, its old SendPort cannot accept more work. Close
+    // the transport immediately so later checks report unavailable, not a
+    // second timeout against a dead port.
     _disposed = true;
     final ready = _ready;
     if (ready != null && !ready.isCompleted) ready.completeError(error);

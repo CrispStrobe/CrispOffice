@@ -1,0 +1,65 @@
+{
+  "status": "Prepared only; waiting for parent final published source pin and ported paths.",
+  "cohorts": {
+    "engine-zotero": [
+      "test/word_zotero_bibliography_layout_test.dart",
+      "test/word_zotero_citing_test.dart",
+      "test/word_zotero_document_data_test.dart",
+      "test/word_zotero_formatted_bibliography_test.dart",
+      "test/word_zotero_preference_flow_test.dart",
+      "test/word_zotero_rich_edit_test.dart",
+      "test/word_zotero_scaling_test.dart",
+      "test/word_zotero_simple_field_test.dart",
+      "test/word_zotero_source_identity_test.dart",
+      "test/word_zotero_style_preferences_review_test.dart",
+      "test/word_zotero_test.dart",
+      "test/zotero_backoff_state_test.dart",
+      "test/zotero_citing_test.dart",
+      "test/zotero_client_test.dart",
+      "test/zotero_formatted_text_test.dart",
+      "test/zotero_identity_client_test.dart",
+      "test/zotero_metadata_batch_test.dart",
+      "test/zotero_paragraph_runs_test.dart",
+      "test/zotero_saved_search_test.dart"
+    ],
+    "editor-zotero": [
+      "test/word_zotero_backoff_session_test.dart",
+      "test/word_zotero_bibliography_controller_test.dart",
+      "test/word_zotero_catalog_citing_test.dart",
+      "test/word_zotero_citing_controller_test.dart",
+      "test/word_zotero_citing_dialog_test.dart",
+      "test/word_zotero_collection_pagination_test.dart",
+      "test/word_zotero_controller_test.dart",
+      "test/word_zotero_dialog_scaling_test.dart",
+      "test/word_zotero_dialog_test.dart",
+      "test/word_zotero_format_test.dart",
+      "test/word_zotero_rich_controller_test.dart",
+      "test/word_zotero_saved_search_test.dart",
+      "test/word_zotero_source_identity_test.dart"
+    ],
+    "engine-proofing-integration": [
+      "test/proofing/german_spelling_test.dart",
+      "test/proofing/german_writing_rules_test.dart",
+      "test/proofing/office_proofing_test.dart",
+      "test/proofing_hyphenation_test.dart"
+    ],
+    "engine-ods-integration": [
+      "test/ods_sheet_reader_test.dart"
+    ],
+    "engine-word-layout-integration": [
+      "test/word_layout_test.dart",
+      "test/word_styles_layout_test.dart"
+    ],
+    "editor-proofing-integration": [
+      "test/platform_spelling_provider_test.dart",
+      "test/word_proofing_context_test.dart",
+      "test/word_proofing_test.dart",
+      "test/word_proofing_ui_test.dart"
+    ],
+    "editor-hyphenation-integration": [
+      "test/word_hyphenation_caret_test.dart",
+      "test/word_hyphenation_paint_test.dart"
+    ]
+  },
+  "planned_extra_analysis_targets": []
+}

@@ -18,9 +18,9 @@ final class _Transport implements HarperTransport {
   }
 
   @override
-  Future<void> dispose() async {
+  Future<void> dispose() {
     disposed = true;
-    await onDispose?.call();
+    return onDispose?.call() ?? Future<void>.value();
   }
 }
 
@@ -50,6 +50,18 @@ String response({int start = 10, int end = 12}) => jsonEncode({
 });
 
 void main() {
+  test('rejects zero and negative timeouts before using a transport', () {
+    final transport = _Transport((_) async => response());
+    for (final timeout in [Duration.zero, const Duration(microseconds: -1)]) {
+      expect(
+        () => HarperProofingProvider(transport: transport, timeout: timeout),
+        throwsArgumentError,
+      );
+    }
+    expect(transport.calls, 0);
+    expect(transport.disposed, isFalse);
+  });
+
   test(
     'converts scalar offsets after emoji and preserves segment identity',
     () async {
@@ -144,14 +156,15 @@ void main() {
     expect((await pending).status, OfficeProofingStatus.unavailable);
   });
 
-  test('a stalled or failing cleanup cannot extend the deadline', () async {
-    for (final cleanup in <Future<void> Function()>[
+  test('timeout result survives throwing and stuck disposal', () async {
+    for (final onDispose in <Future<void> Function()>[
+      () => throw StateError('broken shutdown'),
+      () async => throw StateError('broken async shutdown'),
       () => Completer<void>().future,
-      () async => throw StateError('cleanup failed'),
     ]) {
       final transport = _Transport(
         (_) => Completer<String>().future,
-        onDispose: cleanup,
+        onDispose: onDispose,
       );
       final provider = HarperProofingProvider(
         transport: transport,

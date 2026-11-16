@@ -36,12 +36,17 @@ def install(output: Path, kind: str, destination: Path) -> dict:
     destination = destination.resolve()
     if destination == (output / kind).resolve():
         raise ValueError("Choose a host installation directory separate from the build output")
-    destination.mkdir(parents=True, exist_ok=True)
     receipt = json.loads((output / "build-receipt.json").read_text())
-    for name in receipt["files"]:
-        if name.startswith(kind + "/"):
-            path = output / name
-            shutil.copyfile(path, destination / path.name)
+    artifacts = {name: expected for name, expected in receipt["files"].items()
+                 if name.startswith(kind + "/") or name.startswith("licenses/")}
+    # Only ship files named and hashed by the build, never stale build outputs.
+    for name, expected in artifacts.items():
+        if hashlib.sha256((output / name).read_bytes()).hexdigest() != expected:
+            raise ValueError(f"Changed build artifact: {name}")
+    destination.mkdir(parents=True, exist_ok=True)
+    for name in artifacts:
+        if not name.startswith(kind + "/"): continue
+        shutil.copyfile(output / name, destination / Path(name).name)
     for name in ("manifest.json", "notices-and-mpl-sources.tar.gz"):
         target = destination / "licenses" / name
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -63,6 +68,7 @@ def main():
     if args.install_native and not args.native: parser.error("--install-native requires --native")
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
+    before = source_hashes()
     target_root = Path(os.environ.get("CARGO_TARGET_DIR", NATIVE / "target"))
     if not target_root.is_absolute(): target_root = NATIVE / target_root
     target_root = target_root.resolve()
@@ -95,11 +101,14 @@ def main():
     license_command = [sys.executable, str(PACKAGE / "tool" / "license_bundle.py"), "--output", str(output / "licenses")]
     for target in targets: license_command.extend(["--target", target])
     run(license_command)
+    after = source_hashes()
+    if before != after:
+        raise ValueError("Build source changed while commands were running; rebuild before distributing")
     receipts = [output / "licenses" / name for name in ("manifest.json", "notices-and-mpl-sources.tar.gz")]
     receipt = {"schema_version": 2, "compiler": compiler, "targets": targets,
         "harper_version": "3.2.0", "harper_commit": "ea9ab1b8f95be99a5d4040c53be92a6c2ad7f7f3",
         "cargo_lock_sha256": hashlib.sha256((NATIVE / "Cargo.lock").read_bytes()).hexdigest(),
-        "source_sha256": source_hashes(),
+        "source_sha256": before, "source_unchanged_during_build": True,
         "files": {path.relative_to(output).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest() for path in binaries + receipts}}
     (output / "build-receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     installed = []

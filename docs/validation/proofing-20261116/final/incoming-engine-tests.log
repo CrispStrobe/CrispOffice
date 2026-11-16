@@ -1,0 +1,175 @@
+00:00 +0: loading test/ods_sheet_reader_test.dart
+00:00 +0: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +1: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +2: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +3: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +4: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +5: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +6: test/ods_sheet_reader_test.dart: repeated annotations stay separate from cell values through save
+00:00 +7: test/zotero_backoff_state_test.dart: online shared state does not pause desktop or independent sessions
+00:00 +8: test/ods_sheet_reader_test.dart: ambiguous and foreign annotations are refused without inventing a value
+00:00 +9: test/ods_sheet_reader_test.dart: repeated annotation text and author consume the expanded text budget
+00:00 +10: test/ods_sheet_reader_test.dart: annotation-only cells obey materialized-cell and grid bounds
+00:00 +11: test/word_zotero_source_identity_test.dart: late URI bridge joins previously distinct embedded snapshots
+00:00 +12: test/word_zotero_source_identity_test.dart: late URI bridge joins previously distinct embedded snapshots
+00:00 +13: test/word_zotero_source_identity_test.dart: late URI bridge joins previously distinct embedded snapshots
+00:00 +14: test/word_zotero_source_identity_test.dart: late URI bridge joins previously distinct embedded snapshots
+00:00 +15: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +16: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +17: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +18: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +19: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +20: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +21: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +22: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +23: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +24: test/word_zotero_source_identity_test.dart: canonical aliases join while unrelated keys and CSL IDs do not
+00:00 +25: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +26: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +27: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +28: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +29: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +30: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +31: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +32: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +33: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +34: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +35: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +36: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +37: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +38: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +39: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +40: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +41: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +42: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +43: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +44: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +45: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +46: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +47: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +48: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +49: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +50: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +51: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +52: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +53: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +54: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +55: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +56: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +57: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +58: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +59: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +60: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +61: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +62: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +63: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +64: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +65: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +66: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +67: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +68: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +69: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +70: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +71: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +72: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +73: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +74: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +75: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +76: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +77: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +78: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +79: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +80: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +81: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +82: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +83: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +84: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:00 +85: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +86: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +87: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +88: test/zotero_identity_client_test.dart: local preview proves an unsynced identity in the same response
+00:00 +89: test/ods_sheet_reader_test.dart: shared numeric rules on blank input cells survive an XLSX copy
+00:00 +90: test/ods_sheet_reader_test.dart: shared numeric rules on blank input cells survive an XLSX copy
+00:00 +91: test/zotero_identity_client_test.dart: a colliding key from another local profile cannot refresh or preview
+00:00 +92: test/zotero_identity_client_test.dart: a colliding key from another local profile cannot refresh or preview
+00:00 +93: test/ods_sheet_reader_test.dart: spreadsheet-level list validations apply to every referring sheet
+00:00 +94: test/zotero_identity_client_test.dart: citation keys and missing CSL IDs cannot prove a linked local identity
+00:00 +95: test/ods_sheet_reader_test.dart: spreadsheet-level range lists resolve a later source sheet
+00:00 +96: test/ods_sheet_reader_test.dart: spreadsheet-level range lists resolve a later source sheet
+00:00 +97: test/zotero_identity_client_test.dart: cloud routes refuse local identities before sending credentials
+00:00 +98: test/zotero_identity_client_test.dart: cloud routes refuse local identities before sending credentials
+00:00 +99: test/zotero_identity_client_test.dart: cloud routes refuse local identities before sending credentials
+00:00 +100: test/ods_sheet_reader_test.dart: ODS validation prompts and error styles round-trip
+00:00 +101: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +102: test/zotero_identity_client_test.dart: all export formats verify exact local identities before raw output
+00:00 +103: test/ods_sheet_reader_test.dart: ODS whole, decimal, date and text-length validations import
+00:00 +104: test/ods_sheet_reader_test.dart: ODS whole, decimal, date and text-length validations import
+00:00 +105: test/ods_sheet_reader_test.dart: ODS whole, decimal, date and text-length validations import
+00:00 +106: test/ods_sheet_reader_test.dart: ODS whole, decimal, date and text-length validations import
+00:00 +107: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +108: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +109: test/zotero_identity_client_test.dart: missing, duplicate, unexpected and substituted records stop before raw output
+00:00 +110: test/ods_sheet_reader_test.dart: ODS range-source list validations resolve across sheets
+00:00 +111: test/zotero_identity_client_test.dart: older desktops without a database pin refuse aggregate linked output
+00:00 +112: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +113: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +114: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +115: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +116: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +117: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +118: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +119: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:00 +120: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:00 +121: test/ods_sheet_reader_test.dart: ODS external and internal hyperlinks survive XLSX
+00:00 +122: test/ods_sheet_reader_test.dart: ODS named expressions translate to XLSX formulas
+00:00 +123: test/ods_sheet_reader_test.dart: ODS tab colour survives save and reopen
+00:00 +124: test/ods_sheet_reader_test.dart: ODS print areas, titles, names and autofilter survive save
+00:00 +125: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:="a;b"
+00:00 +126: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:="literal [.A1];COM.MICROSOFT.SUM"
+00:00 +127: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=IF([.A1]="a;b";"say ""[.B2];""";COM.MICROSOFT.SUM([.A1:.A2];1))
+00:00 +128: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=CONCATENATE("";"a;b";"[.A1]")
+00:00 +129: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=SUM(['Semi;Colon'.A1];1)
+00:00 +130: test/ods_sheet_reader_test.dart: formula roundtrip preserves imported syntax: of:=SUM(['COM.MICROSOFT.Data'.A1];1)
+00:00 +131: test/ods_sheet_reader_test.dart: formula namespace COM.MICROSOFT. only changes at a token boundary
+00:00 +132: test/ods_sheet_reader_test.dart: formula namespace ORG.OPENOFFICE. only changes at a token boundary
+00:00 +133: test/ods_sheet_reader_test.dart: declines a stored cell where a horizontal covered token is missing
+00:00 +134: test/ods_sheet_reader_test.dart: declines a stored cell inside an earlier vertical merged region
+00:00 +135: test/ods_sheet_reader_test.dart: annotations retain coordinates and do not leak into cell values
+00:00 +136: test/ods_sheet_reader_test.dart: reads ODS values, formulas, styles and merges
+00:00 +137: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:00 +138: test/ods_sheet_reader_test.dart: covered cells and internal repeated empty rows keep positions
+00:00 +139: test/ods_sheet_reader_test.dart: rejects a non-ODF package
+00:00 +140: test/ods_sheet_reader_test.dart: merged covered cells consume one coordinate and retain row spans
+00:00 +141: test/ods_sheet_reader_test.dart: repeated blank rows retain later data at exact coordinates
+00:00 +142: test/ods_sheet_reader_test.dart: row headers and groups retain blank row coordinates
+00:00 +143: test/ods_sheet_reader_test.dart: foreign lookalike elements and attributes cannot change sheet values
+00:00 +144: test/ods_sheet_reader_test.dart: named inherited cell wrap styles survive an XLSX roundtrip
+00:00 +145: test/ods_sheet_reader_test.dart: column groups retain dimensions and repeated values
+00:00 +146: test/ods_sheet_reader_test.dart: blank trailing padding is skipped without truncating data silently
+00:00 +147: test/ods_sheet_reader_test.dart: rejects cross-product expansion before materializing repeated cells
+00:00 +148: test/ods_sheet_reader_test.dart: workbook budget is shared by multiple individually small sheets
+00:01 +149: test/ods_sheet_reader_test.dart: repeated text is bounded before it can expand during XLSX save
+00:01 +150: test/ods_sheet_reader_test.dart: rejects invalid or out-of-range meaningful repeats instead of clipping
+00:01 +151: test/ods_sheet_reader_test.dart: formula conversion preserves delimiters and brackets inside literals
+00:01 +152: test/ods_sheet_reader_test.dart: repeated formulas decline rather than cloning incorrect references
+00:01 +153: test/ods_sheet_reader_test.dart: preserves ODF explicit spaces, tabs and paragraph boundaries
+00:01 +154: test/ods_sheet_reader_test.dart: rejects XML with spreadsheet local names in the wrong namespace
+00:01 +155: test/ods_sheet_reader_test.dart: rejects cyclic named styles and excessive XML nesting
+00:01 +156: test/ods_sheet_reader_test.dart: keeps internal repeated blank rows without expanding trailing padding
+00:01 +157: test/ods_sheet_reader_test.dart: blank runs retain in-range cells and refuse later out-of-range data
+00:01 +158: test/ods_sheet_reader_test.dart: horizontal merge consumes explicit placeholder once
+00:01 +159: test/ods_sheet_reader_test.dart: horizontal merge consumes repeated placeholders once
+00:01 +160: test/ods_sheet_reader_test.dart: horizontal merge consumes additional covered column once
+00:01 +161: test/ods_sheet_reader_test.dart: consecutive merged origins retain explicit covered positions
+00:01 +162: test/ods_sheet_reader_test.dart: merge spans retain in-range cells and refuse column overflow
+00:01 +163: test/ods_sheet_reader_test.dart: styled trailing row padding stays sparse within the admitted grid
+00:01 +164: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=MYCOM.MICROSOFT.FUNC(1)
+00:01 +165: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:="a;b"
+00:01 +166: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:="literal [.A1];COM.MICROSOFT.SUM"
+00:01 +167: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=IF([.A1]="a;b";"say ""[.B2];""";COM.MICROSOFT.SUM([.A1:.A2];1))
+00:01 +168: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=CONCATENATE("";"a;b";"[.A1]")
+00:01 +169: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=SUM(['Semi;Colon'.A1];1)
+00:01 +170: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=SUM(['COM.MICROSOFT.Data'.A1];1)
+00:01 +171: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=[$Sheet2.A1]+[.$A$1]
+00:01 +172: test/ods_sheet_reader_test.dart: formula translation preserves literals in of:=[$'Semi;Colon'.$A$1]
+00:01 +173: All tests passed!

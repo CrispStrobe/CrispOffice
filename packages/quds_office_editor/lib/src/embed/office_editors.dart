@@ -219,6 +219,12 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   late final Ticker _ticker;
   OverlayEntry? _contextMenu;
   bool _proofingOpen = false;
+  ModalRoute<dynamic>? _inputRoute;
+  late final bool Function() _inputGuard = () =>
+      mounted &&
+      _focus.hasPrimaryFocus &&
+      (_inputRoute?.isCurrent ?? true) &&
+      _c.config.allowsMutation;
 
   /// controller API.
   WordEditorController get _c => widget.controller;
@@ -229,6 +235,8 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     super.initState();
     _ownsFocus = widget.focusNode == null;
     _focus = widget.focusNode ?? FocusNode(debugLabel: 'QudsWordEditor');
+    _c.input.inputAllowed = _inputGuard;
+    _c.detachInput();
     _ticker = createTicker((Duration elapsed) {
       if (!_c.config.showsCaret) {
         return;
@@ -243,7 +251,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     _c.onSpellCheckRequested ??= _openProofing;
     PaintingBinding.instance.systemFonts.addListener(_onSystemFonts);
     _c.onRequestFocus = () {
-      if (mounted) {
+      if (mounted && (_inputRoute?.isCurrent ?? true)) {
         _focus.requestFocus();
       }
     };
@@ -258,24 +266,41 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _inputRoute = ModalRoute.of(context);
+  }
+
+  @override
   /// didUpdateWidget API.
   void didUpdateWidget(QudsWordEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (!identical(oldWidget.controller, _c)) {
+      if (identical(oldWidget.controller.input.inputAllowed, _inputGuard)) {
+        oldWidget.controller.detachInput();
+        oldWidget.controller.input.inputAllowed = () => false;
+      }
       oldWidget.controller.removeListener(_onCtrl);
       if (oldWidget.controller.onSpellCheckRequested == _openProofing) {
         oldWidget.controller.onSpellCheckRequested = null;
       }
       oldWidget.controller.onRequestFocus = null;
+      _c.input.inputAllowed = _inputGuard;
+      _c.detachInput();
       _c.addListener(_onCtrl);
       _c.onSpellCheckRequested ??= _openProofing;
       _c.onRequestFocus = () {
-        if (mounted) _focus.requestFocus();
+        if (mounted && (_inputRoute?.isCurrent ?? true)) {
+          _focus.requestFocus();
+        }
       };
     }
     if (widget.config != null && !identical(widget.config, _c.config)) {
       _c.syncConfig(widget.config!);
     }
+    // Replacing a controller need not change the FocusNode, so no focus event
+    // is guaranteed to attach the new controller or apply its mode.
+    _onFocus();
   }
 
   void _onSystemFonts() {
@@ -306,6 +331,10 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   /// dispose API.
   void dispose() {
     _dismissContextMenu();
+    if (identical(_c.input.inputAllowed, _inputGuard)) {
+      _c.detachInput();
+      _c.input.inputAllowed = () => false;
+    }
     _ticker.dispose();
     _c.removeListener(_onCtrl);
     if (_c.onSpellCheckRequested == _openProofing) {
@@ -455,9 +484,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   }
 
   void _onFocus() {
-    if (_focus.hasFocus && _c.config.allowsMutation) {
+    if (_inputGuard()) {
       _c.attachInput();
-    } else if (!_c.config.allowsMutation) {
+    } else {
       _c.detachInput();
     }
     if (mounted) {
@@ -466,6 +495,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   }
 
   KeyEventResult _onWordKey(FocusNode node, KeyEvent event) {
+    if (!_focus.hasPrimaryFocus || !(_inputRoute?.isCurrent ?? true)) {
+      return KeyEventResult.ignored;
+    }
     if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
       return KeyEventResult.ignored;
     }

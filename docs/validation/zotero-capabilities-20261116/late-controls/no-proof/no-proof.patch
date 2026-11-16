@@ -1,0 +1,23 @@
+diff --git a/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart b/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart
+index caf96b4..503f137 100644
+--- a/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart
++++ b/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart
+@@ -126,6 +126,18 @@ class _StyleCascade {
+       for (final child in layer.childElements) {
+         if (child.localName == 'sectPr') continue;
+         final old = result.firstChild(child.localName);
++        if (name == 'rPr' && child.localName == 'noProof') {
++          // An omitted on/off value enables noProof. Do not retain a lower
++          // layer's explicit false when the next layer uses <w:noProof/>.
++          final effective = old ?? child.copy();
++          effective.setAttribute(
++            'val',
++            child.getAttribute('val') ?? '1',
++            prefix: 'w',
++          );
++          if (old == null) result.addChild(effective);
++          continue;
++        }
+         if (name == 'rPr' &&
+             const {
+               'b',

@@ -1,0 +1,32 @@
+00:00 +0: loading /workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_office_editor/test/word_proofing_test.dart
+00:00 +0: caret issue lookup keeps an empty read-only story unchanged
+00:00 +1: standard header and footer findings navigate to the exact rendered story
+00:00 +2: imported body and comment style languages/noProof have effective inherited semantics
+00:00 +3: last detached view cancels debounce while leaving its controller usable
+00:00 +4: a remaining view and explicit host start keep independent ownership
+00:00 +5: checks all modeled stories and nested tables/frames, not only caret paragraph
+00:00 +6: joins formatting runs and uses UTF-16 source offsets after emoji
+00:00 +7: run languages and noProof boundaries produce exact source segments
+00:00 +8: a shortening correction rebases selection before typing and restores it on undo
+00:00 +9: unsupported paragraph prevents a partial check from claiming clean
+00:00 +10: unavailable, failed, clean and disabled are distinct
+00:00 +11: opaque content is reported as unchecked
+00:00 +12: reuses unchanged paragraphs but rechecks edited source and provider configuration
+00:00 +13: asynchronous result is rejected after controller edit
+00:00 +14: direct text and language mutations reject asynchronous result without revision notification
+00:00 +15: replacing document with identical text rejects old findings
+00:00 +16: stale same-text language and generated-field changes block corrections
+00:00 +17: page-number field metadata invalidates stale suggestions and excludes its cache
+00:00 +18: complex field results spanning paragraphs are excluded while surrounding text is checked
+00:00 +19: read-only host and active IME block correction without adding history
+00:00 +20: native content lock blocks inline correction
+00:00 +21: native content lock blocks block correction
+00:00 +22: native content lock blocks paragraph correction
+00:00 +23: a control-only lock permits text correction while preserving its shell
+00:00 +24: correction in a footnote changes its actual paragraph and undoes independently of focus
+00:00 +25: tracked correction preserves deletion and insertion with valid nonoverlapping ranges
+00:00 +26: existing tracked changes are not overwritten by a proofreading correction
+00:00 +27: document language and hyphenation toggle save fallback in one undo step
+00:00 +28: default German checker supports personal vocabulary persistence and owner isolation
+00:01 +29: disposing a running session prevents late publications and disposes providers
+00:01 +30: All tests passed!

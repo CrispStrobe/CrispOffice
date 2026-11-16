@@ -1,0 +1,8 @@
+dart-version: exit 0
+node-version: exit 0
+analyze: exit 0
+tests: exit 0
+dictionary-reproducibility: exit 0
+compile-javascript: exit 0
+javascript-smoke: exit 0
+Passed; receipt: /workspace/scratch/21fc989ecea7/quds_office_suite/docs/validation/proofing-20261116/final/german/receipt.json

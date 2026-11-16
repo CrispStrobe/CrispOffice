@@ -1,0 +1,21 @@
+{
+  "recorded_utc": "2026-11-16T13:19:01.627942+00:00",
+  "setup_receipt_sha256": "78813817a05831968252573237f8e5596f333ce00dd21e7ba5b556c0004065ca",
+  "versions": {
+    "before": {
+      "commit": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "tree": "d72eec848353e3631d54050ad03f54a496143188",
+      "archive_files_verified_against_git_blobs": 440,
+      "source_mismatches": [],
+      "changed_harness_inputs": []
+    },
+    "after": {
+      "commit": "357f7a3e87d8536c03ecca2a860a0a564b1659f0",
+      "tree": "f55a8621647afd2139b61acf1c286a4f7fe35527",
+      "archive_files_verified_against_git_blobs": 463,
+      "source_mismatches": [],
+      "changed_harness_inputs": []
+    }
+  },
+  "identical_control_tests_across_versions": true
+}

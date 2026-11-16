@@ -158,10 +158,9 @@ final class HarperProofingProvider extends OfficeProofingProvider {
     } on HarperUnavailableException catch (error) {
       return _result(request, OfficeProofingStatus.unavailable, error.message);
     } on TimeoutException {
-      // The deadline must remain effective even if a transport's cleanup
-      // throws or never completes. dispose() marks this provider unavailable
-      // synchronously, before awaiting the backend.
-      unawaited(dispose().catchError((Object _) {}));
+      // A broken transport must not extend the deadline while shutting down.
+      // dispose marks this provider unavailable before awaiting the transport.
+      unawaited(Future<void>.sync(dispose).catchError((Object _) {}));
       return _result(
         request,
         OfficeProofingStatus.failed,

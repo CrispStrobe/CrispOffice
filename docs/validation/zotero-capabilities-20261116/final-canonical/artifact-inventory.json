@@ -1,0 +1,98 @@
+{
+  "README.md": {
+    "bytes": 5165,
+    "sha256": "148f70330c699027995e1fe935b7ab47233032b46c4af6163e0fdd68796f463d"
+  },
+  "dart-3.12-format-check.log": {
+    "bytes": 48,
+    "sha256": "04c266c38b6c1c528765bafd57dc79f147788f0323f0bb4d2bd7003aac2ec877"
+  },
+  "dependencies-after.json": {
+    "bytes": 572647,
+    "sha256": "d2258305ee344081c3d3a83c4b44d5b4bbbe8292bf72798836034b264e82fc10"
+  },
+  "dependencies-after.json.gz": {
+    "bytes": 179757,
+    "sha256": "ad428fdf586c615185e80df4acc90f382fc3dbc78bd58440ee8bb7c2b294cc4e"
+  },
+  "dependencies-before.json": {
+    "bytes": 572647,
+    "sha256": "d2258305ee344081c3d3a83c4b44d5b4bbbe8292bf72798836034b264e82fc10"
+  },
+  "dependencies-before.json.gz": {
+    "bytes": 179757,
+    "sha256": "ad428fdf586c615185e80df4acc90f382fc3dbc78bd58440ee8bb7c2b294cc4e"
+  },
+  "editor-analysis-package-config.json": {
+    "bytes": 17810,
+    "sha256": "04deb0e0fb6f2f6f7522c56af5816b1563f5040489117483fe576dd2d4ad5494"
+  },
+  "editor-hyphenation-integration.log": {
+    "bytes": 2553,
+    "sha256": "aa75c36d9308894f5c4a5262f700b75b58ad3ada11c972d66ee6d7785814605d"
+  },
+  "editor-proofing-integration.log": {
+    "bytes": 9501,
+    "sha256": "907203701e5f01055bc97b3c1fdf5f0c92c164642d11dbdc19ebab4a47c2ad5f"
+  },
+  "editor-strict-analysis.log": {
+    "bytes": 269,
+    "sha256": "d6bebf652d3d2f86ac2ad6560d881317cabeb513b7d9c043f1aa62782d3a8d71"
+  },
+  "editor-zotero.log": {
+    "bytes": 35776,
+    "sha256": "7045002e18f55b2f6a0748bafe8064e84d21c38ef2b1c6717c45c7b25c433797"
+  },
+  "engine-analysis-package-config.json": {
+    "bytes": 12332,
+    "sha256": "3eea88e97be224168ad583c1f528008ad5e34ba546fb1ef3a684cba1b9bed633"
+  },
+  "engine-ods-integration.log": {
+    "bytes": 7126,
+    "sha256": "f2b2b720aa80cc74efeb8adbf5a0c41c0910e5095b91de9e612e7e9cd4381c9f"
+  },
+  "engine-proofing-integration.log": {
+    "bytes": 7559,
+    "sha256": "6737ece4b656cec946864058ea97c2d693de6df3fb185c5b5b32ab97ab52606c"
+  },
+  "engine-strict-analysis.log": {
+    "bytes": 138,
+    "sha256": "c93af7399a4112d347689b9d7534ec797d6fb77434ecd0c9fcaaee7189bc65c5"
+  },
+  "engine-word-layout-integration.log": {
+    "bytes": 3617,
+    "sha256": "27fe44e83a4635b1bed7a60c0e2317bef67a9a0176480c83978d538057f5887a"
+  },
+  "engine-zotero.log": {
+    "bytes": 44712,
+    "sha256": "8db0f4eb81594cf22c83c73eb42373e691bcc56bc85a1b14521431f62dd8e857"
+  },
+  "prepared-plan.json": {
+    "bytes": 2577,
+    "sha256": "5b4a9bf6e9c4ddbcc3e0cf4dd92239f6a64d884f7e7907abeee90039c8dab31d"
+  },
+  "receipt.json": {
+    "bytes": 19083,
+    "sha256": "288ba64eec3ea4d423f2c739395ead0d02cc3f629e5192c575e6b95a1435165f"
+  },
+  "run-qualification.py": {
+    "bytes": 16306,
+    "sha256": "84cffced941b287e6a70148af87ea05b0502598fc157e19b56593864e7e528ed"
+  },
+  "source-after.json": {
+    "bytes": 224062,
+    "sha256": "6ccb7586abe27999b855dab9c7f45a85bae778b5cc9adbc7d2b8c5b158bd7d00"
+  },
+  "source-after.json.gz": {
+    "bytes": 68719,
+    "sha256": "6ec902d70f68aa89306ceede1923b8995b0a1d4c8d0b0440d683a9b24863f09e"
+  },
+  "source-before.json": {
+    "bytes": 224062,
+    "sha256": "6ccb7586abe27999b855dab9c7f45a85bae778b5cc9adbc7d2b8c5b158bd7d00"
+  },
+  "source-before.json.gz": {
+    "bytes": 68719,
+    "sha256": "6ec902d70f68aa89306ceede1923b8995b0a1d4c8d0b0440d683a9b24863f09e"
+  }
+}

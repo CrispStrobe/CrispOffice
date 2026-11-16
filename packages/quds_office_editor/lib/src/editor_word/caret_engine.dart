@@ -478,6 +478,18 @@ class CaretEngine {
       }
       return line.x;
     }
+    // A break owns both of its source boundaries, even when an adjacent
+    // presentation label ends at the same offset. Check breaks before labels.
+    for (final glyph in line.glyphs) {
+      if (glyph.glyph.isDiscretionaryHyphen &&
+          logicalIndex >= glyph.glyph.logicalIndex &&
+          logicalIndex <= glyph.logicalEnd) {
+        final after = logicalIndex >= glyph.logicalEnd;
+        return after == glyph.glyph.level.isEven
+            ? glyph.x + glyph.advance
+            : glyph.x;
+      }
+    }
     for (final glyph in line.glyphs) {
       if (glyph.glyph.isDiscretionaryHyphen ||
           glyph.displayText == null ||
@@ -492,15 +504,15 @@ class CaretEngine {
       );
       final left = group.map((g) => g.x).reduce(math.min);
       final right = group.map((g) => g.x + g.advance).reduce(math.max);
-      return logicalIndex <= glyph.glyph.logicalIndex ? left : right;
+      // Zero-source labels have one insertion point after their visible ink.
+      final after =
+          logicalIndex > glyph.glyph.logicalIndex ||
+          glyph.logicalEnd == glyph.glyph.logicalIndex;
+      return after == glyph.glyph.level.isEven ? right : left;
     }
     for (final LaidOutGlyph glyph in line.glyphs) {
       if (glyph.glyph.logicalIndex != logicalIndex) {
         continue;
-      }
-      if (glyph.glyph.isDiscretionaryHyphen &&
-          glyph.logicalEnd == logicalIndex) {
-        return glyph.glyph.level.isOdd ? glyph.x : glyph.x + glyph.advance;
       }
       return glyph.glyph.level.isOdd ? glyph.x + glyph.advance : glyph.x;
     }
@@ -617,7 +629,8 @@ class CaretEngine {
       final left = group.map((g) => g.x).reduce(math.min);
       final right = group.map((g) => g.x + g.advance).reduce(math.max);
       if (x >= left && x <= right) {
-        return x <= (left + right) / 2
+        final leftHalf = x <= (left + right) / 2;
+        return leftHalf == glyph.glyph.level.isEven
             ? glyph.glyph.logicalIndex
             : glyph.logicalEnd;
       }
