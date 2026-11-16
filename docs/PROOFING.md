@@ -4,33 +4,42 @@ Roadmap accepted and implementation resumed: 16 November 2026. Original
 baseline: `bad2d9d30fd94db8de92a4f4bf83a55b0692b884`.
 
 The CrispStrobe fork implements offline German spelling, automatic German and
-US/UK English hyphenation, seven German writing-rule categories, and a
+US/UK English hyphenation, eight German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
 web assets. Mobile system spelling has an adapter with protocol tests; the
 experimental German model remains a separate evaluation.
 
-## Current English/German continuation
+## Current English/German continuation — 17 November 2026
 
-The [new continuation report](validation/proofing-en-de-20261116/README.md)
-records the reconciled incoming histories, incremental remote checkpoints,
-license provenance and exact validation limits. This continuation adds:
+The [current continuation report](validation/proofing-en-de-20261117/README.md)
+records the integrated incoming histories, incremental remote checkpoints,
+local runtime receipts and qualification boundaries. The starting head
+`becfa07c1be62429a8bcf78910aa1ffb46248b1a` preserves all 128 unique commit
+heads represented by 189 audited fork/upstream branch and PR references.
 
-- Separate American/British pattern sets and original exceptions, routed through
-  shared Word editor/PDF layout without changing document text.
-- Finite agreement checks for nine German verb families, with conservative
-  guards for coordinated subjects, comparisons, nominal pronouns and dative
-  uses of `ihr`.
-- Closed code-span protection in German spelling and writing rules, plus bounded
-  repairs of one unknown constituent in explicit hyphen compounds.
-- English checker-input projection across soft hyphens, indexed original
-  UTF-16 source ranges, grapheme-safe findings and shared dialect-scoped
-  personal vocabulary.
+This continuation adds:
 
-**The new Dart/Flutter/runtime qualification is pending.** The attached execution
-environment was unavailable; executed JavaScript data/reference probes and
-source/tree reviews are recorded separately. No GitHub Actions queue was used.
-The retained prior local test counts do not qualify these new changes.
+- Shared protected URL/email/backtick ranges for English and German proofing
+  and hyphenation, including decomposed email domains, URI apostrophes,
+  original UTF-16 coordinates and bounded delimiter pairing.
+- German hyphenation guards for identifiers, contractions and join controls,
+  plus canonical `de`/`de-DE`/`de-1996` language equivalence across styled runs.
+- Bounded combined spelling suggestions such as `uebermaessig → übermäßig`,
+  declared personal terms in explicit hyphen compounds, sentence-initial
+  suggestion casing and lossless restoration of vocabulary language aliases.
+- Agreement checks for 25 finite German verb families, narrow `seit`/`seid`
+  contexts, nominal-word safeguards and source-preserving soft-hyphen projection.
+- English Harper findings that leave protected text untouched while continuing
+  to check surrounding prose, with real native and Wasm source-range acceptance.
+- Review-dialog correction/undo and rule-ignore regressions for the new German
+  behavior, and local compiled-JavaScript coverage alongside Dart VM tests.
+
+All dictionary/pattern inputs, Cargo/Pub dependency constraints and original
+license notices remain unchanged. The current report distinguishes fresh local
+qualification from preserved historical evidence. No GitHub Actions queue is
+used or waited on. The [16 November handoff](validation/proofing-en-de-20261116/README.md)
+retains its original source/reference-only qualification limits.
 
 The earlier locally qualified proofing source is
 **`8b93e866b4661d19f4bbad4e1069c0a609441ebb`**. Its
@@ -186,7 +195,7 @@ live model properties and Word serialization coverage.
 | P1 | Shared asynchronous proofing contract, language selection and availability | Implemented | Distinct unavailable, unsupported, failed and successful results; stable document/block identity, revision, UTF-16 ranges, category, rule ID, explanation and literal replacements. |
 | P2 | Automatic German/US/UK English and explicit discretionary hyphenation | Implemented | Licensed patterns and measured break candidates in shared editor/PDF layout; source text unchanged, grapheme/bidi and source-hit coverage, Word setting round-trips. |
 | P3 | Offline German spelling and user vocabulary | Implemented | Pinned MIT finite word forms, locale/case handling, bounded suggestions, host-owned vocabulary and ignore controls; no claim of complete German morphology. |
-| P4 | German style and limited grammar rules | Implemented | Seven independently authored checks and a host terminology provider; explicit exclusions and reviewable suggestions. |
+| P4 | German style and limited grammar rules | Implemented | Eight independently authored checks and a host terminology provider; explicit exclusions and reviewable suggestions. |
 | P5 | Word proofing UI and lifecycle | Implemented | Whole-story traversal, manual/background checks, stale-result rejection, squiggles, F7 review, correction menu and guarded undoable corrections. |
 | P6 | Optional English Harper and mobile spelling adapters | Implemented with runtime limits | Actual Linux native and Node/Wasm integration exercised; browser startup blocked before loading a page; mobile adapter protocol tested without Android/iOS device acceptance. |
 | P7 | German model evaluation | Evaluated; not enabled | Exact artifacts and original notices retained; recorded probe matched 9/18 error cases and changed 1/12 valid controls. No application provider or automatic model download. |
@@ -275,6 +284,12 @@ not infer unrestricted closed compounds or import morphology data.
 Suggestions use bounded local edits and German accent/sharp-s variants, with
 defaults of at most five suggestions and 6,000 candidate checks. Dictionary
 decoding and token batches yield cooperatively, including in compiled JavaScript.
+A bounded search of at most 32 orthographic variants combines umlaut and
+sharp-s transformations; every suggestion must occur in the shipped dictionary.
+Declared personal words may be components of explicit hyphenated compounds,
+with exact case and locale. Session-ignored words remain exact-token exemptions.
+Vocabulary restoration merges canonical language aliases instead of discarding
+an earlier alias's entries.
 
 Hunspell's MPL alternative remains a possible later engine adapter after a
 compatible full dictionary is available. It is not required to ship multiple
@@ -282,7 +297,7 @@ competing spelling engines in this implementation.
 
 ### German writing rules and terminology
 
-`GermanWritingRulesProvider` contains exactly seven independently authored
+`GermanWritingRulesProvider` contains eight independently authored
 checks. It is not a general German grammar parser.
 
 | Rule ID | Category | Implemented boundary |
@@ -291,18 +306,32 @@ checks. It is not a general German grammar parser.
 | `de.spacing.before-punctuation` | Style | Spaces before `, ; : ! ?`. |
 | `de.spacing.after-punctuation` | Style | A comma or semicolon immediately followed by a letter; offers a zero-length space insertion. |
 | `de.repetition.conjunction` | Style | Immediate repeated `und`, `oder` or `aber`; valid repetitions such as “Ist das das Haus?” remain accepted. |
-| `de.grammar.pronoun-verb` | Grammar | Immediate `ich`/`du`/`wir` with enumerated present-indicative forms of `sein`, `haben`, `werden`, `können`, `müssen`, `dürfen`, `sollen`, `wollen`, `mögen`; narrow `ihr`/`sein` checks with ambiguity guards. |
+| `de.grammar.pronoun-verb` | Grammar | Immediate `ich`/`du`/`wir` with 25 enumerated present-indicative verb families; narrow `ihr`/`sein` checks, nominal-word and context guards. |
+| `de.grammar.seit-seid` | Grammar | `ihr seit` before listed predicates, or `seid` between a listed finite verb and a reviewed temporal expression; never a generic `seid + time` rewrite. |
 | `de.delimiter.balance` | Style | Paragraph-local bracket balancing. |
 | `de.quote.balance` | Style | Paragraph-local German/English typographic quotes and guillemets, with apostrophe handling. |
 
-Agreement accepts horizontal spaces, tabs and nonbreaking spaces, and preserves
-uppercase replacement style. Valid constructions such as `Ihr ist kalt`,
+The finite families are `sein`, `haben`, `werden`, `können`, `müssen`, `dürfen`,
+`sollen`, `wollen`, `mögen`, `gehen`, `kommen`, `machen`, `sagen`, `arbeiten`,
+`lernen`, `brauchen`, `finden`, `geben`, `nehmen`, `sehen`, `lesen`, `sprechen`,
+`fahren`, `laufen` and `essen`. Agreement accepts horizontal spaces, tabs and
+nonbreaking spaces, and preserves uppercase replacement style. Valid constructions such as `Ihr ist kalt`,
 `Ihr bin ich dankbar`, `Du und ich sind hier` and coordinated subjects with
 relative clauses remain outside this bounded rule. Unlisted verbs,
 subjunctives, separated subjects/verbs and broad sentence parsing are not added.
 
-URLs, email addresses and closed matching-backtick spans are protected from
-these rules. Quote/bracket findings are review items: a legitimate quotation spanning
+Title-cased noun homographs and nominalized infinitives are conservatively
+excluded: `Wenn du Essen brauchst` and `Weil ich Macht habe` must not receive
+verb corrections. Inflected/fused determiners also preserve nominal pronouns,
+such as `Mit dem Du kommen wir gut zurecht`. Unambiguous uppercase finite
+errors remain checkable. The narrow `seit`/`seid` checks preserve valid temporal
+past-tense and imperative constructions such as `Ihr seid gestern gekommen`
+and `Seid drei Wochen geduldig`.
+
+Discretionary soft hyphens are omitted from German checker text only. Every
+finding maps back to whole graphemes in the untouched source, including
+internal controls and nonzero segment origins. URLs, email addresses and
+closed matching-backtick spans are protected from these rules. Quote/bracket findings are review items: a legitimate quotation spanning
 paragraphs can be unbalanced within an individual paragraph. No rule rewrites
 text without a user-selected correction.
 
@@ -356,7 +385,7 @@ authorized by this roadmap.
 ## Using Word proofing
 
 `WordEditorController.proofing` owns a lazy `WordProofingSession`. Its built-in
-providers are German spelling and the seven German writing rules. Background
+providers are German spelling and the eight German writing rules. Background
 checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced
