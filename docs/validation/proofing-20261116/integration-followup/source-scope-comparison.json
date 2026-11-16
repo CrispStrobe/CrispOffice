@@ -1,0 +1,350 @@
+{
+  "base_engine_source": "6f87a4e849f9dc172fea7a0e57d1d9072d99efe3",
+  "editor_source": "3bd4657b1c1cccfad8adbcf5928e30b90e4a1aaa",
+  "comparison_status": "ahead",
+  "ahead_by": 5,
+  "behind_by": 0,
+  "merge_base": "6f87a4e849f9dc172fea7a0e57d1d9072d99efe3",
+  "changed_files": [
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/editor/verify_editor_source_bound.py",
+      "status": "added",
+      "additions": 460,
+      "deletions": 0,
+      "changes": 460,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/README.md",
+      "status": "added",
+      "additions": 79,
+      "deletions": 0,
+      "changes": 79,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/compile-german-javascript.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/dart-runtime.json",
+      "status": "added",
+      "additions": 7,
+      "deletions": 0,
+      "changes": 7,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/dart-version.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/dependencies-after.json.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/dependencies-before.json.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/dictionary-regeneration.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/engine-analysis.log",
+      "status": "added",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/german-javascript.log",
+      "status": "added",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/german-tests.log",
+      "status": "added",
+      "additions": 51,
+      "deletions": 0,
+      "changes": 51,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/harness-package-config.json",
+      "status": "added",
+      "additions": 350,
+      "deletions": 0,
+      "changes": 350,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/harness-pubspec.lock",
+      "status": "added",
+      "additions": 450,
+      "deletions": 0,
+      "changes": 450,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/harness-pubspec.yaml",
+      "status": "added",
+      "additions": 13,
+      "deletions": 0,
+      "changes": 13,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/harper-analysis.log",
+      "status": "added",
+      "additions": 2,
+      "deletions": 0,
+      "changes": 2,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/harper-native-guards.log",
+      "status": "added",
+      "additions": 7,
+      "deletions": 0,
+      "changes": 7,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/harper-provider-tests.log",
+      "status": "added",
+      "additions": 10,
+      "deletions": 0,
+      "changes": 10,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/hyphenation-layout-export-tests.log",
+      "status": "added",
+      "additions": 233,
+      "deletions": 0,
+      "changes": 233,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/hyphenation-regeneration.log",
+      "status": "added",
+      "additions": 5,
+      "deletions": 0,
+      "changes": 5,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/incoming-ods-zotero-tests.log",
+      "status": "added",
+      "additions": 498,
+      "deletions": 0,
+      "changes": 498,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/initial-harness-attempt.tar.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/node-version.log",
+      "status": "added",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/receipt.json",
+      "status": "added",
+      "additions": 292,
+      "deletions": 0,
+      "changes": 292,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/run-validation.py",
+      "status": "added",
+      "additions": 108,
+      "deletions": 0,
+      "changes": 108,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/runtime-after.json.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/runtime-before.json.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/source-after.json.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/engine/source-before.json.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/evidence-integrity.json",
+      "status": "added",
+      "additions": 97,
+      "deletions": 0,
+      "changes": 97,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/README.md",
+      "status": "added",
+      "additions": 43,
+      "deletions": 0,
+      "changes": 43,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/bootstrap-evidence.tar.gz",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0,
+      "changes": 0,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/bootstrap-receipt.json",
+      "status": "added",
+      "additions": 78,
+      "deletions": 0,
+      "changes": 78,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/bootstrap_flutter.py",
+      "status": "added",
+      "additions": 299,
+      "deletions": 0,
+      "changes": 299,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/cache-metadata-repair.json",
+      "status": "added",
+      "additions": 695,
+      "deletions": 0,
+      "changes": 695,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/flutter-tools-offline.log",
+      "status": "added",
+      "additions": 32,
+      "deletions": 0,
+      "changes": 32,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/flutter-version.log",
+      "status": "added",
+      "additions": 15,
+      "deletions": 0,
+      "changes": 15,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/normalize-cache-metadata.py",
+      "status": "added",
+      "additions": 25,
+      "deletions": 0,
+      "changes": 25,
+      "previous_filename": null
+    },
+    {
+      "filename": "docs/validation/proofing-20261116/integration-followup/flutter-setup/workspace-offline.log",
+      "status": "added",
+      "additions": 11,
+      "deletions": 0,
+      "changes": 11,
+      "previous_filename": null
+    },
+    {
+      "filename": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 1,
+      "changes": 4,
+      "previous_filename": null
+    },
+    {
+      "filename": "packages/quds_office_editor/test/word_input_focus_test.dart",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 3,
+      "changes": 8,
+      "previous_filename": null
+    }
+  ],
+  "non_documentation_changes": [
+    {
+      "filename": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 1,
+      "changes": 4,
+      "previous_filename": null
+    },
+    {
+      "filename": "packages/quds_office_editor/test/word_input_focus_test.dart",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 3,
+      "changes": 8,
+      "previous_filename": null
+    }
+  ],
+  "engine_and_harper_sources_unchanged": true,
+  "interpretation": "The only non-documentation changes after the passing engine run are the named editor input guard (same retained callback identity) and correction of the new test to selecting mode, which explicitly allows selection without mutation. Engine, Harper, fonts, dictionaries, hyphenation data and all package manifests are unchanged."
+}
