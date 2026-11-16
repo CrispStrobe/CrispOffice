@@ -227,17 +227,46 @@ abstract final class OdsSheetWriter {
     if (filters.isNotEmpty) {
       w.writeStartElement('database-ranges', prefix: 'table');
       for (final sheet in filters) {
-        final range = sheet.autoFilter!.range;
-        w.writeEmptyElement(
-          'database-range',
-          prefix: 'table',
-          attributes: {
-            'table:target-range-address':
-                '${_plainSheet(sheet.name)}.${range.start.a1}:'
-                '${_plainSheet(sheet.name)}.${range.end.a1}',
-            'table:display-filter-buttons': 'true',
-          },
+        final filter = sheet.autoFilter!;
+        final range = filter.range;
+        final conditions = <({int field, String value})>[];
+        for (final entry in filter.hiddenValues.entries) {
+          if (entry.value.isEmpty) continue;
+          final visible = <String>{
+            for (var row = range.minRow + 1; row <= range.maxRow; row++)
+              if (sheet
+                      .cellOrNull(SmlCellRef(range.minCol + entry.key, row))
+                      ?.asString
+                  case final text? when text.isNotEmpty)
+                text,
+          }..removeAll(entry.value);
+          for (final value in visible) {
+            conditions.add((field: entry.key, value: value));
+          }
+        }
+        w.writeStartElement('database-range', prefix: 'table');
+        w.writeAttribute(
+          'table:target-range-address',
+          '${_plainSheet(sheet.name)}.${range.start.a1}:'
+              '${_plainSheet(sheet.name)}.${range.end.a1}',
         );
+        w.writeAttribute('table:display-filter-buttons', 'true');
+        if (conditions.isNotEmpty) {
+          w.writeStartElement('filter', prefix: 'table');
+          for (final condition in conditions) {
+            w.writeEmptyElement(
+              'filter-condition',
+              prefix: 'table',
+              attributes: {
+                'table:field-number': '${condition.field}',
+                'table:operator': '=',
+                'table:value': condition.value,
+              },
+            );
+          }
+          w.writeEndElement();
+        }
+        w.writeEndElement();
       }
       w.writeEndElement();
     }
@@ -265,8 +294,34 @@ abstract final class OdsSheetWriter {
       );
     }
     final extent = sheet.usedExtent();
-    final maxCol = extent.col;
-    final maxRow = extent.row;
+    var maxCol = extent.col;
+    var maxRow = extent.row;
+    void includeColumn(int col) {
+      if (col > maxCol) maxCol = col;
+    }
+
+    void includeRow(int row) {
+      if (row > maxRow) maxRow = row;
+    }
+
+    for (final col in sheet.columnWidths.keys) {
+      includeColumn(col);
+    }
+    for (final col in sheet.columnProperties.keys) {
+      includeColumn(col);
+    }
+    for (final row in sheet.rows.keys) {
+      includeRow(row);
+    }
+    for (final row in sheet.rowHeights.keys) {
+      includeRow(row);
+    }
+    for (final row in sheet.hiddenRows) {
+      includeRow(row);
+    }
+    for (final row in sheet.rowOutlineLevels.keys) {
+      includeRow(row);
+    }
     for (var col = 0; col <= maxCol; col++) {
       w.writeStartElement('table-column', prefix: 'table');
       w.writeAttribute('table:default-cell-style-name', 'Default');
@@ -279,7 +334,17 @@ abstract final class OdsSheetWriter {
       }
       w.writeEndElement();
     }
+    var openGroups = 0;
     for (var row = 0; row <= maxRow; row++) {
+      final level = sheet.rowOutlineLevels[row] ?? 0;
+      while (openGroups > level) {
+        w.writeEndElement();
+        openGroups--;
+      }
+      while (openGroups < level) {
+        w.writeStartElement('table-row-group', prefix: 'table');
+        openGroups++;
+      }
       w.writeStartElement('table-row', prefix: 'table');
       if (layout.rowStyles[index].containsKey(row)) {
         w.writeAttribute('table:style-name', layout.rowStyles[index][row]!);
@@ -296,6 +361,10 @@ abstract final class OdsSheetWriter {
         _writeCell(w, sheet, col, row, merge, layout);
       }
       w.writeEndElement();
+    }
+    while (openGroups > 0) {
+      w.writeEndElement();
+      openGroups--;
     }
     final conditional = StringBuffer();
     for (final rule in sheet.conditionalFormats) {

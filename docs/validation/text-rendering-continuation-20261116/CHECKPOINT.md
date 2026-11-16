@@ -1,33 +1,52 @@
 # Continuation checkpoint
 
-The incoming integration is saved at `0d19b16e10c6bc8492f47880321df2d9f2561223`.
-All 151 observed fork/upstream branch and PR heads are included. The only new
-incoming source change is the ODS default page layout from PR #73. Its feature,
-vendor and mainline revisions have identical patches and trees; the real Git
-octopus merge completed without conflicts. See `incoming-inventory.json`.
+## Recovered completed qualification
 
-The next checkpoint preserves the implementation and regression tests while
-the pinned local Dart/Flutter runtime is being restored. At this checkpoint,
-new tests and static analysis have **not yet been run**. A final report and
-source-bound local receipts will supersede this pending-validation status.
+Implementation checkpoints `deb5531`, `097f615`, and `59b69ac` preserve the
+PDF CID encoding and TrueType subset repairs. The later recovered checkpoint
+`6bf486ee0bbcd2025c3a42cae7d7003b8c9324a4` preserves the actual engine,
+baseline, and independent PDF evidence:
 
-The subsequent structural checkpoint also preserves aligned TrueType glyph
-offsets, bounded composite processing, validation of malformed glyph records,
-and retained font metrics/style metadata with recomputed subset coverage. It
-includes the MIT FontTools notice for the numeric OS/2 range transcription.
-Independent review fixes reject incompatible CID/subset pairings and preserve
-simple-glyph validation; capacity tests exercise resource splitting and reuse.
-Formatting has run, but test/analyzer qualification is still pending here.
+- 169 engine tests passed; strict analysis and formatting passed; recorded
+  inputs were unchanged during that run.
+- Against baseline `0d19b16`, the same 20 regression probes produced ten
+  assertion failures, nine errors, and one success. These expected baseline
+  failures demonstrate the old defects, not a passing gate.
+- Independent Poppler rendering produced zero differing pixels for the
+  encoded shared-glyph fixture versus its identity-glyph reference, and
+  preserved the exact authored Unicode scalars on extraction.
+- No production dependency or bundled font binary was added. The numeric
+  OS/2 coverage transcription retains its MIT notice.
 
-The PDF work separates character codes from subset glyph IDs so two authored
-Unicode scalars sharing an outline keep independent extraction/search mappings.
-It adds a real CIDToGIDMap stream and CID-indexed widths, including a bounded
-65,535-character resource encoding. Office exporters use this path; low-level
-callers retain identity encoding unless they opt in and emit the new CIDs.
+The engine receipt remains attributed to its recorded source and inputs.
+The new incoming ODS source/test changes require their own qualification.
 
-The updated strategy distinguishes current source from stale comparison reports
-and records eligible native shaping options. This checkpoint adds no production
-dependency or bundled font. Shared editor/headless shaping remains future work.
+## Resumption integration
 
-GitHub Actions are not queried, awaited, polled or rerun. Checkpoints use
-`[skip ci]`; qualification is local.
+The pinned snapshot at 2026-11-16 19:37:47 UTC contains 166 fork/upstream
+branch and PR heads. Current main `be9eeec9` merged cleanly into the rendering
+source. Its six incoming paths include ODS filter predicates, row groups and
+geometry outside populated cells, updated documentation, and a font-fixture
+path fallback in the PDF viewer tests.
+
+The eight additional feature/documentation/vendor tips contain nine
+non-merge commits. All nine match canonical main commits by both stable Git
+patch ID and exact full patch bytes after removing only Git index lines.
+All affected files match main exactly. The integration retains their
+ancestry without reapplying duplicate source changes; the cleaned vendor
+test is preserved. See `resume/complete-patch-equivalence.json`, the pinned
+`resume/remote-snapshot.json`, and `resume/merge-plan.json`.
+
+## Remaining local qualification at this checkpoint
+
+The real Flutter editor cohort and the newer incoming ODS changes remain
+pending. The recovered evidence has been independently audited and the cheap
+external PDF check repeated successfully. Final receipts and the report will
+state exact source bindings, test totals, and any remaining limitations.
+
+Shared editor/headless shaping remains a separate future integration. The
+current export changes fix character-code/glyph-ID aliasing and subset
+structure; they do not implement a shared HarfBuzz or Rust shaping backend.
+
+GitHub Actions are not queried, awaited, polled, or rerun. Remote checkpoints
+use `[skip ci]`; qualification is local.

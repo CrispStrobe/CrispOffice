@@ -1,0 +1,343 @@
+{
+  "recorded_at_utc": "2026-11-16T19:51:06.800301+00:00",
+  "head": "65f943d70260ad634ffd9f0d36a2a3790061a137",
+  "main": "be9eeec9ea3455018de26fff5874c558dbc66798",
+  "base": "0d19b16e10c6bc8492f47880321df2d9f2561223",
+  "tips": [
+    "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+    "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+    "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+    "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+    "1deb61cf78add61f5d26bea36ff596d769d06a87",
+    "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+    "928f85483ec1cb85e468ca9381585875137ba8d5",
+    "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+  ],
+  "method": "git rev-list --no-merges TIPS ^HEAD enumerates every unmerged non-merge commit, not just the tips. Full binary full-index diffs are matched using git patch-id --stable and additionally byte hashing with only index lines removed. Matching canonical commits are in BASE..MAIN, and MAIN is an ancestor of HEAD. Every path touched by omitted commits is also checked at HEAD against current MAIN by exact Git blob identity.",
+  "missing_nonmerge_count": 9,
+  "matched_nonmerge_count": 9,
+  "main_is_ancestor_of_head": true,
+  "missing_nonmerge_commits": [
+    {
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "subject": "docs: record ODS row groups",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81",
+      "parent": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "patch_id_stable": "80c40d5f0585362480359c1a831fbf01315504ad",
+      "full_diff_sha256": "0fab6dd8fed2b8940a28d5979700ee51281a122b36db1ae0b56ede8ee02836a7",
+      "diff_without_index_lines_sha256": "35d24e2dc6ec162e12650b9fa80a1d515a3b74852d71989862893ca7379b7cb7",
+      "paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "equivalent_main_commits": [
+        "be9eeec9ea3455018de26fff5874c558dbc66798"
+      ],
+      "identical_patch_except_index_lines": [
+        "be9eeec9ea3455018de26fff5874c558dbc66798"
+      ],
+      "identical_complete_tree": [
+        "be9eeec9ea3455018de26fff5874c558dbc66798"
+      ]
+    },
+    {
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "subject": "feat(sheet): write ODS row outline groups and off-extent geometry",
+      "tree": "9cfcbbbc904b9baa2ca5c51ddbb5cc421f9a3b59",
+      "parent": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "patch_id_stable": "d3f848789d93581176b5d1b13129f3d1f1207eb6",
+      "full_diff_sha256": "242edbe0df9fc57cc643c60935a2d9640e913b15137b729aeed775d0d474893f",
+      "diff_without_index_lines_sha256": "b65451c949952c6b86f6183754e313b06f73f2bcbf18bd050be037845f8da6f3",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "equivalent_main_commits": [
+        "a3417522a54a1d46beef535e10f609c1295d8cfd"
+      ],
+      "identical_patch_except_index_lines": [
+        "a3417522a54a1d46beef535e10f609c1295d8cfd"
+      ],
+      "identical_complete_tree": []
+    },
+    {
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "subject": "feat(sheet): write ODS row outline groups and off-extent geometry",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+      "parent": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "patch_id_stable": "d3f848789d93581176b5d1b13129f3d1f1207eb6",
+      "full_diff_sha256": "242edbe0df9fc57cc643c60935a2d9640e913b15137b729aeed775d0d474893f",
+      "diff_without_index_lines_sha256": "b65451c949952c6b86f6183754e313b06f73f2bcbf18bd050be037845f8da6f3",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "equivalent_main_commits": [
+        "a3417522a54a1d46beef535e10f609c1295d8cfd"
+      ],
+      "identical_patch_except_index_lines": [
+        "a3417522a54a1d46beef535e10f609c1295d8cfd"
+      ],
+      "identical_complete_tree": [
+        "a3417522a54a1d46beef535e10f609c1295d8cfd"
+      ]
+    },
+    {
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "subject": "docs: record ODS filter predicates",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7",
+      "parent": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "patch_id_stable": "c77c061190c9ef900c5a1b6c65badb188d4bc5cf",
+      "full_diff_sha256": "050591732769d31d8a286644a63698154953815e6f3fb324206a989fe61e07a0",
+      "diff_without_index_lines_sha256": "8b338725da0c5091515670b7115f4532130ef5de75e052dbb0a21b7245c0b599",
+      "paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "equivalent_main_commits": [
+        "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+      ],
+      "identical_patch_except_index_lines": [
+        "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+      ],
+      "identical_complete_tree": [
+        "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+      ]
+    },
+    {
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "subject": "feat(sheet): write ODS autofilter predicates",
+      "tree": "1f2119192dd82eb633ce9445d64da8e41608b200",
+      "parent": "9de9b4fb1287e935328dc6e653f7457eef7defa1",
+      "patch_id_stable": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "full_diff_sha256": "d683fcb38940eb6825d27f857e2491bbb712d22772effda60e4144674874cd58",
+      "diff_without_index_lines_sha256": "e224125e92e81fc7943287959ac766ef2181e82e2bb30747472677a66338d760",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "equivalent_main_commits": [
+        "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+      ],
+      "identical_patch_except_index_lines": [
+        "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+      ],
+      "identical_complete_tree": []
+    },
+    {
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "subject": "feat(sheet): write ODS autofilter predicates",
+      "tree": "12543395e4f423ac6327fdff709a89bfa9a01169",
+      "parent": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "patch_id_stable": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "full_diff_sha256": "dffe274f89a8299d66fc8b62262b080241a476d26bad5894b0196582cb936a31",
+      "diff_without_index_lines_sha256": "e224125e92e81fc7943287959ac766ef2181e82e2bb30747472677a66338d760",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "equivalent_main_commits": [
+        "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+      ],
+      "identical_patch_except_index_lines": [
+        "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+      ],
+      "identical_complete_tree": []
+    },
+    {
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "subject": "feat(sheet): write ODS autofilter predicates",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+      "parent": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "patch_id_stable": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "full_diff_sha256": "d683fcb38940eb6825d27f857e2491bbb712d22772effda60e4144674874cd58",
+      "diff_without_index_lines_sha256": "e224125e92e81fc7943287959ac766ef2181e82e2bb30747472677a66338d760",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "equivalent_main_commits": [
+        "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+      ],
+      "identical_patch_except_index_lines": [
+        "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+      ],
+      "identical_complete_tree": [
+        "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+      ]
+    },
+    {
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "subject": "docs: record the host ODT picture registry",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad",
+      "parent": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "patch_id_stable": "3b87f26c04109ece2f5cb393a4757a6e4ba2e4b9",
+      "full_diff_sha256": "afbab20b9b9e2d77786e42df330d12a3ae6b1da5568eec28fda9ffe3d1ce12cd",
+      "diff_without_index_lines_sha256": "e0b394e76a7103c5146775d1c7e9fc0bc3be5658640fd39cae49b233cc6580fc",
+      "paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "equivalent_main_commits": [
+        "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+      ],
+      "identical_patch_except_index_lines": [
+        "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+      ],
+      "identical_complete_tree": [
+        "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+      ]
+    },
+    {
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "subject": "docs: describe the current Office and ODF capabilities",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b",
+      "parent": "aee79048dc74d2fe413ae0e57cca9189c7202a0f",
+      "patch_id_stable": "03ca097646a73f80747b773dd1dce0c069098230",
+      "full_diff_sha256": "3391a3b2ea6bc00d917a36d9eabd95e9a63bd101ad4aeb2eda105ec8ad25f5ec",
+      "diff_without_index_lines_sha256": "1e01d49e496ea89d77a12c793d6a0d3f37089bd4f901dcf43854df52edbd87db",
+      "paths": [
+        "docs/office-remaining-gaps.md",
+        "packages/quds_office_engine/README.md"
+      ],
+      "equivalent_main_commits": [
+        "ba79d47028d70b4124ced59cb9d34583ff0a9514"
+      ],
+      "identical_patch_except_index_lines": [
+        "ba79d47028d70b4124ced59cb9d34583ff0a9514"
+      ],
+      "identical_complete_tree": [
+        "ba79d47028d70b4124ced59cb9d34583ff0a9514"
+      ]
+    }
+  ],
+  "canonical_commits": [
+    {
+      "sha": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "subject": "docs: record ODS row groups (#79)",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81",
+      "parent": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "patch_id_stable": "80c40d5f0585362480359c1a831fbf01315504ad",
+      "full_diff_sha256": "0fab6dd8fed2b8940a28d5979700ee51281a122b36db1ae0b56ede8ee02836a7",
+      "diff_without_index_lines_sha256": "35d24e2dc6ec162e12650b9fa80a1d515a3b74852d71989862893ca7379b7cb7",
+      "paths": [
+        "docs/office-remaining-gaps.md"
+      ]
+    },
+    {
+      "sha": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "subject": "feat(sheet): write ODS row outline groups and off-extent geometry (#78)",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+      "parent": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "patch_id_stable": "d3f848789d93581176b5d1b13129f3d1f1207eb6",
+      "full_diff_sha256": "242edbe0df9fc57cc643c60935a2d9640e913b15137b729aeed775d0d474893f",
+      "diff_without_index_lines_sha256": "b65451c949952c6b86f6183754e313b06f73f2bcbf18bd050be037845f8da6f3",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ]
+    },
+    {
+      "sha": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "subject": "docs: record ODS filter predicates (#77)",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7",
+      "parent": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "patch_id_stable": "c77c061190c9ef900c5a1b6c65badb188d4bc5cf",
+      "full_diff_sha256": "050591732769d31d8a286644a63698154953815e6f3fb324206a989fe61e07a0",
+      "diff_without_index_lines_sha256": "8b338725da0c5091515670b7115f4532130ef5de75e052dbb0a21b7245c0b599",
+      "paths": [
+        "docs/office-remaining-gaps.md"
+      ]
+    },
+    {
+      "sha": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "subject": "feat(sheet): write ODS autofilter predicates (#76)",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+      "parent": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "patch_id_stable": "d4af8f313cf78e500428b02bb4f57cc82bd2339e",
+      "full_diff_sha256": "d683fcb38940eb6825d27f857e2491bbb712d22772effda60e4144674874cd58",
+      "diff_without_index_lines_sha256": "e224125e92e81fc7943287959ac766ef2181e82e2bb30747472677a66338d760",
+      "paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ]
+    },
+    {
+      "sha": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "subject": "docs: record the host ODT picture registry (#75)",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad",
+      "parent": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "patch_id_stable": "3b87f26c04109ece2f5cb393a4757a6e4ba2e4b9",
+      "full_diff_sha256": "afbab20b9b9e2d77786e42df330d12a3ae6b1da5568eec28fda9ffe3d1ce12cd",
+      "diff_without_index_lines_sha256": "e0b394e76a7103c5146775d1c7e9fc0bc3be5658640fd39cae49b233cc6580fc",
+      "paths": [
+        "docs/office-remaining-gaps.md"
+      ]
+    },
+    {
+      "sha": "ba79d47028d70b4124ced59cb9d34583ff0a9514",
+      "subject": "docs: describe the current Office and ODF capabilities (#74)",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b",
+      "parent": "aee79048dc74d2fe413ae0e57cca9189c7202a0f",
+      "patch_id_stable": "03ca097646a73f80747b773dd1dce0c069098230",
+      "full_diff_sha256": "3391a3b2ea6bc00d917a36d9eabd95e9a63bd101ad4aeb2eda105ec8ad25f5ec",
+      "diff_without_index_lines_sha256": "1e01d49e496ea89d77a12c793d6a0d3f37089bd4f901dcf43854df52edbd87db",
+      "paths": [
+        "docs/office-remaining-gaps.md",
+        "packages/quds_office_engine/README.md"
+      ]
+    },
+    {
+      "sha": "aee79048dc74d2fe413ae0e57cca9189c7202a0f",
+      "subject": "Record combined rendering, proofing, Zotero and host qualification [skip ci]",
+      "tree": "c28c61d63dbf077e178868968a7dae51e6334289",
+      "parent": "9de9b4fb1287e935328dc6e653f7457eef7defa1",
+      "patch_id_stable": "db1c2fc83421511acc3082a62df452730e27a3b4",
+      "full_diff_sha256": "a9a1900a86a02b0c16e5dd7a5ebfc114fdadb3255a4a177e04271d8d2fa64423",
+      "diff_without_index_lines_sha256": "c01c3f3eafb247ee3e8a4c418df683d549c4b3178ece704ebbfa45445903358d",
+      "paths": [
+        "docs/validation/crispcloud-rebuild-refresh-20261116.json"
+      ]
+    },
+    {
+      "sha": "f749293362a6b0bcc903bd7cbf5828d6ee54cbbc",
+      "subject": "Resolve PDF font regression fixtures from package and host workspaces [skip ci]",
+      "tree": "e97ddd45e7e785125199346c379a314bc5d7cd63",
+      "parent": "36e9e749452dedebd19a719eaee346e7b0a22c7e",
+      "patch_id_stable": "ea1fab5dcdc11d625b8bd11e7b81e72bee6f2b37",
+      "full_diff_sha256": "bd2802b392c3425ba14c92e64e4607f6e752e19ff3a3fa6ab23e3921e977cac7",
+      "diff_without_index_lines_sha256": "53c207fc36324f9bd3c250c0cf634c1d591b321f5ec9b8985fdbd6b2800e5c39",
+      "paths": [
+        "packages/quds_office_editor/test/pdf_font_faces_test.dart"
+      ]
+    }
+  ],
+  "current_paths": [
+    {
+      "path": "docs/office-remaining-gaps.md",
+      "head_blob": "7e03bfa213c27f5d25b71d8b1d8159f194364d3e",
+      "main_blob": "7e03bfa213c27f5d25b71d8b1d8159f194364d3e",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/README.md",
+      "head_blob": "a96b97c77edc8f254db03e4c5ae9c266805d23b1",
+      "main_blob": "a96b97c77edc8f254db03e4c5ae9c266805d23b1",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+      "head_blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510",
+      "main_blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+      "head_blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f",
+      "main_blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f",
+      "identical": true
+    }
+  ],
+  "all_missing_commits_have_patch_matches": true,
+  "all_missing_commits_have_identical_patch_except_index_lines": true,
+  "all_current_paths_equal_main": true,
+  "github_actions_used": false,
+  "passed": true
+}
