@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Label invisible proofing replacements, including space insertions. Restore
+  ignored words in their original language, rules and ignored occurrences
+  from the review dialog without changing source text or undo history.
+
 - Measure complete Word text runs with Flutter's shaping before wrapping,
   including contextual kerning, Arabic and grapheme advances. Cache immutable
   metrics with bounded storage and invalidate them after font registration.

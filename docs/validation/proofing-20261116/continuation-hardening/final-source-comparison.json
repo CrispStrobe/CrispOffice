@@ -1,0 +1,14 @@
+{
+  "tested_source": "8b93e866b4661d19f4bbad4e1069c0a609441ebb",
+  "editor_source_manifest": "editor/source-after.json.gz",
+  "source_input_count": 2049,
+  "source_differences": [],
+  "unchanged_source_inputs": true,
+  "tracked_documentation_changes_after_validation": [
+    "docs/PROOFING.md",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_engine/CHANGELOG.md"
+  ],
+  "new_evidence_directory": "docs/validation/proofing-20261116/continuation-hardening",
+  "note": "Product source, selected test sources, runtime lock and package manifests match the completed editor receipt. New reports and these documentation changes are outside the tested product input scope."
+}

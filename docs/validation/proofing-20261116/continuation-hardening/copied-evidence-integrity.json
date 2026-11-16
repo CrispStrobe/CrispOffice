@@ -1,0 +1,130 @@
+{
+  "scope": "Checks copied final command logs and source/runtime/artifact manifest digests against their unmodified receipts; report relative links also resolve.",
+  "checks": [
+    {
+      "file": "editor/flutter-version.log",
+      "sha256": "c996a4224d3119a0670c50bae3c0a563cff6726409ac6aef28826fc04edc2f57"
+    },
+    {
+      "file": "editor/dart-version.log",
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "file": "editor/engine-analyze.log",
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    {
+      "file": "editor/editor-analyze.log",
+      "sha256": "6d180bb13792b15570d4a70ff450ef67abcd52447d54c6e860a093ce385ed654"
+    },
+    {
+      "file": "editor/example-analyze.log",
+      "sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed"
+    },
+    {
+      "file": "editor/editor-tests.log",
+      "sha256": "bb1cea911f3f6049e8854b3165a760d444152426fd5c657c18c653bde643392d"
+    },
+    {
+      "file": "editor/editor-ime-reattachment.log",
+      "sha256": "971aae34d028a7858805877dad6baa9e89e742f54114a79fd2bd235d3d8d28b4"
+    },
+    {
+      "file": "editor/example-web-build.log",
+      "sha256": "89f99adf39c37c60b990c4a78834acf2dc89a7a2b62b7db254c47efe367cebfd"
+    },
+    {
+      "file": "editor/source-before.json.gz",
+      "sha256": "eb11b143750d82208dfb45fd93c8879f33d266950fc3ddc5ab0dc00e2067d2e9"
+    },
+    {
+      "file": "editor/source-after.json.gz",
+      "sha256": "eb11b143750d82208dfb45fd93c8879f33d266950fc3ddc5ab0dc00e2067d2e9"
+    },
+    {
+      "file": "editor/runtime-before.json.gz",
+      "sha256": "1de0f2c9140094ce77ae77e8b544117ac57e059255efc723a01ae108b865684c"
+    },
+    {
+      "file": "editor/runtime-after.json.gz",
+      "sha256": "1de0f2c9140094ce77ae77e8b544117ac57e059255efc723a01ae108b865684c"
+    },
+    {
+      "file": "editor/web-artifacts-before.json.gz",
+      "sha256": "37a641f5b71f361a83c4bb5aae7e62bb31dff4340708786bd20df2313b0f1173"
+    },
+    {
+      "file": "editor/web-artifacts-after.json.gz",
+      "sha256": "d3b3fe31074cabb9706663b70123e2e2d8b61f7fb5bf4bab411ac5b310be4650"
+    },
+    {
+      "file": "engine/dart-version.log",
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "file": "engine/hyphenation-layout-export-tests.log",
+      "sha256": "3179587ecef1413ac9e87fb8e083fc08e32ea0fcf141b6e5d040e3890593a5d3"
+    },
+    {
+      "file": "engine/incoming-ods-zotero-tests.log",
+      "sha256": "052f9486e6c7551120cd3abfb5bf7b88e02ca20daf21203f65d85bff6ecc657d"
+    },
+    {
+      "file": "engine/harper-provider-tests.log",
+      "sha256": "8672dcd9930f053ca1e070bac0c39f923a6f7fa4022bcc63941ed9839e09a1af"
+    },
+    {
+      "file": "engine/harper-native-guards.log",
+      "sha256": "6fe3a7f137d17d7d2735bd6cc80001497c7dc6ba75b245fbece0df12fe34ebd7"
+    },
+    {
+      "file": "engine/source-before.json.gz",
+      "sha256": "acf28312d23beb18e10e7faa2930149b23b8a3c17a631610eb8794a9c7cfe3aa"
+    },
+    {
+      "file": "engine/source-after.json.gz",
+      "sha256": "acf28312d23beb18e10e7faa2930149b23b8a3c17a631610eb8794a9c7cfe3aa"
+    },
+    {
+      "file": "engine/runtime-before.json.gz",
+      "sha256": "07a101355dd324420d66eadb3ef1ae8535203f208c1d900d00cee6a14ba25831"
+    },
+    {
+      "file": "engine/runtime-after.json.gz",
+      "sha256": "07a101355dd324420d66eadb3ef1ae8535203f208c1d900d00cee6a14ba25831"
+    },
+    {
+      "file": "engine/dependencies-before.json.gz",
+      "sha256": "b220460b602953d1fe29fdb8514cdd4f9e35513420d4b9e7cefae727904caa35"
+    },
+    {
+      "file": "engine/dependencies-after.json.gz",
+      "sha256": "b220460b602953d1fe29fdb8514cdd4f9e35513420d4b9e7cefae727904caa35"
+    },
+    {
+      "file": "german/dart-version.log",
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "file": "german/node-version.log",
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    {
+      "file": "german/analyze.log",
+      "sha256": "b1815c7fe8a919e9cb2c49f704c11b0021b874efc7096e550f8e15a049383e75"
+    },
+    {
+      "file": "german/tests.log",
+      "sha256": "e0d4239c6b0c2d6b43722e7634290aac285267b8679caad79e661415a6290fe6"
+    },
+    {
+      "file": "german/compile-javascript.log",
+      "sha256": "c7c55832ec00b7d89d338359d55b1fd9cb8850550d358fdf0420fca9590781f7"
+    },
+    {
+      "file": "german/javascript-smoke.log",
+      "sha256": "70d54cd1123232e6237c73391fa8bd6617592b4c9409c0c1d1b2e0161c4385a0"
+    }
+  ],
+  "passed": true
+}

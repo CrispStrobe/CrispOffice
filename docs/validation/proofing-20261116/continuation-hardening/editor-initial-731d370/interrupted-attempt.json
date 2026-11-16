@@ -1,0 +1,21 @@
+{
+  "recorded": "2026-11-16T15:57:01.649358+00:00",
+  "status": "interrupted_after_analysis_failures",
+  "source_commit": "731d3708513d00fde9ac32dcb32bac1d39631214",
+  "runner_tool_exit_code": 130,
+  "reason": "Root requested termination before further qualification so two imported test-only strict-analysis findings could be fixed.",
+  "observed_failures": [
+    "engine-analyze: test/ods_sheet_writer_test.dart:8:11 unused_local_variable a1; exit 2",
+    "editor-analyze: test/office_input_ownership_test.dart:1:8 unnecessary_import flutter/services.dart; exit 1"
+  ],
+  "partial_stage": "editor-tests",
+  "partial_test_last_reported_count": 79,
+  "partial_test_complete_success_marker": false,
+  "stage_log_bytes": 15686,
+  "stage_log_sha256": "3acf238d2254c6a7d8d81dfcca6f503d21e523207d8453e333719c5b685f77c2",
+  "stage_log_last_modified": "2026-11-16T15:55:53.798915+00:00",
+  "later_stages_started": false,
+  "original_receipt_status": "running; finalization interrupted; retained unchanged",
+  "provenance_boundary": "No after manifests or final stability claim from this interrupted run.",
+  "termination_observation": "The exec tool returned 130 after interrupt. Separate exec namespaces did not expose owned process PIDs. The test log remained stable for more than 40 seconds and the Flutter tool lock was free; no ongoing work observed."
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "source_commit": "731d3708513d00fde9ac32dcb32bac1d39631214",
+  "started_at_utc": "2026-11-16T15:55:32.771558+00:00",
+  "scope": "Engine hyphenation/bidi/layout/DOCX/PDF, contextual run metrics, incoming ODS reader/writer and Zotero/comment regressions, optional Harper Dart provider and native lifecycle contracts.",
+  "dependency_mode": "Real resolved Flutter workspace; actual root pubspec.lock and package_config.json; no isolated harness.",
+  "github_actions": "Not queried or waited for.",
+  "excluded_claims": [
+    "browser interaction",
+    "HTTP/CSP delivery",
+    "new native/WebAssembly Harper build",
+    "real mobile dictionary acceptance"
+  ],
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "package_count": 108,
+  "source_manifest": {
+    "file": "source-before.json.gz",
+    "sha256": "86b683fd6369cf89757d4b0fac1341178fd793c52cde4c5ea43f86649777db69",
+    "entries": 4291
+  },
+  "runtime_manifest": {
+    "file": "runtime-before.json.gz",
+    "sha256": "0246d1f80b72647db84a5b852d217ef58bc720a0907419b44f8a502f8b3bbbbc",
+    "entries": 40
+  },
+  "dependency_manifest": {
+    "file": "dependencies-before.json.gz",
+    "sha256": "6c15ee6cd83285b6721a2bbd6869f8f2c04d16d723f39cd519e14222625ae910",
+    "entries": 9813
+  },
+  "source_manifest_exclusions": [
+    "docs/validation/**"
+  ],
+  "dependency_manifest_excluded_directories": [
+    ".git",
+    ".dart_tool",
+    ".cache",
+    "build",
+    "node_modules"
+  ],
+  "commands": [
+    {
+      "label": "dart-version",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite",
+      "started_at_utc": "2026-11-16T15:55:33.343365+00:00",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "log": "dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    }
+  ]
+}

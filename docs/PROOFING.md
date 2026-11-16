@@ -10,6 +10,10 @@ English proofing is optional and requires packaged native or web assets.
 Mobile system spelling has an adapter with protocol tests; the experimental
 German model remains a separate evaluation.
 
+The latest tested source is **`8b93e866b4661d19f4bbad4e1069c0a609441ebb`**.
+Its [completed continuation report](validation/proofing-20261116/continuation-hardening/README.md)
+records the current behavior, full local results and preserved handoff evidence.
+
 This document retains the accepted roadmap and license rationale, and records
 the delivered behavior and its validation limits. Recovery reconciled the
 concurrent original branch through `976d05a` into the continuation at
@@ -28,7 +32,46 @@ The remote inventory covered **53 branches and 62 pull requests** at the
 distinguish preserved evidence from freshly executed checks. No GitHub Actions
 queue was required.
 
-## Continuation reconciliation after both handoffs
+## Current continuation after the 9d90518 handoff
+
+The latest integration retains **all 64 observed branch heads and all 68 PR
+heads** from the **16 November 2026, 15:39:54 UTC / 16:39:54 CET** inventory.
+It includes the complete `9d90518` handoff, shaped text rendering through
+`c9fc24c`, main through `91f82b8`, and the conditional/validation ODS writer
+through `ec94795`. The integration is saved at `e9bb38e`, followed by proofing
+improvements at `731d370` and two incoming test-only analysis fixes at `8b93e86`.
+All 228 files in the handoff's proofing validation directory remain unchanged.
+
+German proofing now keeps protected URL/email subjects out of agreement
+corrections, recognizes uppercase HTTP(S)/WWW prefixes, and distinguishes
+surrounding prose punctuation from balanced URL parentheses and IPv6 brackets.
+Swiss `STRAẞE` and `GRÜẞE` offer `STRASSE` and `GRÜSSE`; standard German keeps
+accepting the capital sharp-s forms. These are refinements to the existing
+word-list checker and seven writing rules.
+
+Invisible zero-width break opportunities and no-break controls now survive
+all wrapping paths while preserving source offsets. In the review dialog,
+space replacements have visible labels such as **Insert space** and
+**Use space**. The **Ignored checks** section restores words in their original
+language, rules, and ignored occurrences without changing document text,
+personal words, other language preferences or undo history.
+
+The final source passed full engine/editor/host strict analysis, **347 selected
+editor tests**, the separate IME regression, **295 layout/export/shaping tests**,
+**503 incoming ODS/Zotero/comment regressions**, and a release web build.
+German component checks passed **54 Dart tests**, the existing **10 compiled-JS
+checks**, and **20 targeted compiled-JS checks** for the new behavior.
+Harper contracts passed **8 provider tests and 3 native guards**, with the real
+native-library test explicitly skipped. All recorded inputs remained unchanged
+during the final runs. Groups overlap and are not a repository-wide total.
+
+The [current verification report](validation/proofing-20261116/continuation-hardening/README.md)
+retains commands, full logs, failed attempts, runtime/dependency receipts,
+compressed manifests and reproduction instructions. Dictionary/pattern data,
+Harper source, model evaluation inputs and package manifests match the handoff.
+No GitHub Actions endpoints were queried or waited for.
+
+## Earlier continuation reconciliation after both handoffs
 
 The completed continuation integrates the original branch through `c040389`,
 Zotero capabilities through `2480f09`, main through `90024d5`,
@@ -62,7 +105,7 @@ input ownership across route/controller changes. Body finding navigation
 clears object-editing targets before selecting source text. Non-mutating
 selecting mode retains keyboard navigation.
 
-The [current verification report](validation/proofing-20261116/integration-followup/README.md)
+The [earlier verification report](validation/proofing-20261116/integration-followup/README.md)
 links the complete receipts, commands, logs, compressed manifests, reproducible
 runtime setup and retained failed attempts. Test groups overlap and are not a
 repository-wide total. The fresh Harper results cover provider/lifecycle and
@@ -123,7 +166,7 @@ live model properties and Word serialization coverage.
 | P5 | Word proofing UI and lifecycle | Implemented | Whole-story traversal, manual/background checks, stale-result rejection, squiggles, F7 review, correction menu and guarded undoable corrections. |
 | P6 | Optional English Harper and mobile spelling adapters | Implemented with runtime limits | Actual Linux native and Node/Wasm integration exercised; browser startup blocked before loading a page; mobile adapter protocol tested without Android/iOS device acceptance. |
 | P7 | German model evaluation | Evaluated; not enabled | Exact artifacts and original notices retained; recorded probe matched 9/18 error cases and changed 1/12 valid controls. No application provider or automatic model download. |
-| P8 | Integration and documentation | Implemented; scoped integration validated | The integrated source passed all six local validation groups, including 189 selected editor tests, full-engine/editor/host analysis and a host web build. Component receipts retain the separate engine, backend and license checks and runtime limits. |
+| P8 | Integration and documentation | Implemented; scoped integration validated | The current integrated source passed strict engine/editor/host analysis, 347 selected editor tests, a separate IME regression and a release web build. Engine/component receipts retain the separate proofing, layout, incoming-history and backend contract checks and runtime limits. |
 
 ## Chosen components and data
 
@@ -154,6 +197,12 @@ soft hyphens stay in source and are invisible when not selected. Shared layout
 and source-presentation mapping preserve logical text, caret and selection
 ownership, bidi ranges, copying and PDF export. DOCX model settings and
 paragraph/run properties round-trip with the relevant source XML.
+
+U+200B ZERO WIDTH SPACE contributes an invisible soft-break opportunity.
+U+2060 WORD JOINER and U+FEFF zero-width no-break space suppress adjoining soft
+breaks, including emergency and contextually remeasured wrapping. An explicit
+zero-width opportunity takes precedence when both address the same boundary.
+The controls remain in source; they do not introduce visible glyphs.
 
 ### Spelling
 
@@ -275,6 +324,14 @@ findings. A secondary click at a source position exposes the relevant correction
 actions. Unavailable, unsupported, failed and incomplete checks remain distinct
 from a complete successful check with no findings.
 
+Invisible replacement buttons use labels such as **Insert space**, **Use
+space**, **Insert nonbreaking space** or **Insert tab**, while applying the
+exact offered characters. The **Ignored checks** section lists ignored words
+across languages and restores each in its original language, including a run
+language that differs from the document default. It also restores individual
+rules and can review ignored occurrences again. These proofing preferences
+remain available in read-only review and do not create document undo entries.
+
 ### Language and document coverage
 
 Effective language inherits from **run → paragraph → document → `de-DE`**.
@@ -375,6 +432,10 @@ Hosts can use `checkNow()`, `enabled`, `summary`, `findingsByParagraph`,
 `issuesAt(...)` and `refresh()` on the session, or replace the owned provider
 service with `configure(...)`. Supply the same vocabulary instance to a custom
 `GermanSpellingProvider` so personal words remain effective after configuration.
+`unignoreWord(word, language: ...)` restores one language-scoped ignored word
+and publishes the updated host vocabulary snapshot. `clearIgnoredOnce()`
+restores ignored occurrences without changing word or rule preferences;
+`restoreRule(...)` restores an ignored rule.
 
 ## Optional local backends
 
@@ -500,7 +561,7 @@ Check real behavior rather than mirroring implementation:
 ## Verification record
 
 The latest continuation results are in the
-[current verification report](validation/proofing-20261116/integration-followup/README.md)
+[current verification report](validation/proofing-20261116/continuation-hardening/README.md)
 and the current section above. The following tables preserve the earlier
 component runs against the exact sources identified in their receipts.
 

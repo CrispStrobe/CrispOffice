@@ -1,0 +1,14 @@
+{
+  "source_commit": "731d3708513d00fde9ac32dcb32bac1d39631214",
+  "interrupted_at_utc": "2026-11-16T15:56:33.211236+00:00",
+  "session_exit_code": 130,
+  "reason": "Root requested two test-only lint corrections before final integration validation. Interrupted runner to keep the final receipt tied to the corrected frozen source.",
+  "completed_commands": [
+    "dart-version"
+  ],
+  "started_but_not_completed": [
+    "hyphenation-layout-export-tests"
+  ],
+  "no_completed_test_group_claim": true,
+  "note": "Preflight source/runtime/full dependency manifests and incomplete event/log files retained exactly. Final run narrows dependency manifest to resolved Dart source/configuration and lock files; selected runtime hashes remain complete."
+}

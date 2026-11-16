@@ -1,0 +1,13 @@
+Capturing frozen source, resolved dependencies, and runtime.
+Running dart-version
+dart-version 0 {}
+Running hyphenation-layout-export-tests
+hyphenation-layout-export-tests 0 {'passed': 295, 'failed': 0, 'skipped': 0, 'hidden': 26, 'failed_tests': [], 'skipped_tests': [], 'done': {'success': True, 'type': 'done', 'time': 73883}, 'malformed_event_lines': []}
+Running incoming-ods-zotero-tests
+incoming-ods-zotero-tests 0 {'passed': 503, 'failed': 0, 'skipped': 0, 'hidden': 22, 'failed_tests': [], 'skipped_tests': [], 'done': {'success': True, 'type': 'done', 'time': 35134}, 'malformed_event_lines': []}
+Running harper-provider-tests
+harper-provider-tests 0 {'passed': 8, 'failed': 0, 'skipped': 0, 'hidden': 1, 'failed_tests': [], 'skipped_tests': [], 'done': {'success': True, 'type': 'done', 'time': 18846}, 'malformed_event_lines': []}
+Running harper-native-guards
+harper-native-guards 0 {'passed': 3, 'failed': 0, 'skipped': 1, 'hidden': 1, 'failed_tests': [], 'skipped_tests': ['real persistent native worker checks grammar and UTF16 source spans'], 'done': {'success': True, 'type': 'done', 'time': 11357}, 'malformed_event_lines': []}
+Checking final source, dependencies, and runtime.
+{"passed": true, "source_unchanged": true, "runtime_unchanged": true, "dependencies_unchanged": true, "head_unchanged": true, "source_manifest": {"file": "source-before.json.gz", "sha256": "acf28312d23beb18e10e7faa2930149b23b8a3c17a631610eb8794a9c7cfe3aa", "entries": 4291}, "dependency_manifest": {"file": "dependencies-before.json.gz", "sha256": "b220460b602953d1fe29fdb8514cdd4f9e35513420d4b9e7cefae727904caa35", "entries": 8097}}

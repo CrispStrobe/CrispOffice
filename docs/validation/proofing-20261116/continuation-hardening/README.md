@@ -3,9 +3,10 @@
 The source improvements are saved on `codex/proofing-20261116-resume` at
 `731d3708513d00fde9ac32dcb32bac1d39631214`. Two incoming test-only lint fixes
 are saved at the frozen source `8b93e866b4661d19f4bbad4e1069c0a609441ebb`.
-Final combined local qualification
-is in progress. No GitHub Actions, workflow, check-run or commit-status
-endpoints are required or queried.
+**Final combined local qualification passed**, completing on 16 November 2026
+at **16:08:26 UTC / 17:08:26 CET**. Subsequent commits contain documentation
+and evidence only. No GitHub Actions, workflow, check-run or commit-status
+endpoints were queried or waited for.
 
 ## Incoming histories
 
@@ -57,7 +58,38 @@ No dictionary, hyphenation pattern, dependency manifest, external corpus or
 model setting changed. The seven-rule German checker remains conservative;
 the experimental model remains disabled and evaluation-only.
 
-## Component evidence
+## Final combined verification
+
+All final engine/editor groups ran against the exact frozen source
+`8b93e866b4661d19f4bbad4e1069c0a609441ebb`, whose Git tree is
+`834585ef6d66d995a633d6adf8e45a05628fe039`.
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Full engine, editor library plus 31 selected test files, and example-host analysis | All passed with `--fatal-infos` | [Editor/host receipt](editor/receipt.json) |
+| Combined proofing, correction/history, navigation/input, shaping/rendering and Zotero editor suite | **347 passed**, no failures or skips | [Log](editor/editor-tests.log) |
+| Separate canvas IME reattachment regression | **1 passed** | [Log](editor/editor-ime-reattachment.log) |
+| Hyphenation, bidi, Word layout, DOCX/PDF and contextual shaping; 26 test files | **295 passed**, no failures or skips | [Engine report](engine/README.md) |
+| Incoming ODS reader/writer, Zotero and comment/proofing styles; 22 test files | **503 passed**, no failures or skips | [Engine receipt](engine/receipt.json) |
+| Harper provider contracts | **8 passed** | [Log](engine/harper-provider-tests.log) |
+| Harper native lifecycle/availability guards | **3 passed, 1 real-library test skipped** | [Log](engine/harper-native-guards.log) |
+| Example release web build | **Succeeded**; 117 files, 59,826,750 bytes | [Build log](editor/example-web-build.log) |
+
+The editor run retained unchanged hashes for **2,049 source inputs**, **16
+runtime/configuration inputs**, the workspace lock and package configuration.
+The engine run independently retained unchanged hashes for **4,291 repository
+inputs**, **8,097 resolved dependency source/configuration inputs** and **40
+runtime/configuration inputs**. Both used the real **108-package workspace**,
+and HEAD remained unchanged throughout each run. The complete compressed
+manifests, command logs, exact runners and resolved locks accompany the receipts.
+The [editor integrity receipt](editor/evidence-integrity.json) independently
+rechecks retained command logs, manifests and runner digests.
+
+The successful web build retains the existing nonfatal CupertinoIcons
+font-asset warning. It establishes compilation and recorded output files;
+it does not establish real-browser interaction, HTTP delivery or CSP behavior.
+
+## Focused component evidence
 
 | Check | Result | Evidence |
 | --- | --- | --- |
@@ -73,7 +105,8 @@ Groups overlap and must not be added into a repository-wide total. Component
 runs retain exact commands, complete logs and source hashes. The
 [source binding](component-source-binding.json) confirms the committed German
 inputs match the successful component receipt. The focused editor run is a
-development check; final combined source-bound evidence is recorded separately.
+development check; the final combined evidence above establishes the complete
+selected suite against the committed source.
 
 The [runtime setup archive](runtime-setup.tar.gz) retains the official Flutter
 3.47.8/Dart 3.13.7 SDK digest, pinned package archive checks, 108-package offline
@@ -90,7 +123,45 @@ The first combined analysis also found an unused local binding in the incoming
 ODS writer test and an unnecessary import in the incoming input-ownership test.
 The narrow fixes retain the cell initialization and all assertions. The first
 combined attempt was interrupted before completion; its logs are retained
-separately from the fresh run on `8b93e86`.
+separately from the fresh run on `8b93e86`: the
+[initial editor record](editor-initial-731d370/interrupted-attempt.json) and
+[initial engine record](engine/initial-attempt-731d370/interruption.json)
+make the interrupted boundary explicit. Neither is counted as a passing run.
+
+## Reproduction
+
+Keep the saved runners available outside a separate checkout of the exact
+tested source `8b93e866b4661d19f4bbad4e1069c0a609441ebb`; the report files were
+committed after that source. Resolve that checkout's actual Flutter workspace
+with the retained runtime and lock, updating absolute package paths for the
+chosen checkout. Set `PUB_CACHE` and `TMPDIR` to the prepared locations.
+From this report directory, use new output directories:
+
+```sh
+python3 editor/verify_editor_final.py \
+  --repo /path/to/checkout-at-8b93e86 \
+  --flutter /path/to/runtime/flutter/bin/flutter \
+  --dart /path/to/runtime/flutter/bin/cache/dart-sdk/bin/dart \
+  --expected-source 8b93e866b4661d19f4bbad4e1069c0a609441ebb \
+  --output /path/to/new-editor-validation
+
+python3 engine/run-validation.py \
+  --repo /path/to/checkout-at-8b93e86 \
+  --runtime /path/to/runtime \
+  --expected-source 8b93e866b4661d19f4bbad4e1069c0a609441ebb \
+  --output /path/to/new-engine-validation
+```
+
+The editor runner stops on a failed stage. Creating `OUTPUT/STOP` asks it to
+terminate only its active child process group and record the interrupted run.
+The [new JavaScript probe](german/new_behavior_web_probe.dart) and
+[its verifier](german/new_behavior_web_verify.py) retain the targeted web
+acceptance cases separately from the existing ten-check smoke probe.
+
+The [unchanged component comparison](unchanged-component-sources.json)
+confirms that dictionary data, hyphenation inputs, the Harper package,
+the model evaluation source and package manifests match the handoff. Their
+unchanged generators/binaries were not rebuilt merely to repeat prior results.
 
 ## Boundaries
 
