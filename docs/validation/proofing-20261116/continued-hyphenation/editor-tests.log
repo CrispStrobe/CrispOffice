@@ -1,0 +1,88 @@
+00:00 +0: loading /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart
+00:00 +0: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:00 +0: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: automatic break paints a hyphen and owns only its source boundary
+00:00 +1: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: selected soft hyphen paints visibly with its original UTF-16 span
+00:00 +2: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: selecting the next source span does not select an automatic hyphen
+00:00 +3: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: unselected soft hyphen remains invisible without shifting caret
+00:00 +4: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: surrogate pairs and combining marks next to a break stay complete
+00:00 +5: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: RTL discretionary breaks have no fabricated source unit
+00:00 +6: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: manual and automatic breaks keep distinct source offsets together
+00:00 +7: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: RTL explicit break hit testing follows the source direction
+00:00 +8: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:00 +9: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:00 +10: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: paints automatic break with source-aware hit testing
+00:00 +11: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: command pipeline undo/redo insert and delete
+00:00 +12: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: command pipeline undo/redo insert and delete
+00:00 +13: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: automatic hyphen keeps the preceding formatting at a run boundary
+00:00 +14: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: automatic hyphen keeps the preceding formatting at a run boundary
+00:00 +15: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: script runs stay in their own paint group and sit off the baseline
+00:00 +16: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: last non-BMP source character is painted as a complete scalar
+00:00 +17: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret selects a word and a paragraph
+00:00 +18: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: presentation labels retain adjacent invisible authored controls
+00:00 +19: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: flagged caret points with the writing direction
+00:00 +20: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: flagged caret points with the writing direction
+00:00 +21: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: justified caret and selection share the same word X
+00:00 +22: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: justified hitTest and range rects stay on word edges
+00:00 +23: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret X snaps to TextPainter glyph edges after fitLine
+00:00 +24: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret stays on an RTL line whose visual order is reversed
+00:00 +25: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret covers a contiguous range of table paragraphs
+00:00 +26: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: selection matrix and table resizer
+00:00 +27: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:00 +28: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:00 +29: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:00 +30: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:00 +31: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:02 +32: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: native small-capital refresh supports one undo step and DOCX reopen
+00:02 +33: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header edit paints a usable header band
+00:02 +34: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:02 +35: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas cursor follows handles, objects, and text
+00:02 +36: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: word canvas click hits the second table cell
+00:02 +37: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret coversIndex includes the selected range
+00:02 +38: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: right click inside a text selection keeps the range
+00:02 +39: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 1 for native ID 999 paints and hit-tests atomically
+00:02 +40: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 1 for native ID 999 paints and hit-tests atomically
+00:02 +41: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 1 for native ID 999 paints and hit-tests atomically
+00:02 +42: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: display 1 for native ID 999 paints and hit-tests atomically
+00:02 +43: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:02 +44: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:02 +45: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:02 +46: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:02 +47: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: earlier inserted notes renumber on insert, undo and redo without ID changes
+00:02 +48: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rtl sheet places column A on the right
+00:02 +49: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +50: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +51: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +52: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +53: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +54: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +55: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +56: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +57: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +58: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +59: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +60: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +61: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +62: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +63: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +64: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +65: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +66: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +67: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +68: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +69: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +70: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +71: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:02 +72: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +73: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +74: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +75: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +76: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +77: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +78: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +79: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +80: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +81: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +82: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +83: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:03 +84: /workspace/scratch/88f807a13fcd/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: limited and orphaned note labels identify source IDs explicitly
+00:03 +85: All tests passed!

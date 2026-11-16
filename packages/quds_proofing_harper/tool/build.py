@@ -37,8 +37,10 @@ def install(output: Path, kind: str, destination: Path) -> dict:
     if destination == (output / kind).resolve():
         raise ValueError("Choose a host installation directory separate from the build output")
     destination.mkdir(parents=True, exist_ok=True)
-    for path in (output / kind).iterdir():
-        if path.is_file():
+    receipt = json.loads((output / "build-receipt.json").read_text())
+    for name in receipt["files"]:
+        if name.startswith(kind + "/"):
+            path = output / name
             shutil.copyfile(path, destination / path.name)
     for name in ("manifest.json", "notices-and-mpl-sources.tar.gz"):
         target = destination / "licenses" / name

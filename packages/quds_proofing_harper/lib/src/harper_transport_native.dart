@@ -96,11 +96,13 @@ final class _NativeTransport implements HarperTransport {
 
   @override
   Future<String> check(String request) async {
-    if (_disposed)
+    if (_disposed) {
       throw const HarperUnavailableException('Harper worker is disposed.');
+    }
     final port = await (_opening ??= _open());
-    if (_disposed)
+    if (_disposed) {
       throw const HarperUnavailableException('Harper worker is disposed.');
+    }
     final id = ++_sequence;
     final result = Completer<String>();
     _pending[id] = result;
@@ -192,14 +194,16 @@ final class _Bindings {
   String check(String request) {
     final bytes = utf8.encode(request);
     final pointer = _alloc(bytes.length);
-    if (pointer == nullptr)
+    if (pointer == nullptr) {
       throw StateError('Harper request exceeds its size limit.');
+    }
     try {
       pointer.asTypedList(bytes.length).setAll(0, bytes);
       final output = _check(pointer, bytes.length);
       final length = _length();
-      if (output == nullptr || length < 1 || length > 16 * 1024 * 1024)
+      if (output == nullptr || length < 1 || length > 16 * 1024 * 1024) {
         throw StateError('Invalid Harper response buffer.');
+      }
       return utf8.decode(output.asTypedList(length));
     } finally {
       _free(pointer, bytes.length);

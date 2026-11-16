@@ -394,7 +394,11 @@ class CaretEngine {
     var x = 0.0;
     double? runStart;
     for (final ShapedGlyph g in line.glyphs) {
-      final bool inside = g.logicalIndex >= from && g.logicalIndex < to;
+      final end =
+          g.logicalIndex + (g.sourceLength ?? (g.codePoint > 0xffff ? 2 : 1));
+      final bool inside = g.isDiscretionaryHyphen && g.sourceLength == 0
+          ? from < g.logicalIndex && g.logicalIndex <= to
+          : g.logicalIndex < to && end > from;
       if (inside) {
         runStart ??= x;
       } else if (runStart != null) {
@@ -427,7 +431,10 @@ class CaretEngine {
     double? runStart;
     var runEnd = 0.0;
     for (final LaidOutGlyph g in line.glyphs) {
-      final bool inside = g.glyph.logicalIndex < to && g.logicalEnd > from;
+      final bool inside =
+          g.glyph.isDiscretionaryHyphen && g.glyph.sourceLength == 0
+          ? from < g.glyph.logicalIndex && g.glyph.logicalIndex <= to
+          : g.glyph.logicalIndex < to && g.logicalEnd > from;
       // Measure on the pen position: [LaidOutGlyph.x] includes the glyph's
       // paint offset (kerning, mark attachment), which would open gaps and
       // overlaps between neighbouring boxes.
@@ -472,7 +479,8 @@ class CaretEngine {
       return line.x;
     }
     for (final glyph in line.glyphs) {
-      if (glyph.displayText == null ||
+      if (glyph.glyph.isDiscretionaryHyphen ||
+          glyph.displayText == null ||
           logicalIndex < glyph.glyph.logicalIndex ||
           logicalIndex > glyph.logicalEnd) {
         continue;
@@ -598,7 +606,9 @@ class CaretEngine {
       return 0;
     }
     for (final glyph in line.glyphs) {
-      if (glyph.displayText == null) continue;
+      if (glyph.glyph.isDiscretionaryHyphen || glyph.displayText == null) {
+        continue;
+      }
       final group = line.glyphs.where(
         (g) =>
             g.displayText != null &&

@@ -37,9 +37,9 @@ List<LaidOutLine> _lines(
 ];
 
 String _paintText(LaidOutLine line, String source) =>
-    PaintRunText.paintSegments(line)
-        .map((run) => PaintRunText.runText(source, run))
-        .join();
+    PaintRunText.paintSegments(
+      line,
+    ).map((run) => PaintRunText.runText(source, run)).join();
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -115,6 +115,25 @@ void main() {
       closeTo(hyphen.x + hyphen.advance, 0.001),
     );
   });
+
+  test(
+    'selecting the next source span does not select an automatic hyphen',
+    () {
+      const source = 'Silben';
+      final line = LineBreaker.breakLines(
+        text: source,
+        maxWidth: 22,
+        widthOf: (cp) => cp == 0x2d ? 3 : 6,
+        justify: false,
+        hyphenationOffsets: [3],
+      ).first;
+      expect(CaretEngine.rangeRects(line, 0, 12, 3, 6), isEmpty);
+      expect(CaretEngine.rangeRects(line, 0, 12, 0, 3).single.width, 21);
+      final laid = _lines(source, 22, offsets: [3]).first;
+      PaintRunText.fitLine(laid, source);
+      expect(CaretEngine.rangeRectsOnLine(laid, 0, 12, 3, 6), isEmpty);
+    },
+  );
 
   test('unselected soft hyphen remains invisible without shifting caret', () {
     const source = 'Sil\u00adben';

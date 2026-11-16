@@ -89,10 +89,11 @@ final class _WebTransport implements HarperTransport {
 
   @override
   Future<String> check(String request) {
-    if (_disposed)
+    if (_disposed) {
       return Future.error(
         const HarperUnavailableException('Harper worker is disposed.'),
       );
+    }
     final worker = _worker ??= _start();
     final id = ++_sequence;
     final result = Completer<String>();

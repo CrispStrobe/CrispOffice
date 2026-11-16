@@ -1,0 +1,13 @@
+00:00 +0: loading test/harper_provider_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 19,603,068 input bytes (16,441,703 characters source) to 1,194,283 characters JavaScript in 8.31 seconds
+
+00:00 +0: converts scalar offsets after emoji and preserves segment identity
+00:00 +1: unsupported language never invokes English backend
+00:00 +2: unavailable backend differs from a successful clean result
+00:00 +3: rejects invalid offset, format and category instead of clean success
+00:00 +4: timeout disposes worker and future checks are unavailable
+00:00 +5: disposal rejects an already in-flight result
+00:00 +6: a stalled or failing cleanup cannot extend the deadline
+00:00 +7: All tests passed!

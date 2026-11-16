@@ -116,8 +116,9 @@ void main() {
         ),
       );
       await provider.dispose();
-      final results = await Future.wait(pending)
-          .timeout(const Duration(seconds: 1));
+      final results = await Future.wait(
+        pending,
+      ).timeout(const Duration(seconds: 1));
       expect(
         results.every((r) => r.status == OfficeProofingStatus.unavailable),
         isTrue,

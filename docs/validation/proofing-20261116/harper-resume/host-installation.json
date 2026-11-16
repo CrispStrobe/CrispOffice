@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "kind": "native",
+      "files_checked": [
+        "libquds_proofing_harper.so",
+        "licenses/manifest.json",
+        "licenses/notices-and-mpl-sources.tar.gz",
+        "build-receipt.json"
+      ],
+      "unlisted_stale_asset_excluded": true
+    },
+    {
+      "kind": "web",
+      "files_checked": [
+        "quds_proofing_harper_bg.wasm",
+        "quds_proofing_harper.js",
+        "harper_worker.mjs",
+        "licenses/manifest.json",
+        "licenses/notices-and-mpl-sources.tar.gz",
+        "build-receipt.json"
+      ],
+      "unlisted_stale_asset_excluded": true
+    }
+  ],
+  "build_receipt_sha256": "3f48bac02f9e9e9c91bfe5ac5cea31bfc5764cf0e56d6a69a71464f63c8a5dd1"
+}

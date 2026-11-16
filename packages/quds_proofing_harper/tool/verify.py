@@ -104,6 +104,9 @@ def main() -> int:
         ("dart-native-tests", [args.dart, "test", "--reporter", "expanded"], PACKAGE),
         ("dart-javascript-tests", [args.dart, "test", "--platform", "node", "--reporter", "expanded", "test/harper_provider_test.dart"], PACKAGE),
         ("wasm-worker", [args.node, "tool/smoke_worker.mjs", str(build_output / "web" / "harper_worker.mjs")], PACKAGE),
+        ("compile-web-transport", [args.dart, "compile", "js", "tool/web_transport_smoke.dart", "-o", str(build_output / "web_transport_smoke.js")], PACKAGE),
+        ("web-transport", [args.node, "tool/run_web_transport_smoke.mjs", str(build_output / "web_transport_smoke.js"), str(build_output / "web" / "harper_worker.mjs")], PACKAGE),
+        ("license-policy-tests", [sys.executable, "-m", "unittest", "discover", "-s", "tool", "-p", "test_license_bundle.py", "-v"], PACKAGE),
     ]
     records = []
     for name, command, cwd in commands:

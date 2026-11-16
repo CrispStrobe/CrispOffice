@@ -445,16 +445,18 @@ abstract class OfficeController extends ChangeNotifier {
 /// Word document controller: IME, caret, layout, load/save.
 class WordEditorController extends OfficeController {
   WordProofingSession? _proofing;
+  final OfficeProofingVocabulary? _initialProofingVocabulary;
+  final OfficeProofingService? _initialProofingService;
 
   /// Offline German checkers are available immediately. Checking is opt-in;
   /// hosts can configure additional local providers through the session.
   WordProofingSession get proofing {
-    if (_proofing == null) {
-      _proofing = WordProofingSession(
-        document: () => document,
-        revision: () => contentRevision,
-      )..addListener(_onProofingChanged);
-    }
+    _proofing ??= WordProofingSession(
+      document: () => document,
+      revision: () => contentRevision,
+      vocabulary: _initialProofingVocabulary,
+      service: _initialProofingService,
+    )..addListener(_onProofingChanged);
     return _proofing!;
   }
 
@@ -480,8 +482,15 @@ class WordEditorController extends OfficeController {
   }
 
   /// WordEditorController API.
-  WordEditorController({WmlDocument? document, super.config, this.layoutEngine})
-    : document = document ?? WmlDocument.empty() {
+  WordEditorController({
+    WmlDocument? document,
+    super.config,
+    this.layoutEngine,
+    OfficeProofingVocabulary? proofingVocabulary,
+    OfficeProofingService? proofingService,
+  }) : document = document ?? WmlDocument.empty(),
+       _initialProofingVocabulary = proofingVocabulary,
+       _initialProofingService = proofingService {
     _requestedMode = _config.mode;
     _config = _effectiveConfig(_config);
     relayout();
@@ -498,10 +507,14 @@ class WordEditorController extends OfficeController {
     String? password,
     OfficeSurfaceConfig? config,
     WordLayoutEngine? layoutEngine,
+    OfficeProofingVocabulary? proofingVocabulary,
+    OfficeProofingService? proofingService,
   }) {
     final WordEditorController controller = WordEditorController(
       config: config,
       layoutEngine: layoutEngine,
+      proofingVocabulary: proofingVocabulary,
+      proofingService: proofingService,
     );
     controller.loadBytes(bytes, password: password);
     return controller;
@@ -7736,10 +7749,12 @@ class WordEditorController extends OfficeController {
     final language = normalizeProofingLanguage(value);
     if (language.isEmpty || document.proofingLanguage == language) return;
     final before = document.proofingLanguage;
-    commands.commit(_CallbackCommand(
-      executeFn: () => document.proofingLanguage = language,
-      undoFn: () => document.proofingLanguage = before,
-    ));
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () => document.proofingLanguage = language,
+        undoFn: () => document.proofingLanguage = before,
+      ),
+    );
     relayout();
     notifyListeners();
   }
@@ -7752,24 +7767,30 @@ class WordEditorController extends OfficeController {
     final before = document.autoHyphenation;
     final previousLanguage = document.proofingLanguage;
     final language = proofing.language;
-    commands.commit(_CallbackCommand(
-      executeFn: () {
-        document.autoHyphenation = enabled;
-        if (enabled && document.proofingLanguage == null) document.proofingLanguage = language;
-      },
-      undoFn: () {
-        document.autoHyphenation = before;
-        document.proofingLanguage = previousLanguage;
-      },
-    ));
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () {
+          document.autoHyphenation = enabled;
+          if (enabled && document.proofingLanguage == null) {
+            document.proofingLanguage = language;
+          }
+        },
+        undoFn: () {
+          document.autoHyphenation = before;
+          document.proofingLanguage = previousLanguage;
+        },
+      ),
+    );
     relayout();
     notifyListeners();
   }
 
   bool get canApplyProofingSuggestions =>
-      !isDisposed && config.allowsMutation &&
+      !isDisposed &&
+      config.allowsMutation &&
       !(document.restrictEditing &&
-          (document.restrictMode != WmlRestrictMode.none || document.protectionFormattingRestricted)) &&
+          (document.restrictMode != WmlRestrictMode.none ||
+              document.protectionFormattingRestricted)) &&
       !(input.composing.isValid && !input.composing.isCollapsed);
 
   bool canApplyProofingIssue(WordProofingIssue issue) =>
@@ -7781,7 +7802,9 @@ class WordEditorController extends OfficeController {
     if (!canApplyProofingIssue(issue) ||
         !issue.finding.replacements.contains(replacement) ||
         replacement == issue.finding.originalText ||
-        RegExp(r'[\r\n\u2028\u2029]').hasMatch(replacement)) return false;
+        RegExp(r'[\r\n\u2028\u2029]').hasMatch(replacement)) {
+      return false;
+    }
     commitNoteEdits();
     // Committing a changed note draft changes the revision, so reacquire a
     // finding rather than letting the correction overwrite that draft.
@@ -7802,48 +7825,79 @@ class WordEditorController extends OfficeController {
         ..addAll(_cloneInlinesFrom(before));
       revisions.restore(document);
     }
+
     // Validate the exact operation on a clone before opening a transaction.
     final preview = WmlClone.paragraph(paragraph);
     WmlRunEdit.replaceRange(preview, tracked ? end : start, end, replacement);
-    commands.commit(_CallbackCommand(
-      executeFn: () {
-        if (after != null) {
-          paragraph.inlines
-            ..clear()
-            ..addAll(_cloneInlinesFrom(after!));
-          afterRevisions!.restore(document);
-          return;
-        }
-        restoreBefore();
-        try {
-          if (tracked) {
-            // Recording deletion first keeps replacement insertion at the
-            // original end outside the deleted span during range rebasing.
-            if (start != end) WordRevisions.record(document,
-              kind: WmlRevisionKind.delete, paragraph: paragraph,
-              paragraphIndex: document.paragraphs.toList().indexOf(paragraph),
-              start: start, end: end, text: finding.originalText);
-            WordRevisions.rebaseEdit(document, paragraph,
-                start: end, end: end, insertedLength: replacement.length);
-            WmlRunEdit.replaceRange(paragraph, end, end, replacement);
-            if (replacement.isNotEmpty) WordRevisions.record(document,
-              kind: WmlRevisionKind.insert, paragraph: paragraph,
-              paragraphIndex: document.paragraphs.toList().indexOf(paragraph),
-              start: end, end: end + replacement.length, text: replacement);
-          } else {
-            WordRevisions.rebaseEdit(document, paragraph,
-                start: start, end: end, insertedLength: replacement.length);
-            WmlRunEdit.replaceRange(paragraph, start, end, replacement);
+    commands.commit(
+      _CallbackCommand(
+        executeFn: () {
+          if (after != null) {
+            paragraph.inlines
+              ..clear()
+              ..addAll(_cloneInlinesFrom(after!));
+            afterRevisions!.restore(document);
+            return;
           }
-          after = _cloneInlines(paragraph);
-          afterRevisions = WordRevisions.capture(document);
-        } on Object {
           restoreBefore();
-          rethrow;
-        }
-      },
-      undoFn: restoreBefore,
-    ));
+          try {
+            if (tracked) {
+              // Recording deletion first keeps replacement insertion at the
+              // original end outside the deleted span during range rebasing.
+              if (start != end) {
+                WordRevisions.record(
+                  document,
+                  kind: WmlRevisionKind.delete,
+                  paragraph: paragraph,
+                  paragraphIndex: document.paragraphs.toList().indexOf(
+                    paragraph,
+                  ),
+                  start: start,
+                  end: end,
+                  text: finding.originalText,
+                );
+              }
+              WordRevisions.rebaseEdit(
+                document,
+                paragraph,
+                start: end,
+                end: end,
+                insertedLength: replacement.length,
+              );
+              WmlRunEdit.replaceRange(paragraph, end, end, replacement);
+              if (replacement.isNotEmpty) {
+                WordRevisions.record(
+                  document,
+                  kind: WmlRevisionKind.insert,
+                  paragraph: paragraph,
+                  paragraphIndex: document.paragraphs.toList().indexOf(
+                    paragraph,
+                  ),
+                  start: end,
+                  end: end + replacement.length,
+                  text: replacement,
+                );
+              }
+            } else {
+              WordRevisions.rebaseEdit(
+                document,
+                paragraph,
+                start: start,
+                end: end,
+                insertedLength: replacement.length,
+              );
+              WmlRunEdit.replaceRange(paragraph, start, end, replacement);
+            }
+            after = _cloneInlines(paragraph);
+            afterRevisions = WordRevisions.capture(document);
+          } on Object {
+            restoreBefore();
+            rethrow;
+          }
+        },
+        undoFn: restoreBefore,
+      ),
+    );
     if (identical(_activeParagraph, paragraph)) {
       caret.logicalIndex = (tracked ? end : start) + replacement.length;
       caret.collapseSelection();
@@ -7872,13 +7926,19 @@ class WordEditorController extends OfficeController {
         return true;
       }
     }
-    for (var sectionIndex = 0; sectionIndex < document.sections.length; sectionIndex++) {
+    for (
+      var sectionIndex = 0;
+      sectionIndex < document.sections.length;
+      sectionIndex++
+    ) {
       final section = document.sections[sectionIndex];
       for (final footer in [false, true]) {
         final paragraphs = footer ? section.footer : section.header;
         final index = paragraphs.indexOf(paragraph);
         if (index < 0) continue;
-        final page = documentLaidOut.pages.indexWhere((page) => page.sectionIndex == sectionIndex);
+        final page = documentLaidOut.pages.indexWhere(
+          (page) => page.sectionIndex == sectionIndex,
+        );
         beginHeaderFooterEdit(page < 0 ? 0 : page, footer: footer);
         headerFooterCaret
           ..paragraphIndex = index
@@ -7898,16 +7958,23 @@ class WordEditorController extends OfficeController {
       ..logicalIndex = issue.finding.end
       ..selectionAnchorParagraph = index
       ..selectionAnchor = issue.finding.start;
-    final page = documentLaidOut.pages.indexWhere((page) =>
-        page.lines.any((line) => identical(line.sourceParagraph, paragraph)));
+    final page = documentLaidOut.pages.indexWhere(
+      (page) =>
+          page.lines.any((line) => identical(line.sourceParagraph, paragraph)),
+    );
     if (page >= 0) _revealPage(page);
     notifyListeners();
     return true;
   }
 
-  List<WordProofingIssue> get proofingIssuesAtCaret => proofing.summary.issues.where((issue) =>
-      identical(issue.paragraph, _activeParagraph) &&
-      caret.logicalIndex >= issue.finding.start && caret.logicalIndex <= issue.finding.end).toList();
+  List<WordProofingIssue> get proofingIssuesAtCaret => proofing.summary.issues
+      .where(
+        (issue) =>
+            identical(issue.paragraph, _activeParagraph) &&
+            caret.logicalIndex >= issue.finding.start &&
+            caret.logicalIndex <= issue.finding.end,
+      )
+      .toList();
 
   /// Legacy caller-supplied spelling callback. New hosts should use
   /// [checkDocumentProofing] to distinguish unavailable and clean results.

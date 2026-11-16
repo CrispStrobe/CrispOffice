@@ -1,0 +1,8 @@
+test_rejects_forbidden_unknown_and_malformed_terms (test_license_bundle.LicensePolicyTest.test_rejects_forbidden_unknown_and_malformed_terms) ... ok
+test_rejects_stale_fallback_notice (test_license_bundle.LicensePolicyTest.test_rejects_stale_fallback_notice) ... ok
+test_selects_permitted_alternative (test_license_bundle.LicensePolicyTest.test_selects_permitted_alternative) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK

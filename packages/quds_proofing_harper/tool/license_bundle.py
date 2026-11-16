@@ -36,6 +36,21 @@ def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def fallback_notices(name: str) -> list[dict]:
+    prefix = "HARPER" if name.startswith("harper-") else "BURN" if name.startswith("burn-") else "CUBECL" if name == "cubecl-quant" else "EMBASSY"
+    rows = json.loads((PACKAGE / "licenses" / "upstream" / "fallback-notices.json").read_text())
+    return [item for item in rows if item["file"].startswith(prefix + "-")]
+
+
+def validate_fallback_revision(name: str, source: Path) -> None:
+    """A lockfile update must not silently reuse a different revision's notice."""
+    vcs = json.loads((source / ".cargo_vcs_info.json").read_text())
+    revision = vcs.get("git", {}).get("sha1")
+    rows = fallback_notices(name)
+    if not revision or not rows or any(f"/{revision}/" not in item["url"] for item in rows):
+        raise ValueError(f"Review original notices for changed source revision: {name}")
+
+
 def selection(expression: str) -> list[str]:
     """SPDX AND/OR/parentheses parser; never mistakes OR for an obligation to both."""
     if not expression:
@@ -144,12 +159,8 @@ def main() -> None:
                 archive_files[destination] = content
                 notices.append({"file": destination, "sha256": sha256(content)})
         if not notices and name in {"harper-core", "harper-brill", "harper-pos-utils", "burn-ir", "burn-nn", "burn-optim", "cubecl-quant", "embassy-futures"}:
-            prefix = "HARPER" if name.startswith("harper-") else "BURN" if name.startswith("burn-") else "CUBECL" if name == "cubecl-quant" else "EMBASSY"
-            fallback_rows = json.loads((PACKAGE / "licenses" / "upstream" / "fallback-notices.json").read_text())
-            for item in fallback_rows:
-                if not item["file"].startswith(prefix + "-"): continue
-                if not revision or f"/{revision}/" not in item["url"]:
-                    raise ValueError(f"Fallback notice does not match the crate source revision: {name}-{version}")
+            validate_fallback_revision(name, source)
+            for item in fallback_notices(name):
                 content = (PACKAGE / "licenses" / "upstream" / item["file"]).read_bytes()
                 if sha256(content) != item["sha256"]: raise ValueError("Changed upstream notice")
                 destination = f"notices/{name}-{version}/{item['file']}"

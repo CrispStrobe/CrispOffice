@@ -70,8 +70,9 @@ void main() {
 
   test('unsupported language never invokes English backend', () async {
     final transport = _Transport((_) async => response());
-    final result = await HarperProofingProvider(transport: transport)
-        .check(request(language: 'de-DE'));
+    final result = await HarperProofingProvider(
+      transport: transport,
+    ).check(request(language: 'de-DE'));
     expect(result.status, OfficeProofingStatus.unsupported);
     expect(transport.calls, 0);
   });

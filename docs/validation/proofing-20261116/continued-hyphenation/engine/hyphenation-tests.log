@@ -1,0 +1,238 @@
+00:00 +0: loading test/proofing_hyphenation_test.dart
+00:00 +0: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:00 +1: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +2: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +3: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +4: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +5: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +6: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +7: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +8: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +9: test/proofing_hyphenation_test.dart: source-preserving discretionary layout prepared variable-width layout matches fixed lines and exact consumption
+00:00 +10: test/proofing_hyphenation_test.dart: source-preserving discretionary layout prepared variable-width layout matches fixed lines and exact consumption
+00:00 +11: test/proofing_hyphenation_test.dart: source-preserving discretionary layout prepared variable-width layout matches fixed lines and exact consumption
+00:00 +12: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0: First
+
+Second
+
+Third
+
+00:00 +13: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +14: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +15: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +16: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +17: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +18: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +19: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +20: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +21: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +22: test/bidi_test.dart: UAX #9 detects RTL paragraph from Arabic
+00:00 +23: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:00 +24: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:00 +25: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:00 +26: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:00 +27: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:00 +28: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:00 +29: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:00 +30: test/bidi_test.dart: Arabic shaping builds obligatory Lam-Alef ligatures
+00:00 +31: test/proofing_hyphenation_test.dart: Word language and hyphenation settings generated header and footer labels expose no authored offsets
+00:00 +32: test/proofing_hyphenation_test.dart: Word language and hyphenation settings generated header and footer labels expose no authored offsets
+00:00 +33: test/proofing_hyphenation_test.dart: Word language and hyphenation settings generated header and footer labels expose no authored offsets
+00:00 +34: test/bidi_test.dart: Grapheme clusters groups Arabic letter plus tashkeel
+00:00 +35: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +36: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +37: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +38: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +39: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +40: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +41: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +42: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +43: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +44: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +45: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +46: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +47: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +48: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:00 +49: test/word_layout_test.dart: section columns fill left then right on the same page
+00:00 +50: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +51: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +52: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +53: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +54: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +55: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +56: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +57: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +58: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +59: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +60: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +61: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:00 +62: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:00 +63: test/proofing_hyphenation_test.dart: Word language and hyphenation settings language edits preserve independent native language and marker metadata
+00:00 +64: test/word_styles_layout_test.dart: Word body layout paragraph indents are subtracted once
+00:00 +65: test/proofing_hyphenation_test.dart: Word language and hyphenation settings proofing source identity and offsets survive note display labels
+00:00 +66: test/word_styles_layout_test.dart: Word body layout a host measure drives the line breaks
+00:00 +67: test/proofing_hyphenation_test.dart: Word language and hyphenation settings document defaults, paragraph and run overrides survive two DOCX cycles
+00:00 +68: test/word_styles_layout_test.dart: Word body layout table cells keep the wider em so text stays inside the border
+00:00 +69: test/proofing_hyphenation_test.dart: Word language and hyphenation settings changing document default stays live for inherited runs
+00:00 +70: test/word_styles_layout_test.dart: Word styles numbering defined in a paragraph style gives a list marker
+00:00 +71: test/word_styles_layout_test.dart: Word styles numbering defined in a paragraph style gives a list marker
+00:00 +72: test/word_styles_layout_test.dart: Word styles numbering defined in a paragraph style gives a list marker
+00:00 +73: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +74: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +75: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +76: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +77: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +78: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +79: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +80: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +81: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +82: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:00 +83: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:01 +84: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:01 +85: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:01 +86: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:01 +87: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +88: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +89: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +90: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +91: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +92: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +93: test/word_referenced_styles_and_breaks_test.dart: referenced built-ins and ancestors join an imported sparse style catalog
+00:01 +94: test/styleless_import_fidelity_test.dart: deliberate formatting writes without introducing unrelated defaults
+00:01 +95: test/word_referenced_styles_and_breaks_test.dart: line feeds become Word breaks and imported break types survive three saves
+00:01 +96: test/word_referenced_styles_and_breaks_test.dart: line feeds become Word breaks and imported break types survive three saves
+00:01 +97: test/word_referenced_styles_and_breaks_test.dart: line feeds become Word breaks and imported break types survive three saves
+00:01 +98: test/word_referenced_styles_and_breaks_test.dart: line feeds become Word breaks and imported break types survive three saves
+00:01 +99: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: word/document.xml
+00:01 +100: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: word/document.xml
+00:01 +101: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: word/document.xml
+00:01 +102: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: word/document.xml
+00:01 +103: test/word_preserved_header_test.dart: opaque header fallback discards revisions from its abandoned model
+00:01 +104: test/word_preserved_header_test.dart: opaque header fallback discards revisions from its abandoned model
+00:01 +105: test/word_preserved_header_test.dart: opaque header fallback discards revisions from its abandoned model
+00:01 +106: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:01 +107: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:01 +108: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:01 +109: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:01 +110: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:01 +111: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:01 +112: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:01 +113: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:01 +114: test/word_note_numbering_test.dart: native endnote ID zero remains a link, not a reserved display number
+00:01 +115: test/word_package_preservation_test.dart: dotm retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml
+00:01 +116: test/word_note_numbering_test.dart: tall table slices use full-document labels without duplicating endnote tables
+00:01 +117: test/word_note_numbering_test.dart: tall table slices use full-document labels without duplicating endnote tables
+00:01 +118: test/word_package_preservation_test.dart: dotx retains native main part and opaque bytes over three edits: content/manuscript.xml
+00:01 +119: test/word_note_numbering_test.dart: RTL paragraphs keep a multi-digit note label in reading order
+00:01 +120: test/word_package_preservation_test.dart: dotx retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml
+00:01 +121: test/word_note_numbering_test.dart: decimal format and non-one start follow native section settings
+00:01 +122: test/word_note_numbering_test.dart: decimal format and non-one start follow native section settings
+00:01 +123: test/word_note_numbering_test.dart: decimal format and non-one start follow native section settings
+00:01 +124: test/word_note_numbering_test.dart: decimal format and non-one start follow native section settings
+00:01 +125: test/word_package_preservation_test.dart: rejects missing loss before a host replaces its original
+00:01 +126: test/word_note_numbering_test.dart: decimalZero format and non-one start follow native section settings
+00:01 +127: test/word_note_numbering_test.dart: decimalZero format and non-one start follow native section settings
+00:01 +128: test/word_note_numbering_test.dart: decimalZero format and non-one start follow native section settings
+00:01 +129: test/word_note_numbering_test.dart: decimalZero format and non-one start follow native section settings
+00:01 +130: test/word_note_numbering_test.dart: decimalZero format and non-one start follow native section settings
+00:01 +131: test/word_package_preservation_test.dart: package signatures are rejected before editing
+00:01 +132: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +133: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +134: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +135: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +136: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +137: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +138: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +139: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +140: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +141: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +142: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +143: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +144: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +145: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +146: test/word_note_numbering_test.dart: upperLetter format and non-one start follow native section settings
+00:01 +147: test/word_note_numbering_test.dart: lowerLetter format and non-one start follow native section settings
+00:02 +148: test/word_note_numbering_test.dart: upperRoman format and non-one start follow native section settings
+00:02 +149: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +150: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +151: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +152: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +153: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +154: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +155: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +156: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +157: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +158: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +159: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +160: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +161: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +162: test/word_note_script_break_test.dart: scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes
+00:02 +163: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:02 +164: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:02 +165: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +166: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +167: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +168: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +169: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +170: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +171: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +172: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +173: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +174: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +175: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:02 +176: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:02 +177: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:02 +178: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:02 +179: test/word_table_tall_frame_layout_test.dart: reopened tall-row margin frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +180: test/word_table_tall_frame_layout_test.dart: reopened tall-row margin frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:02 +181: test/word_small_caps_test.dart: native small-capital properties and explicit resets survive repeated saves
+00:02 +182: test/word_small_caps_test.dart: native small-capital properties and explicit resets survive repeated saves
+00:02 +183: test/word_small_caps_test.dart: native small-capital properties and explicit resets survive repeated saves
+00:02 +184: test/word_small_caps_test.dart: native small-capital properties and explicit resets survive repeated saves
+00:02 +185: test/word_small_caps_test.dart: native small-capital properties and explicit resets survive repeated saves
+00:02 +186: test/word_small_caps_test.dart: native small-capital properties and explicit resets survive repeated saves
+00:02 +187: test/word_small_caps_test.dart: native small-capital properties and explicit resets survive repeated saves
+00:02 +188: test/word_small_caps_test.dart: native style inheritance and direct off remain sparse after edits
+00:02 +189: test/word_small_caps_test.dart: run copying, split and coalescing keep small-capital boundaries
+00:02 +190: test/word_small_caps_test.dart: mixed native citation retains authored letters, metadata and protection
+00:02 +191: test/word_small_caps_test.dart: synthetic capitals use uppercase widths before line breaking
+00:03 +192: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +193: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +194: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +195: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +196: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +197: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +198: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +199: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +200: test/office_pdf_export_test.dart: Word PDF keeps pages, headers, tables, lists, and pictures
+00:03 +201: test/word_zotero_bibliography_layout_test.dart: entry paragraphs, soft breaks and twip layout survive repeated DOCX saves
+00:03 +202: test/word_zotero_bibliography_layout_test.dart: entry paragraphs, soft breaks and twip layout survive repeated DOCX saves
+00:03 +203: test/word_zotero_bibliography_layout_test.dart: entry paragraphs, soft breaks and twip layout survive repeated DOCX saves
+00:03 +204: test/word_zotero_bibliography_layout_test.dart: entry paragraphs, soft breaks and twip layout survive repeated DOCX saves
+00:03 +205: test/word_zotero_bibliography_layout_test.dart: entry paragraphs, soft breaks and twip layout survive repeated DOCX saves
+00:03 +206: test/office_pdf_export_test.dart: PowerPoint PDF emits one page per slide including rotation
+00:03 +207: test/office_pdf_export_test.dart: PowerPoint PDF emits one page per slide including rotation
+00:03 +208: test/word_zotero_bibliography_layout_test.dart: style-only change is staged and resets old indent, spacing and tabs
+00:03 +209: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +210: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +211: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +212: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +213: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +214: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +215: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +216: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +217: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +218: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +219: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +220: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +221: test/office_pdf_export_test.dart: transparent PNG pictures emit a DeviceGray SMask
+00:03 +222: test/office_pdf_export_test.dart: keeps a distinct image XObject for each picture
+00:03 +223: test/office_pdf_export_test.dart: Excel PDF uses Helvetica for Latin when the CID face lacks it
+00:03 +224: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:03 +225: test/office_pdf_export_test.dart: Excel PDF honors column widths, merges, and print area
+00:03 +226: test/office_pdf_export_test.dart: OfficePrint forwards sheet and slide ranges
+00:03 +227: test/office_pdf_export_test.dart: PdfReportBuilder remaps subset glyph ids
+00:03 +228: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:03 +229: test/office_pdf_export_test.dart: PPT PDF strokes shapes and emits URI link annots
+00:03 +230: test/office_pdf_export_test.dart: chart serializers honor ChartDisplay.rtl
+00:03 +231: All tests passed!

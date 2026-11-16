@@ -1,0 +1,35 @@
+{
+  "base_commit": "4d395da7c1253dbebfce4a5065fdfd257939ce1c",
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": "aa90f9d2f3d3b2402dc4b35c4bc4586faba95f78663784afe65514c2e181c28e",
+    "packages/quds_office_editor/lib/src/editor_word/caret_engine.dart": "d29342278095f24bf64f347f4b35214dbc0ecc91335b13780b90e30ea9f5d74d",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "e06bb852603b0f36298ce788d388f4bef585a8bb2be8f86e0da84e22c6faccc1",
+    "packages/quds_office_editor/test/word_hyphenation_paint_test.dart": "b5288092b5444e4b91b72f659dd145c4a878db33cc72627f0397ed5289129ee5",
+    "packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart": "df03ef54434ff74920541e53a5f33982e7ad9263eda04e8b93cf739ceced005e",
+    "packages/quds_office_editor/test/editor_test.dart": "97c2f3a9bb6ca21d863c13cb4f373a2ed08b64a435680db1727a66b2fce4fdac",
+    "packages/quds_office_editor/test/word_small_caps_test.dart": "b3c0c63278163ae391f5712eba74b187592a36aeab4487c97765e1b75a41cc39",
+    "packages/quds_office_editor/test/word_note_numbering_test.dart": "e6219eec357284406dabd1ea47955463179e18fe17b1e8aa5ebcf185fa624bdd"
+  },
+  "checked_utc": "2026-11-16T13:21:01.776251+00:00",
+  "flutter_version": "3.47.8",
+  "dart_version": "3.13.7",
+  "checks": [
+    {
+      "command": "flutter test --no-pub --reporter expanded test/word_hyphenation_paint_test.dart test/word_hyphenation_source_presentation_test.dart test/editor_test.dart test/word_small_caps_test.dart test/word_note_numbering_test.dart",
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "passed_tests": 85,
+      "log": "editor-tests.log",
+      "log_sha256": "5d644bf4dae6d442be2e196040a85d67152669b3b85bd639e1163eb915af3f32"
+    },
+    {
+      "command": "dart analyze --fatal-infos lib/src/editor_word/paint_run_text.dart lib/src/editor_word/caret_engine.dart test/word_hyphenation_paint_test.dart test/word_hyphenation_source_presentation_test.dart",
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "log": "editor-analysis.log",
+      "log_sha256": "a625940051ee78ccd9eaf1dd16d26190f46390a529141502838546b53f583532"
+    }
+  ],
+  "github_actions": "Not used or waited for.",
+  "reconciliation": "Combined continuation source ownership/RTL fixes with incoming original proofing branch display and header/footer source mappings. Preserved incoming rendering tests in word_hyphenation_source_presentation_test.dart."
+}

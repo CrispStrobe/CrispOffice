@@ -159,6 +159,51 @@ void main() {
     );
   });
   group('Word language and hyphenation settings', () {
+    test('header tab overlays map repeated text to exact authored offsets', () {
+      const text = '  Wieder\t  Wieder\tEnde\tText  ';
+      final header = WmlParagraph(inlines: [WmlRun(text: text)]);
+      final doc = WmlDocument.empty(text: 'Body');
+      doc.sections.single.header.add(header);
+      final overlays = WordLayoutEngine(
+        font: null,
+      ).layout(doc).pages.single.header;
+      expect(overlays.map((line) => line.overlayText), [
+        'Wieder',
+        'Wieder',
+        'Ende Text',
+      ]);
+      expect(
+        overlays.every((line) => identical(line.sourceParagraph, header)),
+        isTrue,
+      );
+      expect(overlays.every((line) => line.sourceText == text), isTrue);
+      expect(overlays[0].proofingOffsetAt(0), text.indexOf('Wieder'));
+      expect(overlays[1].proofingOffsetAt(0), text.lastIndexOf('Wieder'));
+      expect(overlays[2].proofingOffsetAt(0), text.indexOf('Ende'));
+      expect(overlays[2].proofingOffsetAt(4), isNull);
+      expect(overlays[2].proofingOffsetAt(5), text.indexOf('Text'));
+      expect(overlays[2].proofingOffsetAt(9), text.indexOf('Text') + 4);
+    });
+
+    test('generated header and footer labels expose no authored offsets', () {
+      final header = WmlParagraph(inlines: [WmlRun(text: 'Title\t1')]);
+      final footer = WmlParagraph(
+        properties: WmlParagraphProps(pageNumberField: true),
+        inlines: [WmlRun(text: '1')],
+      );
+      final doc = WmlDocument.empty(text: 'Body');
+      doc.sections.single
+        ..header.add(header)
+        ..footer.add(footer);
+      final page = WordLayoutEngine(font: null).layout(doc).pages.single;
+      expect(page.header.first.proofingOffsetAt(0), 0);
+      for (final line in [page.header.last, page.footer.single]) {
+        expect(line.overlayText, '1');
+        expect(line.proofingOffsetAt(0), isNull);
+        expect(line.proofingOffsetAt(1), isNull);
+      }
+    });
+
     test(
       'native Word discretionary and nonbreaking hyphens survive import/save',
       () {

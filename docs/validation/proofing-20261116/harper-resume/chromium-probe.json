@@ -1,0 +1,8 @@
+{
+  "status": "blocked",
+  "exit_code": 134,
+  "stage": "Browser startup, before any page or proofing code ran",
+  "reason": "Chromium process singleton requires a socket operation rejected by this environment.",
+  "log": "chromium-probe.log",
+  "log_sha256": "9aa9bdc1cc9d162a4922c0ce72988bd53147e567f2cd7ebd15fab6b60db4f1a2"
+}

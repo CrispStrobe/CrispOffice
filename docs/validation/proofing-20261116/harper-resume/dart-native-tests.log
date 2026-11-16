@@ -1,0 +1,12 @@
+00:00 +0: loading test/harper_native_test.dart
+00:00 +0: test/harper_native_test.dart: missing native library is unavailable without unhandled isolate errors
+00:00 +1: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:00 +2: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:00 +3: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:00 +4: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:00 +5: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:00 +6: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:00 +7: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:00 +8: test/harper_native_test.dart: real persistent native worker checks grammar and UTF16 source spans
+00:01 +9: test/harper_native_test.dart: disposal while the isolate starts settles outstanding checks
+00:01 +10: All tests passed!

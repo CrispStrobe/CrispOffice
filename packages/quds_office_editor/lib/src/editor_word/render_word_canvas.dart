@@ -18,6 +18,7 @@ import 'caret_engine.dart';
 import 'office_ruler.dart';
 import 'paint_equation.dart';
 import 'paint_run_text.dart';
+import 'proofing_geometry.dart';
 
 /// Class WordCanvas.
 class WordCanvas extends LeafRenderObjectWidget {
@@ -82,6 +83,7 @@ class WordCanvas extends LeafRenderObjectWidget {
     this.onCommitRulerEdit,
     this.compact = false,
     this.findHits = const <OfficeFindHit>[],
+    this.proofingFindings = const <WmlParagraph, List<OfficeProofingFinding>>{},
     this.activeFindIndex = -1,
   });
 
@@ -282,6 +284,9 @@ class WordCanvas extends LeafRenderObjectWidget {
   /// findHits API.
   final List<OfficeFindHit> findHits;
 
+  /// Current source-bound findings, indexed by exact paragraph identity.
+  final Map<WmlParagraph, List<OfficeProofingFinding>> proofingFindings;
+
   /// activeFindIndex API.
   final int activeFindIndex;
 
@@ -347,6 +352,7 @@ class WordCanvas extends LeafRenderObjectWidget {
       onCommitRulerEdit: onCommitRulerEdit,
       compact: compact,
       findHits: findHits,
+      proofingFindings: proofingFindings,
       activeFindIndex: activeFindIndex,
     );
   }
@@ -415,6 +421,7 @@ class WordCanvas extends LeafRenderObjectWidget {
       ..onCommitRulerEdit = onCommitRulerEdit
       ..compact = compact
       ..findHits = findHits
+      ..proofingFindings = proofingFindings
       ..activeFindIndex = activeFindIndex;
     if (viewport != null && !identical(renderObject.viewport, viewport)) {
       renderObject.viewport = viewport!;
@@ -493,6 +500,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     this.onCommitRulerEdit,
     this.compact = false,
     this.findHits = const <OfficeFindHit>[],
+    this.proofingFindings = const <WmlParagraph, List<OfficeProofingFinding>>{},
     this.activeFindIndex = -1,
   });
 
@@ -690,6 +698,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
 
   /// findHits API.
   List<OfficeFindHit> findHits;
+  Map<WmlParagraph, List<OfficeProofingFinding>> proofingFindings;
 
   /// activeFindIndex API.
   int activeFindIndex;
@@ -2503,6 +2512,13 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     return best;
   }
 
+  LaidOutLine? _proofingLineAt(LaidOutPage page, Offset local) {
+    for (final line in page.notes) {
+      if (local.dy >= line.y && local.dy <= line.y + line.height) return line;
+    }
+    return _lineAt(page, local);
+  }
+
   void _handleContext(PointerDownEvent event) {
     final (int pageHint, Offset localHint) = _hitPage(event.localPosition);
     final _TableGeom? handle = pageHint >= 0 && pageHint < laidOut.pages.length
@@ -2526,6 +2542,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       return;
     }
     final LaidOutPage laidPage = laidOut.pages[page];
+    _fitPage(laidPage);
     final LaidOutBox? visual = _visualAt(laidPage, local);
     final LaidOutBox? equation = _equationAt(laidPage, local);
     final LaidOutBox? cell = _cellAt(laidPage, local);
@@ -2547,9 +2564,21 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     } else {
       kind = OfficeContextKind.document;
     }
+    final LaidOutLine? textLine =
+        visual == null && equation == null && handle == null
+        ? laidPage.headerBand.contains(local.dx, local.dy)
+              ? _nearestChromeLine(laidPage.header, local)
+              : laidPage.footerBand.contains(local.dx, local.dy)
+              ? _nearestChromeLine(laidPage.footer, local)
+              : _proofingLineAt(laidPage, local)
+        : null;
     callback(
       OfficeContextHit(
         kind: kind,
+        paragraph: textLine?.sourceParagraph,
+        proofingOffset: textLine?.proofingOffsetAt(
+          _hitOffsetOnLine(textLine, local),
+        ),
         globalPosition: event.position,
         table: handle?.table ?? cell?.table,
         tableRow: cell?.tableRow,
@@ -3113,18 +3142,29 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       if (text.isEmpty || line.width <= 0) {
         return 0;
       }
-      final bool rtl = CaretEngine.resolveRtl(
-        paragraphRtl: _paragraphRtl(line.paragraphIndex),
-        nearbyText: text,
+      final painter = _overlayPainter(line);
+      final page = line.pageIndex >= 0 && line.pageIndex < laidOut.pages.length
+          ? laidOut.pages[line.pageIndex]
+          : null;
+      final x = _overlayOrigin(
+        line,
+        painter,
+        pageWidth: page?.width,
+        marginRight: page == null ? null : _marginRightOf(page),
       );
-      final double t = ((local.dx - line.x) / line.width).clamp(0.0, 1.0);
-      final double visual = rtl ? 1 - t : t;
-      return (visual * text.length).round();
+      final offset = painter
+          .getPositionForOffset(Offset(local.dx - x, local.dy - line.y))
+          .offset;
+      painter.dispose();
+      return offset.clamp(0, text.length);
     }
     return PaintRunText.hitLogicalIndexOnLine(
       line,
       local.dx,
-      paragraph: line.sourceText ?? _paragraphTextAt(line.paragraphIndex),
+      paragraph:
+          line.sourceText ??
+          line.sourceParagraph?.text ??
+          _paragraphTextAt(line.paragraphIndex, line: line),
       themeFamily: _theme.fontFamily,
     );
   }
@@ -3152,7 +3192,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     void fit(LaidOutLine line) {
       PaintRunText.fitLine(
         line,
-        _paragraphTextAt(line.paragraphIndex),
+        line.sourceText ??
+            line.sourceParagraph?.text ??
+            _paragraphTextAt(line.paragraphIndex, line: line),
         themeFamily: _theme.fontFamily,
       );
     }
@@ -3164,6 +3206,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       fit(line);
     }
     for (final LaidOutLine line in page.footer) {
+      fit(line);
+    }
+    for (final LaidOutLine line in page.notes) {
       fit(line);
     }
   }
@@ -3484,6 +3529,127 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       grid += span;
     }
     return 1;
+  }
+
+  void _paintProofing(Canvas canvas, LaidOutLine line) {
+    final findings = proofingFindings[line.sourceParagraph];
+    if (findings == null || line.glyphs.isEmpty) return;
+    for (final finding in findings) {
+      for (final range in WordProofingGeometry.displayRanges(
+        line,
+        finding.start,
+        finding.end,
+      )) {
+        final boxes = CaretEngine.rangeRectsOnLine(
+          line,
+          line.y,
+          line.height,
+          range.start,
+          range.end,
+        );
+        for (final box in boxes) {
+          _proofingWave(
+            canvas,
+            box.left,
+            box.right,
+            box.bottom - 0.5,
+            finding.category,
+          );
+        }
+        if (range.isCollapsed &&
+            (line.glyphs.any(
+                  (glyph) => glyph.glyph.logicalIndex == range.start,
+                ) ||
+                (line.glyphs.any((glyph) => glyph.logicalEnd == range.start) &&
+                    range.start ==
+                        (line.sourceParagraph?.text.length ?? -1)))) {
+          final x = PaintRunText.caretXOnLine(
+            line,
+            range.start,
+            paragraph: line.sourceText ?? line.sourceParagraph?.text ?? '',
+            themeFamily: _theme.fontFamily,
+          );
+          _proofingWave(
+            canvas,
+            x,
+            x + 4,
+            line.y + line.height - 0.5,
+            finding.category,
+          );
+        }
+      }
+    }
+  }
+
+  void _paintProofingOverlay(
+    Canvas canvas,
+    LaidOutLine line,
+    TextPainter painter,
+    double x,
+  ) {
+    final findings = proofingFindings[line.sourceParagraph];
+    if (findings == null) return;
+    for (final finding in findings) {
+      for (final range in WordProofingGeometry.displayRanges(
+        line,
+        finding.start,
+        finding.end,
+      )) {
+        if (range.start < 0 || range.end > (line.overlayText?.length ?? 0)) {
+          continue;
+        }
+        if (range.isCollapsed) {
+          final caret = painter.getOffsetForCaret(
+            TextPosition(offset: range.start),
+            Rect.zero,
+          );
+          _proofingWave(
+            canvas,
+            x + caret.dx,
+            x + caret.dx + 4,
+            line.y + painter.height,
+            finding.category,
+          );
+        }
+        for (final box in painter.getBoxesForSelection(
+          TextSelection(baseOffset: range.start, extentOffset: range.end),
+        )) {
+          _proofingWave(
+            canvas,
+            x + box.left,
+            x + box.right,
+            line.y + box.bottom,
+            finding.category,
+          );
+        }
+      }
+    }
+  }
+
+  void _proofingWave(
+    Canvas canvas,
+    double start,
+    double end,
+    double y,
+    OfficeProofingCategory category,
+  ) {
+    if (end <= start) return;
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 0.8
+      ..color = switch (category) {
+        OfficeProofingCategory.spelling => const Color(0xFFD93025),
+        OfficeProofingCategory.grammar => const Color(0xFF1967D2),
+        OfficeProofingCategory.style => const Color(0xFF8E5B00),
+      };
+    final path = Path()..moveTo(start, y);
+    var up = true;
+    for (var x = start + 1.5; x < end; x += 1.5) {
+      path.lineTo(x, y + (up ? -1 : 1));
+      up = !up;
+    }
+    path.lineTo(end, y);
+    canvas.drawPath(path, paint);
   }
 
   void _paintFindHits(Canvas canvas, LaidOutLine line) {
@@ -4112,17 +4278,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     return document.sections[page.sectionIndex].margins.right;
   }
 
-  void _drawOverlay(
-    Canvas canvas,
-    LaidOutLine line, {
-    double? pageWidth,
-    double? marginRight,
-  }) {
-    final String? text = line.overlayText;
-    if (text == null || text.isEmpty) {
-      return;
-    }
-    final TextPainter painter = TextPainter(
+  TextPainter _overlayPainter(LaidOutLine line) {
+    final text = line.overlayText ?? '';
+    return TextPainter(
       text: TextSpan(
         text: text,
         style: TextStyle(
@@ -4149,6 +4307,14 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       textDirection: PaintRunText.directionFor(bidiLevel: 0, text: text),
       maxLines: 1,
     )..layout();
+  }
+
+  double _overlayOrigin(
+    LaidOutLine line,
+    TextPainter painter, {
+    double? pageWidth,
+    double? marginRight,
+  }) {
     var x = line.x;
     if (line.tocLeader) {
       x = line.boxWidth > 0
@@ -4166,7 +4332,26 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     } else if (line.justification == WmlJustification.center) {
       x = line.x + (line.width - painter.width) / 2;
     }
+    return x;
+  }
+
+  void _drawOverlay(
+    Canvas canvas,
+    LaidOutLine line, {
+    double? pageWidth,
+    double? marginRight,
+  }) {
+    if (line.overlayText == null || line.overlayText!.isEmpty) return;
+    final painter = _overlayPainter(line);
+    final x = _overlayOrigin(
+      line,
+      painter,
+      pageWidth: pageWidth,
+      marginRight: marginRight,
+    );
     painter.paint(canvas, Offset(x, line.y));
+    _paintProofingOverlay(canvas, line, painter, x);
+    painter.dispose();
   }
 
   void _drawLine(
@@ -4203,8 +4388,11 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       );
       return;
     }
+    _paintProofing(canvas, line);
     final String paragraph =
-        line.sourceText ?? _paragraphTextAt(line.paragraphIndex);
+        line.sourceText ??
+        line.sourceParagraph?.text ??
+        _paragraphTextAt(line.paragraphIndex, line: line);
     var start = 0;
     while (start < line.glyphs.length) {
       final LaidOutGlyph first = line.glyphs[start];
@@ -4435,7 +4623,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   void _paintCaret(Canvas canvas, LaidOutLine line) {
     final bool paragraphRtl = _paragraphRtl(line.paragraphIndex);
     final String paragraph =
-        line.sourceText ?? _paragraphTextAt(line.paragraphIndex);
+        line.sourceText ??
+        line.sourceParagraph?.text ??
+        _paragraphTextAt(line.paragraphIndex, line: line);
     CaretEngine.paintFlagged(
       canvas,
       stem: _caretPaintRect(line, paragraphRtl: paragraphRtl),
@@ -4469,7 +4659,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
 
   Rect _caretPaintRect(LaidOutLine line, {required bool paragraphRtl}) {
     final String paragraph =
-        line.sourceText ?? _paragraphTextAt(line.paragraphIndex);
+        line.sourceText ??
+        line.sourceParagraph?.text ??
+        _paragraphTextAt(line.paragraphIndex, line: line);
     final double x = PaintRunText.caretXOnLine(
       line,
       caret.logicalIndex,

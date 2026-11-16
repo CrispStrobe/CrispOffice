@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_proofing_harper/quds_proofing_harper.dart';
 
 import 'sample_library.dart';
 import 'studio_chrome.dart';
@@ -4764,6 +4765,19 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _bindHostActions(OfficeController controller) {
+    if (controller is WordEditorController) {
+      // Harper remains local and initializes only for an English request.
+      // Missing optional native/web artifacts are reported in the review UI.
+      controller.proofing.configure(
+        OfficeProofingService(
+          providers: [
+            GermanSpellingProvider(vocabulary: controller.proofing.vocabulary),
+            GermanWritingRulesProvider(),
+            HarperProofingProvider(),
+          ],
+        ),
+      );
+    }
     controller.onFindRequested = () {
       if (!mounted) {
         return;
@@ -4860,12 +4874,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _showSpelling() {
     if (_active is WordEditorController) {
-      final List<OfficeSpellIssue> issues = _word.checkSpelling();
-      _toast(
-        issues.isEmpty
-            ? (_arabic ? 'لا أخطاء ظاهرة' : 'No issues (host dictionary)')
-            : '${issues.length}',
-      );
+      unawaited(showWordProofingDialog(context, controller: _word));
       return;
     }
     _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
