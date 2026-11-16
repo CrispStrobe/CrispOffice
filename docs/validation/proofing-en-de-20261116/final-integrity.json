@@ -1,10 +1,10 @@
 {
-  "schema_version": 1,
-  "recorded_at_utc": "2026-11-16 20:19:25 UTC",
+  "schema_version": 2,
+  "recorded_at_utc": "2026-11-16 20:27:47 UTC",
   "repository": "CrispStrobe/quds_office_suite",
   "branch": "codex/proofing-en-de-20261116",
-  "source_commit": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
-  "source_tree": "c87f09b373cd137ed501e1e23cc1f644cf582157",
+  "source_commit": "03523a205f3cd5fa162aaed8b15307b7fada9fa1",
+  "source_tree": "a0e2fc27cf53d898266c87fe99d95b513be366e5",
   "qualification_state": "Implementation and remote integrity verified; Dart/Flutter/native/Wasm execution pending",
   "snapshot": {
     "captured_at_utc": "2026-11-16T20:10:47.865Z",
@@ -29,8 +29,34 @@
       }
     ],
     "final_all_126_snapshot_heads_contained": true,
-    "proof": "The frozen source descends from the prior verified commit containing 125 heads and separately from its sole remaining German head. Git ancestry is transitive.",
+    "proof": "The final source descends from 1199750, whose recorded ancestry comparisons prove containment of all 126 pinned snapshot heads. It also descends from the later observed main and PR #86 heads. Git ancestry is transitive; the later two observations are not added to the earlier snapshot's counts.",
     "fresh_ancestor_comparisons": [
+      {
+        "base": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+        "head": "03523a205f3cd5fa162aaed8b15307b7fada9fa1",
+        "status": "ahead",
+        "ahead_by": 5,
+        "behind_by": 0,
+        "ancestor": true
+      },
+      {
+        "base": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+        "head": "03523a205f3cd5fa162aaed8b15307b7fada9fa1",
+        "status": "ahead",
+        "ahead_by": 57,
+        "behind_by": 0,
+        "ancestor": true
+      },
+      {
+        "base": "001367e89cb0034cf33467783d7258bb0800deb9",
+        "head": "03523a205f3cd5fa162aaed8b15307b7fada9fa1",
+        "status": "ahead",
+        "ahead_by": 57,
+        "behind_by": 0,
+        "ancestor": true
+      }
+    ],
+    "prior_freeze_ancestor_comparisons": [
       {
         "base": "a6921f66fff583002b1a2ecfc47ff2949502e196",
         "head": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
@@ -82,11 +108,11 @@
     ]
   },
   "tree_verification": {
-    "expected_blob_entries": 5496,
-    "actual_blob_entries": 5496,
+    "expected_blob_entries": 5498,
+    "actual_blob_entries": 5498,
     "missing_or_unexpected_or_changed_entries": [],
-    "method": "Compare every non-tree path, mode and Git blob/object ID with the independently assembled prior tree plus reviewed merge entries. Final four documentation/UI writes were also fetched and matched exact staged UTF-8 content.",
-    "final_written_content_readbacks": [
+    "method": "Start from the independently verified 1199750 source tree; apply exactly six incoming blobs recorded by the three-way late-main audit, the previously saved report/receipt, the late-main audit, and the exact-read-back updated verifier. Compare all non-tree paths, modes and Git object IDs with the final remote source tree. Recheck all 39 component bindings, 66 protected inputs and 346 retained evidence files.",
+    "prior_freeze_content_readbacks": [
       {
         "path": "docs/PROOFING.md",
         "git_blob": "636297af2fbbaf920bf5b1a5e182ac509c86ed53",
@@ -106,6 +132,28 @@
         "path": "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
         "git_blob": "fda8d27474e8da3a46811fabd67880a1f21e945d",
         "content_matches_staged": true
+      }
+    ],
+    "final_source_content_readbacks": [
+      {
+        "path": "docs/validation/proofing-en-de-20261116/README.md",
+        "git_blob": "448e2ecabb517cc47a12b16170914d6bb2bf8899",
+        "verification": "Fetched and matched exact staged content"
+      },
+      {
+        "path": "docs/validation/proofing-en-de-20261116/final-integrity.json",
+        "git_blob": "1d91e1c660cad06928b5ea71e320e9d58cc1d58a",
+        "verification": "Fetched and matched exact staged content"
+      },
+      {
+        "path": "docs/validation/proofing-en-de-20261116/late-main-refresh.json",
+        "git_blob": "cedad9f6d093d09fc5250bcf1854ea1f1d718801",
+        "verification": "Parsed and cross-checked exact six incoming blobs and parent identities"
+      },
+      {
+        "path": "tools/proofing/verify_integration.py",
+        "git_blob": "f3f1859a73fc128d2f7998ab63c2f047d892ad2f",
+        "verification": "Fetched and matched exact staged content"
       }
     ]
   },
@@ -463,7 +511,8 @@
     "Flutter tests or release build",
     "Python generator process",
     "Real native Harper or Wasm provider acceptance",
-    "Browser delivery/CSP or mobile dictionary acceptance"
+    "Browser delivery/CSP or mobile dictionary acceptance",
+    "Runtime regression qualification of the late incoming PR #86 spreadsheet files"
   ],
   "resolved_source_review_findings": [
     "Equivalent en/en-US run tags canonicalized before word homogeneity checks",
@@ -477,5 +526,59 @@
     "rerun": false,
     "commit_skip_ci": true
   },
-  "passed_remote_integrity_checks": true
+  "passed_remote_integrity_checks": true,
+  "prior_proofing_reference_integration": {
+    "source_commit": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+    "source_tree": "1199750e3a0a6118336f6c3daf0e4467ff3eeb59",
+    "receipt_commit": "6cc6c07369ca1c7f33bf1715d88222ab685530be",
+    "receipt_url": "https://github.com/CrispStrobe/quds_office_suite/blob/6cc6c07369ca1c7f33bf1715d88222ab685530be/docs/validation/proofing-en-de-20261116/final-integrity.json",
+    "proofing_source_data_bindings_unchanged": true,
+    "qualification_state": "Reference/model and remote checks only; no Dart/Flutter execution"
+  },
+  "late_main_integration": {
+    "receipt": "late-main-refresh.json",
+    "merge_commit": "7d4aed401bacb1b34497b7389e79464eafaaf2c7",
+    "incoming_main": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+    "original_pr_head": "001367e89cb0034cf33467783d7258bb0800deb9",
+    "pr_number": 86,
+    "exact_incoming_paths": [
+      {
+        "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "git_blob": "49f33121c68fc8fea880cb20afbef62195d4cd96",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "git_blob": "adf9ebda4677ebc8086484a993ee3f12989b3553",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "git_blob": "9e42dedaac3a017eca562c0b1c7c828bc807d28c",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "git_blob": "3dd54b354b8ebded3adda74060602d430d6fff0f",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "git_blob": "0ac87a6dc5e86320fff184633ee6b72e0a856ed2",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+        "git_blob": "58a59e0f312ea720850bdd826861b7446ca863e4",
+        "mode": "100644"
+      }
+    ],
+    "overlapping_conflicts": [],
+    "verifier_update_commit": "03523a205f3cd5fa162aaed8b15307b7fada9fa1",
+    "added_local_test_suites": [
+      "ods_sheet_writer",
+      "sheet_save_cache_and_freeze"
+    ],
+    "incoming_source_runtime_executed": false
+  }
 }
