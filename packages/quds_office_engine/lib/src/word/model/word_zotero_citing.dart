@@ -480,35 +480,30 @@ final class WordZoteroCitingSession {
     // Match each occurrence once, including any duplicate-looking fields,
     // without rescanning the complete document for every original field.
     final byParagraph =
-        Map<
-          WmlParagraph,
-          Map<(int, int, String, String), List<WmlZoteroField>>
-        >.identity();
+        Map<WmlParagraph, Map<(int, int, String, String), int>>.identity();
     for (final field in current) {
-      byParagraph
-          .putIfAbsent(field.paragraph, () => {})
-          .putIfAbsent((
-            field.start,
-            field.end,
-            field.instruction,
-            field.cachedText,
-          ), () => [])
-          .add(field);
+      if (!_canProcessField(field)) continue;
+      final matches = byParagraph.putIfAbsent(field.paragraph, () => {});
+      matches.update(
+        (field.start, field.end, field.instruction, field.cachedText),
+        (count) => count + 1,
+        ifAbsent: () => 1,
+      );
     }
     for (final entry in original) {
       final field = entry.original!;
-      final matches =
-          byParagraph[field.paragraph]?[(
-            field.start,
-            field.end,
-            field.instruction,
-            field.cachedText,
-          )];
-      final index = matches?.indexWhere(_canProcessField) ?? -1;
-      if (index < 0) {
+      final matches = byParagraph[field.paragraph];
+      final identity = (
+        field.start,
+        field.end,
+        field.instruction,
+        field.cachedText,
+      );
+      final count = matches?[identity] ?? 0;
+      if (count == 0) {
         throw StateError('A Zotero field changed while formatting.');
       }
-      matches!.removeAt(index);
+      matches![identity] = count - 1;
     }
   }
 

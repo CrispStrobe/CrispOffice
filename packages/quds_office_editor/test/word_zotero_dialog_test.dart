@@ -398,6 +398,81 @@ void main() {
     );
   }
 
+  testWidgets('refresh refuses 51 distinct sources before any request', (
+    tester,
+  ) async {
+    final requests = <ZoteroHttpRequest>[];
+    final controller = await _openDialog(
+      tester,
+      transport: (request) async {
+        requests.add(request);
+        return _json(<Object>[]);
+      },
+      document: _linkedDocument([
+        for (var index = 0; index < 51; index++)
+          ['http://zotero.org/users/42/items/K${index.toString().padLeft(7, '0')}'],
+      ]),
+    );
+    final before = controller.zoteroFields
+        .map((field) => field.instruction)
+        .toList();
+    final revision = controller.contentRevision;
+
+    await _documentAction(tester, 'Refresh basic citations');
+
+    expect(requests, isEmpty);
+    expect(controller.zoteroFields, hasLength(51));
+    expect(controller.zoteroFields.map((field) => field.instruction), before);
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    expect(find.textContaining('at most 50 linked sources'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('missing CSL in a later library refuses all staged updates', (
+    tester,
+  ) async {
+    final requests = <ZoteroHttpRequest>[];
+    final controller = await _openDialog(
+      tester,
+      transport: (request) async {
+        requests.add(request);
+        final group = request.uri.path.startsWith('/groups/');
+        return _json([
+          {
+            ..._apiItem('ABCD1234', 'Must stay staged'),
+            'library': {'type': group ? 'group' : 'user', 'id': 42},
+            if (requests.length == 2) 'csljson': null,
+          },
+        ]);
+      },
+      document: _linkedDocument([
+        ['http://zotero.org/users/42/items/ABCD1234'],
+        ['http://zotero.org/groups/42/items/ABCD1234'],
+      ]),
+    );
+    final before = controller.zoteroFields
+        .map((field) => field.instruction)
+        .toList();
+    final revision = controller.contentRevision;
+
+    await _documentAction(tester, 'Refresh basic citations');
+
+    expect(
+      requests.map((request) => request.uri.path),
+      unorderedEquals(['/users/42/items', '/groups/42/items']),
+    );
+    expect(controller.zoteroFields.map((field) => field.instruction), before);
+    expect(
+      controller.zoteroFields.map((field) => field.cachedText),
+      everyElement('(Original)'),
+    );
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    expect(find.textContaining('source has no CSL data'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('changed edit target stops refresh before the next library', (
     tester,
   ) async {
