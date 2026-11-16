@@ -89,15 +89,24 @@ final class _WebTransport implements HarperTransport {
 
   @override
   Future<String> check(String request) {
-    if (_disposed)
+    if (_disposed) {
       return Future.error(
         const HarperUnavailableException('Harper worker is disposed.'),
       );
+    }
     final worker = _worker ??= _start();
     final id = ++_sequence;
     final result = Completer<String>();
     _pending[id] = result;
-    worker.postMessage({'id': id, 'request': request}.jsify());
+    try {
+      worker.postMessage({'id': id, 'request': request}.jsify());
+    } on Object {
+      _fail(
+        const HarperUnavailableException(
+          'The local Harper browser worker could not accept the request.',
+        ),
+      );
+    }
     return result.future;
   }
 

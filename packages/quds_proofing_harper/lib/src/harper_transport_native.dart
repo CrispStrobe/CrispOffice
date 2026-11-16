@@ -48,24 +48,28 @@ final class _NativeTransport implements HarperTransport {
       );
     });
     try {
-      final results = await Future.wait<Object?>([
-        ready.future,
-        Isolate.spawn<List<Object?>>(
-          _workerMain,
-          [messages.sendPort, libraryPath],
-          onError: errors.sendPort,
-          onExit: messages.sendPort,
-          errorsAreFatal: true,
-          debugName: 'Quds Harper',
-        ).then((isolate) {
-          if (_disposed) {
-            isolate.kill(priority: Isolate.immediate);
-          } else {
-            _isolate = isolate;
-          }
-          return isolate;
-        }),
-      ]);
+      final results = await Future.wait<Object?>(
+        [
+          ready.future,
+          Isolate.spawn<List<Object?>>(
+            _workerMain,
+            [messages.sendPort, libraryPath],
+            onError: errors.sendPort,
+            onExit: messages.sendPort,
+            errorsAreFatal: true,
+            debugName: 'Quds Harper',
+          ).then((isolate) {
+            if (_disposed) {
+              isolate.kill(priority: Isolate.immediate);
+            } else {
+              _isolate = isolate;
+            }
+            return isolate;
+          }),
+        ],
+        // If spawning itself fails there can never be a ready message.
+        eagerError: true,
+      );
       return results.first! as SendPort;
     } on Object {
       await dispose();
@@ -74,21 +78,31 @@ final class _NativeTransport implements HarperTransport {
   }
 
   void _fail(Object error) {
+    // Once an isolate fails, its old SendPort cannot accept more work. Close
+    // the transport immediately so later checks report unavailable, not a
+    // second timeout against a dead port.
+    _disposed = true;
     final ready = _ready;
     if (ready != null && !ready.isCompleted) ready.completeError(error);
     for (final request in _pending.values) {
       request.completeError(error);
     }
     _pending.clear();
+    _isolate?.kill(priority: Isolate.immediate);
+    _isolate = null;
+    _messages?.close();
+    _errors?.close();
   }
 
   @override
   Future<String> check(String request) async {
-    if (_disposed)
+    if (_disposed) {
       throw const HarperUnavailableException('Harper worker is disposed.');
+    }
     final port = await (_opening ??= _open());
-    if (_disposed)
+    if (_disposed) {
       throw const HarperUnavailableException('Harper worker is disposed.');
+    }
     final id = ++_sequence;
     final result = Completer<String>();
     _pending[id] = result;
@@ -99,12 +113,7 @@ final class _NativeTransport implements HarperTransport {
   @override
   Future<void> dispose() async {
     if (_disposed) return;
-    _disposed = true;
     _fail(const HarperUnavailableException('Harper worker was disposed.'));
-    _isolate?.kill(priority: Isolate.immediate);
-    _isolate = null;
-    _messages?.close();
-    _errors?.close();
   }
 }
 
@@ -185,14 +194,16 @@ final class _Bindings {
   String check(String request) {
     final bytes = utf8.encode(request);
     final pointer = _alloc(bytes.length);
-    if (pointer == nullptr)
+    if (pointer == nullptr) {
       throw StateError('Harper request exceeds its size limit.');
+    }
     try {
       pointer.asTypedList(bytes.length).setAll(0, bytes);
       final output = _check(pointer, bytes.length);
       final length = _length();
-      if (output == nullptr || length < 1 || length > 16 * 1024 * 1024)
+      if (output == nullptr || length < 1 || length > 16 * 1024 * 1024) {
         throw StateError('Invalid Harper response buffer.');
+      }
       return utf8.decode(output.asTypedList(length));
     } finally {
       _free(pointer, bytes.length);

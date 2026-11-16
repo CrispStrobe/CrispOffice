@@ -360,7 +360,7 @@ abstract final class PaintRunText {
       return '';
     }
     var start = indices.first;
-    var end = indices.last + 1;
+    var end = indices.last + _utf16Len(paragraph, indices.last);
     if (end < paragraph.length && _isMark(paragraph.codeUnitAt(end))) {
       while (end < paragraph.length && _isMark(paragraph.codeUnitAt(end))) {
         end++;
@@ -375,7 +375,7 @@ abstract final class PaintRunText {
       if (i == last) {
         continue;
       }
-      buffer.writeCharCode(paragraph.codeUnitAt(i));
+      buffer.write(paragraph.substring(i, i + _utf16Len(paragraph, i)));
       last = i;
     }
     return buffer.toString();
@@ -556,9 +556,8 @@ abstract final class PaintRunText {
     required String paragraph,
     String? themeFamily,
   }) {
-    final List<List<LaidOutGlyph>> segments = paintSegments(
-      line,
-    ).toList(growable: false);
+    final List<List<LaidOutGlyph>> segments = paintSegments(line)
+        .toList(growable: false);
     for (int s = 0; s < segments.length; s++) {
       final List<LaidOutGlyph> run = segments[s];
       final LaidOutGlyph first = run.first;
@@ -682,7 +681,7 @@ abstract final class PaintRunText {
 
   static ({int min, int max}) _runSpan(List<LaidOutGlyph> run) {
     var min = run.first.glyph.logicalIndex;
-    var max = min + 1;
+    var max = min;
     for (final LaidOutGlyph glyph in run) {
       if (glyph.glyph.logicalIndex < min) {
         min = glyph.glyph.logicalIndex;

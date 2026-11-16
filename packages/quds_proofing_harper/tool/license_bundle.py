@@ -30,10 +30,27 @@ ANCILLARY = {
     "Zlib": "Permissive ancillary code; preserve notice and accurately identify unmodified source.",
     "CC0-1.0": "Public-domain dedication with permissive fallback; preserve the supplied legal text and provenance.",
 }
+FALLBACK_REVISIONS = {
+    "harper-core": "ea9ab1b8f95be99a5d4040c53be92a6c2ad7f7f3",
+    "harper-brill": "ea9ab1b8f95be99a5d4040c53be92a6c2ad7f7f3",
+    "harper-pos-utils": "ea9ab1b8f95be99a5d4040c53be92a6c2ad7f7f3",
+    "burn-ir": "a6da424feacf6d82d6a0e81db197310796267c2b",
+    "burn-nn": "a6da424feacf6d82d6a0e81db197310796267c2b",
+    "burn-optim": "a6da424feacf6d82d6a0e81db197310796267c2b",
+    "cubecl-quant": "0e2ba072b1ebba595d65a90804e616e1b799ef16",
+    "embassy-futures": "3e8d8fec15286eb25b8bba7d103c8fc279544551",
+}
 
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def validate_fallback_revision(name: str, source: Path) -> None:
+    """A lockfile update must not silently reuse a different revision's notice."""
+    vcs = json.loads((source / ".cargo_vcs_info.json").read_text())
+    if vcs.get("git", {}).get("sha1") != FALLBACK_REVISIONS[name]:
+        raise ValueError(f"Review original notices for changed source revision: {name}")
 
 
 def selection(expression: str) -> list[str]:
@@ -140,6 +157,8 @@ def main() -> None:
                 destination = f"notices/{name}-{version}/{relative}"
                 archive_files[destination] = content
                 notices.append({"file": destination, "sha256": sha256(content)})
+        if not notices and name in FALLBACK_REVISIONS:
+            validate_fallback_revision(name, source)
         if not notices and name in {"harper-core", "harper-brill", "harper-pos-utils"}:
             content = (PACKAGE / "licenses" / "upstream" / "HARPER-LICENSE").read_bytes()
             destination = f"notices/{name}-{version}/LICENSE"

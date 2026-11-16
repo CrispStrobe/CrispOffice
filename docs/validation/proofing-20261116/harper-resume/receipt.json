@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-16T13:15:39.866097+00:00",
+  "baseline_commit": "976d05a351e818f0b5a261e458cc6d99347c1602",
+  "source_binding": "Exact file hashes below; baseline commit may precede working-tree fixes.",
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart": "750f7d26d074ab1b7afff8af1b8840d72df8fec29dc240c0bd821b06ca8014d8",
+    "packages/quds_office_editor/test/platform_spelling_provider_test.dart": "1a635b805d877bcc1b4534d1cca5d2360401d5ff91c22c1993744e2a50f910e7",
+    "packages/quds_proofing_harper/.gitignore": "05b8079099a39588adcee40440aa35c6380f2ae79c3d7b7926504477020656db",
+    "packages/quds_proofing_harper/LICENSE": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+    "packages/quds_proofing_harper/README.md": "728ce8fd4528b4dbe239d5a0f628342e3b3ebbce469bbe36b60934a104304973",
+    "packages/quds_proofing_harper/lib/quds_proofing_harper.dart": "962a343860461a893e91d48acde862bc0e43a116a6d3f88453d61b8210c6b823",
+    "packages/quds_proofing_harper/lib/src/harper_provider.dart": "bd5e46da5b0e43d09d27967fc4827a1b42a7344f5d1e602d55fe47b7b1749657",
+    "packages/quds_proofing_harper/lib/src/harper_transport.dart": "17cd723d72de266810ff973319956f4da149d90076bb69d09a5abbe63156846f",
+    "packages/quds_proofing_harper/lib/src/harper_transport_native.dart": "dc151a002406a9a9f4b55db7ef3c11313540ae921af2f41a07d53371fe383b38",
+    "packages/quds_proofing_harper/lib/src/harper_transport_stub.dart": "2396456f84d7c2ca6590df8de9dd575a97155eb047f730ee308bad465c67cafa",
+    "packages/quds_proofing_harper/lib/src/harper_transport_web.dart": "972c2dc270311ed3d23ec6ee0a1f2123a4c5171e2d93e2a130df7fa4667ae458",
+    "packages/quds_proofing_harper/licenses/manifest.json": "1cdfbdf5d2a2c08ec4ceef69b828a1748f2f8dc9cc58a8147b5c089abe1ac1bc",
+    "packages/quds_proofing_harper/licenses/notices-and-mpl-sources.tar.gz": "a6e4d4e0d57cd06be2f286f350131e8e7196e3681f53c8d926dce42bd3ba3e07",
+    "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-APACHE": "a9cfa8a88b2c2b7c9a5f2ef159522b706ea8aaa76448438d98c89c3217e90378",
+    "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-MIT": "ef31f0b689aa7e2edb5883c7617361de37b05030389e876d91be6c2f2306bb35",
+    "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-APACHE": "bdd26d197850a30393da963f01e97c78e91d69245089c543903f96a5dab95930",
+    "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-MIT": "b3b77503e5498c5fb0a1a0b102d748d7baed9cae9f502086a3cfedad62d503a4",
+    "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-APACHE": "64853d2f346cf20ad5a133c441e792d4b99b45adb2ef3acfa2b890d713e4ed0b",
+    "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-MIT": "83d04e56c5beb631d65d6bd7b78c9350083084acc19753a3e6e1b68806a607f5",
+    "packages/quds_proofing_harper/licenses/upstream/HARPER-LICENSE": "fbc8f1bffe04ab962340fabb1324d57d8b875070f67759d606516144ee53ac19",
+    "packages/quds_proofing_harper/licenses/upstream/fallback-notices.json": "7e2a50f2e4db8baa87b18a2990e7a475fc895d794cc3f3aa1970d45432314f88",
+    "packages/quds_proofing_harper/native/Cargo.lock": "3c79cb218867c8e028e2b7364a90d1a4ca3bee41214f20ed16048cb337e937f6",
+    "packages/quds_proofing_harper/native/Cargo.toml": "8e33f603f3c3af077aedd4ad22bcb954879a725ebb4ab8b5933c565d07cd87d7",
+    "packages/quds_proofing_harper/native/rust-toolchain.toml": "7fa5da9da36242a926b0025d5229b9edca83e7d1edebf7ee2b487b7d2bcfac44",
+    "packages/quds_proofing_harper/native/src/lib.rs": "221afcdb7a16cf4a4c4ea1f8b32de538584b4c20b75b1ceee7e060cd1ed3957e",
+    "packages/quds_proofing_harper/pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+    "packages/quds_proofing_harper/test/harper_native_test.dart": "f20a488f35e1d5c5e71ebd0f1723710ca8bb9d61ec2b00d82b94d415c8ae5bce",
+    "packages/quds_proofing_harper/test/harper_provider_test.dart": "8b81bca86a1aad1a3a973aa0fc8ec2bbf41ef09f9425051a13bc4ab869d59561",
+    "packages/quds_proofing_harper/tool/build.py": "fc4f2c87213baa649ef3347b73db1ad69e689fb6aaeb3c258d68b48870523177",
+    "packages/quds_proofing_harper/tool/license_bundle.py": "6e27271e7bf2b3f3914ab8441cdfe0aa926b77f046f1ecaa4222d04ba8fe73f9",
+    "packages/quds_proofing_harper/tool/node_worker_bridge.mjs": "f93dc1a7ab3a31a2ca12b0421f060eca4adb107a2600ef873963a145d3e31489",
+    "packages/quds_proofing_harper/tool/run_web_transport_smoke.mjs": "840a71b94879082f8627782904562d8f81bdc817c5907973dff3725d0342e8aa",
+    "packages/quds_proofing_harper/tool/smoke_worker.mjs": "e737b87e6f6f09c6cd4cda82f20229ae2cfc7bf5e5586959e9f239930f24c8dd",
+    "packages/quds_proofing_harper/tool/test_license_bundle.py": "e3550572f783adb5c7a59253dfd5ae674a35d7b0fc1de149636a467e3364aee3",
+    "packages/quds_proofing_harper/tool/web_transport_smoke.dart": "d774022c5668171b6f2ed31f6775b52a129988d84e9778175be13bf6d28f42ac",
+    "packages/quds_proofing_harper/web/harper_worker.mjs": "b58f5ea84dbe2b0fc4fd0d8eaee96664267bb1603691a7c27e8d1b6631fdae1b"
+  },
+  "validation_scope": "Linux native backend, native Dart adapter, Node-compiled Dart adapter, exact shipped Wasm worker, compiled Dart web transport with Node Worker/file-fetch bridge, mocked mobile platform adapter, and distribution license policy.",
+  "commands": [
+    {
+      "label": "dart-version",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 0.003,
+      "log": "dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "label": "node-version",
+      "command": [
+        "node",
+        "--version"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 0.008,
+      "log": "node-version.log",
+      "log_sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    {
+      "label": "build",
+      "command": [
+        "python3",
+        "tool/build.py",
+        "--native",
+        "--web"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 5.232,
+      "log": "build.log",
+      "log_sha256": "6dc4b0405e5d54d192f4e70299eabcf5420fe7f3e35cc753607a0f1993cd14ab"
+    },
+    {
+      "label": "rust-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--release",
+        "--locked",
+        "--manifest-path",
+        "native/Cargo.toml"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 2.16,
+      "log": "rust-tests.log",
+      "log_sha256": "43678568edb210b0092edf58b0e3e5ec153e34ee1da7b7c25c69600fa5060b61"
+    },
+    {
+      "label": "analyze",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 7.225,
+      "log": "analyze.log",
+      "log_sha256": "50c363f7897d8b7e14d7d46e0a0bb20afeecb46731bfa724c5a1f30a2badd71e"
+    },
+    {
+      "label": "dart-native-tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 3.24,
+      "log": "dart-native-tests.log",
+      "log_sha256": "96762115286689242d3caef0bb8e85dc8850a5d6f2b5fb32749822f015064768"
+    },
+    {
+      "label": "dart-node-tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--platform",
+        "node",
+        "test/harper_provider_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 11.516,
+      "log": "dart-node-tests.log",
+      "log_sha256": "8acf91b9ca1597cd84e578ccec7b0883802714288263481f6165de1e661f2248"
+    },
+    {
+      "label": "compile-web-transport",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O2",
+        "tool/web_transport_smoke.dart",
+        "-o",
+        "build/web_transport_smoke.js"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 7.188,
+      "log": "compile-web-transport.log",
+      "log_sha256": "020d207ab5cc1e51fcad6db50d0e16ab3e56b1a2762713301bcb85b1ce986355"
+    },
+    {
+      "label": "wasm-worker-smoke",
+      "command": [
+        "node",
+        "tool/smoke_worker.mjs",
+        "build/web/harper_worker.mjs"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 1.083,
+      "log": "wasm-worker-smoke.log",
+      "log_sha256": "d0c6966d0cc4997de1496bd34e65f3a72e47dfe567938aad73156d1ab3d23b6b"
+    },
+    {
+      "label": "web-transport-smoke",
+      "command": [
+        "node",
+        "tool/run_web_transport_smoke.mjs",
+        "build/web_transport_smoke.js",
+        "build/web/harper_worker.mjs"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 1.859,
+      "log": "web-transport-smoke.log",
+      "log_sha256": "b6309a92835f11da7b54b2aa1e92b6197ddf062cd06f3078d8fa1fab01f5cb6c"
+    },
+    {
+      "label": "platform-tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/platform_spelling_provider_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "working_directory": "packages/quds_office_editor",
+      "exit_code": 0,
+      "duration_seconds": 3.528,
+      "log": "platform-tests.log",
+      "log_sha256": "8274b7af2f36763e12f8385d932eb9c5966bfbe008f0295ae556139c8a7e8ddd"
+    },
+    {
+      "label": "license-policy-tests",
+      "command": [
+        "python3",
+        "tool/test_license_bundle.py",
+        "-v"
+      ],
+      "working_directory": "packages/quds_proofing_harper",
+      "exit_code": 0,
+      "duration_seconds": 0.092,
+      "log": "license-policy-tests.log",
+      "log_sha256": "d4a201c4d9afd6624ec52729988e94646577c021e0cd503f26a78374281e8883"
+    }
+  ],
+  "browser_acceptance": {
+    "passed": false,
+    "attempted_command": [
+      "chromium",
+      "--headless",
+      "--disable-gpu",
+      "--no-first-run",
+      "--user-data-dir=/workspace/scratch/21fc989ecea7/harper-checks/chrome-profile",
+      "--dump-dom",
+      "about:blank"
+    ],
+    "exit_code": 134,
+    "reason": "Chromium cannot start because socket() is denied by the execution environment. Node integration does not establish browser CSP/HTTP or end-user browser acceptance.",
+    "log": "browser-startup.log",
+    "log_sha256": "7b662d017f259404c7539e4da0cb49b0245b166800836e304d7fcd4dce6c94db"
+  },
+  "mobile_acceptance": "Mocked service adapter only; no Android/iOS device run.",
+  "passed": true,
+  "build_receipt": {
+    "schema_version": 1,
+    "compiler": "rustc 1.100.0 (0ef1bc386 2026-11-09)\nbinary: rustc\ncommit-hash: 0ef1bc386059596dada8fb65b50425aab2ea637a\ncommit-date: 2026-11-09\nhost: x86_64-unknown-linux-gnu\nrelease: 1.100.0\nLLVM version: 23.1.5\n",
+    "targets": [
+      "x86_64-unknown-linux-gnu",
+      "wasm32-unknown-unknown"
+    ],
+    "harper_version": "3.2.0",
+    "harper_commit": "ea9ab1b8f95be99a5d4040c53be92a6c2ad7f7f3",
+    "cargo_lock_sha256": "3c79cb218867c8e028e2b7364a90d1a4ca3bee41214f20ed16048cb337e937f6",
+    "files": {
+      "native/libquds_proofing_harper.so": "098ecea89ec504f3b3c4fb3346d3ca21e86c9469d42fdf343533ddc5530c9cfb",
+      "web/quds_proofing_harper_bg.wasm": "0fcfeb284a5515844f8912405109f14f53de31a2212b45594bee65acd974a264",
+      "web/quds_proofing_harper.js": "28a796884341f72cb387d300c0da734ced25a16d7de42fcd8aef525c33657591",
+      "web/harper_worker.mjs": "b58f5ea84dbe2b0fc4fd0d8eaee96664267bb1603691a7c27e8d1b6631fdae1b"
+    }
+  },
+  "compiled_dart_web_sha256": "89631385690d064cb7b036eee1bdf68a7197f0c27ce0f8f0cc647288461d64cd",
+  "license_regeneration": {
+    "manifest.json": {
+      "sha256": "1cdfbdf5d2a2c08ec4ceef69b828a1748f2f8dc9cc58a8147b5c089abe1ac1bc",
+      "matches_committed": true
+    },
+    "notices-and-mpl-sources.tar.gz": {
+      "sha256": "a6e4d4e0d57cd06be2f286f350131e8e7196e3681f53c8d926dce42bd3ba3e07",
+      "matches_committed": true
+    }
+  },
+  "license_package_count": 226,
+  "inputs_unchanged_during_validation": true,
+  "finished_at_utc": "2026-11-16T13:16:23.013686+00:00"
+}
