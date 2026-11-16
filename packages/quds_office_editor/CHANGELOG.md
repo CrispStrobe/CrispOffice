@@ -4,6 +4,15 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Measure complete Word text runs with Flutter's shaping before wrapping,
+  including contextual kerning, Arabic and grapheme advances. Cache immutable
+  metrics with bounded storage and invalidate them after font registration.
+- Preserve Unicode grapheme slices and styled combining-mark ownership, keep
+  nested bidi embeddings in separate paint runs, and dispose temporary native
+  text painters after fitting, caret/hit testing and document painting.
+- Include full OFL notices and recorded provenance for the existing Liberation
+  2.1.5 and Noto Naskh Arabic 2.004 font assets; font binaries are unchanged.
+
 - Keep Zotero collection pages unique by key, replacing renamed metadata while
   preserving order, the selected collection and selected references. Discard
   collection continuation responses after the library or dialog has changed.

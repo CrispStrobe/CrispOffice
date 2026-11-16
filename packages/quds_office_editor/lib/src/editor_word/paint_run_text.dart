@@ -154,7 +154,9 @@ abstract final class PaintRunText {
         a.fontFamily == b.fontFamily &&
         a.vertAlign == b.vertAlign &&
         a.commentIds.join(',') == b.commentIds.join(',') &&
-        a.glyph.level.isOdd == b.glyph.level.isOdd;
+        // Equal parity does not imply one logical run: nested embeddings can
+        // share a direction while referring to disjoint source intervals.
+        a.glyph.level == b.glyph.level;
   }
 
   /// Runs painted as a single [TextPainter] (word-split when justified).
@@ -611,8 +613,9 @@ abstract final class PaintRunText {
             : glyph.x;
       }
     }
-    final List<List<LaidOutGlyph>> segments = paintSegments(line)
-        .toList(growable: false);
+    final List<List<LaidOutGlyph>> segments = paintSegments(
+      line,
+    ).toList(growable: false);
     for (int s = 0; s < segments.length; s++) {
       final List<LaidOutGlyph> run = segments[s];
       final LaidOutGlyph first = run.first;

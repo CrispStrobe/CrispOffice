@@ -111,6 +111,25 @@ boundaries.
 
 ## Font and distribution policy
 
+The existing bundled fonts were inspected separately from code dependencies:
+
+| Bundled assets | Version in the font name table | License and evidence |
+| --- | --- | --- |
+| Liberation Sans, Serif and Mono, four styles each | 2.1.5 | SIL Open Font License 1.1, verified in all twelve binaries and the [2.1.5 upstream notice](https://github.com/liberationfonts/liberation-fonts/blob/4b0192046158094654e865245832c66d2104219e/LICENSE). The [older Liberation 1.x branch](https://github.com/liberationfonts/liberation-1.7-fonts) has different GPL terms; those binaries are not bundled here. |
+| Noto Naskh Arabic, Regular and Bold | 2.004 | SIL Open Font License 1.1. Both font blob IDs match the [recorded upstream revision](https://github.com/notofonts/noto-fonts/tree/bbdcaa392e1a67b5a81c8fe9e961f8325352a141/hinted/ttf/NotoNaskhArabic); the [upstream license](https://github.com/notofonts/noto-fonts/blob/bbdcaa392e1a67b5a81c8fe9e961f8325352a141/LICENSE) and embedded copyright notices are retained. |
+
+The bundled one-line license labels have been replaced with the full OFL
+notices, including the applicable copyrights and Reserved Font Names. The
+[font audit](validation/text-rendering-20261116/font-license-audit.json)
+records every asset's SHA-256, version and license metadata, plus the exact
+notice sources and verification limits. Font binaries are unchanged.
+
+OFL is a separate, non-GPL font license suitable for bundling and embedding
+under its conditions. Keep the copyright and full license with the assets,
+honor Reserved Font Names for modifications, and do not sell the fonts alone.
+Font derivatives retain OFL; documents created with them do not inherit it.
+([Official OFL 1.1 terms](https://openfontlicense.org/open-font-license-official-text/))
+
 Engine code, Unicode data, font files and dictionary data have separate
 licenses. A permissive shaper does not authorize bundling a commercial font.
 Retain font provenance and license notices, honor embedding restrictions, and

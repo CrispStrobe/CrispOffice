@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add optional pure-Dart `WordRunMeasure`/`WordMeasuredCluster` contracts for
+  contextual host advances before Word wrapping, preserving source ranges and
+  validating complete grapheme coverage. Retain scalar/font fallback for hosts
+  without a shaping callback, and carry callbacks through notes and tall tables.
+- Keep lam–alef continuation glyphs in their source complex-script family.
+  Compute natural line widths for left, center and right alignment; reserve
+  justification expansion for justified/distributed paragraphs.
+
 - Import spreadsheet-level ODS list-validation definitions for all referring
   worksheets, including lists resolved from a later source sheet. Retain
   table-local definition compatibility without leaking it into other sheets;

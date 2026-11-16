@@ -1,23 +1,27 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
-LaidOutGlyph _glyph(String source, int offset, {String color = '000000'}) =>
-    LaidOutGlyph(
-      glyph: ShapedGlyph(
-        codePoint: source.substring(offset).runes.first,
-        glyphId: 1,
-        advance: 8,
-        logicalIndex: offset,
-        level: 0,
-      ),
-      x: offset * 8.0,
-      y: 0,
-      color: color,
-      fontSize: 14,
-      bold: false,
-      underline: WmlUnderline.none,
-      fontFamily: 'Liberation Sans',
-    );
+LaidOutGlyph _glyph(
+  String source,
+  int offset, {
+  String color = '000000',
+  int level = 0,
+}) => LaidOutGlyph(
+  glyph: ShapedGlyph(
+    codePoint: source.substring(offset).runes.first,
+    glyphId: 1,
+    advance: 8,
+    logicalIndex: offset,
+    level: level,
+  ),
+  x: offset * 8.0,
+  y: 0,
+  color: color,
+  fontSize: 14,
+  bold: false,
+  underline: WmlUnderline.none,
+  fontFamily: 'Liberation Sans',
+);
 
 List<LaidOutGlyph> _glyphs(String source) {
   final result = <LaidOutGlyph>[];
@@ -105,6 +109,21 @@ void main() {
       expect('$baseText$markText', source);
       expect(PaintRunText.runText(source, [base, mark]), source);
     }
+  });
+
+  test('nested embeddings with equal direction keep separate paint runs', () {
+    expect(
+      PaintRunText.samePaintRun(_glyph('ab', 0), _glyph('ab', 1, level: 2)),
+      isFalse,
+    );
+    expect(
+      PaintRunText.samePaintRun(
+        _glyph('ab', 0, level: 1),
+        _glyph('ab', 1, level: 3),
+      ),
+      isFalse,
+    );
+    expect(PaintRunText.samePaintRun(_glyph('ab', 0), _glyph('ab', 1)), isTrue);
   });
 
   test('fitting and hit testing retain the ends of a supplementary run', () {
