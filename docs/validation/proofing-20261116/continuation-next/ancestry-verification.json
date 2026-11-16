@@ -1,0 +1,474 @@
+{
+  "head": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+  "branch_count": 58,
+  "checked_count": 58,
+  "all_heads_are_ancestors": true,
+  "rows": [
+    {
+      "branch": "codex/proofing-20261116-resume",
+      "sha": "db6cea46cb0146c68df1ce204091b3ce47abd218",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "db6cea46cb0146c68df1ce204091b3ce47abd218",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "4235e690602195cc504438a6b937972c71f1ad39",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "ancestor": true
+    },
+    {
+      "branch": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "428679a33381f943a8ae63117d4207f01dd15462",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "ancestor": true
+    },
+    {
+      "branch": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "20681b8658392212c128f51b4c91f0b638942448",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "e59751246a200e7477657d0e4835bf77b153422c",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "49b447324159595c59e64d8425b54a09f79ec736",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "ancestor": true
+    },
+    {
+      "branch": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "ancestor": true
+    },
+    {
+      "branch": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "ancestor": true
+    },
+    {
+      "branch": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "ancestor": true
+    },
+    {
+      "branch": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "ancestor": true
+    },
+    {
+      "branch": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "ancestor": true
+    },
+    {
+      "branch": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "2e92a49c2cf39128a79d2c037c3e07bbace1d1ae",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "2e92a49c2cf39128a79d2c037c3e07bbace1d1ae",
+      "ancestor": true
+    },
+    {
+      "branch": "main",
+      "sha": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "90acedb9835cb5bdef30606301e74482f5977448",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "388a1c76339507d493bab577424affd80732446c",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "ancestor": true
+    },
+    {
+      "branch": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "status": "ahead",
+      "behind_by": 0,
+      "merge_base": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "ancestor": true
+    }
+  ],
+  "verified_at_utc": "2026-11-16 14:33:46 UTC",
+  "method": "GitHub compare for each exact audited branch head: behind_by=0 and merge_base equals that head. No CI endpoints."
+}

@@ -1,0 +1,7 @@
+00:00 +0: loading test/harper_native_test.dart
+00:00 +0: missing native library is unavailable without unhandled isolate errors
+00:00 +1: disposal while the native worker starts completes queued checks
+00:00 +2: real persistent native worker checks grammar and UTF16 source spans
+  Skip: Set QUDS_HARPER_TEST_LIBRARY to the built native library.
+00:00 +2 ~1: disposal while the isolate starts settles outstanding checks
+00:00 +3 ~1: All tests passed!

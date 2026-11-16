@@ -1,0 +1,379 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_at_utc": "2026-11-16T14:27:44Z",
+  "previous_snapshot_at_utc": "2026-11-16T14:07:59Z",
+  "continuation_checked": "db6cea46cb0146c68df1ce204091b3ce47abd218",
+  "branch_count": 58,
+  "pull_request_count": 66,
+  "open_pull_requests": [
+    {
+      "number": 63,
+      "title": "Improve Zotero source identity, dialog scaling, and session backoff",
+      "head": "codex/zotero-capabilities-20261116",
+      "head_sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    }
+  ],
+  "minimal_additional_parents": [
+    "90024d5d76a784dd96974988a5f54effcaac911d",
+    "2480f0988167068d9aeddf6573b9c2c6871a8481"
+  ],
+  "changed_refs": [
+    {
+      "name": "codex/proofing-20261116-resume",
+      "sha": "db6cea46cb0146c68df1ce204091b3ce47abd218"
+    },
+    {
+      "name": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "name": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "name": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "name": "main",
+      "sha": "90024d5d76a784dd96974988a5f54effcaac911d"
+    },
+    {
+      "name": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    }
+  ],
+  "new_pull_requests": [
+    {
+      "number": 66,
+      "title": "Record ODS filter operator progress",
+      "state": "closed",
+      "merged_at": "2026-11-16T14:16:19Z",
+      "head_sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "merge_commit_sha": "90024d5d76a784dd96974988a5f54effcaac911d"
+    },
+    {
+      "number": 65,
+      "title": "Support ODS filter comparison operators",
+      "state": "closed",
+      "merged_at": "2026-11-16T14:13:30Z",
+      "head_sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "merge_commit_sha": "5d89092e779d2cbf776f21f2f7682f7416c0d25f"
+    }
+  ],
+  "file_updates": [
+    {
+      "path": "docs/office-remaining-gaps.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64b586cffc3f6e1dc256ff10a79e9d2c447a09d9"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68db5e6891e5d04f97a9cc0065ee51cfeb02d83a"
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47f17447e405e224c2ca4fad2a988df34d0fea4f"
+    },
+    {
+      "path": "docs/validation/zotero-capabilities-20261116/final-qualification-checkpoint.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "471894010ff853163de68c3c90b371c4ffb6d63a"
+    }
+  ],
+  "no_overlap_checks": [
+    {
+      "path": "docs/office-remaining-gaps.md",
+      "main_base_commit": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "main_base_blob": "104080c2881d304efe43af990a1f9a95bfdbb272",
+      "continuation_blob": "104080c2881d304efe43af990a1f9a95bfdbb272",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+      "main_base_commit": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "main_base_blob": "6dd86cf3e68d0e8b1057b9985eb08df85dd9a1dc",
+      "continuation_blob": "6dd86cf3e68d0e8b1057b9985eb08df85dd9a1dc",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+      "main_base_commit": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "main_base_blob": "f0a85b25f0e6276a82457bbcf76fe795bc7cc31d",
+      "continuation_blob": "f0a85b25f0e6276a82457bbcf76fe795bc7cc31d",
+      "identical": true
+    }
+  ],
+  "equivalence": [
+    {
+      "branch": "docs/filter-operators",
+      "head": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "main": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "identical_complete_tree": "e10a90811572ef880f4edea40ba8a5413bd0c51d"
+    },
+    {
+      "branches": [
+        "feat/ods-filter-operators",
+        "vendor/ods-filter-operators"
+      ],
+      "heads": [
+        "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+        "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+      ],
+      "integrated_squash": "5d89092e779d2cbf776f21f2f7682f7416c0d25f",
+      "evidence": "Identical two paths, identical complete unified patch text, identical resulting source/test blob SHAs."
+    }
+  ],
+  "observations": [
+    "Main adds exactly two commits: PR65 ODS comparison filters and PR66 documentation.",
+    "Zotero adds exactly one Markdown checkpoint; no production or test source changes.",
+    "The Zotero checkpoint reports historical qualification of 9de4366 and a different host repository, with final raw archive publication still pending. These historical test counts are not validation of this continuation.",
+    "Read-only review: new not-empty filtering excludes blank cells from its candidate universe; SmlAutoFilter.isRowHidden checks hiddenValues strings, so blank rows remain visible. The incoming regression covers numeric > and export only. No ODS fix was applied by this audit."
+  ],
+  "branch_inventory": [
+    {
+      "name": "codex/proofing-20261116-resume",
+      "sha": "db6cea46cb0146c68df1ce204091b3ce47abd218"
+    },
+    {
+      "name": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "name": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "name": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "name": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "name": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "name": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "name": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "name": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "name": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "name": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "name": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "name": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "name": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "name": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "name": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "name": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "name": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "name": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "name": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "name": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "name": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "name": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "name": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "name": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "name": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "name": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "name": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "name": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "name": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "name": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "name": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "name": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "name": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "name": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "name": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "name": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "name": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "name": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "name": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "name": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "name": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "name": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "name": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "2e92a49c2cf39128a79d2c037c3e07bbace1d1ae"
+    },
+    {
+      "name": "main",
+      "sha": "90024d5d76a784dd96974988a5f54effcaac911d"
+    },
+    {
+      "name": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "name": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "name": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "name": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "name": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "name": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "name": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "name": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "name": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "name": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "name": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "name": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "name": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    }
+  ],
+  "validation_limits": [
+    "No Dart/Flutter test execution in this audit.",
+    "No GitHub Actions, workflow, check-run, or commit-status endpoints were queried.",
+    "No branch refs or commits were modified by the audit."
+  ]
+}

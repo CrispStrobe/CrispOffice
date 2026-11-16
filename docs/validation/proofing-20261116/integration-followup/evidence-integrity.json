@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "checked_at_utc": "2026-11-16 14:53:16 UTC",
+  "method": "Read-only Git commit and non-truncated recursive Git tree metadata from GitHub; exact path/type/mode/Git object SHA/size comparison. Equal tree and blob object identities establish byte-preservation, including binary blobs, without content conversion.",
+  "current_source_revision": "6f87a4e849f9dc172fea7a0e57d1d9072d99efe3",
+  "source_commits": {
+    "incoming": {
+      "revision": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "root_tree_sha": "ac75be938bb648221b417093514675660979b9db"
+    },
+    "continuation": {
+      "revision": "81f4b77a9e77b0f08439ab13c2799ed1ee3e8efd",
+      "root_tree_sha": "0236bf024c077f107b0c1bc46bde948a36eff113"
+    },
+    "current": {
+      "revision": "6f87a4e849f9dc172fea7a0e57d1d9072d99efe3",
+      "root_tree_sha": "4b07cf5c92740ae751888b67d3c97c52fa9d9fe8"
+    }
+  },
+  "incoming_final_evidence": {
+    "path": "docs/validation/proofing-20261116/final",
+    "original_revision": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+    "original_tree_sha": "867f0ca6f6f0737c411bfcbf950ae6157c3e3262",
+    "current_tree_sha": "867f0ca6f6f0737c411bfcbf950ae6157c3e3262",
+    "tree_identical": true,
+    "descendants": 72,
+    "files": 65,
+    "nested_trees_excluding_root": 7,
+    "total_blob_bytes": 530788,
+    "differences": [],
+    "binary_manifests": [
+      {
+        "path": "docs/validation/proofing-20261116/final/source-sha256.after.json.gz",
+        "sha": "af86f86373c0a1a63bd012eb4a538f0030f905b5",
+        "size": 93312,
+        "mode": "100644",
+        "type": "blob",
+        "preserved": true
+      },
+      {
+        "path": "docs/validation/proofing-20261116/final/source-sha256.before.json.gz",
+        "sha": "af86f86373c0a1a63bd012eb4a538f0030f905b5",
+        "size": 93312,
+        "mode": "100644",
+        "type": "blob",
+        "preserved": true
+      },
+      {
+        "path": "docs/validation/proofing-20261116/final/web-bundle-sha256.json.gz",
+        "sha": "cd5e054d552eff7a84d0c3a444c204411be77904",
+        "size": 6085,
+        "mode": "100644",
+        "type": "blob",
+        "preserved": true
+      }
+    ]
+  },
+  "original_continuation_proofing": {
+    "path": "docs/validation/proofing-20261116",
+    "original_revision": "81f4b77a9e77b0f08439ab13c2799ed1ee3e8efd",
+    "original_tree_sha": "90aa31209415764e4de93090c383125ab5d4021b",
+    "current_tree_sha": "4873bad1b3639d7519cc8c68de75e01ac53efd9f",
+    "original_files": 91,
+    "original_nested_trees": 11,
+    "original_blob_bytes": 793627,
+    "all_original_paths_mode_type_sha_size_unchanged": true,
+    "differences": [],
+    "note": "The parent tree differs because new evidence directories were added. All original files and all 11 original nested directory objects remain unchanged."
+  },
+  "entire_original_validation_directory": {
+    "path": "docs/validation",
+    "original_revision": "81f4b77a9e77b0f08439ab13c2799ed1ee3e8efd",
+    "original_tree_sha": "9a7a8a9f32dd6d32125a18ac6a3996c70cffcdd8",
+    "current_tree_sha": "d7e63f0ec7c0e38385d75b17ff8030c1b7b2ad31",
+    "original_files": 528,
+    "original_blob_bytes": 8838733,
+    "original_nested_trees": 64,
+    "preserved_identical_nested_trees": 63,
+    "all_original_file_paths_mode_type_sha_size_unchanged": true,
+    "file_differences": [],
+    "tree_differences": [
+      {
+        "path": "proofing-20261116",
+        "issue": "sha",
+        "expected": "90aa31209415764e4de93090c383125ab5d4021b",
+        "actual": "4873bad1b3639d7519cc8c68de75e01ac53efd9f"
+      }
+    ],
+    "note": "Only the proofing-20261116 directory object changed, to include added evidence. All 528 original files across docs/validation remain byte-identical."
+  },
+  "scope_limits": [
+    "This is source/evidence preservation verification, not a fresh execution of historical test logs.",
+    "No test reruns, branch inventories, GitHub Actions, CI statuses, commits, or ref updates were performed.",
+    "Compared immutable source revisions; no claim about later branch pushes."
+  ]
+}

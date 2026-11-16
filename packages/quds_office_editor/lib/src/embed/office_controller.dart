@@ -8029,6 +8029,12 @@ class WordEditorController extends OfficeController {
     if (index < 0) return false;
     endCommentEdit();
     endHeaderFooterEdit();
+    // Showing a text finding leaves object editing. Otherwise the equation
+    // IME or visual/frame key handlers can retain ownership of later input.
+    selectEquation(null);
+    selectVisual(null);
+    selectFrame(null);
+    selectTable(null);
     documentCaret
       ..paragraphIndex = index
       ..logicalIndex = issue.finding.end

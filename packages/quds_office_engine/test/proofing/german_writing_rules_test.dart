@@ -96,16 +96,19 @@ void main() {
       );
     },
   );
-  test('nominal Ich and Du remain outside the limited agreement rule', () async {
-    final OfficeProofingResult result = await GermanWritingRulesProvider()
-        .check(
-          input(
-            'Das Ich ist wach. Das Du ist wichtig. Mein wahres Ich ist ruhig. '
-            'Ich ist ein Personalpronomen.',
-          ),
-        );
-    expect(result.findings, isEmpty);
-  });
+  test(
+    'nominal Ich and Du remain outside the limited agreement rule',
+    () async {
+      final OfficeProofingResult
+      result = await GermanWritingRulesProvider().check(
+        input(
+          'Das Ich ist wach. Das Du ist wichtig. Mein wahres Ich ist ruhig. '
+          'Ich ist ein Personalpronomen.',
+        ),
+      );
+      expect(result.findings, isEmpty);
+    },
+  );
   test(
     'comparison pronouns are not mistaken for the following subject',
     () async {
@@ -127,65 +130,65 @@ void main() {
       <String>['BIN', 'SIND', 'BIN'],
     );
   });
-  test('word-internal apostrophes do not close enclosing single quotes', () async {
-    final OfficeProofingService service = OfficeProofingService(
-      providers: <OfficeProofingProvider>[GermanWritingRulesProvider()],
-    );
-    for (final String text in <String>[
-      'Er sagt ‘O’Connor’.',
-      'Er fragt ‘Wie geht’s?’.',
-      '„Er nennt ihn ‘d’Artagnan’.“',
-      'Er sagt ‘Cafe\u0301’s’.',
-      'Er sagt ‘𝒪’Connor’.',
-      'Er sagt ‘Hallo’\u0308.',
-      'Cafe\u0301’ und 𝒪’',
-    ]) {
-      final OfficeProofingReport report = await service.check(input(text));
-      expect(report.results.single.status, OfficeProofingStatus.success);
-      expect(report.isClean, isTrue, reason: text);
-    }
-    final OfficeProofingReport unclosed = await service.check(
-      input('🙂 ‘O’Connor'),
-    );
-    expect(unclosed.complete, isTrue);
-    expect(unclosed.findings.single.ruleId, 'de.quote.balance');
-    expect(unclosed.findings.single.originalText, '‘');
-    expect(unclosed.findings.single.start, 3);
-    await service.dispose();
-  });
   test(
-    'decorated punctuation preserves ordinary paragraph findings',
+    'word-internal apostrophes do not close enclosing single quotes',
     () async {
       final OfficeProofingService service = OfficeProofingService(
         providers: <OfficeProofingProvider>[GermanWritingRulesProvider()],
       );
       for (final String text in <String>[
-        '🙂 (\u0308 „\u0308 Hallo  Welt [',
-        '🙂 (\u0308) „\u0308Hallo“ Hallo  Welt [',
+        'Er sagt ‘O’Connor’.',
+        'Er fragt ‘Wie geht’s?’.',
+        '„Er nennt ihn ‘d’Artagnan’.“',
+        'Er sagt ‘Cafe\u0301’s’.',
+        'Er sagt ‘𝒪’Connor’.',
+        'Er sagt ‘Hallo’\u0308.',
+        'Cafe\u0301’ und 𝒪’',
       ]) {
-        final OfficeProofingReport report = await service.check(
-          OfficeProofingRequest(
-            documentId: 'doc',
-            blockId: 'p',
-            revision: 1,
-            text: text,
-            startOffset: 20,
-          ),
-        );
+        final OfficeProofingReport report = await service.check(input(text));
         expect(report.results.single.status, OfficeProofingStatus.success);
-        expect(report.complete, isTrue);
-        expect(
-          report.findings.map((OfficeProofingFinding f) => f.originalText),
-          <String>['  ', '['],
-        );
-        expect(report.findings.first.start, 20 + text.indexOf('  '));
-        expect(report.findings.last.start, 20 + text.lastIndexOf('['));
-        expect(report.findings.first.replacements, <String>[' ']);
-        expect(report.findings.last.replacements, isEmpty);
+        expect(report.isClean, isTrue, reason: text);
       }
+      final OfficeProofingReport unclosed = await service.check(
+        input('🙂 ‘O’Connor'),
+      );
+      expect(unclosed.complete, isTrue);
+      expect(unclosed.findings.single.ruleId, 'de.quote.balance');
+      expect(unclosed.findings.single.originalText, '‘');
+      expect(unclosed.findings.single.start, 3);
       await service.dispose();
     },
   );
+  test('decorated punctuation preserves ordinary paragraph findings', () async {
+    final OfficeProofingService service = OfficeProofingService(
+      providers: <OfficeProofingProvider>[GermanWritingRulesProvider()],
+    );
+    for (final String text in <String>[
+      '🙂 (\u0308 „\u0308 Hallo  Welt [',
+      '🙂 (\u0308) „\u0308Hallo“ Hallo  Welt [',
+    ]) {
+      final OfficeProofingReport report = await service.check(
+        OfficeProofingRequest(
+          documentId: 'doc',
+          blockId: 'p',
+          revision: 1,
+          text: text,
+          startOffset: 20,
+        ),
+      );
+      expect(report.results.single.status, OfficeProofingStatus.success);
+      expect(report.complete, isTrue);
+      expect(
+        report.findings.map((OfficeProofingFinding f) => f.originalText),
+        <String>['  ', '['],
+      );
+      expect(report.findings.first.start, 20 + text.indexOf('  '));
+      expect(report.findings.last.start, 20 + text.lastIndexOf('['));
+      expect(report.findings.first.replacements, <String>[' ']);
+      expect(report.findings.last.replacements, isEmpty);
+    }
+    await service.dispose();
+  });
   test(
     'unsafe grammar and spacing matches leave ordinary corrections available',
     () async {

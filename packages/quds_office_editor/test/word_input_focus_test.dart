@@ -165,8 +165,13 @@ void main() {
     expect(controller.contentRevision, revision);
 
     await _finishDialog(tester, closed);
-    controller.attachInput();
+    expect(editorFocus.hasPrimaryFocus, isTrue);
     expect(controller.input.isAttached, isTrue);
+    // Restored route ownership must revive the platform client without a
+    // click, a focus change, or an explicit controller attachment.
+    tester.testTextInput.enterText('Preserve this resumed');
+    await tester.pump();
+    expect(controller.document.paragraphs.single.text, 'Preserve this resumed');
   });
 
   testWidgets('controller replacement transfers the focused input guard', (
@@ -256,10 +261,12 @@ void main() {
 
     await tester.pumpWidget(_app(_editor(controller, editorFocus)));
     await _focusEditor(tester, controller, editorFocus);
+    // Selecting mode permits caret navigation while keeping mutation disabled.
     controller.setMode(OfficeInteractionMode.selecting);
     await tester.pump();
     expect(editorFocus.hasPrimaryFocus, isTrue);
     expect(controller.input.isAttached, isFalse);
+    expect(controller.config.allowsMutation, isFalse);
     expect(controller.config.allowsSelection, isTrue);
 
     final end = controller.document.paragraphs.single.text.length;

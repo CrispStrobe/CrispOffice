@@ -1,0 +1,10 @@
+test_changed_runtime_or_notices_fail_before_host_writes (test_build_packaging.HostPackagingTest.test_changed_runtime_or_notices_fail_before_host_writes) ... ok
+test_only_audited_runtime_and_notices_are_installed (test_build_packaging.HostPackagingTest.test_only_audited_runtime_and_notices_are_installed) ... ok
+test_rejects_forbidden_unknown_and_malformed_terms (test_license_bundle.LicensePolicyTest.test_rejects_forbidden_unknown_and_malformed_terms) ... ok
+test_rejects_stale_fallback_notice (test_license_bundle.LicensePolicyTest.test_rejects_stale_fallback_notice) ... ok
+test_selects_permitted_alternative (test_license_bundle.LicensePolicyTest.test_selects_permitted_alternative) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+OK

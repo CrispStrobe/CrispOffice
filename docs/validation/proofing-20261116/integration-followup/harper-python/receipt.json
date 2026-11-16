@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "source_revision": "47bcdd428677f6b843807e575b9f3ec56dfd1b1e",
+  "scope": "Harper Python packaging and license policy tests only",
+  "started_at_utc": "2026-11-16T14:41:21.492207+00:00",
+  "finished_at_utc": "2026-11-16T14:41:21.666871+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tool",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/72fe03e29337/harper-python-9ci8wz1r/packages/quds_proofing_harper",
+  "environment_overrides": {
+    "TMPDIR": "/workspace/scratch/72fe03e29337/harper-python-9ci8wz1r/tmp",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "python_executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "returncode": 0,
+  "seconds": 0.316851,
+  "status": "passed",
+  "error": null,
+  "source_inputs": {
+    "packages/quds_proofing_harper/tool/build.py": {
+      "git_blob_sha1": "589015bf0daad5752923c5c8099d97d90ef897df",
+      "sha256": "a1bbb594a841cbe78f1155f982c96b28f117b6c29d78dd817f4063dc3c826e7b",
+      "bytes": 6821
+    },
+    "packages/quds_proofing_harper/tool/license_bundle.py": {
+      "git_blob_sha1": "6381e803a88c79d7c344506d828ce4ce0938daf0",
+      "sha256": "cb6c7a503c5552e9c8fd48a5218ab61a8d8eaac1c61845167bdabde5cb844105",
+      "bytes": 10964
+    },
+    "packages/quds_proofing_harper/tool/test_build_packaging.py": {
+      "git_blob_sha1": "c4d80dee196203a71511447405aa617c30830b86",
+      "sha256": "c82da4e06aa68c545af48e5eeaf26bf20e309209d0c5613f06b968bbf0496b8a",
+      "bytes": 2594
+    },
+    "packages/quds_proofing_harper/tool/test_license_bundle.py": {
+      "git_blob_sha1": "c8ad4082aa9ec3e75de28b25dcb5e5803f6c6a64",
+      "sha256": "e3550572f783adb5c7a59253dfd5ae674a35d7b0fc1de149636a467e3364aee3",
+      "bytes": 1717
+    },
+    "packages/quds_proofing_harper/licenses/upstream/fallback-notices.json": {
+      "git_blob_sha1": "0dd9f717c7387076134e18d564eb11a689ee7189",
+      "sha256": "38ff662bf37ffc1675975e1915f6235ac758d8e909673dcdd0dd68b4b28c3bae",
+      "bytes": 1706
+    }
+  },
+  "source_sha256_after": {
+    "packages/quds_proofing_harper/tool/build.py": "a1bbb594a841cbe78f1155f982c96b28f117b6c29d78dd817f4063dc3c826e7b",
+    "packages/quds_proofing_harper/tool/license_bundle.py": "cb6c7a503c5552e9c8fd48a5218ab61a8d8eaac1c61845167bdabde5cb844105",
+    "packages/quds_proofing_harper/tool/test_build_packaging.py": "c82da4e06aa68c545af48e5eeaf26bf20e309209d0c5613f06b968bbf0496b8a",
+    "packages/quds_proofing_harper/tool/test_license_bundle.py": "e3550572f783adb5c7a59253dfd5ae674a35d7b0fc1de149636a467e3364aee3",
+    "packages/quds_proofing_harper/licenses/upstream/fallback-notices.json": "38ff662bf37ffc1675975e1915f6235ac758d8e909673dcdd0dd68b4b28c3bae"
+  },
+  "source_unchanged": true,
+  "stdout": "",
+  "stderr": "test_changed_runtime_or_notices_fail_before_host_writes (test_build_packaging.HostPackagingTest.test_changed_runtime_or_notices_fail_before_host_writes) ... ok\ntest_only_audited_runtime_and_notices_are_installed (test_build_packaging.HostPackagingTest.test_only_audited_runtime_and_notices_are_installed) ... ok\ntest_rejects_forbidden_unknown_and_malformed_terms (test_license_bundle.LicensePolicyTest.test_rejects_forbidden_unknown_and_malformed_terms) ... ok\ntest_rejects_stale_fallback_notice (test_license_bundle.LicensePolicyTest.test_rejects_stale_fallback_notice) ... ok\ntest_selects_permitted_alternative (test_license_bundle.LicensePolicyTest.test_selects_permitted_alternative) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.008s\n\nOK\n",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "13b6f6ee535f118503949cf27321eddb036a36a929cea80f4929eb0eb9353f84",
+  "limits": [
+    "No Rust build or native/Wasm execution.",
+    "No Dart or Flutter tests.",
+    "Only the four selected tool files and their one required notice metadata input were materialized.",
+    "No network access or external Python packages required by the test command."
+  ]
+}
