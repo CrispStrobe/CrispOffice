@@ -1,0 +1,9 @@
+Proofbird GECToR grammar model (German)
+Copyright 2026 Patrick Andrew Hartnett
+
+This product includes software developed by Patrick Andrew Hartnett for Proofbird
+(https://proofbird.app). Source: https://huggingface.co/proofbird/gector-bert-de
+
+Based on dbmdz/bert-base-german-cased by the MDZ Digital Library team (dbmdz) at the
+Bavarian State Library (MIT licence) and the GECToR tagging scheme
+(Omelianchuk et al., 2020; Apache License 2.0).

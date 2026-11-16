@@ -1,0 +1,24 @@
+[package]
+name = "quds_proofing_harper"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+harper-core = { version = "=3.2.0", default-features = false }
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.150"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom_02 = { package = "getrandom", version = "=0.2.17", features = ["js"] }
+getrandom_03 = { package = "getrandom", version = "=0.3.4", features = ["wasm_js"] }
+
+[profile.release]
+lto = "thin"
+opt-level = 3
+
+[workspace]
