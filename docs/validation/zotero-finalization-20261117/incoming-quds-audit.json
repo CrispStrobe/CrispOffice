@@ -1,0 +1,1490 @@
+{
+  "observed_at_utc": "2026-11-16T23:16:01.476301+00:00",
+  "target": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+  "reference_count": 189,
+  "unique_heads": 128,
+  "all_ancestors": true,
+  "refs": [
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116",
+      "sha": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-recovery-20261116",
+      "sha": "b4647f1c3aa60300116b27c3bce741b80ee39328",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "sha": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/1",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/10",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/11",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/12",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/13",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/14",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/15",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/16",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/17",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/18",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/19",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/2",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/20",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/21",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/22",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/23",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/24",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/25",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/26",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/27",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/28",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/29",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/3",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/30",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/31",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/32",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/33",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/34",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/35",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/36",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/37",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/38",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/39",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/4",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/40",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/41",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/42",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/43",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/44",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/45",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/46",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/47",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/48",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/49",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/5",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/50",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/51",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/52",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/53",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/54",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/55",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/56",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/57",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/58",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/59",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/6",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/60",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/61",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/62",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/63",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/64",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/65",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/66",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/67",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/68",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/69",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/7",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/70",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/71",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/72",
+      "sha": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/73",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/74",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/75",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/76",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/77",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/78",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/79",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/8",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/80",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/81",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/82",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/83",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/84",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/85",
+      "sha": "b4647f1c3aa60300116b27c3bce741b80ee39328",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/86",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/87",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/pull/9",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream-pull/1",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream-pull/5",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream-pull/6",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream-pull/7",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "included": true,
+      "returncode": 0
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "included": true,
+      "returncode": 0
+    }
+  ],
+  "zotero_preservation": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "recovery_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+      "incoming_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+      "recovery_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+      "incoming_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart",
+      "recovery_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+      "incoming_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "recovery_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+      "incoming_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+      "unchanged": true
+    }
+  ],
+  "scope": "Local graph for fetched fork/upstream branches and PR heads. No Actions/status queries.",
+  "all_zotero_path_preservation": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_zotero.dart",
+      "recovery_blob": "7adb79ab19134f9d54f1c4c393a3e3d3362d6c9a",
+      "incoming_blob": "7adb79ab19134f9d54f1c4c393a3e3d3362d6c9a",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_zotero_local_io.dart",
+      "recovery_blob": "8a99108c6e82f68c1914793f37ef58b55061c58c",
+      "incoming_blob": "8a99108c6e82f68c1914793f37ef58b55061c58c",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_zotero_local_stub.dart",
+      "recovery_blob": "e8e714667c894b1f3bf094b81f1808b7083345d3",
+      "incoming_blob": "e8e714667c894b1f3bf094b81f1808b7083345d3",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+      "recovery_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+      "incoming_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "recovery_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+      "incoming_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart",
+      "recovery_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+      "incoming_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+      "recovery_blob": "dd681f67fa1fb7acb548061d4da69fa1bab5a18a",
+      "incoming_blob": "dd681f67fa1fb7acb548061d4da69fa1bab5a18a",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+      "recovery_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+      "incoming_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+      "recovery_blob": "21a88d43d0dc81cede3583e748e32c544c6303e4",
+      "incoming_blob": "21a88d43d0dc81cede3583e748e32c544c6303e4",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+      "recovery_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+      "incoming_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "recovery_blob": "1a25b5d1bf5ad54add68b1c678f751bf47b20b92",
+      "incoming_blob": "1a25b5d1bf5ad54add68b1c678f751bf47b20b92",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+      "recovery_blob": "2c7ac95c3379050017bdd5470be9b7192115e7ae",
+      "incoming_blob": "2c7ac95c3379050017bdd5470be9b7192115e7ae",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+      "recovery_blob": "4b7656d940dbed1e811ebc9ea601e75d1fe16dc9",
+      "incoming_blob": "4b7656d940dbed1e811ebc9ea601e75d1fe16dc9",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+      "recovery_blob": "521e8af163fff94e2ea03438ce808f5252e8274a",
+      "incoming_blob": "521e8af163fff94e2ea03438ce808f5252e8274a",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+      "recovery_blob": "925dcc6878d5f81781908bb871a38c13dd853bda",
+      "incoming_blob": "925dcc6878d5f81781908bb871a38c13dd853bda",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_format_test.dart",
+      "recovery_blob": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f",
+      "incoming_blob": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+      "recovery_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+      "incoming_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+      "recovery_blob": "698c53581d0bc0f92052458d1704a142b33277bb",
+      "incoming_blob": "698c53581d0bc0f92052458d1704a142b33277bb",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+      "recovery_blob": "345b34eabd7b79d4dfaeabf2d978e9d6b5a36808",
+      "incoming_blob": "345b34eabd7b79d4dfaeabf2d978e9d6b5a36808",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "recovery_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+      "incoming_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "recovery_blob": "6c1951e088391b620c8c1aacbc2b18b91c673e08",
+      "incoming_blob": "6c1951e088391b620c8c1aacbc2b18b91c673e08",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+      "recovery_blob": "7f30e37606603e5adae06caca9f71308123de465",
+      "incoming_blob": "7f30e37606603e5adae06caca9f71308123de465",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "recovery_blob": "e0265033bed528e8eeb1d1b96a9826f1b71eaa76",
+      "incoming_blob": "e0265033bed528e8eeb1d1b96a9826f1b71eaa76",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+      "recovery_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+      "incoming_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart",
+      "recovery_blob": "3416e1301ddb3ec8819aee07cec162b3c4164838",
+      "incoming_blob": "3416e1301ddb3ec8819aee07cec162b3c4164838",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+      "recovery_blob": "ef85d53e8daa3e793a7bdb0b4003a5a74999db08",
+      "incoming_blob": "ef85d53e8daa3e793a7bdb0b4003a5a74999db08",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/citing/README.md",
+      "recovery_blob": "cfc7fc762c379b298b16abf67fc34b4f07c967f7",
+      "incoming_blob": "cfc7fc762c379b298b16abf67fc34b4f07c967f7",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/citing/generate-fixtures.cjs",
+      "recovery_blob": "ccafdb1d7d5905505641b00c741d74e5f72ed643",
+      "incoming_blob": "ccafdb1d7d5905505641b00c741d74e5f72ed643",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/citing/processor-output.json",
+      "recovery_blob": "935c6ac0d9a816fe578c30c3c4c7f3e27354d84d",
+      "incoming_blob": "935c6ac0d9a816fe578c30c3c4c7f3e27354d84d",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/citing/protocol-contract.json",
+      "recovery_blob": "6ecacf41c116775e85687df3bc43bf17e13b5e9b",
+      "incoming_blob": "6ecacf41c116775e85687df3bc43bf17e13b5e9b",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/word_document.xml",
+      "recovery_blob": "58ab654c095dca77ac89ed82c9933903dcc9a4da",
+      "incoming_blob": "58ab654c095dca77ac89ed82c9933903dcc9a4da",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "recovery_blob": "8ac20b3d733b295fd1b9a47d57bf11ce4a29d6b2",
+      "incoming_blob": "8ac20b3d733b295fd1b9a47d57bf11ce4a29d6b2",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "recovery_blob": "b1032ee4bab803997322170accb1cb94b15e432e",
+      "incoming_blob": "b1032ee4bab803997322170accb1cb94b15e432e",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "recovery_blob": "ba361688bb890e31edb80fc97a1e3201dfc104b9",
+      "incoming_blob": "ba361688bb890e31edb80fc97a1e3201dfc104b9",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "recovery_blob": "f6b3022292411a888bbfb6fe911e27ce077fe9e5",
+      "incoming_blob": "f6b3022292411a888bbfb6fe911e27ce077fe9e5",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "recovery_blob": "a08d47ab044b3612c3280d4aca110af00594d78c",
+      "incoming_blob": "a08d47ab044b3612c3280d4aca110af00594d78c",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "recovery_blob": "c53592cc431f3f6605c6f41e7980a4c6c034e1b5",
+      "incoming_blob": "c53592cc431f3f6605c6f41e7980a4c6c034e1b5",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "recovery_blob": "00002fbbf6518c2142978c4b0aed86235cefd7a9",
+      "incoming_blob": "00002fbbf6518c2142978c4b0aed86235cefd7a9",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "recovery_blob": "ca91db78f6fa4284d0708edddaa7873904f53ff0",
+      "incoming_blob": "ca91db78f6fa4284d0708edddaa7873904f53ff0",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "recovery_blob": "c62f5df2c981f4755e2ae0ac4f33e9cb1cb204ee",
+      "incoming_blob": "c62f5df2c981f4755e2ae0ac4f33e9cb1cb204ee",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "recovery_blob": "631232b4df6ec1e6f8226e01d8318f7163b58816",
+      "incoming_blob": "631232b4df6ec1e6f8226e01d8318f7163b58816",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "recovery_blob": "53f29938b5f31cff40648f356c444d06f96183ba",
+      "incoming_blob": "53f29938b5f31cff40648f356c444d06f96183ba",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "recovery_blob": "2f0663487f527d33e1855926c3f36803167f4423",
+      "incoming_blob": "2f0663487f527d33e1855926c3f36803167f4423",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "recovery_blob": "e420291eb421ccc4447416f29d3e356680236377",
+      "incoming_blob": "e420291eb421ccc4447416f29d3e356680236377",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "recovery_blob": "590e6b2b7953b08bc0a1434f866f67935e12c3fa",
+      "incoming_blob": "590e6b2b7953b08bc0a1434f866f67935e12c3fa",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "recovery_blob": "b91cfd389a5b805bb78822e63dcbca499f5d9464",
+      "incoming_blob": "b91cfd389a5b805bb78822e63dcbca499f5d9464",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "recovery_blob": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65",
+      "incoming_blob": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "recovery_blob": "fbea53dd8badea6cf69b136945155f08305f82b1",
+      "incoming_blob": "fbea53dd8badea6cf69b136945155f08305f82b1",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+      "recovery_blob": "95943fabfffdb187c44ae5ff6be9503ffcac3734",
+      "incoming_blob": "95943fabfffdb187c44ae5ff6be9503ffcac3734",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "recovery_blob": "483cf44306607d82e572fbab49d34084a1728c65",
+      "incoming_blob": "483cf44306607d82e572fbab49d34084a1728c65",
+      "unchanged": true
+    }
+  ],
+  "changes_since_qualified_rendering": {
+    "source": "c6aab884eb478672d36da5c03cd20873d7e8c42c",
+    "target": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+    "paths": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+      "packages/quds_office_engine/CHANGELOG.md",
+      "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+      "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+      "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+      "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+      "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+      "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+      "packages/quds_office_engine/third_party/proofing/README.md",
+      "tools/proofing/verify_integration.py"
+    ],
+    "description": "Four spreadsheet implementations and two tests add top/bottom rules. Word proofing dialog changes explanatory text. Verifier adds ODS writer and sheet cache/freeze suites. Other files are changelog/notices. Existing Zotero, English/German/Harper implementations unchanged."
+  }
+}

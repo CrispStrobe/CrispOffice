@@ -44,6 +44,9 @@ INCOMING_ENGINE_TESTS = [
     "ods_sheet_reader", "ods_sheet_writer", "sheet_save_cache_and_freeze",
     "zotero_backoff_state", "word_zotero_source_identity",
     "zotero_client", "zotero_identity_client",
+    "sfnt_cmap_validation", "pdf_actual_text_scope", "pdf_logical_text_export",
+    "sheet_conditional_fidelity", "sheet_conditional_style_priority_integration",
+    "sheet_rename_adversarial", "sheet_rename_fidelity",
 ]
 HARPER_WEB_FILES = [
     "web/harper_worker.mjs", "web/quds_proofing_harper.js",

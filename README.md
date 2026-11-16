@@ -580,38 +580,3 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md). Issues and pull requests are welcome.
 ## License
 
 [MIT](LICENSE) © Mohammed Asaad Asaad. Fork changes © CrispStrobe, same license.
-
-The November integration also includes the completed worksheet-local-name, bookmark-copy and slide-arrangement regressions from the expansion branch, with the earlier logical-table selector guards retained. The standalone DOC parser is pinned in `packages/legacy_doc_parser/UPSTREAM.json`; its nested tables, bounded metafile images, pagination settings, revision and comment preservation remain subject to the parser’s documented fidelity limits. Historical evidence describes its recorded source checkpoint; integrated CI validates the combined tree.
-
-The source-only fork also keeps `quds_reports` beside the engine and editor. Both editor dependencies use sibling paths, so standalone consumer checks cannot accidentally resolve a newer hosted reports/engine pair.
-
-The November integration uses the current standalone DOC parser source, including bounded image appearance, table revision history and native BLIP recovery. Source acceptance records are preserved from both Office branches. The current Word picture oracle retains the independently authored controller-default layout (picture y=94.45pt); historical exact-12pt workflow captures remain evidence for their distinct inputs.
-
-Final integration refresh includes the standalone parser evidence/CI declaration, with the canonical parser source pin recorded in `packages/legacy_doc_parser/UPSTREAM.json`. Studio parameter/template regressions run from the studio package and pass all 16 tests.
-
-The next integration refresh mirrors the canonical parser shape/textbox/metafile/schema updates, while retaining the shared engine/editor implementation and Word input guards. Engine legacy-document consumer regressions pass all 21 cases; both implementation analyzers report no issues.
-
-The current combined parser mirror includes note/header boundary preservation, native-backed textbox table indentation and corrected semantic oracle contexts. Its canonical source passes 773 Dart tests, 156 Python controls and independent Open XML SDK validation of 217 DOCX outputs. Native rendering evidence remains scoped to its authored cases and records remaining failures.
-
-The final parser refresh retains corroborated shared header shapes with their original IDs and per-anchor geometry. A native rendering counterexample retracted the experimental textbox table-depth reset. Canonical acceptance now covers 809 Dart tests, 162 Python controls and 218 independent SDK-validated DOCX outputs.
-
-The completed continuation also recovers bounded native header/footer stories ending in closed tables. The combined canonical parser passes 826 Dart tests, 162 Python controls and 222 independently validated DOCX outputs. Branch-native corpus and engine acceptance receipts are retained alongside the current parser pin.
-
-The current canonical parser refresh includes floating-table anchors, exact note endings, independent shared header/footer textbox instances, bounded internal hyperlink fields, separate script font slots, explicit drawing wrap clearances and corrected floating-table origin and padding semantics. Parser-side validation retains the existing ambiguous-shape and revision guards. Its rewritten [README](https://github.com/CrispStrobe/legacy-doc-parser) describes current capabilities and remaining fidelity limits; `packages/legacy_doc_parser/UPSTREAM.json` records the exact consumed source.
-
-The November 13 parser refresh preserves section and gutter direction,
-manual-break justification compatibility and bounded explicit textbox border
-frame geometry. Literal binary anchors and independent header occurrences
-remain covered by regressions. The upstream parser passes 931 Dart tests and
-retains schema/native fidelity boundaries; the consumed revision is recorded
-in `packages/legacy_doc_parser/UPSTREAM.json`.
-
-The maintained legacy DOC parser now retains explicit Line Number styles, integer-twip picture sizing, supported textbox paint and labelled OLE placeholders. Unsupported geometry and object activation remain guarded; see the [parser capabilities and limits](packages/legacy_doc_parser/README.md).
-
-The shared legacy DOC parser is pinned to its completed 14 November audit. Current contracts cover bounded section geometry, cell shading, bookmark/story validation and textbox ownership; exact Word pagination and unmodeled drawing semantics remain qualified gaps. Parser implementation and tests are mirrored unchanged, with only workspace dependency adaptations.
-
-Delimited spreadsheet imports support quoted CSV/TSV fields, escaped quotes,
-embedded line breaks and blank rows. `SmlPowerQuery.fromCsv` accepts
-`detectNumbers: false` for exact identifiers and literal text;
-`SmlPowerQuery.fromRows` accepts already parsed cells. Report CSV callers retain
-their existing blank-row default unless `keepEmptyRows` is requested.

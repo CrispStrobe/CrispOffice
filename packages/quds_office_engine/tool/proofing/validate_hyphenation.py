@@ -34,6 +34,7 @@ files = [
     'third_party/hyphenation/hyph-de-1996.tex', 'third_party/hyphenation/README.md',
     'third_party/hyphenation/hyph-en-us.tex', 'third_party/hyphenation/hyph-en-gb.tex',
     'third_party/hyphenation/ENGLISH.md', 'third_party/hyphenation/english-manifest.json',
+    'third_party/hyphenation/ENGLISH_US_LICENSE', 'third_party/hyphenation/ENGLISH_GB_LICENSE',
     'tool/proofing/generate_hyphenation.py', 'tool/proofing/generate_english_hyphenation.py',
     'tool/proofing/validate_hyphenation.py',
 ]
