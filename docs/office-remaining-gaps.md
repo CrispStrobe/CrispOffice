@@ -74,11 +74,14 @@ Raster pictures are embedded as data URIs with a 2 MiB total budget; larger or
 unsupported images remain markers. Position/crop/caption/linked/vector media are
 not modeled. A bounded image registry would remove the Markdown cap.
 
-### 7. ODT/ODP serialization
+### 7. ODF serialization
 
 ODT and ODP are intentionally read-only in the host. ODS edits save a new XLSX
-copy. An in-place ODF writer is a separate serializer project and must preserve
-unknown XML/styles/media.
+copy. `OdsSheetWriter` now exports the modeled workbook subset (values, formulas,
+styles, number formats, merges, geometry, hidden state, comments, links, names,
+print areas/titles and autofilter ranges). Drawings, conditional formats,
+validations and page styles remain open; an ODT/ODP writer remains a separate
+project.
 
 ### 8. ODP slide fidelity
 
