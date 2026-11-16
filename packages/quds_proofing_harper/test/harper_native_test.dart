@@ -103,6 +103,30 @@ void main() {
       expect(projectedArticle.start, 14);
       expect(projectedArticle.end, 17);
       expect(projectedArticle.replacements, contains('a'));
+      const protectedText = '😀 `This is a\u00adn test.` This is an test.';
+      final protectedResult = await provider.check(
+        OfficeProofingRequest(
+          documentId: 'd',
+          blockId: 'protected',
+          revision: 5,
+          text: protectedText,
+          language: 'en-US',
+          startOffset: 3,
+        ),
+      );
+      expect(protectedResult.status, OfficeProofingStatus.success);
+      final proseArticle = protectedResult.findings
+          .where((finding) => finding.ruleId == 'harper.AnA')
+          .single;
+      expect(proseArticle.originalText, 'an');
+      expect(proseArticle.start, 3 + protectedText.lastIndexOf('an'));
+      expect(proseArticle.replacements, contains('a'));
+      expect(
+        protectedResult.findings.any(
+          (finding) => finding.start < 3 + protectedText.indexOf('`', 4) + 1,
+        ),
+        isFalse,
+      );
       final concurrent = await Future.wait(
         List.generate(
           8,
