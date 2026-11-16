@@ -43,12 +43,13 @@ final class HarperProofingProvider extends OfficeProofingProvider {
 
   @override
   Future<OfficeProofingResult> check(OfficeProofingRequest request) async {
-    if (_disposed)
+    if (_disposed) {
       return _result(
         request,
         OfficeProofingStatus.unavailable,
         'Harper has been disposed.',
       );
+    }
     if (!supportsLanguage(request.language)) {
       return _result(
         request,
@@ -73,12 +74,13 @@ final class HarperProofingProvider extends OfficeProofingProvider {
             }),
           )
           .timeout(timeout);
-      if (_disposed)
+      if (_disposed) {
         return _result(
           request,
           OfficeProofingStatus.unavailable,
           'Harper has been disposed.',
         );
+      }
       final Object? decoded = jsonDecode(raw);
       if (decoded is! Map<String, Object?> ||
           decoded['offsets'] != 'unicode-scalar') {
@@ -94,18 +96,21 @@ final class HarperProofingProvider extends OfficeProofingProvider {
         _ => throw const FormatException('Unknown Harper status.'),
       };
       final message = decoded['message'];
-      if (message != null && message is! String)
+      if (message != null && message is! String) {
         throw const FormatException('Invalid Harper message.');
-      if (status != OfficeProofingStatus.success)
+      }
+      if (status != OfficeProofingStatus.success) {
         return _result(request, status, message as String?);
+      }
       final rawFindings = decoded['findings'];
       if (rawFindings is! List<Object?> || rawFindings.length > 2000) {
         throw const FormatException('Invalid Harper finding list.');
       }
       final findings = <OfficeProofingFinding>[];
       for (final rawFinding in rawFindings) {
-        if (rawFinding is! Map<String, Object?>)
+        if (rawFinding is! Map<String, Object?>) {
           throw const FormatException('Invalid Harper finding.');
+        }
         final start = rawFinding['start'];
         final end = rawFinding['end'];
         final rule = rawFinding['rule'];

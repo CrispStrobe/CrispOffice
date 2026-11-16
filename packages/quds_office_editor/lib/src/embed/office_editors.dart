@@ -279,12 +279,13 @@ class _QudsWordEditorState extends State<QudsWordEditor>
 
   void _attachProofing(WordEditorController controller) {
     controller.proofing.addListener(_onProofing);
-    controller.proofing.start();
+    controller.proofing.attachView();
     controller.onSpellCheckRequested ??= _openProofing;
   }
 
   void _detachProofing(WordEditorController controller) {
     controller.proofing.removeListener(_onProofing);
+    controller.proofing.detachView();
     if (controller.onSpellCheckRequested == _openProofing) {
       controller.onSpellCheckRequested = null;
     }
@@ -335,7 +336,11 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     final List<OfficeContextAction> actions = <OfficeContextAction>[
       if (issue != null) ...<OfficeContextAction>[
         OfficeContextAction.caption(issue.finding.message),
-        for (int index = 0; index < issue.finding.replacements.length && index < 8; index++)
+        for (
+          int index = 0;
+          index < issue.finding.replacements.length && index < 8;
+          index++
+        )
           OfficeContextAction(
             id: 'proofing:replace:$index',
             label: issue.finding.replacements[index].isEmpty
@@ -345,7 +350,10 @@ class _QudsWordEditorState extends State<QudsWordEditor>
           ),
         const OfficeContextAction(id: 'proofing:ignore', label: 'Ignore once'),
         if (issue.finding.category == OfficeProofingCategory.spelling)
-          const OfficeContextAction(id: 'proofing:add', label: 'Add to personal words'),
+          const OfficeContextAction(
+            id: 'proofing:add',
+            label: 'Add to personal words',
+          ),
       ],
       const OfficeContextAction(
         id: 'proofing:review',
@@ -372,8 +380,13 @@ class _QudsWordEditorState extends State<QudsWordEditor>
             _c.proofing.addWord(issue);
           } else if (id.startsWith('proofing:replace:')) {
             final int? index = int.tryParse(id.split(':').last);
-            if (index != null && index >= 0 && index < issue.finding.replacements.length) {
-              _c.proofing.applySuggestion(issue, issue.finding.replacements[index]);
+            if (index != null &&
+                index >= 0 &&
+                index < issue.finding.replacements.length) {
+              _c.proofing.applySuggestion(
+                issue,
+                issue.finding.replacements[index],
+              );
             }
           }
           return;

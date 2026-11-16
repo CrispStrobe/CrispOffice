@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_proofing_harper/quds_proofing_harper.dart';
 
 import 'sample_library.dart';
 import 'studio_chrome.dart';
@@ -139,7 +140,23 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         });
       },
     );
-    _word = WordEditorController(document: SampleLibrary.wordBriefing());
+    final OfficeProofingVocabulary vocabulary = OfficeProofingVocabulary(
+      ownerId: 'studio-local',
+    );
+    const String harperLibrary = String.fromEnvironment('QUDS_HARPER_LIBRARY');
+    _word = WordEditorController(
+      document: SampleLibrary.wordBriefing(),
+      proofingVocabulary: vocabulary,
+      proofingService: OfficeProofingService(
+        providers: <OfficeProofingProvider>[
+          GermanSpellingProvider(vocabulary: vocabulary),
+          GermanWritingRulesProvider(),
+          HarperProofingProvider(
+            nativeLibraryPath: harperLibrary.isEmpty ? null : harperLibrary,
+          ),
+        ],
+      ),
+    );
     _word.onFollowExternalLink = _openExternalLink;
     _sheet = SheetEditorController(workbook: SampleLibrary.excelBudget());
     _slides = SlideEditorController(presentation: SampleLibrary.slideDeck());
@@ -153,6 +170,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       );
     };
     _word.addListener(_rebuild);
+    _word.proofing.addListener(_rebuild);
     _sheet.addListener(_rebuild);
     _slides.addListener(_rebuild);
     _pdf.addListener(_rebuild);
@@ -260,6 +278,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   @override
   void dispose() {
+    _word.proofing.removeListener(_rebuild);
     _word
       ..removeListener(_rebuild)
       ..dispose();
@@ -4860,12 +4879,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _showSpelling() {
     if (_active is WordEditorController) {
-      final List<OfficeSpellIssue> issues = _word.checkSpelling();
-      _toast(
-        issues.isEmpty
-            ? (_arabic ? 'لا أخطاء ظاهرة' : 'No issues (host dictionary)')
-            : '${issues.length}',
-      );
+      unawaited(showWordProofingDialog(context, controller: _word));
       return;
     }
     _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
@@ -6106,6 +6120,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           child: WordCanvas(
             compact: true,
             document: _word.commentDocument,
+            proofingFindings: _word.proofing.findingsByParagraph,
             laidOut: laid,
             caret: _word.commentCaret,
             viewport: _commentViewport,

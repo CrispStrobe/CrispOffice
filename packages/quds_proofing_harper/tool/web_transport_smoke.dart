@@ -98,7 +98,7 @@ Future<void> main() async {
     jsonEncode({
       'status': error == null ? 'passed' : 'failed',
       'checks': checks,
-      if (error != null) 'error': error,
+      'error': error,
       'scope':
           'Compiled Dart web transport and real shipped Wasm worker; Node '
           'substitutes browser Worker messaging and local file fetch. '

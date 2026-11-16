@@ -59,16 +59,15 @@ class WordProofingSummary {
       _allRequestsCovered;
 
   bool get _allRequestsCovered {
-    final requests = <OfficeProofingRequest>{
-      for (final r in results) r.request,
-    };
-    return requests.every(
-      (request) => results.any(
-        (r) =>
-            identical(r.request, request) &&
-            r.status == OfficeProofingStatus.success,
-      ),
-    );
+    final requests = <OfficeProofingRequest>{};
+    final covered = <OfficeProofingRequest>{};
+    for (final result in results) {
+      requests.add(result.request);
+      if (result.status == OfficeProofingStatus.success) {
+        covered.add(result.request);
+      }
+    }
+    return covered.length == requests.length;
   }
 
   bool get isClean => complete && issues.isEmpty;
@@ -103,7 +102,9 @@ class WordProofingSession extends ChangeNotifier {
   bool _ownsService = true;
   bool _disposed = false;
   bool _enabled = true;
-  bool _started = false;
+  bool _manualStarted = false;
+  int _attachedViews = 0;
+  bool get _started => _manualStarted || _attachedViews > 0;
   bool _running = false;
   bool _hasChecked = false;
   int _generation = 0;
@@ -137,7 +138,7 @@ class WordProofingSession extends ChangeNotifier {
   List<OfficeProofingResult> get results => _results;
   Set<String> get ignoredRuleIds => Set.unmodifiable(_ignoredRules);
   Map<WmlParagraph, List<OfficeProofingFinding>> get findingsByParagraph =>
-      Map.unmodifiable(_findingsIndex);
+      _findingsIndex;
   String get _configurationKey =>
       '${_service.configurationKey}|v${vocabulary.revision}|${_ignoredRules.join(',')}';
   String get _documentId => 'word-${identityHashCode(controller.document)}';
@@ -155,9 +156,44 @@ class WordProofingSession extends ChangeNotifier {
   );
 
   void start() {
-    if (_disposed || _started) return;
-    _started = true;
-    if (_enabled) _schedule();
+    if (_disposed || _manualStarted) return;
+    final wasStarted = _started;
+    _manualStarted = true;
+    if (_enabled && !wasStarted) _schedule();
+  }
+
+  /// Stops background work explicitly started by the host. Attached surfaces
+  /// keep their own independent ownership until [detachView].
+  void stop() {
+    if (_disposed) return;
+    _manualStarted = false;
+    _pauseIfUnobserved();
+  }
+
+  /// A surface acquires background work while mounted. Multiple surfaces may
+  /// share one controller without stopping each other's checking.
+  void attachView() {
+    if (_disposed) return;
+    final wasStarted = _started;
+    _attachedViews++;
+    if (_enabled && !wasStarted) _schedule();
+  }
+
+  void detachView() {
+    if (_disposed || _attachedViews == 0) return;
+    _attachedViews--;
+    _pauseIfUnobserved();
+  }
+
+  void _pauseIfUnobserved() {
+    if (_started) return;
+    _timer?.cancel();
+    _timer = null;
+    if (_running) {
+      _generation++;
+      _running = false;
+      notifyListeners();
+    }
   }
 
   void setEnabled(bool enabled) {
@@ -302,7 +338,9 @@ class WordProofingSession extends ChangeNotifier {
     // Direct host mutations need not have advanced contentRevision. Compare
     // complete source signatures before publishing any asynchronous result.
     final latest = _collect();
-    if (!_sameInputs(collection.inputs, latest.inputs)) {
+    if (!_sameInputs(collection.inputs, latest.inputs) ||
+        collection.skipped != latest.skipped ||
+        collection.excluded != latest.excluded) {
       invalidate();
       return summary;
     }
@@ -321,6 +359,7 @@ class WordProofingSession extends ChangeNotifier {
       _issueIndex[p] = List.unmodifiable(_issueIndex[p]!);
       _findingsIndex[p] = List.unmodifiable(_findingsIndex[p]!);
     }
+    _findingsIndex = Map.unmodifiable(_findingsIndex);
     _running = false;
     _hasChecked = true;
     _observedDocument = document;
@@ -347,32 +386,52 @@ class WordProofingSession extends ChangeNotifier {
   List<WordProofingIssue> issuesAt(WmlParagraph paragraph, int offset) =>
       issuesForParagraph(paragraph)
           .where(
-            (issue) =>
-                issue.finding.start <= offset &&
-                (offset < issue.finding.end ||
-                    issue.finding.start == issue.finding.end),
+            (issue) => issue.finding.start == issue.finding.end
+                ? offset == issue.finding.start
+                : issue.finding.start <= offset && offset < issue.finding.end,
           )
           .toList(growable: false);
 
+  bool _publishedCurrent(WordProofingIssue issue) =>
+      !_disposed &&
+      _enabled &&
+      (_issueIndex[issue.paragraph]?.contains(issue) ?? false) &&
+      _observedConfiguration == _configurationKey &&
+      _observedRevision == controller.contentRevision &&
+      identical(_observedDocument, controller.document) &&
+      issue.paragraph.text == issue.sourceText;
+
+  /// Display-only snapshot check; actions use [isCurrent] to also re-read story
+  /// ownership, language spans, complex fields and inherited content locks.
+  bool isCurrentForDisplay(WordProofingIssue issue) => _publishedCurrent(issue);
+
   bool isCurrent(WordProofingIssue issue) {
-    if (_disposed ||
-        !_enabled ||
-        !_issues.contains(issue) ||
-        _observedConfiguration != _configurationKey ||
-        !identical(_observedDocument, controller.document))
-      return false;
+    if (!_publishedCurrent(issue)) return false;
     final input = _collect().inputs
         .where((p) => identical(p.paragraph, issue.paragraph))
         .firstOrNull;
     return input != null && input.key == issue._input.key;
   }
 
-  bool canApply(WordProofingIssue issue) {
+  bool canApply(WordProofingIssue issue) =>
+      _canApply(issue, validateSource: true);
+
+  /// Cheap eligibility for a visible result row. Direct host model mutations
+  /// must call [invalidate]. [applySuggestion] always verifies the complete live
+  /// document again, so an obsolete enabled button cannot authorize an edit.
+  bool canApplyForDisplay(WordProofingIssue issue) =>
+      _canApply(issue, validateSource: false);
+
+  bool _canApply(WordProofingIssue issue, {required bool validateSource}) {
     if (!controller.config.allowsMutation ||
-        !isCurrent(issue) ||
+        (controller.document.restrictEditing &&
+            (controller.document.restrictMode != WmlRestrictMode.none ||
+                controller.document.protectionFormattingRestricted)) ||
+        !(validateSource ? isCurrent(issue) : _publishedCurrent(issue)) ||
         (controller.input.composing.isValid &&
-            !controller.input.composing.isCollapsed))
+            !controller.input.composing.isCollapsed)) {
       return false;
+    }
     final f = issue.finding;
     if (issue._input.locked ||
         f.start < 0 ||
@@ -384,9 +443,13 @@ class WordProofingSession extends ChangeNotifier {
       if (range.start != f.start || range.end != f.end) return false;
       WordContentControls.assertCanEdit(issue.paragraph, f.start, f.end);
       for (final span in WordContentControls.spans(issue.paragraph)) {
-        if (_touches(f.start, f.end, span.start, span.end) &&
-            _contentLocked(span.control))
+        final touchesControl = f.start == f.end
+            ? f.start >= span.start &&
+                  (f.start < span.end || span.start == span.end)
+            : _touches(f.start, f.end, span.start, span.end);
+        if (touchesControl && _contentLocked(span.control)) {
           return false;
+        }
       }
       for (final revision in controller.document.revisions) {
         if (revision.accepted == null &&
@@ -394,8 +457,9 @@ class WordProofingSession extends ChangeNotifier {
               WordRevisions.resolveParagraph(controller.document, revision),
               issue.paragraph,
             ) &&
-            _touches(f.start, f.end, revision.start, revision.end))
+            _touches(f.start, f.end, revision.start, revision.end)) {
           return false;
+        }
       }
       return true;
     } on Object {
@@ -409,13 +473,49 @@ class WordProofingSession extends ChangeNotifier {
     if (!issue.finding.replacements.contains(replacement) ||
         replacement.contains('\n') ||
         replacement.contains('\r') ||
-        !canApply(issue))
+        !canApply(issue)) {
       return false;
+    }
     controller.commitPendingEdits();
     if (!canApply(issue)) return false;
     final paragraph = issue.paragraph;
     final f = issue.finding;
     final document = controller.document;
+    final activeParagraphs = controller._paragraphs;
+    final activeCaret = controller.caret;
+    final activeAffected =
+        activeCaret.paragraphIndex >= 0 &&
+        activeCaret.paragraphIndex < activeParagraphs.length &&
+        identical(activeParagraphs[activeCaret.paragraphIndex], paragraph);
+    final beforeCaret = (
+      paragraph: activeCaret.paragraphIndex,
+      offset: activeCaret.logicalIndex,
+      anchorParagraph: activeCaret.selectionAnchorParagraph,
+      anchor: activeCaret.selectionAnchor,
+    );
+    final previousActiveText = activeAffected ? paragraph.text : null;
+    final correctionEnd =
+        (document.trackRevisions ? f.end : f.start) + replacement.length;
+    void correctedCaret() {
+      if (!activeAffected) return;
+      activeCaret
+        ..paragraphIndex = beforeCaret.paragraph
+        ..logicalIndex = correctionEnd
+        ..collapseSelection();
+    }
+
+    void originalCaret() {
+      if (!activeAffected) return;
+      activeCaret
+        ..paragraphIndex = beforeCaret.paragraph
+        ..logicalIndex = beforeCaret.offset
+        ..selectionAnchorParagraph = beforeCaret.anchorParagraph
+        ..selectionAnchor = beforeCaret.anchor;
+      if (identical(controller.caret, activeCaret)) {
+        controller._historyRestoredSelection = true;
+      }
+    }
+
     final before = WordEditorController._cloneInlines(paragraph);
     final revisionsBefore = WordRevisions.capture(document);
     List<WmlInline>? after;
@@ -435,6 +535,7 @@ class WordProofingSession extends ChangeNotifier {
         executeFn: () {
           if (after != null) {
             restore(after!, revisionsAfter!);
+            correctedCaret();
             return;
           }
           if (document.trackRevisions) {
@@ -481,12 +582,18 @@ class WordProofingSession extends ChangeNotifier {
           }
           after = WordEditorController._cloneInlines(paragraph);
           revisionsAfter = WordRevisions.capture(document);
+          correctedCaret();
         },
-        undoFn: () => restore(before, revisionsBefore),
+        undoFn: () {
+          restore(before, revisionsBefore);
+          originalCaret();
+        },
       ),
     );
     controller.relayout();
-    controller._markLocalEdit(previousText: issue.sourceText);
+    if (previousActiveText != null) {
+      controller._markLocalEdit(previousText: previousActiveText);
+    }
     controller._syncImeSelection();
     controller.notifyListeners();
     return true;
@@ -494,8 +601,16 @@ class WordProofingSession extends ChangeNotifier {
 
   /// Reveals paragraphs supported by the current canvas. Notes and first/even
   /// header variants remain reviewable/correctable in the results dialog.
+  bool canSelectIssue(WordProofingIssue issue) =>
+      _publishedCurrent(issue) &&
+      (issue.story == 'Body' || issue.story.startsWith('Comment '));
+
   bool selectIssue(WordProofingIssue issue) {
-    if (!isCurrent(issue) || !controller.config.allowsSelection) return false;
+    if (!canSelectIssue(issue) ||
+        !isCurrent(issue) ||
+        !controller.config.allowsSelection) {
+      return false;
+    }
     final body = controller.document.paragraphs.toList();
     final index = body.indexOf(issue.paragraph);
     CaretEngine caret;
@@ -542,16 +657,18 @@ class WordProofingSession extends ChangeNotifier {
 
   void ignoreWord(WordProofingIssue issue) {
     if (!isCurrent(issue) ||
-        issue.finding.category != OfficeProofingCategory.spelling)
+        issue.finding.category != OfficeProofingCategory.spelling) {
       return;
+    }
     vocabulary.ignoreWord(issue.finding.originalText, language: issue.language);
     _vocabularyChanged();
   }
 
   void addWord(WordProofingIssue issue) {
     if (!isCurrent(issue) ||
-        issue.finding.category != OfficeProofingCategory.spelling)
+        issue.finding.category != OfficeProofingCategory.spelling) {
       return;
+    }
     vocabulary.addWord(issue.finding.originalText, language: issue.language);
     _vocabularyChanged();
   }
@@ -602,8 +719,9 @@ class WordProofingSession extends ChangeNotifier {
 
   static bool _contentLocked(WmlContentControlData control) {
     try {
-      final properties = WordContentControls.template(control)
-          .firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
+      final properties = WordContentControls.template(
+        control,
+      ).firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
       final lock = properties
           ?.firstChild('lock', namespaceUri: OfficeNamespaces.w)
           ?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
@@ -624,14 +742,17 @@ class WordProofingSession extends ChangeNotifier {
     final result = _WordProofingCollection();
     final deleted = Map<WmlParagraph, List<({int start, int end})>>.identity();
     for (final revision in document.revisions) {
-      if (revision.accepted != null || revision.kind != WmlRevisionKind.delete)
+      if (revision.accepted != null ||
+          revision.kind != WmlRevisionKind.delete) {
         continue;
+      }
       final p = WordRevisions.resolveParagraph(document, revision);
-      if (p != null)
+      if (p != null) {
         deleted.putIfAbsent(p, () => []).add((
           start: revision.start,
           end: revision.end,
         ));
+      }
     }
     final seen = Set<WmlParagraph>.identity();
     void story(Iterable<WmlBlock> blocks, String label) {
@@ -667,8 +788,9 @@ class WordProofingSession extends ChangeNotifier {
               if (inline is WmlFieldBoundary) {
                 shape.addAll(['field', inline.kind.name, inline.text]);
                 if (inline.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
-                if (inline.kind == WmlFieldBoundaryKind.end && fieldDepth > 0)
+                if (inline.kind == WmlFieldBoundaryKind.end && fieldDepth > 0) {
                   fieldDepth--;
+                }
                 canJoin = false;
               } else if (inline is WmlRun) {
                 final language = normalizeProofingLanguage(
@@ -781,8 +903,9 @@ class WordProofingSession extends ChangeNotifier {
                 locked ||
                 block is WmlContentControlBlock &&
                     _contentLocked(block.control);
-            for (final children in WordTree.childLists(block))
+            for (final children in WordTree.childLists(block)) {
               walk(children, nextLocked);
+            }
           }
         }
       }
@@ -807,8 +930,9 @@ class WordProofingSession extends ChangeNotifier {
     for (final note in [...document.footnotes, ...document.endnotes]) {
       story(note.blocks, '${note.endnote ? 'Endnote' : 'Footnote'} ${note.id}');
     }
-    for (final comment in document.comments)
+    for (final comment in document.comments) {
       story(comment.paragraphs, 'Comment ${comment.id}');
+    }
     return result;
   }
 

@@ -38,6 +38,11 @@ backend failures and timeouts report **failed**, with no fabricated clean
 result. A timeout disposes the worker. Dispose the provider when its host
 document/service closes.
 
+Timeout reporting remains bounded even if a custom transport's disposal fails
+or never completes. A failed native isolate closes its ports and rejects later
+requests immediately; browser worker failures terminate that worker before a
+later check can create a fresh one.
+
 A request is limited to 32,768 Unicode scalar characters and 2,000 findings.
 Exceeding either bound is an explicit failure. This keeps oversized paragraphs
 from starting unbounded background work; it does not silently truncate a check.
@@ -78,7 +83,8 @@ accepts MPL-2.0 with its exact unmodified source archives included. Original
 copyright, permission and NOTICE files are copied byte for byte. Where a crate
 omits the repository-root license from its published package, the fallback is
 retrieved at that crate's exact recorded source revision and its digest is
-preserved.
+preserved. Packaging also checks the crate's recorded VCS revision before
+reusing a fallback notice, so dependency upgrades require renewed notice review.
 
 The actual transitive graph also contains reviewed ancillary **Unicode-3.0**,
 **Zlib** and **CC0-1.0** terms. They are recorded individually, not relabeled
@@ -97,6 +103,9 @@ cd packages/quds_proofing_harper
 QUDS_HARPER_TEST_LIBRARY="$PWD/build/native/libquds_proofing_harper.so" dart test
 dart test --platform node test/harper_provider_test.dart
 node tool/smoke_worker.mjs build/web/harper_worker.mjs
+dart compile js -O2 tool/web_transport_smoke.dart -o build/web_transport_smoke.js
+node tool/run_web_transport_smoke.mjs build/web_transport_smoke.js build/web/harper_worker.mjs
+python3 tool/test_license_bundle.py -v
 ```
 
 The native integration test deliberately skips when no explicit test library
@@ -106,6 +115,11 @@ the exact shipped worker and real Wasm; it substitutes only the Worker message
 bridge and local file fetch. It is not evidence of browser CSP, HTTP hosting,
 mobile OS dictionaries, or an end-user browser session. Those acceptance
 boundaries are separate from the exercised native and Wasm engines.
+
+The compiled-Dart smoke additionally exercises the shipped Dart web transport:
+UTF-16 offset conversion, concurrent requests, dialect/rule isolation, missing
+assets, request bounds and worker disposal. It uses that same Node bridge, so
+it adds adapter integration coverage without claiming a live browser run.
 
 ## Mobile system spelling
 

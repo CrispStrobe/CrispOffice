@@ -162,9 +162,11 @@ class LaidOutLine {
   /// Exact model paragraph for this layout story, independent of body indexes.
   final WmlParagraph? sourceParagraph;
 
-  /// Note labels can add display-only UTF-16 units before/between source runs.
-  /// A null entry denotes such a label; otherwise each entry is the original
-  /// source offset. Null list means the identity mapping.
+  /// Map displayed UTF-16 positions to source offsets. Note labels and
+  /// header/footer fields can add display-only units; overlay fragments can
+  /// trim or split authored text. A null entry denotes generated text. A null
+  /// list means the identity mapping. Overlays include their final boundary
+  /// when it has an unambiguous source offset.
   final List<int?>? proofingOffsets;
 
   int? proofingOffsetAt(int layoutOffset) => proofingOffsets == null
@@ -757,11 +759,8 @@ const double kDefaultTabWidth = 36;
 /// Hosts that paint with their own text stack (for example Flutter's
 /// `TextPainter`) pass this to [WordLayoutEngine.measure] so line breaks use
 /// the same widths the painter will use.
-typedef WordGlyphMeasure = double Function(
-  int codePoint,
-  double sizePoints,
-  WmlRunProps props,
-);
+typedef WordGlyphMeasure =
+    double Function(int codePoint, double sizePoints, WmlRunProps props);
 
 /// Flowable pagination: Knuth-Plass lines accumulated into physical pages.
 class WordLayoutEngine {
