@@ -26,7 +26,13 @@ a fresh [38-test German core run with ten JavaScript checks and exact dictionary
 regeneration](validation/proofing-20261116/german-resume/receipt.json), and
 [real Harper native/Wasm, adapter and license checks](validation/proofing-20261116/harper-resume/receipt.json).
 The [final integration receipt](validation/proofing-20261116/final/receipt.json)
-records consolidated session/UI/context-menu and affected-package checks.
+records consolidated session/UI/context-menu, affected-package and release web
+packaging checks. The [later remote audit](validation/proofing-20261116/final/remote-freshness.json)
+and [reconciliation record](validation/proofing-20261116/final/reconciliation.json)
+cover the concurrent ODS hyperlink, Zotero and sibling proofing work. All eight
+incoming hyphenation cases are retained; they exposed and now cover LTR/RTL
+caret and hit-testing fixes. Harper was rebuilt and verified after merging its
+source-bound packaging and notice changes.
 These are scoped, source-bound records; overlapping suites are not summed.
 The earlier German core receipt and model probe are retained separately.
 No GitHub Actions queue was waited for.

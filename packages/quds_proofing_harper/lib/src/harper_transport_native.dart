@@ -71,9 +71,14 @@ final class _NativeTransport implements HarperTransport {
         eagerError: true,
       );
       return results.first! as SendPort;
-    } on Object {
+    } on HarperUnavailableException {
       await dispose();
       rethrow;
+    } on Object {
+      await dispose();
+      throw const HarperUnavailableException(
+        'The local Harper worker could not be started.',
+      );
     }
   }
 

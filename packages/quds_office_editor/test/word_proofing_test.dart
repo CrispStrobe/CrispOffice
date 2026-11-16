@@ -95,6 +95,53 @@ WmlContentControlData _control(String lock) => WmlContentControlData(
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  test('caret issue lookup keeps an empty read-only story unchanged', () {
+    final doc = _document([]);
+    final c = _controller(doc);
+    c.setMode(OfficeInteractionMode.viewing);
+    expect(doc.paragraphs, isEmpty);
+    expect(doc.sections.single.blocks, isEmpty);
+    expect(c.proofingIssuesAtCaret, isEmpty);
+    expect(doc.paragraphs, isEmpty);
+    expect(doc.sections.single.blocks, isEmpty);
+    expect(c.canUndo, isFalse);
+  });
+
+  test(
+    'standard header and footer findings navigate to the exact rendered story',
+    () async {
+      final doc = _document([_paragraph('Body')]);
+      final header = _paragraph('Feler header');
+      final footer = _paragraph('Feler footer');
+      final firstHeader = _paragraph('Feler alternate');
+      doc.sections.single.header.addAll([_paragraph('Header context'), header]);
+      doc.sections.single.footer.addAll([_paragraph('Footer context'), footer]);
+      doc.sections.single.firstHeader.add(firstHeader);
+      final c = _controller(doc);
+      await c.checkDocumentProofing();
+      for (final (paragraph, isFooter) in [(header, false), (footer, true)]) {
+        final issue = c.proofing.issuesForParagraph(paragraph).single;
+        expect(c.proofing.canSelectIssue(issue), isTrue);
+        expect(c.revealProofingIssue(issue), isTrue);
+        expect(c.isEditingHeaderFooter, isTrue);
+        expect(c.isEditingFooter, isFooter);
+        expect(c.headerFooterParagraphs[1], same(paragraph));
+        expect(c.headerFooterCaret.paragraphIndex, 1);
+        expect(c.headerFooterCaret.selectionAnchor, 0);
+        expect(c.headerFooterCaret.logicalIndex, 5);
+        expect(c.input.value.text, paragraph.text);
+        expect(
+          c.input.value.selection,
+          const TextSelection(baseOffset: 0, extentOffset: 5),
+        );
+      }
+      final alternate = c.proofing.issuesForParagraph(firstHeader).single;
+      expect(c.proofing.canSelectIssue(alternate), isFalse);
+      expect(c.revealProofingIssue(alternate), isFalse);
+      expect(c.headerFooterParagraphs[1], same(footer));
+    },
+  );
+
   test(
     'imported body and comment style languages/noProof have effective inherited semantics',
     () async {

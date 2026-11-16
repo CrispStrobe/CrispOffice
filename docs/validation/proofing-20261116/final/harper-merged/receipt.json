@@ -1,0 +1,224 @@
+{
+  "schema_version": 2,
+  "started_at_utc": "2026-11-16T13:37:35.605569+00:00",
+  "finished_at_utc": "2026-11-16T13:38:04.981929+00:00",
+  "status": "passed",
+  "source_sha256": {
+    "LICENSE": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+    "lib/quds_proofing_harper.dart": "962a343860461a893e91d48acde862bc0e43a116a6d3f88453d61b8210c6b823",
+    "lib/src/harper_provider.dart": "843271cb627754353a7c3f7d44cc858fafb66a512fa14dbee696fda45fe145a2",
+    "lib/src/harper_transport.dart": "17cd723d72de266810ff973319956f4da149d90076bb69d09a5abbe63156846f",
+    "lib/src/harper_transport_native.dart": "ad6a96a74e2db0f0b0541848059686523281af656ac2edf51722ad2dbe344efe",
+    "lib/src/harper_transport_stub.dart": "2396456f84d7c2ca6590df8de9dd575a97155eb047f730ee308bad465c67cafa",
+    "lib/src/harper_transport_web.dart": "972c2dc270311ed3d23ec6ee0a1f2123a4c5171e2d93e2a130df7fa4667ae458",
+    "licenses/upstream/BURN-LICENSE-APACHE": "a9cfa8a88b2c2b7c9a5f2ef159522b706ea8aaa76448438d98c89c3217e90378",
+    "licenses/upstream/BURN-LICENSE-MIT": "ef31f0b689aa7e2edb5883c7617361de37b05030389e876d91be6c2f2306bb35",
+    "licenses/upstream/CUBECL-LICENSE-APACHE": "bdd26d197850a30393da963f01e97c78e91d69245089c543903f96a5dab95930",
+    "licenses/upstream/CUBECL-LICENSE-MIT": "b3b77503e5498c5fb0a1a0b102d748d7baed9cae9f502086a3cfedad62d503a4",
+    "licenses/upstream/EMBASSY-LICENSE-APACHE": "64853d2f346cf20ad5a133c441e792d4b99b45adb2ef3acfa2b890d713e4ed0b",
+    "licenses/upstream/EMBASSY-LICENSE-MIT": "83d04e56c5beb631d65d6bd7b78c9350083084acc19753a3e6e1b68806a607f5",
+    "licenses/upstream/HARPER-LICENSE": "fbc8f1bffe04ab962340fabb1324d57d8b875070f67759d606516144ee53ac19",
+    "licenses/upstream/fallback-notices.json": "38ff662bf37ffc1675975e1915f6235ac758d8e909673dcdd0dd68b4b28c3bae",
+    "native/Cargo.lock": "3c79cb218867c8e028e2b7364a90d1a4ca3bee41214f20ed16048cb337e937f6",
+    "native/Cargo.toml": "8e33f603f3c3af077aedd4ad22bcb954879a725ebb4ab8b5933c565d07cd87d7",
+    "native/rust-toolchain.toml": "7fa5da9da36242a926b0025d5229b9edca83e7d1edebf7ee2b487b7d2bcfac44",
+    "native/src/lib.rs": "221afcdb7a16cf4a4c4ea1f8b32de538584b4c20b75b1ceee7e060cd1ed3957e",
+    "pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+    "test/harper_native_test.dart": "49a741d00faf4fb408caf9c4e6bb8157d119efccb557737a5941153339f8435a",
+    "test/harper_provider_test.dart": "63197c6b2a5ad488c53ebfd882ff9ad397d112fc8ec803e08af246dc96212a2b",
+    "tool/build.py": "a1bbb594a841cbe78f1155f982c96b28f117b6c29d78dd817f4063dc3c826e7b",
+    "tool/license_bundle.py": "99baa60eb12413e437d6ca9db1d330186e3e0989ccba964fb252731b4843dc47",
+    "tool/node_worker_bridge.mjs": "f93dc1a7ab3a31a2ca12b0421f060eca4adb107a2600ef873963a145d3e31489",
+    "tool/run_web_transport_smoke.mjs": "840a71b94879082f8627782904562d8f81bdc817c5907973dff3725d0342e8aa",
+    "tool/smoke_worker.mjs": "e737b87e6f6f09c6cd4cda82f20229ae2cfc7bf5e5586959e9f239930f24c8dd",
+    "tool/test_build_packaging.py": "c82da4e06aa68c545af48e5eeaf26bf20e309209d0c5613f06b968bbf0496b8a",
+    "tool/test_license_bundle.py": "e3550572f783adb5c7a59253dfd5ae674a35d7b0fc1de149636a467e3364aee3",
+    "tool/verify.py": "590de7465ff13d144f373460df539f1fc5e2fa8b3bca66bb982f584fd0c09af3",
+    "tool/web_transport_smoke.dart": "d774022c5668171b6f2ed31f6775b52a129988d84e9778175be13bf6d28f42ac",
+    "web/harper_worker.mjs": "b58f5ea84dbe2b0fc4fd0d8eaee96664267bb1603691a7c27e8d1b6631fdae1b"
+  },
+  "source_sha256_after": {
+    "LICENSE": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+    "lib/quds_proofing_harper.dart": "962a343860461a893e91d48acde862bc0e43a116a6d3f88453d61b8210c6b823",
+    "lib/src/harper_provider.dart": "843271cb627754353a7c3f7d44cc858fafb66a512fa14dbee696fda45fe145a2",
+    "lib/src/harper_transport.dart": "17cd723d72de266810ff973319956f4da149d90076bb69d09a5abbe63156846f",
+    "lib/src/harper_transport_native.dart": "ad6a96a74e2db0f0b0541848059686523281af656ac2edf51722ad2dbe344efe",
+    "lib/src/harper_transport_stub.dart": "2396456f84d7c2ca6590df8de9dd575a97155eb047f730ee308bad465c67cafa",
+    "lib/src/harper_transport_web.dart": "972c2dc270311ed3d23ec6ee0a1f2123a4c5171e2d93e2a130df7fa4667ae458",
+    "licenses/upstream/BURN-LICENSE-APACHE": "a9cfa8a88b2c2b7c9a5f2ef159522b706ea8aaa76448438d98c89c3217e90378",
+    "licenses/upstream/BURN-LICENSE-MIT": "ef31f0b689aa7e2edb5883c7617361de37b05030389e876d91be6c2f2306bb35",
+    "licenses/upstream/CUBECL-LICENSE-APACHE": "bdd26d197850a30393da963f01e97c78e91d69245089c543903f96a5dab95930",
+    "licenses/upstream/CUBECL-LICENSE-MIT": "b3b77503e5498c5fb0a1a0b102d748d7baed9cae9f502086a3cfedad62d503a4",
+    "licenses/upstream/EMBASSY-LICENSE-APACHE": "64853d2f346cf20ad5a133c441e792d4b99b45adb2ef3acfa2b890d713e4ed0b",
+    "licenses/upstream/EMBASSY-LICENSE-MIT": "83d04e56c5beb631d65d6bd7b78c9350083084acc19753a3e6e1b68806a607f5",
+    "licenses/upstream/HARPER-LICENSE": "fbc8f1bffe04ab962340fabb1324d57d8b875070f67759d606516144ee53ac19",
+    "licenses/upstream/fallback-notices.json": "38ff662bf37ffc1675975e1915f6235ac758d8e909673dcdd0dd68b4b28c3bae",
+    "native/Cargo.lock": "3c79cb218867c8e028e2b7364a90d1a4ca3bee41214f20ed16048cb337e937f6",
+    "native/Cargo.toml": "8e33f603f3c3af077aedd4ad22bcb954879a725ebb4ab8b5933c565d07cd87d7",
+    "native/rust-toolchain.toml": "7fa5da9da36242a926b0025d5229b9edca83e7d1edebf7ee2b487b7d2bcfac44",
+    "native/src/lib.rs": "221afcdb7a16cf4a4c4ea1f8b32de538584b4c20b75b1ceee7e060cd1ed3957e",
+    "pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+    "test/harper_native_test.dart": "49a741d00faf4fb408caf9c4e6bb8157d119efccb557737a5941153339f8435a",
+    "test/harper_provider_test.dart": "63197c6b2a5ad488c53ebfd882ff9ad397d112fc8ec803e08af246dc96212a2b",
+    "tool/build.py": "a1bbb594a841cbe78f1155f982c96b28f117b6c29d78dd817f4063dc3c826e7b",
+    "tool/license_bundle.py": "99baa60eb12413e437d6ca9db1d330186e3e0989ccba964fb252731b4843dc47",
+    "tool/node_worker_bridge.mjs": "f93dc1a7ab3a31a2ca12b0421f060eca4adb107a2600ef873963a145d3e31489",
+    "tool/run_web_transport_smoke.mjs": "840a71b94879082f8627782904562d8f81bdc817c5907973dff3725d0342e8aa",
+    "tool/smoke_worker.mjs": "e737b87e6f6f09c6cd4cda82f20229ae2cfc7bf5e5586959e9f239930f24c8dd",
+    "tool/test_build_packaging.py": "c82da4e06aa68c545af48e5eeaf26bf20e309209d0c5613f06b968bbf0496b8a",
+    "tool/test_license_bundle.py": "e3550572f783adb5c7a59253dfd5ae674a35d7b0fc1de149636a467e3364aee3",
+    "tool/verify.py": "590de7465ff13d144f373460df539f1fc5e2fa8b3bca66bb982f584fd0c09af3",
+    "tool/web_transport_smoke.dart": "d774022c5668171b6f2ed31f6775b52a129988d84e9778175be13bf6d28f42ac",
+    "web/harper_worker.mjs": "b58f5ea84dbe2b0fc4fd0d8eaee96664267bb1603691a7c27e8d1b6631fdae1b"
+  },
+  "source_unchanged_during_commands": true,
+  "artifacts_sha256": {
+    "native/libquds_proofing_harper.so": "098ecea89ec504f3b3c4fb3346d3ca21e86c9469d42fdf343533ddc5530c9cfb",
+    "web/quds_proofing_harper_bg.wasm": "0fcfeb284a5515844f8912405109f14f53de31a2212b45594bee65acd974a264",
+    "web/quds_proofing_harper.js": "28a796884341f72cb387d300c0da734ced25a16d7de42fcd8aef525c33657591",
+    "web/harper_worker.mjs": "b58f5ea84dbe2b0fc4fd0d8eaee96664267bb1603691a7c27e8d1b6631fdae1b",
+    "licenses/manifest.json": "b63e7e67fa307683b9582756fe876d0724797bc2cc5f1dab388000b5d84c1b21",
+    "licenses/notices-and-mpl-sources.tar.gz": "cd4c3cf344c5077b4ae94dcc9e42a328463a6f4254b92bbf1f1062bcd9ee6608"
+  },
+  "errors": [],
+  "license_check": {
+    "status": "passed",
+    "packages": 226,
+    "mpl_sources": 3,
+    "policy_cases": 9
+  },
+  "checks": [
+    {
+      "name": "rust-tests",
+      "command": [
+        "cargo",
+        "test",
+        "--release",
+        "--locked"
+      ],
+      "cwd": "native",
+      "exit_code": 0,
+      "seconds": 1.534,
+      "log": "rust-tests.log",
+      "log_sha256": "e561c68ce5389a6c83b1cebb895b9982f50f984729fcf044213b694e17220696"
+    },
+    {
+      "name": "dart-analyze",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 6.035,
+      "log": "dart-analyze.log",
+      "log_sha256": "50c363f7897d8b7e14d7d46e0a0bb20afeecb46731bfa724c5a1f30a2badd71e"
+    },
+    {
+      "name": "dart-native-tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 4.017,
+      "log": "dart-native-tests.log",
+      "log_sha256": "39701b2687a22b230e618124e32f278b9e6f3e3d39cd52e13badb18a3256e69b"
+    },
+    {
+      "name": "dart-javascript-tests",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--platform",
+        "node",
+        "--reporter",
+        "expanded",
+        "test/harper_provider_test.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 9.461,
+      "log": "dart-javascript-tests.log",
+      "log_sha256": "1965ebb76b81276e855b32328b5c0c555e22d2b725187ec9e3267fb89b85c935"
+    },
+    {
+      "name": "wasm-worker",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tool/smoke_worker.mjs",
+        "/workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_proofing_harper/build/web/harper_worker.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 1.516,
+      "log": "wasm-worker.log",
+      "log_sha256": "d0c6966d0cc4997de1496bd34e65f3a72e47dfe567938aad73156d1ab3d23b6b"
+    },
+    {
+      "name": "compile-web-transport",
+      "command": [
+        "/workspace/scratch/21fc989ecea7/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O2",
+        "tool/web_transport_smoke.dart",
+        "-o",
+        "/workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_proofing_harper/build/web_transport_smoke.js"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 5.138,
+      "log": "compile-web-transport.log",
+      "log_sha256": "8e959a0ec64c8c1dc4b5aa2fca485de70377cdd261546265d86bb926688115c9"
+    },
+    {
+      "name": "web-transport",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "tool/run_web_transport_smoke.mjs",
+        "/workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_proofing_harper/build/web_transport_smoke.js",
+        "/workspace/scratch/21fc989ecea7/quds_office_suite/packages/quds_proofing_harper/build/web/harper_worker.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 1.425,
+      "log": "web-transport.log",
+      "log_sha256": "b6309a92835f11da7b54b2aa1e92b6197ddf062cd06f3078d8fa1fab01f5cb6c"
+    },
+    {
+      "name": "license-policy",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "tool/test_license_bundle.py",
+        "-v"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 0.091,
+      "log": "license-policy.log",
+      "log_sha256": "7aa793a0866a9c4ebd8c07adeb1b9c18637729c0502dcdc1e1d2994315de08bb"
+    },
+    {
+      "name": "host-packaging",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "tool/test_build_packaging.py",
+        "-v"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 0.074,
+      "log": "host-packaging.log",
+      "log_sha256": "b646dd35ca69739287b23d8036d554daa6b8b30fd9f9d34418a0f03ad1231e1b"
+    }
+  ],
+  "limits": [
+    "Node executes the shipped Wasm worker with a Worker-message and local-file-fetch bridge; browser CSP and HTTP deployment are separate acceptance checks.",
+    "This host validates the native Linux ABI only; other native targets require their own build and license-target audit."
+  ]
+}

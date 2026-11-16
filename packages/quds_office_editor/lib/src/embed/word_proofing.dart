@@ -471,8 +471,8 @@ class WordProofingSession extends ChangeNotifier {
   /// step. Tracking records deletion before insertion without losing old text.
   bool applySuggestion(WordProofingIssue issue, String replacement) {
     if (!issue.finding.replacements.contains(replacement) ||
-        replacement.contains('\n') ||
-        replacement.contains('\r') ||
+        replacement == issue.finding.originalText ||
+        RegExp(r'[\r\n\u2028\u2029]').hasMatch(replacement) ||
         !canApply(issue)) {
       return false;
     }
@@ -604,7 +604,35 @@ class WordProofingSession extends ChangeNotifier {
   bool canSelectIssue(WordProofingIssue issue) =>
       controller.config.allowsSelection &&
       _publishedCurrent(issue) &&
-      (issue.story == 'Body' || issue.story.startsWith('Comment '));
+      (issue.story == 'Body' ||
+          issue.story.startsWith('Comment ') ||
+          _headerFooterTarget(issue.paragraph) != null);
+
+  ({int page, int paragraph, bool footer})? _headerFooterTarget(
+    WmlParagraph paragraph,
+  ) {
+    for (
+      int sectionIndex = 0;
+      sectionIndex < controller.document.sections.length;
+      sectionIndex++
+    ) {
+      final section = controller.document.sections[sectionIndex];
+      for (final footer in <bool>[false, true]) {
+        final story = footer ? section.footer : section.header;
+        final paragraphIndex = story.indexOf(paragraph);
+        if (paragraphIndex < 0) continue;
+        final pages = controller.documentLaidOut.pages;
+        for (int page = 0; page < pages.length; page++) {
+          final lines = footer ? pages[page].footer : pages[page].header;
+          if (pages[page].sectionIndex == sectionIndex &&
+              lines.any((line) => identical(line.sourceParagraph, paragraph))) {
+            return (page: page, paragraph: paragraphIndex, footer: footer);
+          }
+        }
+      }
+    }
+    return null;
+  }
 
   bool selectIssue(WordProofingIssue issue) {
     if (!canSelectIssue(issue) ||
@@ -626,16 +654,26 @@ class WordProofingSession extends ChangeNotifier {
       final comment = controller.document.comments
           .where((c) => c.paragraphs.contains(issue.paragraph))
           .firstOrNull;
-      if (comment == null) return false;
-      controller.beginCommentEdit(comment.id);
-      caret = controller.commentCaret;
-      paragraphIndex = comment.paragraphs.indexOf(issue.paragraph);
+      if (comment != null) {
+        controller.beginCommentEdit(comment.id);
+        caret = controller.commentCaret;
+        paragraphIndex = comment.paragraphs.indexOf(issue.paragraph);
+      } else {
+        final target = _headerFooterTarget(issue.paragraph);
+        if (target == null) return false;
+        controller.beginHeaderFooterEdit(target.page, footer: target.footer);
+        caret = controller.headerFooterCaret;
+        paragraphIndex = target.paragraph;
+      }
     }
     caret
       ..paragraphIndex = paragraphIndex
       ..selectionAnchorParagraph = paragraphIndex
       ..selectionAnchor = issue.finding.start
       ..logicalIndex = issue.finding.end;
+    // Story navigation can attach the IME before choosing this exact paragraph.
+    // Publish its final text/range before the next keystroke reaches that story.
+    controller._syncImeSelection();
     controller.notifyListeners();
     return true;
   }
@@ -684,6 +722,13 @@ class WordProofingSession extends ChangeNotifier {
     if (_ignoredRules.add(ruleId)) {
       invalidate();
       unawaited(checkDocument());
+    }
+  }
+
+  /// Re-enables an advisory rule suppressed for this proofing session.
+  void restoreRule(String ruleId) {
+    if (_ignoredRules.remove(ruleId)) {
+      invalidate();
     }
   }
 

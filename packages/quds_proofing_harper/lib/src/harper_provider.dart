@@ -22,7 +22,9 @@ final class HarperProofingProvider extends OfficeProofingProvider {
            platform.createHarperTransport(
              nativeLibraryPath: nativeLibraryPath,
              workerUrl: workerUrl,
-           );
+           ) {
+    if (timeout <= Duration.zero) throw ArgumentError.value(timeout, 'timeout');
+  }
 
   final HarperTransport _transport;
   final Duration timeout;

@@ -13,7 +13,13 @@ Recovery resumed from saved checkpoint `066e07979d9e710c314158fe9909c9210769cb3b
 which includes `main` at `e5e1e9af6beb0972a010d8208c1690a642809113`.
 The [resumption audit](validation/proofing-20261116/resume-audit.json) checked
 43 branches and 58 PRs: all other branch and PR heads were already included in
-main, and no open PR needed integration at that snapshot. Work is checkpointed
+main, and no open PR needed integration at that snapshot. A later
+[fixed-cutoff audit](validation/proofing-20261116/final/remote-freshness.json)
+captured 48 branch heads and 59 PRs, with no open PRs. The continuation integrates
+main's PR #59 ODS hyperlink preservation, concurrent Zotero identity/backoff and
+dialog changes, and the useful changes and regression cases from the sibling
+proofing-resume branch. The [reconciliation record](validation/proofing-20261116/final/reconciliation.json)
+identifies the exact incoming heads and merge decisions. Work is checkpointed
 on `codex/proofing-20261116`. Verification below distinguishes retained records
 from new local runs; counts in the interrupted chat are not substituted for
 source-bound evidence.
@@ -252,9 +258,12 @@ unmodeled stories are counted as unsupported; they prevent a complete clean
 claim. The dialog displays paragraph/segment and exclusion counts.
 
 **Go to text** navigates current body paragraphs (including supported table and
-frame paragraphs) and comments. Notes and header/footer variants remain
-reviewable and correctable through their actual source paragraph in the dialog,
-but do not all have canvas navigation. Visible modeled note/header/footer text
+frame paragraphs), comments, and standard headers/footers that are actually
+present on a rendered page. Header/footer navigation matches the source
+paragraph and section; it does not substitute a first/even variant. Notes and
+first/even header/footer variants remain reviewable and correctable through
+their actual source paragraph in the dialog, without canvas navigation.
+Visible modeled note/header/footer text
 can carry squiggles; a source-owned mapping prevents a note number, generated
 page label or trimmed header fragment from borrowing another range.
 
@@ -327,9 +336,12 @@ single unique-test total. No GitHub Actions queue was waited for.
 | Evidence | Recorded scope/result | Provenance |
 | --- | --- | --- |
 | [Resumption audit](validation/proofing-20261116/resume-audit.json) | 43 branch heads, 58 PR heads, no outstanding integration at the audit snapshot | New read-only remote audit |
+| [Final remote audit](validation/proofing-20261116/final/remote-freshness.json) and [reconciliation](validation/proofing-20261116/final/reconciliation.json) | Fixed cutoff of 48 branch heads and 59 PRs; main, Zotero and sibling proofing changes reconciled | Later read-only audit and explicit merge decisions |
 | [Hyphenation engine receipt](validation/proofing-20261116/hyphenation-resume/engine/hyphenation-validation.json) | 232 engine tests; strict analysis and exact pinned-pattern regeneration passed; source unchanged during checks | New local continuation run |
 | [Hyphenation/editor receipt](validation/proofing-20261116/hyphenation-resume/editor/receipt.json) | 19 painter/note/small-capital tests, including seven new cases and widget timer ownership; source unchanged during checks | New local continuation run |
 | [Harper/platform receipt](validation/proofing-20261116/harper-resume/receipt.json) | Real Linux native and Wasm builds, Dart native/Node adapter checks, exact worker and compiled Dart web transport smoke checks, four mocked platform-adapter tests and three license-policy tests | New local continuation run |
+| [Merged Harper receipt](validation/proofing-20261116/final/harper-merged/receipt.json) | 5 Rust, 12 native Dart, 8 Node provider, 5 Wasm worker, 8 compiled Dart web transport, 3 license and 2 packaging tests; strict analysis clean | Rebuilt and verified after sibling-branch reconciliation |
+| [Merged renderer receipt](validation/proofing-20261116/final/hyphenation-merge/receipt.json) | 41 renderer/note/selection cases; all eight incoming cases retained; strict targeted analysis clean | New local merge validation |
 | [German core continuation receipt](validation/proofing-20261116/german-resume/receipt.json) | 38 shared/German tests, dictionary byte-for-byte regeneration, strict analysis and ten compiled-JavaScript checks; source unchanged during checks | New local continuation run |
 | [Earlier German core receipt](validation/proofing-20261116/german-core/receipt.json) | Earlier 38-test/ten-JavaScript run retained for its own source snapshot | Retained recovered-checkpoint evidence |
 | [Final integration receipt](validation/proofing-20261116/final/receipt.json) | Consolidated session, UI, context-menu and affected-package checks; exact counts, source hashes and commands in the receipt | Final local continuation evidence |
