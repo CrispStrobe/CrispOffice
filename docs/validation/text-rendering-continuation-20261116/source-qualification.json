@@ -1,0 +1,1039 @@
+{
+  "schema": "quds-final-source-qualification-v1",
+  "checked_utc": "2026-11-16T20:34:53.186704+00:00",
+  "verifier_sha256": "7b806ba59f80165ac07ce4869379f957e6f15755b13431a84c3ae72e6fe78222",
+  "github_actions_used": false,
+  "passed": true,
+  "head": "a725f9cf58f83d0c548b4c861a2e8cf0c99a47b5",
+  "tree": "f5ca47e7979636dcd6a9e226e74ef34f4b83c48b",
+  "cohorts": {
+    "engine": {
+      "receipt": "docs/validation/text-rendering-continuation-20261116/qualified-engine/receipt.json",
+      "receipt_sha256": "de48d07d5c5644d4e2499dd200123b5146c5a1095c765456d33f05fa4046a491",
+      "recorded_heads": {
+        "before": "c6aab884eb478672d36da5c03cd20873d7e8c42c",
+        "after": "8825ef58ba4b57f091881829978b84c47b1b665c"
+      },
+      "started_utc": "2026-11-16T20:23:32.815956+00:00",
+      "finished_utc": "2026-11-16T20:29:43.856282+00:00",
+      "test_files": [
+        "font_subset_structure_test.dart",
+        "font_subset_unicode_test.dart",
+        "pdf_cid_encoding_test.dart",
+        "pdf_unicode_alias_export_test.dart",
+        "fonts_test.dart",
+        "office_named_fonts_test.dart",
+        "arabic_pdf_export_test.dart",
+        "office_pdf_export_test.dart",
+        "pdf_file_test.dart",
+        "pdf_toolbox_test.dart",
+        "word_pdf_test.dart",
+        "pdf_widgets_test.dart",
+        "pdf_widgets_catalog_test.dart",
+        "pdf_templates_test.dart",
+        "pdf_to_office_test.dart",
+        "bidi_test.dart",
+        "ods_sheet_writer_test.dart",
+        "ods_sheet_reader_test.dart",
+        "legacy_sheet_reader_test.dart",
+        "sheet_save_cache_and_freeze_test.dart",
+        "english_hyphenation_test.dart",
+        "proofing_hyphenation_test.dart",
+        "proofing/german_spelling_test.dart",
+        "proofing/german_writing_rules_test.dart",
+        "proofing/office_proofing_test.dart",
+        "word_run_measure_test.dart",
+        "word_run_measure_boundaries_test.dart"
+      ],
+      "test_file_count": 27,
+      "summary": {
+        "outcomes": {
+          "success": 407
+        },
+        "failures": [],
+        "skipped": [],
+        "errors": [],
+        "runner_success": true
+      },
+      "harness_sha256": "9b108c386fa1510f007696debd7199d9c1aac910055c7fe864e0142dbe7108b3",
+      "checks": {
+        "receipt_passed": true,
+        "correct_cohort": true,
+        "receipt_inputs_unchanged": true,
+        "before_after_hashes_equal": true,
+        "commands_exactly_tests_analyze_format": true,
+        "logs_and_test_summary_pass": true,
+        "captured_harness_matches": true,
+        "test_arguments_match_receipt": true,
+        "tests_bound_as_inputs": true,
+        "strict_analysis": true,
+        "nonmutating_format_gate": true
+      },
+      "source_binding": {
+        "input_count": 411,
+        "tracked_input_count": 409,
+        "current_mismatches": [],
+        "head_mismatches": [],
+        "runtime_only_inputs": [
+          {
+            "path": ".dart_tool/package_config.json",
+            "sha256": "2ec1661ad773cae29cd5e16b6e1510c96c0f7eea67e7e47e2e86782c4a7d6227",
+            "current_matches": true
+          },
+          {
+            "path": "pubspec.lock",
+            "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+            "current_matches": true
+          }
+        ],
+        "unexpected_untracked_inputs": [],
+        "passed": true
+      },
+      "commands": [
+        {
+          "name": "tests",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "tests.stdout.gz",
+              "file_sha256": "317f1cca2476c850c9cd3a87836f6b91583062470247be638767835ab1589f38",
+              "uncompressed_sha256": "76eca19fbf24999fcf1f59c4500fc2d328e2b5efcf73681f6e9b36db13e3ac3f",
+              "matches": true
+            },
+            "stderr": {
+              "file": "tests.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "summary_recomputed": {
+            "outcomes": {
+              "success": 407
+            },
+            "failures": [],
+            "skipped": [],
+            "errors": [],
+            "runner_success": true
+          },
+          "summary_matches_receipt": true,
+          "passed": true
+        },
+        {
+          "name": "analyze",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "analyze.stdout.gz",
+              "file_sha256": "09ee140d1fbe87d2279b92918f12863f377555a6e1872550e8c4c50ea7caec0e",
+              "uncompressed_sha256": "967ff4e45c81ceeeafb24073180da1e8de0e3de2c2242630a380e3f2c8a51a3c",
+              "matches": true
+            },
+            "stderr": {
+              "file": "analyze.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "passed": true
+        },
+        {
+          "name": "format",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "format.stdout.gz",
+              "file_sha256": "337775f8d72486c5f8254f3d7d951b2dea9026887f3e33df34f46f7fd75db9b2",
+              "uncompressed_sha256": "191b3ba9726728d8e5cbfb55f7e929030927d23043dcb3a15f1805361a8aafc1",
+              "matches": true
+            },
+            "stderr": {
+              "file": "format.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    "editor": {
+      "receipt": "docs/validation/text-rendering-continuation-20261116/qualified-editor/receipt.json",
+      "receipt_sha256": "5aa6f1e822cdc101eeb8d3d1472e3b919dca4ee2020c16e12b1ea3670e998b4b",
+      "recorded_heads": {
+        "before": "c6aab884eb478672d36da5c03cd20873d7e8c42c",
+        "after": "a725f9cf58f83d0c548b4c861a2e8cf0c99a47b5"
+      },
+      "started_utc": "2026-11-16T20:23:32.974604+00:00",
+      "finished_utc": "2026-11-16T20:34:24.353523+00:00",
+      "test_files": [
+        "pdf_font_faces_test.dart",
+        "font_subset_render_test.dart",
+        "pdf_surface_test.dart",
+        "pdf_viewer_options_test.dart",
+        "host_fonts_test.dart",
+        "word_run_metrics_test.dart",
+        "paint_run_text_unicode_test.dart",
+        "paint_font_fallback_test.dart",
+        "word_hyphenation_caret_test.dart",
+        "word_hyphenation_paint_test.dart",
+        "word_hyphenation_resume_test.dart",
+        "word_hyphenation_source_presentation_test.dart",
+        "word_shaped_wrap_test.dart",
+        "word_proofing_correction_test.dart",
+        "word_proofing_geometry_test.dart",
+        "word_proofing_dialog_test.dart",
+        "word_proofing_session_test.dart"
+      ],
+      "test_file_count": 17,
+      "summary": {
+        "outcomes": {
+          "success": 196
+        },
+        "failures": [],
+        "skipped": [],
+        "errors": [],
+        "runner_success": true
+      },
+      "harness_sha256": "9b108c386fa1510f007696debd7199d9c1aac910055c7fe864e0142dbe7108b3",
+      "checks": {
+        "receipt_passed": true,
+        "correct_cohort": true,
+        "receipt_inputs_unchanged": true,
+        "before_after_hashes_equal": true,
+        "commands_exactly_tests_analyze_format": true,
+        "logs_and_test_summary_pass": true,
+        "captured_harness_matches": true,
+        "test_arguments_match_receipt": true,
+        "tests_bound_as_inputs": true,
+        "strict_analysis": true,
+        "nonmutating_format_gate": true
+      },
+      "source_binding": {
+        "input_count": 482,
+        "tracked_input_count": 480,
+        "current_mismatches": [],
+        "head_mismatches": [],
+        "runtime_only_inputs": [
+          {
+            "path": ".dart_tool/package_config.json",
+            "sha256": "2ec1661ad773cae29cd5e16b6e1510c96c0f7eea67e7e47e2e86782c4a7d6227",
+            "current_matches": true
+          },
+          {
+            "path": "pubspec.lock",
+            "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+            "current_matches": true
+          }
+        ],
+        "unexpected_untracked_inputs": [],
+        "passed": true
+      },
+      "commands": [
+        {
+          "name": "tests",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "tests.stdout.gz",
+              "file_sha256": "035a9ba219bf79e43f1d5c6bc4dbce46886a8657a35c9f45466ab898c3e86f55",
+              "uncompressed_sha256": "de6261a99837fc8949b98fe37a835a2638c127c2376c84391854fc87debec59b",
+              "matches": true
+            },
+            "stderr": {
+              "file": "tests.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "summary_recomputed": {
+            "outcomes": {
+              "success": 196
+            },
+            "failures": [],
+            "skipped": [],
+            "errors": [],
+            "runner_success": true
+          },
+          "summary_matches_receipt": true,
+          "passed": true
+        },
+        {
+          "name": "analyze",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "analyze.stdout.gz",
+              "file_sha256": "81d6cd002a5e36ff09421159cb933d1b544a9a460b02e188a3af805b61226eb3",
+              "uncompressed_sha256": "f3e55c6afd84df2c0fea7b1063873101c7c8c634f65322c9d7799dae5597c44c",
+              "matches": true
+            },
+            "stderr": {
+              "file": "analyze.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "passed": true
+        },
+        {
+          "name": "format",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "format.stdout.gz",
+              "file_sha256": "ed1d4119e1563038cf5ee6b474d0e631e8eacc8b6e37355a00058f729b41de48",
+              "uncompressed_sha256": "1eca5592d19632e4e694b61a47123a47f7db5f611a9c7e8a922ab7b8d049a5e0",
+              "matches": true
+            },
+            "stderr": {
+              "file": "format.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    "harper": {
+      "receipt": "docs/validation/text-rendering-continuation-20261116/qualified-harper/receipt.json",
+      "receipt_sha256": "18b1ecba2445d5dffa49162ca36eec5fa94afd2cecd415525941ad771ffff072",
+      "recorded_heads": {
+        "before": "c6aab884eb478672d36da5c03cd20873d7e8c42c",
+        "after": "c6aab884eb478672d36da5c03cd20873d7e8c42c"
+      },
+      "started_utc": "2026-11-16T20:23:32.931716+00:00",
+      "finished_utc": "2026-11-16T20:27:13.899923+00:00",
+      "test_files": [
+        "harper_provider_test.dart",
+        "harper_source_text_test.dart",
+        "harper_source_contract_test.dart"
+      ],
+      "test_file_count": 3,
+      "summary": {
+        "outcomes": {
+          "success": 23
+        },
+        "failures": [],
+        "skipped": [],
+        "errors": [],
+        "runner_success": true
+      },
+      "harness_sha256": "9b108c386fa1510f007696debd7199d9c1aac910055c7fe864e0142dbe7108b3",
+      "checks": {
+        "receipt_passed": true,
+        "correct_cohort": true,
+        "receipt_inputs_unchanged": true,
+        "before_after_hashes_equal": true,
+        "commands_exactly_tests_analyze_format": true,
+        "logs_and_test_summary_pass": true,
+        "captured_harness_matches": true,
+        "test_arguments_match_receipt": true,
+        "tests_bound_as_inputs": true,
+        "strict_analysis": true,
+        "nonmutating_format_gate": true
+      },
+      "source_binding": {
+        "input_count": 392,
+        "tracked_input_count": 390,
+        "current_mismatches": [],
+        "head_mismatches": [],
+        "runtime_only_inputs": [
+          {
+            "path": ".dart_tool/package_config.json",
+            "sha256": "2ec1661ad773cae29cd5e16b6e1510c96c0f7eea67e7e47e2e86782c4a7d6227",
+            "current_matches": true
+          },
+          {
+            "path": "pubspec.lock",
+            "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+            "current_matches": true
+          }
+        ],
+        "unexpected_untracked_inputs": [],
+        "passed": true
+      },
+      "commands": [
+        {
+          "name": "tests",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "tests.stdout.gz",
+              "file_sha256": "3c20e4da3a6f4ba858fe2b6d33480fdceee53ef498e1c816bbdb8af6b64bf2e3",
+              "uncompressed_sha256": "f154a8bc399b523e042afe786a07e20a342f1e08cb0ff24e5ecdfc7277fe3c81",
+              "matches": true
+            },
+            "stderr": {
+              "file": "tests.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "summary_recomputed": {
+            "outcomes": {
+              "success": 23
+            },
+            "failures": [],
+            "skipped": [],
+            "errors": [],
+            "runner_success": true
+          },
+          "summary_matches_receipt": true,
+          "passed": true
+        },
+        {
+          "name": "analyze",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "analyze.stdout.gz",
+              "file_sha256": "8aa29c1c0eecdb1dff369eb000560aedeba0f02b26c8719e80ab9df1ea11cfb4",
+              "uncompressed_sha256": "6f38de03145f4360590236a9ab0d8b5722c52a44964d8dc186d9a9ea456555f2",
+              "matches": true
+            },
+            "stderr": {
+              "file": "analyze.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "passed": true
+        },
+        {
+          "name": "format",
+          "exit_code": 0,
+          "timed_out": false,
+          "logs": {
+            "stdout": {
+              "file": "format.stdout.gz",
+              "file_sha256": "e64b5b07a55ea25666dad7cfbf265da465219604a7998545fa075a2cd6b06e00",
+              "uncompressed_sha256": "b570991f36fb31a54d1515e234572300ae24827c86917b041d35b88b925e7be8",
+              "matches": true
+            },
+            "stderr": {
+              "file": "format.stderr.gz",
+              "file_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+              "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "matches": true
+            }
+          },
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  "poppler": {
+    "receipt": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/receipt.json",
+    "receipt_sha256": "b9bcebcc27847efcda7e9bd90ba25a2b87d3b17157867592b46cdcc4211dc9e4",
+    "scope": "Poppler verifies CID-mapped PDF painting and Unicode extraction for synthetic Latin-outline aliases",
+    "limits": "One raster fixture at 72 dpi; no emoji/CJK coverage, shaping-parity, platform-conformance, or performance claim",
+    "attribution": "Rebinds previously rendered artifacts and exact scoped inputs; does not rerun Poppler.",
+    "recorded_metrics": {
+      "raster": {
+        "dpi": 72,
+        "page": 1,
+        "comparison": "Exact RGB pixels; no tolerance, rescaling, or alignment",
+        "expected_fixture_dimensions": [
+          320,
+          112
+        ],
+        "samples": {
+          "encoded-aliases": {
+            "png": "encoded-aliases.png",
+            "png_sha256": "78f19170fa51c630fc72792402f34837dcd5a901dc906e1d123ecd8a37ccbbef",
+            "original_mode": "RGB",
+            "width": 320,
+            "height": 112,
+            "pixel_count": 35840,
+            "nonwhite_ink_pixels": 2109,
+            "rgb_sha256": "23a35dc4f1e1ebc78dd2af458e9524143c3555d49f5167ebc57b374d018f825b"
+          },
+          "identity-glyph-reference": {
+            "png": "identity-glyph-reference.png",
+            "png_sha256": "78f19170fa51c630fc72792402f34837dcd5a901dc906e1d123ecd8a37ccbbef",
+            "original_mode": "RGB",
+            "width": 320,
+            "height": 112,
+            "pixel_count": 35840,
+            "nonwhite_ink_pixels": 2109,
+            "rgb_sha256": "23a35dc4f1e1ebc78dd2af458e9524143c3555d49f5167ebc57b374d018f825b"
+          }
+        },
+        "same_dimensions": true,
+        "expected_dimensions": true,
+        "rgb_mode": true,
+        "both_have_ink": true,
+        "differing_pixels": 0,
+        "difference_bbox": null,
+        "passed": true
+      },
+      "text": {
+        "expected_code_points": [
+          "U+0041",
+          "U+1F600",
+          "U+20000",
+          "U+0041",
+          "U+005A"
+        ],
+        "normalization": "Extracted text: remove trailing U+000A/U+000C only; authored text unchanged",
+        "identity_control": "Raster only; deliberately not an extraction oracle",
+        "results": {
+          "encoded-aliases": {
+            "text_file": "encoded-aliases.txt",
+            "raw_sha256": "d991886630ee8133aa0b97d30abb809fdbd3bcc5ca3625f8f81a01c237f9b82a",
+            "raw_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A",
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "compared_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A"
+            ],
+            "trimmed_trailing_code_points": [
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "passed": true
+          },
+          "word-unicode-aliases": {
+            "text_file": "word-unicode-aliases.txt",
+            "raw_sha256": "d991886630ee8133aa0b97d30abb809fdbd3bcc5ca3625f8f81a01c237f9b82a",
+            "raw_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A",
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "compared_code_points": [
+              "U+0041",
+              "U+1F600",
+              "U+20000",
+              "U+0041",
+              "U+005A"
+            ],
+            "trimmed_trailing_code_points": [
+              "U+000A",
+              "U+000A",
+              "U+000C"
+            ],
+            "passed": true
+          }
+        },
+        "passed": true
+      }
+    },
+    "checks": {
+      "receipt_passed": true,
+      "source_unchanged": true,
+      "inputs_unchanged": true,
+      "artifacts_match": true,
+      "inputs_match": true,
+      "fresh_engine_fixtures_equal_rendered_pdfs": true,
+      "producer_receipt_passed": true,
+      "producer_before_after_equal": true,
+      "producer_binds_scoped_rendering_inputs": true,
+      "captured_harness_matches": true,
+      "command_logs_match_and_commands_passed": true,
+      "raster_receipt_passed": true,
+      "text_receipt_passed": true,
+      "rendered_png_bytes_identical": true,
+      "rendered_dimensions_match_receipt": true,
+      "text_matches_authored_scalars": true,
+      "recovered_audit_receipt_hashes_match": true
+    },
+    "source_binding": {
+      "input_count": 11,
+      "tracked_input_count": 11,
+      "current_mismatches": [],
+      "head_mismatches": [],
+      "runtime_only_inputs": [],
+      "unexpected_untracked_inputs": [],
+      "passed": true
+    },
+    "producer_lock_binding": {
+      "input_count": 2,
+      "tracked_input_count": 1,
+      "current_mismatches": [],
+      "head_mismatches": [],
+      "runtime_only_inputs": [
+        {
+          "path": "pubspec.lock",
+          "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+          "current_matches": true
+        }
+      ],
+      "unexpected_untracked_inputs": [],
+      "passed": true
+    },
+    "source_input_count": 11,
+    "producer_input_lock_additional": 1,
+    "artifacts": {
+      "authored-text.txt": {
+        "sha256": "e74a676e1bda53634984fdb18c5e78dbedde1a9740844ab5b9f554f062298326",
+        "bytes": 11,
+        "matches": true
+      },
+      "encoded-aliases.pdf": {
+        "sha256": "96feb2bab8f025dc9755d2e697bd0b5588bed2e3000d784f51ff2a3060bd2f23",
+        "bytes": 6873,
+        "matches": true
+      },
+      "encoded-aliases.png": {
+        "sha256": "78f19170fa51c630fc72792402f34837dcd5a901dc906e1d123ecd8a37ccbbef",
+        "bytes": 2068,
+        "matches": true
+      },
+      "encoded-aliases.txt": {
+        "sha256": "d991886630ee8133aa0b97d30abb809fdbd3bcc5ca3625f8f81a01c237f9b82a",
+        "bytes": 14,
+        "matches": true
+      },
+      "identity-glyph-reference.pdf": {
+        "sha256": "9d4d1486ece4577369c9a8c156a2041349ae2919afc1a1ee57fcacfc491d8f31",
+        "bytes": 6736,
+        "matches": true
+      },
+      "identity-glyph-reference.png": {
+        "sha256": "78f19170fa51c630fc72792402f34837dcd5a901dc906e1d123ecd8a37ccbbef",
+        "bytes": 2068,
+        "matches": true
+      },
+      "pdftoppm-version.stderr.txt": {
+        "sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286",
+        "bytes": 144,
+        "matches": true
+      },
+      "pdftoppm-version.stdout.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "pdftotext-version.stderr.txt": {
+        "sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0",
+        "bytes": 145,
+        "matches": true
+      },
+      "pdftotext-version.stdout.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "producer-receipt.json": {
+        "sha256": "75b6ebf6f4a3865bd13d48363336d3592bf87af6d7e795a8e7c1831639e95f25",
+        "bytes": 116073,
+        "matches": true
+      },
+      "raster-difference.png": {
+        "sha256": "d3361e7c176a75303813111d216fd6015807a30744f49b27a15c648922c20ff9",
+        "bytes": 184,
+        "matches": true
+      },
+      "raster-encoded-aliases.stderr.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "raster-encoded-aliases.stdout.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "raster-identity-glyph-reference.stderr.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "raster-identity-glyph-reference.stdout.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "source-head.stderr.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "source-head.stdout.txt": {
+        "sha256": "d99ee04d8802e2d9e9a03ce9fd92fed471b99b5a49087e233dd2b96f4adf2b8d",
+        "bytes": 41,
+        "matches": true
+      },
+      "text-encoded-aliases.stderr.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "text-encoded-aliases.stdout.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "text-word-unicode-aliases.stderr.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "text-word-unicode-aliases.stdout.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches": true
+      },
+      "verify-pdf-rendering-used.py": {
+        "sha256": "dc089ba747fdbd8acd04d07fbe18986763020f2b3df419a0fef65ee9ce381b3f",
+        "bytes": 13195,
+        "matches": true
+      },
+      "word-unicode-aliases.pdf": {
+        "sha256": "4290a1930abed91021c42a659294f7729a29ac4c1eaac20a0c767aa9fb6463d1",
+        "bytes": 6899,
+        "matches": true
+      },
+      "word-unicode-aliases.txt": {
+        "sha256": "d991886630ee8133aa0b97d30abb809fdbd3bcc5ca3625f8f81a01c237f9b82a",
+        "bytes": 14,
+        "matches": true
+      }
+    },
+    "input_binding": {
+      "encoded-aliases.pdf": {
+        "copied_input_matches": true,
+        "fresh_engine_path": "docs/validation/text-rendering-continuation-20261116/qualified-engine/render/encoded-aliases.pdf",
+        "fresh_engine_sha256": "96feb2bab8f025dc9755d2e697bd0b5588bed2e3000d784f51ff2a3060bd2f23",
+        "fresh_engine_matches_rendered_input": true
+      },
+      "identity-glyph-reference.pdf": {
+        "copied_input_matches": true,
+        "fresh_engine_path": "docs/validation/text-rendering-continuation-20261116/qualified-engine/render/identity-glyph-reference.pdf",
+        "fresh_engine_sha256": "9d4d1486ece4577369c9a8c156a2041349ae2919afc1a1ee57fcacfc491d8f31",
+        "fresh_engine_matches_rendered_input": true
+      },
+      "word-unicode-aliases.pdf": {
+        "copied_input_matches": true,
+        "fresh_engine_path": "docs/validation/text-rendering-continuation-20261116/qualified-engine/render/word-unicode-aliases.pdf",
+        "fresh_engine_sha256": "4290a1930abed91021c42a659294f7729a29ac4c1eaac20a0c767aa9fb6463d1",
+        "fresh_engine_matches_rendered_input": true
+      },
+      "authored-text.txt": {
+        "copied_input_matches": true,
+        "fresh_engine_path": "docs/validation/text-rendering-continuation-20261116/qualified-engine/render/authored-text.txt",
+        "fresh_engine_sha256": "e74a676e1bda53634984fdb18c5e78dbedde1a9740844ab5b9f554f062298326",
+        "fresh_engine_matches_rendered_input": true
+      },
+      "producer-receipt.json": {
+        "copied_input_matches": true
+      }
+    },
+    "commands": [
+      {
+        "name": "pdftoppm-version",
+        "exit_code": 0,
+        "timed_out": false,
+        "logs": {
+          "stdout": {
+            "file": "pdftoppm-version.stdout.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          },
+          "stderr": {
+            "file": "pdftoppm-version.stderr.txt",
+            "file_sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286",
+            "uncompressed_sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286",
+            "matches": true
+          }
+        },
+        "passed": true
+      },
+      {
+        "name": "pdftotext-version",
+        "exit_code": 0,
+        "timed_out": false,
+        "logs": {
+          "stdout": {
+            "file": "pdftotext-version.stdout.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          },
+          "stderr": {
+            "file": "pdftotext-version.stderr.txt",
+            "file_sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0",
+            "uncompressed_sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0",
+            "matches": true
+          }
+        },
+        "passed": true
+      },
+      {
+        "name": "source-head",
+        "exit_code": 0,
+        "timed_out": false,
+        "logs": {
+          "stdout": {
+            "file": "source-head.stdout.txt",
+            "file_sha256": "d99ee04d8802e2d9e9a03ce9fd92fed471b99b5a49087e233dd2b96f4adf2b8d",
+            "uncompressed_sha256": "d99ee04d8802e2d9e9a03ce9fd92fed471b99b5a49087e233dd2b96f4adf2b8d",
+            "matches": true
+          },
+          "stderr": {
+            "file": "source-head.stderr.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          }
+        },
+        "passed": true
+      },
+      {
+        "name": "raster-encoded-aliases",
+        "exit_code": 0,
+        "timed_out": false,
+        "logs": {
+          "stdout": {
+            "file": "raster-encoded-aliases.stdout.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          },
+          "stderr": {
+            "file": "raster-encoded-aliases.stderr.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          }
+        },
+        "passed": true
+      },
+      {
+        "name": "raster-identity-glyph-reference",
+        "exit_code": 0,
+        "timed_out": false,
+        "logs": {
+          "stdout": {
+            "file": "raster-identity-glyph-reference.stdout.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          },
+          "stderr": {
+            "file": "raster-identity-glyph-reference.stderr.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          }
+        },
+        "passed": true
+      },
+      {
+        "name": "text-encoded-aliases",
+        "exit_code": 0,
+        "timed_out": false,
+        "logs": {
+          "stdout": {
+            "file": "text-encoded-aliases.stdout.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          },
+          "stderr": {
+            "file": "text-encoded-aliases.stderr.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          }
+        },
+        "passed": true
+      },
+      {
+        "name": "text-word-unicode-aliases",
+        "exit_code": 0,
+        "timed_out": false,
+        "logs": {
+          "stdout": {
+            "file": "text-word-unicode-aliases.stdout.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          },
+          "stderr": {
+            "file": "text-word-unicode-aliases.stderr.txt",
+            "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "matches": true
+          }
+        },
+        "passed": true
+      }
+    ],
+    "recovered_audit_hash_bindings": {
+      "docs/validation/text-rendering-continuation-20261116/baseline/receipt.json": true,
+      "docs/validation/text-rendering-continuation-20261116/engine-attempt1/receipt.json": true,
+      "docs/validation/text-rendering-continuation-20261116/poppler/receipt.json": true
+    },
+    "baseline_context": [
+      {
+        "name": "resolve",
+        "exit_code": 0,
+        "stdout_matches": true,
+        "stderr_matches": true
+      },
+      {
+        "name": "tests",
+        "exit_code": 1,
+        "stdout_matches": true,
+        "test_summary_matches": true,
+        "outcomes": {
+          "failure": 10,
+          "success": 1,
+          "error": 9
+        },
+        "runner_success": false,
+        "stderr_matches": true
+      }
+    ],
+    "passed": true
+  },
+  "flutter_rendering": {
+    "path": "docs/validation/text-rendering-continuation-20261116/qualified-editor/render",
+    "shared_glyph_aliases": {
+      "scope": "Synthetic aliases of one bundled Latin outline; PDF-reopened versus directly generated identical cmap. No emoji/CJK coverage or original-font raster-parity claim.",
+      "source_code_points": [
+        "U+0041",
+        "U+1F600",
+        "U+20000",
+        "U+0041",
+        "U+005A"
+      ],
+      "extracted_code_points": [
+        "U+0041",
+        "U+1F600",
+        "U+20000",
+        "U+0041",
+        "U+005A"
+      ],
+      "width": 209.84375,
+      "ink_pixels": 3355,
+      "differing_pixels": 0
+    },
+    "supplementary_aliases": {
+      "scope": "Synthetic Unicode aliases of Liberation Sans Latin outlines; compares PDF-reopened and directly generated identical Unicode subsets. No original-font or cross-cmap bitmap parity or emoji/CJK coverage claim.",
+      "renderer": "Actual Flutter test engine, FontLoader, TextPainter and Canvas; font bytes reopened from exported Word PDFs.",
+      "source_code_points": [
+        "U+0041",
+        "U+1F600",
+        "U+20000",
+        "U+005A"
+      ],
+      "extracted_code_points": [
+        "U+0041",
+        "U+1F600",
+        "U+20000",
+        "U+005A"
+      ],
+      "reference_text": "ABCZ",
+      "font_size": 64.0,
+      "reference_width": 170.6875,
+      "subset_width": 170.6875,
+      "reference_ink_pixels": 2834,
+      "subset_ink_pixels": 2919,
+      "direct_subset_differing_pixels": 0,
+      "latin_reference_differing_pixels": 559,
+      "pdf_bytes": 7265,
+      "embedded_font_bytes": 7844,
+      "dart_runtime": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\""
+    },
+    "matches_prior_metrics": {
+      "shared_glyph_aliases": true,
+      "supplementary_aliases": true
+    },
+    "artifacts": {
+      "metrics.json": {
+        "bytes": 919,
+        "sha256": "64dd67950c00e35ba64c8ecb85896c76afd9167a9ac1ceb51d2e9990c9d8ca26"
+      },
+      "shared-glyph-aliases.json": {
+        "bytes": 456,
+        "sha256": "08cf1709a1a1634d13d68a10a63d32f766c8192d991c192f332e14dc5f930522"
+      },
+      "shared-glyph-aliases.pdf": {
+        "bytes": 6899,
+        "sha256": "4290a1930abed91021c42a659294f7729a29ac4c1eaac20a0c767aa9fb6463d1"
+      },
+      "unicode-subset-preview.png": {
+        "bytes": 78090,
+        "sha256": "f76a08a23bc1162cc4cd623bc1c34547c6320a2d040d3c49502621584ae78951"
+      },
+      "unicode-subset.pdf": {
+        "bytes": 7265,
+        "sha256": "5acc911e9a694f75e6250333f59f2261a4f44de2b3123bafc4c85cdd88139762"
+      }
+    },
+    "checks": {
+      "alias_authored_scalars_preserved": true,
+      "alias_identical_subset_pixels": true,
+      "alias_has_ink_and_width": true,
+      "supplementary_authored_scalars_preserved": true,
+      "supplementary_identical_subset_pixels": true,
+      "supplementary_width_matches": true,
+      "supplementary_has_ink": true,
+      "scope_statements_retained": true
+    },
+    "limits": "Synthetic Latin outlines under Unicode aliases. Identical subset controls only; the recorded Latin-reference difference is retained, not described as zero. No original-font or cross-cmap raster parity, true emoji/CJK coverage, shared shaping backend, Unicode conformance, or performance claim.",
+    "passed": true
+  },
+  "ancestry": {
+    "snapshot": "docs/validation/text-rendering-continuation-20261116/integration-185/final-remote-snapshot.json",
+    "snapshot_sha256": "47d537499ad9c68c7b096d77fe1e4306b6f30a0f70c9ed16aa7b14c5a48607a2",
+    "cutoff_utc": "2026-11-16T20:10:54.959Z",
+    "counts": {
+      "origin branches": 92,
+      "origin PR heads": 85,
+      "upstream branches": 4,
+      "upstream PR heads": 4
+    },
+    "total": 185,
+    "included_count": 185,
+    "missing_ancestors": [],
+    "passed": true,
+    "method": "Exact pinned refs[].sha membership in git rev-list of the checked commit; no live refresh."
+  },
+  "source_stable_during_verification": true,
+  "changed_during_verification": [],
+  "current_checkout_head_matches_checked_commit": true,
+  "current_qualified_test_total": 626,
+  "counting_scope": "Three current package cohorts have distinct test files; historical overlapping runs and expected-failure baseline counts are not added."
+}
