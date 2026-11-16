@@ -1,0 +1,150 @@
+{
+  "git_head_at_start": "03a28d585869eec70b5d06eae4005a68151e9c34",
+  "started_utc": "2026-11-16T15:19:09.829209+00:00",
+  "finished_utc": "2026-11-16T15:23:08.345096+00:00",
+  "command": [
+    "dart",
+    "test",
+    "--concurrency=1",
+    "--reporter",
+    "expanded",
+    "--timeout",
+    "2m",
+    "--file-reporter",
+    "json:/workspace/scratch/b8abe5ff6280/toolchain-tmp/engine-final-events.jsonl",
+    "test/bidi_test.dart",
+    "test/content_control_fidelity_test.dart",
+    "test/fonts_test.dart",
+    "test/line_breaker_measure_line_test.dart",
+    "test/office_named_fonts_test.dart",
+    "test/office_pdf_export_test.dart",
+    "test/proofing_hyphenation_test.dart",
+    "test/variable_line_breaker_test.dart",
+    "test/wave4_platform_test.dart",
+    "test/word_contained_text_wrap_test.dart",
+    "test/word_layout_test.dart",
+    "test/word_run_fragment_fallback_test.dart",
+    "test/word_run_measure_boundaries_test.dart",
+    "test/word_run_measure_test.dart",
+    "test/word_styles_layout_test.dart",
+    "test/word_table_nested_layout_test.dart",
+    "test/word_table_tall_frame_layout_test.dart",
+    "test/word_table_tall_toc_layout_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine",
+  "test_file_count": 18,
+  "test_files": [
+    "test/bidi_test.dart",
+    "test/content_control_fidelity_test.dart",
+    "test/fonts_test.dart",
+    "test/line_breaker_measure_line_test.dart",
+    "test/office_named_fonts_test.dart",
+    "test/office_pdf_export_test.dart",
+    "test/proofing_hyphenation_test.dart",
+    "test/variable_line_breaker_test.dart",
+    "test/wave4_platform_test.dart",
+    "test/word_contained_text_wrap_test.dart",
+    "test/word_layout_test.dart",
+    "test/word_run_fragment_fallback_test.dart",
+    "test/word_run_measure_boundaries_test.dart",
+    "test/word_run_measure_test.dart",
+    "test/word_styles_layout_test.dart",
+    "test/word_table_nested_layout_test.dart",
+    "test/word_table_tall_frame_layout_test.dart",
+    "test/word_table_tall_toc_layout_test.dart"
+  ],
+  "input_file_count": 741,
+  "changed_inputs": [],
+  "exit_code": 1,
+  "runner_done": {
+    "success": false,
+    "type": "done",
+    "time": 234967
+  },
+  "distinct_visible_tests": 226,
+  "counts": {
+    "success": 225,
+    "error": 1
+  },
+  "failures": [
+    {
+      "name": "CLI rejects an inline control split before replacing an existing output",
+      "path": "test/content_control_fidelity_test.dart"
+    }
+  ],
+  "skips": [],
+  "per_file": {
+    "test/bidi_test.dart": {
+      "success": 18
+    },
+    "test/content_control_fidelity_test.dart": {
+      "success": 7,
+      "error": 1
+    },
+    "test/fonts_test.dart": {
+      "success": 2
+    },
+    "test/line_breaker_measure_line_test.dart": {
+      "success": 14
+    },
+    "test/office_named_fonts_test.dart": {
+      "success": 8
+    },
+    "test/office_pdf_export_test.dart": {
+      "success": 14
+    },
+    "test/proofing_hyphenation_test.dart": {
+      "success": 20
+    },
+    "test/variable_line_breaker_test.dart": {
+      "success": 14
+    },
+    "test/wave4_platform_test.dart": {
+      "success": 4
+    },
+    "test/word_contained_text_wrap_test.dart": {
+      "success": 41
+    },
+    "test/word_layout_test.dart": {
+      "success": 16
+    },
+    "test/word_run_fragment_fallback_test.dart": {
+      "success": 6
+    },
+    "test/word_run_measure_boundaries_test.dart": {
+      "success": 5
+    },
+    "test/word_run_measure_test.dart": {
+      "success": 17
+    },
+    "test/word_styles_layout_test.dart": {
+      "success": 15
+    },
+    "test/word_table_nested_layout_test.dart": {
+      "success": 12
+    },
+    "test/word_table_tall_frame_layout_test.dart": {
+      "success": 8
+    },
+    "test/word_table_tall_toc_layout_test.dart": {
+      "success": 4
+    }
+  },
+  "archives": [
+    {
+      "path": "engine-final-events.jsonl.gz",
+      "uncompressed_bytes": 119061,
+      "compressed_bytes": 12181,
+      "uncompressed_sha256": "aaf868ccc0230baace0c07fa6de73d8f632581839298d6b18b45215d2fc30c08",
+      "archive_sha256": "908c0f6886c957d938e6e6cb0495abb80cfad3a6334950c863699fcc461bf366"
+    },
+    {
+      "path": "engine-final.log.gz",
+      "uncompressed_bytes": 29287,
+      "compressed_bytes": 6585,
+      "uncompressed_sha256": "ef26879afeae543508e4748c4101ffe00c4f080cd102cc2cd5aa65f32cc48c10",
+      "archive_sha256": "cd746067773ce278a9dbd0350dd9e550977ff2d11a6bdae97d1d42c5b5508be3"
+    }
+  ],
+  "counting_rule": "Distinct visible test IDs; hidden load/setup events excluded from counts and hidden failures retained separately. Skips are not passes."
+}

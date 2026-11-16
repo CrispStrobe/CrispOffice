@@ -257,7 +257,10 @@
       "metadata": {
         "skip": false,
         "skipReason": null
-      }
+      },
+      "reasons": [
+        "Latin face already covers Arabic; cannot force F3"
+      ]
     }
   ],
   "per_file": {

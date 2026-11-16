@@ -1,0 +1,75 @@
+{
+  "observed_utc": "2026-11-16T15:20:51.865976+00:00",
+  "method": "git ls-remote for all branch heads and PR heads in both repositories; no Actions queries",
+  "compared_initial_refs": 132,
+  "current_incoming_refs": 138,
+  "changes": [
+    {
+      "remote": "origin",
+      "ref": "refs/heads/codex/proofing-20261116-resume",
+      "initial_sha": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+      "current_sha": "6b5c114df362b88851d7bf4642faf496c098b0ca"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/feat/ods-writer",
+      "initial_sha": null,
+      "current_sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/feat/ods-writer-metadata",
+      "initial_sha": null,
+      "current_sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "initial_sha": "2e92a49c2cf39128a79d2c037c3e07bbace1d1ae",
+      "current_sha": "537600886555c3b7156aabd932e1f241a47c23a5"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/main",
+      "initial_sha": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "current_sha": "a042466eaf8cc83db2b7b6a5123d67a1b58f9304"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-writer",
+      "initial_sha": null,
+      "current_sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-writer-metadata",
+      "initial_sha": null,
+      "current_sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/pull/67/head",
+      "initial_sha": null,
+      "current_sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/pull/68/head",
+      "initial_sha": null,
+      "current_sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    }
+  ],
+  "excluded": [
+    {
+      "remote": "origin",
+      "ref": "refs/heads/codex/text-rendering-20261116",
+      "sha": "03a28d585869eec70b5d06eae4005a68151e9c34",
+      "reason": "this work branch"
+    }
+  ],
+  "raw_ref_outputs": {
+    "origin": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03\trefs/heads/codex/proofing-20261116\n6b5c114df362b88851d7bf4642faf496c098b0ca\trefs/heads/codex/proofing-20261116-resume\n4fadcc68d52d51e72e8d782765a0dd5086b982c6\trefs/heads/codex/terminal-integration-ods-20261116\nbe2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a\trefs/heads/codex/terminal-recovery-office-20261116\n4235e690602195cc504438a6b937972c71f1ad39\trefs/heads/codex/terminal-sharing-office-20261116\n03a28d585869eec70b5d06eae4005a68151e9c34\trefs/heads/codex/text-rendering-20261116\n2480f0988167068d9aeddf6573b9c2c6871a8481\trefs/heads/codex/zotero-capabilities-20261116\nca9e4f052d988d77f9ded3a6b13f840f76a26159\trefs/heads/codex/zotero-optimization-20261116\nfc37658c907edf6687eccb9564d3046283b49a3a\trefs/heads/codex/zotero-support-20261115\n428679a33381f943a8ae63117d4207f01dd15462\trefs/heads/codex/zotero-support-20261116\n379fa8663c81f32b4328415f56c776746ccc23bc\trefs/heads/docs/filter-operators\n4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f\trefs/heads/docs/filters-closed\na5febc3362d2fccdb979f012a5296af72e465797\trefs/heads/docs/metadata-closed\nb23ee557ea121774833c7a188a49189e4f80ce70\trefs/heads/docs/metadata-complete\ne6fdd16849aaf7ccbaf50f2593d7a92b6a82e630\trefs/heads/docs/readme-remaining-gaps\n0a26be7f136ad3e57dbe894b0bc4cdb0602addd0\trefs/heads/docs/remaining-gaps\nf5b67cc296b7d27e4f3a480dc46160f472d78694\trefs/heads/docs/validation-complete\n01f62eb1812ca54827cc14e074e03abd82f963d7\trefs/heads/docs/validation-operators\n20681b8658392212c128f51b4c91f0b638942448\trefs/heads/feat/conditional-affix\nb69bad50fb235118a5334b325683cd1524b3e3d1\trefs/heads/feat/conditional-between\nb0efe6c661009ffa463f2bf6d7945216ce1dae4c\trefs/heads/feat/conditional-dxf\n21de3c3963b0334068b87fb1c25c787660cb17cf\trefs/heads/feat/conditional-operators\n752a94dfddf69522429f3025f9d25702499cb6da\trefs/heads/feat/conditional-text\ne59751246a200e7477657d0e4835bf77b153422c\trefs/heads/feat/ods-conditional\n2e3074c8e1860f9503b059a87870911afc3eee7d\trefs/heads/feat/ods-custom-validation\n912f26f21446ef9bdbf4f542535438dae0ded9a9\trefs/heads/feat/ods-default-geometry\n49b447324159595c59e64d8425b54a09f79ec736\trefs/heads/feat/ods-default-style\n3bb505ce5fea00236238e37c450ace8b18e4e34e\trefs/heads/feat/ods-filter-operators\n089e53fce443ca2169fc44f3700e1b23780d2c95\trefs/heads/feat/ods-filter-predicates\ne5daa20587e10971e8cb97d82a5495584b5c1553\trefs/heads/feat/ods-hyperlinks\n7fe296e29e2e1b173580f6854507fc060cb4f080\trefs/heads/feat/ods-images\nd6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea\trefs/heads/feat/ods-metadata\n864e674795eb422855df2b26ccc375d3255e61a2\trefs/heads/feat/ods-named-expressions\n988f423b9b95037d8f5273ee368b58ceedab0667\trefs/heads/feat/ods-outline\n0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b\trefs/heads/feat/ods-tab-color\n49ba086251ba61032f15b3e7b726fc921874fd12\trefs/heads/feat/ods-validation-messages\n8769019fb8be5483939edd4655dd88005e2515c4\trefs/heads/feat/ods-validation-operators\nb85501b2810e537e21040d82528d8dbaa6fdcf15\trefs/heads/feat/ods-validations\n0ee0a8320875248adac9718cae2e67875b6b932c\trefs/heads/feat/ods-writer\n82215309dc64ef8c473fec3c4892cf0c9884bc91\trefs/heads/feat/ods-writer-metadata\n4c8036bbf16ac224c3fc102b5c44d8913a512b18\trefs/heads/feat/sheet-hidden-sheets\n46850ae47e0241733750decb22417a0150e4b0e4\trefs/heads/feat/sheet-hidden-state\ne5e1e9af6beb0972a010d8208c1690a642809113\trefs/heads/fix/ods-global-validations-20261116\n866c14f0b3a876e11732bc544dc25a05d8f10524\trefs/heads/fix/sdt-multi-section-control\n8fc3d06be36da5c2176feb107c14245f61650d75\trefs/heads/fix/sdt-trailing-section-break\n09a05d7d60d2a2e1d2547487ad4545c50472834b\trefs/heads/fix/utf16-custom-xml\n537600886555c3b7156aabd932e1f241a47c23a5\trefs/heads/fix/word-dialog-focus-rendering-20261116\na042466eaf8cc83db2b7b6a5123d67a1b58f9304\trefs/heads/main\n90acedb9835cb5bdef30606301e74482f5977448\trefs/heads/vendor/ods-custom-validation\n777bcb876a9c8cc170586d117fa41f8331ef84ad\trefs/heads/vendor/ods-filter-operators\na53a37b0b5c1b55aff20d581f80f1b2027bf3ddb\trefs/heads/vendor/ods-filter-predicates\n95debbcce02c1e24d6e8159cd1f524bbf68afeba\trefs/heads/vendor/ods-hyperlinks\nbe6aa3cf2fca1b775c2b1352881e2ca3f9134c13\trefs/heads/vendor/ods-hyperlinks-current\n18dc693fbf4e39fc6c38e3d655d1e5b35eeef273\trefs/heads/vendor/ods-metadata\n4fbd1687d3c0ada22d460cf5cadb9586c4f62905\trefs/heads/vendor/ods-metadata-zotero\n388a1c76339507d493bab577424affd80732446c\trefs/heads/vendor/ods-named-expressions\n33a0508a502f5809aa997928e8428bdec3e02503\trefs/heads/vendor/ods-outline\n375390c3853ce26f43d6ac3f71c592acf3e094dc\trefs/heads/vendor/ods-tab-color\nc7bb6d6f51885e4082882252f502bbf2de81d552\trefs/heads/vendor/ods-validation\n4ffdf113803806ba5f8ade4a0846eee85dcfbe68\trefs/heads/vendor/ods-validation-current\n14fde4b1bd2539f0c6168be4569ac1adcc5105cd\trefs/heads/vendor/ods-validation-messages\ne14a55b50af4b6870ed1044284f74c36b5f194d9\trefs/heads/vendor/ods-writer\n1808f38493d1cf2fddc1761d146432ceaaea70aa\trefs/heads/vendor/ods-writer-metadata\n54f0f8de01416640560519aa9d732f668f603709\trefs/pull/1/head\n1b1bac125f426b05f868d482e9fbd657d4ffb73a\trefs/pull/10/head\n5c1ab430c6911bb11f71d29efa35027ead5ac1d5\trefs/pull/11/head\n579f2105cf7fca61536f7e3f9b59004929bdb6c5\trefs/pull/12/head\n73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e\trefs/pull/13/head\nd4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da\trefs/pull/14/head\n448eff5aac55054a34eccd4f8a1e79e754909a05\trefs/pull/15/head\n78a7b6f4e613c7d18d4bcc6434cda12b50ed184e\trefs/pull/16/head\n89c7f06c592edde0c67774e9c7e087d96f52184b\trefs/pull/17/head\nf31cf308013ceb4527e3f4de677785894bb1bfc0\trefs/pull/18/head\ne8227569a3b90fb21db598483690bd13fe74ddef\trefs/pull/19/head\n08b09485588d2b6270f594a07c983689c087587d\trefs/pull/2/head\n5278aafd512640608fe06b8f7d357c4cffe8520a\trefs/pull/20/head\n1f30a823b30678e3684c98fee6a2cd5c4945c4f2\trefs/pull/21/head\n4637ddce4154f4b50105c7322fedc1c75fd02193\trefs/pull/22/head\ne002b9584bead9761fac8c7cf818431966d1b1c3\trefs/pull/23/head\n9cc8c6e91ff9acf0f52a68aea7c0da69934a2661\trefs/pull/24/head\nb6d27c84a72d622f670a7e646e36ba4bd920cfc8\trefs/pull/25/head\n5b9ac71db1934252c4b8ae48ac03d4cd976e15ae\trefs/pull/26/head\ncde05b85bcd00c26d519d43283fcc6b55a1884e7\trefs/pull/27/head\na8cd28d8af8ca966e8c4259862587ecc9aade2f4\trefs/pull/28/head\n7fe296e29e2e1b173580f6854507fc060cb4f080\trefs/pull/29/head\ne550723b0f2a7cd849970f58820d260c36857502\trefs/pull/3/head\n49b447324159595c59e64d8425b54a09f79ec736\trefs/pull/30/head\n912f26f21446ef9bdbf4f542535438dae0ded9a9\trefs/pull/31/head\n46850ae47e0241733750decb22417a0150e4b0e4\trefs/pull/32/head\n4c8036bbf16ac224c3fc102b5c44d8913a512b18\trefs/pull/33/head\n09a05d7d60d2a2e1d2547487ad4545c50472834b\trefs/pull/34/head\ne59751246a200e7477657d0e4835bf77b153422c\trefs/pull/35/head\n21de3c3963b0334068b87fb1c25c787660cb17cf\trefs/pull/36/head\nb0efe6c661009ffa463f2bf6d7945216ce1dae4c\trefs/pull/37/head\n752a94dfddf69522429f3025f9d25702499cb6da\trefs/pull/38/head\nb85501b2810e537e21040d82528d8dbaa6fdcf15\trefs/pull/39/head\n09f5ec4b8eba290ff4d65678179854fb6ff6a468\trefs/pull/4/head\n8855b88a96b5c94349e3b5278c339228a1688c3e\trefs/pull/40/head\nb69bad50fb235118a5334b325683cd1524b3e3d1\trefs/pull/41/head\n8fc3d06be36da5c2176feb107c14245f61650d75\trefs/pull/42/head\n20681b8658392212c128f51b4c91f0b638942448\trefs/pull/43/head\n866c14f0b3a876e11732bc544dc25a05d8f10524\trefs/pull/44/head\n0a26be7f136ad3e57dbe894b0bc4cdb0602addd0\trefs/pull/45/head\ne6fdd16849aaf7ccbaf50f2593d7a92b6a82e630\trefs/pull/46/head\nfc37658c907edf6687eccb9564d3046283b49a3a\trefs/pull/47/head\nd6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea\trefs/pull/48/head\na5febc3362d2fccdb979f012a5296af72e465797\trefs/pull/49/head\nda0979a5c6c4273ea68f360ce9a079bfa747384f\trefs/pull/5/head\n428679a33381f943a8ae63117d4207f01dd15462\trefs/pull/50/head\n8769019fb8be5483939edd4655dd88005e2515c4\trefs/pull/51/head\n01f62eb1812ca54827cc14e074e03abd82f963d7\trefs/pull/52/head\n2e3074c8e1860f9503b059a87870911afc3eee7d\trefs/pull/53/head\n49ba086251ba61032f15b3e7b726fc921874fd12\trefs/pull/54/head\nf5b67cc296b7d27e4f3a480dc46160f472d78694\trefs/pull/55/head\nca9e4f052d988d77f9ded3a6b13f840f76a26159\trefs/pull/56/head\n0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b\trefs/pull/57/head\n864e674795eb422855df2b26ccc375d3255e61a2\trefs/pull/58/head\ne5daa20587e10971e8cb97d82a5495584b5c1553\trefs/pull/59/head\n78ed85f5fd19d44f672dee11420fed261c974f4a\trefs/pull/6/head\n988f423b9b95037d8f5273ee368b58ceedab0667\trefs/pull/60/head\nb23ee557ea121774833c7a188a49189e4f80ce70\trefs/pull/61/head\n089e53fce443ca2169fc44f3700e1b23780d2c95\trefs/pull/62/head\n2480f0988167068d9aeddf6573b9c2c6871a8481\trefs/pull/63/head\n4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f\trefs/pull/64/head\n3bb505ce5fea00236238e37c450ace8b18e4e34e\trefs/pull/65/head\n379fa8663c81f32b4328415f56c776746ccc23bc\trefs/pull/66/head\n0ee0a8320875248adac9718cae2e67875b6b932c\trefs/pull/67/head\n82215309dc64ef8c473fec3c4892cf0c9884bc91\trefs/pull/68/head\ne82c997b6df8746fe86fb83b9f416a89bb3e3b80\trefs/pull/7/head\na86a360bf9bd45c729e00b31dd9a97492e23f2e7\trefs/pull/8/head\n58de54567d45e38c05dd77064b7607c577374b9d\trefs/pull/9/head\n",
+    "upstream": "aca2f66941832bd0b19b436baeab1656a1b7de98\trefs/heads/ci/flutter-workspace\nf45099688e7a3f67a1302efdb442830d052f2240\trefs/heads/cursor/class-certificates-2db8\n9930be8df44ffe117fb22778c514eea0ee73ce21\trefs/heads/cursor/cloud-agent-1790580069020-0rk1h\n15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba\trefs/heads/main\n48c5156f459597ce3f8ec486b3c9a20fc5543807\trefs/pull/1/head\n9930be8df44ffe117fb22778c514eea0ee73ce21\trefs/pull/5/head\naca2f66941832bd0b19b436baeab1656a1b7de98\trefs/pull/6/head\nf45099688e7a3f67a1302efdb442830d052f2240\trefs/pull/7/head\n"
+  },
+  "source_head": "03a28d585869eec70b5d06eae4005a68151e9c34"
+}

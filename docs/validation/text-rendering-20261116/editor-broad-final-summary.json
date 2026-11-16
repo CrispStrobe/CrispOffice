@@ -1,0 +1,214 @@
+{
+  "counts": {
+    "success": 437
+  },
+  "unique_test_count": 437,
+  "duplicate_test_done_ids": [],
+  "test_file_count": 33,
+  "files": {
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart": {
+      "success": 57
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart": {
+      "success": 5
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/paint_font_fallback_test.dart": {
+      "success": 2
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart": {
+      "success": 12
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart": {
+      "success": 9
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart": {
+      "success": 6
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart": {
+      "success": 9
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart": {
+      "success": 7
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart": {
+      "success": 5
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart": {
+      "success": 7
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart": {
+      "success": 33
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart": {
+      "success": 13
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart": {
+      "success": 10
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart": {
+      "success": 4
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart": {
+      "success": 30
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_run_metrics_test.dart": {
+      "success": 13
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_selection_paint_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_shaped_wrap_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart": {
+      "success": 5
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart": {
+      "success": 5
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": {
+      "success": 13
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart": {
+      "success": 11
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+      "success": 21
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+      "success": 16
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart": {
+      "success": 4
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart": {
+      "success": 17
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart": {
+      "success": 2
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart": {
+      "success": 48
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_format_test.dart": {
+      "success": 31
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart": {
+      "success": 2
+    }
+  },
+  "failures": [],
+  "hidden_failures": [],
+  "errors": [],
+  "final_event": {
+    "success": true,
+    "type": "done",
+    "time": 365178
+  },
+  "git_head": "03a28d585869eec70b5d06eae4005a68151e9c34",
+  "started_utc": "2026-11-16T15:18:50.662167+00:00",
+  "finished_utc": "2026-11-16T15:24:59.235163+00:00",
+  "exit_code": 0,
+  "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=4",
+    "--reporter",
+    "expanded",
+    "--file-reporter",
+    "json:/workspace/scratch/b8abe5ff6280/toolchain-tmp/editor-broad-events.jsonl",
+    "--name",
+    "^(?!.*Word-like selection golden).*$",
+    "test/editor_test.dart",
+    "test/host_fonts_test.dart",
+    "test/paint_font_fallback_test.dart",
+    "test/paint_run_text_unicode_test.dart",
+    "test/platform_spelling_provider_test.dart",
+    "test/word_hyphenation_caret_test.dart",
+    "test/word_hyphenation_paint_test.dart",
+    "test/word_hyphenation_resume_test.dart",
+    "test/word_hyphenation_source_presentation_test.dart",
+    "test/word_input_focus_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_proofing_correction_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_run_metrics_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/word_shaped_wrap_test.dart",
+    "test/word_small_caps_test.dart",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_catalog_citing_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_collection_pagination_test.dart",
+    "test/word_zotero_controller_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_format_test.dart",
+    "test/word_zotero_rich_controller_test.dart",
+    "test/word_zotero_saved_search_test.dart",
+    "test/word_zotero_source_identity_test.dart"
+  ],
+  "test_files": [
+    "test/editor_test.dart",
+    "test/host_fonts_test.dart",
+    "test/paint_font_fallback_test.dart",
+    "test/paint_run_text_unicode_test.dart",
+    "test/platform_spelling_provider_test.dart",
+    "test/word_hyphenation_caret_test.dart",
+    "test/word_hyphenation_paint_test.dart",
+    "test/word_hyphenation_resume_test.dart",
+    "test/word_hyphenation_source_presentation_test.dart",
+    "test/word_input_focus_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_proofing_correction_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_run_metrics_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/word_shaped_wrap_test.dart",
+    "test/word_small_caps_test.dart",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_catalog_citing_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_collection_pagination_test.dart",
+    "test/word_zotero_controller_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_format_test.dart",
+    "test/word_zotero_rich_controller_test.dart",
+    "test/word_zotero_saved_search_test.dart",
+    "test/word_zotero_source_identity_test.dart"
+  ],
+  "input_hash_count": 494,
+  "changed_inputs": [],
+  "source_inputs_unchanged": true,
+  "excluded_test_name_pattern": "Word-like selection golden",
+  "excluded_image_golden_tests": 2,
+  "input_hash_manifests": [
+    "editor-broad-final-inputs-before.json",
+    "editor-broad-final-inputs-after.json"
+  ],
+  "event_archive": "editor-broad-final-events.jsonl.gz",
+  "log": "editor-broad-final.log",
+  "log_sha256": "ef28e2afbaaa66cf1365da7e507386eb9a2e45dc8bf47a9640ff58900e443f26"
+}

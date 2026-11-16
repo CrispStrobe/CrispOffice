@@ -98,6 +98,12 @@ Soft hyphens must have zero source advance; an invisible source range without
 a glyph cannot own a nonzero advance. A null or invalid result retains the
 existing measurement path for that run.
 
+The engine records original scalar/font advances before the first host
+measurement. An actual shortened fragment restores those values before asking
+the host again, so a declined fragment cannot silently retain widths from the
+longer context. This also preserves zero-width lam-alef continuations and
+generated-label scales; selected hyphens keep their independent metrics.
+
 The editor implementation shapes each complete logical run with the same
 family resolution, fallback list, bold/italic style, size and direction policy
 as `PaintRunText`. Per-grapheme widths come from Flutter's selection/caret
@@ -169,6 +175,11 @@ fixes are retained. This increment makes the general `logicalSlice` helper
 expand to complete extended graphemes and prevents `runText` from borrowing a
 following Arabic mark owned by a differently styled run. A source-selection
 slice and a styled paint run consequently have distinct boundary policies.
+Paint extraction also replaces the inherited gap-length heuristic with source
+ownership checks. Omitted invisible controls and unselected soft hyphens stay
+in the logical text even across long gaps, preserving UTF-16 hit/caret offsets;
+omitted visible text belonging to another sparse run is excluded even when its
+gap is short.
 
 Flutter documents explicit `TextPainter.dispose()` ownership and exposes
 selection, caret, glyph and line metrics. These are the appropriate editor

@@ -3,12 +3,13 @@
 Work branch: [`codex/text-rendering-20261116`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/text-rendering-20261116).
 Integration baseline: `bfb24bf57d5efd52f00ab7079b4ac8968259a478`.
 
-**Incremental qualification record.** The full initial engine run has finished
-against source `48123bf78dd0c23fe17e675306e047f1c993060b`. Two additional
-source/fallback corrections and the resulting test updates are now applied;
-final local qualification follows this source checkpoint. Passing results
-below apply only to their stated source snapshots; this intermediate record
-is not a final all-green claim.
+**Incremental qualification record.** The typography source at
+`03a28d585869eec70b5d06eae4005a68151e9c34` passes the 437-test editor cohort,
+static checks and rendered comparison. The affected engine cohort passes
+225 tests, with one unrelated CLI timeout still under investigation. A remote
+refresh found late incoming proofing/dialog and ODS writer changes; their
+reconciliation and qualification follow this checkpoint. Every receipt
+identifies its actual source snapshot.
 
 ## Incoming work
 
@@ -87,13 +88,14 @@ jobs were polled, awaited or rerun.
 
 | Local check | Result at this checkpoint |
 | --- | --- |
+| Broader editor cohort, 33 files, source `03a28d5` | 437 passed; zero failures or skips; two explicit image-golden exclusions |
 | Initial broader editor cohort, 33 files, source `48123bf` | 432 passed; one inherited mode-test mismatch failed |
 | Corrected focus/navigation test file | 5 passed |
 | Run metrics / strict controller integration checks | 13 / 8 passed before the broad cohort; these overlap the cohort and are not additive totals |
-| Actual Flutter comparison render | 1 passed |
-| Scoped static analysis of 18 changed Dart files | No issues |
-| Initial formatting check | Four layout-only differences in `render_word_canvas.dart`, now formatted; final check follows |
+| Actual Flutter comparison render on `03a28d5` | 1 passed; image and metrics byte-identical to the reviewed artifacts |
+| Scoped analysis and formatting of 21 changed Dart files on `03a28d5` | Both pass; no analysis issues or formatting changes |
 | Entire engine test directory, 185 files, source `48123bf` | 2,481 passed; seven outdated callback-count assertions failed; one CLI test timed out; one host-font-dependent PDF test skipped |
+| Affected engine cohort, 18 files, source `03a28d5` | 225 passed; callback assertion cases and two-font PDF case resolved; one CLI timeout remains |
 
 The initial editor cohort excluded only the two tests named `Word-like selection
 golden`, whose platform-specific image baselines were not regenerated. Selection
@@ -115,7 +117,8 @@ Its 740 recorded inputs were unchanged during execution. Seven new tests still
 expected a single callback invocation even though actual-line remeasurement
 intentionally calls the host again; their input/style/direction invariants now
 allow repeat calls, with every geometry assertion unchanged. The CLI timeout
-will be replayed with a longer execution budget. The two-font PDF test now
+recurred with a two-minute execution budget and is being investigated
+separately. The two-font PDF test now
 prefers the audited bundled fonts so an incidental system face cannot cause
 the distinct-resource assertion to skip. The focused final engine cohort also
 includes six new declined-fragment regression cases.
