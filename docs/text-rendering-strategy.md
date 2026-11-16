@@ -73,6 +73,40 @@ Format 12 carries a superset of BMP mappings when both subtables are present;
 large sparse sets use format 12 alone instead of emitting a corrupt format 4.
 Older readers restricted to format 4 do not gain support for that overflow case.
 
+### Continuation: TrueType structure and independent PDF character codes
+
+The [continuation report](validation/text-rendering-continuation-20261116/README.md)
+records the next implementation and its local qualification. Office PDF exports
+now allocate a distinct CID for each mapped Unicode scalar, even when several
+scalars share one font glyph. A real `CIDToGIDMap` stream maps these character
+codes to the embedded subset's glyph IDs; widths and ToUnicode use the same
+encoding. Word, worksheet and presentation exports therefore preserve authored
+aliases for extraction and search. Font resources are immutable once emitted,
+limited to 65,535 mapped characters, and split/reused for larger repertoires.
+Low-level writer callers can retain their existing identity encoding.
+
+The subsetter aligns glyph records before writing `loca`, retains and remaps
+composite dependencies without recursively expanding their outlines, and rejects
+cycles, dangling references and truncated records with typed errors. It preserves
+font-wide OS/2 metrics and embedding metadata while recomputing Unicode coverage
+for the subset, and retains post style metrics in a version 3 table. The numeric
+OS/2 interval transcription carries the upstream FontTools MIT notice; no
+FontTools runtime or new native dependency is introduced.
+
+The independent PDF fixture compares explicit CID mapping with an identity-mapped
+reference containing the same embedded font and positioned glyphs. It checks
+actual PDF raster output and Unicode extraction separately. Synthetic emoji/CJK
+code points deliberately alias a Latin outline in this fixture; they test mapping
+and transport, not emoji/CJK font coverage or a new shaping backend.
+
+A separate cmap-only diagnostic found that changing font character coverage can
+change autohint output in Matplotlib 3.10.8's bundled FreeType 2.6.1 even when
+all glyph outlines, IDs and metrics remain identical. Its native-hinting and
+unhinted controls stayed identical. That result establishes a mechanism in that
+runtime; it does not identify Flutter 3.47.8's exact cause or establish general
+full-font/subset raster equality. Shared positioned-glyph shaping and exact
+editor/headless parity remain separate future work.
+
 ## State of the art: components with different responsibilities
 
 A modern stack separates Unicode segmentation/bidi, font matching, OpenType
