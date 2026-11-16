@@ -326,7 +326,7 @@ def main() -> int:
         run("flutter-version", [args.flutter, "--version", "--machine"], REPO)
         run("dart-version", [args.dart, "--version"], REPO)
         run("node-version", [args.node, "--version"], REPO)
-        for label, package in (("engine", ENGINE), ("editor", EDITOR), ("example", EXAMPLE)):
+        for label, package in (("engine", ENGINE), ("editor", EDITOR), ("example", EXAMPLE), ("harper", HARPER)):
             directories = [name for name in ("lib", "test", "tool") if (package / name).is_dir()]
             run(f"{label}-analyze", [args.dart, "analyze", "--fatal-infos", *directories], package)
         run("engine-hyphenation", [sys.executable, "tool/proofing/validate_hyphenation.py",
@@ -337,6 +337,14 @@ def main() -> int:
         run("german-proofing", [sys.executable, "tool/proofing/verify_german.py", "--dart", args.dart,
                                 "--node", args.node, "--output", str(output / "german"), *wordlist], ENGINE)
         retain_child("german", output / "german/receipt.json")
+        # Source/provider contracts are useful even when optional native/Wasm
+        # assets are absent. Real backend acceptance remains the separate
+        # source-bound --harper-build gate below.
+        run("harper-contract-tests", [args.dart, "test", "--reporter=expanded",
+                                      "test/harper_provider_test.dart",
+                                      "test/harper_source_text_test.dart",
+                                      "test/harper_source_contract_test.dart"], HARPER)
+        run("harper-source-reference", [args.node, "tool/source_projection_probe.mjs"], HARPER)
         run("incoming-engine-tests", [args.dart, "test", "--concurrency=4", "--reporter=expanded",
                                       *[f"test/{name}_test.dart" for name in INCOMING_ENGINE_TESTS]], ENGINE)
         run("editor-tests", [args.flutter, "test", "--no-pub", "--concurrency=2", "--reporter=expanded",

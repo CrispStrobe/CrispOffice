@@ -1,0 +1,15 @@
+{
+  "local_reviewed_merge_head": "765438f6de643b7162ec6c4d2aab9a54703515e8",
+  "remote_parent": "bc1951651a58dd6702d5688679f61a37cc488f54",
+  "pinned_main": "63194d8e482892f284eaccb95ce48a8a8132376d",
+  "additional_remote_parents": [
+    "377e312a2fd4a0d5e87b7abbe8f464aaedf9b15b",
+    "3ebe347f8d3c9577d44ac51b1f1fc92a544f1bf4",
+    "b87f9d6c3a2532c9695024adf48ca9fbd3c0927a",
+    "bdd752e01b4c97cf0cd1248af8a4e544f18ea863"
+  ],
+  "merge_method": "Five sequential real git merges with ort; all clean. Exact reviewed tree is preserved when publishing via the connected Git data API.",
+  "cutoff_utc": "2026-11-16T20:10:54.959Z",
+  "later_arrivals_excluded": true,
+  "github_actions_used": false
+}

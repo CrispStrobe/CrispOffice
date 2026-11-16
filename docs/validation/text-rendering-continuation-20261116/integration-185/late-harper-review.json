@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-16T20:20:49.731229+00:00",
+  "scope": "Static semantic, merge-scope and dependency/license-change review of pinned en-de/Harper heads; no GitHub Actions and no post-cutoff refresh.",
+  "comparison_base": "f23675a4e6443c2958d0eef274bc3e301e6ff201",
+  "integration_head": "bdd752e01b4c97cf0cd1248af8a4e544f18ea863",
+  "harper_subset_head": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+  "harper_subset_is_ancestor_of_integration": true,
+  "merge_base": "6a07cb8f8f7db2007c694c167b861b05d1d58d00",
+  "disposition": "No semantic or license-change blocker found; normalize Dart formatting and run source-bound focused gates after integration.",
+  "reviewed_paths_and_incoming_git_blobs": {
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "47d0960872f24b234a9a346616f541f25867a1d2",
+    "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart": "5ece9bfa9b92423206ff72a2902004eea85cfa4d",
+    "packages/quds_proofing_harper/CHANGELOG.md": "b4600a5ba681de10c0472e89df9616117f4e604f",
+    "packages/quds_proofing_harper/README.md": "f2fab18cb1975dc4b69925264577e35b96be1240",
+    "packages/quds_proofing_harper/lib/src/harper_provider.dart": "70b9243e64cfe4c6d2055e0d7224fd9bb614a7a7",
+    "packages/quds_proofing_harper/lib/src/harper_source_text.dart": "a2c15500aa8ebd32c78eab74f71674c98a919cc7",
+    "packages/quds_proofing_harper/test/harper_native_test.dart": "b2ddd1e68ef2a7441e155649947d2aaa0cda48e4",
+    "packages/quds_proofing_harper/test/harper_source_contract_test.dart": "373c5435cd0e65a747426a61e5fbb7dc498f1ba2",
+    "packages/quds_proofing_harper/test/harper_source_text_test.dart": "8566ee512b37fc237b7fb5cc5ff1825e52617007",
+    "packages/quds_proofing_harper/tool/source_projection_probe.mjs": "74cc5600904f0e63490a3839b0d09540b7f7ea68",
+    "packages/quds_proofing_harper/tool/verify.py": "b454ae339435c0288d43077beba298bd5aca542e",
+    "packages/quds_proofing_harper/tool/web_transport_smoke.dart": "1876b5fff110ea3d7cf5944a4aea3328fbe4ba18",
+    "tools/proofing/verify_integration.py": "d16fffe9efd0a656fb202e29c95589f2e946a1ac"
+  },
+  "observations": [
+    "Only U+00AD is removed from Harper input; source text, other punctuation, controls and line breaks remain literal.",
+    "Per-scalar source start/end tables map backend Unicode-scalar findings to original UTF-16. Nonempty ranges include internal omitted controls and exclude adjacent controls. Insertions select the next visible scalar or source end.",
+    "Range validation throws on negative, reversed or out-of-bounds backend ranges. Grapheme boundaries are checked in projected and original text; partial-grapheme findings are omitted individually.",
+    "Original source remains limited to 32768 Unicode scalars before projection, and responses remain limited to 2000 findings. Range lookup after construction is constant time.",
+    "Host-owned OfficeProofingVocabulary is shared by the example controller with Harper. Existing language canonicalization, case-sensitive membership and per-language storage remain; only spelling findings are suppressed, while grammar/style findings remain.",
+    "Vocabulary revision participates in provider configurationRevision and is captured across asynchronous transport checks. A changed revision returns an explicit failed result requiring a fresh check.",
+    "Added en-CA/en-AU/en-IN picker choices correspond to dialects already supported by HarperProofingProvider.",
+    "The 65d581 subset is included by bdd752. Later changes add native/Web projection acceptance assertions and validation-hook coverage; they do not alter native/Wasm implementation.",
+    "ODS worksheet source and historical evidence in these histories are carryover, already reviewed separately. Root reported all four pinned tips and main merged cleanly at local HEAD765438f6."
+  ],
+  "dependency_license_delta": {
+    "changed_manifests_locks_native_code_licenses_fonts_or_data": [],
+    "conclusion": "No new dependency, native source, font, dictionary or licensed data is introduced by the Harper/en-de delta. Existing broader license audit remains necessary and retains its original scope; this review is a change audit.",
+    "new_assets": "Dart adapter/source-mapping code, tests, Python/JavaScript validation tools and documentation only."
+  },
+  "focused_validation": {
+    "harper_package_directory": "packages/quds_proofing_harper",
+    "dart_tests": [
+      "test/harper_provider_test.dart",
+      "test/harper_source_text_test.dart",
+      "test/harper_source_contract_test.dart"
+    ],
+    "dart_static_scope": [
+      "lib",
+      "test",
+      "tool"
+    ],
+    "essential_editor_additions_to_parent_cohort": [
+      "test/word_proofing_dialog_test.dart",
+      "test/word_proofing_session_test.dart"
+    ],
+    "already_planned_editor_tests_covering_related_contracts": [
+      "test/word_proofing_correction_test.dart",
+      "test/word_proofing_geometry_test.dart"
+    ],
+    "already_planned_engine_test": "test/proofing/office_proofing_test.dart",
+    "format_observation": "New remote-authored harper_source_contract_test.dart contains unformatted long calls; normalize using pinned Dart and include source/test/tool format gate.",
+    "tests_run_by_this_reviewer": [],
+    "real_backend_limitation": "Fresh Dart contracts use injected transport and do not establish actual Harper native/Wasm backend acceptance. No Harper .so or .wasm is installed under the restored toolchain. Preserve historical backend receipts with original attribution; do not claim them as freshly rerun.",
+    "semantic_reference": "tool/source_projection_probe.mjs and its historical 28-check JSON are an independent JavaScript reference, not compiled Dart or native/Wasm acceptance."
+  },
+  "non_blocking_limits": [
+    "Vocabulary normalization is the pre-existing finite Latin/accent/hyphen canonicalization, not full Unicode NFC or locale-aware case folding.",
+    "The new dialog dialect labels have general dialog/session coverage, but the existing tests do not explicitly tap every newly added dialect label.",
+    "This is a focused static review and recommended local qualification, not a new full native/Wasm build or whole-repository license audit."
+  ]
+}

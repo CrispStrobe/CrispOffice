@@ -1,0 +1,4015 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-16T19:59:03.698Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/proofing-en-de-20261116",
+  "base_main": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+  "base_tree": "30f8f0208db17be2e5aac4f1ed4d39b609ef7b6e",
+  "upstream_repository": "MohammedAsaadAsaad/quds_office_suite",
+  "counts": {
+    "fork_branches": 86,
+    "fork_pull_requests": 83,
+    "upstream_branches": 4,
+    "upstream_pull_requests": 4,
+    "named_refs": 177,
+    "unique_heads": 120,
+    "incoming_blob_entries": 109
+  },
+  "named_refs": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/text-rendering-20261116",
+      "sha": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/zotero-recovery-20261116",
+      "sha": "c6b9856ccd5264602d709b747decbd9631263574"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "main",
+      "sha": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "name": "vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 72,
+      "state": "open",
+      "merged_at": null,
+      "sha": "6a07cb8f8f7db2007c694c167b861b05d1d58d00",
+      "branch": "codex/text-rendering-20261116"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 83,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:57:58Z",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "branch": "feat/ods-header-footer"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 82,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:50:02Z",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "branch": "docs/page-setup-fix"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 81,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:49:42Z",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "branch": "docs/sheet-page-setup"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 80,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:47:41Z",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "branch": "feat/sheet-page-setup"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 79,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:25:30Z",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "branch": "docs/ods-row-groups"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 78,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:23:12Z",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "branch": "feat/ods-row-groups"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 77,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:21:01Z",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "branch": "docs/ods-filter-predicates"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 76,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:17:09Z",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "branch": "feat/ods-filter-conditions"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 75,
+      "state": "closed",
+      "merged_at": "2026-11-16T19:15:03Z",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "branch": "docs/odt-image-registry"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 74,
+      "state": "closed",
+      "merged_at": "2026-11-16T18:52:45Z",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "branch": "docs/current-office-capabilities"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 63,
+      "state": "closed",
+      "merged_at": "2026-11-16T18:48:29Z",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "branch": "codex/zotero-capabilities-20261116"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 73,
+      "state": "closed",
+      "merged_at": "2026-11-16T18:30:45Z",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "branch": "fix/ods-writer-page-layout"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 71,
+      "state": "closed",
+      "merged_at": "2026-11-16T15:58:08Z",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "branch": "docs/ods-writer-images"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 70,
+      "state": "closed",
+      "merged_at": "2026-11-16T15:55:20Z",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "branch": "feat/ods-writer-images"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 69,
+      "state": "closed",
+      "merged_at": "2026-11-16T15:49:13Z",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "branch": "feat/ods-writer-conditional"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 68,
+      "state": "closed",
+      "merged_at": "2026-11-16T15:16:47Z",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "branch": "feat/ods-writer-metadata"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 67,
+      "state": "closed",
+      "merged_at": "2026-11-16T15:11:41Z",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "branch": "feat/ods-writer"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 66,
+      "state": "closed",
+      "merged_at": "2026-11-16T14:16:19Z",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "branch": "docs/filter-operators"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 65,
+      "state": "closed",
+      "merged_at": "2026-11-16T14:13:30Z",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "branch": "feat/ods-filter-operators"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 64,
+      "state": "closed",
+      "merged_at": "2026-11-16T13:52:49Z",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "branch": "docs/filters-closed"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 62,
+      "state": "closed",
+      "merged_at": "2026-11-16T13:37:17Z",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "branch": "feat/ods-filter-predicates"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 61,
+      "state": "closed",
+      "merged_at": "2026-11-16T13:35:44Z",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "branch": "docs/metadata-complete"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 60,
+      "state": "closed",
+      "merged_at": "2026-11-16T13:32:40Z",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "branch": "feat/ods-outline"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 59,
+      "state": "closed",
+      "merged_at": "2026-11-16T13:26:38Z",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "branch": "feat/ods-hyperlinks"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 56,
+      "state": "closed",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "branch": "codex/zotero-optimization-20261116"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 50,
+      "state": "closed",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "branch": "codex/zotero-support-20261116"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 58,
+      "state": "closed",
+      "merged_at": "2026-11-16T10:37:36Z",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "branch": "feat/ods-named-expressions"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 57,
+      "state": "closed",
+      "merged_at": "2026-11-16T10:30:10Z",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "branch": "feat/ods-tab-color"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 55,
+      "state": "closed",
+      "merged_at": "2026-11-16T09:17:36Z",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "branch": "docs/validation-complete"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 54,
+      "state": "closed",
+      "merged_at": "2026-11-16T09:10:51Z",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "branch": "feat/ods-validation-messages"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 53,
+      "state": "closed",
+      "merged_at": "2026-11-16T09:04:41Z",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "branch": "feat/ods-custom-validation"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 52,
+      "state": "closed",
+      "merged_at": "2026-11-16T08:41:03Z",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "branch": "docs/validation-operators"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 51,
+      "state": "closed",
+      "merged_at": "2026-11-16T08:32:57Z",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "branch": "feat/ods-validation-operators"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 49,
+      "state": "closed",
+      "merged_at": "2026-11-15T23:08:16Z",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "branch": "docs/metadata-closed"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 48,
+      "state": "closed",
+      "merged_at": "2026-11-15T23:02:25Z",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "branch": "feat/ods-metadata"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 47,
+      "state": "closed",
+      "merged_at": "2026-11-15T22:52:54Z",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "branch": "codex/zotero-support-20261115"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 46,
+      "state": "closed",
+      "merged_at": "2026-11-15T22:24:09Z",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "branch": "docs/readme-remaining-gaps"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 45,
+      "state": "closed",
+      "merged_at": "2026-11-15T22:22:34Z",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "branch": "docs/remaining-gaps"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 44,
+      "state": "closed",
+      "merged_at": "2026-11-15T22:18:54Z",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "branch": "fix/sdt-multi-section-control"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 40,
+      "state": "closed",
+      "merged_at": "2026-11-15T22:12:58Z",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "branch": "codex/zotero-support-20261115"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 43,
+      "state": "closed",
+      "merged_at": "2026-11-15T22:05:48Z",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "branch": "feat/conditional-affix"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 42,
+      "state": "closed",
+      "merged_at": "2026-11-15T20:24:56Z",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "branch": "fix/sdt-trailing-section-break"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 41,
+      "state": "closed",
+      "merged_at": "2026-11-15T20:23:40Z",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "branch": "feat/conditional-between"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 39,
+      "state": "closed",
+      "merged_at": "2026-11-15T19:18:34Z",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "branch": "feat/ods-validations"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 38,
+      "state": "closed",
+      "merged_at": "2026-11-15T19:13:56Z",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "branch": "feat/conditional-text"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 37,
+      "state": "closed",
+      "merged_at": "2026-11-15T19:10:36Z",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "branch": "feat/conditional-dxf"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 36,
+      "state": "closed",
+      "merged_at": "2026-11-15T19:01:57Z",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "branch": "feat/conditional-operators"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 35,
+      "state": "closed",
+      "merged_at": "2026-11-15T18:57:27Z",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "branch": "feat/ods-conditional"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 34,
+      "state": "closed",
+      "merged_at": "2026-11-15T18:49:26Z",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "branch": "fix/utf16-custom-xml"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 33,
+      "state": "closed",
+      "merged_at": "2026-11-15T18:39:22Z",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "branch": "feat/sheet-hidden-sheets"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 32,
+      "state": "closed",
+      "merged_at": "2026-11-15T16:51:32Z",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "branch": "feat/sheet-hidden-state"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 31,
+      "state": "closed",
+      "merged_at": "2026-11-15T16:45:53Z",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "branch": "feat/ods-default-geometry"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 30,
+      "state": "closed",
+      "merged_at": "2026-11-15T16:25:32Z",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "branch": "feat/ods-default-style"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 28,
+      "state": "closed",
+      "merged_at": "2026-11-15T14:17:35Z",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "branch": "test/xlsm-preservation"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 25,
+      "state": "closed",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "branch": "fix/word-steps-vocabulary"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 22,
+      "state": "closed",
+      "merged_at": "2026-11-15T07:11:20Z",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "branch": "fix/word-inline-pictures"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 21,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:24:52Z",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "branch": "fix/word-heading-like-word"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 20,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:24:51Z",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "branch": "fix/word-shape-no-textbox"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 27,
+      "state": "closed",
+      "merged_at": "2026-11-15T12:23:53Z",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "branch": "fix/linux-goldens"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 26,
+      "state": "closed",
+      "merged_at": "2026-11-15T11:41:44Z",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "branch": "fix/odf-legacy-spreadsheets"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 19,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "branch": "feat/word-like-selection"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 18,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "branch": "codex/office-recovery-20261115"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 29,
+      "state": "closed",
+      "merged_at": "2026-11-15T14:12:12Z",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "branch": "feat/ods-images"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 24,
+      "state": "closed",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "branch": "fix/odf-legacy-spreadsheets"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 23,
+      "state": "closed",
+      "merged_at": "2026-11-15T08:57:53Z",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "branch": "fix/odf-legacy-spreadsheets"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 16,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "branch": "fix/excel-legacy-import"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 15,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "branch": "fix/word-revision-quadratic"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 17,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "branch": "fix/word-header-controls"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 14,
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "branch": "fix/word-field-loss"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 13,
+      "state": "closed",
+      "merged_at": "2026-11-14T22:11:16Z",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "branch": "fix/word-preserve-vml-pict"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 12,
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "branch": "integration/crispcloud-storage-reconcile-20261114"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 10,
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "branch": "fix/word-textbox-nesting"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 9,
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "branch": "fix/word-sym-chars"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 11,
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "branch": "fix/word-media-dedupe"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 8,
+      "state": "closed",
+      "merged_at": "2026-11-14T20:19:59Z",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "branch": "fix/word-block-bookmarks"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 7,
+      "state": "closed",
+      "merged_at": "2026-11-13T21:16:46Z",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "branch": "feature/document-fonts-20261113"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 6,
+      "state": "closed",
+      "merged_at": "2026-11-12T20:58:32Z",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "branch": "feature/legacy-doc-fidelity-continuation-20261112"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 4,
+      "state": "closed",
+      "merged_at": "2026-11-12T18:25:32Z",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "branch": "feature/legacy-doc-fidelity-20261112"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 5,
+      "state": "closed",
+      "merged_at": "2026-11-12T20:10:12Z",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "branch": "feature/legacy-doc-fidelity-continuation-20261112"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 2,
+      "state": "closed",
+      "merged_at": "2026-11-12T15:25:55Z",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "branch": "feature/office-fidelity-followup-20261112"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 3,
+      "state": "closed",
+      "merged_at": null,
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "branch": "feature/office-fidelity-expansion-20261112"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "number": 1,
+      "state": "closed",
+      "merged_at": "2026-11-12T11:37:16Z",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "branch": "feature/office-fidelity-gap-closure-20261112"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "number": 7,
+      "state": "closed",
+      "merged_at": "2026-10-12T18:08:30Z",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "branch": "cursor/class-certificates-2db8"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "number": 6,
+      "state": "closed",
+      "merged_at": "2026-10-10T19:22:03Z",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "branch": "ci/flutter-workspace"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "number": 5,
+      "state": "closed",
+      "merged_at": "2026-10-10T19:13:47Z",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "number": 1,
+      "state": "closed",
+      "merged_at": "2026-09-28T08:36:16Z",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h"
+    }
+  ],
+  "parents": [
+    "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+    "6a07cb8f8f7db2007c694c167b861b05d1d58d00",
+    "c6b9856ccd5264602d709b747decbd9631263574",
+    "738f0b6a3f1f46f83585579291d0847613d780c5",
+    "4497c737623c1339d2422487d53941c20472bac9",
+    "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+    "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+    "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+    "331be9688e2de1feb52635490b534042dea10c27",
+    "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+  ],
+  "initial_comparisons": [
+    {
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "names": [
+        "branch:codex/proofing-20261116-resume"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 34,
+      "merge_base": "95185d2f803215d768d440cbbc2ee74789574005"
+    },
+    {
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "names": [
+        "branch:codex/proofing-20261116"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 113,
+      "merge_base": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "names": [
+        "branch:codex/terminal-integration-ods-20261116"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 214,
+      "merge_base": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "names": [
+        "branch:codex/terminal-recovery-office-20261116"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 229,
+      "merge_base": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "names": [
+        "branch:codex/terminal-sharing-office-20261116"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 232,
+      "merge_base": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "sha": "3a8306e681f4eac80d918035ac812f8137ef9417",
+      "names": [
+        "branch:codex/text-rendering-20261116",
+        "pr:72:open"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 14,
+      "behind_by": 3,
+      "merge_base": "be9eeec9ea3455018de26fff5874c558dbc66798"
+    },
+    {
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "names": [
+        "branch:codex/zotero-capabilities-20261116",
+        "pr:63:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 145,
+      "merge_base": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "names": [
+        "branch:codex/zotero-optimization-20261116",
+        "pr:56:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 211,
+      "merge_base": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "sha": "c6b9856ccd5264602d709b747decbd9631263574",
+      "names": [
+        "branch:codex/zotero-recovery-20261116"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 7,
+      "behind_by": 3,
+      "merge_base": "be9eeec9ea3455018de26fff5874c558dbc66798"
+    },
+    {
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "names": [
+        "branch:codex/zotero-support-20261115",
+        "pr:47:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 263,
+      "merge_base": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "names": [
+        "branch:codex/zotero-support-20261116",
+        "pr:50:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 234,
+      "merge_base": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "names": [
+        "branch:docs/current-office-capabilities",
+        "pr:74:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 14,
+      "merge_base": "aee79048dc74d2fe413ae0e57cca9189c7202a0f"
+    },
+    {
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "names": [
+        "branch:docs/filter-operators",
+        "pr:66:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 166,
+      "merge_base": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "names": [
+        "branch:docs/filters-closed",
+        "pr:64:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 168,
+      "merge_base": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "names": [
+        "branch:docs/metadata-closed",
+        "pr:49:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 255,
+      "merge_base": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "names": [
+        "branch:docs/metadata-complete",
+        "pr:61:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 170,
+      "merge_base": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "names": [
+        "branch:docs/ods-filter-predicates",
+        "pr:77:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 6,
+      "merge_base": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1"
+    },
+    {
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "names": [
+        "branch:docs/ods-row-groups",
+        "pr:79:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 4,
+      "merge_base": "a3417522a54a1d46beef535e10f609c1295d8cfd"
+    },
+    {
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "names": [
+        "branch:docs/ods-writer-images",
+        "pr:71:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 147,
+      "merge_base": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "names": [
+        "branch:docs/odt-image-registry",
+        "pr:75:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 8,
+      "merge_base": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "names": [
+        "branch:docs/page-setup-fix",
+        "pr:82:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1,
+      "merge_base": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa"
+    },
+    {
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "names": [
+        "branch:docs/readme-remaining-gaps",
+        "pr:46:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 273,
+      "merge_base": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "names": [
+        "branch:docs/remaining-gaps",
+        "pr:45:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 273,
+      "merge_base": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "names": [
+        "branch:docs/sheet-page-setup",
+        "pr:81:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 2,
+      "merge_base": "36db2a6cbc0f028dd15b558914045f995aeae949"
+    },
+    {
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "names": [
+        "branch:docs/validation-complete",
+        "pr:55:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 240,
+      "merge_base": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "names": [
+        "branch:docs/validation-operators",
+        "pr:52:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 243,
+      "merge_base": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "names": [
+        "branch:feat/conditional-affix",
+        "pr:43:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 322,
+      "merge_base": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "names": [
+        "branch:feat/conditional-between",
+        "pr:41:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 325,
+      "merge_base": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "names": [
+        "branch:feat/conditional-dxf",
+        "pr:37:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 328,
+      "merge_base": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "names": [
+        "branch:feat/conditional-operators",
+        "pr:36:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 329,
+      "merge_base": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "names": [
+        "branch:feat/conditional-text",
+        "pr:38:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 327,
+      "merge_base": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "names": [
+        "branch:feat/ods-conditional",
+        "pr:35:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 332,
+      "merge_base": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "names": [
+        "branch:feat/ods-custom-validation",
+        "pr:53:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 242,
+      "merge_base": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "names": [
+        "branch:feat/ods-default-geometry",
+        "pr:31:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 341,
+      "merge_base": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "names": [
+        "branch:feat/ods-default-style",
+        "pr:30:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 342,
+      "merge_base": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "names": [
+        "branch:feat/ods-filter-conditions",
+        "pr:76:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 7,
+      "merge_base": "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+    },
+    {
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "names": [
+        "branch:feat/ods-filter-operators",
+        "pr:65:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 167,
+      "merge_base": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "names": [
+        "branch:feat/ods-filter-predicates",
+        "pr:62:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 169,
+      "merge_base": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "names": [
+        "branch:feat/ods-hyperlinks",
+        "pr:59:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 172,
+      "merge_base": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "names": [
+        "branch:feat/ods-images",
+        "pr:29:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 350,
+      "merge_base": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "names": [
+        "branch:feat/ods-metadata",
+        "pr:48:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 267,
+      "merge_base": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "names": [
+        "branch:feat/ods-named-expressions",
+        "pr:58:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 238,
+      "merge_base": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "names": [
+        "branch:feat/ods-outline",
+        "pr:60:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 171,
+      "merge_base": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "names": [
+        "branch:feat/ods-row-groups",
+        "pr:78:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 5,
+      "merge_base": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+    },
+    {
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "names": [
+        "branch:feat/ods-tab-color",
+        "pr:57:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 239,
+      "merge_base": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "names": [
+        "branch:feat/ods-validation-messages",
+        "pr:54:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 241,
+      "merge_base": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "names": [
+        "branch:feat/ods-validation-operators",
+        "pr:51:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 244,
+      "merge_base": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "names": [
+        "branch:feat/ods-validations",
+        "pr:39:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 326,
+      "merge_base": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "names": [
+        "branch:feat/ods-writer",
+        "pr:67:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 156,
+      "merge_base": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "names": [
+        "branch:feat/ods-writer-conditional",
+        "pr:69:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 155,
+      "merge_base": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "names": [
+        "branch:feat/ods-writer-images",
+        "pr:70:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 148,
+      "merge_base": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "names": [
+        "branch:feat/ods-writer-metadata",
+        "pr:68:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 156,
+      "merge_base": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "names": [
+        "branch:feat/sheet-hidden-sheets",
+        "pr:33:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 333,
+      "merge_base": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "names": [
+        "branch:feat/sheet-hidden-state",
+        "pr:32:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 340,
+      "merge_base": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "names": [
+        "branch:feat/sheet-page-setup",
+        "pr:80:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 3,
+      "merge_base": "be9eeec9ea3455018de26fff5874c558dbc66798"
+    },
+    {
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "names": [
+        "branch:fix/ods-global-validations-20261116"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 173,
+      "merge_base": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "names": [
+        "branch:fix/ods-writer-page-layout",
+        "pr:73:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 146,
+      "merge_base": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "names": [
+        "branch:fix/sdt-multi-section-control",
+        "pr:44:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 276,
+      "merge_base": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "names": [
+        "branch:fix/sdt-trailing-section-break",
+        "pr:42:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 328,
+      "merge_base": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "names": [
+        "branch:fix/utf16-custom-xml",
+        "pr:34:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 342,
+      "merge_base": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "names": [
+        "branch:fix/word-dialog-focus-rendering-20261116"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 8,
+      "merge_base": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "sha": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "names": [
+        "branch:main"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "identical",
+      "ahead_by": 0,
+      "behind_by": 0,
+      "merge_base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3"
+    },
+    {
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "names": [
+        "branch:vendor/ods-custom-validation"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 243,
+      "merge_base": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "names": [
+        "branch:vendor/ods-filter-conditions"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 146,
+      "merge_base": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "names": [
+        "branch:vendor/ods-filter-conditions-correct"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 15,
+      "merge_base": "9de9b4fb1287e935328dc6e653f7457eef7defa1"
+    },
+    {
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "names": [
+        "branch:vendor/ods-filter-operators"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 169,
+      "merge_base": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "names": [
+        "branch:vendor/ods-filter-predicates"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 170,
+      "merge_base": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "names": [
+        "branch:vendor/ods-hyperlinks"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 239,
+      "merge_base": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "names": [
+        "branch:vendor/ods-hyperlinks-current"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 172,
+      "merge_base": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "names": [
+        "branch:vendor/ods-metadata"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 321,
+      "merge_base": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "names": [
+        "branch:vendor/ods-metadata-zotero"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 274,
+      "merge_base": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "names": [
+        "branch:vendor/ods-named-expressions"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 240,
+      "merge_base": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "names": [
+        "branch:vendor/ods-outline"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 171,
+      "merge_base": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "names": [
+        "branch:vendor/ods-row-groups"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 2,
+      "behind_by": 15,
+      "merge_base": "9de9b4fb1287e935328dc6e653f7457eef7defa1"
+    },
+    {
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "names": [
+        "branch:vendor/ods-tab-color"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 241,
+      "merge_base": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "names": [
+        "branch:vendor/ods-validation"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 273,
+      "merge_base": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "names": [
+        "branch:vendor/ods-validation-current"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 244,
+      "merge_base": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "names": [
+        "branch:vendor/ods-validation-messages"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 242,
+      "merge_base": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "names": [
+        "branch:vendor/ods-writer"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 168,
+      "merge_base": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "names": [
+        "branch:vendor/ods-writer-conditional"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 150,
+      "merge_base": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "names": [
+        "branch:vendor/ods-writer-images"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 149,
+      "merge_base": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "names": [
+        "branch:vendor/ods-writer-metadata"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 167,
+      "merge_base": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "names": [
+        "branch:vendor/ods-writer-page-layout"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 146,
+      "merge_base": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "names": [
+        "branch:vendor/sheet-page-setup"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "diverged",
+      "ahead_by": 3,
+      "behind_by": 15,
+      "merge_base": "9de9b4fb1287e935328dc6e653f7457eef7defa1"
+    },
+    {
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "names": [
+        "pr:40:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 292,
+      "merge_base": "8855b88a96b5c94349e3b5278c339228a1688c3e"
+    },
+    {
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "names": [
+        "pr:28:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 381,
+      "merge_base": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4"
+    },
+    {
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "names": [
+        "pr:25:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 429,
+      "merge_base": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8"
+    },
+    {
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "names": [
+        "pr:22:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 446,
+      "merge_base": "4637ddce4154f4b50105c7322fedc1c75fd02193"
+    },
+    {
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "names": [
+        "pr:21:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 479,
+      "merge_base": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2"
+    },
+    {
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "names": [
+        "pr:20:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 479,
+      "merge_base": "5278aafd512640608fe06b8f7d357c4cffe8520a"
+    },
+    {
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "names": [
+        "pr:27:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 419,
+      "merge_base": "cde05b85bcd00c26d519d43283fcc6b55a1884e7"
+    },
+    {
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "names": [
+        "pr:26:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 421,
+      "merge_base": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae"
+    },
+    {
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "names": [
+        "pr:19:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 479,
+      "merge_base": "e8227569a3b90fb21db598483690bd13fe74ddef"
+    },
+    {
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "names": [
+        "pr:18:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 476,
+      "merge_base": "f31cf308013ceb4527e3f4de677785894bb1bfc0"
+    },
+    {
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "names": [
+        "pr:24:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 422,
+      "merge_base": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661"
+    },
+    {
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "names": [
+        "pr:23:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 437,
+      "merge_base": "e002b9584bead9761fac8c7cf818431966d1b1c3"
+    },
+    {
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "names": [
+        "pr:16:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 472,
+      "merge_base": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e"
+    },
+    {
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "names": [
+        "pr:15:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 479,
+      "merge_base": "448eff5aac55054a34eccd4f8a1e79e754909a05"
+    },
+    {
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "names": [
+        "pr:17:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 479,
+      "merge_base": "89c7f06c592edde0c67774e9c7e087d96f52184b"
+    },
+    {
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "names": [
+        "pr:14:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 479,
+      "merge_base": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da"
+    },
+    {
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "names": [
+        "pr:13:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 481,
+      "merge_base": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e"
+    },
+    {
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "names": [
+        "pr:12:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 498,
+      "merge_base": "579f2105cf7fca61536f7e3f9b59004929bdb6c5"
+    },
+    {
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "names": [
+        "pr:10:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 516,
+      "merge_base": "1b1bac125f426b05f868d482e9fbd657d4ffb73a"
+    },
+    {
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "names": [
+        "pr:9:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 516,
+      "merge_base": "58de54567d45e38c05dd77064b7607c577374b9d"
+    },
+    {
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "names": [
+        "pr:11:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 503,
+      "merge_base": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+    },
+    {
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "names": [
+        "pr:8:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 516,
+      "merge_base": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7"
+    },
+    {
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "names": [
+        "pr:7:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 570,
+      "merge_base": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80"
+    },
+    {
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "names": [
+        "pr:6:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 585,
+      "merge_base": "78ed85f5fd19d44f672dee11420fed261c974f4a"
+    },
+    {
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "names": [
+        "pr:4:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 612,
+      "merge_base": "09f5ec4b8eba290ff4d65678179854fb6ff6a468"
+    },
+    {
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "names": [
+        "pr:5:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 592,
+      "merge_base": "da0979a5c6c4273ea68f360ce9a079bfa747384f"
+    },
+    {
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "names": [
+        "pr:2:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 667,
+      "merge_base": "08b09485588d2b6270f594a07c983689c087587d"
+    },
+    {
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "names": [
+        "pr:3:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 646,
+      "merge_base": "e550723b0f2a7cd849970f58820d260c36857502"
+    },
+    {
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "names": [
+        "pr:1:closed"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 676,
+      "merge_base": "54f0f8de01416640560519aa9d732f668f603709"
+    },
+    {
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "names": [
+        "upstreamBranch:ci/flutter-workspace",
+        "upstreamPR:6"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 769,
+      "merge_base": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "names": [
+        "upstreamBranch:cursor/class-certificates-2db8",
+        "upstreamPR:7"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 762,
+      "merge_base": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "names": [
+        "upstreamBranch:cursor/cloud-agent-1790580069020-0rk1h",
+        "upstreamPR:5"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 772,
+      "merge_base": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "names": [
+        "upstreamBranch:main"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 756,
+      "merge_base": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "names": [
+        "upstreamPR:1"
+      ],
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "status": "behind",
+      "ahead_by": 0,
+      "behind_by": 774,
+      "merge_base": "48c5156f459597ce3f8ec486b3c9a20fc5543807"
+    }
+  ],
+  "refreshed_main": {
+    "previous": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+    "current": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+    "relation": "ahead",
+    "ahead_by": 1,
+    "changed_paths": [
+      "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+      "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+      "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+    ]
+  },
+  "refreshed_rendering": {
+    "previous": "3a8306e681f4eac80d918035ac812f8137ef9417",
+    "current": "6a07cb8f8f7db2007c694c167b861b05d1d58d00",
+    "relation": "ahead",
+    "ahead_by": 1
+  },
+  "equivalence_checks": [
+    {
+      "head": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "names": [
+        "branch:docs/current-office-capabilities",
+        "pr:74:closed"
+      ],
+      "canonical": "ba79d47028d70b4124ced59cb9d34583ff0a9514",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/README.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "names": [
+        "branch:docs/ods-filter-predicates",
+        "pr:77:closed"
+      ],
+      "canonical": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "names": [
+        "branch:docs/ods-row-groups",
+        "pr:79:closed"
+      ],
+      "canonical": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "names": [
+        "branch:docs/odt-image-registry",
+        "pr:75:closed"
+      ],
+      "canonical": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "4497c737623c1339d2422487d53941c20472bac9",
+      "names": [
+        "branch:docs/page-setup-fix",
+        "pr:82:closed"
+      ],
+      "canonical": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "names": [
+        "branch:docs/sheet-page-setup",
+        "pr:81:closed"
+      ],
+      "canonical": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/README.md",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "names": [
+        "branch:feat/ods-filter-conditions",
+        "pr:76:closed"
+      ],
+      "canonical": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "names": [
+        "branch:feat/ods-row-groups",
+        "pr:78:closed"
+      ],
+      "canonical": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "names": [
+        "branch:feat/sheet-page-setup",
+        "pr:80:closed"
+      ],
+      "canonical": "36db2a6cbc0f028dd15b558914045f995aeae949",
+      "treeEqual": true,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "names": [
+        "branch:vendor/ods-filter-conditions"
+      ],
+      "canonical": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "treeEqual": false,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": false
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "names": [
+        "branch:vendor/ods-filter-conditions-correct"
+      ],
+      "canonical": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "treeEqual": false,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "names": [
+        "branch:vendor/ods-row-groups"
+      ],
+      "canonical": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "treeEqual": false,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "names": [
+        "branch:vendor/sheet-page-setup"
+      ],
+      "canonical": "36db2a6cbc0f028dd15b558914045f995aeae949",
+      "treeEqual": false,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ],
+      "pathSetEqual": true
+    },
+    {
+      "head": "331be9688e2de1feb52635490b534042dea10c27",
+      "canonical": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "treeEqual": true,
+      "pathSetEqual": true,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ]
+    },
+    {
+      "head": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "canonical": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "treeEqual": false,
+      "pathSetEqual": true,
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "patchAvailable": true,
+          "patchEqual": true,
+          "blobEqual": true
+        }
+      ]
+    }
+  ],
+  "incoming_entries": [
+    {
+      "path": "docs/text-rendering-strategy.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bd9004fd1baac8846430983f4c42c4b0a25749e",
+      "previous_sha": "53f766e5dcb0ea906e40c09c4eff30dc3e24a156",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/CHECKPOINT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cf577f8a1dc83bcf36f9de5718ae8e33b43dc49",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/autohint/cmap_autohint_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb09438e9a5d03ea9d8ff49a8562849a19c65609",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/autohint/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0eefe82dbf86d0ce0f0e13bf825a2b99bbd2e9d9",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/baseline/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "226b4814c8453c5e7f5c65abb36f33052128022f",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/baseline/resolve.stderr.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/baseline/resolve.stdout.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab9976a689a904b3040b26f02fe534158fc56a95",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/baseline/tests.stderr.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/baseline/tests.stdout.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb5586d9072fcced107aff07b88a74a6d0760214",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/analyze.stderr.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/analyze.stdout.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7aeabcb4bd8f69183414a64d806393af551b8f34",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/format.stderr.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/format.stdout.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3e84d7830898d47d8f30da22add3e061622be76",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "644a2304be4b8406003f4cfae41c0b5e473b1a61",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/render/authored-text.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5289189c2999972f4a934ef7ae2a57755f7ea837",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/render/encoded-aliases.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62e4bacee1ccebe956f8310e9b2d3b7268561983",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/render/identity-glyph-reference.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b10472d659d8f279d20bab1c6464bf442eefd05d",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/render/word-unicode-aliases.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7d62735d765140bb4a69ff7d14c7e78d5098c9c",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/tests.stderr.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/tests.stdout.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5e36ed8d756bcf09572de7edbf785983a635533",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/engine-attempt1/validate-used.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c31ac0a06ee62bb24a3f16649501125c962c47f",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/license-audit.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6c326241c557f44f5c90fdcc8aee9039cccd68b",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/authored-text.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5289189c2999972f4a934ef7ae2a57755f7ea837",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/encoded-aliases.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62e4bacee1ccebe956f8310e9b2d3b7268561983",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/encoded-aliases.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dced97a66241e527d004b8e32b713b99b2ff75b",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/encoded-aliases.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94db4f0d85bf3078b566d15ef20266a02ca70042",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/identity-glyph-reference.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b10472d659d8f279d20bab1c6464bf442eefd05d",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/identity-glyph-reference.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dced97a66241e527d004b8e32b713b99b2ff75b",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/pdftoppm-version.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00348d966de2198f007295b59f15177a54dc194d",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/pdftoppm-version.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/pdftotext-version.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5aeb1ee4e2f206a5093f227bb42fbf71ce739b3d",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/pdftotext-version.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/producer-receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "644a2304be4b8406003f4cfae41c0b5e473b1a61",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/raster-difference.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b25578b0285fb53de37a5d808f64420ca2a7668",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/raster-encoded-aliases.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/raster-encoded-aliases.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/raster-identity-glyph-reference.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/raster-identity-glyph-reference.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd622436e12de1f20472c0eec1b05239d9622764",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/source-head.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/source-head.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef9e181db89d9bd844d93c30b787b9f6a0270418",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/text-encoded-aliases.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/text-encoded-aliases.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/text-word-unicode-aliases.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/text-word-unicode-aliases.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/verify-pdf-rendering-used.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9eba0289f1dde27015d07e9490528a95e5af3d49",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/word-unicode-aliases.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7d62735d765140bb4a69ff7d14c7e78d5098c9c",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/poppler/word-unicode-aliases.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94db4f0d85bf3078b566d15ef20266a02ca70042",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e47af02bd8a1a5256cf924ee078a764ff3a566f1",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/audit_recovered.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c984ece7dcc505ea3b12c447f7036cc197a1d123",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/engine-harness-difference.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65977c892c9d006bdd3b8978ee65a9d7586906d4",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/authored-text.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5289189c2999972f4a934ef7ae2a57755f7ea837",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/encoded-aliases.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62e4bacee1ccebe956f8310e9b2d3b7268561983",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/encoded-aliases.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dced97a66241e527d004b8e32b713b99b2ff75b",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/encoded-aliases.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94db4f0d85bf3078b566d15ef20266a02ca70042",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/identity-glyph-reference.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b10472d659d8f279d20bab1c6464bf442eefd05d",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/identity-glyph-reference.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dced97a66241e527d004b8e32b713b99b2ff75b",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/pdftoppm-version.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00348d966de2198f007295b59f15177a54dc194d",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/pdftoppm-version.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/pdftotext-version.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5aeb1ee4e2f206a5093f227bb42fbf71ce739b3d",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/pdftotext-version.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/producer-receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "644a2304be4b8406003f4cfae41c0b5e473b1a61",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/raster-difference.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b25578b0285fb53de37a5d808f64420ca2a7668",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/raster-encoded-aliases.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/raster-encoded-aliases.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/raster-identity-glyph-reference.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/raster-identity-glyph-reference.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60c4046b9ff64be6178b91d4af148b51fa5af438",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/source-head.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/source-head.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ff4414cf59e210700d4a56b297f0293e6db54a9",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/text-encoded-aliases.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/text-encoded-aliases.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/text-word-unicode-aliases.stderr.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/text-word-unicode-aliases.stdout.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/verify-pdf-rendering-used.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9eba0289f1dde27015d07e9490528a95e5af3d49",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/word-unicode-aliases.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7d62735d765140bb4a69ff7d14c7e78d5098c9c",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/poppler-recheck/word-unicode-aliases.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94db4f0d85bf3078b566d15ef20266a02ca70042",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume-audit/receipt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa9a61194a27f101953d12ee941175d472d00379",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/ancestry-before-equivalence.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7af422a9d92d753f7f67de5433b8f5ab1c239000",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/complete-patch-equivalence.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f25b83a1130034065b4ad2434a64800ba86082fa",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/integrated-ancestry.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c5988959e4ab98c4bf8b5584dd0732f1f3e8e70",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/merge-plan.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb46b69fbe93b48a6ba4e5c30478823ffa0fb845",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/ods-filter-vendor-difference.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e49df42d69f26e92ffcca840642e89378e5f43f3",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/remote-snapshot.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05545086438ad1d88dcb60b2fed187525f4438dc",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/vendor-equivalence.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f40de6b77642f35d773679d4d38dd41038fd7a39",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/verify_inventory.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6984b678c18e234ddacd6202c5b83f5837bcd88c",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/resume/verify_patch_equivalence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48db50352bcbc100419597fa1b82845a9426d6d8",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/validate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f623bfe124e53278265390510d20edbce9ed3c5a",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/validate_baseline.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d593de3dab8319d56a72ec1916e77d4aea478e96",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/verify_pdf_rendering.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9eba0289f1dde27015d07e9490528a95e5af3d49",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_editor/test/font_subset_render_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a28e2eb68ff052ab1e9532ca567b34de3c88f6e",
+      "previous_sha": "9b45c27ff0cb4d5ec23e9a59eee76d7d11194beb",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5774e4e4f2be58893b9d67da4b16745e1cc595b",
+      "previous_sha": "4136dda4d0f75b9c75d90142a25d95c817692c73",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/fonts/font_subsetter.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7332885a95f34ea6d0d26c7b3160ff002bdd3c6d",
+      "previous_sha": "85981ff378feea22e88ddff475956b75204cf0c3",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8125d1993ea95c6eec10a6146e07759d4696460e",
+      "previous_sha": "1206a2431d648838fe5cd8ffe5c43a8edc2330eb",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "117dc13b83f4c102e517ae3cd19d90760fe03176",
+      "previous_sha": "e3c1270563fd8c192c8c615b41584630816415c5",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2404c1894c485511a276ca1628bee2cec40e010",
+      "previous_sha": "586fecc33ee03f3fe154e98efc11565d910554e7",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_font.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d879fc69f81d1e331a1be9b93062fd227f96e5dc",
+      "previous_sha": "fee6cfc931e6351b273b1945e8b27fcf6e6ebb0d",
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/test/font_subset_structure_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87ec569055aca6d8ad77b61f86d949f4726f9c17",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/test/pdf_cid_encoding_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "708a0d726137dad5ffa43965fa3ceabb6f8fdb39",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/test/pdf_unicode_alias_export_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fec90d12f834114fccab4f19ff4ba6703bb71c1",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/test/support/pdf_alias_fixture.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c7c50eab1c421b0eb913f9f7806f06bb8ac18f1",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "packages/quds_office_engine/third_party/fonttools/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fe0941a282a17c8687a60885e78855ae5fa7f68",
+      "previous_sha": null,
+      "source_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00"
+    },
+    {
+      "path": "docs/validation/zotero-recovery-20261116/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f35c8346daf8cd5e382c9595f9a61b2ba5cdd7b6",
+      "previous_sha": null,
+      "source_ref": "c6b9856ccd5264602d709b747decbd9631263574"
+    },
+    {
+      "path": "docs/validation/zotero-recovery-20261116/incoming-refs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11ab4a7f26b3c916eec6a676e8d54f3e592ced1d",
+      "previous_sha": null,
+      "source_ref": "c6b9856ccd5264602d709b747decbd9631263574"
+    },
+    {
+      "path": "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6736ebd012134c0728d57d11dbda263e9af51008",
+      "previous_sha": null,
+      "source_ref": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "path": "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/checkpoint-integrity.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5da581234bb78d39010847d2a1e73092236949ac",
+      "previous_sha": null,
+      "source_ref": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "path": "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/evidence-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b79ab7d8581a8787ac1dcd355a83ae1e4d01e1b7",
+      "previous_sha": null,
+      "source_ref": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "path": "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/remote-proofing-recovery.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0ad729d9f6c5d3b27fff90e70ca7562250e7216",
+      "previous_sha": null,
+      "source_ref": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "path": "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/verify_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82ddf532a33559ad5e185f3503e1f50b93259c72",
+      "previous_sha": null,
+      "source_ref": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    }
+  ],
+  "resolutions": [
+    {
+      "path": "docs/validation/text-rendering-continuation-20261116/CHECKPOINT.md",
+      "selected_ref": "6a07cb8f8f7db2007c694c167b861b05d1d58d00",
+      "superseded_ref": "c6b9856ccd5264602d709b747decbd9631263574",
+      "reason": "Rendering branch has newer recovered qualification and reconciliation report. Zotero branch has older pending-validation checkpoint. All shared production/test changes are identical; unique Zotero recovery documents are retained."
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+      "selected_ref": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "superseded_ref": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "reason": "Vendor incoming patch exactly matches canonical main patch. Old vendor full file retains earlier unused `final a1 =` binding; retain current main including subsequent page-setup/header-footer support."
+    }
+  ],
+  "tree_merge_checks": {
+    "all_rendering_changed_main_blobs_equal_merge_base_or_incoming": true,
+    "rendering_merge_base": "be9eeec9ea3455018de26fff5874c558dbc66798",
+    "all_incoming_entries_unique": true
+  },
+  "validation": {
+    "execution_environment": "unavailable",
+    "dart_or_flutter_run": false,
+    "github_actions_queried": false,
+    "github_actions_waited": false,
+    "new_dependencies_added": false,
+    "method": "GitHub commit comparisons, exact Git blob and tree identities, exact per-file patch equality, and explicit three-way path conflict checks; source-bound original test evidence retained without reattributing it to this integration."
+  }
+}

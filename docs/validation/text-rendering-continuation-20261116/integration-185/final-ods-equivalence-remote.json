@@ -1,0 +1,211 @@
+{
+  "recorded_at_utc": "2026-11-16T20:13:23.955Z",
+  "snapshot_cutoff_utc": "2026-11-16T20:10:54.959Z",
+  "main": "63194d8e482892f284eaccb95ce48a8a8132376d",
+  "method": "Exact equality of GitHub REST per-commit filename/patch string arrays, plus exact resulting changed-file Git blob identities. All file patches present. Local full binary Git patch-ID proof follows after root fetches pinned objects.",
+  "candidates": [
+    {
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "subject": "feat(sheet): model and round-trip worksheet page setup",
+      "parents": [
+        "be9eeec9ea3455018de26fff5874c558dbc66798"
+      ],
+      "matching_main_commits": [
+        "36db2a6cbc0f028dd15b558914045f995aeae949"
+      ],
+      "resulting_file_blobs_match": true,
+      "complete_tree_matches": [
+        "36db2a6cbc0f028dd15b558914045f995aeae949"
+      ],
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "blob": "19c2e2cc69886f3794b763db61ec927902f5bdec"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "blob": "b42f35af5fd11bbde1c8b0ba72daba5fe3ff0b7f"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+          "blob": "3cf161f32d8d8b3abf63d70cb1ba13962c104cfb"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "blob": "d239a50412284f100ed05c7476bc90ade871cc58"
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "blob": "8429569ed887cf17e0627c340caa22870cf4115f"
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "blob": "90f8fce3d7f280957c1cf5c25edbb09ec87cb0f6"
+        }
+      ]
+    },
+    {
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "subject": "feat(sheet): model and round-trip worksheet page setup",
+      "parents": [
+        "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+      ],
+      "matching_main_commits": [
+        "36db2a6cbc0f028dd15b558914045f995aeae949"
+      ],
+      "resulting_file_blobs_match": true,
+      "complete_tree_matches": [],
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "blob": "19c2e2cc69886f3794b763db61ec927902f5bdec"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "blob": "b42f35af5fd11bbde1c8b0ba72daba5fe3ff0b7f"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+          "blob": "3cf161f32d8d8b3abf63d70cb1ba13962c104cfb"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "blob": "d239a50412284f100ed05c7476bc90ade871cc58"
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "blob": "8429569ed887cf17e0627c340caa22870cf4115f"
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "blob": "90f8fce3d7f280957c1cf5c25edbb09ec87cb0f6"
+        }
+      ]
+    },
+    {
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "subject": "docs: record worksheet page setup",
+      "parents": [
+        "36db2a6cbc0f028dd15b558914045f995aeae949"
+      ],
+      "matching_main_commits": [
+        "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa"
+      ],
+      "resulting_file_blobs_match": true,
+      "complete_tree_matches": [
+        "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa"
+      ],
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "blob": "7910a9d4fa2a96b170ae68959ebddf3f8f3d0366"
+        },
+        {
+          "path": "packages/quds_office_engine/README.md",
+          "blob": "73ed54ed7b49dd2c304b326da92f913622ef1004"
+        }
+      ]
+    },
+    {
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "subject": "docs: finish the ODS page-setup note",
+      "parents": [
+        "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa"
+      ],
+      "matching_main_commits": [
+        "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3"
+      ],
+      "resulting_file_blobs_match": true,
+      "complete_tree_matches": [
+        "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3"
+      ],
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "blob": "8249d23dd45644118a2b03c18f4f951296c9593b"
+        }
+      ]
+    },
+    {
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "subject": "feat(sheet): round-trip ODS header and footer sections",
+      "parents": [
+        "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3"
+      ],
+      "matching_main_commits": [
+        "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195"
+      ],
+      "resulting_file_blobs_match": true,
+      "complete_tree_matches": [
+        "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195"
+      ],
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "blob": "9a326cfc3a7e662dce5fddb3108ed741d48083d0"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "blob": "4a614fe0d7677f708de753ca4b0cf73f63b93dee"
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "blob": "a7d871e6a3902f217a57ded35ecc75db82befbe1"
+        }
+      ]
+    },
+    {
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "subject": "feat(sheet): round-trip ODS header and footer sections",
+      "parents": [
+        "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+      ],
+      "matching_main_commits": [
+        "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195"
+      ],
+      "resulting_file_blobs_match": true,
+      "complete_tree_matches": [],
+      "files": [
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "blob": "9a326cfc3a7e662dce5fddb3108ed741d48083d0"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "blob": "4a614fe0d7677f708de753ca4b0cf73f63b93dee"
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "blob": "a7d871e6a3902f217a57ded35ecc75db82befbe1"
+        }
+      ]
+    },
+    {
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "subject": "docs: record ODS header and footer round-trips",
+      "parents": [
+        "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195"
+      ],
+      "matching_main_commits": [
+        "63194d8e482892f284eaccb95ce48a8a8132376d"
+      ],
+      "resulting_file_blobs_match": true,
+      "complete_tree_matches": [
+        "63194d8e482892f284eaccb95ce48a8a8132376d"
+      ],
+      "files": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "blob": "3c5e2d5b06de7f634437e0f2eadcb244f181f867"
+        },
+        {
+          "path": "packages/quds_office_engine/README.md",
+          "blob": "01558c1606af62d6cdde3cdcccd8d4e1e80b314f"
+        }
+      ]
+    }
+  ],
+  "all_patches_equal": true,
+  "all_resulting_file_blobs_equal": true,
+  "github_actions_used": false
+}

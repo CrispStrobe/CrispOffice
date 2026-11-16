@@ -1,0 +1,62 @@
+{
+  "source_commit": "d90176bb142e1d26379d228cf924c1a8cae346f8",
+  "scope": "Fourteen new or changed English hyphenation data, implementation, test, provenance and verifier inputs. This is not a complete build dependency manifest.",
+  "inputs": {
+    "packages/quds_office_engine/third_party/hyphenation/hyph-en-us.tex": {
+      "sha256": "f4ffcd96c5cbc886bdad23f95dcae8edc3cd3620eae62f7946eceda97c4e68f8",
+      "git_blob": "bd9b757d89074e3e11b590311ce13ba6667544aa"
+    },
+    "packages/quds_office_engine/lib/src/bidi/english_us_hyphenation_data.dart": {
+      "sha256": "809673b992606bbe3a249f99126ae14419e1969905954311e04125c34e231fea",
+      "git_blob": "4398544149b0e7da21e36c3d9aaafd8696ce76ae"
+    },
+    "packages/quds_office_engine/third_party/hyphenation/hyph-en-gb.tex": {
+      "sha256": "e95bb4ab350f620c41c231c4785d7bdb4f91949d3e631b30e08b3ead3c340a52",
+      "git_blob": "a668f67d756532694a5d160740487cda435ee1f7"
+    },
+    "packages/quds_office_engine/lib/src/bidi/english_gb_hyphenation_data.dart": {
+      "sha256": "12ec89a0bec6172d782821f75dd9f78a6ac62ec980cc6cab6a4928fb69041d9d",
+      "git_blob": "44af454c915b8653b3701b4c038138ecbe8f1d62"
+    },
+    "packages/quds_office_engine/third_party/hyphenation/english-manifest.json": {
+      "sha256": "35b51baaf776248bd6c1be7f7758715cc352485853720f8f5687618ed2354df4",
+      "git_blob": "0b20ffb501908c7519ff111e89b706151a02294b"
+    },
+    "packages/quds_office_engine/tool/proofing/generate_english_hyphenation.py": {
+      "sha256": "6aca64a3d3d53e5d7723fd0a7e99dfef7db29fa8d0a269610f376a038c6ee504",
+      "git_blob": "27213ed1b15dac8020139e6e0bb4dbfa364ca7aa"
+    },
+    "packages/quds_office_engine/third_party/hyphenation/ENGLISH.md": {
+      "sha256": "88017c8d81ecb2c2821aef59a28d10c1ac945805edbb1a9ca4adafb3550a0c2e",
+      "git_blob": "e8c70e7b77387b221d0b75c190b5479050ac366e"
+    },
+    "packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart": {
+      "sha256": "2356de9f704bbab8b8e5080117f9d694ef585dd8bcf2492f7d7476bc6ecd35d8",
+      "git_blob": "539e09041fdb930ef6358e3d9252d73561d7b6dc"
+    },
+    "packages/quds_office_engine/lib/src/bidi/office_hyphenator.dart": {
+      "sha256": "ad99fe6b455423fe5a85fdc9b2dce518d04b1af4a8484dca1aef5fcc232cd4e7",
+      "git_blob": "fdec98fe6a409f71113debfa66307c94d0f01cfb"
+    },
+    "packages/quds_office_engine/test/english_hyphenation_test.dart": {
+      "sha256": "ae8bec4ea3db1fd39f99ede7d173d263532e8465851f8949898094ed653b3364",
+      "git_blob": "9b60ad3f4eed813663ea1d9995ee732d40e5615d"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+      "sha256": "2994b7326b8aad9d73f7eca07d0add5e7d6832f8ae46b3a61118a2c3db127ee6",
+      "git_blob": "9964637f6abb2614514ad31783caa3683ab61856"
+    },
+    "packages/quds_office_engine/lib/quds_office_engine.dart": {
+      "sha256": "3d1a5a4718639dcbe5dd0858a4ba417a8a485950c955eac1e313c0a9663bb400",
+      "git_blob": "abcf1b596dc389281632374acfa770344a353ae7"
+    },
+    "packages/quds_office_engine/third_party/hyphenation/README.md": {
+      "sha256": "cf14096887ae10387b72fa06c083320c9c5a97dc8d92ceb35bba676535d8732e",
+      "git_blob": "5d2be8fc0bd6c4d190fa322a88c59094a8a364d9"
+    },
+    "packages/quds_office_engine/tool/proofing/validate_hyphenation.py": {
+      "sha256": "dddc45541c967922eeafb4cc36b3d0c281287c8a33873518ab8689d3ff2418c2",
+      "git_blob": "6727ad7f1f62f65a555354334d71dec426980b63"
+    }
+  }
+}
