@@ -1198,6 +1198,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     );
     canvas.drawRRect(bubble, Paint()..color = const Color(0xE62B2B2B));
     painter.paint(canvas, Offset(tipX + 8, tipY + 5));
+    painter.dispose();
   }
 
   @override
@@ -3919,6 +3920,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         ..strokeWidth = 0.8,
     );
     painter.paint(canvas, Offset(x, y));
+    painter.dispose();
   }
 
   int? _tocTargetAt(LaidOutPage page, Offset local) {
@@ -4048,6 +4050,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     canvas.rotate(-0.6);
     painter.paint(canvas, Offset(-painter.width / 2, -painter.height / 2));
     canvas.restore();
+    painter.dispose();
   }
 
   void _paintFrames(
@@ -4087,6 +4090,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
           textDirection: TextDirection.ltr,
         )..layout();
         painter.paint(canvas, Offset(box.x, box.y));
+        painter.dispose();
         continue;
       }
       if (box.kind == LaidOutBoxKind.footnote) {
@@ -4272,6 +4276,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       textDirection: TextDirection.ltr,
     )..layout();
     label.paint(canvas, Offset(band.left + 8, band.top + 4));
+    label.dispose();
   }
 
   double _marginRightOf(LaidOutPage page) {
@@ -4380,8 +4385,13 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         ),
         textDirection: TextDirection.ltr,
         maxLines: 1,
-      )..layout();
-      marker.paint(canvas, Offset(line.x - marker.width - 4, line.y));
+      );
+      try {
+        marker.layout();
+        marker.paint(canvas, Offset(line.x - marker.width - 4, line.y));
+      } finally {
+        marker.dispose();
+      }
     }
     if (line.glyphs.isEmpty) {
       _drawOverlay(
@@ -4491,35 +4501,40 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
           : TextDecoration.underline,
       decorationStyle: underlineStyleFor(first.underline),
       decorationThickness: first.underline.isHeavy ? 2 : null,
-    )..layout();
-    final double paintX = PaintRunText.runPaintOrigin(
-      run,
-      painter,
-      text,
-      paragraph,
     );
-    var top = first.vertAlign.paintTop(
-      lineY: line.y,
-      lineHeight: line.height,
-      fontSize: first.fontSize,
-    );
-    if (first.vertAlign == WmlVertAlign.baseline && first.fontSize > 0) {
-      // Runs share the baseline of the line's largest run (the layout grows
-      // such a line); without this, small text hangs from the line top.
-      var largest = first.fontSize;
-      for (final LaidOutGlyph g in line.glyphs) {
-        if (g.vertAlign == WmlVertAlign.baseline && g.fontSize > largest) {
-          largest = g.fontSize;
+    try {
+      painter.layout();
+      final double paintX = PaintRunText.runPaintOrigin(
+        run,
+        painter,
+        text,
+        paragraph,
+      );
+      var top = first.vertAlign.paintTop(
+        lineY: line.y,
+        lineHeight: line.height,
+        fontSize: first.fontSize,
+      );
+      if (first.vertAlign == WmlVertAlign.baseline && first.fontSize > 0) {
+        // Runs share the baseline of the line's largest run (the layout grows
+        // such a line); without this, small text hangs from the line top.
+        var largest = first.fontSize;
+        for (final LaidOutGlyph g in line.glyphs) {
+          if (g.vertAlign == WmlVertAlign.baseline && g.fontSize > largest) {
+            largest = g.fontSize;
+          }
+        }
+        if (largest > first.fontSize + 0.01) {
+          final double ascent = painter.computeDistanceToActualBaseline(
+            TextBaseline.alphabetic,
+          );
+          top += ascent * (largest / first.fontSize - 1);
         }
       }
-      if (largest > first.fontSize + 0.01) {
-        final double ascent = painter.computeDistanceToActualBaseline(
-          TextBaseline.alphabetic,
-        );
-        top += ascent * (largest / first.fontSize - 1);
-      }
+      painter.paint(canvas, Offset(paintX, top));
+    } finally {
+      painter.dispose();
     }
-    painter.paint(canvas, Offset(paintX, top));
   }
 
   void _drawTocLeader(
