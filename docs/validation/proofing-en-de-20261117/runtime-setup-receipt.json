@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "flutter_official_release": {
+    "hash": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "channel": "stable",
+    "version": "3.47.8",
+    "dart_sdk_version": "3.13.7",
+    "dart_sdk_arch": "x64",
+    "release_date": "2026-10-23T19:02:25.384067Z",
+    "archive": "stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+  },
+  "flutter_archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+  "flutter_archive_bytes": 1581444364,
+  "flutter_archive_sha256_verified": true,
+  "flutter_actual_version": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/65e4ff9d3bff/toolchains/flutter"
+  },
+  "rustup_init_sha256": "b1c8cb14e30889e7e2999e6b69e62d9e9b9ffc0f4df8180564d306d9680e6c55",
+  "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)\nbinary: rustc\ncommit-hash: 0ef1bc386059596dada8fb65b50425aab2ea637a\ncommit-date: 2026-11-09\nhost: x86_64-unknown-linux-gnu\nrelease: 1.100.0\nLLVM version: 23.1.5",
+  "installed_rust_targets": [
+    "wasm32-unknown-unknown",
+    "x86_64-unknown-linux-gnu"
+  ],
+  "wasm_bindgen": "wasm-bindgen 0.2.130",
+  "wasm_bindgen_asset_url": "https://github.com/wasm-bindgen/wasm-bindgen/releases/download/0.2.130/wasm-bindgen-0.2.130-x86_64-unknown-linux-musl.tar.gz",
+  "wasm_bindgen_archive_sha256": "9687f3bb551b9f66f37ed32a40d7913a00f7962db653054e56857bc306c3227f",
+  "wasm_bindgen_official_digest": "sha256:9687f3bb551b9f66f37ed32a40d7913a00f7962db653054e56857bc306c3227f",
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "project_package_count": 108,
+  "project_package_config_sha256": "4d5172fa3a2dfc88bdefdeaf20d145dd2b9da1a2595a08b870ac49a89291d32c",
+  "pub_cache_receipt_sha256": "40f006f727802121a5a1713fd60f86df3d0c84bb12dbb846bcbe0f5c8f24c5cb",
+  "pub_archives_verified": 162,
+  "cargo_fetch_locked": "passed",
+  "commands": [
+    {
+      "command": "dart pub --directory <flutter>/packages/flutter_tools get --example --offline",
+      "exit_code": 0,
+      "log": "flutter-tools-pub-get.log",
+      "log_sha256": "08c63746e4d835d0ca1c7454abb322f432e8e87b4d73a0746b246622f80065e4"
+    },
+    {
+      "command": "flutter pub get --offline --enforce-lockfile",
+      "exit_code": 0,
+      "log": "workspace-pub-get.log",
+      "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ],
+  "environment": {
+    "PUB_CACHE": "/workspace/scratch/65e4ff9d3bff/cache/pub",
+    "CARGO_HOME": "/workspace/scratch/65e4ff9d3bff/cache/cargo",
+    "RUSTUP_HOME": "/workspace/scratch/65e4ff9d3bff/toolchains/rustup",
+    "XDG_CONFIG_HOME": "/workspace/scratch/65e4ff9d3bff/cache/config",
+    "XDG_CACHE_HOME": "/workspace/scratch/65e4ff9d3bff/cache/xdg",
+    "TMPDIR": "/workspace/scratch/65e4ff9d3bff/cache/tmp"
+  },
+  "activation_script": "/workspace/scratch/65e4ff9d3bff/toolchains/activate.sh",
+  "notes": [
+    "Initial online flutter pub get was interrupted while resolving package metadata, then exact SHA-verified package cache populated and offline resolution passed.",
+    "No GitHub Actions were used.",
+    "This receipt establishes toolchain and dependency setup; it is not application runtime acceptance."
+  ]
+}

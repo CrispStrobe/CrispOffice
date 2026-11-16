@@ -1,0 +1,62 @@
+00:00 +0: loading test/english_hyphenation_test.dart
+00:00 +0: test/english_hyphenation_test.dart: licensed English patterns American and British patterns preserve distinct break choices
+00:00 +1: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +2: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +3: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +4: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +5: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +6: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +7: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +8: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +9: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +10: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +11: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +12: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +13: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +14: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +15: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:00 +15 -1: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:00 +16 -1: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:00 +17 -1: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:00 +18 -1: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:00 +19 -1: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:00 +20 -1: test/english_hyphenation_test.dart: English and German shared layout dispatch mixed paragraphs return sorted UTF-16 candidates in each language
+00:00 +20 -1: test/german_hyphenation_context_test.dart: German technical tokens never gain automatic lexical breaks [E]
+  Expected: empty
+    Actual: [3, 6, 10, 13]
+  Silbentrennungʼs
+  
+  package:matcher                                 expect
+  test/german_hyphenation_context_test.dart 49:7  main.<fn>
+  
+00:00 +21 -1: test/german_hyphenation_context_test.dart: German join controls protect both adjoining word fragments
+00:00 +21 -2: test/english_hyphenation_test.dart: English and German shared layout dispatch English selected hyphens own no authored units
+00:00 +21 -2: test/german_hyphenation_context_test.dart: German join controls protect both adjoining word fragments [E]
+  Expected: [3, 6, 10, 20]
+    Actual: [3, 6, 10, 21]
+     Which: at location [3] is <21> instead of <20>
+  
+  package:matcher                                 expect
+  test/german_hyphenation_context_test.dart 72:5  main.<fn>
+  
+00:00 +21 -3: test/english_hyphenation_test.dart: English and German shared layout dispatch English selected hyphens own no authored units
+00:00 +21 -3: test/german_hyphenation_context_test.dart: surrounding prose, quotes and explicit compounds remain hyphenatable [E]
+  Expected: [3, 6, 10, 20]
+    Actual: [3, 6, 10, 21]
+     Which: at location [3] is <21> instead of <20>
+  
+  package:matcher                                 expect
+  test/german_hyphenation_context_test.dart 96:7  main.<fn>
+  
+00:00 +22 -3: test/english_hyphenation_test.dart: English and German shared layout dispatch English selected hyphens own no authored units
+00:00 +23 -3: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +24 -3: test/english_hyphenation_test.dart: English and German shared layout dispatch Word layout dispatches English defaults and paragraph suppression
+00:00 +25 -3: Some tests failed.
+
+Failing tests:
+  test/german_hyphenation_context_test.dart: German join controls protect both adjoining word fragments
+  test/german_hyphenation_context_test.dart: German technical tokens never gain automatic lexical breaks
+  test/german_hyphenation_context_test.dart: surrounding prose, quotes and explicit compounds remain hyphenatable
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.
