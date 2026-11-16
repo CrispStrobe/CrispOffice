@@ -79,8 +79,8 @@ not modeled. A bounded image registry would remove the Markdown cap.
 ODT and ODP are intentionally read-only in the host. ODS edits save a new XLSX
 copy. `OdsSheetWriter` now exports the modeled workbook subset (values, formulas,
 styles, number formats, merges, geometry, hidden state, comments, links, names,
-print areas/titles and autofilter ranges). Drawings, conditional formats,
-validations and page styles remain open; an ODT/ODP writer remains a separate
+print areas/titles and autofilter ranges, conditional formats and validations).
+Page-style serialization remains open; an ODT/ODP writer remains a separate
 project.
 
 ### 8. ODP slide fidelity
