@@ -1,0 +1,81 @@
+{
+  "git_head": "48123bf78dd0c23fe17e675306e047f1c993060b",
+  "baseline": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+  "dart_files": [
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+    "packages/quds_office_editor/lib/src/editor_word/word_run_metrics.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+    "packages/quds_office_editor/test/host_fonts_test.dart",
+    "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+    "packages/quds_office_editor/test/word_run_metrics_test.dart",
+    "packages/quds_office_editor/test/word_shaped_wrap_test.dart",
+    "packages/quds_office_editor/tool/render_text_comparison.dart",
+    "packages/quds_office_engine/lib/src/bidi/line_breaker.dart",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart",
+    "packages/quds_office_engine/lib/src/word/layout/word_run_measure.dart",
+    "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart",
+    "packages/quds_office_engine/test/line_breaker_measure_line_test.dart",
+    "packages/quds_office_engine/test/word_run_measure_boundaries_test.dart",
+    "packages/quds_office_engine/test/word_run_measure_test.dart"
+  ],
+  "checks": [
+    {
+      "name": "format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+        "packages/quds_office_editor/lib/src/editor_word/word_run_metrics.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+        "packages/quds_office_editor/test/host_fonts_test.dart",
+        "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+        "packages/quds_office_editor/test/word_run_metrics_test.dart",
+        "packages/quds_office_editor/test/word_shaped_wrap_test.dart",
+        "packages/quds_office_editor/tool/render_text_comparison.dart",
+        "packages/quds_office_engine/lib/src/bidi/line_breaker.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_run_measure.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart",
+        "packages/quds_office_engine/test/line_breaker_measure_line_test.dart",
+        "packages/quds_office_engine/test/word_run_measure_boundaries_test.dart",
+        "packages/quds_office_engine/test/word_run_measure_test.dart"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "analyze",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+        "packages/quds_office_editor/lib/src/editor_word/word_run_metrics.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+        "packages/quds_office_editor/test/host_fonts_test.dart",
+        "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+        "packages/quds_office_editor/test/word_run_metrics_test.dart",
+        "packages/quds_office_editor/test/word_shaped_wrap_test.dart",
+        "packages/quds_office_editor/tool/render_text_comparison.dart",
+        "packages/quds_office_engine/lib/src/bidi/line_breaker.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_run_measure.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart",
+        "packages/quds_office_engine/test/line_breaker_measure_line_test.dart",
+        "packages/quds_office_engine/test/word_run_measure_boundaries_test.dart",
+        "packages/quds_office_engine/test/word_run_measure_test.dart"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

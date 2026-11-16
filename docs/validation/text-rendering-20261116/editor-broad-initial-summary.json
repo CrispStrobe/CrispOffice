@@ -1,0 +1,141 @@
+{
+  "counts": {
+    "success": 432,
+    "error": 1
+  },
+  "files": {
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart": {
+      "success": 57
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart": {
+      "success": 5
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/paint_font_fallback_test.dart": {
+      "success": 2
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart": {
+      "success": 9
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart": {
+      "success": 6
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart": {
+      "success": 9
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart": {
+      "success": 7
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart": {
+      "success": 4,
+      "error": 1
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart": {
+      "success": 7
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart": {
+      "success": 33
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart": {
+      "success": 13
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart": {
+      "success": 10
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart": {
+      "success": 4
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart": {
+      "success": 30
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_run_metrics_test.dart": {
+      "success": 13
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_selection_paint_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_shaped_wrap_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart": {
+      "success": 5
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart": {
+      "success": 5
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": {
+      "success": 13
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart": {
+      "success": 11
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+      "success": 21
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+      "success": 16
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart": {
+      "success": 4
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart": {
+      "success": 17
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart": {
+      "success": 2
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart": {
+      "success": 48
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_format_test.dart": {
+      "success": 31
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart": {
+      "success": 8
+    },
+    "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart": {
+      "success": 2
+    }
+  },
+  "failures": [
+    {
+      "name": "focused viewing mode preserves navigation and rejects edits",
+      "file": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart",
+      "event": {
+        "testID": 198,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 34279
+      }
+    }
+  ],
+  "hidden_failures": [],
+  "errors": [
+    {
+      "test": "focused viewing mode preserves navigation and rejects edits",
+      "error": {
+        "testID": 198,
+        "error": "Test failed. See exception logs above.\nThe test description was: focused viewing mode preserves navigation and rejects edits",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 34278
+      }
+    }
+  ],
+  "final_event": {
+    "success": false,
+    "type": "done",
+    "time": 191169
+  }
+}

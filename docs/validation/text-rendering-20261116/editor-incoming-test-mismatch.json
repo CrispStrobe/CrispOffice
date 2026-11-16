@@ -1,0 +1,26 @@
+{
+  "incoming_baseline": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+  "frozen_test_head": "48123bf78dd0c23fe17e675306e047f1c993060b",
+  "failed_test": "focused viewing mode preserves navigation and rejects edits",
+  "assertion_file": "packages/quds_office_editor/test/word_input_focus_test.dart",
+  "assertion_line": 266,
+  "expected": "controller.config.allowsSelection == true",
+  "actual": false,
+  "policy": "OfficeInteractionMode.viewing is scroll/zoom only; OfficeInteractionMode.selecting permits selection/copy without mutation. OfficeSurfaceConfig.allowsSelection is true only for editing or selecting.",
+  "conclusion": "The unchanged incoming test selected viewing while expecting selecting semantics. Correct the test mode/name to selecting without changing production interaction policy.",
+  "byte_identity_evidence": [
+    {
+      "file": "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+      "baseline_sha256": "002e16086098c36a2040b5fdf388d0e4f3f7c0a17d2ea33c6002a75e8f10dde0",
+      "frozen_sha256": "002e16086098c36a2040b5fdf388d0e4f3f7c0a17d2ea33c6002a75e8f10dde0",
+      "byte_identical": true
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_input_focus_test.dart",
+      "baseline_sha256": "215350c27bcb21213a503cffeafc6c9bf53f63a2b2ef8869bdf8c924526f3d1e",
+      "frozen_sha256": "215350c27bcb21213a503cffeafc6c9bf53f63a2b2ef8869bdf8c924526f3d1e",
+      "byte_identical": true
+    }
+  ],
+  "runtime_reproduction": "The initial 33-file editor cohort on the frozen source recorded this failure; its original failure receipt is retained separately."
+}

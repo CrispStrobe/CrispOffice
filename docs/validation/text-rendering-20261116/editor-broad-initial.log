@@ -1,0 +1,472 @@
+00:00 +0: loading /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart
+00:00 +0: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: command pipeline undo/redo insert and delete
+00:00 +1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: paint run rebuilds logical Arabic for HarfBuzz
+00:00 +2: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: script runs stay in their own paint group and sit off the baseline
+00:00 +3: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret selects a word and a paragraph
+00:00 +4: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: flagged caret points with the writing direction
+00:00 +5: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: justified caret and selection share the same word X
+00:00 +6: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart: bundled names resolve only verified metric-compatible aliases
+00:00 +7: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart: bundled names resolve only verified metric-compatible aliases
+00:00 +8: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart: bundled names resolve only verified metric-compatible aliases
+00:01 +9: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart: bundled names resolve only verified metric-compatible aliases
+00:01 +10: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart: bundled names resolve only verified metric-compatible aliases
+00:01 +11: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: selection matrix and table resizer
+00:01 +12: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart: host bytes and aliases register once and remain available after ensure
+00:01 +13: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:01 +14: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:01 +15: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:01 +16: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:01 +17: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:01 +18: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas and sheet grid mount as RenderBoxes
+00:02 +19: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (setUpAll)
+00:03 +19: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header edit paints a usable header band
+00:03 +20: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header edit paints a usable header band
+00:03 +21: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header edit paints a usable header band
+00:03 +22: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: paint runs preserve supplementary scalars in logical and visual order
+00:03 +23: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:03 +24: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:03 +25: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:03 +26: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:03 +27: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:03 +28: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas pans from a trackpad swipe
+00:03 +29: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word canvas cursor follows handles, objects, and text
+00:03 +30: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: word canvas click hits the second table cell
+00:04 +31: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: caret coversIndex includes the selected range
+00:04 +32: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: right click inside a text selection keeps the range
+00:04 +33: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: right click outside a text selection keeps the range
+00:04 +34: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: right click keeps a multi-cell table selection
+00:04 +35: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: sheet drag extends a contiguous cell range
+00:05 +36: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:05 +37: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:05 +38: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:05 +39: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:05 +40: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:05 +41: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:05 +42: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: header drag keeps whole columns and whole rows
+00:05 +43: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/platform_spelling_provider_test.dart: a result completing after disposal is unavailable
+00:05 +44: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rtl sheet places column A on the right
+00:05 +45: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rtl sheet places column A on the right
+00:05 +46: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rtl sheet places column A on the right
+00:06 +47: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: sheet scroll and hit-test reach past the used-range window
+00:06 +48: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: frozen row stays put after vertical scroll
+00:06 +49: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: frozen column stays put and hides scrolled columns under it
+00:06 +50: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: dragging a column header edge resizes the column
+00:06 +51: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: dragging a row header edge resizes the row
+00:07 +52: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: viewport clamp stops endless scrolling
+00:07 +53: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: slide snap guidelines and transform handles
+00:07 +54: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: (setUpAll)
+00:07 +55: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: (setUpAll)
+00:07 +55: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:07 +56: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:07 +57: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:07 +58: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:07 +59: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:07 +59: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: manual hyphen respects LTR source boundaries
+00:07 +60: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: manual hyphen respects LTR source boundaries
+00:08 +61: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: automatic break paints a hyphen and owns only its source boundary
+00:08 +62: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word controller inserts and edits an equation
+00:08 +63: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word controller inserts and edits an equation
+00:08 +64: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word controller inserts and edits an equation
+00:08 +65: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: selecting the next source span does not select an automatic hyphen
+00:08 +66: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an LTR paragraph
+00:08 +67: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an LTR paragraph
+00:08 +68: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an LTR paragraph
+00:08 +69: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an LTR paragraph
+00:08 +70: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an LTR paragraph
+00:08 +71: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart: automatic hyphen owns its ending caret in an LTR paragraph
+00:08 +72: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word equation cells navigate and stay editable after reopen
+00:08 +73: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word equation cells navigate and stay editable after reopen
+00:08 +74: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word equation cells navigate and stay editable after reopen
+00:08 +75: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: Word equation cells navigate and stay editable after reopen
+00:09 +76: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:09 +77: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:09 +78: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:09 +79: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:09 +80: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:09 +81: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:09 +82: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:10 +83: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:10 +84: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ribbon formatting bolds only the selected comment range
+00:10 +85: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ribbon formatting bolds only the selected comment range
+00:10 +86: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: ribbon formatting bolds only the selected comment range
+00:10 +87: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: unselected soft hyphen remains invisible without shifting caret
+00:10 +88: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rejected native TOC refresh preserves heading aliases, selection and history
+00:10 +89: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rejected native TOC refresh preserves heading aliases, selection and history
+00:11 +90: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rejected native TOC refresh preserves heading aliases, selection and history
+00:11 +91: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rejected native TOC refresh preserves heading aliases, selection and history
+00:11 +92: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/editor_test.dart: rejected native TOC refresh preserves heading aliases, selection and history
+00:11 +93: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +94: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +95: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +96: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +97: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +98: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +99: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +100: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:11 +101: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:12 +102: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:12 +103: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart: Word layout renders German automatic breaks from unchanged text
+00:13 +104: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: (setUpAll)
+00:13 +104: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: paints manual break with source-aware hit testing
+00:13 +105: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: (setUpAll)
+00:13 +105: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart: paints automatic break with source-aware hit testing
+00:14 +106: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +107: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +108: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +109: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +110: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +111: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +112: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +113: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:14 +114: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:15 +115: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:15 +116: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:17 +117: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:17 +118: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:17 +119: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:17 +120: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:17 +121: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:17 +122: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: modal text input retains ownership over stale Word IME traffic
+00:18 +123: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +124: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +125: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +126: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +127: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +128: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +129: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +130: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +131: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +132: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +133: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:18 +134: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:19 +135: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:19 +136: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:19 +137: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:19 +138: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart: notes pane shows body order and keeps edit identity after insertion
+00:19 +139: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:19 +140: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:19 +141: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:19 +142: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:19 +143: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:19 +144: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:19 +145: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:19 +146: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +147: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +148: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +149: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +150: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +150: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: focused viewing mode preserves navigation and rejects edits
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart:266:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart line 266
+The test description was:
+  focused viewing mode preserves navigation and rejects edits
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:20 +150 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +150 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: focused viewing mode preserves navigation and rejects edits [E]
+  Test failed. See exception logs above.
+  The test description was: focused viewing mode preserves navigation and rejects edits
+  
+00:20 +150 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +151 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +152 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:20 +153 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:21 +154 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:21 +155 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:27 +156 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart: caret lookup leaves an empty read-only document unchanged
+00:27 +157 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: (setUpAll)
+00:27 +157 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: a previous controller completing its check cannot replace the new results
+00:28 +158 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: a previous controller completing its check cannot replace the new results
+00:28 +159 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: mixed bidi source ranges have disjoint boxes and span wrapped lines
+00:28 +160 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart: header and footer navigation synchronizes the exact IME paragraph
+00:28 +161 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:28 +162 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:28 +163 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:28 +164 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:30 +165 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:30 +166 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:30 +167 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:30 +168 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:30 +169 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:31 +170 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:31 +171 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore once dismisses a finding without adding or ignoring its word
+00:31 +172 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: generated field text receives no findings or squiggles
+00:31 +173 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: generated field text receives no findings or squiggles
+00:31 +174 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:31 +175 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:31 +176 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:31 +177 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:31 +178 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:33 +179 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:33 +180 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:33 +181 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:33 +182 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:33 +183 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:33 +184 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +185 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +186 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +187 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +188 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +189 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +190 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +191 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:34 +192 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +193 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +194 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +195 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +196 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +197 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +198 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +199 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +200 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: opening proofing checks the document and offers undoable corrections
+00:35 +201 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignore once suppresses one occurrence and resets when its paragraph text changes
+00:35 +202 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unavailable provider never produces a clean-document message
+00:35 +203 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unavailable provider never produces a clean-document message
+00:36 +204 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unsupported provider never produces a clean-document message
+00:37 +205 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:38 +205 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: failed provider never produces a clean-document message
+00:38 +206 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: failed provider never produces a clean-document message
+00:38 +207 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: failed provider never produces a clean-document message
+00:39 +208 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: failed provider never produces a clean-document message
+00:39 +209 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_run_metrics_test.dart: combining marks preserve source and match complete paint width
+00:39 +210 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:39 +211 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:39 +212 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:39 +213 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:39 +214 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:39 +215 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:39 +216 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: read-only documents retain review but disable correction and formatting
+00:40 +217 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_run_metrics_test.dart: cache retains immutable values and evicts old runs
+00:40 +218 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: adding a personal word dismisses its finding without changing document text
+00:40 +219 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: adding a personal word dismisses its finding without changing document text
+00:40 +220 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: adding a personal word dismisses its finding without changing document text
+00:43 +221 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_shaped_wrap_test.dart: (setUpAll)
+00:44 +221 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +222 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +223 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +224 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +225 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +226 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +227 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +228 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +229 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +230 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:44 +231 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:45 +232 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:45 +233 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:45 +234 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:45 +235 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignore word applies to the session and leaves personal words unchanged
+00:45 +236 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:46 +237 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:48 +238 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:48 +239 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: language and hyphenation controls save source settings with undo
+00:48 +240 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: language and hyphenation controls save source settings with undo
+00:48 +241 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: language and hyphenation controls save source settings with undo
+00:48 +242 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: language and hyphenation controls save source settings with undo
+00:49 +243 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart: native small-capital refresh supports one undo step and DOCX reopen
+00:50 +244 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: unsupported existing language and a narrow viewport remain reviewable
+00:50 +245 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: show in document selects the current finding and closes review
+00:51 +246 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:53 +247 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:53 +248 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:53 +249 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:54 +250 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:54 +251 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:54 +252 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:54 +253 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:55 +254 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +255 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +256 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +257 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +258 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +259 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +260 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +261 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:56 +262 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:58 +263 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:58 +264 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:58 +265 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:58 +266 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:58 +267 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +268 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +269 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +270 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +271 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +272 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +273 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +274 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +275 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +276 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +277 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +278 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+00:59 +279 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+01:00 +280 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: reconnecting and reopening keep an online session pause
+01:00 +281 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+01:04 +282 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+01:06 +283 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: a saved-search source seeds native first insertion and survives DOCX and undo
+01:07 +284 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+01:09 +285 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+01:13 +286 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+01:14 +287 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+01:15 +288 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+01:16 +289 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: initial collection duplicates keep one selectable latest entry
+01:17 +290 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart: successful Backoff survives public library recreation
+01:17 +291 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 1 in one undo
+01:19 +292 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 1 in one undo
+01:19 +293 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: later collection pages replace duplicate metadata and retain selected keys
+01:21 +294 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: unsupported capital variants are reviewed before mutation and can be discarded
+01:22 +295 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: first catalog insertion chooses placement 2 in one undo
+01:22 +296 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart: citation insertion, undo and redo preserve source and advance save revisions
+01:22 +297 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart: citation insertion, undo and redo preserve source and advance save revisions
+01:22 +298 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+01:23 +299 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+01:23 +300 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+01:23 +301 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+01:23 +302 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+01:23 +303 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+01:23 +304 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: native small caps apply without a simplification review
+01:23 +305 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: closing during collection pagination discards the response
+01:24 +306 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: closing during collection pagination discards the response
+01:24 +307 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: closing during collection pagination discards the response
+01:24 +308 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart: closing during collection pagination discards the response
+01:24 +309 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the first style chooser retains catalog selection
+01:24 +310 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the first style chooser retains catalog selection
+01:24 +311 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:24 +312 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:25 +313 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:25 +314 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:25 +315 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:25 +316 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:25 +317 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:25 +318 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: mixed formatting applies styled runs while retaining one protected field
+01:26 +319 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart: cancelling the following picker also discards staged style
+01:26 +320 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: moving the caret during review prevents a stale insertion
+01:28 +321 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: moving the caret during review prevents a stale insertion
+01:28 +322 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:31 +323 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:32 +324 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:34 +325 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:35 +326 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:36 +327 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:37 +328 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:38 +329 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:39 +330 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:39 +331 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:39 +332 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart: opening references scans a 1000-citation document once
+01:39 +333 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +334 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +335 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +336 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +337 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +338 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +339 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +340 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +341 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +342 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +343 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +344 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +345 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +346 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +347 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +348 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +349 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +350 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:39 +351 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +352 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +353 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +354 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +355 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +356 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +357 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +358 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +359 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +360 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +361 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +362 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:40 +363 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:43 +364 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 50 sources and duplicate citations into one undo
+01:43 +365 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart: cancel waits for a native response then drains without live mutation
+01:44 +366 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:45 +367 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:45 +368 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:45 +369 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:45 +370 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:45 +371 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:45 +372 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:45 +373 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:46 +374 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:46 +375 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:47 +376 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:47 +377 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 51 sources and duplicate citations into one undo
+01:48 +378 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+01:54 +379 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: saved-search browsing keeps selected identities through filters and pages
+01:56 +380 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+02:02 +381 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+02:06 +382 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+02:07 +383 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh batches 1000 sources and duplicate citations into one undo
+02:08 +384 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: closing during saved-search execution discards the response
+02:08 +385 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh isolates identical keys across libraries; incomplete=false
+02:09 +386 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: an externally changed library cannot display a pending saved-search result
+02:10 +387 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart: an externally changed library cannot display a pending saved-search result
+02:10 +388 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+02:10 +389 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+02:11 +390 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh chunks each library without combining matching keys
+02:13 +391 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch missing CSL keeps all citations
+02:15 +392 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: later same-library batch server error keeps all citations
+02:18 +393 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: successful batch backoff stops refresh without partial changes
+02:20 +394 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: closing during the second batch stops further refresh requests
+02:22 +395 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: stale target after the second batch stops the third request
+02:24 +396 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: refresh refuses 1001 distinct sources before any request
+02:26 +397 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: missing CSL in a later library refuses all staged updates
+02:27 +398 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: changed edit target stops refresh before the next library
+02:27 +399 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced refresh keeps URI aliases and unknown citation data
+02:28 +400 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: wrong desktop profile with the same item key cannot refresh
+02:29 +401 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: online operations reject local-only references before a request
+02:30 +402 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: online refresh can use a numeric alias while retaining old local URI
+02:30 +403 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: different local profiles are not combined through the same route
+02:32 +404 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch false
+02:32 +405 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced single-source preview verifies identity: mismatch true
+02:33 +406 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced selected export verifies sources before copying reference data
+02:34 +407 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: changed profile cannot copy another source under a selected item key
+02:35 +408 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unsynced bibliography verifies selection and requires review before insertion
+02:36 +409 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: reviewed bibliography keeps rich runs through save and undo
+02:38 +410 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: bibliography review offers an explicit editable plain result
+02:39 +411 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling rich bibliography review keeps history unchanged
+02:40 +412 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret rejects a reviewed rich bibliography
+02:40 +413 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision rejects a reviewed rich bibliography
+02:41 +414 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: rich review and format limitation fit a narrow viewport
+02:43 +415 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unchanged imported citation keeps its rich cache and native formatting metadata
+02:43 +416 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: older desktop cannot render an unverified aggregate bibliography
+02:44 +417 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: local source without CSL or identity is not refetched by a bare key
+02:44 +418 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: desktop account source inserts without using the saved cloud key
+02:46 +419 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: desktop unsynced source inserts without using the saved cloud key
+02:47 +420 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: desktop citation-key source inserts without using the saved cloud key
+02:48 +421 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: switching sources makes no requests and preserves the cloud credential
+02:49 +422 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a host without desktop transport offers only the supported source
+02:49 +423 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: desktop connection and errors fit a 320 by 640 viewport
+02:49 +424 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: offline CSL import inserts source metadata and can be undone
+02:50 +425 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: cancelling the citation composer leaves document and history unchanged
+02:51 +426 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed caret while the composer is open blocks stale insertion
+02:51 +427 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: a changed revision while the composer is open blocks stale insertion
+02:52 +428 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: mock Web API connection, pagination and search keep the key outside the document
+02:53 +429 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: unchecking Remember removes the saved key immediately without connecting
+02:53 +430 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: imported bibliography customizations cannot be overwritten by basic update
+02:55 +431 -1: /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart: dialog, offline import and composer fit a 320 by 640 viewport
+02:57 +432 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart: focused viewing mode preserves navigation and rejects edits
