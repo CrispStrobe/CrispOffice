@@ -960,6 +960,12 @@ class QudsSheetEditor extends StatefulWidget {
 class _QudsSheetEditorState extends State<QudsSheetEditor> {
   late final FocusNode _focus;
   late final bool _ownsFocus;
+  ModalRoute<dynamic>? _inputRoute;
+  late final bool Function() _inputGuard = () =>
+      mounted &&
+      _focus.hasPrimaryFocus &&
+      (_inputRoute?.isCurrent ?? true) &&
+      _c.config.allowsMutation;
   Timer? _navRepeat;
   OverlayEntry? _contextMenu;
 
@@ -972,6 +978,8 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
     super.initState();
     _ownsFocus = widget.focusNode == null;
     _focus = widget.focusNode ?? FocusNode(debugLabel: 'QudsSheetEditor');
+    _c.cellEditor.bridge.inputAllowed = _inputGuard;
+    _c.cellEditor.bridge.detach();
     _c.addListener(_rebuild);
     _focus.addListener(_onSheetFocus);
     if (widget.config != null) {
@@ -982,6 +990,12 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
         (_) => _focus.requestFocus(),
       );
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _inputRoute = ModalRoute.of(context);
   }
 
   @override
@@ -1006,8 +1020,11 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
   }
 
   void _onSheetFocus() {
-    if (!_focus.hasFocus) {
+    if (!_inputGuard()) {
       _stopNavRepeat();
+      _c.cellEditor.bridge.detach();
+    } else if (_c.cellEditor.editing) {
+      _c.cellEditor.bridge.attach();
     }
   }
 
@@ -1015,6 +1032,10 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
   /// dispose API.
   void dispose() {
     _dismissContextMenu();
+    if (identical(_c.cellEditor.bridge.inputAllowed, _inputGuard)) {
+      _c.cellEditor.bridge.detach();
+      _c.cellEditor.bridge.inputAllowed = () => false;
+    }
     _stopNavRepeat();
     _focus.removeListener(_onSheetFocus);
     _c.removeListener(_rebuild);
@@ -1666,6 +1687,12 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
     with SingleTickerProviderStateMixin {
   late final FocusNode _focus;
   late final bool _ownsFocus;
+  ModalRoute<dynamic>? _inputRoute;
+  late final bool Function() _inputGuard = () =>
+      mounted &&
+      _focus.hasPrimaryFocus &&
+      (_inputRoute?.isCurrent ?? true) &&
+      _c.config.allowsMutation;
   Ticker? _showTicker;
 
   /// zero API.
@@ -1683,7 +1710,10 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
     super.initState();
     _ownsFocus = widget.focusNode == null;
     _focus = widget.focusNode ?? FocusNode(debugLabel: 'QudsSlideEditor');
+    _c.textEditor.bridge.inputAllowed = _inputGuard;
+    _c.textEditor.bridge.detach();
     _c.addListener(_rebuild);
+    _focus.addListener(_onSlideFocus);
     _c.motionFrame.addListener(_onMotionFrame);
     if (widget.config != null) {
       _c.syncConfig(widget.config!);
@@ -1697,6 +1727,12 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _inputRoute = ModalRoute.of(context);
+  }
+
+  @override
   /// didUpdateWidget API.
   void didUpdateWidget(QudsSlideEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -1705,12 +1741,22 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
     }
   }
 
+  void _onSlideFocus() {
+    if (!_inputGuard()) {
+      _c.textEditor.bridge.detach();
+    } else if (_c.textEditor.editing) {
+      _c.textEditor.bridge.attach(multiline: true);
+    }
+  }
+
   void _rebuild() {
     if (mounted) {
       setState(() {});
       _syncShowTicker();
       _syncShowOverlay();
-      if (_c.isPlayingMotion && !_focus.hasFocus) {
+      if (_c.isPlayingMotion &&
+          !_focus.hasFocus &&
+          (_inputRoute?.isCurrent ?? true)) {
         _focus.requestFocus();
       }
     }
@@ -1890,9 +1936,14 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
   /// dispose API.
   void dispose() {
     _dismissContextMenu();
+    if (identical(_c.textEditor.bridge.inputAllowed, _inputGuard)) {
+      _c.textEditor.bridge.detach();
+      _c.textEditor.bridge.inputAllowed = () => false;
+    }
     _showOverlay?.remove();
     _showOverlay = null;
     _showTicker?.dispose();
+    _focus.removeListener(_onSlideFocus);
     _c.motionFrame.removeListener(_onMotionFrame);
     _c.removeListener(_rebuild);
     if (_ownsFocus) {
