@@ -213,6 +213,67 @@ void main() {
       }
     });
 
+    test('URL, email and closed backtick spans do not gain dictionary breaks', () {
+      for (final text in [
+        'HTTPS://internationalization.example/dictionary',
+        'www.internationalization.example',
+        'internationalization@dictionary.example',
+        '`dictionary`',
+        '``dictionary``',
+        '```dictionary\nhyphenation```',
+        '``dictionary `hyphenation` organization``',
+      ]) {
+        expect(
+          EnglishHyphenator.breakOffsets(text, language: 'en-US'),
+          isEmpty,
+          reason: text,
+        );
+      }
+      const prose = 'dictionary (HTTPS://example.invalid). hyphenation';
+      final start = prose.indexOf('hyphenation');
+      expect(
+        EnglishHyphenator.breakOffsets(prose, language: 'en-US'),
+        [3, 6, start + 2, start + 6],
+      );
+      expect(
+        EnglishHyphenator.breakOffsets('`dictionary', language: 'en-US'),
+        [4, 7],
+      );
+      expect(
+        EnglishHyphenator.breakOffsets('``dictionary`', language: 'en-US'),
+        [5, 8],
+      );
+    });
+
+    test('join controls suppress adjoining lexical fragments', () {
+      for (final joiner in ['\u200c', '\u200d', '\u2060', '\ufeff']) {
+        expect(
+          EnglishHyphenator.breakOffsets(
+            'dictionary${joiner}hyphenation',
+            language: 'en-US',
+          ),
+          isEmpty,
+        );
+      }
+      expect(
+        EnglishHyphenator.breakOffsets(
+          'dictionary\u200bhyphenation',
+          language: 'en-US',
+        ),
+        [3, 6, 13, 17],
+      );
+    });
+
+    test('unqualified English and US aliases share the same dialect', () {
+      expect(
+        EnglishHyphenator.breakOffsets(
+          'dictionary',
+          languageAt: (offset) => offset < 4 ? 'en' : 'en-US',
+        ),
+        [3, 6],
+      );
+    });
+
     test('words crossing run language boundaries receive no candidates', () {
       expect(
         EnglishHyphenator.breakOffsets(

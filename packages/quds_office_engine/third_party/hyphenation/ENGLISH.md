@@ -34,7 +34,13 @@ including US entries with **no** allowed break, such as `project` and `present`.
   Explicit hyphen-separated components remain eligible independently.
 - Every English break leaves at least two letters before and three after.
   Candidate positions are original UTF-16 offsets; source text is unchanged.
-- A word crossing a run language boundary is skipped. Mixed paragraphs can
+- HTTP(S)/WWW URLs, email addresses and closed backtick code spans receive no
+  automatic dictionary breaks. Matching code delimiters may contain one or
+  multiple backticks; unmatched delimiters do not hide the rest of a paragraph.
+- Fragments adjoining U+200C, U+200D, U+2060 or U+FEFF are skipped; explicit
+  U+200B opportunities remain the line breaker's responsibility.
+- A word crossing a run dialect boundary is skipped; `en` and `en-US` are
+  equivalent American aliases. Mixed paragraphs can
   combine English and German candidates through `OfficeHyphenator`.
 - The existing line breaker determines whether a candidate fits, measures the
   visible discretionary hyphen, and preserves selection/copy/PDF source

@@ -7,11 +7,13 @@ import 'english_us_hyphenation_data.dart';
 /// third_party/hyphenation/ENGLISH.md. Only the explicitly supported dialects
 /// receive automatic breaks. Authored soft hyphens always take precedence.
 abstract final class EnglishHyphenator {
-  static String? _language(String? language) =>
-      language?.trim().replaceAll('_', '-').toLowerCase();
+  static String? _language(String? language) {
+    final normalized = language?.trim().replaceAll('_', '-').toLowerCase();
+    return normalized == 'en' ? 'en-us' : normalized;
+  }
 
   static bool supports(String? language) =>
-      const {'en', 'en-us', 'en-gb'}.contains(_language(language));
+      const {'en-us', 'en-gb'}.contains(_language(language));
 
   static final _EnglishPatternSet _american = _EnglishPatternSet(
     englishUsHyphenationPatterns,
@@ -27,6 +29,14 @@ abstract final class EnglishHyphenator {
   static final RegExp _words = RegExp(
     r"[\p{L}][\p{L}\p{M}\u00ad]*(?:['\u2019\u02bc][\p{L}\p{M}\u00ad]+)*",
     unicode: true,
+  );
+
+  static final RegExp _protectedTokens = RegExp(
+    r'(?:https?://|www\.)[^\s<>\u0022\u0027\u0060]+|'
+    r'[\p{L}\p{N}._%+-]+@[\p{L}\p{N}.-]+\.[\p{L}]{2,}|'
+    r'(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)',
+    unicode: true,
+    caseSensitive: false,
   );
 
   /// Breaks for a plain Latin word, with at least two letters before and
@@ -54,7 +64,17 @@ abstract final class EnglishHyphenator {
   }) {
     if (languageAt == null && !supports(language)) return const [];
     final result = <int>[];
+    final protected = _protectedTokens.allMatches(text).toList(growable: false);
+    var protectedIndex = 0;
     for (final word in _words.allMatches(text)) {
+      while (protectedIndex < protected.length &&
+          protected[protectedIndex].end <= word.start) {
+        protectedIndex++;
+      }
+      if (protectedIndex < protected.length &&
+          protected[protectedIndex].start < word.end) {
+        continue;
+      }
       final wordLanguage = languageAt?.call(word.start) ?? language;
       if (!supports(wordLanguage)) continue;
       // Do not treat the letter portion of an identifier as ordinary prose.
@@ -82,7 +102,10 @@ abstract final class EnglishHyphenator {
     return result;
   }
 
-  static final RegExp _identifierPart = RegExp(r'[\p{N}_@]', unicode: true);
+  static final RegExp _identifierPart = RegExp(
+    r'[\p{N}_@\u200c\u200d\u2060\ufeff]',
+    unicode: true,
+  );
   static bool _identifierNeighbor(String text, int offset) {
     var start = offset;
     var end = offset + 1;
