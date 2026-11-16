@@ -25,6 +25,8 @@ def digest(path):
 
 def execute(command):
     result = subprocess.run(command, capture_output=True, check=True)
+    if result.stderr.strip():
+        raise RuntimeError('Unexpected tool diagnostic: ' + result.stderr.decode(errors='replace'))
     return result.stdout
 
 
@@ -37,6 +39,7 @@ def main():
               'script_sha256': digest(Path(__file__)), 'dpi': 120,
               'scope': 'Three one-page fixtures, identical painted PDF content with and without ActualText wrappers.',
               'text_scope': 'Raw external extraction is observational; exact authored-text equality is not the raster gate.',
+              'render_policy': 'Reject diagnostics, unequal image dimensions, and empty rasters before comparing pixels.',
               'commands': [], 'fixtures': [], 'github_actions_used': False}
     for tool in ('pdfinfo', 'pdftoppm', 'pdftotext'):
         result = subprocess.run([tool, '-v'], capture_output=True, check=True)
@@ -58,6 +61,10 @@ def main():
         images = [Image.open(p.with_suffix('.png')).convert('RGB') for p in pdfs]
         if images[0].size != images[1].size:
             raise RuntimeError('Raster dimensions differ: ' + name)
+        ink_pixels = [sum(pixel != (255, 255, 255) for pixel in image.getdata())
+                      for image in images]
+        if not all(ink_pixels):
+            raise RuntimeError('Fixture raster must contain visible content: ' + name)
         difference = ImageChops.difference(*images)
         different_pixels = sum(pixel != (0, 0, 0) for pixel in difference.getdata())
         command = ['pdftotext', '-raw', str(pdfs[0]), '-']
@@ -69,6 +76,7 @@ def main():
         source = source_path.read_text()
         report['fixtures'].append({
             'name': name, 'size_pixels': list(images[0].size),
+            'nonwhite_pixels': ink_pixels,
             'different_pixels': different_pixels,
             'raster_equal': different_pixels == 0,
             'source_text': source, 'poppler_raw_text': raw_text.decode(),
