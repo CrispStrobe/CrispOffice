@@ -122,8 +122,9 @@ void main() {
     () async {
       expect((await provider.check(input('STRASSE GRÜSSE'))).findings, isEmpty);
       expect(
-        (await provider.check(input('STRASSE GRÜSSE', language: 'de-CH')))
-            .findings,
+        (await provider.check(
+          input('STRASSE GRÜSSE', language: 'de-CH'),
+        )).findings,
         isEmpty,
       );
     },
@@ -146,8 +147,9 @@ void main() {
     'Swiss spellings are locale-scoped and sharp-s receives ss suggestion',
     () async {
       expect(
-        (await provider.check(input('Strasse Grüsse', language: 'de-CH')))
-            .findings,
+        (await provider.check(
+          input('Strasse Grüsse', language: 'de-CH'),
+        )).findings,
         isEmpty,
       );
       final OfficeProofingResult swiss = await provider.check(

@@ -45,7 +45,31 @@ characters. Consequently, fitting text after pagination cannot by itself repair
 a line break chosen from isolated-character widths. The implementation changes
 the measurement contract and its use in line breaking while keeping the existing
 graphics backend. The [validation report](validation/text-rendering-20261116/README.md)
-records the final tested revision, commands and results.
+records the first increment's tested revisions, commands and results.
+
+### Follow-up: embedded font identity and Unicode export
+
+The [second increment](validation/text-rendering-followup-20261116/README.md)
+extends the existing stack with concrete PDF fixes. Embedded viewer fonts now
+use full-content hashing plus exact byte equality and owned snapshots, so two
+files with identical length and a few matching sampled bytes cannot select
+the same face accidentally. All waiting viewers are notified, and retained
+layers repaint after reattachment. Retained Dart deduplication snapshots are
+bounded; this does not bound Flutter's native font registry.
+
+The pure-Dart font subsetter now retains supplementary Unicode through a
+format 12 cmap, corrects the format 4 length, and avoids its 16-bit length
+overflow. PDF ToUnicode destinations use UTF-16BE surrogate pairs. Real
+Flutter tests load fonts reopened from exported PDFs and verify Unicode,
+source outlines, advances and the raster output of identical Unicode subsets.
+These changes add no production dependency or font binary.
+
+The encoding choices follow the
+[OpenType cmap specification](https://learn.microsoft.com/en-us/typography/opentype/spec/cmap)
+and [Adobe's ToUnicode tutorial](https://pdfa.org/norm-refs/5411.ToUnicode.pdf).
+Format 12 carries a superset of BMP mappings when both subtables are present;
+large sparse sets use format 12 alone instead of emitting a corrupt format 4.
+Older readers restricted to format 4 do not gain support for that overflow case.
 
 ## State of the art: components with different responsibilities
 
@@ -83,6 +107,43 @@ redistribute identically on every target. They are not required for this
 increment. LGPL stacks such as [FriBidi](https://github.com/fribidi/fribidi)
 must not be treated as automatically equivalent to the requested
 permissive/MPL set. No GPL implementation is proposed.
+
+### Rechecked backend decision
+
+The follow-up review retains **HarfBuzz plus ICU as the conservative native
+shaping candidate**, and **Parley/Fontique, HarfRust and Skrifa/Fontations as
+the Rust candidate to evaluate**. Parley's current documented stack includes
+Fontique, HarfRust, Skrifa and ICU4X. Its repository also identifies differently
+licensed test/benchmark assets. HarfRust documents known conformance gaps and
+requires callers to scale its units-per-em output. These facts support a
+qualified evaluation, not an immediate replacement of the current editor.
+([Parley README](https://github.com/linebender/parley),
+[HarfRust README and limitations](https://github.com/harfbuzz/harfrust),
+[ICU4X Unicode-3.0 license](https://github.com/unicode-org/icu4x/blob/main/LICENSE))
+
+Flutter's documented `GlyphInfo` exposes grapheme ranges, layout bounds and
+direction; it does not expose the exact font identity and positioned glyph
+IDs required by the current PDF embedder. Consequently, a `TextPainter`
+measurement result alone cannot be promoted to an exact, selectable PDF glyph
+run. This is an inference from the public API surface.
+([GlyphInfo](https://api.flutter.dev/flutter/dart-ui/GlyphInfo-class.html),
+[Paragraph](https://api.flutter.dev/flutter/dart-ui/Paragraph-class.html))
+
+A shared backend must connect the whole path: exact font bytes/face index,
+glyph IDs, advances and offsets, source clusters, feature/language settings,
+line-boundary context, subsetting and final PDF emission. A shaping cluster
+may span multiple editing graphemes or produce multiple glyphs. The current
+PDF emission path still resolves glyphs by code point, so an unused result
+type or a measurement-only FFI adapter would not close that gap.
+([HarfBuzz cluster contract](https://harfbuzz.github.io/working-with-harfbuzz-clusters.html),
+[Quds PDF emission](../packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart))
+
+The next adoption should pin concrete versions and enabled features, audit
+their complete code/data/font dependency and notice set, and qualify fixed-font
+Latin kerning, ligatures, Arabic joining/marks, bidi text, fallback clusters,
+discretionary hyphens and PDF extraction locally. The existing permissive
+project licenses are an eligibility check, not a completed audit of a future
+build. No native/Rust backend is enabled by the present changes.
 
 ## Implemented measurement and line-fitting contract
 

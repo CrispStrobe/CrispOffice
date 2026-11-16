@@ -1,0 +1,11 @@
+{
+  "test_source_revision": "1cfd91fbe29afc93f75127ac9a3dc3a92610a59d",
+  "production_unchanged": true,
+  "changes": "Dart formatter line wrapping and trailing commas in two incoming proofing test files only. Assertions and production source unchanged.",
+  "formatted_paths_sha256": {
+    "packages/quds_office_engine/test/proofing/german_spelling_test.dart": "1a398c81ac57eba86b372e856b08e11f21fab7fea365f1ecfc1234644bc076a2",
+    "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": "8592c6775e8285631092457fa1bcbcd360c27fa893ed965fa35de735f02de44f"
+  },
+  "formatter_command": "dart format --output=none --set-exit-if-changed (the nine engine targets listed in engine/receipt.json)",
+  "formatter_exit_code": 0
+}

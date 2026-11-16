@@ -1,0 +1,165 @@
+{
+  "checked_utc": "2026-11-16T17:14:29.450022+00:00",
+  "checked_head": "6b31039ce115b3c4646ec30bea48e7326caf7ca5",
+  "baseline": "121fc5f93287a5e18aab52b3d22af479865ee9d2",
+  "scope": "Independent receipt-to-current-source binding and harness recovery. No tests rerun and no production/test source modified. Working-tree hashes, including qualified untracked test files, are authoritative alongside the recorded HEADs.",
+  "cohorts": {
+    "engine": {
+      "receipt_path": "docs/validation/text-rendering-followup-20261116/engine/receipt.json",
+      "receipt_sha256": "24293e24dc6c829b4383a1e99ca0712b32d4a72482f94ce88c00cd99fb3a2f03",
+      "qualified_head_before": "1cfd91fbe29afc93f75127ac9a3dc3a92610a59d",
+      "qualified_head_after": "1cfd91fbe29afc93f75127ac9a3dc3a92610a59d",
+      "input_count": 401,
+      "receipt_before_after_identical": true,
+      "current_matching_count": 399,
+      "missing_inputs": [],
+      "mismatches": [
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+          "qualified_sha256": "342144f492bb81d5ca7c09f3934a013a2aab9350d763b2e7843d74baee4c5203",
+          "current_sha256": "1a398c81ac57eba86b372e856b08e11f21fab7fea365f1ecfc1234644bc076a2",
+          "qualified_git_blob_matches_receipt": true,
+          "dart_formatter_output_matches_current": true,
+          "formatter_command": [
+            "/workspace/scratch/51b89fd39d6a/text-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+            "format",
+            "--output=show",
+            "--summary=none",
+            "--stdin-name",
+            "/workspace/scratch/51b89fd39d6a/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_test.dart"
+          ],
+          "classification": "Formatter-only change verified by formatting the qualified Git blob without modifying repository files."
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+          "qualified_sha256": "a6f39794ca2f371770c0ddb552db759e660e81079c4e4c009b51daaf7d93af19",
+          "current_sha256": "8592c6775e8285631092457fa1bcbcd360c27fa893ed965fa35de735f02de44f",
+          "qualified_git_blob_matches_receipt": true,
+          "dart_formatter_output_matches_current": true,
+          "formatter_command": [
+            "/workspace/scratch/51b89fd39d6a/text-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+            "format",
+            "--output=show",
+            "--summary=none",
+            "--stdin-name",
+            "/workspace/scratch/51b89fd39d6a/quds_office_suite/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart"
+          ],
+          "classification": "Formatter-only change verified by formatting the qualified Git blob without modifying repository files."
+        }
+      ],
+      "production_library_mismatch_count": 0,
+      "qualified_untracked_input_paths": [],
+      "recorded_command_exit_codes": {
+        "tests": 0,
+        "analyze": 0,
+        "format": 1
+      },
+      "recorded_passed": false,
+      "archived_harness_path": "docs/validation/text-rendering-followup-20261116/engine/validate-used.py",
+      "recorded_harness_sha256": "f00fb9bf6bf13c37b10f20ec9bacd503760833388d0cff27fae5001bd19de146",
+      "archived_harness_sha256": "f00fb9bf6bf13c37b10f20ec9bacd503760833388d0cff27fae5001bd19de146",
+      "archived_harness_matches_receipt": true
+    },
+    "editor": {
+      "receipt_path": "docs/validation/text-rendering-followup-20261116/editor/receipt.json",
+      "receipt_sha256": "94c1c237f56c8fe8828c0c59598a25cb54bd2b0539069f80a63485361ce5ddfa",
+      "qualified_head_before": "6b31039ce115b3c4646ec30bea48e7326caf7ca5",
+      "qualified_head_after": "6b31039ce115b3c4646ec30bea48e7326caf7ca5",
+      "input_count": 466,
+      "receipt_before_after_identical": true,
+      "current_matching_count": 466,
+      "missing_inputs": [],
+      "mismatches": [],
+      "production_library_mismatch_count": 0,
+      "qualified_untracked_input_paths": [
+        "packages/quds_office_editor/test/font_subset_render_test.dart"
+      ],
+      "recorded_command_exit_codes": {
+        "tests": 0,
+        "analyze": 0,
+        "format": 0
+      },
+      "recorded_passed": true,
+      "archived_harness_path": "docs/validation/text-rendering-followup-20261116/editor/validate-used.py",
+      "recorded_harness_sha256": "4aecfbf7fa1fb5d51c76bc2f74a61b5726fcf45e326e391d8735f201db65e516",
+      "archived_harness_sha256": "4aecfbf7fa1fb5d51c76bc2f74a61b5726fcf45e326e391d8735f201db65e516",
+      "archived_harness_matches_receipt": true
+    }
+  },
+  "workspace_production_manifests": {
+    "paths": [
+      "pubspec.yaml",
+      "packages/legacy_doc_parser/pubspec.yaml",
+      "packages/quds_office_engine/pubspec.yaml",
+      "packages/quds_proofing_harper/pubspec.yaml",
+      "packages/quds_office_engine/example/pubspec.yaml",
+      "packages/quds_reports/pubspec.yaml",
+      "packages/quds_office_editor/pubspec.yaml",
+      "packages/quds_office_editor/example/pubspec.yaml",
+      "apps/quds_report_studio/pubspec.yaml"
+    ],
+    "count": 9,
+    "changed_paths_by_content": [],
+    "git_diff_paths": [],
+    "unchanged": true
+  },
+  "bundled_font_binaries": {
+    "paths": [
+      "packages/quds_office_editor/fonts/LiberationMono-Bold.ttf",
+      "packages/quds_office_editor/fonts/LiberationMono-BoldItalic.ttf",
+      "packages/quds_office_editor/fonts/LiberationMono-Italic.ttf",
+      "packages/quds_office_editor/fonts/LiberationMono-Regular.ttf",
+      "packages/quds_office_editor/fonts/LiberationSans-Bold.ttf",
+      "packages/quds_office_editor/fonts/LiberationSans-BoldItalic.ttf",
+      "packages/quds_office_editor/fonts/LiberationSans-Italic.ttf",
+      "packages/quds_office_editor/fonts/LiberationSans-Regular.ttf",
+      "packages/quds_office_editor/fonts/LiberationSerif-Bold.ttf",
+      "packages/quds_office_editor/fonts/LiberationSerif-BoldItalic.ttf",
+      "packages/quds_office_editor/fonts/LiberationSerif-Italic.ttf",
+      "packages/quds_office_editor/fonts/LiberationSerif-Regular.ttf",
+      "packages/quds_office_editor/fonts/NotoNaskhArabic-Bold.ttf",
+      "packages/quds_office_editor/fonts/NotoNaskhArabic-Regular.ttf"
+    ],
+    "count": 14,
+    "changed_paths_by_content": [],
+    "git_diff_paths": [],
+    "unchanged": true
+  },
+  "resolved_workspace_lock": {
+    "baseline_snapshot_path": "docs/validation/text-rendering-20261116/resolved-dependencies.yaml",
+    "baseline_snapshot_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "current_path": "pubspec.lock",
+    "current_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "unchanged": true
+  },
+  "changed_package_paths_since_baseline": [
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_font_faces.dart",
+    "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_thumb.dart",
+    "packages/quds_office_editor/lib/src/editor_pdf/render_pdf_canvas.dart",
+    "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "packages/quds_office_editor/test/pdf_font_faces_test.dart",
+    "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/bidi/line_breaker.dart",
+    "packages/quds_office_engine/lib/src/fonts/font_subsetter.dart",
+    "packages/quds_office_engine/lib/src/pdf/pdf_font.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+    "packages/quds_office_engine/test/font_subset_unicode_test.dart",
+    "packages/quds_office_engine/test/line_breaker_controls_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+    "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart"
+  ],
+  "untracked_package_paths": [
+    "packages/quds_office_editor/test/font_subset_render_test.dart"
+  ],
+  "engine_harness_recovery": {
+    "method": "Reversed the later untracked-ref lookup, output-streaming, early-receipt and archived-harness-copy edits. Wrote engine/validate-used.py only after the reconstructed bytes matched the original receipt SHA-256.",
+    "exact_sha256_match": true,
+    "changes_to_original_receipt": false
+  },
+  "all_production_libraries_match_qualified_inputs": true
+}

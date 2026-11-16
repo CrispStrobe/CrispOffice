@@ -253,18 +253,21 @@ void main() {
       await service.dispose();
     },
   );
-  test('unmatched delimiters and quotes remain advisory with no guessed correction', () async {
-    final OfficeProofingResult result = await GermanWritingRulesProvider()
-        .check(input('Das (offene [Zitat] lautet „Hallo.'));
-    expect(
-      result.findings.map((OfficeProofingFinding f) => f.ruleId),
-      containsAll(<String>['de.delimiter.balance', 'de.quote.balance']),
-    );
-    expect(
-      result.findings.map((OfficeProofingFinding f) => f.replacements),
-      everyElement(isEmpty),
-    );
-  });
+  test(
+    'unmatched delimiters and quotes remain advisory with no guessed correction',
+    () async {
+      final OfficeProofingResult result = await GermanWritingRulesProvider()
+          .check(input('Das (offene [Zitat] lautet „Hallo.'));
+      expect(
+        result.findings.map((OfficeProofingFinding f) => f.ruleId),
+        containsAll(<String>['de.delimiter.balance', 'de.quote.balance']),
+      );
+      expect(
+        result.findings.map((OfficeProofingFinding f) => f.replacements),
+        everyElement(isEmpty),
+      );
+    },
+  );
   test('URLs, inline code and rule opt-outs remain untouched', () async {
     final OfficeProofingResult result = await GermanWritingRulesProvider()
         .check(
@@ -358,33 +361,37 @@ void main() {
       OfficeProofingStatus.unavailable,
     );
   });
-  test('terminology uses literal terms, Unicode word boundaries and correct offsets', () async {
-    final OfficeTerminologyProvider provider = OfficeTerminologyProvider(
-      rules: <OfficeTerminologyRule>[
-        OfficeTerminologyRule(
-          id: 'brand',
-          term: 'Quds+',
-          message: 'Use the preferred product name.',
-          replacements: <String>['Quds Office'],
-          languages: <String>{'de-DE'},
-        ),
-      ],
-    );
-    final OfficeProofingResult result = await provider.check(
-      input('🙂 Quds+ und XQuds+ und Quds+X'),
-    );
-    expect(result.findings, hasLength(1));
-    expect(result.findings.single.start, 3);
-    expect(result.findings.single.originalText, 'Quds+');
-    expect(result.findings.single.replacements, <String>['Quds Office']);
-    expect(
-      (await provider.check(input('Quds+', ignored: <String>{'brand'})))
-          .findings,
-      isEmpty,
-    );
-    expect(
-      (await provider.check(input('Quds+', language: 'en-US'))).status,
-      OfficeProofingStatus.unsupported,
-    );
-  });
+  test(
+    'terminology uses literal terms, Unicode word boundaries and correct offsets',
+    () async {
+      final OfficeTerminologyProvider provider = OfficeTerminologyProvider(
+        rules: <OfficeTerminologyRule>[
+          OfficeTerminologyRule(
+            id: 'brand',
+            term: 'Quds+',
+            message: 'Use the preferred product name.',
+            replacements: <String>['Quds Office'],
+            languages: <String>{'de-DE'},
+          ),
+        ],
+      );
+      final OfficeProofingResult result = await provider.check(
+        input('🙂 Quds+ und XQuds+ und Quds+X'),
+      );
+      expect(result.findings, hasLength(1));
+      expect(result.findings.single.start, 3);
+      expect(result.findings.single.originalText, 'Quds+');
+      expect(result.findings.single.replacements, <String>['Quds Office']);
+      expect(
+        (await provider.check(
+          input('Quds+', ignored: <String>{'brand'}),
+        )).findings,
+        isEmpty,
+      );
+      expect(
+        (await provider.check(input('Quds+', language: 'en-US'))).status,
+        OfficeProofingStatus.unsupported,
+      );
+    },
+  );
 }
