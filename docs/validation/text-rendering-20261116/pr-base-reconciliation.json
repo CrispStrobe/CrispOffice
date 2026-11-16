@@ -1,0 +1,24 @@
+{
+  "verified_utc": "2026-11-16T16:02:40.069213+00:00",
+  "rendering_qualified_source": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "pr_creation_base": "ed5facb4bd503667749ed3d13378da6a1b34738b",
+  "reconciled_source": "6e0e010f15667072f90728732708192f3d72cd3a",
+  "reconciled_tree": "abe97b5811fa28c6d69d833d3433bd6c6cb9861a",
+  "parents": [
+    "8ce875e1bc1a91bca52efd75a6c3b3fc4de58acd",
+    "ed5facb4bd503667749ed3d13378da6a1b34738b"
+  ],
+  "package_changes_since_rendering_qualification": [
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+  ],
+  "editor_package_unchanged": true,
+  "new_production_delta": "ODS writer only; byte-identical to the PR creation base",
+  "ods_writer_blob": "5e9c1cd9ef29aebc8bdb54c3622c05b8f989b2ff",
+  "conflicts_resolved": [
+    "packages/quds_office_engine/CHANGELOG.md: retained both text-rendering and incoming ODS entries"
+  ],
+  "incoming_work": "PRs #69 conditional formatting/validations, #70 worksheet pictures, #71 acceptance documentation; previously integrated dialog history now also present on main",
+  "scope": "This observes the concrete main base returned when PR #72 was created; the earlier 138-ref inventory remains a separate pinned snapshot."
+}

@@ -2,13 +2,18 @@
 
 Work branch: [`codex/text-rendering-20261116`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/text-rendering-20261116).
 Initial integration baseline: `bfb24bf57d5efd52f00ab7079b4ac8968259a478`.
-**Qualified integrated source: `4c1d71adea066bd5ee4d510a8b60b79b64f96a49`.**
+**Qualified rendering source: `4c1d71adea066bd5ee4d510a8b60b79b64f96a49`.**
+**Subsequent PR-base integration: `6e0e010f15667072f90728732708192f3d72cd3a`.**
 
 The rendering improvements and late incoming work are implemented and locally
-qualified. On the integrated source, **138 editor tests, 245 engine tests, the
+qualified. On the rendering source, **138 editor tests, 245 engine tests, the
 isolated CLI regression, and the rendering diagnostic pass**. Analysis and
-formatting pass for all 36 changed Dart files. Final evidence/documentation
-commits do not change the qualified production or test sources.
+formatting pass for all 36 changed Dart files. Creating
+[draft PR #72](https://github.com/CrispStrobe/quds_office_suite/pull/72) exposed
+another main update. Its reconciliation changes only the incoming ODS writer,
+its test and the engine changelog within packages; the font/text implementation
+and complete editor package remain unchanged. The additional source pin and
+validation are recorded separately below.
 
 ## Incoming work and incremental preservation
 
@@ -23,6 +28,13 @@ heads across the two repositories. Every one is now an ancestor of the
 integrated work; see the [138/138 ancestry verification](integrated-ancestry.json).
 The work branch and symbolic HEAD are excluded. The inventory defines the
 cutoff; it does not claim that other branches stopped changing afterward.
+
+When PR #72 was created, GitHub reported main at `ed5facb`, with additional ODS
+PRs #69–71. That exact observed base was also merged and checkpointed as
+`6e0e010`. The [base reconciliation receipt](pr-base-reconciliation.json)
+records the additional ancestry and proves that only ODS production code
+changed after rendering qualification. The original 138-ref inventory remains
+a separate historical snapshot.
 
 The substantive merges bring in main `a042466` (including ODS writer PRs #67–68),
 proofing `6b5c114`, and dialog/rendering `5376008`. Equivalent feature/vendor ODS
@@ -102,7 +114,7 @@ after trimming. The actual-fragment check chooses an earlier break. Coverage
 also includes a floating-frame band that widens from 73.2 to 173.2 points.
 Geometry tolerances were not relaxed to hide the original overflow.
 
-## Final local qualification
+## Local rendering qualification
 
 All rows below use source **`4c1d71adea066bd5ee4d510a8b60b79b64f96a49`**,
 real Flutter **3.47.8** / Dart **3.13.7**, and the actual package manifests.
@@ -134,7 +146,31 @@ its original Python wrapper then failed in metadata assembly. A separate
 finalizer corrected only that bookkeeping from the original events, without
 rerunning tests or overwriting original evidence. The
 [wrapper-exit record](editor-integrated-wrapper-exits.json) distinguishes these
-outcomes, and the archive checksums were independently recounted.
+outcomes, and the archive checksums were independently verified.
+
+### Additional PR-base reconciliation
+
+Source **`6e0e010f15667072f90728732708192f3d72cd3a`** also includes the exact
+main revision observed when PR #72 was created, `ed5facb`. This adds incoming
+ODS conditional-formatting, validation and picture support. The only merge
+conflict was in the changelog, where both entries were retained. The ODS
+implementation is byte-identical to that main revision; the entire editor
+package and all font/text production sources remain byte-identical to `4c1d71a`.
+
+The [additional ODS qualification](engine-pr-base-summary.json) passed **110
+tests across the existing reader and writer files**, with no failures, hidden
+failures, skips or missing suites. All 764 recorded inputs remained unchanged.
+[Formatting and strict analysis](pr-base-static-checks.json) also pass for the
+two changed Dart files. These are additional scoped checks, not a rerun of the
+rendering cohorts on the newer source, and overlapping test counts are not
+added together. Raw events, logs, input manifests and the executed runner are
+preserved under the `engine-pr-base` prefix.
+
+The [reconciliation addendum](pr-base-reconciliation.md) records exact source
+scope and three inspection-only follow-ups in the incoming ODS writer: custom
+validation formulas, targets beyond the content extent, and XML escaping of
+sheet names in raw address attributes. They are outside the font/text changes
+and are not covered by a claim of complete ODS conformance.
 
 ### Earlier broader sweeps and resolved findings
 

@@ -1,0 +1,50 @@
+{
+  "qualified_source": "6e0e010f15667072f90728732708192f3d72cd3a",
+  "tree": "abe97b5811fa28c6d69d833d3433bd6c6cb9861a",
+  "finished_utc": "2026-11-16T16:03:48.283833+00:00",
+  "files": [
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+  ],
+  "source_hashes_before": {
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart": "fc915ba1de5dc971f498230295aeee70ce58b8217de0de43006b9c0bb10e289f",
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart": "cc932900c6513e904b770733d6169311d69c66b8cb4ff5342246e75c4c0f3d52"
+  },
+  "source_hashes_after": {
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart": "fc915ba1de5dc971f498230295aeee70ce58b8217de0de43006b9c0bb10e289f",
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart": "cc932900c6513e904b770733d6169311d69c66b8cb4ff5342246e75c4c0f3d52"
+  },
+  "source_unchanged": true,
+  "checks": [
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.57,
+      "log": "pr-base-format.log",
+      "log_sha256": "b1a24141bf3b0452db87a4d4a9be3f5d5ec11b751953a2ce73057b49b3719a18"
+    },
+    {
+      "name": "analyze",
+      "command": [
+        "/workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 67.862,
+      "log": "pr-base-analyze.log",
+      "log_sha256": "391c3d0223a0fb25875a0af9c307253792f6f411e25fe8d813eefc186b3b289f"
+    }
+  ],
+  "qualified": true
+}

@@ -1,0 +1,74 @@
+{
+  "git_head_at_start": "6e0e010f15667072f90728732708192f3d72cd3a",
+  "git_head_at_finish": "6e0e010f15667072f90728732708192f3d72cd3a",
+  "started_utc": "2026-11-16T16:02:45.657722+00:00",
+  "finished_utc": "2026-11-16T16:03:56.743141+00:00",
+  "command": [
+    "/workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=1",
+    "--reporter",
+    "expanded",
+    "--timeout",
+    "2m",
+    "--file-reporter",
+    "json:/workspace/scratch/b8abe5ff6280/toolchain-tmp/engine-pr-base-events.jsonl",
+    "test/ods_sheet_reader_test.dart",
+    "test/ods_sheet_writer_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine",
+  "test_file_count": 2,
+  "test_files": [
+    "test/ods_sheet_reader_test.dart",
+    "test/ods_sheet_writer_test.dart"
+  ],
+  "input_file_count": 764,
+  "changed_inputs": [],
+  "exit_code": 0,
+  "qualified": true,
+  "missing_suite_files": [],
+  "runner_done": {
+    "success": true,
+    "type": "done",
+    "time": 59180
+  },
+  "distinct_visible_tests": 110,
+  "counts": {
+    "success": 110
+  },
+  "failures": [],
+  "hidden_failures": [],
+  "skips": [],
+  "unfinished_tests": [],
+  "per_file": {
+    "test/ods_sheet_reader_test.dart": {
+      "success": 102
+    },
+    "test/ods_sheet_writer_test.dart": {
+      "success": 8
+    }
+  },
+  "observed_suite_files": [
+    "test/ods_sheet_reader_test.dart",
+    "test/ods_sheet_writer_test.dart"
+  ],
+  "malformed_event_lines": [],
+  "runner_errors": [],
+  "counting_rule": "Distinct visible test IDs; hidden load/setup events excluded from counts and hidden failures retained separately. Skips are not passes.",
+  "archives": [
+    {
+      "path": "engine-pr-base.log.gz",
+      "uncompressed_bytes": 11465,
+      "compressed_bytes": 2834,
+      "uncompressed_sha256": "ecb2c6acd45b2993e6808f4cec3058a1b4b0051a69013d703e09d9378fb98176",
+      "archive_sha256": "d5456811bf5c0247338133ffd48084d80ada4f4228ab346c8a2ac0e9132e9b86"
+    },
+    {
+      "path": "engine-pr-base-events.jsonl.gz",
+      "uncompressed_bytes": 48989,
+      "compressed_bytes": 5199,
+      "uncompressed_sha256": "e94656e7bca337ddf0e96703e273946ae6e362239a1643f78007c56d602258a5",
+      "archive_sha256": "a09f0ea68e2d78d387a7da2381855abd6eccef3908f32f359ac085c4e0f1ed4b"
+    }
+  ]
+}
