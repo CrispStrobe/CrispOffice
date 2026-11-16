@@ -1,0 +1,60 @@
+{
+  "git_head": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "started_utc": "2026-11-16T15:43:11.650217+00:00",
+  "finished_utc": "2026-11-16T15:44:22.042194+00:00",
+  "command": [
+    "dart",
+    "test",
+    "--concurrency=1",
+    "--reporter",
+    "expanded",
+    "--timeout",
+    "2m",
+    "--file-reporter",
+    "json:/workspace/scratch/b8abe5ff6280/toolchain-tmp/engine-cli-isolated-events.jsonl",
+    "test/content_control_fidelity_test.dart",
+    "--plain-name",
+    "CLI rejects an inline control split before replacing an existing output"
+  ],
+  "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine",
+  "test_files": [
+    "test/content_control_fidelity_test.dart"
+  ],
+  "test_name": "CLI rejects an inline control split before replacing an existing output",
+  "counts": {
+    "success": 1
+  },
+  "unique_test_count": 1,
+  "exit_code": 0,
+  "test_duration_ms": 48715,
+  "final_event": {
+    "success": true,
+    "type": "done",
+    "time": 62321
+  },
+  "hidden_failures": [],
+  "errors": [],
+  "input_hash_count": 309,
+  "changed_inputs": [],
+  "source_inputs_unchanged": true,
+  "quiet_window": "Parent confirmed no other root or agent Dart compiler was running before launch; other compiler tasks remained on hold until this runner exited.",
+  "scope": "Original unmodified CLI regression test, including nonzero CLI exit, inline-content-control error text, and preservation of an existing output file.",
+  "artifacts": {
+    "engine-cli-isolated-before.json": {
+      "bytes": 44011,
+      "sha256": "ae564c5dd07b673dc174b4346e5b3ad100d7e6cff9dbdb13172923c4e4067e73"
+    },
+    "engine-cli-isolated-after.json": {
+      "bytes": 43360,
+      "sha256": "3fdc3aabca6ce04c43432d050dd419e2ea9a9b015336bff0ddb1c58b320ab234"
+    },
+    "engine-cli-isolated.log": {
+      "bytes": 213,
+      "sha256": "c5f7c9bedfd72c2ab4009b1037e8d01d96a3d2e4697cbf5e41c3c7c4599558ae"
+    },
+    "engine-cli-isolated-events.jsonl": {
+      "bytes": 1874,
+      "sha256": "ad7c934e284c051c577c8ae09fd546e427df62b57c5b4931c7bea72cc6a63642"
+    }
+  }
+}

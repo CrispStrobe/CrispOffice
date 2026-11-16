@@ -1,0 +1,13 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":6,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"test/content_control_fidelity_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading test/content_control_fidelity_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":4}
+{"count":1,"time":46,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":13466}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":13479}
+{"test":{"id":3,"name":"(setUpAll)","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":82,"column":3,"url":"file:///workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine/test/content_control_fidelity_test.dart"},"type":"testStart","time":13480}
+{"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":13539}
+{"test":{"id":4,"name":"CLI rejects an inline control split before replacing an existing output","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":294,"column":3,"url":"file:///workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine/test/content_control_fidelity_test.dart"},"type":"testStart","time":13541}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":62256}
+{"test":{"id":5,"name":"(tearDownAll)","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":62259}
+{"testID":5,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":62266}
+{"success":true,"type":"done","time":62321}

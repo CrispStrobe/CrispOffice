@@ -1,0 +1,13 @@
+{
+  "recorded_utc": "2026-11-16T15:47:23.626417+00:00",
+  "git_head": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "tests_started": false,
+  "initial_preflight": "Stopped before Flutter because the runner incorrectly expected gitignored pubspec.lock to have a direct commit blob.",
+  "correction": "Classify pubspec.lock as a generated runtime input, preserve before/after SHA-256, and require byte-for-byte equality with the published dependency receipt. Generated package_config.json remains a separately hashed runtime input.",
+  "dependency_receipt": "docs/validation/text-rendering-20261116/resolved-dependencies.yaml",
+  "dependency_receipt_git_blob": "bafa332db4f09903cbd975e0f9b48fe12df35b6d",
+  "pubspec_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "published_receipt_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "byte_for_byte_match": true,
+  "repository_source_or_dependency_files_changed": false
+}

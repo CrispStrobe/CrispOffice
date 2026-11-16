@@ -1,0 +1,11 @@
+{
+  "finalized_utc": "2026-11-16T15:50:45.851344+00:00",
+  "test_process_exit_code": 0,
+  "original_runner_sha256": "fa49b9338735112a46ee3f8fbccd14d68f985fd8200fabe8a93db80a91fdbfe5",
+  "postprocessor_sha256": "4447ebde17ccb25d983ab2471436f1312119ddbb3c09a30254cb756cce5f1318",
+  "reason": "Tests completed and before/after input receipts were saved. The runner then failed while adding event_log_found because its event Path parameter was shadowed by a per-test path string.",
+  "correction": "Rename only the event-path parameter/references in memory while retaining the exact executed runner. Parse and archive the completed run output.",
+  "tests_rerun": false,
+  "original_runner_and_input_receipts_preserved": true,
+  "repository_source_or_dependency_files_changed": false
+}

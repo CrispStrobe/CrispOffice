@@ -1,0 +1,25 @@
+{
+  "recorded_utc": "2026-11-16T15:48:46.231194+00:00",
+  "frozen_source_commit": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "scope": "Additional OS font paths referenced by fonts_test.dart, office_pdf_export_test.dart, and wave4_platform_test.dart. These hashes were collected after the run; they are not represented as before/after hashes. Bundled editor fonts are already included in both integrated input snapshots.",
+  "fonts": [
+    {
+      "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+      "exists": true,
+      "bytes": 759720,
+      "sha256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e"
+    },
+    {
+      "path": "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+      "exists": true,
+      "bytes": 343140,
+      "sha256": "54bf827eb99404e8f430c330ad30f063334f637eba0109b6a18d4f566a8e9dd8"
+    },
+    {
+      "path": "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf",
+      "exists": true,
+      "bytes": 175792,
+      "sha256": "8c67eaa2f0086872628fc3f7f760386f83c8be5c5e9a1ba3a38891237b2ac7cb"
+    }
+  ]
+}

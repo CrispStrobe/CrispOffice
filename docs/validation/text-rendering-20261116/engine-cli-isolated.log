@@ -1,0 +1,5 @@
+00:00 +0: loading test/content_control_fidelity_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: CLI rejects an inline control split before replacing an existing output
+00:48 +1: (tearDownAll)
+00:48 +1: All tests passed!

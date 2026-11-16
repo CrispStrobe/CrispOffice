@@ -1,0 +1,13 @@
+{
+  "verified_utc": "2026-11-16T15:47:13.139517+00:00",
+  "frozen_published_head": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "runtime_input": "pubspec.lock",
+  "runtime_input_git_tracking": "untracked and gitignored",
+  "runtime_input_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "committed_dependency_receipt": "docs/validation/text-rendering-20261116/resolved-dependencies.yaml",
+  "committed_receipt_blob": "bafa332db4f09903cbd975e0f9b48fe12df35b6d",
+  "byte_identical_to_frozen_receipt": true,
+  "matches_cohort_before_snapshot": true,
+  "before_after_rule": "The engine-integrated input snapshots retain pubspec.lock SHA-256 and require unchanged bytes; this receipt adds published dependency-resolution provenance without changing or excluding the runtime hash.",
+  "matches_cohort_after_snapshot": true
+}

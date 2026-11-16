@@ -1,0 +1,23 @@
+{
+  "recorded_utc": "2026-11-16T15:51:26.005831+00:00",
+  "git_head": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "flutter_test_process_exit_code": 0,
+  "original_python_wrapper_exit_code": 1,
+  "original_python_wrapper_failure": "AttributeError: str object has no attribute is_file in parse_events event_log_found, after Flutter and after-input receipt completed.",
+  "separate_finalizer_exit_code": 0,
+  "tests_rerun": false,
+  "summary_exit_code_meaning": "editor-integrated-summary.json exit_code is the Flutter subprocess exit code, not the failed original Python wrapper exit code.",
+  "summary_file": "editor-integrated-summary.json",
+  "summary_sha256": "106403ade69e607ac48a9371170d8deabfd7061cab32a59375b8ea5551c79b7d",
+  "finalization_receipt": "editor-integrated-finalization.json",
+  "executed_runner_preserved": "editor-integrated-run.py",
+  "separate_postprocessor": "editor-integrated-finalize.py",
+  "verified_suite_files": 16,
+  "verified_input_hashes": 595,
+  "visible_passes": 138,
+  "skips": 0,
+  "hidden_failures": 0,
+  "duplicate_test_done_ids": [],
+  "unfinished_tests": [],
+  "source_inputs_unchanged": true
+}

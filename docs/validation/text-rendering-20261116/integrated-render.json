@@ -1,0 +1,23 @@
+{
+  "git_head": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "tool/render_text_comparison.dart",
+    "--dart-define=QUDS_TEXT_RENDERING_OUTPUT=/workspace/scratch/b8abe5ff6280/quds_office_suite/docs/validation/text-rendering-20261116",
+    "--reporter",
+    "expanded"
+  ],
+  "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor",
+  "before_sha256": {
+    "text-rendering-comparison.png": "fdd925358daddc0d75ae24080a824e174777132ac39d7cd1718859500236060a",
+    "metrics.json": "2c7b0224175845737b39f18b8b9cabec8057cb5ab52aedf4b715053ab0871e2c"
+  },
+  "exit_code": 0,
+  "after_sha256": {
+    "text-rendering-comparison.png": "fdd925358daddc0d75ae24080a824e174777132ac39d7cd1718859500236060a",
+    "metrics.json": "2c7b0224175845737b39f18b8b9cabec8057cb5ab52aedf4b715053ab0871e2c"
+  },
+  "artifacts_byte_identical": true
+}

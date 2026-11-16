@@ -79,6 +79,12 @@ remote work branch. It does not wait for hosted CI: no GitHub Actions jobs,
 workflow runs, commit statuses or check runs were polled, awaited or rerun for
 this audit.
 
+Subsequent work also reconciled a later inventory of 138 incoming refs and
+completed local qualification. The [final implementation/validation report](README.md)
+records the integrated source, exact cohorts, resolved findings and remaining
+scope limits. This initial 132-ref observation remains unchanged as historical
+evidence.
+
 ## Reproduction
 
 From a checkout containing the fetched objects:

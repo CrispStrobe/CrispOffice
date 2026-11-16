@@ -1,8 +1,8 @@
 {
-  "verified_utc": "2026-11-16T15:39:31.600611+00:00",
+  "verified_utc": "2026-11-16T15:54:13.595701+00:00",
   "inventory_cutoff_utc": "2026-11-16T15:23:50.196577+00:00",
-  "integrated_head": "c9fc24cdcc5f1bf9be9f4366b75d4af9acf7c86a",
-  "integrated_tree": "9183ec9bc622ea6f21bc6cf5dd82d2811aa4baac",
+  "integrated_head": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "integrated_tree": "c99c73491afa0f9076d69c3ee1d8fdb9888ee720",
   "total_incoming_refs": 138,
   "included": 138,
   "missing": [],

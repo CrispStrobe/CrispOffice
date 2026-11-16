@@ -277,8 +277,13 @@ and the visual artifact support different claims; the image alone does not
 prove caret correctness, export fidelity or complete font coverage.
 
 The [incoming baseline audit](validation/text-rendering-20261116/incoming-work.md)
-accounts for all 132 initially fetched refs. This strategy document records the
-implemented design and license decisions. The [validation report](validation/text-rendering-20261116/README.md)
+accounts for all 132 initially fetched refs. A later refresh reconciled all
+138 refs pinned at 2026-11-16 15:23:50 UTC; the
+[ancestry receipt](validation/text-rendering-20261116/integrated-ancestry.json)
+verifies that each is included in qualified source revision
+`4c1d71adea066bd5ee4d510a8b60b79b64f96a49`.
+This strategy document records the implemented design and license decisions.
+The [validation report](validation/text-rendering-20261116/README.md)
 is the source of truth for the final tested revision, exact local commands,
 broader regression results and remote checkpoints. Local qualification proceeds
 without waiting for GitHub Actions. PDF/headless behavior and performance need

@@ -1,0 +1,176 @@
+{
+  "git_head_at_start": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "git_head_at_finish": "4c1d71adea066bd5ee4d510a8b60b79b64f96a49",
+  "started_utc": "2026-11-16T15:45:57.684932+00:00",
+  "finished_utc": "2026-11-16T15:46:48.098125+00:00",
+  "command": [
+    "/workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=1",
+    "--reporter",
+    "expanded",
+    "--timeout",
+    "2m",
+    "--file-reporter",
+    "json:/workspace/scratch/b8abe5ff6280/toolchain-tmp/engine-integrated-events.jsonl",
+    "test/bidi_test.dart",
+    "test/fonts_test.dart",
+    "test/line_breaker_measure_line_test.dart",
+    "test/office_named_fonts_test.dart",
+    "test/office_pdf_export_test.dart",
+    "test/proofing_hyphenation_test.dart",
+    "test/variable_line_breaker_test.dart",
+    "test/wave4_platform_test.dart",
+    "test/word_contained_text_wrap_test.dart",
+    "test/word_layout_test.dart",
+    "test/word_run_fragment_fallback_test.dart",
+    "test/word_run_measure_boundaries_test.dart",
+    "test/word_run_measure_test.dart",
+    "test/word_styles_layout_test.dart",
+    "test/word_table_nested_layout_test.dart",
+    "test/word_table_tall_frame_layout_test.dart",
+    "test/word_table_tall_toc_layout_test.dart",
+    "test/ods_sheet_writer_test.dart",
+    "test/proofing/german_writing_rules_test.dart"
+  ],
+  "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine",
+  "test_file_count": 19,
+  "test_files": [
+    "test/bidi_test.dart",
+    "test/fonts_test.dart",
+    "test/line_breaker_measure_line_test.dart",
+    "test/office_named_fonts_test.dart",
+    "test/office_pdf_export_test.dart",
+    "test/proofing_hyphenation_test.dart",
+    "test/variable_line_breaker_test.dart",
+    "test/wave4_platform_test.dart",
+    "test/word_contained_text_wrap_test.dart",
+    "test/word_layout_test.dart",
+    "test/word_run_fragment_fallback_test.dart",
+    "test/word_run_measure_boundaries_test.dart",
+    "test/word_run_measure_test.dart",
+    "test/word_styles_layout_test.dart",
+    "test/word_table_nested_layout_test.dart",
+    "test/word_table_tall_frame_layout_test.dart",
+    "test/word_table_tall_toc_layout_test.dart",
+    "test/ods_sheet_writer_test.dart",
+    "test/proofing/german_writing_rules_test.dart"
+  ],
+  "input_file_count": 764,
+  "changed_inputs": [],
+  "exit_code": 0,
+  "qualified": true,
+  "missing_suite_files": [],
+  "runner_done": {
+    "success": true,
+    "type": "done",
+    "time": 42379
+  },
+  "distinct_visible_tests": 245,
+  "counts": {
+    "success": 245
+  },
+  "failures": [],
+  "hidden_failures": [],
+  "skips": [],
+  "unfinished_tests": [],
+  "per_file": {
+    "test/bidi_test.dart": {
+      "success": 18
+    },
+    "test/fonts_test.dart": {
+      "success": 2
+    },
+    "test/line_breaker_measure_line_test.dart": {
+      "success": 16
+    },
+    "test/ods_sheet_writer_test.dart": {
+      "success": 5
+    },
+    "test/office_named_fonts_test.dart": {
+      "success": 8
+    },
+    "test/office_pdf_export_test.dart": {
+      "success": 14
+    },
+    "test/proofing/german_writing_rules_test.dart": {
+      "success": 16
+    },
+    "test/proofing_hyphenation_test.dart": {
+      "success": 20
+    },
+    "test/variable_line_breaker_test.dart": {
+      "success": 18
+    },
+    "test/wave4_platform_test.dart": {
+      "success": 4
+    },
+    "test/word_contained_text_wrap_test.dart": {
+      "success": 41
+    },
+    "test/word_layout_test.dart": {
+      "success": 16
+    },
+    "test/word_run_fragment_fallback_test.dart": {
+      "success": 6
+    },
+    "test/word_run_measure_boundaries_test.dart": {
+      "success": 5
+    },
+    "test/word_run_measure_test.dart": {
+      "success": 17
+    },
+    "test/word_styles_layout_test.dart": {
+      "success": 15
+    },
+    "test/word_table_nested_layout_test.dart": {
+      "success": 12
+    },
+    "test/word_table_tall_frame_layout_test.dart": {
+      "success": 8
+    },
+    "test/word_table_tall_toc_layout_test.dart": {
+      "success": 4
+    }
+  },
+  "observed_suite_files": [
+    "test/bidi_test.dart",
+    "test/fonts_test.dart",
+    "test/line_breaker_measure_line_test.dart",
+    "test/ods_sheet_writer_test.dart",
+    "test/office_named_fonts_test.dart",
+    "test/office_pdf_export_test.dart",
+    "test/proofing/german_writing_rules_test.dart",
+    "test/proofing_hyphenation_test.dart",
+    "test/variable_line_breaker_test.dart",
+    "test/wave4_platform_test.dart",
+    "test/word_contained_text_wrap_test.dart",
+    "test/word_layout_test.dart",
+    "test/word_run_fragment_fallback_test.dart",
+    "test/word_run_measure_boundaries_test.dart",
+    "test/word_run_measure_test.dart",
+    "test/word_styles_layout_test.dart",
+    "test/word_table_nested_layout_test.dart",
+    "test/word_table_tall_frame_layout_test.dart",
+    "test/word_table_tall_toc_layout_test.dart"
+  ],
+  "malformed_event_lines": [],
+  "runner_errors": [],
+  "counting_rule": "Distinct visible test IDs; hidden load/setup events excluded from counts and hidden failures retained separately. Skips are not passes.",
+  "archives": [
+    {
+      "path": "engine-integrated.log.gz",
+      "uncompressed_bytes": 30140,
+      "compressed_bytes": 6809,
+      "uncompressed_sha256": "0bf884ff39e62aec143798da2f46ff3845e24d43e0f75d1096fe0ed3f1370fc1",
+      "archive_sha256": "3cf9fa3dbb0047902efe948c583b2d248a497f25670db9de4dca99665ae67261"
+    },
+    {
+      "path": "engine-integrated-events.jsonl.gz",
+      "uncompressed_bytes": 126753,
+      "compressed_bytes": 12865,
+      "uncompressed_sha256": "2ab213b83395c188e9943b5ac3db802facdb35144cfe0de243e6a0f7184e17d8",
+      "archive_sha256": "2783621fdd609b25826c13a8334470b6c97b4c0af1c2886bc597f69d69fa2c45"
+    }
+  ]
+}
