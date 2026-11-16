@@ -547,6 +547,104 @@ void main() {
     });
   }
 
+  testWidgets('successful batch backoff stops refresh without partial changes', (
+    tester,
+  ) async {
+    final requests = <ZoteroHttpRequest>[];
+    final controller = await _openDialog(
+      tester,
+      transport: (request) async {
+        requests.add(request);
+        return _json(
+          [
+            for (final key in request.uri.queryParameters['itemKey']!.split(
+              ',',
+            ))
+              _apiItem(key, 'Must stay staged'),
+          ],
+          headers: {'Backoff': '3600'},
+        );
+      },
+      document: _linkedDocument([
+        for (var index = 0; index < 101; index++)
+          ['http://zotero.org/users/42/items/K${index.toString().padLeft(7, '0')}'],
+      ]),
+    );
+    final before = controller.zoteroFields
+        .map((field) => field.instruction)
+        .toList();
+    final revision = controller.contentRevision;
+
+    await _documentAction(tester, 'Refresh basic citations');
+
+    expect(requests, hasLength(1));
+    expect(
+      requests.single.uri.queryParameters['itemKey']!.split(','),
+      hasLength(50),
+    );
+    expect(controller.zoteroFields.map((field) => field.instruction), before);
+    expect(
+      controller.zoteroFields.map((field) => field.cachedText),
+      everyElement('(Original)'),
+    );
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    expect(find.textContaining('Zotero requested a pause'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('closing during the second batch stops further refresh requests', (
+    tester,
+  ) async {
+    final pending = Completer<ZoteroHttpResponse>();
+    final requests = <ZoteroHttpRequest>[];
+    final controller = await _openDialog(
+      tester,
+      transport: (request) async {
+        requests.add(request);
+        if (requests.length == 2) return pending.future;
+        return _json([
+          for (final key in request.uri.queryParameters['itemKey']!.split(','))
+            _apiItem(key, 'Must stay staged'),
+        ]);
+      },
+      document: _linkedDocument([
+        for (var index = 0; index < 101; index++)
+          ['http://zotero.org/users/42/items/K${index.toString().padLeft(7, '0')}'],
+      ]),
+    );
+    final before = controller.zoteroFields
+        .map((field) => field.instruction)
+        .toList();
+    final revision = controller.contentRevision;
+
+    await _documentAction(tester, 'Refresh basic citations', opensReview: true);
+    expect(requests, hasLength(2));
+    expect(controller.zoteroFields.map((field) => field.instruction), before);
+    await tester.tap(find.byTooltip('Close Zotero'));
+    await tester.pumpAndSettle();
+    pending.complete(
+      _json([
+        for (final key in requests.last.uri.queryParameters['itemKey']!.split(
+          ',',
+        ))
+          _apiItem(key, 'Must stay staged'),
+      ]),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Zotero references'), findsNothing);
+    expect(requests, hasLength(2));
+    expect(controller.zoteroFields.map((field) => field.instruction), before);
+    expect(
+      controller.zoteroFields.map((field) => field.cachedText),
+      everyElement('(Original)'),
+    );
+    expect(controller.contentRevision, revision);
+    expect(controller.canUndo, isFalse);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('stale target after the second batch stops the third request', (
     tester,
   ) async {
