@@ -216,8 +216,9 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     r"\p{L}[\p{L}\p{M}\u00ad]*(?:[-\u2010\u2011'’]\p{L}[\p{L}\p{M}\u00ad]*)*",
     unicode: true,
   );
-  static final RegExp _webTokens = RegExp(
-    r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}',
+  static final RegExp _protectedTokens = RegExp(
+    r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}|'
+    r'(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)',
     caseSensitive: false,
   );
   static const String _alphabet = 'abcdefghijklmnopqrstuvwxyzäöüß';
@@ -273,7 +274,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     final bool swiss = request.language == 'de-CH';
     final List<OfficeProofingFinding> findings = <OfficeProofingFinding>[];
     final Set<int> boundaries = _sourceGraphemeBoundaries(request.text);
-    final List<RegExpMatch> webRanges = _webTokens
+    final List<RegExpMatch> protectedRanges = _protectedTokens
         .allMatches(request.text)
         .toList();
     final Map<String, List<String>> suggestions = <String, List<String>>{};
@@ -295,7 +296,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
           !boundaries.contains(token.end)) {
         continue;
       }
-      if (webRanges.any(
+      if (protectedRanges.any(
         (RegExpMatch range) =>
             token.start >= range.start && token.end <= range.end,
       )) {

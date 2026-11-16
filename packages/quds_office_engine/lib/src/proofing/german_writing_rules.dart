@@ -39,7 +39,8 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
   static final RegExp _letterBefore = RegExp(r'[\p{L}\p{M}]$', unicode: true);
   static final RegExp _letterAfter = RegExp(r'^\p{L}', unicode: true);
   static final RegExp _protectedTokens = RegExp(
-    r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}|`[^`]*`',
+    r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}|'
+    r'(?<!`)(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)',
     caseSensitive: false,
   );
   static final RegExp _urlStart = RegExp(

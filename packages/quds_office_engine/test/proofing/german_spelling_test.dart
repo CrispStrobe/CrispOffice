@@ -240,6 +240,42 @@ void main() {
       expect(result.findings.single.replacements, contains('Haus'));
     },
   );
+  test('matching backtick spans protect code without hiding following prose',
+      () async {
+    for (final String code in <String>[
+      '`Huas`',
+      '``Huas ` inner``',
+      '```dart\nHuas\n```',
+      '`HTTPS://example.invalid/Huas Huas`',
+    ]) {
+      final String text = '🙂 $code Huas';
+      final OfficeProofingReport report = await OfficeProofingService(
+        providers: <OfficeProofingProvider>[provider],
+      ).check(OfficeProofingRequest(
+        documentId: 'doc',
+        blockId: 'p',
+        revision: 1,
+        text: text,
+        startOffset: 20,
+      ));
+      expect(report.complete, isTrue, reason: code);
+      expect(report.findings, hasLength(1), reason: code);
+      expect(report.findings.single.originalText, 'Huas');
+      expect(report.findings.single.start, 20 + text.lastIndexOf('Huas'));
+      expect(report.findings.single.replacements, contains('Haus'));
+    }
+  });
+  test('unmatched backtick delimiters do not suppress the remaining paragraph',
+      () async {
+    for (final String text in <String>[
+      '`Huas',
+      '``Huas`',
+      '```Huas``',
+    ]) {
+      final OfficeProofingResult result = await provider.check(input(text));
+      expect(result.findings.single.originalText, 'Huas', reason: text);
+    }
+  });
   test(
     'personal words and ignores stay owned, reversible and language-scoped',
     () async {

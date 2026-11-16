@@ -278,6 +278,23 @@ void main() {
         );
     expect(result.findings, isEmpty);
   });
+  test('matching multi-backtick spans protect grammar and punctuation',
+      () async {
+    final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+    for (final String code in <String>[
+      '`ich bist [`',
+      '``ich bist ` [`x``',
+      '```dart\nich bist [\n```',
+    ]) {
+      final String text = '🙂 $code Ich bist hier.';
+      final OfficeProofingResult result = await provider.check(input(text));
+      expect(result.findings, hasLength(1), reason: code);
+      expect(result.findings.single.originalText, 'bist');
+      expect(result.findings.single.start, text.lastIndexOf('bist'));
+      expect(result.findings.single.replacements, <String>['bin']);
+    }
+    await provider.dispose();
+  });
   test(
     'protected tokens cannot supply a subject for following prose',
     () async {
