@@ -148,9 +148,11 @@ entire Flutter SDK archive. SDK tracked sources are unmodified.
 [The independent verifier](verify_final.py) recomputes event counts, log hashes,
 source/configuration closure, current and committed input bindings, runtime
 identity, both pinned reference inventories and exact advertised remote-head
-correspondence. Its [qualification receipt](source-qualification.json) records
-the evidence checkpoint it audited; evidence-only publication can be audited
-again against the final branch head without rerunning tests.
+correspondence. The audit **passed at evidence checkpoint `e40a6e54`**, recomputing
+all 877 passing tests and both complete incoming inventories. Its
+[qualification receipt](source-qualification.json) identifies that exact audited
+commit; evidence-only publication can be audited again against the final branch
+head without rerunning tests.
 
 Harper's 27 fresh tests use injected transport. Native/Wasm acceptance and other
 incoming intermediate journals retain their own earlier source attribution.
