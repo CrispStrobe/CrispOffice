@@ -162,7 +162,9 @@ void main() {
         );
         expect(CaretEngine.caretX(line, 3), closeTo(endX, .01));
         expect(
-          CaretEngine.visualStops(line).singleWhere((stop) => stop.index == 3).x,
+          CaretEngine.visualStops(
+            line,
+          ).singleWhere((stop) => stop.index == 3).x,
           closeTo(endX, .01),
         );
         expect(document.paragraphs.single.text, source);

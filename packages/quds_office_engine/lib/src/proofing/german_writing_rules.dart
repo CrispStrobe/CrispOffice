@@ -36,14 +36,8 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
     'de.delimiter.balance',
     'de.quote.balance',
   };
-  static final RegExp _letterBefore = RegExp(
-    r'[\p{L}\p{M}]$',
-    unicode: true,
-  );
-  static final RegExp _letterAfter = RegExp(
-    r'^\p{L}',
-    unicode: true,
-  );
+  static final RegExp _letterBefore = RegExp(r'[\p{L}\p{M}]$', unicode: true);
+  static final RegExp _letterAfter = RegExp(r'^\p{L}', unicode: true);
   static final RegExp _comparisonPrefix = RegExp(
     r'(?<![\p{L}\p{M}])(?:wie|als)[ \t\u00a0]+$',
     caseSensitive: false,
@@ -288,8 +282,7 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
       } else if (quotePairs.containsKey(char)) {
         quotes.add((quotePairs[char]!, i));
       } else if (char == '”' || char == '’') {
-        final bool apostrophe =
-            char == '’' && _hasLetterBefore(text, i);
+        final bool apostrophe = char == '’' && _hasLetterBefore(text, i);
         if (!apostrophe) {
           add(
             'de.quote.balance',

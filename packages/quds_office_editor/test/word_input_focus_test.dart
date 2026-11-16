@@ -21,11 +21,7 @@ Widget _app(Widget child) => MaterialApp(
 );
 
 Widget _editor(WordEditorController controller, FocusNode focus) =>
-    QudsWordEditor(
-      key: _editorKey,
-      controller: controller,
-      focusNode: focus,
-    );
+    QudsWordEditor(key: _editorKey, controller: controller, focusNode: focus);
 
 Future<void> _focusEditor(
   WidgetTester tester,
@@ -69,10 +65,7 @@ void _expectStaleInputRejected(WordEditorController controller) {
   expect(controller.input.isAttached, isFalse);
 }
 
-Future<void> _finishDialog(
-  WidgetTester tester,
-  Future<void> closed,
-) async {
+Future<void> _finishDialog(WidgetTester tester, Future<void> closed) async {
   Navigator.of(tester.element(find.byKey(_editorKey))).pop();
   // The editor runs a caret ticker, so an unbounded pumpAndSettle is unsuitable.
   await tester.pump();
@@ -84,56 +77,60 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(OfficeHostFonts.ensureRegistered);
 
-  testWidgets('modal text input retains ownership over stale Word IME traffic', (
-    tester,
-  ) async {
-    final controller = _controller('Document text');
-    final editorFocus = FocusNode(debugLabel: 'word');
-    final dialogFocus = FocusNode(debugLabel: 'dialog');
-    final dialogText = TextEditingController();
-    addTearDown(() async {
-      await tester.pumpWidget(const SizedBox.shrink());
-      controller.dispose();
-      editorFocus.dispose();
-      dialogFocus.dispose();
-      dialogText.dispose();
-    });
+  testWidgets(
+    'modal text input retains ownership over stale Word IME traffic',
+    (tester) async {
+      final controller = _controller('Document text');
+      final editorFocus = FocusNode(debugLabel: 'word');
+      final dialogFocus = FocusNode(debugLabel: 'dialog');
+      final dialogText = TextEditingController();
+      addTearDown(() async {
+        await tester.pumpWidget(const SizedBox.shrink());
+        controller.dispose();
+        editorFocus.dispose();
+        dialogFocus.dispose();
+        dialogText.dispose();
+      });
 
-    await tester.pumpWidget(_app(_editor(controller, editorFocus)));
-    await _focusEditor(tester, controller, editorFocus);
-    final closed = showDialog<void>(
-      context: tester.element(find.byKey(_editorKey)),
-      builder: (context) => AlertDialog(
-        content: TextField(
-          key: _dialogFieldKey,
-          controller: dialogText,
-          focusNode: dialogFocus,
-          autofocus: true,
+      await tester.pumpWidget(_app(_editor(controller, editorFocus)));
+      await _focusEditor(tester, controller, editorFocus);
+      final closed = showDialog<void>(
+        context: tester.element(find.byKey(_editorKey)),
+        builder: (context) => AlertDialog(
+          content: TextField(
+            key: _dialogFieldKey,
+            controller: dialogText,
+            focusNode: dialogFocus,
+            autofocus: true,
+          ),
         ),
-      ),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(dialogFocus.hasPrimaryFocus, isTrue);
-    expect(controller.input.isAttached, isFalse);
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(dialogFocus.hasPrimaryFocus, isTrue);
+      expect(controller.input.isAttached, isFalse);
 
-    controller.onRequestFocus?.call();
-    await tester.pump();
-    expect(dialogFocus.hasPrimaryFocus, isTrue);
-    _expectStaleInputRejected(controller);
-    // Send to the existing platform client without refocusing the TextField:
-    // attaching the Word bridge above must not steal the dialog's connection.
-    tester.testTextInput.enterText('Only in the dialog');
-    await tester.pump();
-    expect(dialogText.text, 'Only in the dialog');
-    expect(controller.document.paragraphs.single.text, 'Document text');
+      controller.onRequestFocus?.call();
+      await tester.pump();
+      expect(dialogFocus.hasPrimaryFocus, isTrue);
+      _expectStaleInputRejected(controller);
+      // Send to the existing platform client without refocusing the TextField:
+      // attaching the Word bridge above must not steal the dialog's connection.
+      tester.testTextInput.enterText('Only in the dialog');
+      await tester.pump();
+      expect(dialogText.text, 'Only in the dialog');
+      expect(controller.document.paragraphs.single.text, 'Document text');
 
-    await _finishDialog(tester, closed);
-    await _focusEditor(tester, controller, editorFocus);
-    tester.testTextInput.enterText('Document text resumed');
-    await tester.pump();
-    expect(controller.document.paragraphs.single.text, 'Document text resumed');
-  });
+      await _finishDialog(tester, closed);
+      await _focusEditor(tester, controller, editorFocus);
+      tester.testTextInput.enterText('Document text resumed');
+      await tester.pump();
+      expect(
+        controller.document.paragraphs.single.text,
+        'Document text resumed',
+      );
+    },
+  );
 
   testWidgets('covered route rejects stale input even when Word keeps focus', (
     tester,
@@ -162,10 +159,9 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.enter);
     await tester.sendKeyEvent(LogicalKeyboardKey.keyX, character: 'x');
     await tester.pump();
-    expect(
-      controller.document.paragraphs.map((paragraph) => paragraph.text),
-      ['Preserve this'],
-    );
+    expect(controller.document.paragraphs.map((paragraph) => paragraph.text), [
+      'Preserve this',
+    ]);
     expect(controller.contentRevision, revision);
 
     await _finishDialog(tester, closed);
@@ -175,10 +171,7 @@ void main() {
     // click, a focus change, or an explicit controller attachment.
     tester.testTextInput.enterText('Preserve this resumed');
     await tester.pump();
-    expect(
-      controller.document.paragraphs.single.text,
-      'Preserve this resumed',
-    );
+    expect(controller.document.paragraphs.single.text, 'Preserve this resumed');
   });
 
   testWidgets('controller replacement transfers the focused input guard', (
@@ -228,31 +221,32 @@ void main() {
     expect(second.document.paragraphs.single.text, 'Second document');
   });
 
-  testWidgets('unmounted editor rejects stale traffic and can be mounted again', (
-    tester,
-  ) async {
-    final controller = _controller('Reopen this');
-    final editorFocus = FocusNode(debugLabel: 'reusable word focus');
-    addTearDown(() async {
+  testWidgets(
+    'unmounted editor rejects stale traffic and can be mounted again',
+    (tester) async {
+      final controller = _controller('Reopen this');
+      final editorFocus = FocusNode(debugLabel: 'reusable word focus');
+      addTearDown(() async {
+        await tester.pumpWidget(const SizedBox.shrink());
+        controller.dispose();
+        editorFocus.dispose();
+      });
+
+      await tester.pumpWidget(_app(_editor(controller, editorFocus)));
+      await _focusEditor(tester, controller, editorFocus);
       await tester.pumpWidget(const SizedBox.shrink());
-      controller.dispose();
-      editorFocus.dispose();
-    });
+      expect(controller.input.isAttached, isFalse);
+      expect(controller.onRequestFocus, isNull);
+      _expectStaleInputRejected(controller);
+      expect(controller.document.paragraphs.single.text, 'Reopen this');
 
-    await tester.pumpWidget(_app(_editor(controller, editorFocus)));
-    await _focusEditor(tester, controller, editorFocus);
-    await tester.pumpWidget(const SizedBox.shrink());
-    expect(controller.input.isAttached, isFalse);
-    expect(controller.onRequestFocus, isNull);
-    _expectStaleInputRejected(controller);
-    expect(controller.document.paragraphs.single.text, 'Reopen this');
-
-    await tester.pumpWidget(_app(_editor(controller, editorFocus)));
-    await _focusEditor(tester, controller, editorFocus);
-    tester.testTextInput.enterText('Reopen this safely');
-    await tester.pump();
-    expect(controller.document.paragraphs.single.text, 'Reopen this safely');
-  });
+      await tester.pumpWidget(_app(_editor(controller, editorFocus)));
+      await _focusEditor(tester, controller, editorFocus);
+      tester.testTextInput.enterText('Reopen this safely');
+      await tester.pump();
+      expect(controller.document.paragraphs.single.text, 'Reopen this safely');
+    },
+  );
 
   testWidgets('focused viewing mode preserves navigation and rejects edits', (
     tester,
