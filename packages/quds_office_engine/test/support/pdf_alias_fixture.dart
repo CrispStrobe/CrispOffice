@@ -8,7 +8,18 @@ SfntFont aliasTestFont([String name = 'LiberationSans-Regular']) =>
     );
 
 // These are aliases of existing Latin outlines, not emoji/CJK coverage.
-SfntFont withSharedGlyphAliases(SfntFont source) => SfntFont(
+SfntFont withSharedGlyphAliases(SfntFont source) => fontWithCmap(source, {
+  0x41: source.glyphIdFor(0x41),
+  0x1f600: source.glyphIdFor(0x41),
+  0x20000: source.glyphIdFor(0x41),
+  0x5a: source.glyphIdFor(0x5a),
+});
+
+SfntFont fontWithCmap(
+  SfntFont source,
+  Map<int, int> mappings, {
+  bool zeroAdvance = false,
+}) => SfntFont(
   bytes: source.bytes,
   tables: source.tables,
   unitsPerEm: source.unitsPerEm,
@@ -25,14 +36,11 @@ SfntFont withSharedGlyphAliases(SfntFont source) => SfntFont(
   yMin: source.yMin,
   xMax: source.xMax,
   yMax: source.yMax,
-  advanceWidths: source.advanceWidths,
+  advanceWidths: zeroAdvance
+      ? List<int>.filled(source.advanceWidths.length, 0)
+      : source.advanceWidths,
   leftSideBearings: source.leftSideBearings,
   glyphOffsets: source.glyphOffsets,
-  cmap: CmapTable({
-    0x41: source.glyphIdFor(0x41),
-    0x1f600: source.glyphIdFor(0x41),
-    0x20000: source.glyphIdFor(0x41),
-    0x5a: source.glyphIdFor(0x5a),
-  }),
+  cmap: CmapTable(mappings),
   familyName: source.familyName,
 );

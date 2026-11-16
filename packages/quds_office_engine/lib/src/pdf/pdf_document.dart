@@ -210,17 +210,20 @@ class PdfDocument {
     final List<int> pageIds = <int>[for (final _ in pages) alloc()];
     final List<int> contentIds = <int>[for (final _ in pages) alloc()];
     final int helveticaId = alloc();
-    final List<({int fontId, int cidId, int descId, int fileId, int toUnicodeId})>
-        faceIds = <({int fontId, int cidId, int descId, int fileId, int toUnicodeId})>[
-      for (final _ in embed)
-        (
-          fontId: alloc(),
-          cidId: alloc(),
-          descId: alloc(),
-          fileId: alloc(),
-          toUnicodeId: alloc(),
-        ),
-    ];
+    final List<
+      ({int fontId, int cidId, int descId, int fileId, int toUnicodeId})
+    >
+    faceIds =
+        <({int fontId, int cidId, int descId, int fileId, int toUnicodeId})>[
+          for (final _ in embed)
+            (
+              fontId: alloc(),
+              cidId: alloc(),
+              descId: alloc(),
+              fileId: alloc(),
+              toUnicodeId: alloc(),
+            ),
+        ];
     int? metadataId;
     int? outputIntentId;
     int? outputProfileId;
@@ -286,7 +289,9 @@ class PdfDocument {
       );
       final mapping = cid.cidToGidMap;
       final mappingId = mapping == null ? null : alloc();
-      objects.add(_PdfObj(ids.fontId, cid.type0Dict(ids.cidId, ids.toUnicodeId)));
+      objects.add(
+        _PdfObj(ids.fontId, cid.type0Dict(ids.cidId, ids.toUnicodeId)),
+      );
       objects.add(
         _PdfObj(
           ids.cidId,
@@ -439,10 +444,7 @@ class PdfDocument {
         xos.write('/${page.images[j].name} ${pageImageIds[i][j]} 0 R');
       }
       final String xoRes = xos.isEmpty ? '' : '/XObject <<$xos>>';
-      final List<int> annotIds = <int>[
-        ...pageAnnotIds[i],
-        ...pageFieldIds[i],
-      ];
+      final List<int> annotIds = <int>[...pageAnnotIds[i], ...pageFieldIds[i]];
       final String annots = annotIds.isEmpty
           ? ''
           : '/Annots [${annotIds.map((int id) => '$id 0 R').join(' ')}]';
@@ -527,11 +529,7 @@ class PdfDocument {
     if (outputProfileId != null && outputIntentId != null) {
       // Minimal sRGB ICC stub referenced by OutputIntent (PDF/A-oriented).
       objects.add(
-        _PdfObj.stream(
-          outputProfileId,
-          utf8.encode('sRGB'),
-          extra: '/N 3',
-        ),
+        _PdfObj.stream(outputProfileId, utf8.encode('sRGB'), extra: '/N 3'),
       );
       objects.add(
         _PdfObj(
@@ -885,17 +883,13 @@ class _PdfObj {
       applyFlateFilter = false;
 
   /// stream API.
-  _PdfObj.stream(
-    this.id,
-    List<int> data, {
-    this.extra = '',
-    bool filter = true,
-  }) : dict = '',
-       stream = filter
-           ? PdfFlate.compress(data)
-           : (data is Uint8List ? data : Uint8List.fromList(data)),
-       applyFlateFilter = filter,
-       encoded = null;
+  _PdfObj.stream(this.id, List<int> data, {this.extra = '', bool filter = true})
+    : dict = '',
+      stream = filter
+          ? PdfFlate.compress(data)
+          : (data is Uint8List ? data : Uint8List.fromList(data)),
+      applyFlateFilter = filter,
+      encoded = null;
 
   /// rawStream API.
   _PdfObj.rawStream(this.id, List<int> data, {this.extra = ''})

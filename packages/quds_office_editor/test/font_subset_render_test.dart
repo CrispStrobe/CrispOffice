@@ -61,7 +61,10 @@ void main() {
     });
     final exported = _export(aliases, text);
     await _loadFont(actualFamily, exported.fontBytes);
-    await _loadFont(directFamily, FontSubsetter(aliases).subset(text.runes).bytes);
+    await _loadFont(
+      directFamily,
+      FontSubsetter(aliases).subset(text.runes).bytes,
+    );
     final actual = await _raster(text, actualFamily);
     final reference = await _raster(text, directFamily);
     _expectSamePainting(actual, reference);
@@ -71,16 +74,9 @@ void main() {
       Directory(_output).createSync(recursive: true);
       File('$_output/shared-glyph-aliases.pdf').writeAsBytesSync(exported.pdf);
       File('$_output/shared-glyph-aliases.json').writeAsStringSync(
-        '${const JsonEncoder.withIndent('  ').convert(<String, Object>{
-          'scope': 'Synthetic aliases of one bundled Latin outline; '
-              'PDF-reopened versus directly generated identical cmap. '
-              'No emoji/CJK coverage or original-font raster-parity claim.',
-          'source_code_points': _codePoints(text),
-          'extracted_code_points': _codePoints(exported.extractedText),
-          'width': actual.width,
-          'ink_pixels': actual.inkPixels,
-          'differing_pixels': _differentPixels(actual.rgba, reference.rgba),
-        })}\n',
+        '${const JsonEncoder.withIndent('  ').convert(<String, Object>{'scope': 'Synthetic aliases of one bundled Latin outline; '
+            'PDF-reopened versus directly generated identical cmap. '
+            'No emoji/CJK coverage or original-font raster-parity claim.', 'source_code_points': _codePoints(text), 'extracted_code_points': _codePoints(exported.extractedText), 'width': actual.width, 'ink_pixels': actual.inkPixels, 'differing_pixels': _differentPixels(actual.rgba, reference.rgba)})}\n',
       );
     }
   });
@@ -135,9 +131,8 @@ void main() {
 
       if (_output.isNotEmpty) {
         final output = Directory(_output)..createSync(recursive: true);
-        File(
-          '${output.path}/unicode-subset.pdf',
-        ).writeAsBytesSync(exported.pdf);
+        File('${output.path}/unicode-subset.pdf')
+            .writeAsBytesSync(exported.pdf);
         await _writeDiagnostic(output, actual, reference);
         final metrics = <String, Object>{
           'scope':

@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep TrueType glyph offsets aligned, retain/remap composite dependencies and
+  preserve font metrics, style and embedding metadata while recomputing subset
+  coverage. Reject malformed/cyclic glyph structures without recursive outline
+  expansion; preserve valid nested composites and their trailing instructions.
+
 - Preserve distinct Unicode aliases of a shared font glyph in Word, worksheet
   and presentation PDFs. Give each character its own CID, embed an explicit
   CIDToGIDMap and index PDF widths by CID. Low-level canvas callers can opt in

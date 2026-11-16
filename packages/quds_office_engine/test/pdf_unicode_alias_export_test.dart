@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 import 'support/pdf_alias_fixture.dart';
 
-const _output = String.fromEnvironment('QUDS_ALIAS_RENDER_OUTPUT');
+final _output = Platform.environment['QUDS_ALIAS_RENDER_OUTPUT'] ?? '';
 
 void main() {
   final source = aliasTestFont();
@@ -86,7 +86,47 @@ void main() {
         ),
       ],
     );
-    final file = PdfFile.open(OfficePdfExport.presentation(deck, font: aliases));
+    final file = PdfFile.open(
+      OfficePdfExport.presentation(deck, font: aliases),
+    );
     expect(PdfExtract.pageText(file, 0), contains(text));
   });
+
+  test('large repertoires split and reuse bounded PDF font resources', () {
+    // Supplementary private-use aliases avoid script/control semantics. Zero
+    // advances keep this synthetic capacity fixture on one layout line.
+    final points = [
+      for (var i = 0; i < 0xfffe; i++) 0xf0000 + i,
+      0x100000,
+      0x100001,
+    ];
+    final font = fontWithCmap(source, {
+      for (final cp in points) cp: source.glyphIdFor(0x41),
+    }, zeroAdvance: true);
+    final file = PdfFile.open(
+      OfficePdfExport.word(
+        WmlDocument.empty(
+          text: String.fromCharCodes([...points, points.first, points.last]),
+        ),
+        font: font,
+      ),
+    );
+    final resources = file.store.asDict(file.pageRec(0).dict['Resources'])!;
+    final fonts = file.store.asDict(resources['Font'])!;
+    final counts = <int>[];
+    for (final value in fonts.values.values) {
+      final type0 = file.store.asDict(value)!;
+      if (pdfCosName(type0['Subtype']) != 'Type0') continue;
+      final descendants =
+          file.store.deref(type0['DescendantFonts']) as PdfCosArray;
+      final cid = file.store.asDict(descendants.items.single)!;
+      final mapping = file.store.streamBytes(cid['CIDToGIDMap'])!;
+      counts.add(mapping.length ~/ 2 - 1);
+    }
+    counts.sort();
+    expect(counts, [
+      1,
+      0xffff,
+    ], reason: 'Previously emitted CIDs stay reusable');
+  }, timeout: const Timeout(Duration(minutes: 3)));
 }

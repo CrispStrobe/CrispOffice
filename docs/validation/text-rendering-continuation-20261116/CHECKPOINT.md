@@ -11,6 +11,14 @@ the pinned local Dart/Flutter runtime is being restored. At this checkpoint,
 new tests and static analysis have **not yet been run**. A final report and
 source-bound local receipts will supersede this pending-validation status.
 
+The subsequent structural checkpoint also preserves aligned TrueType glyph
+offsets, bounded composite processing, validation of malformed glyph records,
+and retained font metrics/style metadata with recomputed subset coverage. It
+includes the MIT FontTools notice for the numeric OS/2 range transcription.
+Independent review fixes reject incompatible CID/subset pairings and preserve
+simple-glyph validation; capacity tests exercise resource splitting and reuse.
+Formatting has run, but test/analyzer qualification is still pending here.
+
 The PDF work separates character codes from subset glyph IDs so two authored
 Unicode scalars sharing an outline keep independent extraction/search mappings.
 It adds a real CIDToGIDMap stream and CID-indexed widths, including a bounded

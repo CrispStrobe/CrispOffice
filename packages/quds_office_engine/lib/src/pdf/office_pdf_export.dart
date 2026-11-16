@@ -2283,7 +2283,8 @@ class _PageSink {
     }
     if (selected != null) {
       final face = selected.embedded;
-      final cid = face.encoding?.unicodeToCid[drawable] ??
+      final cid =
+          face.encoding?.unicodeToCid[drawable] ??
           face.subset.unicodeToNewGlyph[drawable] ??
           0;
       if (cid != 0) {

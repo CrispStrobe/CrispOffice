@@ -24,18 +24,19 @@ class PdfCidEncoding {
   /// The mapping owns its collections; subsequent subset-map edits cannot
   /// change the interpretation of character codes already emitted to PDF.
   factory PdfCidEncoding.fromSubset(FontSubset subset) {
-    final entries = subset.unicodeToNewGlyph.entries
-        .where(
-          (entry) =>
-              entry.key >= 0 &&
-              entry.key <= 0x10ffff &&
-              !(entry.key >= 0xd800 && entry.key <= 0xdfff) &&
-              entry.value > 0 &&
-              entry.value < subset.numGlyphs &&
-              entry.value <= 0xffff,
-        )
-        .toList()
-      ..sort((a, b) => a.key.compareTo(b.key));
+    final entries =
+        subset.unicodeToNewGlyph.entries
+            .where(
+              (entry) =>
+                  entry.key >= 0 &&
+                  entry.key <= 0x10ffff &&
+                  !(entry.key >= 0xd800 && entry.key <= 0xdfff) &&
+                  entry.value > 0 &&
+                  entry.value < subset.numGlyphs &&
+                  entry.value <= 0xffff,
+            )
+            .toList()
+          ..sort((a, b) => a.key.compareTo(b.key));
     if (entries.length > maxCharacters) {
       throw ArgumentError.value(
         entries.length,
@@ -144,8 +145,20 @@ class PdfCidFont {
     PdfCidEncoding? encoding,
   }) {
     final SfntFont parsed = SfntFont.parse(subset.bytes);
-    final glyphIds = encoding?.glyphIds ??
-        Iterable<int>.generate(parsed.numGlyphs);
+    if (encoding != null) {
+      for (final entry in encoding.cidToUnicode.entries) {
+        final gid = encoding.glyphIds[entry.key];
+        if (gid >= parsed.numGlyphs || parsed.glyphIdFor(entry.value) != gid) {
+          throw ArgumentError.value(
+            encoding,
+            'encoding',
+            'CID ${entry.key} does not match the embedded subset cmap',
+          );
+        }
+      }
+    }
+    final glyphIds =
+        encoding?.glyphIds ?? Iterable<int>.generate(parsed.numGlyphs);
     final List<int> widths = <int>[
       for (final gid in glyphIds)
         _toPdfWidth(parsed.advanceWidth(gid), parsed.unitsPerEm),
