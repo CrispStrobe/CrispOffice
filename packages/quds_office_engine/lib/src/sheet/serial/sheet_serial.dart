@@ -580,6 +580,21 @@ class SheetDeserializer {
                 : SmlConditionalKind.belowAverage;
         }
         if (kind == null) continue;
+        final dxfId = int.tryParse(reader.getAttribute('dxfId') ?? '');
+        final dxfFill =
+            dxfId != null &&
+                styles != null &&
+                dxfId >= 0 &&
+                dxfId < styles.dxfFills.length
+            ? styles.dxfFills[dxfId]
+            : '';
+        final dxfFont =
+            dxfId != null &&
+                styles != null &&
+                dxfId >= 0 &&
+                dxfId < styles.dxfFonts.length
+            ? styles.dxfFonts[dxfId]
+            : '';
         conditionalRule = SmlConditionalRule(
           range: conditionalRange,
           kind: kind,
@@ -587,7 +602,9 @@ class SheetDeserializer {
           rank: int.tryParse(reader.getAttribute('rank') ?? '') ?? 10,
           priority: int.tryParse(reader.getAttribute('priority') ?? ''),
           stopIfTrue: _readBoolean(reader.getAttribute('stopIfTrue')),
-          dxfId: int.tryParse(reader.getAttribute('dxfId') ?? ''),
+          fillRgb: dxfFill.isEmpty ? 'FFF2CC' : dxfFill,
+          fontRgb: dxfFont,
+          dxfId: dxfId,
         );
         sheet.conditionalFormats.add(conditionalRule);
       }
@@ -1282,6 +1299,10 @@ class SheetSerializer {
   static void _syncStyles(SmlWorkbook book, OpcPackage package) {
     var needsStyles = book.styles != null;
     for (final SmlWorksheet sheet in book.sheets) {
+      if (sheet.conditionalFormats.isNotEmpty) {
+        needsStyles = true;
+        break;
+      }
       for (final SmlCell cell in sheet.allCells) {
         if (cell.horizontalAlign != SmlHAlign.general ||
             cell.fillRgb.isNotEmpty ||

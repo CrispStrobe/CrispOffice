@@ -8,7 +8,7 @@ is maintained in the CrispCloud repository
 
 ## Current baseline
 
-- Sheet/ODS cohort: 512 tests.
+- Sheet/ODS cohort: 514 tests.
 - Last clean full engine run: 2,205 tests. Two unrelated CLI
   bookmark/content-control tests currently fail on main.
 - Live ODS → XLSX fidelity against LibreOffice: 0.9981 on the measured BOM
@@ -34,10 +34,11 @@ BIFF12 through the BIFF8 reader; the record formats are unrelated.
 ### 2. ODS conditional-format breadth
 
 Supported: numeric comparisons, between/not-between, contains-text,
-begins/ends-with, duplicate, generated dxf fill/font.
+begins/ends-with, duplicate, top/bottom ranks, top/bottom percentages and
+above/below average, with generated dxf fill/font.
 
-Not supported: expression rules, top/bottom rules, color scales, data bars,
-icon sets, date/time conditions, and arbitrary text predicates. These need new
+Not supported: expression rules, color scales, data bars, icon sets, date/time
+conditions, and arbitrary text predicates. These need new
 model kinds or native ODS rule preservation.
 
 ### 3. ODS validations
