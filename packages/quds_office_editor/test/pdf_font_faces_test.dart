@@ -451,8 +451,13 @@ Future<void> _ensure(Uint8List bytes) {
   return completion.future.timeout(const Duration(seconds: 10));
 }
 
-SfntFont _font(String name) =>
-    SfntFont.parse(File('fonts/$name.ttf').readAsBytesSync());
+SfntFont _font(String name) {
+  final local = File('fonts/$name.ttf');
+  final font = local.existsSync()
+      ? local
+      : File('packages/quds_office_editor/fonts/$name.ttf');
+  return SfntFont.parse(font.readAsBytesSync());
+}
 
 int _oldKey(Uint8List bytes) => Object.hash(
   bytes.length,
