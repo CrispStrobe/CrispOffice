@@ -1,0 +1,402 @@
+{
+  "actual_flutter_runtime": {
+    "channel": "stable",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "flutterRoot": "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter",
+    "flutterVersion": "3.47.8",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkVersion": "3.47.8",
+    "repositoryUrl": "https://github.com/flutter/flutter.git"
+  },
+  "command_results": {
+    "dart-version": "passed",
+    "editor-analyze": "passed",
+    "editor-ime-reattachment": "passed",
+    "editor-tests": "passed",
+    "engine-analyze": "passed",
+    "example-analyze": "passed",
+    "example-web-build": "passed",
+    "flutter-version": "passed"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/flutter",
+        "--version",
+        "--machine"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite",
+      "elapsed_seconds": 1.474503129000368,
+      "ended": "2026-11-16T15:14:57.790962+00:00",
+      "exit_code": 0,
+      "label": "flutter-version",
+      "log": "flutter-version.log",
+      "log_sha256": "d0feeeb8349782295fc35c346fa640b0b997aaeb432fc9927dbf96941c00abd8",
+      "pid": 2207,
+      "started": "2026-11-16T15:14:56.316452+00:00",
+      "status": "passed",
+      "timed_out": false,
+      "timeout_seconds": 60
+    },
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite",
+      "elapsed_seconds": 0.016474116000608774,
+      "ended": "2026-11-16T15:14:57.809587+00:00",
+      "exit_code": 0,
+      "label": "dart-version",
+      "log": "dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "pid": 2234,
+      "started": "2026-11-16T15:14:57.793102+00:00",
+      "status": "passed",
+      "timed_out": false,
+      "timeout_seconds": 30
+    },
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib",
+        "test",
+        "tool"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_engine",
+      "elapsed_seconds": 3.4756353390002914,
+      "ended": "2026-11-16T15:15:01.285668+00:00",
+      "exit_code": 0,
+      "label": "engine-analyze",
+      "log": "engine-analyze.log",
+      "log_sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65",
+      "pid": 2235,
+      "started": "2026-11-16T15:14:57.810044+00:00",
+      "status": "passed",
+      "timed_out": false,
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib",
+        "test/word_proofing_session_test.dart",
+        "test/word_proofing_dialog_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_proofing_navigation_test.dart",
+        "test/word_input_focus_test.dart",
+        "test/word_hyphenation_paint_test.dart",
+        "test/word_hyphenation_source_presentation_test.dart",
+        "test/word_hyphenation_resume_test.dart",
+        "test/word_hyphenation_caret_test.dart",
+        "test/platform_spelling_provider_test.dart",
+        "test/word_find_replace_history_test.dart",
+        "test/word_content_control_history_test.dart",
+        "test/word_protection_history_test.dart",
+        "test/word_operation_history_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_selection_paint_test.dart",
+        "test/editor_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/content_revision_test.dart",
+        "test/word_zotero_backoff_session_test.dart",
+        "test/word_zotero_dialog_scaling_test.dart",
+        "test/word_zotero_source_identity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_editor",
+      "elapsed_seconds": 30.33524524799941,
+      "ended": "2026-11-16T15:15:31.627264+00:00",
+      "exit_code": 0,
+      "label": "editor-analyze",
+      "log": "editor-analyze.log",
+      "log_sha256": "baa4db96add266c2efb266c2a6a1974d799ab2e79e74a9665abd9012ddce608c",
+      "pid": 2256,
+      "started": "2026-11-16T15:15:01.291999+00:00",
+      "status": "passed",
+      "timed_out": false,
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_editor/example",
+      "elapsed_seconds": 17.66384827500042,
+      "ended": "2026-11-16T15:15:49.291944+00:00",
+      "exit_code": 0,
+      "label": "example-analyze",
+      "log": "example-analyze.log",
+      "log_sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed",
+      "pid": 2322,
+      "started": "2026-11-16T15:15:31.628088+00:00",
+      "status": "passed",
+      "timed_out": false,
+      "timeout_seconds": 180
+    },
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=2",
+        "--reporter=expanded",
+        "test/word_proofing_session_test.dart",
+        "test/word_proofing_dialog_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_proofing_navigation_test.dart",
+        "test/word_input_focus_test.dart",
+        "test/word_hyphenation_paint_test.dart",
+        "test/word_hyphenation_source_presentation_test.dart",
+        "test/word_hyphenation_resume_test.dart",
+        "test/word_hyphenation_caret_test.dart",
+        "test/platform_spelling_provider_test.dart",
+        "test/word_find_replace_history_test.dart",
+        "test/word_content_control_history_test.dart",
+        "test/word_protection_history_test.dart",
+        "test/word_operation_history_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_selection_paint_test.dart",
+        "test/editor_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/content_revision_test.dart",
+        "test/word_zotero_backoff_session_test.dart",
+        "test/word_zotero_dialog_scaling_test.dart",
+        "test/word_zotero_source_identity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_editor",
+      "elapsed_seconds": 90.9467787550002,
+      "ended": "2026-11-16T15:17:20.240063+00:00",
+      "exit_code": 0,
+      "label": "editor-tests",
+      "log": "editor-tests.log",
+      "log_sha256": "6de51a069f9739203b41658cb35232b4bb03ba6abc899202846506333bc766d4",
+      "pid": 2361,
+      "started": "2026-11-16T15:15:49.293276+00:00",
+      "status": "passed",
+      "test_summary": {
+        "complete_success_marker": true,
+        "counts_kind": "final reported test summary",
+        "failed": 0,
+        "passed": 294,
+        "skipped": 0
+      },
+      "timed_out": false,
+      "timeout_seconds": 900
+    },
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=expanded",
+        "test/embed_test.dart",
+        "--plain-name",
+        "tapping the canvas reattaches IME after another client steals it"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_editor",
+      "elapsed_seconds": 13.268470289000106,
+      "ended": "2026-11-16T15:17:33.510746+00:00",
+      "exit_code": 0,
+      "label": "editor-ime-reattachment",
+      "log": "editor-ime-reattachment.log",
+      "log_sha256": "e72ae07684297b519d1a1af50c71b463730870dbb30e7da521417891fac663ae",
+      "pid": 2710,
+      "started": "2026-11-16T15:17:20.242267+00:00",
+      "status": "passed",
+      "test_summary": {
+        "complete_success_marker": true,
+        "counts_kind": "final reported test summary",
+        "failed": 0,
+        "passed": 1,
+        "skipped": 0
+      },
+      "timed_out": false,
+      "timeout_seconds": 240
+    },
+    {
+      "argv": [
+        "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter/bin/flutter",
+        "build",
+        "web",
+        "--release",
+        "--no-pub",
+        "--no-wasm-dry-run"
+      ],
+      "cwd": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_editor/example",
+      "elapsed_seconds": 305.9997489819998,
+      "ended": "2026-11-16T15:22:39.514522+00:00",
+      "exit_code": 0,
+      "label": "example-web-build",
+      "log": "example-web-build.log",
+      "log_sha256": "edce3a4aa388785deecb4a67a6e81cb6afed2f47c19386e20d5a25608fec4f80",
+      "pid": 2764,
+      "started": "2026-11-16T15:17:33.515090+00:00",
+      "status": "passed",
+      "timed_out": false,
+      "timeout_seconds": 900
+    }
+  ],
+  "editor_test_files": [
+    "test/word_proofing_session_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_correction_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_input_focus_test.dart",
+    "test/word_hyphenation_paint_test.dart",
+    "test/word_hyphenation_source_presentation_test.dart",
+    "test/word_hyphenation_resume_test.dart",
+    "test/word_hyphenation_caret_test.dart",
+    "test/platform_spelling_provider_test.dart",
+    "test/word_find_replace_history_test.dart",
+    "test/word_content_control_history_test.dart",
+    "test/word_protection_history_test.dart",
+    "test/word_operation_history_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_selection_paint_test.dart",
+    "test/editor_test.dart",
+    "test/word_small_caps_test.dart",
+    "test/content_revision_test.dart",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_source_identity_test.dart"
+  ],
+  "ended": "2026-11-16T15:22:42.118676+00:00",
+  "environment": {
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/72fe03e29337/runtime/flutter-validation/flutter",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/72fe03e29337/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/72fe03e29337/runtime/tmp"
+  },
+  "errors": [],
+  "expected_source_commit": "3bd4657b1c1cccfad8adbcf5928e30b90e4a1aaa",
+  "integration_contract_sha256": "5c5d3b7093d409363c10c09e9104cd92746375496def7e88b8ccb74eb4d15d6e",
+  "lock_sha256_after": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "lock_sha256_before": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "lock_unchanged": true,
+  "package_config_sha256_after": "96752428309e3347b06a7b73cf85f0caaa381a537a746455138af9183aa9ab06",
+  "package_config_sha256_before": "96752428309e3347b06a7b73cf85f0caaa381a537a746455138af9183aa9ab06",
+  "package_config_unchanged": true,
+  "pinned_runtime_identity_matches": true,
+  "preflight": "passed",
+  "repo": "/workspace/scratch/72fe03e29337/quds_office_suite",
+  "runner_sha256": "928c90f7c4b3bcd7daa3c9231d8c040072c8affec0bfa84d9836a8b712e5e623",
+  "runtime_after": {
+    "entries": 16,
+    "path": "runtime-after.json.gz",
+    "sha256": "6e9b015fc0cebc30563a9d499b209e0887fd7f8ad4960e0d584ba909adf295e0",
+    "uncompressed_sha256": "eb1532fb95c036b238b29154e58f83f9c24ace68877eb804ac9282e8e9c8b2e7"
+  },
+  "runtime_before": {
+    "entries": 16,
+    "path": "runtime-before.json.gz",
+    "sha256": "6e9b015fc0cebc30563a9d499b209e0887fd7f8ad4960e0d584ba909adf295e0",
+    "uncompressed_sha256": "eb1532fb95c036b238b29154e58f83f9c24ace68877eb804ac9282e8e9c8b2e7"
+  },
+  "runtime_differences": [],
+  "runtime_unchanged": true,
+  "schema_version": 1,
+  "scope": {
+    "browser_execution": "Not exercised by a successful web compilation.",
+    "editor": "Library and exactly the 23 committed selected test files.",
+    "engine": "Full lib, test and tool strict analysis under the real workspace.",
+    "harper_runtime_assets": "Not installed or validated by this runner.",
+    "host": "Example library analysis and release web compilation.",
+    "ime": "Separate embed_test canvas IME reattachment regression."
+  },
+  "source_after": {
+    "entries": 2032,
+    "path": "source-after.json.gz",
+    "sha256": "6f736cc0bf788ce6941b4df6f1a072f3e14145a536c01b504efd9629e14c84eb",
+    "uncompressed_sha256": "a11b729c4715567f72cc40e6415411a326f6615db2483acbaa66a531148cc8e9"
+  },
+  "source_before": {
+    "entries": 2032,
+    "path": "source-before.json.gz",
+    "sha256": "6f736cc0bf788ce6941b4df6f1a072f3e14145a536c01b504efd9629e14c84eb",
+    "uncompressed_sha256": "a11b729c4715567f72cc40e6415411a326f6615db2483acbaa66a531148cc8e9"
+  },
+  "source_commit": "3bd4657b1c1cccfad8adbcf5928e30b90e4a1aaa",
+  "source_commit_after": "3bd4657b1c1cccfad8adbcf5928e30b90e4a1aaa",
+  "source_commit_unchanged": true,
+  "source_differences": [],
+  "source_tree": "2b283e0165e1a2618fd4693ae2e31b9e3275a22f",
+  "source_unchanged": true,
+  "started": "2026-11-16T15:14:55.113189+00:00",
+  "status": "passed",
+  "test_summaries": {
+    "editor-ime-reattachment": {
+      "complete_success_marker": true,
+      "counts_kind": "final reported test summary",
+      "failed": 0,
+      "passed": 1,
+      "skipped": 0
+    },
+    "editor-tests": {
+      "complete_success_marker": true,
+      "counts_kind": "final reported test summary",
+      "failed": 0,
+      "passed": 294,
+      "skipped": 0
+    }
+  },
+  "web_artifact_bytes": 59800207,
+  "web_artifact_count": 117,
+  "web_artifact_interpretation": "Successful build output",
+  "web_artifacts_after": {
+    "entries": 117,
+    "path": "web-artifacts-after.json.gz",
+    "sha256": "2ee03d331c868d1012dae314e6d6a6dfad5d870f7befa7a78f210c54fe5c1234",
+    "uncompressed_sha256": "ce5e4fd6afa7929e7e6108bca1e9a5d68976ded2c544da4d0fb71a32a8a14561"
+  },
+  "web_artifacts_before": {
+    "entries": 21,
+    "path": "web-artifacts-before.json.gz",
+    "sha256": "5d9c39ff80dd1d1d8d192bde9bc0e125be8dd78b286d0e72cf392d45a3d26428",
+    "uncompressed_sha256": "d6a8a1792bbcd9e5310539a9202d339425d312411c7d161c1acaa8f16266f19c"
+  },
+  "workspace_package_count": 108,
+  "workspace_packages": {
+    "legacy_doc_parser": {
+      "language_version": "3.8",
+      "root": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/legacy_doc_parser"
+    },
+    "quds_office_editor": {
+      "language_version": "3.12",
+      "root": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_editor"
+    },
+    "quds_office_engine": {
+      "language_version": "3.12",
+      "root": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_engine"
+    },
+    "quds_office_studio": {
+      "language_version": "3.12",
+      "root": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_office_editor/example"
+    },
+    "quds_proofing_harper": {
+      "language_version": "3.12",
+      "root": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_proofing_harper"
+    },
+    "quds_reports": {
+      "language_version": "3.12",
+      "root": "/workspace/scratch/72fe03e29337/quds_office_suite/packages/quds_reports"
+    }
+  }
+}
