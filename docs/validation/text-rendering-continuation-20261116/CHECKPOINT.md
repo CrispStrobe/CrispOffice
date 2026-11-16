@@ -39,10 +39,27 @@ test is preserved. See `resume/complete-patch-equivalence.json`, the pinned
 
 ## Remaining local qualification at this checkpoint
 
-The real Flutter editor cohort and the newer incoming ODS changes remain
-pending. The recovered evidence has been independently audited and the cheap
-external PDF check repeated successfully. Final receipts and the report will
-state exact source bindings, test totals, and any remaining limitations.
+The first real Flutter editor cohort has completed: all 66 tests, strict
+changed-file analysis and formatting passed, with 462 input hashes unchanged.
+Its source-bound receipts and rendered fixtures are preserved in `editor/`.
+The verified Flutter 3.47.8 / Dart 3.13.7 runtime provenance is in `runtime/`.
+
+The newly combined ODS source/test changes are being qualified with 19 engine
+and eight editor test files. These overlapping final cohorts supersede the
+initial qualification for the combined source; their counts are not added to
+the earlier totals. Final receipts and the report state exact source bindings,
+results and remaining limitations.
+
+The independent merge-tree review in `incoming-merge-review.json` also verifies
+that all nine incoming heads yield the same source tree as main-only integration,
+`754fd323403c79e822f33421d132cdc9c022b0e4`, after retaining the combined main
+contents in four documentation/test conflicts. It found no production conflict.
+Both this review and the independently saved `resume/` audit are retained.
+
+A concurrent branch update published this integration as `3a8306e` while a
+separately prepared checkpoint `0634236` contained the same production changes
+plus runtime/editor evidence. Their reconciliation preserves both commit
+histories and audit sets; it introduces no additional production change.
 
 Shared editor/headless shaping remains a separate future integration. The
 current export changes fix character-code/glyph-ID aliasing and subset

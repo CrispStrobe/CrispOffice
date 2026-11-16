@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://storage.googleapis.com/flutter_infra_release/flutter/cf636b1dfb818dd6a3ff16e390e93b1a036969c8/dart-sdk-linux-x64.zip",
+    "bytes": 238851283,
+    "sha256": "b52a1d890575d6c286079bd51650dc77f90c2dddfdcb073a052ae06a5fdb276d",
+    "expected_md5_base64_from_official_response": "raqG9jdwyBB7SrXYTGPmvw==",
+    "actual_md5_base64": "raqG9jdwyBB7SrXYTGPmvw==",
+    "official_md5_matched": true,
+    "zip_entries_crc_verified_during_installation": true
+  },
+  {
+    "url": "https://storage.googleapis.com/flutter_infra_release/flutter/cf636b1dfb818dd6a3ff16e390e93b1a036969c8/linux-x64/artifacts.zip",
+    "bytes": 29277022,
+    "sha256": "7cfd5a97e514ee6bde9ba1010d62954289115f662ac2042af799641e515083af",
+    "expected_md5_base64_from_official_response": "LJA3a1tQ3uZ4+3kfgC2aQQ==",
+    "actual_md5_base64": "LJA3a1tQ3uZ4+3kfgC2aQQ==",
+    "official_md5_matched": true,
+    "zip_entries_crc_verified_during_installation": true
+  }
+]
