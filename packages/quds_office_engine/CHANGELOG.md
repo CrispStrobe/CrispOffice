@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve distinct Unicode aliases of a shared font glyph in Word, worksheet
+  and presentation PDFs. Give each character its own CID, embed an explicit
+  CIDToGIDMap and index PDF widths by CID. Low-level canvas callers can opt in
+  with `PdfCidEncoding`; existing identity-encoded calls remain compatible.
+
 - Preserve supplementary Unicode in embedded TrueType subsets with a complete
   format 12 cmap; correct format 4 lengths and avoid overflowing their 16-bit
   length field for large sparse mappings. Ignore invalid scalar requests.

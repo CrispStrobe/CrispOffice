@@ -21,6 +21,7 @@ class PdfEmbeddedFace {
     required this.subset,
     required this.source,
     required this.resourceName,
+    this.encoding,
   });
 
   /// subset API.
@@ -31,6 +32,10 @@ class PdfEmbeddedFace {
 
   /// PDF resource name such as `F1` or `F3`.
   final String resourceName;
+
+  /// Optional character encoding. When present, canvas text must use its CIDs.
+  /// Null preserves the low-level writer's legacy CID-equals-glyph contract.
+  final PdfCidEncoding? encoding;
 }
 
 /// Interactive AcroForm field written by `pdf_widgets` when `acroForm: true`.
@@ -274,9 +279,23 @@ class PdfDocument {
     for (int i = 0; i < embed.length; i++) {
       final PdfEmbeddedFace face = embed[i];
       final ids = faceIds[i];
-      final PdfCidFont cid = PdfCidFont.build(face.subset, face.source);
+      final PdfCidFont cid = PdfCidFont.build(
+        face.subset,
+        face.source,
+        encoding: face.encoding,
+      );
+      final mapping = cid.cidToGidMap;
+      final mappingId = mapping == null ? null : alloc();
       objects.add(_PdfObj(ids.fontId, cid.type0Dict(ids.cidId, ids.toUnicodeId)));
-      objects.add(_PdfObj(ids.cidId, cid.cidFontDict(ids.descId)));
+      objects.add(
+        _PdfObj(
+          ids.cidId,
+          cid.cidFontDict(ids.descId, cidToGidMapId: mappingId),
+        ),
+      );
+      if (mapping != null) {
+        objects.add(_PdfObj.stream(mappingId!, mapping));
+      }
       objects.add(_PdfObj(ids.descId, cid.descriptorDict(ids.fileId)));
       objects.add(
         _PdfObj.stream(
