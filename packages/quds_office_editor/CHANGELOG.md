@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Identify embedded PDF fonts by their full bytes instead of sampled positions,
+  keeping owned immutable snapshots and bounded content-deduplication storage.
+  Reuse font associations during painting without repeatedly hashing a face.
+- Notify every waiting PDF canvas/thumbnail when a shared font finishes loading,
+  keep failures terminal for the buffer, and clean up listeners on disposal.
+  Repaint on reattachment so moved retained layers cannot freeze fallback text.
+
 - Label invisible proofing replacements, including space insertions. Restore
   ignored words in their original language, rules and ignored occurrences
   from the review dialog without changing source text or undo history.

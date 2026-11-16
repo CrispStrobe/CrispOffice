@@ -55,6 +55,34 @@ reopened `A😀𠀀Z` as `Aὠ Z`; the fixed export preserves the authored tex
 source hashes and the before/after commands. Compressed raw test events are
 preserved beside it. Loader events are excluded from the test counts.
 
+## Embedded PDF font identity and readiness
+
+The PDF viewer previously keyed faces by byte length and four sampled bytes.
+Different valid fonts can share all of those values. The first loaded font
+could therefore supply the wrong outlines for a later PDF. The cache also
+discarded completion callbacks from additional viewers sharing a pending load.
+
+Font identity now uses a hash of the complete file plus byte-for-byte equality.
+The loader receives an owned immutable snapshot. A weak per-buffer association
+makes later paint and readiness checks constant-time; an already associated
+buffer keeps that snapshot, and callers supply a new buffer for changed bytes.
+Content deduplication retains at most 128 entries and 16 MiB. This is a bound
+on retained Dart snapshots, not on pending loads or Flutter's native font
+registry, which has no public unloading API.
+
+Distinct pending consumers are notified once on success or failure. One callback
+failure does not corrupt the loaded-font state or prevent other callbacks.
+Canvases and thumbnails use stable callbacks, deduplicate repeated buffers,
+remove subscriptions on detach/disposal, and repaint on attach. The attach
+step is essential when Flutter reuses a retained layer after GlobalKey
+reparenting, or a font completes while the renderer is detached.
+
+The new cache tests load two real bundled-font subsets with identical old
+sampled keys and verify distinct families, advances and raster output. They
+also test independent repaint boundaries, failure handling, snapshot ownership,
+eviction, disposal and reattachment. Independent review reproduced the retained
+layer bug before the attach correction and passed the same reproduction after it.
+
 ## Local checks recorded so far
 
 | Check | Result | Evidence |
@@ -63,6 +91,7 @@ preserved beside it. Loader events are excluded from the test counts.
 | Unicode/subset initial fix | 7 passed; no skips | `unicode-after-initial.events.jsonl.gz` |
 | Integrated controls/contextual wrapping | 72 passed; no skips | `controls-contextual-summary.json` |
 | Changed engine files, strict analysis | Clean | Initial local analysis; final receipt follows |
+| Embedded PDF font identity/lifecycle | 13 passed; no skips | Initial local editor run; final receipt follows |
 
 These are separate scoped checks, not a claim that the whole repository has
 been retested. Subsequent rendering/cache checks and the final source-bound
