@@ -1,0 +1,9 @@
+00:00 +0: loading /workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: modal text input retains ownership over stale Word IME traffic
+00:12 +1: covered route rejects stale input even when Word keeps focus
+00:12 +2: controller replacement transfers the focused input guard
+00:13 +3: unmounted editor rejects stale traffic and can be mounted again
+00:13 +4: focused selecting mode preserves navigation and rejects edits
+00:13 +5: (tearDownAll)
+00:13 +5: All tests passed!

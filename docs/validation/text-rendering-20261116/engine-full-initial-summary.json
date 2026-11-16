@@ -1,0 +1,844 @@
+{
+  "git_head_at_start": "48123bf78dd0c23fe17e675306e047f1c993060b",
+  "started_utc": "2026-11-16T15:03:34.709486+00:00",
+  "finished_utc": "2026-11-16T15:16:57.368300+00:00",
+  "command": [
+    "dart",
+    "test",
+    "--concurrency=1",
+    "--reporter",
+    "expanded",
+    "--file-reporter",
+    "json:/workspace/scratch/b8abe5ff6280/toolchain-tmp/engine-full-events.jsonl",
+    "test"
+  ],
+  "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine",
+  "test_file_count": 185,
+  "test_files": [
+    "test/arabic_pdf_export_test.dart",
+    "test/bidi_test.dart",
+    "test/bookmark_fidelity_test.dart",
+    "test/bounded_cfb_reader_test.dart",
+    "test/builders_io_test.dart",
+    "test/cfbf_embedded_test.dart",
+    "test/comment_thread_fidelity_test.dart",
+    "test/content_control_fidelity_test.dart",
+    "test/csv_sheet_import_test.dart",
+    "test/deflate_test.dart",
+    "test/drawing_line_style_test.dart",
+    "test/fidelity_waves_test.dart",
+    "test/fonts_test.dart",
+    "test/hardening_test.dart",
+    "test/header_footer_sdt_test.dart",
+    "test/inline_field_fidelity_test.dart",
+    "test/legacy_sheet_reader_test.dart",
+    "test/legacy_word_conversion_test.dart",
+    "test/legacy_word_document_test.dart",
+    "test/line_breaker_measure_line_test.dart",
+    "test/list_restart_fidelity_test.dart",
+    "test/literary_arabic_sample_test.dart",
+    "test/local_spreadsheet_corpus_test.dart",
+    "test/native_presentation_test.dart",
+    "test/native_spreadsheet_test.dart",
+    "test/note_chrome_fidelity_test.dart",
+    "test/note_edit_test.dart",
+    "test/note_marker_fidelity_test.dart",
+    "test/note_marker_legacy_fidelity_test.dart",
+    "test/note_marker_merge_test.dart",
+    "test/note_separator_fidelity_test.dart",
+    "test/numbering_collision_test.dart",
+    "test/ods_sheet_reader_test.dart",
+    "test/office_crypto_test.dart",
+    "test/office_features_test.dart",
+    "test/office_fidelity_oracle_test.dart",
+    "test/office_isolate_open_test.dart",
+    "test/office_isolate_save_test.dart",
+    "test/office_named_fonts_test.dart",
+    "test/office_package_parts_test.dart",
+    "test/office_pdf_export_test.dart",
+    "test/office_repair_test.dart",
+    "test/office_search_fidelity_test.dart",
+    "test/office_signed_package_guard_test.dart",
+    "test/office_steps_test.dart",
+    "test/omml_test.dart",
+    "test/opaque_word_test.dart",
+    "test/opc_archive_test.dart",
+    "test/opc_word_kind_test.dart",
+    "test/pdf_file_test.dart",
+    "test/pdf_templates_test.dart",
+    "test/pdf_to_office_test.dart",
+    "test/pdf_toolbox_test.dart",
+    "test/pdf_widgets_catalog_test.dart",
+    "test/pdf_widgets_test.dart",
+    "test/phase_features_test.dart",
+    "test/proofing/german_spelling_test.dart",
+    "test/proofing/german_writing_rules_test.dart",
+    "test/proofing/office_proofing_test.dart",
+    "test/proofing_hyphenation_test.dart",
+    "test/report_engine_test.dart",
+    "test/rich_note_test.dart",
+    "test/scripted_transitions_test.dart",
+    "test/scripted_workflows_test.dart",
+    "test/sheet_authored_number_format_test.dart",
+    "test/sheet_cell_state_preservation_test.dart",
+    "test/sheet_comments_namespace_test.dart",
+    "test/sheet_comments_schema_test.dart",
+    "test/sheet_explicit_style_fidelity_test.dart",
+    "test/sheet_fill_fidelity_test.dart",
+    "test/sheet_formula_cache_fidelity_test.dart",
+    "test/sheet_formula_dependency_cache_test.dart",
+    "test/sheet_formula_test.dart",
+    "test/sheet_import_fidelity_test.dart",
+    "test/sheet_macro_preservation_test.dart",
+    "test/sheet_nav_test.dart",
+    "test/sheet_normal_font_metrics_test.dart",
+    "test/sheet_qualified_name_error_test.dart",
+    "test/sheet_qualified_names_test.dart",
+    "test/sheet_rename_adversarial_test.dart",
+    "test/sheet_rename_fidelity_test.dart",
+    "test/sheet_save_cache_and_freeze_test.dart",
+    "test/sheet_schema_fidelity_test.dart",
+    "test/sheet_style_namespace_fidelity_test.dart",
+    "test/sheet_time_number_format_test.dart",
+    "test/sheet_wrap_text_fidelity_test.dart",
+    "test/slide_arrange_fidelity_test.dart",
+    "test/slide_import_fidelity_test.dart",
+    "test/slide_section_fidelity_test.dart",
+    "test/slide_test.dart",
+    "test/slide_text_fidelity_test.dart",
+    "test/sml_styles_date_test.dart",
+    "test/story_media_fidelity_test.dart",
+    "test/style_cascade_test.dart",
+    "test/styleless_import_fidelity_test.dart",
+    "test/table_border_fidelity_test.dart",
+    "test/table_grid_steps_test.dart",
+    "test/toolkit_builders_test.dart",
+    "test/variable_line_breaker_test.dart",
+    "test/visual_test.dart",
+    "test/wave4_platform_test.dart",
+    "test/wml_run_edit_test.dart",
+    "test/word_altchunk_fidelity_test.dart",
+    "test/word_auxiliary_content_control_test.dart",
+    "test/word_bibliography_fidelity_test.dart",
+    "test/word_block_bookmark_import_test.dart",
+    "test/word_bookmark_copy_test.dart",
+    "test/word_bookmark_fidelity_test.dart",
+    "test/word_comment_proofing_styles_test.dart",
+    "test/word_comment_test.dart",
+    "test/word_compatibility_fidelity_test.dart",
+    "test/word_contained_text_wrap_test.dart",
+    "test/word_content_control_fidelity_test.dart",
+    "test/word_edit_integrity_test.dart",
+    "test/word_fidelity_test.dart",
+    "test/word_field_span_test.dart",
+    "test/word_find_replace_atomic_test.dart",
+    "test/word_footnote_reference_test.dart",
+    "test/word_frame_wrap_test.dart",
+    "test/word_heading_apply_test.dart",
+    "test/word_import_tolerance_test.dart",
+    "test/word_inline_picture_test.dart",
+    "test/word_layout_test.dart",
+    "test/word_media_dedupe_test.dart",
+    "test/word_native_presentation_test.dart",
+    "test/word_note_bookmark_edit_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_note_script_break_test.dart",
+    "test/word_package_preservation_test.dart",
+    "test/word_part_routing_test.dart",
+    "test/word_pdf_test.dart",
+    "test/word_picture_distance_fidelity_test.dart",
+    "test/word_preserved_header_test.dart",
+    "test/word_protection_mode_test.dart",
+    "test/word_referenced_styles_and_breaks_test.dart",
+    "test/word_revision_scaling_test.dart",
+    "test/word_revision_story_test.dart",
+    "test/word_revision_validation_test.dart",
+    "test/word_run_measure_boundaries_test.dart",
+    "test/word_run_measure_test.dart",
+    "test/word_section_clone_fidelity_test.dart",
+    "test/word_shape_without_textbox_test.dart",
+    "test/word_small_caps_test.dart",
+    "test/word_step_atomicity_test.dart",
+    "test/word_steps_vocabulary_test.dart",
+    "test/word_structure_integrity_test.dart",
+    "test/word_structure_steps_test.dart",
+    "test/word_style_introduction_test.dart",
+    "test/word_styles_layout_test.dart",
+    "test/word_symbol_char_test.dart",
+    "test/word_table_direction_test.dart",
+    "test/word_table_grid_addressing_test.dart",
+    "test/word_table_nested_layout_test.dart",
+    "test/word_table_picture_pagination_test.dart",
+    "test/word_table_tall_frame_layout_test.dart",
+    "test/word_table_tall_toc_layout_test.dart",
+    "test/word_table_test.dart",
+    "test/word_textbox_nesting_test.dart",
+    "test/word_toc_test.dart",
+    "test/word_tree_test.dart",
+    "test/word_vml_pict_test.dart",
+    "test/word_zotero_bibliography_layout_test.dart",
+    "test/word_zotero_citing_test.dart",
+    "test/word_zotero_document_data_test.dart",
+    "test/word_zotero_formatted_bibliography_test.dart",
+    "test/word_zotero_preference_flow_test.dart",
+    "test/word_zotero_rich_edit_test.dart",
+    "test/word_zotero_scaling_test.dart",
+    "test/word_zotero_simple_field_test.dart",
+    "test/word_zotero_source_identity_test.dart",
+    "test/word_zotero_style_preferences_review_test.dart",
+    "test/word_zotero_test.dart",
+    "test/xml_namespace_capture_test.dart",
+    "test/xml_reader_test.dart",
+    "test/xml_sanitize_test.dart",
+    "test/xml_whitespace_fidelity_test.dart",
+    "test/zip_bounded_read_test.dart",
+    "test/zotero_backoff_state_test.dart",
+    "test/zotero_citing_test.dart",
+    "test/zotero_client_test.dart",
+    "test/zotero_formatted_text_test.dart",
+    "test/zotero_identity_client_test.dart",
+    "test/zotero_metadata_batch_test.dart",
+    "test/zotero_paragraph_runs_test.dart",
+    "test/zotero_saved_search_test.dart"
+  ],
+  "input_file_count": 740,
+  "changed_inputs": [],
+  "exit_code": 1,
+  "runner_done": {
+    "success": false,
+    "type": "done",
+    "time": 792454
+  },
+  "distinct_visible_tests": 2490,
+  "counts": {
+    "success": 2481,
+    "failure": 7,
+    "skipped": 1,
+    "error": 1
+  },
+  "failures": [
+    {
+      "name": "contextual advances affect wrapping before paint fitting",
+      "path": "test/word_run_measure_test.dart"
+    },
+    {
+      "name": "equal adjacent styles form one contextual run",
+      "path": "test/word_run_measure_test.dart"
+    },
+    {
+      "name": "paint style changes and tabs keep independent metrics",
+      "path": "test/word_run_measure_test.dart"
+    },
+    {
+      "name": "Arabic host input uses original letters and paragraph direction",
+      "path": "test/word_run_measure_test.dart"
+    },
+    {
+      "name": "small caps measure presented text at its scaled size",
+      "path": "test/word_run_measure_test.dart"
+    },
+    {
+      "name": "lam-alef continuation keeps its source complex-script font",
+      "path": "test/word_run_measure_boundaries_test.dart"
+    },
+    {
+      "name": "invisible source controls retain offsets without consuming advance",
+      "path": "test/word_run_measure_boundaries_test.dart"
+    },
+    {
+      "name": "CLI rejects an inline control split before replacing an existing output",
+      "path": "test/content_control_fidelity_test.dart"
+    }
+  ],
+  "skips": [
+    {
+      "name": "multi-face PDF embeds distinct font resources",
+      "path": "test/wave4_platform_test.dart",
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "reasons": [
+        "Latin face already covers Arabic; cannot force F3"
+      ]
+    }
+  ],
+  "per_file": {
+    "test/arabic_pdf_export_test.dart": {
+      "success": 5
+    },
+    "test/bidi_test.dart": {
+      "success": 18
+    },
+    "test/bookmark_fidelity_test.dart": {
+      "success": 12
+    },
+    "test/bounded_cfb_reader_test.dart": {
+      "success": 14
+    },
+    "test/builders_io_test.dart": {
+      "success": 3
+    },
+    "test/cfbf_embedded_test.dart": {
+      "success": 2
+    },
+    "test/comment_thread_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/content_control_fidelity_test.dart": {
+      "success": 7,
+      "error": 1
+    },
+    "test/csv_sheet_import_test.dart": {
+      "success": 7
+    },
+    "test/deflate_test.dart": {
+      "success": 3
+    },
+    "test/drawing_line_style_test.dart": {
+      "success": 34
+    },
+    "test/fidelity_waves_test.dart": {
+      "success": 7
+    },
+    "test/fonts_test.dart": {
+      "success": 2
+    },
+    "test/hardening_test.dart": {
+      "success": 3
+    },
+    "test/header_footer_sdt_test.dart": {
+      "success": 3
+    },
+    "test/inline_field_fidelity_test.dart": {
+      "success": 18
+    },
+    "test/legacy_sheet_reader_test.dart": {
+      "success": 6
+    },
+    "test/legacy_word_conversion_test.dart": {
+      "success": 7
+    },
+    "test/legacy_word_document_test.dart": {
+      "success": 7
+    },
+    "test/line_breaker_measure_line_test.dart": {
+      "success": 14
+    },
+    "test/list_restart_fidelity_test.dart": {
+      "success": 5
+    },
+    "test/literary_arabic_sample_test.dart": {
+      "success": 1
+    },
+    "test/local_spreadsheet_corpus_test.dart": {
+      "success": 2
+    },
+    "test/native_presentation_test.dart": {
+      "success": 4
+    },
+    "test/native_spreadsheet_test.dart": {
+      "success": 2
+    },
+    "test/note_chrome_fidelity_test.dart": {
+      "success": 20
+    },
+    "test/note_edit_test.dart": {
+      "success": 4
+    },
+    "test/note_marker_fidelity_test.dart": {
+      "success": 19
+    },
+    "test/note_marker_legacy_fidelity_test.dart": {
+      "success": 8
+    },
+    "test/note_marker_merge_test.dart": {
+      "success": 16
+    },
+    "test/note_separator_fidelity_test.dart": {
+      "success": 27
+    },
+    "test/numbering_collision_test.dart": {
+      "success": 8
+    },
+    "test/ods_sheet_reader_test.dart": {
+      "success": 102
+    },
+    "test/office_crypto_test.dart": {
+      "success": 3
+    },
+    "test/office_features_test.dart": {
+      "success": 16
+    },
+    "test/office_fidelity_oracle_test.dart": {
+      "success": 15
+    },
+    "test/office_isolate_open_test.dart": {
+      "success": 4
+    },
+    "test/office_isolate_save_test.dart": {
+      "success": 4
+    },
+    "test/office_named_fonts_test.dart": {
+      "success": 8
+    },
+    "test/office_package_parts_test.dart": {
+      "success": 17
+    },
+    "test/office_pdf_export_test.dart": {
+      "success": 14
+    },
+    "test/office_repair_test.dart": {
+      "success": 10
+    },
+    "test/office_search_fidelity_test.dart": {
+      "success": 27
+    },
+    "test/office_signed_package_guard_test.dart": {
+      "success": 14
+    },
+    "test/office_steps_test.dart": {
+      "success": 6
+    },
+    "test/omml_test.dart": {
+      "success": 8
+    },
+    "test/opaque_word_test.dart": {
+      "success": 1
+    },
+    "test/opc_archive_test.dart": {
+      "success": 4
+    },
+    "test/opc_word_kind_test.dart": {
+      "success": 5
+    },
+    "test/pdf_file_test.dart": {
+      "success": 31
+    },
+    "test/pdf_templates_test.dart": {
+      "success": 6
+    },
+    "test/pdf_to_office_test.dart": {
+      "success": 12
+    },
+    "test/pdf_toolbox_test.dart": {
+      "success": 6
+    },
+    "test/pdf_widgets_catalog_test.dart": {
+      "success": 7
+    },
+    "test/pdf_widgets_test.dart": {
+      "success": 18
+    },
+    "test/phase_features_test.dart": {
+      "success": 6
+    },
+    "test/proofing/german_spelling_test.dart": {
+      "success": 19
+    },
+    "test/proofing/german_writing_rules_test.dart": {
+      "success": 16
+    },
+    "test/proofing/office_proofing_test.dart": {
+      "success": 14
+    },
+    "test/proofing_hyphenation_test.dart": {
+      "success": 20
+    },
+    "test/report_engine_test.dart": {
+      "success": 107
+    },
+    "test/rich_note_test.dart": {
+      "success": 8
+    },
+    "test/scripted_transitions_test.dart": {
+      "success": 12
+    },
+    "test/scripted_workflows_test.dart": {
+      "success": 30
+    },
+    "test/sheet_authored_number_format_test.dart": {
+      "success": 2
+    },
+    "test/sheet_cell_state_preservation_test.dart": {
+      "success": 2
+    },
+    "test/sheet_comments_namespace_test.dart": {
+      "success": 26
+    },
+    "test/sheet_comments_schema_test.dart": {
+      "success": 2
+    },
+    "test/sheet_explicit_style_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/sheet_fill_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/sheet_formula_cache_fidelity_test.dart": {
+      "success": 43
+    },
+    "test/sheet_formula_dependency_cache_test.dart": {
+      "success": 48
+    },
+    "test/sheet_formula_test.dart": {
+      "success": 26
+    },
+    "test/sheet_import_fidelity_test.dart": {
+      "success": 10
+    },
+    "test/sheet_macro_preservation_test.dart": {
+      "success": 2
+    },
+    "test/sheet_nav_test.dart": {
+      "success": 5
+    },
+    "test/sheet_normal_font_metrics_test.dart": {
+      "success": 23
+    },
+    "test/sheet_qualified_name_error_test.dart": {
+      "success": 80
+    },
+    "test/sheet_qualified_names_test.dart": {
+      "success": 32
+    },
+    "test/sheet_rename_adversarial_test.dart": {
+      "success": 14
+    },
+    "test/sheet_rename_fidelity_test.dart": {
+      "success": 37
+    },
+    "test/sheet_save_cache_and_freeze_test.dart": {
+      "success": 2
+    },
+    "test/sheet_schema_fidelity_test.dart": {
+      "success": 9
+    },
+    "test/sheet_style_namespace_fidelity_test.dart": {
+      "success": 14
+    },
+    "test/sheet_time_number_format_test.dart": {
+      "success": 8
+    },
+    "test/sheet_wrap_text_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/slide_arrange_fidelity_test.dart": {
+      "success": 21
+    },
+    "test/slide_import_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/slide_section_fidelity_test.dart": {
+      "success": 33
+    },
+    "test/slide_test.dart": {
+      "success": 18
+    },
+    "test/slide_text_fidelity_test.dart": {
+      "success": 6
+    },
+    "test/sml_styles_date_test.dart": {
+      "success": 3
+    },
+    "test/story_media_fidelity_test.dart": {
+      "success": 3
+    },
+    "test/style_cascade_test.dart": {
+      "success": 5
+    },
+    "test/styleless_import_fidelity_test.dart": {
+      "success": 5
+    },
+    "test/table_border_fidelity_test.dart": {
+      "success": 4
+    },
+    "test/table_grid_steps_test.dart": {
+      "success": 46
+    },
+    "test/toolkit_builders_test.dart": {
+      "success": 8
+    },
+    "test/variable_line_breaker_test.dart": {
+      "success": 14
+    },
+    "test/visual_test.dart": {
+      "success": 4
+    },
+    "test/wave4_platform_test.dart": {
+      "success": 3,
+      "skipped": 1
+    },
+    "test/wml_run_edit_test.dart": {
+      "success": 1
+    },
+    "test/word_altchunk_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/word_auxiliary_content_control_test.dart": {
+      "success": 14
+    },
+    "test/word_bibliography_fidelity_test.dart": {
+      "success": 9
+    },
+    "test/word_block_bookmark_import_test.dart": {
+      "success": 3
+    },
+    "test/word_bookmark_copy_test.dart": {
+      "success": 20
+    },
+    "test/word_bookmark_fidelity_test.dart": {
+      "success": 17
+    },
+    "test/word_comment_proofing_styles_test.dart": {
+      "success": 4
+    },
+    "test/word_comment_test.dart": {
+      "success": 3
+    },
+    "test/word_compatibility_fidelity_test.dart": {
+      "success": 5
+    },
+    "test/word_contained_text_wrap_test.dart": {
+      "success": 41
+    },
+    "test/word_content_control_fidelity_test.dart": {
+      "success": 32
+    },
+    "test/word_edit_integrity_test.dart": {
+      "success": 18
+    },
+    "test/word_fidelity_test.dart": {
+      "success": 19
+    },
+    "test/word_field_span_test.dart": {
+      "success": 7
+    },
+    "test/word_find_replace_atomic_test.dart": {
+      "success": 15
+    },
+    "test/word_footnote_reference_test.dart": {
+      "success": 1
+    },
+    "test/word_frame_wrap_test.dart": {
+      "success": 11
+    },
+    "test/word_heading_apply_test.dart": {
+      "success": 2
+    },
+    "test/word_import_tolerance_test.dart": {
+      "success": 4
+    },
+    "test/word_inline_picture_test.dart": {
+      "success": 6
+    },
+    "test/word_layout_test.dart": {
+      "success": 16
+    },
+    "test/word_media_dedupe_test.dart": {
+      "success": 1
+    },
+    "test/word_native_presentation_test.dart": {
+      "success": 26
+    },
+    "test/word_note_bookmark_edit_test.dart": {
+      "success": 9
+    },
+    "test/word_note_numbering_test.dart": {
+      "success": 22
+    },
+    "test/word_note_script_break_test.dart": {
+      "success": 4
+    },
+    "test/word_package_preservation_test.dart": {
+      "success": 32
+    },
+    "test/word_part_routing_test.dart": {
+      "success": 1
+    },
+    "test/word_pdf_test.dart": {
+      "success": 1
+    },
+    "test/word_picture_distance_fidelity_test.dart": {
+      "success": 9
+    },
+    "test/word_preserved_header_test.dart": {
+      "success": 4
+    },
+    "test/word_protection_mode_test.dart": {
+      "success": 14
+    },
+    "test/word_referenced_styles_and_breaks_test.dart": {
+      "success": 2
+    },
+    "test/word_revision_scaling_test.dart": {
+      "success": 2
+    },
+    "test/word_revision_story_test.dart": {
+      "success": 11
+    },
+    "test/word_revision_validation_test.dart": {
+      "success": 7
+    },
+    "test/word_run_measure_boundaries_test.dart": {
+      "failure": 2,
+      "success": 3
+    },
+    "test/word_run_measure_test.dart": {
+      "failure": 5,
+      "success": 12
+    },
+    "test/word_section_clone_fidelity_test.dart": {
+      "success": 2
+    },
+    "test/word_shape_without_textbox_test.dart": {
+      "success": 2
+    },
+    "test/word_small_caps_test.dart": {
+      "success": 12
+    },
+    "test/word_step_atomicity_test.dart": {
+      "success": 31
+    },
+    "test/word_steps_vocabulary_test.dart": {
+      "success": 4
+    },
+    "test/word_structure_integrity_test.dart": {
+      "success": 23
+    },
+    "test/word_structure_steps_test.dart": {
+      "success": 20
+    },
+    "test/word_style_introduction_test.dart": {
+      "success": 4
+    },
+    "test/word_styles_layout_test.dart": {
+      "success": 15
+    },
+    "test/word_symbol_char_test.dart": {
+      "success": 2
+    },
+    "test/word_table_direction_test.dart": {
+      "success": 1
+    },
+    "test/word_table_grid_addressing_test.dart": {
+      "success": 22
+    },
+    "test/word_table_nested_layout_test.dart": {
+      "success": 12
+    },
+    "test/word_table_picture_pagination_test.dart": {
+      "success": 17
+    },
+    "test/word_table_tall_frame_layout_test.dart": {
+      "success": 8
+    },
+    "test/word_table_tall_toc_layout_test.dart": {
+      "success": 4
+    },
+    "test/word_table_test.dart": {
+      "success": 11
+    },
+    "test/word_textbox_nesting_test.dart": {
+      "success": 2
+    },
+    "test/word_toc_test.dart": {
+      "success": 8
+    },
+    "test/word_tree_test.dart": {
+      "success": 3
+    },
+    "test/word_vml_pict_test.dart": {
+      "success": 4
+    },
+    "test/word_zotero_bibliography_layout_test.dart": {
+      "success": 14
+    },
+    "test/word_zotero_citing_test.dart": {
+      "success": 59
+    },
+    "test/word_zotero_document_data_test.dart": {
+      "success": 49
+    },
+    "test/word_zotero_formatted_bibliography_test.dart": {
+      "success": 11
+    },
+    "test/word_zotero_preference_flow_test.dart": {
+      "success": 11
+    },
+    "test/word_zotero_rich_edit_test.dart": {
+      "success": 30
+    },
+    "test/word_zotero_scaling_test.dart": {
+      "success": 5
+    },
+    "test/word_zotero_simple_field_test.dart": {
+      "success": 19
+    },
+    "test/word_zotero_source_identity_test.dart": {
+      "success": 14
+    },
+    "test/word_zotero_style_preferences_review_test.dart": {
+      "success": 9
+    },
+    "test/word_zotero_test.dart": {
+      "success": 16
+    },
+    "test/xml_namespace_capture_test.dart": {
+      "success": 3
+    },
+    "test/xml_reader_test.dart": {
+      "success": 4
+    },
+    "test/xml_sanitize_test.dart": {
+      "success": 2
+    },
+    "test/xml_whitespace_fidelity_test.dart": {
+      "success": 3
+    },
+    "test/zip_bounded_read_test.dart": {
+      "success": 6
+    },
+    "test/zotero_backoff_state_test.dart": {
+      "success": 7
+    },
+    "test/zotero_citing_test.dart": {
+      "success": 40
+    },
+    "test/zotero_client_test.dart": {
+      "success": 34
+    },
+    "test/zotero_formatted_text_test.dart": {
+      "success": 21
+    },
+    "test/zotero_identity_client_test.dart": {
+      "success": 19
+    },
+    "test/zotero_metadata_batch_test.dart": {
+      "success": 20
+    },
+    "test/zotero_paragraph_runs_test.dart": {
+      "success": 4
+    },
+    "test/zotero_saved_search_test.dart": {
+      "success": 8
+    }
+  },
+  "archives": [
+    {
+      "path": "engine-full-initial-events.jsonl.gz",
+      "uncompressed_bytes": 1263085,
+      "compressed_bytes": 120750,
+      "uncompressed_sha256": "6907bf8e48dc130a7f80f2087c798e86c633f3ce64718c4b9d9a24b79eab218d",
+      "archive_sha256": "98675c369173279e92347a2a0f80fdc76215cd6850415ffc82f3d6eda802b894"
+    },
+    {
+      "path": "engine-full-initial.log.gz",
+      "uncompressed_bytes": 309545,
+      "compressed_bytes": 62425,
+      "uncompressed_sha256": "4d50d7399bdd21cd09b34f1835ba5a6f6abe11e90b1406b3da4476157db86be2",
+      "archive_sha256": "29af94863b99e6c0e5162a3e9fc3c2763505eaefe4ad3ebf6a11122ad32ea49d"
+    }
+  ],
+  "counting_rule": "Distinct visible test IDs; hidden load/setup events excluded from counts and hidden failures retained separately. Skips are not passes."
+}

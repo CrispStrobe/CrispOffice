@@ -112,8 +112,15 @@ abstract final class LineBreaker {
     double spaceStretch = 3,
     double spaceShrink = 1,
     bool justify = true,
+    bool breakLongWords = false,
     MarkAttachFn? markAttachOf,
     List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? ligate,
+
+    /// Remeasure an actual logical line after trimming spaces and selecting a
+    /// discretionary hyphen. The callback may change advances only; source
+    /// ownership and glyph order must remain intact. Invalid results fall back
+    /// to the original metrics. Overflow is repaired before visual reordering.
+    List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? measureLine,
     Iterable<int> hyphenationOffsets = const [],
   }) {
     final bidi = Uax9Bidi.reorder(text, baseLevel: baseLevel);
@@ -139,12 +146,9 @@ abstract final class LineBreaker {
       justify,
       markAttachOf,
       hyphens,
-      hyphens.isEmpty
-          ? null
-          : {
-              for (final cluster in GraphemeClusters.segment(text))
-                cluster.start,
-            },
+      {for (final cluster in GraphemeClusters.segment(text)) cluster.start},
+      measureLine,
+      breakLongWords,
     );
   }
 
@@ -161,7 +165,7 @@ abstract final class LineBreaker {
     double spaceShrink = 1,
 
     /// When false, do not stretch spaces to the line edge (pdf_widgets
-    /// non-justify aligns). Word layout keeps the default [true].
+    /// non-justify aligns). Word enables this for justified paragraphs only.
     bool justify = true,
 
     /// Split otherwise overflowing lines at source grapheme boundaries. Fixed
@@ -170,6 +174,12 @@ abstract final class LineBreaker {
     bool breakLongWords = false,
     MarkAttachFn? markAttachOf,
     List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? ligate,
+
+    /// Remeasure an actual logical line after trimming spaces and selecting a
+    /// discretionary hyphen. The callback may change advances only; source
+    /// ownership and glyph order must remain intact. Invalid results fall back
+    /// to the original metrics. Overflow is repaired before visual reordering.
+    List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? measureLine,
     Iterable<int> hyphenationOffsets = const [],
   }) {
     if (text.isEmpty) {
@@ -203,9 +213,9 @@ abstract final class LineBreaker {
       widthAt ?? (cp, _) => widthOf(cp),
       glyphIdAt ?? (cp, _) => glyphIdOf(cp),
     );
-    final Set<int>? clusterStarts = breakLongWords || hyphens.isNotEmpty
-        ? {for (final cluster in GraphemeClusters.segment(text)) cluster.start}
-        : null;
+    final clusterStarts = {
+      for (final cluster in GraphemeClusters.segment(text)) cluster.start,
+    };
 
     // Hard breaks on LF/CR (Flutter / package:pdf Text parity).
     final List<BrokenLine> lines = <BrokenLine>[];
@@ -232,6 +242,7 @@ abstract final class LineBreaker {
             clusterStarts: clusterStarts,
             hyphens: hyphens,
             breakLongWords: breakLongWords,
+            measureLine: measureLine,
           ),
         );
       } else if (hard || (atEnd && lines.isEmpty)) {
@@ -265,9 +276,10 @@ abstract final class LineBreaker {
     required double spaceShrink,
     required bool justify,
     MarkAttachFn? markAttachOf,
-    Set<int>? clusterStarts,
+    required Set<int> clusterStarts,
     Map<int, ShapedGlyph> hyphens = const {},
     bool breakLongWords = false,
+    List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? measureLine,
   }) {
     final List<int> planned = _knuthPlass(
       logical,
@@ -275,26 +287,38 @@ abstract final class LineBreaker {
       spaceStretch,
       spaceShrink,
       hyphens,
+      clusterStarts,
     );
-    final breaks = !breakLongWords || clusterStarts == null
+    var breaks = !breakLongWords
         ? planned
         : _constrainBreaks(logical, planned, clusterStarts, maxWidth, hyphens);
+    final measurements = _LineMeasurements(
+      logical,
+      hyphens,
+      clusterStarts,
+      markAttachOf,
+      measureLine,
+    );
+    if (measureLine != null) {
+      breaks = _refineBreaks(
+        logical,
+        breaks,
+        clusterStarts,
+        maxWidth,
+        hyphens,
+        measurements.at,
+        breakLongWords: breakLongWords,
+      );
+    }
     final List<BrokenLine> lines = <BrokenLine>[];
     for (int i = 0; i < breaks.length - 1; i++) {
       final int from = breaks[i];
-      var to = breaks[i + 1];
-      while (to > from && _isSoftTrailingSpace(logical[to - 1])) {
-        to--;
-      }
-      final List<ShapedGlyph> slice = _reorderLine(
-        _paintSlice(logical, from, to, breaks[i + 1], hyphens),
-        markAttachOf,
-        clusterStarts,
-      );
-      double width = 0;
+      final measured = measurements.at(from, breaks[i + 1]);
+      final to = measured.paintedTo;
+      final slice = measured.glyphs;
+      var width = measured.width;
       var spaces = 0;
       for (final ShapedGlyph g in slice) {
-        width += g.advance;
         if (g.isSpace) {
           spaces++;
         }
@@ -349,11 +373,7 @@ abstract final class LineBreaker {
     final boundaries = <int>[
       0,
       for (var i = 1; i < logical.length; i++)
-        if (clusterStarts.contains(logical[i].logicalIndex) &&
-            logical[i].logicalIndex != logical[i - 1].logicalIndex &&
-            // A lam-alef ghost belongs to the preceding painted ligature.
-            logical[i].codePoint != 0)
-          i,
+        if (_isClusterBoundary(logical, i, clusterStarts)) i,
       logical.length,
     ];
     final boundaryIndex = <int, int>{
@@ -390,7 +410,9 @@ abstract final class LineBreaker {
             break;
           }
           fitting = next;
-          if (_canBreakAfter(logical, to - 1, hyphens)) natural = next;
+          if (_canBreakAfter(logical, to - 1, hyphens, clusterStarts)) {
+            natural = next;
+          }
         }
         final cut = fitting == end
             ? end
@@ -398,6 +420,111 @@ abstract final class LineBreaker {
         result.add(boundaries[cut]);
         start = cut;
       }
+    }
+    return result;
+  }
+
+  static bool _isClusterBoundary(
+    List<ShapedGlyph> logical,
+    int at,
+    Set<int> clusterStarts,
+  ) =>
+      at == logical.length ||
+      (at > 0 &&
+          // All soft-break paths consume ordinary spaces with their preceding
+          // line, including a host-measured oversized grapheme fallback.
+          logical[at].codePoint != 0x0020 &&
+          clusterStarts.contains(logical[at].logicalIndex) &&
+          logical[at].logicalIndex != logical[at - 1].logicalIndex &&
+          // The continuation of a lam-alef ligature has no independent ink.
+          logical[at].codePoint != 0);
+
+  // Paragraph shaping is an estimate for a line: removing its neighbours can
+  // change kerning or contextual forms. Verify the actual painted slice and
+  // repair only overflowing planned intervals. Retaining the remaining plan
+  // avoids making the paragraph optimiser quadratic in expensive host calls.
+  static List<int> _refineBreaks(
+    List<ShapedGlyph> logical,
+    List<int> planned,
+    Set<int> clusterStarts,
+    double maxWidth,
+    Map<int, ShapedGlyph> hyphens,
+    _MeasuredLine Function(int from, int to) measure, {
+    required bool breakLongWords,
+  }) {
+    final boundaries = <int>[
+      for (var at = 1; at <= logical.length; at++)
+        if (_isClusterBoundary(logical, at, clusterStarts)) at,
+    ];
+    final natural = <int>[
+      for (final at in boundaries)
+        if (_canBreakAfter(logical, at - 1, hyphens, clusterStarts)) at,
+    ];
+    int firstAfter(List<int> values, int value) {
+      var low = 0;
+      var high = values.length;
+      while (low < high) {
+        final mid = (low + high) ~/ 2;
+        if (values[mid] <= value) {
+          low = mid + 1;
+        } else {
+          high = mid;
+        }
+      }
+      return low;
+    }
+
+    final result = <int>[0];
+    var plannedIndex = 1;
+    var start = 0;
+    while (start < logical.length) {
+      while (planned[plannedIndex] <= start) {
+        plannedIndex++;
+      }
+      final end = planned[plannedIndex];
+      if (measure(start, end).width <= maxWidth + 0.000001) {
+        result.add(end);
+        start = end;
+        continue;
+      }
+
+      // At most 32 candidate measurements per repair. Always include the
+      // earliest candidate so a long paragraph still reaches a short prefix.
+      int? fitting(List<int> candidates, int limit) {
+        final first = firstAfter(candidates, start);
+        final last = firstAfter(candidates, end - 1) - 1;
+        var tested = 0;
+        for (var at = last; at >= first; at--) {
+          if (tested == limit - 1 && at > first) at = first;
+          final cut = candidates[at];
+          tested++;
+          if (measure(start, cut).width <= maxWidth + 0.000001) return cut;
+          if (tested >= limit) break;
+        }
+        return null;
+      }
+
+      var cut = fitting(natural, breakLongWords ? 16 : 32);
+      if (cut == null && breakLongWords) {
+        cut = fitting(boundaries, 16);
+      }
+      if (cut == null) {
+        if (breakLongWords) {
+          // A single oversized grapheme cannot fit, but must remain whole.
+          cut = boundaries[firstAfter(boundaries, start)];
+        } else {
+          // Keep an indivisible word whole. A discretionary hyphen which no
+          // longer fits is not a valid fallback; consume to the next ordinary
+          // word boundary, even when it lies beyond the original plan.
+          var next = firstAfter(natural, start);
+          while (_hyphenForBreak(logical, natural[next], hyphens) != null) {
+            next++;
+          }
+          cut = natural[next];
+        }
+      }
+      result.add(cut);
+      start = cut;
     }
     return result;
   }
@@ -646,6 +773,7 @@ abstract final class LineBreaker {
     double stretch,
     double shrink, [
     Map<int, ShapedGlyph> hyphens = const {},
+    Set<int>? clusterStarts,
   ]) {
     final int n = glyphs.length;
     final List<double> widths = List<double>.filled(n + 1, 0);
@@ -654,7 +782,7 @@ abstract final class LineBreaker {
     }
     final List<int> legal = <int>[0];
     for (int i = 0; i < n; i++) {
-      if (_canBreakAfter(glyphs, i, hyphens)) {
+      if (_canBreakAfter(glyphs, i, hyphens, clusterStarts)) {
         legal.add(i + 1);
       }
     }
@@ -741,6 +869,7 @@ abstract final class LineBreaker {
     List<ShapedGlyph> glyphs,
     int i, [
     Map<int, ShapedGlyph> hyphens = const {},
+    Set<int>? clusterStarts,
   ]) {
     final int cp = glyphs[i].codePoint;
     if (cp == 0x000A || cp == 0x000D) {
@@ -749,8 +878,16 @@ abstract final class LineBreaker {
     if (i == glyphs.length - 1) {
       return true;
     }
+    if (clusterStarts != null &&
+        !_isClusterBoundary(glyphs, i + 1, clusterStarts)) {
+      return false;
+    }
     if (hyphens.containsKey(glyphs[i + 1].logicalIndex)) return true;
     final int next = glyphs[i + 1].codePoint;
+    // A soft wrap owns the following ordinary spaces. In particular, a
+    // hyphen followed by a space must not leave that space at the beginning
+    // of the next line. Keep tabs and nonbreaking spaces distinct.
+    if (next == 0x0020) return false;
     if (_isBreakSpace(cp)) {
       return true;
     }
@@ -849,6 +986,98 @@ abstract final class LineBreaker {
   static int _identityGlyph(int cp) => cp;
 }
 
+class _MeasuredLine {
+  const _MeasuredLine(this.paintedTo, this.glyphs, this.width);
+
+  final int paintedTo;
+  final List<ShapedGlyph> glyphs;
+  final double width;
+}
+
+// Cache values only within this prepared paragraph/chunk. Candidate repairs
+// and final emission share the exact same measurement; repeated frame retries
+// do not retain an unbounded number of host-shaped slices.
+class _LineMeasurements {
+  _LineMeasurements(
+    this.logical,
+    this.hyphens,
+    this.clusterStarts,
+    this.markAttach,
+    this.measureLine,
+  );
+
+  final List<ShapedGlyph> logical;
+  final Map<int, ShapedGlyph> hyphens;
+  final Set<int> clusterStarts;
+  final MarkAttachFn? markAttach;
+  final List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? measureLine;
+  final Map<(int, int), _MeasuredLine> _cache = {};
+  var _cachedGlyphs = 0;
+  static const _maxEntries = 128;
+  static const _maxGlyphs = 32768;
+
+  _MeasuredLine at(int from, int to) {
+    final key = (from, to);
+    final cached = _cache[key];
+    if (cached != null) return cached;
+    var painted = to;
+    while (painted > from &&
+        LineBreaker._isSoftTrailingSpace(logical[painted - 1])) {
+      painted--;
+    }
+    var slice = LineBreaker._paintSlice(logical, from, painted, to, hyphens);
+    final callback = measureLine;
+    if (callback != null && slice.isNotEmpty) {
+      final measured = callback(List<ShapedGlyph>.unmodifiable(slice));
+      if (_validMetrics(slice, measured)) {
+        // Do not retain a mutable list owned by a host callback.
+        slice = List<ShapedGlyph>.of(measured);
+      }
+    }
+    final visual = LineBreaker._reorderLine(slice, markAttach, clusterStarts);
+    final width = visual.fold<double>(0, (sum, glyph) => sum + glyph.advance);
+    final value = _MeasuredLine(painted, visual, width);
+    if (visual.length <= _maxGlyphs) {
+      while (_cache.isNotEmpty &&
+          (_cache.length >= _maxEntries ||
+              _cachedGlyphs + visual.length > _maxGlyphs)) {
+        final oldest = _cache.keys.first;
+        _cachedGlyphs -= _cache.remove(oldest)!.glyphs.length;
+      }
+      _cache[key] = value;
+      _cachedGlyphs += visual.length;
+    }
+    return value;
+  }
+
+  static bool _validMetrics(
+    List<ShapedGlyph> original,
+    List<ShapedGlyph> measured,
+  ) {
+    if (original.length != measured.length) return false;
+    var total = 0.0;
+    for (var at = 0; at < original.length; at++) {
+      final before = original[at];
+      final after = measured[at];
+      if (!after.advance.isFinite ||
+          after.advance < 0 ||
+          before.codePoint != after.codePoint ||
+          before.glyphId != after.glyphId ||
+          before.logicalIndex != after.logicalIndex ||
+          before.level != after.level ||
+          before.isSpace != after.isSpace ||
+          before.isDiscretionaryHyphen != after.isDiscretionaryHyphen ||
+          before.sourceLength != after.sourceLength ||
+          before.paintDx != after.paintDx ||
+          before.paintDy != after.paintDy) {
+        return false;
+      }
+      total += after.advance;
+    }
+    return total.isFinite;
+  }
+}
+
 /// A paragraph whose shaping is stable while available line widths vary.
 ///
 /// [breakNext] is side-effect free: pagination can retry the same source offset
@@ -863,6 +1092,8 @@ class PreparedLineBreaker {
     this._markAttach,
     this._hyphens,
     this._clusterStarts,
+    this._measureLine,
+    this._breakLongWords,
   );
 
   final String _text;
@@ -872,7 +1103,16 @@ class PreparedLineBreaker {
   final bool _justify;
   final MarkAttachFn? _markAttach;
   final Map<int, ShapedGlyph> _hyphens;
-  final Set<int>? _clusterStarts;
+  final Set<int> _clusterStarts;
+  final List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? _measureLine;
+  final bool _breakLongWords;
+  late final _measurements = _LineMeasurements(
+    _logical,
+    _hyphens,
+    _clusterStarts,
+    _markAttach,
+    _measureLine,
+  );
   double? _plannedWidth;
   final Map<int, int> _plannedBreaks = {};
 
@@ -930,13 +1170,34 @@ class PreparedLineBreaker {
       _plannedBreaks.clear();
     }
     if (!_plannedBreaks.containsKey(from)) {
-      final points = LineBreaker._knuthPlass(
+      var points = LineBreaker._knuthPlass(
         chunk,
         maxWidth,
         _stretch,
         _shrink,
         _hyphens,
+        _clusterStarts,
       );
+      if (_breakLongWords) {
+        points = LineBreaker._constrainBreaks(
+          chunk,
+          points,
+          _clusterStarts,
+          maxWidth,
+          _hyphens,
+        );
+      }
+      if (_measureLine != null) {
+        points = LineBreaker._refineBreaks(
+          chunk,
+          points,
+          _clusterStarts,
+          maxWidth,
+          _hyphens,
+          (a, b) => _measurements.at(from + a, from + b),
+          breakLongWords: _breakLongWords,
+        );
+      }
       // The optimal suffix remains valid until the available width changes.
       // Reuse it instead of recomputing a whole paragraph for every line.
       for (var i = 0; i + 1 < points.length; i++) {
@@ -944,22 +1205,14 @@ class PreparedLineBreaker {
       }
     }
     final consumed = _plannedBreaks[from]! - from;
-    var painted = consumed;
-    while (painted > 0 &&
-        LineBreaker._isSoftTrailingSpace(chunk[painted - 1])) {
-      painted--;
-    }
-    final glyphs = LineBreaker._reorderLine(
-      LineBreaker._paintSlice(chunk, 0, painted, consumed, _hyphens),
-      _markAttach,
-      _clusterStarts,
-    );
-    var width = 0.0;
+    final measured = _measurements.at(from, from + consumed);
+    final painted = measured.paintedTo - from;
+    final glyphs = measured.glyphs;
+    var width = measured.width;
     var spaces = 0;
     var logicalStart = _text.length;
     var logicalEnd = start;
     for (final glyph in glyphs) {
-      width += glyph.advance;
       if (glyph.isSpace) spaces++;
     }
     for (final glyph in chunk.take(painted)) {

@@ -1,0 +1,1385 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-16T14:36:34.113245+00:00",
+  "observation_scope": "Already fetched local remote-tracking heads, snapshotted after origin and upstream heads/PR-head fetches. No claim about later remote updates.",
+  "baseline": {
+    "sha": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+    "tree": "4d36cb2c5d0fcf76a64183195669d279b97d86aa",
+    "source_branch": "codex/proofing-20261116-resume",
+    "working_branch": "codex/text-rendering-20261116"
+  },
+  "repositories": {
+    "origin": "https://github.com/CrispStrobe/quds_office_suite",
+    "upstream": "https://github.com/MohammedAsaadAsaad/quds_office_suite"
+  },
+  "summary": {
+    "total_refs": 132,
+    "ancestors": 132,
+    "nonancestors": 0,
+    "by_remote": {
+      "origin": {
+        "branch_heads": 58,
+        "pr_heads": 66,
+        "ancestors": 124,
+        "nonancestors": 0
+      },
+      "upstream": {
+        "branch_heads": 4,
+        "pr_heads": 4,
+        "ancestors": 8,
+        "nonancestors": 0
+      }
+    }
+  },
+  "excluded": [
+    {
+      "ref": "refs/remotes/origin/HEAD",
+      "sha": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "reason": "symbolic ref",
+      "target": "refs/remotes/origin/main"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116",
+      "sha": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+      "reason": "new work branch"
+    }
+  ],
+  "raw_ref_snapshot_sha256": "9f341ca6c9c6137ce8aaf512923146767dddb5beebc76cc257d92dff111ef22d",
+  "raw_ref_snapshot": "refs/remotes/origin/HEAD 90024d5d76a784dd96974988a5f54effcaac911d refs/remotes/origin/main\nrefs/remotes/origin/codex/proofing-20261116 c0403890fc00f38c0ee6e1d533f6fef549c6fc03 \nrefs/remotes/origin/codex/proofing-20261116-resume bfb24bf57d5efd52f00ab7079b4ac8968259a478 \nrefs/remotes/origin/codex/terminal-integration-ods-20261116 4fadcc68d52d51e72e8d782765a0dd5086b982c6 \nrefs/remotes/origin/codex/terminal-recovery-office-20261116 be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a \nrefs/remotes/origin/codex/terminal-sharing-office-20261116 4235e690602195cc504438a6b937972c71f1ad39 \nrefs/remotes/origin/codex/text-rendering-20261116 bfb24bf57d5efd52f00ab7079b4ac8968259a478 \nrefs/remotes/origin/codex/zotero-capabilities-20261116 2480f0988167068d9aeddf6573b9c2c6871a8481 \nrefs/remotes/origin/codex/zotero-optimization-20261116 ca9e4f052d988d77f9ded3a6b13f840f76a26159 \nrefs/remotes/origin/codex/zotero-support-20261115 fc37658c907edf6687eccb9564d3046283b49a3a \nrefs/remotes/origin/codex/zotero-support-20261116 428679a33381f943a8ae63117d4207f01dd15462 \nrefs/remotes/origin/docs/filter-operators 379fa8663c81f32b4328415f56c776746ccc23bc \nrefs/remotes/origin/docs/filters-closed 4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f \nrefs/remotes/origin/docs/metadata-closed a5febc3362d2fccdb979f012a5296af72e465797 \nrefs/remotes/origin/docs/metadata-complete b23ee557ea121774833c7a188a49189e4f80ce70 \nrefs/remotes/origin/docs/readme-remaining-gaps e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630 \nrefs/remotes/origin/docs/remaining-gaps 0a26be7f136ad3e57dbe894b0bc4cdb0602addd0 \nrefs/remotes/origin/docs/validation-complete f5b67cc296b7d27e4f3a480dc46160f472d78694 \nrefs/remotes/origin/docs/validation-operators 01f62eb1812ca54827cc14e074e03abd82f963d7 \nrefs/remotes/origin/feat/conditional-affix 20681b8658392212c128f51b4c91f0b638942448 \nrefs/remotes/origin/feat/conditional-between b69bad50fb235118a5334b325683cd1524b3e3d1 \nrefs/remotes/origin/feat/conditional-dxf b0efe6c661009ffa463f2bf6d7945216ce1dae4c \nrefs/remotes/origin/feat/conditional-operators 21de3c3963b0334068b87fb1c25c787660cb17cf \nrefs/remotes/origin/feat/conditional-text 752a94dfddf69522429f3025f9d25702499cb6da \nrefs/remotes/origin/feat/ods-conditional e59751246a200e7477657d0e4835bf77b153422c \nrefs/remotes/origin/feat/ods-custom-validation 2e3074c8e1860f9503b059a87870911afc3eee7d \nrefs/remotes/origin/feat/ods-default-geometry 912f26f21446ef9bdbf4f542535438dae0ded9a9 \nrefs/remotes/origin/feat/ods-default-style 49b447324159595c59e64d8425b54a09f79ec736 \nrefs/remotes/origin/feat/ods-filter-operators 3bb505ce5fea00236238e37c450ace8b18e4e34e \nrefs/remotes/origin/feat/ods-filter-predicates 089e53fce443ca2169fc44f3700e1b23780d2c95 \nrefs/remotes/origin/feat/ods-hyperlinks e5daa20587e10971e8cb97d82a5495584b5c1553 \nrefs/remotes/origin/feat/ods-images 7fe296e29e2e1b173580f6854507fc060cb4f080 \nrefs/remotes/origin/feat/ods-metadata d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea \nrefs/remotes/origin/feat/ods-named-expressions 864e674795eb422855df2b26ccc375d3255e61a2 \nrefs/remotes/origin/feat/ods-outline 988f423b9b95037d8f5273ee368b58ceedab0667 \nrefs/remotes/origin/feat/ods-tab-color 0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b \nrefs/remotes/origin/feat/ods-validation-messages 49ba086251ba61032f15b3e7b726fc921874fd12 \nrefs/remotes/origin/feat/ods-validation-operators 8769019fb8be5483939edd4655dd88005e2515c4 \nrefs/remotes/origin/feat/ods-validations b85501b2810e537e21040d82528d8dbaa6fdcf15 \nrefs/remotes/origin/feat/sheet-hidden-sheets 4c8036bbf16ac224c3fc102b5c44d8913a512b18 \nrefs/remotes/origin/feat/sheet-hidden-state 46850ae47e0241733750decb22417a0150e4b0e4 \nrefs/remotes/origin/fix/ods-global-validations-20261116 e5e1e9af6beb0972a010d8208c1690a642809113 \nrefs/remotes/origin/fix/sdt-multi-section-control 866c14f0b3a876e11732bc544dc25a05d8f10524 \nrefs/remotes/origin/fix/sdt-trailing-section-break 8fc3d06be36da5c2176feb107c14245f61650d75 \nrefs/remotes/origin/fix/utf16-custom-xml 09a05d7d60d2a2e1d2547487ad4545c50472834b \nrefs/remotes/origin/fix/word-dialog-focus-rendering-20261116 2e92a49c2cf39128a79d2c037c3e07bbace1d1ae \nrefs/remotes/origin/main 90024d5d76a784dd96974988a5f54effcaac911d \nrefs/remotes/origin/pr/1 54f0f8de01416640560519aa9d732f668f603709 \nrefs/remotes/origin/pr/10 1b1bac125f426b05f868d482e9fbd657d4ffb73a \nrefs/remotes/origin/pr/11 5c1ab430c6911bb11f71d29efa35027ead5ac1d5 \nrefs/remotes/origin/pr/12 579f2105cf7fca61536f7e3f9b59004929bdb6c5 \nrefs/remotes/origin/pr/13 73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e \nrefs/remotes/origin/pr/14 d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da \nrefs/remotes/origin/pr/15 448eff5aac55054a34eccd4f8a1e79e754909a05 \nrefs/remotes/origin/pr/16 78a7b6f4e613c7d18d4bcc6434cda12b50ed184e \nrefs/remotes/origin/pr/17 89c7f06c592edde0c67774e9c7e087d96f52184b \nrefs/remotes/origin/pr/18 f31cf308013ceb4527e3f4de677785894bb1bfc0 \nrefs/remotes/origin/pr/19 e8227569a3b90fb21db598483690bd13fe74ddef \nrefs/remotes/origin/pr/2 08b09485588d2b6270f594a07c983689c087587d \nrefs/remotes/origin/pr/20 5278aafd512640608fe06b8f7d357c4cffe8520a \nrefs/remotes/origin/pr/21 1f30a823b30678e3684c98fee6a2cd5c4945c4f2 \nrefs/remotes/origin/pr/22 4637ddce4154f4b50105c7322fedc1c75fd02193 \nrefs/remotes/origin/pr/23 e002b9584bead9761fac8c7cf818431966d1b1c3 \nrefs/remotes/origin/pr/24 9cc8c6e91ff9acf0f52a68aea7c0da69934a2661 \nrefs/remotes/origin/pr/25 b6d27c84a72d622f670a7e646e36ba4bd920cfc8 \nrefs/remotes/origin/pr/26 5b9ac71db1934252c4b8ae48ac03d4cd976e15ae \nrefs/remotes/origin/pr/27 cde05b85bcd00c26d519d43283fcc6b55a1884e7 \nrefs/remotes/origin/pr/28 a8cd28d8af8ca966e8c4259862587ecc9aade2f4 \nrefs/remotes/origin/pr/29 7fe296e29e2e1b173580f6854507fc060cb4f080 \nrefs/remotes/origin/pr/3 e550723b0f2a7cd849970f58820d260c36857502 \nrefs/remotes/origin/pr/30 49b447324159595c59e64d8425b54a09f79ec736 \nrefs/remotes/origin/pr/31 912f26f21446ef9bdbf4f542535438dae0ded9a9 \nrefs/remotes/origin/pr/32 46850ae47e0241733750decb22417a0150e4b0e4 \nrefs/remotes/origin/pr/33 4c8036bbf16ac224c3fc102b5c44d8913a512b18 \nrefs/remotes/origin/pr/34 09a05d7d60d2a2e1d2547487ad4545c50472834b \nrefs/remotes/origin/pr/35 e59751246a200e7477657d0e4835bf77b153422c \nrefs/remotes/origin/pr/36 21de3c3963b0334068b87fb1c25c787660cb17cf \nrefs/remotes/origin/pr/37 b0efe6c661009ffa463f2bf6d7945216ce1dae4c \nrefs/remotes/origin/pr/38 752a94dfddf69522429f3025f9d25702499cb6da \nrefs/remotes/origin/pr/39 b85501b2810e537e21040d82528d8dbaa6fdcf15 \nrefs/remotes/origin/pr/4 09f5ec4b8eba290ff4d65678179854fb6ff6a468 \nrefs/remotes/origin/pr/40 8855b88a96b5c94349e3b5278c339228a1688c3e \nrefs/remotes/origin/pr/41 b69bad50fb235118a5334b325683cd1524b3e3d1 \nrefs/remotes/origin/pr/42 8fc3d06be36da5c2176feb107c14245f61650d75 \nrefs/remotes/origin/pr/43 20681b8658392212c128f51b4c91f0b638942448 \nrefs/remotes/origin/pr/44 866c14f0b3a876e11732bc544dc25a05d8f10524 \nrefs/remotes/origin/pr/45 0a26be7f136ad3e57dbe894b0bc4cdb0602addd0 \nrefs/remotes/origin/pr/46 e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630 \nrefs/remotes/origin/pr/47 fc37658c907edf6687eccb9564d3046283b49a3a \nrefs/remotes/origin/pr/48 d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea \nrefs/remotes/origin/pr/49 a5febc3362d2fccdb979f012a5296af72e465797 \nrefs/remotes/origin/pr/5 da0979a5c6c4273ea68f360ce9a079bfa747384f \nrefs/remotes/origin/pr/50 428679a33381f943a8ae63117d4207f01dd15462 \nrefs/remotes/origin/pr/51 8769019fb8be5483939edd4655dd88005e2515c4 \nrefs/remotes/origin/pr/52 01f62eb1812ca54827cc14e074e03abd82f963d7 \nrefs/remotes/origin/pr/53 2e3074c8e1860f9503b059a87870911afc3eee7d \nrefs/remotes/origin/pr/54 49ba086251ba61032f15b3e7b726fc921874fd12 \nrefs/remotes/origin/pr/55 f5b67cc296b7d27e4f3a480dc46160f472d78694 \nrefs/remotes/origin/pr/56 ca9e4f052d988d77f9ded3a6b13f840f76a26159 \nrefs/remotes/origin/pr/57 0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b \nrefs/remotes/origin/pr/58 864e674795eb422855df2b26ccc375d3255e61a2 \nrefs/remotes/origin/pr/59 e5daa20587e10971e8cb97d82a5495584b5c1553 \nrefs/remotes/origin/pr/6 78ed85f5fd19d44f672dee11420fed261c974f4a \nrefs/remotes/origin/pr/60 988f423b9b95037d8f5273ee368b58ceedab0667 \nrefs/remotes/origin/pr/61 b23ee557ea121774833c7a188a49189e4f80ce70 \nrefs/remotes/origin/pr/62 089e53fce443ca2169fc44f3700e1b23780d2c95 \nrefs/remotes/origin/pr/63 2480f0988167068d9aeddf6573b9c2c6871a8481 \nrefs/remotes/origin/pr/64 4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f \nrefs/remotes/origin/pr/65 3bb505ce5fea00236238e37c450ace8b18e4e34e \nrefs/remotes/origin/pr/66 379fa8663c81f32b4328415f56c776746ccc23bc \nrefs/remotes/origin/pr/7 e82c997b6df8746fe86fb83b9f416a89bb3e3b80 \nrefs/remotes/origin/pr/8 a86a360bf9bd45c729e00b31dd9a97492e23f2e7 \nrefs/remotes/origin/pr/9 58de54567d45e38c05dd77064b7607c577374b9d \nrefs/remotes/origin/vendor/ods-custom-validation 90acedb9835cb5bdef30606301e74482f5977448 \nrefs/remotes/origin/vendor/ods-filter-operators 777bcb876a9c8cc170586d117fa41f8331ef84ad \nrefs/remotes/origin/vendor/ods-filter-predicates a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb \nrefs/remotes/origin/vendor/ods-hyperlinks 95debbcce02c1e24d6e8159cd1f524bbf68afeba \nrefs/remotes/origin/vendor/ods-hyperlinks-current be6aa3cf2fca1b775c2b1352881e2ca3f9134c13 \nrefs/remotes/origin/vendor/ods-metadata 18dc693fbf4e39fc6c38e3d655d1e5b35eeef273 \nrefs/remotes/origin/vendor/ods-metadata-zotero 4fbd1687d3c0ada22d460cf5cadb9586c4f62905 \nrefs/remotes/origin/vendor/ods-named-expressions 388a1c76339507d493bab577424affd80732446c \nrefs/remotes/origin/vendor/ods-outline 33a0508a502f5809aa997928e8428bdec3e02503 \nrefs/remotes/origin/vendor/ods-tab-color 375390c3853ce26f43d6ac3f71c592acf3e094dc \nrefs/remotes/origin/vendor/ods-validation c7bb6d6f51885e4082882252f502bbf2de81d552 \nrefs/remotes/origin/vendor/ods-validation-current 4ffdf113803806ba5f8ade4a0846eee85dcfbe68 \nrefs/remotes/origin/vendor/ods-validation-messages 14fde4b1bd2539f0c6168be4569ac1adcc5105cd \nrefs/remotes/upstream/ci/flutter-workspace aca2f66941832bd0b19b436baeab1656a1b7de98 \nrefs/remotes/upstream/cursor/class-certificates-2db8 f45099688e7a3f67a1302efdb442830d052f2240 \nrefs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h 9930be8df44ffe117fb22778c514eea0ee73ce21 \nrefs/remotes/upstream/main 15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba \nrefs/remotes/upstream/pr/1 48c5156f459597ce3f8ec486b3c9a20fc5543807 \nrefs/remotes/upstream/pr/5 9930be8df44ffe117fb22778c514eea0ee73ce21 \nrefs/remotes/upstream/pr/6 aca2f66941832bd0b19b436baeab1656a1b7de98 \nrefs/remotes/upstream/pr/7 f45099688e7a3f67a1302efdb442830d052f2240\n",
+  "ref_update_observations": {
+    "refs/remotes/origin/main": "",
+    "refs/remotes/origin/pr/66": "379fa8663c81f32b4328415f56c776746ccc23bc refs/remotes/origin/pr/66@{2026-11-16T15:33:25+01:00} fetch origin +refs/heads/*:refs/remotes/origin/* +refs/pull/*/head:refs/remotes/origin/pr/*: storing ref",
+    "refs/remotes/upstream/main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba refs/remotes/upstream/main@{2026-11-16T15:34:34+01:00} fetch https://github.com/MohammedAsaadAsaad/quds_office_suite.git main:refs/remotes/upstream/main: storing head",
+    "refs/remotes/upstream/ci/flutter-workspace": "aca2f66941832bd0b19b436baeab1656a1b7de98 refs/remotes/upstream/ci/flutter-workspace@{2026-11-16T15:35:04+01:00} fetch https://github.com/MohammedAsaadAsaad/quds_office_suite.git +refs/heads/*:refs/remotes/upstream/* +refs/pull/*/head:refs/remotes/upstream/pr/*: storing head",
+    "refs/remotes/upstream/pr/7": "f45099688e7a3f67a1302efdb442830d052f2240 refs/remotes/upstream/pr/7@{2026-11-16T15:35:04+01:00} fetch https://github.com/MohammedAsaadAsaad/quds_office_suite.git +refs/heads/*:refs/remotes/upstream/* +refs/pull/*/head:refs/remotes/upstream/pr/*: storing ref"
+  },
+  "ref_update_observation_note": "A reflog timestamp records a particular ref change, not completion time of a later fetch in which the ref was unchanged. The raw snapshot and observed_at_utc define this audit cutoff.",
+  "refs": [
+    {
+      "local_ref": "refs/remotes/origin/codex/proofing-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/proofing-20261116",
+      "kind": "branch_head",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/proofing-20261116-resume",
+      "kind": "branch_head",
+      "sha": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/terminal-integration-ods-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/terminal-integration-ods-20261116",
+      "kind": "branch_head",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/terminal-recovery-office-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/terminal-recovery-office-20261116",
+      "kind": "branch_head",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/terminal-sharing-office-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/terminal-sharing-office-20261116",
+      "kind": "branch_head",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/zotero-capabilities-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/zotero-capabilities-20261116",
+      "kind": "branch_head",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/zotero-optimization-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/zotero-optimization-20261116",
+      "kind": "branch_head",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/zotero-support-20261115",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/zotero-support-20261115",
+      "kind": "branch_head",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/codex/zotero-support-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/codex/zotero-support-20261116",
+      "kind": "branch_head",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/filter-operators",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/filter-operators",
+      "kind": "branch_head",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/filters-closed",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/filters-closed",
+      "kind": "branch_head",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/metadata-closed",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/metadata-closed",
+      "kind": "branch_head",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/metadata-complete",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/metadata-complete",
+      "kind": "branch_head",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/readme-remaining-gaps",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/readme-remaining-gaps",
+      "kind": "branch_head",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/remaining-gaps",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/remaining-gaps",
+      "kind": "branch_head",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/validation-complete",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/validation-complete",
+      "kind": "branch_head",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/docs/validation-operators",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/docs/validation-operators",
+      "kind": "branch_head",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/conditional-affix",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/conditional-affix",
+      "kind": "branch_head",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/conditional-between",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/conditional-between",
+      "kind": "branch_head",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/conditional-dxf",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/conditional-dxf",
+      "kind": "branch_head",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/conditional-operators",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/conditional-operators",
+      "kind": "branch_head",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/conditional-text",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/conditional-text",
+      "kind": "branch_head",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-conditional",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-conditional",
+      "kind": "branch_head",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-custom-validation",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-custom-validation",
+      "kind": "branch_head",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-default-geometry",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-default-geometry",
+      "kind": "branch_head",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-default-style",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-default-style",
+      "kind": "branch_head",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-filter-operators",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-filter-operators",
+      "kind": "branch_head",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-filter-predicates",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-filter-predicates",
+      "kind": "branch_head",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-hyperlinks",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-hyperlinks",
+      "kind": "branch_head",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-images",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-images",
+      "kind": "branch_head",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-metadata",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-metadata",
+      "kind": "branch_head",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-named-expressions",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-named-expressions",
+      "kind": "branch_head",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-outline",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-outline",
+      "kind": "branch_head",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-tab-color",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-tab-color",
+      "kind": "branch_head",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-validation-messages",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-validation-messages",
+      "kind": "branch_head",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-validation-operators",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-validation-operators",
+      "kind": "branch_head",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/ods-validations",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/ods-validations",
+      "kind": "branch_head",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/sheet-hidden-sheets",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/sheet-hidden-sheets",
+      "kind": "branch_head",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/feat/sheet-hidden-state",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/feat/sheet-hidden-state",
+      "kind": "branch_head",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/fix/ods-global-validations-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/fix/ods-global-validations-20261116",
+      "kind": "branch_head",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/fix/sdt-multi-section-control",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/fix/sdt-multi-section-control",
+      "kind": "branch_head",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/fix/sdt-trailing-section-break",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/fix/sdt-trailing-section-break",
+      "kind": "branch_head",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/fix/utf16-custom-xml",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/fix/utf16-custom-xml",
+      "kind": "branch_head",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/fix/word-dialog-focus-rendering-20261116",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "kind": "branch_head",
+      "sha": "2e92a49c2cf39128a79d2c037c3e07bbace1d1ae",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/main",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/main",
+      "kind": "branch_head",
+      "sha": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/1",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/1/head",
+      "kind": "pr_head",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/10",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/10/head",
+      "kind": "pr_head",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/11",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/11/head",
+      "kind": "pr_head",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/12",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/12/head",
+      "kind": "pr_head",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/13",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/13/head",
+      "kind": "pr_head",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/14",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/14/head",
+      "kind": "pr_head",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/15",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/15/head",
+      "kind": "pr_head",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/16",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/16/head",
+      "kind": "pr_head",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/17",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/17/head",
+      "kind": "pr_head",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/18",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/18/head",
+      "kind": "pr_head",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/19",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/19/head",
+      "kind": "pr_head",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/2",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/2/head",
+      "kind": "pr_head",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/20",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/20/head",
+      "kind": "pr_head",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/21",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/21/head",
+      "kind": "pr_head",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/22",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/22/head",
+      "kind": "pr_head",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/23",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/23/head",
+      "kind": "pr_head",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/24",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/24/head",
+      "kind": "pr_head",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/25",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/25/head",
+      "kind": "pr_head",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/26",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/26/head",
+      "kind": "pr_head",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/27",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/27/head",
+      "kind": "pr_head",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/28",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/28/head",
+      "kind": "pr_head",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/29",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/29/head",
+      "kind": "pr_head",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/3",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/3/head",
+      "kind": "pr_head",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/30",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/30/head",
+      "kind": "pr_head",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/31",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/31/head",
+      "kind": "pr_head",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/32",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/32/head",
+      "kind": "pr_head",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/33",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/33/head",
+      "kind": "pr_head",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/34",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/34/head",
+      "kind": "pr_head",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/35",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/35/head",
+      "kind": "pr_head",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/36",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/36/head",
+      "kind": "pr_head",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/37",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/37/head",
+      "kind": "pr_head",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/38",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/38/head",
+      "kind": "pr_head",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/39",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/39/head",
+      "kind": "pr_head",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/4",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/4/head",
+      "kind": "pr_head",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/40",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/40/head",
+      "kind": "pr_head",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/41",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/41/head",
+      "kind": "pr_head",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/42",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/42/head",
+      "kind": "pr_head",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/43",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/43/head",
+      "kind": "pr_head",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/44",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/44/head",
+      "kind": "pr_head",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/45",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/45/head",
+      "kind": "pr_head",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/46",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/46/head",
+      "kind": "pr_head",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/47",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/47/head",
+      "kind": "pr_head",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/48",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/48/head",
+      "kind": "pr_head",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/49",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/49/head",
+      "kind": "pr_head",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/5",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/5/head",
+      "kind": "pr_head",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/50",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/50/head",
+      "kind": "pr_head",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/51",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/51/head",
+      "kind": "pr_head",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/52",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/52/head",
+      "kind": "pr_head",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/53",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/53/head",
+      "kind": "pr_head",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/54",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/54/head",
+      "kind": "pr_head",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/55",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/55/head",
+      "kind": "pr_head",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/56",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/56/head",
+      "kind": "pr_head",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/57",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/57/head",
+      "kind": "pr_head",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/58",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/58/head",
+      "kind": "pr_head",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/59",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/59/head",
+      "kind": "pr_head",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/6",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/6/head",
+      "kind": "pr_head",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/60",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/60/head",
+      "kind": "pr_head",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/61",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/61/head",
+      "kind": "pr_head",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/62",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/62/head",
+      "kind": "pr_head",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/63",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/63/head",
+      "kind": "pr_head",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/64",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/64/head",
+      "kind": "pr_head",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/65",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/65/head",
+      "kind": "pr_head",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/66",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/66/head",
+      "kind": "pr_head",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/7",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/7/head",
+      "kind": "pr_head",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/8",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/8/head",
+      "kind": "pr_head",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/pr/9",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/pull/9/head",
+      "kind": "pr_head",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-custom-validation",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-custom-validation",
+      "kind": "branch_head",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-filter-operators",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-filter-operators",
+      "kind": "branch_head",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-filter-predicates",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-filter-predicates",
+      "kind": "branch_head",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-hyperlinks",
+      "kind": "branch_head",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-hyperlinks-current",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-hyperlinks-current",
+      "kind": "branch_head",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-metadata",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-metadata",
+      "kind": "branch_head",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-metadata-zotero",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-metadata-zotero",
+      "kind": "branch_head",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-named-expressions",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-named-expressions",
+      "kind": "branch_head",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-outline",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-outline",
+      "kind": "branch_head",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-tab-color",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-tab-color",
+      "kind": "branch_head",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-validation",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-validation",
+      "kind": "branch_head",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-validation-current",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-validation-current",
+      "kind": "branch_head",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/origin/vendor/ods-validation-messages",
+      "remote": "origin",
+      "repository_url": "https://github.com/CrispStrobe/quds_office_suite",
+      "remote_ref": "refs/heads/vendor/ods-validation-messages",
+      "kind": "branch_head",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/heads/ci/flutter-workspace",
+      "kind": "branch_head",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/heads/cursor/class-certificates-2db8",
+      "kind": "branch_head",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "kind": "branch_head",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/main",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/heads/main",
+      "kind": "branch_head",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/pr/1",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/pull/1/head",
+      "kind": "pr_head",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/pr/5",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/pull/5/head",
+      "kind": "pr_head",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/pr/6",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/pull/6/head",
+      "kind": "pr_head",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "local_ref": "refs/remotes/upstream/pr/7",
+      "remote": "upstream",
+      "repository_url": "https://github.com/MohammedAsaadAsaad/quds_office_suite",
+      "remote_ref": "refs/pull/7/head",
+      "kind": "pr_head",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_baseline": true,
+      "disposition": "included by ancestry"
+    }
+  ],
+  "qualification": {
+    "git_ancestry_verified": true,
+    "dart_flutter_combined_baseline": "pending at this initial audit checkpoint",
+    "historical_evidence": "Prior committed receipts retain their original source pins; no passing test totals are inherited by the adopted combined baseline.",
+    "github_actions": "No Actions jobs, workflow runs, status checks or check runs were polled, awaited or rerun by this work."
+  }
+}

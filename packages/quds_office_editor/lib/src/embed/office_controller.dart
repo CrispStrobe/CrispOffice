@@ -13,6 +13,7 @@ import '../editor_word/caret_engine.dart';
 import '../editor_word/office_ruler.dart';
 import '../editor_word/paint_run_text.dart';
 import '../editor_word/table_history.dart';
+import '../editor_word/word_run_metrics.dart';
 import '../proofing/word_proofing.dart';
 import 'office_clipboard.dart';
 import 'office_theme.dart';
@@ -585,8 +586,8 @@ class WordEditorController extends OfficeController {
   /// commentLaidOut API.
   LaidOutDocument? commentLaidOut;
 
-  /// Custom layout engine. When null, lines break with the same Flutter
-  /// metrics the canvas paints with ([PaintRunText.advanceOf]).
+  /// Custom layout engine. When null, complete logical runs are measured by
+  /// Flutter before wrapping, with scalar metrics as an explicit fallback.
   final WordLayoutEngine? layoutEngine;
 
   WordLayoutEngine? _paintMetricsEngine;
@@ -595,6 +596,14 @@ class WordEditorController extends OfficeController {
       layoutEngine ??
       (_paintMetricsEngine ??= WordLayoutEngine(
         font: null,
+        measureRun: (text, sizePoints, props, bidiLevel) =>
+            WordRunMetrics.measure(
+              text,
+              sizePoints,
+              props,
+              bidiLevel,
+              themeFamily: config.theme.fontFamily,
+            ),
         measure: (int codePoint, double sizePoints, WmlRunProps props) =>
             PaintRunText.advanceOf(
               codePoint,

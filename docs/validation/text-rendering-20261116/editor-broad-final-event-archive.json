@@ -1,0 +1,9 @@
+{
+  "original_file": "editor-broad-events.jsonl",
+  "original_bytes": 245251,
+  "original_sha256": "15a435baa6b1dca1ed81e8b91aed0927ee04a837a77eb4499f2d85d9dadc8879",
+  "archive_file": "editor-broad-final-events.jsonl.gz",
+  "archive_bytes": 23868,
+  "archive_sha256": "96c7913f9d6209ca6ad3569825807461cbce9d7d37b1ee54716f750f736ac53f",
+  "roundtrip_verified": true
+}

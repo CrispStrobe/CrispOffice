@@ -106,6 +106,7 @@ class _NoteStory {
       font: owner.font,
       fonts: owner.fonts,
       measure: owner.measure,
+      measureRun: owner.measureRun,
       fallbackWidthFactor: owner.fallbackWidthFactor,
     ).._containedPhysicalSection = section;
     final LaidOutDocument laid = storyEngine.layout(story, updateFields: false);

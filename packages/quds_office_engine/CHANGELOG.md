@@ -4,6 +4,30 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add optional pure-Dart `WordRunMeasure`/`WordMeasuredCluster` contracts for
+  contextual host advances before Word wrapping, preserving source ranges and
+  validating complete grapheme coverage. Retain scalar/font fallback for hosts
+  without a shaping callback, and carry callbacks through notes and tall tables.
+- Keep lam–alef continuation glyphs in their source complex-script family.
+  Compute natural line widths for left, center and right alignment; reserve
+  justification expansion for justified/distributed paragraphs.
+- Remeasure actual trimmed line fragments before emission and repair overflow
+  at legal source boundaries with bounded host measurements. Use the same
+  checks for adaptive frame widths, preserve discretionary hyphen ownership,
+  and prevent ordinary breaks inside decorated-space graphemes.
+- Restore original scalar/font advances when a shortened line fragment is
+  declined by the host shaper, including zero-width ligature continuations.
+
+- ODS writer now emits conditional formats (numeric, text, duplicate and
+  between rules) with cell styles, and writes/reads list and numeric validations
+  with prompts and error messages.
+
+- Add `OdsSheetWriter` for the shared spreadsheet model: multiple sheets, typed
+  values, cached formulas/OpenFormula references, cell styles, number formats,
+  merges, geometry, hidden state, tab colours, comments, hyperlinks, named
+  ranges/expressions, print areas/titles and autofilter ranges. This is a new
+  export path; drawings/images and page styles remain follow-up work.
+
 - Import spreadsheet-level ODS list-validation definitions for all referring
   worksheets, including lists resolved from a later source sheet. Retain
   table-local definition compatibility without leaking it into other sheets;

@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import '../../bidi/german_hyphenator.dart';
+import '../../bidi/grapheme_clusters.dart';
 import '../../bidi/line_breaker.dart';
 import '../../fonts/font_metrics.dart';
 import '../../fonts/gpos_mark_to_base.dart';
@@ -25,6 +26,7 @@ import '../properties/wml_properties.dart';
 
 part 'word_contained_layout.dart';
 part 'word_note_layout.dart';
+part 'word_run_measure.dart';
 part 'word_table_row_layout.dart';
 part 'word_wrap_layout.dart';
 
@@ -752,8 +754,8 @@ const double kDefaultTabWidth = 36;
 /// Advance width in points of [codePoint] set in [props] at [sizePoints].
 ///
 /// Hosts that paint with their own text stack (for example Flutter's
-/// `TextPainter`) pass this to [WordLayoutEngine.measure] so line breaks use
-/// the same widths the painter will use.
+/// `TextPainter`) can supply scalar fallback metrics. Contextual shaping needs
+/// [WordLayoutEngine.measureRun], which measures complete logical runs.
 typedef WordGlyphMeasure =
     double Function(int codePoint, double sizePoints, WmlRunProps props);
 
@@ -765,6 +767,7 @@ class WordLayoutEngine {
     this.fonts,
     this.fallbackWidthFactor = 0.5,
     this.measure,
+    this.measureRun,
   });
 
   /// Primary face used when [fonts] does not cover a code point.
@@ -780,6 +783,11 @@ class WordLayoutEngine {
 
   /// Host measurement used when [fonts] and [font] do not cover a code point.
   final WordGlyphMeasure? measure;
+
+  /// Optional host shaping metrics, applied before wrapping. Valid run metrics
+  /// take precedence over scalar/font metrics; null or invalid measurements
+  /// retain the pure-Dart fallback. This does not change glyph IDs for PDF.
+  final WordRunMeasure? measureRun;
 
   final Map<(SfntFont, double), FontMetrics> _metricsCache = {};
 
@@ -1429,6 +1437,53 @@ class WordLayoutEngine {
       return result;
     }
 
+    // An actual line can be unsupported even when the full paragraph was
+    // measurable. Preserve the original font/scalar advances before applying
+    // host metrics so a declined fragment does not reuse a different context.
+    // Repeated display-label scalars share this source/style and scalar width.
+    final fallbackAdvances = <(int, int, int), double>{};
+    List<ShapedGlyph> measuredLine(List<ShapedGlyph> presented) {
+      final host = measureRun;
+      if (host == null) return presented;
+      final fallback = <ShapedGlyph>[
+        for (final glyph in presented)
+          if (fallbackAdvances[(
+                glyph.logicalIndex,
+                glyph.codePoint,
+                glyph.glyphId,
+              )]
+              case final advance?)
+            advance == glyph.advance
+                ? glyph
+                : _withMeasuredAdvance(glyph, advance)
+          else
+            // Selected hyphens are created after paragraph measurement and
+            // retain their independent scalar metrics and source ownership.
+            glyph,
+      ];
+      return _measureWordRuns(
+        glyphs: fallback,
+        text: text,
+        paragraph: paragraph,
+        propsAt: propsAt,
+        labels: displayLabels,
+        pictures: inlinePictures.keys.toSet(),
+        measure: host,
+      );
+    }
+
+    List<ShapedGlyph> measuredRuns(List<ShapedGlyph> source) {
+      final presented = displayLabels.isEmpty
+          ? source
+          : displayReplacements(source);
+      if (measureRun == null) return presented;
+      for (final glyph in presented) {
+        fallbackAdvances[(glyph.logicalIndex, glyph.codePoint, glyph.glyphId)] =
+            glyph.advance;
+      }
+      return measuredLine(presented);
+    }
+
     // Widths and glyph IDs are resolved before wrapping, using each run's
     // actual family, style and size. Scaling only after wrapping lets bold or
     // large runs overflow the line and produces incorrect PDF positioning.
@@ -1478,6 +1533,9 @@ class WordLayoutEngine {
         currentFrames.any(
           (box) => box.frame != null && box.frame!.wrap != WmlFrameWrap.none,
         );
+    final justify =
+        paragraph.properties.justification == WmlJustification.justify ||
+        paragraph.properties.justification == WmlJustification.distributed;
     final PreparedLineBreaker? wrapBreaker = wrapsFrames
         ? LineBreaker.prepare(
             text: text,
@@ -1487,7 +1545,11 @@ class WordLayoutEngine {
             glyphIdAt: glyphIdAt,
             markAttachOf: markAttach,
             baseLevel: paragraph.properties.bidiBaseLevel,
-            ligate: displayLabels.isEmpty ? null : displayReplacements,
+            justify: justify,
+            measureLine: measureRun == null ? null : measuredLine,
+            ligate: displayLabels.isEmpty && measureRun == null
+                ? null
+                : measuredRuns,
           )
         : null;
     final List<BrokenLine> broken = wrapsFrames
@@ -1501,8 +1563,12 @@ class WordLayoutEngine {
             glyphIdAt: glyphIdAt,
             markAttachOf: markAttach,
             baseLevel: paragraph.properties.bidiBaseLevel,
+            justify: justify,
+            measureLine: measureRun == null ? null : measuredLine,
             breakLongWords: !allowBreak,
-            ligate: displayLabels.isEmpty ? null : displayReplacements,
+            ligate: displayLabels.isEmpty && measureRun == null
+                ? null
+                : measuredRuns,
           );
     var cursorY = y + paragraph.properties.spacingBefore;
     var idx = pageIndex;
@@ -1768,7 +1834,12 @@ class WordLayoutEngine {
             italic: props.italic,
             strike: props.strike,
             highlight: WmlHighlight.toRgb(props.highlight) ?? props.highlight,
-            fontFamily: OfficeTypeface.familyForRun(props, g.codePoint),
+            fontFamily: OfficeTypeface.familyForRun(
+              props,
+              g.codePoint == 0 && display == null
+                  ? _sourceCodePoint(text, g.logicalIndex)
+                  : g.codePoint,
+            ),
             vertAlign: props.vertAlign,
             hyperlink: WordLink.at(paragraph, g.logicalIndex),
             commentIds: WordComment.idsAt(paragraph, g.logicalIndex),

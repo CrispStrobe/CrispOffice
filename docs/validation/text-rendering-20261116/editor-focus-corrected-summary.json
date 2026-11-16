@@ -1,0 +1,19 @@
+{
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "test/word_input_focus_test.dart",
+    "--reporter",
+    "expanded"
+  ],
+  "cwd": "packages/quds_office_editor",
+  "git_head_at_check": "48123bf78dd0c23fe17e675306e047f1c993060b",
+  "corrected_test_file": "packages/quds_office_editor/test/word_input_focus_test.dart",
+  "corrected_test_sha256": "22e80ad6a6118d61022b606c975bfcb594fb4ca279a40b67578dabc81e529802",
+  "passed": 5,
+  "failed": 0,
+  "change": "Changed only the existing test name, focus debug label and requested mode from viewing to selecting, matching its navigation-without-editing assertions. No production interaction policy was changed.",
+  "earlier_failure": "editor-broad-initial-summary.json",
+  "baseline_identity": "editor-incoming-test-mismatch.json"
+}

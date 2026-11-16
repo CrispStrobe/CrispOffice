@@ -1,0 +1,142 @@
+{
+  "scope": "Diagnostic observations only, not final qualification after incoming branch integration.",
+  "parallel_direct_reproduction": {
+    "git_head": "03a28d585869eec70b5d06eae4005a68151e9c34",
+    "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine",
+    "runs": [
+      {
+        "name": "dart-run",
+        "command": [
+          "/workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+          "run",
+          "tool/fidelity/office_steps.dart",
+          "modify",
+          "test/fixtures/fidelity/content-controls.docx",
+          "/workspace/scratch/b8abe5ff6280/toolchain-tmp/cli-timeout-investigation/dart-run/steps.json",
+          "/workspace/scratch/b8abe5ff6280/toolchain-tmp/cli-timeout-investigation/dart-run/preserved.docx"
+        ],
+        "pid": 6,
+        "started_utc": "2026-11-16T15:25:54.929403+00:00",
+        "output_before_sha256": "f325f6144330c16b5e701c12cfb5e6bf473b693c1c62f4637623c0819c19e72e",
+        "timed_out": false,
+        "exit_code": 1,
+        "elapsed_seconds": 40.107,
+        "output_after_sha256": "f325f6144330c16b5e701c12cfb5e6bf473b693c1c62f4637623c0819c19e72e",
+        "output_preserved": true,
+        "stdout": "",
+        "stderr": "Office scenario failed: Bad state: Step 1 (paragraphSplit) failed: Unsupported operation: Splitting inside an inline content control is not supported. Place the paragraph break outside the control.\n"
+      },
+      {
+        "name": "explicit-packages",
+        "command": [
+          "/workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/b8abe5ff6280/quds_office_suite/.dart_tool/package_config.json",
+          "tool/fidelity/office_steps.dart",
+          "modify",
+          "test/fixtures/fidelity/content-controls.docx",
+          "/workspace/scratch/b8abe5ff6280/toolchain-tmp/cli-timeout-investigation/explicit-packages/steps.json",
+          "/workspace/scratch/b8abe5ff6280/toolchain-tmp/cli-timeout-investigation/explicit-packages/preserved.docx"
+        ],
+        "pid": 7,
+        "started_utc": "2026-11-16T15:25:54.932190+00:00",
+        "output_before_sha256": "f325f6144330c16b5e701c12cfb5e6bf473b693c1c62f4637623c0819c19e72e",
+        "timed_out": false,
+        "exit_code": 1,
+        "elapsed_seconds": 40.108,
+        "output_after_sha256": "f325f6144330c16b5e701c12cfb5e6bf473b693c1c62f4637623c0819c19e72e",
+        "output_preserved": true,
+        "stdout": "",
+        "stderr": "Office scenario failed: Bad state: Step 1 (paragraphSplit) failed: Unsupported operation: Splitting inside an inline content control is not supported. Place the paragraph break outside the control.\n"
+      }
+    ]
+  },
+  "parallel_duration_note": "The two direct invocations ran concurrently. Each recorded elapsed_seconds is the aggregate elapsed time when both processes were collected, not an independently sampled process-exit duration.",
+  "entry_probe": {
+    "command": [
+      "/workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/b8abe5ff6280/quds_office_suite/.dart_tool/package_config.json",
+      "/workspace/scratch/b8abe5ff6280/toolchain-tmp/cli-timeout-investigation/entry_probe.dart",
+      "modify",
+      "test/fixtures/fidelity/content-controls.docx",
+      "/workspace/scratch/b8abe5ff6280/toolchain-tmp/cli-timeout-investigation/probe-steps.json",
+      "/workspace/scratch/b8abe5ff6280/toolchain-tmp/cli-timeout-investigation/probe-preserved.docx"
+    ],
+    "cwd": "/workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine",
+    "git_head": "956a372528ad34539ef517c9085037f7a0e22fbd",
+    "started_utc": "2026-11-16T15:27:43.002738+00:00",
+    "before_sha256": "f325f6144330c16b5e701c12cfb5e6bf473b693c1c62f4637623c0819c19e72e",
+    "events": [
+      {
+        "stream": "stderr",
+        "seconds_after_launch": 20.869,
+        "text": "PROBE_MAIN_START /workspace/scratch/b8abe5ff6280/flutter-sdk/bin/cache/dart-sdk/bin/dart"
+      },
+      {
+        "stream": "stderr",
+        "seconds_after_launch": 21.185,
+        "text": "Office scenario failed: Bad state: Step 1 (paragraphSplit) failed: Unsupported operation: Splitting inside an inline content control is not supported. Place the paragraph break outside the control."
+      },
+      {
+        "stream": "stderr",
+        "seconds_after_launch": 21.188,
+        "text": "PROBE_MAIN_END 348ms"
+      }
+    ],
+    "timed_out": false,
+    "exit_code": 1,
+    "elapsed_seconds": 21.32,
+    "after_sha256": "f325f6144330c16b5e701c12cfb5e6bf473b693c1c62f4637623c0819c19e72e",
+    "output_preserved": true
+  },
+  "entry_probe_source": "import 'dart:io';\nimport 'file:///workspace/scratch/b8abe5ff6280/quds_office_suite/packages/quds_office_engine/tool/fidelity/office_steps.dart' as cli;\n\nFuture<void> main(List<String> args) async {\n  final timer = Stopwatch()..start();\n  stderr.writeln('PROBE_MAIN_START ${Platform.resolvedExecutable}');\n  await cli.main(args);\n  stderr.writeln('PROBE_MAIN_END ${timer.elapsedMilliseconds}ms');\n}\n",
+  "baseline_identity": {
+    "baseline": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+    "current_head": "956a372528ad34539ef517c9085037f7a0e22fbd",
+    "files": [
+      {
+        "path": "packages/quds_office_engine/test/content_control_fidelity_test.dart",
+        "baseline_sha256": "92179ec93f02730ca6a157afb1ed44a5cc9b754bc73acdae8fb05366ea248ab2",
+        "current_sha256": "92179ec93f02730ca6a157afb1ed44a5cc9b754bc73acdae8fb05366ea248ab2",
+        "byte_identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/tool/fidelity/office_steps.dart",
+        "baseline_sha256": "614f3e09f83e70f61b3512d06daef4134e5dbafaa7f3af7ea27e4be91a07991b",
+        "current_sha256": "614f3e09f83e70f61b3512d06daef4134e5dbafaa7f3af7ea27e4be91a07991b",
+        "byte_identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/tool/fidelity/word_steps.dart",
+        "baseline_sha256": "0feec1cd8600fdd8581d4c4088037580d5e6f5012d11d4e7af5eeb618de9584a",
+        "current_sha256": "0feec1cd8600fdd8581d4c4088037580d5e6f5012d11d4e7af5eeb618de9584a",
+        "byte_identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/wml_clone.dart",
+        "baseline_sha256": "0d794fc9b620c8e8c2fce18c071a90891107925b7d09049b5e9e607e8bda1530",
+        "current_sha256": "0d794fc9b620c8e8c2fce18c071a90891107925b7d09049b5e9e607e8bda1530",
+        "byte_identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_content_controls.dart",
+        "baseline_sha256": "68734e7971c45c23da7309f4d0a7a1b83dea96df086dff0cef943c6936b695e5",
+        "current_sha256": "68734e7971c45c23da7309f4d0a7a1b83dea96df086dff0cef943c6936b695e5",
+        "byte_identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/fixtures/fidelity/content-controls.docx",
+        "baseline_sha256": "a59cb0915fdadaa579bd28f028da5be1df2c8e036362e8e1fe21b789053b5e29",
+        "current_sha256": "a59cb0915fdadaa579bd28f028da5be1df2c8e036362e8e1fe21b789053b5e29",
+        "byte_identical": true
+      }
+    ]
+  },
+  "head_at_receipt": "fc47924274f43133eb9175548cfee71e3cc2cf1e",
+  "observations": [
+    "Both direct commands exited 1 with the expected inline content control error; existing-output SHA256 stayed f325f6144330c16b5e701c12cfb5e6bf473b693c1c62f4637623c0819c19e72e.",
+    "The instrumented scratch wrapper reached main 20.869 seconds after process launch, completed the actual CLI call in 348 ms, and exited after 21.320 seconds.",
+    "The original test, tool entry point, paragraph-step code, content-control guard, cloning implementation, and input fixture matched the integrated baseline byte-for-byte when checked.",
+    "Pre-entry startup/compilation dominates the observed runtime; these observations do not by themselves prove the cause of the 2-minute test timeout.",
+    "Parent began incoming-branch reconciliation after this diagnostic started. No whole-imported-tree source stability is asserted for this diagnostic. The original isolated test is pending a new integrated source freeze."
+  ]
+}

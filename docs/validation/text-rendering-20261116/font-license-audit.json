@@ -1,0 +1,393 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-16",
+  "scope": "The 14 existing bundled TrueType font assets; this is not an audit of all repository dependencies.",
+  "result": "All inspected assets identify SIL Open Font License 1.1. The Liberation binaries identify version 2.1.5, not the earlier GPL-licensed 1.x series. No font binaries were changed.",
+  "license_id": "OFL-1.1",
+  "official_license_url": "https://openfontlicense.org/open-font-license-official-text/",
+  "distribution_notes": [
+    "Retain the full OFL text and copyright notices with distributed font assets.",
+    "Honor Reserved Font Names when modifying fonts; do not sell fonts on their own.",
+    "Font derivatives remain under OFL; documents created with the fonts do not inherit that font license."
+  ],
+  "notice_sources": {
+    "Liberation": {
+      "repository": "https://github.com/liberationfonts/liberation-fonts",
+      "tag": "2.1.5",
+      "commit": "4b0192046158094654e865245832c66d2104219e",
+      "license_url": "https://github.com/liberationfonts/liberation-fonts/blob/4b0192046158094654e865245832c66d2104219e/LICENSE",
+      "upstream_license_git_blob_sha1": "aba73e8a403084a93a245ca00e4a0db007886e0a",
+      "local_notice": "packages/quds_office_editor/fonts/LICENSE-Liberation",
+      "notice_handling": "Full upstream notice; trailing whitespace and final blank lines normalized.",
+      "binary_provenance": "Version/license/copyright inspected in each bundled name table; upstream binary archive bytes were not independently compared.",
+      "local_notice_sha256": "a0c060f758d33ee59a674cd7b45914a560d0a5935968af5e87b0c6981fd89ddc",
+      "historical_license_reference": "https://github.com/liberationfonts/liberation-1.7-fonts"
+    },
+    "NotoNaskhArabic": {
+      "repository": "https://github.com/notofonts/noto-fonts",
+      "commit": "bbdcaa392e1a67b5a81c8fe9e961f8325352a141",
+      "license_url": "https://github.com/notofonts/noto-fonts/blob/bbdcaa392e1a67b5a81c8fe9e961f8325352a141/LICENSE",
+      "upstream_license_git_blob_sha1": "c82d72e422e2d08c5ab439b6bac7c2177ea0c565",
+      "local_notice": "packages/quds_office_editor/fonts/LICENSE-NotoNaskhArabic",
+      "notice_handling": "Full upstream notice plus Copyright 2019-2020 Google LLC. All Rights Reserved. copied from the bundled fonts name tables.",
+      "binary_provenance": "Both bundled git blob object IDs exactly match upstream hinted/ttf/NotoNaskhArabic font objects at the recorded commit.",
+      "local_notice_sha256": "07d7ff7e09c8b10fe6f1cb6c659d7a9cab691253abfc0b72794e70c598f06a1d"
+    }
+  },
+  "fonts": [
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationMono-Bold.ttf",
+      "bytes": 308068,
+      "sha256": "50464e64aaadea741fb9516748aee296d570439406be11d63df22294e77ba867",
+      "git_blob_sha1": "947b76f630a3654c848511510442575e7b43e2be",
+      "family": [
+        "Liberation Mono"
+      ],
+      "style": [
+        "Bold"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationMono-BoldItalic.ttf",
+      "bytes": 284184,
+      "sha256": "291872531f0e8013df602c412fc570241860e41b1fa1b7972537c27a19024d4d",
+      "git_blob_sha1": "a371481720603f7ea0c6024822dc7c3150f15490",
+      "family": [
+        "Liberation Mono"
+      ],
+      "style": [
+        "Bold Italic"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationMono-Italic.ttf",
+      "bytes": 281608,
+      "sha256": "35c3116d4366eb0e58494d8e432d4ee0c60c5735c7f775ffc096008bd2907c74",
+      "git_blob_sha1": "9a6592336ca5944a304891222ff8e470a5b4c955",
+      "family": [
+        "Liberation Mono"
+      ],
+      "style": [
+        "Italic"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationMono-Regular.ttf",
+      "bytes": 319624,
+      "sha256": "d18235f1e874771f4eaec3ddd6ddb4db849d334bdc6930c5c2185d9344834e62",
+      "git_blob_sha1": "adbea0423031ac63ceee53e1f7b564182565b721",
+      "family": [
+        "Liberation Mono"
+      ],
+      "style": [
+        "Regular"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSans-Bold.ttf",
+      "bytes": 414568,
+      "sha256": "b72c65e551d653b54217ffad0d1454ce0657e4e8d4a28bcc79e0acd2598f4bf3",
+      "git_blob_sha1": "58c1be7b9bcf3fc510f70eb7b9f6cd4efc92c44b",
+      "family": [
+        "Liberation Sans"
+      ],
+      "style": [
+        "Bold"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSans-BoldItalic.ttf",
+      "bytes": 409108,
+      "sha256": "64263238517af60213cdb469165fc7e9acd0c09c35f4155f924a379f97125a57",
+      "git_blob_sha1": "727a88c073f35578095e15f3f0b8a2c274c4c217",
+      "family": [
+        "Liberation Sans"
+      ],
+      "style": [
+        "Bold Italic"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSans-Italic.ttf",
+      "bytes": 415920,
+      "sha256": "4ccb79043bd3a6d131b5a53901abb21261b1417f6052b38a9fa9716a4e5a3d81",
+      "git_blob_sha1": "17e29d2134e8c430701288837d96d1d202b7050b",
+      "family": [
+        "Liberation Sans"
+      ],
+      "style": [
+        "Italic"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSans-Regular.ttf",
+      "bytes": 410820,
+      "sha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8",
+      "git_blob_sha1": "328ef8be272813fa4864b1c2405491049dd3a7a3",
+      "family": [
+        "Liberation Sans"
+      ],
+      "style": [
+        "Regular"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation. \nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSerif-Bold.ttf",
+      "bytes": 370196,
+      "sha256": "bb033fae52dcbf67a55494a08829aaa788324624d72a195af7f93da3061c928f",
+      "git_blob_sha1": "c7f9c09bb346c1e90e610f1c47bf5d07cc0b645d",
+      "family": [
+        "Liberation Serif"
+      ],
+      "style": [
+        "Bold"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSerif-BoldItalic.ttf",
+      "bytes": 376892,
+      "sha256": "10ec0fa22bc6f12a239d600c051752884d155997aafd19ebc24c4f4a8d2b98d0",
+      "git_blob_sha1": "6a20b81b3d15a6785d16732bf4c4208a22888ce3",
+      "family": [
+        "Liberation Serif"
+      ],
+      "style": [
+        "Bold Italic"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSerif-Italic.ttf",
+      "bytes": 375760,
+      "sha256": "c1882fbb05e78537b9c39dad3c07c4f231c987a3747b20c8745737aed50cd488",
+      "git_blob_sha1": "14d6455b7036856f4b309f1ddadc0229243f80a0",
+      "family": [
+        "Liberation Serif"
+      ],
+      "style": [
+        "Italic"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/LiberationSerif-Regular.ttf",
+      "bytes": 393692,
+      "sha256": "350f4ffd773cae53560c63dca3d89a5070595614fde12f772bf43feb63d81064",
+      "git_blob_sha1": "187d85ebec83992485d0c6c38ae556522a5019f3",
+      "family": [
+        "Liberation Serif"
+      ],
+      "style": [
+        "Regular"
+      ],
+      "version": [
+        "Version 2.1.5"
+      ],
+      "copyright": [
+        "Digitized data copyright (c) 2010 Google Corporation.\nCopyright (c) 2012 Red Hat, Inc."
+      ],
+      "license_description": [
+        "Licensed under the SIL Open Font License, Version 1.1"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/NotoNaskhArabic-Bold.ttf",
+      "bytes": 181192,
+      "sha256": "b5cbcb561b4b540ff11d7b6934577dbbbbb9e1d152d47f6f31f19176d58ff39c",
+      "git_blob_sha1": "7ae5a31521d53028d67973115d2a1b8c840e230c",
+      "family": [
+        "Noto Naskh Arabic"
+      ],
+      "style": [
+        "Bold"
+      ],
+      "version": [
+        "2.004; ttfautohint (v1.8.3) -l 8 -r 50 -G 200 -x 14 -D arab -f none -a qsq -X \"\""
+      ],
+      "copyright": [
+        "Copyright 2019-2020 Google LLC. All Rights Reserved."
+      ],
+      "license_description": [
+        "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0,
+      "upstream_url": "https://github.com/notofonts/noto-fonts/blob/bbdcaa392e1a67b5a81c8fe9e961f8325352a141/hinted/ttf/NotoNaskhArabic/NotoNaskhArabic-Bold.ttf",
+      "upstream_git_blob_match": true
+    },
+    {
+      "file": "packages/quds_office_editor/fonts/NotoNaskhArabic-Regular.ttf",
+      "bytes": 175792,
+      "sha256": "8c67eaa2f0086872628fc3f7f760386f83c8be5c5e9a1ba3a38891237b2ac7cb",
+      "git_blob_sha1": "00a33b3dfe8411968dabf2bfd1deb02bb79ff0f6",
+      "family": [
+        "Noto Naskh Arabic"
+      ],
+      "style": [
+        "Regular"
+      ],
+      "version": [
+        "2.004; ttfautohint (v1.8.3) -l 8 -r 50 -G 200 -x 14 -D arab -f none -a qsq -X \"\""
+      ],
+      "copyright": [
+        "Copyright 2019-2020 Google LLC. All Rights Reserved."
+      ],
+      "license_description": [
+        "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL"
+      ],
+      "license_url": [
+        "http://scripts.sil.org/OFL"
+      ],
+      "os2_fsType": 0,
+      "upstream_url": "https://github.com/notofonts/noto-fonts/blob/bbdcaa392e1a67b5a81c8fe9e961f8325352a141/hinted/ttf/NotoNaskhArabic/NotoNaskhArabic-Regular.ttf",
+      "upstream_git_blob_match": true
+    }
+  ]
+}

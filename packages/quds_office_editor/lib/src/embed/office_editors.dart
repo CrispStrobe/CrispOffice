@@ -221,6 +221,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   bool _proofingOpen = false;
   ModalRoute<dynamic>? _inputRoute;
   bool? _inputRouteWasCurrent;
+  final _directionKeys = OfficeDirectionKeyChord();
   late final bool Function() _inputGuard = _allowsWordInput;
 
   bool _allowsWordInput() =>
@@ -262,9 +263,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
       _c.syncConfig(widget.config!);
     }
     if (_c.config.autofocus) {
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => _focus.requestFocus(),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
+      });
     }
   }
 
@@ -502,6 +503,7 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     if (_inputGuard()) {
       _c.attachInput();
     } else {
+      _directionKeys.reset();
       _c.detachInput();
     }
     if (mounted) {
@@ -513,13 +515,13 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     if (!_focus.hasPrimaryFocus || !(_inputRoute?.isCurrent ?? true)) {
       return KeyEventResult.ignored;
     }
-    if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
-      return KeyEventResult.ignored;
-    }
-    final bool? directionRtl = officeDirectionFromKeyEvent(event);
+    final directionRtl = _directionKeys.handle(event);
     if (directionRtl != null && _c.config.allowsMutation) {
       _c.setParagraphDirection(rtl: directionRtl);
       return KeyEventResult.handled;
+    }
+    if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
+      return KeyEventResult.ignored;
     }
     if (officeHandleDocumentShortcut(_c, event)) {
       return KeyEventResult.handled;
@@ -688,6 +690,10 @@ class _QudsWordEditorState extends State<QudsWordEditor>
     }
     if (event.logicalKey == LogicalKeyboardKey.enter ||
         event.logicalKey == LogicalKeyboardKey.numpadEnter) {
+      // Modified Enter belongs to host actions such as page/column breaks.
+      if (ctrl || HardwareKeyboard.instance.isAltPressed) {
+        return KeyEventResult.ignored;
+      }
       _c.insertParagraphBreak();
       return KeyEventResult.handled;
     }
@@ -1072,6 +1078,15 @@ class QudsSheetEditor extends StatefulWidget {
 class _QudsSheetEditorState extends State<QudsSheetEditor> {
   late final FocusNode _focus;
   late final bool _ownsFocus;
+  ModalRoute<dynamic>? _inputRoute;
+  final _directionKeys = OfficeDirectionKeyChord();
+  late final bool Function() _inputGuard = _allowsSheetInput;
+
+  bool _allowsSheetInput() =>
+      mounted &&
+      _focus.hasPrimaryFocus &&
+      (_inputRoute?.isCurrent ?? true) &&
+      _c.config.allowsMutation;
   Timer? _navRepeat;
   OverlayEntry? _contextMenu;
 
@@ -1084,16 +1099,24 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
     super.initState();
     _ownsFocus = widget.focusNode == null;
     _focus = widget.focusNode ?? FocusNode(debugLabel: 'QudsSheetEditor');
+    _c.cellEditor.bridge.inputAllowed = _inputGuard;
+    _c.cellEditor.bridge.detach();
     _c.addListener(_rebuild);
     _focus.addListener(_onSheetFocus);
     if (widget.config != null) {
       _c.syncConfig(widget.config!);
     }
     if (_c.config.autofocus) {
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => _focus.requestFocus(),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && (_inputRoute?.isCurrent ?? true)) _focus.requestFocus();
+      });
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _inputRoute = ModalRoute.of(context);
   }
 
   @override
@@ -1101,6 +1124,10 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
   void didUpdateWidget(QudsSheetEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (!identical(oldWidget.controller, _c)) {
+      oldWidget.controller.cellEditor.bridge.inputAllowed = () => false;
+      oldWidget.controller.cellEditor.bridge.detach();
+      _c.cellEditor.bridge.inputAllowed = _inputGuard;
+      _c.cellEditor.bridge.detach();
       oldWidget.controller.removeListener(_rebuild);
       _c.addListener(_rebuild);
       _stopNavRepeat();
@@ -1118,8 +1145,12 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
   }
 
   void _onSheetFocus() {
-    if (!_focus.hasFocus) {
+    if (!_inputGuard()) {
+      _directionKeys.reset();
       _stopNavRepeat();
+      _c.cellEditor.bridge.detach();
+    } else if (_c.cellEditor.editing) {
+      _c.cellEditor.bridge.attach();
     }
   }
 
@@ -1127,6 +1158,10 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
   /// dispose API.
   void dispose() {
     _dismissContextMenu();
+    if (identical(_c.cellEditor.bridge.inputAllowed, _inputGuard)) {
+      _c.cellEditor.bridge.detach();
+      _c.cellEditor.bridge.inputAllowed = () => false;
+    }
     _stopNavRepeat();
     _focus.removeListener(_onSheetFocus);
     _c.removeListener(_rebuild);
@@ -1185,6 +1220,11 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
   }
 
   KeyEventResult _onKey(FocusNode node, KeyEvent event) {
+    final directionRtl = _directionKeys.handle(event);
+    if (directionRtl != null && _c.config.allowsMutation) {
+      _c.setSheetRightToLeft(directionRtl);
+      return KeyEventResult.handled;
+    }
     if (event is KeyUpEvent) {
       if (_isSheetNavKey(event.logicalKey)) {
         _stopNavRepeat();
@@ -1204,11 +1244,6 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
         return KeyEventResult.handled;
       }
       return KeyEventResult.ignored;
-    }
-    final bool? directionRtl = officeDirectionFromKeyEvent(event);
-    if (directionRtl != null && _c.config.allowsMutation) {
-      _c.setSheetRightToLeft(directionRtl);
-      return KeyEventResult.handled;
     }
     if (officeHandleDocumentShortcut(_c, event)) {
       return KeyEventResult.handled;
@@ -1778,6 +1813,15 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
     with SingleTickerProviderStateMixin {
   late final FocusNode _focus;
   late final bool _ownsFocus;
+  ModalRoute<dynamic>? _inputRoute;
+  final _directionKeys = OfficeDirectionKeyChord();
+  late final bool Function() _inputGuard = _allowsSlideInput;
+
+  bool _allowsSlideInput() =>
+      mounted &&
+      _focus.hasPrimaryFocus &&
+      (_inputRoute?.isCurrent ?? true) &&
+      _c.config.allowsMutation;
   Ticker? _showTicker;
 
   /// zero API.
@@ -1795,7 +1839,10 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
     super.initState();
     _ownsFocus = widget.focusNode == null;
     _focus = widget.focusNode ?? FocusNode(debugLabel: 'QudsSlideEditor');
+    _c.textEditor.bridge.inputAllowed = _inputGuard;
+    _c.textEditor.bridge.detach();
     _c.addListener(_rebuild);
+    _focus.addListener(_onSlideFocus);
     _c.motionFrame.addListener(_onMotionFrame);
     if (widget.config != null) {
       _c.syncConfig(widget.config!);
@@ -1809,11 +1856,36 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _inputRoute = ModalRoute.of(context);
+  }
+
+  @override
   /// didUpdateWidget API.
   void didUpdateWidget(QudsSlideEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.controller, _c)) {
+      oldWidget.controller.removeListener(_rebuild);
+      oldWidget.controller.motionFrame.removeListener(_onMotionFrame);
+      oldWidget.controller.textEditor.bridge.inputAllowed = () => false;
+      oldWidget.controller.textEditor.bridge.detach();
+      _c.textEditor.bridge.inputAllowed = _inputGuard;
+      _c.textEditor.bridge.detach();
+      _c.addListener(_rebuild);
+      _c.motionFrame.addListener(_onMotionFrame);
+    }
     if (widget.config != null && !identical(widget.config, _c.config)) {
       _c.syncConfig(widget.config!);
+    }
+  }
+
+  void _onSlideFocus() {
+    if (!_inputGuard()) {
+      _directionKeys.reset();
+      _c.textEditor.bridge.detach();
+    } else if (_c.textEditor.editing) {
+      _c.textEditor.bridge.attach(multiline: true);
     }
   }
 
@@ -1822,7 +1894,9 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
       setState(() {});
       _syncShowTicker();
       _syncShowOverlay();
-      if (_c.isPlayingMotion && !_focus.hasFocus) {
+      if (_c.isPlayingMotion &&
+          !_focus.hasFocus &&
+          (_inputRoute?.isCurrent ?? true)) {
         _focus.requestFocus();
       }
     }
@@ -2002,9 +2076,14 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
   /// dispose API.
   void dispose() {
     _dismissContextMenu();
+    if (identical(_c.textEditor.bridge.inputAllowed, _inputGuard)) {
+      _c.textEditor.bridge.detach();
+      _c.textEditor.bridge.inputAllowed = () => false;
+    }
     _showOverlay?.remove();
     _showOverlay = null;
     _showTicker?.dispose();
+    _focus.removeListener(_onSlideFocus);
     _c.motionFrame.removeListener(_onMotionFrame);
     _c.removeListener(_rebuild);
     if (_ownsFocus) {
@@ -2045,6 +2124,13 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
                     autofocus: true,
                     focusNode: _focus,
                     onKeyEvent: (FocusNode node, KeyEvent event) {
+                      final directionRtl = _directionKeys.handle(event);
+                      if (directionRtl != null &&
+                          _c.config.allowsMutation &&
+                          !_c.isPresenting) {
+                        _c.setSelectedTextDirection(rtl: directionRtl);
+                        return KeyEventResult.handled;
+                      }
                       final KeyEventResult show = _onSlideKey(node, event);
                       if (show != KeyEventResult.ignored) {
                         return show;
@@ -2058,13 +2144,6 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
                         _c.moveSelectedTableCell(
                           forward: !HardwareKeyboard.instance.isShiftPressed,
                         );
-                        return KeyEventResult.handled;
-                      }
-                      final bool? directionRtl = officeDirectionFromKeyEvent(
-                        event,
-                      );
-                      if (directionRtl != null && _c.config.allowsMutation) {
-                        _c.setSelectedTextDirection(rtl: directionRtl);
                         return KeyEventResult.handled;
                       }
                       final bool ctrl =
