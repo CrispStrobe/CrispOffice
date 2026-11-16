@@ -1,0 +1,39 @@
+[
+  {
+    "ref": "origin/docs/validation-complete",
+    "patch_equivalent_commits": [
+      "- f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    ]
+  },
+  {
+    "ref": "origin/feat/ods-custom-validation",
+    "patch_equivalent_commits": [
+      "- 2e3074c8e1860f9503b059a87870911afc3eee7d"
+    ]
+  },
+  {
+    "ref": "origin/feat/ods-named-expressions",
+    "patch_equivalent_commits": [
+      "- 864e674795eb422855df2b26ccc375d3255e61a2"
+    ]
+  },
+  {
+    "ref": "origin/feat/ods-tab-color",
+    "patch_equivalent_commits": [
+      "- 0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    ]
+  },
+  {
+    "ref": "origin/feat/ods-validation-messages",
+    "patch_equivalent_commits": [
+      "- 49ba086251ba61032f15b3e7b726fc921874fd12"
+    ]
+  },
+  {
+    "ref": "origin/vendor/ods-named-expressions",
+    "patch_equivalent_commits": [
+      "- 375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "- 388a1c76339507d493bab577424affd80732446c"
+    ]
+  }
+]
