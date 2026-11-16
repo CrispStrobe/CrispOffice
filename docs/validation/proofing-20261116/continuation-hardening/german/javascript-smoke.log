@@ -1,0 +1,11 @@
+PASS real German dictionary + rules clean sentence
+PASS UTF16 emoji offset + useful suggestion
+PASS decomposed umlaut source lookup
+PASS Swiss modern variants
+PASS cross-runtime German all-capitals sharp-s
+PASS obsolete orthography excluded
+PASS source-preserving soft-hyphen lookup
+PASS limited German grammar rule
+PASS host-owned personal vocabulary
+PASS disposed checker is unavailable
+All 10 compiled-JavaScript proofing checks passed.

@@ -146,6 +146,7 @@ abstract final class LineBreaker {
       justify,
       markAttachOf,
       hyphens,
+      _BreakControls.fromText(text, shaped),
       {for (final cluster in GraphemeClusters.segment(text)) cluster.start},
       measureLine,
       breakLongWords,
@@ -216,6 +217,7 @@ abstract final class LineBreaker {
     final clusterStarts = {
       for (final cluster in GraphemeClusters.segment(text)) cluster.start,
     };
+    final controls = _BreakControls.fromText(text, logical);
 
     // Hard breaks on LF/CR (Flutter / package:pdf Text parity).
     final List<BrokenLine> lines = <BrokenLine>[];
@@ -241,6 +243,7 @@ abstract final class LineBreaker {
             markAttachOf: markAttachOf,
             clusterStarts: clusterStarts,
             hyphens: hyphens,
+            controls: controls,
             breakLongWords: breakLongWords,
             measureLine: measureLine,
           ),
@@ -278,6 +281,7 @@ abstract final class LineBreaker {
     MarkAttachFn? markAttachOf,
     required Set<int> clusterStarts,
     Map<int, ShapedGlyph> hyphens = const {},
+    _BreakControls controls = _BreakControls.empty,
     bool breakLongWords = false,
     List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? measureLine,
   }) {
@@ -288,10 +292,18 @@ abstract final class LineBreaker {
       spaceShrink,
       hyphens,
       clusterStarts,
+      controls,
     );
     var breaks = !breakLongWords
         ? planned
-        : _constrainBreaks(logical, planned, clusterStarts, maxWidth, hyphens);
+        : _constrainBreaks(
+            logical,
+            planned,
+            clusterStarts,
+            maxWidth,
+            hyphens,
+            controls,
+          );
     final measurements = _LineMeasurements(
       logical,
       hyphens,
@@ -306,6 +318,7 @@ abstract final class LineBreaker {
         clusterStarts,
         maxWidth,
         hyphens,
+        controls,
         measurements.at,
         breakLongWords: breakLongWords,
       );
@@ -369,11 +382,12 @@ abstract final class LineBreaker {
     Set<int> clusterStarts,
     double maxWidth,
     Map<int, ShapedGlyph> hyphens,
+    _BreakControls controls,
   ) {
     final boundaries = <int>[
       0,
       for (var i = 1; i < logical.length; i++)
-        if (_isClusterBoundary(logical, i, clusterStarts)) i,
+        if (_isClusterBoundary(logical, i, clusterStarts, controls)) i,
       logical.length,
     ];
     final boundaryIndex = <int, int>{
@@ -410,7 +424,13 @@ abstract final class LineBreaker {
             break;
           }
           fitting = next;
-          if (_canBreakAfter(logical, to - 1, hyphens, clusterStarts)) {
+          if (_canBreakAfter(
+            logical,
+            to - 1,
+            hyphens,
+            clusterStarts,
+            controls,
+          )) {
             natural = next;
           }
         }
@@ -428,12 +448,14 @@ abstract final class LineBreaker {
     List<ShapedGlyph> logical,
     int at,
     Set<int> clusterStarts,
+    _BreakControls controls,
   ) =>
       at == logical.length ||
       (at > 0 &&
           // All soft-break paths consume ordinary spaces with their preceding
           // line, including a host-measured oversized grapheme fallback.
           logical[at].codePoint != 0x0020 &&
+          !controls.prohibits(logical[at].logicalIndex) &&
           clusterStarts.contains(logical[at].logicalIndex) &&
           logical[at].logicalIndex != logical[at - 1].logicalIndex &&
           // The continuation of a lam-alef ligature has no independent ink.
@@ -449,16 +471,18 @@ abstract final class LineBreaker {
     Set<int> clusterStarts,
     double maxWidth,
     Map<int, ShapedGlyph> hyphens,
+    _BreakControls controls,
     _MeasuredLine Function(int from, int to) measure, {
     required bool breakLongWords,
   }) {
     final boundaries = <int>[
       for (var at = 1; at <= logical.length; at++)
-        if (_isClusterBoundary(logical, at, clusterStarts)) at,
+        if (_isClusterBoundary(logical, at, clusterStarts, controls)) at,
     ];
     final natural = <int>[
       for (final at in boundaries)
-        if (_canBreakAfter(logical, at - 1, hyphens, clusterStarts)) at,
+        if (_canBreakAfter(logical, at - 1, hyphens, clusterStarts, controls))
+          at,
     ];
     int firstAfter(List<int> values, int value) {
       var low = 0;
@@ -774,6 +798,7 @@ abstract final class LineBreaker {
     double shrink, [
     Map<int, ShapedGlyph> hyphens = const {},
     Set<int>? clusterStarts,
+    _BreakControls controls = _BreakControls.empty,
   ]) {
     final int n = glyphs.length;
     final List<double> widths = List<double>.filled(n + 1, 0);
@@ -782,7 +807,7 @@ abstract final class LineBreaker {
     }
     final List<int> legal = <int>[0];
     for (int i = 0; i < n; i++) {
-      if (_canBreakAfter(glyphs, i, hyphens, clusterStarts)) {
+      if (_canBreakAfter(glyphs, i, hyphens, clusterStarts, controls)) {
         legal.add(i + 1);
       }
     }
@@ -870,6 +895,7 @@ abstract final class LineBreaker {
     int i, [
     Map<int, ShapedGlyph> hyphens = const {},
     Set<int>? clusterStarts,
+    _BreakControls controls = _BreakControls.empty,
   ]) {
     final int cp = glyphs[i].codePoint;
     if (cp == 0x000A || cp == 0x000D) {
@@ -879,8 +905,12 @@ abstract final class LineBreaker {
       return true;
     }
     if (clusterStarts != null &&
-        !_isClusterBoundary(glyphs, i + 1, clusterStarts)) {
+        !_isClusterBoundary(glyphs, i + 1, clusterStarts, controls)) {
       return false;
+    }
+    if (controls.prohibits(glyphs[i + 1].logicalIndex)) return false;
+    if (controls.opportunities.contains(glyphs[i + 1].logicalIndex)) {
+      return true;
     }
     if (hyphens.containsKey(glyphs[i + 1].logicalIndex)) return true;
     final int next = glyphs[i + 1].codePoint;
@@ -984,6 +1014,49 @@ abstract final class LineBreaker {
 
   /// cp API.
   static int _identityGlyph(int cp) => cp;
+}
+
+// Bidi formatting controls do not paint, but some carry line-break semantics.
+// Preserve these constraints separately from the visible glyph list so host
+// shaping, source offsets and caret ownership keep their existing contracts.
+// UAX #14 LB8 permits a break after ZWSP and following ordinary spaces; LB11
+// prohibits a break around WJ/ZWNBSP. An explicit ZWSP opportunity wins (LB8).
+class _BreakControls {
+  const _BreakControls._(this.opportunities, this._prohibited);
+
+  static const empty = _BreakControls._({}, {});
+  final Set<int> opportunities;
+  final Set<int> _prohibited;
+
+  bool prohibits(int offset) =>
+      _prohibited.contains(offset) && !opportunities.contains(offset);
+
+  static _BreakControls fromText(String text, List<ShapedGlyph> logical) {
+    if (!text.contains('\u200b') &&
+        !text.contains('\u2060') &&
+        !text.contains('\ufeff')) {
+      return empty;
+    }
+    final sources = {for (final glyph in logical) glyph.logicalIndex};
+    final opportunities = <int>{};
+    final prohibited = <int>{};
+    int? nextGlyph;
+    int? afterSpaces;
+    for (var at = text.length - 1; at >= 0; at--) {
+      final unit = text.codeUnitAt(at);
+      if (sources.contains(at)) {
+        nextGlyph = at;
+        if (unit != 0x20) afterSpaces = at;
+      } else if (unit == 0x200b) {
+        // Omitted directional controls may share the same visible boundary.
+        // Ordinary trailing spaces stay with the preceding line as elsewhere.
+        if (afterSpaces != null) opportunities.add(afterSpaces);
+      } else if (unit == 0x2060 || unit == 0xfeff) {
+        if (nextGlyph != null) prohibited.add(nextGlyph);
+      }
+    }
+    return _BreakControls._(opportunities, prohibited);
+  }
 }
 
 class _MeasuredLine {
@@ -1091,6 +1164,7 @@ class PreparedLineBreaker {
     this._justify,
     this._markAttach,
     this._hyphens,
+    this._controls,
     this._clusterStarts,
     this._measureLine,
     this._breakLongWords,
@@ -1103,6 +1177,7 @@ class PreparedLineBreaker {
   final bool _justify;
   final MarkAttachFn? _markAttach;
   final Map<int, ShapedGlyph> _hyphens;
+  final _BreakControls _controls;
   final Set<int> _clusterStarts;
   final List<ShapedGlyph> Function(List<ShapedGlyph> glyphs)? _measureLine;
   final bool _breakLongWords;
@@ -1177,6 +1252,7 @@ class PreparedLineBreaker {
         _shrink,
         _hyphens,
         _clusterStarts,
+        _controls,
       );
       if (_breakLongWords) {
         points = LineBreaker._constrainBreaks(
@@ -1185,6 +1261,7 @@ class PreparedLineBreaker {
           _clusterStarts,
           maxWidth,
           _hyphens,
+          _controls,
         );
       }
       if (_measureLine != null) {
@@ -1194,6 +1271,7 @@ class PreparedLineBreaker {
           _clusterStarts,
           maxWidth,
           _hyphens,
+          _controls,
           (a, b) => _measurements.at(from + a, from + b),
           breakLongWords: _breakLongWords,
         );

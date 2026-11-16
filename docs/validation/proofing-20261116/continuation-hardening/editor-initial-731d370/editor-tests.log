@@ -1,0 +1,82 @@
+00:00 +0: loading /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart
+00:00 +0: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: closed empty complex fields never reach providers
+00:00 +1: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked
+00:00 +2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: generated page-number paragraphs never reach providers
+00:00 +3: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: page-number metadata invalidates findings without a text edit
+00:00 +4: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: pending page-number metadata changes discard provider results
+00:00 +5: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: nonempty findings use half-open hit ranges
+00:00 +6: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state
+00:00 +7: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: language changes inside a combining cluster retain the full cluster and its first language
+00:00 +8: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a surrogate pair split across runs and languages remains one emoji in provider input
+00:00 +9: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: noProof on part of a combining cluster excludes the entire cluster
+00:00 +10: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: review traverses body, nested tables, frames, all headers/footers, notes and comments
+00:01 +11: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: formatting fragments join while language and noProof boundaries preserve UTF-16 offsets
+00:01 +12: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: run language overrides paragraph language, which overrides the document default
+00:01 +13: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: late results after a revision change never become current findings
+00:01 +14: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: direct model edits during a pending check invalidate its snapshot even without revision notification
+00:01 +15: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: replacing a document with identical text and revision rejects the old document result
+00:01 +16: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider reconfiguration cancels pending publication and disposes the previous provider
+00:01 +17: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unchanged paragraphs reuse results while rebinding findings to the current revision
+00:01 +18: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider configuration revisions invalidate otherwise identical cached text
+00:01 +19: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: moving a paragraph between stories invalidates its old finding and cache
+00:02 +20: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a document with no checkable paragraphs never claims a clean completed check
+00:02 +21: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: no configured provider is visibly unavailable
+00:02 +22: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unavailable checks are incomplete and can be retried instead of cached as clean
+00:02 +23: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unsupported checks are incomplete and can be retried instead of cached as clean
+00:02 +24: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: failed checks are incomplete and can be retried instead of cached as clean
+00:02 +25: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: an unsupported document language reports its locale without calling the checker
+00:02 +26: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: opaque body blocks and preserved header stories are explicit coverage gaps
+00:02 +27: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: personal words are language-scoped and host snapshots preserve owner identity
+00:02 +28: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignore once suppresses one occurrence and resets when its paragraph text changes
+00:02 +29: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: ignored rules can be restored without changing source text or personal words
+00:02 +30: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: restoring ignored occurrences preserves word and rule preferences
+00:04 +31: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:09 +32: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:09 +33: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:09 +34: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:10 +35: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:10 +36: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:11 +37: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:12 +38: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:12 +39: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +40: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +41: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +42: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +43: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +44: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +45: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +46: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +47: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +48: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:13 +49: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:14 +50: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:14 +51: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:14 +52: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:14 +53: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:15 +54: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:15 +55: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:15 +56: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:15 +57: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:15 +58: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:15 +59: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:15 +60: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction creates separate valid deletion and insertion with undo and DOCX accept/reject
+00:16 +61: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Use space is visible and undoable
+00:16 +62: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Use space is visible and undoable
+00:16 +63: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Use space is visible and undoable
+00:16 +64: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Use space is visible and undoable
+00:16 +65: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Use space is visible and undoable
+00:18 +66: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignored words can be restored in their run language without clearing other preferences
+00:21 +67: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: (setUpAll)
+00:22 +67: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: an ignored writing rule can be restored from review
+00:22 +68: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: an ignored writing rule can be restored from review
+00:22 +69: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: an ignored writing rule can be restored from review
+00:22 +70: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: an ignored writing rule can be restored from review
+00:24 +71: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: squiggles follow paragraph identity through body and table text and clear on refresh
+00:26 +72: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignored occurrences can be reviewed again in a read-only document
+00:26 +73: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart: generated field text receives no findings or squiggles
+00:26 +74: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:27 +75: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:27 +76: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:27 +77: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:28 +78: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices
+00:28 +79: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: swapping the dialog controller checks its document and clears old notices

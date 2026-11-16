@@ -122,9 +122,8 @@ void main() {
     () async {
       expect((await provider.check(input('STRASSE GRÜSSE'))).findings, isEmpty);
       expect(
-        (await provider.check(
-          input('STRASSE GRÜSSE', language: 'de-CH'),
-        )).findings,
+        (await provider.check(input('STRASSE GRÜSSE', language: 'de-CH')))
+            .findings,
         isEmpty,
       );
     },
@@ -147,9 +146,8 @@ void main() {
     'Swiss spellings are locale-scoped and sharp-s receives ss suggestion',
     () async {
       expect(
-        (await provider.check(
-          input('Strasse Grüsse', language: 'de-CH'),
-        )).findings,
+        (await provider.check(input('Strasse Grüsse', language: 'de-CH')))
+            .findings,
         isEmpty,
       );
       final OfficeProofingResult swiss = await provider.check(
@@ -172,6 +170,25 @@ void main() {
       expect(input('Text', language: 'de').language, 'de-DE');
     },
   );
+  test('Swiss capital sharp-s offers the matching SS replacement', () async {
+    const String text = '🙂 STRAẞE GRÜẞE';
+    final OfficeProofingResult result = await provider.check(
+      input(text, language: 'de-CH'),
+    );
+    expect(result.status, OfficeProofingStatus.success);
+    expect(
+      result.findings.map((OfficeProofingFinding f) => f.originalText),
+      <String>['STRAẞE', 'GRÜẞE'],
+    );
+    expect(result.findings[0].start, text.indexOf('STRAẞE'));
+    expect(result.findings[0].replacements, contains('STRASSE'));
+    expect(result.findings[1].replacements, contains('GRÜSSE'));
+    expect(
+      result.findings.map((OfficeProofingFinding f) => f.message),
+      everyElement('Die Schweizer Schreibweise verwendet ss statt ß.'),
+    );
+    expect((await provider.check(input('STRAẞE GRÜẞE'))).findings, isEmpty);
+  });
   test('unsupported languages and disposed backend are explicit', () async {
     expect(
       (await provider.check(input('bonjour', language: 'fr-FR'))).status,
@@ -208,6 +225,17 @@ void main() {
         input('Haus-Tür https://example.invalid/Huas test@example.invalid'),
       );
       expect(result.findings, isEmpty);
+    },
+  );
+  test(
+    'URL schemes and www prefixes are protected without case folding text',
+    () async {
+      const String text =
+          'HTTPS://example.invalid/Huas WWW.example.invalid/Huas Huas';
+      final OfficeProofingResult result = await provider.check(input(text));
+      expect(result.findings.single.originalText, 'Huas');
+      expect(result.findings.single.start, text.lastIndexOf('Huas'));
+      expect(result.findings.single.replacements, contains('Haus'));
     },
   );
   test(

@@ -836,4 +836,27 @@ void main() {
       expect(h.document.paragraphs.first.text, 'Ein Feler.');
     },
   );
+
+  test(
+    'restoring ignored occurrences preserves word and rule preferences',
+    () async {
+      final h = _Harness(document: WmlDocument.empty(text: 'Feler Feler'));
+      h.session.vocabulary
+        ..addWord('Quds', language: 'de-DE')
+        ..ignoreWord('Custom', language: 'de-CH');
+      h.session.ignoreRule('unrelated-rule');
+      final before = await h.session.checkNow();
+      h.session.ignoreOnce(before.issues.first);
+      expect((await h.session.checkNow()).issues, hasLength(1));
+      expect(h.session.hasIgnoredOccurrences, isTrue);
+      h.session.clearIgnoredOnce();
+      expect((await h.session.checkNow()).issues, hasLength(2));
+      expect(h.session.hasIgnoredOccurrences, isFalse);
+      expect(h.session.vocabulary.wordsFor('de-DE'), <String>{'Quds'});
+      expect(h.session.vocabulary.ignoredWordsFor('de-CH'), <String>{'Custom'});
+      expect(h.session.ignoredRuleIds, <String>{'unrelated-rule'});
+      expect(h.provider.requests, hasLength(1));
+      expect(h.document.paragraphs.first.text, 'Feler Feler');
+    },
+  );
 }

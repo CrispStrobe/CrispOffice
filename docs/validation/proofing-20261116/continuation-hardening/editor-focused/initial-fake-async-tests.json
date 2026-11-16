@@ -1,0 +1,4 @@
+{
+  "exit_code": 130,
+  "reason": "Interrupted after detecting a test harness deadlock: direct await of checkNow() in Flutter fake async. Corrected test to schedule check and advance with pumpAndSettle."
+}

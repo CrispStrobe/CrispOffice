@@ -1,0 +1,8 @@
+{
+  "source_commit": "731d3708513d00fde9ac32dcb32bac1d39631214",
+  "german_inputs": 37,
+  "german_inputs_match_receipt": true,
+  "runtime_setup_sha256": "0d594abc05d3d5deb2a7c219a3818105b5212d6a434df1b110990e8d9a0b13ed",
+  "note": "German component inputs match both the feature checkpoint and final source; the only intervening source differences are two incoming test-only lint fixes. Final combined engine/editor receipts bind 8b93e866.",
+  "final_tested_source": "8b93e866b4661d19f4bbad4e1069c0a609441ebb"
+}

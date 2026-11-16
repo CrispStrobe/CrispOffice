@@ -1,0 +1,72 @@
+00:00 +0: loading test/line_breaker_controls_test.dart
+00:00 +0: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​
+00:00 +1: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +2: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +3: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +4: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +5: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +6: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +7: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +8: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +9: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +10: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:00 +11: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +12: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +13: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +14: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +15: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +16: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +17: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +18: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:00 +19: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +20: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +21: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +22: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +23: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +24: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +25: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +26: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +27: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:00 +28: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +29: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +30: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +31: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +32: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +33: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +34: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +35: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +36: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +37: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +38: test/line_breaker_measure_line_test.dart: emergency source-grapheme cuts are opt-in: false
+00:01 +39: test/line_breaker_measure_line_test.dart: emergency source-grapheme cuts are opt-in: true
+00:01 +40: test/line_breaker_measure_line_test.dart: an oversized source grapheme remains intact and makes progress
+00:01 +41: test/line_breaker_measure_line_test.dart: contextual emergency repair consumes boundary spaces: " "
+00:01 +42: test/line_breaker_measure_line_test.dart: contextual emergency repair consumes boundary spaces: "   "
+00:01 +43: test/line_breaker_measure_line_test.dart: natural breaks never detach a mark from a source space grapheme
+00:01 +44: test/line_breaker_measure_line_test.dart: selected hyphens are measured with their original source records
+00:01 +45: test/line_breaker_measure_line_test.dart: a newly oversized discretionary hyphen does not split a whole word
+00:01 +46: test/line_breaker_measure_line_test.dart: invalid remove measurement retains original source and metrics
+00:01 +47: test/line_breaker_measure_line_test.dart: invalid reorder measurement retains original source and metrics
+00:01 +48: test/line_breaker_measure_line_test.dart: invalid negative measurement retains original source and metrics
+00:01 +49: test/line_breaker_measure_line_test.dart: invalid infinite measurement retains original source and metrics
+00:10 +50: test/proofing_hyphenation_test.dart: licensed German patterns orthographic examples and regional language selection
+00:11 +51: test/proofing_hyphenation_test.dart: licensed German patterns decomposed umlauts preserve original UTF-16 source
+00:11 +52: test/proofing_hyphenation_test.dart: licensed German patterns manual opportunities and language boundaries are respected
+00:11 +53: test/proofing_hyphenation_test.dart: source-preserving discretionary layout soft hyphen is invisible and zero-width when text fits
+00:12 +54: test/proofing_hyphenation_test.dart: source-preserving discretionary layout selected manual break consumes soft hyphen exactly once
+00:12 +55: test/proofing_hyphenation_test.dart: source-preserving discretionary layout hyphen width participates in fitting instead of overflowing
+00:12 +56: test/proofing_hyphenation_test.dart: source-preserving discretionary layout automatic hyphen owns no source units and keeps end offsets
+00:12 +57: test/proofing_hyphenation_test.dart: source-preserving discretionary layout invalid candidates cannot split a surrogate pair or grapheme
+00:12 +58: test/proofing_hyphenation_test.dart: source-preserving discretionary layout prepared variable-width layout matches fixed lines and exact consumption
+00:12 +59: test/proofing_hyphenation_test.dart: source-preserving discretionary layout RTL context retains all authored glyph positions around German breaks
+00:12 +60: test/proofing_hyphenation_test.dart: Word language and hyphenation settings header tab overlays map repeated text to exact authored offsets
+00:12 +61: test/proofing_hyphenation_test.dart: Word language and hyphenation settings generated header and footer labels expose no authored offsets
+00:12 +62: test/proofing_hyphenation_test.dart: Word language and hyphenation settings native Word discretionary and nonbreaking hyphens survive import/save
+00:13 +63: test/proofing_hyphenation_test.dart: Word language and hyphenation settings PDF paints the same break but copying omits automatic hyphens
+00:14 +64: test/proofing_hyphenation_test.dart: Word language and hyphenation settings language edits preserve independent native language and marker metadata
+00:14 +65: test/proofing_hyphenation_test.dart: Word language and hyphenation settings proofing source identity and offsets survive note display labels
+00:14 +66: test/proofing_hyphenation_test.dart: Word language and hyphenation settings document defaults, paragraph and run overrides survive two DOCX cycles
+00:14 +67: test/proofing_hyphenation_test.dart: Word language and hyphenation settings changing document default stays live for inherited runs
+00:14 +68: test/proofing_hyphenation_test.dart: Word language and hyphenation settings settings toggle preserves other native controls and absence
+00:14 +69: test/proofing_hyphenation_test.dart: Word language and hyphenation settings Word layout uses document setting and paragraph suppression without editing source
+00:14 +70: All tests passed!

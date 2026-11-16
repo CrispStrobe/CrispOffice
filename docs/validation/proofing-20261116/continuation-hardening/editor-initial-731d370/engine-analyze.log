@@ -1,0 +1,5 @@
+Analyzing lib, test, tool...
+
+warning - test/ods_sheet_writer_test.dart:8:11 - The value of the local variable 'a1' isn't used. Try removing the variable or using it. - unused_local_variable
+
+1 issue found.

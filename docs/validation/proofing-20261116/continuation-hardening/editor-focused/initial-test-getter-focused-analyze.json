@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "lib/src/proofing/word_proofing.dart",
+    "lib/src/embed/word_proofing_dialog.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_proofing_dialog_test.dart"
+  ],
+  "exit_code": 3,
+  "duration_seconds": 29.839829921722412
+}

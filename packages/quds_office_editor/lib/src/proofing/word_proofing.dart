@@ -128,6 +128,7 @@ final class WordProofingSession extends ChangeNotifier {
   String get language =>
       normalizeProofingLanguage(_document().proofingLanguage ?? 'de-DE');
   Set<String> get ignoredRuleIds => Set.unmodifiable(_ignoredRules);
+  bool get hasIgnoredOccurrences => _ignoredOnce.isNotEmpty;
   Map<WmlParagraph, List<OfficeProofingFinding>> get findingsByParagraph =>
       UnmodifiableMapView(_findings);
 
@@ -234,6 +235,25 @@ final class WordProofingSession extends ChangeNotifier {
     if (!isCurrent(issue)) return;
     _ignoredOnce.add(_issueKey(issue.finding, issue._snapshot));
     refresh();
+  }
+
+  /// Reviews previously ignored occurrences without resetting personal words,
+  /// language-scoped ignored words or rule preferences.
+  void clearIgnoredOnce() {
+    if (_disposed || _ignoredOnce.isEmpty) return;
+    _ignoredOnce.clear();
+    refresh();
+  }
+
+  /// Restores a word in its original language, including run-level languages
+  /// that differ from the document default.
+  void unignoreWord(String word, {required String language}) {
+    if (_disposed) return;
+    final previous = vocabulary.revision;
+    vocabulary.unignoreWord(word, language: language);
+    if (vocabulary.revision == previous) return;
+    refresh();
+    onVocabularyChanged?.call(vocabulary.toJson());
   }
 
   /// Restores only this owner's vocabulary, preserving provider references.

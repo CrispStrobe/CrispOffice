@@ -38,6 +38,55 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
   };
   static final RegExp _letterBefore = RegExp(r'[\p{L}\p{M}]$', unicode: true);
   static final RegExp _letterAfter = RegExp(r'^\p{L}', unicode: true);
+  static final RegExp _protectedTokens = RegExp(
+    r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}|`[^`]*`',
+    caseSensitive: false,
+  );
+  static final RegExp _urlStart = RegExp(
+    r'^(?:https?://|www\.)',
+    caseSensitive: false,
+  );
+
+  static List<({int start, int end})> _protectedRanges(String text) {
+    final List<({int start, int end})> ranges = <({int start, int end})>[];
+    for (final RegExpMatch match in _protectedTokens.allMatches(text)) {
+      int end = match.end;
+      if (_urlStart.hasMatch(match.group(0)!)) {
+        // A URL may contain balanced parentheses (or an IPv6 host). Keep those
+        // protected, but leave surrounding prose punctuation to the balance
+        // checks: (https://example.invalid/path) and „https://example.invalid“.
+        const Map<String, String> closingBrackets = <String, String>{
+          ')': '(',
+          ']': '[',
+          '}': '{',
+        };
+        final Map<String, int> counts = <String, int>{};
+        for (int i = match.start; i < end; i++) {
+          final String char = text[i];
+          if ('()[]{}'.contains(char)) {
+            counts[char] = (counts[char] ?? 0) + 1;
+          }
+        }
+        while (end > match.start) {
+          final String char = text[end - 1];
+          if ('.,;:!?“”‘’«»'.contains(char)) {
+            end--;
+            continue;
+          }
+          final String? opening = closingBrackets[char];
+          if (opening != null && (counts[char] ?? 0) > (counts[opening] ?? 0)) {
+            counts[char] = counts[char]! - 1;
+            end--;
+            continue;
+          }
+          break;
+        }
+      }
+      ranges.add((start: match.start, end: end));
+    }
+    return ranges;
+  }
+
   static final RegExp _comparisonPrefix = RegExp(
     r'(?<![\p{L}\p{M}])(?:wie|als)[ \t\u00a0]+$',
     caseSensitive: false,
@@ -76,9 +125,7 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
     final String text = request.text;
     final List<OfficeProofingFinding> findings = <OfficeProofingFinding>[];
     final Set<int> boundaries = _sourceGraphemeBoundaries(request.text);
-    final List<RegExpMatch> protected = RegExp(
-      r'(?:https?://|www\.)\S+|[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}|`[^`]*`',
-    ).allMatches(text).toList();
+    final List<({int start, int end})> protected = _protectedRanges(text);
     bool isProtected(int start, int end) {
       int lower = 0;
       int upper = protected.length;
@@ -193,6 +240,9 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
       caseSensitive: false,
       unicode: true,
     ).allMatches(text)) {
+      // The whole subject/verb context must be prose. Checking only the verb
+      // would let a URL ending in /ich govern an unrelated following "bist".
+      if (isProtected(m.start, m.end)) continue;
       final String? replacement =
           agreement['${m.group(1)!.toLowerCase()} ${m.group(2)!.toLowerCase()}'];
       // In "wie du ist er" or "als ich sind sie", the verb belongs to the

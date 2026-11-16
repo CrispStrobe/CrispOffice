@@ -1,0 +1,145 @@
+00:00 +0: loading /workspace/scratch/a450b8f86aed/remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart
+00:00 +0: zero width space offers an invisible source-preserving break: ​
+00:00 +0 -1: zero width space offers an invisible source-preserving break: ​ [E]
+  Expected: ['ab', 'cd']
+    Actual: MappedListIterable<BrokenLine, String>:['abcd']
+     Which: at location [0] is 'abcd' instead of 'ab'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 128:9  main.<fn>
+  
+00:00 +0 -1: zero width space offers an invisible source-preserving break: ​​
+00:00 +0 -2: zero width space offers an invisible source-preserving break: ​​ [E]
+  Expected: ['ab', 'cd']
+    Actual: MappedListIterable<BrokenLine, String>:['abcd']
+     Which: at location [0] is 'abcd' instead of 'ab'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 128:9  main.<fn>
+  
+00:00 +0 -2: zero width space offers an invisible source-preserving break: ​‎
+00:00 +0 -3: zero width space offers an invisible source-preserving break: ​‎ [E]
+  Expected: ['ab', 'cd']
+    Actual: MappedListIterable<BrokenLine, String>:['abcd']
+     Which: at location [0] is 'abcd' instead of 'ab'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 128:9  main.<fn>
+  
+00:00 +0 -3: zero width space offers an invisible source-preserving break: ​   
+00:00 +1 -3: zero width space preserves supplementary source offsets
+00:00 +1 -4: zero width space preserves supplementary source offsets [E]
+  Expected: ['😀a', 'cd']
+    Actual: MappedListIterable<BrokenLine, String>:['😀acd']
+     Which: at location [0] is '😀acd' instead of '😀a'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 134:5  main.<fn>
+  
+00:00 +1 -4: word joiner suppresses a hyphen break: ⁠
+00:00 +1 -5: word joiner suppresses a hyphen break: ⁠ [E]
+  Expected: ['ab-cd']
+    Actual: MappedListIterable<BrokenLine, String>:['ab-', 'cd']
+     Which: at location [0] is 'ab-' instead of 'ab-cd'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 139:7  main.<fn>
+  
+00:00 +1 -5: word joiner suppresses the preceding space break: ⁠
+00:00 +1 -6: word joiner suppresses the preceding space break: ⁠ [E]
+  Expected: ['ab cd']
+    Actual: MappedListIterable<BrokenLine, String>:['ab', 'cd']
+     Which: at location [0] is 'ab' instead of 'ab cd'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 147:7  main.<fn>
+  
+00:00 +1 -6: a space after the joiner still permits its own break: ⁠
+00:00 +2 -6: emergency wrapping keeps the joiner boundary together: ⁠
+00:00 +2 -7: emergency wrapping keeps the joiner boundary together: ⁠ [E]
+  Expected: ['a', '-b']
+    Actual: MappedListIterable<BrokenLine, String>:['a', '-', 'b']
+     Which: at location [1] is '-' instead of '-b'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 158:7  main.<fn>
+  
+00:00 +2 -7: word joiner suppresses a hyphen break: ﻿
+00:00 +2 -8: word joiner suppresses a hyphen break: ﻿ [E]
+  Expected: ['ab-cd']
+    Actual: MappedListIterable<BrokenLine, String>:['ab-', 'cd']
+     Which: at location [0] is 'ab-' instead of 'ab-cd'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 139:7  main.<fn>
+  
+00:00 +2 -8: word joiner suppresses the preceding space break: ﻿
+00:00 +2 -9: word joiner suppresses the preceding space break: ﻿ [E]
+  Expected: ['ab cd']
+    Actual: MappedListIterable<BrokenLine, String>:['ab', 'cd']
+     Which: at location [0] is 'ab' instead of 'ab cd'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 147:7  main.<fn>
+  
+00:00 +2 -9: a space after the joiner still permits its own break: ﻿
+00:00 +3 -9: emergency wrapping keeps the joiner boundary together: ﻿
+00:00 +3 -10: emergency wrapping keeps the joiner boundary together: ﻿ [E]
+  Expected: ['a', '-b']
+    Actual: MappedListIterable<BrokenLine, String>:['a', '-', 'b']
+     Which: at location [1] is '-' instead of '-b'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 158:7  main.<fn>
+  
+00:00 +3 -10: explicit zero width opportunities take precedence over word joiners
+00:00 +3 -11: explicit zero width opportunities take precedence over word joiners [E]
+  Expected: ['ab', 'cd']
+    Actual: MappedListIterable<BrokenLine, String>:['abcd']
+     Which: at location [0] is 'abcd' instead of 'ab'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 172:9  main.<fn>
+  
+00:00 +3 -11: contextual overflow repair uses invisible break opportunities
+00:00 +3 -12: contextual overflow repair uses invisible break opportunities [E]
+  Expected: ['ab', 'cd', 'ef']
+    Actual: MappedListIterable<BrokenLine, String>:['abcd', 'ef']
+     Which: at location [0] is 'abcd' instead of 'ab'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 178:5  main.<fn>
+  
+00:00 +3 -12: contextual overflow repair retains word joiner constraints
+00:00 +3 -13: contextual overflow repair retains word joiner constraints [E]
+  Expected: ['ab-cd', 'ef']
+    Actual: MappedListIterable<BrokenLine, String>:['ab-', 'cd', 'ef']
+     Which: at location [0] is 'ab-' instead of 'ab-cd'
+  
+  package:matcher                                                                             expect
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 82:5   _expectBoth
+  ../../../remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart 182:5  main.<fn>
+  
+00:00 +3 -13: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/a450b8f86aed/remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart: contextual overflow repair retains word joiner constraints
+  /workspace/scratch/a450b8f86aed/remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart: contextual overflow repair uses invisible break opportunities
+  /workspace/scratch/a450b8f86aed/remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart: emergency wrapping keeps the joiner boundary together: ⁠
+  /workspace/scratch/a450b8f86aed/remote-audit-20261116/line-breaker-baseline/line_breaker_controls_test.dart: emergency wrapping keeps the joiner boundary together: ﻿
+  ... and 9 more
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.

@@ -1,0 +1,5 @@
+Analyzing word_proofing.dart, word_proofing_dialog.dart, word_proofing_session_test.dart, word_proofing_dialog_test.dart...
+
+  error - test/word_proofing_dialog_test.dart:130:33 - The getter 'runs' isn't defined for the type 'WmlParagraph'. Try importing the library that defines 'runs', correcting the name to the name of an existing getter, or defining a getter or field named 'runs'. - undefined_getter
+
+1 issue found.

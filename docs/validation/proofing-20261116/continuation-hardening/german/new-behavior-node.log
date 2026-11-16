@@ -1,0 +1,21 @@
+PASS 1 Swiss capital sharp-s produces two reviewable spelling findings
+PASS 2 STRAẞE offers STRASSE and retains uppercase suggestion style
+PASS 3 GRÜẞE offers GRÜSSE
+PASS 4 Swiss explanations and UTF-16 ranges preserve the original source
+PASS 5 standard German still accepts the capital sharp-s forms
+PASS 6 uppercase URL prefixes are protected while the ordinary typo stays actionable
+PASS 7 protected subject context cannot govern following prose: https://example.invalid/ich
+PASS 8 protected subject context cannot govern following prose: HTTPS://example.invalid/ich
+PASS 9 protected subject context cannot govern following prose: WWW.example.invalid/ich
+PASS 10 protected subject context cannot govern following prose: name@example.ich
+PASS 11 balanced URL punctuation stays clean: (https://example.invalid/path)
+PASS 12 balanced URL punctuation stays clean: (https://example.invalid/a(b))
+PASS 13 balanced URL punctuation stays clean: (http://[::1]/a(b)).
+PASS 14 balanced URL punctuation stays clean: „https://example.invalid/path“
+PASS 15 balanced URL punctuation stays clean: “https://example.invalid/path”
+PASS 16 balanced URL punctuation stays clean: ‘https://example.invalid/path’
+PASS 17 balanced URL punctuation stays clean: «https://example.invalid/path»
+PASS 18 balanced URL punctuation stays clean: »https://example.invalid/path«
+PASS 19 balanced URL punctuation stays clean: („HTTPS://example.invalid/a(b)“).
+PASS 20 excess closing punctuation keeps exact block-relative UTF-16 offsets
+All 20 targeted compiled-JavaScript proofing checks passed.

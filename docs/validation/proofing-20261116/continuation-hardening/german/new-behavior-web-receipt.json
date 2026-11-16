@@ -1,0 +1,384 @@
+{
+  "started_at_utc": "2026-11-16T16:01:53.774664+00:00",
+  "source_commit": "8b93e866b4661d19f4bbad4e1069c0a609441ebb",
+  "scope": "Twenty targeted checks of URL and Swiss capital-sharp-s behavior, using compiled Dart JavaScript in Node. This is not browser HTTP/CSP acceptance.",
+  "source_inputs_before": {
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": {
+      "sha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+      "expected_git_blob": "d4b6a29d8171191c8728e492cb98f1f8a418d9fe",
+      "actual_git_blob": "d4b6a29d8171191c8728e492cb98f1f8a418d9fe",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": {
+      "sha256": "8617711b9765cd8efcb9af4686aaf982eeeb7bab2d29db8e6f8ca7889f5362ab",
+      "expected_git_blob": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+      "actual_git_blob": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": {
+      "sha256": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+      "expected_git_blob": "035283d30116ad6c848a08bf1ff8ca37c731f704",
+      "actual_git_blob": "035283d30116ad6c848a08bf1ff8ca37c731f704",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": {
+      "sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+      "expected_git_blob": "04c3c29326db061b112056929620f0c945d9f383",
+      "actual_git_blob": "04c3c29326db061b112056929620f0c945d9f383",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": {
+      "sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+      "expected_git_blob": "23626dd5de7a13cc47a343db868406b07141d3d3",
+      "actual_git_blob": "23626dd5de7a13cc47a343db868406b07141d3d3",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": {
+      "sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+      "expected_git_blob": "39dcf2dddb717030d42334e5df980a2620906ed8",
+      "actual_git_blob": "39dcf2dddb717030d42334e5df980a2620906ed8",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": {
+      "sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+      "expected_git_blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+      "actual_git_blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": {
+      "sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+      "expected_git_blob": "88d250fb4b76f9b839cf6014444206988d21ca67",
+      "actual_git_blob": "88d250fb4b76f9b839cf6014444206988d21ca67",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": {
+      "sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+      "expected_git_blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+      "actual_git_blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": {
+      "sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+      "expected_git_blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+      "actual_git_blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": {
+      "sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+      "expected_git_blob": "1de49879083874f929be5057caf23c859bbdc348",
+      "actual_git_blob": "1de49879083874f929be5057caf23c859bbdc348",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": {
+      "sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+      "expected_git_blob": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+      "actual_git_blob": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": {
+      "sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+      "expected_git_blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+      "actual_git_blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": {
+      "sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+      "expected_git_blob": "e21532a43d39cbc79489198d1453c824af41b431",
+      "actual_git_blob": "e21532a43d39cbc79489198d1453c824af41b431",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": {
+      "sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+      "expected_git_blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+      "actual_git_blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": {
+      "sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+      "expected_git_blob": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+      "actual_git_blob": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": {
+      "sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+      "expected_git_blob": "565a4e8df2db99547454b22882d030ad0628ce57",
+      "actual_git_blob": "565a4e8df2db99547454b22882d030ad0628ce57",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": {
+      "sha256": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+      "expected_git_blob": "bf40de2844f45e770a41db1493e2d9f667622701",
+      "actual_git_blob": "bf40de2844f45e770a41db1493e2d9f667622701",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": {
+      "sha256": "9f2ab1c6f4514b4bf89c6736b633e2ae0f1ccfc1aa8bad3e9612f6ceb1ce28eb",
+      "expected_git_blob": "0a9bb3532fd2d8203e244aadc98cf6c4c34ea481",
+      "actual_git_blob": "0a9bb3532fd2d8203e244aadc98cf6c4c34ea481",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": {
+      "sha256": "dfba628bc8ee0d05084bd6fbd45fefbfae62bc32b6d6901fdfa11e8ce165034b",
+      "expected_git_blob": "398ffc5b0ff53e8dabc8e5637d8e6c571af39cd3",
+      "actual_git_blob": "398ffc5b0ff53e8dabc8e5637d8e6c571af39cd3",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": {
+      "sha256": "0ee4b795c444b4e8699f85c17f0c1ded538428de61edbc3bf9264d3ca565bcdf",
+      "expected_git_blob": "447386e563e8be67c77d3e6709abcc477f6ed9cb",
+      "actual_git_blob": "447386e563e8be67c77d3e6709abcc477f6ed9cb",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/pubspec.yaml": {
+      "sha256": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+      "expected_git_blob": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+      "actual_git_blob": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+      "matches_source_commit": true
+    },
+    "pubspec.yaml": {
+      "sha256": "dbf93a711896c1ada3b0b61ae9bab5ca4a29dca6fdbe0b3e69797a4bc78a6a3c",
+      "expected_git_blob": "c46e3c83272694b8cda24431ce5f89159798540e",
+      "actual_git_blob": "c46e3c83272694b8cda24431ce5f89159798540e",
+      "matches_source_commit": true
+    }
+  },
+  "dependency_runtime_probe_inputs_before": {
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+    "/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json": "85af7700a47d8fae41fb4d5411391dd9b82b04411aabc72ee265ff897b34a5ce",
+    "/workspace/scratch/a450b8f86aed/quds_office_suite/pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/snapshots/dart2js_aot.dart.snapshot": "29314b1f8e994436c5639a59df0243692cd83625fc587619a9c99e9a3804b1d6",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/characters.dart": "086108618ce81dcbd9f28a4e39c9d3577c10d55797fb79feca7f7430ae86e2ba",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/characters.dart": "e1160613571c20f732b6fff5aed15e3bad49b332bb5d28c193e7e24f2d1353e6",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/characters_impl.dart": "1438879f1ff54ac56f85f1723f762b6d3632d46fcf9351c89e5cefe70ce544c1",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/extensions.dart": "f475776a8ca9fc81f5d8cf0a610cccbf248bd52d3be0c17283c209e4ed1b8731",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/grapheme_clusters/breaks.dart": "4d75f9121efab0e5cd365792b9d6c8537c914a04c10c3409969f3792b318d747",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/grapheme_clusters/constants.dart": "399495535ff4d57dbc970c1c1eff0e9a9ebf8f728b23bfc3124b0552cb198eb3",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/grapheme_clusters/table.dart": "cacb85604514320e2701d93038b2cc44afe2f8b5ff85ceec79b146d6103a2d55",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/pubspec.yaml": "5cca9e9296ee6f219922c5e9049b71559b46ac45095b10de9afc57da2c12f951",
+    "/workspace/scratch/a450b8f86aed/validation-german-current/new_behavior_web_probe.dart": "4a4ca459caf5a66cbe90b3dfc2e9f19a9e5d508387f9a5c3684ad392feb3b2a5",
+    "/workspace/scratch/a450b8f86aed/validation-german-current/new_behavior_web_verify.py": "a211bc9b8eff253f692455a6a0ab2ca27de55e4e1f5829fee94f1c7003a4c1a9"
+  },
+  "package_config": "/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json",
+  "commands": [
+    {
+      "label": "new-behavior-dart-version",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite",
+      "exit_code": 0,
+      "duration_seconds": 0.019,
+      "log": "new-behavior-dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "label": "new-behavior-node-version",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--version"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite",
+      "exit_code": 0,
+      "duration_seconds": 0.025,
+      "log": "new-behavior-node-version.log",
+      "log_sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    {
+      "label": "new-behavior-compile",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O2",
+        "--packages=/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a450b8f86aed/validation-german-current/new_behavior_web_probe.dart",
+        "-o",
+        "/workspace/scratch/a450b8f86aed/validation-german-current/new_behavior_web_probe.js"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite",
+      "exit_code": 0,
+      "duration_seconds": 7.92,
+      "log": "new-behavior-compile.log",
+      "log_sha256": "6d86524b35d62d606743bda251577dd5ca53419b8b7539cdddcf48d7b5a7bf9f"
+    },
+    {
+      "label": "new-behavior-node",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self=globalThis; require(process.argv[1]);",
+        "/workspace/scratch/a450b8f86aed/validation-german-current/new_behavior_web_probe.js"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite",
+      "exit_code": 0,
+      "duration_seconds": 6.022,
+      "log": "new-behavior-node.log",
+      "log_sha256": "a781cdff0ab1e5e958e0a83d408f59fba4bd01a32317c5758190d225cec6f08c"
+    }
+  ],
+  "passed_behavior_checks": 20,
+  "compiled_javascript_sha256": "144c0a25d34b0216798243ab8fc4252dcf23a2c502d4998c267bb0579aa9bb78",
+  "source_inputs_after": {
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": {
+      "sha256": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+      "expected_git_blob": "d4b6a29d8171191c8728e492cb98f1f8a418d9fe",
+      "actual_git_blob": "d4b6a29d8171191c8728e492cb98f1f8a418d9fe",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": {
+      "sha256": "8617711b9765cd8efcb9af4686aaf982eeeb7bab2d29db8e6f8ca7889f5362ab",
+      "expected_git_blob": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+      "actual_git_blob": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": {
+      "sha256": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+      "expected_git_blob": "035283d30116ad6c848a08bf1ff8ca37c731f704",
+      "actual_git_blob": "035283d30116ad6c848a08bf1ff8ca37c731f704",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": {
+      "sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+      "expected_git_blob": "04c3c29326db061b112056929620f0c945d9f383",
+      "actual_git_blob": "04c3c29326db061b112056929620f0c945d9f383",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": {
+      "sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+      "expected_git_blob": "23626dd5de7a13cc47a343db868406b07141d3d3",
+      "actual_git_blob": "23626dd5de7a13cc47a343db868406b07141d3d3",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": {
+      "sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+      "expected_git_blob": "39dcf2dddb717030d42334e5df980a2620906ed8",
+      "actual_git_blob": "39dcf2dddb717030d42334e5df980a2620906ed8",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": {
+      "sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+      "expected_git_blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+      "actual_git_blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": {
+      "sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+      "expected_git_blob": "88d250fb4b76f9b839cf6014444206988d21ca67",
+      "actual_git_blob": "88d250fb4b76f9b839cf6014444206988d21ca67",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": {
+      "sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+      "expected_git_blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+      "actual_git_blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": {
+      "sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+      "expected_git_blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+      "actual_git_blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": {
+      "sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+      "expected_git_blob": "1de49879083874f929be5057caf23c859bbdc348",
+      "actual_git_blob": "1de49879083874f929be5057caf23c859bbdc348",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": {
+      "sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+      "expected_git_blob": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+      "actual_git_blob": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": {
+      "sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+      "expected_git_blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+      "actual_git_blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": {
+      "sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+      "expected_git_blob": "e21532a43d39cbc79489198d1453c824af41b431",
+      "actual_git_blob": "e21532a43d39cbc79489198d1453c824af41b431",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": {
+      "sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+      "expected_git_blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+      "actual_git_blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": {
+      "sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+      "expected_git_blob": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+      "actual_git_blob": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": {
+      "sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+      "expected_git_blob": "565a4e8df2db99547454b22882d030ad0628ce57",
+      "actual_git_blob": "565a4e8df2db99547454b22882d030ad0628ce57",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": {
+      "sha256": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+      "expected_git_blob": "bf40de2844f45e770a41db1493e2d9f667622701",
+      "actual_git_blob": "bf40de2844f45e770a41db1493e2d9f667622701",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": {
+      "sha256": "9f2ab1c6f4514b4bf89c6736b633e2ae0f1ccfc1aa8bad3e9612f6ceb1ce28eb",
+      "expected_git_blob": "0a9bb3532fd2d8203e244aadc98cf6c4c34ea481",
+      "actual_git_blob": "0a9bb3532fd2d8203e244aadc98cf6c4c34ea481",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": {
+      "sha256": "dfba628bc8ee0d05084bd6fbd45fefbfae62bc32b6d6901fdfa11e8ce165034b",
+      "expected_git_blob": "398ffc5b0ff53e8dabc8e5637d8e6c571af39cd3",
+      "actual_git_blob": "398ffc5b0ff53e8dabc8e5637d8e6c571af39cd3",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": {
+      "sha256": "0ee4b795c444b4e8699f85c17f0c1ded538428de61edbc3bf9264d3ca565bcdf",
+      "expected_git_blob": "447386e563e8be67c77d3e6709abcc477f6ed9cb",
+      "actual_git_blob": "447386e563e8be67c77d3e6709abcc477f6ed9cb",
+      "matches_source_commit": true
+    },
+    "packages/quds_office_engine/pubspec.yaml": {
+      "sha256": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+      "expected_git_blob": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+      "actual_git_blob": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+      "matches_source_commit": true
+    },
+    "pubspec.yaml": {
+      "sha256": "dbf93a711896c1ada3b0b61ae9bab5ca4a29dca6fdbe0b3e69797a4bc78a6a3c",
+      "expected_git_blob": "c46e3c83272694b8cda24431ce5f89159798540e",
+      "actual_git_blob": "c46e3c83272694b8cda24431ce5f89159798540e",
+      "matches_source_commit": true
+    }
+  },
+  "dependency_runtime_probe_inputs_after": {
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+    "/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json": "85af7700a47d8fae41fb4d5411391dd9b82b04411aabc72ee265ff897b34a5ce",
+    "/workspace/scratch/a450b8f86aed/quds_office_suite/pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/snapshots/dart2js_aot.dart.snapshot": "29314b1f8e994436c5639a59df0243692cd83625fc587619a9c99e9a3804b1d6",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/characters.dart": "086108618ce81dcbd9f28a4e39c9d3577c10d55797fb79feca7f7430ae86e2ba",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/characters.dart": "e1160613571c20f732b6fff5aed15e3bad49b332bb5d28c193e7e24f2d1353e6",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/characters_impl.dart": "1438879f1ff54ac56f85f1723f762b6d3632d46fcf9351c89e5cefe70ce544c1",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/extensions.dart": "f475776a8ca9fc81f5d8cf0a610cccbf248bd52d3be0c17283c209e4ed1b8731",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/grapheme_clusters/breaks.dart": "4d75f9121efab0e5cd365792b9d6c8537c914a04c10c3409969f3792b318d747",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/grapheme_clusters/constants.dart": "399495535ff4d57dbc970c1c1eff0e9a9ebf8f728b23bfc3124b0552cb198eb3",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/lib/src/grapheme_clusters/table.dart": "cacb85604514320e2701d93038b2cc44afe2f8b5ff85ceec79b146d6103a2d55",
+    "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/characters-1.4.1/pubspec.yaml": "5cca9e9296ee6f219922c5e9049b71559b46ac45095b10de9afc57da2c12f951",
+    "/workspace/scratch/a450b8f86aed/validation-german-current/new_behavior_web_probe.dart": "4a4ca459caf5a66cbe90b3dfc2e9f19a9e5d508387f9a5c3684ad392feb3b2a5",
+    "/workspace/scratch/a450b8f86aed/validation-german-current/new_behavior_web_verify.py": "a211bc9b8eff253f692455a6a0ab2ca27de55e4e1f5829fee94f1c7003a4c1a9"
+  },
+  "product_matches_source_commit": true,
+  "inputs_unchanged": true,
+  "passed": true,
+  "finished_at_utc": "2026-11-16T16:02:08.262116+00:00"
+}

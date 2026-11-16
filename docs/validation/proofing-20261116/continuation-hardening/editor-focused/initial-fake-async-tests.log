@@ -1,0 +1,35 @@
+00:00 +0: loading /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart
+00:00 +0: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: closed empty complex fields never reach providers
+00:00 +1: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked
+00:00 +2: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: generated page-number paragraphs never reach providers
+00:00 +3: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: page-number metadata invalidates findings without a text edit
+00:00 +4: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: pending page-number metadata changes discard provider results
+00:00 +5: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: nonempty findings use half-open hit ranges
+00:00 +6: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state
+00:00 +7: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: language changes inside a combining cluster retain the full cluster and its first language
+00:00 +8: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a surrogate pair split across runs and languages remains one emoji in provider input
+00:00 +9: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: noProof on part of a combining cluster excludes the entire cluster
+00:00 +10: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: review traverses body, nested tables, frames, all headers/footers, notes and comments
+00:01 +11: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: formatting fragments join while language and noProof boundaries preserve UTF-16 offsets
+00:01 +12: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: run language overrides paragraph language, which overrides the document default
+00:01 +13: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: late results after a revision change never become current findings
+00:01 +14: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: direct model edits during a pending check invalidate its snapshot even without revision notification
+00:01 +15: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: replacing a document with identical text and revision rejects the old document result
+00:01 +16: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider reconfiguration cancels pending publication and disposes the previous provider
+00:01 +17: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unchanged paragraphs reuse results while rebinding findings to the current revision
+00:01 +18: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: provider configuration revisions invalidate otherwise identical cached text
+00:01 +19: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: moving a paragraph between stories invalidates its old finding and cache
+00:01 +20: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: a document with no checkable paragraphs never claims a clean completed check
+00:01 +21: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: no configured provider is visibly unavailable
+00:01 +22: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unavailable checks are incomplete and can be retried instead of cached as clean
+00:01 +23: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: unsupported checks are incomplete and can be retried instead of cached as clean
+00:01 +24: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: failed checks are incomplete and can be retried instead of cached as clean
+00:01 +25: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: an unsupported document language reports its locale without calling the checker
+00:01 +26: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart: opaque body blocks and preserved header stories are explicit coverage gaps
+00:01 +27: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:01 +28: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:01 +29: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:01 +30: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:01 +31: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Insert space is visible and undoable
+00:08 +32: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: spacing correction Use space is visible and undoable
+00:10 +33: /workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart: ignored words can be restored in their run language without clearing other preferences

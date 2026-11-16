@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep protected URL/email text out of German agreement context, retain
+  surrounding URL punctuation for balance checks, recognize uppercase URL
+  prefixes, and suggest Swiss `SS` for uppercase sharp-s spellings.
+- Preserve ZERO WIDTH SPACE opportunities and WORD JOINER/no-break controls
+  through normal, prepared, emergency and contextually measured wrapping,
+  without changing source text or UTF-16 offsets.
+
 - Add optional pure-Dart `WordRunMeasure`/`WordMeasuredCluster` contracts for
   contextual host advances before Word wrapping, preserving source ranges and
   validating complete grapheme coverage. Retain scalar/font fallback for hosts

@@ -1,0 +1,279 @@
+{
+  "schema_version": 2,
+  "source_commit": "8b93e866b4661d19f4bbad4e1069c0a609441ebb",
+  "started_at_utc": "2026-11-16T15:57:41.186755+00:00",
+  "initial_manifests_completed_at_utc": "2026-11-16T15:58:26.398195+00:00",
+  "scope": "Engine hyphenation/bidi/layout/DOCX/PDF, contextual run metrics, incoming ODS reader/writer and Zotero/comment regressions, optional Harper Dart provider and native lifecycle contracts.",
+  "dependency_mode": "Real resolved Flutter workspace; actual root pubspec.lock and package_config.json; no isolated harness.",
+  "github_actions": "Not queried or waited for.",
+  "excluded_claims": [
+    "browser interaction",
+    "HTTP/CSP delivery",
+    "new native/WebAssembly Harper build",
+    "real mobile dictionary acceptance"
+  ],
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "package_count": 108,
+  "source_manifest": {
+    "file": "source-before.json.gz",
+    "sha256": "acf28312d23beb18e10e7faa2930149b23b8a3c17a631610eb8794a9c7cfe3aa",
+    "entries": 4291
+  },
+  "runtime_manifest": {
+    "file": "runtime-before.json.gz",
+    "sha256": "07a101355dd324420d66eadb3ef1ae8535203f208c1d900d00cee6a14ba25831",
+    "entries": 40
+  },
+  "dependency_manifest": {
+    "file": "dependencies-before.json.gz",
+    "sha256": "b220460b602953d1fe29fdb8514cdd4f9e35513420d4b9e7cefae727904caa35",
+    "entries": 8097
+  },
+  "source_manifest_exclusions": [
+    "docs/validation/**"
+  ],
+  "dependency_manifest_included_extensions": [
+    ".dart",
+    ".yaml",
+    ".json",
+    ".lock"
+  ],
+  "dependency_manifest_excluded_directories": [
+    ".git",
+    ".dart_tool",
+    ".cache",
+    "build",
+    "node_modules"
+  ],
+  "commands": [
+    {
+      "label": "dart-version",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite",
+      "started_at_utc": "2026-11-16T15:58:26.528295+00:00",
+      "exit_code": 0,
+      "duration_seconds": 0.008,
+      "log": "dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "label": "hyphenation-layout-export-tests",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=4",
+        "--reporter=expanded",
+        "--file-reporter=json:/workspace/scratch/a450b8f86aed/validation-engine-final/hyphenation-layout-export-tests.events.jsonl",
+        "test/proofing_hyphenation_test.dart",
+        "test/variable_line_breaker_test.dart",
+        "test/bidi_test.dart",
+        "test/word_layout_test.dart",
+        "test/word_styles_layout_test.dart",
+        "test/style_cascade_test.dart",
+        "test/word_style_introduction_test.dart",
+        "test/styleless_import_fidelity_test.dart",
+        "test/word_referenced_styles_and_breaks_test.dart",
+        "test/word_package_preservation_test.dart",
+        "test/word_preserved_header_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_footnote_reference_test.dart",
+        "test/word_note_script_break_test.dart",
+        "test/word_table_tall_frame_layout_test.dart",
+        "test/word_table_tall_toc_layout_test.dart",
+        "test/word_table_nested_layout_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/office_pdf_export_test.dart",
+        "test/arabic_pdf_export_test.dart",
+        "test/word_zotero_bibliography_layout_test.dart",
+        "test/line_breaker_controls_test.dart",
+        "test/line_breaker_measure_line_test.dart",
+        "test/word_run_measure_test.dart",
+        "test/word_run_measure_boundaries_test.dart",
+        "test/word_run_fragment_fallback_test.dart"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_engine",
+      "started_at_utc": "2026-11-16T15:58:26.537248+00:00",
+      "exit_code": 0,
+      "duration_seconds": 109.283,
+      "log": "hyphenation-layout-export-tests.log",
+      "log_sha256": "3179587ecef1413ac9e87fb8e083fc08e32ea0fcf141b6e5d040e3890593a5d3",
+      "events": {
+        "file": "hyphenation-layout-export-tests.events.jsonl",
+        "sha256": "1037d2faef08785b1b0139909f4c5f3bc3fb7e85456f9ae412c3b7ac5bc2bc37"
+      },
+      "summary": {
+        "passed": 295,
+        "failed": 0,
+        "skipped": 0,
+        "hidden": 26,
+        "failed_tests": [],
+        "skipped_tests": [],
+        "done": {
+          "success": true,
+          "type": "done",
+          "time": 73883
+        },
+        "malformed_event_lines": []
+      }
+    },
+    {
+      "label": "incoming-ods-zotero-tests",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=4",
+        "--reporter=expanded",
+        "--file-reporter=json:/workspace/scratch/a450b8f86aed/validation-engine-final/incoming-ods-zotero-tests.events.jsonl",
+        "test/ods_sheet_reader_test.dart",
+        "test/ods_sheet_writer_test.dart",
+        "test/word_comment_proofing_styles_test.dart",
+        "test/word_zotero_test.dart",
+        "test/word_zotero_bibliography_layout_test.dart",
+        "test/word_zotero_citing_test.dart",
+        "test/word_zotero_document_data_test.dart",
+        "test/word_zotero_formatted_bibliography_test.dart",
+        "test/word_zotero_preference_flow_test.dart",
+        "test/word_zotero_rich_edit_test.dart",
+        "test/word_zotero_scaling_test.dart",
+        "test/word_zotero_simple_field_test.dart",
+        "test/word_zotero_source_identity_test.dart",
+        "test/word_zotero_style_preferences_review_test.dart",
+        "test/zotero_backoff_state_test.dart",
+        "test/zotero_citing_test.dart",
+        "test/zotero_client_test.dart",
+        "test/zotero_formatted_text_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/zotero_metadata_batch_test.dart",
+        "test/zotero_paragraph_runs_test.dart",
+        "test/zotero_saved_search_test.dart"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_office_engine",
+      "started_at_utc": "2026-11-16T16:00:15.835384+00:00",
+      "exit_code": 0,
+      "duration_seconds": 112.023,
+      "log": "incoming-ods-zotero-tests.log",
+      "log_sha256": "052f9486e6c7551120cd3abfb5bf7b88e02ca20daf21203f65d85bff6ecc657d",
+      "events": {
+        "file": "incoming-ods-zotero-tests.events.jsonl",
+        "sha256": "54e4680ef3b5b49fea40bba15b84024cd485f45aff075a538acaff0058529e5f"
+      },
+      "summary": {
+        "passed": 503,
+        "failed": 0,
+        "skipped": 0,
+        "hidden": 22,
+        "failed_tests": [],
+        "skipped_tests": [],
+        "done": {
+          "success": true,
+          "type": "done",
+          "time": 35134
+        },
+        "malformed_event_lines": []
+      }
+    },
+    {
+      "label": "harper-provider-tests",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=4",
+        "--reporter=expanded",
+        "--file-reporter=json:/workspace/scratch/a450b8f86aed/validation-engine-final/harper-provider-tests.events.jsonl",
+        "test/harper_provider_test.dart"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_proofing_harper",
+      "started_at_utc": "2026-11-16T16:02:07.872382+00:00",
+      "exit_code": 0,
+      "duration_seconds": 152.582,
+      "log": "harper-provider-tests.log",
+      "log_sha256": "8672dcd9930f053ca1e070bac0c39f923a6f7fa4022bcc63941ed9839e09a1af",
+      "events": {
+        "file": "harper-provider-tests.events.jsonl",
+        "sha256": "95d8323c4f3db94f8fa1dce59a03ab1ec45aa6a58e69cc3072b028bfc21e46ff"
+      },
+      "summary": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "hidden": 1,
+        "failed_tests": [],
+        "skipped_tests": [],
+        "done": {
+          "success": true,
+          "type": "done",
+          "time": 18846
+        },
+        "malformed_event_lines": []
+      }
+    },
+    {
+      "label": "harper-native-guards",
+      "command": [
+        "/workspace/scratch/a450b8f86aed/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/a450b8f86aed/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a450b8f86aed/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=4",
+        "--reporter=expanded",
+        "--file-reporter=json:/workspace/scratch/a450b8f86aed/validation-engine-final/harper-native-guards.events.jsonl",
+        "test/harper_native_test.dart"
+      ],
+      "working_directory": "/workspace/scratch/a450b8f86aed/quds_office_suite/packages/quds_proofing_harper",
+      "started_at_utc": "2026-11-16T16:04:40.457212+00:00",
+      "exit_code": 0,
+      "duration_seconds": 84.26,
+      "log": "harper-native-guards.log",
+      "log_sha256": "6fe3a7f137d17d7d2735bd6cc80001497c7dc6ba75b245fbece0df12fe34ebd7",
+      "events": {
+        "file": "harper-native-guards.events.jsonl",
+        "sha256": "5d8161a8ce4f75b1e7742c5321529fceb70e4efc018fe4bbba6166f49a808b20"
+      },
+      "summary": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 1,
+        "hidden": 1,
+        "failed_tests": [],
+        "skipped_tests": [
+          "real persistent native worker checks grammar and UTF16 source spans"
+        ],
+        "done": {
+          "success": true,
+          "type": "done",
+          "time": 11357
+        },
+        "malformed_event_lines": []
+      }
+    }
+  ],
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "dependencies_unchanged": true,
+  "head_after": "8b93e866b4661d19f4bbad4e1069c0a609441ebb",
+  "head_unchanged": true,
+  "git_tracked_status": "",
+  "finished_at_utc": "2026-11-16T16:06:33.271587+00:00",
+  "passed": true,
+  "source_after_manifest": {
+    "file": "source-after.json.gz",
+    "sha256": "acf28312d23beb18e10e7faa2930149b23b8a3c17a631610eb8794a9c7cfe3aa",
+    "entries": 4291
+  },
+  "runtime_after_manifest": {
+    "file": "runtime-after.json.gz",
+    "sha256": "07a101355dd324420d66eadb3ef1ae8535203f208c1d900d00cee6a14ba25831",
+    "entries": 40
+  },
+  "dependency_after_manifest": {
+    "file": "dependencies-after.json.gz",
+    "sha256": "b220460b602953d1fe29fdb8514cdd4f9e35513420d4b9e7cefae727904caa35",
+    "entries": 8097
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "lib/src/proofing/word_proofing.dart",
+    "lib/src/embed/word_proofing_dialog.dart",
+    "test/word_proofing_session_test.dart",
+    "test/word_proofing_dialog_test.dart"
+  ],
+  "exit_code": 1,
+  "duration_seconds": 0.28200244903564453
+}

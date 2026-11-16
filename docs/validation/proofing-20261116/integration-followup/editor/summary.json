@@ -1,0 +1,41 @@
+{
+  "command_results": {
+    "dart-version": "passed",
+    "editor-analyze": "passed",
+    "editor-ime-reattachment": "passed",
+    "editor-tests": "passed",
+    "engine-analyze": "passed",
+    "example-analyze": "passed",
+    "example-web-build": "passed",
+    "flutter-version": "passed"
+  },
+  "errors": [],
+  "lock_unchanged": true,
+  "package_config_unchanged": true,
+  "preflight": "passed",
+  "runtime_unchanged": true,
+  "source_commit": "3bd4657b1c1cccfad8adbcf5928e30b90e4a1aaa",
+  "source_commit_unchanged": true,
+  "source_tree": "2b283e0165e1a2618fd4693ae2e31b9e3275a22f",
+  "source_unchanged": true,
+  "status": "passed",
+  "test_summaries": {
+    "editor-ime-reattachment": {
+      "complete_success_marker": true,
+      "counts_kind": "final reported test summary",
+      "failed": 0,
+      "passed": 1,
+      "skipped": 0
+    },
+    "editor-tests": {
+      "complete_success_marker": true,
+      "counts_kind": "final reported test summary",
+      "failed": 0,
+      "passed": 294,
+      "skipped": 0
+    }
+  },
+  "web_artifact_bytes": 59800207,
+  "web_artifact_count": 117,
+  "web_artifact_interpretation": "Successful build output"
+}
