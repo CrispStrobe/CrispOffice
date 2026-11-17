@@ -25,6 +25,12 @@ void main() {
           replacement: 'mir',
         ),
         (
+          source: 'Die Kinder spielt im Garten.',
+          corrected: 'Die Kinder spielen im Garten.',
+          rule: 'noun-verb',
+          replacement: 'spielen',
+        ),
+        (
           source: 'Das ist für ihm.',
           corrected: 'Das ist für ihn.',
           rule: 'preposition-pronoun',
