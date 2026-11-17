@@ -66,6 +66,8 @@ def main() -> int:
     parser.add_argument("--crisp-url", default="https://github.com/CrispStrobe/CrispEmbed.git")
     parser.add_argument("--ggml-url", default="https://github.com/CrispStrobe/ggml.git")
     parser.add_argument("--jobs", type=int, choices=range(1, 5), default=2)
+    parser.add_argument("--reuse-tool-packages", type=Path,
+                        help="Copy a previous completed pinned tool target; its parent must contain tool-install.json.")
     args = parser.parse_args()
     quds = args.quds_root.resolve(strict=True)
     work = args.work_root.absolute()
@@ -152,7 +154,9 @@ def main() -> int:
     def checkout(destination: Path, url: str, revision: str,
                  patterns: list[str] | None = None) -> None:
         relative = destination.relative_to(work).as_posix().replace("/", "-")
-        destination.mkdir(parents=True)
+        if destination.exists() and (destination.is_symlink() or any(destination.iterdir())):
+            raise ValueError("Refusing to reuse a nonempty checkout: " + str(destination))
+        destination.mkdir(parents=True, exist_ok=True)
         run(relative + "-init", ["git", "init", str(destination)])
         git = ["git", "-C", str(destination)]
         run(relative + "-remote", git + ["remote", "add", "origin", url])
@@ -179,6 +183,12 @@ def main() -> int:
         return observed
 
     try:
+        report["resources_before"] = {
+            "load_average": list(os.getloadavg()),
+            "disk_bytes": dict(zip(("total", "used", "free"), shutil.disk_usage(work))),
+            "logical_cpu_count": os.cpu_count(),
+            "meminfo": Path("/proc/meminfo").read_text(),
+        }
         save()
         report["compiler_versions"] = {
             "cc": run("cc-version", ["cc", "--version"]).splitlines()[0],
@@ -189,11 +199,41 @@ def main() -> int:
             raise ValueError("The original compiler version is required for this exact-byte recovery attempt.")
         if platform.system() != "Linux" or platform.machine() != "x86_64":
             raise ValueError("The retained native binary targets Linux x86_64.")
-        run("install-build-tools", [
-            sys.executable, "-m", "pip", "install", "--disable-pip-version-check",
-            "--no-input", "--no-cache-dir", "--only-binary=:all:", "--no-deps",
-            "--target", str(tools), "--report", str(work / "tool-install.json"), *WHEELS,
-        ])
+        if args.reuse_tool_packages is None:
+            run("install-build-tools", [
+                sys.executable, "-m", "pip", "install", "--disable-pip-version-check",
+                "--no-input", "--no-cache-dir", "--only-binary=:all:", "--no-deps",
+                "--target", str(tools), "--report", str(work / "tool-install.json"), *WHEELS,
+            ])
+        else:
+            prior_tools = args.reuse_tool_packages.resolve(strict=True)
+            prior_report = prior_tools.parent / "tool-install.json"
+            prior = json.loads(prior_report.read_text())
+            prior_versions = {item["metadata"]["name"].lower(): item["metadata"]["version"]
+                              for item in prior["install"]}
+            if prior_versions != {"cmake": "3.31.6", "ninja": "1.11.1.3"}:
+                raise ValueError("The reusable wheel install does not have the fixed recovery pins.")
+            if same_or_child(prior_tools, work) or same_or_child(work, prior_tools):
+                raise ValueError("The prior tool installation must be separate from the new work root.")
+            old_inventory = {}
+            for path in sorted(prior_tools.rglob("*")):
+                if path.is_symlink():
+                    raise ValueError("A reusable wheel installation contains a symlink.")
+                if path.is_file():
+                    old_inventory[path.relative_to(prior_tools).as_posix()] = sha(path)
+            shutil.copytree(prior_tools, tools)
+            shutil.copy2(prior_report, work / "tool-install.json")
+            new_inventory = {path.relative_to(tools).as_posix(): sha(path)
+                             for path in sorted(tools.rglob("*")) if path.is_file()}
+            if old_inventory != new_inventory:
+                raise ValueError("Copied tool installation differs from the completed prior install.")
+            report["reused_tools"] = {
+                "source": str(prior_tools), "file_count": len(old_inventory),
+                "copied_file_sha256_verified": True,
+                "inventory_sha256": hashlib.sha256(
+                    json.dumps(old_inventory, sort_keys=True).encode()).hexdigest(),
+            }
+            save()
         install = json.loads((work / "tool-install.json").read_text())
         versions = {item["metadata"]["name"].lower(): item["metadata"]["version"]
                     for item in install["install"]}
@@ -205,15 +245,23 @@ def main() -> int:
             "download_info": item["download_info"],
         } for item in install["install"]]
         cmake = tools / "cmake/data/bin/cmake"
-        ninja = tools / "ninja/data/bin/ninja"
+        # ninja==1.11.1.3 installs a native ELF at the target bin directory.
+        ninja = tools / "bin/ninja"
         for tool in (cmake, ninja):
-            if not tool.is_file():
-                raise ValueError("Expected wheel executable is missing: " + str(tool))
+            if not tool.is_file() or not os.access(tool, os.X_OK):
+                raise ValueError("Expected wheel executable is missing or not executable: " + str(tool))
+            with tool.open("rb") as stream:
+                if stream.read(4) != b"\x7fELF":
+                    raise ValueError("Expected native Linux ELF wheel executable: " + str(tool))
         env["PATH"] = str(cmake.parent) + os.pathsep + str(ninja.parent) + os.pathsep + env.get("PATH", "")
         report["recovery_tools"] = {
             "cmake": {"version": run("cmake-version", [str(cmake), "--version"]).splitlines()[0], "sha256": sha(cmake)},
             "ninja": {"version": run("ninja-version", [str(ninja), "--version"]).strip(), "sha256": sha(ninja)},
         }
+        if report["recovery_tools"]["cmake"]["version"] != "cmake version 3.31.6":
+            raise ValueError("Unexpected CMake executable version.")
+        if report["recovery_tools"]["ninja"]["version"] != "1.11.1.git.kitware.jobserver-1":
+            raise ValueError("Unexpected pinned Ninja executable version.")
         checkout(source, crisp_url, CRISP, [
             "/AGENTS.md", "/CLAUDE.md", "/LICENSE", "/.gitmodules",
             "/src/gector.cpp", "/src/gector.h", "/src/core/",
@@ -248,7 +296,8 @@ def main() -> int:
         if not report["compiler_flags_match_retained"]:
             raise ValueError("Generated compile flags/source set differ from the retained build; inspect the receipt.")
         run("compile", [str(cmake), "--build", str(build), "--parallel", str(args.jobs),
-                        "--target", "crispembed-gector", "crispembed-gector-quantize"])
+                        "--target", "crispembed-gector", "crispembed-gector-quantize",
+                        "crispembed-gector-run", "test-gector"])
         after = verify_sources()
         report["source_files_after"] = after
         report["source_stable"] = before == after
@@ -262,6 +311,67 @@ def main() -> int:
         report["outputs"] = outputs
         report["library_exact"] = outputs["library"]["exact_retained_bytes"]
         report["quantizer_exact"] = outputs["quantizer"]["exact_retained_bytes"]
+        # Produce a separately named current-build seal for explicit candidate
+        # qualification. This does not amend or replace the retained trust root.
+        dependencies = run("ninja-dependencies", [str(ninja), "-C", str(build), "-t", "deps"])
+        inventory_paths = {(source / item["file"]).resolve() for item in compiled}
+        for line in dependencies.splitlines():
+            if not line.startswith("    "):
+                continue
+            path = Path(line.strip())
+            if not path.is_absolute():
+                path = build / path
+            if path.is_file() and same_or_child(path.resolve(), source):
+                inventory_paths.add(path.resolve())
+        inventory_paths.update((source / "ggml").rglob("CMakeLists.txt"))
+        inventory_paths.update((source / "ggml/cmake").rglob("*.cmake"))
+        inventory_paths.update(source / name for name in
+                               ("tools/gector/CMakeLists.txt", "LICENSE", "ggml/LICENSE"))
+        actual_inventory = {path.relative_to(source).as_posix(): sha(path)
+                            for path in sorted(inventory_paths)}
+        report["actual_dependency_inventory"] = actual_inventory
+        report["dependency_inventory_comparison"] = {
+            "missing": sorted(set(baseline["source_sha256"]) - set(actual_inventory)),
+            "unexpected": sorted(set(actual_inventory) - set(baseline["source_sha256"])),
+            "hash_mismatches": sorted(name for name in set(actual_inventory) & set(baseline["source_sha256"])
+                                      if actual_inventory[name] != baseline["source_sha256"][name]),
+        }
+        save()
+        if actual_inventory != baseline["source_sha256"]:
+            raise ValueError("Actual compiler/CMake dependency closure differs from retained source inventory.")
+        cache = {}
+        for line in (build / "CMakeCache.txt").read_text().splitlines():
+            match = re.match(r"([^/#][^:]*):[^=]*=(.*)", line)
+            if match:
+                cache[match[1]] = match[2]
+        native_flags = {key: value for key, value in cache.items()
+                       if (key.startswith(("GGML_", "CRISPEMBED_")) and value in ("ON", "OFF"))
+                       or key in ("CMAKE_BUILD_TYPE", "CMAKE_CXX_STANDARD")}
+        if native_flags != baseline["cmake_flags"]:
+            raise ValueError("Native CMake switches differ from the retained build.")
+        candidate = {
+            "schema": "quds.gector.native-build.v1", "source_revision": CRISP,
+            "ggml_revision": GGML, "portable": True,
+            "cmake_flags": native_flags, "compiled_sources": compiled,
+            "source_sha256": actual_inventory,
+            "source_inventory_sha256": hashlib.sha256(
+                json.dumps(actual_inventory, sort_keys=True).encode()).hexdigest(),
+            "compile_commands_sha256": sha(build / "compile_commands.json"),
+            "cmake_cache_sha256": sha(build / "CMakeCache.txt"),
+            "library": {key: outputs["library"][key] for key in ("file", "sha256", "size_bytes")},
+            "quantizer": {key: outputs["quantizer"][key] for key in ("file", "sha256", "size_bytes")},
+            "build_provenance_limit": (
+                "Observed current recovery build only; not the retained binary, "
+                "not a signed release attestation, and not inference qualification."),
+        }
+        candidate_path = work / "candidate-build.json"
+        with candidate_path.open("x") as stream:
+            stream.write(json.dumps(candidate, indent=2, sort_keys=True) + "\n")
+        report["candidate_build_receipt"] = {
+            "path": str(candidate_path), "sha256": sha(candidate_path),
+            "source_inventory_sha256": candidate["source_inventory_sha256"],
+        }
+        save()
         # Read-only diagnostics; no candidate library or quantizer is executed.
         for key in ("library", "quantizer"):
             path = Path(outputs[key]["path"])
