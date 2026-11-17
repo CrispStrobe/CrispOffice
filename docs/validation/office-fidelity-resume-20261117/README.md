@@ -118,7 +118,10 @@ runtime inputs**, the actual package import/source closure, unchanged lock,
 framework/executable pins, and all captured ancestry. It also checks literal
 Unicode separators inside JSON test names correctly. Development controls,
 setup smoke tests, interrupted historical runs, and auditor self-tests are
-excluded from the totals.
+excluded from the totals. The [published-tree audit](published-tree-review.json)
+then passed against evidence checkpoint `9400b6ec`, checking the same recorded
+source/runtime inputs and incoming ancestry after the reports and artifacts
+were saved remotely.
 
 The [incoming GECToR Python tooling run](evidence/ancillary/gector-tooling.log)
 separately reported 18 passing tests and one optional converter-control skip. This is ancillary tooling evidence, not a
@@ -212,6 +215,7 @@ attempt.
 | `fa03e8bb` | Passed engine cohort and independent PDF artifacts |
 | `0f8ee502` | Passed editor and Harper cohorts |
 | `86242782` | Passed Node cohort, independent audit, development evidence, RTL oracle repair |
+| `9400b6ec` | Passed consumer evidence, independent consumer review, complete qualification report |
 
 All writes verify the Git tree and use an expected previous branch head. The
 qualification checkout stayed at `07481e94` while a separate evidence checkout
