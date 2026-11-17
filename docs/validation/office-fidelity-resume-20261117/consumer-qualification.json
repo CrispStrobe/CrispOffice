@@ -1,0 +1,646 @@
+{
+  "passed": true,
+  "product_source": "07481e944799e282f15e6286192b926cff1165df",
+  "script_sha256": "8e70ab527c3325750f38309af7ec2baa5de467e3b507df4e8708e619a4a58d4d",
+  "receipts_sha256": {
+    "initial": "d158189c98da8a1a8a762e3904112e85f22ef97abaeae524fd8043dfcfa5ed5b",
+    "rtl": "1fe21b1e6734f6210faf375196e29c52d63365b94f88fed8f68c06d3bef12af8",
+    "generation": "d057df7a72bd498578d74aafa9e14f57d8992d7441c18a19a88d2bb5ca63e748",
+    "rotation": "07789b566627565b42ce4617299f40ee3e28169fbb3972372db768dc4538a823",
+    "rotation_runtime": "53272daaedee3e723a9682785e316e41ec0d374c8447a529ddbd3cfaab3551bb",
+    "logical_pdf": "44cdaafaa8c7cdee7cdb4b8325f8d7f8b2a0d652f4bd17aba529eca787761373",
+    "conditional_pdf": "b99610215bfeb563872dea5f8d77548868a65f13ca0e97e01c12d297f01555de"
+  },
+  "general_fixtures": [
+    {
+      "name": "slide-image.odp",
+      "input_sha256": "3de82c3fdba88a478984d7675ecec2e85d002d78f7247dc033e73fec49ffebbb",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "slide-table-colors.odp",
+      "input_sha256": "59489ea5ea86f52e9080b3ccde250a477449e01400b298b8785c8032610f158b",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {
+        "blue_fill_pixels": 14133,
+        "red_text_pixels": 103,
+        "all_cells_visible": true
+      },
+      "comment_consumer": null
+    },
+    {
+      "name": "slide-table-geometry.odp",
+      "input_sha256": "1e8c134666dc072e512014fd904d30839dc8385510ee5b7d22c5580af282141b",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "slide-table-rtl.odp",
+      "input_sha256": "ac02c981560d67d491e39ee73e9a705e1cfdc15826e10dae64c294f7ab62cdcf",
+      "receipt": "rtl",
+      "passed": true,
+      "semantic_checks": {
+        "first_cell_x": 317.622,
+        "second_cell_x": 133.909,
+        "raw_words": [
+          {
+            "text": "لولأا",
+            "xMin": 317.622,
+            "yMin": -1.997827,
+            "xMax": 352.866,
+            "yMax": 36.018173
+          },
+          {
+            "text": "يناثلا",
+            "xMin": 133.909,
+            "yMin": -1.997827,
+            "xMax": 172.861,
+            "yMax": 36.018173
+          }
+        ],
+        "exact_two_word_inventory": true,
+        "word_identity": {
+          "first": {
+            "authored_text": "الأول",
+            "raw_text": "لولأا",
+            "unicode_codepoint_signature": [
+              1571,
+              1575,
+              1604,
+              1604,
+              1608
+            ],
+            "bounds": {
+              "xMin": 317.622,
+              "yMin": -1.997827,
+              "xMax": 352.866,
+              "yMax": 36.018173
+            }
+          },
+          "second": {
+            "authored_text": "الثاني",
+            "raw_text": "يناثلا",
+            "unicode_codepoint_signature": [
+              1575,
+              1575,
+              1579,
+              1604,
+              1606,
+              1610
+            ],
+            "bounds": {
+              "xMin": 133.909,
+              "yMin": -1.997827,
+              "xMax": 172.861,
+              "yMax": 36.018173
+            }
+          }
+        }
+      },
+      "comment_consumer": null
+    },
+    {
+      "name": "slide-text.odp",
+      "input_sha256": "483a660544fe174679b96d12c4f3bb6e433e56e791ebfe782c25a2590305dcf0",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "slide-transitions.odp",
+      "input_sha256": "c1e7799295f370f08bfd0c10e2438ff370ee8a9190fca78a4d9ae5d14d20a2d6",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "word-comments-covered.odt",
+      "input_sha256": "bb462f582ca02b14d0b6c7e82f3c97125e5455cba9a1fa64264572f79462be5e",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {},
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "Visible review"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "ad5fb858f2e6c4d3b6b02aadb2b5cdf85cec9e2aea76148437fe9d2658767f27",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-date-string.odt",
+      "input_sha256": "78c11dec2fc128df70f94c376ce3605094073c0bff93429846d3a0aafb51704a",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {},
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "Review"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "e3c0deb23655b04baf5d525197d0472e16e20ee10b6ba3a5f35b6eaf835b4db1",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-empty.odt",
+      "input_sha256": "ac180d2afec8a01103f79101cf89f7d71c3e133b05906ebe6dbe703cf96ae57a",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {},
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              ""
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "65533958d8439bf3615a6baff322be6b791af871a51278bb76e5707c20b7fa0c",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-frame-priority.odt",
+      "input_sha256": "b20cc6acf8a576761883390232f957ce921a50816f6254a009bf19dfdad99cc5",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {},
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "Main body review"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "a3aa32815f7dbe82f61fe231f86dff43faed1e5cd657944e345afc1746478000",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-heading.odt",
+      "input_sha256": "ae6324a49e1358031884636c4dccb51354d1f352cfb1f16a78c0edfac9fcbede",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {},
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "Review heading"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "e8947b6e54cd3083361db9f25ed05cf8750693b6957e56d465f2b02e4958ff59",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-note-priority.odt",
+      "input_sha256": "7a3db4c82df06447031382c89a9f2cb152b960ad7ad3e245fce6969ccb2e9d97",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {
+          "word/footnotes.xml": 0
+        },
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "Main body review"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "8ed0227006a40f4331af774d56f138995cd5f62c2c1eeeaf897ad1865492e5f0",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-notes.odt",
+      "input_sha256": "86213346ffade3601d7e0b493052f45685ea0928c8a18e8c883a0c602cdbbf35",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {
+          "word/footnotes.xml": 0
+        },
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "Review 1"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "90216145b47f0ad44ed0fa3c5f22784dbd6e287a1abdcabc34981834e5a627ba",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-recursive.odt",
+      "input_sha256": "1139eb88abf460920957d377dfbd61b03a9442186a86e81755527ddc20f7cf9b",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 2,
+        "main_body_comment_references": [
+          "0",
+          "1"
+        ],
+        "auxiliary_comment_reference_counts": {},
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "First review"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          },
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "1",
+            "paragraphs": [
+              "Second review"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "ba12d21d28dc3be044d9912925a89d66be3e3ed4f448df1b41b454a2e4408d76",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-rich.odt",
+      "input_sha256": "c2ca3c65a42dff6b3f03ad698b8049e3e6d4b4dea5323ec8aa1258bec2ad9414",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {},
+        "comments": [
+          {
+            "author": "Reviewer <A&B>",
+            "initials": "A&B",
+            "date": "2026-11-17T15:30:42Z",
+            "id": "0",
+            "paragraphs": [
+              " Leading  text \nLinkCached result ",
+              "List item",
+              ""
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": [
+              {
+                "text": "Link",
+                "target": "https://example.test/?a=1&b=2"
+              }
+            ]
+          }
+        ],
+        "round_trip_sha256": "94923211afc783b9008dc89a115c5921c5da541d9edf75454bb102e279551e4f",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-comments-stories.odt",
+      "input_sha256": "d77ed585db52f9772bacc94e625f031446bb0957f321718c049f6cd2e0763004",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": {
+        "format": "docx",
+        "visible_annotations": 1,
+        "main_body_comment_references": [
+          "0"
+        ],
+        "auxiliary_comment_reference_counts": {
+          "word/header1.xml": 0,
+          "word/footer1.xml": 0
+        },
+        "comments": [
+          {
+            "author": "Quds Office",
+            "initials": "QO",
+            "date": "",
+            "id": "0",
+            "paragraphs": [
+              "Shared review"
+            ],
+            "pictures": 0,
+            "tabs": 0,
+            "hyperlinks": []
+          }
+        ],
+        "round_trip_sha256": "35e0b8095f99a94bb663d93ecb04715ecb0d2785932dcbf26c36efe325c3da89",
+        "scope": "Visible main-body comments checked through independent DOCX structures.",
+        "limitations": [
+          "The measured consumer omits comment pictures and explicit tabs.",
+          "Unique header/footer/note comment anchors are omitted by this consumer; the original ODF retains them.",
+          "Arbitrary meta:date-string metadata has no asserted DOCX mapping."
+        ]
+      }
+    },
+    {
+      "name": "word-covered-notes.odt",
+      "input_sha256": "b2c354f63b96be418fc0a5dde7b742927d63defe7935482627810b803a004fd2",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {
+        "visible_note_only": true
+      },
+      "comment_consumer": null
+    },
+    {
+      "name": "word-empty-tables.odt",
+      "input_sha256": "0b567df8d0ccbdbb9d582af482e4f5909a3407192a385049e0c5ab252659ae5c",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "word-header-breaks.odt",
+      "input_sha256": "4e95e5d3b6da3ef5a6eeb4ec778a3dd60220b84b44f13c601592ec48161c969a",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "word-header-pictures.odt",
+      "input_sha256": "280a24438084799e0101fc2fe614527270e133aa6d877a0e2c6727c9f7564904",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "word-header-styles.odt",
+      "input_sha256": "e931e239845c5c66062e55439dccaa5b836ab4dda3aa41251cb98063d5c938d3",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "word-indents.odt",
+      "input_sha256": "b52980099c05af058a226f10171ea66e3514a16579c6fd2fa2e3df36d4341d9c",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    },
+    {
+      "name": "word-list-integration.odt",
+      "input_sha256": "52380e2674ca23c4187d4197ae0dc3a787c43b9fa9d1d26c86efc51b245b3f8a",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {
+        "list_items_visible": true
+      },
+      "comment_consumer": null
+    },
+    {
+      "name": "word-note-recursion.odt",
+      "input_sha256": "efcf3716ad0c1ede72a350a2fc08b40d0b23891361cdc94435ee8a5aa7549182",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {
+        "bounded_note_expansion": true
+      },
+      "comment_consumer": null
+    },
+    {
+      "name": "word-note-stories.odt",
+      "input_sha256": "4cd27fda50cd3a18ad5874f61478fa981e14087c07b7f5beb3e577ae5f5abfa9",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {
+        "note_definitions": 7,
+        "resolving_repeated_references": 2,
+        "preserved_phrases": [
+          "Blue footnote body",
+          "Second footnote line",
+          "Footnote cell A",
+          "Footnote cell B",
+          "Second footnote body",
+          "Custom-mark note body",
+          "Empty-reference note body",
+          "Explicit custom-mark body",
+          "Endnote body on final page",
+          "Custom endnote body"
+        ]
+      },
+      "comment_consumer": null
+    },
+    {
+      "name": "word-paragraph-layout.odt",
+      "input_sha256": "c2ecf9e97ac1c79635d56e06ca92cb850c83bafa97457bdd62e7fea1e1613c8c",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {
+        "exact_line_steps_pt": [
+          18.0,
+          18.0
+        ],
+        "minimum_line_step_pt": 23.99999999999997,
+        "header_footer_text": true
+      },
+      "comment_consumer": null
+    },
+    {
+      "name": "word-text.odt",
+      "input_sha256": "39cc5a70ccfa43d12e14c6bce1d29392cec60be985921eab98cf2f29572a08a9",
+      "receipt": "initial",
+      "passed": true,
+      "semantic_checks": {},
+      "comment_consumer": null
+    }
+  ],
+  "general_fixture_count": 27,
+  "rotation_fixture_count": 16,
+  "named_odf_fixture_count": 43,
+  "xml_part_validations": 172,
+  "rotation_color_geometry_checks": 33,
+  "rotation_bound_input_count": 6730,
+  "rotation_bound_font_count": 557,
+  "logical_pdf_differing_pixels": {
+    "word-logical-source": 0,
+    "worksheet-logical-source": 0,
+    "rotated-slide-logical-source": 0
+  },
+  "conditional_pdf_passed": true,
+  "initial_consumer_attempt_passed": false,
+  "corrected_fixture": "slide-table-rtl.odp",
+  "rtl_consumer_raster_unchanged": true,
+  "correction_scope": "Verifier-only Arabic word identity correction; fresh RTL render and exact full input inventory check. Other 26 passing fixtures retained.",
+  "github_actions_used": false
+}

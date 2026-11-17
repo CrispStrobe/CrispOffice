@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "started_utc": "2026-11-17T14:24:01.925616+00:00",
+  "finished_utc": "2026-11-17T14:24:22.672969+00:00",
+  "source_input_count": 0,
+  "runtime_input_count": null,
+  "generated_format_exclusions": 0,
+  "full_receipt": "receipt.json in indexed archive"
+}
