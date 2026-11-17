@@ -128,6 +128,41 @@ abstract final class OdtDocumentWriter {
       w.writeEndElement();
       w.writeEndElement();
     }
+    for (final ordered in <bool>[false, true]) {
+      w.writeStartElement('list-style', prefix: 'text');
+      w.writeAttribute('style:name', ordered ? 'L2' : 'L1');
+      for (var level = 1; level <= 9; level++) {
+        w.writeStartElement(
+          ordered ? 'list-level-style-number' : 'list-level-style-bullet',
+          prefix: 'text',
+        );
+        w.writeAttribute('text:level', '$level');
+        if (ordered) {
+          w.writeAttribute('style:num-format', '1');
+          w.writeAttribute('style:num-suffix', '.');
+        } else {
+          w.writeAttribute('text:bullet-char', '•');
+        }
+        w.writeStartElement('list-level-properties', prefix: 'style');
+        w.writeAttribute(
+          'text:list-level-position-and-space-mode',
+          'label-alignment',
+        );
+        w.writeEmptyElement(
+          'list-level-label-alignment',
+          prefix: 'style',
+          attributes: {
+            'text:label-followed-by': 'listtab',
+            'text:list-tab-stop-position': '${level * 0.25}in',
+            'fo:margin-left': '${level * 0.25}in',
+            'fo:text-indent': '-0.25in',
+          },
+        );
+        w.writeEndElement();
+        w.writeEndElement();
+      }
+      w.writeEndElement();
+    }
     w.writeEndElement();
     w.writeStartElement('automatic-styles', prefix: 'office');
     final page = section?.pageSize ?? const WmlPageSize();
@@ -192,9 +227,47 @@ abstract final class OdtDocumentWriter {
     List<WmlBlock> blocks,
     _OdtLayout layout,
   ) {
-    for (final block in blocks) {
-      _writeBlock(w, block, layout);
+    for (var index = 0; index < blocks.length; index++) {
+      final block = blocks[index];
+      if (block is WmlParagraph &&
+          block.properties.numId != null &&
+          !block.properties.numberingSuppressed) {
+        final list = <WmlParagraph>[block];
+        while (index + 1 < blocks.length) {
+          final next = blocks[index + 1];
+          if (next is! WmlParagraph ||
+              next.properties.numId != block.properties.numId ||
+              next.properties.numberingSuppressed) {
+            break;
+          }
+          list.add(next);
+          index++;
+        }
+        _writeList(w, list, layout);
+      } else {
+        _writeBlock(w, block, layout);
+      }
     }
+  }
+
+  static void _writeList(
+    XmlWriter w,
+    List<WmlParagraph> paragraphs,
+    _OdtLayout layout,
+  ) {
+    final ordered = paragraphs.any((paragraph) {
+      final label = paragraph.properties.listLabel?.trim() ?? '';
+      return label.isNotEmpty &&
+          !const <String>{'•', '◦', '▪', 'o'}.contains(label);
+    });
+    w.writeStartElement('list', prefix: 'text');
+    w.writeAttribute('text:style-name', layout.listStyle(ordered: ordered));
+    for (final paragraph in paragraphs) {
+      w.writeStartElement('list-item', prefix: 'text');
+      _writeParagraph(w, paragraph, layout);
+      w.writeEndElement();
+    }
+    w.writeEndElement();
   }
 
   static void _writeBlock(XmlWriter w, WmlBlock block, _OdtLayout layout) {
@@ -703,6 +776,8 @@ class _OdtLayout {
       return name;
     });
   }
+
+  String listStyle({required bool ordered}) => ordered ? 'L2' : 'L1';
 
   String cellStyle(String fill) {
     return _cellStyles.putIfAbsent(fill, () {

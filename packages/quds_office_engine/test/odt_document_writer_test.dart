@@ -40,6 +40,18 @@ void main() {
               inlines: [WmlRun(text: 'Quarterly review')],
             ),
             WmlParagraph(
+              properties: WmlParagraphProps(numId: 1),
+              inlines: [WmlRun(text: 'First bullet')],
+            ),
+            WmlParagraph(
+              properties: WmlParagraphProps(numId: 1),
+              inlines: [WmlRun(text: 'Second bullet')],
+            ),
+            WmlParagraph(
+              properties: WmlParagraphProps(numId: 2, listLabel: '1. '),
+              inlines: [WmlRun(text: 'First numbered')],
+            ),
+            WmlParagraph(
               properties: WmlParagraphProps(
                 justification: WmlJustification.center,
               ),
@@ -106,10 +118,101 @@ void main() {
     expect(_odfText(_odtBody(package)), contains('Plain bold tail'));
     expect(content, contains('bold'));
     expect(content, contains('fo:font-weight="bold"'));
+    expect(content, contains('<text:list'));
+    expect(content, contains('First bullet'));
+    expect(content, contains('Second bullet'));
+    expect(content, contains('First numbered'));
+    expect(content, contains('text:style-name="L2"'));
     expect(content, contains('<table:table'));
     expect(content, contains('Pictures/image1.png'));
     expect(styles, contains('fo:page-width'));
+    expect(styles, contains('style:num-format="1"'));
+    expect(styles, contains('style:num-suffix="."'));
+    expect(styles, isNot(contains('loext:num-list-format')));
     expect(package.getPart('/Pictures/image1.png'), isNotNull);
+  });
+
+  test(
+    'table lists retain paragraph layout and use standard number styles',
+    () {
+      final document = WmlDocument(
+        sections: [
+          WmlSection(
+            blocks: [
+              WmlTable(
+                rows: [
+                  WmlTableRow(
+                    cells: [
+                      WmlTableCell(
+                        blocks: [
+                          WmlParagraph(
+                            properties: WmlParagraphProps(
+                              numId: 7,
+                              listLabel: '1. ',
+                              rightToLeft: true,
+                              justification: WmlJustification.right,
+                              lineSpacingRule: WmlLineSpacingRule.exact,
+                              lineSpacing: 18,
+                            ),
+                            inlines: [
+                              WmlRun(
+                                text: 'Numbered cell',
+                                properties: WmlRunProps(bold: true),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      );
+      final package = OpcPackage.openBytes(
+        OdtDocumentWriter.writeBytes(document),
+      );
+      final body = _odtBody(package);
+      final cell = body
+          .firstChild('table')!
+          .firstChild('table-row')!
+          .firstChild('table-cell')!;
+      final list = cell.firstChild('list')!;
+      expect(list.getAttribute('style-name'), 'L2');
+      final paragraph = list.firstChild('list-item')!.firstChild('p')!;
+      expect(_odfText(paragraph), 'Numbered cell');
+      final content = XmlDocument.parse(
+        package.getPart('/content.xml')!.readText(),
+      ).root!;
+      final style = content
+          .firstChild('automatic-styles')!
+          .childrenNamed('style')
+          .singleWhere(
+            (style) =>
+                style.getAttribute('name') ==
+                paragraph.getAttribute('style-name'),
+          );
+      final properties = style.firstChild('paragraph-properties')!;
+      expect(properties.getAttribute('line-height'), '18.00pt');
+      expect(properties.getAttribute('writing-mode'), 'rl-tb');
+      expect(properties.getAttribute('text-align'), 'right');
+    },
+  );
+
+  test('empty documents keep the list catalog within ODF core attributes', () {
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(WmlDocument()),
+    );
+    final styles = package.getPart('/styles.xml')!.readText();
+    expect(styles, isNot(contains('loext:')));
+    final root = XmlDocument.parse(styles).root!;
+    final numbered = root
+        .firstChild('styles')!
+        .childrenNamed('list-style')
+        .singleWhere((style) => style.getAttribute('name') == 'L2');
+    expect(numbered.childrenNamed('list-level-style-number'), hasLength(9));
   });
 
   test('exports Zotero cached results without hidden field instructions', () {
