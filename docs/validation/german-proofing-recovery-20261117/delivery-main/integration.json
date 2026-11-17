@@ -15,5 +15,15 @@
     "Preserve incoming historical report variants under delivery-main for reference.",
     "Qualify and bound the new complex-field conversion before final delivery."
   ],
-  "state": "Raw incoming field behavior saved before bounded repair and narrow qualification."
+  "state": "Completed bounded field repair with focused VM/Node qualification and strict analysis; original evidence archive preserved unchanged.",
+  "rawIncomingBaseline": "024ff173edfce136cd7788484a58233468a68387",
+  "acceptedProductSource": "898c4c07f421d86a8cea460b13fd3e136088b553",
+  "qualification": {
+    "vmPassed": 113,
+    "nodePassed": 88,
+    "analysis": "No issues",
+    "verification": "verification.json",
+    "regressionSummary": "../evidence/delivery-field-summary.json"
+  },
+  "repairScope": "Complete unlocked unnested same-paragraph PAGE/NUMPAGES packets with one ordinary cached run; all unsupported shapes retain ordinary cached serialization."
 }

@@ -1,10 +1,11 @@
 # German proofing recovery and completed qualification — 17 November 2026
 
-This continuation recovered the interrupted publication, integrated the captured incoming work, repaired three Office export integration defects, and completed fresh local proofing and export qualification. Work was saved incrementally to `codex/german-morphology-20261117` and is tracked in [PR #114](https://github.com/CrispStrobe/quds_office_suite/pull/114). No GitHub Actions workflow was dispatched or awaited.
+This continuation recovered the interrupted publication, integrated the captured incoming work, repaired Office export integration defects, and completed fresh local proofing and export qualification. Work was saved incrementally to `codex/german-morphology-20261117` and is tracked in [PR #114](https://github.com/CrispStrobe/quds_office_suite/pull/114). No GitHub Actions workflow was dispatched or awaited.
 
-**Accepted final product source:** `7002d750e20e44392c6c9ba1a92d910fd87fe593`.
+**Accepted final product source:** `898c4c07f421d86a8cea460b13fd3e136088b553`.
+**Earlier closing-main Office source:** `7002d750e20e44392c6c9ba1a92d910fd87fe593`.
 **Fresh proofing/native-quality source:** `8d6403021f797a05e9c9fc49052c3d19d3766844`.
-The intervening implementation changes are confined to the ODT and ODP writers; proofing, GECToR, AOT library and editor implementation paths remain unchanged. Earlier test executions retain their original source attribution. [Source continuity](source-continuity.json) · [Verification](verification.json)
+The intervening implementation changes are confined to the ODT and ODP writers; proofing, GECToR, AOT library and editor implementation paths remain unchanged. Earlier test executions retain their original source attribution. [Delivery source continuity](delivery-main/source-continuity.json) · [Delivery field verification](delivery-main/verification.json) · [Earlier continuity](source-continuity.json) · [Earlier qualification](verification.json)
 
 ## What was recovered and integrated
 
@@ -12,7 +13,9 @@ The previous agent successfully saved its final report and full archive at `e67c
 
 The actual-server inventory captured **266 branch and PR refs at 18:54:24 CET (17:54:24 UTC)**. Seven maximal incoming tips covered all commits outside the recovered checkpoint. All captured refs are ancestors of the integrated source. The continuation retained the source and evidence from Office consolidation/qualification, German noun agreement, irregular-participle suggestions, optional AOT analysis/local transport, and the feature/vendor/main column histories. Different table/tab tests with the same incoming filename are retained under distinct filenames, and the frame-aware text extraction compatibility alias is preserved. [Captured refs](incoming-refs.json) · [Integration decisions](integration-decisions.json)
 
-A closing main observation found `914d74f13d1ae75d9b45ea0e51873c31ff63ec62`, containing #121 chart-data fallback export and #122 paragraph column breaks/keep-together. This final bounded main update was incorporated at `0e73c748`, retaining both the existing hyperlink assertion and the new chart-data assertions. Its two identified integration defects were repaired at `7002d750`. The inventory statements apply to the recorded snapshots, not later concurrent remote work. [Closing-main observation](closing-main-observation.json)
+A closing main observation found `914d74f13d1ae75d9b45ea0e51873c31ff63ec62`, containing #121 chart-data fallback export and #122 paragraph column breaks/keep-together. This main update was incorporated at `0e73c748`, retaining both the existing hyperlink assertion and the new chart-data assertions. Its two identified integration defects were repaired at `7002d750`. The inventory statements apply to the recorded snapshots, not later concurrent remote work. [Closing-main observation](closing-main-observation.json)
+
+A final PR readback identified main `13e7172977d671190ba8c3cf964deec4d7473090`, which landed prior Office qualification/continuation and new #124 inline field conversion. The histories were reconciled at `024ff173`, retaining the already-qualified Office and grammar implementations. The only new production delta was ODT field handling; its bounded cached-text repair is saved at `898c4c07`. The final amendment has its own source-bound qualification and archive, while the original 167-file evidence archive remains unchanged. [Delivery-main amendment](delivery-main/README.md)
 
 ## Fresh German quality results
 
@@ -75,7 +78,15 @@ The closing main update emitted `columnBreakBefore` and `keepTogether` without i
 
 Chart data introduced by the same update was converted into a table after the rotated-table decision. The writer now resolves an explicit or chart-derived table before that decision and passes it into the existing rotated-cell-frame exporter. Images and explicitly modeled tables retain precedence; the shape, table, chart points and transforms remain unchanged. This is a data-table/text-frame fallback, not native editable chart export.
 
-The two new test files are identical before and after the repair: eight assertions fail and nine controls pass on `0e73c748`; all 17 pass after only the two writers are changed. The final affected cohort passes 174 tests on VM and 131 portable tests on Node, including all 31 new Office regressions (14 columns, eight paragraph styles and nine chart fallbacks). [Late regression comparison](evidence/late-office-regression-comparison.json) · [Final Office qualification](evidence/late-office-final-summary.json)
+The two new test files are identical before and after the repair: eight assertions fail and nine controls pass on `0e73c748`; all 17 pass after only the two writers are changed. The affected cohort at `7002d750` passed 174 tests on VM and 131 portable tests on Node, including all 31 new Office regressions (14 columns, eight paragraph styles and nine chart fallbacks). [Late regression comparison](evidence/late-office-regression-comparison.json) · [Final Office qualification](evidence/late-office-final-summary.json)
+
+### Inline field caches and story isolation
+
+The last main update recognized individual instruction fragments and used shared field suppression state. That could erase cached display text or later text after malformed fields. Conversion now requires a complete, balanced, unnested packet inside one paragraph, a supported `PAGE` or `NUMPAGES` instruction (optionally `MERGEFORMAT`), unlocked metadata, and one ordinary cached run. Instruction fragments are assembled before recognition. The cached text appears exactly once inside the native field while its style, hyperlink and attached-comment serialization remain in the existing path.
+
+Unsupported instructions and formatting switches, locked or nested fields, malformed metadata, missing separators, atomic/multiple results and mixed inline content retain ordinary cached serialization. Metadata parsing handles malformed syntax and numeric entities safely. A cross-paragraph depth guard prevents nested conversion but never suppresses text; independent stories reset and restore it. DATE/TIME/TITLE field conversion remains outside this bounded support.
+
+The final identical 22-case regression file gives 20 assertion failures, one missing-element exception and one passing control on the imported writer; the repaired writer passes all 22 plus all 16 existing writer tests. The earlier test-helper mistake around ODF space elements and its correction remain archived separately from this accepted pair. [Final field qualification and limitations](delivery-main/README.md) · [Field regression summary](evidence/delivery-field-summary.json)
 
 ## Optional AOT scope and portability repair
 
@@ -99,6 +110,8 @@ The first portable AOT run found one fixture problem: it used `0.0` as a suppose
 | AOT portable package, Node | **129 passed** | Same product plus documented fixture correction |
 | Broad Office VM / portable Node | **438 / 357 passed** | `8d640302` |
 | Closing-main affected Office VM / Node | **174 / 131 passed** | `7002d750` |
+| Delivery-main affected ODT VM / Node | **113 / 88 passed** | `898c4c07` |
+| Delivery-main changed ODT writer/test analysis | **No issues** | `898c4c07` |
 | Python qualification/admission controls | **116 passed, one skipped** | Source inputs remain unchanged |
 | Full engine, AOT package/CLI, and changed Office strict analysis | **No issues** | Source-specific receipts |
 | Native quality AOT build and both functional panels | **Passed** | `8d640302` |
@@ -110,7 +123,9 @@ The initial concurrent proofing Node run had 698 passes and one incomplete-repor
 
 ## Evidence and reproducibility
 
-[Verification](verification.json) records accepted gates and their exact receipt paths. [Source continuity](source-continuity.json) separates fresh execution from later unchanged-input attribution. The [archive index](evidence-index.json) pins every member of [evidence.tar.xz](evidence.tar.xz), including all command receipts, compressed stdout/stderr, source maps, failed attempts, raw model/corpus outputs, build receipts, audit scripts and summaries. Selected readable summaries are mirrored in `evidence/`; the complete archive restores all files under that prefix.
+[Verification](verification.json) records accepted gates and their exact receipt paths. [Source continuity](source-continuity.json) separates fresh execution from later unchanged-input attribution. The original [archive index](evidence-index.json) pins every member of the unchanged [evidence.tar.xz](evidence.tar.xz), including all command receipts, compressed stdout/stderr, source maps, failed attempts, raw model/corpus outputs, build receipts, audit scripts and summaries. Selected readable summaries are mirrored in `evidence/`; the complete archive restores all files under that prefix.
+
+The bounded delivery-main field amendment is sealed separately in its [archive and member index](delivery-main/evidence-index.json). Its [verification](delivery-main/verification.json) and [source continuity](delivery-main/source-continuity.json) retain the earlier proofing source attribution and bind only the new focused checks to the final product revision.
 
 The [logged runner](run_logged.py), preserved [workspace lock](resolved-pubspec.lock), per-run commands, model/native pins and build receipts document reproduction. The runner accepts `QUDS_RECOVERY_REPO` and `QUDS_RECOVERY_RUNTIME_ROOT` for a corresponding checkout and installed runtime. Native artifacts must be supplied separately at their recorded identities; no model weights or external native binaries are included. The [original-evidence audit](audit_recovered_evidence.py) independently checks the recovered historical archive.
 
