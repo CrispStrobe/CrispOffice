@@ -141,6 +141,21 @@ PR #116, and later morphology/GECToR evidence. These heads are separately
 identified in [later-arrivals.json](later-arrivals.json); they are outside the
 initial integration cutoff and the qualified source above.
 
+## Independent final audit and publication
+
+The [independent final audit](independent-review/README.md) reconstructs raw
+case outcomes, exact suite coverage, before/after input identity, and saved
+consumer measurements without importing either qualification harness. It
+accepts the reported totals with no discrepancies or pending evidence. Both
+archives have exact indexed member sets: **447 members across two archives**.
+The audit's evidence checks are not additional application-test passes.
+
+The complete evidence was published at **`b0f6d806a8ce3869c5a52e51bc7fed2bd4dbdbba`**.
+The [published-tree review](publication/published-evidence-review.json) verifies
+the fetched remote tree, both archive hashes, unchanged qualified product source,
+and ancestry of every captured incoming head. Subsequent publication receipts
+change documentation only.
+
 No GitHub Actions, workflow, check-run or commit-status endpoint was queried or
 awaited. Incremental commits use `[skip ci]`. Git CLI write credentials were
 unavailable, so publication used connected GitHub Git-data operations with exact
