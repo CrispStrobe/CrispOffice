@@ -63,6 +63,46 @@ void main() {
     );
   }
 
+  test(
+    'guarded decoding retains the frozen wir correction and source span',
+    () async {
+      final row = (oracle['cases']! as List<Object?>)
+          .cast<Map<String, Object?>>()
+          .singleWhere((row) => row['id'] == 'verb-wir');
+      final rawPasses = (row['passes']! as List<Object?>)
+          .cast<Map<String, Object?>>();
+      final backend =
+          ScriptedBackend(fixtures.bundle.configuration, <List<String>>[
+            for (final pass in rawPasses)
+              (pass['labels']! as List<Object?>).cast<String>(),
+          ]);
+      final decoder = GectorDecoder.guarded(
+        configuration: fixtures.bundle.configuration,
+        tokenizer: fixtures.bundle.tokenizer,
+        backend: backend,
+        guards: GectorGermanGuards.fromJson(
+          fixtures.bundle.guardsJson,
+          configuration: fixtures.bundle.configuration,
+          lexicon: GectorWordSetLexicon(const <String>['sind']),
+        ),
+      );
+      final result = await decoder.correct(row['input']! as String);
+      expect(result.guarded, isTrue);
+      expect(result.complete, isTrue);
+      expect(result.corrected, row['corrected']);
+      expect(result.passes.length, rawPasses.length);
+      expect(<Map<String, Object>>[
+        for (final edit in result.edits)
+          <String, Object>{
+            'start': edit.start,
+            'end': edit.end,
+            'original': edit.original,
+            'replacement': edit.replacement,
+          },
+      ], row['suggestions_utf16']);
+    },
+  );
+
   test('explicit capacity failure never truncates a long input', () async {
     final backend = ScriptedBackend(fixtures.bundle.configuration, const []);
     final decoder = GectorDecoder.reference(

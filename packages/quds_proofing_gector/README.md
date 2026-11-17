@@ -37,6 +37,7 @@ dimensions, and owns the native context inside the worker isolate.
 ```dart
 import 'dart:io';
 
+import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_proofing_gector/quds_proofing_gector.dart';
 import 'package:quds_proofing_gector/quds_proofing_gector_native.dart';
 
@@ -45,6 +46,7 @@ Future<GectorProofingProvider> loadManualGerman({
   required GectorModelArtifact reviewedArtifact,
   required String libraryPath,
   required String librarySha256,
+  required OfficeProofingVocabulary vocabulary,
 }) async {
   final bundle = await GectorVerifiedBundle.load(
     read: (name) => File('$bundleDirectory/$name').openRead(),
@@ -59,6 +61,7 @@ Future<GectorProofingProvider> loadManualGerman({
       threads: 2,
     ),
     lexiconFactory: const GectorGermanLexiconFactory(),
+    vocabulary: vocabulary,
   );
 }
 ```
@@ -68,11 +71,21 @@ dictionary loading, and native context creation are startup work and occur
 outside the normal proofing request deadline. In the existing editor host:
 
 ```dart
+final readyGectorProvider = await loadManualGerman(
+  bundleDirectory: bundleDirectory,
+  reviewedArtifact: reviewedArtifact,
+  libraryPath: libraryPath,
+  librarySha256: librarySha256,
+  vocabulary: controller.proofing.vocabulary,
+);
 controller.proofing.configureManual(
   OfficeProofingService(providers: [readyGectorProvider]),
 );
 await controller.proofing.checkNow();
 ```
+
+Share the session's vocabulary object so its personal and ignored words also
+protect model suggestions and changes invalidate in-flight grammar results.
 
 The manual service runs on explicit checks, including F7. The editor's debounce
 path excludes manually configured providers. This package does not alter the
