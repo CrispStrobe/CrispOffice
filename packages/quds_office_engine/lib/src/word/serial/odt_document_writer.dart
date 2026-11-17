@@ -298,10 +298,18 @@ abstract final class OdtDocumentWriter {
             : {'table:number-columns-repeated': '$inferredColumns'},
       );
     }
+    if (table.rows.isEmpty) {
+      w.writeStartElement('table-row', prefix: 'table');
+      _writeOmittedCells(w, cells.columnCount);
+      w.writeEndElement();
+    }
     for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
       final row = table.rows[rowIndex];
       w.writeStartElement('table-row', prefix: 'table');
-      _writeOmittedCells(w, row.gridBefore);
+      _writeOmittedCells(
+        w,
+        BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0),
+      );
       for (var index = 0; index < row.cells.length; index++) {
         final cell = row.cells[index];
         final placement = cells.rows[rowIndex][index];
@@ -331,7 +339,12 @@ abstract final class OdtDocumentWriter {
         w.writeEndElement();
         _writeCoveredCells(w, placement.columns - 1);
       }
-      _writeOmittedCells(w, row.gridAfter);
+      _writeOmittedCells(
+        w,
+        BigInt.from(row.gridAfter > 0 ? row.gridAfter : 0) +
+            cells.columnCount -
+            cells.rowWidths[rowIndex],
+      );
       w.writeEndElement();
     }
     w.writeEndElement();
@@ -348,10 +361,12 @@ abstract final class OdtDocumentWriter {
     );
   }
 
-  static void _writeOmittedCells(XmlWriter w, int count) {
-    if (count <= 0) return;
+  static void _writeOmittedCells(XmlWriter w, BigInt count) {
+    if (count <= BigInt.zero) return;
     w.writeStartElement('table-cell', prefix: 'table');
-    if (count > 1) w.writeAttribute('table:number-columns-repeated', '$count');
+    if (count > BigInt.one) {
+      w.writeAttribute('table:number-columns-repeated', '$count');
+    }
     _writePlainParagraph(w, '');
     w.writeEndElement();
   }
@@ -470,7 +485,8 @@ abstract final class OdtDocumentWriter {
 /// Storage and iteration are proportional to physical cells, not authored
 /// column spans. BigInt offsets prevent cumulative span overflow on VM and web.
 class _OdtTableCells {
-  _OdtTableCells(WmlTable table) {
+  _OdtTableCells(WmlTable table)
+    : columnCount = BigInt.from(table.grid.isEmpty ? 1 : table.grid.length) {
     var previous = <(BigInt, int), _OdtTableCell>{};
     for (final row in table.rows) {
       final placements = <_OdtTableCell>[];
@@ -501,13 +517,15 @@ class _OdtTableCells {
         column += BigInt.from(span);
       }
       column += BigInt.from(row.gridAfter > 0 ? row.gridAfter : 0);
+      rowWidths.add(column);
       if (column > columnCount) columnCount = column;
       previous = current;
     }
   }
 
   final rows = <List<_OdtTableCell>>[];
-  BigInt columnCount = BigInt.one;
+  final rowWidths = <BigInt>[];
+  BigInt columnCount;
 }
 
 class _OdtTableCell {
