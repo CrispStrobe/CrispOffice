@@ -1,0 +1,129 @@
+{
+  "endpoint": "https://aot.ru/synan-daemon/",
+  "method": "GET (production AotHttpTransport explicit compatibility mode)",
+  "providerDeadlineSeconds": 45,
+  "serverRevision": "unknown",
+  "results": [
+    {
+      "text": "Ich geht.",
+      "milliseconds": 11589,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": [
+        {
+          "rule": "aot.de.subject-verb-agreement",
+          "original": "geht",
+          "start": 4,
+          "end": 8,
+          "replacements": [
+            "gehe"
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Ich gehe.",
+      "milliseconds": 3158,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": []
+    },
+    {
+      "text": "mit den Hund",
+      "milliseconds": 12220,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": [
+        {
+          "rule": "aot.de.preposition-case",
+          "original": "den",
+          "start": 4,
+          "end": 7,
+          "replacements": [
+            "dem"
+          ]
+        }
+      ]
+    },
+    {
+      "text": "mit dem Hund",
+      "milliseconds": 4351,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": []
+    },
+    {
+      "text": "Der kleines Hund schläft.",
+      "milliseconds": 13053,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": [
+        {
+          "rule": "aot.de.adjective-agreement",
+          "original": "kleines",
+          "start": 4,
+          "end": 11,
+          "replacements": [
+            "kleine"
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Der kleine Hund schläft.",
+      "milliseconds": 3194,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": []
+    },
+    {
+      "text": "Es kommen Gäste.",
+      "milliseconds": 4919,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": []
+    },
+    {
+      "text": "Es sind viele Menschen hier.",
+      "milliseconds": 4129,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": []
+    },
+    {
+      "text": "Du gehe nach Hause.",
+      "milliseconds": 4207,
+      "fullyAligned": true,
+      "status": "success",
+      "message": null,
+      "findings": []
+    },
+    {
+      "text": "um mir zu helfen",
+      "milliseconds": 3708,
+      "fullyAligned": false,
+      "status": "failed",
+      "message": "AOT grammar check could not validate the current analysis.",
+      "findings": []
+    },
+    {
+      "text": "ohne dem Hund zu helfen",
+      "milliseconds": 4935,
+      "fullyAligned": false,
+      "status": "failed",
+      "message": "AOT grammar check could not validate the current analysis.",
+      "findings": []
+    }
+  ],
+  "synthetic_text_only": true,
+  "identical_request_cache_across_samples": true,
+  "qualification": "Correctness smoke only; public server revision unknown; not a latency or broad accuracy measurement"
+}

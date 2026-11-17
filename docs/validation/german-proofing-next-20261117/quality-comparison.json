@@ -1,0 +1,52 @@
+{
+  "kind": "repaired-to-integrated-german-quality-comparison",
+  "before_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+  "after_source": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+  "scope": "All case declarations, findings, statuses, merge decisions and diagnostic projections; only per-case timing_ms excluded.",
+  "script_sha256": "6c5d07cd22f3d0e070114613ade00c5e3a97a44ee3ce949df958b41407431cc1",
+  "audits": {
+    "before_sha256": "81be8ad6f981d32f5b03d97493a09c73bee725e1ea52d3c53290dd7624d3e4a3",
+    "after_sha256": "3e5206b83045fa89180340d3e8eb3c6d70724a38a61862a994db5e42269b3bfe"
+  },
+  "panels": {
+    "frozen": {
+      "before_sha256": "89dd611d92c99524d7b893d2eeaaf556b3443334ef021b6d9d655f7481c1f8ca",
+      "after_sha256": "2c20dd3315cf6c7a072e412e6bb78047ac8fc3cac4f1a33a2c9218fbbb6bfae1",
+      "case_rows_compared": 30,
+      "lane_outcomes_compared": 120,
+      "differences": [],
+      "identical_outcomes": true
+    },
+    "prospective": {
+      "before_sha256": "81829c519fab1128c0a52b54197f6d0c265a79a101c1ba758f17b3acbbc37aac",
+      "after_sha256": "0517152e2d7c217aaab22b34f0c59186d1a1ba49c25e87f8b46822de81bdcccc",
+      "case_rows_compared": 76,
+      "lane_outcomes_compared": 304,
+      "differences": [],
+      "identical_outcomes": true
+    }
+  },
+  "selected_source_changes": {
+    "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": {
+      "before_sha256": "1bea719acbd541ea07bb546030e7cb2f8c1c30a00e41a9363ad60907127fe77f",
+      "after_sha256": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9"
+    },
+    "packages/quds_proofing_gector/lib/src/decoder.dart": {
+      "before_sha256": "9a2053cb8ba37ff6a003d2c8100bc1b46d6cf09410ce25d7c3eef8f535e10c91",
+      "after_sha256": "674bd409d579c6a58c60d6b5c6bef2b04824a554b685389d9fe5cdc7508e2096"
+    },
+    "packages/quds_proofing_gector/lib/src/guards.dart": {
+      "before_sha256": "69715afe5972aba5c35a3877c8b0b3805dd9a258b16523c8c6d368ff73fb74d7",
+      "after_sha256": "6c9684c05e8f925df5d8d66cf1c4f5fa7bd772abd7658648ec950ec0803408e1"
+    },
+    "packages/quds_proofing_gector/lib/src/segmentation.dart": {
+      "before_sha256": null,
+      "after_sha256": "2dd791265fa98c35fe55cb9256ac8de2276729d37711aec690a186e3c594677f"
+    },
+    "packages/quds_proofing_gector/pubspec.yaml": {
+      "before_sha256": "1d6733795533cab7421471cc437cf1d50f4c0921eeac3091fb528e7564958ba9",
+      "after_sha256": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1"
+    }
+  },
+  "passed": true
+}

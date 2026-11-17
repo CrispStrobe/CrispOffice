@@ -1,0 +1,3523 @@
+{
+  "started_at_utc": "2026-11-17T16:19:50.509963+00:00",
+  "source_root": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+  "source_head": "966196f386ec1776c836664b3eb7c93e8e92605c",
+  "source_repository": "/workspace/scratch/f911bf3b5689/quds_office_suite",
+  "source_tree": "4287330a433e915d58ca779adfacb75942c6ab04",
+  "scope": "Unchanged historical 24 ODT section/list fixtures plus two paragraph-color and live-footer recovery fixtures; official OASIS ODF1.3 schema plus LibreOffice PDF/DOCX and Poppler text.",
+  "github_actions_queried_or_awaited": false,
+  "fixtures": [
+    {
+      "name": "section-list",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "FirstBody": {
+            "page": 1,
+            "text": "FirstBody",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 82.52,
+            "yMax": 62.77115
+          },
+          "FirstHead": {
+            "page": 1,
+            "text": "FirstHead",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 83.741,
+            "yMax": 48.62115
+          },
+          "FirstFoot": {
+            "page": 1,
+            "text": "FirstFoot",
+            "xMin": 36.1,
+            "yMin": 450.19515,
+            "xMax": 79.44,
+            "yMax": 462.47115
+          },
+          "SecondHead": {
+            "page": 2,
+            "text": "SecondHead",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 99.658,
+            "yMax": 48.62185
+          },
+          "SecondFoot": {
+            "page": 2,
+            "text": "SecondFoot",
+            "xMin": 36.1,
+            "yMin": 350.19585,
+            "xMax": 95.379,
+            "yMax": 362.47185
+          },
+          "ListFirst": {
+            "page": 2,
+            "text": "ListFirst",
+            "xMin": 54.1,
+            "yMin": 50.49585,
+            "xMax": 92.534,
+            "yMax": 62.77185
+          },
+          "ListSecond": {
+            "page": 2,
+            "text": "ListSecond",
+            "xMin": 54.1,
+            "yMin": 72.99585,
+            "xMax": 108.495,
+            "yMax": 85.27185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-control-list",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "FirstBody": {
+            "page": 1,
+            "text": "FirstBody",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 82.52,
+            "yMax": 62.77115
+          },
+          "FirstHead": {
+            "page": 1,
+            "text": "FirstHead",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 83.741,
+            "yMax": 48.62115
+          },
+          "FirstFoot": {
+            "page": 1,
+            "text": "FirstFoot",
+            "xMin": 36.1,
+            "yMin": 450.19515,
+            "xMax": 79.44,
+            "yMax": 462.47115
+          },
+          "SecondHead": {
+            "page": 2,
+            "text": "SecondHead",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 99.658,
+            "yMax": 48.62185
+          },
+          "SecondFoot": {
+            "page": 2,
+            "text": "SecondFoot",
+            "xMin": 36.1,
+            "yMin": 350.19585,
+            "xMax": 95.379,
+            "yMax": 362.47185
+          },
+          "ControlFirst": {
+            "page": 2,
+            "text": "ControlFirst",
+            "xMin": 54.1,
+            "yMin": 50.49585,
+            "xMax": 110.86,
+            "yMax": 62.77185
+          },
+          "ControlSecond": {
+            "page": 2,
+            "text": "ControlSecond",
+            "xMin": 54.1,
+            "yMin": 72.99585,
+            "xMax": 126.788,
+            "yMax": 85.27185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-table",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "FirstBody": {
+            "page": 1,
+            "text": "FirstBody",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 82.52,
+            "yMax": 62.77115
+          },
+          "FirstHead": {
+            "page": 1,
+            "text": "FirstHead",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 83.741,
+            "yMax": 48.62115
+          },
+          "FirstFoot": {
+            "page": 1,
+            "text": "FirstFoot",
+            "xMin": 36.1,
+            "yMin": 450.19515,
+            "xMax": 79.44,
+            "yMax": 462.47115
+          },
+          "SecondHead": {
+            "page": 2,
+            "text": "SecondHead",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 99.658,
+            "yMax": 48.62185
+          },
+          "SecondFoot": {
+            "page": 2,
+            "text": "SecondFoot",
+            "xMin": 36.1,
+            "yMin": 350.19585,
+            "xMax": 95.379,
+            "yMax": 362.47185
+          },
+          "TableFirst": {
+            "page": 2,
+            "text": "TableFirst",
+            "xMin": 36.1,
+            "yMin": 50.49585,
+            "xMax": 84.918,
+            "yMax": 62.77185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-control-table",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "FirstBody": {
+            "page": 1,
+            "text": "FirstBody",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 82.52,
+            "yMax": 62.77115
+          },
+          "FirstHead": {
+            "page": 1,
+            "text": "FirstHead",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 83.741,
+            "yMax": 48.62115
+          },
+          "FirstFoot": {
+            "page": 1,
+            "text": "FirstFoot",
+            "xMin": 36.1,
+            "yMin": 450.19515,
+            "xMax": 79.44,
+            "yMax": 462.47115
+          },
+          "SecondHead": {
+            "page": 2,
+            "text": "SecondHead",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 99.658,
+            "yMax": 48.62185
+          },
+          "SecondFoot": {
+            "page": 2,
+            "text": "SecondFoot",
+            "xMin": 36.1,
+            "yMin": 350.19585,
+            "xMax": 95.379,
+            "yMax": 362.47185
+          },
+          "ControlTable": {
+            "page": 2,
+            "text": "ControlTable",
+            "xMin": 36.1,
+            "yMin": 50.49585,
+            "xMax": 99.02,
+            "yMax": 62.77185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-visual",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "FirstBody": {
+            "page": 1,
+            "text": "FirstBody",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 82.52,
+            "yMax": 62.77115
+          },
+          "FirstHead": {
+            "page": 1,
+            "text": "FirstHead",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 83.741,
+            "yMax": 48.62115
+          },
+          "FirstFoot": {
+            "page": 1,
+            "text": "FirstFoot",
+            "xMin": 36.1,
+            "yMin": 450.19515,
+            "xMax": 79.44,
+            "yMax": 462.47115
+          },
+          "SecondHead": {
+            "page": 2,
+            "text": "SecondHead",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 99.658,
+            "yMax": 48.62185
+          },
+          "SecondFoot": {
+            "page": 2,
+            "text": "SecondFoot",
+            "xMin": 36.1,
+            "yMin": 350.19585,
+            "xMax": 95.379,
+            "yMax": 362.47185
+          },
+          "VisualTail": {
+            "page": 2,
+            "text": "VisualTail",
+            "xMin": 36.1,
+            "yMin": 80.34585,
+            "xMax": 83.719,
+            "yMax": 92.62185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels.",
+        "red_picture": {
+          "page": 2,
+          "red_pixels": 1484,
+          "bounds_pt": [
+            36.0,
+            49.5,
+            75.75,
+            70.5
+          ],
+          "tolerance_pt": 1,
+          "checked": {
+            "left_pt": 36.0,
+            "width_pt": 39.75,
+            "height_pt": 21.0
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "section-frame",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "FirstBody": {
+            "page": 1,
+            "text": "FirstBody",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 82.52,
+            "yMax": 62.77115
+          },
+          "FirstHead": {
+            "page": 1,
+            "text": "FirstHead",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 83.741,
+            "yMax": 48.62115
+          },
+          "FirstFoot": {
+            "page": 1,
+            "text": "FirstFoot",
+            "xMin": 36.1,
+            "yMin": 450.19515,
+            "xMax": 79.44,
+            "yMax": 462.47115
+          },
+          "SecondHead": {
+            "page": 2,
+            "text": "SecondHead",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 99.658,
+            "yMax": 48.62185
+          },
+          "SecondFoot": {
+            "page": 2,
+            "text": "SecondFoot",
+            "xMin": 36.1,
+            "yMin": 350.19585,
+            "xMax": 95.379,
+            "yMax": 362.47185
+          },
+          "FrameFirst": {
+            "page": 2,
+            "text": "FrameFirst",
+            "xMin": 60.0,
+            "yMin": 102.19585,
+            "xMax": 113.119,
+            "yMax": 114.47185
+          },
+          "FrameTail": {
+            "page": 2,
+            "text": "FrameTail",
+            "xMin": 36.1,
+            "yMin": 51.49585,
+            "xMax": 85.578,
+            "yMax": 63.77185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": [
+          60.0,
+          100.0,
+          180.0,
+          40.0
+        ],
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-empty",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ],
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeEmpty": {
+            "page": 1,
+            "text": "BeforeEmpty",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 99.625,
+            "yMax": 48.62115
+          },
+          "EmptySectionHead": {
+            "page": 2,
+            "text": "EmptySectionHead",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 130.183,
+            "yMax": 48.62185
+          },
+          "AfterEmpty": {
+            "page": 3,
+            "text": "AfterEmpty",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 90.473,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-continuous",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeContinuous": {
+            "page": 1,
+            "text": "BeforeContinuous",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 124.111,
+            "yMax": 48.62115
+          },
+          "AfterContinuous": {
+            "page": 1,
+            "text": "AfterContinuous",
+            "xMin": 36.1,
+            "yMin": 58.84515,
+            "xMax": 114.915,
+            "yMax": 71.12115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-continuous-empty",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeContinuous": {
+            "page": 1,
+            "text": "BeforeContinuous",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 124.111,
+            "yMax": 48.62115
+          },
+          "AfterContinuous": {
+            "page": 1,
+            "text": "AfterContinuous",
+            "xMin": 36.1,
+            "yMin": 58.84515,
+            "xMax": 114.915,
+            "yMax": 71.12115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-continuous-image-header",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeHeaderPicture": {
+            "page": 1,
+            "text": "BeforeHeaderPicture",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 138.763,
+            "yMax": 62.77115
+          },
+          "AfterHeaderPicture": {
+            "page": 1,
+            "text": "AfterHeaderPicture",
+            "xMin": 36.1,
+            "yMin": 72.99515,
+            "xMax": 129.567,
+            "yMax": 85.27115
+          },
+          "PictureHeader": {
+            "page": 1,
+            "text": "PictureHeader",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 106.346,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-continuous-comment-header",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeHeaderComment": {
+            "page": 1,
+            "text": "BeforeHeaderComment",
+            "xMin": 36.1,
+            "yMin": 50.49515,
+            "xMax": 152.205,
+            "yMax": 62.77115
+          },
+          "AfterHeaderComment": {
+            "page": 1,
+            "text": "AfterHeaderComment",
+            "xMin": 36.1,
+            "yMin": 72.99515,
+            "xMax": 143.009,
+            "yMax": 85.27115
+          },
+          "CommentHeader": {
+            "page": 1,
+            "text": "CommentHeader",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 119.788,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Equivalent header comments must not force a page break; header annotation visibility is not asserted."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-continuous-new-size",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "BeforeNewSize": {
+            "page": 1,
+            "text": "BeforeNewSize",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 111.824,
+            "yMax": 48.62115
+          },
+          "AfterNewSize": {
+            "page": 2,
+            "text": "AfterNewSize",
+            "xMin": 36.1,
+            "yMin": 36.34585,
+            "xMax": 102.672,
+            "yMax": 48.62185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Documented page-boundary fallback for changed geometry."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-heading-layout",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "BeforeHeading": {
+            "page": 1,
+            "text": "BeforeHeading",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 109.426,
+            "yMax": 48.62115
+          },
+          "HeadingFirst": {
+            "page": 2,
+            "text": "HeadingFirst",
+            "xMin": 472.75,
+            "yMin": 46.44585,
+            "xMax": 539.916,
+            "yMax": 58.72185
+          },
+          "HeadingSecond": {
+            "page": 2,
+            "text": "HeadingSecond",
+            "xMin": 456.85,
+            "yMin": 64.44585,
+            "xMax": 539.911,
+            "yMax": 76.72185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "paragraph-rtl-indent",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            600.009449,
+            399.99685
+          ]
+        ],
+        "word_locations": {
+          "RightFirst": {
+            "page": 1,
+            "text": "RightFirst",
+            "xMin": 492.9,
+            "yMin": 46.44585,
+            "xMax": 539.903,
+            "yMax": 58.72185
+          },
+          "RightSecond": {
+            "page": 1,
+            "text": "RightSecond",
+            "xMin": 477.0,
+            "yMin": 64.44585,
+            "xMax": 539.931,
+            "yMax": 76.72185
+          },
+          "LeftFirst": {
+            "page": 1,
+            "text": "LeftFirst",
+            "xMin": 65.9,
+            "yMin": 93.44585,
+            "xMax": 105.588,
+            "yMax": 105.72185
+          },
+          "LeftSecond": {
+            "page": 1,
+            "text": "LeftSecond",
+            "xMin": 65.9,
+            "yMin": 111.44585,
+            "xMax": 121.505,
+            "yMax": 123.72185
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Ordinary RTL paragraphs preserve physical 30 pt left and 24 pt right indents, independently of section activation."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-oddPage-after-1",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeParity": {
+            "page": 1,
+            "text": "BeforeParity",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 96.567,
+            "yMax": 48.62115
+          },
+          "ParityStart": {
+            "page": 3,
+            "text": "ParityStart",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 87.371,
+            "yMax": 48.62115
+          },
+          "ParityContinue": {
+            "page": 4,
+            "text": "ParityContinue",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 108.183,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "oddPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-oddPage-after-2",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeParity": {
+            "page": 1,
+            "text": "BeforeParity",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 96.567,
+            "yMax": 48.62115
+          },
+          "BeforeParitySecond": {
+            "page": 2,
+            "text": "BeforeParitySecond",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 133.868,
+            "yMax": 48.62115
+          },
+          "ParityStart": {
+            "page": 3,
+            "text": "ParityStart",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 87.371,
+            "yMax": 48.62115
+          },
+          "ParityContinue": {
+            "page": 4,
+            "text": "ParityContinue",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 108.183,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "oddPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-evenPage-after-1",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeParity": {
+            "page": 1,
+            "text": "BeforeParity",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 96.567,
+            "yMax": 48.62115
+          },
+          "ParityStart": {
+            "page": 2,
+            "text": "ParityStart",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 87.371,
+            "yMax": 48.62115
+          },
+          "ParityContinue": {
+            "page": 3,
+            "text": "ParityContinue",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 108.183,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "evenPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "section-evenPage-after-2",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "BeforeParity": {
+            "page": 1,
+            "text": "BeforeParity",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 96.567,
+            "yMax": 48.62115
+          },
+          "BeforeParitySecond": {
+            "page": 2,
+            "text": "BeforeParitySecond",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 133.868,
+            "yMax": 48.62115
+          },
+          "ParityStart": {
+            "page": 4,
+            "text": "ParityStart",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 87.371,
+            "yMax": 48.62115
+          },
+          "ParityContinue": {
+            "page": 5,
+            "text": "ParityContinue",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 108.183,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage",
+          "evenPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "list-skipped-levels",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "RootFirst": {
+            "page": 1,
+            "text": "RootFirst",
+            "xMin": 54.1,
+            "yMin": 36.34515,
+            "xMax": 98.661,
+            "yMax": 48.62115
+          },
+          "ChildFirst": {
+            "page": 1,
+            "text": "ChildFirst",
+            "xMin": 72.1,
+            "yMin": 58.84515,
+            "xMax": 118.454,
+            "yMax": 71.12115
+          },
+          "ChildSecond": {
+            "page": 1,
+            "text": "ChildSecond",
+            "xMin": 72.1,
+            "yMin": 81.34515,
+            "xMax": 134.415,
+            "yMax": 93.62115
+          },
+          "RootSecond": {
+            "page": 1,
+            "text": "RootSecond",
+            "xMin": 54.1,
+            "yMin": 103.84515,
+            "xMax": 114.589,
+            "yMax": 116.12115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "list-nonzero-start",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "NonzeroFirst": {
+            "page": 1,
+            "text": "NonzeroFirst",
+            "xMin": 54.1,
+            "yMin": 36.34515,
+            "xMax": 117.009,
+            "yMax": 48.62115
+          },
+          "NonzeroSecond": {
+            "page": 1,
+            "text": "NonzeroSecond",
+            "xMin": 54.1,
+            "yMin": 58.84515,
+            "xMax": 132.937,
+            "yMax": 71.12115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "list-mixed-markers",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "NumberFirst": {
+            "page": 1,
+            "text": "NumberFirst",
+            "xMin": 54.1,
+            "yMin": 36.34515,
+            "xMax": 114.523,
+            "yMax": 48.62115
+          },
+          "BulletChild": {
+            "page": 1,
+            "text": "BulletChild",
+            "xMin": 72.1,
+            "yMin": 58.84515,
+            "xMax": 124.614,
+            "yMax": 71.12115
+          },
+          "NumberSecond": {
+            "page": 1,
+            "text": "NumberSecond",
+            "xMin": 54.1,
+            "yMin": 81.34515,
+            "xMax": 130.484,
+            "yMax": 93.62115
+          }
+        },
+        "labels": {
+          "NumberFirst": "1.",
+          "BulletChild": "•",
+          "NumberSecond": "2."
+        },
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "list-restart-continuation",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "CountFirst": {
+            "page": 1,
+            "text": "CountFirst",
+            "xMin": 54.1,
+            "yMin": 36.34515,
+            "xMax": 104.777,
+            "yMax": 48.62115
+          },
+          "Interruption": {
+            "page": 1,
+            "text": "Interruption",
+            "xMin": 36.1,
+            "yMin": 58.84515,
+            "xMax": 91.694,
+            "yMax": 71.12115
+          },
+          "CountSecond": {
+            "page": 1,
+            "text": "CountSecond",
+            "xMin": 54.1,
+            "yMin": 81.34515,
+            "xMax": 120.705,
+            "yMax": 93.62115
+          },
+          "RestartSeven": {
+            "page": 1,
+            "text": "RestartSeven",
+            "xMin": 54.1,
+            "yMin": 103.84515,
+            "xMax": 120.694,
+            "yMax": 116.12115
+          },
+          "AfterRestart": {
+            "page": 1,
+            "text": "AfterRestart",
+            "xMin": 54.1,
+            "yMin": 126.34515,
+            "xMax": 112.719,
+            "yMax": 138.62115
+          }
+        },
+        "labels": {
+          "CountFirst": "1.",
+          "CountSecond": "2.",
+          "RestartSeven": "7.",
+          "AfterRestart": "8."
+        },
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "list-literal-labels",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "RomanFourth": {
+            "page": 1,
+            "text": "RomanFourth",
+            "xMin": 54.1,
+            "yMin": 36.34515,
+            "xMax": 121.288,
+            "yMax": 48.62115
+          },
+          "RomanFifth": {
+            "page": 1,
+            "text": "RomanFifth",
+            "xMin": 54.1,
+            "yMin": 58.84515,
+            "xMax": 110.882,
+            "yMax": 71.12115
+          },
+          "CompositeLabel": {
+            "page": 1,
+            "text": "CompositeLabel",
+            "xMin": 110.8,
+            "yMin": 81.34515,
+            "xMax": 190.22,
+            "yMax": 93.62115
+          }
+        },
+        "labels": {
+          "RomanFourth": "IV.",
+          "RomanFifth": "V.",
+          "CompositeLabel": "2.3.1)"
+        },
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "list-native-start-override",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "NativeFive": {
+            "page": 1,
+            "text": "NativeFive",
+            "xMin": 54.1,
+            "yMin": 36.34515,
+            "xMax": 105.987,
+            "yMax": 48.62115
+          },
+          "NativeSix": {
+            "page": 1,
+            "text": "NativeSix",
+            "xMin": 54.1,
+            "yMin": 58.84515,
+            "xMax": 100.509,
+            "yMax": 71.12115
+          }
+        },
+        "labels": {
+          "NativeFive": "5)",
+          "NativeSix": "6)"
+        },
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Exact fixture geometry and visible text/labels."
+      },
+      "passed": true
+    },
+    {
+      "name": "paragraph-distinct-shading-borders",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "RedShade": {
+            "page": 1,
+            "text": "RedShade",
+            "xMin": 36.6,
+            "yMin": 36.84515,
+            "xMax": 88.542,
+            "yMax": 49.12115
+          },
+          "GreenShade": {
+            "page": 1,
+            "text": "GreenShade",
+            "xMin": 36.6,
+            "yMin": 60.34515,
+            "xMax": 98.948,
+            "yMax": 72.62115
+          },
+          "PlainUnshaded": {
+            "page": 1,
+            "text": "PlainUnshaded",
+            "xMin": 36.1,
+            "yMin": 83.34515,
+            "xMax": 110.647,
+            "yMax": 95.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Adjacent paragraphs retain independent fills and borders; unshaded content stays unshaded in independently reopened DOCX.",
+        "reopened_paragraph_decorations": {
+          "RedShade": {
+            "fill": "FF0000",
+            "borders": {
+              "top": {
+                "kind": "single",
+                "color": "0000FF",
+                "size": "4"
+              },
+              "left": {
+                "kind": "single",
+                "color": "0000FF",
+                "size": "4"
+              },
+              "bottom": {
+                "kind": "single",
+                "color": "0000FF",
+                "size": "4"
+              },
+              "right": {
+                "kind": "single",
+                "color": "0000FF",
+                "size": "4"
+              }
+            }
+          },
+          "GreenShade": {
+            "fill": "00FF00",
+            "borders": {
+              "top": {
+                "kind": "single",
+                "color": "FF00FF",
+                "size": "4"
+              },
+              "left": {
+                "kind": "single",
+                "color": "FF00FF",
+                "size": "4"
+              },
+              "bottom": {
+                "kind": "single",
+                "color": "FF00FF",
+                "size": "4"
+              },
+              "right": {
+                "kind": "single",
+                "color": "FF00FF",
+                "size": "4"
+              }
+            }
+          },
+          "PlainUnshaded": {
+            "fill": null,
+            "borders": {}
+          }
+        },
+        "recovery_raster": {
+          "RedShade": {
+            "fill_rgb": [
+              255,
+              0,
+              0
+            ],
+            "matching_pixels": 3522,
+            "bounds_pt": [
+              36.6,
+              36.84515,
+              208.542,
+              49.12115
+            ]
+          },
+          "GreenShade": {
+            "fill_rgb": [
+              0,
+              255,
+              0
+            ],
+            "matching_pixels": 3680,
+            "bounds_pt": [
+              36.6,
+              60.34515,
+              218.94799999999998,
+              72.62115
+            ]
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "page-field-styled-footer",
+      "schema": {
+        "passed_parts": [
+          "content.xml",
+          "styles.xml",
+          "meta.xml",
+          "META-INF/manifest.xml"
+        ],
+        "failures": []
+      },
+      "semantics": {
+        "page_sizes_pt": [
+          [
+            399.99685,
+            500.00315
+          ],
+          [
+            399.99685,
+            500.00315
+          ]
+        ],
+        "word_locations": {
+          "FirstBody": {
+            "page": 1,
+            "text": "FirstBody",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 82.52,
+            "yMax": 48.62115
+          },
+          "SecondBody": {
+            "page": 2,
+            "text": "SecondBody",
+            "xMin": 36.1,
+            "yMin": 36.34515,
+            "xMax": 98.437,
+            "yMax": 48.62115
+          }
+        },
+        "labels": {},
+        "reopened_section_types": [
+          "nextPage"
+        ],
+        "reopened_frame_geometry_pt": null,
+        "scope": "Live footer PAGE field renders 1 and 2 with the entire authored title suffix; field and suffix retain bold blue 14pt styling.",
+        "live_footer_pages": [
+          {
+            "page": 1,
+            "tokens": [
+              "1",
+              "|",
+              "Al",
+              "Tahreer",
+              "Neighborhood",
+              "Profile"
+            ],
+            "locations": [
+              {
+                "text": "1",
+                "xMin": 36.1,
+                "yMin": 448.38015,
+                "xMax": 43.884,
+                "yMax": 464.00415
+              },
+              {
+                "text": "|",
+                "xMin": 51.592,
+                "yMin": 448.38015,
+                "xMax": 55.498,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Al",
+                "xMin": 63.282,
+                "yMin": 448.38015,
+                "xMax": 77.254,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Tahreer",
+                "xMin": 81.16,
+                "yMin": 448.38015,
+                "xMax": 132.456,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Neighborhood",
+                "xMin": 136.348,
+                "yMin": 448.38015,
+                "xMax": 231.884,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Profile",
+                "xMin": 235.776,
+                "yMin": 448.38015,
+                "xMax": 279.274,
+                "yMax": 464.00415
+              }
+            ]
+          },
+          {
+            "page": 2,
+            "tokens": [
+              "2",
+              "|",
+              "Al",
+              "Tahreer",
+              "Neighborhood",
+              "Profile"
+            ],
+            "locations": [
+              {
+                "text": "2",
+                "xMin": 36.1,
+                "yMin": 448.38015,
+                "xMax": 43.884,
+                "yMax": 464.00415
+              },
+              {
+                "text": "|",
+                "xMin": 51.592,
+                "yMin": 448.38015,
+                "xMax": 55.498,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Al",
+                "xMin": 63.282,
+                "yMin": 448.38015,
+                "xMax": 77.254,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Tahreer",
+                "xMin": 81.16,
+                "yMin": 448.38015,
+                "xMax": 132.456,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Neighborhood",
+                "xMin": 136.348,
+                "yMin": 448.38015,
+                "xMax": 231.884,
+                "yMax": 464.00415
+              },
+              {
+                "text": "Profile",
+                "xMin": 235.776,
+                "yMin": 448.38015,
+                "xMax": 279.274,
+                "yMax": 464.00415
+              }
+            ]
+          }
+        ],
+        "reopened_footer_runs": [
+          {
+            "part": "word/footer1.xml",
+            "text": "2",
+            "bold": true,
+            "color": "0000FF",
+            "size_half_points": "28"
+          },
+          {
+            "part": "word/footer1.xml",
+            "text": "|  Al Tahreer Neighborhood Profile",
+            "bold": true,
+            "color": "0000FF",
+            "size_half_points": "28"
+          }
+        ],
+        "recovery_raster": {
+          "footer": {
+            "matching_blue_pixels": 1032,
+            "bounds_pt": [
+              36.1,
+              448.38015,
+              279.274,
+              464.00415
+            ],
+            "page": 2
+          }
+        }
+      },
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "soffice",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.161,
+      "label": "soffice-version"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.016,
+      "label": "pdftotext-version"
+    },
+    {
+      "argv": [
+        "pdfinfo",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.014,
+      "label": "pdfinfo-version"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.012,
+      "label": "pdftoppm-version"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.002,
+      "label": "dart-version"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/f911bf3b5689/runtime-recovery/quds/.dart_tool/package_config.json",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/recovery-runner/make_fixtures.dart",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 8.529,
+      "label": "generate-fixtures"
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/profile-pdf",
+        "--headless",
+        "--convert-to",
+        "pdf:writer_pdf_Export:{\"IsSkipEmptyPages\":{\"type\":\"boolean\",\"value\":\"false\"}}",
+        "--outdir",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-list.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-control-list.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-table.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-control-table.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-visual.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-frame.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-empty.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-empty.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-image-header.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-comment-header.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-new-size.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-heading-layout.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/paragraph-rtl-indent.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-oddPage-after-1.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-oddPage-after-2.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-evenPage-after-1.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-evenPage-after-2.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-skipped-levels.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-nonzero-start.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-mixed-markers.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-restart-continuation.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-literal-labels.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-native-start-override.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/paragraph-distinct-shading-borders.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/page-field-styled-footer.odt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.863,
+      "label": "libreoffice-pdf"
+    },
+    {
+      "argv": [
+        "soffice",
+        "-env:UserInstallation=file:///workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/profile-docx",
+        "--headless",
+        "--convert-to",
+        "docx",
+        "--outdir",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-list.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-control-list.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-table.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-control-table.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-visual.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-frame.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-empty.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-empty.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-image-header.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-comment-header.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-new-size.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-heading-layout.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/paragraph-rtl-indent.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-oddPage-after-1.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-oddPage-after-2.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-evenPage-after-1.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-evenPage-after-2.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-skipped-levels.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-nonzero-start.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-mixed-markers.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-restart-continuation.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-literal-labels.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-native-start-override.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/paragraph-distinct-shading-borders.odt",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/page-field-styled-footer.odt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.73,
+      "label": "libreoffice-docx"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-list.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-list.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "section-list-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-list.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-list.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.013,
+      "label": "section-list-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-list.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-list"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.034,
+      "label": "section-list-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-list.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-list.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.014,
+      "label": "section-control-list-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-list.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-list.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.013,
+      "label": "section-control-list-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-list.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-control-list"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.039,
+      "label": "section-control-list-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-table.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-table.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.02,
+      "label": "section-table-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-table.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-table.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "section-table-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-table.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-table"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.113,
+      "label": "section-table-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-table.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-table.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.063,
+      "label": "section-control-table-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-table.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-table.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.054,
+      "label": "section-control-table-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-control-table.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-control-table"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.08,
+      "label": "section-control-table-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-visual.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-visual.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.033,
+      "label": "section-visual-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-visual.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-visual.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "section-visual-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-visual.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-visual"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.039,
+      "label": "section-visual-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-frame.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-frame.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.018,
+      "label": "section-frame-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-frame.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-frame.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.018,
+      "label": "section-frame-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-frame.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-frame"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.04,
+      "label": "section-frame-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-empty.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-empty.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "section-empty-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-empty.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-empty.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.022,
+      "label": "section-empty-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "3",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-empty.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-empty"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.027,
+      "label": "section-empty-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.02,
+      "label": "section-continuous-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.014,
+      "label": "section-continuous-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-continuous"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.029,
+      "label": "section-continuous-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-empty.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-empty.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.014,
+      "label": "section-continuous-empty-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-empty.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-empty.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "section-continuous-empty-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-empty.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-continuous-empty"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.033,
+      "label": "section-continuous-empty-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-image-header.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-image-header.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.016,
+      "label": "section-continuous-image-header-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-image-header.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-image-header.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.018,
+      "label": "section-continuous-image-header-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-image-header.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-continuous-image-header"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.035,
+      "label": "section-continuous-image-header-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-comment-header.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-comment-header.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.016,
+      "label": "section-continuous-comment-header-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-comment-header.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-comment-header.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "section-continuous-comment-header-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-comment-header.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-continuous-comment-header"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.032,
+      "label": "section-continuous-comment-header-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-new-size.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-new-size.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "section-continuous-new-size-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-new-size.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-new-size.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.013,
+      "label": "section-continuous-new-size-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-continuous-new-size.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-continuous-new-size"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.03,
+      "label": "section-continuous-new-size-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-heading-layout.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-heading-layout.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.019,
+      "label": "section-heading-layout-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-heading-layout.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-heading-layout.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.019,
+      "label": "section-heading-layout-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-heading-layout.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-heading-layout"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.038,
+      "label": "section-heading-layout-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-rtl-indent.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-rtl-indent.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.016,
+      "label": "paragraph-rtl-indent-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-rtl-indent.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-rtl-indent.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.018,
+      "label": "paragraph-rtl-indent-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-rtl-indent.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/paragraph-rtl-indent"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.039,
+      "label": "paragraph-rtl-indent-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-1.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-1.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.02,
+      "label": "section-oddPage-after-1-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-1.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-1.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.019,
+      "label": "section-oddPage-after-1-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "4",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-1.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-oddPage-after-1"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.03,
+      "label": "section-oddPage-after-1-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-2.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-2.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "section-oddPage-after-2-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-2.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-2.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "section-oddPage-after-2-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "4",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-oddPage-after-2.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-oddPage-after-2"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.026,
+      "label": "section-oddPage-after-2-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-1.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-1.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.016,
+      "label": "section-evenPage-after-1-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-1.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-1.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "section-evenPage-after-1-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "3",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-1.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-evenPage-after-1"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.036,
+      "label": "section-evenPage-after-1-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-2.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-2.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.018,
+      "label": "section-evenPage-after-2-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-2.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-2.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.021,
+      "label": "section-evenPage-after-2-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "5",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/section-evenPage-after-2.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/section-evenPage-after-2"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.031,
+      "label": "section-evenPage-after-2-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-skipped-levels.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-skipped-levels.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.019,
+      "label": "list-skipped-levels-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-skipped-levels.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-skipped-levels.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "list-skipped-levels-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-skipped-levels.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/list-skipped-levels"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.033,
+      "label": "list-skipped-levels-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-nonzero-start.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-nonzero-start.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "list-nonzero-start-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-nonzero-start.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-nonzero-start.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.016,
+      "label": "list-nonzero-start-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-nonzero-start.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/list-nonzero-start"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.032,
+      "label": "list-nonzero-start-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-mixed-markers.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-mixed-markers.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "list-mixed-markers-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-mixed-markers.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-mixed-markers.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.014,
+      "label": "list-mixed-markers-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-mixed-markers.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/list-mixed-markers"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.029,
+      "label": "list-mixed-markers-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-restart-continuation.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-restart-continuation.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "list-restart-continuation-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-restart-continuation.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-restart-continuation.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "list-restart-continuation-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-restart-continuation.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/list-restart-continuation"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.033,
+      "label": "list-restart-continuation-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-literal-labels.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-literal-labels.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.017,
+      "label": "list-literal-labels-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-literal-labels.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-literal-labels.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.021,
+      "label": "list-literal-labels-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-literal-labels.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/list-literal-labels"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.036,
+      "label": "list-literal-labels-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-native-start-override.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-native-start-override.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.019,
+      "label": "list-native-start-override-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-native-start-override.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-native-start-override.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.021,
+      "label": "list-native-start-override-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/list-native-start-override.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/list-native-start-override"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.029,
+      "label": "list-native-start-override-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-distinct-shading-borders.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-distinct-shading-borders.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "paragraph-distinct-shading-borders-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-distinct-shading-borders.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-distinct-shading-borders.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "paragraph-distinct-shading-borders-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "1",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/paragraph-distinct-shading-borders.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/paragraph-distinct-shading-borders"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.034,
+      "label": "paragraph-distinct-shading-borders-raster"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-layout",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/page-field-styled-footer.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/page-field-styled-footer.txt"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.015,
+      "label": "page-field-styled-footer-text"
+    },
+    {
+      "argv": [
+        "pdftotext",
+        "-bbox",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/page-field-styled-footer.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/page-field-styled-footer.bbox.xhtml"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.022,
+      "label": "page-field-styled-footer-bbox"
+    },
+    {
+      "argv": [
+        "pdftoppm",
+        "-f",
+        "2",
+        "-singlefile",
+        "-r",
+        "96",
+        "-png",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/converted/page-field-styled-footer.pdf",
+        "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/rasters/page-field-styled-footer"
+      ],
+      "cwd": "/workspace/scratch/f911bf3b5689/runtime-recovery/quds",
+      "exit_code": 0,
+      "duration_seconds": 0.037,
+      "label": "page-field-styled-footer-raster"
+    }
+  ],
+  "input_counts": {
+    "source": 395,
+    "runtime": 10420
+  },
+  "versions": {
+    "soffice": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5\n\n",
+    "pdftotext": "pdftotext version 25.03.0\nCopyright 2005-2025 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC\n",
+    "pdfinfo": "pdfinfo version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC\n",
+    "pdftoppm": "pdftoppm version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC\n",
+    "dart": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"\n"
+  },
+  "fixture_inventory": {
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-list.odt": "1062b3ce43b462c203cc67f849cff1deb85cc6423ac23cc21470271d8aca5d14",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-empty.odt": "a5c72c771a750ebb550fec01493b5477f9a8176baa25b4bb4fca296342912078",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-evenPage-after-2.odt": "5965a4ab8d3bae6ac09c1f77e935e842a65da44a11fe2a4a9c68445b2b014328",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-mixed-markers.odt": "55009c03ee42e935fc9bb7c190bee6c53bac891bea1df9b0a8a6bb0bfbe086d0",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous.odt": "f4640868cec25f775fd951c1f6a98aa6df68789671cf240b4a3b81db45547fab",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-nonzero-start.odt": "89275522f6f21b0680149dbb1eaef9b5260e2cc54da583efd9965d9f7b3d16b2",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-comment-header.odt": "fd22b9bfd25c5a983eed45003f9dc8fcdbc36d4c5969e6e4d4186de44147d8c1",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-native-start-override.odt": "643fb807862d241f3b1fba8c3ed83d0298ebe23055385681cd90ab4ebeb0db58",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-evenPage-after-1.odt": "8843bf8592038367f2bdc58c9a2172cd8e862b01abbfeba227f0a164b0181484",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-table.odt": "1c530ba03f4d3232de4f3e405f4c43e512b2a1c24b39fc8a9cd9a92711dab947",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-heading-layout.odt": "5365078f9e7c8d6309d6a71ca4ad0200fb6da27cfc9a4f2ccb2749780a71a156",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/fixtures.json": "19bf753029ae5bf2549b451ee518b1d960478b2f6d6dc9af0f566037e4659845",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-control-list.odt": "111bdb427b359dcd898b935fc647ea038ba70bf15d999747f37e48202872d622",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-empty.odt": "8c8d67aaa008e4b5888448b93d4b42144952fd7b8073557cdf22bc380cc608af",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-literal-labels.odt": "c16865c01cecc3f6dd2b1c0b3d843e68bfe061e7be4971c93fc5a1fa653e2395",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-restart-continuation.odt": "d514f2ae2cae97cdabae986ddd4a7b25d9bef49e4eebedaea647d0d2b8b75ecb",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-image-header.odt": "e45f6f0d80d93eedaca395908460c0cee637660612b9a4d825d937d443d9e4f8",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/paragraph-distinct-shading-borders.odt": "fe4daf007c16f6bccdc634021ac71e8763a9b46a9bfa53e5566f734660829ea5",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/page-field-styled-footer.odt": "f8ad55f1eeba2551e42930250a4840b0ffd42079095d4dcd0df626ea0095a355",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-continuous-new-size.odt": "b8bb3a8191fe878d9baed1a1ad075bd12d2a4e6a361dd4f6a6c8056a2a8efbec",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/paragraph-rtl-indent.odt": "72c0c37ced8fe3d88c091a5ba56d3b16f0860d05e82761096b98cc5743c49e23",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-frame.odt": "2b40ca1a986763c574436340b8bcc1b95394e5bffb7128ae46b9123fffe7e30b",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-oddPage-after-1.odt": "75d5322d1666721cbffc2b1f4c861338081cde904baa8a9b885f0bf6007b1cd1",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-control-table.odt": "036804d3e228fcb4a3710305187c922728eeb5bbc67f1ed267c563134ee9b2a7",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-visual.odt": "8227889acb0702330b63e324901500371085e51bb4d176ba604b77c5b8ed6d73",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/list-skipped-levels.odt": "fb238f15c1c1825049cf2d9362b965428bdd41ab1368aa89ac09b24750eae702",
+    "/workspace/scratch/f911bf3b5689/runtime-recovery/consumer-recovery/final-966196f3/fixtures/section-oddPage-after-2.odt": "c19bbf821f663292094cb920e407ae4afc3b4725e50fb191d500efd6f1c7a1a1"
+  },
+  "head_unchanged": true,
+  "source_unchanged": true,
+  "runtime_unchanged": true,
+  "fixtures_unchanged": true,
+  "passed": true,
+  "summary": {
+    "fixtures": 26,
+    "passed": 26,
+    "failed": 0,
+    "schema_parts_passed": 104,
+    "schema_parts_total": 104
+  },
+  "finished_at_utc": "2026-11-17T16:20:08.825241+00:00",
+  "output_hashes": {
+    "fixtures/section-list.odt": "1062b3ce43b462c203cc67f849cff1deb85cc6423ac23cc21470271d8aca5d14",
+    "fixtures/section-empty.odt": "a5c72c771a750ebb550fec01493b5477f9a8176baa25b4bb4fca296342912078",
+    "fixtures/section-evenPage-after-2.odt": "5965a4ab8d3bae6ac09c1f77e935e842a65da44a11fe2a4a9c68445b2b014328",
+    "fixtures/list-mixed-markers.odt": "55009c03ee42e935fc9bb7c190bee6c53bac891bea1df9b0a8a6bb0bfbe086d0",
+    "fixtures/section-continuous.odt": "f4640868cec25f775fd951c1f6a98aa6df68789671cf240b4a3b81db45547fab",
+    "fixtures/list-nonzero-start.odt": "89275522f6f21b0680149dbb1eaef9b5260e2cc54da583efd9965d9f7b3d16b2",
+    "fixtures/section-continuous-comment-header.odt": "fd22b9bfd25c5a983eed45003f9dc8fcdbc36d4c5969e6e4d4186de44147d8c1",
+    "fixtures/list-native-start-override.odt": "643fb807862d241f3b1fba8c3ed83d0298ebe23055385681cd90ab4ebeb0db58",
+    "fixtures/section-evenPage-after-1.odt": "8843bf8592038367f2bdc58c9a2172cd8e862b01abbfeba227f0a164b0181484",
+    "fixtures/section-table.odt": "1c530ba03f4d3232de4f3e405f4c43e512b2a1c24b39fc8a9cd9a92711dab947",
+    "fixtures/section-heading-layout.odt": "5365078f9e7c8d6309d6a71ca4ad0200fb6da27cfc9a4f2ccb2749780a71a156",
+    "fixtures/fixtures.json": "19bf753029ae5bf2549b451ee518b1d960478b2f6d6dc9af0f566037e4659845",
+    "fixtures/section-control-list.odt": "111bdb427b359dcd898b935fc647ea038ba70bf15d999747f37e48202872d622",
+    "fixtures/section-continuous-empty.odt": "8c8d67aaa008e4b5888448b93d4b42144952fd7b8073557cdf22bc380cc608af",
+    "fixtures/list-literal-labels.odt": "c16865c01cecc3f6dd2b1c0b3d843e68bfe061e7be4971c93fc5a1fa653e2395",
+    "fixtures/list-restart-continuation.odt": "d514f2ae2cae97cdabae986ddd4a7b25d9bef49e4eebedaea647d0d2b8b75ecb",
+    "fixtures/section-continuous-image-header.odt": "e45f6f0d80d93eedaca395908460c0cee637660612b9a4d825d937d443d9e4f8",
+    "fixtures/paragraph-distinct-shading-borders.odt": "fe4daf007c16f6bccdc634021ac71e8763a9b46a9bfa53e5566f734660829ea5",
+    "fixtures/page-field-styled-footer.odt": "f8ad55f1eeba2551e42930250a4840b0ffd42079095d4dcd0df626ea0095a355",
+    "fixtures/section-continuous-new-size.odt": "b8bb3a8191fe878d9baed1a1ad075bd12d2a4e6a361dd4f6a6c8056a2a8efbec",
+    "fixtures/paragraph-rtl-indent.odt": "72c0c37ced8fe3d88c091a5ba56d3b16f0860d05e82761096b98cc5743c49e23",
+    "fixtures/section-frame.odt": "2b40ca1a986763c574436340b8bcc1b95394e5bffb7128ae46b9123fffe7e30b",
+    "fixtures/section-oddPage-after-1.odt": "75d5322d1666721cbffc2b1f4c861338081cde904baa8a9b885f0bf6007b1cd1",
+    "fixtures/section-control-table.odt": "036804d3e228fcb4a3710305187c922728eeb5bbc67f1ed267c563134ee9b2a7",
+    "fixtures/section-visual.odt": "8227889acb0702330b63e324901500371085e51bb4d176ba604b77c5b8ed6d73",
+    "fixtures/list-skipped-levels.odt": "fb238f15c1c1825049cf2d9362b965428bdd41ab1368aa89ac09b24750eae702",
+    "fixtures/section-oddPage-after-2.odt": "c19bbf821f663292094cb920e407ae4afc3b4725e50fb191d500efd6f1c7a1a1",
+    "logs/section-list-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/soffice-version.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-rtl-indent-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-native-start-override-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-1-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-distinct-shading-borders-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-list-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-1-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-rtl-indent-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-2-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-1-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-distinct-shading-borders-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-2-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-image-header-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-1-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-restart-continuation-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-new-size-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-2-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-1-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/page-field-styled-footer-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-distinct-shading-borders-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-distinct-shading-borders-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-1-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-visual-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-1-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/page-field-styled-footer-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-empty-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/pdftotext-version.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-table-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-1-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-heading-layout-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-nonzero-start-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-image-header-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/page-field-styled-footer-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-heading-layout-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-empty-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-empty-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-list-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-mixed-markers-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-list-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-restart-continuation-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-empty-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-comment-header-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-2-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-skipped-levels-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/dart-version.stdout.log": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+    "logs/list-native-start-override-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-list-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/pdftoppm-version.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/pdfinfo-version.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-restart-continuation-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-nonzero-start-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-rtl-indent-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-heading-layout-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-mixed-markers-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-table-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-visual-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/page-field-styled-footer-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-literal-labels-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-empty-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-rtl-indent-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-restart-continuation-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-skipped-levels-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-table-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-table-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-1-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-nonzero-start-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/libreoffice-pdf.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-comment-header-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-distinct-shading-borders-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-table-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-image-header-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-skipped-levels-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/pdftotext-version.stderr.log": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0",
+    "logs/section-heading-layout-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-heading-layout-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-frame-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/page-field-styled-footer-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-new-size-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-comment-header-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-table-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-comment-header-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-mixed-markers-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-image-header-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-list-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-new-size-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-native-start-override-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-2-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-mixed-markers-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/pdftoppm-version.stderr.log": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286",
+    "logs/section-control-table-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-frame-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-list-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-restart-continuation-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-distinct-shading-borders-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-nonzero-start-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-empty-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-table-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-list-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-nonzero-start-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-frame-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-empty-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-2-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-visual-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-frame-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-new-size-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-empty-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-comment-header-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-2-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-2-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/libreoffice-pdf.stdout.log": "1edaf7f67fef306c6a4028a56af8b20855bc3a5e3fcbc8ee913225b133371031",
+    "logs/section-control-list-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-literal-labels-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-restart-continuation-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-1-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/libreoffice-docx.stdout.log": "53845922684d616ea1517313a3b775451ca67a7c1f04e7bed82ab6fdfba05688",
+    "logs/section-frame-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-native-start-override-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-skipped-levels-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/page-field-styled-footer-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-frame-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-2-bbox.stderr.log": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9",
+    "logs/list-literal-labels-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-1-bbox.stderr.log": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9",
+    "logs/section-continuous-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-visual-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-skipped-levels-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-native-start-override-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-native-start-override-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-2-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-empty-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-table-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-visual-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-control-list-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-rtl-indent-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/pdfinfo-version.stderr.log": "56221b4464aa8299b97e80d0fc7efcdb23d7a4146aa304611ec9e5c9c7984001",
+    "logs/section-continuous-empty-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/generate-fixtures.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/generate-fixtures.stdout.log": "70cd24baf54d8439f995c80c89b8f5c45aad1f34e31f92e16711af588c3135ce",
+    "logs/section-empty-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-mixed-markers-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-new-size-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-skipped-levels-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-image-header-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-1-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-empty-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-literal-labels-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-literal-labels-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/libreoffice-docx.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-evenPage-after-2-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/paragraph-rtl-indent-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-mixed-markers-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-heading-layout-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-comment-header-bbox.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-table-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-image-header-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-visual-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-table-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-continuous-new-size-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-list-raster.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-nonzero-start-text.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-oddPage-after-2-bbox.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/list-literal-labels-text.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/dart-version.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-list-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/section-table-raster.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/soffice-version.stdout.log": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+    "converted/section-evenPage-after-2.docx": "f6f6a82e495ecf0fb2404a20a12e18b558e56f53348a9828f0546b44eaed62ac",
+    "converted/paragraph-distinct-shading-borders.bbox.xhtml": "5c643a174aff57dee0a2ad9362cafe64045cefe5a9562ba03b8783fd994c86c7",
+    "converted/section-evenPage-after-2.pdf": "770bb2ac01b94b9b3d0f16eb26b383188a55712e3e3bf5233ef8defd51352d4b",
+    "converted/paragraph-distinct-shading-borders.docx": "0a91343115ca42c1e64fb442c0a54befc9319b8a36569d938c6e7e6443ad5950",
+    "converted/section-control-table.txt": "22dc8cf1ddc05eb8d2905dd1c1b7d9cf08e7678aed9fcdfa98e2714b3176091f",
+    "converted/section-frame.docx": "bb83a2a2c14143757d32441124c9c93ae2643cd36d96b5d1cb058abff9fc9744",
+    "converted/page-field-styled-footer.docx": "1ee6c10a1fb289f4eb7f9309ddc01d0b6cdeb1c28edd4a17318ab16142942882",
+    "converted/section-continuous-comment-header.pdf": "484c6450342793e68e6dffc02730addae95d62044564d3ea753d56af54a63d41",
+    "converted/section-visual.txt": "1ba7215640826690b49cf961a8cad87cfed0025f55f13a86fe67507063316b18",
+    "converted/list-literal-labels.txt": "0f48724b1f1385f3ea991674a140628986244af0847f3b08a07a163d119fa1e8",
+    "converted/list-skipped-levels.pdf": "a1c7a4cc48ba7affcbe9eb65d0210b478702e8029cd65e6e44f3224f11ae6e0f",
+    "converted/page-field-styled-footer.bbox.xhtml": "e143d2a2eec12d0a1681fc915b61df006b61eafed40a3383d918ead7957f3365",
+    "converted/page-field-styled-footer.txt": "ab6e2c54d381a28c785cc5c7fbc1bc18cc71f63b1305587524d537544a57ce8f",
+    "converted/paragraph-distinct-shading-borders.txt": "82970c9eeb0675ac57c0a567ea46141aff0695abd91248efb693a1e70e2b1b17",
+    "converted/section-continuous-empty.txt": "b8201fc4d396788249a6177d32413963f3c15dff25885b1aae71761479f02532",
+    "converted/section-evenPage-after-1.bbox.xhtml": "5bd9fbe0593974815d4abdb02075110488af64411154966de32aaadf1761a23f",
+    "converted/section-oddPage-after-1.pdf": "b10bc31a30427d2a447d645289bb89de83c48d1b1dba869a31ba64ddcc915a69",
+    "converted/list-mixed-markers.docx": "2c2f25e8d2f22864055c3e6fcfafbf41a8d93c89415f4f35b10477e303364a41",
+    "converted/list-restart-continuation.bbox.xhtml": "7071c6fd008610e0e716947c8e3b2399b6ed57aef5266020e70c5f4eddbc31ac",
+    "converted/paragraph-distinct-shading-borders.pdf": "90a62bf3ad7b0253a60157400654656d83d5c7cb7c9880fef5bd52cbeba2f4c3",
+    "converted/list-skipped-levels.bbox.xhtml": "19b162083cfdf5237773bbd049ba1cb7c100eb07456c34fd68a7fc0dff0a5af7",
+    "converted/section-continuous-image-header.txt": "bd9921be764de327f973520bbc34e37adc4718aaf24821dcb6465af6efa82f03",
+    "converted/list-native-start-override.docx": "c5c87d27455fe1869e82e1e17d47a5114f1c6764d60472efdeddb2b97eee00d5",
+    "converted/section-oddPage-after-1.docx": "72d9ca041985f1f6be38674274587a3b9dad48eac9417c8b40a0321a15011191",
+    "converted/section-empty.bbox.xhtml": "918f5243afbae24a07506705e88e844b7fc1510e72c40975a1591249f219bb36",
+    "converted/section-frame.bbox.xhtml": "8ce516e309eed95f5b326499d7124749048cecc39f247b87760950723d5f0cf1",
+    "converted/list-mixed-markers.bbox.xhtml": "6ef76fe8bc1632275f8365d944e9284da13954b660ec6490664e6819e5ff3b5b",
+    "converted/section-heading-layout.bbox.xhtml": "afe9ef950a931d17fed73606a026d941694211e580bd62df000354fa2be2382d",
+    "converted/list-nonzero-start.docx": "9924c0c10d9cc16a0147c928328c0ba26b95bf7552ea8922a9a77d03f1b28d38",
+    "converted/section-frame.txt": "dc00595660447dda99d31092f22a745e35817f57dd5c8b46d421c3d70fd2dbaa",
+    "converted/section-heading-layout.txt": "70c8dc5199d4c4dce7d4b6e560104d45a056bf3cbe3152b214c2ee8511c54e3f",
+    "converted/section-visual.docx": "3d56bd4d533a73d1d4a327de2c8e39450740cdd07de3c7db14b2731751e5cb5b",
+    "converted/section-list.pdf": "3815295c49423331e3c609643b9e800e5bd20e7a933e2f9e5e615d00fc713d32",
+    "converted/section-evenPage-after-2.bbox.xhtml": "9790c850fb366a310173193c93642565c4f9951d79c9c0b25213f88040a24527",
+    "converted/section-heading-layout.pdf": "b12ef8afcc4f3fecbcddf3e75992812bd519aa7ef7d2fc523350767722836e0c",
+    "converted/section-oddPage-after-2.pdf": "8e70eb1b112a0e33b6638a6c9f9031573e2b76572f4ad33e36486c918d6d463e",
+    "converted/paragraph-rtl-indent.bbox.xhtml": "3b0e5da64c953f3e841cfb2af767dd6a207b408db4abc984821e500227705ffc",
+    "converted/section-oddPage-after-1.txt": "5e074f0d612dd5c9a4994d40d3023f2d4e9ba517aba1700fa51cb3084ceb97f4",
+    "converted/section-list.bbox.xhtml": "36ed5ecae947530d328bfb56a1ba0d2716b7bd731cc21fce1940fabe7094df5f",
+    "converted/list-restart-continuation.txt": "00ffaf2fd622de9c478c6a66925f897a27f532da05ad61e35f4ffdd8dbb650f8",
+    "converted/list-mixed-markers.txt": "a7a6bb79379fe99a9530eb823e8e2a05b549bf8e3ed58e9496c6840b0390b2e5",
+    "converted/section-control-table.bbox.xhtml": "3c227d262b226ca25e544a20cb93f31e88abb5227069d41fb28e02b57a3755ec",
+    "converted/section-continuous-comment-header.docx": "67ce4b8e2c908ae3286a21375f5fa3ea93828f9aeb0227f561cb76c0986ce983",
+    "converted/section-heading-layout.docx": "cc9c17da72357e51194ed6d025e4cd61219bbab68e3cfadde3f382542ffa9585",
+    "converted/section-list.txt": "c9669d3462fb2b49e16282d0c3727f04ea4dec292a19526316510afda99abddc",
+    "converted/section-table.bbox.xhtml": "4525549ab1f8fe5293cf7938e940e53a8595367d52fee9a796bcd1839133e557",
+    "converted/section-empty.pdf": "916e792d7fbfcde3e0052b3165e824fdc26a1405d176e1308302c1063da7c8aa",
+    "converted/section-control-list.pdf": "773c04018502bd563ffde00976f5fe630dea895cb4ab63729d1ec4ba5957bb9f",
+    "converted/section-continuous-image-header.pdf": "976c000cd6539d9f13569464a107815320b7bb8755a0fe3fe4af4bed02e8e6ec",
+    "converted/section-evenPage-after-1.txt": "1c16fdf03e7e7dfdc7a0a9674884aca2e172990929d627294dfd8b8aa342b73b",
+    "converted/section-continuous.docx": "ca4888ec926fe7a26c13984935b3b189ddee7d8bdca54a223e1a8b53e5d27185",
+    "converted/section-continuous-empty.bbox.xhtml": "734f2634fc6f3ed7c8348da647eeacde6c719251dcaac65105615d110014542e",
+    "converted/section-visual.bbox.xhtml": "91b14b50d0b7527fda454290205f1e124a88f4c70e3d2158b55dad440c589b09",
+    "converted/section-continuous-image-header.bbox.xhtml": "3d875e0dcec168edf99b73fda0a225cb6ca69fd764d89fff9ad9859c5e20179d",
+    "converted/section-continuous-comment-header.txt": "49a4e4e5e51aa4775c6f9f5a0530be5d3c4a9a5c700379b7984bbe8c57ea05e6",
+    "converted/section-oddPage-after-1.bbox.xhtml": "147bc6031f0f44a31ab3692fae1618f538af0f69346f723cd8b877a7860d0a38",
+    "converted/section-evenPage-after-2.txt": "3a0238f3413633c5157454a194780401b9c273c2e028ed16309a52e2ccc9ed71",
+    "converted/section-continuous-image-header.docx": "ab5227431c7b3419fb4432f7f03e00a6ba0a71ecb3eec83434cdd95986f72b38",
+    "converted/section-continuous-empty.pdf": "3b232e6ac4d0905c6bd1e8bbfbbdd8bfd35e4a68d1d429f1cb7136d27d849ea8",
+    "converted/section-continuous.txt": "b8201fc4d396788249a6177d32413963f3c15dff25885b1aae71761479f02532",
+    "converted/section-oddPage-after-2.txt": "39313d944c28d4c2324c32338fce93346b678c6f1117db1513500cd39bc95d8c",
+    "converted/section-evenPage-after-1.pdf": "3ababce3100873ba45d04025fd150153e82e2da7bb3eb2f1b4ba58d6fdaee3eb",
+    "converted/list-mixed-markers.pdf": "28c7054664de3176891d2e2299e97e148cc04a49206df68d49c826a3df236cc6",
+    "converted/paragraph-rtl-indent.pdf": "1dfa5a141ab499d2313c34179972679044b8694f31a03e0be821ebe7dc7476c7",
+    "converted/list-native-start-override.txt": "8a873ad80bff37d63cc0a17ff3813735b7741467b4aadd6e720eade15e2e8f08",
+    "converted/section-control-list.bbox.xhtml": "6415a9c46c3e00c1f88226adaad7ffaa1e1c07dcfeefa402fb6a77f546ecf3e9",
+    "converted/list-literal-labels.pdf": "f405cb4b63dbd7ebca42386d0a0d36fccd7ba6dab98e932ca27860a6875edf37",
+    "converted/section-oddPage-after-2.docx": "1f0c5ce868d74dfff351bdda2dea5cd38e43f73f5604c7311699aaf8d1df7c4d",
+    "converted/list-nonzero-start.txt": "8971278d8492f1c18b70e1432e7596a509a53b33858e31181917d11c4417389c",
+    "converted/section-visual.pdf": "6d920d2932758440bb36bf8f6290cd2c7f93a9a14175e6f7f09972d99bd7dea6",
+    "converted/section-table.docx": "cc19cb0fcca4c097cd353d49a6918b72b32b241f3d34bb6381d43479ca5e1814",
+    "converted/list-nonzero-start.pdf": "733a66a7a26fc1b67b47080760acee343df85802bca9d9c03e98fbfca494c419",
+    "converted/section-continuous-empty.docx": "ca4888ec926fe7a26c13984935b3b189ddee7d8bdca54a223e1a8b53e5d27185",
+    "converted/list-skipped-levels.docx": "8b512e117e880aa2af88a8f0316f2a6e0ea48db6faa2e225fcdc9899c12c9785",
+    "converted/list-nonzero-start.bbox.xhtml": "d80d4bcf947f0cbb1a4a2f18687df577d870ed2b15ad801e123dab80dfd76d07",
+    "converted/section-table.pdf": "692f74e770fa0d17c82bc0d4140e9360be31afe5b653709ecdb270ff0f09f04a",
+    "converted/section-continuous-new-size.txt": "adb1f7bbd235aa5df848a739d1f3c853227e8505ad04139d54ccf508ac3ac6c4",
+    "converted/section-frame.pdf": "7ebc1dee65c7f4cb01fe8629b1ce431e9cf5346e5a6172f317776aab38f03867",
+    "converted/list-literal-labels.docx": "cff0962dc2fe1ddee57da5497294200c020fb7f3ba4c50b02846a88bc6de63ed",
+    "converted/section-continuous-comment-header.bbox.xhtml": "e4574619bad0e434ca4c468a1f56e062b24b9d5a076d93dd89279624e5252faf",
+    "converted/section-continuous-new-size.pdf": "e9f4a67fc56fdbc23f033d463fb5f09175f4316da14d3c16dc6b5df20e1d4bf9",
+    "converted/section-empty.txt": "b5ec4adc5508499b3fd3ff2fcafa1404f6fb4e001f3e975a891157f230d7c8cd",
+    "converted/list-native-start-override.bbox.xhtml": "f92a8c5741a7029379f3b819a89c4982980d7c598a0488426f549abf08fff5ec",
+    "converted/section-control-list.txt": "d8e70fa1b4da2205c949cc42496e20abdd3053dbd7996bda2f7f1700b79bb74e",
+    "converted/section-control-table.pdf": "0e66e4d46bed4252e61318a9033b51e5e428fa1d5059fbf0dde5894b64fef7d8",
+    "converted/paragraph-rtl-indent.txt": "eaf721556d5c1c3ca958304d0ed8127f92e54289c66a8dc25958b08675396027",
+    "converted/paragraph-rtl-indent.docx": "55fe2d5583c6f88bd069aa50f901d4cfef63c0047b3b10e8aec65019bf0d4be2",
+    "converted/section-oddPage-after-2.bbox.xhtml": "080e973f586886782a9ecfb9aacd805c8b51740ecf5191c0f7db1bd32eb74a35",
+    "converted/list-restart-continuation.pdf": "bc9bf27c0c24ba918540998072d3600526e339dc7f8abe5b83afb51b66ec20bc",
+    "converted/section-continuous.pdf": "0dde87c41090e174f33e1d4adc31193b28a1c24fcb3ab1325005e14ca2f5d7bd",
+    "converted/section-control-list.docx": "a357adb11c82b0eb01ef78e0290089ed2032e9a5b1f23b9fb59f0542bad7cf28",
+    "converted/section-table.txt": "650a5a444a131148c1af76c2bb28448b18f3059b0bd1e0c8540bf610df1c37d8",
+    "converted/section-continuous-new-size.bbox.xhtml": "9e25c86945a7f2dcdf7a23c9ceed7413974910ff1b7e3f8702d81c932e92812c",
+    "converted/page-field-styled-footer.pdf": "2fc1a9c2c6b7768af99330101f016bdc168bbd2bb39678be3d03e6422e543274",
+    "converted/section-continuous.bbox.xhtml": "734f2634fc6f3ed7c8348da647eeacde6c719251dcaac65105615d110014542e",
+    "converted/section-evenPage-after-1.docx": "def28c99aa14ddce71f7ab21c2d7da7f9f7c577e997ad1533d3b04740f01f2c4",
+    "converted/list-restart-continuation.docx": "8c106b89e76320e08caeb61feeede75898a65345fdbdd25dfccd19c2c8088ca8",
+    "converted/section-control-table.docx": "2a09ed8a9b09d18673304b846a18c7f5f95962fe5e14c0feeccd3d40fdbc1675",
+    "converted/section-continuous-new-size.docx": "3e8e69c8692e5946cd2f5bec8d5a00ed63a5898e164ce2533bbaba9b3887f748",
+    "converted/list-literal-labels.bbox.xhtml": "59665d438567a78ee4fc1370e6095a1a4ed2ad3768dccb132a73cc7b23655515",
+    "converted/section-empty.docx": "aa077e7425724dca6a0d62189dfca945fa8cf967991fb2e81824b970a6bfe6c9",
+    "converted/section-list.docx": "eac8627c71b9d1ec692148038982a634188c9df67b066affe865acdaf469f5be",
+    "converted/list-native-start-override.pdf": "79a86ccee472b25ccfe273efc79d85f7cc73461fadc84f61ec65ad72a081ec40",
+    "converted/list-skipped-levels.txt": "07b1231161c2bf3f5cab7eeb513362c69d0a1ff9f3628606c84882f63750b145",
+    "rasters/list-mixed-markers.png": "684afdad1df2c0ea43c4a32b8e021cc70d31b20b18f8275962fecf5cad80254e",
+    "rasters/list-skipped-levels.png": "fe4de35ac68c3416d57e279e3e265b47129d9aab73d537a061d1a92714729062",
+    "rasters/section-continuous.png": "f8b1224c5804a1be2216af2f25a71c8124ef363d9244f1cb047ccbfabed8fe0c",
+    "rasters/paragraph-rtl-indent.png": "0b359f3b38a5f23bf7b02c53f10e6606ed0404dd56ab3dbaa4b45c8268373f12",
+    "rasters/paragraph-distinct-shading-borders.png": "1375b447c5537d12176bdea204c526942e39bd3c001ee2e1d490046d05ff6627",
+    "rasters/section-heading-layout.png": "43da543393c73f1c31e84b858abf30315462eb3cf4064268e202af5dc5a5beea",
+    "rasters/list-native-start-override.png": "efd49cf7c2d3bea91f8690c202df32316e9a0ba831e363483629b3e8edcfc7a4",
+    "rasters/section-control-list.png": "d840ef3f1534e32c2401bf42c5524767cb7ce67c0ef47a512049f378f9b3d55d",
+    "rasters/section-oddPage-after-1.png": "f2c88fc13e97c14a7361334c04cbaf20fbca7397a929546c3d6ee26aef578c99",
+    "rasters/list-nonzero-start.png": "de9b7804c43a6573d33030f10221b2af03e27976eb1c509aaaabcfd3fd5e3bc9",
+    "rasters/section-oddPage-after-2.png": "f2c88fc13e97c14a7361334c04cbaf20fbca7397a929546c3d6ee26aef578c99",
+    "rasters/section-continuous-empty.png": "f8b1224c5804a1be2216af2f25a71c8124ef363d9244f1cb047ccbfabed8fe0c",
+    "rasters/section-evenPage-after-1.png": "f2c88fc13e97c14a7361334c04cbaf20fbca7397a929546c3d6ee26aef578c99",
+    "rasters/section-list.png": "e7486e799343f0bfbdd18c8b8e9342fbb9162ceaffe61bd412280db5f4019cce",
+    "rasters/section-table.png": "51abbed0fa02c4b74c3e186fa6a2d362d5130422a6bbb188531460e22a5ebdd8",
+    "rasters/list-literal-labels.png": "9c6776b750ceda75334cdeaf74e6b8e26d73857894675293e4272889c0549e6b",
+    "rasters/section-continuous-image-header.png": "3d73408e336b856268c34d68b704b9f7eac5f85ac6742bafd2125d9511015b08",
+    "rasters/list-restart-continuation.png": "f265d8e1caea9c0ea90ead060187c2dc2d4f6564399987ee41cb692ab996779d",
+    "rasters/section-empty.png": "b679dfd6022f9fe1ef4972f3536d2614ecee0343c28b9090615401cebbbd87c6",
+    "rasters/section-frame.png": "dfde0e561e0c03131c4f3002a252ea657b1c8d767bfe8c1464a691d054a4a4a0",
+    "rasters/section-continuous-comment-header.png": "8986399324ef9d0b6a08f659dee55d3d42db3fa64e8570dfb390c76a67f915f2",
+    "rasters/section-visual.png": "a2b9c4ca47147819b8ea3da38251eb5002b640c3a26f1fb2debd3c1bd957c47d",
+    "rasters/section-evenPage-after-2.png": "f2c88fc13e97c14a7361334c04cbaf20fbca7397a929546c3d6ee26aef578c99",
+    "rasters/section-continuous-new-size.png": "e3c9c74a4cfb2ba0e0c0407046d6c5340110f77c7c57b9822e055f7374cb5c1f",
+    "rasters/page-field-styled-footer.png": "60fa115971cf943bd08c67675875dd67a9a3e92a2883af81f7504a496c2e99d5",
+    "rasters/section-control-table.png": "bed70e8a3c8556aa0d650f7de312cff28e7e0f04d4e3ecd99c82a013f0d4a844"
+  },
+  "inputs_sha256": "7c242555cbcb454cc613a445fd788466ce7c18340ee0e8757d162f8bde737b22"
+}

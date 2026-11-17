@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "kind": "quds-bounded-segmentation-native-results",
+  "implementation_commit": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+  "build_receipt": "provider-build.json",
+  "actual_aot_sha256": "2ac3870a9e0e2ceab40000c8aae82c256f212ce5843dd03dfd5c1ad35d0741bd",
+  "measurements_run_serially_after_all_test_compiler_activity": true,
+  "runs": {
+    "single": {
+      "receipt": {
+        "file": "provider-single.json.gz",
+        "uncompressed_bytes": 80366,
+        "uncompressed_sha256": "ffda6c2850e18dfa500683e40ef54851b5c3719cf82563704a6d0aad671c9bd5"
+      },
+      "comparison": "provider-single-comparison.json",
+      "source_binding": {
+        "selected_source_map_matches_build": true,
+        "runtime_pins_match_build": true,
+        "actual_sources_match": true,
+        "frozen_outcomes_match_previous_continuation": true
+      },
+      "completed": true,
+      "all_requested_checks_passed": true,
+      "decode_configuration": {
+        "mode": "single-sequence",
+        "maximum_passes": 5,
+        "maximum_tokens_per_sequence": 512,
+        "maximum_text_code_units": 32768,
+        "keep_confidence": 0.0,
+        "minimum_error_probability": 0.0,
+        "segmentation": null,
+        "token_accounting": {
+          "tokens_first_pass": "Logical original-source encoding with one CLS/SEP pair, retained for the frozen comparison. Counts above the native limit are summed from individual word encodings without encoding an oversized sequence.",
+          "initial_model_tokens_total": "Sum of the actual planned initial sequence lengths. Each segment has its own CLS/SEP and source-terminal normalization.",
+          "initial_segments": "Complete original-source UTF-16 partition planned outside the measurement. Full worker planning remains inside each timed check."
+        }
+      },
+      "frozen_quality": {
+        "error_cases": 18,
+        "exact_fixes": 6,
+        "supported_clean_cases": 10,
+        "supported_clean_unchanged": 10,
+        "swiss_controls_unsupported": 2
+      },
+      "setup_ms": 3353.771,
+      "peak_process_rss_bytes": 359137280,
+      "peak_process_rss_mib": 342.5,
+      "short_timings": {
+        "median_ms": 21.269,
+        "p95_ms": 74.229,
+        "maximum_ms": 145.124
+      },
+      "short_timing_sample_count": 87,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      },
+      "probes": [
+        {
+          "id": "repeated-sentences-up-to-64",
+          "logical_tokens": 61,
+          "initial_model_tokens_total": 61,
+          "segment_count": 1,
+          "source_code_units": 239,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              138.789,
+              139.216,
+              145.124
+            ],
+            "median_ms": 139.216,
+            "p95_ms": 145.124,
+            "maximum_ms": 145.124
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-128",
+          "logical_tokens": 126,
+          "initial_model_tokens_total": 126,
+          "segment_count": 1,
+          "source_code_units": 499,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              365.089,
+              369.684,
+              318.835
+            ],
+            "median_ms": 365.089,
+            "p95_ms": 369.684,
+            "maximum_ms": 369.684
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-256",
+          "logical_tokens": 256,
+          "initial_model_tokens_total": 256,
+          "segment_count": 1,
+          "source_code_units": 1019,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              607.917,
+              580.926,
+              578.784
+            ],
+            "median_ms": 580.926,
+            "p95_ms": 607.917,
+            "maximum_ms": 607.917
+          }
+        }
+      ],
+      "controls": [
+        {
+          "id": "unsupported-de-AT",
+          "passed": true,
+          "status": "unsupported",
+          "elapsed_ms": 0.011,
+          "findings": []
+        },
+        {
+          "id": "unsupported-de-CH",
+          "passed": true,
+          "status": "unsupported",
+          "elapsed_ms": 0.001,
+          "findings": []
+        },
+        {
+          "id": "ignored-rule",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 33.935,
+          "findings": []
+        },
+        {
+          "id": "personal-vocabulary",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 16.094,
+          "findings": []
+        },
+        {
+          "id": "personal-vocabulary-removed",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 34.902,
+          "findings": [
+            {
+              "start": 10,
+              "end": 14,
+              "original": "geht",
+              "replacement": "gehst",
+              "rule_id": "gector.de.grammar"
+            }
+          ]
+        },
+        {
+          "id": "protected-code",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 45.501,
+          "findings": []
+        },
+        {
+          "id": "emoji-source-offset",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 40.093,
+          "findings": [
+            {
+              "start": 13,
+              "end": 17,
+              "original": "geht",
+              "replacement": "gehst",
+              "rule_id": "gector.de.grammar"
+            }
+          ]
+        },
+        {
+          "id": "capacity-fails-explicitly",
+          "passed": true,
+          "status": "failed",
+          "elapsed_ms": 1.743,
+          "findings": []
+        }
+      ]
+    },
+    "segmented": {
+      "receipt": {
+        "file": "provider-segmented.json.gz",
+        "uncompressed_bytes": 341758,
+        "uncompressed_sha256": "1bc06a1dfa42cf405da814cbb28fe03aa286a88a518d6c5f4db55dd372682c46"
+      },
+      "comparison": "provider-segmented-comparison.json",
+      "source_binding": {
+        "selected_source_map_matches_build": true,
+        "runtime_pins_match_build": true,
+        "actual_sources_match": true,
+        "frozen_outcomes_match_previous_continuation": true
+      },
+      "completed": true,
+      "all_requested_checks_passed": true,
+      "decode_configuration": {
+        "mode": "sentence-segments",
+        "maximum_passes": 5,
+        "maximum_tokens_per_sequence": 512,
+        "maximum_text_code_units": 32768,
+        "keep_confidence": 0.0,
+        "minimum_error_probability": 0.0,
+        "segmentation": {
+          "target_tokens": 64,
+          "maximum_segments": 32,
+          "maximum_total_initial_tokens": 4096,
+          "maximum_total_forward_tokens": 20480
+        },
+        "token_accounting": {
+          "tokens_first_pass": "Logical original-source encoding with one CLS/SEP pair, retained for the frozen comparison. Counts above the native limit are summed from individual word encodings without encoding an oversized sequence.",
+          "initial_model_tokens_total": "Sum of the actual planned initial sequence lengths. Each segment has its own CLS/SEP and source-terminal normalization.",
+          "initial_segments": "Complete original-source UTF-16 partition planned outside the measurement. Full worker planning remains inside each timed check."
+        }
+      },
+      "frozen_quality": {
+        "error_cases": 18,
+        "exact_fixes": 6,
+        "supported_clean_cases": 10,
+        "supported_clean_unchanged": 10,
+        "swiss_controls_unsupported": 2
+      },
+      "setup_ms": 3234.616,
+      "peak_process_rss_bytes": 308862976,
+      "peak_process_rss_mib": 294.5546875,
+      "short_timings": {
+        "median_ms": 24.761,
+        "p95_ms": 73.321,
+        "maximum_ms": 175.152
+      },
+      "short_timing_sample_count": 87,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      },
+      "probes": [
+        {
+          "id": "repeated-sentences-up-to-64",
+          "logical_tokens": 61,
+          "initial_model_tokens_total": 61,
+          "segment_count": 1,
+          "source_code_units": 239,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              175.152,
+              159.234,
+              166.084
+            ],
+            "median_ms": 166.084,
+            "p95_ms": 175.152,
+            "maximum_ms": 175.152
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-128",
+          "logical_tokens": 126,
+          "initial_model_tokens_total": 128,
+          "segment_count": 3,
+          "source_code_units": 499,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              347.908,
+              416.366,
+              354.325
+            ],
+            "median_ms": 354.325,
+            "p95_ms": 416.366,
+            "maximum_ms": 416.366
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-256",
+          "logical_tokens": 256,
+          "initial_model_tokens_total": 260,
+          "segment_count": 5,
+          "source_code_units": 1019,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              636.731,
+              724.617,
+              627.607
+            ],
+            "median_ms": 636.731,
+            "p95_ms": 724.617,
+            "maximum_ms": 724.617
+          }
+        },
+        {
+          "id": "segmented-repeated-sentences-up-to-640",
+          "logical_tokens": 636,
+          "initial_model_tokens_total": 646,
+          "segment_count": 11,
+          "source_code_units": 2539,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              1797.719,
+              1798.481,
+              2179.809
+            ],
+            "median_ms": 1798.481,
+            "p95_ms": 2179.809,
+            "maximum_ms": 2179.809
+          }
+        },
+        {
+          "id": "segmented-repeated-sentences-up-to-1280",
+          "logical_tokens": 1276,
+          "initial_model_tokens_total": 1297,
+          "segment_count": 22,
+          "source_code_units": 5099,
+          "source_coverage_complete": true,
+          "status": "success",
+          "unchanged": true,
+          "timing": {
+            "samples_ms": [
+              3570.035,
+              3741.892,
+              3804.643
+            ],
+            "median_ms": 3741.892,
+            "p95_ms": 3804.643,
+            "maximum_ms": 3804.643
+          }
+        }
+      ],
+      "controls": [
+        {
+          "id": "unsupported-de-AT",
+          "passed": true,
+          "status": "unsupported",
+          "elapsed_ms": 0.01,
+          "findings": []
+        },
+        {
+          "id": "unsupported-de-CH",
+          "passed": true,
+          "status": "unsupported",
+          "elapsed_ms": 0.002,
+          "findings": []
+        },
+        {
+          "id": "ignored-rule",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 35.351,
+          "findings": []
+        },
+        {
+          "id": "personal-vocabulary",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 16.938,
+          "findings": []
+        },
+        {
+          "id": "personal-vocabulary-removed",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 34.515,
+          "findings": [
+            {
+              "start": 10,
+              "end": 14,
+              "original": "geht",
+              "replacement": "gehst",
+              "rule_id": "gector.de.grammar"
+            }
+          ]
+        },
+        {
+          "id": "protected-code",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 58.193,
+          "findings": []
+        },
+        {
+          "id": "emoji-source-offset",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 40.108,
+          "findings": [
+            {
+              "start": 13,
+              "end": 17,
+              "original": "geht",
+              "replacement": "gehst",
+              "rule_id": "gector.de.grammar"
+            }
+          ]
+        },
+        {
+          "id": "capacity-fails-explicitly",
+          "passed": true,
+          "status": "failed",
+          "elapsed_ms": 3.455,
+          "findings": []
+        },
+        {
+          "id": "segmented-late-correction-utf16-offset",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 1872.428,
+          "findings": [
+            {
+              "start": 2543,
+              "end": 2547,
+              "original": "geht",
+              "replacement": "gehst",
+              "rule_id": "gector.de.grammar"
+            }
+          ]
+        },
+        {
+          "id": "segmented-protected-code",
+          "passed": true,
+          "status": "success",
+          "elapsed_ms": 1804.281,
+          "findings": []
+        },
+        {
+          "id": "segmented-late-capacity-fails-whole-request",
+          "passed": true,
+          "status": "failed",
+          "elapsed_ms": 9.655,
+          "findings": []
+        },
+        {
+          "id": "segmented-total-token-cap-fails-whole-request",
+          "passed": true,
+          "status": "failed",
+          "elapsed_ms": 34.474,
+          "findings": []
+        },
+        {
+          "id": "segmented-segment-cap-fails-whole-request",
+          "passed": true,
+          "status": "failed",
+          "elapsed_ms": 40.003,
+          "findings": []
+        },
+        {
+          "id": "segmented-text-cap-fails-whole-request",
+          "passed": true,
+          "status": "failed",
+          "elapsed_ms": 4.065,
+          "findings": []
+        }
+      ]
+    }
+  },
+  "scope": "Frozen short model panel plus repeated-sentence structural probes and bounded controls. Target64 extends whole-request capacity; these results do not show faster long-input checks or 500ms long-text compliance. No intended-device or representative quality claim."
+}

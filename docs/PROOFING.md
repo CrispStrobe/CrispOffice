@@ -4,14 +4,84 @@ Roadmap accepted and implementation resumed: 16 November 2026. Original
 baseline: `bad2d9d30fd94db8de92a4f4bf83a55b0692b884`.
 
 The CrispStrobe fork implements offline German spelling, automatic German and
-US/UK English hyphenation, sixteen German writing-rule categories, and a
+US/UK English hyphenation, seventeen German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
 web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
-## German proofing continuation — 17 November 2026
+## Noun agreement and syntax/model evaluation — 17 November 2026
+
+Simple, unambiguous noun subjects now participate in the existing pure-Dart
+writing rules: `Die Kinder spielt im Garten → spielen` and
+`Das Kind spielen im Garten → spielt`. The separately ignorable
+`de.grammar.noun-verb` rule corroborates nominative number with all retained
+noun readings and the reviewed finite verb table. It only covers bounded
+complete clauses, preserving ambiguous `die Leiter`, fronted objects,
+coordination, relative clauses, unsupported tails and unknown words.
+Corrections remain suggestions, with source offsets, protection, ignore,
+recheck and editor undo tested. No parser or Python dependency is added to apps.
+
+The [syntax continuation report](validation/german-syntax-20261117/README.md)
+records actual spaCy syntax inference and separately pinned Proofbird v2.1/v2.2
+comparisons. The syntax planner is evaluation-only; v2.2 is not promoted merely
+because its version is newer. Models and Python environments remain outside Git.
+
+## Combined quality and spelling continuation — 17 November 2026
+
+The [follow-up report](validation/german-proofing-next-20261117/README.md)
+measures the optional model together with the default spelling and writing
+providers, using the editor's shared `mergeOfficeProofingReports` policy.
+Real compiled inference yields **9/18** exact combined corrections on the
+original de-DE panel versus **7/18** deterministic, and **20/32** on a newly
+authored synthetic panel versus **14/32** deterministic. No deterministic exact
+correction is lost and none of the **10 + 40** supported clean controls is
+flagged or changed. Model-only counts are **6/18** and **12/32**.
+
+The new panel was frozen remotely before its first inference. Its initial
+observations exposed spelling false positives after a colon/opening quotation
+mark and for `Hof` and `Grüezi`. The bounded repairs preserve direct-speech
+capitalization and add only `Hof`, `Grüezi` and `grüezi` to the finite first-party
+supplement; pinned upstream dictionary shards are unchanged. Measurements after
+these repairs are development regressions, not a fresh prospective evaluation
+or an estimate of representative German accuracy. Full initial outputs and
+exact before/after comparisons remain available.
+
+The actual editor displays reviewable suggestions. The evaluation's
+first-replacement projection is a declared scoring convention, not automatic
+editing. Regional model controls remain explicitly unsupported while the
+deterministic checker retains its existing locale coverage. The report also
+retains source-specific validation of the incoming opt-in segmentation and
+Office export changes. PR #114 follows PR #105, which was merged externally
+during this continuation; no CI queue is used as a gate.
+
+## Optional AOT analysis and grammar — 17 November 2026
+
+The [AOT package](../packages/quds_proofing_aot/README.md) adds an independent
+HTTP/JSON integration with a separately installed AOT/RML SynanDaemon. It exposes
+German/Russian syntax analysis, German/Russian/English word morphology, and
+three conservative de-DE diagnostic families: personal-pronoun/verb agreement,
+selected fixed-preposition case, and article/adjective/noun agreement.
+
+The Studio example enables **Review → AOT analysis** and manual AOT proofing
+only when `QUDS_AOT_ENDPOINT` is configured. Text is submitted on explicit analysis
+or document-check actions. Existing deterministic and Harper proofing continue;
+custom hosts can compose AOT with the optional GECToR manual provider.
+
+AOT parse structures are analysis, not errors. Suggestions require positive,
+recognized morphology and concrete compatible paradigm forms. Missing groups,
+unknown words and ambiguous valid readings cannot justify a correction. Exact
+UTF-16/grapheme mapping, protected text, ignored rules and vocabulary safeguards
+apply. Unsupported locales, incomplete coverage and operational failures remain
+visible. Grammar support is de-DE; other analysis languages do not gain a grammar
+provider. No native engine or dictionaries are redistributed.
+
+The [local integration report](validation/aot-integration-20261117/README.md)
+records incoming-branch reconciliation and fixture-based validation. These tests
+do not establish live-daemon accuracy or general grammar coverage.
+
+## Earlier German proofing continuation — 17 November 2026
 
 The [morphology continuation report](validation/german-proofing-continuation-20261117/README.md)
 records the integration of the newer optional GECToR provider and native
@@ -322,7 +392,7 @@ live model properties and Word serialization coverage.
 | P1 | Shared asynchronous proofing contract, language selection and availability | Implemented | Distinct unavailable, unsupported, failed and successful results; stable document/block identity, revision, UTF-16 ranges, category, rule ID, explanation and literal replacements. |
 | P2 | Automatic German/US/UK English and explicit discretionary hyphenation | Implemented | Licensed patterns and measured break candidates in shared editor/PDF layout; source text unchanged, grapheme/bidi and source-hit coverage, Word setting round-trips. |
 | P3 | Offline German spelling and user vocabulary | Implemented | Pinned MIT finite word forms, locale/case handling, bounded suggestions, host-owned vocabulary and ignore controls; no claim of complete German morphology. |
-| P4 | German style and finite grammar rules | Implemented | Sixteen independently authored categories, with licensed noun morphology, contextual clauses and a host terminology provider; explicit exclusions and reviewable suggestions. |
+| P4 | German style and finite grammar rules | Implemented | Seventeen independently authored categories, with licensed noun morphology, contextual clauses and a host terminology provider; explicit exclusions and reviewable suggestions. |
 | P5 | Word proofing UI and lifecycle | Implemented | Whole-story traversal, manual/background checks, stale-result rejection, squiggles, F7 review, correction menu and guarded undoable corrections. |
 | P6 | Optional English Harper and mobile spelling adapters | Implemented with runtime limits | Actual Linux native and Node/Wasm integration exercised; browser startup blocked before loading a page; mobile adapter protocol tested without Android/iOS device acceptance. |
 | P7 | German model evaluation | Evaluated; not enabled | Exact artifacts and original notices retained; recorded probe matched 9/18 error cases and changed 1/12 valid controls. No application provider or automatic model download. |
@@ -432,7 +502,7 @@ competing spelling engines in this implementation.
 
 ### German writing rules and terminology
 
-`GermanWritingRulesProvider` contains sixteen independently authored
+`GermanWritingRulesProvider` contains seventeen independently authored
 rule categories. It is not a general German grammar parser.
 
 | Rule ID | Category | Implemented boundary |
@@ -445,6 +515,7 @@ rule categories. It is not a general German grammar parser.
 | `de.grammar.seit-seid` | Grammar | `ihr seit` before listed predicates, or `seid` between a listed finite verb and a reviewed temporal expression; never a generic `seid + time` rewrite. |
 | `de.grammar.preposition-pronoun` | Grammar | Reviewed wrong pronoun cases after fixed-case prepositions, such as `mit mich → mit mir` and `für ihm → für ihn`; competing infinitive/additive/nominal contexts are excluded. |
 | `de.grammar.preposition-case` | Grammar | Article case/gender for reviewed nouns after fixed-case prepositions, such as `mit den Mann → mit dem Mann`. |
+| `de.grammar.noun-verb` | Grammar | Unambiguous nominative noun subjects and reviewed finite verbs in bounded simple complete clauses; all lexical number alternatives retained, with ambiguity and unsupported-syntax abstention. |
 | `de.grammar.noun-case` | Grammar | Required noun endings in unambiguous determiner phrases, including weak nouns such as `mit dem Kunde → mit dem Kunden`; suggested forms must pass the modern spelling guard. |
 | `de.grammar.dative-plural` | Grammar | Missing dative plural `n` in reviewed forms, such as `mit den Kinder → mit den Kindern`; plural `n`/`s` forms and optional literary singular dative `e` are preserved. |
 | `de.grammar.adjective-ending` | Grammar | Weak/mixed adjective endings when all retained determiner/noun analyses agree, such as `ein gute Buch → ein gutes Buch`; adverb modifiers and unresolved analyses are preserved. |
@@ -567,7 +638,7 @@ authorized by this roadmap.
 ## Using Word proofing
 
 `WordEditorController.proofing` owns a lazy `WordProofingSession`. Its built-in
-providers are German spelling and the sixteen German writing-rule categories. Background
+providers are German spelling and the seventeen German writing-rule categories. Background
 checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced

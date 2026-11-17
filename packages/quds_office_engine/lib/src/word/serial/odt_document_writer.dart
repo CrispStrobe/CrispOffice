@@ -11,6 +11,7 @@ import '../../xml/xml_node.dart';
 import '../../xml/xml_reader.dart';
 import '../../xml/xml_writer.dart';
 import '../model/wml_document.dart';
+import '../model/word_fields.dart';
 import '../model/word_notes.dart';
 import '../properties/wml_properties.dart';
 
@@ -19,8 +20,9 @@ import '../properties/wml_properties.dart';
 /// This is an export path. It emits the modeled text, paragraph/run formatting,
 /// tables, pictures, frames, page geometry and basic headers/footers. It does
 /// not claim to preserve arbitrary imported ODF XML or every Word feature.
-/// Word and Zotero fields export their visible cached results; their native
-/// instructions and editable field metadata are not part of this export.
+/// Simple paragraph PAGE fields use a native ODF page number. Other Word and
+/// Zotero fields export their visible cached results; their native instructions
+/// and editable field metadata are not part of this export.
 abstract final class OdtDocumentWriter {
   /// Serializes [document] as a new ODT package.
   static Uint8List writeBytes(WmlDocument document) {
@@ -594,25 +596,90 @@ abstract final class OdtDocumentWriter {
       styleOverride ??
           layout.paragraphStyle(paragraph.properties, heading: heading),
     );
-    if (paragraph.properties.pageNumberField) {
-      w.writeEmptyElement('page-number', prefix: 'text');
-      w.writeEndElement();
-      return;
-    }
+    final pageField = _isPageNumberParagraph(paragraph);
     if (layout.noteReferenceSpacePending) {
       layout.noteReferenceSpacePending = false;
       final text = paragraph.text;
-      if (text.isNotEmpty && !RegExp(r'^\s').hasMatch(text)) {
+      if (pageField || (text.isNotEmpty && !RegExp(r'^\s').hasMatch(text))) {
         writeOdfText(w, ' ');
       }
     }
-    for (final inline in paragraph.inlines) {
-      _writeInline(w, inline, layout);
+    if (pageField) {
+      _writePageNumberInlines(w, paragraph, layout);
+    } else {
+      for (final inline in paragraph.inlines) {
+        _writeInline(w, inline, layout);
+      }
     }
     w.writeEndElement();
   }
 
-  static void _writeInline(XmlWriter w, WmlInline inline, _OdtLayout layout) {
+  static bool _isPageNumberParagraph(WmlParagraph paragraph) {
+    final instruction = paragraph.properties.fieldInstruction;
+    final page = instruction == null || instruction.trim().isEmpty
+        ? paragraph.properties.pageNumberField
+        : WordFields.kindOf(instruction) == WmlFieldKind.page;
+    // Mixed native fields, note marks and pictures are not an exact
+    // paragraph-wide cache. Keep their existing visible inline content rather
+    // than replacing a locked field or moving a separately owned story.
+    return page &&
+        !paragraph.inlines.any(
+          (inline) =>
+              inline is WmlFieldBoundary ||
+              (inline is WmlRun && inline.isAtomic),
+        );
+  }
+
+  static void _writePageNumberInlines(
+    XmlWriter w,
+    WmlParagraph paragraph,
+    _OdtLayout layout,
+  ) {
+    final text = paragraph.text;
+    // Share the model's supported " | title" suffix, including when the
+    // numeric cache and title occupy separate styled runs. Never mutate the
+    // authored runs while replacing only their generated numeric result.
+    final suffix = WordFields.pageResultWithSuffix(text, '');
+    final suffixEnd = text.trimRight().length;
+    final suffixStart = suffixEnd - suffix.length;
+    final hasRun = paragraph.inlines.any((inline) => inline is WmlRun);
+    var offset = 0;
+    var emitted = false;
+    for (final inline in paragraph.inlines) {
+      if (inline is WmlRun) {
+        final start = (suffixStart - offset).clamp(0, inline.text.length);
+        final end = (suffixEnd - offset).clamp(start, inline.text.length);
+        _writeInline(
+          w,
+          inline,
+          layout,
+          pageNumber: !emitted,
+          textOverride: inline.text.substring(start, end),
+        );
+        emitted = true;
+        offset += inline.text.length;
+      } else {
+        // An empty bookmarked PAGE paragraph still owns its generated field.
+        if (!hasRun &&
+            !emitted &&
+            inline is WmlBookmarkBoundary &&
+            !inline.isStart) {
+          w.writeEmptyElement('page-number', prefix: 'text');
+          emitted = true;
+        }
+        _writeInline(w, inline, layout);
+      }
+    }
+    if (!emitted) w.writeEmptyElement('page-number', prefix: 'text');
+  }
+
+  static void _writeInline(
+    XmlWriter w,
+    WmlInline inline,
+    _OdtLayout layout, {
+    bool pageNumber = false,
+    String? textOverride,
+  }) {
     switch (inline) {
       case WmlRun():
         final style = layout.runStyle(inline.properties);
@@ -635,7 +702,17 @@ abstract final class OdtDocumentWriter {
           // text:a can carry the same style directly, with its text unchanged.
           if (commentLink) w.writeAttribute('text:style-name', style);
         }
-        if (inline.noteRefId != null) {
+        if (pageNumber) {
+          if (!commentLink) {
+            w.writeStartElement('span', prefix: 'text');
+            w.writeAttribute('text:style-name', style);
+          }
+          w.writeEmptyElement('page-number', prefix: 'text');
+          if (textOverride != null && textOverride.isNotEmpty) {
+            writeOdfText(w, textOverride);
+          }
+          if (!commentLink) w.writeEndElement();
+        } else if (inline.noteRefId != null) {
           final note = layout.notes.resolve(inline);
           if (note != null) {
             final label = layout.notes.labelFor(inline, note);
@@ -652,7 +729,12 @@ abstract final class OdtDocumentWriter {
             _writeStyledText(w, inline.text, style, styleOnParent: commentLink);
           }
         } else {
-          _writeStyledText(w, inline.text, style, styleOnParent: commentLink);
+          _writeStyledText(
+            w,
+            textOverride ?? inline.text,
+            style,
+            styleOnParent: commentLink,
+          );
         }
         if (inline.inlineVisual case final visual?) {
           _writeVisual(w, visual.visual, layout, inline: true);
@@ -1452,11 +1534,10 @@ class _OdtLayout {
     _OdtSectionStart? sectionStart,
     bool emptyAnchor = false,
   }) {
-    final fill = props.shadingFill?.toLowerCase() ?? '';
-    final border = props.borderColor?.toLowerCase() ?? '';
-    final decorations = jsonEncode([fill, border]);
+    final shading = _paragraphColor(props.shadingFill);
+    final border = _paragraphColor(props.borderColor);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$decorations';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$shading|$border';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'
@@ -1546,13 +1627,45 @@ class _OdtLayout {
             buffer.write(' fo:text-indent="${points}pt"');
           }
         }
-        if (fill.isNotEmpty) {
-          buffer.write(' fo:background-color="#$fill"');
+        if (shading != null) {
+          buffer.write(' fo:background-color="#$shading"');
         }
-        if (border.isNotEmpty) {
+        if (border != null) {
           buffer.write(' fo:border="0.5pt solid #$border"');
         }
-        buffer.write('/>');
+        if (props.tabs.isEmpty) {
+          buffer.write('/>');
+        } else {
+          buffer.write('><style:tab-stops>');
+          for (final tab in props.tabs) {
+            if (_paragraphDecimal(tab.position) case final position?) {
+              final type = switch (tab.alignment) {
+                WmlTabAlignment.center => 'center',
+                WmlTabAlignment.right => 'right',
+                WmlTabAlignment.decimal => 'char',
+                WmlTabAlignment.left => 'left',
+              };
+              buffer.write(
+                '<style:tab-stop style:position="${position}pt" '
+                'style:type="$type"',
+              );
+              if (tab.alignment == WmlTabAlignment.decimal) {
+                buffer.write(' style:char="."');
+              }
+              final leader = switch (tab.leader) {
+                WmlTabLeader.dot => 'dotted',
+                WmlTabLeader.hyphen => 'solid',
+                WmlTabLeader.underscore => 'solid',
+                WmlTabLeader.none => null,
+              };
+              if (leader != null) {
+                buffer.write(' style:leader-style="$leader"');
+              }
+              buffer.write('/>');
+            }
+          }
+          buffer.write('</style:tab-stops></style:paragraph-properties>');
+        }
         if (emptyAnchor) {
           buffer.write('<style:text-properties fo:font-size="1pt"/>');
         }
@@ -1569,6 +1682,17 @@ class _OdtLayout {
       }
       return name;
     });
+  }
+
+  static String? _paragraphColor(String? value) {
+    // The model contract is exactly six RRGGBB digits. Omit invalid imported
+    // values before both style deduplication and XML attribute construction.
+    if (value == null ||
+        value.length != 6 ||
+        !RegExp(r'^[0-9a-fA-F]{6}$').hasMatch(value)) {
+      return null;
+    }
+    return value.toLowerCase();
   }
 
   static String? _paragraphDecimal(double value) {
