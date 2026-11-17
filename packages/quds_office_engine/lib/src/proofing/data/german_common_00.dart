@@ -3,12 +3,12 @@
 // Raw DEFLATE chunks contain sorted UTF-8 word forms. Do not edit.
 
 const List<String> germanCommonChunks0 = <String>[
-  'NZJNThwxEIX37yI5ByghUQZIBBMhsfNMu9sGtxv5h444SLZs5gys2PXF8rlnRvJ7ZZfL9qsqX6RRF2m0K8WVM1x0aereZV3aNODH'
-  '1L7ZsBxKsYnZNJXmqMQsh6SvJj7rm2dkXfnQLruqy7uulkMILL6n5TN2p8nybs826oepuZnlUIvVz2mnTTBx0CZ6u1LUJpm+aFOd'
-  'NsvHSxNy7feuHNkmXS+ffVNzY5r3xoSGDCGgUduqRbcGWVm3U9Evl/SLNAGbv5NF9sr2ZKLuTAeK7my7dGV7MvFos+6WA0lRDiaV'
-  'Kt7vne+bvnvLwscIv3gbziZqawYQtCVga304cVxNhv/yytbnvTsbtqYOYNPxle3yEU+Mc/lM+kM6D3ZowPVgPfsrtwVpPlD89crz'
-  'JOrxqOexDjIyO1E6mc7KYBwexJhQZEaZKFN7gIeCgqKd9dr5CLI6w4jtfGdS/6U5gB3V2k11AGua2XnmqbJRZR3DCo2yoRdRBNmc'
-  'i3rjUNy3tAZ0DQbrsTTQsXZNlaMvjjOO4275SOIjyLsRRMCaKTO67bnyyejJ6plcAuUPyAtkZBWmrBHPSIoj4kZfFClAtFXt98Ua'
-  'QRJ/cuIDvvBi4vNkjmTCcitHphKZ2DwpF8tfVzFDhooKsaXi4JqCfDKvsQNZrzbl2hryOo0ggqTZNGTNdHKmfjP1m3lz5voZefOk'
-  't2nQW2WMIGn5FxrsSrFx1n8=',
+  'NZNNbtswEIX37yI9R4I2LeokLRIXAbKjLUpkQlEBf6IiB+k2G58hq+x0sX6UbYDvzXA4pN4MqYs06iKNdqW4coaLLk3soLp3WZc2'
+  'DSxiat9sWA6l2IQ3TaUFKjnLIemric/65hlZVz60E6/q8q6r5RACk+9p+YzdyVne7dlG/TA1N7McarH6Oe20CSYO2kRvV4raJNMX'
+  'barTZvl4aUKu/d6VI9uk6+Wzb2puTIvemNCQIQQ0aku16NYgK+t2Kvrlkn5RK2Dxd7LIXtmeTNSd6UDRnW2HrmxPJh5t1t1yoCja'
+  'gVNp5f3e+b7pu7dMfIzwi7fhbKK2ZgBBWxK21ocTx9Vk+C9f2fq8d2fD0tQBbDp+Zbt8xBMTXD6T/lDOgx0aCD1Yz/rKbUKZDzR/'
+  'PfLsRD0e9TzWQUZmJ1on01kZjCOCGBOKzCgTZWoPiNBQULSzXjsfQVZnGLHt70zqv7QAsKPaddMdwJzL7Dx+qixUWcewQqNs6EUW'
+  'STbnot44FPetrAFdg8F6LBfomLumynEvjj2O7W75SOIhyLsRRMAcF4/b9hz5ZPRk9UwtgfYH5AUqsgpT1khkpMQRcaMvijQg2qr2'
+  '+mKNIIk3OfEAX/hi4vFktmTScmtHphOZ3DwpF8tbVzFDhooKuaUS4JiCfCqv/FoVVa825dou5HUaQQRJs2nImrnJmf7N9G/mmzPH'
+  'z8ibJ71Ng94qYwRJy7/QYFeKjbP+Aw==',
 ];
