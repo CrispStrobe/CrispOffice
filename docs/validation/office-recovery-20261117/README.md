@@ -26,17 +26,33 @@ Eleven distinct heads were not yet ancestors. Six maximal heads cover them:
 | Fork main | `7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad` |
 | Paragraph shading vendor mirror | `22ce45e70591a6be561a5abee1807455e3df52be` |
 
-The snapshot is finite so tests can bind to a stable source. This first
-checkpoint saves the incoming inventory before integration. Subsequent
-checkpoints will document conflict decisions and fresh local results.
+The snapshot is finite so tests can bind to a stable source. The inventory was
+published before integration at `1c79a08680bdd78b6b93c0d55af414a793dc08d6`.
+The completed fidelity evidence was saved at `24dac9c326a934da95d7f52b9ab8cfe4a28f3922`,
+the morphology/page-field integration at `604940731b492be21fe8c28390d530aed46707ce`,
+and captured main at `21e8e64b01e7cac3a971e413540d74091b25a712`.
+
+`integrated-ancestry.json` confirms that every captured head is included by
+ancestry after integrating all six maximal heads. Original feature and vendor
+histories are retained as merge parents. `source-reconciliation.json` records
+the duplicate ODP assertion placement and exact shading mirror differences;
+current German quality evidence is preserved. `frame-reconciliation.md`
+documents the structured-table and empty-anchor decisions and the two
+intentionally updated expectations. Both incoming frame suites remain active.
 
 ## Qualification status
 
-Fresh product tests have not run at this inventory checkpoint. Historical
-reports retain their original source attribution and are not counted as tests
-of this continuation. The pending scope includes the 174 test files declared
-by the recovered continuation plus relevant incoming regression suites.
+The focused frame integration checks pass 99 tests across six files. Their raw
+logs, including the unsuccessful initial analyzer invocation and successful
+explicit-configuration retry, are preserved in `integration-checks/`. These are
+development checks; complete qualification of a frozen source is still pending.
+Historical reports retain their original source attribution and are not counted
+as tests of this continuation. The pending scope includes the 174 test files
+declared by the recovered continuation plus relevant incoming regressions and
+the bounded page-field/paragraph-decoration repairs identified during review.
 
 No GitHub Actions, check-run, workflow, or commit-status endpoint is queried or
-awaited. Incremental commits use `[skip ci]` and ordinary fast-forward pushes
-to `codex/office-continuation-20261117`.
+awaited. Incremental commits use `[skip ci]`. The local Git CLI has no write
+credential, so publication uses the connected GitHub Git-data API with
+expected-head, non-force branch updates. Each remote tree is checked against
+the exact local Git tree before publication to `codex/office-continuation-20261117`.
