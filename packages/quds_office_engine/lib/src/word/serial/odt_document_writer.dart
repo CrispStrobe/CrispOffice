@@ -1883,8 +1883,9 @@ class _OdtLayout {
       final name = 'Sect${_sectionColumnStyles.length + 1}';
       _styleBuffers.add(
         '<style:style style:name="$name" style:family="section">'
-        '<style:section-properties fo:column-count="$columns" '
-        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/></style:style>',
+        '<style:section-properties><style:columns fo:column-count="$columns" '
+        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/>'
+        '</style:section-properties></style:style>',
       );
       return name;
     });

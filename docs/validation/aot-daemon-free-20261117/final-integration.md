@@ -86,3 +86,25 @@ fidelity suites and chart/column cases, changed writer/source analysis, German
 proofing, GECToR contracts, and Python admission guards. Its results are recorded
 separately after this checkpoint; this integration record makes no claim that
 those final-tree runs have already completed.
+
+## Follow-up format repair and local ODF validation
+
+The final merged 28-file ODF/search cohort initially passed **502 tests**. Review
+against the [ODF 1.3 schema, sections 17.11–17.12](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html)
+then found that the incoming column feature wrote `fo:column-count` and
+`fo:column-gap` on `style:section-properties`. Those attributes belong to its
+`style:columns` child. The follow-up repair changes only this nesting; the
+section contents, count, spacing and style references are preserved.
+
+The existing column regression now parses the XML and resolves the section's
+referenced style by namespace. It requires the correct child/attribute shape and
+preserved section text. This strengthened test fails before the repair; the full
+**502-test cohort passes afterward**, with zero failures or skips. Changed writer
+and regression-source analysis reports no issues. The
+[final ODF evidence](evidence/odf-final-summary.json) retains both complete runs
+and the intentional pre-fix failure; those repeated runs are not additive.
+
+The adjacent chart-data export already places its `table:table` beneath
+`draw:frame`, which the same specification permits in section 10.4.2. It required
+no format change. These checks validate parsed XML and code behavior; they do
+not claim rendering qualification in an external office application.

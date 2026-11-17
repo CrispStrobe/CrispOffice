@@ -1,0 +1,63 @@
+{
+  "aot_vm": {
+    "passed": 153,
+    "failed": 0,
+    "skipped": 0,
+    "success": true,
+    "elapsed_ms": 26261
+  },
+  "aot_node": {
+    "passed": 129,
+    "failed": 0,
+    "skipped": 0,
+    "success": true,
+    "elapsed_ms": 41217
+  },
+  "studio": {
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0
+  },
+  "word_final": {
+    "passed": 139,
+    "failed": 0,
+    "skipped": 0,
+    "success": true,
+    "notes": "Full Word proofing cohort repeated after final incoming source integration; repeats earlier139 cases."
+  },
+  "odf_final": {
+    "passed": 502,
+    "failed": 0,
+    "skipped": 0
+  },
+  "engine_proofing_final": {
+    "passed": 699,
+    "failed": 0,
+    "skipped": 0
+  },
+  "gector_final": {
+    "passed": 212,
+    "failed": 0,
+    "skipped": 1
+  },
+  "python_guards": {
+    "passed": 36,
+    "failed": 0,
+    "skipped": 0
+  },
+  "real_native": {
+    "worker": 22,
+    "production_client": 17,
+    "production_cli": 23,
+    "worker_sha256": "d20a7a707736c05fb0e2143aa517769f0136a459cfef9c113af5ecfd375a0d0f"
+  },
+  "source_bindings": "evidence/final-source-sha256.json",
+  "incoming_refs_verified": 277,
+  "ci_queried_or_awaited": false,
+  "notes": [
+    "Node repeats portable VM coverage; native subprocess tests run on VM.",
+    "Native source mapping final15, earlier focused client47/Node23 and initial ODF424 are repeated/subset coverage, not added again.",
+    "GECToR skip is an optional separately installed real-model probe, not an AOT native test.",
+    "Real native pathways overlap synthetic language examples; no general accuracy or target-platform performance estimate is claimed."
+  ]
+}

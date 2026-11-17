@@ -615,9 +615,37 @@ void columnTests() {
     final package = OpcPackage.openBytes(
       OdtDocumentWriter.writeBytes(document),
     );
-    final content = package.getPart('/content.xml')!.readText();
-    expect(content, contains('<text:section text:name="Section0"'));
-    expect(content, contains('fo:column-count="2"'));
-    expect(content, contains('fo:column-gap="18.00pt"'));
+    const officeNs = 'urn:oasis:names:tc:opendocument:xmlns:office:1.0';
+    const styleNs = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
+    const textNs = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+    const foNs = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
+    final content = XmlDocument.parse(
+      package.getPart('/content.xml')!.readText(),
+    ).root!;
+    final section = content
+        .firstChild('body', namespaceUri: officeNs)!
+        .firstChild('text', namespaceUri: officeNs)!
+        .childrenNamed('section', namespaceUri: textNs)
+        .single;
+    expect(section.getAttribute('name', namespaceUri: textNs), 'Section0');
+    expect(_odfText(section), 'Columns');
+    final styleName = section.getAttribute('style-name', namespaceUri: textNs);
+    final properties = content
+        .firstChild('automatic-styles', namespaceUri: officeNs)!
+        .childrenNamed('style', namespaceUri: styleNs)
+        .singleWhere(
+          (style) =>
+              style.getAttribute('name', namespaceUri: styleNs) == styleName &&
+              style.getAttribute('family', namespaceUri: styleNs) == 'section',
+        )
+        .firstChild('section-properties', namespaceUri: styleNs)!;
+    // ODF 1.3, sections 17.11–17.12: the child columns element owns these
+    // attributes; placing them on section-properties is not an ODF column style.
+    final columns = properties.firstChild('columns', namespaceUri: styleNs);
+    expect(columns, isNotNull);
+    expect(columns!.getAttribute('column-count', namespaceUri: foNs), '2');
+    expect(columns.getAttribute('column-gap', namespaceUri: foNs), '18.00pt');
+    expect(properties.getAttribute('column-count', namespaceUri: foNs), isNull);
+    expect(properties.getAttribute('column-gap', namespaceUri: foNs), isNull);
   });
 }
