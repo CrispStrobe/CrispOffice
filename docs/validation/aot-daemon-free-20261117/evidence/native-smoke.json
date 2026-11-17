@@ -1,0 +1,36 @@
+{
+  "worker": {
+    "worker": "quds_aot_worker",
+    "protocol": 1,
+    "aot": "0d591d972c7bb2729f4764d3bc32611ea6fd142a",
+    "nlp_base": "244b3d1f9a09e4a81e75ea83c3b55b209c663503"
+  },
+  "cases": 22,
+  "passed": 22,
+  "failed": 0,
+  "elapsedSeconds": 0.427,
+  "realEngine": true,
+  "syntheticTextOnly": true,
+  "coverage": [
+    "German syntax",
+    "German paradigm",
+    "Russian syntax",
+    "Russian paradigm",
+    "English paradigm",
+    "unsupported language",
+    "strict request types",
+    "UTF-16 text limits",
+    "JSON-line byte limit and recovery",
+    "NUL rejection",
+    "duplicate keys",
+    "missing runtime data",
+    "redacted errors",
+    "clean EOF",
+    "no document/log file writes",
+    "exact original UTF-16 source spans",
+    "normalized German infinitives",
+    "unsupported Unicode alignment abstention",
+    "owned syntax description strings"
+  ],
+  "limits": "Finite integration smoke; does not establish general grammar accuracy."
+}

@@ -1,0 +1,7 @@
+/workspace/scratch/2a07827fdeed/independent-review/review_consumers.py:322: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  pixels = [(i % image.width, i // image.width) for i, p in enumerate(image.getdata())
+/workspace/scratch/2a07827fdeed/independent-review/review_consumers.py:96: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  pixels = list(image.crop(rectangle).getdata())
+/workspace/scratch/2a07827fdeed/independent-review/review_consumers.py:332: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  count = sum(p[2] > 150 and p[0] < 100 and p[1] < 100 for p in image.getdata())
+{"passed": true, "checks": 2159, "failures": []}

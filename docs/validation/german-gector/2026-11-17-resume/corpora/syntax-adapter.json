@@ -1,0 +1,11 @@
+{
+  "kind": "metadata-only-quality-schema-adapter",
+  "source": "tools/proofing/german_model/syntax_cases_20261117.json",
+  "source_commit": "388bd7451067794b58276d174fe05470aa9994ed",
+  "source_sha256": "6f67e56d9278ea96ef424d837741d23a87a5485206ddc1cc91b83d32af49a811",
+  "adapter": "syntax-56-quality.json",
+  "adapter_sha256": "aaa26c2c9caeb9e4f3744886feccd1691f5253ef803a5013091cbf470a4a47fc",
+  "row_count": 56,
+  "transform": "Rename area to category; preserve row order, id, kind, input, expected and locale exactly.",
+  "all_evaluation_fields_identical": true
+}

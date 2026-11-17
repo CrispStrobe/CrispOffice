@@ -1,0 +1,77 @@
+{
+  "kind": "finite-nominal-vocabulary-repair",
+  "observed_on": "source-frozen56-case syntax panel at43d43061",
+  "added_accepted_surfaces": [
+    "Lernen",
+    "Schuppen"
+  ],
+  "removed_accepted_surfaces": [],
+  "unchanged": "All443925 pinned upstream standard forms and9451 Swiss additions remain byte-identical; Schuppens andLernens were already present.",
+  "tests": {
+    "new_focused": 7,
+    "before_passed": 2,
+    "before_failed": 5,
+    "after_cohort_passed_including_new": 101,
+    "skipped": 0,
+    "original_failing_assertions_unchanged": true,
+    "strict_analysis": true
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/hyphenation/languages-german/4330a0b1254e88615cb4c83e4b3dc2f0810c76d9/wortliste",
+    "bytes": 15663090,
+    "sha256": "55b457fac8e322146853f45bbda59046a55496a3e3deb32d3a88feb908eca243"
+  },
+  "files": [
+    {
+      "file": "after.jsonl.gz",
+      "bytes": 47847,
+      "sha256": "6bf8193b5e64be92bef1322d9baa67e5fa1ff08275f5540ea8604192f62c3aa5"
+    },
+    {
+      "file": "analyze.log.gz",
+      "bytes": 66,
+      "sha256": "626669d9e5aab7dc283de0921d5ad7181aa209fb1a451a313c7c31102ff58273"
+    },
+    {
+      "file": "before-receipt.json.gz",
+      "bytes": 4673,
+      "sha256": "f609e1dcfe7a1dd457cfb7084c4cc16f337122c6dfab244344a4f7f83f4842fc"
+    },
+    {
+      "file": "before.jsonl.gz",
+      "bytes": 5710,
+      "sha256": "42c33bc496cb0b66656c3e6a92043eb9bd5617bbd40cc0adbd305786422ab0d0"
+    },
+    {
+      "file": "format.log.gz",
+      "bytes": 106,
+      "sha256": "c33b5c4d274f77759e943f6582e3b623babf7e8b03714722b848cef76e508d91"
+    },
+    {
+      "file": "generate-check.log.gz",
+      "bytes": 116,
+      "sha256": "4059ad7a68351285a140fc9c0aaa5c62a4bc7189d29e1a6e9f1f3a868b84f132"
+    },
+    {
+      "file": "generate-final-check.log.gz",
+      "bytes": 116,
+      "sha256": "4059ad7a68351285a140fc9c0aaa5c62a4bc7189d29e1a6e9f1f3a868b84f132"
+    },
+    {
+      "file": "generate-final.log.gz",
+      "bytes": 113,
+      "sha256": "8afdc16040cfaa084e66557839662ada60d0472f1f167845ac71d864fa0055a1"
+    },
+    {
+      "file": "generate.log.gz",
+      "bytes": 113,
+      "sha256": "8afdc16040cfaa084e66557839662ada60d0472f1f167845ac71d864fa0055a1"
+    },
+    {
+      "file": "generation-and-test-delta.json.gz",
+      "bytes": 574,
+      "sha256": "873e26e7a24eaff29200fe475ac666758482c039a34248e04dd98e33e9046274"
+    }
+  ],
+  "scope": "Finite independently authored spelling vocabulary only; no productive nominalization inference or new complete dictionary claim. The successful generation check after tests only relocates a source comment; compiled dictionary contents and test assertions are unchanged."
+}

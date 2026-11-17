@@ -1,0 +1,10 @@
+{
+  "reviewed_published_commit": "84283211709fba069564c181476f577c34bd2d64",
+  "reviewed_published_tree": "323b689e2c1d41d7f409d995173129b039c7f8c3",
+  "qualified_source": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+  "non_documentation_tree_unchanged": true,
+  "documentation_changes_since_qualification": 16,
+  "independent_audit_artifacts_verified": 12,
+  "independent_audit_all_artifacts_staged": true,
+  "created_utc": "2026-11-17T18:06:59.998012+00:00"
+}

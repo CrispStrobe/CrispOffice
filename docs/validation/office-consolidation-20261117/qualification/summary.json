@@ -1,0 +1,183 @@
+{
+  "source_commit": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+  "source_tree": "afd7a513dfa91472f58c27ead4d8be3f4b75c262",
+  "started_utc": "2026-11-17T17:50:59.036837+00:00",
+  "finished_utc": "2026-11-17T18:00:05.775485+00:00",
+  "unique_primary_test_files": 191,
+  "previous_180_files_retained": true,
+  "primary_cohorts": {
+    "aot-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 99
+      },
+      "raw_success_count": 99,
+      "substantive_success_count": 99
+    },
+    "editor-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 398
+      },
+      "raw_success_count": 398,
+      "substantive_success_count": 398
+    },
+    "editor-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 186
+      },
+      "raw_success_count": 186,
+      "substantive_success_count": 186
+    },
+    "engine-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [
+        {
+          "matched_case_name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "resolved_suite_path": "/workspace/scratch/2a07827fdeed/quds_office_suite/packages/quds_office_engine/test/pdf_file_test.dart",
+          "suite_id": 816,
+          "test_id": 852
+        },
+        {
+          "matched_case_name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "resolved_suite_path": "/workspace/scratch/2a07827fdeed/quds_office_suite/packages/quds_office_engine/test/pdf_file_test.dart",
+          "suite_id": 816,
+          "test_id": 857
+        }
+      ],
+      "raw_runner_outcomes": {
+        "success": 2234
+      },
+      "raw_success_count": 2234,
+      "substantive_success_count": 2232
+    },
+    "engine-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 390
+      },
+      "raw_success_count": 390,
+      "substantive_success_count": 390
+    },
+    "gector-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 194
+      },
+      "raw_success_count": 194,
+      "substantive_success_count": 194
+    },
+    "harper-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 29
+      },
+      "raw_success_count": 29,
+      "substantive_success_count": 29
+    },
+    "studio-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 13
+      },
+      "raw_success_count": 13,
+      "substantive_success_count": 13
+    }
+  },
+  "primary_substantive_passes": 3541,
+  "raw_primary_successes": 3543,
+  "node_repetitions": {
+    "aot-node": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 99
+      },
+      "raw_success_count": 99,
+      "repetition_comparison": {
+        "method": "Exact multiset comparison of selected VM and Node case identities and outcomes; invocation-local test IDs are ignored.",
+        "missing_or_changed_from_vm": [],
+        "node_case_executions": 99,
+        "passed": true,
+        "unexpected_or_changed_in_node": [],
+        "vm_case_executions": 99
+      },
+      "substantive_success_count": 99
+    },
+    "engine-focused-node": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 387
+      },
+      "raw_success_count": 387,
+      "repetition_comparison": {
+        "method": "Exact multiset comparison of selected VM and Node case identities and outcomes; invocation-local test IDs are ignored.",
+        "missing_or_changed_from_vm": [],
+        "node_case_executions": 387,
+        "passed": true,
+        "unexpected_or_changed_in_node": [],
+        "vm_case_executions": 387
+      },
+      "substantive_success_count": 387
+    }
+  },
+  "node_substantive_repetitions": 486,
+  "python_controls": {
+    "tests_run": 117,
+    "substantive_success_count": 117,
+    "skipped_cases": [],
+    "passed": true
+  },
+  "strict_analysis_scopes": {
+    "aot": 16,
+    "editor": 22,
+    "engine": 83,
+    "gector": 29,
+    "harper": 10,
+    "studio": 29
+  },
+  "handwritten_format_paths": 101,
+  "input_integrity": {
+    "dependencies_unchanged": true,
+    "harness_unchanged": true,
+    "native_fixtures_unchanged": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "system_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "analysis_config_restored": true,
+  "source_matches_frozen_commit": true,
+  "runtime_metadata": {
+    "channel": "[user-branch]",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "flutterVersion": "3.47.8",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkVersion": "3.47.8",
+    "repositoryUrl": "https://github.com/flutter/flutter.git"
+  },
+  "lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "all_passed": true,
+  "ci_endpoints_queried_or_awaited": false
+}

@@ -1,0 +1,43 @@
+{
+  "source_head": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+  "reviewed_utc": "2026-11-17T17:52:38.576436+00:00",
+  "method": "Direct visual inspection of seven final Poppler96dpi rasters. Numerical geometry, colors, fields and formatting are separately asserted in the consumer receipt.",
+  "passed": true,
+  "images": {
+    "paragraph-distinct-tab-configurations": {
+      "file": "rasters/paragraph-distinct-tab-configurations.png",
+      "sha256": "e611a965644172cf52ba5814c0a7e4bee4bd1bbeda336bb080c9c5e0b2aa84fc",
+      "observed": "Nine paragraphs visibly retain the two left positions, right and center alignment, dot/hyphen/underscore leaders, a plain gap, and repeated first alignment. No overlap or clipping."
+    },
+    "table-minimum-height-keeps-multiline-content": {
+      "file": "rasters/table-minimum-height-keeps-multiline-content.png",
+      "sha256": "10017b6e2801c86e17aaea16a58a5b1391c4a8181c838c2fb68eb0409672b75b",
+      "observed": "All four authored lines remain visible in the expanded first row. The second row visibly reserves additional height, followed by TailRow and AfterTable without clipping."
+    },
+    "table-normalized-cell-colors-and-borders": {
+      "file": "rasters/table-normalized-cell-colors-and-borders.png",
+      "sha256": "371791ad23a36fcf28fd8066c5ca60c39996e0bdb843c8542926ae54cc8a9fec",
+      "observed": "Blue and orange cell backgrounds remain distinct. InvalidFill is white with its border; PlainCell stays white with no exposed bottom/right border."
+    },
+    "paragraph-distinct-shading-borders": {
+      "file": "rasters/paragraph-distinct-shading-borders.png",
+      "sha256": "1375b447c5537d12176bdea204c526942e39bd3c001ee2e1d490046d05ff6627",
+      "observed": "Red and green fills and blue/magenta borders remain distinct. PlainUnshaded is unaffected."
+    },
+    "page-field-styled-footer": {
+      "file": "rasters/page-field-styled-footer.png",
+      "sha256": "60fa115971cf943bd08c67675875dd67a9a3e92a2883af81f7504a496c2e99d5",
+      "observed": "The inspected second page displays the current page number2 and full title suffix in bold blue text, without truncation."
+    },
+    "section-heading-layout": {
+      "file": "rasters/section-heading-layout.png",
+      "sha256": "43da543393c73f1c31e84b858abf30315462eb3cf4064268e202af5dc5a5beea",
+      "observed": "Both headings align at the right edge, preserving their visible line spacing."
+    },
+    "paragraph-rtl-indent": {
+      "file": "rasters/paragraph-rtl-indent.png",
+      "sha256": "0b359f3b38a5f23bf7b02c53f10e6606ed0404dd56ab3dbaa4b45c8268373f12",
+      "observed": "Right-aligned paragraphs retain their shared edge; left-aligned paragraphs remain at the separate intended left indent."
+    }
+  }
+}

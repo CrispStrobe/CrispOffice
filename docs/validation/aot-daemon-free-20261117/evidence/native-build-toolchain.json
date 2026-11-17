@@ -1,0 +1,12 @@
+{
+  "cxx": "g++ (Debian 14.2.0-19) 14.2.0",
+  "cmake": "cmake version 4.4.5",
+  "bison": "bison (GNU Bison) 3.8.2",
+  "flex": "flex 2.6.4",
+  "m4": "m4 (GNU M4) 1.4.19",
+  "buildType": "Release",
+  "jobs": 4,
+  "headless": true,
+  "aotRevision": "0d591d972c7bb2729f4764d3bc32611ea6fd142a",
+  "nlpBaseRevision": "244b3d1f9a09e4a81e75ea83c3b55b209c663503"
+}

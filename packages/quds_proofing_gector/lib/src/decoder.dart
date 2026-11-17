@@ -62,6 +62,7 @@ final class GectorPass {
     required Iterable<String> editedWords,
     required this.inferenceMicroseconds,
     this.sourceStart = 0,
+    this.reusedInference = false,
   }) : words = List<String>.unmodifiable(words),
        tags = List<GectorTag>.unmodifiable(tags),
        editedWords = List<String>.unmodifiable(editedWords);
@@ -70,6 +71,10 @@ final class GectorPass {
   final List<GectorTag> tags;
   final List<String> editedWords;
   final int inferenceMicroseconds;
+
+  /// True when validated raw tags were reused within this request. Guards and
+  /// source projection still ran for this pass; no native forward was made.
+  final bool reusedInference;
 
   /// Original request-relative UTF-16 start of this pass's segment.
   final int sourceStart;
@@ -95,7 +100,14 @@ final class GectorDecodedText {
   final GectorStopReason stopReason;
   final bool guarded;
   final int segmentCount;
-  int get forwardTokens =>
+  int get forwardTokens => passes.fold(
+    0,
+    (total, pass) => total + (pass.reusedInference ? 0 : pass.input.tokenCount),
+  );
+  int get forwardCount => passes.where((pass) => !pass.reusedInference).length;
+  int get reusedPassCount =>
+      passes.where((pass) => pass.reusedInference).length;
+  int get decodedTokens =>
       passes.fold(0, (total, pass) => total + pass.input.tokenCount);
   bool get complete => stopReason == GectorStopReason.stable;
 }
@@ -109,7 +121,14 @@ final class GectorDecoder {
     required this.backend,
     required GectorGermanGuards this.guards,
     GectorDecodeOptions? options,
-  }) : options = options ?? GectorDecodeOptions();
+  }) : options = options ?? GectorDecodeOptions() {
+    if (this.options.segmentation?.inferenceReuse != null &&
+        backend is! GectorDeterministicBackend) {
+      throw ArgumentError(
+        'Inference reuse requires an explicitly deterministic GECToR backend.',
+      );
+    }
+  }
 
   GectorDecoder.reference({
     required this.configuration,
@@ -163,6 +182,10 @@ final class GectorDecoder {
       maximumTokens: options.maximumTokens,
       maximumTextCodeUnits: options.maximumTextCodeUnits,
     ).plan(text);
+    final tagCache = switch (segmentation.inferenceReuse) {
+      final reuse? => _RequestTagCache(reuse),
+      null => null,
+    };
     var forwardTokens = 0;
     void chargeForward(GectorPreparedInput input) {
       forwardTokens += input.tokenCount;
@@ -185,6 +208,7 @@ final class GectorDecoder {
         cancellationPoint: cancellationPoint,
         sourceStart: segment.start,
         beforeForward: chargeForward,
+        tagCache: tagCache,
       );
       passes.addAll(result.passes);
       if (!result.complete) {
@@ -236,6 +260,7 @@ final class GectorDecoder {
     required void Function() cancellationPoint,
     int sourceStart = 0,
     void Function(GectorPreparedInput)? beforeForward,
+    _RequestTagCache? tagCache,
   }) async {
     final source = GectorSourceText(text, configuration);
     var words = source.words(source.plain);
@@ -261,15 +286,37 @@ final class GectorDecoder {
         words,
         maximumTokens: options.maximumTokens,
       );
-      beforeForward?.call(input);
-      final timer = Stopwatch()..start();
-      final logits = await backend.forward(input);
-      timer.stop();
+      // Include exact words as well as prepared arrays: different source words
+      // can share an UNK ID, while guard decisions depend on their spelling.
+      final cacheKey = tagCache == null
+          ? null
+          : jsonEncode(<Object>[
+              words,
+              input.inputIds,
+              input.attentionMask,
+              input.firstSubwordIndices,
+            ]);
+      final cachedTags = cacheKey == null ? null : tagCache!.get(cacheKey);
+      late final List<GectorTag> tags;
+      var inferenceMicroseconds = 0;
+      if (cachedTags != null) {
+        tags = cachedTags;
+      } else {
+        beforeForward?.call(input);
+        final timer = Stopwatch()..start();
+        final logits = await backend.forward(input);
+        timer.stop();
+        inferenceMicroseconds = timer.elapsedMicroseconds;
+        cancellationPoint();
+        logits.validate(input, configuration.labels.length);
+        tags = selectTags(input, logits);
+      }
       cancellationPoint();
-      logits.validate(input, configuration.labels.length);
-      final tags = selectTags(input, logits);
       if (tags.length != words.length + 1) {
         throw const FormatException('GECToR word/tag alignment is incomplete.');
+      }
+      if (cacheKey != null && cachedTags == null) {
+        tagCache!.put(cacheKey, input.tokenCount, tags);
       }
       final edited = <String>[];
       for (var i = 0; i < tags.length; i++) {
@@ -307,8 +354,9 @@ final class GectorDecoder {
           input: input,
           tags: tags,
           editedWords: newWords,
-          inferenceMicroseconds: timer.elapsedMicroseconds,
+          inferenceMicroseconds: inferenceMicroseconds,
           sourceStart: sourceStart,
+          reusedInference: cachedTags != null,
         ),
       );
       if (_equalWords(newWords, words)) {
@@ -435,5 +483,26 @@ final class GectorDecoder {
       }
       start = end;
     }
+  }
+}
+
+/// Bounded for one correct() call. Entries contain no mutable backend buffers,
+/// source offsets, guard decisions or personal-vocabulary results.
+final class _RequestTagCache {
+  _RequestTagCache(this.options);
+  final GectorInferenceReuseOptions options;
+  final Map<String, List<GectorTag>> _tags = <String, List<GectorTag>>{};
+  var _tokens = 0;
+
+  List<GectorTag>? get(String key) => _tags[key];
+
+  void put(String key, int tokenCount, List<GectorTag> tags) {
+    if (_tags.containsKey(key) ||
+        _tags.length >= options.maximumCachedInputs ||
+        _tokens + tokenCount > options.maximumCachedTokens) {
+      return;
+    }
+    _tags[key] = List<GectorTag>.unmodifiable(tags);
+    _tokens += tokenCount;
   }
 }

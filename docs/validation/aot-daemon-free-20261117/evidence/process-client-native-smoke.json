@@ -1,0 +1,288 @@
+{
+  "passed": true,
+  "elapsedMilliseconds": 850,
+  "transport": "AotClient.local / AotProcessTransport",
+  "syntheticTextOnly": true,
+  "networkEndpoint": null,
+  "workingDirectoryOutputs": [],
+  "proofing": [
+    {
+      "text": "Ich geht.",
+      "passed": true,
+      "status": "success",
+      "findings": [
+        {
+          "rule": "aot.de.subject-verb-agreement",
+          "original": "geht",
+          "replacements": [
+            "gehe"
+          ],
+          "start": 4,
+          "end": 8
+        }
+      ]
+    },
+    {
+      "text": "mit den Hund",
+      "passed": true,
+      "status": "success",
+      "findings": [
+        {
+          "rule": "aot.de.preposition-case",
+          "original": "den",
+          "replacements": [
+            "dem"
+          ],
+          "start": 4,
+          "end": 7
+        }
+      ]
+    },
+    {
+      "text": "Der kleines Hund schläft.",
+      "passed": true,
+      "status": "success",
+      "findings": [
+        {
+          "rule": "aot.de.adjective-agreement",
+          "original": "kleines",
+          "replacements": [
+            "kleine"
+          ],
+          "start": 4,
+          "end": 11
+        }
+      ]
+    },
+    {
+      "text": "Ich gehe.",
+      "passed": true,
+      "status": "success",
+      "findings": []
+    },
+    {
+      "text": "mit dem Hund",
+      "passed": true,
+      "status": "success",
+      "findings": []
+    },
+    {
+      "text": "Der kleine Hund schläft.",
+      "passed": true,
+      "status": "success",
+      "findings": []
+    },
+    {
+      "text": "Es kommen Gäste.",
+      "passed": true,
+      "status": "success",
+      "findings": []
+    },
+    {
+      "text": "Sie gehen.",
+      "passed": true,
+      "status": "success",
+      "findings": []
+    },
+    {
+      "text": "Ich versuche zu helfen.",
+      "passed": true,
+      "status": "success",
+      "findings": []
+    },
+    {
+      "text": "Ich versuche, zu helfen.",
+      "passed": true,
+      "status": "success",
+      "findings": []
+    }
+  ],
+  "analysis": [
+    {
+      "text": "Der kleine Hund schläft.",
+      "language": "german",
+      "passed": true,
+      "fullyAligned": true,
+      "tokens": [
+        {
+          "sourceText": "Der",
+          "analysisText": "Der",
+          "start": 0,
+          "end": 3
+        },
+        {
+          "sourceText": "kleine",
+          "analysisText": "kleine",
+          "start": 4,
+          "end": 10
+        },
+        {
+          "sourceText": "Hund",
+          "analysisText": "Hund",
+          "start": 11,
+          "end": 15
+        },
+        {
+          "sourceText": "schläft",
+          "analysisText": "schläft",
+          "start": 16,
+          "end": 23
+        },
+        {
+          "sourceText": ".",
+          "analysisText": ".",
+          "start": 23,
+          "end": 24
+        }
+      ]
+    },
+    {
+      "text": "Мама мыла раму.",
+      "language": "russian",
+      "passed": true,
+      "fullyAligned": true,
+      "tokens": [
+        {
+          "sourceText": "Мама",
+          "analysisText": "Мама",
+          "start": 0,
+          "end": 4
+        },
+        {
+          "sourceText": "мыла",
+          "analysisText": "мыла",
+          "start": 5,
+          "end": 9
+        },
+        {
+          "sourceText": "раму",
+          "analysisText": "раму",
+          "start": 10,
+          "end": 14
+        },
+        {
+          "sourceText": ".",
+          "analysisText": ".",
+          "start": 14,
+          "end": 15
+        }
+      ]
+    },
+    {
+      "text": "Ich versuche zu helfen.",
+      "language": "german",
+      "passed": true,
+      "fullyAligned": true,
+      "tokens": [
+        {
+          "sourceText": "Ich",
+          "analysisText": "Ich",
+          "start": 0,
+          "end": 3
+        },
+        {
+          "sourceText": "versuche",
+          "analysisText": "versuche",
+          "start": 4,
+          "end": 12
+        },
+        {
+          "sourceText": "zu",
+          "analysisText": "zu",
+          "start": 13,
+          "end": 15
+        },
+        {
+          "sourceText": "helfen",
+          "analysisText": "zu-helfen",
+          "start": 16,
+          "end": 22
+        },
+        {
+          "sourceText": ".",
+          "analysisText": ".",
+          "start": 22,
+          "end": 23
+        }
+      ]
+    },
+    {
+      "text": "Ich versuche, zu helfen.",
+      "language": "german",
+      "passed": true,
+      "fullyAligned": true,
+      "tokens": [
+        {
+          "sourceText": "Ich",
+          "analysisText": "Ich",
+          "start": 0,
+          "end": 3
+        },
+        {
+          "sourceText": "versuche",
+          "analysisText": "versuche",
+          "start": 4,
+          "end": 12
+        },
+        {
+          "sourceText": ",",
+          "analysisText": ",",
+          "start": 12,
+          "end": 13
+        },
+        {
+          "sourceText": "zu",
+          "analysisText": "zu",
+          "start": 14,
+          "end": 16
+        },
+        {
+          "sourceText": "helfen",
+          "analysisText": "zu-helfen",
+          "start": 17,
+          "end": 23
+        },
+        {
+          "sourceText": ".",
+          "analysisText": ".",
+          "start": 23,
+          "end": 24
+        }
+      ]
+    }
+  ],
+  "morphology": [
+    {
+      "word": "Hund",
+      "language": "german",
+      "passed": true,
+      "cacheReused": true,
+      "lemmas": [
+        "HUND"
+      ],
+      "paradigmForms": 9
+    },
+    {
+      "word": "кошки",
+      "language": "russian",
+      "passed": true,
+      "cacheReused": true,
+      "lemmas": [
+        "КОШКА",
+        "КОШКА"
+      ],
+      "paradigmForms": 26
+    },
+    {
+      "word": "goes",
+      "language": "english",
+      "passed": true,
+      "cacheReused": true,
+      "lemmas": [
+        "GO",
+        "GO"
+      ],
+      "paradigmForms": 7
+    }
+  ]
+}
