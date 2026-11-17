@@ -56,6 +56,140 @@ def semantics(value):
     return value
 
 
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
+def work_counts(decoded, where):
+    require(isinstance(decoded, dict), f'{where}: missing actual decoder result')
+    passes = decoded.get('passes')
+    require(isinstance(passes, list), f'{where}: missing actual decoder passes')
+    require(decoded.get('complete') is True and decoded.get('stop_reason') == 'stable',
+            f'{where}: decoder did not complete')
+    for item in passes:
+        require(type(item.get('source_start')) is int and item['source_start'] >= 0,
+                f'{where}: invalid actual source start')
+        require(type(item.get('tokens')) is int and 2 <= item['tokens'] <= 512,
+                f'{where}: invalid actual sequence length')
+        require(item.get('reused_inference') is False,
+                f'{where}: reuse is disabled for this sweep')
+        fingerprint = item.get('prediction_input_sha256')
+        require(isinstance(fingerprint, str) and len(fingerprint) == 64 and
+                all(c in '0123456789abcdef' for c in fingerprint),
+                f'{where}: missing actual prepared-input identity')
+    expected = {
+        'pass_count': len(passes),
+        'forward_count': len(passes),
+        'forward_tokens': sum(p['tokens'] for p in passes),
+        'decoded_tokens': sum(p['tokens'] for p in passes),
+        'reused_pass_count': 0,
+    }
+    for key, value in expected.items():
+        require(type(decoded.get(key)) is int and decoded[key] == value,
+                f'{where}.{key}: does not reconstruct from actual passes')
+    return passes
+
+
+def complete_source_work(decoded, planned, source, where):
+    passes = work_counts(decoded, where)
+    boundaries = {0}
+    extent = 0
+    for character in source:
+        extent += len(character.encode('utf-16-le')) // 2
+        boundaries.add(extent)
+    cursor = 0
+    for segment in planned:
+        start, end, tokens = (segment.get(k) for k in ('start', 'end', 'tokens'))
+        require(type(start) is int and type(end) is int and start == cursor and
+                start in boundaries and end in boundaries and end >= start,
+                f'{where}: plan is not a complete UTF-16 source partition')
+        require(type(tokens) is int and 2 < tokens <= 512,
+                f'{where}: this fixed sweep expects nonempty modeled segments')
+        cursor = end
+    require(cursor == extent and len(planned) > 0, f'{where}: source tail is uncovered')
+    require(decoded.get('segment_count') == len(planned),
+            f'{where}: actual segment count differs from plan')
+    by_start = {p['start']:p for p in planned}
+    first_passes = {}
+    previous_start = -1
+    for item in passes:
+        start = item['source_start']
+        require(start in by_start and start >= previous_start,
+                f'{where}: actual pass is outside the ordered source plan')
+        first_passes.setdefault(start, item)
+        previous_start = start
+    require(set(first_passes) == set(by_start),
+            f'{where}: actual forwards do not cover every planned source segment')
+    for start, item in first_passes.items():
+        require(item['tokens'] == by_start[start]['tokens'],
+                f'{where}: actual initial encoding differs from planned tokens')
+    return len({item['prediction_input_sha256'] for item in first_passes.values()})
+
+
+def audit_arm_evidence(report, comparator):
+    """Reconstruct aggregate timing, actual work counters and source coverage."""
+    samples = []
+    for row in report['cases']:
+        if row['status'] == 'success' and row['tokens_first_pass'] <= 64:
+            samples.extend(row['timing']['samples_ms'])
+    for row in report['long_complete_check_probes']:
+        if row['token_budget'] == 64:
+            samples.extend(row['timing']['samples_ms'])
+    aggregate = comparator.validate_timing(report['warm_checks_up_to_64_wordpieces'],
+                                          'short aggregate', len(samples))
+    require(aggregate == samples, 'Short aggregate does not match its actual case/probe samples')
+    budgets = {
+        'p95_at_most_500_ms': report['warm_checks_up_to_64_wordpieces']['p95_ms'] <= 500,
+        'peak_rss_at_most_768_mib': report['peak_process_rss_bytes'] <= 768 * 1024 * 1024,
+        'gguf_at_most_160_mib': report['model']['bytes'] <= 160 * 1024 * 1024,
+    }
+    require(all(report['engineering_budgets'].get(k) is v for k,v in budgets.items()),
+            'Engineering-budget flags do not match recorded measurements')
+    covered = counted_without_plan = 0
+    for cohort in COHORTS:
+        for row in report[cohort]:
+            where = f'{cohort}.{row["id"]}'
+            if row['status'] != 'success':
+                # Unsupported/rejected requests have no invented zero-forward
+                # coverage claim. Their retained diagnostics still participate
+                # in exact cross-arm semantic comparison.
+                continue
+            planned = row.get('initial_segments')
+            if planned is None:
+                work_counts(row.get('decoder'), where)
+                counted_without_plan += 1
+                continue
+            require(row.get('source_coverage_complete') is True,
+                    f'{where}: planning coverage was not complete')
+            require(row.get('source_code_units') == len(row['input'].encode('utf-16-le')) // 2,
+                    f'{where}: wrong original UTF-16 extent')
+            require(row.get('initial_segment_count') == len(planned) and
+                    row.get('initial_model_tokens_total') == sum(p['tokens'] for p in planned),
+                    f'{where}: planned segment/token totals do not reconstruct')
+            if 'decoder_samples' in row:
+                require(len(row['decoder_samples']) == 3 and
+                        row['decoder'] == row['decoder_samples'][0],
+                        f'{where}: first result does not match retained sample diagnostics')
+                records = [row['warmup']['decoder'], *row['decoder_samples']]
+            else:
+                records = [row['decoder']]
+            for i, decoded in enumerate(records):
+                distinct = complete_source_work(decoded, planned, row['input'], f'{where}.sample-{i}')
+                require(row.get('initial_distinct_model_inputs') == distinct,
+                        f'{where}: actual initial prepared-input diversity differs from plan')
+                covered += 1
+    return {
+        'short_sample_count':len(samples), 'short_aggregate_reconstructed':True,
+        'engineering_budget_flags_reconstructed':True,
+        'complete_source_decoder_records_audited':covered,
+        'additional_control_decoder_counters_audited_without_planning_records':counted_without_plan,
+        'work_counters_reconstructed':True,
+        'actual_initial_passes_cover_all_admitted_planned_segments':True,
+        'timed_output_stability_remains_producer_claim':True,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ('source-root', 'dart', 'aot', 'build-receipt', 'pack', 'reference', 'output-dir'):
@@ -151,6 +285,7 @@ def main():
                 for item in report[cohort]:
                     if 'timing' in item:
                         comparator.validate_timing(item['timing'], f'{name}.{cohort}.{item["id"]}', 3)
+            row['independent_evidence_audit'] = audit_arm_evidence(report, comparator)
             row['summary'] = {'setup_ms': report['setup_ms'], 'peak_rss_mib': report['peak_process_rss_bytes'] / 1024 / 1024, 'short_timing': report['warm_checks_up_to_64_wordpieces'], 'engineering_budgets': report['engineering_budgets'], 'exact_de_DE_error_fixes': sum(r['language'] == 'de-DE' and r['kind'] == 'error' and r['matches_expected'] for r in report['cases']), 'clean_de_DE_unchanged': sum(r['language'] == 'de-DE' and r['kind'] == 'clean' and r['corrected'] == r['input'] and not r['findings'] for r in report['cases']), 'probes': {cohort: [{'id':r['id'], 'tokens':r['tokens_first_pass'], 'segments':r['initial_segment_count'], 'timing':r['timing'], 'decoder_samples':r['decoder_samples']} for r in report[cohort]] for cohort in ('long_complete_check_probes','segmented_long_complete_check_probes','varied_segmented_long_complete_check_probes')}}
             save()
             print('DONE', name, json.dumps({'short_p95_ms': row['summary']['short_timing']['p95_ms'], 'rss_mib': row['summary']['peak_rss_mib']}), flush=True)
