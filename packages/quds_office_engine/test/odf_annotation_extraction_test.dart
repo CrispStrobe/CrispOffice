@@ -212,9 +212,8 @@ void main() {
 
   test('annotations still count toward the package byte budget', () async {
     final xml = _document(
-      '<office:annotation><text:p>' +
-          'x' * 4096 +
-          '</text:p></office:annotation><text:p>A</text:p>',
+      '<office:annotation><text:p>${'x' * 4096}'
+      '</text:p></office:annotation><text:p>A</text:p>',
     );
     await expectLater(
       officeSearchText(
