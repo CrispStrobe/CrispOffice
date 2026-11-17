@@ -1,0 +1,1051 @@
+{
+  "kind": "quds-request-local-inference-reuse-results",
+  "implementation_commit": "143bad2f69976c331ac98ea7b4adbaec430af916",
+  "observed_docs_only_head": "ce417b5ee0f43f6317f49ae68d1bdcb793c35156",
+  "actual_aot_sha256": "04e236c1872ddad67beab2e2f266bee576206fea10ec2712c3872948a1cde17d",
+  "all_runs_serial_after_local_tests_and_compilation": true,
+  "all_requested_checks_passed": true,
+  "archive": "final-native-evidence.tar.xz",
+  "index": "final-native-evidence.index.json",
+  "serial_receipt": "native/serial-receipt.json",
+  "runs": {
+    "single": {
+      "receipt": "native/single.json",
+      "receipt_sha256": "cef685e2b81cb5485718b22b0d32ae0553a0b1f328e69576a3cf1ab443cccaac",
+      "completed": true,
+      "all_requested_checks_passed": true,
+      "decode_configuration": {
+        "mode": "single-sequence",
+        "maximum_passes": 5,
+        "maximum_tokens_per_sequence": 512,
+        "maximum_text_code_units": 32768,
+        "keep_confidence": 0.0,
+        "minimum_error_probability": 0.0,
+        "segmentation": null,
+        "token_accounting": {
+          "tokens_first_pass": "Logical original-source encoding with one CLS/SEP pair, retained for the frozen comparison. Counts above the native limit are summed from individual word encodings without encoding an oversized sequence.",
+          "initial_model_tokens_total": "Sum of the actual planned initial sequence lengths. Each segment has its own CLS/SEP and source-terminal normalization.",
+          "initial_segments": "Complete original-source UTF-16 partition planned outside the measurement. Full worker planning remains inside each timed check.",
+          "decoder": "Actual worker passes and source positions. Forward counts/tokens exclude reused raw tags; decoded tokens include all logical passes. The request cache is discarded before the next timed sample."
+        }
+      },
+      "setup_ms": 3842.459,
+      "peak_process_rss_mib": 364.9296875,
+      "short_timing": {
+        "median_ms": 29.015,
+        "p95_ms": 170.137,
+        "maximum_ms": 365.986
+      },
+      "short_sample_count": 87,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      },
+      "frozen_quality": {
+        "de_DE_exact_error_fixes": 6,
+        "supported_clean_unchanged": 10
+      },
+      "historical_controls_passed": 8,
+      "segmentation_controls_passed": 0,
+      "probes": [
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-64",
+          "logical_tokens": 61,
+          "initial_model_tokens_total": 61,
+          "segment_count": 1,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              170.137,
+              216.223,
+              243.541
+            ],
+            "median_ms": 216.223,
+            "p95_ms": 243.541,
+            "maximum_ms": 243.541
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-128",
+          "logical_tokens": 126,
+          "initial_model_tokens_total": 126,
+          "segment_count": 1,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              333.109,
+              346.058,
+              304.861
+            ],
+            "median_ms": 333.109,
+            "p95_ms": 346.058,
+            "maximum_ms": 346.058
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 126,
+              "decoded_tokens": 126,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 126,
+              "decoded_tokens": 126,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 126,
+              "decoded_tokens": 126,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-256",
+          "logical_tokens": 256,
+          "initial_model_tokens_total": 256,
+          "segment_count": 1,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              656.583,
+              674.62,
+              777.349
+            ],
+            "median_ms": 674.62,
+            "p95_ms": 777.349,
+            "maximum_ms": 777.349
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 256,
+              "decoded_tokens": 256,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 256,
+              "decoded_tokens": 256,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 256,
+              "decoded_tokens": 256,
+              "reused_pass_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    "segmented": {
+      "receipt": "native/segmented.json",
+      "receipt_sha256": "8cb827cff38804037326a00870ae9c3cb08346dc60a9fbf31cdb1d567b323659",
+      "completed": true,
+      "all_requested_checks_passed": true,
+      "decode_configuration": {
+        "mode": "sentence-segments",
+        "maximum_passes": 5,
+        "maximum_tokens_per_sequence": 512,
+        "maximum_text_code_units": 32768,
+        "keep_confidence": 0.0,
+        "minimum_error_probability": 0.0,
+        "segmentation": {
+          "target_tokens": 64,
+          "maximum_segments": 32,
+          "maximum_total_initial_tokens": 4096,
+          "maximum_total_forward_tokens": 20480,
+          "inference_reuse": null
+        },
+        "token_accounting": {
+          "tokens_first_pass": "Logical original-source encoding with one CLS/SEP pair, retained for the frozen comparison. Counts above the native limit are summed from individual word encodings without encoding an oversized sequence.",
+          "initial_model_tokens_total": "Sum of the actual planned initial sequence lengths. Each segment has its own CLS/SEP and source-terminal normalization.",
+          "initial_segments": "Complete original-source UTF-16 partition planned outside the measurement. Full worker planning remains inside each timed check.",
+          "decoder": "Actual worker passes and source positions. Forward counts/tokens exclude reused raw tags; decoded tokens include all logical passes. The request cache is discarded before the next timed sample."
+        }
+      },
+      "setup_ms": 3284.082,
+      "peak_process_rss_mib": 366.5625,
+      "short_timing": {
+        "median_ms": 27.856,
+        "p95_ms": 65.58,
+        "maximum_ms": 285.668
+      },
+      "short_sample_count": 87,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      },
+      "frozen_quality": {
+        "de_DE_exact_error_fixes": 6,
+        "supported_clean_unchanged": 10
+      },
+      "historical_controls_passed": 8,
+      "segmentation_controls_passed": 6,
+      "probes": [
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-64",
+          "logical_tokens": 61,
+          "initial_model_tokens_total": 61,
+          "segment_count": 1,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              142.642,
+              184.781,
+              285.668
+            ],
+            "median_ms": 184.781,
+            "p95_ms": 285.668,
+            "maximum_ms": 285.668
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-128",
+          "logical_tokens": 126,
+          "initial_model_tokens_total": 128,
+          "segment_count": 3,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              803.141,
+              366.213,
+              370.341
+            ],
+            "median_ms": 370.341,
+            "p95_ms": 803.141,
+            "maximum_ms": 803.141
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 3,
+              "pass_count": 3,
+              "forward_count": 3,
+              "forward_tokens": 128,
+              "decoded_tokens": 128,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 3,
+              "pass_count": 3,
+              "forward_count": 3,
+              "forward_tokens": 128,
+              "decoded_tokens": 128,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 3,
+              "pass_count": 3,
+              "forward_count": 3,
+              "forward_tokens": 128,
+              "decoded_tokens": 128,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-256",
+          "logical_tokens": 256,
+          "initial_model_tokens_total": 260,
+          "segment_count": 5,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              781.42,
+              1000.265,
+              721.657
+            ],
+            "median_ms": 781.42,
+            "p95_ms": 1000.265,
+            "maximum_ms": 1000.265
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 5,
+              "pass_count": 5,
+              "forward_count": 5,
+              "forward_tokens": 260,
+              "decoded_tokens": 260,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 5,
+              "pass_count": 5,
+              "forward_count": 5,
+              "forward_tokens": 260,
+              "decoded_tokens": 260,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 5,
+              "pass_count": 5,
+              "forward_count": 5,
+              "forward_tokens": 260,
+              "decoded_tokens": 260,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "segmented_long_complete_check_probes",
+          "id": "segmented-repeated-sentences-up-to-640",
+          "logical_tokens": 636,
+          "initial_model_tokens_total": 646,
+          "segment_count": 11,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              2292.474,
+              1666.034,
+              2022.762
+            ],
+            "median_ms": 2022.762,
+            "p95_ms": 2292.474,
+            "maximum_ms": 2292.474
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 646,
+              "decoded_tokens": 646,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 646,
+              "decoded_tokens": 646,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 646,
+              "decoded_tokens": 646,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "segmented_long_complete_check_probes",
+          "id": "segmented-repeated-sentences-up-to-1280",
+          "logical_tokens": 1276,
+          "initial_model_tokens_total": 1297,
+          "segment_count": 22,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              3614.675,
+              3983.515,
+              3526.958
+            ],
+            "median_ms": 3614.675,
+            "p95_ms": 3983.515,
+            "maximum_ms": 3983.515
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 22,
+              "pass_count": 22,
+              "forward_count": 22,
+              "forward_tokens": 1297,
+              "decoded_tokens": 1297,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 22,
+              "pass_count": 22,
+              "forward_count": 22,
+              "forward_tokens": 1297,
+              "decoded_tokens": 1297,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 22,
+              "pass_count": 22,
+              "forward_count": 22,
+              "forward_tokens": 1297,
+              "decoded_tokens": 1297,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "varied_segmented_long_complete_check_probes",
+          "id": "varied-sentences-up-to-640",
+          "logical_tokens": 638,
+          "initial_model_tokens_total": 648,
+          "segment_count": 11,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              1852.574,
+              1980.245,
+              2016.871
+            ],
+            "median_ms": 1980.245,
+            "p95_ms": 2016.871,
+            "maximum_ms": 2016.871
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 648,
+              "decoded_tokens": 648,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 648,
+              "decoded_tokens": 648,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 648,
+              "decoded_tokens": 648,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "varied_segmented_long_complete_check_probes",
+          "id": "varied-sentences-up-to-1280",
+          "logical_tokens": 1279,
+          "initial_model_tokens_total": 1299,
+          "segment_count": 21,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              3812.603,
+              3656.367,
+              3544.353
+            ],
+            "median_ms": 3656.367,
+            "p95_ms": 3812.603,
+            "maximum_ms": 3812.603
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 21,
+              "pass_count": 21,
+              "forward_count": 21,
+              "forward_tokens": 1299,
+              "decoded_tokens": 1299,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 21,
+              "pass_count": 21,
+              "forward_count": 21,
+              "forward_tokens": 1299,
+              "decoded_tokens": 1299,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 21,
+              "pass_count": 21,
+              "forward_count": 21,
+              "forward_tokens": 1299,
+              "decoded_tokens": 1299,
+              "reused_pass_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    "reuse": {
+      "receipt": "native/reuse.json",
+      "receipt_sha256": "001da25dbf26f226df20a465c265e2b061889f0efd441af12bb1ceae6eb398c2",
+      "completed": true,
+      "all_requested_checks_passed": true,
+      "decode_configuration": {
+        "mode": "sentence-segments",
+        "maximum_passes": 5,
+        "maximum_tokens_per_sequence": 512,
+        "maximum_text_code_units": 32768,
+        "keep_confidence": 0.0,
+        "minimum_error_probability": 0.0,
+        "segmentation": {
+          "target_tokens": 64,
+          "maximum_segments": 32,
+          "maximum_total_initial_tokens": 4096,
+          "maximum_total_forward_tokens": 20480,
+          "inference_reuse": {
+            "scope": "one complete request",
+            "maximum_cached_inputs": 32,
+            "maximum_cached_tokens": 2048,
+            "backend_capability": "GectorDeterministicBackend",
+            "retained_values": "immutable validated selected raw tags"
+          }
+        },
+        "token_accounting": {
+          "tokens_first_pass": "Logical original-source encoding with one CLS/SEP pair, retained for the frozen comparison. Counts above the native limit are summed from individual word encodings without encoding an oversized sequence.",
+          "initial_model_tokens_total": "Sum of the actual planned initial sequence lengths. Each segment has its own CLS/SEP and source-terminal normalization.",
+          "initial_segments": "Complete original-source UTF-16 partition planned outside the measurement. Full worker planning remains inside each timed check.",
+          "decoder": "Actual worker passes and source positions. Forward counts/tokens exclude reused raw tags; decoded tokens include all logical passes. The request cache is discarded before the next timed sample."
+        }
+      },
+      "setup_ms": 3603.177,
+      "peak_process_rss_mib": 387.2421875,
+      "short_timing": {
+        "median_ms": 24.147,
+        "p95_ms": 127.197,
+        "maximum_ms": 304.46
+      },
+      "short_sample_count": 87,
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      },
+      "frozen_quality": {
+        "de_DE_exact_error_fixes": 6,
+        "supported_clean_unchanged": 10
+      },
+      "historical_controls_passed": 8,
+      "segmentation_controls_passed": 6,
+      "probes": [
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-64",
+          "logical_tokens": 61,
+          "initial_model_tokens_total": 61,
+          "segment_count": 1,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              130.084,
+              129.9,
+              127.197
+            ],
+            "median_ms": 129.9,
+            "p95_ms": 130.084,
+            "maximum_ms": 130.084
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 1,
+              "pass_count": 1,
+              "forward_count": 1,
+              "forward_tokens": 61,
+              "decoded_tokens": 61,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-128",
+          "logical_tokens": 126,
+          "initial_model_tokens_total": 128,
+          "segment_count": 3,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              172.169,
+              150.573,
+              150.495
+            ],
+            "median_ms": 150.573,
+            "p95_ms": 172.169,
+            "maximum_ms": 172.169
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 3,
+              "pass_count": 3,
+              "forward_count": 2,
+              "forward_tokens": 67,
+              "decoded_tokens": 128,
+              "reused_pass_count": 1
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 3,
+              "pass_count": 3,
+              "forward_count": 2,
+              "forward_tokens": 67,
+              "decoded_tokens": 128,
+              "reused_pass_count": 1
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 3,
+              "pass_count": 3,
+              "forward_count": 2,
+              "forward_tokens": 67,
+              "decoded_tokens": 128,
+              "reused_pass_count": 1
+            }
+          ]
+        },
+        {
+          "cohort": "long_complete_check_probes",
+          "id": "repeated-sentences-up-to-256",
+          "logical_tokens": 256,
+          "initial_model_tokens_total": 260,
+          "segment_count": 5,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              176.031,
+              444.425,
+              239.252
+            ],
+            "median_ms": 239.252,
+            "p95_ms": 444.425,
+            "maximum_ms": 444.425
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 5,
+              "pass_count": 5,
+              "forward_count": 2,
+              "forward_tokens": 77,
+              "decoded_tokens": 260,
+              "reused_pass_count": 3
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 5,
+              "pass_count": 5,
+              "forward_count": 2,
+              "forward_tokens": 77,
+              "decoded_tokens": 260,
+              "reused_pass_count": 3
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 5,
+              "pass_count": 5,
+              "forward_count": 2,
+              "forward_tokens": 77,
+              "decoded_tokens": 260,
+              "reused_pass_count": 3
+            }
+          ]
+        },
+        {
+          "cohort": "segmented_long_complete_check_probes",
+          "id": "segmented-repeated-sentences-up-to-640",
+          "logical_tokens": 636,
+          "initial_model_tokens_total": 646,
+          "segment_count": 11,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              238.722,
+              226.665,
+              277.343
+            ],
+            "median_ms": 238.722,
+            "p95_ms": 277.343,
+            "maximum_ms": 277.343
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 2,
+              "forward_tokens": 97,
+              "decoded_tokens": 646,
+              "reused_pass_count": 9
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 2,
+              "forward_tokens": 97,
+              "decoded_tokens": 646,
+              "reused_pass_count": 9
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 2,
+              "forward_tokens": 97,
+              "decoded_tokens": 646,
+              "reused_pass_count": 9
+            }
+          ]
+        },
+        {
+          "cohort": "segmented_long_complete_check_probes",
+          "id": "segmented-repeated-sentences-up-to-1280",
+          "logical_tokens": 1276,
+          "initial_model_tokens_total": 1297,
+          "segment_count": 22,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              210.2,
+              255.651,
+              340.767
+            ],
+            "median_ms": 255.651,
+            "p95_ms": 340.767,
+            "maximum_ms": 340.767
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 22,
+              "pass_count": 22,
+              "forward_count": 2,
+              "forward_tokens": 77,
+              "decoded_tokens": 1297,
+              "reused_pass_count": 20
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 22,
+              "pass_count": 22,
+              "forward_count": 2,
+              "forward_tokens": 77,
+              "decoded_tokens": 1297,
+              "reused_pass_count": 20
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 22,
+              "pass_count": 22,
+              "forward_count": 2,
+              "forward_tokens": 77,
+              "decoded_tokens": 1297,
+              "reused_pass_count": 20
+            }
+          ]
+        },
+        {
+          "cohort": "varied_segmented_long_complete_check_probes",
+          "id": "varied-sentences-up-to-640",
+          "logical_tokens": 638,
+          "initial_model_tokens_total": 648,
+          "segment_count": 11,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              1744.368,
+              1881.744,
+              1705.877
+            ],
+            "median_ms": 1744.368,
+            "p95_ms": 1881.744,
+            "maximum_ms": 1881.744
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 648,
+              "decoded_tokens": 648,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 648,
+              "decoded_tokens": 648,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 11,
+              "pass_count": 11,
+              "forward_count": 11,
+              "forward_tokens": 648,
+              "decoded_tokens": 648,
+              "reused_pass_count": 0
+            }
+          ]
+        },
+        {
+          "cohort": "varied_segmented_long_complete_check_probes",
+          "id": "varied-sentences-up-to-1280",
+          "logical_tokens": 1279,
+          "initial_model_tokens_total": 1299,
+          "segment_count": 21,
+          "source_coverage_complete": true,
+          "status": "success",
+          "stable_repeats": true,
+          "timing": {
+            "samples_ms": [
+              3487.435,
+              3860.519,
+              3988.435
+            ],
+            "median_ms": 3860.519,
+            "p95_ms": 3988.435,
+            "maximum_ms": 3988.435
+          },
+          "decoder_samples": [
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 21,
+              "pass_count": 21,
+              "forward_count": 21,
+              "forward_tokens": 1299,
+              "decoded_tokens": 1299,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 21,
+              "pass_count": 21,
+              "forward_count": 21,
+              "forward_tokens": 1299,
+              "decoded_tokens": 1299,
+              "reused_pass_count": 0
+            },
+            {
+              "complete": true,
+              "stop_reason": "stable",
+              "segment_count": 21,
+              "pass_count": 21,
+              "forward_count": 21,
+              "forward_tokens": 1299,
+              "decoded_tokens": 1299,
+              "reused_pass_count": 0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "interpretation": [
+    "Reuse is off by default and requires an explicitly deterministic backend.",
+    "Repeated and varied probes are separate bounded structural measurements, not representative German paragraph accuracy.",
+    "Each structural probe has one warmup and three timed complete checks; local-host timing noise and fixed mode order limit causal timing conclusions.",
+    "Forward/hit counts establish the mechanism: varied initial model inputs have no hits and no forwards eliminated.",
+    "Long distinct inputs still take seconds; target-device/platform/distribution qualification remains open."
+  ]
+}
