@@ -89,7 +89,8 @@ def main():
         print(source.name, json.dumps(summary), flush=True)
     report = {"scope": "Evaluation-only unmodified publisher quickstart, including any publisher language rules; no Quds or published app guards. Not an enabled app provider.",
               "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-              "application_enabled": False, "manifest_sha256": digest(args.manifest),
+              "application_enabled": False, "evaluator_sha256": digest(Path(__file__)),
+              "manifest_sha256": digest(args.manifest),
               "artifacts": artifacts, "runner_sha256": digest(runner),
               "runtime": {"python": sys.version, "platform": platform.platform(),
                           "onnxruntime": ort.__version__, "cpu_threads": 2},

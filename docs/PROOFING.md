@@ -462,6 +462,7 @@ rule categories. It is not a general German grammar parser.
 | `de.grammar.seit-seid` | Grammar | `ihr seit` before listed predicates, or `seid` between a listed finite verb and a reviewed temporal expression; never a generic `seid + time` rewrite. |
 | `de.grammar.preposition-pronoun` | Grammar | Reviewed wrong pronoun cases after fixed-case prepositions, such as `mit mich → mit mir` and `für ihm → für ihn`; competing infinitive/additive/nominal contexts are excluded. |
 | `de.grammar.preposition-case` | Grammar | Article case/gender for reviewed nouns after fixed-case prepositions, such as `mit den Mann → mit dem Mann`. |
+| `de.grammar.noun-verb` | Grammar | Unambiguous nominative noun subjects and reviewed finite verbs in bounded simple complete clauses; all lexical number alternatives retained, with ambiguity and unsupported-syntax abstention. |
 | `de.grammar.noun-case` | Grammar | Required noun endings in unambiguous determiner phrases, including weak nouns such as `mit dem Kunde → mit dem Kunden`; suggested forms must pass the modern spelling guard. |
 | `de.grammar.dative-plural` | Grammar | Missing dative plural `n` in reviewed forms, such as `mit den Kinder → mit den Kindern`; plural `n`/`s` forms and optional literary singular dative `e` are preserved. |
 | `de.grammar.adjective-ending` | Grammar | Weak/mixed adjective endings when all retained determiner/noun analyses agree, such as `ein gute Buch → ein gutes Buch`; adverb modifiers and unresolved analyses are preserved. |
