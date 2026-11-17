@@ -1,0 +1,455 @@
+[
+  {
+    "id": "context-1-error",
+    "kind": "error",
+    "input": "Sie kauft ein blauen Rock.",
+    "expected": "Sie kauft einen blauen Rock."
+  },
+  {
+    "id": "context-1-valid",
+    "kind": "clean",
+    "input": "Sie kauft einen blauen Rock."
+  },
+  {
+    "id": "context-2-error",
+    "kind": "error",
+    "input": "Er sieht ein kleinen Hund.",
+    "expected": "Er sieht einen kleinen Hund."
+  },
+  {
+    "id": "context-2-valid",
+    "kind": "clean",
+    "input": "Er sieht einen kleinen Hund."
+  },
+  {
+    "id": "context-3-error",
+    "kind": "error",
+    "input": "Wir lesen ein langen Brief.",
+    "expected": "Wir lesen einen langen Brief."
+  },
+  {
+    "id": "context-3-valid",
+    "kind": "clean",
+    "input": "Wir lesen einen langen Brief."
+  },
+  {
+    "id": "context-4-error",
+    "kind": "error",
+    "input": "Ich habe ein schönen Tag.",
+    "expected": "Ich habe einen schönen Tag."
+  },
+  {
+    "id": "context-4-valid",
+    "kind": "clean",
+    "input": "Ich habe einen schönen Tag."
+  },
+  {
+    "id": "context-5-error",
+    "kind": "error",
+    "input": "Du hilfst den Bruder.",
+    "expected": "Du hilfst dem Bruder."
+  },
+  {
+    "id": "context-5-valid",
+    "kind": "clean",
+    "input": "Du hilfst dem Bruder."
+  },
+  {
+    "id": "context-6-error",
+    "kind": "error",
+    "input": "Sie antwortet den Lehrer.",
+    "expected": "Sie antwortet dem Lehrer."
+  },
+  {
+    "id": "context-6-valid",
+    "kind": "clean",
+    "input": "Sie antwortet dem Lehrer."
+  },
+  {
+    "id": "context-7-error",
+    "kind": "error",
+    "input": "Wir helfen den Kind.",
+    "expected": "Wir helfen dem Kind."
+  },
+  {
+    "id": "context-7-valid",
+    "kind": "clean",
+    "input": "Wir helfen dem Kind."
+  },
+  {
+    "id": "context-8-error",
+    "kind": "error",
+    "input": "Ihr helft die Frau.",
+    "expected": "Ihr helft der Frau."
+  },
+  {
+    "id": "context-8-valid",
+    "kind": "clean",
+    "input": "Ihr helft der Frau."
+  },
+  {
+    "id": "context-9-error",
+    "kind": "error",
+    "input": "Dies sind eine Frage.",
+    "expected": "Dies ist eine Frage."
+  },
+  {
+    "id": "context-9-valid",
+    "kind": "clean",
+    "input": "Dies ist eine Frage."
+  },
+  {
+    "id": "context-10-error",
+    "kind": "error",
+    "input": "Es sind ein Fehler.",
+    "expected": "Es ist ein Fehler."
+  },
+  {
+    "id": "context-10-valid",
+    "kind": "clean",
+    "input": "Es ist ein Fehler."
+  },
+  {
+    "id": "context-11-error",
+    "kind": "error",
+    "input": "Das ist die Kinder.",
+    "expected": "Das sind die Kinder."
+  },
+  {
+    "id": "context-11-valid",
+    "kind": "clean",
+    "input": "Das sind die Kinder."
+  },
+  {
+    "id": "context-12-error",
+    "kind": "error",
+    "input": "Das ist ein beste Lösung.",
+    "expected": "Das ist eine beste Lösung."
+  },
+  {
+    "id": "context-12-valid",
+    "kind": "clean",
+    "input": "Das ist eine beste Lösung."
+  },
+  {
+    "id": "context-13-error",
+    "kind": "error",
+    "input": "Es ist der richtige Adresse.",
+    "expected": "Es ist die richtige Adresse."
+  },
+  {
+    "id": "context-13-valid",
+    "kind": "clean",
+    "input": "Es ist die richtige Adresse."
+  },
+  {
+    "id": "context-14-error",
+    "kind": "error",
+    "input": "Heute wir gehen ins Büro.",
+    "expected": "Heute gehen wir ins Büro."
+  },
+  {
+    "id": "context-14-valid",
+    "kind": "clean",
+    "input": "Heute gehen wir ins Büro."
+  },
+  {
+    "id": "context-15-error",
+    "kind": "error",
+    "input": "Morgen du kommst zu uns.",
+    "expected": "Morgen kommst du zu uns."
+  },
+  {
+    "id": "context-15-valid",
+    "kind": "clean",
+    "input": "Morgen kommst du zu uns."
+  },
+  {
+    "id": "context-16-error",
+    "kind": "error",
+    "input": "Dann er hat Zeit.",
+    "expected": "Dann hat er Zeit."
+  },
+  {
+    "id": "context-16-valid",
+    "kind": "clean",
+    "input": "Dann hat er Zeit."
+  },
+  {
+    "id": "context-17-error",
+    "kind": "error",
+    "input": "Wenn ich Zeit habe, ich lese ein Buch.",
+    "expected": "Wenn ich Zeit habe, lese ich ein Buch."
+  },
+  {
+    "id": "context-17-valid",
+    "kind": "clean",
+    "input": "Wenn ich Zeit habe, lese ich ein Buch."
+  },
+  {
+    "id": "context-18-error",
+    "kind": "error",
+    "input": "Obwohl wir müde sind, wir arbeiten heute.",
+    "expected": "Obwohl wir müde sind, arbeiten wir heute."
+  },
+  {
+    "id": "context-18-valid",
+    "kind": "clean",
+    "input": "Obwohl wir müde sind, arbeiten wir heute."
+  },
+  {
+    "id": "context-19-error",
+    "kind": "error",
+    "input": "Wir haben ein Buch gelest.",
+    "expected": "Wir haben ein Buch gelesen."
+  },
+  {
+    "id": "context-19-valid",
+    "kind": "clean",
+    "input": "Wir haben ein Buch gelesen."
+  },
+  {
+    "id": "context-20-error",
+    "kind": "error",
+    "input": "Sie ist nach Hause gegangt.",
+    "expected": "Sie ist nach Hause gegangen."
+  },
+  {
+    "id": "context-20-valid",
+    "kind": "clean",
+    "input": "Sie ist nach Hause gegangen."
+  },
+  {
+    "id": "context-21-error",
+    "kind": "error",
+    "input": "Er hat laut gesprecht.",
+    "expected": "Er hat laut gesprochen."
+  },
+  {
+    "id": "context-21-valid",
+    "kind": "clean",
+    "input": "Er hat laut gesprochen."
+  },
+  {
+    "id": "context-22-error",
+    "kind": "error",
+    "input": "Die Hunde ist hungrig.",
+    "expected": "Die Hunde sind hungrig."
+  },
+  {
+    "id": "context-22-valid",
+    "kind": "clean",
+    "input": "Die Hunde sind hungrig."
+  },
+  {
+    "id": "context-23-error",
+    "kind": "error",
+    "input": "Das Mädchen sind glücklich.",
+    "expected": "Das Mädchen ist glücklich."
+  },
+  {
+    "id": "context-23-valid",
+    "kind": "clean",
+    "input": "Das Mädchen ist glücklich."
+  },
+  {
+    "id": "context-control-1",
+    "kind": "clean",
+    "input": "Sie hat einen roten Mantel."
+  },
+  {
+    "id": "context-control-2",
+    "kind": "clean",
+    "input": "Ich habe ein schönes Haus."
+  },
+  {
+    "id": "context-control-3",
+    "kind": "clean",
+    "input": "Wir helfen den Kindern."
+  },
+  {
+    "id": "context-control-4",
+    "kind": "clean",
+    "input": "Du hilfst den Mädchen."
+  },
+  {
+    "id": "context-control-5",
+    "kind": "clean",
+    "input": "Sie antwortet dem Lehrer."
+  },
+  {
+    "id": "context-control-6",
+    "kind": "clean",
+    "input": "Sie hat dem Mann geholfen."
+  },
+  {
+    "id": "context-control-7",
+    "kind": "clean",
+    "input": "Ich habe eines Mannes gedacht."
+  },
+  {
+    "id": "context-control-8",
+    "kind": "clean",
+    "input": "Er schenkt der Frau ein Buch."
+  },
+  {
+    "id": "context-control-9",
+    "kind": "clean",
+    "input": "Ich arbeite ein roten Mantel."
+  },
+  {
+    "id": "context-control-10",
+    "kind": "clean",
+    "input": "Das sind meine Kinder."
+  },
+  {
+    "id": "context-control-11",
+    "kind": "clean",
+    "input": "Das ist meine Mutter."
+  },
+  {
+    "id": "context-control-12",
+    "kind": "clean",
+    "input": "Das sind ein Mann und zwei Frauen."
+  },
+  {
+    "id": "context-control-13",
+    "kind": "clean",
+    "input": "Das ist der Frau ihr Auto."
+  },
+  {
+    "id": "context-control-14",
+    "kind": "clean",
+    "input": "Das ist der Mutter liebstes Kind."
+  },
+  {
+    "id": "context-control-15",
+    "kind": "clean",
+    "input": "Die Leiter steht hier."
+  },
+  {
+    "id": "context-control-16",
+    "kind": "clean",
+    "input": "Die Leiter stehen hier."
+  },
+  {
+    "id": "context-control-17",
+    "kind": "clean",
+    "input": "Die Blumen sind schön."
+  },
+  {
+    "id": "context-control-18",
+    "kind": "clean",
+    "input": "Heute habe ich gekocht."
+  },
+  {
+    "id": "context-control-19",
+    "kind": "clean",
+    "input": "Gestern, ich habe gekocht."
+  },
+  {
+    "id": "context-control-20",
+    "kind": "clean",
+    "input": "Ich glaube, dass ich heute gekocht habe."
+  },
+  {
+    "id": "context-control-21",
+    "kind": "clean",
+    "input": "Wenn ich Zeit habe, lese ich ein Buch."
+  },
+  {
+    "id": "context-control-22",
+    "kind": "clean",
+    "input": "Wenn er gehen will, bleibt sie hier."
+  },
+  {
+    "id": "context-control-23",
+    "kind": "clean",
+    "input": "Weil er müde ist, bleibt er hier."
+  },
+  {
+    "id": "context-control-24",
+    "kind": "clean",
+    "input": "Weil er müde sind, wir bleiben hier."
+  },
+  {
+    "id": "context-control-25",
+    "kind": "clean",
+    "input": "Er hat das Wort gelest genannt."
+  },
+  {
+    "id": "context-control-26",
+    "kind": "clean",
+    "input": "Das Wort gelest wird hier erklärt."
+  },
+  {
+    "id": "context-control-27",
+    "kind": "clean",
+    "input": "Er hat den Titel »gelest« erklärt."
+  },
+  {
+    "id": "context-control-28",
+    "kind": "clean",
+    "input": "Er hat das Buch gelesen."
+  },
+  {
+    "id": "context-control-29",
+    "kind": "clean",
+    "input": "Sie ist nach Hause gegangen."
+  },
+  {
+    "id": "context-control-30",
+    "kind": "clean",
+    "input": "Er hat das Buch nicht gelesen."
+  },
+  {
+    "id": "context-control-31",
+    "kind": "clean",
+    "input": "Die Kinder spielt!"
+  },
+  {
+    "id": "context-control-32",
+    "kind": "clean",
+    "input": "Die Kinder spielen und singen."
+  },
+  {
+    "id": "context-control-33",
+    "kind": "clean",
+    "input": "`Sie hat ein roten Mantel.`"
+  },
+  {
+    "id": "context-control-34",
+    "kind": "clean",
+    "input": "„Gestern ich habe gekocht“ steht im Text."
+  },
+  {
+    "id": "context-control-35",
+    "kind": "clean",
+    "input": "„Er hat das Buch gelest“ steht im Text."
+  },
+  {
+    "id": "context-control-36",
+    "kind": "clean",
+    "input": "Das ist die Frage, die er meint."
+  },
+  {
+    "id": "context-control-37",
+    "kind": "clean",
+    "input": "Das ist der Mann, der hier wohnt."
+  },
+  {
+    "id": "context-control-38",
+    "kind": "clean",
+    "input": "Sie sieht den Mann der Frau."
+  },
+  {
+    "id": "context-control-39",
+    "kind": "clean",
+    "input": "Sie hat ein Buch, das sie mag."
+  },
+  {
+    "id": "context-control-40",
+    "kind": "clean",
+    "input": "Die Kinder sind trotzdem schon gegangen."
+  }
+]
