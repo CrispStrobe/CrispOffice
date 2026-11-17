@@ -771,7 +771,14 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
             : 'German writing checks support de-DE, de-AT and de-CH.',
       );
     }
-    await GermanNounMorphology.shared.ensureLoaded();
+    final _GermanWritingText projection = _GermanWritingText(request.text);
+    final String text = projection.text;
+    final OfficeProofingTextRanges protected = OfficeProofingTextRanges(text);
+    final bool Function(int, int) isProtected = protected.overlaps;
+    final Set<int> boundaries = projection.boundaries;
+    await GermanNounMorphology.shared.prepareWords(
+      _grammarMorphologyCandidates(text, isProtected, boundaries),
+    );
     if (_disposed) {
       return OfficeProofingResult(
         request: request,
@@ -780,12 +787,7 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
         message: 'German writing provider is disposed.',
       );
     }
-    final _GermanWritingText projection = _GermanWritingText(request.text);
-    final String text = projection.text;
     final List<OfficeProofingFinding> findings = <OfficeProofingFinding>[];
-    final Set<int> boundaries = projection.boundaries;
-    final OfficeProofingTextRanges protected = OfficeProofingTextRanges(text);
-    final bool Function(int, int) isProtected = protected.overlaps;
 
     void add(
       String ruleId,

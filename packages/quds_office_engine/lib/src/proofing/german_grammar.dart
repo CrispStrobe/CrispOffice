@@ -230,6 +230,11 @@ List<_GermanNounReading> _lookupGrammarNoun(String lower) {
     lower,
   );
   if (lexical.isEmpty) {
+    // An explicitly unresolved competing reading is not an unknown word.
+    // A small fallback must not restore the confidence the resource rejected.
+    if (GermanNounMorphology.shared.hasUnresolvedReading(lower)) {
+      return const <_GermanNounReading>[];
+    }
     return _grammarNounForms[lower] ?? const <_GermanNounReading>[];
   }
   return <_GermanNounReading>[
@@ -530,6 +535,59 @@ bool _grammarPrepositionAmbiguous(
   ).hasMatch(clause);
 }
 
+// Shared syntactic gate for prewarming and actual noun-phrase analysis. This
+// does not consult the lexicon, so sentence-start capitals and unrelated names
+// do not cause dictionary buckets to be decoded.
+int? _grammarNounIndex(
+  String text,
+  List<_GermanGrammarWord> words,
+  int articleIndex,
+) {
+  int nounIndex = articleIndex + 1;
+  int adjectiveCount = 0;
+  while (nounIndex < words.length &&
+      _grammarAdjacent(text, words[nounIndex - 1], words[nounIndex]) &&
+      adjectiveCount < 2 &&
+      !words[nounIndex].capitalized &&
+      _grammarAdjectiveForms.containsKey(words[nounIndex].lower)) {
+    adjectiveCount++;
+    nounIndex++;
+  }
+  if (nounIndex >= words.length ||
+      !words[nounIndex].capitalized ||
+      !_grammarAdjacent(text, words[nounIndex - 1], words[nounIndex])) {
+    return null;
+  }
+  return nounIndex;
+}
+
+Iterable<String> _grammarMorphologyCandidates(
+  String text,
+  bool Function(int, int) protected,
+  Set<int> boundaries,
+) sync* {
+  final List<_GermanGrammarWord> words = _grammarWordExpression
+      .allMatches(text)
+      .map(_GermanGrammarWord.new)
+      .toList(growable: false);
+  for (int i = 0; i < words.length; i++) {
+    if (!_grammarDeterminerForms.containsKey(words[i].lower)) continue;
+    final int? nounIndex = _grammarNounIndex(text, words, i);
+    if (nounIndex == null) continue;
+    int contextStart = words[i].start;
+    if (i > 0 &&
+        _governedCases.containsKey(words[i - 1].lower) &&
+        _grammarAdjacent(text, words[i - 1], words[i]) &&
+        !_grammarPrepositionAmbiguous(text, words, i - 1)) {
+      contextStart = words[i - 1].start;
+    }
+    final _GermanGrammarWord noun = words[nounIndex];
+    if (_grammarContextSafe(contextStart, noun.end, protected, boundaries)) {
+      yield noun.text;
+    }
+  }
+}
+
 Iterable<_GermanGrammarIssue> _germanGrammarIssues(
   String text,
   bool Function(int, int) protected,
@@ -623,6 +681,39 @@ Iterable<_GermanGrammarIssue> _germanGrammarIssues(
   yield* _grammarInvertedAgreement(text, words, protected, boundaries);
 }
 
+bool _grammarCouldBeNominalizedAdjective(
+  _GermanGrammarWord article,
+  _GermanDeterminer determiner,
+  _GermanGrammarWord noun,
+  _GermanCase? governedCase,
+) {
+  final Set<String>? stems =
+      _grammarAdjectiveForms[normalizeGermanWord(noun.lower)];
+  if (stems == null) return false;
+  for (final _GermanCase grammaticalCase
+      in governedCase == null
+          ? _GermanCase.values
+          : <_GermanCase>[governedCase]) {
+    for (final _GermanGender gender in _GermanGender.values) {
+      if (gender == _GermanGender.plural && !determiner.permitsPlural ||
+          determiner.form(grammaticalCase, gender) != article.lower) {
+        continue;
+      }
+      final String ending = _grammarAdjectiveEnding(
+        determiner,
+        grammaticalCase,
+        gender,
+      );
+      if (stems.any(
+        (String stem) => _germanFormsEquivalent('$stem$ending', noun.lower),
+      )) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 Iterable<_GermanGrammarIssue> _grammarNounPhrase(
   String text,
   List<_GermanGrammarWord> words,
@@ -635,22 +726,27 @@ Iterable<_GermanGrammarIssue> _grammarNounPhrase(
 ) sync* {
   final _GermanGrammarWord article = words[index];
   final _GermanDeterminer determiner = _grammarDeterminerForms[article.lower]!;
-  final List<_GermanGrammarWord> adjectives = <_GermanGrammarWord>[];
-  int nounIndex = index + 1;
-  while (nounIndex < words.length &&
-      _grammarAdjacent(text, words[nounIndex - 1], words[nounIndex]) &&
-      adjectives.length < 2 &&
-      !words[nounIndex].capitalized &&
-      _grammarAdjectiveForms.containsKey(words[nounIndex].lower)) {
-    adjectives.add(words[nounIndex++]);
-  }
-  if (nounIndex >= words.length ||
-      !_grammarAdjacent(text, words[nounIndex - 1], words[nounIndex])) {
+  final int? nounIndex = _grammarNounIndex(text, words, index);
+  if (nounIndex == null) return;
+  final _GermanGrammarWord noun = words[nounIndex];
+  if (!_grammarContextSafe(contextStart, noun.end, protected, boundaries)) {
     return;
   }
-  final _GermanGrammarWord noun = words[nounIndex];
-  if (!noun.capitalized ||
-      !_grammarContextSafe(contextStart, noun.end, protected, boundaries)) {
+  final List<_GermanGrammarWord> adjectives = words.sublist(
+    index + 1,
+    nounIndex,
+  );
+  if (_grammarCouldBeNominalizedAdjective(
+    article,
+    determiner,
+    noun,
+    governedCase,
+  )) {
+    // A valid capitalized adjective can share its surface with an ordinary
+    // noun: "für die Junge" / "mit der Jungen". Preserve that reading rather
+    // than changing its gender or case. This is only a validity veto; it does
+    // not infer or correct unmodeled nominalizations. "mit dem Junge" does
+    // not satisfy the dative adjective ending and remains eligible for repair.
     return;
   }
   final List<_GermanNounReading> readings = _lookupGrammarNoun(noun.lower);

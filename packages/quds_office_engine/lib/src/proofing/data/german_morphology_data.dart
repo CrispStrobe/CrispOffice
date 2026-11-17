@@ -45,101 +45,40 @@
 //
 // SPDX-License-Identifier: Unicode-3.0
 
-import 'german_morphology_nouns_00.dart';
-import 'german_morphology_nouns_01.dart';
-import 'german_morphology_nouns_02.dart';
-import 'german_morphology_nouns_03.dart';
-import 'german_morphology_nouns_04.dart';
-import 'german_morphology_nouns_05.dart';
-import 'german_morphology_nouns_06.dart';
-import 'german_morphology_nouns_07.dart';
-import 'german_morphology_nouns_08.dart';
-import 'german_morphology_nouns_09.dart';
-import 'german_morphology_nouns_10.dart';
-import 'german_morphology_nouns_11.dart';
-import 'german_morphology_nouns_12.dart';
-import 'german_morphology_nouns_13.dart';
-import 'german_morphology_nouns_14.dart';
-import 'german_morphology_nouns_15.dart';
-import 'german_morphology_spellings_00.dart';
-import 'german_morphology_spellings_01.dart';
-import 'german_morphology_spellings_02.dart';
-import 'german_morphology_spellings_03.dart';
-import 'german_morphology_spellings_04.dart';
-import 'german_morphology_spellings_05.dart';
-import 'german_morphology_spellings_06.dart';
-import 'german_morphology_spellings_07.dart';
-import 'german_morphology_spellings_08.dart';
-import 'german_morphology_spellings_09.dart';
-import 'german_morphology_spellings_10.dart';
-import 'german_morphology_spellings_11.dart';
-import 'german_morphology_spellings_12.dart';
-import 'german_morphology_spellings_13.dart';
-import 'german_morphology_spellings_14.dart';
-import 'german_morphology_spellings_15.dart';
-import 'german_morphology_spellings_16.dart';
-import 'german_morphology_spellings_17.dart';
-import 'german_morphology_spellings_18.dart';
-import 'german_morphology_spellings_19.dart';
-import 'german_morphology_spellings_20.dart';
-import 'german_morphology_spellings_21.dart';
-import 'german_morphology_spellings_22.dart';
-import 'german_morphology_spellings_23.dart';
-import 'german_morphology_spellings_24.dart';
-import 'german_morphology_spellings_25.dart';
-import 'german_morphology_spellings_26.dart';
-import 'german_morphology_spellings_27.dart';
-import 'german_morphology_spellings_28.dart';
+import 'german_morphology_surfaces_00.dart';
+import 'german_morphology_surfaces_01.dart';
+import 'german_morphology_surfaces_02.dart';
+import 'german_morphology_surfaces_03.dart';
+import 'german_morphology_surfaces_04.dart';
+import 'german_morphology_surfaces_05.dart';
+import 'german_morphology_surfaces_06.dart';
+import 'german_morphology_surfaces_07.dart';
+import 'german_morphology_surfaces_08.dart';
+import 'german_morphology_surfaces_09.dart';
+import 'german_morphology_surfaces_10.dart';
+import 'german_morphology_surfaces_11.dart';
+import 'german_morphology_surfaces_12.dart';
+import 'german_morphology_surfaces_13.dart';
+import 'german_morphology_surfaces_14.dart';
+import 'german_morphology_surfaces_15.dart';
 
-const List<String> germanMorphologyNounChunks = <String>[
-  ...germanMorphologyNounsChunks0,
-  ...germanMorphologyNounsChunks1,
-  ...germanMorphologyNounsChunks2,
-  ...germanMorphologyNounsChunks3,
-  ...germanMorphologyNounsChunks4,
-  ...germanMorphologyNounsChunks5,
-  ...germanMorphologyNounsChunks6,
-  ...germanMorphologyNounsChunks7,
-  ...germanMorphologyNounsChunks8,
-  ...germanMorphologyNounsChunks9,
-  ...germanMorphologyNounsChunks10,
-  ...germanMorphologyNounsChunks11,
-  ...germanMorphologyNounsChunks12,
-  ...germanMorphologyNounsChunks13,
-  ...germanMorphologyNounsChunks14,
-  ...germanMorphologyNounsChunks15,
-];
-
-const List<String> germanMorphologySpellingChunks = <String>[
-  ...germanMorphologySpellingsChunks0,
-  ...germanMorphologySpellingsChunks1,
-  ...germanMorphologySpellingsChunks2,
-  ...germanMorphologySpellingsChunks3,
-  ...germanMorphologySpellingsChunks4,
-  ...germanMorphologySpellingsChunks5,
-  ...germanMorphologySpellingsChunks6,
-  ...germanMorphologySpellingsChunks7,
-  ...germanMorphologySpellingsChunks8,
-  ...germanMorphologySpellingsChunks9,
-  ...germanMorphologySpellingsChunks10,
-  ...germanMorphologySpellingsChunks11,
-  ...germanMorphologySpellingsChunks12,
-  ...germanMorphologySpellingsChunks13,
-  ...germanMorphologySpellingsChunks14,
-  ...germanMorphologySpellingsChunks15,
-  ...germanMorphologySpellingsChunks16,
-  ...germanMorphologySpellingsChunks17,
-  ...germanMorphologySpellingsChunks18,
-  ...germanMorphologySpellingsChunks19,
-  ...germanMorphologySpellingsChunks20,
-  ...germanMorphologySpellingsChunks21,
-  ...germanMorphologySpellingsChunks22,
-  ...germanMorphologySpellingsChunks23,
-  ...germanMorphologySpellingsChunks24,
-  ...germanMorphologySpellingsChunks25,
-  ...germanMorphologySpellingsChunks26,
-  ...germanMorphologySpellingsChunks27,
-  ...germanMorphologySpellingsChunks28,
+const List<String> germanMorphologySurfaceChunks = <String>[
+  ...germanMorphologySurfaceChunks0,
+  ...germanMorphologySurfaceChunks1,
+  ...germanMorphologySurfaceChunks2,
+  ...germanMorphologySurfaceChunks3,
+  ...germanMorphologySurfaceChunks4,
+  ...germanMorphologySurfaceChunks5,
+  ...germanMorphologySurfaceChunks6,
+  ...germanMorphologySurfaceChunks7,
+  ...germanMorphologySurfaceChunks8,
+  ...germanMorphologySurfaceChunks9,
+  ...germanMorphologySurfaceChunks10,
+  ...germanMorphologySurfaceChunks11,
+  ...germanMorphologySurfaceChunks12,
+  ...germanMorphologySurfaceChunks13,
+  ...germanMorphologySurfaceChunks14,
+  ...germanMorphologySurfaceChunks15,
 ];
 
 const List<String> germanMorphologyPatterns = <String>[
@@ -181,13 +120,11 @@ const List<String> germanMorphologyPatterns = <String>[
   '3\tucke|ücke\tucke|ücke\tucken|ücken\tucke|ücke',
   '3\ta|en\ta|en\ta|en\ta|en',
   '3\t|n\t|n\tn\t|n',
-  '0\t\ten\t|en\ten',
   '3\tas|ata|en\tas|ata|en\tas|ata|en\tas|ata|en',
   '1\t\t\t\ts',
   '3\ten|os\ten|os\ten|os\ten|os',
   '0\t\t\t\tses',
   '3\tane|äne\tane|äne\tanen|änen\tane|äne',
-  '3\ten|innen\ten|innen\ten|innen\ten|innen',
   '0\t|r\tn\tm|n\tn',
   '3\t|n\t|n\tn\tn|r',
   '3\t|s\t|s\tn|s\t|s',
@@ -197,7 +134,6 @@ const List<String> germanMorphologyPatterns = <String>[
   '2\t\t\t|se\tses',
   '0\t\t\t|e\ts',
   '3\tas|en\tas|en\tas|en\tas|en',
-  '3\t|innen\t|innen\tinnen|n\t|innen',
   '0\t\t|en\t|en\ten|es',
   '1\t\t\t\tes',
   '3\tien|s\tien|s\tien|s\tien|s',
@@ -229,7 +165,6 @@ const List<String> germanMorphologyPatterns = <String>[
   '3\tide|yde\tide|yde\tiden|yden\tide|yde',
   '1\t\t\tn|r\tn|r',
   '3\t\t\ten\t',
-  '3\tfrauen|männer\tfrauen|männer\tfrauen|männern\tfrauen|männer',
   '0\t\t\te\tes',
   '3\tume|ümer\tume|ümer\tumen|ümern\tume|ümer',
   '1\t|en\t|en\t|en\t|en',
@@ -253,7 +188,6 @@ const List<String> germanMorphologyPatterns = <String>[
   '3\tFotografien|Photographien\tFotografien|Photographien\tFotografien|Photographien\tFotografien|Photographien',
   '1\tFotovoltaik|Photovoltaik\tFotovoltaik|Photovoltaik\tFotovoltaik|Photovoltaik\tFotovoltaik|Photovoltaik',
   '2\t\t\ten\tens',
-  '3\te|innen\te|innen\ten|innen\te|innen',
   '3\ti|usse\ti|usse\ti|ussen\ti|usse',
   '1\tfie|phie\tfie|phie\tfie|phie\tfie|phie',
   '3\tfien|phien\tfien|phien\tfien|phien\tfien|phien',
@@ -339,5 +273,5 @@ const List<String> germanMorphologyPatterns = <String>[
   '3\t\tn\tn\t',
 ];
 
-const int germanMorphologyLemmaCount = 67066;
-const int germanMorphologyReadingCount = 127568;
+const int germanMorphologyLemmaCount = 67492;
+const int germanMorphologyReadingCount = 127987;

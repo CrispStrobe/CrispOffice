@@ -131,13 +131,20 @@ def noun_readings(dictionary: bytes, patterns_xml: bytes, modern: set[str]):
                 source_tags[word] = tags
     readings: dict[tuple[str, str, int], list[set[str]]] = {}
     selected = set()
+    unresolved = set()
+    for word, attributes in source_tags.items():
+        tags = set(attributes.split())
+        if 'noun' in tags and unsafe_patterns.intersection(t[11:] for t in tags if t.startswith('inflection=')):
+            unresolved.add(word)
     for line in dictionary.decode().splitlines():
         if ': ' not in line:
             continue
         lemma, attributes = line.rsplit(': ', 1)
         tags = set(attributes.split())
+        plural_only = 'plural' in tags and 'singular' not in tags
+        base_number = 'plural' if plural_only else 'singular'
         if (lemma not in modern or not plain_word(lemma) or
-                not {'noun', 'singular', 'nominative'} <= tags or
+                not {'noun', base_number, 'nominative'} <= tags or
                 tags & {'proper-noun', 'adjective', 'abbreviation', 'diminutive', 'numeral', 'weak', 'strong', 'mixed'}):
             continue
         references = sorted(t[11:] for t in tags if t.startswith('inflection='))
@@ -155,12 +162,17 @@ def noun_readings(dictionary: bytes, patterns_xml: bytes, modern: set[str]):
             # A dictionary row can aggregate several parts of speech/forms.
             # Require the exact candidate lemma to be this pattern's singular
             # nominative; a plural surface must not seed another paradigm.
-            if not any(c == 'nominative' and n == 'singular' and stem + tail == lemma
-                       for c, n, g, tail in inflections):
+            base_genders = {g for c, n, g, tail in inflections
+                            if c == 'nominative' and n == base_number and stem + tail == lemma
+                            and (plural_only or g in tags)}
+            if not base_genders:
                 excluded['not_pattern_lemma'] += 1
                 continue
             groups = defaultdict(lambda: [set() for _ in CASES])
             for case, number, gender, tail in inflections:
+                if (plural_only and number != 'plural' or
+                        not plural_only and gender not in base_genders):
+                    continue
                 form = stem + tail
                 if not plain_word(form):
                     continue
@@ -198,16 +210,17 @@ def noun_readings(dictionary: bytes, patterns_xml: bytes, modern: set[str]):
             forms[2].update({'Nachbar', 'Nachbarn'})
             forms[3].update({'Nachbars', 'Nachbarn'})
             additions.append(('Nachbar', 'strong-and-weak-variants', 'Nachbar|Nachbarn|Nachbars'))
-        if lemma == 'Assistent' and gender == 0:
-            forms[1] = {'Assistenten'}
-            forms[2] = {'Assistenten'}
-            forms[3] = {'Assistenten'}
-            additions.append(('Assistent', 'corrected-weak-declension', 'Assistenten'))
+        if lemma in ('Assistent', 'Architekt') and gender == 0:
+            weak_form = lemma + 'en'
+            forms[1] = {weak_form}
+            forms[2] = {weak_form}
+            forms[3] = {weak_form}
+            additions.append((lemma, 'corrected-weak-declension', weak_form))
         extra_gender = 2 if lemma in ('Teil', 'Stift') and gender == 0 else 0 if lemma == 'Bonbon' and gender == 2 else None
         if extra_gender is not None:
             readings[(lemma, reference + '-reviewed-gender', extra_gender)] = [set(case) for case in forms]
             additions.append((lemma, 'alternative-gender', GENDERS[extra_gender]))
-    return readings, selected, excluded, additions
+    return readings, selected, excluded, additions, unresolved
 
 
 def encode(lines: list[str]) -> str:
@@ -215,17 +228,26 @@ def encode(lines: list[str]) -> str:
     return base64.b64encode(compressor.compress(('\n'.join(lines) + '\n').encode()) + compressor.flush()).decode()
 
 
-def dart_chunks(name: str, lines: list[str], header: str, chunk_size: int = 1024):
+def surface_bucket(key: str) -> int:
+    """Same bounded UTF-16 rolling hash as Dart, including non-BMP input."""
+    encoded = key.encode('utf-16-le')
+    value = 0
+    for i in range(0, len(encoded), 2):
+        value = (value * 31 + encoded[i] + (encoded[i + 1] << 8)) & 255
+    return value
+
+
+def dart_buckets(buckets: list[list[str]], header: str):
     files = {}
     symbols = []
-    for offset in range(0, len(lines), 8192):
-        number = offset // 8192
-        stem = f'german_morphology_{name}_{number:02}'
-        symbol = 'germanMorphology' + name.title() + 'Chunks' + str(number)
+    for offset in range(0, 256, 16):
+        number = offset // 16
+        stem = f'german_morphology_surfaces_{number:02}'
+        symbol = 'germanMorphologySurfaceChunks' + str(number)
         symbols.append((stem, symbol))
         text = [header, f'const List<String> {symbol} = <String>[']
-        for start in range(offset, min(offset + 8192, len(lines)), chunk_size):
-            encoded = encode(lines[start:min(start + chunk_size, offset + 8192)])
+        for lines in buckets[offset:offset + 16]:
+            encoded = encode(sorted(lines))
             text.extend("  '" + encoded[i:i + 100] + "'" for i in range(0, len(encoded), 100))
             text[-1] += ','
         text.append('];\n')
@@ -237,9 +259,10 @@ def generate(sources: dict[str, bytes]) -> dict[Path, bytes]:
     for name, data in sources.items():
         verify_source(name, data)
     standard, swiss, spelling_inputs = spelling_vocabulary()
-    readings, lemmas, excluded, additions = noun_readings(sources['dictionary_de.lst'], sources['inflectional_de.xml'], standard)
+    readings, lemmas, excluded, additions, unresolved = noun_readings(sources['dictionary_de.lst'], sources['inflectional_de.xml'], standard)
     templates = {}
     rows = []
+    buckets = [[] for _ in range(256)]
     all_forms = set()
     seen_readings = set()
     for (lemma, reference, gender), forms in sorted(readings.items()):
@@ -253,11 +276,26 @@ def generate(sources: dict[str, bytes]) -> dict[Path, bytes]:
         template = '\t'.join([str(gender), *endings])
         if template not in templates:
             templates[template] = len(templates)
-        rows.append('\t'.join([lemma, stem, str(templates[template])]))
+        all_endings = sorted({form[len(stem):] for form in flattened})
+        if len(all_endings) > 30:
+            raise ValueError('Spelling mask exceeds portable 30-bit budget')
+        standard_mask = sum(1 << i for i, tail in enumerate(all_endings) if stem + tail in standard)
+        swiss_mask = sum(1 << i for i, tail in enumerate(all_endings) if (stem + tail).replace('ß', 'ss').replace('ẞ', 'SS') in swiss)
+        descriptor = '\t'.join([str(len(rows)), lemma, stem, str(templates[template]), str(standard_mask), str(swiss_mask)])
+        rows.append(descriptor)
+        keys = {f.lower() for f in flattened}
+        keys.update(k.replace('ß', 'ss') for k in list(keys))
+        for key in sorted(keys):
+            buckets[surface_bucket(key)].append(key + '\t' + descriptor)
         all_forms.update(flattened)
     safe_standard = sorted(all_forms & standard)
     safe_swiss = sorted({f.replace('ß', 'ss').replace('ẞ', 'SS') for f in all_forms} & swiss)
-    safe_rows = sorted({f + '\t1' for f in safe_standard} | {f + '\t2' for f in safe_swiss})
+    indexed_keys = {f.lower() for f in all_forms}
+    indexed_keys.update(k.replace('ß', 'ss') for k in list(indexed_keys))
+    unresolved_keys = {w.lower() for w in unresolved if w in standard or w.lower() in indexed_keys}
+    unresolved_keys.update(k.replace('ß', 'ss') for k in list(unresolved_keys))
+    for key in sorted(unresolved_keys):
+        buckets[surface_bucket(key)].append(key + '\t-1\t\t\t\t\t')
     # The complete license accompanies each generated file, so redistribution
     # cannot accidentally strip it by excluding the development directory.
     attribution = ('Derived from Unicode Inflection, revision ' + REVISION + '.\n'
@@ -266,15 +304,10 @@ def generate(sources: dict[str, bytes]) -> dict[Path, bytes]:
     header = ('// GENERATED by tool/proofing/generate_german_morphology.py.\n'
               '// Analysis only; does not expand accepted spellings.\n' +
               '\n'.join('// ' + line if line else '//' for line in attribution.splitlines()) + '\n')
-    files, symbols = dart_chunks('nouns', rows, header)
-    spelling_files, spelling_symbols = dart_chunks('spellings', safe_rows, header, 2048)
-    files.update(spelling_files)
-    all_symbols = symbols + spelling_symbols
-    index = [header, *(f"import '{stem}.dart';" for stem, _ in all_symbols), '']
-    for name, items in [('germanMorphologyNounChunks', symbols), ('germanMorphologySpellingChunks', spelling_symbols)]:
-        index.append(f'const List<String> {name} = <String>[')
-        index.extend(f'  ...{symbol},' for _, symbol in items)
-        index.extend(['];', ''])
+    files, symbols = dart_buckets(buckets, header)
+    index = [header, *(f"import '{stem}.dart';" for stem, _ in symbols), '', 'const List<String> germanMorphologySurfaceChunks = <String>[']
+    index.extend(f'  ...{symbol},' for _, symbol in symbols)
+    index.extend(['];', ''])
     index.append('const List<String> germanMorphologyPatterns = <String>[')
     index.extend("  '" + t.replace('\\', '\\\\').replace("'", "\\'").replace('\t', '\\t').replace('$', '\\$') + "'," for t in templates)
     index.extend(['];', '', f'const int germanMorphologyLemmaCount = {len(lemmas)};', f'const int germanMorphologyReadingCount = {len(rows)};', ''])
@@ -285,17 +318,18 @@ def generate(sources: dict[str, bytes]) -> dict[Path, bytes]:
         'schema_version': 1,
         'upstream': {'name': 'Unicode Inflection', 'repository': UPSTREAM, 'revision': REVISION,
                      'license': 'Unicode-3.0', 'sources': {name: {'url': source_url(name), 'sha256': sha, 'bytes': size} for name, (sha, size) in INPUTS.items()}},
-        'selection': {'lemma': 'Modern spelling allowlist; single capitalized alphabetic singular nominative noun; exact pattern nominative match. Proper names, abbreviations and nominalized adjectives excluded.',
+        'selection': {'lemma': 'Modern spelling allowlist; single capitalized alphabetic singular nominative or plural-only nominative noun; exact pattern nominative and gender match. Proper names, abbreviations and nominalized adjectives excluded.',
                       'analyses': 'Complete fixed noun paradigms only; all explicit genders, numbers and alternative case forms retained. Distinct source patterns remain distinct, including plural senses. Generated forms must be corroborated by matching source case/number/pattern tags. Lemmas with unknown gender or context-dependent declension are omitted.',
                       'corrections': 'Separate standard/Swiss modern spelling intersection gates suggested noun forms. Upstream forms never enlarge spelling acceptance.',
                       'scope': 'Finite lexical morphology, not dependency parsing or a full grammar checker.'},
-        'statistics': {'lemmas': len(lemmas), 'readings': len(rows), 'patterns': len(templates), 'surface_forms': len(all_forms),
+        'statistics': {'lemmas': len(lemmas), 'readings': len(rows), 'patterns': len(templates), 'surface_forms': len(all_forms), 'unresolved_surface_keys': len(unresolved_keys),
                        'suggestion_safe_standard': len(safe_standard), 'suggestion_safe_swiss': len(safe_swiss), 'excluded': dict(excluded)},
         'validity_additions': [{'lemma': l, 'reason': reason, 'form': f} for l, reason, f in sorted(additions)],
         'review_references': {
             'Herz': 'https://grammis.ids-mannheim.de/fragen/6979',
             'Nachbar': 'https://www.duden.de/deklination/substantive/Nachbar',
             'Assistent': 'https://www.duden.de/deklination/substantive/Assistent',
+            'Architekt': 'https://www.duden.de/deklination/substantive/Architekt',
             'Teil': 'https://www.duden.de/rechtschreibung/Teil',
             'Stift': 'https://www.duden.de/rechtschreibung/Stift_Koerperschaft',
             'Bonbon': 'https://www.duden.de/rechtschreibung/Bonbon',
@@ -303,7 +337,13 @@ def generate(sources: dict[str, bytes]) -> dict[Path, bytes]:
         },
         'spelling_inputs_sha256': spelling_inputs,
         'logical_sha256': digest(('\n'.join(rows) + '\n').encode()),
-        'encoding': {'format': 'base64 raw DEFLATE UTF-8 TSV; lemma/stem/pattern, separate spelling membership', 'zlib_version': zlib.ZLIB_VERSION, 'max_readings_per_chunk': 1024},
+        'encoding': {'format': 'base64 raw DEFLATE UTF-8 TSV; surface/read-id/lemma/stem/pattern/standard-mask/swiss-mask',
+                     'unresolved_reading': 'read-id -1, five empty remaining fields; known unmodeled analyses veto corrections and first-party fallbacks',
+                     'buckets': 256, 'hash': 'UTF-16 code units: h=(h*31+unit)&255, h0=0',
+                     'mask_order': 'Sorted distinct pattern suffixes; one bit per suffix, max 30 bits',
+                     'zlib_version': zlib.ZLIB_VERSION,
+                     'max_bucket_rows': max(map(len, buckets)),
+                     'max_bucket_utf8_bytes': max(len(('\n'.join(sorted(b)) + '\n').encode()) for b in buckets)},
         'generated_files': {str(p.relative_to(PACKAGE)): digest(b) for p, b in sorted(files.items())},
     }
     files[NOTICE / 'morphology_manifest.json'] = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode()
