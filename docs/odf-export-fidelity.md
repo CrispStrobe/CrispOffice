@@ -5,6 +5,9 @@ shared Word and slide models. They do not preserve arbitrary imported ODF XML.
 The [17 November continuation report](validation/office-fidelity-continuation-20261117/README.md)
 records the incoming histories, local qualification, independent schema checks,
 and actual LibreOffice consumer evidence for the behavior below.
+The [resumed qualification](validation/office-fidelity-resume-20261117/README.md)
+adds the later comment integration, comment-story repairs, and centered slide
+rotation checks against a fresh saved source checkpoint.
 
 ## Word paragraphs
 
@@ -108,6 +111,34 @@ This bounds expansion even when definitions refer to themselves or one another.
 Note lookup uses an indexed definition map; source IDs, strings, native settings,
 and source block lists remain unchanged.
 
+## Comments
+
+Comments export as point annotations after their visible anchor run. One indexed
+registry resolves definitions and emits each comment once across body and master
+parts. Main-body anchors take precedence over note, frame, header, and footer
+anchors. Hidden covered-cell runs and references inside another comment do not
+consume a later visible anchor. Missing or ambiguous definitions leave the
+anchor text intact and omit the uncertain annotation.
+
+Comment stories retain author, initials, date, paragraph/run formatting, lists,
+line breaks, links, cached field results, and packaged pictures. Heading
+paragraphs use styled `text:p` elements because annotations do not permit
+`text:h` children. Valid XML Schema date-time strings use `dc:date`; other
+authored date strings remain in the standard `meta:date-string` element. Empty
+comments receive an output-only blank paragraph for predictable consumers.
+
+Nested comment references do not recursively emit annotations. Note references
+inside comments keep their visible marks without emitting or consuming the note
+body. Links in comments carry their text style directly on `text:a`; the tested
+LibreOffice annotation importer loses the visible text when it is nested inside
+a styled span.
+
+The serialized ODF retains pictures, tabs, and annotations in auxiliary stories,
+but the tested LibreOffice conversion omits some of these. The consumer report
+distinguishes retained XML from visible imported content. Comment ranges,
+thread/reply relationships, resolution metadata, and imported foreign annotation
+XML are outside this bounded new-document export.
+
 ## Presentation tables
 
 The slide model describes equal-sized rows and columns inside a frame. ODP
@@ -134,6 +165,29 @@ This avoids relying on the tested Impress consumer's ignored table writing
 mode and avoids double reversal in readers that do honor it. The source row
 lists remain in their original logical order. This preserves appearance rather
 than reconstructing editable native RTL-table metadata.
+
+## Presentation frame rotation
+
+Text and picture frames rotate clockwise about their authored center, matching
+the shared slide model. The writer uses an affine matrix plus translation with
+explicit units and local frame coordinates. This avoids the old rotation-angle
+and positioning mismatch that moved ordinary rotated content outside the slide.
+Full turns retain the ordinary unrotated frame representation; wrapped and
+negative angles normalize without changing the source transform.
+
+LibreOffice ignores rotation on a native presentation table while applying its
+translation. For a rotated table, the writer therefore emits a group of ordinary
+cell text frames plus a background. Each cell's position and content rotate
+around the table's common center. Authored/default colors, text, and physical RTL
+column order remain visible; missing ragged cells use the background without
+expanding a logical grid. A final transparent frame retains an authored outer
+stroke. Fixed cell frames prevent consumer auto-growth. Unrotated tables retain
+native table structure.
+
+This visual fallback does not retain an editable native table or header-row
+metadata for rotated tables. The source model is unchanged. Schema checks, asymmetric colored-picture
+fixtures, and independently measured consumer geometry cover the documented
+cases; they do not establish arbitrary imported transforms or animation parity.
 
 ## Slide transitions and automatic advance
 
@@ -180,4 +234,4 @@ Tests inspect generated semantics and source preservation. Independent checks
 use Python ZIP/XML readers, the official OASIS RelaxNG schemas, LibreOffice,
 and Poppler. Passing the retained fixtures does not establish all-document
 schema conformance, complete native office round trips, or universal rendering
-parity. Rotation and shared editor/headless font shaping remain separate work.
+parity. Shared editor/headless font shaping remains separate work.

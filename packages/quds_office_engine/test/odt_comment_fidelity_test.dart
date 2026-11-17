@@ -473,7 +473,10 @@ void main() {
     '\u00a02026-11-17T00:00:00Z',
     '2026-11-17T00:00:00Z\u2028',
   ]) {
-    test('retains non-date metadata as date-string: $date', () {
+    final displayDate = date
+        .replaceAll('\u00a0', '<NBSP>')
+        .replaceAll('\u2028', '<LINE SEPARATOR>');
+    test('retains non-date metadata as date-string: $displayDate', () {
       final comment = _comment(1, 'Review')..dateIso = date;
       final annotation = _annotations(
         _xml(
@@ -496,6 +499,26 @@ void main() {
       expect(comment.dateIso, date);
     });
   }
+
+  test('long malformed date metadata retains exact internal whitespace', () {
+    final date = 'X${' ' * 65536}X';
+    final comment = _comment(1, 'Review')..dateIso = date;
+    final annotation = _annotations(
+      _xml(
+        _export(
+          _document(
+            [
+              _anchor('Anchor', [1]),
+            ],
+            [comment],
+          ),
+        ),
+      ),
+    ).single;
+    expect(annotation.firstChild('date'), isNull);
+    expect(annotation.firstChild('date-string')!.text, date);
+    expect(comment.dateIso, date);
+  });
 
   test('rich comment text, links, fields, initials and pictures survive', () {
     WmlVisual picture(String title) => WmlVisual(

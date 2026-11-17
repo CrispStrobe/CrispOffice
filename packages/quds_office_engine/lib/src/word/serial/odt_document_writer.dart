@@ -941,7 +941,17 @@ class _OdtComments {
   );
 
   static bool isDateTime(String value) {
-    final normalized = value.replaceAll(RegExp(r'^[ \t\r\n]+|[ \t\r\n]+$'), '');
+    // Scan just the edges. A trailing-whitespace regex can retry at every
+    // interior space and take quadratic time on malformed imported metadata.
+    var start = 0;
+    var end = value.length;
+    while (start < end && _isXmlWhitespace(value.codeUnitAt(start))) {
+      start++;
+    }
+    while (end > start && _isXmlWhitespace(value.codeUnitAt(end - 1))) {
+      end--;
+    }
+    final normalized = value.substring(start, end);
     final match = _dateTime.firstMatch(normalized);
     if (match == null || match.end != normalized.length) return false;
     final year = match[2]!;
@@ -971,6 +981,9 @@ class _OdtComments {
         zone.substring(1, 3) != '14' ||
         zone.endsWith(':00');
   }
+
+  static bool _isXmlWhitespace(int unit) =>
+      unit == 0x20 || unit == 0x09 || unit == 0x0a || unit == 0x0d;
 }
 
 class _OdtLayout {

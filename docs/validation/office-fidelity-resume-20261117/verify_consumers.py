@@ -24,6 +24,9 @@ NS = {
     'office': 'urn:oasis:names:tc:opendocument:xmlns:office:1.0',
     'text': 'urn:oasis:names:tc:opendocument:xmlns:text:1.0',
     'table': 'urn:oasis:names:tc:opendocument:xmlns:table:1.0',
+    'meta': 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0',
+    'dc': 'http://purl.org/dc/elements/1.1/',
+    'draw': 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0',
     'xhtml': 'http://www.w3.org/1999/xhtml',
 }
 
@@ -45,6 +48,106 @@ def words(path):
     root = etree.parse(str(path))
     return [dict(text=word.text or '', **{k: float(v) for k, v in word.attrib.items()})
             for word in root.xpath('//xhtml:word', namespaces=NS)]
+
+
+def check_reopened_comments(name, reopened):
+    """Inspect the independent DOCX representation of imported ODF comments."""
+    word_ns = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
+    relationship_ns = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+    ns = {'w': word_ns, 'r': relationship_ns}
+
+    def word_text(node):
+        if node.tag == '{' + word_ns + '}t':
+            return node.text or ''
+        if node.tag == '{' + word_ns + '}tab':
+            return '\t'
+        if node.tag in ('{' + word_ns + '}br', '{' + word_ns + '}cr'):
+            return '\n'
+        return ''.join(word_text(child) for child in node)
+
+    with zipfile.ZipFile(reopened) as archive:
+        require(archive.testzip() is None, 'Reopened DOCX ZIP CRC check failed')
+        require('word/comments.xml' in archive.namelist(), 'Consumer lost the comments part')
+        comments = etree.fromstring(archive.read('word/comments.xml'))
+        document = etree.fromstring(archive.read('word/document.xml'))
+        relationships = {}
+        rel_part = 'word/_rels/comments.xml.rels'
+        if rel_part in archive.namelist():
+            relationships = {rel.get('Id'): rel.get('Target')
+                             for rel in etree.fromstring(archive.read(rel_part))}
+        auxiliary_markers = {}
+        for part in archive.namelist():
+            if part.startswith(('word/header', 'word/footer', 'word/footnotes', 'word/endnotes')) \
+                    and part.endswith('.xml'):
+                auxiliary = etree.fromstring(archive.read(part))
+                auxiliary_markers[part] = len(auxiliary.xpath('//w:commentReference', namespaces=ns))
+        if name == 'word-comments-notes':
+            require('word/footnotes.xml' in archive.namelist(), 'Consumer lost the separate note body')
+            footnotes = etree.fromstring(archive.read('word/footnotes.xml'))
+            require('Footnote body' in word_text(footnotes)
+                    and document.xpath('//w:footnoteReference', namespaces=ns),
+                    'Comment expansion moved or lost the visible footnote body')
+
+    annotations = comments.findall('w:comment', namespaces=ns)
+    expected = 2 if name == 'word-comments-recursive' else 1
+    require(len(annotations) == expected, 'Consumer lost or duplicated visible comment bodies')
+    ids = [annotation.get('{' + word_ns + '}id') for annotation in annotations]
+    require(None not in ids and len(set(ids)) == len(ids), 'Consumer contains ambiguous comment IDs')
+    body_references = document.xpath('//w:commentReference/@w:id', namespaces=ns)
+    require(len(body_references) == expected and sorted(body_references) == sorted(ids),
+            'Consumer lost, duplicated, or misbound visible main-body comment anchors')
+    require(not comments.xpath('./w:comment//w:comment', namespaces=ns),
+            'Consumer contains nested comments')
+    require(not comments.xpath('//w:footnoteReference | //w:endnoteReference | '
+                               '//w:footnote | //w:endnote', namespaces=ns),
+            'Note bodies or native note references were moved into comments')
+    summaries = []
+    for annotation in annotations:
+        values = {key: annotation.get('{' + word_ns + '}' + key, '')
+                  for key in ('author', 'initials', 'date')}
+        values['id'] = annotation.get('{' + word_ns + '}id')
+        values['paragraphs'] = [word_text(p) for p in annotation.xpath('.//w:p', namespaces=ns)]
+        values['pictures'] = len(annotation.xpath('.//w:drawing | .//w:pict', namespaces=ns))
+        values['tabs'] = len(annotation.xpath('.//w:tab', namespaces=ns))
+        values['hyperlinks'] = [
+            {'text': word_text(link),
+             'target': relationships.get(link.get('{' + relationship_ns + '}id'))}
+            for link in annotation.xpath('.//w:hyperlink', namespaces=ns)]
+        summaries.append(values)
+    visible = '\n'.join(p for item in summaries for p in item['paragraphs'])
+    phrases = {
+        'word-comments-covered': ['Visible review'],
+        'word-comments-frame-priority': ['Main body review'],
+        'word-comments-note-priority': ['Main body review'],
+        'word-comments-heading': ['Review heading'],
+        'word-comments-recursive': ['First review', 'Second review'],
+        'word-comments-notes': ['Review 1'],
+        'word-comments-rich': ['Leading  text', 'Link', 'Cached result', 'List item'],
+        'word-comments-stories': ['Shared review'],
+        'word-comments-date-string': ['Review'],
+    }
+    for phrase in phrases.get(name, []):
+        require(phrase in visible, 'Consumer lost comment text: ' + phrase)
+    require('HIDDEN INSTRUCTION' not in visible, 'Hidden field instruction became visible')
+    if name == 'word-comments-rich':
+        require(summaries[0]['author'] == 'Reviewer <A&B>'
+                and summaries[0]['initials'] == 'A&B'
+                and summaries[0]['date'] == '2026-11-17T15:30:42Z',
+                'Comment author, initials, or valid date was lost')
+        require(any('Link' in link['text']
+                    and link['target'] == 'https://example.test/?a=1&b=2'
+                    for link in summaries[0]['hyperlinks']),
+                'Comment hyperlink text or destination was lost')
+    return {'format': 'docx', 'visible_annotations': len(annotations),
+            'main_body_comment_references': body_references,
+            'auxiliary_comment_reference_counts': auxiliary_markers,
+            'comments': summaries, 'round_trip_sha256': digest(reopened),
+            'scope': 'Visible main-body comments checked through independent DOCX structures.',
+            'limitations': [
+                'The measured consumer omits comment pictures and explicit tabs.',
+                'Unique header/footer/note comment anchors are omitted by this consumer; '
+                'the original ODF retains them.',
+                'Arbitrary meta:date-string metadata has no asserted DOCX mapping.']}
 
 
 def check_semantics(name, content, text, bbox, raster):
@@ -213,6 +316,15 @@ def main():
                  str(output / stem)], stem + '-raster')
             item['semantic_checks'] = check_semantics(stem, parts['content.xml'],
                                                       txt.read_text(), bbox, raster)
+            if stem.startswith('word-comments-'):
+                reopened_dir = output / 'reopened'
+                reopened_dir.mkdir(exist_ok=True)
+                run(['soffice', '-env:UserInstallation=' + profile.as_uri(), '--headless',
+                     '--convert-to', 'docx', '--outdir', str(reopened_dir), str(source)],
+                    stem + '-reopen')
+                reopened = reopened_dir / (stem + '.docx')
+                require(reopened.is_file(), 'LibreOffice did not save the reopened comment fixture')
+                item['comment_consumer'] = check_reopened_comments(stem, reopened)
             item['artifacts_sha256'] = {p.name: digest(p) for p in (pdf, txt, bbox, raster)}
             item['passed'] = True
             # Profiles are disposable caches, not evidence or source inputs.
