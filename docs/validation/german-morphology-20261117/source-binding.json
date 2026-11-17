@@ -2,7 +2,7 @@
   "qualified_remote_head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
   "equivalent_local_test_head": "153012a92ec5fcbd8911d06f16c20cf8e254b256",
   "equal_full_tree": "efa8c68569f579e5ff63452eeed0b3607a54fe9c",
-  "explanation": "The authenticated GitHub tree/commit API recreates the local checkpoint with different commit metadata. Both commits have exactly the same Git tree; source hashes also match the final receipts. Later changes are documentation/evidence only.",
+  "explanation": "The authenticated GitHub tree/commit API recreates the local checkpoint with different commit metadata. Both commits have exactly the same Git tree; tracked source hashes also match the final receipts. The ignored root pubspec.lock is separately bound to an identical tracked historical copy using workspace_input_bindings below. Changes after the qualified source through recovered_evidence_head are documentation/evidence only. Subsequent branch integrations are outside this historical binding.",
   "github_actions_used": false,
   "receipts": {
     "frozen-corpus": {
@@ -41,63 +41,108 @@
       "receipt_sha256": "538fdcde265674ad85fbfe7691bd71dc987d2735ffe3e2bd23a967b908fe9364",
       "recorded_head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
       "recorded_source_unchanged": true,
-      "checked_paths": 43,
-      "external_paths": [],
-      "current_mismatches": []
+      "checked_paths": 42,
+      "external_paths": [
+        "pubspec.lock"
+      ],
+      "current_mismatches": [],
+      "preserved_workspace_input_bindings": [
+        "pubspec.lock"
+      ]
     },
     "engine": {
       "receipt_sha256": "78b582b72a4c1f28096a5a6dd57fa2c9082a170a9dc1407b2cc372223017b06e",
       "recorded_head": "153012a92ec5fcbd8911d06f16c20cf8e254b256",
       "recorded_source_unchanged": true,
-      "checked_paths": 1071,
-      "external_paths": [],
-      "current_mismatches": []
+      "checked_paths": 1070,
+      "external_paths": [
+        "pubspec.lock"
+      ],
+      "current_mismatches": [],
+      "preserved_workspace_input_bindings": [
+        "pubspec.lock"
+      ]
     },
     "editor": {
       "receipt_sha256": "c2d6e97a4fdf088de4ff715551948da8d2bfbe11400d0ace2d3454f2e68c2dac",
       "recorded_head": "153012a92ec5fcbd8911d06f16c20cf8e254b256",
       "recorded_source_unchanged": true,
-      "checked_paths": 1071,
-      "external_paths": [],
-      "current_mismatches": []
+      "checked_paths": 1070,
+      "external_paths": [
+        "pubspec.lock"
+      ],
+      "current_mismatches": [],
+      "preserved_workspace_input_bindings": [
+        "pubspec.lock"
+      ]
     },
     "analysis": {
       "receipt_sha256": "e9ea0196f1bbd26ee0bdb656cff7ce9ca06a53e43b0ca84f582fa295f7861623",
       "recorded_head": "153012a92ec5fcbd8911d06f16c20cf8e254b256",
       "recorded_source_unchanged": true,
-      "checked_paths": 1071,
-      "external_paths": [],
-      "current_mismatches": []
+      "checked_paths": 1070,
+      "external_paths": [
+        "pubspec.lock"
+      ],
+      "current_mismatches": [],
+      "preserved_workspace_input_bindings": [
+        "pubspec.lock"
+      ]
     },
     "timing-short": {
       "receipt_sha256": "8e03b9f905d3cde423f46bed9dece4cc421cfd5660901a6b2d27bbce2225293c",
       "recorded_head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
       "recorded_source_unchanged": true,
-      "checked_paths": 42,
+      "checked_paths": 41,
       "external_paths": [
         "toolchains/setup/morphology_timing.dart",
-        "toolchains/setup/run_morphology_timing.py"
+        "toolchains/setup/run_morphology_timing.py",
+        "quds_office_suite/pubspec.lock"
       ],
-      "current_mismatches": []
+      "current_mismatches": [],
+      "preserved_workspace_input_bindings": [
+        "pubspec.lock"
+      ]
     },
     "timing-long": {
       "receipt_sha256": "ea66d1e01e38957abecdbba1b52ee457b1f88bf4660f826d0f6702c7667e4330",
       "recorded_head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
       "recorded_source_unchanged": true,
-      "checked_paths": 42,
+      "checked_paths": 41,
       "external_paths": [
         "toolchains/setup/morphology_timing.dart",
-        "toolchains/setup/run_morphology_timing.py"
+        "toolchains/setup/run_morphology_timing.py",
+        "quds_office_suite/pubspec.lock"
       ],
-      "current_mismatches": []
+      "current_mismatches": [],
+      "preserved_workspace_input_bindings": [
+        "pubspec.lock"
+      ]
     },
     "web": {
       "receipt_sha256": "d2e3ac1d1edf2c52dd3222353edf847474883c2f5cdc5fe8514610b4bbee143e",
       "recorded_head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
       "recorded_source_unchanged": true,
-      "checked_paths": 1071,
-      "external_paths": [],
-      "current_mismatches": []
+      "checked_paths": 1070,
+      "external_paths": [
+        "pubspec.lock"
+      ],
+      "current_mismatches": [],
+      "preserved_workspace_input_bindings": [
+        "pubspec.lock"
+      ]
     }
-  }
+  },
+  "workspace_input_bindings": {
+    "pubspec.lock": {
+      "receipt_paths": [
+        "pubspec.lock",
+        "quds_office_suite/pubspec.lock"
+      ],
+      "tracked_evidence_path": "docs/validation/proofing-grammar-expansion-20261117/integration/pubspec.lock",
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      "reason": "The workspace lockfile is ignored by Git. This preserved historical copy has the exact digest recorded by the qualification receipts."
+    }
+  },
+  "recovered_evidence_head": "286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86"
 }

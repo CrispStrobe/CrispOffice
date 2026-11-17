@@ -1,0 +1,8 @@
+{
+  "schema": 1, "backend": "crispembed-gector-cpu",
+  "tokens": 3, "label_count": 5000, "detect_count": 2,
+  "hidden_size": 768, "threads": 2, "warmups": 0,
+  "load_ms": 118.35, "median_ms": 17.3748, "p95_ms": 17.3748,
+  "raw_dtype": "little-endian-float32", "raw_layout": "token-major",
+  "forward_ms": [17.3748]
+}

@@ -106,7 +106,8 @@ visible cells and excluding covered stories. Table geometry and hidden cell
 stories inside notes are outside this fallback; source blocks remain intact.
 
 New note bodies are emitted only in visible body paragraphs. References in
-headers, footers, frames, covered cells, or note bodies appear as visible marks.
+headers, footers, frames, comments, covered cells, or note bodies appear as visible
+marks.
 This bounds expansion even when definitions refer to themselves or one another.
 Note lookup uses an indexed definition map; source IDs, strings, native settings,
 and source block lists remain unchanged.

@@ -1,0 +1,24 @@
+{
+  "qualified_remote_source": "8432238d8a694350d6035f1b3314b51ce4254ce4",
+  "equivalent_local_source": "84b9ceee1cc8c75bbcbc49f10a662d839f18e773",
+  "equal_full_tree": "d04bbd715b9d7a45880a9675daa0b6ee5eddab68",
+  "receipt_recorded_base_local_source": "5f0fdd2897003e1eb865a791b3810c1511e879df",
+  "receipt_explanation": "The final receipt was recorded before committing the test-only lint/format change. Its complete input hashes now match the committed source, including that test. Commit metadata differs for the connector-created remote commit, but its complete Git tree equals the local source commit.",
+  "final_receipt_sha256": "83cfa99cdd00f0feacfcaf38b2aacfd80fc79223b67e73d4edbef36faaef97fe",
+  "input_manifest_sha256": "8d068e93a03754fb8028515c328e4d12f4ef5e03e00a4699ff34472c1fbdf63c",
+  "input_count": 1862,
+  "tracked_inputs_matched": 1861,
+  "workspace_inputs": [
+    "pubspec.lock"
+  ],
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_lock_evidence": "docs/validation/proofing-grammar-expansion-20261117/integration/pubspec.lock",
+  "mismatches": [],
+  "proofing_continuity": {
+    "paths": 136,
+    "changed_paths": [],
+    "characters_files_matched": 7,
+    "historical_proofing_source": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0"
+  },
+  "github_actions_used": false
+}

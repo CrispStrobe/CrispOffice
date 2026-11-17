@@ -1,0 +1,25 @@
+{
+  "qualified_remote_source": "b58e66da1ced48f3f87aa85633da9235191a6023",
+  "equivalent_local_source": "6d8981fea1e581c9e697eaa562feebe3467e2574",
+  "equal_full_tree": "26cc975675a1efffc995a1c7733f9e22855fd60f",
+  "receipt_sha256": "530d2e1f1dd4bc76f15018b2035ef61e20d742db186dd235f69bc5b46cc559ae",
+  "input_manifest_sha256": "8c66af5569983e3177d5d1042818293fb03803bf2f8f9c9fafb3c8b67f657fef",
+  "input_count": 1862,
+  "tracked_inputs_matched": 1861,
+  "workspace_inputs": [
+    "pubspec.lock"
+  ],
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_lock_evidence": "docs/validation/proofing-grammar-expansion-20261117/integration/pubspec.lock",
+  "mismatches": [],
+  "proofing_continuity": {
+    "paths": 136,
+    "changed_paths": []
+  },
+  "verified_ancestors": [
+    "8432238d8a694350d6035f1b3314b51ce4254ce4",
+    "6f9caa0736828dbbb2c4d00d2af89277243dbf2b"
+  ],
+  "scope": "Final source after integrating main section layouts into PR #105. Complete 279-test and strict-analysis receipt; earlier proofing/editor runs remain separately bound.",
+  "github_actions_used": false
+}

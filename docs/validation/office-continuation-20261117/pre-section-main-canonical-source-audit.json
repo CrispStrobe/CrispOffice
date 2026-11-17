@@ -1,0 +1,521 @@
+{
+  "schema_version": 1,
+  "kind": "Final read-only source preservation audit; no execution qualification",
+  "recorded_utc": "2026-11-17 14:32:53 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "audited_branch": "codex/office-continuation-20261117",
+  "audited_head": "ec5da06988f21c982c8105436dde988572dc0c3c",
+  "audited_tree": "961e7bf5b2604f2c774de44cf890bac3487b37b8",
+  "retained_source_commit": "7f116669d2512cf660c86d3c83feb64ab6b707fb",
+  "retained_source_tree": "eaa5b4ec202891972351f15cd1ff7c76c160c12e",
+  "docs_only_delta": {
+    "confirmed": true,
+    "head_has_single_parent": true,
+    "compare": {
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0
+    },
+    "full_recursive_tree_comparison": {
+      "source_blobs": 6728,
+      "audited_blobs": 6729,
+      "untruncated": true
+    },
+    "changes": [
+      {
+        "path": "docs/validation/office-continuation-20261117/arrival-source-readback.json",
+        "before": null,
+        "after": {
+          "sha": "b3b807e670d3491cdde7bb1ec4ef34e3145d7505",
+          "mode": "100644"
+        }
+      }
+    ],
+    "all_source_blobs_and_modes_unchanged": true
+  },
+  "late_arrivals": {
+    "source_commit_parents": [
+      "960a08a026897c20776c05293751fe9686e20ba3",
+      "685b341333dc260db0734658d67798a72b33868c",
+      "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+      "9f1ca6441e723646769d4b01211cb5f14edee1d7"
+    ],
+    "required_direct_parents": [
+      {
+        "branch": "office",
+        "sha": "685b341333dc260db0734658d67798a72b33868c",
+        "present": true
+      },
+      {
+        "branch": "morphology",
+        "sha": "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+        "present": true
+      },
+      {
+        "branch": "gector",
+        "sha": "9f1ca6441e723646769d4b01211cb5f14edee1d7",
+        "present": true
+      }
+    ]
+  },
+  "zotero": {
+    "previous_manifest_path": "docs/validation/office-continuation-20261117/independent-source-review.json",
+    "manifest_blob": "a6abcd24af62b0d88cbe2b62154d91b11bc2f363",
+    "prior_landing_commit": "1549a9c7884eb688732262398b5d9859a68103eb",
+    "path_count": 50,
+    "unchanged_count": 50,
+    "all_blob_and_mode_equal": true,
+    "entries": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_zotero.dart",
+        "expected_blob": "7adb79ab19134f9d54f1c4c393a3e3d3362d6c9a",
+        "actual_blob": "7adb79ab19134f9d54f1c4c393a3e3d3362d6c9a",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_zotero_local_io.dart",
+        "expected_blob": "8a99108c6e82f68c1914793f37ef58b55061c58c",
+        "actual_blob": "8a99108c6e82f68c1914793f37ef58b55061c58c",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_zotero_local_stub.dart",
+        "expected_blob": "e8e714667c894b1f3bf094b81f1808b7083345d3",
+        "actual_blob": "e8e714667c894b1f3bf094b81f1808b7083345d3",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+        "expected_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+        "actual_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "expected_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+        "actual_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart",
+        "expected_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+        "actual_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+        "expected_blob": "dd681f67fa1fb7acb548061d4da69fa1bab5a18a",
+        "actual_blob": "dd681f67fa1fb7acb548061d4da69fa1bab5a18a",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+        "expected_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+        "actual_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+        "expected_blob": "21a88d43d0dc81cede3583e748e32c544c6303e4",
+        "actual_blob": "21a88d43d0dc81cede3583e748e32c544c6303e4",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+        "expected_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+        "actual_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+        "expected_blob": "1a25b5d1bf5ad54add68b1c678f751bf47b20b92",
+        "actual_blob": "1a25b5d1bf5ad54add68b1c678f751bf47b20b92",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+        "expected_blob": "2c7ac95c3379050017bdd5470be9b7192115e7ae",
+        "actual_blob": "2c7ac95c3379050017bdd5470be9b7192115e7ae",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+        "expected_blob": "4b7656d940dbed1e811ebc9ea601e75d1fe16dc9",
+        "actual_blob": "4b7656d940dbed1e811ebc9ea601e75d1fe16dc9",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+        "expected_blob": "521e8af163fff94e2ea03438ce808f5252e8274a",
+        "actual_blob": "521e8af163fff94e2ea03438ce808f5252e8274a",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+        "expected_blob": "925dcc6878d5f81781908bb871a38c13dd853bda",
+        "actual_blob": "925dcc6878d5f81781908bb871a38c13dd853bda",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_format_test.dart",
+        "expected_blob": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f",
+        "actual_blob": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+        "expected_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+        "actual_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+        "expected_blob": "698c53581d0bc0f92052458d1704a142b33277bb",
+        "actual_blob": "698c53581d0bc0f92052458d1704a142b33277bb",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+        "expected_blob": "345b34eabd7b79d4dfaeabf2d978e9d6b5a36808",
+        "actual_blob": "345b34eabd7b79d4dfaeabf2d978e9d6b5a36808",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+        "expected_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+        "actual_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "expected_blob": "6c1951e088391b620c8c1aacbc2b18b91c673e08",
+        "actual_blob": "6c1951e088391b620c8c1aacbc2b18b91c673e08",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+        "expected_blob": "7f30e37606603e5adae06caca9f71308123de465",
+        "actual_blob": "7f30e37606603e5adae06caca9f71308123de465",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+        "expected_blob": "e0265033bed528e8eeb1d1b96a9826f1b71eaa76",
+        "actual_blob": "e0265033bed528e8eeb1d1b96a9826f1b71eaa76",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+        "expected_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+        "actual_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart",
+        "expected_blob": "3416e1301ddb3ec8819aee07cec162b3c4164838",
+        "actual_blob": "3416e1301ddb3ec8819aee07cec162b3c4164838",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+        "expected_blob": "ef85d53e8daa3e793a7bdb0b4003a5a74999db08",
+        "actual_blob": "ef85d53e8daa3e793a7bdb0b4003a5a74999db08",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/fixtures/zotero/citing/README.md",
+        "expected_blob": "cfc7fc762c379b298b16abf67fc34b4f07c967f7",
+        "actual_blob": "cfc7fc762c379b298b16abf67fc34b4f07c967f7",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/fixtures/zotero/citing/generate-fixtures.cjs",
+        "expected_blob": "ccafdb1d7d5905505641b00c741d74e5f72ed643",
+        "actual_blob": "ccafdb1d7d5905505641b00c741d74e5f72ed643",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/fixtures/zotero/citing/processor-output.json",
+        "expected_blob": "935c6ac0d9a816fe578c30c3c4c7f3e27354d84d",
+        "actual_blob": "935c6ac0d9a816fe578c30c3c4c7f3e27354d84d",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/fixtures/zotero/citing/protocol-contract.json",
+        "expected_blob": "6ecacf41c116775e85687df3bc43bf17e13b5e9b",
+        "actual_blob": "6ecacf41c116775e85687df3bc43bf17e13b5e9b",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/fixtures/zotero/word_document.xml",
+        "expected_blob": "58ab654c095dca77ac89ed82c9933903dcc9a4da",
+        "actual_blob": "58ab654c095dca77ac89ed82c9933903dcc9a4da",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+        "expected_blob": "8ac20b3d733b295fd1b9a47d57bf11ce4a29d6b2",
+        "actual_blob": "8ac20b3d733b295fd1b9a47d57bf11ce4a29d6b2",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+        "expected_blob": "b1032ee4bab803997322170accb1cb94b15e432e",
+        "actual_blob": "b1032ee4bab803997322170accb1cb94b15e432e",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+        "expected_blob": "ba361688bb890e31edb80fc97a1e3201dfc104b9",
+        "actual_blob": "ba361688bb890e31edb80fc97a1e3201dfc104b9",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+        "expected_blob": "f6b3022292411a888bbfb6fe911e27ce077fe9e5",
+        "actual_blob": "f6b3022292411a888bbfb6fe911e27ce077fe9e5",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+        "expected_blob": "a08d47ab044b3612c3280d4aca110af00594d78c",
+        "actual_blob": "a08d47ab044b3612c3280d4aca110af00594d78c",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+        "expected_blob": "c53592cc431f3f6605c6f41e7980a4c6c034e1b5",
+        "actual_blob": "c53592cc431f3f6605c6f41e7980a4c6c034e1b5",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+        "expected_blob": "00002fbbf6518c2142978c4b0aed86235cefd7a9",
+        "actual_blob": "00002fbbf6518c2142978c4b0aed86235cefd7a9",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+        "expected_blob": "ca91db78f6fa4284d0708edddaa7873904f53ff0",
+        "actual_blob": "ca91db78f6fa4284d0708edddaa7873904f53ff0",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+        "expected_blob": "c62f5df2c981f4755e2ae0ac4f33e9cb1cb204ee",
+        "actual_blob": "c62f5df2c981f4755e2ae0ac4f33e9cb1cb204ee",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+        "expected_blob": "631232b4df6ec1e6f8226e01d8318f7163b58816",
+        "actual_blob": "631232b4df6ec1e6f8226e01d8318f7163b58816",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+        "expected_blob": "53f29938b5f31cff40648f356c444d06f96183ba",
+        "actual_blob": "53f29938b5f31cff40648f356c444d06f96183ba",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+        "expected_blob": "2f0663487f527d33e1855926c3f36803167f4423",
+        "actual_blob": "2f0663487f527d33e1855926c3f36803167f4423",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+        "expected_blob": "e420291eb421ccc4447416f29d3e356680236377",
+        "actual_blob": "e420291eb421ccc4447416f29d3e356680236377",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_client_test.dart",
+        "expected_blob": "590e6b2b7953b08bc0a1434f866f67935e12c3fa",
+        "actual_blob": "590e6b2b7953b08bc0a1434f866f67935e12c3fa",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+        "expected_blob": "b91cfd389a5b805bb78822e63dcbca499f5d9464",
+        "actual_blob": "b91cfd389a5b805bb78822e63dcbca499f5d9464",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+        "expected_blob": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65",
+        "actual_blob": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+        "expected_blob": "fbea53dd8badea6cf69b136945155f08305f82b1",
+        "actual_blob": "fbea53dd8badea6cf69b136945155f08305f82b1",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+        "expected_blob": "95943fabfffdb187c44ae5ff6be9503ffcac3734",
+        "actual_blob": "95943fabfffdb187c44ae5ff6be9503ffcac3734",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+        "expected_blob": "483cf44306607d82e572fbab49d34084a1728c65",
+        "actual_blob": "483cf44306607d82e572fbab49d34084a1728c65",
+        "expected_mode": "100644",
+        "actual_mode": "100644"
+      }
+    ]
+  },
+  "initial_refs": {
+    "references": 231,
+    "distinct_heads": 155,
+    "comparison_rows": 155,
+    "ancestral_at_original_source": 153,
+    "alias_heads_retained_as_parents": [
+      "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    ],
+    "retaining_commit": "da3f469a1ad85e36a699743e427f7fb0bcd94486",
+    "retaining_commit_parents": [
+      "8b2ee333b883bfb64d51d44629c16151e1e0a2d7",
+      "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    ],
+    "retaining_commit_is_ancestor_of_audited_head": true,
+    "unaccounted": [],
+    "inventory_path": "docs/validation/office-continuation-20261117/incoming-inventory.json",
+    "inventory_blob": "9717139d0017665ea7805419404be33ca375e291",
+    "receipt_path": "docs/validation/office-continuation-20261117/captured-ref-audit.json",
+    "receipt_blob": "5f9ef71f5b9fca064027750747ab151ba1d77ef7",
+    "coverage_method": "Match every one of 155 distinct inventory heads to the retained comparison rows. Validate the 153 original ancestors have behind_by=0 and merge_base=head. Verify the two represented aliases are literal parents of da3f469a. Fresh compare of da3f469a...ec5da069 confirms da3f469a remains an ancestor, preserving all 231 references transitively.",
+    "fresh_ancestry": {
+      "base": "da3f469a1ad85e36a699743e427f7fb0bcd94486",
+      "head": "ec5da06988f21c982c8105436dde988572dc0c3c",
+      "status": "ahead",
+      "ahead_by": 16,
+      "behind_by": 0,
+      "merge_base": "da3f469a1ad85e36a699743e427f7fb0bcd94486"
+    }
+  },
+  "pending_test_paths": {
+    "documentation": "docs/validation/odf-annotation-visibility-20261117/README.md",
+    "documentation_blob": "ad68756f42ad257eee5befb7a7024262bbbd5bf9",
+    "all_six_documented_canonical_test_paths_exist": true,
+    "additional_note_fidelity_test_exists": true,
+    "entries": [
+      {
+        "path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+        "exists": true,
+        "sha": "d16f39b66d8d7ad3d0b4ec8a860a75e27bd70af6",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart",
+        "exists": true,
+        "sha": "2e8f0464ece37bf2d25139e624886be40f832945",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odf_export_text_fidelity_test.dart",
+        "exists": true,
+        "sha": "103ea73732deee3a66e2218f7ee0a62941900762",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "exists": true,
+        "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "exists": true,
+        "sha": "5885b357cca728676080fcfbccdc05feb0bd7fb1",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_search_fidelity_test.dart",
+        "exists": true,
+        "sha": "6005afa23608625ef6473bc3ba0a13d31576c2de",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "exists": true,
+        "sha": "fab22f0897d49e528ead09cdaed1f5f2b701c547",
+        "mode": "100644"
+      }
+    ],
+    "followup": "Include test/odt_note_fidelity_test.dart in the final focused validation command to exercise the combined note/comment guard and all three new regression cases. Existing annotation checkpoint commands list the six reader/writer suites.",
+    "executed": false
+  },
+  "inherited_metadata_correction": {
+    "receipt_path": "docs/validation/office-continuation-20261117/source-verification.json",
+    "receipt_blob": "0940f19fe4c23ebf35e03afce72e2fdacc3297d5",
+    "field": "tree_sha",
+    "recorded_value": "8b2ee333b883bfb64d51d44629c16151e1e0a2d7",
+    "recorded_value_is": "source commit SHA, not a tree SHA",
+    "actual_source_commit": "8b2ee333b883bfb64d51d44629c16151e1e0a2d7",
+    "actual_tree_sha": "c7fb5aaff9a122d163707ea51002605e12084308",
+    "authoritative_source": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/commits/8b2ee333b883bfb64d51d44629c16151e1e0a2d7",
+    "frozen_receipt_modified": false,
+    "impact": "Metadata attribution correction only; no implementation change. The current final commit/tree identities and docs-only comparison were independently verified from Git objects."
+  },
+  "source_preservation_blockers": [],
+  "runtime_tests_executed": false,
+  "formatter_or_analyzer_executed": false,
+  "github_actions_or_ci_status_endpoints_queried": false,
+  "branch_mutated_by_this_audit": false
+}

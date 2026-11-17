@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_head": "8b2ee333b883bfb64d51d44629c16151e1e0a2d7",
+  "tree_sha": "8b2ee333b883bfb64d51d44629c16151e1e0a2d7",
+  "tree_truncated": false,
+  "expected_blob_paths": 6700,
+  "actual_blob_paths": 6703,
+  "unexpected_differences": [],
+  "method": "Build expected blobs/modes from observed main, apply only three-way incoming deltas, preserve the four newer GECToR files, and insert the independently reconciled ODT writer/test. Compare the complete fetched recursive tree, excluding only this continuation's documentation directory.",
+  "runtime_tests_executed": false,
+  "writer": {
+    "blob": "80d121737b042b29231afc19d0e5004dfc210aee",
+    "full_content_readback_matched": true,
+    "removal_inverse_matches_office": true,
+    "added_lines_from_main": 31
+  },
+  "test": {
+    "blob": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+    "full_content_readback_matched": true,
+    "removal_inverse_matches_office": true,
+    "added_lines_from_main": 36
+  }
+}

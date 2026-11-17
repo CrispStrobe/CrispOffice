@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "source-correction-with-unexecuted-regressions",
+  "base": "c21a1549a612bb04fcd071a50d12c28f31343d11",
+  "finding": "An annotation serialized before a visible reference could emit a note definition and populate _OdtNotes.emitted. The later visible reference then became a note-ref whose only definition was inside the annotation story.",
+  "diagnosis": "Independent source-level control-flow review; no failing runtime control was executed.",
+  "correction": "Disable note-body emission while serializing comment paragraphs, restoring the previous noteBodiesAllowed value in finally. Reference labels and comment XML remain; the first visible reference emits the definition and later visible references resolve to it.",
+  "changed_source": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+  "source_edit_scope": "One call wrapped in the same scoped flag/try-finally pattern already used for frame and covered-cell stories; seven net added lines.",
+  "regression_file": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+  "added_cases": [
+    "footnote references in comments cannot consume visible note bodies",
+    "endnote references in comments cannot consume visible note bodies"
+  ],
+  "assertions": [
+    "No note, note-ref or note-body in annotation",
+    "Annotation keeps comment text and resolved visible label",
+    "Visible body contains exactly one definition and retained note content",
+    "Second visible reference resolves to that definition",
+    "Original comment text, note ID and note text remain unchanged"
+  ],
+  "preservation": {
+    "source_edit_removal_recreates_base": true,
+    "test_addition_removal_recreates_base": true
+  },
+  "execution": {
+    "dart_tests": "not run",
+    "flutter_tests": "not run",
+    "dart_analyze": "not run",
+    "dart_format": "not run",
+    "github_actions_or_ci_status_endpoints": "not queried or awaited"
+  }
+}

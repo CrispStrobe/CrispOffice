@@ -1,0 +1,1754 @@
+{
+  "revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+  "model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+  "cases_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+  "reference_sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8",
+  "cases": [
+    {
+      "id": "verb-du",
+      "input": "Du geht heute nach Hause.",
+      "corrected": "Du gehst heute nach Hause.",
+      "suggestions_utf16": [
+        {
+          "start": 3,
+          "end": 7,
+          "original": "geht",
+          "replacement": "gehst"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Du",
+            "geht",
+            "heute",
+            "nach",
+            "Hause"
+          ],
+          "input_ids": [
+            102,
+            840,
+            1125,
+            1181,
+            333,
+            3873,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_VERB_P2P_P2S",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Du",
+            "gehst",
+            "heute",
+            "nach",
+            "Hause"
+          ],
+          "input_ids": [
+            102,
+            840,
+            15153,
+            1181,
+            333,
+            3873,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verb-plural",
+      "input": "Die Kinder spielt im Garten.",
+      "corrected": "Die Kinder spielen im Garten.",
+      "suggestions_utf16": [
+        {
+          "start": 11,
+          "end": 17,
+          "original": "spielt",
+          "replacement": "spielen"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Die",
+            "Kinder",
+            "spielt",
+            "im",
+            "Garten"
+          ],
+          "input_ids": [
+            102,
+            229,
+            1147,
+            4011,
+            223,
+            4076,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_VERB_P3S_P3P",
+            "$KEEP",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Die",
+            "Kinder",
+            "spielen",
+            "im",
+            "Garten"
+          ],
+          "input_ids": [
+            102,
+            229,
+            1147,
+            3335,
+            223,
+            4076,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verb-er",
+      "input": "Er gehen morgen nach Berlin.",
+      "corrected": "Er geht morgen nach Berlin.",
+      "suggestions_utf16": [
+        {
+          "start": 3,
+          "end": 8,
+          "original": "gehen",
+          "replacement": "geht"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Er",
+            "gehen",
+            "morgen",
+            "nach",
+            "Berlin"
+          ],
+          "input_ids": [
+            102,
+            279,
+            1806,
+            5519,
+            333,
+            1270,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_VERB_P3P_P3S",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Er",
+            "geht",
+            "morgen",
+            "nach",
+            "Berlin"
+          ],
+          "input_ids": [
+            102,
+            279,
+            1125,
+            5519,
+            333,
+            1270,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verb-wir",
+      "input": "Wir ist zufrieden.",
+      "corrected": "Wir sind zufrieden.",
+      "suggestions_utf16": [
+        {
+          "start": 4,
+          "end": 7,
+          "original": "ist",
+          "replacement": "sind"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Wir",
+            "ist",
+            "zufrieden"
+          ],
+          "input_ids": [
+            102,
+            505,
+            215,
+            6716,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_VERB_P3S_P3P",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Wir",
+            "sind",
+            "zufrieden"
+          ],
+          "input_ids": [
+            102,
+            505,
+            341,
+            6716,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verb-ihr",
+      "input": "Ihr hat viel Zeit.",
+      "corrected": "Ihr habt viel Zeit.",
+      "suggestions_utf16": [
+        {
+          "start": 4,
+          "end": 7,
+          "original": "hat",
+          "replacement": "habt"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Ihr",
+            "hat",
+            "viel",
+            "Zeit"
+          ],
+          "input_ids": [
+            102,
+            696,
+            308,
+            827,
+            577,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_VERB_P3S_P2P",
+            "$KEEP",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Ihr",
+            "habt",
+            "viel",
+            "Zeit"
+          ],
+          "input_ids": [
+            102,
+            696,
+            7422,
+            827,
+            577,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agreement-das",
+      "input": "Das sind ein Problem.",
+      "corrected": "Das ist ein Problem.",
+      "suggestions_utf16": [
+        {
+          "start": 4,
+          "end": 8,
+          "original": "sind",
+          "replacement": "ist"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Das",
+            "sind",
+            "ein",
+            "Problem"
+          ],
+          "input_ids": [
+            102,
+            347,
+            341,
+            143,
+            1550,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_VERB_P3P_P3S",
+            "$KEEP",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Das",
+            "ist",
+            "ein",
+            "Problem"
+          ],
+          "input_ids": [
+            102,
+            347,
+            215,
+            143,
+            1550,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adjective-neuter",
+      "input": "Ich habe ein schöne Haus.",
+      "corrected": "Ich habe ein schöne Haus.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Ich",
+            "habe",
+            "ein",
+            "schöne",
+            "Haus"
+          ],
+          "input_ids": [
+            102,
+            395,
+            704,
+            143,
+            8668,
+            860,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accusative-article",
+      "input": "Sie hat ein roten Mantel.",
+      "corrected": "Sie hat ein roten Mantel.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Sie",
+            "hat",
+            "ein",
+            "roten",
+            "Mantel"
+          ],
+          "input_ids": [
+            102,
+            286,
+            308,
+            143,
+            11754,
+            22748,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dative-help",
+      "input": "Er hilft den Kind.",
+      "corrected": "Er hilft den Kind.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Er",
+            "hilft",
+            "den",
+            "Kind"
+          ],
+          "input_ids": [
+            102,
+            279,
+            8399,
+            190,
+            2841,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dative-mit",
+      "input": "Mit den Auto fahren wir.",
+      "corrected": "Mit den Auto fahren wir.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Mit",
+            "den",
+            "Auto",
+            "fahren",
+            "wir"
+          ],
+          "input_ids": [
+            102,
+            375,
+            190,
+            2510,
+            4728,
+            268,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dass-conjunction",
+      "input": "Ich denke, das er kommt.",
+      "corrected": "Ich denke, dass er kommt.",
+      "suggestions_utf16": [
+        {
+          "start": 11,
+          "end": 14,
+          "original": "das",
+          "replacement": "dass"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Ich",
+            "denke",
+            ",",
+            "das",
+            "er",
+            "kommt"
+          ],
+          "input_ids": [
+            102,
+            395,
+            5752,
+            818,
+            199,
+            180,
+            1582,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_SUF__s",
+            "$KEEP",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Ich",
+            "denke",
+            ",",
+            "dass",
+            "er",
+            "kommt"
+          ],
+          "input_ids": [
+            102,
+            395,
+            5752,
+            818,
+            377,
+            180,
+            1582,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "das-relative",
+      "input": "Das Buch, dass ich lese, ist gut.",
+      "corrected": "Das Buch, das ich lese, ist gut.",
+      "suggestions_utf16": [
+        {
+          "start": 10,
+          "end": 14,
+          "original": "dass",
+          "replacement": "das"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Das",
+            "Buch",
+            ",",
+            "dass",
+            "ich",
+            "lese",
+            ",",
+            "ist",
+            "gut"
+          ],
+          "input_ids": [
+            102,
+            347,
+            1829,
+            818,
+            377,
+            383,
+            17585,
+            30881,
+            818,
+            215,
+            994,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_SUF_s_",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Das",
+            "Buch",
+            ",",
+            "das",
+            "ich",
+            "lese",
+            ",",
+            "ist",
+            "gut"
+          ],
+          "input_ids": [
+            102,
+            347,
+            1829,
+            818,
+            199,
+            383,
+            17585,
+            30881,
+            818,
+            215,
+            994,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-order-subclause",
+      "input": "Weil es regnet, wir bleiben zu Hause.",
+      "corrected": "Weil es regnet, wir bleiben zu Hause.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Weil",
+            "es",
+            "regnet",
+            ",",
+            "wir",
+            "bleiben",
+            "zu",
+            "Hause"
+          ],
+          "input_ids": [
+            102,
+            3883,
+            288,
+            2193,
+            690,
+            818,
+            268,
+            2839,
+            205,
+            3873,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-order-adverb",
+      "input": "Gestern ich habe gekocht.",
+      "corrected": "Gestern ich habe gekocht.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Gestern",
+            "ich",
+            "habe",
+            "gekocht"
+          ],
+          "input_ids": [
+            102,
+            23435,
+            383,
+            704,
+            3514,
+            16369,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "participle",
+      "input": "Er hat das Buch gelest.",
+      "corrected": "Er hat das Buch gelest.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Er",
+            "hat",
+            "das",
+            "Buch",
+            "gelest"
+          ],
+          "input_ids": [
+            102,
+            279,
+            308,
+            199,
+            1829,
+            1068,
+            331,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "article-gender",
+      "input": "Das ist der beste Lösung.",
+      "corrected": "Das ist der beste Lösung.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Das",
+            "ist",
+            "der",
+            "beste",
+            "Lösung"
+          ],
+          "input_ids": [
+            102,
+            347,
+            215,
+            125,
+            5251,
+            4787,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verb-flowers",
+      "input": "Die Blumen ist schön.",
+      "corrected": "Die Blumen sind schön.",
+      "suggestions_utf16": [
+        {
+          "start": 11,
+          "end": 14,
+          "original": "ist",
+          "replacement": "sind"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Die",
+            "Blumen",
+            "ist",
+            "schön"
+          ],
+          "input_ids": [
+            102,
+            229,
+            7825,
+            215,
+            2602,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_VERB_P3S_P3P",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Die",
+            "Blumen",
+            "sind",
+            "schön"
+          ],
+          "input_ids": [
+            102,
+            229,
+            7825,
+            341,
+            2602,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comparison",
+      "input": "Sie ist größer wie ich.",
+      "corrected": "Sie ist größer wie ich.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Sie",
+            "ist",
+            "größer",
+            "wie",
+            "ich"
+          ],
+          "input_ids": [
+            102,
+            286,
+            215,
+            5749,
+            335,
+            383,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-simple",
+      "input": "Das ist ein schönes Haus.",
+      "corrected": "Das ist ein schönes Haus.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Das",
+            "ist",
+            "ein",
+            "schönes",
+            "Haus"
+          ],
+          "input_ids": [
+            102,
+            347,
+            215,
+            143,
+            19935,
+            860,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-repeated-das",
+      "input": "Ist das das Haus?",
+      "corrected": "Ist das das Haus?",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Ist",
+            "das",
+            "das",
+            "Haus"
+          ],
+          "input_ids": [
+            102,
+            2302,
+            199,
+            199,
+            860,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-three-das",
+      "input": "Ich sehe, dass das das richtige Haus ist.",
+      "corrected": "Ich sehe, dass das das richtige Haus ist.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Ich",
+            "sehe",
+            ",",
+            "dass",
+            "das",
+            "das",
+            "richtige",
+            "Haus",
+            "ist"
+          ],
+          "input_ids": [
+            102,
+            395,
+            6965,
+            818,
+            377,
+            199,
+            199,
+            7971,
+            860,
+            215,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-tag-question",
+      "input": "Du bist müde, oder?",
+      "corrected": "Du bist müde, oder?",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Du",
+            "bist",
+            "müde",
+            ",",
+            "oder"
+          ],
+          "input_ids": [
+            102,
+            840,
+            2183,
+            19062,
+            818,
+            394,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-imperative",
+      "input": "Gib mir bitte das Buch.",
+      "corrected": "Gib mir bitte das Buch.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Gib",
+            "mir",
+            "bitte",
+            "das",
+            "Buch"
+          ],
+          "input_ids": [
+            102,
+            9717,
+            780,
+            2982,
+            199,
+            1829,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-subclause",
+      "input": "Ich gehe in die Schule, weil ich lernen will.",
+      "corrected": "Ich gehe in die Schule, weil ich lernen will.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Ich",
+            "gehe",
+            "in",
+            "die",
+            "Schule",
+            ",",
+            "weil",
+            "ich",
+            "lernen",
+            "will"
+          ],
+          "input_ids": [
+            102,
+            395,
+            6046,
+            153,
+            128,
+            3114,
+            818,
+            1521,
+            383,
+            6593,
+            978,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-sharp-s",
+      "input": "Ich weiß, dass das richtig ist.",
+      "corrected": "Ich weiß, dass das richtig ist.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Ich",
+            "weiß",
+            ",",
+            "dass",
+            "das",
+            "richtig",
+            "ist"
+          ],
+          "input_ids": [
+            102,
+            395,
+            1288,
+            818,
+            377,
+            199,
+            3870,
+            215,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-swiss",
+      "input": "Die Strasse ist gross.",
+      "corrected": "Die Strasse ist gross.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Die",
+            "Strasse",
+            "ist",
+            "gross"
+          ],
+          "input_ids": [
+            102,
+            229,
+            26828,
+            215,
+            20910,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-swiss-name",
+      "input": "Grüezi, ich heisse André.",
+      "corrected": "Grüezi, ich heiße André.",
+      "suggestions_utf16": [
+        {
+          "start": 12,
+          "end": 18,
+          "original": "heisse",
+          "replacement": "heiße"
+        }
+      ],
+      "passes": [
+        {
+          "words": [
+            "Grüezi",
+            ",",
+            "ich",
+            "heisse",
+            "André"
+          ],
+          "input_ids": [
+            102,
+            28472,
+            9386,
+            30883,
+            818,
+            383,
+            4159,
+            13410,
+            15119,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            8
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$TRANSFORM_SUF_sse_ße",
+            "$KEEP"
+          ]
+        },
+        {
+          "words": [
+            "Grüezi",
+            ",",
+            "ich",
+            "heiße",
+            "André"
+          ],
+          "input_ids": [
+            102,
+            28472,
+            9386,
+            30883,
+            818,
+            383,
+            15996,
+            15119,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            7
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-name",
+      "input": "Marie Curie lebte in Paris.",
+      "corrected": "Marie Curie lebte in Paris.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Marie",
+            "Curie",
+            "lebte",
+            "in",
+            "Paris"
+          ],
+          "input_ids": [
+            102,
+            10117,
+            14010,
+            110,
+            7817,
+            153,
+            3584,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-quotes",
+      "input": "Er sagte: „Das stimmt.“",
+      "corrected": "Er sagte: „Das stimmt.“",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Er",
+            "sagte",
+            ":",
+            "„",
+            "Das",
+            "stimmt",
+            ".",
+            "“"
+          ],
+          "input_ids": [
+            102,
+            279,
+            1382,
+            853,
+            498,
+            347,
+            7558,
+            566,
+            2087,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clean-date",
+      "input": "Wir treffen uns am 16. November 2026.",
+      "corrected": "Wir treffen uns am 16. November 2026.",
+      "suggestions_utf16": [],
+      "passes": [
+        {
+          "words": [
+            "Wir",
+            "treffen",
+            "uns",
+            "am",
+            "16",
+            ".",
+            "November",
+            "2026"
+          ],
+          "input_ids": [
+            102,
+            505,
+            4790,
+            734,
+            339,
+            792,
+            566,
+            1448,
+            27079,
+            30946,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "labels": [
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP",
+            "$KEEP"
+          ]
+        }
+      ]
+    }
+  ]
+}

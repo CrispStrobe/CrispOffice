@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-11-17 14:23:49 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "baseline": "e239bd7e54321b884cc5550da3defeabe7a0a9b8",
+  "source_commit": "7f116669d2512cf660c86d3c83feb64ab6b707fb",
+  "source_tree": "eaa5b4ec202891972351f15cd1ff7c76c160c12e",
+  "branch": "codex/office-continuation-20261117",
+  "ref_read_back_exact": true,
+  "parents": [
+    "960a08a026897c20776c05293751fe9686e20ba3",
+    "685b341333dc260db0734658d67798a72b33868c",
+    "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+    "9f1ca6441e723646769d4b01211cb5f14edee1d7"
+  ],
+  "verification": {
+    "expectedNonTreeCount": 6726,
+    "actualNonTreeCount": 6728,
+    "generatedReceiptPaths": [
+      "docs/validation/office-continuation-20261117/arrival-integration.json",
+      "docs/validation/office-continuation-20261117/ARRIVALS.md"
+    ],
+    "unexpectedDifferences": [],
+    "fullTreeTruncated": false,
+    "preUpdateRef": "960a08a026897c20776c05293751fe9686e20ba3",
+    "content_readbacks": {
+      "note": true,
+      "receipt": true,
+      "index": true,
+      "parents": true,
+      "tree": true
+    },
+    "fullTreeTypeCounts": {
+      "blob": 6728
+    },
+    "method": "Build expected complete path map from the fetched pre-arrival tree, replace only the 18 explicitly approved entries, add the two earlier checkpoint evidence files, compare all resulting blobs/types/modes to the untruncated candidate tree, and read back the two new integration documents and complete additive note test. The only two entries without precomputed blob SHAs were the generated integration documents; both full contents were subsequently read back byte-for-byte."
+  },
+  "changed_paths": [
+    {
+      "path": "docs/odf-export-fidelity.md",
+      "before": {
+        "sha": "7d0160d1a1b08e0bcad9d0d5cb3bd37888d962ad",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "after": {
+        "sha": "adc41d39d750bb7422486384f1ddbea480b247d3",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/ARRIVALS.md",
+      "before": null,
+      "after": {
+        "sha": "64fbf78d60e08170f2f92db5e53ed7d6eb74907c",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrival-integration.json",
+      "before": null,
+      "after": {
+        "sha": "781cc13a8e0748e043ba7a79c35813b73e207b0e",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrival-observation.json",
+      "before": null,
+      "after": {
+        "sha": "93cd7a8de21ef6a56483f13928ed28243e1438ab",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrival-reconciliation-plan.json",
+      "before": null,
+      "after": {
+        "sha": "6d05ab7a713517d9caf03361c597ccf1d07764e3",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrivals/gector/README.md",
+      "before": null,
+      "after": {
+        "sha": "2361575940ba568c4104378efcd7c74433aa41ab",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrivals/gector/incoming-inventory.json",
+      "before": null,
+      "after": {
+        "sha": "714d4ecaf9fab3c58e4f2e93436adae587c31822",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrivals/morphology/README.md",
+      "before": null,
+      "after": {
+        "sha": "71d5a0acf8b2a0f32caef05598849ae87ab4569c",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrivals/morphology/docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+      "before": null,
+      "after": {
+        "sha": "c3f7de7928c3007a4e58e2e53f28f55c877ba9e2",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrivals/office/README.md",
+      "before": null,
+      "after": {
+        "sha": "2361575940ba568c4104378efcd7c74433aa41ab",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-continuation-20261117/arrivals/office/incoming-inventory.json",
+      "before": null,
+      "after": {
+        "sha": "714d4ecaf9fab3c58e4f2e93436adae587c31822",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+      "before": null,
+      "after": {
+        "sha": "26cc8276da8a14a76bb5a62fc1b7392f37e03846",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-observation.json",
+      "before": null,
+      "after": {
+        "sha": "deb9ef6b5970615f8237b0d50046570363f0f7eb",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-refs.tsv",
+      "before": null,
+      "after": {
+        "sha": "aacd461204f83f1af8d2f0d7547712447c0b2c9e",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-observation.json",
+      "before": null,
+      "after": {
+        "sha": "b42ceeee03b44f791adeba98ad4ec9a1e828fe14",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-refs.tsv",
+      "before": null,
+      "after": {
+        "sha": "37fe987db91c27a3d43b35c9c93797051b34278b",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/runtime/runtime-receipt.json",
+      "before": null,
+      "after": {
+        "sha": "0e96d613846b4cc68bd6f2ef96c19dc6be905fa5",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/runtime/setup.tar.gz",
+      "before": null,
+      "after": {
+        "sha": "0a4f4d64e9e2e949691c4a699303a4780e02e1ca",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "docs/validation/office-fidelity-resume-20261117/verify_consumers.py",
+      "before": null,
+      "after": {
+        "sha": "18bdc2428fd698bc1a84e415b49620dbc37e3219",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "before": {
+        "sha": "b228bcd96191d35fd609022299983127c9204512",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "after": {
+        "sha": "932348e18672e1094719a0d1d60d55c973fe378b",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "before": {
+        "sha": "cc4c877887ed655492ee5fdc2748807b3290ea90",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "after": {
+        "sha": "bb2f4cf3e743e8ab639c5d8aca6ebdb477310644",
+        "mode": "100644",
+        "type": "blob"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+      "before": {
+        "sha": "e79f52c766229b19ce30a065e15c591632dc075a",
+        "mode": "100644",
+        "type": "blob"
+      },
+      "after": {
+        "sha": "fab22f0897d49e528ead09cdaed1f5f2b701c547",
+        "mode": "100644",
+        "type": "blob"
+      }
+    }
+  ],
+  "preserved": {
+    "writer": {
+      "sha": "abae52f0d08b0cbe66c5c86c97f0f28e36de60aa",
+      "mode": "100644",
+      "type": "blob"
+    },
+    "initial_inventory": {
+      "sha": "9717139d0017665ea7805419404be33ca375e291",
+      "mode": "100644",
+      "type": "blob"
+    },
+    "continuation_readme": {
+      "sha": "132b344abbde8ef862707215a26e8f9257495f4a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    "all_other_pre_arrival_paths": "Exact blob/type/mode preservation for all baseline paths outside changed_paths."
+  },
+  "runtime_tests_executed": false,
+  "formatter_or_analyzer_executed": false,
+  "ci_or_status_endpoints_queried": false
+}

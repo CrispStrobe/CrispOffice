@@ -1,0 +1,2092 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-17T14:03:22Z",
+  "status": "inventory_checkpoint_before_integration",
+  "main": "3458c8977cef969a86a07b39734c761ba62e4b40",
+  "prior_inventory": {
+    "path": "docs/validation/zotero-landing-20261117/quds-final-ref-audit.json",
+    "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6",
+    "captured_refs": 220,
+    "current_refs_with_same_commit": 216,
+    "note": "Historical audit retained with its original attribution; matching old tips do not establish inclusion of newer source."
+  },
+  "new_main": {
+    "pr": 103,
+    "sha": "3458c8977cef969a86a07b39734c761ba62e4b40",
+    "title": "Write ODT comments",
+    "tree": "0c0b2e454ca1934363f2d9793bdb1f45a9b004fb",
+    "exact_tree_alias": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+  },
+  "branches": [
+    {
+      "name": "office",
+      "head": "8106752eb410a6c2f66ff03c3fa983123760058d",
+      "merge_base": "d95701cffb7bd6ca9085d073c2297373932f374e",
+      "classification": [
+        {
+          "path": "LICENSE",
+          "status": "incoming_only",
+          "base": {
+            "sha": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/README.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "b992cb796321a9de53398835e3ab17cb5c9a0737",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "b992cb796321a9de53398835e3ab17cb5c9a0737",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f85b620eda0ba6b39700506c9119831adde08c98",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "4f65f3da257bd238beb21d1f9458d231dbc01e34",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "4f65f3da257bd238beb21d1f9458d231dbc01e34",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f1cc417681516dcde8cb0b809fea6a1ddc6a0236",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/LICENSE",
+          "status": "incoming_only",
+          "base": {
+            "sha": "8f9d2644c2f2627200ec78494296773f193576b0",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "8f9d2644c2f2627200ec78494296773f193576b0",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "bba2123edc3d22ee22850dbca30807cfcb98cbe6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "3eb07d3164ed6a675e38d1a852f927c2b3da678e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "c02158ec0c6834ebbfe0852252d40d819cd510e6",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c02158ec0c6834ebbfe0852252d40d819cd510e6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2596cf46f6c61869a505dcd7d528ac04cf176da4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "2c23495ac9138028c85fb9e62f8b9b671b6f9e78",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "2c23495ac9138028c85fb9e62f8b9b671b6f9e78",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "8f5ad3a0193d65f86f572b2a76fd64606abe38b1",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "e468dbde6a02f2b3af402cf512d1309f41b384f1",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "e468dbde6a02f2b3af402cf512d1309f41b384f1",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "12bf2f08d09c307a44420d3f9becdb122c8b4347",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "3d83ec80becaf2e361c3165a183307c1e524baad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "3d83ec80becaf2e361c3165a183307c1e524baad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "b0a1c2689ca2c37c0787c03a4fb1b8bffce72ec8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_note_numbering.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "f782d3e24e480a2f29ad28f7a0b8c2896bc40df8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "f782d3e24e480a2f29ad28f7a0b8c2896bc40df8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d776e10b7a445f0f1c919f36bdd9a6ec6f5d9b45",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "status": "both_changed",
+          "base": {
+            "sha": "c06e08fd3d770f536b4d027e1ae9b536254db065",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "0aaa4623f6923d4be54366826f3488c057ae397c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "4aef29f817a7a7701251e9cc5b82e975e0ca4f51",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "c5abd2c1643608aab31b000271a6fbc60fdb9d14",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "c5abd2c1643608aab31b000271a6fbc60fdb9d14",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "cb1cac925ef4e9f328953baa486b48a3d7935060",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+          "status": "both_changed",
+          "base": {
+            "sha": "399e0f1d00a21bf5f2b4ec938c941f5bc340e9ad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "d91e77891e82437494670ac165d791e6808aa379",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "11cb887770b044b57697384b124553e4e75a9719",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "ec38eda9568dfc2de93321d73a6fde894dce0daa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "ec38eda9568dfc2de93321d73a6fde894dce0daa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1b4fcc74f0cb722ee45fe8363edbf6778f3e4006",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "b5d0cf19c2baae3a96c233de46b9a12bf3d64eab",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "b5d0cf19c2baae3a96c233de46b9a12bf3d64eab",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f3f6038f6759637ef803f33176bea2e88f79ce66",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/manifest.json",
+          "status": "incoming_only",
+          "base": {
+            "sha": "245c19ce4c19485cdbaf56e837c3bff49aa1c4fd",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "245c19ce4c19485cdbaf56e837c3bff49aa1c4fd",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9eba6dcab488c1a13cf1c7aa2ef4936e81a28122",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+          "status": "incoming_only",
+          "base": {
+            "sha": "6bb0edb62b45b6476cf2dfade3f532d830df2124",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "6bb0edb62b45b6476cf2dfade3f532d830df2124",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a7e977db059087763c729a2d64ca686c3acdcbbd",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/README.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "ee8e8e158ad83bdc60318d7026e5ad35863c3ee4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "ee8e8e158ad83bdc60318d7026e5ad35863c3ee4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d0f51fe45cd5ed46282a92e51e09ee86c7ac9b5d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/run_morphology_qualification.py",
+          "status": "incoming_only",
+          "base": {
+            "sha": "0c700a4871ed1c546dad97eff787a5c3c14a9313",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "0c700a4871ed1c546dad97eff787a5c3c14a9313",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f1d612d473f6e30fe3ae99c529b80f5cdbc51e8b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": ".github/workflows/german-gector-qualification.yml",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "b517d03f5a098c20929da12fa0bbe63a7bd66d1f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/odf-export-fidelity.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "7d0160d1a1b08e0bcad9d0d5cb3bd37888d962ad",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/roadmaps/german-gector-proofing.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "211486c0760e4d2e33cc7c830620a811921c056e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/continuation-checkpoint.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "658fa66275057dde926ceaaa9ec26a9d1fbb1910",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/incoming-resume.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "ef2a3297d6ba6091e70b129805f151263ef76521",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/merges.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "1f1d781f8aff4b1516798fd4d009b2446fad4894",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/origin-observation.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "61a5338d577b4e72c8b0d83f6b96cfd6cdd3c147",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/origin-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "70b5d213d5d64d583a798f4df8878f598dfdd51d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/resolution.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "4bd170fdf522ebbae59c4f6c9adf011ccf2f1593",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/snapshot.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "6c1a660a1c4582356fa067c5a5d10f2957b64d40",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/upstream-observation.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "88ce9492fcc95d737a5ff4171f3e6c16d8d526bf",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/upstream-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "37fe987db91c27a3d43b35c9c93797051b34278b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/make_fixtures.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "9caa4a9e5bbac3d873a04d16b88791761f345fe0",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/refresh/merges.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "ae6a60aa79d36c3bfda01dfa35419e9eca197a08",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/refresh/origin-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "9192a8d4a5ef1e3d3b23314255fe7a389a4a6e6e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/refresh/resolution.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "177b3567cb27c6eac40a3c8f6c08ea66574e8f06",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/refresh/snapshot.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "b6ff9182af504a06734f96b00579d859915da22d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/refresh/upstream-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "37fe987db91c27a3d43b35c9c93797051b34278b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-continuation-20261117/validate.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "bc746c9cbf404718e4e3441459d23054241d34d8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5287953366acf63968cdec7f66605cf8416d0e0a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "43e1dbc0ac110707da8984608490661251296ff4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "e3050865ca705f94b0553e5871bb39467386c7ae",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "0bf6559f479135c6a98a73babb78e2ba6fa0f769",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "9901985b01388b3faf9a367d1538c3abe226f5b6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5d010c01599665c5fcb440ae6c0f0de0eacd0a7a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5d21a1853b52ad0bf55b5a65ac840d2efba560ac",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "38a9c3bb0edfc9d61c139e80b8903c4adb600d05",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "3c4761844c0ace6ace0bbfb7a62ab69c1f144b17",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5c1f7431ad9b473b3df0ae8cecc2121cce943604",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "41c44d85c8e57778f391662914b676548efa657e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "3ef5578de1ffdb2b73429d9356a8e50d9ca3b0f8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "a62224edb71e62ddb00caed6ea6be3b22d7c62c5",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "65d0f798c21561ea4c031ff521b332a6d7294d78",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "72c3e2103ad6c801c0938a912bb6438d22a68624",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "9d9aa1c0174393be82ba265341aad15efaa8b9ec",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "b8184cfc67639b140c8899ed161ab892159db029",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_morphology.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "7ce803bb3653956f14ea8258a83ce6975adf4259",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "03974e9752325a979e25bb4512b4d6c95d1284d9",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "2cb50ace04184349e0a0af19d9f6c84ce53b8466",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "74001eb5253ce42f58a31e2b0eb0fbe4777b4d05",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "c153af4006e223a00071957bdde4ad6c36685581",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/morphology_manifest.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "e5b7a07d0ee5d47a71db450407467b37030034b0",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/tool/proofing/generate_german_morphology.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "11f80a861997eb2d9a74aeeaa7484a51efacba81",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/REFERENCE_FIXTURES.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "30e47c38467f4ce09acf75f86e55e56bd3cad739",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/export_reference.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "1e09ea18a921f35f0f26124fb729616120908674",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/quantize_int4.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5cec5d8efc9667144703223ffebc151eb0434892",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/requirements-qualification.txt",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "ed0e992562c51b67e6d45958ad9ab0846099996c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/run_stage.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "a11dba1062c93dfd7628c9542f65f325e475c224",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/summarize_qualification.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "04614837c81b621de1e57ba7d1cd1460d344bdaa",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/test_export_reference.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "023325e7c52ab2ce34f00b0ae864e6755a07b590",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/test_qualification.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "f0bb6add0f15c142d025d148d57d5ddbe7763605",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_morphology_review_cases.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "49f31a3d27fde5f1d08462ae24cd37da400903d3",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/validate_morphology_buckets.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "6a54785ab518abea601fbf808c15bd3e0a725ed0",
+            "mode": "100644",
+            "type": "blob"
+          }
+        }
+      ]
+    },
+    {
+      "name": "morph",
+      "head": "286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86",
+      "merge_base": "be465bfba548006cc5fd5c3798cd166cdbcc5c63",
+      "classification": [
+        {
+          "path": "LICENSE",
+          "status": "incoming_only",
+          "base": {
+            "sha": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/PROOFING.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "58a5282dc42c5a376bb23309aea139c8103b032a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "58a5282dc42c5a376bb23309aea139c8103b032a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/README.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "6f8e55179a9da0dd16469dc0ea4036cb85d26db4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "6f8e55179a9da0dd16469dc0ea4036cb85d26db4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "4f65f3da257bd238beb21d1f9458d231dbc01e34",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "4f65f3da257bd238beb21d1f9458d231dbc01e34",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f1cc417681516dcde8cb0b809fea6a1ddc6a0236",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/LICENSE",
+          "status": "incoming_only",
+          "base": {
+            "sha": "8f9d2644c2f2627200ec78494296773f193576b0",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "8f9d2644c2f2627200ec78494296773f193576b0",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "bba2123edc3d22ee22850dbca30807cfcb98cbe6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2596cf46f6c61869a505dcd7d528ac04cf176da4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "2c23495ac9138028c85fb9e62f8b9b671b6f9e78",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "2c23495ac9138028c85fb9e62f8b9b671b6f9e78",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "8f5ad3a0193d65f86f572b2a76fd64606abe38b1",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "e468dbde6a02f2b3af402cf512d1309f41b384f1",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "e468dbde6a02f2b3af402cf512d1309f41b384f1",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "12bf2f08d09c307a44420d3f9becdb122c8b4347",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "ec38eda9568dfc2de93321d73a6fde894dce0daa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "ec38eda9568dfc2de93321d73a6fde894dce0daa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1b4fcc74f0cb722ee45fe8363edbf6778f3e4006",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+          "status": "incoming_only",
+          "base": {
+            "sha": "b5d0cf19c2baae3a96c233de46b9a12bf3d64eab",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "b5d0cf19c2baae3a96c233de46b9a12bf3d64eab",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f3f6038f6759637ef803f33176bea2e88f79ce66",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/README.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "0f566fb4fb5e73b055f0820f8c3e8518ca5cca9c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "0f566fb4fb5e73b055f0820f8c3e8518ca5cca9c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/manifest.json",
+          "status": "incoming_only",
+          "base": {
+            "sha": "245c19ce4c19485cdbaf56e837c3bff49aa1c4fd",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "245c19ce4c19485cdbaf56e837c3bff49aa1c4fd",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9eba6dcab488c1a13cf1c7aa2ef4936e81a28122",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+          "status": "incoming_only",
+          "base": {
+            "sha": "6bb0edb62b45b6476cf2dfade3f532d830df2124",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "6bb0edb62b45b6476cf2dfade3f532d830df2124",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a7e977db059087763c729a2d64ca686c3acdcbbd",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/run_morphology_qualification.py",
+          "status": "incoming_only",
+          "base": {
+            "sha": "0c700a4871ed1c546dad97eff787a5c3c14a9313",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "0c700a4871ed1c546dad97eff787a5c3c14a9313",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f1d612d473f6e30fe3ae99c529b80f5cdbc51e8b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/archive-integrity.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/continuation-checkpoint.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "658fa66275057dde926ceaaa9ec26a9d1fbb1910",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/continuity.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence-index.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence.tar.gz",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation-index.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation.tar.gz",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/incoming-resume.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "ef2a3297d6ba6091e70b129805f151263ef76521",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora-index.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora.tar.gz",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/accuracy-and-variant-check.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/all-buckets-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/analysis-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/editor-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/engine-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "21e696f6581091985a796ada117202d801ae7e5b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-summary.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-summary.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/summary.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-long-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-short-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-bundle-sha256.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-license-collection.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/source-binding.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5287953366acf63968cdec7f66605cf8416d0e0a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "43e1dbc0ac110707da8984608490661251296ff4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "e3050865ca705f94b0553e5871bb39467386c7ae",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "0bf6559f479135c6a98a73babb78e2ba6fa0f769",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "9901985b01388b3faf9a367d1538c3abe226f5b6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5d010c01599665c5fcb440ae6c0f0de0eacd0a7a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5d21a1853b52ad0bf55b5a65ac840d2efba560ac",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "38a9c3bb0edfc9d61c139e80b8903c4adb600d05",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "3c4761844c0ace6ace0bbfb7a62ab69c1f144b17",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5c1f7431ad9b473b3df0ae8cecc2121cce943604",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "41c44d85c8e57778f391662914b676548efa657e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "3ef5578de1ffdb2b73429d9356a8e50d9ca3b0f8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "a62224edb71e62ddb00caed6ea6be3b22d7c62c5",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "65d0f798c21561ea4c031ff521b332a6d7294d78",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "72c3e2103ad6c801c0938a912bb6438d22a68624",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "9d9aa1c0174393be82ba265341aad15efaa8b9ec",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "b8184cfc67639b140c8899ed161ab892159db029",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_morphology.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "7ce803bb3653956f14ea8258a83ce6975adf4259",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "2cb50ace04184349e0a0af19d9f6c84ce53b8466",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "74001eb5253ce42f58a31e2b0eb0fbe4777b4d05",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "c153af4006e223a00071957bdde4ad6c36685581",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/morphology_manifest.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "e5b7a07d0ee5d47a71db450407467b37030034b0",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/tool/proofing/generate_german_morphology.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "11f80a861997eb2d9a74aeeaa7484a51efacba81",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_morphology_review_cases.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "49f31a3d27fde5f1d08462ae24cd37da400903d3",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/validate_morphology_buckets.dart",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "6a54785ab518abea601fbf808c15bd3e0a725ed0",
+            "mode": "100644",
+            "type": "blob"
+          }
+        }
+      ]
+    },
+    {
+      "name": "gector",
+      "head": "2a30427893a9ddf009b5e6a74ae0d8f67a8d87d1",
+      "merge_base": "b0d6c58b45a7e2cf4d161270b0e8223f05e0d470",
+      "classification": [
+        {
+          "path": "tools/proofing/german_model/README.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "ee8e8e158ad83bdc60318d7026e5ad35863c3ee4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "main": {
+            "sha": "ee8e8e158ad83bdc60318d7026e5ad35863c3ee4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d0f51fe45cd5ed46282a92e51e09ee86c7ac9b5d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": ".github/workflows/german-gector-qualification.yml",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "807e4b3f181160ca5125561480622283db54c6b5",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/roadmaps/german-gector-proofing.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/README.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/cases.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/evidence.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/README.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "173299a8a376f7086843ab49831cce4e646761cc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/cases.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/evidence.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/README.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/evidence.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/README.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/baseline.json",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/REFERENCE_FIXTURES.md",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "30e47c38467f4ce09acf75f86e55e56bd3cad739",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/export_reference.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "1e09ea18a921f35f0f26124fb729616120908674",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/quantize_int4.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "5cec5d8efc9667144703223ffebc151eb0434892",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/requirements-qualification.txt",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "ed0e992562c51b67e6d45958ad9ab0846099996c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/run_stage.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "a11dba1062c93dfd7628c9542f65f325e475c224",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/summarize_qualification.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/test_export_reference.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "023325e7c52ab2ce34f00b0ae864e6755a07b590",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/test_qualification.py",
+          "status": "incoming_only",
+          "base": null,
+          "main": null,
+          "incoming": {
+            "sha": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "mode": "100644",
+            "type": "blob"
+          }
+        }
+      ]
+    }
+  ],
+  "pending_conflicts": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart"
+  ],
+  "runtime_qualification": "not run in this continuation",
+  "github_actions_or_ci_status_endpoints": "neither queried nor awaited"
+}
