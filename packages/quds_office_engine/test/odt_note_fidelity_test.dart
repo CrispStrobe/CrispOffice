@@ -1,6 +1,7 @@
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
+const _officeNs = 'urn:oasis:names:tc:opendocument:xmlns:office:1.0';
 const _textNs = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
 const _styleNs = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 
@@ -403,6 +404,74 @@ void main() {
     expect(_elements(root, 'note'), hasLength(1));
     expect(_elements(root, 'note-ref'), isEmpty);
   });
+
+  for (final endnote in [false, true]) {
+    final kind = endnote ? 'endnote' : 'footnote';
+    test('$kind references in comments cannot consume visible note bodies', () {
+      final note = _note(7, endnote: endnote);
+      final document = _document(
+        [_ref(7, endnote: endnote), _ref(7, endnote: endnote)],
+        footnotes: endnote ? null : [note],
+        endnotes: endnote ? [note] : null,
+      );
+      document.comments.add(
+        WmlComment(
+          id: 1,
+          author: 'Reviewer',
+          paragraphs: [
+            WmlParagraph(
+              inlines: [
+                WmlRun(text: 'Comment '),
+                _ref(7, endnote: endnote),
+              ],
+            ),
+          ],
+        ),
+      );
+      document.sections.single.blocks.insert(
+        0,
+        WmlParagraph(
+          inlines: [WmlRun(text: 'Annotated', commentIds: [1])],
+        ),
+      );
+
+      final package = _package(document);
+      final root = _xml(package);
+      final paragraphs = root
+          .firstChild('body')!
+          .firstChild('text')!
+          .childrenNamed('p', namespaceUri: _textNs);
+      final annotation = paragraphs.first.firstChild(
+        'annotation',
+        namespaceUri: _officeNs,
+      )!;
+      final label = endnote ? 'i' : '1';
+      expect(_elements(annotation, 'note'), isEmpty);
+      expect(_elements(annotation, 'note-ref'), isEmpty);
+      expect(_elements(annotation, 'note-body'), isEmpty);
+      expect(
+        _visibleText(annotation.firstChild('p', namespaceUri: _textNs)!),
+        'Comment $label',
+      );
+
+      final visibleNote = _elements(paragraphs.last, 'note').single;
+      final repeated = _elements(paragraphs.last, 'note-ref').single;
+      expect(_attr(visibleNote, 'note-class'), kind);
+      expect(
+        _elements(visibleNote, 'note-body').single.text,
+        contains('Note 7'),
+      );
+      expect(_labels(root), [label]);
+      expect(_elements(root, 'note'), hasLength(1));
+      expect(_elements(root, 'note-ref'), hasLength(1));
+      expect(_attr(repeated, 'ref-name'), _attr(visibleNote, 'id'));
+      expect(repeated.text, label);
+      expect(package.getPart('/content.xml')!.readText(), contains('Comment'));
+      expect(document.comments.single.text, 'Comment 7');
+      expect(note.id, 7);
+      expect(note.text, 'Note 7');
+    });
+  }
 
   test(
     'repeated exports preserve source IDs, reference strings and native settings',
