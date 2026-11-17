@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-11-17T16:27:50.439488+00:00",
+  "branch": "codex/office-continuation-20261117",
+  "method": "GitHub Git-data objects with exact tree verification and non-force expected-head ref updates; fetched back into local Git.",
+  "qualified_source": "966196f386ec1776c836664b3eb7c93e8e92605c",
+  "checkpoints": [
+    {
+      "commit": "1c79a08680bdd78b6b93c0d55af414a793dc08d6",
+      "tree": "caf92bb9ec07ce8f65750df7498ad2ca4ee05a19",
+      "parents": [
+        "104b239c971ef3b2d62495a27ad04b519398a1fc"
+      ],
+      "subject": "Recover Office continuation and freeze all incoming branch and PR heads [skip ci]"
+    },
+    {
+      "commit": "24dac9c326a934da95d7f52b9ab8cfe4a28f3922",
+      "tree": "875087882b0940984dd2bf72dacb5cd88089f594",
+      "parents": [
+        "1c79a08680bdd78b6b93c0d55af414a793dc08d6",
+        "d1738017afd3696adbd2e895678b1fa7d26065ec"
+      ],
+      "subject": "Preserve completed Office fidelity evidence and audit history [skip ci]"
+    },
+    {
+      "commit": "604940731b492be21fe8c28390d530aed46707ce",
+      "tree": "7b24a530293b4dcf56818e76de7006b19ba9099d",
+      "parents": [
+        "24dac9c326a934da95d7f52b9ab8cfe4a28f3922",
+        "121f3be504a89e56bde40bda8f93f4e81d8c2503"
+      ],
+      "subject": "Integrate captured morphology, empty-document guard, and page fields [skip ci]"
+    },
+    {
+      "commit": "21e8e64b01e7cac3a971e413540d74091b25a712",
+      "tree": "0654e220ba380700f27d2f2f52014b9405aa1ec5",
+      "parents": [
+        "604940731b492be21fe8c28390d530aed46707ce",
+        "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad"
+      ],
+      "subject": "Integrate captured main paragraph shading and border export [skip ci]"
+    },
+    {
+      "commit": "138c510c0f9d8216d4cea58ef9f3fbd5922a084d",
+      "tree": "a950bffb8bafe6159c5c44af2d2919255c43bf4b",
+      "parents": [
+        "21e8e64b01e7cac3a971e413540d74091b25a712",
+        "78cd772c35f46ebe6d0e2a63bafcd87e767593f3"
+      ],
+      "subject": "Reconcile structured ODF frames with fidelity visibility and empty-anchor contracts [skip ci]"
+    },
+    {
+      "commit": "5d1b9efc061df94bd7cd68a72c688a7c6d9f8255",
+      "tree": "a950bffb8bafe6159c5c44af2d2919255c43bf4b",
+      "parents": [
+        "138c510c0f9d8216d4cea58ef9f3fbd5922a084d",
+        "12601a41b6785dcd1d617adba8e13297d9af4bc0"
+      ],
+      "subject": "Retain original paragraph shading feature ancestry [skip ci]"
+    },
+    {
+      "commit": "cf954a70ccee6b218a8a5fce2f901b9cb91df060",
+      "tree": "a950bffb8bafe6159c5c44af2d2919255c43bf4b",
+      "parents": [
+        "5d1b9efc061df94bd7cd68a72c688a7c6d9f8255",
+        "22ce45e70591a6be561a5abee1807455e3df52be"
+      ],
+      "subject": "Retain vendor paragraph shading ancestry without discarding quality evidence [skip ci]"
+    },
+    {
+      "commit": "f29373cf29048a6a6b133e2e75628d58c4b2b23f",
+      "tree": "40525a3f266691b4c4e7f5cc840f6105b3aa3783",
+      "parents": [
+        "cf954a70ccee6b218a8a5fce2f901b9cb91df060"
+      ],
+      "subject": "Verify every captured branch and PR head is integrated before qualification [skip ci]"
+    },
+    {
+      "commit": "2d89bbd2ed6af6d347fa7a8293d47112f0b23b2e",
+      "tree": "201fd9efe7f59623b1ba35ef57a3320e00231076",
+      "parents": [
+        "f29373cf29048a6a6b133e2e75628d58c4b2b23f"
+      ],
+      "subject": "Capture failing ODT decoration and page-field regression cases before repairs [skip ci]"
+    },
+    {
+      "commit": "966196f386ec1776c836664b3eb7c93e8e92605c",
+      "tree": "4287330a433e915d58ca779adfacb75942c6ab04",
+      "parents": [
+        "2d89bbd2ed6af6d347fa7a8293d47112f0b23b2e"
+      ],
+      "subject": "Preserve ODT page-field content and paragraph decoration before full local qualification [skip ci]"
+    }
+  ]
+}

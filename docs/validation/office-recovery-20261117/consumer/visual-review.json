@@ -1,0 +1,14 @@
+{
+  "inspected": [
+    "paragraph-distinct-shading-borders",
+    "page-field-styled-footer",
+    "section-heading-layout",
+    "paragraph-rtl-indent"
+  ],
+  "observations": [
+    "Red and green paragraph fills remain visibly distinct with blue and magenta borders; the plain paragraph has no fill/border.",
+    "The second page visibly shows blue bold page number 2 and the complete footer title suffix.",
+    "RTL heading and ordinary paragraph rasters agree with the preserved physical-edge checks."
+  ],
+  "scope": "Visual inspection supplements the fresh programmatic assertions; no historical observations count as fresh results."
+}

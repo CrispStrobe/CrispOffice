@@ -1,0 +1,16 @@
+{
+  "kind": "resolved-workspace-input-capture",
+  "inputs": {
+    "pubspec.lock": {
+      "saved_file": "resolved-pubspec.lock.gz",
+      "uncompressed_bytes": 22684,
+      "uncompressed_sha256": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b"
+    },
+    ".dart_tool/package_config.json": {
+      "saved_file": "resolved-package-config.json.gz",
+      "uncompressed_bytes": 25574,
+      "uncompressed_sha256": "08756302e05cdc5278a731450a35e95ce9ca6503157c9b95186c6663a4ddae97"
+    }
+  },
+  "guidance": "Restore the captured lock as root pubspec.lock for reproduction. Regenerate package_config.json on another host; captured rootUri paths document this run and are not portable. Match Dart/Flutter SDK and resolved dependency hashes in the AOT receipt."
+}

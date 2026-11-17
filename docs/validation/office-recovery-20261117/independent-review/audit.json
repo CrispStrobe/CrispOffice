@@ -1,0 +1,346 @@
+{
+  "archives": [
+    {
+      "index": "docs/validation/office-recovery-20261117/consumer/evidence/final-966196f3-index.json",
+      "sha256": "9a4ff35ab6dd4dbfeee9964284360ec09c3919a28bb551296b3a5f18e7e33520",
+      "verified_members": 344
+    },
+    {
+      "index": "docs/validation/office-recovery-20261117/qualification/evidence/qualification-966196f3-index.json",
+      "sha256": "5f7e3b60530bc8070684f6aa1bd23957a3e1d86629c8ca6f30097e2ab29411a2",
+      "verified_members": 103
+    }
+  ],
+  "checks": 38305,
+  "consumer": {
+    "fixtures": [
+      {
+        "asserted_words": 7,
+        "name": "section-list",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 7,
+        "name": "section-control-list",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 6,
+        "name": "section-table",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 6,
+        "name": "section-control-table",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 6,
+        "name": "section-visual",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 7,
+        "name": "section-frame",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "section-empty",
+        "pages": 3,
+        "passed": true
+      },
+      {
+        "asserted_words": 2,
+        "name": "section-continuous",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 2,
+        "name": "section-continuous-empty",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "section-continuous-image-header",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "section-continuous-comment-header",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 2,
+        "name": "section-continuous-new-size",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "section-heading-layout",
+        "pages": 2,
+        "passed": true
+      },
+      {
+        "asserted_words": 4,
+        "name": "paragraph-rtl-indent",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "section-oddPage-after-1",
+        "pages": 4,
+        "passed": true
+      },
+      {
+        "asserted_words": 4,
+        "name": "section-oddPage-after-2",
+        "pages": 4,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "section-evenPage-after-1",
+        "pages": 3,
+        "passed": true
+      },
+      {
+        "asserted_words": 4,
+        "name": "section-evenPage-after-2",
+        "pages": 5,
+        "passed": true
+      },
+      {
+        "asserted_words": 4,
+        "name": "list-skipped-levels",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 2,
+        "name": "list-nonzero-start",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "list-mixed-markers",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 5,
+        "name": "list-restart-continuation",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "list-literal-labels",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 2,
+        "name": "list-native-start-override",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 3,
+        "name": "paragraph-distinct-shading-borders",
+        "pages": 1,
+        "passed": true
+      },
+      {
+        "asserted_words": 2,
+        "name": "page-field-styled-footer",
+        "pages": 2,
+        "passed": true
+      }
+    ],
+    "independently_rehashed_input_counts": {
+      "runtime": 10420,
+      "source": 395
+    },
+    "summary": {
+      "failed": 0,
+      "fixtures": 26,
+      "passed": 26,
+      "schema_parts_passed": 104,
+      "schema_parts_total": 104
+    },
+    "verified_output_hashes": 329
+  },
+  "failures": [],
+  "finished_utc": "2026-11-17T16:28:36.661203+00:00",
+  "passed": true,
+  "pending": [],
+  "python_controls": {
+    "not_model_inference": true,
+    "selected": 108,
+    "skipped": [
+      "test_qualification.TinyConverterTests.test_real_quantizer_preserves_both_head_matrices"
+    ],
+    "success": 107
+  },
+  "qualification": {
+    "added_files": [
+      [
+        "engine",
+        "test/odf_frame_extraction_test.dart"
+      ],
+      [
+        "engine",
+        "test/odt_page_field_fidelity_test.dart"
+      ],
+      [
+        "engine",
+        "test/odt_paragraph_decoration_test.dart"
+      ],
+      [
+        "engine",
+        "test/odt_section_integration_test.dart"
+      ],
+      [
+        "engine",
+        "test/proofing/german_lexical_gap_test.dart"
+      ],
+      [
+        "engine",
+        "test/proofing/german_spelling_quotes_test.dart"
+      ]
+    ],
+    "cohorts": {
+      "editor-integration": {
+        "excluded_success_names": [],
+        "files": 37,
+        "non_json_lines": 0,
+        "raw_error_events": 0,
+        "raw_outcomes": {
+          "success": 396
+        },
+        "raw_success": 396,
+        "skipped_names": [],
+        "substantive_success": 396,
+        "terminal_success": true
+      },
+      "editor-zotero": {
+        "excluded_success_names": [],
+        "files": 13,
+        "non_json_lines": 0,
+        "raw_error_events": 0,
+        "raw_outcomes": {
+          "success": 186
+        },
+        "raw_success": 186,
+        "skipped_names": [],
+        "substantive_success": 186,
+        "terminal_success": true
+      },
+      "engine-focused-node": {
+        "excluded_success_names": [],
+        "files": 14,
+        "matches_vm_case_multiset": true,
+        "non_json_lines": 0,
+        "raw_error_events": 0,
+        "raw_outcomes": {
+          "success": 282
+        },
+        "raw_success": 282,
+        "skipped_names": [],
+        "substantive_success": 282,
+        "terminal_success": true
+      },
+      "engine-integration": {
+        "excluded_success_names": [
+          "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "JPEG with DCT SMask attaches softMaskJpeg for the host"
+        ],
+        "files": 97,
+        "non_json_lines": 0,
+        "raw_error_events": 0,
+        "raw_outcomes": {
+          "success": 2128
+        },
+        "raw_success": 2128,
+        "skipped_names": [],
+        "substantive_success": 2126,
+        "terminal_success": true
+      },
+      "engine-zotero": {
+        "excluded_success_names": [],
+        "files": 19,
+        "non_json_lines": 0,
+        "raw_error_events": 0,
+        "raw_outcomes": {
+          "success": 390
+        },
+        "raw_success": 390,
+        "skipped_names": [],
+        "substantive_success": 390,
+        "terminal_success": true
+      },
+      "gector-contract": {
+        "excluded_success_names": [],
+        "files": 11,
+        "non_json_lines": 0,
+        "raw_error_events": 0,
+        "raw_outcomes": {
+          "skipped": 1,
+          "success": 193
+        },
+        "raw_success": 193,
+        "skipped_names": [
+          "real native dual heads own their output and reject use after dispose"
+        ],
+        "substantive_success": 193,
+        "terminal_success": true
+      },
+      "harper-contract": {
+        "excluded_success_names": [],
+        "files": 3,
+        "non_json_lines": 0,
+        "raw_error_events": 0,
+        "raw_outcomes": {
+          "success": 29
+        },
+        "raw_success": 29,
+        "skipped_names": [],
+        "substantive_success": 29,
+        "terminal_success": true
+      }
+    },
+    "current_head_at_audit": "966196f386ec1776c836664b3eb7c93e8e92605c",
+    "independently_rehashed_input_counts": {
+      "dependencies": 5099,
+      "harness": 9,
+      "runtime": 14,
+      "source": 3449,
+      "system": 6,
+      "workspace": 118
+    },
+    "node_successful_repetitions": 282,
+    "original_files_retained": 174,
+    "raw_primary_successes": 3322,
+    "status": "passed",
+    "substantive_primary_successes": 3320,
+    "unique_primary_files": 180
+  },
+  "scope": "Read-only independent reconstruction of saved evidence; no product test or office conversion reruns.",
+  "source_commit": "966196f386ec1776c836664b3eb7c93e8e92605c",
+  "source_tree": "4287330a433e915d58ca779adfacb75942c6ab04",
+  "verifier_sha256": "ae656d01d34685a41e96f2ed0ebea4358a02cced467c088675d2f216fb27934b"
+}

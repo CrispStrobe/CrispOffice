@@ -1,0 +1,3195 @@
+{
+  "schema_version": 1,
+  "capture_cutoff": "2026-11-17T15:37:41.347405+00:00",
+  "merge_parents": [
+    "a499549e184069e33234bd0304417fb0fefb8ca1",
+    "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+    "3a5cacc12c23e577903dcb6d9eba085da6e205a9"
+  ],
+  "scope": "Complete ancestry union of the next combined checkpoint parents. Every reference is included by commit ancestry or exact whole-tree identity. No source-only equivalence is counted as whole-tree identity.",
+  "counts": {
+    "ancestry": 285,
+    "tree_equivalence": 4
+  },
+  "references": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/german-morphology-20261117",
+      "sha": "7808a8711c91d721e8bb2b7034349008be80895b",
+      "commit": "7808a8711c91d721e8bb2b7034349008be80895b",
+      "tree": "28e0252093f1a91b2fc3e671758b98bd24630f96",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7808a8711c91d721e8bb2b7034349008be80895b"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "commit": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "tree": "16d32c8a9eaa759dfad4ede9665dbbc13b9d9de6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0b229004ee928fa1c1206957dbfc0419307cf254"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/office-continuation-20261117",
+      "sha": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa",
+      "commit": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa",
+      "tree": "b5e4578ef4f8ff0f33930e6fc41e8bdb6eda2017",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/office-fidelity-20261117",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "commit": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "tree": "ac75be938bb648221b417093514675660979b9db",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "commit": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "tree": "59b9864634e7e8be794263feafb8f712395cfb8f",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "738f0b6a3f1f46f83585579291d0847613d780c5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "tree": "5b5930bb3a6534c4be849fc57c86bf202c189edd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "tree": "b80a757f70609821cdcff70b9e265e7c249508df",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "commit": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "tree": "1034bcc35f167afad8c410e813e4b3045a30eb82",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ffc672fec2df9919233b4ee5b0ba783ef1758f99"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "commit": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "tree": "6bab5ed49dbe63d42682e5df4672545158faa292",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a916bbf09169f6906a89bd2ca3e3c42120ead466"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "commit": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "tree": "0ab7e869cfc40892facabc612f5249fd90e56e70",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "65d5815e4866549fe7f03b145b626f2c4aaba8e0"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "commit": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "tree": "7574aa05506e693812d6c6e282846b344a470ca6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "commit": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "tree": "f0e47bfd8f0be406ba6aa69886e76371faa86b03",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "commit": "4235e690602195cc504438a6b937972c71f1ad39",
+      "tree": "bb5f1912fe2ff2b5cfb3d9c7091a184ba54de0ae",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4235e690602195cc504438a6b937972c71f1ad39"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "tree": "0e477840dfcca87bd18f133255c7fda66a2efb29",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "commit": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "tree": "0ab2f48d6851507b0034ea3d6dee1cd97d4aae05",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "aff69c221f24d2bf9bcab7001f976ac085b4e841"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "tree": "e015d526d2850c0d504ce93e3ad1386576445888",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "tree": "335beb5ad1a14c2ae31073ffbd4e824c057f995a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "commit": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "tree": "e85bd7a08442a46781da029ae9e24db70bac1a41",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1549a9c7884eb688732262398b5d9859a68103eb"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "tree": "67934023d4877aa2ae0eade87d61346e4923df2d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "fc37658c907edf6687eccb9564d3046283b49a3a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "tree": "c284db83156f1fcae84013cbe58494e3b340a08e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "428679a33381f943a8ae63117d4207f01dd15462"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "tree": "ec2accb182b81fe0e47f623127ff297ad6b709e5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "tree": "e10a90811572ef880f4edea40ba8a5413bd0c51d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "379fa8663c81f32b4328415f56c776746ccc23bc"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "tree": "08e54aba5a5507ac9a72c662286475e28776c5fe",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "tree": "0aecfb03465f11d481b1213d75d90897f8bab2f6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a5febc3362d2fccdb979f012a5296af72e465797"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "tree": "2a7326ccf552612bbb0930bfb254a25778172625",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b23ee557ea121774833c7a188a49189e4f80ce70"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "tree": "7e6b13247511beef21982d7a13f2abeb23f40bb2",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "commit": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "tree": "1fc2904b53b2e802f517161b090de38252722615",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "tree": "6a0a7e1d7c25ae5eddbf4cb47b2ccf2cfa9a20cf",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "tree": "0148ed340fbbea40133513d233f6e1473534acd1",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "tree": "f2eed4632061f8d07909c74aaa03c629f0dd94ad",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "6da74faa9160275df9c10a864c758033c92f114d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "tree": "18052eb73eee300d2d936b876cd01eb703a7cac4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "tree": "b8179ebab83523c68fa1e7c272599153072be7a1",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4497c737623c1339d2422487d53941c20472bac9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "tree": "56cc9fb26ec42ce335f7cea0698a34435696fc92",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "tree": "989695b4b987f949dd25db3c736ad14333e5bd73",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "tree": "f52716dda53a36543feaaa1e0ea058418353ee0c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "tree": "a930be6db42985c0c388ce6e736aca265a822b25",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "tree": "2325cfb59277605fc0cd809527f119d1172bf10e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "tree": "921c5b374484c7169c56e824e4fc2217c8086e17",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "20681b8658392212c128f51b4c91f0b638942448"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "tree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "tree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "tree": "c8fb98b5cc4426c7de728693d89a76657424c4ed",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "tree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "tree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "752a94dfddf69522429f3025f9d25702499cb6da"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "001367e89cb0034cf33467783d7258bb0800deb9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/german-gector-proofing",
+      "sha": "8801031a5c031ad5872f0e41ec182576ae8d4872",
+      "commit": "8801031a5c031ad5872f0e41ec182576ae8d4872",
+      "tree": "6cda1f3d83ba9b46315c5d4383d2d2064823b07c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8801031a5c031ad5872f0e41ec182576ae8d4872"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "commit": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "tree": "d36d5415eeb4529099eb1fc6e92d4ae5247ceb2a",
+      "resolution": {
+        "kind": "tree_equivalence",
+        "witness": "379d3c8e5e46afb806f9ac181bc814288c9c8893"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "tree": "7efa86280e462f061451b718ee752e7184c81f4e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "commit": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "tree": "0c93b9478e17353f921d3e987fd0c4b36d48e9cb",
+      "resolution": {
+        "kind": "tree_equivalence",
+        "witness": "4af75017a9b7df726c1f80741809f5bccdb70f4c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "tree": "47d4ae8a5d5924172d69091459b200a3a989296c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e59751246a200e7477657d0e4835bf77b153422c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "tree": "0957a03aadc731ee4a109cfe95df303c1b36cff8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "tree": "e3d93711873c40ff4d9a1b9a662af305ab0009c2",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "tree": "0087fe5e3a0575dca344191eaf447419ad41fe39",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "49b447324159595c59e64d8425b54a09f79ec736"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "tree": "d8b0a6668b9cf411424c4d359a99fdf7efb4326c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "tree": "259cfb041bd534757db93c3faf5993eb376801e4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "tree": "30f8f0208db17be2e5aac4f1ed4d39b609ef7b6e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "331be9688e2de1feb52635490b534042dea10c27"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "tree": "381a562fb1a23de5ff40fac2ef660775316b0377",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "tree": "b0e59ad79558d2a2e2c881f63b9a228b9ce01ded",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "tree": "d8910f974d17b84a40749d4455ba00b51b021efc",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "864e674795eb422855df2b26ccc375d3255e61a2"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "988f423b9b95037d8f5273ee368b58ceedab0667"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "tree": "7a9dd3fe551e78ec8105e890b902f54a92621eef",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "tree": "d4e1ba7ede98162ba3523cd4cfd1275860ffc09a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "49ba086251ba61032f15b3e7b726fc921874fd12"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8769019fb8be5483939edd4655dd88005e2515c4"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "tree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "tree": "a4044407fcbd316387591bfba1f6792c74b2fa79",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0ee0a8320875248adac9718cae2e67875b6b932c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "tree": "0af18a79c99c15749bd3fde16d00b71f5c843c34",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "tree": "73f6f45d25a2b2625f4a8db36b41000922fd8ff0",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "tree": "0e238f72cbff29f30eb842c7dafb809bb4be6342",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "commit": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "tree": "0c0b2e454ca1934363f2d9793bdb1f45a9b004fb",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "tree": "e22b0c537916f33fb7d2aa16510a2d6f84e0a2a4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "commit": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "tree": "94ff25151977c673114e43d9ddee39c584766864",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "946942a1e30332892aaf19a068ca5a29470d682a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "commit": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "tree": "f860c5b0832234d053cd61705392b3d918c6e7ca",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "tree": "e6195fe83ce5b5282fbad913fc4a96c02e6f5d36",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "commit": "7686ec52876288e6799023fd686af79228236826",
+      "tree": "4e2ad1d6e99bb21881d12a1f05a2d84f7ae5b3cd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7686ec52876288e6799023fd686af79228236826"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "commit": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "tree": "2909598a199b8a6a0bd839b0dcc5b5146d663553",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "tree": "a13b612fdd31c9bc54d5f8bb05c92867e92d541d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "tree": "12e60e035e47cc518eb84e7b93e60307ef70e232",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "46850ae47e0241733750decb22417a0150e4b0e4"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "tree": "ec7ff95582480891b99b27e917263b4d9b2731b9",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "commit": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "tree": "d72eec848353e3631d54050ad03f54a496143188",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e5e1e9af6beb0972a010d8208c1690a642809113"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "tree": "86cf81f36f4691ca0b8bbcd8ca6a738ace48852e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "tree": "0d8ef0934a0e6d97e83fec522a7ff12f7084b590",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8fc3d06be36da5c2176feb107c14245f61650d75"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "tree": "90f37d731c8675d9ea8a1fb983430b5858e751d8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "commit": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "tree": "86b89cb679275e3b1a3d18be27b7847f8e4d7e0d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/main",
+      "sha": "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+      "commit": "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+      "tree": "d36d5415eeb4529099eb1fc6e92d4ae5247ceb2a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "379d3c8e5e46afb806f9ac181bc814288c9c8893"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "commit": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "tree": "24f22dd4258575458a7bbd5e0c8441f45f624bf5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "76c7087c22da8ace85b9a71ca266a90f84faa3ae"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "commit": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "tree": "5ab860dcfc694fa0e6355d05b4a067f347f75422",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odf-metadata",
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "commit": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "tree": "b69b29c3046d0c0326b877507b49a9f86a199293",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "3a5cacc12c23e577903dcb6d9eba085da6e205a9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "commit": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "tree": "f09279c212a84e19b2a9adf4664eb3b82da5a3b5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "578846d395baa0c9dfd1f32a805125f331fda248"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odp-shape-links",
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "commit": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "tree": "608d5e9eecee011e47600f758d0e46d3cfb01713",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0585fac1a56c3dc5c3d728962794299ddfe50bbb"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "commit": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d061a578646493b71ad19f8fd8358f6cc509e8b8"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "commit": "90acedb9835cb5bdef30606301e74482f5977448",
+      "tree": "e85136a6635ec2891dc6c5d3fd115239ae4169fa",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "90acedb9835cb5bdef30606301e74482f5977448"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "commit": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "tree": "12543395e4f423ac6327fdff709a89bfa9a01169",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "928f85483ec1cb85e468ca9381585875137ba8d5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "commit": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "tree": "1f2119192dd82eb633ce9445d64da8e41608b200",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "817982d580e990a5ca21d74c35135db4817e54b5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "commit": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "tree": "31424eca483b0c4d824d0e747a40fb5a80dfd59b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "commit": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "tree": "4859ede5b27c50ef6ce29d930acb697ab0d0e23b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "commit": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "tree": "c535f799067c3aa39967dcb237c112858682587d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "commit": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "tree": "e7eef908f33db35306b2392568225edf972d4101",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "commit": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "commit": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "tree": "4f5254a7affa6d995d242ca2113741d9a1840295",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "commit": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "tree": "895589d7e739e9cb767ba29b06b6081ec4844b24",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "commit": "388a1c76339507d493bab577424affd80732446c",
+      "tree": "11d5128ef69d54444b32f4b03950bef9cce88704",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "388a1c76339507d493bab577424affd80732446c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "commit": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "33a0508a502f5809aa997928e8428bdec3e02503"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "commit": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "tree": "9cfcbbbc904b9baa2ca5c51ddbb5cc421f9a3b59",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "commit": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "tree": "6851ef330f860001eb42180c55017871f4903d1e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "commit": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "tree": "a9c3545ddd663c762007135f1158a49c856c30a2",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "commit": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "commit": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "tree": "3293160964ae09df8dd823f936652ab2f6344e2b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "commit": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "tree": "e302f8dbce9eccd9fd961eca1f1710f1ddebbfc8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "commit": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "tree": "cdfef83462863ee94f9ac35eee355174a0bd79b7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "commit": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "tree": "d23a4b43fdc5f9a1aba32ad93b5014a045c169e7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "commit": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "tree": "1cecbb244c7da3ebf57618708f4d0fb71c5d1274",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "commit": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "commit": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "tree": "66c528f14e18477f12e88c433f144165a38aae8a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "04505306af39c47bd0fe96423d1515ee6ca5027e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "commit": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "tree": "244066e1ffc2bb7fe0153463658ca1964587a0d3",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5f019253d247073b715b7a7ae4a82763ceafd02f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "commit": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "tree": "461418b43d4892f802355542eea72e0cc489ed9a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f6c9be054b016192673ba82e608ae0ae987b5308"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "commit": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "tree": "67f5d9df0a555c138d6836a90a76399b0299fd11",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "commit": "94532021b720e3035022a2fed08ec88f48340892",
+      "tree": "92a9411a00bea00bd2b7b24b3ef5fb04a99282f6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "94532021b720e3035022a2fed08ec88f48340892"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "commit": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "tree": "c3da3760f3c1dd9831087993652cd3146212c616",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "406798f7e47332f92438828dcfc6a2184d4361bb"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "commit": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "tree": "bd2325c6871aa315fff0c3c0dbc48d35b4da7124",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "aa346a296e8b19bb937c345f7142c60720c3d6e4"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "commit": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0eb60d0fc706a4da54df07ae86df029c1caac074"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "commit": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "tree": "658bf7f61a207218e8d6b36d7eb6494fc984d41d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "commit": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "tree": "1a1fb472163d7002bbd181a98ba810097239b821",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/1/head",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "commit": "54f0f8de01416640560519aa9d732f668f603709",
+      "tree": "34c7c02e822c0ee41b8474eed624ec0e01b6ba60",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "54f0f8de01416640560519aa9d732f668f603709"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/10/head",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "commit": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "tree": "902774ae80bd0556383a69d6cdf4269b62b04d2d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1b1bac125f426b05f868d482e9fbd657d4ffb73a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/100/head",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "commit": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "tree": "94ff25151977c673114e43d9ddee39c584766864",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "946942a1e30332892aaf19a068ca5a29470d682a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/101/head",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/102/head",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "commit": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "tree": "e85bd7a08442a46781da029ae9e24db70bac1a41",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1549a9c7884eb688732262398b5d9859a68103eb"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/103/head",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "commit": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "tree": "0c0b2e454ca1934363f2d9793bdb1f45a9b004fb",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/104/head",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "commit": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "tree": "2909598a199b8a6a0bd839b0dcc5b5146d663553",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/105/head",
+      "sha": "7808a8711c91d721e8bb2b7034349008be80895b",
+      "commit": "7808a8711c91d721e8bb2b7034349008be80895b",
+      "tree": "28e0252093f1a91b2fc3e671758b98bd24630f96",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7808a8711c91d721e8bb2b7034349008be80895b"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/106/head",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "commit": "7686ec52876288e6799023fd686af79228236826",
+      "tree": "4e2ad1d6e99bb21881d12a1f05a2d84f7ae5b3cd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7686ec52876288e6799023fd686af79228236826"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/107/head",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "commit": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "tree": "f860c5b0832234d053cd61705392b3d918c6e7ca",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/108/head",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "commit": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "tree": "0c93b9478e17353f921d3e987fd0c4b36d48e9cb",
+      "resolution": {
+        "kind": "tree_equivalence",
+        "witness": "4af75017a9b7df726c1f80741809f5bccdb70f4c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/109/head",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "commit": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "tree": "d36d5415eeb4529099eb1fc6e92d4ae5247ceb2a",
+      "resolution": {
+        "kind": "tree_equivalence",
+        "witness": "379d3c8e5e46afb806f9ac181bc814288c9c8893"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/11/head",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "commit": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "tree": "f9ebe172477713316c14e4d20ba4011b4c86649b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/12/head",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "commit": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "tree": "2bb4ad9245296a465d051b1df772adf691337861",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "579f2105cf7fca61536f7e3f9b59004929bdb6c5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/13/head",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "commit": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "tree": "05eb58450f92a220e48653cbf4b73649ab62671b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/14/head",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "commit": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "tree": "b4e096deeae4643ec1b38db694b4249e09816856",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/15/head",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "commit": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "tree": "1a85e750d3d24f301815bd8265c7658b6b2e6594",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "448eff5aac55054a34eccd4f8a1e79e754909a05"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/16/head",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "commit": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "tree": "baecacf3481bef2a3aaa78df4faa66b5dd681d1a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/17/head",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "commit": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "tree": "9f0ad060c750c3b7ba056deb5dd515a9487f8da3",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "89c7f06c592edde0c67774e9c7e087d96f52184b"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/18/head",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "commit": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "tree": "956eaffadf7826bb5384b976a09eabfadc7bde5a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f31cf308013ceb4527e3f4de677785894bb1bfc0"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/19/head",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "commit": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "tree": "2b6a1379d6eba8b36fb7b1e29ca323217d296e21",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e8227569a3b90fb21db598483690bd13fe74ddef"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/2/head",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "commit": "08b09485588d2b6270f594a07c983689c087587d",
+      "tree": "ca9dd7b26e29bd9df59f729d73e309a2db85e56e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "08b09485588d2b6270f594a07c983689c087587d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/20/head",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "commit": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "tree": "57dfb2d3df9dca94e975fde96fba5f5376905b91",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5278aafd512640608fe06b8f7d357c4cffe8520a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/21/head",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "commit": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "tree": "3d0c9420b677d1178fc3723d07d54cf939667029",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/22/head",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "commit": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "tree": "473f1d712f7b054e8081c9de9aed64fe387781c4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4637ddce4154f4b50105c7322fedc1c75fd02193"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/23/head",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "commit": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "tree": "923d89cf421b5ce0788c4964b77f04ffae076d7f",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e002b9584bead9761fac8c7cf818431966d1b1c3"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/24/head",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "commit": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "tree": "e2bde6fa07d8e1ac73a580b3711b25df6683766e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/25/head",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "commit": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "tree": "d56ecc62ebc121a2db80b34c1d38c4a3e403b30a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/26/head",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "commit": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "tree": "55eddb5e42269cff5360f9db8da6f8e0366cd7f4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/27/head",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "commit": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "tree": "057775d666ae2fcfa1fc901588b71ac3f6fb4927",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "cde05b85bcd00c26d519d43283fcc6b55a1884e7"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/28/head",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "commit": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "tree": "19fa322fba0b5b8f6765b810e23840377c212c68",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/29/head",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "tree": "381a562fb1a23de5ff40fac2ef660775316b0377",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/3/head",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "commit": "e550723b0f2a7cd849970f58820d260c36857502",
+      "tree": "50d0f9ec79ddfd2e75957e9a58b74846fd790b39",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e550723b0f2a7cd849970f58820d260c36857502"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/30/head",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "tree": "0087fe5e3a0575dca344191eaf447419ad41fe39",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "49b447324159595c59e64d8425b54a09f79ec736"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/31/head",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "tree": "e3d93711873c40ff4d9a1b9a662af305ab0009c2",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/32/head",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "tree": "12e60e035e47cc518eb84e7b93e60307ef70e232",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "46850ae47e0241733750decb22417a0150e4b0e4"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/33/head",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "tree": "a13b612fdd31c9bc54d5f8bb05c92867e92d541d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/34/head",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "tree": "90f37d731c8675d9ea8a1fb983430b5858e751d8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/35/head",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "tree": "47d4ae8a5d5924172d69091459b200a3a989296c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e59751246a200e7477657d0e4835bf77b153422c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/36/head",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "tree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/37/head",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "tree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/38/head",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "tree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "752a94dfddf69522429f3025f9d25702499cb6da"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/39/head",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "tree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/4/head",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "commit": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "tree": "fba9bf26ea35dbe4d14c0a7faee17a9a490b0255",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "09f5ec4b8eba290ff4d65678179854fb6ff6a468"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/40/head",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "commit": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "tree": "8eb627e7d5f626963bc2179049e7436e9e5111a3",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8855b88a96b5c94349e3b5278c339228a1688c3e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/41/head",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "tree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/42/head",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "tree": "0d8ef0934a0e6d97e83fec522a7ff12f7084b590",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8fc3d06be36da5c2176feb107c14245f61650d75"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/43/head",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "tree": "921c5b374484c7169c56e824e4fc2217c8086e17",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "20681b8658392212c128f51b4c91f0b638942448"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/44/head",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "tree": "86cf81f36f4691ca0b8bbcd8ca6a738ace48852e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/45/head",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "tree": "989695b4b987f949dd25db3c736ad14333e5bd73",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/46/head",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "tree": "56cc9fb26ec42ce335f7cea0698a34435696fc92",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/47/head",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "tree": "67934023d4877aa2ae0eade87d61346e4923df2d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "fc37658c907edf6687eccb9564d3046283b49a3a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/48/head",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "tree": "b0e59ad79558d2a2e2c881f63b9a228b9ce01ded",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/49/head",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "tree": "0aecfb03465f11d481b1213d75d90897f8bab2f6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a5febc3362d2fccdb979f012a5296af72e465797"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/5/head",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "commit": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "tree": "8a311f7ba5672ef5f8598193f4a607f13febbcdc",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "da0979a5c6c4273ea68f360ce9a079bfa747384f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/50/head",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "tree": "c284db83156f1fcae84013cbe58494e3b340a08e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "428679a33381f943a8ae63117d4207f01dd15462"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/51/head",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8769019fb8be5483939edd4655dd88005e2515c4"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/52/head",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "tree": "2325cfb59277605fc0cd809527f119d1172bf10e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/53/head",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "tree": "0957a03aadc731ee4a109cfe95df303c1b36cff8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/54/head",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "tree": "d4e1ba7ede98162ba3523cd4cfd1275860ffc09a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "49ba086251ba61032f15b3e7b726fc921874fd12"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/55/head",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "tree": "a930be6db42985c0c388ce6e736aca265a822b25",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/56/head",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "tree": "335beb5ad1a14c2ae31073ffbd4e824c057f995a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/57/head",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "tree": "7a9dd3fe551e78ec8105e890b902f54a92621eef",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/58/head",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "tree": "d8910f974d17b84a40749d4455ba00b51b021efc",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "864e674795eb422855df2b26ccc375d3255e61a2"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/59/head",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/6/head",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "commit": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "tree": "7c9f1038eb534248353c392cd99b63a8d8796238",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "78ed85f5fd19d44f672dee11420fed261c974f4a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/60/head",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "988f423b9b95037d8f5273ee368b58ceedab0667"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/61/head",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "tree": "2a7326ccf552612bbb0930bfb254a25778172625",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "b23ee557ea121774833c7a188a49189e4f80ce70"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/62/head",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "tree": "259cfb041bd534757db93c3faf5993eb376801e4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/63/head",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "tree": "e015d526d2850c0d504ce93e3ad1386576445888",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/64/head",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "tree": "08e54aba5a5507ac9a72c662286475e28776c5fe",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/65/head",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "tree": "d8b0a6668b9cf411424c4d359a99fdf7efb4326c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/66/head",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "tree": "e10a90811572ef880f4edea40ba8a5413bd0c51d",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "379fa8663c81f32b4328415f56c776746ccc23bc"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/67/head",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "tree": "a4044407fcbd316387591bfba1f6792c74b2fa79",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "0ee0a8320875248adac9718cae2e67875b6b932c"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/68/head",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "tree": "0e238f72cbff29f30eb842c7dafb809bb4be6342",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/69/head",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "tree": "0af18a79c99c15749bd3fde16d00b71f5c843c34",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/7/head",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "commit": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "tree": "b23b64cf5625e877c0928eac21f9bca57779da97",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/70/head",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "tree": "73f6f45d25a2b2625f4a8db36b41000922fd8ff0",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/71/head",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "tree": "0148ed340fbbea40133513d233f6e1473534acd1",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/72/head",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "tree": "0e477840dfcca87bd18f133255c7fda66a2efb29",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/73/head",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/74/head",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/75/head",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/76/head",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/77/head",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/78/head",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/79/head",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/8/head",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "commit": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "tree": "d7a3554accf3397047429b0a1c6b0645f2eab224",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/80/head",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "tree": "ec7ff95582480891b99b27e917263b4d9b2731b9",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/81/head",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "tree": "f52716dda53a36543feaaa1e0ea058418353ee0c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/82/head",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "tree": "b8179ebab83523c68fa1e7c272599153072be7a1",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "4497c737623c1339d2422487d53941c20472bac9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/83/head",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "tree": "30f8f0208db17be2e5aac4f1ed4d39b609ef7b6e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "331be9688e2de1feb52635490b534042dea10c27"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/84/head",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "tree": "6a0a7e1d7c25ae5eddbf4cb47b2ccf2cfa9a20cf",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/85/head",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "commit": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "tree": "b63017c9d648f5acde283293401f18fc31772e95",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "9f2dbd81c2289a2285521e1491a9c860c4b59646"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/86/head",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "001367e89cb0034cf33467783d7258bb0800deb9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/87/head",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "tree": "5b5930bb3a6534c4be849fc57c86bf202c189edd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/88/head",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "tree": "ec2accb182b81fe0e47f623127ff297ad6b709e5",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/89/head",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "tree": "c8fb98b5cc4426c7de728693d89a76657424c4ed",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/9/head",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "commit": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "tree": "01962d58598ee4e726eb2cc25b71cd91ad3f47d3",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "58de54567d45e38c05dd77064b7607c577374b9d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/90/head",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "tree": "f2eed4632061f8d07909c74aaa03c629f0dd94ad",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "6da74faa9160275df9c10a864c758033c92f114d"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/91/head",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "tree": "b80a757f70609821cdcff70b9e265e7c249508df",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/92/head",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "tree": "e22b0c537916f33fb7d2aa16510a2d6f84e0a2a4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/93/head",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "tree": "7efa86280e462f061451b718ee752e7184c81f4e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/94/head",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "tree": "7e6b13247511beef21982d7a13f2abeb23f40bb2",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/95/head",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "tree": "e6195fe83ce5b5282fbad913fc4a96c02e6f5d36",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/96/head",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "tree": "18052eb73eee300d2d936b876cd01eb703a7cac4",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/97/head",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/98/head",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/99/head",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "commit": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "tree": "1fc2904b53b2e802f517161b090de38252722615",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/crispcloud-build28-office",
+      "sha": "b629a97afb8559c1b0ca98bd36eae22cf923e561",
+      "commit": "216e5ba38110349d6a002a5a58e0ae27825c8bef",
+      "tree": "6cc257586bc5b13d24a65eea97c58d6af930c741",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "216e5ba38110349d6a002a5a58e0ae27825c8bef"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/crispcloud-build28-office^{}",
+      "sha": "216e5ba38110349d6a002a5a58e0ae27825c8bef",
+      "commit": "216e5ba38110349d6a002a5a58e0ae27825c8bef",
+      "tree": "6cc257586bc5b13d24a65eea97c58d6af930c741",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "216e5ba38110349d6a002a5a58e0ae27825c8bef"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/editor-v0.5.1",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "tree": "797571f7cb44a19183b5e7c4dfd184ec0d4724f6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "6ac50c12f99ced6456897dec390111797cfe2157"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/engine-v0.5.3",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "tree": "797571f7cb44a19183b5e7c4dfd184ec0d4724f6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "6ac50c12f99ced6456897dec390111797cfe2157"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0",
+      "sha": "2f3e1373779a102d68629d09baba83bff80a33ac",
+      "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "tree": "2ba8183a63625646d0c50fe39766c4bfce61172a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "sha": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "tree": "2ba8183a63625646d0c50fe39766c4bfce61172a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "tree": "67fd210195eac9c02cb6f38d7ddfa9c619c993b6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f45099688e7a3f67a1302efdb442830d052f2240"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "tree": "99549bbe725248e6d8704e9f1a8c84913f38796e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "tree": "654e2e1b29777cd3358fe8a719336d1579fadfcb",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.1.0",
+      "sha": "ffab8a719349a3184f1461b61d55411c51949ba2",
+      "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "tree": "bb86ed7dbfc6eaec4a0e117eac8d3d70de81bce8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.1.0^{}",
+      "sha": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "tree": "bb86ed7dbfc6eaec4a0e117eac8d3d70de81bce8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.2.0",
+      "sha": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+      "commit": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+      "tree": "5cf2f07409f88c8319b91564b1f26395987a64dd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ec2c7dce10a0fc8b155985259152b0b0c9696c90"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.5.0",
+      "sha": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+      "commit": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+      "tree": "d15032143f7a775c95a88c293852fb8d82b433b2",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1f0ed0e94fe6e46d94e9d811627c476974080003"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.0.0",
+      "sha": "1d8b21b840ebf664768d490ee098225344887c4a",
+      "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "tree": "d82087e92fff1fdffa977cc6b791ab75cc5595a7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.0.0^{}",
+      "sha": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "tree": "d82087e92fff1fdffa977cc6b791ab75cc5595a7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "tree": "67fd210195eac9c02cb6f38d7ddfa9c619c993b6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f45099688e7a3f67a1302efdb442830d052f2240"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.3.0",
+      "sha": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+      "commit": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+      "tree": "071fea2a697f2698ffbab23203e523beec1e1a6a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2188d055fde9d4647bf5995eb96161e3e4cbd365"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "tree": "99549bbe725248e6d8704e9f1a8c84913f38796e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+      }
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "tree": "654e2e1b29777cd3358fe8a719336d1579fadfcb",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "tree": "d74a5c2f04e5ed32770ddd8e376380f4beea687c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f45099688e7a3f67a1302efdb442830d052f2240"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "tree": "9caff26f6b91e2637e63a35b9623e7f0c61d6752",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "tree": "654e2e1b29777cd3358fe8a719336d1579fadfcb",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/1/head",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "commit": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "tree": "30b84eff3a593dba15c6d803b6282a81f026bed0",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "48c5156f459597ce3f8ec486b3c9a20fc5543807"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/5/head",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "tree": "9caff26f6b91e2637e63a35b9623e7f0c61d6752",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/6/head",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "tree": "d74a5c2f04e5ed32770ddd8e376380f4beea687c",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/7/head",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f45099688e7a3f67a1302efdb442830d052f2240"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/editor-v0.5.1",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "tree": "797571f7cb44a19183b5e7c4dfd184ec0d4724f6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "6ac50c12f99ced6456897dec390111797cfe2157"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/engine-v0.5.3",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "commit": "6ac50c12f99ced6456897dec390111797cfe2157",
+      "tree": "797571f7cb44a19183b5e7c4dfd184ec0d4724f6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "6ac50c12f99ced6456897dec390111797cfe2157"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0",
+      "sha": "2f3e1373779a102d68629d09baba83bff80a33ac",
+      "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "tree": "2ba8183a63625646d0c50fe39766c4bfce61172a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "sha": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "commit": "509e0cfa621775b4bbdb9bf456e8dbe218351226",
+      "tree": "2ba8183a63625646d0c50fe39766c4bfce61172a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "tree": "67fd210195eac9c02cb6f38d7ddfa9c619c993b6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f45099688e7a3f67a1302efdb442830d052f2240"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "tree": "99549bbe725248e6d8704e9f1a8c84913f38796e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "tree": "654e2e1b29777cd3358fe8a719336d1579fadfcb",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.1.0",
+      "sha": "ffab8a719349a3184f1461b61d55411c51949ba2",
+      "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "tree": "bb86ed7dbfc6eaec4a0e117eac8d3d70de81bce8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.1.0^{}",
+      "sha": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "commit": "23969a9ec23cb37fc3aa5276a46612d8873e518f",
+      "tree": "bb86ed7dbfc6eaec4a0e117eac8d3d70de81bce8",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.2.0",
+      "sha": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+      "commit": "ec2c7dce10a0fc8b155985259152b0b0c9696c90",
+      "tree": "5cf2f07409f88c8319b91564b1f26395987a64dd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "ec2c7dce10a0fc8b155985259152b0b0c9696c90"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.5.0",
+      "sha": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+      "commit": "1f0ed0e94fe6e46d94e9d811627c476974080003",
+      "tree": "d15032143f7a775c95a88c293852fb8d82b433b2",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "1f0ed0e94fe6e46d94e9d811627c476974080003"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.0.0",
+      "sha": "1d8b21b840ebf664768d490ee098225344887c4a",
+      "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "tree": "d82087e92fff1fdffa977cc6b791ab75cc5595a7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.0.0^{}",
+      "sha": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "commit": "d101a3308fb046f96e7db6054a1b2b60f1724289",
+      "tree": "d82087e92fff1fdffa977cc6b791ab75cc5595a7",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "commit": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+      "tree": "67fd210195eac9c02cb6f38d7ddfa9c619c993b6",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "f45099688e7a3f67a1302efdb442830d052f2240"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.3.0",
+      "sha": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+      "commit": "2188d055fde9d4647bf5995eb96161e3e4cbd365",
+      "tree": "071fea2a697f2698ffbab23203e523beec1e1a6a",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "2188d055fde9d4647bf5995eb96161e3e4cbd365"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "commit": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3",
+      "tree": "99549bbe725248e6d8704e9f1a8c84913f38796e",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+      }
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "tree": "654e2e1b29777cd3358fe8a719336d1579fadfcb",
+      "resolution": {
+        "kind": "ancestry",
+        "witness": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+      }
+    }
+  ]
+}
