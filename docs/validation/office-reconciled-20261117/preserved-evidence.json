@@ -1,0 +1,121 @@
+{
+  "preserved_from": "07926acb46f0d451491046066a35dd6c1227b5a1",
+  "files": [
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control-index.json",
+      "git_blob": "036a4fdfee3ebe2f93c7dc0d183d74e662b0c65a",
+      "bytes": 2943
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control.tar.xz",
+      "git_blob": "6f90d13d46e1f6aeb61d50eaba328151eed83e74",
+      "bytes": 30456
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/column-bookmark-publication-map.json",
+      "git_blob": "aca2b3cbf034402df40d49ce72ab6751c89867d4",
+      "bytes": 853
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/README.md",
+      "git_blob": "71952cf1fd791f0cf798f4fe72923a0595c9ddf4",
+      "bytes": 5035
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence-index.json",
+      "git_blob": "6d61dbb931db1cef6def3989f0fdcda9c0c71394",
+      "bytes": 171551
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence.tar.xz",
+      "git_blob": "bfba5909403a13456c7220bd657be88c2db5a816",
+      "bytes": 1465184
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-leading-inline-column-break.png",
+      "git_blob": "96b74edd4196911996584b90c55e487a19b19205",
+      "bytes": 6963
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-midparagraph-inline-column-break.png",
+      "git_blob": "461ed4d339a857c6024ac22c8fd135127c76a244",
+      "bytes": 9268
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/final-receipt.json",
+      "git_blob": "9f0e3c7bac4673ed4afadadbb0d0cca398758c84",
+      "bytes": 189912
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/independent-harness-review.json",
+      "git_blob": "4db31f2dc19d93cd5f452f1601a51bdb74fde2ff",
+      "bytes": 5564
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/visual-review.json",
+      "git_blob": "551e2b6c1a23dccb13347ae5581e9024c4022a18",
+      "bytes": 1302
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control-index.json",
+      "git_blob": "c8a008e63fe4f5af74cf619c30bd3d46cd8dffea",
+      "bytes": 2998
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control.tar.xz",
+      "git_blob": "be6844e29b73e45995f3792170406d01b4516514",
+      "bytes": 42356
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-README.md",
+      "git_blob": "1a2b82ce847f7bbb08ca95c1ded0da3c03549288",
+      "bytes": 6256
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.index.json",
+      "git_blob": "9bfe719794b7140e320abfee66fdeac792c328f5",
+      "bytes": 71219
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.tar.xz",
+      "git_blob": "0751f3b53630b16dc5a06f8787d616e1c133bd77",
+      "bytes": 195200
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-independent-review.json",
+      "git_blob": "c964b14d1dc5788a7662ef7bfd19834b8381b4c8",
+      "bytes": 12539
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-README.md",
+      "git_blob": "014772097a464d1393330ef04b5c939a0f1e5a5c",
+      "bytes": 7613
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls-index.json",
+      "git_blob": "38c0b163807c99ca001624f4fb569af7c802b4f9",
+      "bytes": 7796
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls.tar.xz",
+      "git_blob": "e8bd981603d292da03948c71d570b2e8edaa9587",
+      "bytes": 87364
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit-index.json",
+      "git_blob": "a56f5be94452c303f4816509145bae5fd9ddff41",
+      "bytes": 12974
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit.tar.xz",
+      "git_blob": "d2c9c4b891499708f4a14e8641c1918bfd09dd81",
+      "bytes": 95844
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/merge-resolution.json",
+      "git_blob": "f07f8cc4db7777b2f4e604709e6b373af3e5174e",
+      "bytes": 1428
+    }
+  ],
+  "interpretation": "Historical evidence retains its original source binding and contract. It is not a fresh qualification of this continuation. Superseded empty-placeholder field expectations and libxml2 schema conclusions are not adopted as the current contract."
+}

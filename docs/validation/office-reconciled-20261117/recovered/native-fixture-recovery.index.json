@@ -1,0 +1,87 @@
+{
+  "archive": "native-fixture-recovery.tar.xz",
+  "bytes": 9456,
+  "sha256": "d4daf2a3d1fafd5b3fcf32f848bc6cf5203563168a3069b8fc2e934ca911da09",
+  "members": [
+    {
+      "path": "build-exact.log",
+      "bytes": 3215,
+      "sha256": "5813941f7510eeb1b7ac949a3fe33a0ece026e3b12a8a01973afd03ee55418d9"
+    },
+    {
+      "path": "build.log",
+      "bytes": 3215,
+      "sha256": "5813941f7510eeb1b7ac949a3fe33a0ece026e3b12a8a01973afd03ee55418d9"
+    },
+    {
+      "path": "compile_commands.json",
+      "bytes": 35733,
+      "sha256": "1649869d69da078afc164fc22e9b369fa3ec3c1f1bb34badd43c60319be1fa46"
+    },
+    {
+      "path": "configure-exact.log",
+      "bytes": 1271,
+      "sha256": "1714d2df0a4d20b0d3b9d7ea4e6b6a3091ebcf56fd9bc4d9045a8faa88b2a5b8"
+    },
+    {
+      "path": "configure.log",
+      "bytes": 1308,
+      "sha256": "c14b428dce698b0d33ecc076b252c450da48ebada47f3774a5c58ec99333e50b"
+    },
+    {
+      "path": "convert-f32.log",
+      "bytes": 256,
+      "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97"
+    },
+    {
+      "path": "download-receipt.json",
+      "bytes": 4051,
+      "sha256": "4ba0fa1a8a88b5c6976482fc9d74f3696a3ec8d87d6467f32cb0fed275805d73"
+    },
+    {
+      "path": "download.log",
+      "bytes": 3645,
+      "sha256": "d28740bb44173ee8dc1fb28494fa7c25d9ed4c03494dc2277063688c84c131b1"
+    },
+    {
+      "path": "download_bundle.py",
+      "bytes": 1761,
+      "sha256": "525550037499d7030cd35e4710d0e9825b6f6a8ff27780a9c1aa72dd58e53298"
+    },
+    {
+      "path": "exact-recovery.json",
+      "bytes": 6942,
+      "sha256": "68164fda1513f5168e744fe4712fbf316345368ad7e5666520b33ad3157003f7"
+    },
+    {
+      "path": "install.log",
+      "bytes": 643,
+      "sha256": "33e46a80097819e704c74e6e6d98940f3d822ef57ae6fd2201032452f6c4feac"
+    },
+    {
+      "path": "pack-build.json",
+      "bytes": 1915,
+      "sha256": "3c383783dfbb12659f7de10a969cebda463404070d3359910196e36d21833455"
+    },
+    {
+      "path": "pack-verify.json",
+      "bytes": 1915,
+      "sha256": "3c383783dfbb12659f7de10a969cebda463404070d3359910196e36d21833455"
+    },
+    {
+      "path": "pack.json",
+      "bytes": 9315,
+      "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+    },
+    {
+      "path": "quantize-exact.log",
+      "bytes": 18019,
+      "sha256": "c104b2e86d9bd01fa2530b7e96251f7575f61db0f0b01da2b1eb2f92b9351254"
+    },
+    {
+      "path": "quantize.log",
+      "bytes": 17932,
+      "sha256": "f83a74be8b5b4189881b175d5956dd1ce4ec2c07661da20d504d078e0bcf3299"
+    }
+  ]
+}

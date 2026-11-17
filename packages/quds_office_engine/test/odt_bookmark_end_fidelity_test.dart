@@ -168,7 +168,7 @@ void main() {
     expect(result.styles.text, contains('Footer orphan'));
   });
 
-  test('an unexported TOC start cannot create a visible orphan end', () {
+  test('an omitted TOC title cannot create a visible orphan end', () {
     final document = WmlDocument(
       sections: [
         WmlSection(
@@ -205,6 +205,71 @@ void main() {
     expect(result.content.text, isNot(contains('TOC title')));
     expect(result.content.text, contains('After TOC'));
   });
+  test(
+    'an exported TOC title keeps its bookmark range into following text',
+    () {
+      final content = _export(
+        WmlDocument(
+          sections: [
+            WmlSection(
+              blocks: [
+                WmlToc(
+                  title: 'Contents',
+                  titleParagraph: WmlParagraph(
+                    inlines: [
+                      _start('9', 'ContentsRange'),
+                      WmlRun(text: 'TOC title'),
+                    ],
+                  ),
+                ),
+                WmlParagraph(
+                  inlines: [
+                    _end('9'),
+                    WmlRun(text: 'After contents'),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ).content;
+      expect(_ends(content), ['ContentsRange']);
+      expect(
+        _elements(
+          content,
+          'bookmark-start',
+        ).map((e) => e.getAttribute('name', namespaceUri: _textNs)),
+        ['ContentsRange'],
+      );
+      expect(content.text, contains('TOC title'));
+      expect(content.text, contains('After contents'));
+    },
+  );
+
+  test(
+    'malformed bookmark IDs keep visible text without invented range ends',
+    () {
+      final content = _export(
+        WmlDocument(
+          sections: [
+            WmlSection(
+              blocks: [
+                WmlParagraph(
+                  inlines: [
+                    _start('invalid', 'Invalid'),
+                    WmlRun(text: 'Visible'),
+                    _end('invalid'),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ).content;
+      expect(content.text, contains('Visible'));
+      expect(_ends(content), isEmpty);
+    },
+  );
   test(
     'exported TOC title retains its bookmark extent into following text',
     () {

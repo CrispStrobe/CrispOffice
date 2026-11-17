@@ -1,0 +1,123 @@
+{
+  "archive": "upstream-union-preflight-28041bd0.tar.xz",
+  "bytes": 442048,
+  "sha256": "7f5cabec5a156d3457bb252ae5c914e9bb80535b1432b715166212181659bfd9",
+  "members": [
+    {
+      "path": "analysis-package-config.json",
+      "bytes": 27796,
+      "sha256": "8121f877dacf796b9648af985dd5419d0d806ab5ddbd3f8bd22854cd006ddd64"
+    },
+    {
+      "path": "dependencies-after.json",
+      "bytes": 1161667,
+      "sha256": "3ba7a38a3a8f87f17aa546d3f9bc410abb919e670164499015a94e3f201beb85"
+    },
+    {
+      "path": "dependencies-before.json",
+      "bytes": 1161667,
+      "sha256": "3ba7a38a3a8f87f17aa546d3f9bc410abb919e670164499015a94e3f201beb85"
+    },
+    {
+      "path": "engine-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "engine-strict-analysis/stdout.gz",
+      "bytes": 1078,
+      "sha256": "c7b8ed274bd5b2a47e3fdb186125a79f5fb219d681b8753c27aa602b717806d4"
+    },
+    {
+      "path": "fixture-audit.json",
+      "bytes": 13834,
+      "sha256": "ee17b2f94e3788df1ad5f737880de855607fe0b2e414d410e8b5e322483f516c"
+    },
+    {
+      "path": "harness-after.json",
+      "bytes": 2332,
+      "sha256": "bdda3090d07e446a2b91805230f4b60790045e73b7c6f0427b3bc8a72ea3826a"
+    },
+    {
+      "path": "harness-before.json",
+      "bytes": 2332,
+      "sha256": "bdda3090d07e446a2b91805230f4b60790045e73b7c6f0427b3bc8a72ea3826a"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 78217,
+      "sha256": "f5d32c4ad8ae7323c1b4515bbed5ea07d87a3a026c74846d310063d1d9a4f16f"
+    },
+    {
+      "path": "progress.log",
+      "bytes": 487,
+      "sha256": "2402a12f9f8fed1d350867202c0657a7067b50fc4cd286cbcef0cf5c34c02c92"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 14073,
+      "sha256": "f822b7113d310aa1e3e3d53b2b4bbb543cf15ad08270f934a452b3979b7f1ba9"
+    },
+    {
+      "path": "run-used.py",
+      "bytes": 4784,
+      "sha256": "196165c41377f40ef3e97e25aad1d7580ba35602c5581b35384760571bf376c8"
+    },
+    {
+      "path": "runner-error.json",
+      "bytes": 724,
+      "sha256": "60baf0d389499def25104ec4df91e7b0cbfd064226638251276c072ea8ee94d4"
+    },
+    {
+      "path": "runtime-after.json",
+      "bytes": 2781,
+      "sha256": "c3421fcdacb64c7dec4e6b042d7041e5b4d1406f48dddbe68b9a373f58c2d2cc"
+    },
+    {
+      "path": "runtime-before.json",
+      "bytes": 2781,
+      "sha256": "c3421fcdacb64c7dec4e6b042d7041e5b4d1406f48dddbe68b9a373f58c2d2cc"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 926854,
+      "sha256": "769bc80908f0d2e9a856147d04a9a22b0cd2440193ca3161f6e05181a86c18d4"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 926854,
+      "sha256": "769bc80908f0d2e9a856147d04a9a22b0cd2440193ca3161f6e05181a86c18d4"
+    },
+    {
+      "path": "system-after.json",
+      "bytes": 1259,
+      "sha256": "858f626314bf16284e3e81972a076d517a9cffea7a93886b70d66f48424f39fd"
+    },
+    {
+      "path": "system-before.json",
+      "bytes": 1259,
+      "sha256": "858f626314bf16284e3e81972a076d517a9cffea7a93886b70d66f48424f39fd"
+    },
+    {
+      "path": "workspace-after.json",
+      "bytes": 25405,
+      "sha256": "c88666085657fcba9439120057b74ff35c28005b71b9d5854d7d050f26644f39"
+    },
+    {
+      "path": "workspace-before.json",
+      "bytes": 25405,
+      "sha256": "c88666085657fcba9439120057b74ff35c28005b71b9d5854d7d050f26644f39"
+    },
+    {
+      "path": "supplemental-format.stdout",
+      "bytes": 49,
+      "sha256": "ba16f1788e702b1e7f078b1dd7cb8c37ba9c1171a289fc302f67f28f1123d910"
+    },
+    {
+      "path": "supplemental-format.stderr",
+      "bytes": 8708,
+      "sha256": "efb1062794c1f3c8f82d98e8dd56d0775730419cec738b8564a5e7e90dea5cbd"
+    }
+  ],
+  "outcome": "Strict analysis rejected one newly landed spreadsheet info-level lint before any cohorts ran. Separate formatter check passed128files. All source/dependency/runtime/workspace/system/harness inputs unchanged."
+}

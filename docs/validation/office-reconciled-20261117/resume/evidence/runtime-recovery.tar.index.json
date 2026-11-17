@@ -1,0 +1,185 @@
+{
+  "archive": "runtime-recovery.tar.xz",
+  "bytes": 192636,
+  "sha256": "c38931276c5b174fb6b244edd1d44e16d76d1a79a82d415c74aca0226d7ec379",
+  "classification": "Runtime/input recovery only. Exact SDK, lock, native/model pins and prerequisite controls; no application release qualification claimed.",
+  "member_count": 35,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "native/CMakeCache.txt",
+      "bytes": 31091,
+      "sha256": "e9b8645ffc0a60e3560216a311c51f2386fe7639025117ff9161366c7d53389b"
+    },
+    {
+      "path": "native/build-tools-install.log",
+      "bytes": 2028,
+      "sha256": "1d524efb893bb7a85b24762ec0fd01e2d7ee69b6b750cab8e4958a4ef520f14f"
+    },
+    {
+      "path": "native/build.log",
+      "bytes": 3187,
+      "sha256": "45b3fc77afbe41ccdaa108109924624bdeddf0461617d29f6c03544d6ea12d75"
+    },
+    {
+      "path": "native/commands.json",
+      "bytes": 3638,
+      "sha256": "c42f6fc15899d732f38b53a7e9b7428bd2b3c3d1ed11d9f7eb5db34951ed4bed"
+    },
+    {
+      "path": "native/compile_commands.json",
+      "bytes": 40045,
+      "sha256": "cfdd515517b3d08eccbe7d4d008fe2edb4ad9c1be9986384df81f9f2ae0ad84f"
+    },
+    {
+      "path": "native/configure-with-ninja.log",
+      "bytes": 1274,
+      "sha256": "935a275a65013e4954f1c2f8c07f34555a4939161b745324d441e1db4dc2b1fa"
+    },
+    {
+      "path": "native/configure.log",
+      "bytes": 331,
+      "sha256": "d01d27fad9752dffd273cceaf9372ec6e17dc002e23f5d42e52474649de43f05"
+    },
+    {
+      "path": "native/convert-f32.log",
+      "bytes": 256,
+      "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97"
+    },
+    {
+      "path": "native/evidence-index.json",
+      "bytes": 3796,
+      "sha256": "9890f85cea4419084ccd83ac05b958c9f49069d9e6e3cbd58e0b0580cb23279a"
+    },
+    {
+      "path": "native/font-prerequisites.json",
+      "bytes": 1693,
+      "sha256": "6dbbda4744328ccd7eec8c6ab1e0238d61b8164a1e7278e624e9f5e298f8ed49"
+    },
+    {
+      "path": "native/install.log",
+      "bytes": 511,
+      "sha256": "2f9c643d99a195e33913fbb4567e8ed646c627322c895527887093c7b040ba34"
+    },
+    {
+      "path": "native/model-download-verification.json",
+      "bytes": 3662,
+      "sha256": "d27bc7c1bf3e4b6e0734c4d1b1dbf86c1cd171211d82452bd544fdc735ad9c7d"
+    },
+    {
+      "path": "native/native-contract.log",
+      "bytes": 250,
+      "sha256": "70b4a31fff6dc9e53e61bda47c7d3781f747ca369758404e133cd3704ba26530"
+    },
+    {
+      "path": "native/native-env.sh",
+      "bytes": 790,
+      "sha256": "3b41421b4d1d43a0d7f27ecd2df51529ed6b93daf37745bf566882db4caeaa8f"
+    },
+    {
+      "path": "native/pack-build.json",
+      "bytes": 1835,
+      "sha256": "30f2e7a419e97c6086287385d432f78cec59e4e02d92711654ee2b1d28c5d49a"
+    },
+    {
+      "path": "native/pack-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/pack-verify.json",
+      "bytes": 1835,
+      "sha256": "30f2e7a419e97c6086287385d432f78cec59e4e02d92711654ee2b1d28c5d49a"
+    },
+    {
+      "path": "native/pack-verify.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/python-controls.json",
+      "bytes": 1268030,
+      "sha256": "60dd93e762b132ca9403af26bd3beba095964975a4b76d11412be64e80edb071"
+    },
+    {
+      "path": "native/python-controls.stderr",
+      "bytes": 19937,
+      "sha256": "55daf47eee229bdbc3e26e19d9db9b3da4c4a7cb3e36ff32e91cbcf28aa08b5c"
+    },
+    {
+      "path": "native/python-controls.stdout",
+      "bytes": 90,
+      "sha256": "e8a380699c2b9b7f1363a0da762b676039e2fd400237587d7a682671094a28a8"
+    },
+    {
+      "path": "native/python-freeze.txt",
+      "bytes": 459,
+      "sha256": "e224cc3c1a40e66221e2e9b805db802e8b5a28186aa4a6cb0d74e1ce97489c32"
+    },
+    {
+      "path": "native/python-install.log",
+      "bytes": 9720,
+      "sha256": "31a3fb19f770dc3ee3d8e51684bc423a145a1bb964e22a3eec055fcd8dfc5145"
+    },
+    {
+      "path": "native/quantize.log",
+      "bytes": 18085,
+      "sha256": "466fff831ff0271743c2f89890e187745e1a42205bcd9c987d1824af679c5950"
+    },
+    {
+      "path": "native/recovery.json",
+      "bytes": 3097,
+      "sha256": "ed5887c139b7cb15449788eca8a75ffcfb6c1fc7e94e14b7342ddfcda935a32d"
+    },
+    {
+      "path": "native/source-audit.json",
+      "bytes": 4470,
+      "sha256": "b47ff3d1ecd2ba2f4ea69db3f7275d46b49bfb8a247e198b741fbc1d5cd0ea8b"
+    },
+    {
+      "path": "runtime/commands.json",
+      "bytes": 1250,
+      "sha256": "505eaaa5a9347b90be0b796d798633a87878fcbce7a21339d84e1dc0722fc8dc"
+    },
+    {
+      "path": "runtime/flutter-install-receipt.json",
+      "bytes": 528415,
+      "sha256": "c7148721b1899e0e703eb63752ece67a75c4153883dc353a4bc40a122a9bf499"
+    },
+    {
+      "path": "runtime/flutter-tools-offline.log",
+      "bytes": 1174,
+      "sha256": "334324e03bb9cbde9b6921d969a9932f2eab9b4cd41185bd37d30a7b5bfb29d7"
+    },
+    {
+      "path": "runtime/flutter-version.log",
+      "bytes": 631,
+      "sha256": "b7a73169c2b85de83617297ddcbcff97195a3e358dadb73234e5251fb7609e5c"
+    },
+    {
+      "path": "runtime/prepare-workspace.log",
+      "bytes": 111,
+      "sha256": "569cd02a03e8bcfe4eb64e89ff6c6f385fb8ba67c9f7bb5a3fea03cf28db2b17"
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "bytes": 51856,
+      "sha256": "28446392e9e33aad6f6ff825f7fe6d6a4e6fe473c93628ecd0cab3337f937e74"
+    },
+    {
+      "path": "runtime/ready.json",
+      "bytes": 929,
+      "sha256": "e0a53a17e216308955ed83e083e6cd1b17653859f74ccf8b3c36d3d192bfa46c"
+    },
+    {
+      "path": "runtime/workspace-setup.json",
+      "bytes": 25430,
+      "sha256": "5acffbf7160ffb03ce86bdca3c99e6b4f879a17ca011b6b1f88ba28d0d063056"
+    },
+    {
+      "path": "runtime/workspace-setup.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ]
+}

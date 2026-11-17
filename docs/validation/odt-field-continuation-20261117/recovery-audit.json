@@ -1,0 +1,144 @@
+{
+  "aotAbsentAtBaselineAndProduct": true,
+  "auditedAtUtc": "2026-11-17T20:08:25.429498+00:00",
+  "baseline": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+  "changedPaths": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+  ],
+  "commitObjectSha1Verified": true,
+  "errors": [],
+  "historicalArchives": [
+    {
+      "bytes": 905740,
+      "indexSha256": "24a4536984d99e5a45c440a92dd7bafbd123732d96858f5093614aa11688da73",
+      "path": "docs/validation/german-proofing-recovery-20261117/evidence.tar.xz",
+      "sha256": "176fe525b22833eb238f493275059c999ddf9bbb286ccb6af3538316b5f33f9f",
+      "unchangedFromBaseline": true,
+      "uncompressedBytes": 1844607,
+      "verifiedMembers": 167
+    },
+    {
+      "bytes": 258100,
+      "indexSha256": "dcad9b63cb55a2ab43378a284e1a19030ac1160839a8c9604dc526b73f6740e7",
+      "path": "docs/validation/german-proofing-recovery-20261117/delivery-main/evidence.tar.xz",
+      "sha256": "c35ec8d7c1b85495c948aea530522da50bd4eb7598729017e49036bb2fa88526",
+      "unchangedFromBaseline": true,
+      "uncompressedBytes": 392203,
+      "verifiedMembers": 38
+    }
+  ],
+  "historicalMembersVerified": 205,
+  "originalCommitPayload": {
+    "bytes": 275,
+    "gitObjectSha1": "7147ae60770869e7471b947347d5e188a177424f",
+    "path": "recovered-original-source.commit",
+    "requiresOriginalGitObject": false,
+    "sha256": "d363556bbe604292f3b42040b818f090530234b7707c69510c2c62ad60126290"
+  },
+  "passed": true,
+  "productParents": [
+    "e3a38789359adaa33b2da1345c952fa1c2d8aebb"
+  ],
+  "publishedProduct": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+  "publishedProductParents": [
+    "e3a38789359adaa33b2da1345c952fa1c2d8aebb"
+  ],
+  "publishedProductTree": "3080e51ec487a97c08696d119dbef97a442a2e67",
+  "publishedTreeMatchesRecoveredTree": true,
+  "recoveredFiles": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "bytes": 91677,
+      "gitBlob": "06e7d40ce0758a7df17700b94a31e0d184534f18",
+      "sha256": "157e641657998fc5be8f12a8bef362566261caa14b7898de93b182bd85841aea",
+      "workingTreeMatchesProduct": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": {
+      "bytes": 146554,
+      "gitBlob": "4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8",
+      "sha256": "5ecbcd9d94c4cceb8cd9540e5fef744626069f029cae7c52e9776d9ab83d8193",
+      "workingTreeMatchesProduct": true
+    },
+    "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart": {
+      "bytes": 8427,
+      "gitBlob": "c1082c3340f375425d11a6b5944a46b8f1751484",
+      "sha256": "b45735984370488300d7e2bcb26ad3b31371a5c14d92bf7eb9ccc8eab63db8b3",
+      "workingTreeMatchesProduct": true
+    },
+    "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart": {
+      "bytes": 18345,
+      "gitBlob": "0a4331683f037aa8a23e70b043bc6a7b8af2de62",
+      "sha256": "9c3554acc4bff6fca34569161efbeee7ddb653b09d3817cf0704d06aa01e1877",
+      "workingTreeMatchesProduct": true
+    }
+  },
+  "recoveredProduct": "7147ae60770869e7471b947347d5e188a177424f",
+  "recoveredProductTree": "3080e51ec487a97c08696d119dbef97a442a2e67",
+  "repository": "CrispStrobe/quds_office_suite",
+  "schemaVersion": 1,
+  "scopeLimits": [
+    "This audit verifies restored product bytes and already-published historical archives; it does not run or recount product tests.",
+    "The original commit metadata is verified from the preserved payload; Git object queries use the identical published tree and reachable published commit, so the original unpublished commit need not exist in a fresh clone.",
+    "The original unpublished continuation logs and documentation commit were lost when the execution workspace reset. This audit does not claim those files survived or reconstruct their contents.",
+    "Fresh execution receipts, if present in this report directory, are separate evidence and are outside this archive audit.",
+    "The working ODF guide and historical README have authorized documentation updates; archive and index immutability are checked independently of those prose files."
+  ],
+  "unchangedScopes": [
+    {
+      "baselineObject": "298ae63a2ef4e2b022f8ce26dbdb11df4a368536",
+      "path": "packages/quds_office_engine/lib/src/proofing",
+      "productObject": "298ae63a2ef4e2b022f8ce26dbdb11df4a368536",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "fdb10161f4dbae959760edfe0a86ec7b59c0ab5b",
+      "path": "packages/quds_office_engine/test/proofing",
+      "productObject": "fdb10161f4dbae959760edfe0a86ec7b59c0ab5b",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "3deee5b3b3ac07966549b044476e43cf7159e5fa",
+      "path": "packages/quds_proofing_gector",
+      "productObject": "3deee5b3b3ac07966549b044476e43cf7159e5fa",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "3ee0cee5f338e872b09cfe66cdf6a949804db33e",
+      "path": "packages/quds_proofing_harper",
+      "productObject": "3ee0cee5f338e872b09cfe66cdf6a949804db33e",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "d8104905a158c85c95a78a2b9b2960c80e822fcf",
+      "path": "packages/quds_office_editor",
+      "productObject": "d8104905a158c85c95a78a2b9b2960c80e822fcf",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "e337080af459e7f1cb15e880513b5db58be3d88a",
+      "path": "apps/quds_report_studio",
+      "productObject": "e337080af459e7f1cb15e880513b5db58be3d88a",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "93023d32992ed0f83c5a4c66438e099b8ceebd40",
+      "path": "tools",
+      "productObject": "93023d32992ed0f83c5a4c66438e099b8ceebd40",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "e61a2424fea83164962d3f14371f508532a7f964",
+      "path": "pubspec.yaml",
+      "productObject": "e61a2424fea83164962d3f14371f508532a7f964",
+      "unchanged": true
+    },
+    {
+      "baselineObject": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "path": "analysis_options.yaml",
+      "productObject": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "unchanged": true
+    }
+  ]
+}

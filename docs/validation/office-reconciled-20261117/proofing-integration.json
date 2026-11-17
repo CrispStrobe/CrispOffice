@@ -1,0 +1,64 @@
+{
+  "source_ref": "feat/german-gector-proofing",
+  "source_commit": "c6fca4c687354d3d396c896820aea5cfc455a7f3",
+  "changes": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "before_sha256": "ff726d5e982f0b9a897563de46183a352e581748e3d36a450fa57197bc460984",
+      "after_sha256": "3f9909cbbe27f038216db609ff1a21a843737d146521538b34cf6b3579f59a5d",
+      "incoming_git_blob": "f68b130d60177dfeebc035d5cb2f6793e789ad2d"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "before_sha256": "abe540438761605cfac0cbdaf452403b14dbb18fc7c525d73b2c30be726c9d6e",
+      "after_sha256": "9e51dd774237e6a22232ad88f905cc32314f75ee3ffeb263fee7cdbade93f82c",
+      "incoming_git_blob": "ad4b07acd65ad7c8b1af14739b6d5ed1c5975536"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+      "before_sha256": "e15c93819b57b87597e84ab3826ab38735cb5b7a6f00bc617a568b6b9ea6c6c7",
+      "after_sha256": "b99efef2eb3fe3a82531f89226a752bbf9dee569d88b672789d504e8e6f64cfc",
+      "incoming_git_blob": "12f75870beb23abad78f15f40e8df812e05eec0c"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart",
+      "before_sha256": null,
+      "after_sha256": "37672d89b6b3d2d0ad8c9e021374431cace85b87831fa95923cb2e0d88e83e2d",
+      "incoming_git_blob": "8fbfe163b0e75a390241e0d3ac555ceeac0405fb"
+    },
+    {
+      "path": "packages/quds_proofing_gector/test/runner_inputs_test.dart",
+      "before_sha256": "5b4b2e7a1112f9a658071f525739f248a80989b2d345111b719c67a9ea049ac7",
+      "after_sha256": "b9fa9a1409eec215d500143be86ca14b7f0e0fc678e26da47e23a31bce19f06f",
+      "incoming_git_blob": "516e1a35b15e8f4c0718dedefad19f8e700700ac"
+    },
+    {
+      "path": "tools/proofing/german_model/LOCAL_PROVIDER.md",
+      "before_sha256": "b7539a8a382f7665cf7ca2d3de3c1ede36a893c2653458d7852440af4714e209",
+      "after_sha256": "a680041d7b69042a14f3dd81d656076eeb3b44a6021fe94456db553cb4cb9cf8",
+      "incoming_git_blob": "36e7375b0605b242a80498658bb4be3342a62e15"
+    },
+    {
+      "path": "tools/proofing/german_model/run_gector_dart.dart",
+      "before_sha256": "23069fcafab57395eb7ddc51df86347962171cffda1ad7e9a6e89c3e1be12051",
+      "after_sha256": "3300f8b2524f6628493b0870f8911df28c8e4c9a84f177de1f0f94cf29166d2b",
+      "incoming_git_blob": "942cb06f8be42605e4fad250818f3e005f82933b"
+    }
+  ],
+  "retained_main_boundaries": [
+    "AOT/RML removal and adapter reuse map",
+    "Current German context and literal-range rules",
+    "Current ODT/ODP writers and their independent regression suites"
+  ],
+  "separate_work_not_imported": "Native spaCy reference implementation remains owned by its separate session, per docs/roadmaps/proofing-adapter-reuse.md.",
+  "scope": "Reviewed bounded object-case rules, sein participle ordering, and configurable local native thread counts; no new model or backend is registered.",
+  "incoming_office_test_retention": {
+    "restored_independent_columns": "packages/quds_office_engine/test/odt_column_break_style_fidelity_test.dart",
+    "byte_equivalent_existing_table_tests": {
+      "incoming": "odt_table_tab_gector_fidelity_test.dart",
+      "retained": "odt_table_tab_consolidation_test.dart",
+      "git_blob": "7b8203fc8e9c407910735b22af996fc1cecb4287"
+    },
+    "decoration_controls": "Both shade/border cases already retained in odt_paragraph_decoration_test.dart; no duplicate file added."
+  }
+}

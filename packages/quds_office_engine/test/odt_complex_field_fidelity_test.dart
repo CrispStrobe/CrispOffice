@@ -83,58 +83,109 @@ void main() {
   test(
     'reused empty runs keep native field content local to its occurrence',
     () {
-      for (final aliased in [false, true]) {
-        final empty = WmlRun();
-        final cache = aliased ? empty : WmlRun();
-        final paragraph = WmlParagraph(
-          inlines: [
-            empty,
-            WmlBreak(WmlBreakType.column),
-            ..._field(' PAGE ', [cache]),
-          ],
-        );
-        final original = List<WmlInline>.of(paragraph.inlines);
-        final result = _export(
-          'aliased-empty-cache-$aliased',
-          WmlDocument(
-            sections: [
-              WmlSection(columnCount: 2, blocks: [paragraph]),
+      for (final sectionLeading in [false, true]) {
+        for (final aliased in [false, true]) {
+          final empty = WmlRun();
+          final cache = aliased ? empty : WmlRun();
+          final paragraph = WmlParagraph(
+            inlines: [
+              empty,
+              WmlBreak(WmlBreakType.column),
+              ..._field(' PAGE ', [cache]),
             ],
-          ),
-        );
-        final paragraphs = _elements(_body(result.content), 'p').toList();
-        expect(paragraphs, hasLength(1));
-        expect(_elements(paragraphs.single, 'page-number'), hasLength(1));
-        final styleName = paragraphs.single.getAttribute(
-          'style-name',
-          namespaceUri: _textNs,
-        );
-        final style = _elements(result.content, 'style', _styleNs).singleWhere(
-          (style) =>
-              style.getAttribute('name', namespaceUri: _styleNs) == styleName,
-        );
-        expect(
-          _elements(
-            style,
-            'paragraph-properties',
-            _styleNs,
-          ).single.getAttribute('break-before', namespaceUri: _foNs),
-          'column',
-        );
-        expect(paragraph.inlines, orderedEquals(original));
-        expect(identical(paragraph.inlines.first, empty), isTrue);
-        expect(identical(paragraph.inlines[5], cache), isTrue);
-        expect(identical(empty, cache), aliased);
+          );
+          final original = List<WmlInline>.of(paragraph.inlines);
+          final result = _export(
+            'aliased-empty-cache-$aliased-section-leading-$sectionLeading',
+            WmlDocument(
+              sections: [
+                WmlSection(
+                  columnCount: 2,
+                  blocks: [
+                    if (!sectionLeading)
+                      WmlParagraph(inlines: [WmlRun(text: 'Prelude')]),
+                    paragraph,
+                  ],
+                ),
+              ],
+            ),
+          );
+          final paragraphs = _elements(_body(result.content), 'p')
+              .skip(sectionLeading ? 0 : 1)
+              .toList();
+          // A section boundary retains its empty leading source fragment;
+          // a later paragraph does not acquire one because a run is aliased.
+          expect(paragraphs, hasLength(sectionLeading ? 2 : 1));
+          if (sectionLeading) {
+            expect(_nativeFields(paragraphs.first), isEmpty);
+          }
+          final fieldParagraph = paragraphs.last;
+          expect(_elements(fieldParagraph, 'page-number'), hasLength(1));
+          final styleName = fieldParagraph.getAttribute(
+            'style-name',
+            namespaceUri: _textNs,
+          );
+          final style = _elements(result.content, 'style', _styleNs).singleWhere(
+            (style) =>
+                style.getAttribute('name', namespaceUri: _styleNs) == styleName,
+          );
+          expect(
+            _elements(style, 'paragraph-properties', _styleNs)
+                .single
+                .getAttribute('break-before', namespaceUri: _foNs),
+            'column',
+          );
+          expect(paragraph.inlines, orderedEquals(original));
+          expect(identical(paragraph.inlines.first, empty), isTrue);
+          expect(identical(paragraph.inlines[5], cache), isTrue);
+          expect(identical(empty, cache), aliased);
+        }
       }
     },
   );
+
+  for (final instruction in ['PAGE', 'NUMPAGES']) {
+    for (final (label, text) in [
+      ('spaces', ' 7  8 '),
+      ('tab', '7\t8'),
+      ('line break', '7\n8'),
+    ]) {
+      test('$instruction cache retains significant $label through fallback', () {
+        final run = WmlRun(
+          text: text,
+          properties: WmlRunProps(bold: true),
+          hyperlink: const WmlHyperlink(url: 'https://example.com/pages'),
+        );
+        final result = _export(
+          'whitespace-${instruction.toLowerCase()}-${label.replaceAll(' ', '-')}',
+          _document([
+            ..._field(' $instruction ', [run]),
+            WmlRun(text: ' after'),
+          ]),
+        );
+        expect(_nativeFields(result.content), isEmpty);
+        expect(_visible(_body(result.content)), '$text after');
+        final link = _elements(result.content, 'a').single;
+        expect(_visible(link), text);
+        expect(
+          link.getAttribute(
+            'href',
+            namespaceUri: 'http://www.w3.org/1999/xlink',
+          ),
+          'https://example.com/pages',
+        );
+        expect(run.text, text);
+        expect(run.properties.bold, isTrue);
+      });
+    }
+  }
 
   for (final entry in {
     'PAGE': 'page-number',
     'NUMPAGES': 'page-count',
   }.entries) {
     test(
-      'uncached ${entry.key} remains before a following column boundary',
+      'uncached ${entry.key} has no invented display before a column boundary',
       () {
         final document = _document([
           ..._field(' ${entry.key} ', []),
@@ -146,8 +197,8 @@ void main() {
           document,
         );
         final paragraphs = _body(result.content).childElements.toList();
-        expect(paragraphs, hasLength(2));
-        expect(_elements(paragraphs.first, entry.value), hasLength(1));
+        expect(paragraphs, hasLength(1));
+        expect(_elements(paragraphs.first, entry.value), isEmpty);
         expect(_nativeFields(paragraphs.last), isEmpty);
         final styleName = paragraphs.last.getAttribute(
           'style-name',
@@ -172,39 +223,44 @@ void main() {
     );
   }
 
-  test(
-    'empty native PAGE result keeps a following column break after the field',
-    () {
-      final result = _export(
-        'empty-native-before-column',
-        _document([
-          ..._field(' PAGE ', [WmlRun(text: '')]),
-          WmlBreak(WmlBreakType.column),
-        ]),
-      );
-      final paragraphs = _body(result.content).childElements.toList();
-      expect(paragraphs, hasLength(2));
-      expect(_elements(paragraphs.first, 'page-number'), hasLength(1));
-      expect(_nativeFields(paragraphs.last), isEmpty);
-      final styleName = paragraphs.last.getAttribute(
-        'style-name',
-        namespaceUri: _textNs,
-      );
-      final style = _elements(result.content, 'style', _styleNs).singleWhere(
-        (style) =>
-            style.getAttribute('name', namespaceUri: _styleNs) == styleName,
-      );
-      final properties = _elements(
-        style,
-        'paragraph-properties',
-        _styleNs,
-      ).single;
-      expect(
-        properties.getAttribute('break-before', namespaceUri: _foNs),
-        'column',
-      );
-    },
-  );
+  for (final entry in {
+    'PAGE': 'page-number',
+    'NUMPAGES': 'page-count',
+  }.entries) {
+    test(
+      'empty native ${entry.key} cache keeps a following column break after the field',
+      () {
+        final result = _export(
+          'empty-native-${entry.key.toLowerCase()}-before-column',
+          _document([
+            ..._field(' ${entry.key} ', [WmlRun(text: '')]),
+            WmlBreak(WmlBreakType.column),
+          ]),
+        );
+        final paragraphs = _body(result.content).childElements.toList();
+        expect(paragraphs, hasLength(2));
+        expect(_elements(paragraphs.first, entry.value), hasLength(1));
+        expect(_nativeFields(paragraphs.last), isEmpty);
+        final styleName = paragraphs.last.getAttribute(
+          'style-name',
+          namespaceUri: _textNs,
+        );
+        final style = _elements(result.content, 'style', _styleNs).singleWhere(
+          (style) =>
+              style.getAttribute('name', namespaceUri: _styleNs) == styleName,
+        );
+        final properties = _elements(
+          style,
+          'paragraph-properties',
+          _styleNs,
+        ).single;
+        expect(
+          properties.getAttribute('break-before', namespaceUri: _foNs),
+          'column',
+        );
+      },
+    );
+  }
 
   test('plain NUMPAGES imported from actual DOCX remains a native field', () {
     final package = OpcPackage.create(OpcPackageKind.word);
@@ -240,7 +296,7 @@ void main() {
     'TITLE': ('title', 'Authored title'),
   }.entries) {
     test(
-      '${entry.key} keeps native field styling and leaves the model cache unchanged',
+      '${entry.key} preserves its display and styling without changing the model cache',
       () {
         final run = WmlRun(
           text: entry.value.$2,
@@ -252,9 +308,13 @@ void main() {
           WmlRun(text: ' After'),
         ]);
         final result = _export(entry.key.toLowerCase(), document);
-        final field = _elements(result.content, entry.value.$1).single;
-        expect(field.text, entry.value.$2);
-        expect(field.childElements, isEmpty);
+        final fields = _elements(result.content, entry.value.$1);
+        if (entry.key == 'PAGE') {
+          expect(fields.single.text, entry.value.$2);
+          expect(fields.single.childElements, isEmpty);
+        } else {
+          expect(_nativeFields(result.content), isEmpty);
+        }
         expect(
           _visible(_body(result.content)),
           'Before ${entry.value.$2} After',
@@ -262,7 +322,7 @@ void main() {
         final span = _elements(
           result.content,
           'span',
-        ).singleWhere((span) => span.childElements.contains(field));
+        ).singleWhere((span) => span.text == entry.value.$2);
         final styleName = span.getAttribute(
           'style-name',
           namespaceUri: _textNs,
@@ -279,7 +339,7 @@ void main() {
     );
   }
 
-  test('plain NUMPAGES retains its cached count in one native field', () {
+  test('plain NUMPAGES emits one native field with one cached display', () {
     final result = _export(
       'numpages',
       _document([
@@ -301,9 +361,9 @@ void main() {
     expect(_visible(_body(result.content)), 'Before 121 After');
   });
 
-  test('styled NUMPAGES keeps its native cache and authored style', () {
+  test('styled NUMPAGES keeps its single cache and native field style', () {
     final result = _export(
-      'numpages-styled-fallback',
+      'numpages-styled',
       _document(
         _field(' NUMPAGES ', [
           WmlRun(
@@ -313,7 +373,6 @@ void main() {
         ]),
       ),
     );
-    expect(_nativeFields(result.content), hasLength(1));
     expect(_elements(result.content, 'page-count').single.text, '121');
     expect(_visible(_body(result.content)), '121');
     final span = _elements(result.content, 'span').single;
@@ -327,26 +386,28 @@ void main() {
     expect(props.getAttribute('color', namespaceUri: _foNs), '#123456');
   });
 
-  test('hyperlinked NUMPAGES preserves its native cache and source link', () {
-    final run = WmlRun(
-      text: '121',
-      hyperlink: const WmlHyperlink(url: 'https://example.com/pages'),
-    );
-    final result = _export(
-      'numpages-link-fallback',
-      _document(_field(' NUMPAGES ', [run])),
-    );
-    expect(_nativeFields(result.content), hasLength(1));
-    expect(_elements(result.content, 'page-count').single.text, '121');
-    expect(_visible(_body(result.content)), '121');
-    expect(
-      _elements(result.content, 'a').single.getAttribute(
-        'href',
-        namespaceUri: 'http://www.w3.org/1999/xlink',
-      ),
-      'https://example.com/pages',
-    );
-  });
+  test(
+    'hyperlinked NUMPAGES preserves its source link around its native field',
+    () {
+      final run = WmlRun(
+        text: '121',
+        hyperlink: const WmlHyperlink(url: 'https://example.com/pages'),
+      );
+      final result = _export(
+        'numpages-link',
+        _document(_field(' NUMPAGES ', [run])),
+      );
+      expect(_elements(result.content, 'page-count').single.text, '121');
+      expect(_visible(_body(result.content)), '121');
+      expect(
+        _elements(result.content, 'a').single.getAttribute(
+          'href',
+          namespaceUri: 'http://www.w3.org/1999/xlink',
+        ),
+        'https://example.com/pages',
+      );
+    },
+  );
 
   test('split instruction fragments are joined before recognizing PAGE', () {
     final result = _export(

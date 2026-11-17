@@ -1,0 +1,12 @@
+{
+  "recoveredCommit": "7147ae60770869e7471b947347d5e188a177424f",
+  "tree": "3080e51ec487a97c08696d119dbef97a442a2e67",
+  "parent": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+  "authorAndCommitter": "Codex <codex@openai.com>",
+  "originalTimestamp": 1794944992,
+  "originalTimezone": "+0100",
+  "method": "Recovered exact source/test bytes, then matched known immutable commit hash with original tree, parent, message and bounded timestamp search. No evidence log was reconstructed.",
+  "publishedSource": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+  "publishedTree": "3080e51ec487a97c08696d119dbef97a442a2e67",
+  "publicationMethod": "GitHub connector; Git CLI authentication was unavailable. Published commit has identical tree and a fresh publication message/timestamp."
+}
