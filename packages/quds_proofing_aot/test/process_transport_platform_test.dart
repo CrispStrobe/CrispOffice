@@ -30,6 +30,23 @@ void main() {
   });
 
   if (!AotProcessTransport.isSupported) {
+    test(
+      'default client selects the local worker without HTTP fallback',
+      () async {
+        final AotClient client = AotClient();
+        await expectLater(
+          client.analyze('Ich gehe.'),
+          throwsA(
+            isA<AotException>().having(
+              (AotException error) => error.code,
+              'code',
+              AotErrorCode.unavailable,
+            ),
+          ),
+        );
+        await client.dispose();
+      },
+    );
     test('web reports unavailable without creating an HTTP fallback', () async {
       final AotProcessTransport worker = AotProcessTransport();
       await expectLater(

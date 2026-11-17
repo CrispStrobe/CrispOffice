@@ -1,6 +1,6 @@
 import 'package:characters/characters.dart';
 
-/// Language names accepted by the upstream SynanDaemon.
+/// Language names accepted by the upstream AOT engine.
 enum AotLanguage {
   german('German', true),
   russian('Russian', true),
@@ -66,16 +66,19 @@ final class AotGrammar {
   );
 }
 
-/// Immutable source token. AOT does not supply character offsets. [start] and
-/// [end] are populated only after an exact sequential match to the input, at
-/// grapheme boundaries. They are UTF-16 offsets and [end] is exclusive.
+/// Immutable source token. [start] and [end] are verified against the original
+/// input at grapheme boundaries. They are UTF-16 offsets; [end] is exclusive.
+/// The native worker can preserve an exact source span even when AOT rewrites
+/// its surface. HTTP responses without native metadata use sequential matching.
 final class AotToken {
   AotToken({
     required this.text,
     required Iterable<String> homonyms,
+    String? analysisText,
     this.start,
     this.end,
-  }) : homonyms = List<String>.unmodifiable(homonyms) {
+  }) : analysisText = analysisText ?? text,
+       homonyms = List<String>.unmodifiable(homonyms) {
     if ((start == null) != (end == null) ||
         (start != null && (start! < 0 || end! < start!))) {
       throw ArgumentError('AOT token requires a valid complete source range.');
@@ -83,10 +86,15 @@ final class AotToken {
   }
 
   final String text;
+
+  /// The analyzer's surface before restoring a verified original source span.
+  /// For example, AOT's `zu-helfen` can correspond to source `zu helfen`.
+  final String analysisText;
   final List<String> homonyms;
   final int? start;
   final int? end;
   bool get isAligned => start != null && end != null;
+  bool get isNormalized => text != analysisText;
 }
 
 final class AotUnit {
@@ -139,7 +147,7 @@ final class AotSentence {
   final List<AotClause> clauses;
 }
 
-/// The complete immutable input snapshot and the daemon's analysis. A lack of
+/// The complete immutable input snapshot and the engine's analysis. A lack of
 /// analyses or grammatical groups is not evidence that the text is erroneous.
 final class AotAnalysis {
   AotAnalysis({
@@ -168,10 +176,24 @@ final class AotAnalysis {
             for (final Object? value in _list(word['homonyms'], 'homonyms'))
               _string(value, 'homonym'),
           ];
-          final (int, int)? range = aligner.match(surface);
+          final bool hasSource =
+              word.containsKey('sourceStart') ||
+              word.containsKey('sourceEnd') ||
+              word.containsKey('sourceText');
+          final String sourceText = hasSource
+              ? _string(word['sourceText'], 'sourceText')
+              : surface;
+          final (int, int)? range = hasSource
+              ? aligner.matchSource(
+                  sourceText,
+                  _int(word['sourceStart'], 'sourceStart'),
+                  _int(word['sourceEnd'], 'sourceEnd'),
+                )
+              : aligner.match(surface);
           words.add(
             AotToken(
-              text: surface,
+              text: sourceText,
+              analysisText: surface,
               homonyms: homonyms,
               start: range?.$1,
               end: range?.$2,
@@ -473,6 +495,26 @@ final class _SourceAligner {
   final Set<int> boundaries;
   int cursor = 0;
   bool broken = false;
+
+  (int, int)? matchSource(String sourceText, int start, int end) {
+    // Metadata is evidence, not authority. Reject malformed, overlapping,
+    // invented or non-grapheme spans instead of trusting a native offset.
+    if (sourceText.isEmpty ||
+        start < 0 ||
+        end <= start ||
+        end > text.length ||
+        !boundaries.contains(start) ||
+        !boundaries.contains(end) ||
+        text.substring(start, end) != sourceText) {
+      _invalid('native source span does not match the submitted text');
+    }
+    if (broken) return null;
+    if (start < cursor || text.substring(cursor, start).trim().isNotEmpty) {
+      _invalid('native source spans omit or overlap submitted text');
+    }
+    cursor = end;
+    return (start, end);
+  }
 
   (int, int)? match(String token) {
     if (broken) return null;
