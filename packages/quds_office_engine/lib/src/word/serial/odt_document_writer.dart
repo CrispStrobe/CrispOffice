@@ -472,7 +472,7 @@ class _OdtLayout {
 
   String paragraphStyle(WmlParagraphProps props, {int? heading}) {
     final key =
-        '${heading ?? 0}|${props.justification.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = 'P${_paragraphStyles.length + 1}';
       final buffer = StringBuffer(
@@ -480,51 +480,75 @@ class _OdtLayout {
         'style:parent-style-name="${heading == null ? 'Standard' : 'Heading_20_${heading.clamp(1, 9)}'}">'
         '<style:paragraph-properties',
       );
-      if (heading == null) {
-        final align = switch (props.justification) {
-          WmlJustification.center => 'center',
-          WmlJustification.right => 'end',
-          WmlJustification.justify || WmlJustification.distributed => 'justify',
-          WmlJustification.left => 'start',
-        };
-        buffer.write(' fo:text-align="$align"');
-        if (props.spacingBefore != 0) {
-          buffer.write(
-            ' fo:margin-top="${props.spacingBefore.toStringAsFixed(2)}pt"',
-          );
-        }
-        if (props.spacingAfter != 0) {
-          buffer.write(
-            ' fo:margin-bottom="${props.spacingAfter.toStringAsFixed(2)}pt"',
-          );
-        }
-        if (props.lineSpacing > 0) {
-          buffer.write(
-            ' fo:line-height="${(props.lineSpacing * 100).round()}%"',
-          );
+      // The model's left/right alignment is physical, independently of the
+      // paragraph's BiDi base direction. ODF start/end would reverse it in RTL.
+      final align = switch (props.justification) {
+        WmlJustification.center => 'center',
+        WmlJustification.right => 'right',
+        WmlJustification.justify || WmlJustification.distributed => 'justify',
+        WmlJustification.left => 'left',
+      };
+      buffer.write(' fo:text-align="$align"');
+      if (props.rightToLeft case final direction?) {
+        buffer.write(' style:writing-mode="${direction ? 'rl-tb' : 'lr-tb'}"');
+        buffer.write(' style:writing-mode-automatic="false"');
+      }
+      // Write zero margins too: omission inherits the generated default style,
+      // whose bottom margin is nonzero. Headings retain their resolved values.
+      if (_paragraphDecimal(props.spacingBefore) case final before?) {
+        buffer.write(' fo:margin-top="${before}pt"');
+      }
+      if (_paragraphDecimal(props.spacingAfter) case final after?) {
+        buffer.write(' fo:margin-bottom="${after}pt"');
+      }
+      if (props.lineSpacing > 0) {
+        switch (props.lineSpacingRule) {
+          case WmlLineSpacingRule.auto:
+            if (_paragraphDecimal(props.lineSpacing * 100)
+                case final percent?) {
+              buffer.write(' fo:line-height="$percent%"');
+            }
+          case WmlLineSpacingRule.exact:
+            if (_paragraphDecimal(props.lineSpacing) case final points?) {
+              buffer.write(' fo:line-height="${points}pt"');
+            }
+          case WmlLineSpacingRule.atLeast:
+            if (_paragraphDecimal(props.lineSpacing) case final points?) {
+              buffer.write(' style:line-height-at-least="${points}pt"');
+            }
         }
       }
       if (props.pageBreakBefore) buffer.write(' fo:break-before="page"');
       if (props.indent.left != 0) {
-        buffer.write(
-          ' fo:margin-left="${props.indent.left.toStringAsFixed(2)}pt"',
-        );
+        if (_paragraphDecimal(props.indent.left) case final left?) {
+          buffer.write(' fo:margin-left="${left}pt"');
+        }
       }
       if (props.indent.right != 0) {
-        buffer.write(
-          ' fo:margin-right="${props.indent.right.toStringAsFixed(2)}pt"',
-        );
+        if (_paragraphDecimal(props.indent.right) case final right?) {
+          buffer.write(' fo:margin-right="${right}pt"');
+        }
       }
       final firstLine = props.indent.hanging != 0
           ? -props.indent.hanging
           : props.indent.firstLine;
       if (firstLine != 0) {
-        buffer.write(' fo:text-indent="${firstLine.toStringAsFixed(2)}pt"');
+        if (_paragraphDecimal(firstLine) case final points?) {
+          buffer.write(' fo:text-indent="${points}pt"');
+        }
       }
       buffer.write('/></style:style>');
       _styleBuffers.add(buffer.toString());
       return name;
     });
+  }
+
+  static String? _paragraphDecimal(double value) {
+    if (!value.isFinite) return null;
+    final decimal = value.toStringAsFixed(2);
+    // ODF lengths and percentages do not accept exponent notation, which
+    // toStringAsFixed uses for magnitudes of at least 10^21.
+    return decimal.contains('e') ? null : decimal;
   }
 
   String tableStyle() {
