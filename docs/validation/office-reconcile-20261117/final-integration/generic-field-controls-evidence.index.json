@@ -1,0 +1,1861 @@
+{
+  "archive": "generic-field-controls-evidence.tar.xz",
+  "bytes": 195200,
+  "sha256": "b821f19945faec0e13d0060acedf42698eb970dce5f55538df3b75c55101e58d",
+  "members": [
+    {
+      "name": "harness-and-review/README.md",
+      "bytes": 6256,
+      "sha256": "b0675a4b44936f80b54de2c93da8af669ccbb65c3a276d7fb55b26c6f2f77da5"
+    },
+    {
+      "name": "harness-and-review/accepted-19-case-controls.dart",
+      "bytes": 13436,
+      "sha256": "79763b5a17c4daaafcb30dd8bfa7dd90cc3edc0d7e3d6814d74659e89fcea192"
+    },
+    {
+      "name": "harness-and-review/accepted-schema-validation.json",
+      "bytes": 13845,
+      "sha256": "49331751ccb60f97c8ea5f9e64a108ed809b17ec09569e8dcc61663b2b6d4d47"
+    },
+    {
+      "name": "harness-and-review/accepted-strict-analysis.log",
+      "bytes": 93,
+      "sha256": "42d4b855fc6859bfc8f503e94487a36819b54f8756ea234fa6bfbd8d53f84c2b"
+    },
+    {
+      "name": "harness-and-review/candidate-initial-writer.dart",
+      "bytes": 81037,
+      "sha256": "4c8d2c6467c9bb04f966d71f01ef293c4c9b014579a8898120c4d233f0302899"
+    },
+    {
+      "name": "harness-and-review/candidate-package-config.json",
+      "bytes": 25430,
+      "sha256": "0d56aa4b90bdf8d536486583a5b198815ec6c4a174495beb6824ca8cc0c8d9d4"
+    },
+    {
+      "name": "harness-and-review/candidate-schema-validation.json",
+      "bytes": 10285,
+      "sha256": "faeb1527695fce0b807a288568c48db876ad91bdaeec0af6ffbfc93dde47738a"
+    },
+    {
+      "name": "harness-and-review/candidate-strict-analysis.log",
+      "bytes": 284,
+      "sha256": "1d575cbb1dd8107e0a43fff08181d456e6f836f67d78c52acebd533db5a22312"
+    },
+    {
+      "name": "harness-and-review/candidate-unrun-cache-preserving-pagecount-fallback.dart",
+      "bytes": 82118,
+      "sha256": "8ebba2a2755b8c61e177678904f45a67484c238dc8787eeb11634a1007dabe0e"
+    },
+    {
+      "name": "harness-and-review/compile-setup-failure-controls.dart",
+      "bytes": 11031,
+      "sha256": "e626122b659e3d565714ef754684423d6077b902b421aa74d970e3a054f192c9"
+    },
+    {
+      "name": "harness-and-review/final-format.log",
+      "bytes": 47,
+      "sha256": "40f77278b207e7b34e8996c0fe9c582929dad3049f45062297f6b58782fab9b8"
+    },
+    {
+      "name": "harness-and-review/final-integrated-format.log",
+      "bytes": 47,
+      "sha256": "74aad84d164b0b750dc34d75a3801fc6a29f20daf020e2442e1b89b7d706b89d"
+    },
+    {
+      "name": "harness-and-review/final-integrated-source-map.json",
+      "bytes": 94066,
+      "sha256": "834bb35c22f536aa7bebeb60d994e8a8d823ef1910ae500a1293a08af8fff633"
+    },
+    {
+      "name": "harness-and-review/final-integrated-strict-analysis.log",
+      "bytes": 93,
+      "sha256": "42d4b855fc6859bfc8f503e94487a36819b54f8756ea234fa6bfbd8d53f84c2b"
+    },
+    {
+      "name": "harness-and-review/final-integration-binding.json",
+      "bytes": 742,
+      "sha256": "c552729fff0ff357eec6afd90c3b2c8c8b2802bdc805689a10a2712eefdf0a44"
+    },
+    {
+      "name": "harness-and-review/final-schema-validation.json",
+      "bytes": 11482,
+      "sha256": "7934dc2701b7f5dc991393ac9413b15f66fd87aa33f016fcfc99e8699376c2b6"
+    },
+    {
+      "name": "harness-and-review/final-strict-analysis.log",
+      "bytes": 284,
+      "sha256": "1d575cbb1dd8107e0a43fff08181d456e6f836f67d78c52acebd533db5a22312"
+    },
+    {
+      "name": "harness-and-review/generic-field-final-root-integration.patch",
+      "bytes": 11042,
+      "sha256": "efa3183fd2b79662e01abcfa624a30a84da9a6d359cd8b25de65a7c96b2f5691"
+    },
+    {
+      "name": "harness-and-review/generic-field-private.patch",
+      "bytes": 10216,
+      "sha256": "a11d6b340c9b5dc45f5d6024db6b20ddb1d033c617333264743ae8710b0965e6"
+    },
+    {
+      "name": "harness-and-review/generic-field-root-integration.patch",
+      "bytes": 9117,
+      "sha256": "d49bc3e0b482c603e6afdf75b280eca799e5fddbe771eb54104a0822e224e06d"
+    },
+    {
+      "name": "harness-and-review/incoming-package-config.json",
+      "bytes": 25429,
+      "sha256": "99a1772997ffd7bff0a03356a3552979667acca5c3d8b5d7f98bb41719ee1a7f"
+    },
+    {
+      "name": "harness-and-review/integrated-final-writer.dart",
+      "bytes": 88224,
+      "sha256": "1cc8d826fa905ebf48b460587c3ac299c030956deace7f25cdf412f41a3caece"
+    },
+    {
+      "name": "harness-and-review/integrated-focused-selection.json",
+      "bytes": 1458,
+      "sha256": "3000b12b6fc4b57caa249d02f2039d1a9a002e0a4d842d4037be59a76c5aeb81"
+    },
+    {
+      "name": "harness-and-review/integrated-writer.dart",
+      "bytes": 87623,
+      "sha256": "e0e98551307a936b4cd6c527cfbe10900550abd25446a02ba14dc1cefc94606d"
+    },
+    {
+      "name": "harness-and-review/integration-binding.json",
+      "bytes": 697,
+      "sha256": "ef82413ae9999be21807a5f3f663faa6eb2e26e1d1b3eaa61c84bbce3eb06738"
+    },
+    {
+      "name": "harness-and-review/odt_complex_field_fidelity_test.dart",
+      "bytes": 17325,
+      "sha256": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0"
+    },
+    {
+      "name": "harness-and-review/original-17-case-controls.dart",
+      "bytes": 11051,
+      "sha256": "9f9d04bacb47366ba82b4fe40da3b2ad9ac5a04087ec43b505e1abf61d6712cc"
+    },
+    {
+      "name": "harness-and-review/package_evidence.py",
+      "bytes": 4638,
+      "sha256": "4ba320b5d5302a00ed3508459c6be08bd0111e1199560b18ca29e2f18c6c51af"
+    },
+    {
+      "name": "harness-and-review/pre-integration-root-writer.dart",
+      "bytes": 82383,
+      "sha256": "3f8b6da54cc8d1cb300c78bf6523923fc84c4778e043c083cbbd82b1d83b79bc"
+    },
+    {
+      "name": "harness-and-review/pre-interaction-fix-root-writer.dart",
+      "bytes": 87623,
+      "sha256": "e0e98551307a936b4cd6c527cfbe10900550abd25446a02ba14dc1cefc94606d"
+    },
+    {
+      "name": "harness-and-review/pre-no-cache-fix-root-writer.dart",
+      "bytes": 88033,
+      "sha256": "c5879cc8ca2a67bb61c481ff7aa3bf8ecbf9f9826cbf896a0206a29a0cc92638"
+    },
+    {
+      "name": "harness-and-review/proposed-cache-preserving-18-case-controls.dart",
+      "bytes": 12458,
+      "sha256": "6d9f3a3446decbe35e08266e0091cfe6110b79718afd5ea9a30609b552355f54"
+    },
+    {
+      "name": "harness-and-review/run_controls.py",
+      "bytes": 3320,
+      "sha256": "5dcaf967936981908ff24ee2bf5bca88646d01269b12a2538f6b5fe58021b6bb"
+    },
+    {
+      "name": "harness-and-review/setup.json",
+      "bytes": 600,
+      "sha256": "78d56ce3bc4905705b6aaf52f2eebe874a639532b20d301478e9df06449d36e8"
+    },
+    {
+      "name": "harness-and-review/validate_schema.py",
+      "bytes": 2140,
+      "sha256": "d4b7ee4c91cc2a50805d81297d59d9a8ab0ea60e33e58360f9f3a0d1b92aa6de"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/CHANGELOG.md",
+      "bytes": 57495,
+      "sha256": "6352d2c3c79e209f6cfe0c5f17ded8f56082ac1f49c75dd680827cdb38fd09bb"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "bytes": 10684,
+      "sha256": "677ceba9fcc80401cff799973d9c330d0a78cea610a93e6a3c9d37c4aa3fe1e8"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "bytes": 1071,
+      "sha256": "ef9569388440e4d5aa24bb0990ad53441f076a3df1993fa0c0b52d4a6fa3faf4"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "bytes": 47156,
+      "sha256": "1d352a64827758d76acd0a4ebeb9f0930d6adf01e0158520a70ed8c3f02fdaca"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "bytes": 40018,
+      "sha256": "1ec06293016d825e034f33fe7bfa07ae8dea88cec4c1f636ae1c7ac43e3be9aa"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart",
+      "bytes": 25080,
+      "sha256": "5e4aff36571c08ab98050f5bb7a244ab66e11fce24d431d7b26fd5e11aed44ff"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "bytes": 88224,
+      "sha256": "1cc8d826fa905ebf48b460587c3ac299c030956deace7f25cdf412f41a3caece"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "bytes": 17958,
+      "sha256": "e5948b7da3e5adc6585a98448b82bae9fad557ec4a1511eafd3c1b7ba1e533f5"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart",
+      "bytes": 6495,
+      "sha256": "262f8d795ed78dca1023bb50da7e5b4fbac057a09e2ba58006ae8d3ce5c7de7c"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_columns_breaks_fidelity_test.dart",
+      "bytes": 6982,
+      "sha256": "fb1501458751e464056cd6a98c5788672be463918f102243875cc27aba3af506"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+      "bytes": 17325,
+      "sha256": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "bytes": 22399,
+      "sha256": "92ff04092b453d82357c76943a9a760e958178707bf95148dd177fe339d75e5f"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+      "bytes": 14649,
+      "sha256": "8eac846c47281d3a6f7440f429fc04a4f2b31c44442e16cd488c8c99eb1db724"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+      "bytes": 2244,
+      "sha256": "2ac91398592923c2bb46468a96e0705cbb2c09e48652b3a1253a33a8a15ad0ea"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_paragraph_decoration_fidelity_test.dart",
+      "bytes": 8227,
+      "sha256": "e9ae6ea41b6bd817a54980ac07788445b0630bc75956bbe22c626e317f112ecc"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+      "bytes": 11497,
+      "sha256": "cc1f99243af3e761808494e390c2794140a2ae948f607fce1cf079b46486e327"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_section_columns_test.dart",
+      "bytes": 8617,
+      "sha256": "fc9e5b40dd3da8567767436d4f77634199332fb899872536d95594a7761a3f9b"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+      "bytes": 9037,
+      "sha256": "9f3bf46a6fc13fe0ab2166df04123bf74254bcfc50427dc6aca66eb5b9e20201"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_tab_style_cache_test.dart",
+      "bytes": 5414,
+      "sha256": "5f9c526a0f76c05753dcbd8bdae5580f422d351583d117c544f9de8ed1922861"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_table_tab_consolidation_test.dart",
+      "bytes": 19863,
+      "sha256": "1ea199e578782942b3d596d54ec23df6cbcf768d0fe99e6cc223698e726afd21"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+      "bytes": 12867,
+      "sha256": "6250ae71be0f2ea8d4154ffdb8eb9aca1f3b0d3b7f6f5fbad4cf8964c7708ece"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/odt_table_tab_qualification_test.dart",
+      "bytes": 12867,
+      "sha256": "6250ae71be0f2ea8d4154ffdb8eb9aca1f3b0d3b7f6f5fbad4cf8964c7708ece"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+      "bytes": 2926,
+      "sha256": "14f064972f9e07dc9413153c5548284eac98bb4cf1c505fbc3e46359e75ede9a"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+      "bytes": 9582,
+      "sha256": "8279325bdf0f22d4614730a3baae14050537a3295215a82a9fdac2322dec216e"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+      "bytes": 10906,
+      "sha256": "e15c93819b57b87597e84ab3826ab38735cb5b7a6f00bc617a568b6b9ea6c6c7"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/third_party/proofing/manifest.json",
+      "bytes": 4263,
+      "sha256": "fced930763cd98c579b11e0797cb53978cf1ff273e3499c97c3c36a2e78d30f9"
+    },
+    {
+      "name": "integrated-overlay/packages/quds_office_engine/tool/proofing/german_common_words.txt",
+      "bytes": 9665,
+      "sha256": "c8cd826a4d5a225e89fd09e1e0ed3020ef332b597c7fb37651917770aec701bf"
+    },
+    {
+      "name": "integrated-overlay/recipe.json",
+      "bytes": 2375,
+      "sha256": "6bd704bc7098c979a074568cbe88a8f6795a4eb3f5fa762eafef54fdfcc9ff32"
+    },
+    {
+      "name": "main13-audit/incoming-main-inventory.json",
+      "bytes": 2744,
+      "sha256": "7804ebc0c9694daffc69fdaa8879d03c8228198c57d9c6f4c9c21d71d5cea489"
+    },
+    {
+      "name": "main13-audit/main13-audit-summary.json",
+      "bytes": 2745,
+      "sha256": "d760688cd8ab64f72125b16c1830247bcf149923c2176c22fca18f2ec973c8b1"
+    },
+    {
+      "name": "main13-audit/production-three-way-comparison.json",
+      "bytes": 11151,
+      "sha256": "6640603fb3f7e260db36e286e711a07e631c1edf226b94c959acd794b373c0da"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/bookmark-comment.odt",
+      "bytes": 2889,
+      "sha256": "6f3ecd5ee8e672114cd3d5c46fbdc4f43366eea22444212f469ef05e06b99574"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/cache-whitespace.odt",
+      "bytes": 2847,
+      "sha256": "cd8baae3866b0e1139a9c03a1fb68c628b783e3caa8527178125e6c0fe04864d"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/column-cache.odt",
+      "bytes": 2790,
+      "sha256": "e01810a692546e15eedc25ae59281a870d5163c71a717010cac12b512e885305"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/date.odt",
+      "bytes": 2860,
+      "sha256": "7011839ef0b7e319b4400953c10f6a210154009fb6411e49c49fd59a1f70a8f8"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/heterogeneous-cache.odt",
+      "bytes": 2771,
+      "sha256": "3398f6f7054088f95bca573af7ec5a7b7ef79f2b202dede31dbc951fe9d0bbc5"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/locked-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/nested-IF.odt",
+      "bytes": 2872,
+      "sha256": "0e4069221b7c6e36af1243d652f8ce76fda5f8e882899a45277adf840ce298e9"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/nested-PAGE.odt",
+      "bytes": 2869,
+      "sha256": "9daefb03332a699d50ec754469913636076e7a72bd152332a8b99ee53f846420"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/note-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/numpages-link-fallback.odt",
+      "bytes": 2775,
+      "sha256": "b9b93b9ab2f7f21e686e596e516471874d8b5c6f9d5c965132eb35e5ecc833dc"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2775,
+      "sha256": "b9b93b9ab2f7f21e686e596e516471874d8b5c6f9d5c965132eb35e5ecc833dc"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/page.odt",
+      "bytes": 2865,
+      "sha256": "d9223c7eadb87a09cca772a7b6ded1e25797b471b30ccee3320bdd6e700d43f1"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/split-instruction.odt",
+      "bytes": 2847,
+      "sha256": "c7860de5b351b7ac5017a3f606d60b19bbf02bbaac6da15ff5f1321ea91675fb"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/stray-instruction.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/time.odt",
+      "bytes": 2860,
+      "sha256": "98d0ebe25619cbfc2d929b8a4cedca6a69ac733d1b6e9fe7568171dc2ab3abf6"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/title.odt",
+      "bytes": 2861,
+      "sha256": "e9adf1d9a73814d985d2e6ea4f665f0d8c510a5f79845204e88e62a862f0adba"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/unclosed-story.odt",
+      "bytes": 2954,
+      "sha256": "319e834074b9501347743efcd6abba4347d3a27fa8eac4d88d11bddc2fa61388"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/receipt.json",
+      "bytes": 4233,
+      "sha256": "52aa042a4fa3ce6265eaa3101ae3695a891b98c591ad6ac6e78d6f8e9607fba4"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/accepted-negative-incoming13/stdout.jsonl",
+      "bytes": 14002,
+      "sha256": "71163809e4d1f7203a42a2b05290b09844ad012930c80a6339056152b524e5a6"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/bookmark-comment.odt",
+      "bytes": 2980,
+      "sha256": "780dcf5599cb8b9b5c7f534292ba1c57fa43ec988283a20afb8fb70080e14c4a"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/column-cache.odt",
+      "bytes": 2867,
+      "sha256": "fa4ce81d04b497c56e6a8e4231d9afdc53262a7a94b9b378c1a270b70b5c7ced"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/date.odt",
+      "bytes": 2891,
+      "sha256": "910af02c92759ecf02f4b6ed94e945e60d4404664cb2dfd5cefedaeb63ea2c91"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/numpages-link-fallback.odt",
+      "bytes": 2886,
+      "sha256": "4993f37410982061cae87ad1e3282ad53eee9a2f227613d049991fe963cc6c05"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2851,
+      "sha256": "060c49b3d0a3cea67960598fe627b8a95715f7a7583457701386147a68a85ab9"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/page.odt",
+      "bytes": 2897,
+      "sha256": "648fdbc450ab43b2ae90f5e3d32860475bcd4a4b560997449e70eee05e5763db"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/split-instruction.odt",
+      "bytes": 2855,
+      "sha256": "7359932eb43cf736729f1cbef5514b4d76761a97cfce92dc481d0f2ea9582ab2"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/time.odt",
+      "bytes": 2891,
+      "sha256": "dc43a2f1489c7a93a31063f00d77c39726077565ffe5412de45f074506be64f2"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/title.odt",
+      "bytes": 2892,
+      "sha256": "bf5e2617ad306f15a32066299d3a0a209368673439109adb593ae2428eaa7288"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/receipt.json",
+      "bytes": 4245,
+      "sha256": "45b60f15602ee3baeaca80a0beaf36ea73e32f0d26d30fe3a339867434147011"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/accepted-positive-candidate/stdout.jsonl",
+      "bytes": 9673,
+      "sha256": "915158bc7f6716a8a1e40a3d599cfe7f0d1858dba1e41f1fa9b4d5fc00d35a0a"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/bookmark-comment.odt",
+      "bytes": 2980,
+      "sha256": "780dcf5599cb8b9b5c7f534292ba1c57fa43ec988283a20afb8fb70080e14c4a"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/column-cache.odt",
+      "bytes": 2882,
+      "sha256": "92ba8f4fe0b270a1a7e2f6ee7d68c120dfdbdf060fbf8999a3a88ffb2ab823bd"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/date.odt",
+      "bytes": 2891,
+      "sha256": "910af02c92759ecf02f4b6ed94e945e60d4404664cb2dfd5cefedaeb63ea2c91"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/empty-native-before-column.odt",
+      "bytes": 2875,
+      "sha256": "79bb12da3ea41cd2ea61e6beeb2497947f464fc8b94162f1f202605f773acb0e"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/imported-numpages.odt",
+      "bytes": 2861,
+      "sha256": "eb6ed5d0acb359b2c1d452786023b2eac1786d2ea14acc259baac3212d8bd957"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/numpages-link-fallback.odt",
+      "bytes": 2886,
+      "sha256": "4993f37410982061cae87ad1e3282ad53eee9a2f227613d049991fe963cc6c05"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2851,
+      "sha256": "060c49b3d0a3cea67960598fe627b8a95715f7a7583457701386147a68a85ab9"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/page.odt",
+      "bytes": 2897,
+      "sha256": "648fdbc450ab43b2ae90f5e3d32860475bcd4a4b560997449e70eee05e5763db"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/split-instruction.odt",
+      "bytes": 2855,
+      "sha256": "7359932eb43cf736729f1cbef5514b4d76761a97cfce92dc481d0f2ea9582ab2"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/time.odt",
+      "bytes": 2891,
+      "sha256": "dc43a2f1489c7a93a31063f00d77c39726077565ffe5412de45f074506be64f2"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/title.odt",
+      "bytes": 2892,
+      "sha256": "bf5e2617ad306f15a32066299d3a0a209368673439109adb593ae2428eaa7288"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/uncached-numpages-column.odt",
+      "bytes": 2861,
+      "sha256": "dca4131b0aef113e33e525cfd95829055386a10223c111054e9ca4f50aaffc16"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/uncached-page-column.odt",
+      "bytes": 2875,
+      "sha256": "79bb12da3ea41cd2ea61e6beeb2497947f464fc8b94162f1f202605f773acb0e"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/final-combined-focused/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/final-combined-focused/receipt.json",
+      "bytes": 89423,
+      "sha256": "95a7a0f78594098bb363ac6b8701d85d70fd1a8b56711bca90bcf2219ea03831"
+    },
+    {
+      "name": "runs/final-combined-focused/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/final-combined-focused/stdout.jsonl",
+      "bytes": 283482,
+      "sha256": "ffd4fec3e210d148649710c8ac880367312a6c53bee4479d98e417b4ad740d23"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/bookmark-comment.odt",
+      "bytes": 2889,
+      "sha256": "6f3ecd5ee8e672114cd3d5c46fbdc4f43366eea22444212f469ef05e06b99574"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/cache-whitespace.odt",
+      "bytes": 2847,
+      "sha256": "cd8baae3866b0e1139a9c03a1fb68c628b783e3caa8527178125e6c0fe04864d"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/column-cache.odt",
+      "bytes": 2790,
+      "sha256": "e01810a692546e15eedc25ae59281a870d5163c71a717010cac12b512e885305"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/date.odt",
+      "bytes": 2860,
+      "sha256": "7011839ef0b7e319b4400953c10f6a210154009fb6411e49c49fd59a1f70a8f8"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/heterogeneous-cache.odt",
+      "bytes": 2771,
+      "sha256": "3398f6f7054088f95bca573af7ec5a7b7ef79f2b202dede31dbc951fe9d0bbc5"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/locked-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/nested-IF.odt",
+      "bytes": 2872,
+      "sha256": "0e4069221b7c6e36af1243d652f8ce76fda5f8e882899a45277adf840ce298e9"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/nested-PAGE.odt",
+      "bytes": 2869,
+      "sha256": "9daefb03332a699d50ec754469913636076e7a72bd152332a8b99ee53f846420"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/note-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/numpages-link-fallback.odt",
+      "bytes": 2775,
+      "sha256": "b9b93b9ab2f7f21e686e596e516471874d8b5c6f9d5c965132eb35e5ecc833dc"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2775,
+      "sha256": "b9b93b9ab2f7f21e686e596e516471874d8b5c6f9d5c965132eb35e5ecc833dc"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/page.odt",
+      "bytes": 2865,
+      "sha256": "d9223c7eadb87a09cca772a7b6ded1e25797b471b30ccee3320bdd6e700d43f1"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/split-instruction.odt",
+      "bytes": 2847,
+      "sha256": "c7860de5b351b7ac5017a3f606d60b19bbf02bbaac6da15ff5f1321ea91675fb"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/stray-instruction.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/time.odt",
+      "bytes": 2860,
+      "sha256": "98d0ebe25619cbfc2d929b8a4cedca6a69ac733d1b6e9fe7568171dc2ab3abf6"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/title.odt",
+      "bytes": 2861,
+      "sha256": "e9adf1d9a73814d985d2e6ea4f665f0d8c510a5f79845204e88e62a862f0adba"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/unclosed-story.odt",
+      "bytes": 2954,
+      "sha256": "319e834074b9501347743efcd6abba4347d3a27fa8eac4d88d11bddc2fa61388"
+    },
+    {
+      "name": "runs/final-negative-incoming13/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/final-negative-incoming13/receipt.json",
+      "bytes": 4233,
+      "sha256": "f280bb33ee613d7dce82ef18bab323877805a5cdb5b37c47a99553b33ecb1065"
+    },
+    {
+      "name": "runs/final-negative-incoming13/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/final-negative-incoming13/stdout.jsonl",
+      "bytes": 14002,
+      "sha256": "bcca45de00dd30a86f6b6af149292a44b8d0180a98df5c11a36e8d13c9b4f023"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/bookmark-comment.odt",
+      "bytes": 2980,
+      "sha256": "780dcf5599cb8b9b5c7f534292ba1c57fa43ec988283a20afb8fb70080e14c4a"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/column-cache.odt",
+      "bytes": 2867,
+      "sha256": "fa4ce81d04b497c56e6a8e4231d9afdc53262a7a94b9b378c1a270b70b5c7ced"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/date.odt",
+      "bytes": 2891,
+      "sha256": "910af02c92759ecf02f4b6ed94e945e60d4404664cb2dfd5cefedaeb63ea2c91"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/numpages-link-fallback.odt",
+      "bytes": 2886,
+      "sha256": "4993f37410982061cae87ad1e3282ad53eee9a2f227613d049991fe963cc6c05"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2851,
+      "sha256": "060c49b3d0a3cea67960598fe627b8a95715f7a7583457701386147a68a85ab9"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/page.odt",
+      "bytes": 2897,
+      "sha256": "648fdbc450ab43b2ae90f5e3d32860475bcd4a4b560997449e70eee05e5763db"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/split-instruction.odt",
+      "bytes": 2855,
+      "sha256": "7359932eb43cf736729f1cbef5514b4d76761a97cfce92dc481d0f2ea9582ab2"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/time.odt",
+      "bytes": 2891,
+      "sha256": "dc43a2f1489c7a93a31063f00d77c39726077565ffe5412de45f074506be64f2"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/title.odt",
+      "bytes": 2892,
+      "sha256": "bf5e2617ad306f15a32066299d3a0a209368673439109adb593ae2428eaa7288"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/final-positive-candidate/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/final-positive-candidate/receipt.json",
+      "bytes": 4246,
+      "sha256": "06b6439241f1eadd4a7b0a586b934b929492e75385d5e6202fe78af2ab9d329a"
+    },
+    {
+      "name": "runs/final-positive-candidate/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/final-positive-candidate/stdout.jsonl",
+      "bytes": 9672,
+      "sha256": "c3b966508d4a09bed7a51502a50c27246ac04d258e7d2580e6254b946698baf0"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/bookmark-comment.odt",
+      "bytes": 2889,
+      "sha256": "6f3ecd5ee8e672114cd3d5c46fbdc4f43366eea22444212f469ef05e06b99574"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/cache-whitespace.odt",
+      "bytes": 2847,
+      "sha256": "cd8baae3866b0e1139a9c03a1fb68c628b783e3caa8527178125e6c0fe04864d"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/column-cache.odt",
+      "bytes": 2790,
+      "sha256": "e01810a692546e15eedc25ae59281a870d5163c71a717010cac12b512e885305"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/date.odt",
+      "bytes": 2860,
+      "sha256": "7011839ef0b7e319b4400953c10f6a210154009fb6411e49c49fd59a1f70a8f8"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/empty-native-before-column.odt",
+      "bytes": 2790,
+      "sha256": "e01810a692546e15eedc25ae59281a870d5163c71a717010cac12b512e885305"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/heterogeneous-cache.odt",
+      "bytes": 2771,
+      "sha256": "3398f6f7054088f95bca573af7ec5a7b7ef79f2b202dede31dbc951fe9d0bbc5"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/imported-numpages.odt",
+      "bytes": 2861,
+      "sha256": "eb6ed5d0acb359b2c1d452786023b2eac1786d2ea14acc259baac3212d8bd957"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/locked-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/nested-IF.odt",
+      "bytes": 2872,
+      "sha256": "0e4069221b7c6e36af1243d652f8ce76fda5f8e882899a45277adf840ce298e9"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/nested-PAGE.odt",
+      "bytes": 2869,
+      "sha256": "9daefb03332a699d50ec754469913636076e7a72bd152332a8b99ee53f846420"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/note-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/numpages-link-fallback.odt",
+      "bytes": 2775,
+      "sha256": "b9b93b9ab2f7f21e686e596e516471874d8b5c6f9d5c965132eb35e5ecc833dc"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2775,
+      "sha256": "b9b93b9ab2f7f21e686e596e516471874d8b5c6f9d5c965132eb35e5ecc833dc"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/page.odt",
+      "bytes": 2865,
+      "sha256": "d9223c7eadb87a09cca772a7b6ded1e25797b471b30ccee3320bdd6e700d43f1"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/split-instruction.odt",
+      "bytes": 2847,
+      "sha256": "c7860de5b351b7ac5017a3f606d60b19bbf02bbaac6da15ff5f1321ea91675fb"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/stray-instruction.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/time.odt",
+      "bytes": 2860,
+      "sha256": "98d0ebe25619cbfc2d929b8a4cedca6a69ac733d1b6e9fe7568171dc2ab3abf6"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/title.odt",
+      "bytes": 2861,
+      "sha256": "e9adf1d9a73814d985d2e6ea4f665f0d8c510a5f79845204e88e62a862f0adba"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/uncached-numpages-column.odt",
+      "bytes": 2790,
+      "sha256": "9331f97636f097a4da75673785344316102cf6538f7506815ef2bb34a86e5611"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/uncached-page-column.odt",
+      "bytes": 2790,
+      "sha256": "e01810a692546e15eedc25ae59281a870d5163c71a717010cac12b512e885305"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/unclosed-story.odt",
+      "bytes": 2954,
+      "sha256": "319e834074b9501347743efcd6abba4347d3a27fa8eac4d88d11bddc2fa61388"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/receipt.json",
+      "bytes": 4807,
+      "sha256": "28be7b8c3c82fae776e7739e3c9d98261696d768829228f43f27bc836e07ec8a"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/final23-negative-incoming13/stdout.jsonl",
+      "bytes": 16801,
+      "sha256": "862f1b82653db22858544906a4a115727cef0188c3cb45df95c9a8a01a8e8434"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/bookmark-comment.odt",
+      "bytes": 2980,
+      "sha256": "780dcf5599cb8b9b5c7f534292ba1c57fa43ec988283a20afb8fb70080e14c4a"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/column-cache.odt",
+      "bytes": 2882,
+      "sha256": "92ba8f4fe0b270a1a7e2f6ee7d68c120dfdbdf060fbf8999a3a88ffb2ab823bd"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/date.odt",
+      "bytes": 2891,
+      "sha256": "910af02c92759ecf02f4b6ed94e945e60d4404664cb2dfd5cefedaeb63ea2c91"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/empty-native-before-column.odt",
+      "bytes": 2875,
+      "sha256": "79bb12da3ea41cd2ea61e6beeb2497947f464fc8b94162f1f202605f773acb0e"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/imported-numpages.odt",
+      "bytes": 2861,
+      "sha256": "eb6ed5d0acb359b2c1d452786023b2eac1786d2ea14acc259baac3212d8bd957"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/numpages-link-fallback.odt",
+      "bytes": 2886,
+      "sha256": "4993f37410982061cae87ad1e3282ad53eee9a2f227613d049991fe963cc6c05"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2851,
+      "sha256": "060c49b3d0a3cea67960598fe627b8a95715f7a7583457701386147a68a85ab9"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/page.odt",
+      "bytes": 2897,
+      "sha256": "648fdbc450ab43b2ae90f5e3d32860475bcd4a4b560997449e70eee05e5763db"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/split-instruction.odt",
+      "bytes": 2855,
+      "sha256": "7359932eb43cf736729f1cbef5514b4d76761a97cfce92dc481d0f2ea9582ab2"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/time.odt",
+      "bytes": 2891,
+      "sha256": "dc43a2f1489c7a93a31063f00d77c39726077565ffe5412de45f074506be64f2"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/title.odt",
+      "bytes": 2892,
+      "sha256": "bf5e2617ad306f15a32066299d3a0a209368673439109adb593ae2428eaa7288"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/uncached-numpages-column.odt",
+      "bytes": 2861,
+      "sha256": "dca4131b0aef113e33e525cfd95829055386a10223c111054e9ca4f50aaffc16"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/uncached-page-column.odt",
+      "bytes": 2875,
+      "sha256": "79bb12da3ea41cd2ea61e6beeb2497947f464fc8b94162f1f202605f773acb0e"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/final23-positive-integrated/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/final23-positive-integrated/receipt.json",
+      "bytes": 4840,
+      "sha256": "2a3a13f2e92d18b13e31431bfbb8eafa80ee8ba99ce3f174d49dec75c61fe17e"
+    },
+    {
+      "name": "runs/final23-positive-integrated/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/final23-positive-integrated/stdout.jsonl",
+      "bytes": 11709,
+      "sha256": "7e2ef944f7cf46035a544366107bd702f7b8da2dcb3406c6cf81ebc55184db71"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/bookmark-comment.odt",
+      "bytes": 2980,
+      "sha256": "780dcf5599cb8b9b5c7f534292ba1c57fa43ec988283a20afb8fb70080e14c4a"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/column-cache.odt",
+      "bytes": 2882,
+      "sha256": "92ba8f4fe0b270a1a7e2f6ee7d68c120dfdbdf060fbf8999a3a88ffb2ab823bd"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/date.odt",
+      "bytes": 2891,
+      "sha256": "910af02c92759ecf02f4b6ed94e945e60d4404664cb2dfd5cefedaeb63ea2c91"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/numpages-link-fallback.odt",
+      "bytes": 2886,
+      "sha256": "4993f37410982061cae87ad1e3282ad53eee9a2f227613d049991fe963cc6c05"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2851,
+      "sha256": "060c49b3d0a3cea67960598fe627b8a95715f7a7583457701386147a68a85ab9"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/page.odt",
+      "bytes": 2897,
+      "sha256": "648fdbc450ab43b2ae90f5e3d32860475bcd4a4b560997449e70eee05e5763db"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/split-instruction.odt",
+      "bytes": 2855,
+      "sha256": "7359932eb43cf736729f1cbef5514b4d76761a97cfce92dc481d0f2ea9582ab2"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/time.odt",
+      "bytes": 2891,
+      "sha256": "dc43a2f1489c7a93a31063f00d77c39726077565ffe5412de45f074506be64f2"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/title.odt",
+      "bytes": 2892,
+      "sha256": "bf5e2617ad306f15a32066299d3a0a209368673439109adb593ae2428eaa7288"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/integrated-focused/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/integrated-focused/receipt.json",
+      "bytes": 88831,
+      "sha256": "3378a50e08a9fb7c38b188b5a6a6b83213c9549b4db54ea0ba2ead296a694b64"
+    },
+    {
+      "name": "runs/integrated-focused/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/integrated-focused/stdout.jsonl",
+      "bytes": 278258,
+      "sha256": "03e9c1ca8410bf64e50163eba6846bc1dec95d1ee09eab7c315c6f8481cba76f"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/bookmark-comment.odt",
+      "bytes": 2980,
+      "sha256": "780dcf5599cb8b9b5c7f534292ba1c57fa43ec988283a20afb8fb70080e14c4a"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/column-cache.odt",
+      "bytes": 2882,
+      "sha256": "92ba8f4fe0b270a1a7e2f6ee7d68c120dfdbdf060fbf8999a3a88ffb2ab823bd"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/date.odt",
+      "bytes": 2891,
+      "sha256": "910af02c92759ecf02f4b6ed94e945e60d4404664cb2dfd5cefedaeb63ea2c91"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/empty-native-before-column.odt",
+      "bytes": 2863,
+      "sha256": "7ab39fd0e7765551c36ceb4e4d7ee81aa184fc8679ae4fd89293db6810aff594"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/imported-numpages.odt",
+      "bytes": 2854,
+      "sha256": "a7eef7236babaed01a0e2b44ec6d64e51294e63b576e825bcd18cdc6c3137c03"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/numpages-link-fallback.odt",
+      "bytes": 2886,
+      "sha256": "4993f37410982061cae87ad1e3282ad53eee9a2f227613d049991fe963cc6c05"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2851,
+      "sha256": "060c49b3d0a3cea67960598fe627b8a95715f7a7583457701386147a68a85ab9"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/page.odt",
+      "bytes": 2897,
+      "sha256": "648fdbc450ab43b2ae90f5e3d32860475bcd4a4b560997449e70eee05e5763db"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/split-instruction.odt",
+      "bytes": 2855,
+      "sha256": "7359932eb43cf736729f1cbef5514b4d76761a97cfce92dc481d0f2ea9582ab2"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/time.odt",
+      "bytes": 2891,
+      "sha256": "dc43a2f1489c7a93a31063f00d77c39726077565ffe5412de45f074506be64f2"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/title.odt",
+      "bytes": 2892,
+      "sha256": "bf5e2617ad306f15a32066299d3a0a209368673439109adb593ae2428eaa7288"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/receipt.json",
+      "bytes": 4545,
+      "sha256": "6290aeb734bf0ec9d7dcfb7236a02646f67e1adf594df4f1f56a2e9e25583649"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/interaction-negative-pre-fix/stdout.jsonl",
+      "bytes": 11263,
+      "sha256": "5b57335d0bdab7087b2b4e268afc9f40948ad5ea4500923cdb71fa1b42a01b86"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt2/receipt.json",
+      "bytes": 1613,
+      "sha256": "161befae3ecfbf9a3481e89031879b4cc06072829dea50a6cb6c18b1817696fe"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt2/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt2/stdout.jsonl",
+      "bytes": 1918,
+      "sha256": "955f9458df248db4f3a9cd00e97f12ca69c461556020ac9b0108d2e00fc93f15"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/bookmark-comment.odt",
+      "bytes": 2889,
+      "sha256": "6f3ecd5ee8e672114cd3d5c46fbdc4f43366eea22444212f469ef05e06b99574"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/cache-whitespace.odt",
+      "bytes": 2847,
+      "sha256": "cd8baae3866b0e1139a9c03a1fb68c628b783e3caa8527178125e6c0fe04864d"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/column-cache.odt",
+      "bytes": 2790,
+      "sha256": "e01810a692546e15eedc25ae59281a870d5163c71a717010cac12b512e885305"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/date.odt",
+      "bytes": 2860,
+      "sha256": "7011839ef0b7e319b4400953c10f6a210154009fb6411e49c49fd59a1f70a8f8"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/heterogeneous-cache.odt",
+      "bytes": 2771,
+      "sha256": "3398f6f7054088f95bca573af7ec5a7b7ef79f2b202dede31dbc951fe9d0bbc5"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/locked-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/nested-IF.odt",
+      "bytes": 2872,
+      "sha256": "0e4069221b7c6e36af1243d652f8ce76fda5f8e882899a45277adf840ce298e9"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/nested-PAGE.odt",
+      "bytes": 2869,
+      "sha256": "9daefb03332a699d50ec754469913636076e7a72bd152332a8b99ee53f846420"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/note-cache.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/page.odt",
+      "bytes": 2865,
+      "sha256": "d9223c7eadb87a09cca772a7b6ded1e25797b471b30ccee3320bdd6e700d43f1"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/split-instruction.odt",
+      "bytes": 2847,
+      "sha256": "c7860de5b351b7ac5017a3f606d60b19bbf02bbaac6da15ff5f1321ea91675fb"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/stray-instruction.odt",
+      "bytes": 2775,
+      "sha256": "cd9c439263e51f3d2a5abec4d0cd69e356be5c70c6b5c55e981d5b837c44711f"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/time.odt",
+      "bytes": 2860,
+      "sha256": "98d0ebe25619cbfc2d929b8a4cedca6a69ac733d1b6e9fe7568171dc2ab3abf6"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/title.odt",
+      "bytes": 2861,
+      "sha256": "e9adf1d9a73814d985d2e6ea4f665f0d8c510a5f79845204e88e62a862f0adba"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/unclosed-story.odt",
+      "bytes": 2954,
+      "sha256": "319e834074b9501347743efcd6abba4347d3a27fa8eac4d88d11bddc2fa61388"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/receipt.json",
+      "bytes": 3882,
+      "sha256": "00bc3daab45941c6f2c236e83f2ef7a98b89e5155df9ea41a943588bb91ccc22"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/negative-incoming13-attempt3/stdout.jsonl",
+      "bytes": 13405,
+      "sha256": "d0eb944bd63db829bbb51ec6d2f35cdc56267a10816a9fb41b110e65374e4ad7"
+    },
+    {
+      "name": "runs/negative-incoming13/command.json",
+      "bytes": 645,
+      "sha256": "88e2f59a2be11191b3d60409d671df26128d804f1e5edc2143a660fa904e6f2d"
+    },
+    {
+      "name": "runs/negative-incoming13/stderr.log",
+      "bytes": 1322,
+      "sha256": "2f9527686037ad47181043dcdeef356b5233f7d3e8c4569f43aec5f3a9ad6dc2"
+    },
+    {
+      "name": "runs/negative-incoming13/stdout.jsonl",
+      "bytes": 1887,
+      "sha256": "6c6b81f2618bc49b66c70e3cb75f6962374d0f875cc7f58550835996798ad4f4"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/bookmark-comment.odt",
+      "bytes": 2980,
+      "sha256": "780dcf5599cb8b9b5c7f534292ba1c57fa43ec988283a20afb8fb70080e14c4a"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/column-cache.odt",
+      "bytes": 2882,
+      "sha256": "92ba8f4fe0b270a1a7e2f6ee7d68c120dfdbdf060fbf8999a3a88ffb2ab823bd"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/date.odt",
+      "bytes": 2891,
+      "sha256": "910af02c92759ecf02f4b6ed94e945e60d4404664cb2dfd5cefedaeb63ea2c91"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/empty-native-before-column.odt",
+      "bytes": 2875,
+      "sha256": "79bb12da3ea41cd2ea61e6beeb2497947f464fc8b94162f1f202605f773acb0e"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/imported-numpages.odt",
+      "bytes": 2861,
+      "sha256": "eb6ed5d0acb359b2c1d452786023b2eac1786d2ea14acc259baac3212d8bd957"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/numpages-link-fallback.odt",
+      "bytes": 2886,
+      "sha256": "4993f37410982061cae87ad1e3282ad53eee9a2f227613d049991fe963cc6c05"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/numpages-styled-fallback.odt",
+      "bytes": 2851,
+      "sha256": "060c49b3d0a3cea67960598fe627b8a95715f7a7583457701386147a68a85ab9"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/numpages.odt",
+      "bytes": 2865,
+      "sha256": "027b3ec610a79fec79e60b1124ee67b36bb8a80bb94344f11bac4c74fe08a225"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/page.odt",
+      "bytes": 2897,
+      "sha256": "648fdbc450ab43b2ae90f5e3d32860475bcd4a4b560997449e70eee05e5763db"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/split-instruction.odt",
+      "bytes": 2855,
+      "sha256": "7359932eb43cf736729f1cbef5514b4d76761a97cfce92dc481d0f2ea9582ab2"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/time.odt",
+      "bytes": 2891,
+      "sha256": "dc43a2f1489c7a93a31063f00d77c39726077565ffe5412de45f074506be64f2"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/title.odt",
+      "bytes": 2892,
+      "sha256": "bf5e2617ad306f15a32066299d3a0a209368673439109adb593ae2428eaa7288"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/uncached-numpages-column.odt",
+      "bytes": 2781,
+      "sha256": "507c2a449c2ffff7e68db10eac3933a8d3009666da8a38a355bc83e037a8716c"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/uncached-page-column.odt",
+      "bytes": 2781,
+      "sha256": "507c2a449c2ffff7e68db10eac3933a8d3009666da8a38a355bc83e037a8716c"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/receipt.json",
+      "bytes": 4832,
+      "sha256": "5d3aba1b85320ad10c527d19e1c4d83e514c9e54fa921e8ea8af9290d35f6e7e"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/no-cache-negative-pre-fix/stdout.jsonl",
+      "bytes": 12258,
+      "sha256": "281e2ded2ede16f759629a10d67e448b4caf3e8a97b4be343117e13a50388f77"
+    },
+    {
+      "name": "runs/positive-candidate-attempt1/receipt.json",
+      "bytes": 1616,
+      "sha256": "d0c2d55e1316679bca76ae51bf8b5b91b307a03f740717aad43181dcbfd8a8a9"
+    },
+    {
+      "name": "runs/positive-candidate-attempt1/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/positive-candidate-attempt1/stdout.jsonl",
+      "bytes": 1918,
+      "sha256": "2a959695a1d91b259d72e6d5590e6486d138e4ad370be89cf250c1e0438f4a06"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/bookmark-comment.odt",
+      "bytes": 2985,
+      "sha256": "4a5863f3cb976b017ce843ca72536305eae0af7f653699a9d4e8519a07c95e58"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/cache-whitespace.odt",
+      "bytes": 2883,
+      "sha256": "45538ddff44b0d487f3b3018605622cf1267503091ad5a68cea3ed075019e855"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/column-cache.odt",
+      "bytes": 2867,
+      "sha256": "fa4ce81d04b497c56e6a8e4231d9afdc53262a7a94b9b378c1a270b70b5c7ced"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/date.odt",
+      "bytes": 2905,
+      "sha256": "9afe2b7864f60cb5a8524df1590f53ef644f6610078c0130b65b5fb1f26217cb"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/heterogeneous-cache.odt",
+      "bytes": 2877,
+      "sha256": "79e68076c50739cf21820592511118888afb82350501a947259529933845ac08"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/locked-cache.odt",
+      "bytes": 2842,
+      "sha256": "23a27489181400050635d189297ddd92c7f56d11db47382eefd5e0c4222e6b21"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/nested-IF.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/nested-PAGE.odt",
+      "bytes": 2864,
+      "sha256": "e01bf6873713a3ae197aeabc90589eabf026c99a6f81087a90919afd55090761"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/note-cache.odt",
+      "bytes": 2920,
+      "sha256": "d53c48be033cae4ad36f344645258ba67d5113c262e49cdf9cd95eebef4329f0"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/numpages.odt",
+      "bytes": 2904,
+      "sha256": "b3a6521bc3cb457ade7f5f100c58b9c105dcecbea5509f9ca1fa34348b7af3ed"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/page.odt",
+      "bytes": 2903,
+      "sha256": "dd62c2e3e55daa7d92ecaec6a445bbece28bf7f6ca105499b9aa0093c5531e73"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/split-instruction.odt",
+      "bytes": 2860,
+      "sha256": "7eb7ef7c04f387dcbf6361e87b9c0926b69b99eddd874adb116b0c522f19b332"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/stray-instruction.odt",
+      "bytes": 2843,
+      "sha256": "8c6f7a1a68fc3436f230394c075f7dee086b05ebca367396cf01e38a0cba40ca"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/time.odt",
+      "bytes": 2904,
+      "sha256": "48da5d7467f0272733df255c8f45892fd1ffe86f9f588aa33a0b41cf12629446"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/title.odt",
+      "bytes": 2906,
+      "sha256": "c1f5f3585dabb0723a90e652c1638c7ae56da9365892d5c4071abf50aa0e63ef"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/unclosed-story.odt",
+      "bytes": 3026,
+      "sha256": "a1bdfc6ded75ef36ef43382104529dbc756baef8415ff5936a752402ac613c9b"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/fixtures/unknown-cache.odt",
+      "bytes": 2869,
+      "sha256": "7a63837cf1170f2739219e0584fbe55910b2413d9f6a0a378680bcdbd571da74"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/receipt.json",
+      "bytes": 3887,
+      "sha256": "f9ac1afab3703b08e7ca84f3c3593aeba6d16cd07984ca8462c5bf1034dadc42"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/positive-candidate-attempt2/stdout.jsonl",
+      "bytes": 8664,
+      "sha256": "87bee4f26f1fcb040af1da4c28194f811109a74d372efaccf14c2816a405fbd1"
+    },
+    {
+      "name": "runs/upstream-test-final-unchanged/receipt.json",
+      "bytes": 3475,
+      "sha256": "7a648294ce18d439396f41534b91b14e6f67d779d15119fe9d2d826357e5a6f0"
+    },
+    {
+      "name": "runs/upstream-test-final-unchanged/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/upstream-test-final-unchanged/stdout.jsonl",
+      "bytes": 7810,
+      "sha256": "018309946b60277f8d7d82ee08b86b22ba255253d97f967d00617d96d5e4e031"
+    },
+    {
+      "name": "runs/upstream-test-incoming/receipt.json",
+      "bytes": 3472,
+      "sha256": "3a3df232139e526ffabd69a638929cdb2c36f42851478d8210c8f2736e27f0d8"
+    },
+    {
+      "name": "runs/upstream-test-incoming/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/upstream-test-incoming/stdout.jsonl",
+      "bytes": 7794,
+      "sha256": "dc396296d0efd659205aaa5d4ce2e2c59c0f0d48d01770efd01a2eabb4407de4"
+    },
+    {
+      "name": "runs/upstream-test-original-contract/receipt.json",
+      "bytes": 3475,
+      "sha256": "af488bbbae16b03a68f8aecddffbb660e2f5993bb1eadec626660e228cc4007f"
+    },
+    {
+      "name": "runs/upstream-test-original-contract/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runs/upstream-test-original-contract/stdout.jsonl",
+      "bytes": 8034,
+      "sha256": "ac36fdeefd6891ea9e6abdbd4d3257d52e08bfed09361aaea013546714acefc0"
+    },
+    {
+      "name": "source-versions/accepted-field-controls.dart",
+      "bytes": 17325,
+      "sha256": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0"
+    },
+    {
+      "name": "source-versions/candidate19-writer.dart",
+      "bytes": 82028,
+      "sha256": "1fbd2f7253a6ec7974d3d07cba66e9298f81fef27aeecf0f8d61eaefc09d82e0"
+    },
+    {
+      "name": "source-versions/incoming-unchanged-writer-test.dart",
+      "bytes": 22395,
+      "sha256": "d6e2c87f63575484dbcd118347ef50bd4212c7a3fea460d556d2ef11f34b64dc"
+    },
+    {
+      "name": "source-versions/incoming-writer.dart",
+      "bytes": 77777,
+      "sha256": "c7c4c666fdbef36ecb4328dc70a9d9ede549d860b6064867dc1ac3b504adefbf"
+    },
+    {
+      "name": "source-versions/interaction21-controls.dart",
+      "bytes": 15817,
+      "sha256": "141a4c74fd375bb0b2a3898a5f22aec16b44722058c5aa38cc599e2dd2c5c8e5"
+    }
+  ],
+  "readback_every_member_sizes_and_hashes_verified": true,
+  "verified_members": 367,
+  "overlay_files": 27,
+  "final_focused_binding": {
+    "root_head": "7523a031f725cfa3416971b749a8aa63db5ced05",
+    "merge_head": "13e7172977d671190ba8c3cf964deec4d7473090",
+    "writer_sha256": "1cc8d826fa905ebf48b460587c3ac299c030956deace7f25cdf412f41a3caece",
+    "test_sha256": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0",
+    "incoming_field_test_exactly_retained": true,
+    "incoming_field_test_sha256": "02c05a3a91fee21a3b8489c430ed491b316317501b64c0d7b6f0dc87b09c5627",
+    "private_integrated_snapshot_matches_root_writer": true,
+    "private_integrated_snapshot_matches_root_test": true,
+    "combined_cases": 543,
+    "combined_files": 33,
+    "final_field_controls": 23,
+    "incoming_field_controls_failed": 20,
+    "incoming_field_controls_passed": 3,
+    "new_scope_only": true
+  }
+}
