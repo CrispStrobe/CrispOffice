@@ -134,6 +134,8 @@ void main() {
     expect(content, contains('<text:a xlink:href="https://example.com/deck">'));
     expect(content, contains('Q1'));
     expect(content, contains('Q2'));
+    expect(content, contains('Label'));
+    expect(content, contains('Value'));
     expect(content, contains('<draw:ellipse'));
     final pageProperties = _pageProperties(XmlDocument.parse(content), 0);
     expect(
