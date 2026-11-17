@@ -29,6 +29,7 @@ REPO = HERE.parents[3]
 NS = {
     'x': 'http://www.w3.org/1999/xhtml',
     'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main',
+    'wp': 'http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing',
 }
 SCHEMAS = {
     'OpenDocument-v1.3-schema.rng': '40bad03efdbb02825230d357da0aa6ac679934c5bf56c6281752c0c24d58e4e6',
@@ -126,6 +127,28 @@ def page_words(path):
     return result
 
 
+def check_red_picture(spec, raster, page):
+    expected = spec['red_picture']
+    require(page == expected['page'], spec['name'] + ': picture raster is on wrong page')
+    with Image.open(raster) as image:
+        image = image.convert('RGB')
+        pixels = [index for index, (red, green, blue) in enumerate(image.getdata())
+                  if red >= 240 and green <= 15 and blue <= 15]
+        require(bool(pixels), spec['name'] + ': authored red picture is absent')
+        xs, ys = [p % image.width for p in pixels], [p // image.width for p in pixels]
+        bounds = [min(xs) * .75, min(ys) * .75,
+                  (max(xs) + 1) * .75, (max(ys) + 1) * .75]
+    measured = {'left_pt': bounds[0], 'width_pt': bounds[2] - bounds[0],
+                'height_pt': bounds[3] - bounds[1]}
+    for key, value in measured.items():
+        require(abs(value - expected[key]) <= 1,
+                f'{spec["name"]}: picture {key} is {value}, expected {expected[key]}')
+    require(len(pixels) >= expected['width_pt'] * expected['height_pt'] / (.75 * .75) * .75,
+            spec['name'] + ': red picture coverage is incomplete')
+    return {'page': page, 'red_pixels': len(pixels), 'bounds_pt': bounds,
+            'tolerance_pt': 1, 'checked': measured}
+
+
 def check_fixture(spec, output):
     name = spec['name']
     pages = page_words(output / 'converted' / (name + '.bbox.xhtml'))
@@ -182,16 +205,37 @@ def check_fixture(spec, output):
                         for key in ('xMin', 'xMax', 'yMin', 'yMax')),
                     f'{name}: empty continuous section moved {word}')
     section_types = []
+    frame_geometry = None
     with zipfile.ZipFile(output / 'converted' / (name + '.docx')) as archive:
         require(archive.testzip() is None, f'{name}: reopened DOCX CRC failure')
         document = etree.fromstring(archive.read('word/document.xml'))
         section_types = document.xpath('//w:sectPr/w:type/@w:val', namespaces=NS)
+    if 'reopened_frame' in spec:
+        expected = spec['reopened_frame']
+        anchors = document.xpath('//wp:anchor[.//w:t[text()=$word]]',
+                                 namespaces=NS, word=expected['word'])
+        require(len(anchors) == 1, name + ': ambiguous reopened text-frame anchor')
+        anchor = anchors[0]
+        horizontal, vertical = (anchor.find('wp:' + axis, NS)
+                                for axis in ('positionH', 'positionV'))
+        require(horizontal is not None and vertical is not None and
+                horizontal.get('relativeFrom') == vertical.get('relativeFrom') == 'page',
+                name + ': reopened frame is not positioned relative to the page')
+        extent = anchor.find('wp:extent', NS)
+        require(extent is not None, name + ': reopened frame has no extent')
+        frame_geometry = [float(horizontal.findtext('wp:posOffset', namespaces=NS)) / 12700,
+                          float(vertical.findtext('wp:posOffset', namespaces=NS)) / 12700,
+                          float(extent.get('cx')) / 12700, float(extent.get('cy')) / 12700]
+        require(all(abs(actual - target) <= .1
+                    for actual, target in zip(frame_geometry, expected['geometry_pt'])),
+                f'{name}: reopened frame geometry {frame_geometry}, expected {expected["geometry_pt"]}')
     if 'reopened_section_type' in spec:
         require(spec['reopened_section_type'] in section_types,
                 f'{name}: DOCX import lost {spec["reopened_section_type"]} section type: {section_types}')
     return {'page_sizes_pt': [[page['width'], page['height']] for page in pages],
             'word_locations': locations, 'labels': spec.get('labels', {}),
             'reopened_section_types': section_types,
+            'reopened_frame_geometry_pt': frame_geometry,
             'scope': spec.get('scope', 'Exact fixture geometry and visible text/labels.')}
 
 
@@ -284,6 +328,12 @@ def main():
             page = min(max(spec['word_pages'].values(), default=1), len(page_words(output / 'converted' / (name + '.bbox.xhtml'))))
             run(['pdftoppm', '-f', str(page), '-singlefile', '-r', '96', '-png',
                  output / 'converted' / (name + '.pdf'), output / 'rasters' / name], name + '-raster')
+            if 'red_picture' in spec and result.get('passed'):
+                try:
+                    result['semantics']['red_picture'] = check_red_picture(
+                        spec, output / 'rasters' / (name + '.png'), page)
+                except Exception as error:
+                    result.update(passed=False, error=str(error))
         receipt['source_unchanged'] = source_before == snapshot(source_inputs(repo))
         receipt['runtime_unchanged'] = runtime_before == snapshot(runtime_inputs(dart, schemas, repo))
         receipt['fixtures_unchanged'] = inventory == snapshot(all_files(output / 'fixtures'))

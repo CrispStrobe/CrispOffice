@@ -22,8 +22,8 @@ assert spec is not None and spec.loader is not None
 prior = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(prior)
 
-ENGINE = ['odt_document_writer_test.dart', 'odt_structure_fidelity_test.dart', 'odt_table_merge_test.dart', 'odt_paragraph_properties_test.dart', 'odt_header_footer_fidelity_test.dart', 'odt_note_fidelity_test.dart', 'odt_comment_fidelity_test.dart', 'odt_list_fidelity_test.dart', 'odt_section_fidelity_test.dart', 'odf_export_text_fidelity_test.dart', 'odp_transform_fidelity_test.dart', 'odp_table_fidelity_test.dart', 'odp_presentation_writer_test.dart', 'odf_annotation_extraction_test.dart', 'odf_covered_cell_extraction_test.dart', 'office_search_fidelity_test.dart', 'word_note_numbering_test.dart']
-NODE = ['odt_list_fidelity_test.dart', 'odt_section_fidelity_test.dart', 'odt_note_fidelity_test.dart', 'odt_comment_fidelity_test.dart', 'odp_transform_fidelity_test.dart', 'odt_paragraph_properties_test.dart']
+ENGINE = ['odt_document_writer_test.dart', 'odt_structure_fidelity_test.dart', 'odt_table_merge_test.dart', 'odt_paragraph_properties_test.dart', 'odt_header_footer_fidelity_test.dart', 'odt_note_fidelity_test.dart', 'odt_comment_fidelity_test.dart', 'odt_list_fidelity_test.dart', 'odt_section_fidelity_test.dart', 'odf_export_text_fidelity_test.dart', 'odp_transform_fidelity_test.dart', 'odp_table_fidelity_test.dart', 'odp_presentation_writer_test.dart', 'odf_annotation_extraction_test.dart', 'odf_covered_cell_extraction_test.dart', 'office_search_fidelity_test.dart', 'word_note_numbering_test.dart', 'odf_text_box_extraction_test.dart']
+NODE = ['odt_list_fidelity_test.dart', 'odt_section_fidelity_test.dart', 'odt_note_fidelity_test.dart', 'odt_comment_fidelity_test.dart', 'odp_transform_fidelity_test.dart', 'odt_paragraph_properties_test.dart', 'odf_text_box_extraction_test.dart', 'odf_annotation_extraction_test.dart', 'odf_covered_cell_extraction_test.dart', 'office_search_fidelity_test.dart']
 COHORTS = {'odt-vm': ('quds_office_engine', ENGINE), 'odt-node': ('quds_office_engine', NODE)}
 
 def now():
@@ -85,7 +85,9 @@ def main():
                'scope': 'ODT section/list changes and adjacent ODF/ODP regression cohorts; Node repeats selected VM cases.',
                'github_actions': 'Not queried or awaited.'}
     write_json(output / 'receipt.json', receipt)
-    analysis = ['lib/src/word/serial/odt_document_writer.dart'] + ['test/' + t for t in tests]
+    analysis = ['lib/src/word/serial/odt_document_writer.dart',
+                'lib/src/odf/odf_text.dart',
+                'lib/src/extract/office_text_extractor.dart'] + ['test/' + t for t in tests]
     formatting = analysis
     commands = [('analyze', ['dart', 'analyze', '--fatal-infos'] + analysis),
                 ('format', ['dart', 'format', '--output=none', '--set-exit-if-changed'] + formatting)]

@@ -104,7 +104,12 @@ void main(List<String> arguments) {
     });
   }
 
-  void secondSection(String name, List<WmlBlock> blocks, List<String> words) {
+  void secondSection(
+    String name,
+    List<WmlBlock> blocks,
+    List<String> words, {
+    Map<String, Object?> extra = const {},
+  }) {
     save(
       name,
       WmlDocument(
@@ -130,6 +135,7 @@ void main(List<String> arguments) {
         'SecondFoot': 2,
         for (final word in words) word: 2,
       },
+      extra: extra,
     );
   }
 
@@ -178,6 +184,14 @@ void main(List<String> arguments) {
       p('VisualTail'),
     ],
     ['VisualTail'],
+    extra: {
+      'red_picture': {
+        'page': 2,
+        'left_pt': 36,
+        'width_pt': 40,
+        'height_pt': 20,
+      },
+    },
   );
   secondSection(
     'section-frame',
@@ -192,6 +206,12 @@ void main(List<String> arguments) {
       p('FrameTail'),
     ],
     ['FrameFirst', 'FrameTail'],
+    extra: {
+      'reopened_frame': {
+        'word': 'FrameFirst',
+        'geometry_pt': [60, 100, 180, 40],
+      },
+    },
   );
   save(
     'section-empty',
