@@ -40,7 +40,6 @@ void main() {
     ("Wir helfen der Kunde.", "Wir helfen der Kunde."),
     ('Ihr antwortet der Lehrer.', 'Ihr antwortet der Lehrer.'),
     ('Sie liebt der alte Mann.', 'Sie liebt der alte Mann.'),
-    ('Ich antwortet der Lehrer.', 'Ich antwortet der Lehrer.'),
     ("Wir helfen dem Kunden.", "Wir helfen dem Kunden."),
     ("Wir stehen bei den Computern.", "Wir stehen bei den Computern."),
     ("Sie antwortet den Lehrern.", "Sie antwortet den Lehrern."),
@@ -90,6 +89,8 @@ void main() {
     ('Ich habe ein schönen Tag.', ['einen schönen Tag', 'ein schönes Tag']),
     ('Ich sehe der neue Kunde.', ['den neuen Kunden', 'die neue Kunde']),
     ('Das ist für dem Leiter.', ['den Leiter', 'die Leiter']),
+    ('Ich sehe dieser Leiter.', ['den Leiter', 'die Leiter']),
+    ('Ich sehe einem Mensch.', ['einen Menschen', 'ein Mensch']),
     ('Sie kommt mit das Band.', ['dem Band', 'der Band']),
   ]) {
     test('complete agreeing choices retain meanings: $source', () async {
@@ -122,6 +123,29 @@ void main() {
       }
     });
   }
+  test(
+    'wrong finite agreement does not license a simultaneous case guess',
+    () async {
+      final provider = GermanWritingRulesProvider();
+      addTearDown(provider.dispose);
+      const source = 'Ich antwortet der Lehrer.';
+      final result = await provider.check(
+        OfficeProofingRequest(
+          documentId: 'agreement',
+          blockId: 'p',
+          revision: 1,
+          text: source,
+          language: 'de-DE',
+        ),
+      );
+      expect(result.findings, isNotEmpty);
+      expect(
+        result.findings.every((f) => f.originalText == 'antwortet'),
+        isTrue,
+      );
+      expect(result.findings.single.replacements, ['antworte']);
+    },
+  );
   for (final (source, expected) in cases) {
     test('bounded phrase: $source', () async {
       final provider = GermanWritingRulesProvider();
