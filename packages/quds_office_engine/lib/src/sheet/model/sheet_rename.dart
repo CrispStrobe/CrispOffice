@@ -579,7 +579,9 @@ abstract final class SheetRename {
           continue;
         }
         if (first.quoted) {
-          throw const FormatException('Quoted sheet name has no reference qualifier');
+          throw const FormatException(
+            'Quoted sheet name has no reference qualifier',
+          );
         }
       }
       if (formula[index] == '[') {
