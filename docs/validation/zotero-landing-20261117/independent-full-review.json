@@ -1,0 +1,530 @@
+{
+  "reviewed_utc": "2026-11-17T08:51:43.150479+00:00",
+  "reviewer": "independent-runtime-agent",
+  "method": "Read-only review; independent Git tree and byte hashing, JSON terminal event recount, command-log hash verification, test-file disjointness and input/config restoration checks. No application tests rerun.",
+  "source_pair": {
+    "quds": "837d06edbde08a2465e99cbbb15927ee4c87d8ac",
+    "host": "96c514eb98f7ba596a385c8f60496bc6c5994307"
+  },
+  "static_checks": {
+    "format_scope_amendment": {
+      "first_attempt": {
+        "status": "failed",
+        "test_executions": 0,
+        "commands": [
+          {
+            "name": "engine-strict-analysis",
+            "exit_code": 0,
+            "logs_verified": true
+          },
+          {
+            "name": "editor-strict-analysis",
+            "exit_code": 0,
+            "logs_verified": true
+          },
+          {
+            "name": "harper-strict-analysis",
+            "exit_code": 0,
+            "logs_verified": true
+          },
+          {
+            "name": "format",
+            "exit_code": 1,
+            "logs_verified": true
+          }
+        ],
+        "all_input_maps_unchanged": true,
+        "analyzer_config_restored": true
+      },
+      "inherited_diagnostics": [
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_format_test.dart",
+          "git_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f"
+          },
+          "same_main_and_final_blob_and_mode": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+          "git_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "53f29938b5f31cff40648f356c444d06f96183ba"
+          },
+          "same_main_and_final_blob_and_mode": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_client_test.dart",
+          "git_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "590e6b2b7953b08bc0a1434f866f67935e12c3fa"
+          },
+          "same_main_and_final_blob_and_mode": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+          "git_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65"
+          },
+          "same_main_and_final_blob_and_mode": true
+        }
+      ],
+      "strict_analysis_targets": 123,
+      "strict_analysis_and_test_cohorts_unchanged": true,
+      "changed_existing_non_evidence_dart_paths": 77,
+      "amended_format_targets": 81,
+      "no_changed_dart_path_excluded": true,
+      "scope_amendment_sha256": "99789ae533afd2f241034c0ddfc100356b98371b92f53ab87aa8bea55c71a15f",
+      "runner_patch_sha256": "c61ab309771a6415b3b7f579e5010e15ce57eb7d8cb6a65a5e1055a1eccc915d"
+    },
+    "zotero_preservation": {
+      "path_count": 50,
+      "baseline": "554eddc179856b648a83fa2b49f395071e8a7e71",
+      "original_recovered_source": "b4647f1c3aa60300116b27c3bce741b80ee39328",
+      "all_blobs_and_modes_unchanged": true
+    },
+    "host_preservation": {
+      "baseline_host": "fae07f9e84036328aee271b5c14cda6b082cfab4",
+      "baseline_canonical": "732fc3d0bc7a1118f3eb86e6c762fe70182c4fd2",
+      "managed_count": 2554,
+      "canonical_count": 697,
+      "parser_count": 1857,
+      "all_managed_content_hashes_verified": true,
+      "host_customizations_unchanged": 20,
+      "notices_unchanged": 6,
+      "parser_subtree_unchanged": true,
+      "all_mode_differences": [
+        {
+          "path": "packages/quds_office_editor/lib/src/core/input_bridge.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "ca0a9e4d20ddf6412e4df3778e8a301299d88286",
+          "baseline_canonical_blob": "ca0a9e4d20ddf6412e4df3778e8a301299d88286",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/editor_pdf/pdf_font_faces.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "af274059768b2ad5c0d39d3280e05d808b265e94",
+          "baseline_canonical_blob": "af274059768b2ad5c0d39d3280e05d808b265e94",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_thumb.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "d0957104accff68497e955d42559a51cfb770fa9",
+          "baseline_canonical_blob": "d0957104accff68497e955d42559a51cfb770fa9",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/editor_pdf/render_pdf_canvas.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "47f3cbb0e34900aafb1138ed975eaeefa87b19fb",
+          "baseline_canonical_blob": "47f3cbb0e34900aafb1138ed975eaeefa87b19fb",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_direction_keys.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "b1a1efd3db9c59dbebf6b742ba3c2acf6f92b812",
+          "baseline_canonical_blob": "b1a1efd3db9c59dbebf6b742ba3c2acf6f92b812",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "fd7c85fce7ce664e45cb986c107fa4c07d13c0df",
+          "baseline_canonical_blob": "fd7c85fce7ce664e45cb986c107fa4c07d13c0df",
+          "already_managed_in_baseline": false,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/fonts/font_subsetter.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "7332885a95f34ea6d0d26c7b3160ff002bdd3c6d",
+          "baseline_canonical_blob": "7332885a95f34ea6d0d26c7b3160ff002bdd3c6d",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/fonts/sfnt_parser.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "e39f94d66d410cf1c8aa8c99a14a4d38a40411f6",
+          "baseline_canonical_blob": "e39f94d66d410cf1c8aa8c99a14a4d38a40411f6",
+          "already_managed_in_baseline": false,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/file/cos/pdf_cos.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "1b782f5f5fc45a3916f416507c8e25040364e2af",
+          "baseline_canonical_blob": "1b782f5f5fc45a3916f416507c8e25040364e2af",
+          "already_managed_in_baseline": false,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/file/interp/pdf_interpreter.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "dedaeb5e2bb00c3da8c71fc6cd9187dbf5ff93fe",
+          "baseline_canonical_blob": "dedaeb5e2bb00c3da8c71fc6cd9187dbf5ff93fe",
+          "already_managed_in_baseline": false,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "b2404c1894c485511a276ca1628bee2cec40e010",
+          "baseline_canonical_blob": "b2404c1894c485511a276ca1628bee2cec40e010",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/pdf_font.dart",
+          "host_mode": "100755",
+          "canonical_mode": "100644",
+          "baseline_host_blob": "d879fc69f81d1e331a1be9b93062fd227f96e5dc",
+          "baseline_canonical_blob": "d879fc69f81d1e331a1be9b93062fd227f96e5dc",
+          "already_managed_in_baseline": true,
+          "inherited_verified": true
+        }
+      ],
+      "mode_difference_count": 12,
+      "newly_managed_already_inherited_modes": 4,
+      "scope_correction": "Earlier eight-item list was incomplete for the expanded managed inventory; all twelve current mismatches are inherited from immutable baseline trees."
+    }
+  },
+  "canonical": {
+    "receipt_sha256": "b9a1cf0ae8e9175591f65a1faea0ea4509e5aef690e3954d4491ac1a7504c8a4",
+    "source_commit": "837d06edbde08a2465e99cbbb15927ee4c87d8ac",
+    "source_tree": "c2173f93159150b078c1bae466c30d95a030f35b",
+    "commands": [
+      {
+        "name": "engine-strict-analysis",
+        "exit_code": 0,
+        "stdout_sha256": "742b2621be61f8de394fb71716b2e6647408940eaf76d9b95b54531d5161e4f8",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "editor-strict-analysis",
+        "exit_code": 0,
+        "stdout_sha256": "d4914d805224df50e211b2f36f564623e0e02c3946a431f41018c9ffd8147eab",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "harper-strict-analysis",
+        "exit_code": 0,
+        "stdout_sha256": "bad9b3d384ddf25be3e58d7dec04bc9fce71df5575aabacc38f77111cf03d8cc",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "format",
+        "exit_code": 0,
+        "stdout_sha256": "ae7945f803011807ea9b53057bc18aef72a5e6e02b5ce66f157cd496bcad0f8a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "engine-zotero",
+        "exit_code": 0,
+        "stdout_sha256": "ee4b1c0160c1e6d74b07477e4a7081d6e7a4bf80331a95da51a219d24a2eddb5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_success_count": 390,
+        "substantive_success_count": 390,
+        "excluded_optional_private_pdf_cases": [],
+        "test_file_count": 19,
+        "duplicate_terminal_test_ids": false,
+        "terminal_success": true
+      },
+      {
+        "name": "editor-zotero",
+        "exit_code": 0,
+        "stdout_sha256": "3330685a5c1efe5f3701b088fa1384b3a791df0207d953e48de091539d077154",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_success_count": 186,
+        "substantive_success_count": 186,
+        "excluded_optional_private_pdf_cases": [],
+        "test_file_count": 13,
+        "duplicate_terminal_test_ids": false,
+        "terminal_success": true
+      },
+      {
+        "name": "engine-integration",
+        "exit_code": 0,
+        "stdout_sha256": "1973f944370af15a187dce7f91e8f7de51842700c23394f5fbdb8c46a7b3b9df",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_success_count": 1588,
+        "substantive_success_count": 1586,
+        "excluded_optional_private_pdf_cases": [
+          {
+            "name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+            "suite": "test/pdf_file_test.dart",
+            "test_id": 388
+          },
+          {
+            "name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+            "suite": "test/pdf_file_test.dart",
+            "test_id": 392
+          }
+        ],
+        "test_file_count": 73,
+        "duplicate_terminal_test_ids": false,
+        "terminal_success": true
+      },
+      {
+        "name": "editor-integration",
+        "exit_code": 0,
+        "stdout_sha256": "e3865f53f7aadbd2bb12e873e8a0a1c05f28353266483691ee5cd16e237713f8",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_success_count": 385,
+        "substantive_success_count": 385,
+        "excluded_optional_private_pdf_cases": [],
+        "test_file_count": 36,
+        "duplicate_terminal_test_ids": false,
+        "terminal_success": true
+      },
+      {
+        "name": "harper-contract",
+        "exit_code": 0,
+        "stdout_sha256": "8c23b84d58754fdbe40ccaf348eb15292be89f97b3842472fd8c0d04f6be7666",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_success_count": 29,
+        "substantive_success_count": 29,
+        "excluded_optional_private_pdf_cases": [],
+        "test_file_count": 3,
+        "duplicate_terminal_test_ids": false,
+        "terminal_success": true
+      }
+    ],
+    "command_count": 9,
+    "selected_disjoint_test_files": 144,
+    "qualified_test_passes": 2576,
+    "raw_runner_successes": 2578,
+    "excluded_private_pdf_cases": [
+      {
+        "name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+        "suite": "test/pdf_file_test.dart",
+        "test_id": 388
+      },
+      {
+        "name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+        "suite": "test/pdf_file_test.dart",
+        "test_id": 392
+      }
+    ],
+    "prior_attempt_passes_added": 0,
+    "input_maps": {
+      "source": {
+        "before_sha256": "c109e8f7680419dd5bfdae379f5de3a6dd9fc4080a9013d88e0a94669c1af43a",
+        "after_sha256": "c109e8f7680419dd5bfdae379f5de3a6dd9fc4080a9013d88e0a94669c1af43a",
+        "semantically_equal": true
+      },
+      "dependencies": {
+        "before_sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6",
+        "after_sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6",
+        "semantically_equal": true
+      },
+      "runtime": {
+        "before_sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be",
+        "after_sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be",
+        "semantically_equal": true
+      },
+      "workspace": {
+        "before_sha256": "7e0490b982ca10b873288e81ffa68674e727315fa63f8aa829871d4a841ea11f",
+        "after_sha256": "7e0490b982ca10b873288e81ffa68674e727315fa63f8aa829871d4a841ea11f",
+        "semantically_equal": true
+      },
+      "system": {
+        "before_sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0",
+        "after_sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0",
+        "semantically_equal": true
+      },
+      "harness": {
+        "before_sha256": "f039f151aa94ff64b8a701382c1719fe91a4a80d34fa71848a8115aac8b853aa",
+        "after_sha256": "f039f151aa94ff64b8a701382c1719fe91a4a80d34fa71848a8115aac8b853aa",
+        "semantically_equal": true
+      }
+    },
+    "source_binding": {
+      "verified_input_count": 3327,
+      "all_recorded_bytes_and_modes_match_immutable_commit": true,
+      "untracked_execution_inputs": []
+    },
+    "dependency_inputs_verified": 5099,
+    "current_runtime_workspace_system_harness_hashes_match_records": true,
+    "analyzer_config_restored": true
+  },
+  "suite_path_correction": {
+    "failed_attempt": "run-2",
+    "failure_type": "Reporter relative-path bookkeeping; terminal application cohort passed but whole qualification rejected.",
+    "raw_engine_passes": 390,
+    "terminal_success": true,
+    "raw_reporter_suite_count": 19,
+    "all_observed_suite_identities_equal_selected_after_resolving_exact_command_cwd": true,
+    "source_scope_analysis_format_test_plan_unchanged": true,
+    "all_input_maps_unchanged": true,
+    "analyzer_restored": true,
+    "accepted_count_contribution": 0,
+    "patch_sha256": "a7d83ce955844ad9fae782b9776d97876aefab20d9e131451e0519100c681cf6",
+    "amendment_sha256": "e98a8c1414c55d796a30e1bd7169fb2fdeb13d4fe20a20d5c654f1f8dac63d45"
+  },
+  "supplemental_odt_writer_to_host": {
+    "source_commit": "96c514eb98f7ba596a385c8f60496bc6c5994307",
+    "canonical_pin": "837d06edbde08a2465e99cbbb15927ee4c87d8ac",
+    "receipt_sha256": "47f0fd3d1a3ccab5dc6acdbfec57adaf42d5c63d5b673a6d55c59fed355d53ff",
+    "log_sha256": "f08cb760e37fd3d9d8c39301d311593324950d6ada2d341a548df48ac168f5c1",
+    "passed_tests": 2,
+    "skipped_tests": 0,
+    "terminal_success": true,
+    "fixture_and_probe_bindings_verified": true,
+    "input_maps": {
+      "source": {
+        "before_sha256": "cf8eb8eeee8b86697136cb6a607c9540177607f914a20df616916022916c1673",
+        "after_sha256": "cf8eb8eeee8b86697136cb6a607c9540177607f914a20df616916022916c1673",
+        "semantically_equal": true
+      },
+      "dependencies": {
+        "before_sha256": "ad4879ef1f81e9c950892ec06f7ba9b994dd1b2d4a5271ec8f6086dbca786cc7",
+        "after_sha256": "ad4879ef1f81e9c950892ec06f7ba9b994dd1b2d4a5271ec8f6086dbca786cc7",
+        "semantically_equal": true
+      }
+    },
+    "recorded_separately_from_required_host_108": true,
+    "does_not_claim_ui_acceptance": true
+  },
+  "host": {
+    "receipt_sha256": "0c55c4622c02b324f80fd0ffc2db0d582d27bb74b2476820de3039aa361e1126",
+    "source_commit": "96c514eb98f7ba596a385c8f60496bc6c5994307",
+    "canonical_pin": "837d06edbde08a2465e99cbbb15927ee4c87d8ac",
+    "source_tree": "571031d5ac03bc32e00051d422020d7e26984e8e",
+    "commands": [
+      {
+        "name": "vendor-source",
+        "exit_code": 0,
+        "log_sha256": "8bfb3e9e71027ddb4174211687ae8472c16d1b01adda34a114abc12fcfc2c938"
+      },
+      {
+        "name": "vendor-tracked",
+        "exit_code": 0,
+        "log_sha256": "8bfb3e9e71027ddb4174211687ae8472c16d1b01adda34a114abc12fcfc2c938"
+      },
+      {
+        "name": "host-tests",
+        "exit_code": 0,
+        "log_sha256": "9a43d3b11106ad8644544c5a3edba7000ed5ebe64aa4eef9c10e4e34cfaeacb5",
+        "test_passes": 41,
+        "skips": 0,
+        "terminal_success": true
+      },
+      {
+        "name": "service-tests",
+        "exit_code": 0,
+        "log_sha256": "d39c877533e749e10e8e5f5a344bae57f47c39b40a3554fdd524ddf4a59e5ad7",
+        "test_passes": 39,
+        "skips": 0,
+        "terminal_success": true
+      },
+      {
+        "name": "host-analysis",
+        "exit_code": 0,
+        "log_sha256": "aa418623af9e5241be82ec3694ad2813c7c2b3cb8692ed6d8ab55077f5682175"
+      },
+      {
+        "name": "vendor-analysis",
+        "exit_code": 0,
+        "log_sha256": "be451ddcf7bc21d9d5ff317abe0f2a69fa39bc7f30613e7f31fb019cfaa11cad"
+      },
+      {
+        "name": "host-format",
+        "exit_code": 0,
+        "log_sha256": "b55bfaa59438fc935e4414e3fa1838393f2f9cc186e7ff308f8facc7fa1363c6"
+      },
+      {
+        "name": "viewer-format",
+        "exit_code": 0,
+        "log_sha256": "de6d58a08dc71e8a74d067b55f15582d2f3098f2e64c6bf6af8a4731bcf87134"
+      },
+      {
+        "name": "vendor-format",
+        "exit_code": 0,
+        "log_sha256": "c2204d33398d7ef6ccd631d7ba26bdd6c50ae2d2db9feb88027185ed8564140d"
+      },
+      {
+        "name": "python-sync-verifier-tests",
+        "exit_code": 0,
+        "log_sha256": "801ff6e82828434773bfc230d4f25c2a89ddc3eae7fecb41e3f1d0aceafcd946",
+        "test_passes": 28,
+        "skips": 0,
+        "terminal_success": true
+      },
+      {
+        "name": "whitespace",
+        "exit_code": 0,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "vendor-tracked-final",
+        "exit_code": 0,
+        "log_sha256": "8bfb3e9e71027ddb4174211687ae8472c16d1b01adda34a114abc12fcfc2c938"
+      }
+    ],
+    "command_count": 12,
+    "test_cohorts": {
+      "host-tests": 41,
+      "service-tests": 39,
+      "python-sync-verifier-tests": 28
+    },
+    "test_passes": 108,
+    "counts_overlap_historical_runs_not_added_as_unique": true,
+    "input_maps": {
+      "source": {
+        "before_sha256": "cf8eb8eeee8b86697136cb6a607c9540177607f914a20df616916022916c1673",
+        "after_sha256": "cf8eb8eeee8b86697136cb6a607c9540177607f914a20df616916022916c1673",
+        "semantically_equal": true
+      },
+      "dependencies": {
+        "before_sha256": "ad4879ef1f81e9c950892ec06f7ba9b994dd1b2d4a5271ec8f6086dbca786cc7",
+        "after_sha256": "ad4879ef1f81e9c950892ec06f7ba9b994dd1b2d4a5271ec8f6086dbca786cc7",
+        "semantically_equal": true
+      }
+    },
+    "source_binding": {
+      "verified_input_count": 3779,
+      "all_recorded_bytes_and_modes_match_immutable_commit": true,
+      "untracked_execution_inputs": []
+    },
+    "dependency_inputs_verified": 6002,
+    "analyzer_config_restored": true,
+    "limitations": [
+      "Focused genuine locked dependency graph; no full application compile or full production dependency resolution.",
+      "Network, credentials and protocol interactions use test doubles; no live Zotero account, desktop picker, Word/LibreOffice or keychain acceptance.",
+      "Canonical tests are qualified separately; these counts are distinct host tests.",
+      "No GitHub Actions, status, workflow or job queries, waits or reruns."
+    ],
+    "viewer_analysis": {
+      "reason": "The focused service graph intentionally excludes the much larger complete viewer dependency closure; the exact delivered viewer bytes are bound and formatting is checked. No viewer compile or runtime acceptance is claimed.",
+      "run": false
+    }
+  },
+  "status": "passed",
+  "blocking_discrepancies": [],
+  "review_script_sha256": "2bbef41da1d762e7aa288ee14808ecfbddd4d4ca653ceea997b17618e918fd8f"
+}
