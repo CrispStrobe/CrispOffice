@@ -10,18 +10,30 @@ void main() {
     ("Sie kommt ohne jenem Schlüssel.", "Sie kommt ohne jenen Schlüssel."),
     ("Er arbeitet mit diesen Schlüssel.", "Er arbeitet mit diesen Schlüsseln."),
     ("Das ist das Auto der Student.", "Das ist das Auto des Studenten."),
-    ("Dies ist der Mantel der Journalist.", "Dies ist der Mantel des Journalisten."),
+    (
+      "Dies ist der Mantel der Journalist.",
+      "Dies ist der Mantel des Journalisten.",
+    ),
     ("Es ist die Tasche der Kollege.", "Es ist die Tasche des Kollegen."),
-    ("Das ist das Buch der neuen Student.", "Das ist das Buch des neuen Studenten."),
+    (
+      "Das ist das Buch der neuen Student.",
+      "Das ist das Buch des neuen Studenten.",
+    ),
     ("Ich sehe der neue Kunde.", "Ich sehe den neuen Kunden."),
     ("Wir kennen der alte Kunde.", "Wir kennen den alten Kunden."),
     ("Ich habe ein schönen Tag.", "Ich habe einen schönen Tag."),
     ("Du hast ein langen Tag.", "Du hast einen langen Tag."),
     ("Er ist stolz auf dem Ergebnis.", "Er ist stolz auf das Ergebnis."),
     ("Wir sind stolz auf diesem Erfolg.", "Wir sind stolz auf diesen Erfolg."),
-    ("Sie ist stolz auf der guten Leistung.", "Sie ist stolz auf die gute Leistung."),
+    (
+      "Sie ist stolz auf der guten Leistung.",
+      "Sie ist stolz auf die gute Leistung.",
+    ),
     ("Ich warte auf dem Ergebnis.", "Ich warte auf das Ergebnis."),
-    ("Sie wartet auf der neuen Nachricht.", "Sie wartet auf die neue Nachricht."),
+    (
+      "Sie wartet auf der neuen Nachricht.",
+      "Sie wartet auf die neue Nachricht.",
+    ),
     ("Wir warten auf diesem Anruf.", "Wir warten auf diesen Anruf."),
     ("Wir sprechen mit dem Mensch.", "Wir sprechen mit dem Mensch."),
     ("Wir sprechen mit dem Menschen.", "Wir sprechen mit dem Menschen."),
@@ -38,9 +50,15 @@ void main() {
     ("Das ist das Auto der Lehrerin.", "Das ist das Auto der Lehrerin."),
     ("Das ist das Auto der Lehrer.", "Das ist das Auto der Lehrer."),
     ("Das ist der Frau ihr Auto.", "Das ist der Frau ihr Auto."),
-    ("Das ist das Auto, der Student kommt.", "Das ist das Auto, der Student kommt."),
+    (
+      "Das ist das Auto, der Student kommt.",
+      "Das ist das Auto, der Student kommt.",
+    ),
     ("Das ist das Auto der Qudsbrand.", "Das ist das Auto der Qudsbrand."),
-    ("Das ist das Auto der Student und das Fahrrad der Frau.", "Das ist das Auto der Student und das Fahrrad der Frau."),
+    (
+      "Das ist das Auto der Student und das Fahrrad der Frau.",
+      "Das ist das Auto der Student und das Fahrrad der Frau.",
+    ),
     ("Die Stimme der Student zählt.", "Die Stimme der Student zählt."),
     ("Er ist stolz auf dem Dach.", "Er ist stolz auf dem Dach."),
     ("Sie ist stolz auf dem neuen Bus.", "Sie ist stolz auf dem neuen Bus."),
@@ -51,42 +69,116 @@ void main() {
     ("Er arbeitet auf dem Ergebnis.", "Er arbeitet auf dem Ergebnis."),
     ("Er steht auf dem Ergebnis.", "Er steht auf dem Ergebnis."),
     ("Ich sehe der neue Kunde kommen.", "Ich sehe der neue Kunde kommen."),
-    ("„Für diesem Schlüssel“ steht hier als Zitat.", "„Für diesem Schlüssel“ steht hier als Zitat."),
+    (
+      "„Für diesem Schlüssel“ steht hier als Zitat.",
+      "„Für diesem Schlüssel“ steht hier als Zitat.",
+    ),
     ("`Das ist für diesem Schlüssel.`", "`Das ist für diesem Schlüssel.`"),
-    ("Er ist stolz, auf dem Ergebnis steht sein Name.", "Er ist stolz, auf dem Ergebnis steht sein Name."),
-    ("Sie wartet auf dem Ergebnis und geht danach.", "Sie wartet auf dem Ergebnis und geht danach."),
+    (
+      "Er ist stolz, auf dem Ergebnis steht sein Name.",
+      "Er ist stolz, auf dem Ergebnis steht sein Name.",
+    ),
+    (
+      "Sie wartet auf dem Ergebnis und geht danach.",
+      "Sie wartet auf dem Ergebnis und geht danach.",
+    ),
   ];
+  for (final (source, options) in <(String, List<String>)>[
+    ('Ich habe ein schönen Tag.', ['einen schönen Tag', 'ein schönes Tag']),
+    ('Ich sehe der neue Kunde.', ['den neuen Kunden', 'die neue Kunde']),
+    ('Das ist für dem Leiter.', ['den Leiter', 'die Leiter']),
+    ('Sie kommt mit das Band.', ['dem Band', 'der Band']),
+  ]) {
+    test('complete agreeing choices retain meanings: $source', () async {
+      final provider = GermanWritingRulesProvider();
+      addTearDown(provider.dispose);
+      OfficeProofingRequest request(String text) => OfficeProofingRequest(
+        documentId: 'choices',
+        blockId: 'p',
+        revision: 1,
+        text: text,
+        language: 'de-DE',
+        startOffset: 11,
+      );
+      final result = await provider.check(request(source));
+      expect(result.findings, hasLength(1));
+      final finding = result.findings.single;
+      expect(finding.ruleId, 'de.grammar.phrase-agreement');
+      expect(finding.replacements, containsAll(options));
+      for (final choice in finding.replacements) {
+        final text = source.replaceRange(
+          finding.start - 11,
+          finding.end - 11,
+          choice,
+        );
+        expect(
+          (await provider.check(request(text))).findings,
+          isEmpty,
+          reason: choice,
+        );
+      }
+    });
+  }
   for (final (source, expected) in cases) {
     test('bounded phrase: $source', () async {
       final provider = GermanWritingRulesProvider();
       addTearDown(provider.dispose);
-      OfficeProofingRequest request(String text, {Set<String> ignored = const {}}) => OfficeProofingRequest(
-        documentId: 'completion', blockId: 'p', revision: 1, text: text,
-        language: 'de-DE', startOffset: 37, ignoredRuleIds: ignored,
+      OfficeProofingRequest request(
+        String text, {
+        Set<String> ignored = const {},
+      }) => OfficeProofingRequest(
+        documentId: 'completion',
+        blockId: 'p',
+        revision: 1,
+        text: text,
+        language: 'de-DE',
+        startOffset: 37,
+        ignoredRuleIds: ignored,
       );
       final result = await provider.check(request(source));
       expect(result.status, OfficeProofingStatus.success);
       var actual = source;
-      final findings = result.findings.toList()..sort((a,b) => b.start.compareTo(a.start));
+      final findings = result.findings.toList()
+        ..sort((a, b) => b.start.compareTo(a.start));
       var edge = source.length;
       for (final finding in findings) {
         expect(finding.end - 37, lessThanOrEqualTo(edge));
-        expect(source.substring(finding.start - 37, finding.end - 37), finding.originalText);
+        expect(
+          source.substring(finding.start - 37, finding.end - 37),
+          finding.originalText,
+        );
         expect(finding.replacements, isNotEmpty);
         // Every offered complete-phrase alternative must recheck clean.
         if (finding.ruleId == 'de.grammar.phrase-agreement') {
           for (final replacement in finding.replacements) {
-            final alternate = source.replaceRange(finding.start - 37, finding.end - 37, replacement);
-            expect((await provider.check(request(alternate))).findings, isEmpty, reason: alternate);
+            final alternate = source.replaceRange(
+              finding.start - 37,
+              finding.end - 37,
+              replacement,
+            );
+            expect(
+              (await provider.check(request(alternate))).findings,
+              isEmpty,
+              reason: alternate,
+            );
           }
         }
-        actual = actual.replaceRange(finding.start - 37, finding.end - 37, finding.replacements.first);
+        actual = actual.replaceRange(
+          finding.start - 37,
+          finding.end - 37,
+          finding.replacements.first,
+        );
         edge = finding.start - 37;
       }
       expect(actual, expected);
       expect((await provider.check(request(expected))).findings, isEmpty);
       if (findings.isNotEmpty) {
-        expect((await provider.check(request(source, ignored: {for(final f in findings) f.ruleId}))).findings, isEmpty);
+        expect(
+          (await provider.check(
+            request(source, ignored: {for (final f in findings) f.ruleId}),
+          )).findings,
+          isEmpty,
+        );
       }
     });
   }

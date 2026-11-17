@@ -61,7 +61,6 @@ Future<void> main() async {
     final String source = sample['text'] as String;
     final String expected = sample['expected'] as String;
     final String language = sample['language'] as String;
-    final bool isControl = sample['kind'] == 'control';
     final List<(String, String, String, String, int)> variants =
         <(String, String, String, String, int)>[
           ('base', source, expected, language, 0),
@@ -153,7 +152,7 @@ Future<void> main() async {
             },
         ],
       };
-      if (!isControl && exact) {
+      if (canApply && report.findings.isNotEmpty) {
         final OfficeProofingReport recheck = await check(
           applied,
           locale,

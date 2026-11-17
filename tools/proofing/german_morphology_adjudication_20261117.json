@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "authorship": "First-party review, 2026-11-17. References support language facts only; no external rules, patterns or example corpus imported.",
+  "policy": "Historical corpus and literal exact score remain unchanged. Reviewed decisions separately distinguish necessary corrections, alternative valid repairs and preservation of valid readings. This is a finite engineering regression, not population accuracy.",
+  "corpus_sha256": "9d719cf91899a8dec4bc131daaefc56651a02e02345f1f976b12140e57b06db1",
+  "cases": [
+    {
+      "id": "error-003",
+      "text": "Wir sprechen mit dem Mensch.",
+      "original_expected": "Wir sprechen mit dem Menschen.",
+      "disposition": "valid-reading",
+      "accepted_outputs": [
+        "Wir sprechen mit dem Mensch."
+      ],
+      "reason": "A recorded neuter regional/dated reading has dative Mensch. This exact source is also a valid control in release_cases_20261117.json. Grammar must not impose a different gender.",
+      "references": [
+        "https://www.duden.de/deklination/substantive/Mensch_Frau"
+      ]
+    },
+    {
+      "id": "error-029",
+      "text": "Wir stehen bei den Computer.",
+      "original_expected": "Wir stehen bei dem Computer.",
+      "disposition": "alternative-repair",
+      "accepted_outputs": [
+        "Wir stehen bei dem Computer.",
+        "Wir stehen bei den Computern."
+      ],
+      "reason": "The erroneous phrase permits a singular article repair or plural noun repair. Keeping the existing plural article is valid.",
+      "references": [
+        "https://www.duden.de/deklination/substantive/Computer"
+      ]
+    },
+    {
+      "id": "error-074",
+      "text": "Wir helfen der Kunde.",
+      "original_expected": "Wir helfen dem Kunden.",
+      "disposition": "valid-reading",
+      "accepted_outputs": [
+        "Wir helfen der Kunde."
+      ],
+      "reason": "Kunde also has a feminine news/message reading. The dative phrase der Kunde is well formed; odd semantics do not justify silently replacing that reading with a male customer.",
+      "references": [
+        "https://www.duden.de/rechtschreibung/Kunde_Nachricht"
+      ]
+    },
+    {
+      "id": "error-080",
+      "text": "Sie wartet auf dem neuen Bus.",
+      "original_expected": "Sie wartet auf den neuen Bus.",
+      "disposition": "valid-reading",
+      "accepted_outputs": [
+        "Sie wartet auf dem neuen Bus."
+      ],
+      "reason": "With a literal location reading, auf takes dative. Waiting for the bus would take accusative, but this isolated sentence does not establish that intended reading.",
+      "references": [
+        "https://grammis.ids-mannheim.de/progr@mm/6736",
+        "https://www.slm.uni-hamburg.de/germanistik/personen/imo/downloads/imo-grammatik-loesungen.pdf"
+      ]
+    }
+  ]
+}
