@@ -63,61 +63,58 @@ void main() {
     expect(markers.last.id, '7');
   });
 
-  test(
-    'body and table share a range while auxiliary stories reuse ids independently',
-    () {
-      final bodyEnd = _end('7');
-      final document = WmlDocument(
-        sections: [
-          WmlSection(
-            header: [_range('Header')],
-            footer: [_range('Footer')],
-            blocks: [
-              WmlParagraph(
-                inlines: [
-                  _start('7', 'Body'),
-                  WmlRun(text: 'Body start', commentIds: [4]),
-                  WmlRun(text: '5', noteRefId: 5),
-                ],
-              ),
-              WmlFrame(blocks: [_range('Frame')]),
-              WmlTable(
-                grid: [120],
-                rows: [
-                  WmlTableRow(
-                    cells: [
-                      WmlTableCell(
-                        blocks: [
-                          WmlParagraph(
-                            inlines: [
-                              WmlRun(text: 'Body table end'),
-                              bodyEnd,
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-        footnotes: [
-          WmlNote(id: 5, endnote: false, paragraphs: [_range('Note')]),
-        ],
-        comments: [
-          WmlComment(id: 4, paragraphs: [_range('Comment')]),
-        ],
-      );
-      final result = _export(document);
-      expect(_ends(result.content), ['Comment', 'Note', 'Frame', 'Body']);
-      expect(_ends(result.styles), ['Header', 'Footer']);
-      expect(_ends(_elements(result.content, 'note-body').single), ['Note']);
-      expect(_ends(_elements(result.content, 'text-box').single), ['Frame']);
-      expect(bodyEnd.name, isNull);
-    },
-  );
+  test('body and table share a range while auxiliary stories reuse ids independently', () {
+    final bodyEnd = _end('7');
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          header: [_range('Header')],
+          footer: [_range('Footer')],
+          blocks: [
+            WmlParagraph(
+              inlines: [
+                _start('7', 'Body'),
+                WmlRun(text: 'Body start', commentIds: [4]),
+                WmlRun(text: '5', noteRefId: 5),
+              ],
+            ),
+            WmlFrame(blocks: [_range('Frame')]),
+            WmlTable(
+              grid: [120],
+              rows: [
+                WmlTableRow(
+                  cells: [
+                    WmlTableCell(
+                      blocks: [
+                        WmlParagraph(
+                          inlines: [
+                            WmlRun(text: 'Body table end'),
+                            bodyEnd,
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+      footnotes: [
+        WmlNote(id: 5, endnote: false, paragraphs: [_range('Note')]),
+      ],
+      comments: [
+        WmlComment(id: 4, paragraphs: [_range('Comment')]),
+      ],
+    );
+    final result = _export(document);
+    expect(_ends(result.content), ['Comment', 'Note', 'Frame', 'Body']);
+    expect(_ends(result.styles), ['Header', 'Footer']);
+    expect(_ends(_elements(result.content, 'note-body').single), ['Note']);
+    expect(_ends(_elements(result.content, 'text-box').single), ['Frame']);
+    expect(bodyEnd.name, isNull);
+  });
 
   test('malformed or cross-story ranges cannot borrow an unrelated start', () {
     final document = WmlDocument(

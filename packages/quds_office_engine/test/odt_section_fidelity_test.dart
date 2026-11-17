@@ -79,6 +79,16 @@ XmlElement _style(XmlElement content, XmlElement owner) {
       );
 }
 
+XmlElement _frameStyle(XmlElement styles, XmlElement frame) {
+  final name = frame.getAttribute('style-name', namespaceUri: _drawNs);
+  return styles
+      .firstChild('styles')!
+      .childrenNamed('style')
+      .singleWhere(
+        (style) => style.getAttribute('name', namespaceUri: _styleNs) == name,
+      );
+}
+
 String? _master(XmlElement content, XmlElement owner) => _style(
   content,
   owner,
@@ -357,7 +367,7 @@ void main() {
   test(
     'a first frame anchors on the current page with physical page coordinates',
     () {
-      final content = _export(
+      final output = _export(
         _two([
           WmlFrame(
             x: 60,
@@ -368,7 +378,8 @@ void main() {
           ),
           _p('After frame'),
         ]),
-      ).content;
+      );
+      final content = output.content;
       final anchor = _body(content).childElements.elementAt(1);
       expect(anchor.localName, 'p');
       expect(_master(content, anchor), 'mp1');
@@ -377,7 +388,10 @@ void main() {
         frame.getAttribute('anchor-type', namespaceUri: _textNs),
         'paragraph',
       );
-      final graphic = _style(content, frame).firstChild('graphic-properties')!;
+      final graphic = _frameStyle(
+        output.styles,
+        frame,
+      ).firstChild('graphic-properties')!;
       expect(
         graphic.getAttribute('horizontal-rel', namespaceUri: _styleNs),
         'page',
@@ -411,7 +425,8 @@ void main() {
         WmlSection(blocks: [_p('Before'), frame, _p('After')]),
       ],
     );
-    final content = _export(document).content;
+    final output = _export(document);
+    final content = output.content;
     final anchor = _body(content).childElements.elementAt(1);
     expect(anchor.localName, 'p');
     expect(_master(content, anchor), isNull);
@@ -437,7 +452,10 @@ void main() {
     expect(emitted.getAttribute('y'), '190.00pt');
     expect(emitted.getAttribute('width'), '210.00pt');
     expect(emitted.getAttribute('height'), '35.00pt');
-    final graphic = _style(content, emitted).firstChild('graphic-properties')!;
+    final graphic = _frameStyle(
+      output.styles,
+      emitted,
+    ).firstChild('graphic-properties')!;
     expect(
       graphic.getAttribute('horizontal-rel', namespaceUri: _styleNs),
       'page',
@@ -513,9 +531,8 @@ void main() {
         spacingAfter: 0,
         indent: const WmlIndent(left: 12, right: 3, firstLine: 4),
       );
-      final content = _export(
-        _two([_p('Heading', properties: properties)]),
-      ).content;
+      final content = _export(_two([_p('Heading', properties: properties)]))
+          .content;
       final heading = _paragraph(content, 'Heading');
       expect(heading.localName, 'h');
       final style = _style(content, heading);

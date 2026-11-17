@@ -272,6 +272,12 @@ abstract final class OdtDocumentWriter {
       }
       w.writeEndElement();
     }
+    // A common graphic style keeps LibreOffice's text-frame import path,
+    // which preserves frame bookmarks when the document is exported to DOCX.
+    // Both body and master-page stories have now registered their style use.
+    if (layout._pageFrameStyleUsed || stories._pageFrameStyleUsed) {
+      w.writeRaw(_OdtLayout._pageFrameStyleXml);
+    }
     w.writeEndElement();
     w.writeStartElement('automatic-styles', prefix: 'office');
     for (var index = 0; index < layout.sections.length; index++) {
@@ -2188,20 +2194,17 @@ class _OdtLayout {
     return name;
   }
 
-  bool _pageFrameStyleWritten = false;
+  static const _pageFrameStyleXml =
+      '<style:style style:name="SectionFrame" style:family="graphic">'
+      '<style:graphic-properties style:horizontal-pos="from-left" '
+      'style:horizontal-rel="page" style:vertical-pos="from-top" '
+      'style:vertical-rel="page" style:wrap="none"/></style:style>';
+
+  bool _pageFrameStyleUsed = false;
 
   String pageFrameStyle() {
-    const name = 'SectionFrame';
-    if (!_pageFrameStyleWritten) {
-      _pageFrameStyleWritten = true;
-      _styleBuffers.add(
-        '<style:style style:name="$name" style:family="graphic">'
-        '<style:graphic-properties style:horizontal-pos="from-left" '
-        'style:horizontal-rel="page" style:vertical-pos="from-top" '
-        'style:vertical-rel="page" style:wrap="none"/></style:style>',
-      );
-    }
-    return name;
+    _pageFrameStyleUsed = true;
+    return 'SectionFrame';
   }
 
   String? columnStyle(double width) {
