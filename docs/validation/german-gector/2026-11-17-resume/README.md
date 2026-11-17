@@ -80,3 +80,14 @@ bounded accusative verb-object rule. `remote-checkpoints.json` indexes the
 verified remote checkpoints preceding this evidence save. Focused development
 tests are evidence for those individual changes; final combined-source tests
 and serial native measurements are pending.
+
+## Final combined-source local gate
+
+At `143bad2f69976c331ac98ea7b4adbaec430af916`, all 1,968 distinct tests pass,
+with zero failures/skips, including the actual native dual-head fixture. A
+separate 196-test Node run repeats existing cases and is not added to that
+distinct count. Five strict analysis suites pass. `local-validation.json`
+indexes exact cohorts; `final-local-evidence.tar.xz` preserves all receipts,
+logs, resolved inputs, the frozen plan and independent counting/source audit.
+All 110 resolved library fingerprints and 11 workspace roots remain stable.
+Native performance and final corpus qualification follow this gate.
