@@ -45,3 +45,19 @@ contract, hash-bound reference environment, and nonempty full-analysis fixtures.
 Numerical porting follows that remote checkpoint. Missing fixtures must fail
 qualification. No native analysis, grammar, mobile, or distribution readiness
 is claimed by this source checkpoint.
+
+## W1 reference checkpoint
+
+The complete reference tooling and frozen development fixtures are under
+[tools/proofing/spacy](../../../tools/proofing/spacy/README.md). Two independent
+exports match byte-for-byte across 36 files and 7,122,950 bytes: 16 cases,
+113 tokens, 1,201 numerical stages, 244 parser transitions. The observer leaves
+ordinary spaCy C greedy annotations unchanged; shared encoder vectors are exact.
+
+Reference manifest SHA-256:
+`9a3bb6bae6114adcf579840834ddcb64dea4e0aaa8361718dc7a551d663c8f7c`.
+The hash-locked CPython3.12.14/spaCy3.8.18/Thinc8.3.14/NumPy2.4.6 environment
+was independently reproduced in CrispEmbed's paired checkpoint. Seventeen
+model-free fixture admission tests pass. These are reference and integrity
+results, not native inference or grammar qualification. Eight acceptance
+inputs are frozen and remain unexecuted during numerical development.

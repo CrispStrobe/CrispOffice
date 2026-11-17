@@ -1,0 +1,959 @@
+{
+  "annotations": {
+    "sentences": [
+      {
+        "end_byte": 93,
+        "end_codepoint": 91,
+        "end_token": 1,
+        "end_utf16": 91,
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_token": 0,
+        "start_utf16": 0,
+        "text": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll"
+      }
+    ],
+    "tokens": [
+      {
+        "dep": "ROOT",
+        "end_byte": 93,
+        "end_codepoint": 91,
+        "end_utf16": 91,
+        "head": 0,
+        "i": 0,
+        "is_sent_start": true,
+        "is_space": false,
+        "lemma": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll",
+        "morph": "Degree=Pos",
+        "norm": "donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll",
+        "norm_id": "12699069249240034974",
+        "orth_id": "13847114831357753931",
+        "pos": "ADV",
+        "prefix": "D",
+        "shape": "Xxxxx",
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_utf16": 0,
+        "suffix": "oll",
+        "tag": "ADJD",
+        "text": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll",
+        "whitespace": ""
+      }
+    ]
+  },
+  "attribute_ruler_matches": [],
+  "before_attribute_ruler": {
+    "sentences": [
+      {
+        "end_byte": 93,
+        "end_codepoint": 91,
+        "end_token": 1,
+        "end_utf16": 91,
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_token": 0,
+        "start_utf16": 0,
+        "text": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll"
+      }
+    ],
+    "tokens": [
+      {
+        "dep": "ROOT",
+        "end_byte": 93,
+        "end_codepoint": 91,
+        "end_utf16": 91,
+        "head": 0,
+        "i": 0,
+        "is_sent_start": true,
+        "is_space": false,
+        "lemma": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll",
+        "morph": "Degree=Pos",
+        "norm": "donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll",
+        "norm_id": "12699069249240034974",
+        "orth_id": "13847114831357753931",
+        "pos": "ADV",
+        "prefix": "D",
+        "shape": "Xxxxx",
+        "start_byte": 0,
+        "start_codepoint": 0,
+        "start_utf16": 0,
+        "suffix": "oll",
+        "tag": "ADJD",
+        "text": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll",
+        "whitespace": ""
+      }
+    ]
+  },
+  "case": {
+    "family": "long-token",
+    "id": "long-token",
+    "locale": "de-DE",
+    "text": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll"
+  },
+  "empty_input_policy": null,
+  "features": {
+    "buckets": [
+      [
+        [
+          1722,
+          2048,
+          2583,
+          3276
+        ],
+        [
+          357,
+          658,
+          998,
+          304
+        ],
+        [
+          1247,
+          1672,
+          457,
+          76
+        ],
+        [
+          714,
+          447,
+          1963,
+          1109
+        ],
+        [
+          38,
+          25,
+          37,
+          40
+        ],
+        [
+          14,
+          41,
+          15,
+          38
+        ]
+      ]
+    ],
+    "columns": [
+      "NORM",
+      "PREFIX",
+      "SUFFIX",
+      "SHAPE",
+      "SPACY",
+      "IS_SPACE"
+    ],
+    "hash_seeds": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "rows": [
+      5000,
+      1000,
+      2500,
+      2500,
+      50,
+      50
+    ],
+    "uint64_decimal": [
+      [
+        "12699069249240034974",
+        "3929483993944067416",
+        "8787115975291499812",
+        "16072095006890171862",
+        "0",
+        "0"
+      ]
+    ]
+  },
+  "input_sha256": "e371d196493632bf303cf4b5ba10a535efb0dbc94214f638b904f2443d62ddff",
+  "lemma_decisions": [
+    {
+      "applicable": false,
+      "applied": null,
+      "class": 144,
+      "fallback": true,
+      "lemma": "Donaudampfschifffahrtsgesellschaftskapitänsanwärterweiterbildungsausschusssitzungsprotokoll",
+      "tree": 275
+    }
+  ],
+  "ordinary_pipeline_annotations_exact": true,
+  "ordinary_tok2vec_bit_exact": true,
+  "parser_steps": [
+    {
+      "arcs_before": [],
+      "chosen_action": 0,
+      "chosen_name": "S",
+      "feature_token_ids": [
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "queue_before": [
+        0
+      ],
+      "stack_before": [],
+      "step": 0,
+      "valid_actions": [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "arcs_before": [],
+      "chosen_action": 1,
+      "chosen_name": "D",
+      "feature_token_ids": [
+        -1,
+        -1,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "queue_before": [],
+      "stack_before": [
+        0
+      ],
+      "step": 1,
+      "valid_actions": [
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "schema": "crispembed.spacy.reference.v1",
+  "traces": {
+    "lemmatizer.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 146464,
+      "order": "C",
+      "sha256": "591840ca6e3cce9965431b3281f75efd971a97b15cf6f1e9bd86830283ea41c3",
+      "shape": [
+        1,
+        1311
+      ],
+      "size_bytes": 5244
+    },
+    "morphologizer.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 132700,
+      "order": "C",
+      "sha256": "ec14a86ed452a35389e7bbb85b672bb09849d0727a564ca9dd6b10e321267b38",
+      "shape": [
+        1,
+        671
+      ],
+      "size_bytes": 2684
+    },
+    "parser.lower_cache": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 135640,
+      "order": "C",
+      "sha256": "f8d3ea7e2207d773b95a89635aaba9debfb37b3bfc559666b27593079514b73d",
+      "shape": [
+        2,
+        8,
+        64,
+        2
+      ],
+      "size_bytes": 8192
+    },
+    "parser.reduce": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 135384,
+      "order": "C",
+      "sha256": "24289f257f1a5d75ce996a2e4852667a7968daca5f7acc60fc3433d73f1696a2",
+      "shape": [
+        1,
+        64
+      ],
+      "size_bytes": 256
+    },
+    "parser.step.0.hidden": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 144344,
+      "order": "C",
+      "sha256": "c8369a57887e7b3156b7e7bf989bae504a90326848c8db6dd2c6cab0ce75f13a",
+      "shape": [
+        1,
+        64
+      ],
+      "size_bytes": 256
+    },
+    "parser.step.0.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 144600,
+      "order": "C",
+      "sha256": "3e6245f61628270d4f5a8202cddf44ce814531da70d51d492f1e473ecec5efc3",
+      "shape": [
+        1,
+        137
+      ],
+      "size_bytes": 548
+    },
+    "parser.step.0.sum": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 143832,
+      "order": "C",
+      "sha256": "02eac2e0dc1be56ebb38043ad2456305286f2090226aa90424a6e6d921af345f",
+      "shape": [
+        1,
+        64,
+        2
+      ],
+      "size_bytes": 512
+    },
+    "parser.step.1.hidden": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 145660,
+      "order": "C",
+      "sha256": "ff467055dac259fec3c2f3aad6cda0288576d69a93c1bad4c22a2b71dc73d5f3",
+      "shape": [
+        1,
+        64
+      ],
+      "size_bytes": 256
+    },
+    "parser.step.1.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 145916,
+      "order": "C",
+      "sha256": "5a64fed4d436dc2d5b1bcc9e8ec7a8a101909609527689d383e0eeb718f445ee",
+      "shape": [
+        1,
+        137
+      ],
+      "size_bytes": 548
+    },
+    "parser.step.1.sum": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 145148,
+      "order": "C",
+      "sha256": "361bba8334e4097920b062817709271acd7c5f562ee0e4a96c82e61d732f3791",
+      "shape": [
+        1,
+        64,
+        2
+      ],
+      "size_bytes": 512
+    },
+    "tagger.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 132480,
+      "order": "C",
+      "sha256": "95fc5de3fe74bd083c6993ea9782d01835477455a97613bb868f99081af60515",
+      "shape": [
+        1,
+        55
+      ],
+      "size_bytes": 220
+    },
+    "tok2vec.embed.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 2304,
+      "order": "C",
+      "sha256": "ba39ee62eb35be33bd2039b20a03a8800fed88e3d0d3e1b2d6861a88a04c2651",
+      "shape": [
+        1,
+        96,
+        3
+      ],
+      "size_bytes": 1152
+    },
+    "tok2vec.embed.concat": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 0,
+      "order": "C",
+      "sha256": "cf49522f41ce1a1f456a4cef656ca788e07b8ee6c9d4c8bc31ed897b04588b7b",
+      "shape": [
+        1,
+        576
+      ],
+      "size_bytes": 2304
+    },
+    "tok2vec.embed.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 3456,
+      "order": "C",
+      "sha256": "c906ad80031a6eebce6ef23e84cbd2752a3e704d4219d50f327fffa442f2581c",
+      "shape": [
+        1,
+        96
+      ],
+      "size_bytes": 384
+    },
+    "tok2vec.embed.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 3840,
+      "order": "C",
+      "sha256": "64a56704d4b5d4682def117534e09fefeea32d9086873dba79af4fdd9caa64c2",
+      "shape": [
+        1,
+        96
+      ],
+      "size_bytes": 384
+    },
+    "tok2vec.encoder.input": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 4224,
+      "order": "C",
+      "sha256": "af82bab1aa6e4a27cd7631d22664f81780f4767bef16a8b59ea2d21bb2db6954",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 18048,
+      "order": "C",
+      "sha256": "a99308b56e0ee6656228dbf1c7f774d00d33b0ec337640cb8e470f158dc6ee8b",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.0.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 28416,
+      "order": "C",
+      "sha256": "f27244654cf7075e3286d3cf9ea992af5ceeb698660c907f547e35e361bb0f74",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 31872,
+      "order": "C",
+      "sha256": "e6bfaa7bdade066f7b03807b54f5efe7674acf5b8f1317ba5fa87a70d720cef9",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 35328,
+      "order": "C",
+      "sha256": "9104c55dc689dfb227ca58f80c8dd696274d2a0f267b23e2bf6a1987fae84683",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.0.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 7680,
+      "order": "C",
+      "sha256": "bab65bab1f2c05218398b9f92f2c03943ac44e3e73f0a5b23b21a0126f732630",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.1.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 49152,
+      "order": "C",
+      "sha256": "859a1c6c5f7a5d5586d942198ddfa2a4206cbf11479e725b088641ddc654dc8b",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.1.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 59520,
+      "order": "C",
+      "sha256": "8a69e185ca22abd33a2e386ee0dd661196c8976acac01023763790349cb2b838",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.1.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 62976,
+      "order": "C",
+      "sha256": "89973eea9dea75d2e336594b0b8c9896d434b5004818e8c3be3ba35d61352d62",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.1.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 66432,
+      "order": "C",
+      "sha256": "07dc979c2962dde69913f7afb86bd7ea86cdf50e2770ca219479dbf3dd3041ce",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.1.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 38784,
+      "order": "C",
+      "sha256": "4ccfa22860dec4a12b456e3c7794a00ed08661ad483f0042c769fbfe2f495985",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.2.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 80256,
+      "order": "C",
+      "sha256": "a2e11313999f896369ae363f0312a28496ae25c2954dbbc5b70c8a0bf967c9c0",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.2.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 90624,
+      "order": "C",
+      "sha256": "d768b21cc5ca372336d125d8a6f68b426ba0abc1e4759c6a0465007753e46ac9",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.2.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 94080,
+      "order": "C",
+      "sha256": "bc4ab0a192c51fdafce74f4035f5b82ec27c4dd22a2eef3e3fecaaf97e6906aa",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.2.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 97536,
+      "order": "C",
+      "sha256": "8002ed1dae089a85b7d462d0da2d932507fbd8fbf1cc67fc30c186eddcef47d6",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.2.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 69888,
+      "order": "C",
+      "sha256": "b273986e3799421175f08b5fc62049a93601f14c492d80ee8c55e0097af43a3d",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.3.affine": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 111360,
+      "order": "C",
+      "sha256": "d6b283a371a959ace5f214e90f825577582abfe1662951c1acfacda12656f597",
+      "shape": [
+        9,
+        96,
+        3
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.encoder.layer.3.maxout": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 121728,
+      "order": "C",
+      "sha256": "9c62a1002b62c1abea24fab4dcdb7fbcb23dab59d2c357d1cb5edbcbc39c13ce",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.3.norm": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 125184,
+      "order": "C",
+      "sha256": "bc43f63d4a068e2254684722fafa87592eb1a03e30e615a99f55bc2f56c0a9df",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.3.residual": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 128640,
+      "order": "C",
+      "sha256": "552704578269b2bdbebb4f245ab00fd5ff26f981f9103082b448387e146991c4",
+      "shape": [
+        9,
+        96
+      ],
+      "size_bytes": 3456
+    },
+    "tok2vec.encoder.layer.3.window": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 100992,
+      "order": "C",
+      "sha256": "6e43dc9a52f029b71c93389798ba95b88300868c946bff1f2db8586bbecbff8e",
+      "shape": [
+        9,
+        288
+      ],
+      "size_bytes": 10368
+    },
+    "tok2vec.output": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 132096,
+      "order": "C",
+      "sha256": "8367aece7b84981a09a2da3180f0edc192ede615e8e252385f9378c2ff58af3d",
+      "shape": [
+        1,
+        96
+      ],
+      "size_bytes": 384
+    }
+  }
+}
