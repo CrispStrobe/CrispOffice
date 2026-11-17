@@ -24,10 +24,9 @@ String _odfText(XmlNode node) {
   return node.children.map(_odfText).join();
 }
 
-XmlElement _odtBody(OpcPackage package) =>
-    XmlDocument.parse(package.getPart('/content.xml')!.readText()).root!
-        .firstChild('body')!
-        .firstChild('text')!;
+XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(
+  package.getPart('/content.xml')!.readText(),
+).root!.firstChild('body')!.firstChild('text')!;
 
 void main() {
   linkTests();
@@ -270,9 +269,9 @@ void main() {
     expect(content, contains('fo:font-weight="bold"'));
     expect(content, contains('fo:font-style="italic"'));
     expect(
-      WordZotero.fields(document)
-          .map((field) => (field.instruction, field.cachedText))
-          .toList(),
+      WordZotero.fields(
+        document,
+      ).map((field) => (field.instruction, field.cachedText)).toList(),
       before,
     );
   });
@@ -310,10 +309,9 @@ void main() {
     expect(content, contains('A'));
     expect(content, contains('&amp;'));
     expect(content, contains('&lt;B&gt;'));
-    final master = XmlDocument.parse(package.getPart('/styles.xml')!.readText())
-        .root!
-        .firstChild('master-styles')!
-        .firstChild('master-page')!;
+    final master = XmlDocument.parse(
+      package.getPart('/styles.xml')!.readText(),
+    ).root!.firstChild('master-styles')!.firstChild('master-page')!;
     expect(_odfText(master.firstChild('header')!), ' Head\tA  B ');
     expect(_odfText(master.firstChild('footer')!), 'Foot\nLine 2 ');
   });

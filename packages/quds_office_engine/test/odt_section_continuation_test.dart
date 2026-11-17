@@ -77,7 +77,8 @@ WmlBlock _leadingBlock(String kind) => switch (kind) {
   'frame' => WmlFrame(blocks: [_paragraph('Frame story')]),
   'control' => WmlContentControlBlock(
     control: WmlContentControlData(
-      xml: '<w:sdt xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"/>',
+      xml:
+          '<w:sdt xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"/>',
       sourcePartUri: '/word/document.xml',
       relationships: const <WmlOpaqueRelationship>[],
     ),
@@ -185,9 +186,9 @@ void main() {
         ];
         final document = _twoSections(paragraphs);
         final content = _part(_package(document), 'content.xml');
-        final list = _body(content)
-            .childrenNamed('list', namespaceUri: _textNs)
-            .single;
+        final list = _body(
+          content,
+        ).childrenNamed('list', namespaceUri: _textNs).single;
         final roots = list
             .childrenNamed('list-item', namespaceUri: _textNs)
             .toList();
@@ -296,9 +297,9 @@ void main() {
   test('an empty noncontinuous section retains an explicit boundary', () {
     final document = _twoSections([]);
     final content = _part(_package(document), 'content.xml');
-    final paragraphs = _body(content)
-        .childrenNamed('p', namespaceUri: _textNs)
-        .toList();
+    final paragraphs = _body(
+      content,
+    ).childrenNamed('p', namespaceUri: _textNs).toList();
     expect(paragraphs, hasLength(2));
     expect(paragraphs.last.text, isEmpty);
     expect(_attribute(paragraphs.last, 'style-name', _textNs), 'SB1');
@@ -402,9 +403,9 @@ void main() {
       );
       final package = _package(document);
       final content = _part(package, 'content.xml');
-      final headings = _body(content)
-          .childrenNamed('h', namespaceUri: _textNs)
-          .toList();
+      final headings = _body(
+        content,
+      ).childrenNamed('h', namespaceUri: _textNs).toList();
       expect(headings, hasLength(2));
       final firstStyle = _style(
         content,

@@ -314,8 +314,9 @@ void main() {
         spacingAfter: 0,
         indent: const WmlIndent(left: 12, right: 3, firstLine: 4),
       );
-      final content = _export(_two([_p('Heading', properties: properties)]))
-          .content;
+      final content = _export(
+        _two([_p('Heading', properties: properties)]),
+      ).content;
       final heading = _paragraph(content, 'Heading');
       expect(heading.localName, 'h');
       final style = _style(content, heading);
