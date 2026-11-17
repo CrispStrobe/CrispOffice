@@ -98,6 +98,8 @@ ENGINE = ['font_subset_structure_test.dart',
  'odt_table_merge_test.dart',
  'odt_paragraph_properties_test.dart',
  'odt_header_footer_fidelity_test.dart',
+ 'odt_note_fidelity_test.dart',
+ 'word_note_numbering_test.dart',
  'odp_table_fidelity_test.dart',
  'odf_covered_cell_extraction_test.dart',
  'word_table_test.dart',
@@ -105,11 +107,13 @@ ENGINE = ['font_subset_structure_test.dart',
  'word_table_direction_test.dart',
  'table_grid_steps_test.dart',
  'word_table_nested_layout_test.dart',
- 'proofing/german_agreement_context_test.dart']
+ 'proofing/german_agreement_context_test.dart',
+ 'proofing/german_morphology_grammar_test.dart',
+ 'proofing/german_morphology_loading_test.dart']
 EDITOR = ['pdf_font_faces_test.dart', 'font_subset_render_test.dart', 'pdf_surface_test.dart', 'pdf_viewer_options_test.dart', 'host_fonts_test.dart', 'word_run_metrics_test.dart', 'paint_run_text_unicode_test.dart', 'paint_font_fallback_test.dart', 'word_hyphenation_caret_test.dart', 'word_hyphenation_paint_test.dart', 'word_hyphenation_resume_test.dart', 'word_hyphenation_source_presentation_test.dart', 'word_shaped_wrap_test.dart', 'word_proofing_correction_test.dart', 'word_proofing_geometry_test.dart', 'word_proofing_dialog_test.dart', 'word_proofing_session_test.dart', 'sheet_cell_state_history_test.dart', 'sheet_conditional_rendering_test.dart', 'sheet_explicit_style_history_test.dart', 'sheet_fill_intent_history_test.dart', 'sheet_font_color_intent_test.dart', 'sheet_grid_history_test.dart', 'sheet_hidden_sheet_test.dart', 'sheet_navigation_controller_test.dart', 'sheet_navigation_widget_test.dart', 'sheet_normal_font_auto_test.dart', 'sheet_normal_font_metrics_test.dart', 'sheet_rename_controller_test.dart', 'sheet_sort_history_test.dart', 'sheet_style_history_test.dart', 'sheet_view_history_test.dart', 'word_german_grammar_integration_test.dart', 'word_proofing_context_test.dart']
 HARPER = ['harper_provider_test.dart', 'harper_source_text_test.dart', 'harper_source_contract_test.dart']
 NODE = ['odt_table_merge_test.dart', 'odt_paragraph_properties_test.dart',
-        'odf_covered_cell_extraction_test.dart']
+        'odf_covered_cell_extraction_test.dart', 'odt_note_fidelity_test.dart']
 COHORTS = {'engine': ('quds_office_engine', ENGINE),
            'editor': ('quds_office_editor', EDITOR),
            'harper': ('quds_proofing_harper', HARPER),
@@ -264,7 +268,9 @@ def runtime_identity(manifest_path, flutter='flutter', include_node=False):
     # Bind the actual SDK, engine artifacts, compiler snapshots and Flutter
     # tool source used by the verified offline launcher. Generated test kernels
     # and build caches are outputs, not source inputs.
-    for directory in ('bin/cache/dart-sdk', 'bin/cache/artifacts/engine',
+    # Flutter's FontConfigManager scans all artifacts for fallback fonts,
+    # including material_fonts outside the engine subtree.
+    for directory in ('bin/cache/dart-sdk', 'bin/cache/artifacts',
                       'packages/flutter/lib', 'packages/flutter_test/lib',
                       'packages/flutter_tools/lib', 'packages/flutter_tools/bin'):
         paths.update(tree_files(root / directory))
@@ -295,7 +301,10 @@ def runtime_identity(manifest_path, flutter='flutter', include_node=False):
                             ('FLUTTER_ROOT', 'PUB_CACHE', 'CI',
                              'DART_SUPPRESS_ANALYTICS', 'FLUTTER_SUPPRESS_ANALYTICS',
                              'QUDS_FLUTTER_TOOL_SNAPSHOT',
-                             'NODE_OPTIONS', 'NODE_PATH')}}
+                             'NODE_OPTIONS', 'NODE_PATH', 'FONTCONFIG_FILE',
+                             'FONTCONFIG_PATH', 'FONTCONFIG_SYSROOT',
+                             'FONTCONFIG_USE_MMAP', 'TMPDIR', 'XDG_CACHE_HOME',
+                             'XDG_CONFIG_HOME')}}
 
 def version_identity(output, flutter, include_node=False):
     versions = {}
@@ -399,7 +408,9 @@ def main():
     test_command = (['dart', 'test', '--platform', 'node'] if include_node
                     else ['dart', 'test'] if args.cohort != 'editor'
                     else [args.flutter, 'test', '--no-pub', '--dart-define=QUDS_SUBSET_RENDER_OUTPUT=' + str(output / 'render')])
-    commands = [('tests', test_command + ['--reporter', 'json'] + ['test/' + p for p in tests]),
+    # Bound compiler/test parallelism to keep local scratch usage predictable.
+    # GitHub Actions is deliberately not part of this qualification.
+    commands = [('tests', test_command + ['--concurrency=2', '--reporter', 'json'] + ['test/' + p for p in tests]),
                 ('analyze', ['dart', 'analyze', '--fatal-infos'] + relative),
                 ('format', ['dart', 'format', '--output=none', '--set-exit-if-changed'] + relative)]
     (output / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')

@@ -192,4 +192,225 @@ void main(List<String> arguments) {
       ),
     ),
   );
+
+  WmlRun reference(int id, {bool endnote = false, String? text}) => WmlRun(
+    text: text ?? '$id',
+    noteRefId: id,
+    noteRefEndnote: endnote,
+    properties: WmlRunProps(vertAlign: WmlVertAlign.superscript),
+  );
+  WmlNote note(int id, String text, {bool endnote = false}) => WmlNote(
+    id: id,
+    endnote: endnote,
+    paragraphs: [paragraph(text, WmlParagraphProps())],
+  );
+  save(
+    'word-note-stories.odt',
+    OdtDocumentWriter.writeBytes(
+      WmlDocument(
+        sections: [
+          WmlSection(
+            header: [
+              WmlParagraph(
+                inlines: [
+                  WmlRun(text: 'Header reference '),
+                  reference(42),
+                ],
+              ),
+            ],
+            footer: [
+              WmlParagraph(inlines: [reference(999, text: 'MISSING-REF')]),
+            ],
+            blocks: [
+              WmlParagraph(
+                inlines: [
+                  WmlRun(text: 'First footnote '),
+                  reference(42),
+                  WmlRun(text: '; endnote '),
+                  reference(77, endnote: true),
+                  WmlRun(text: '; repeated footnote '),
+                  reference(42),
+                  WmlRun(text: '; second footnote '),
+                  reference(8),
+                  WmlRun(text: '; custom mark '),
+                  reference(11, text: '†'),
+                  WmlRun(text: '; empty authored reference '),
+                  reference(12, text: ''),
+                  WmlRun(text: '; explicit custom marker '),
+                  reference(13)..noteRefCustomMark = true,
+                  WmlRun(text: '*; repeated custom marker '),
+                  reference(13)..noteRefCustomMark = true,
+                  WmlRun(text: '*; custom endnote marker '),
+                  reference(88, endnote: true)..noteRefCustomMark = true,
+                  WmlRun(text: '*'),
+                  WmlRun(text: '.'),
+                ],
+              ),
+            ],
+          ),
+        ],
+        footnotes: [
+          WmlNote(
+            id: 42,
+            endnote: false,
+            blocks: [
+              WmlParagraph(
+                properties: WmlParagraphProps(
+                  lineSpacing: 18,
+                  lineSpacingRule: WmlLineSpacingRule.exact,
+                ),
+                inlines: [
+                  WmlRun(
+                    text: 'Blue footnote body',
+                    properties: WmlRunProps(bold: true, color: '0055AA'),
+                  ),
+                  WmlBreak(WmlBreakType.textWrapping),
+                  WmlRun(text: 'Second footnote line '),
+                  WmlRun(
+                    text: 'Source',
+                    hyperlink: WmlHyperlink(url: 'https://example.test/note'),
+                  ),
+                  WmlRun(
+                    inlineVisual: WmlVisual(
+                      visual: OfficeVisual(
+                        kind: OfficeVisualKind.picture,
+                        title: 'Note picture',
+                        imageBytes: png,
+                        width: 18,
+                        height: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              WmlTable(
+                grid: [90, 90],
+                rows: [
+                  WmlTableRow(
+                    cells: [
+                      WmlTableCell(
+                        blocks: [
+                          paragraph('Footnote cell A', WmlParagraphProps()),
+                        ],
+                      ),
+                      WmlTableCell(
+                        blocks: [
+                          paragraph('Footnote cell B', WmlParagraphProps()),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          note(8, 'Second footnote body'),
+          note(11, 'Custom-mark note body'),
+          note(12, 'Empty-reference note body'),
+          note(13, 'Explicit custom-mark body'),
+        ],
+        endnotes: [
+          note(77, 'Endnote body on final page', endnote: true),
+          note(88, 'Custom endnote body', endnote: true),
+        ],
+      ),
+    ),
+  );
+  save(
+    'word-note-recursion.odt',
+    OdtDocumentWriter.writeBytes(
+      WmlDocument(
+        sections: [
+          WmlSection(
+            blocks: [
+              WmlParagraph(
+                inlines: [
+                  WmlRun(text: 'Recursive reference A '),
+                  reference(1),
+                  WmlRun(text: ' and B '),
+                  reference(2),
+                ],
+              ),
+            ],
+          ),
+        ],
+        footnotes: [
+          WmlNote(
+            id: 1,
+            endnote: false,
+            paragraphs: [
+              WmlParagraph(
+                inlines: [
+                  WmlRun(text: 'A links to '),
+                  reference(2),
+                ],
+              ),
+            ],
+          ),
+          WmlNote(
+            id: 2,
+            endnote: false,
+            paragraphs: [
+              WmlParagraph(
+                inlines: [
+                  WmlRun(text: 'B links to '),
+                  reference(1),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+  save(
+    'word-covered-notes.odt',
+    OdtDocumentWriter.writeBytes(
+      WmlDocument(
+        sections: [
+          WmlSection(
+            blocks: [
+              WmlTable(
+                rows: [
+                  WmlTableRow(
+                    cells: [
+                      WmlTableCell(
+                        vMerge: WmlVMerge.restart,
+                        blocks: [
+                          paragraph(
+                            'Visible merged anchor',
+                            WmlParagraphProps(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  WmlTableRow(
+                    cells: [
+                      WmlTableCell(
+                        vMerge: WmlVMerge.cont,
+                        blocks: [
+                          WmlParagraph(inlines: [reference(404)]),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              WmlParagraph(
+                inlines: [
+                  WmlRun(text: 'First visible note '),
+                  reference(8),
+                ],
+              ),
+            ],
+          ),
+        ],
+        footnotes: [
+          note(404, 'HIDDEN_NOTE_BODY'),
+          note(8, 'Visible note body'),
+        ],
+      ),
+    ),
+  );
 }

@@ -336,7 +336,10 @@ void footnoteTests() {
     final content = package.getPart('/content.xml')!.readText();
     expect(content, contains('<text:note'));
     expect(content, contains('text:note-class="footnote"'));
-    expect(content, contains('<text:note-citation>1</text:note-citation>'));
+    expect(
+      content,
+      contains('<text:note-citation text:label="1">1</text:note-citation>'),
+    );
     expect(content, contains('Footnote text'));
   });
 }

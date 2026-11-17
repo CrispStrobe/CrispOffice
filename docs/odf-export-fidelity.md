@@ -44,7 +44,7 @@ vertical spans to form rectangular merges. A fresh restart, an ordinary cell,
 an empty row, or invalid row metadata interrupts a chain. Orphaned or mismatched
 continuations remain ordinary visible cells, preserving their content.
 
-Covered-cell stories and formatting remain in the XML. They are hidden by
+For structural table exports, covered-cell stories and formatting remain in the XML. They are hidden by
 ordinary ODF consumers and excluded by generic text extraction and bounded
 search, including nested stories and the legacy namespace-less fallback.
 Recognition uses the ODF table namespace, not a particular prefix or a bare
@@ -71,6 +71,42 @@ name collisions. Image links include required `xlink:type="simple"`.
 Per-section, alternating, and first-page-specific master-page reconstruction is
 outside this writer. Field instructions and editable field metadata are not
 retained by this new-document export.
+
+## Footnotes and endnotes
+
+Visible body references emit a note body once. Later references to the same
+definition use a resolving `text:note-ref`; note IDs remain independent of
+display labels. Footnotes and endnotes use the shared read-only Word numbering
+resolver, including supported native formats, starts, restarts, and custom
+marks. The export adapter treats empty authored reference runs as automatic.
+Default editor/native numbering callers retain their existing interpretation.
+
+Citation `text:label` attributes freeze the resolved visible labels so a consumer
+cannot silently replace them with its own numbering defaults. This preserves
+the exported view; native editable numbering metadata and page-dependent
+numbering are not reconstructed. Unresolved numbering retains cached reference
+text. A differently authored repeat mark is retained as ordinary visible text.
+An otherwise empty custom label uses U+2060 WORD JOINER only in the label
+attribute, because an empty attribute causes the tested consumer to invent a
+number. Citation character data and source text remain empty; ordinary custom
+marks retain their authored labels.
+
+Numbering follows the exporter's visible body paragraphs. Correctly covered
+merged-cell stories do not consume numbers, while orphan continuations remain
+visible and participate. Missing or ambiguous definitions retain their cached
+visible reference text. Note bodies retain paragraph, inline, list, link, and
+picture content. Newly authored automatic note markers honor the model's
+requested separator without duplicating existing leading whitespace. The
+tested consumer omits structural tables inside notes, so
+note-table cells export as styled paragraphs in source order, including nested
+visible cells and excluding covered stories. Table geometry and hidden cell
+stories inside notes are outside this fallback; source blocks remain intact.
+
+New note bodies are emitted only in visible body paragraphs. References in
+headers, footers, frames, covered cells, or note bodies appear as visible marks.
+This bounds expansion even when definitions refer to themselves or one another.
+Note lookup uses an indexed definition map; source IDs, strings, native settings,
+and source block lists remain unchanged.
 
 ## Presentation tables
 
@@ -99,6 +135,26 @@ mode and avoids double reversal in readers that do honor it. The source row
 lists remain in their original logical order. This preserves appearance rather
 than reconstructing editable native RTL-table metadata.
 
+## Slide transitions and automatic advance
+
+Transition properties belong to the referenced drawing-page style. Distinct
+effect/timing combinations receive distinct styles, and equivalent combinations
+reuse one style. Positive automatic-advance times are preserved to millisecond
+precision, including slides with no visual effect. Nonpositive advance times
+are omitted. Cut transitions and nonpositive effect durations use no animation.
+
+Push, cover/uncover, wipe, split/doors, clock, circle, and diamond effects use
+bounded standard SMIL mappings. Dissolve, checkerboard, blinds, and random bars
+use their standard legacy ODF tokens. Other effects use a crossfade fallback.
+Mappings follow the shared renderer's movement direction; an incoming edge is
+not always named after the source movement direction.
+
+Effect speed uses ODF's three buckets: fast through 500 ms, medium below 1000 ms,
+and slow from 1000 ms. Exact effect durations, shape animations, and per-slide
+click suppression are outside this export. Schema checks and LibreOffice-imported
+transition properties establish structural and consumer retention; they do not
+establish playback or frame-by-frame rendering parity.
+
 ## Incoming list support
 
 The integrated list writers group consecutive paragraphs sharing a numbering
@@ -114,7 +170,8 @@ frame list grouping remain outside this bounded list implementation.
 ## Standards and validation boundaries
 
 The mappings follow [ODF 1.3 Part 3](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html),
-particularly sections 9.1.3–9.1.7 (rows, cells, covered cells, and columns),
+particularly sections 6.3 and 7.7.7 (notes and note references),
+9.1.3–9.1.7 (rows, cells, covered cells, and columns), 17.25 (drawing-page properties),
 19.680 and 19.682 (spans), 19.744 (first-row styling), 20.204 (line height),
 20.254 (column width), 20.317 (minimum line height), 20.340.2 (relative table
 width), 20.348 (row height), and 20.404–20.405 (writing direction).

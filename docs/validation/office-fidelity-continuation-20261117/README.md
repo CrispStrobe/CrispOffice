@@ -39,6 +39,24 @@ Zotero evidence checkpoints. Actual merges completed without conflicts. See
 [resolution decisions](refresh/resolution.json). Later arrivals are outside
 this finite cutoff.
 
+## Final incoming refresh
+
+Opening draft PR #101 revealed newly landed note and transition writers. A
+final finite snapshot observed the fork at **09:15:37–09:15:45 UTC (10:15
+Europe/Berlin)**, with upstream observed concurrently. It captures **227 refs /
+153 distinct heads**: 118 fork branches, 101 fork PR heads, four upstream
+branches, and four upstream PR heads. Across all three observations, **234
+named reference/revision pairs / 160 commits** are retained, all by ancestry.
+
+This adds captured main `fb3d3a4d`, ODP transition PRs #98/#99, ODT note PR #100,
+lazy German morphology `8649b79e`, completed canonical Zotero evidence
+`d95701cf`, and GECToR qualification tooling `6bd03365`. All actual merges
+completed without textual conflicts. The incoming checkpoint is saved as
+`2ed96347`; subsequent ODF schema and interaction repairs are separately saved.
+See [snapshot](final-refresh/snapshot.json), [trace](final-refresh/merges.json),
+and [decisions](final-refresh/resolution.json). Later arrivals are outside this
+qualification cutoff.
+
 ## Implemented behavior
 
 - ODT vertical/rectangular merges, compact logical-grid declarations and blank
@@ -51,10 +69,16 @@ this finite cutoff.
   placement. Editor/PDF fallback colors avoid unrelated consumer theme defaults.
 - Required image link attributes and corrected relative table widths. Incoming
   flat list groups retain core decimal styles without a redundant extension.
+- Incoming note export uses visible-body numbering, explicit preserved labels,
+  one definition per note and resolving repeats; cyclic references terminate.
+- Incoming slide transitions use valid drawing-page properties and bounded
+  SMIL/legacy mappings, with automatic advance independent of visual effects.
 
 The [export guide](../../odf-export-fidelity.md) explains model mappings,
 malformed-table policy, complexity bounds, consumer compatibility decisions,
-and limits. No dependency manifests or font binaries were changed.
+and limits. Existing Dart/Flutter dependency manifests, their enforced lock,
+and font binaries were unchanged. Incoming GECToR tools include their own
+qualification requirements; no model/native qualification was run here.
 
 ## Local qualification
 
@@ -79,6 +103,9 @@ positions, authored colors, retained visible labels, and header/footer content.
 | `d8851443` | ODT table merge topology |
 | `75e9566d` | Styled headers/footers, valid image links, consumer-correct ODP rows/RTL |
 | `e3ab8e90` | Hidden-story extraction guards and complete empty/ragged grids |
+| `e7d8bed9` | Second incoming snapshot, list compatibility, qualification harness |
+| `ec80a134` | Runtime snapshot/font-fixture binding; successful pre-refresh cohorts |
+| `2ed96347` | All final captured histories, before incoming writer repairs |
 
 Every remote write verifies the exact Git tree and updates the branch with an
 expected parent. All checkpoint messages contain `[skip ci]`; no Actions job,
