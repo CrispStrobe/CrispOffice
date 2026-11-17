@@ -125,6 +125,9 @@ Future<void> main(List<String> arguments) async {
     lexiconFactory: const GectorGermanLexiconFactory(),
   );
   final service = OfficeProofingService(providers: [provider]);
+  final ordinary = OfficeProofingService(
+    providers: [GermanWritingRulesProvider()],
+  );
   final rows = <Map<String, dynamic>>[];
   try {
     for (final raw in cases) {
@@ -151,12 +154,28 @@ Future<void> main(List<String> arguments) async {
           f.replacements.single,
         );
       }
+      final combined = mergeOfficeProofingReports(
+        primary: await ordinary.check(request),
+        secondary: report,
+      );
+      var combinedOutput = text;
+      final combinedFindings = combined.findings.toList()
+        ..sort((a, b) => a.start.compareTo(b.start));
+      for (final f in combinedFindings.reversed) {
+        combinedOutput = combinedOutput.replaceRange(
+          f.start - 7,
+          f.end - 7,
+          f.replacements.single,
+        );
+      }
       rows.add({
         ...c,
         'status': result.status.name,
         'output': corrected,
         'milliseconds': clock.elapsedMicroseconds / 1000,
         'exact': corrected == (c['expected'] ?? text),
+        'combined_output': combinedOutput,
+        'combined_exact': combinedOutput == (c['expected'] ?? text),
         'findings': [
           for (final f in findings)
             {
@@ -171,11 +190,18 @@ Future<void> main(List<String> arguments) async {
     }
   } finally {
     await service.dispose();
+    await ordinary.dispose();
   }
   final errors = rows.where((r) => r['kind'] == 'error').toList();
   final clean = rows.where((r) => r['kind'] == 'clean').toList();
   final summary = {
     'error_cases': errors.length,
+    'combined_exact_errors': errors
+        .where((r) => r['combined_exact'] == true)
+        .length,
+    'combined_clean_changed': clean
+        .where((r) => r['combined_output'] != r['input'])
+        .length,
     'exact_errors': errors.where((r) => r['exact'] == true).length,
     'clean_supported': clean.where((r) => r['status'] == 'success').length,
     'clean_supported_changed': clean
