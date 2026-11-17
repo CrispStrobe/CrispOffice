@@ -54,7 +54,7 @@ def reconstruct(row,outcome):
  return {**reconstructed,'unsupported_only':bool(statuses)and all(s=='unsupported'for s in statuses)}
 def declared(raw):
  locale=raw.get('locale','de-DE');assert locale in ('de-DE','de-AT','de-CH')
- return {'id':raw['id'],'kind':raw['kind'],'input':raw['input'],'expected':raw.get('expected',raw['input']),'locale':locale,'language':locale,'expected_model_status':raw.get('expected_model_status','success'if locale=='de-DE'else'unsupported'),**{k:raw[k]for k in ('category','pair_id')if k in raw}}
+ return {'id':raw['id'],'kind':raw['kind'],'input':raw['input'],'expected':raw.get('expected',raw['input']),'locale':locale,'language':locale,'expected_model_status':raw.get('expected_model_status','success'if locale=='de-DE'else'unsupported'),**{k:raw[k]for k in ('category','pair_id')if k in raw and raw[k]is not None}}
 def metrics(rows,lane):
  return {
   'exact_error_ids':[r['id']for r in rows if r['kind']=='error'and r['verified'][lane]['exact_expected']],
