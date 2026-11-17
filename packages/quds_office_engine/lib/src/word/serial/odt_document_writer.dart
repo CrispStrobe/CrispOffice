@@ -356,8 +356,9 @@ abstract final class OdtDocumentWriter {
   static void _writeText(XmlWriter w, String text) {
     var offset = 0;
     for (final match in _whitespace.allMatches(text)) {
-      if (match.start > offset)
+      if (match.start > offset) {
         w.writeText(text.substring(offset, match.start));
+      }
       final value = match[0]!;
       if (value.startsWith(' ')) {
         // ODF collapses literal whitespace, including at span boundaries.
