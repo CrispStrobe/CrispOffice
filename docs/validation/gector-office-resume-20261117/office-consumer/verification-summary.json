@@ -1,0 +1,152 @@
+{
+  "baseline_source": {
+    "source_commit": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+    "writer_path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "writer_sha256": "a3de7e33cd53b2ad220b55427c51bc261e1103b59e0dba375d4f8b4cadd029b0",
+    "writer_git_blob": "1bc6b756db87ea0a3b882b35df22b58842166c91",
+    "local_identical_tree_commit": "f9c903e9cb462772bfb102633eca81013ee59055",
+    "tree": "bbc41aaac61c3f608392a77f03f2a6667d24808e"
+  },
+  "candidate_writer_sha256": "7c0019e03e767e42b2ad223f2333bb0256e4469ca55ceab0ae316a414729764a",
+  "before_consumer": {
+    "started_at_utc": "2026-11-17T21:26:09.354490+00:00",
+    "completed_at_utc": "2026-11-17T21:26:33.743681+00:00",
+    "head_at_start": "faffbc419e07e73cbf24169b75844c2354413e5f",
+    "harness_revision": "gector-office-resume-current-contract-1",
+    "source_inputs_unchanged": true,
+    "source_input_count": 5152,
+    "fixture_count": 5,
+    "fixture_passes": 4,
+    "schema_parts": 20,
+    "jing_valid": 20,
+    "lxml_valid": 19,
+    "scope": "Five final-writer generated packages in one installed headless LibreOffice build; no arbitrary imported ODF fidelity claim.",
+    "validator_note": "Jing -i is the RelaxNG acceptance check. The lxml nested page-count disagreement is retained diagnostically."
+  },
+  "after_consumer": {
+    "started_at_utc": "2026-11-17T21:32:01.344404+00:00",
+    "completed_at_utc": "2026-11-17T21:32:25.085162+00:00",
+    "head_at_start": "faffbc419e07e73cbf24169b75844c2354413e5f",
+    "harness_revision": "gector-office-resume-current-contract-1",
+    "source_inputs_unchanged": true,
+    "source_input_count": 5152,
+    "fixture_count": 5,
+    "fixture_passes": 5,
+    "schema_parts": 20,
+    "jing_valid": 20,
+    "lxml_valid": 19,
+    "scope": "Five final-writer generated packages in one installed headless LibreOffice build; no arbitrary imported ODF fidelity claim.",
+    "validator_note": "Jing -i is the RelaxNG acceptance check. The lxml nested page-count disagreement is retained diagnostically."
+  },
+  "focused_tests": {
+    "cases": 102,
+    "success": 102,
+    "failures": 0,
+    "skipped": 0,
+    "done": {
+      "success": true,
+      "type": "done",
+      "time": 2793
+    }
+  },
+  "frame_comparison": {
+    "pass": true,
+    "schema_parts_per_run": 20,
+    "after_fixture_passes": 5,
+    "only_package_change": "SectionFrame moves from content automatic styles to common styles",
+    "maximum_surrounding_text_coordinate_drift_pt": 0.0,
+    "frame_label_geometry": {
+      "before": {
+        "page": 1,
+        "text": "FrameBookmark",
+        "xMin": 36.0,
+        "yMin": 192.195449,
+        "xMax": 117.235,
+        "yMax": 204.471449
+      },
+      "after": {
+        "page": 1,
+        "text": "FrameBookmark",
+        "xMin": 36.1,
+        "yMin": 190.345449,
+        "xMax": 117.335,
+        "yMax": 202.621449
+      },
+      "delta_pt": {
+        "xMin": 0.10000000000000142,
+        "yMin": -1.8499999999999943,
+        "xMax": 0.09999999999999432,
+        "yMax": -1.8499999999999943
+      }
+    },
+    "frame_docx": {
+      "before": [
+        {
+          "ranges": {},
+          "placement": {
+            "kind": "DrawingML",
+            "horizontal_relative_to": "page",
+            "vertical_relative_to": "page",
+            "x_pt": 36.0,
+            "y_pt": 190.0,
+            "width_pt": 209.95,
+            "height_pt": 35.0
+          }
+        },
+        {
+          "ranges": {},
+          "placement": {
+            "kind": "VML",
+            "horizontal_relative_to": "page",
+            "vertical_relative_to": "page",
+            "x_pt": 36.0,
+            "y_pt": 190.0,
+            "width_pt": 209.9,
+            "height_pt": 34.95
+          }
+        }
+      ],
+      "after": [
+        {
+          "ranges": {
+            "FrameMark": "FrameBookmark"
+          },
+          "placement": {
+            "kind": "DrawingML",
+            "horizontal_relative_to": "page",
+            "vertical_relative_to": "page",
+            "x_pt": 36.0,
+            "y_pt": 190.0,
+            "width_pt": 210.0,
+            "height_pt": 35.0
+          }
+        },
+        {
+          "ranges": {
+            "FrameMark": "FrameBookmark"
+          },
+          "placement": {
+            "kind": "VML",
+            "horizontal_relative_to": "page",
+            "vertical_relative_to": "page",
+            "x_pt": 36.0,
+            "y_pt": 190.0,
+            "width_pt": 210.0,
+            "height_pt": 35.0
+          }
+        }
+      ]
+    }
+  },
+  "before_structural_regression": {
+    "substantive_cases": 2,
+    "expected_failures": 1,
+    "passes": 1,
+    "failure": "No common SectionFrame style"
+  },
+  "excluded_from_test_totals": {
+    "dartdev_bootstrap": "Automatic package resolution failed creating missing /tmp; rerun with direct pinned test script and full runtime environment",
+    "historical_style_control": "Archived original input diagnostic, not current-source qualification"
+  },
+  "scope": "Bounded current writer fixtures in pinned LibreOfficeDev26.8; does not establish arbitrary imported-document fidelity"
+}

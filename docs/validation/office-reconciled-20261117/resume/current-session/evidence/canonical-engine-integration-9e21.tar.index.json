@@ -1,0 +1,200 @@
+{
+  "archive": "canonical-engine-integration-9e21.tar.xz",
+  "bytes": 252612,
+  "sha256": "0dd45b9561b131f961484580a2059aeff2a3197b42643da0531d622aa2f1e9de",
+  "classification": "Completed engine131-file cohort:2821 raw,2819 substantive; full final integrity pending",
+  "member_count": 38,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "checkpoint.json",
+      "bytes": 611443,
+      "sha256": "a326dd21e8d14469fef51cb55236fe02eb4ad2d30942b9c60477326c8b386e9e"
+    },
+    {
+      "path": "engine-integration/artifacts/conditional-render/conditional-styles.pdf",
+      "bytes": 1191,
+      "sha256": "15a02fcc627cf872c4fa753f95237034c356075a58ee78d6762730d3985185cf"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/rotated-slide-logical-source-paint-control.pdf",
+      "bytes": 16756,
+      "sha256": "cd9d46e5d786081635ee16d5b8f577e05c652775d27f308dd4ca571aad48e8f4"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/rotated-slide-logical-source-source.txt",
+      "bytes": 29,
+      "sha256": "200206650a0647e3c264d9b0c9d37f2e81b903eade9d8d9f55e97c2dfe5d6f15"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/rotated-slide-logical-source.pdf",
+      "bytes": 16020,
+      "sha256": "613417c158e52924a2769e639cc512aaebf467ad7fb40efb9bdc0605bf9e9b65"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/word-logical-source-paint-control.pdf",
+      "bytes": 16667,
+      "sha256": "5a0daf26c96eb43587f22d403d55e668938bbfcf26d37683849fd5e619b27abe"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/word-logical-source-source.txt",
+      "bytes": 28,
+      "sha256": "4a8fbfe8f9f8ea9becd92e00f01386ac9a34bc48e8c7c598a5847997ae75d1f7"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/word-logical-source.pdf",
+      "bytes": 15730,
+      "sha256": "590b5305b56bf3dd9b3ae5031d9aaab8362454d4c1baa4236130e452c805805b"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/worksheet-logical-source-paint-control.pdf",
+      "bytes": 35442,
+      "sha256": "e4743e21dd0fb5d649a0015c4cd4062bc584fd20aa9c1e34c01c21cfd48401cf"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/worksheet-logical-source-source.txt",
+      "bytes": 46,
+      "sha256": "664e1dd7777a9eaa37314015774ed84881c31dad37196f597a6d99c961402dc9"
+    },
+    {
+      "path": "engine-integration/artifacts/logical-render/worksheet-logical-source.pdf",
+      "bytes": 33929,
+      "sha256": "5deb00d64a7cfb957de946881d34d888ad0ae374cf0df1d0ac47267a6145bf1b"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/slide-table-colors.odp",
+      "bytes": 2660,
+      "sha256": "847d24e9b7c554f2cf9055f1c6c65b6c00958d64a3dca48d4ba8b7c2dde30d86"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/slide-table-geometry.odp",
+      "bytes": 2683,
+      "sha256": "0ccc53aacb89e2e683c9107ca9b29b69a548a908ecff8ea9d474016de578f5b5"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/slide-table-rtl.odp",
+      "bytes": 2623,
+      "sha256": "2af2e10194d6a1d24e576b591390ca65900741fd458cea9c5d89cb04b0e77b96"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/slide-text.odp",
+      "bytes": 2712,
+      "sha256": "344d331ee7bdf2344b0ea1d50072f26042a763ce4bd82bc344f2e0bf46876e7b"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/slide-transitions.odp",
+      "bytes": 2557,
+      "sha256": "117a0aed9e3e068a37f5bf5e7e8d8176781396676d27331a5a52319943e0af7d"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-covered.odt",
+      "bytes": 3102,
+      "sha256": "19dfbd4c5e6368dff92724199004891166d3bed2227f2f7fa7b3982466708904"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-date-string.odt",
+      "bytes": 2968,
+      "sha256": "bdc616a13c70d4a0d4617c0e3435b33e53296295ff698ce9f8b9e1e84f7524ee"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-empty.odt",
+      "bytes": 2918,
+      "sha256": "fa7d1df5f4fa632760ac0292ee89f6ccb905c27a8f752afa1a41552d5a4fd46f"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-frame-priority.odt",
+      "bytes": 3137,
+      "sha256": "c4a62e2c34aec30ce1ee8991d763c3f988c04d1a517c398f49f48fd4eb2e11bb"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-heading.odt",
+      "bytes": 2954,
+      "sha256": "ff69208e2a2eb2d58d43fe0b7157d10ebce2417f9b8bae60a397e0feca1ec7a0"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-note-priority.odt",
+      "bytes": 3015,
+      "sha256": "051f8fedc50728f008578f8a9deeca3b290dd921f1b87259237ca6b3fc23608a"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-notes.odt",
+      "bytes": 3032,
+      "sha256": "6a0c047497c794f427e1bd4265930b57cab5c011ebdc0e3a968681ee7078957b"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-recursive.odt",
+      "bytes": 2944,
+      "sha256": "0e027b4c13ab8c9dca20218215e970b14a010db282b68ac9e89f8da3b4e9d05c"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-rich.odt",
+      "bytes": 3651,
+      "sha256": "be92355a08621cbd134fa787150da130157c82e8d252011b99f2d2713ee65be9"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-comments-stories.odt",
+      "bytes": 3216,
+      "sha256": "85aa3395601827f37a7e262500294c50d8b70500a1c0d9d0eb0b5e00484b4429"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-header-breaks.odt",
+      "bytes": 3061,
+      "sha256": "3111bb2740e55b779ed2854676717b58bb549f44e644afdd949e810f9f48536a"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-header-pictures.odt",
+      "bytes": 3771,
+      "sha256": "d644dfdf41694f500b9ba5d7eb80c0f2d54b407c75e318893ea5f372edba2d98"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-header-styles.odt",
+      "bytes": 3083,
+      "sha256": "8994c8cc4cfc403722e2e463ec7b137e5f2c64d1f67d47faa97a5e2ffb5ea9e5"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-indents.odt",
+      "bytes": 2860,
+      "sha256": "9b7dab8a70aab5a77ffdc06d36cb34bc7a039576de47df731a90f1cd268ea231"
+    },
+    {
+      "path": "engine-integration/artifacts/odf-fixtures/word-text.odt",
+      "bytes": 2867,
+      "sha256": "31cc0eb2084063c23b0751f1deafee774e559438e1bbbc5e76eb271dd9033b16"
+    },
+    {
+      "path": "engine-integration/artifacts/render/authored-text.txt",
+      "bytes": 11,
+      "sha256": "e74a676e1bda53634984fdb18c5e78dbedde1a9740844ab5b9f554f062298326"
+    },
+    {
+      "path": "engine-integration/artifacts/render/encoded-aliases.pdf",
+      "bytes": 6873,
+      "sha256": "96feb2bab8f025dc9755d2e697bd0b5588bed2e3000d784f51ff2a3060bd2f23"
+    },
+    {
+      "path": "engine-integration/artifacts/render/identity-glyph-reference.pdf",
+      "bytes": 6736,
+      "sha256": "9d4d1486ece4577369c9a8c156a2041349ae2919afc1a1ee57fcacfc491d8f31"
+    },
+    {
+      "path": "engine-integration/artifacts/render/word-unicode-aliases.pdf",
+      "bytes": 6899,
+      "sha256": "4290a1930abed91021c42a659294f7729a29ac4c1eaac20a0c767aa9fb6463d1"
+    },
+    {
+      "path": "engine-integration/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "engine-integration/stdout.gz",
+      "bytes": 112728,
+      "sha256": "be8234adfb37c00f8d0ddab0b4d0ac740ce06ba5804b950b4bc815cede00f9f7"
+    },
+    {
+      "path": "engine-integration/test-summary.json",
+      "bytes": 497850,
+      "sha256": "6b8295f8d9e626a9ce35bae4e0b691976130dc8f9cd9b5df0eda2a182238b935"
+    }
+  ]
+}

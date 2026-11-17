@@ -35,7 +35,7 @@ with tarfile.open(archive, 'r:xz') as bundle:
 (RUNTIME / 'flutter').rename(destination)
 receipt = {'url': URL, 'archive_sha256': EXPECTED, 'archive_bytes': archive.stat().st_size,
            'sdk_root': str(destination), 'elapsed_seconds': time.monotonic() - start,
-           'telemetry_environment_required': {'DASH__SUPPRESS_ANALYTICS': 'true', 'CI': 'true'},
+           'telemetry_environment_required': {'DASH__SUPPRESS_ANALYTICS': 'true', 'FLUTTER_SUPPRESS_ANALYTICS': 'true', 'CI': 'true'},
            'telemetry_consent_changed': False}
 (RUNTIME / 'flutter-recovery.json').write_text(json.dumps(receipt, indent=2) + '\n')
 print(json.dumps(receipt), flush=True)
