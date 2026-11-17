@@ -81,7 +81,9 @@ void main() {
       // ODF 1.3 style-master-page is an ordered sequence. A default story
       // must precede its optional left and first variants, even when empty.
       expect(children.map((child) => child.localName), expected);
-      final text = {for (final child in children) child.localName: _text(child)};
+      final text = {
+        for (final child in children) child.localName: _text(child),
+      };
       expect(text['header'], defaults ? 'DefaultHeader' : '');
       expect(text['footer'], defaults ? 'DefaultFooter' : '');
       if (first) {

@@ -288,21 +288,45 @@ void main() {
     final anchor = _body(content).childElements.elementAt(1);
     expect(anchor.localName, 'p');
     expect(_master(content, anchor), isNull);
-    final properties = _style(content, anchor).firstChild('paragraph-properties')!;
-    expect(properties.getAttribute('margin-top', namespaceUri: _foNs), '0.00pt');
-    expect(properties.getAttribute('margin-bottom', namespaceUri: _foNs), '0.00pt');
+    final properties = _style(
+      content,
+      anchor,
+    ).firstChild('paragraph-properties')!;
+    expect(
+      properties.getAttribute('margin-top', namespaceUri: _foNs),
+      '0.00pt',
+    );
+    expect(
+      properties.getAttribute('margin-bottom', namespaceUri: _foNs),
+      '0.00pt',
+    );
     expect(properties.getAttribute('line-height', namespaceUri: _foNs), '1pt');
     final emitted = _elements(anchor, 'frame').single;
-    expect(emitted.getAttribute('anchor-type', namespaceUri: _textNs), 'paragraph');
+    expect(
+      emitted.getAttribute('anchor-type', namespaceUri: _textNs),
+      'paragraph',
+    );
     expect(emitted.getAttribute('x'), '36.00pt');
     expect(emitted.getAttribute('y'), '190.00pt');
     expect(emitted.getAttribute('width'), '210.00pt');
     expect(emitted.getAttribute('height'), '35.00pt');
     final graphic = _style(content, emitted).firstChild('graphic-properties')!;
-    expect(graphic.getAttribute('horizontal-rel', namespaceUri: _styleNs), 'page');
-    expect(graphic.getAttribute('vertical-rel', namespaceUri: _styleNs), 'page');
-    expect(_elements(emitted, 'bookmark-start').single.getAttribute('name'), 'FrameMark');
-    expect(_elements(emitted, 'bookmark-end').single.getAttribute('name'), 'FrameMark');
+    expect(
+      graphic.getAttribute('horizontal-rel', namespaceUri: _styleNs),
+      'page',
+    );
+    expect(
+      graphic.getAttribute('vertical-rel', namespaceUri: _styleNs),
+      'page',
+    );
+    expect(
+      _elements(emitted, 'bookmark-start').single.getAttribute('name'),
+      'FrameMark',
+    );
+    expect(
+      _elements(emitted, 'bookmark-end').single.getAttribute('name'),
+      'FrameMark',
+    );
     expect(document.sections.single.blocks[1], same(frame));
     expect(frame.x, 36);
     expect(frame.y, 190);

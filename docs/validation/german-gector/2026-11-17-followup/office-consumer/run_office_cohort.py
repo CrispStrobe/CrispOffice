@@ -29,6 +29,7 @@ odt_comment_fidelity_test.dart
 odt_complex_field_fidelity_test.dart
 odt_document_writer_test.dart
 odt_header_footer_fidelity_test.dart
+odt_header_variant_comment_fidelity_test.dart
 odt_header_variant_order_test.dart
 odt_inline_column_break_fidelity_test.dart
 odt_inline_field_fidelity_test.dart
@@ -67,7 +68,7 @@ parser.add_argument('--engine', type=Path, required=True)
 parser.add_argument('--source-repo', type=Path, required=True)
 parser.add_argument('--output', type=Path, required=True)
 parser.add_argument('--dart', default=shutil.which('dart'))
-parser.add_argument('--expected-count', type=int, default=699)
+parser.add_argument('--expected-count', type=int, default=703)
 args = parser.parse_args()
 engine = args.engine.resolve()
 repo = args.source_repo.resolve()
@@ -76,8 +77,8 @@ if not args.dart:
     raise SystemExit('Missing Dart executable')
 if output.exists():
     raise SystemExit('Output must be fresh; do not overwrite prior evidence')
-if len(FILES) != 50 or len(set(FILES)) != 50:
-    raise SystemExit('Cohort inventory is not exactly 50 distinct files')
+if len(FILES) != 51 or len(set(FILES)) != 51:
+    raise SystemExit('Cohort inventory is not exactly 51 distinct files')
 for name in FILES:
     if not (engine / 'test' / name).is_file():
         raise SystemExit('Missing cohort file: ' + name)

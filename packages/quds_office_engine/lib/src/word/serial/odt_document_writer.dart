@@ -396,7 +396,14 @@ abstract final class OdtDocumentWriter {
     final normalized = XmlWriter();
     root.writeTo(normalized);
     final commentReferences = [
-      for (final paragraphs in [section.header, section.footer])
+      for (final paragraphs in [
+        section.header,
+        section.evenHeader,
+        section.firstHeader,
+        section.footer,
+        section.evenFooter,
+        section.firstFooter,
+      ])
         [
           for (final paragraph in paragraphs)
             [
