@@ -1,0 +1,10 @@
+The decoder and source-edit alignment are translated/adapted from Proofbird's
+Apache-2.0 quickstart.py at model revision
+8e3b50beef7d775cedb7b876009e88bcf2e8d6af.
+Copyright attribution and Apache-2.0 license are retained in third_party/.
+Quds adds validation, Unicode source safety, conservative guards, bounded worker
+lifecycle and provider integration. These additions do not claim parity with
+unpublished Proofbird application guards.
+
+The cased WordPiece implementation follows BERT's public tokenizer semantics;
+it does not include ONNX Runtime or an ONNX execution dependency.
