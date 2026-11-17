@@ -15,7 +15,7 @@ import 'package:quds_proofing_gector/quds_proofing_gector_native.dart';
 /// read-only Quds dictionary and OfficeProofingService validation together.
 /// Assets are explicit local inputs; this tool downloads or installs nothing.
 Future<void> main(List<String> arguments) async {
-  final options = _arguments(arguments);
+  final options = gectorRunnerArguments(arguments);
   final output = File(options['output']!);
   if (output.existsSync()) {
     throw StateError('Refusing to overwrite an existing qualification report.');
@@ -50,11 +50,15 @@ Future<void> _run(
       ? Directory.fromUri(Platform.script.resolve('../../../'))
       : Directory(options['source-root']!).absolute;
   final segmentationTarget = options['segment-target-tokens'];
+  final reuseIdenticalInputs = options['reuse-identical-inputs'] == 'true';
   final decodeOptions = GectorDecodeOptions(
     segmentation: segmentationTarget == null
         ? null
         : GectorSegmentationOptions(
             targetTokens: int.parse(segmentationTarget),
+            inferenceReuse: reuseIdenticalInputs
+                ? GectorInferenceReuseOptions()
+                : null,
           ),
   );
   final segmentation = decodeOptions.segmentation;
@@ -73,6 +77,16 @@ Future<void> _run(
             'maximum_total_initial_tokens': segmentation.maximumTotalTokens,
             'maximum_total_forward_tokens':
                 segmentation.maximumTotalTokens * decodeOptions.maximumPasses,
+            'inference_reuse': switch (segmentation.inferenceReuse) {
+              final reuse? => {
+                'scope': 'one complete request',
+                'maximum_cached_inputs': reuse.maximumCachedInputs,
+                'maximum_cached_tokens': reuse.maximumCachedTokens,
+                'backend_capability': 'GectorDeterministicBackend',
+                'retained_values': 'immutable validated selected raw tags',
+              },
+              null => null,
+            },
           },
     'token_accounting': {
       'tokens_first_pass':
@@ -85,6 +99,10 @@ Future<void> _run(
       'initial_segments':
           'Complete original-source UTF-16 partition planned outside the '
           'measurement. Full worker planning remains inside each timed check.',
+      'decoder':
+          'Actual worker passes and source positions. Forward counts/tokens '
+          'exclude reused raw tags; decoded tokens include all logical passes. '
+          'The request cache is discarded before the next timed sample.',
     },
   };
   partial['decode_configuration'] = decodeConfiguration;
@@ -152,17 +170,23 @@ Future<void> _run(
     artifact: artifact,
   );
   final vocabulary = OfficeProofingVocabulary();
-  final provider = await GectorProofingProvider.load(
-    bundle: bundle,
-    backendFactory: GectorNativeBackendFactory(
-      modelDirectory: model.parent.path,
-      libraryPath: options['library']!,
-      librarySha256: options['library-sha256']!,
-      threads: 2,
+  final transport = _RecordingTransport(
+    await startGectorWorker(
+      bundle: bundle,
+      backendFactory: GectorNativeBackendFactory(
+        modelDirectory: model.parent.path,
+        libraryPath: options['library']!,
+        librarySha256: options['library-sha256']!,
+        threads: 2,
+      ),
+      lexiconFactory: const GectorGermanLexiconFactory(),
+      options: decodeOptions,
     ),
-    lexiconFactory: const GectorGermanLexiconFactory(),
+  );
+  final provider = GectorProofingProvider.withTransport(
+    transport: transport,
+    configuration: bundle.configuration,
     vocabulary: vocabulary,
-    options: decodeOptions,
   );
   final service = OfficeProofingService(providers: [provider]);
   setup.stop();
@@ -170,6 +194,7 @@ Future<void> _run(
   final probes = <Map<String, Object?>>[];
   final controls = <Map<String, Object?>>[];
   final segmentedProbes = <Map<String, Object?>>[];
+  final variedSegmentedProbes = <Map<String, Object?>>[];
   final segmentationControls = <Map<String, Object?>>[];
   final shortSamples = <double>[];
   partial.addAll({
@@ -179,6 +204,7 @@ Future<void> _run(
     'controls': controls,
     if (segmentation != null) ...{
       'segmented_long_complete_check_probes': segmentedProbes,
+      'varied_segmented_long_complete_check_probes': variedSegmentedProbes,
       'segmentation_controls': segmentationControls,
     },
   });
@@ -199,6 +225,7 @@ Future<void> _run(
       startOffset: startOffset,
       ignoredRuleIds: ignored,
     );
+    transport.reset();
     final timer = Stopwatch()..start();
     final report = await service.check(request);
     timer.stop();
@@ -225,6 +252,13 @@ Future<void> _run(
       'message': result.message,
       'corrected': corrected,
       'elapsed_ms': timer.elapsedMicroseconds / 1000,
+      'decoder': _decodeEvidence(transport.lastResult),
+      'decoder_observation': <String, Object?>{
+        'worker_requested': transport.requested,
+        'worker_result_received': transport.lastResult != null,
+        'worker_error': transport.lastError,
+        'diagnostics_available': transport.lastResult != null,
+      },
       'findings': [
         for (final finding in findings)
           {
@@ -254,7 +288,7 @@ Future<void> _run(
           run['status'] == runs.first['status'] &&
           jsonEncode(run['findings']) == jsonEncode(runs.first['findings']),
     );
-    final inputEvidence = _inputEvidence(text, bundle, decodeOptions);
+    final inputEvidence = gectorInputEvidence(text, bundle, decodeOptions);
     final samples = runs.map((r) => r['elapsed_ms']! as double).toList();
     return {
       ...runs.first,
@@ -263,6 +297,10 @@ Future<void> _run(
       'warmup': warmup,
       'stable_repeats': stable,
       'timing': _timing(samples),
+      'decoder_samples': <Object?>[for (final run in runs) run['decoder']],
+      'decoder_observation_samples': <Object?>[
+        for (final run in runs) run['decoder_observation'],
+      ],
     };
   }
 
@@ -404,6 +442,31 @@ Future<void> _run(
         segmentedProbes.add(probe);
       }
 
+      // Keep unique-input controls beside repeated boilerplate so a reuse
+      // improvement cannot be mistaken for general paragraph acceleration.
+      // These authored sentence combinations are structural controls; their
+      // outputs are retained without assuming model language correctness.
+      for (final target in <int>[640, 1280]) {
+        final text = gectorVariedSentences(target, bundle);
+        final probe = await measured('varied-sentences-up-to-$target', text);
+        probe.addAll(<String, Object?>{
+          'logical_token_budget': target,
+          'expected': text,
+          'matches_expected': probe['corrected'] == text,
+          'exceeds_single_sequence_capacity':
+              (probe['tokens_first_pass']! as int) >
+              decodeOptions.maximumTokens,
+          'initial_inputs_all_distinct':
+              probe['initial_distinct_model_inputs'] ==
+              probe['initial_segment_count'],
+          'interpretation':
+              'Unique synthetic sentence combinations. Operational stability '
+              'and complete coverage are checked; corrected strings and findings '
+              'are retained for separate comparison, not treated as quality proof.',
+        });
+        variedSegmentedProbes.add(probe);
+      }
+
       Future<void> segmentedControl(
         String id,
         String text, {
@@ -415,7 +478,7 @@ Future<void> _run(
         final result = await check(id, text, startOffset: startOffset);
         Map<String, Object?>? inputEvidence;
         try {
-          inputEvidence = _inputEvidence(text, bundle, decodeOptions);
+          inputEvidence = gectorInputEvidence(text, bundle, decodeOptions);
           result.addAll(inputEvidence);
           result['planning_admitted'] = true;
         } on GectorCapacityException catch (error) {
@@ -559,7 +622,21 @@ Future<void> _run(
                   r['source_coverage_complete'] == true,
             ) &&
             segmentationControls.every((r) => r['passed'] == true);
-  final allRequestedChecksPass = operationalPass && segmentationPass != false;
+  final variedSegmentationPass = segmentation == null
+      ? null
+      : variedSegmentedProbes.length == 2 &&
+            variedSegmentedProbes.every(
+              (probe) =>
+                  probe['status'] == 'success' &&
+                  probe['stable_repeats'] == true &&
+                  probe['exceeds_single_sequence_capacity'] == true &&
+                  probe['initial_inputs_all_distinct'] == true &&
+                  probe['source_coverage_complete'] == true,
+            );
+  final allRequestedChecksPass =
+      operationalPass &&
+      segmentationPass != false &&
+      variedSegmentationPass != false;
   final report = <String, Object?>{
     'schema_version': 1,
     'kind': 'quds-gector-native-dart-complete-check',
@@ -568,10 +645,11 @@ Future<void> _run(
     'operational_passed': operationalPass,
     'decode_configuration': decodeConfiguration,
     'segmentation_operational_passed': segmentationPass,
+    'varied_segmentation_operational_passed': variedSegmentationPass,
     'all_requested_checks_passed': allRequestedChecksPass,
     'operational_passed_scope':
         'The original frozen corpus, eight controls and three structural probes. '
-        'Opt-in segmentation additions are evaluated separately and also gate '
+        'Opt-in repeated and varied segmentation additions are evaluated separately and also gate '
         'all_requested_checks_passed and the process exit status.',
     'interpretation':
         'Guarded provider and service, including persistent-isolate '
@@ -618,6 +696,7 @@ Future<void> _run(
     'controls': controls,
     if (segmentation != null) ...{
       'segmented_long_complete_check_probes': segmentedProbes,
+      'varied_segmented_long_complete_check_probes': variedSegmentedProbes,
       'segmentation_controls': segmentationControls,
     },
   };
@@ -629,6 +708,7 @@ Future<void> _run(
     jsonEncode({
       'operational_passed': operationalPass,
       'segmentation_operational_passed': segmentationPass,
+      'varied_segmentation_operational_passed': variedSegmentationPass,
       'all_requested_checks_passed': allRequestedChecksPass,
       'cases': results.length,
       'controls': controls.length,
@@ -639,6 +719,86 @@ Future<void> _run(
     }),
   );
   if (!allRequestedChecksPass) exitCode = 1;
+}
+
+/// Observe the actual worker response while preserving the production provider
+/// and service validation path. Evidence serialization happens after timing.
+final class _RecordingTransport implements GectorTransport {
+  _RecordingTransport(this.delegate);
+  final GectorTransport delegate;
+  GectorDecodedText? lastResult;
+  String? lastError;
+  var requested = false;
+  var _generation = 0;
+
+  void reset() {
+    _generation++;
+    requested = false;
+    lastResult = null;
+    lastError = null;
+  }
+
+  @override
+  Future<GectorDecodedText> check(GectorCheckRequest request) async {
+    final generation = _generation;
+    requested = true;
+    try {
+      final result = await delegate.check(request);
+      if (_generation == generation) lastResult = result;
+      return result;
+    } on Object catch (error) {
+      if (_generation == generation) lastError = error.toString();
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> dispose() => delegate.dispose();
+}
+
+String _predictionFingerprint(List<String> words, GectorPreparedInput input) =>
+    sha256
+        .convert(
+          utf8.encode(
+            jsonEncode(<Object>[
+              words,
+              input.inputIds,
+              input.attentionMask,
+              input.firstSubwordIndices,
+            ]),
+          ),
+        )
+        .toString();
+
+Map<String, Object?>? _decodeEvidence(GectorDecodedText? decoded) {
+  if (decoded == null) return null;
+  return <String, Object?>{
+    'complete': decoded.complete,
+    'stop_reason': decoded.stopReason.name,
+    'segment_count': decoded.segmentCount,
+    'pass_count': decoded.passes.length,
+    'forward_count': decoded.forwardCount,
+    'forward_tokens': decoded.forwardTokens,
+    'decoded_tokens': decoded.decodedTokens,
+    'reused_pass_count': decoded.reusedPassCount,
+    'inference_microseconds': decoded.passes.fold<int>(
+      0,
+      (total, pass) => total + pass.inferenceMicroseconds,
+    ),
+    'passes': <Map<String, Object?>>[
+      for (final pass in decoded.passes)
+        <String, Object?>{
+          'source_start': pass.sourceStart,
+          'tokens': pass.input.tokenCount,
+          'prediction_input_sha256': _predictionFingerprint(
+            pass.words,
+            pass.input,
+          ),
+          'reused_inference': pass.reusedInference,
+          'inference_microseconds': pass.inferenceMicroseconds,
+        },
+    ],
+  };
 }
 
 /// The old single-source token count is additive per source word. Counting
@@ -660,7 +820,9 @@ int _logicalTokens(String text, GectorVerifiedBundle bundle) {
   }
 }
 
-Map<String, Object?> _inputEvidence(
+/// Source-only planning evidence, also exercised without a native model by the
+/// qualification-tool tests. This script helper is not a package API.
+Map<String, Object?> gectorInputEvidence(
   String text,
   GectorVerifiedBundle bundle,
   GectorDecodeOptions options,
@@ -672,6 +834,7 @@ Map<String, Object?> _inputEvidence(
       'tokens_first_pass': logicalTokens,
       'initial_model_tokens_total': logicalTokens,
       'initial_segment_count': 1,
+      'initial_distinct_model_inputs': 1,
       'initial_segments': [
         {'start': 0, 'end': text.length, 'tokens': logicalTokens},
       ],
@@ -689,6 +852,7 @@ Map<String, Object?> _inputEvidence(
   var cursor = 0;
   var complete = true;
   var actualTokens = 0;
+  final distinctInputs = <String>{};
   for (final segment in segments) {
     complete =
         complete &&
@@ -696,6 +860,14 @@ Map<String, Object?> _inputEvidence(
         text.substring(segment.start, segment.end) == segment.text;
     cursor = segment.end;
     actualTokens += segment.initialTokenCount;
+    final source = GectorSourceText(segment.text, bundle.configuration);
+    final words = source.words(source.plain);
+    distinctInputs.add(
+      _predictionFingerprint(
+        words,
+        bundle.tokenizer.encode(words, maximumTokens: options.maximumTokens),
+      ),
+    );
   }
   complete = complete && cursor == text.length;
   if (!complete) throw StateError('Planned segments do not cover the source.');
@@ -703,6 +875,7 @@ Map<String, Object?> _inputEvidence(
     'tokens_first_pass': logicalTokens,
     'initial_model_tokens_total': actualTokens,
     'initial_segment_count': segments.length,
+    'initial_distinct_model_inputs': distinctInputs.length,
     'initial_segments': [
       for (final segment in segments)
         {
@@ -730,6 +903,64 @@ String _repeatedSentences(int logicalBudget, GectorVerifiedBundle bundle) {
     throw StateError('Structural probe token accounting is inconsistent.');
   }
   return text;
+}
+
+/// Frozen authored combinations independent of model outputs. Every subject is
+/// singular and every predicate supplies its own grammatical object phrase.
+/// The source is retained in each receipt; the original frozen corpus is intact.
+String gectorVariedSentences(int logicalBudget, GectorVerifiedBundle bundle) {
+  const subjects = <String>[
+    'Die Lehrerin',
+    'Der Lehrer',
+    'Die Schülerin',
+    'Der Schüler',
+    'Die Ärztin',
+    'Der Arzt',
+    'Die Nachbarin',
+    'Der Nachbar',
+    'Die Mutter',
+    'Der Vater',
+    'Die Besucherin',
+    'Der Besucher',
+    'Die Mitarbeiterin',
+    'Der Mitarbeiter',
+    'Die Frau',
+    'Der Mann',
+  ];
+  const predicates = <String>[
+    'liest den Bericht.',
+    'prüft die Unterlagen.',
+    'öffnet das Fenster.',
+    'schließt die Tür.',
+    'schreibt einen Brief.',
+    'holt eine Tasse.',
+    'bringt das Papier.',
+    'ordnet die Bücher.',
+    'beantwortet die Frage.',
+    'zeichnet einen Kreis.',
+    'legt den Schlüssel auf den Tisch.',
+    'stellt die Tasche neben den Stuhl.',
+    'sucht das blaue Heft.',
+    'findet einen kurzen Text.',
+    'zeigt das neue Bild.',
+    'bespricht den nächsten Schritt.',
+  ];
+  var text = '';
+  for (var round = 0; round < predicates.length; round++) {
+    for (var subject = 0; subject < subjects.length; subject++) {
+      final sentence =
+          '${subjects[subject]} ${predicates[(round + subject) % predicates.length]}';
+      final next = text.isEmpty ? sentence : '$text $sentence';
+      if (_logicalTokens(next, bundle) > logicalBudget) {
+        if (text.isEmpty) {
+          throw ArgumentError('Varied probe budget is too small.');
+        }
+        return text;
+      }
+      text = next;
+    }
+  }
+  throw StateError('Varied sentence bank is smaller than the requested probe.');
 }
 
 Map<String, Object?> _map(Object? value) => value! as Map<String, Object?>;
@@ -789,7 +1020,8 @@ Future<Map<String, String>> _sources(Directory root) async {
   };
 }
 
-Map<String, String> _arguments(List<String> arguments) {
+/// Admission-only command parser, testable without opening model assets.
+Map<String, String> gectorRunnerArguments(List<String> arguments) {
   const required = {
     'bundle-dir',
     'model',
@@ -808,7 +1040,11 @@ Map<String, String> _arguments(List<String> arguments) {
     }
     final key = arguments[index].substring(2);
     if ((!required.contains(key) &&
-            !const {'source-root', 'segment-target-tokens'}.contains(key)) ||
+            !const {
+              'source-root',
+              'segment-target-tokens',
+              'reuse-identical-inputs',
+            }.contains(key)) ||
         result.containsKey(key)) {
       throw ArgumentError('Unknown or duplicated option: $key');
     }
@@ -821,6 +1057,16 @@ Map<String, String> _arguments(List<String> arguments) {
     final parsed = int.tryParse(target);
     if (parsed == null || parsed < 2 || parsed > 512) {
       throw ArgumentError('--segment-target-tokens must be between 2 and 512.');
+    }
+  }
+  if (result['reuse-identical-inputs'] case final reuse?) {
+    if (reuse != 'true' && reuse != 'false') {
+      throw ArgumentError('--reuse-identical-inputs must be true or false.');
+    }
+    if (reuse == 'true' && !result.containsKey('segment-target-tokens')) {
+      throw ArgumentError(
+        '--reuse-identical-inputs requires --segment-target-tokens.',
+      );
     }
   }
   return result;

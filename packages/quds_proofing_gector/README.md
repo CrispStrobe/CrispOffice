@@ -378,6 +378,17 @@ The full real-worker/provider path is exercised by the repository's separate
 `tools/proofing/german_model/run_gector_dart.dart` tool. These checks run locally
 without waiting for GitHub Actions.
 
+For a paired reuse measurement, run the same compiled runner with
+`--segment-target-tokens 64 --reuse-identical-inputs false` and then
+`--segment-target-tokens 64 --reuse-identical-inputs true`, keeping every other
+input identical. The runner records actual worker passes, their source starts,
+prediction-input fingerprints, native-forward counts and reuse counts for each
+timed sample. Complete-check timing still includes the real worker, provider and
+Office service; evidence serialization follows timing. The repeated-sentence
+probes are accompanied by separate varied, unique-input paragraph controls.
+Their operational coverage and stability are checked; their full findings are
+retained for language review and paired comparison rather than assumed correct.
+
 When compiling that tool to an executable outside the checkout, pass
 `--source-root /path/to/quds_office_suite` so its input hashes refer to the
 reviewed source. The report records the actual executable path and SHA-256
