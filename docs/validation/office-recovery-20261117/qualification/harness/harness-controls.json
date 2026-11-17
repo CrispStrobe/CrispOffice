@@ -1,0 +1,24 @@
+{
+  "scope": "Synthetic runner-event acceptance controls only; no application suites were executed.",
+  "runner_sha256": "5914db06da6ac78343b6da954a8ce415e0a8742de4c5683ad1c2b4c4d13c34a7",
+  "verification_script_sha256": "f9fe94792e5780140acb2e63231cb99ff9659606f51c16ec0ea4b1179777a36b",
+  "controls": {
+    "complete_success_accepted": true,
+    "unsuccessful_terminal_event_rejected": true,
+    "failed_assertion_rejected": true,
+    "unexpected_skip_rejected": true,
+    "unfinished_case_rejected": true,
+    "empty_suite_rejected": true,
+    "duplicate_completion_rejected": true,
+    "duplicate_start_rejected": true,
+    "missing_terminal_event_rejected": true,
+    "error_event_rejected": true,
+    "missing_selected_suite_rejected": true,
+    "private_fixture_early_returns_excluded_from_substantive_passes": true,
+    "named_optional_native_skip_accounted_separately": true,
+    "identical_node_case_identity_and_outcome_accepted": true,
+    "node_case_identity_change_rejected": true,
+    "node_case_outcome_change_rejected": true
+  },
+  "passed": true
+}

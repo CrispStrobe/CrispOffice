@@ -1,0 +1,3512 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-17T16:16:01.768123+00:00",
+  "audited_commit": "f29373cf29048a6a6b133e2e75628d58c4b2b23f",
+  "audited_tree": "40525a3f266691b4c4e7f5cc840f6105b3aa3783",
+  "method": "Independent read-only Git-object comparison at an explicit published checkpoint. Working-tree and uncommitted writer bytes were not used.",
+  "runtime_tests_executed": false,
+  "github_actions_queried_or_awaited": false,
+  "whole_repository_or_historical_import_closure_equivalence_claimed": false,
+  "ancestry": {
+    "method": "Each captured SHA is checked against the complete ancestor set from git rev-list of the explicit audited commit.",
+    "snapshot_sha256": "8d9872042003491e8a6e5ae8e24e58060d1f0ee5b8e0e7445953e3e8643d15c9",
+    "snapshot_observations": [
+      {
+        "remote": "origin",
+        "started_at": "2026-11-17T15:58:30.106900+00:00",
+        "completed_at": "2026-11-17T15:58:36.622916+00:00"
+      },
+      {
+        "remote": "upstream",
+        "started_at": "2026-11-17T15:58:30.109897+00:00",
+        "completed_at": "2026-11-17T15:58:36.682217+00:00"
+      }
+    ],
+    "named_references": 258,
+    "distinct_heads": 173,
+    "counts": {
+      "origin_branches": 136,
+      "origin_pull_heads": 114,
+      "upstream_branches": 4,
+      "upstream_pull_heads": 4
+    },
+    "refs": [
+      {
+        "remote": "origin",
+        "sha": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+        "ref": "refs/heads/codex/german-morphology-20261117",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+        "ref": "refs/heads/codex/odf-annotation-visibility-20261117",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "104b239c971ef3b2d62495a27ad04b519398a1fc",
+        "ref": "refs/heads/codex/office-continuation-20261117",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+        "ref": "refs/heads/codex/office-fidelity-20261117",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+        "ref": "refs/heads/codex/proofing-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+        "ref": "refs/heads/codex/proofing-20261116-resume",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+        "ref": "refs/heads/codex/proofing-en-de-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+        "ref": "refs/heads/codex/proofing-en-de-20261117",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+        "ref": "refs/heads/codex/proofing-en-hyphenation-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+        "ref": "refs/heads/codex/proofing-german-quality-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+        "ref": "refs/heads/codex/proofing-harper-source-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+        "ref": "refs/heads/codex/terminal-integration-ods-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+        "ref": "refs/heads/codex/terminal-recovery-office-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+        "ref": "refs/heads/codex/terminal-sharing-office-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+        "ref": "refs/heads/codex/text-rendering-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+        "ref": "refs/heads/codex/text-rendering-20261116-continuation",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+        "ref": "refs/heads/codex/zotero-capabilities-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+        "ref": "refs/heads/codex/zotero-optimization-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+        "ref": "refs/heads/codex/zotero-recovery-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+        "ref": "refs/heads/codex/zotero-support-20261115",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+        "ref": "refs/heads/codex/zotero-support-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+        "ref": "refs/heads/docs/conditional-top-bottom",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+        "ref": "refs/heads/docs/current-office-capabilities",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+        "ref": "refs/heads/docs/filter-operators",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+        "ref": "refs/heads/docs/filters-closed",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+        "ref": "refs/heads/docs/metadata-closed",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+        "ref": "refs/heads/docs/metadata-complete",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+        "ref": "refs/heads/docs/odp-presentation-writer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+        "ref": "refs/heads/docs/odp-transitions",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+        "ref": "refs/heads/docs/ods-filter-predicates",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+        "ref": "refs/heads/docs/ods-header-footer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+        "ref": "refs/heads/docs/ods-row-groups",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+        "ref": "refs/heads/docs/ods-writer-images",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+        "ref": "refs/heads/docs/odt-frame-size",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+        "ref": "refs/heads/docs/odt-image-registry",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+        "ref": "refs/heads/docs/odt-odp-rows",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4497c737623c1339d2422487d53941c20472bac9",
+        "ref": "refs/heads/docs/page-setup-fix",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+        "ref": "refs/heads/docs/readme-remaining-gaps",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+        "ref": "refs/heads/docs/remaining-gaps",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+        "ref": "refs/heads/docs/sheet-page-setup",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+        "ref": "refs/heads/docs/validation-complete",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+        "ref": "refs/heads/docs/validation-operators",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "20681b8658392212c128f51b4c91f0b638942448",
+        "ref": "refs/heads/feat/conditional-affix",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+        "ref": "refs/heads/feat/conditional-between",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+        "ref": "refs/heads/feat/conditional-dxf",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+        "ref": "refs/heads/feat/conditional-dxf-styles",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+        "ref": "refs/heads/feat/conditional-operators",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+        "ref": "refs/heads/feat/conditional-text",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+        "ref": "refs/heads/feat/conditional-top-bottom",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3",
+        "ref": "refs/heads/feat/german-gector-proofing",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+        "ref": "refs/heads/feat/odf-metadata",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+        "ref": "refs/heads/feat/odp-presentation-writer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+        "ref": "refs/heads/feat/odp-shape-links",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+        "ref": "refs/heads/feat/odp-transitions",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+        "ref": "refs/heads/feat/ods-conditional",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+        "ref": "refs/heads/feat/ods-custom-validation",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+        "ref": "refs/heads/feat/ods-default-geometry",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+        "ref": "refs/heads/feat/ods-default-style",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+        "ref": "refs/heads/feat/ods-filter-conditions",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+        "ref": "refs/heads/feat/ods-filter-operators",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+        "ref": "refs/heads/feat/ods-filter-predicates",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "331be9688e2de1feb52635490b534042dea10c27",
+        "ref": "refs/heads/feat/ods-header-footer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+        "ref": "refs/heads/feat/ods-hyperlinks",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+        "ref": "refs/heads/feat/ods-images",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+        "ref": "refs/heads/feat/ods-metadata",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+        "ref": "refs/heads/feat/ods-named-expressions",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+        "ref": "refs/heads/feat/ods-outline",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+        "ref": "refs/heads/feat/ods-row-groups",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+        "ref": "refs/heads/feat/ods-tab-color",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+        "ref": "refs/heads/feat/ods-validation-messages",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+        "ref": "refs/heads/feat/ods-validation-operators",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+        "ref": "refs/heads/feat/ods-validations",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+        "ref": "refs/heads/feat/ods-writer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+        "ref": "refs/heads/feat/ods-writer-conditional",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+        "ref": "refs/heads/feat/ods-writer-images",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+        "ref": "refs/heads/feat/ods-writer-metadata",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+        "ref": "refs/heads/feat/odt-comments",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+        "ref": "refs/heads/feat/odt-document-writer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+        "ref": "refs/heads/feat/odt-footnotes",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+        "ref": "refs/heads/feat/odt-links-bookmarks",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+        "ref": "refs/heads/feat/odt-lists",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "7686ec52876288e6799023fd686af79228236826",
+        "ref": "refs/heads/feat/odt-nested-lists",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+        "ref": "refs/heads/feat/odt-ordered-lists",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+        "ref": "refs/heads/feat/odt-page-fields",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+        "ref": "refs/heads/feat/odt-paragraph-shading",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+        "ref": "refs/heads/feat/odt-sections2",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+        "ref": "refs/heads/feat/sheet-hidden-sheets",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+        "ref": "refs/heads/feat/sheet-hidden-state",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+        "ref": "refs/heads/feat/sheet-page-setup",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+        "ref": "refs/heads/fix/ods-global-validations-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+        "ref": "refs/heads/fix/ods-writer-page-layout",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+        "ref": "refs/heads/fix/sdt-multi-section-control",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+        "ref": "refs/heads/fix/sdt-trailing-section-break",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+        "ref": "refs/heads/fix/utf16-custom-xml",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+        "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+        "ref": "refs/heads/main",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+        "ref": "refs/heads/vendor/conditional-dxf-styles",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+        "ref": "refs/heads/vendor/conditional-top-bottom",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+        "ref": "refs/heads/vendor/odf-metadata",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+        "ref": "refs/heads/vendor/odp-presentation-writer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+        "ref": "refs/heads/vendor/odp-shape-links",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+        "ref": "refs/heads/vendor/odp-transitions",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+        "ref": "refs/heads/vendor/ods-custom-validation",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+        "ref": "refs/heads/vendor/ods-filter-conditions",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+        "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+        "ref": "refs/heads/vendor/ods-filter-operators",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+        "ref": "refs/heads/vendor/ods-filter-predicates",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+        "ref": "refs/heads/vendor/ods-header-footer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+        "ref": "refs/heads/vendor/ods-hyperlinks",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+        "ref": "refs/heads/vendor/ods-hyperlinks-current",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+        "ref": "refs/heads/vendor/ods-metadata",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+        "ref": "refs/heads/vendor/ods-metadata-zotero",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "388a1c76339507d493bab577424affd80732446c",
+        "ref": "refs/heads/vendor/ods-named-expressions",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+        "ref": "refs/heads/vendor/ods-outline",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+        "ref": "refs/heads/vendor/ods-row-groups",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+        "ref": "refs/heads/vendor/ods-tab-color",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+        "ref": "refs/heads/vendor/ods-validation",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+        "ref": "refs/heads/vendor/ods-validation-current",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+        "ref": "refs/heads/vendor/ods-validation-messages",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+        "ref": "refs/heads/vendor/ods-writer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+        "ref": "refs/heads/vendor/ods-writer-conditional",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+        "ref": "refs/heads/vendor/ods-writer-images",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+        "ref": "refs/heads/vendor/ods-writer-metadata",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+        "ref": "refs/heads/vendor/ods-writer-page-layout",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+        "ref": "refs/heads/vendor/odt-comments",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+        "ref": "refs/heads/vendor/odt-document-writer",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+        "ref": "refs/heads/vendor/odt-footnotes",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+        "ref": "refs/heads/vendor/odt-links-bookmarks",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "94532021b720e3035022a2fed08ec88f48340892",
+        "ref": "refs/heads/vendor/odt-lists",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+        "ref": "refs/heads/vendor/odt-nested-lists",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+        "ref": "refs/heads/vendor/odt-ordered-lists",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+        "ref": "refs/heads/vendor/odt-ordered-lists2",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+        "ref": "refs/heads/vendor/odt-page-fields",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+        "ref": "refs/heads/vendor/odt-paragraph-shading",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+        "ref": "refs/heads/vendor/odt-sections",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+        "ref": "refs/heads/vendor/sheet-page-setup",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "54f0f8de01416640560519aa9d732f668f603709",
+        "ref": "refs/pull/1/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+        "ref": "refs/pull/10/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+        "ref": "refs/pull/100/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+        "ref": "refs/pull/101/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+        "ref": "refs/pull/102/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+        "ref": "refs/pull/103/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+        "ref": "refs/pull/104/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+        "ref": "refs/pull/105/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "7686ec52876288e6799023fd686af79228236826",
+        "ref": "refs/pull/106/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+        "ref": "refs/pull/107/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+        "ref": "refs/pull/108/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+        "ref": "refs/pull/109/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+        "ref": "refs/pull/11/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+        "ref": "refs/pull/110/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+        "ref": "refs/pull/111/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+        "ref": "refs/pull/112/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "104b239c971ef3b2d62495a27ad04b519398a1fc",
+        "ref": "refs/pull/113/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+        "ref": "refs/pull/114/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+        "ref": "refs/pull/12/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+        "ref": "refs/pull/13/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+        "ref": "refs/pull/14/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+        "ref": "refs/pull/15/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+        "ref": "refs/pull/16/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+        "ref": "refs/pull/17/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+        "ref": "refs/pull/18/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+        "ref": "refs/pull/19/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "08b09485588d2b6270f594a07c983689c087587d",
+        "ref": "refs/pull/2/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+        "ref": "refs/pull/20/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+        "ref": "refs/pull/21/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+        "ref": "refs/pull/22/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+        "ref": "refs/pull/23/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+        "ref": "refs/pull/24/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+        "ref": "refs/pull/25/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+        "ref": "refs/pull/26/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+        "ref": "refs/pull/27/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+        "ref": "refs/pull/28/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+        "ref": "refs/pull/29/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+        "ref": "refs/pull/3/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+        "ref": "refs/pull/30/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+        "ref": "refs/pull/31/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+        "ref": "refs/pull/32/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+        "ref": "refs/pull/33/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+        "ref": "refs/pull/34/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+        "ref": "refs/pull/35/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+        "ref": "refs/pull/36/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+        "ref": "refs/pull/37/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+        "ref": "refs/pull/38/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+        "ref": "refs/pull/39/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+        "ref": "refs/pull/4/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+        "ref": "refs/pull/40/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+        "ref": "refs/pull/41/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+        "ref": "refs/pull/42/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "20681b8658392212c128f51b4c91f0b638942448",
+        "ref": "refs/pull/43/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+        "ref": "refs/pull/44/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+        "ref": "refs/pull/45/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+        "ref": "refs/pull/46/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+        "ref": "refs/pull/47/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+        "ref": "refs/pull/48/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+        "ref": "refs/pull/49/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+        "ref": "refs/pull/5/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+        "ref": "refs/pull/50/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+        "ref": "refs/pull/51/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+        "ref": "refs/pull/52/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+        "ref": "refs/pull/53/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+        "ref": "refs/pull/54/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+        "ref": "refs/pull/55/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+        "ref": "refs/pull/56/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+        "ref": "refs/pull/57/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+        "ref": "refs/pull/58/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+        "ref": "refs/pull/59/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+        "ref": "refs/pull/6/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+        "ref": "refs/pull/60/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+        "ref": "refs/pull/61/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+        "ref": "refs/pull/62/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+        "ref": "refs/pull/63/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+        "ref": "refs/pull/64/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+        "ref": "refs/pull/65/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+        "ref": "refs/pull/66/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+        "ref": "refs/pull/67/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+        "ref": "refs/pull/68/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+        "ref": "refs/pull/69/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+        "ref": "refs/pull/7/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+        "ref": "refs/pull/70/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+        "ref": "refs/pull/71/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+        "ref": "refs/pull/72/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+        "ref": "refs/pull/73/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+        "ref": "refs/pull/74/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+        "ref": "refs/pull/75/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+        "ref": "refs/pull/76/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+        "ref": "refs/pull/77/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+        "ref": "refs/pull/78/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+        "ref": "refs/pull/79/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+        "ref": "refs/pull/8/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+        "ref": "refs/pull/80/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+        "ref": "refs/pull/81/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "4497c737623c1339d2422487d53941c20472bac9",
+        "ref": "refs/pull/82/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "331be9688e2de1feb52635490b534042dea10c27",
+        "ref": "refs/pull/83/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+        "ref": "refs/pull/84/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+        "ref": "refs/pull/85/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+        "ref": "refs/pull/86/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+        "ref": "refs/pull/87/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+        "ref": "refs/pull/88/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+        "ref": "refs/pull/89/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+        "ref": "refs/pull/9/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+        "ref": "refs/pull/90/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+        "ref": "refs/pull/91/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+        "ref": "refs/pull/92/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+        "ref": "refs/pull/93/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+        "ref": "refs/pull/94/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+        "ref": "refs/pull/95/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+        "ref": "refs/pull/96/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+        "ref": "refs/pull/97/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+        "ref": "refs/pull/98/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "origin",
+        "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+        "ref": "refs/pull/99/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "ref": "refs/heads/ci/flutter-workspace",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "ref": "refs/heads/cursor/class-certificates-2db8",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "ref": "refs/heads/main",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "ref": "refs/pull/1/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "ref": "refs/pull/5/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "ref": "refs/pull/6/head",
+        "is_ancestor": true
+      },
+      {
+        "remote": "upstream",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "ref": "refs/pull/7/head",
+        "is_ancestor": true
+      }
+    ],
+    "passed": true
+  },
+  "scoped_equalities": [
+    {
+      "name": "Completed fidelity evidence",
+      "donor_commit": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "scopes": [
+        "docs/validation/office-fidelity-lists-sections-20261117/"
+      ],
+      "explicitly_excluded_paths": [],
+      "scope_meaning": "Exact path-set, Git blob bytes, and mode equality only; no whole-repository or historical import-closure equivalence is claimed.",
+      "compared_paths": 51,
+      "equal_files": 51,
+      "equal_bytes": 5605328,
+      "files": {
+        "docs/validation/office-fidelity-lists-sections-20261117/FOLLOWUP_PR_DESCRIPTION.md": {
+          "mode": "100644",
+          "git_blob": "88ccfe641df51ca6a8da396e5ac4576ea27232f1",
+          "bytes": 3118
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/PR_DESCRIPTION.md": {
+          "mode": "100644",
+          "git_blob": "7c53227ad9df4faa6dcdea3bcfde9a720ffee890",
+          "bytes": 7617
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/README.md": {
+          "mode": "100644",
+          "git_blob": "398f3b29e0b11a2a8197d10b559695c91fec01a0",
+          "bytes": 12389
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/attempts/audit-before-scope-gates-passed.json": {
+          "mode": "100644",
+          "git_blob": "5636de42756e4306100a69740fb7b9f1540d4b7e",
+          "bytes": 15537
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/attempts/audit-prefix-adapter-failed.json": {
+          "mode": "100644",
+          "git_blob": "6d8d5a5c482f1c0ed2da983bf4bbe7b0904b4be7",
+          "bytes": 7605
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/attempts/audit-prefix-adapter-note.json": {
+          "mode": "100644",
+          "git_blob": "59c2e9e24fe958ad2c46c4d34c7820077d39e04e",
+          "bytes": 2571
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/attempts/frame-extraction-4fdac35-index.json": {
+          "mode": "100644",
+          "git_blob": "e3fb142441dd13245ee0fdda5cfc37f14863ac3d",
+          "bytes": 4694
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/attempts/frame-extraction-4fdac35.tar.xz": {
+          "mode": "100644",
+          "git_blob": "164a2b54bde1840ad265c1412929b762363c6240",
+          "bytes": 495216
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/check_review.py": {
+          "mode": "100644",
+          "git_blob": "976e6339f7265867ee7951bc679868b33e33b487",
+          "bytes": 45341
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/README.md": {
+          "mode": "100644",
+          "git_blob": "ef3d698e55ff5d47de15b51e2b987ad535772958",
+          "bytes": 11454
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/checker-controls.json": {
+          "mode": "100644",
+          "git_blob": "fac196161c924ce029626d1feb2bf5f0d37aaf2c",
+          "bytes": 2061
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/baseline-097-index.json": {
+          "mode": "100644",
+          "git_blob": "59fec2797afea2c79115e486ba517008cf1bc072",
+          "bytes": 30275
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/baseline-097.tar.xz": {
+          "mode": "100644",
+          "git_blob": "3a25aae4cc7cf1b750b33bd2971400dfa973beba",
+          "bytes": 488080
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-attempt-59b8-index.json": {
+          "mode": "100644",
+          "git_blob": "9fdb5f7571087881465de05b5522cd9f337970a9",
+          "bytes": 34754
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-attempt-59b8.tar.xz": {
+          "mode": "100644",
+          "git_blob": "bea670ce9712c61036377b34d8cf4f2aaf397ae2",
+          "bytes": 780744
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-consumers-cf60-index.json": {
+          "mode": "100644",
+          "git_blob": "bf042ed406eab5957a6cfea1d272594f45928c2f",
+          "bytes": 36157
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-consumers-cf60.tar.xz": {
+          "mode": "100644",
+          "git_blob": "72ed6bb3b9c3855d6075351199e02f27fc2ca613",
+          "bytes": 793796
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/heading-diagnostic-4fd-index.json": {
+          "mode": "100644",
+          "git_blob": "c4878da2d682c5b80399b239f320b6b1bf77875f",
+          "bytes": 4226
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/heading-diagnostic-4fd.tar.xz": {
+          "mode": "100644",
+          "git_blob": "524ca3384d6a6eddfab42a48c71229cd857d8347",
+          "bytes": 545856
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/final-receipt.json": {
+          "mode": "100644",
+          "git_blob": "afc3032abab4246cf2b49bc76cd3e36fc31f47af",
+          "bytes": 119826
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/make_fixtures.dart": {
+          "mode": "100644",
+          "git_blob": "81c13d9973811934addb6bbb2558dbe0e87084d6",
+          "bytes": 16684
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/schema-sources.json": {
+          "mode": "100644",
+          "git_blob": "71b8ef09ce010095a12d8d1ce3c8e7322e64ee20",
+          "bytes": 543
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/consumer/verify_consumers.py": {
+          "mode": "100644",
+          "git_blob": "acb3c53a9de49386e2807921a184147aaa42932f",
+          "bytes": 20218
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/extraction-correction/README.md": {
+          "mode": "100644",
+          "git_blob": "ba991fdcea0d21a07dbfe501f0a5552a9260182d",
+          "bytes": 3716
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/extraction-correction/extraction-correction.tar.xz": {
+          "mode": "100644",
+          "git_blob": "e34449d82432af80baebbf83a5c88c49c89a53f3",
+          "bytes": 493096
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/extraction-correction/manifest.json": {
+          "mode": "100644",
+          "git_blob": "a9c9f0fda0d02240ac3061fe5a062fffcfb66119",
+          "bytes": 6875
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/extraction-correction/reconstruction-check.json": {
+          "mode": "100644",
+          "git_blob": "d4dcd51e34cb201fc695c13f005b14cc80e0c33a",
+          "bytes": 202
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/extraction-correction/summary.json": {
+          "mode": "100644",
+          "git_blob": "f0b61d53548d8406edc99a0e531026424ee90ba9",
+          "bytes": 2546
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/README.md": {
+          "mode": "100644",
+          "git_blob": "a4ea337f260874961c22d53fb7c4c4fa22a647f5",
+          "bytes": 2786
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/incoming-validation.tar.xz": {
+          "mode": "100644",
+          "git_blob": "acdea2506c0e0ef9081bb8e051cd52799e0de3da",
+          "bytes": 870660
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/manifest.json": {
+          "mode": "100644",
+          "git_blob": "8408f50d4bc180ff1054731d697967b234e91798",
+          "bytes": 13385
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/reconstruction-check.json": {
+          "mode": "100644",
+          "git_blob": "5fce4d3aa12f21dfdd70a014319d5d0137a6559d",
+          "bytes": 202
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/summary.json": {
+          "mode": "100644",
+          "git_blob": "56a2368c244e79db9cc6e1dd6fc5af8edffe231c",
+          "bytes": 2560
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/verify_archive.py": {
+          "mode": "100644",
+          "git_blob": "0cfc1a775e66a4e93364c0497a65cd895656b111",
+          "bytes": 1477
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming/api-inventory.json": {
+          "mode": "100644",
+          "git_blob": "2b6a9398886bd8c23538ef44715212dfaa84b999",
+          "bytes": 69377
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming/git-fetch-inventory.json": {
+          "mode": "100644",
+          "git_blob": "f338a916bb59a4f4464dad731d89f4a5df759c78",
+          "bytes": 55290
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/incoming/integration.json": {
+          "mode": "100644",
+          "git_blob": "5097ef5d8d8080ec7a612546da0ab756713c6572",
+          "bytes": 1503
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/independent-code-review.json": {
+          "mode": "100644",
+          "git_blob": "a843301de8f6e946ce27df1e6276a50556489974",
+          "bytes": 1325
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/independent-review.json": {
+          "mode": "100644",
+          "git_blob": "95072ba72b2f19627fa64c2f12925de04099380a",
+          "bytes": 17091
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/proofing-equivalence-scope.json": {
+          "mode": "100644",
+          "git_blob": "d067215e11dca0a5b86af36ab7aee85b634550dd",
+          "bytes": 12593
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/publication-state.json": {
+          "mode": "100644",
+          "git_blob": "3248e526e373cb5cc0367b287386faa705720c2b",
+          "bytes": 1488
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/published-tree-review.json": {
+          "mode": "100644",
+          "git_blob": "76a5938c27638a2cbed098ac02079ca9669d52ad",
+          "bytes": 17091
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/README.md": {
+          "mode": "100644",
+          "git_blob": "4cc74c007147a8edc7cf1d1c1ab70dabbafb86f7",
+          "bytes": 4166
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/final-qualification-index.json": {
+          "mode": "100644",
+          "git_blob": "25281c659da358aae458466611387fc694c93f75",
+          "bytes": 8564
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/final-qualification.tar.xz": {
+          "mode": "100644",
+          "git_blob": "1298095136e7d567c4ad53da5f9d0cb1d2915fdd",
+          "bytes": 519016
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/local-source-checkpoints.bundle": {
+          "mode": "100644",
+          "git_blob": "8456679ec842fd2484e568282e4dce781401d4de",
+          "bytes": 7063
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/local-source-checkpoints.json": {
+          "mode": "100644",
+          "git_blob": "824179e90744a1020943a069117253ece5a2a320",
+          "bytes": 2542
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/summary.json": {
+          "mode": "100644",
+          "git_blob": "eda521d2d9507191db5d048375a753d91a2d6d15",
+          "bytes": 1166
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/qualification-preflight.json": {
+          "mode": "100644",
+          "git_blob": "c033a2963bdb848ebc4a73d9e6f8e1b561cc069e",
+          "bytes": 556
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/run_qualification.py": {
+          "mode": "100644",
+          "git_blob": "19b3006e9b6d98d8aae5fe771e6293813d83a24d",
+          "bytes": 9903
+        },
+        "docs/validation/office-fidelity-lists-sections-20261117/runtime/restoration.json": {
+          "mode": "100644",
+          "git_blob": "6e45094cc5083e4bf1e973d3b003c98dc98f1ad9",
+          "bytes": 327
+        }
+      },
+      "mismatches": {},
+      "passed": true
+    },
+    {
+      "name": "Preserved prior resume evidence",
+      "donor_commit": "8eb01db06c1457fa04ab3f3b8b2ef8fef791fb43",
+      "scopes": [
+        "docs/validation/office-fidelity-resume-20261117/"
+      ],
+      "explicitly_excluded_paths": [],
+      "scope_meaning": "Exact path-set, Git blob bytes, and mode equality only; no whole-repository or historical import-closure equivalence is claimed.",
+      "compared_paths": 83,
+      "equal_files": 83,
+      "equal_bytes": 3617117,
+      "files": {
+        "docs/validation/office-fidelity-resume-20261117/README.md": {
+          "mode": "100644",
+          "git_blob": "60cad3f6732634f44907f6ac29c51d23fa097cec",
+          "bytes": 13754
+        },
+        "docs/validation/office-fidelity-resume-20261117/check_consumer_evidence.py": {
+          "mode": "100644",
+          "git_blob": "5674e4d44bf7244a0ae8573e8df7380052f030ea",
+          "bytes": 19126
+        },
+        "docs/validation/office-fidelity-resume-20261117/consumer-qualification.json": {
+          "mode": "100644",
+          "git_blob": "c2144cadae17bd73b0be72965887293388e1cb8b",
+          "bytes": 21409
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/README.md": {
+          "mode": "100644",
+          "git_blob": "23249b1e141c5b0d1b59d3f873d7c53ad8fdc81d",
+          "bytes": 6062
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/build_pack.py": {
+          "mode": "100644",
+          "git_blob": "05dada8334ab92b0a7d0897f8a8d056c88467348",
+          "bytes": 21136
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/capture-provenance.json": {
+          "mode": "100644",
+          "git_blob": "d969abc01ceaba4be07b791a7b1f7ff682c44718",
+          "bytes": 15820
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/development-evidence.index.json": {
+          "mode": "100644",
+          "git_blob": "792ddad06202025a6aa5a721c1a7151dd206d81c",
+          "bytes": 60557
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/development-evidence.tar.xz.part-001": {
+          "mode": "100644",
+          "git_blob": "8f32a19c862d040db29e4d33d246d422b07f283f",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/development-evidence.tar.xz.part-002": {
+          "mode": "100644",
+          "git_blob": "a7b7a681dfe708f0512b0ec82248406ca7c40046",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/development-evidence.tar.xz.part-003": {
+          "mode": "100644",
+          "git_blob": "1280efd21f949ed9718a8d4800976450b9eea716",
+          "bytes": 51184
+        },
+        "docs/validation/office-fidelity-resume-20261117/development/publish-files.json": {
+          "mode": "100644",
+          "git_blob": "9282f41a5b2de7516d793a37ada5fbf44d62ca89",
+          "bytes": 1061
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/ancillary/gector-tooling.log": {
+          "mode": "100644",
+          "git_blob": "67909da460b5001e4bd2d4d66254cf244065fa44",
+          "bytes": 3352
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/ancillary/schema-sources.json": {
+          "mode": "100644",
+          "git_blob": "71b8ef09ce010095a12d8d1ce3c8e7322e64ee20",
+          "bytes": 543
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/editor.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "8a098735fadba02d929bb825c7566621841434fc",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/editor.tar.xz.part001": {
+          "mode": "100644",
+          "git_blob": "02f5429cc65bddd98245529ea511ccbb7f95826e",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/editor.tar.xz.part002": {
+          "mode": "100644",
+          "git_blob": "7eb8616592a9af1ba9d80fd6c984cf8635f8ce1a",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/editor.tar.xz.part003": {
+          "mode": "100644",
+          "git_blob": "09ff0ba75c5d2ce1dac1e671143323759618a93e",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/editor.tar.xz.part004": {
+          "mode": "100644",
+          "git_blob": "0195ec7b6f67f9b92036471e5351020c83ec2f61",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/editor.tar.xz.part005": {
+          "mode": "100644",
+          "git_blob": "d7b5bff8ee0696f70b2f29c67c5917da4b463400",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/editor.tar.xz.part006": {
+          "mode": "100644",
+          "git_blob": "0068bc5a5e5adef1d7781e86b5e9c14fa61ddf65",
+          "bytes": 23640
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/manifest.json": {
+          "mode": "100644",
+          "git_blob": "0337f9dd5969d49ed05f60751b1cf0b80c8193be",
+          "bytes": 4887
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/editor/summary.json": {
+          "mode": "100644",
+          "git_blob": "aa4828496a8c80159de63764cd3ecbab63b826a2",
+          "bytes": 1038
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "75a15bdd8abf8cfd11fc1ead30a4cbefd0e79610",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part001": {
+          "mode": "100644",
+          "git_blob": "06e7b5e054177ab8d49d3c417d90e01a008786d0",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part002": {
+          "mode": "100644",
+          "git_blob": "c1e9a0e1e65f03e5783ea8627b752a7a98d7805b",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part003": {
+          "mode": "100644",
+          "git_blob": "68be0321bebf14611bb0eabe7b82652138b93600",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part004": {
+          "mode": "100644",
+          "git_blob": "b3dc2b94279fd604c80aea51fbfd868e3101a72c",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part005": {
+          "mode": "100644",
+          "git_blob": "5dea4210411d18e791598182a5d26a1fc5a1256e",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part006": {
+          "mode": "100644",
+          "git_blob": "69ecde3c0f9d2ff7f35f3dd0add9bc512d009815",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/engine.tar.xz.part007": {
+          "mode": "100644",
+          "git_blob": "86d2681ea873f5e72b0430bceb1c8d8b25e9db11",
+          "bytes": 9244
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/manifest.json": {
+          "mode": "100644",
+          "git_blob": "f6c83760bb1f92db0980b1ae43fcb4fc5545e8a0",
+          "bytes": 16127
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/engine/summary.json": {
+          "mode": "100644",
+          "git_blob": "94e4144db6e56a86d0c7a026e5e28ab1e05ab4c0",
+          "bytes": 1040
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/fixture-generation/fixture-generation.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "38ce21b2e977996a445fb9a5ee6d735bb696247e",
+          "bytes": 8844
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/fixture-generation/manifest.json": {
+          "mode": "100644",
+          "git_blob": "7e87bed99576a0d1aca70c55c167b17f694d8a7d",
+          "bytes": 2138
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/fixture-generation/summary.json": {
+          "mode": "100644",
+          "git_blob": "1e3f6ba5d41b62b59fb8fba8ccf43826df1bcd03",
+          "bytes": 275
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/harper.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "1fa2bab409a71cd2318d88d346510b7e9ba1062d",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/harper.tar.xz.part001": {
+          "mode": "100644",
+          "git_blob": "bbbc88a6008bbfa522f670464d7fd34140aeb5a4",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/harper.tar.xz.part002": {
+          "mode": "100644",
+          "git_blob": "f6939df6c23503c72106d635d1afb7ec9dc9e7db",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/harper.tar.xz.part003": {
+          "mode": "100644",
+          "git_blob": "34fae08e0abb8fb62fffd39dd14e124ee2dd8e41",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/harper.tar.xz.part004": {
+          "mode": "100644",
+          "git_blob": "1cd6d7a0728d590805dce153edbdc3e95e3e561b",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/harper.tar.xz.part005": {
+          "mode": "100644",
+          "git_blob": "19f5fc437e15885813dd9e5d30bfc7087e1b4e5d",
+          "bytes": 5688
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/manifest.json": {
+          "mode": "100644",
+          "git_blob": "0a0ad171353837911a67d1e1f517524b4bc684bd",
+          "bytes": 3575
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/harper/summary.json": {
+          "mode": "100644",
+          "git_blob": "60f2a3cde82d2a69e65a959baf660498481ce894",
+          "bytes": 1036
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/manifest.json": {
+          "mode": "100644",
+          "git_blob": "44b8037a5dfaa4ad876eb2ac079b76f9365b35de",
+          "bytes": 3908
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/node.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "81bd76a6d9ef652038bc95ad31f1fc5f31101ba8",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/node.tar.xz.part001": {
+          "mode": "100644",
+          "git_blob": "a49b7b042a7fe8716ab648cc2e6ad105f0445a80",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/node.tar.xz.part002": {
+          "mode": "100644",
+          "git_blob": "f3de2a0a18d5aaf31b6007aea1e9fcfa8f8660c8",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/node.tar.xz.part003": {
+          "mode": "100644",
+          "git_blob": "a5eb086c3736cf469f49c377ce4e5b2ba544b61f",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/node.tar.xz.part004": {
+          "mode": "100644",
+          "git_blob": "e6d4e72cc807cbd791a2e8ba547a0e5cda9e8642",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/node.tar.xz.part005": {
+          "mode": "100644",
+          "git_blob": "705ee2b05b476b8c9bb926961512c7968237dd1d",
+          "bytes": 11768
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/node/summary.json": {
+          "mode": "100644",
+          "git_blob": "6ec85d6e0098ee64dd22134589533223b057fa55",
+          "bytes": 1036
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-consumer/manifest.json": {
+          "mode": "100644",
+          "git_blob": "40c43fcd4015f784af93729da117b88442561aa6",
+          "bytes": 69657
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-consumer/odf-consumer-initial.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "9829b91f78535228ba940590899cff97bdacea3f",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-consumer/odf-consumer-initial.tar.xz.part001": {
+          "mode": "100644",
+          "git_blob": "0cd6b229d4e6c72f21e646f30e964b40a95327a8",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-consumer/odf-consumer-initial.tar.xz.part002": {
+          "mode": "100644",
+          "git_blob": "66807b087c34d4b1f6995de1899dd8922d1397c9",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-consumer/odf-consumer-initial.tar.xz.part003": {
+          "mode": "100644",
+          "git_blob": "b57bd1f0048077d4f402c625034517fe38d99c39",
+          "bytes": 19708
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-consumer/summary.json": {
+          "mode": "100644",
+          "git_blob": "8525a7904f752a9b0c9aed0b21f9e9624282ea38",
+          "bytes": 276
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-rtl-correction/manifest.json": {
+          "mode": "100644",
+          "git_blob": "4d5e0eda39bcd6703cd1fcad838053f7330fac11",
+          "bytes": 3911
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-rtl-correction/odf-rtl-correction.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "e7f4bfe9ae82e231ac4fb7af12eeac5bc60eafd9",
+          "bytes": 11804
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/odf-rtl-correction/summary.json": {
+          "mode": "100644",
+          "git_blob": "cb6e101588d5c4fb2e33d978afe343188da76a9e",
+          "bytes": 275
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/rotation-consumer/manifest.json": {
+          "mode": "100644",
+          "git_blob": "a9ad9871df27b65c05be26955275caa50c88b7a8",
+          "bytes": 23371
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/rotation-consumer/rotation-consumer.tar.xz.part000": {
+          "mode": "100644",
+          "git_blob": "52f5b40ca395ca50eee2a3c58b6b8041050e905b",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/rotation-consumer/rotation-consumer.tar.xz.part001": {
+          "mode": "100644",
+          "git_blob": "ba3f290773dc7bb0918c0b59baaf226ac177e03d",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/rotation-consumer/rotation-consumer.tar.xz.part002": {
+          "mode": "100644",
+          "git_blob": "9d1ed14d7bd389e39b27d4cfe0099c551405e5d4",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/rotation-consumer/rotation-consumer.tar.xz.part003": {
+          "mode": "100644",
+          "git_blob": "3a45ef8e8064c78021a63efc79430021e0e83a6b",
+          "bytes": 90000
+        },
+        "docs/validation/office-fidelity-resume-20261117/evidence/rotation-consumer/rotation-consumer.tar.xz.part004": {
+          "mode": "100644",
+          "git_blob": "e57f41061bd563a3061bbd73c2c558339bf064f5",
+          "bytes": 36128
+        },
+        "docs/validation/office-fidelity-resume-20261117/generate_fixtures.py": {
+          "mode": "100644",
+          "git_blob": "07309b8ec61cb3cb221709ac482000000690faac",
+          "bytes": 3854
+        },
+        "docs/validation/office-fidelity-resume-20261117/incoming/all-observations.json": {
+          "mode": "100644",
+          "git_blob": "20dbfe4ce1698eecc081f7a3db8fb40be1e31b51",
+          "bytes": 36066
+        },
+        "docs/validation/office-fidelity-resume-20261117/incoming/integration.json": {
+          "mode": "100644",
+          "git_blob": "26cc8276da8a14a76bb5a62fc1b7392f37e03846",
+          "bytes": 1533
+        },
+        "docs/validation/office-fidelity-resume-20261117/incoming/origin-observation.json": {
+          "mode": "100644",
+          "git_blob": "deb9ef6b5970615f8237b0d50046570363f0f7eb",
+          "bytes": 25592
+        },
+        "docs/validation/office-fidelity-resume-20261117/incoming/origin-refs.tsv": {
+          "mode": "100644",
+          "git_blob": "aacd461204f83f1af8d2f0d7547712447c0b2c9e",
+          "bytes": 15516
+        },
+        "docs/validation/office-fidelity-resume-20261117/incoming/upstream-observation.json": {
+          "mode": "100644",
+          "git_blob": "b42ceeee03b44f791adeba98ad4ec9a1e828fe14",
+          "bytes": 1117
+        },
+        "docs/validation/office-fidelity-resume-20261117/incoming/upstream-refs.tsv": {
+          "mode": "100644",
+          "git_blob": "37fe987db91c27a3d43b35c9c93797051b34278b",
+          "bytes": 536
+        },
+        "docs/validation/office-fidelity-resume-20261117/independent-consumer-review.json": {
+          "mode": "100644",
+          "git_blob": "1fa8755cdade3925c1c0072427f25c449bef2516",
+          "bytes": 4022
+        },
+        "docs/validation/office-fidelity-resume-20261117/independent-review.json": {
+          "mode": "100644",
+          "git_blob": "88c93c6b674d32b88b8724f79c5e8f15cc1387a1",
+          "bytes": 27837
+        },
+        "docs/validation/office-fidelity-resume-20261117/published-tree-review.json": {
+          "mode": "100644",
+          "git_blob": "9150312cd1d7726812b33e769b60ffa11e86a4fb",
+          "bytes": 27837
+        },
+        "docs/validation/office-fidelity-resume-20261117/rtl-verifier-controls.json": {
+          "mode": "100644",
+          "git_blob": "855bcd8866c4b557683c021b8bc7a6bfe1875ec8",
+          "bytes": 4532
+        },
+        "docs/validation/office-fidelity-resume-20261117/runtime/runtime-receipt.json": {
+          "mode": "100644",
+          "git_blob": "0e96d613846b4cc68bd6f2ef96c19dc6be905fa5",
+          "bytes": 19146
+        },
+        "docs/validation/office-fidelity-resume-20261117/runtime/setup.tar.gz": {
+          "mode": "100644",
+          "git_blob": "0a4f4d64e9e2e949691c4a699303a4780e02e1ca",
+          "bytes": 23849
+        },
+        "docs/validation/office-fidelity-resume-20261117/summarize_consumers.py": {
+          "mode": "100644",
+          "git_blob": "168c70b143eaebe7e5e012fc6c37c2db3afec5b2",
+          "bytes": 7657
+        },
+        "docs/validation/office-fidelity-resume-20261117/unpack_evidence.py": {
+          "mode": "100644",
+          "git_blob": "36fb16c56151c478be0d0012a84e1d4e38a5b7c3",
+          "bytes": 3502
+        },
+        "docs/validation/office-fidelity-resume-20261117/verify_consumers.py": {
+          "mode": "100644",
+          "git_blob": "17bc12d2fd6d052d0c5c5c99a34f27b861f4c191",
+          "bytes": 22723
+        },
+        "docs/validation/office-fidelity-resume-20261117/verify_receipts.py": {
+          "mode": "100644",
+          "git_blob": "8c592389724f983d33a482e6f7680cb6a54d5281",
+          "bytes": 38420
+        }
+      },
+      "mismatches": {},
+      "passed": true
+    },
+    {
+      "name": "Engine proofing production, generated data, manifests, generators and tests",
+      "donor_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "scopes": [
+        "packages/quds_office_engine/lib/src/proofing/",
+        "packages/quds_office_engine/third_party/proofing/",
+        "packages/quds_office_engine/tool/proofing/",
+        "packages/quds_office_engine/test/proofing/"
+      ],
+      "explicitly_excluded_paths": [],
+      "scope_meaning": "Exact path-set, Git blob bytes, and mode equality only; no whole-repository or historical import-closure equivalence is claimed.",
+      "compared_paths": 71,
+      "equal_files": 71,
+      "equal_bytes": 7190170,
+      "files": {
+        "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": {
+          "mode": "100644",
+          "git_blob": "e7ae59260194924fa3bf7e48ddcfcbc834da9ea8",
+          "bytes": 1063
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": {
+          "mode": "100644",
+          "git_blob": "035283d30116ad6c848a08bf1ff8ca37c731f704",
+          "bytes": 1301
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": {
+          "mode": "100644",
+          "git_blob": "5287953366acf63968cdec7f66605cf8416d0e0a",
+          "bytes": 11140
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": {
+          "mode": "100644",
+          "git_blob": "43e1dbc0ac110707da8984608490661251296ff4",
+          "bytes": 307328
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": {
+          "mode": "100644",
+          "git_blob": "e3050865ca705f94b0553e5871bb39467386c7ae",
+          "bytes": 301522
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": {
+          "mode": "100644",
+          "git_blob": "0bf6559f479135c6a98a73babb78e2ba6fa0f769",
+          "bytes": 296308
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": {
+          "mode": "100644",
+          "git_blob": "9901985b01388b3faf9a367d1538c3abe226f5b6",
+          "bytes": 300464
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": {
+          "mode": "100644",
+          "git_blob": "5d010c01599665c5fcb440ae6c0f0de0eacd0a7a",
+          "bytes": 309271
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": {
+          "mode": "100644",
+          "git_blob": "5d21a1853b52ad0bf55b5a65ac840d2efba560ac",
+          "bytes": 303988
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": {
+          "mode": "100644",
+          "git_blob": "38a9c3bb0edfc9d61c139e80b8903c4adb600d05",
+          "bytes": 305729
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": {
+          "mode": "100644",
+          "git_blob": "3c4761844c0ace6ace0bbfb7a62ab69c1f144b17",
+          "bytes": 303942
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": {
+          "mode": "100644",
+          "git_blob": "5c1f7431ad9b473b3df0ae8cecc2121cce943604",
+          "bytes": 300133
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": {
+          "mode": "100644",
+          "git_blob": "41c44d85c8e57778f391662914b676548efa657e",
+          "bytes": 302803
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": {
+          "mode": "100644",
+          "git_blob": "3ef5578de1ffdb2b73429d9356a8e50d9ca3b0f8",
+          "bytes": 299802
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": {
+          "mode": "100644",
+          "git_blob": "a62224edb71e62ddb00caed6ea6be3b22d7c62c5",
+          "bytes": 301814
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": {
+          "mode": "100644",
+          "git_blob": "65d0f798c21561ea4c031ff521b332a6d7294d78",
+          "bytes": 302834
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": {
+          "mode": "100644",
+          "git_blob": "72c3e2103ad6c801c0938a912bb6438d22a68624",
+          "bytes": 305852
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": {
+          "mode": "100644",
+          "git_blob": "9d9aa1c0174393be82ba265341aad15efaa8b9ec",
+          "bytes": 303083
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": {
+          "mode": "100644",
+          "git_blob": "b8184cfc67639b140c8899ed161ab892159db029",
+          "bytes": 306127
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": {
+          "mode": "100644",
+          "git_blob": "04c3c29326db061b112056929620f0c945d9f383",
+          "bytes": 163837
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": {
+          "mode": "100644",
+          "git_blob": "23626dd5de7a13cc47a343db868406b07141d3d3",
+          "bytes": 165122
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": {
+          "mode": "100644",
+          "git_blob": "39dcf2dddb717030d42334e5df980a2620906ed8",
+          "bytes": 165901
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": {
+          "mode": "100644",
+          "git_blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+          "bytes": 166111
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": {
+          "mode": "100644",
+          "git_blob": "88d250fb4b76f9b839cf6014444206988d21ca67",
+          "bytes": 165344
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": {
+          "mode": "100644",
+          "git_blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+          "bytes": 163612
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": {
+          "mode": "100644",
+          "git_blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+          "bytes": 135863
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": {
+          "mode": "100644",
+          "git_blob": "1de49879083874f929be5057caf23c859bbdc348",
+          "bytes": 110772
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": {
+          "mode": "100644",
+          "git_blob": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+          "bytes": 111087
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": {
+          "mode": "100644",
+          "git_blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+          "bytes": 114516
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": {
+          "mode": "100644",
+          "git_blob": "e21532a43d39cbc79489198d1453c824af41b431",
+          "bytes": 114867
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": {
+          "mode": "100644",
+          "git_blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+          "bytes": 111510
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": {
+          "mode": "100644",
+          "git_blob": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+          "bytes": 108499
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": {
+          "mode": "100644",
+          "git_blob": "565a4e8df2db99547454b22882d030ad0628ce57",
+          "bytes": 63903
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": {
+          "mode": "100644",
+          "git_blob": "bf40de2844f45e770a41db1493e2d9f667622701",
+          "bytes": 42552
+        },
+        "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": {
+          "mode": "100644",
+          "git_blob": "bb2a2a3a92c214080ac4ed07ebf556e38e8909a7",
+          "bytes": 40837
+        },
+        "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": {
+          "mode": "100644",
+          "git_blob": "7ce803bb3653956f14ea8258a83ce6975adf4259",
+          "bytes": 11115
+        },
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": {
+          "mode": "100644",
+          "git_blob": "647bfce55d0e8e87151749c65621e5fc8180bc13",
+          "bytes": 33667
+        },
+        "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": {
+          "mode": "100644",
+          "git_blob": "12bf2f08d09c307a44420d3f9becdb122c8b4347",
+          "bytes": 39152
+        },
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": {
+          "mode": "100644",
+          "git_blob": "c370f8cfc08a0e6feed535c4eedbd202fb3b491d",
+          "bytes": 17110
+        },
+        "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": {
+          "mode": "100644",
+          "git_blob": "1422a652db9a8880b714feac495736394cfbcc9a",
+          "bytes": 3906
+        },
+        "packages/quds_office_engine/test/proofing/german_agreement_context_test.dart": {
+          "mode": "100644",
+          "git_blob": "a0bc05d62676bd27dc0c477a697bfd73041428b3",
+          "bytes": 11890
+        },
+        "packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart": {
+          "mode": "100644",
+          "git_blob": "c38ba49fe06a2ba58c9d85b8f5c8ec40679aaac7",
+          "bytes": 10101
+        },
+        "packages/quds_office_engine/test/proofing/german_grammar_test.dart": {
+          "mode": "100644",
+          "git_blob": "1b4fcc74f0cb722ee45fe8363edbf6778f3e4006",
+          "bytes": 16401
+        },
+        "packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart": {
+          "mode": "100644",
+          "git_blob": "3aa5fb7ae5f80b57c93aeefa998825b741b06e33",
+          "bytes": 3340
+        },
+        "packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart": {
+          "mode": "100644",
+          "git_blob": "735759d45f45d2070019c18990f33b3ab2839f7d",
+          "bytes": 1419
+        },
+        "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart": {
+          "mode": "100644",
+          "git_blob": "2cb50ace04184349e0a0af19d9f6c84ce53b8466",
+          "bytes": 9274
+        },
+        "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart": {
+          "mode": "100644",
+          "git_blob": "74001eb5253ce42f58a31e2b0eb0fbe4777b4d05",
+          "bytes": 4122
+        },
+        "packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart": {
+          "mode": "100644",
+          "git_blob": "7cec924068e0e056e54b8a899a5771eb1bece500",
+          "bytes": 5675
+        },
+        "packages/quds_office_engine/test/proofing/german_spelling_test.dart": {
+          "mode": "100644",
+          "git_blob": "f3f6038f6759637ef803f33176bea2e88f79ce66",
+          "bytes": 26435
+        },
+        "packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart": {
+          "mode": "100644",
+          "git_blob": "764b6f7e64de52922e9a37b5b7150742d38e417e",
+          "bytes": 10934
+        },
+        "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": {
+          "mode": "100644",
+          "git_blob": "fafd1d065c79e1cc9822b1f747d6f3415bdfa225",
+          "bytes": 40064
+        },
+        "packages/quds_office_engine/test/proofing/office_proofing_test.dart": {
+          "mode": "100644",
+          "git_blob": "2ed9f8623b4f628fa6c5426671a1ca93f7cf9791",
+          "bytes": 10888
+        },
+        "packages/quds_office_engine/test/proofing/proofing_locale_test.dart": {
+          "mode": "100644",
+          "git_blob": "a24057208e87292b1fa755b18e49d7cd6d2b5901",
+          "bytes": 5824
+        },
+        "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart": {
+          "mode": "100644",
+          "git_blob": "db5e736658f89c93004060070e50d3f60b2f1def",
+          "bytes": 12575
+        },
+        "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart": {
+          "mode": "100644",
+          "git_blob": "5e0e6fb46d74b2cb92531e40b4e594d1e1aacff3",
+          "bytes": 3554
+        },
+        "packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md": {
+          "mode": "100644",
+          "git_blob": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+          "bytes": 18635
+        },
+        "packages/quds_office_engine/third_party/proofing/QUDS_WORDS_LICENSE": {
+          "mode": "100644",
+          "git_blob": "9ee31c3e226a95df5c6e5ca40523517bb7f29e4a",
+          "bytes": 1081
+        },
+        "packages/quds_office_engine/third_party/proofing/README.md": {
+          "mode": "100644",
+          "git_blob": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+          "bytes": 5098
+        },
+        "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE": {
+          "mode": "100644",
+          "git_blob": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+          "bytes": 2033
+        },
+        "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE": {
+          "mode": "100644",
+          "git_blob": "c153af4006e223a00071957bdde4ad6c36685581",
+          "bytes": 2198
+        },
+        "packages/quds_office_engine/third_party/proofing/WORTLISTE_LICENSE": {
+          "mode": "100644",
+          "git_blob": "42f6b7e7baac0b9d5d0fbc2ddecf8fe82f338e13",
+          "bytes": 2606
+        },
+        "packages/quds_office_engine/third_party/proofing/manifest.json": {
+          "mode": "100644",
+          "git_blob": "a65ef2541f85ddf6de678d942d4e961846a76c48",
+          "bytes": 4263
+        },
+        "packages/quds_office_engine/third_party/proofing/morphology_manifest.json": {
+          "mode": "100644",
+          "git_blob": "e5b7a07d0ee5d47a71db450407467b37030034b0",
+          "bytes": 9059
+        },
+        "packages/quds_office_engine/tool/proofing/generate_english_hyphenation.py": {
+          "mode": "100644",
+          "git_blob": "95937b0ab77f983b98bdd13cfa8bdcfe1a5f23c9",
+          "bytes": 5374
+        },
+        "packages/quds_office_engine/tool/proofing/generate_german_lexicon.py": {
+          "mode": "100644",
+          "git_blob": "a74c792de975f7c1d20c25ee64968e991874274c",
+          "bytes": 8428
+        },
+        "packages/quds_office_engine/tool/proofing/generate_german_morphology.py": {
+          "mode": "100644",
+          "git_blob": "11f80a861997eb2d9a74aeeaa7484a51efacba81",
+          "bytes": 20903
+        },
+        "packages/quds_office_engine/tool/proofing/generate_hyphenation.py": {
+          "mode": "100644",
+          "git_blob": "d5332a5326d1a5a9e02331957039b257cfcdef25",
+          "bytes": 1345
+        },
+        "packages/quds_office_engine/tool/proofing/german_common_words.txt": {
+          "mode": "100644",
+          "git_blob": "e11f32aa0bde7ff3ba4a114f858e350816d665f9",
+          "bytes": 9399
+        },
+        "packages/quds_office_engine/tool/proofing/german_js_smoke.dart": {
+          "mode": "100644",
+          "git_blob": "e024338de9cb8c41abc62cc09715a3146d042f1c",
+          "bytes": 3054
+        },
+        "packages/quds_office_engine/tool/proofing/validate_hyphenation.py": {
+          "mode": "100644",
+          "git_blob": "7debf84b785ec1acca713f40f105ec2971f6e07f",
+          "bytes": 5230
+        },
+        "packages/quds_office_engine/tool/proofing/verify_german.py": {
+          "mode": "100644",
+          "git_blob": "a5c299d8df9f5b123252edbacf8dde793ef2b85e",
+          "bytes": 5181
+        }
+      },
+      "mismatches": {},
+      "passed": true
+    },
+    {
+      "name": "Complete optional GECToR package",
+      "donor_commit": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3",
+      "scopes": [
+        "packages/quds_proofing_gector/"
+      ],
+      "explicitly_excluded_paths": [],
+      "scope_meaning": "Exact path-set, Git blob bytes, and mode equality only; no whole-repository or historical import-closure equivalence is claimed.",
+      "compared_paths": 40,
+      "equal_files": 40,
+      "equal_bytes": 827673,
+      "files": {
+        "packages/quds_proofing_gector/CHANGELOG.md": {
+          "mode": "100644",
+          "git_blob": "6ce251f7e9216ae90360a13ca3fb33bbe379b38b",
+          "bytes": 1248
+        },
+        "packages/quds_proofing_gector/LICENSE": {
+          "mode": "100644",
+          "git_blob": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+          "bytes": 1056
+        },
+        "packages/quds_proofing_gector/NOTICE": {
+          "mode": "100644",
+          "git_blob": "c8f1b0580eec00139eccfa6b7d7d2242a2133029",
+          "bytes": 583
+        },
+        "packages/quds_proofing_gector/README.md": {
+          "mode": "100644",
+          "git_blob": "7780eb5e695a037d791af30103fb4dc5f101e429",
+          "bytes": 18421
+        },
+        "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": {
+          "mode": "100644",
+          "git_blob": "855ad79c55db258911be432bb4bd0d7db04d651a",
+          "bytes": 451
+        },
+        "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart": {
+          "mode": "100644",
+          "git_blob": "518802d25f4ab95ba40770784fe12c5b48e84588",
+          "bytes": 222
+        },
+        "packages/quds_proofing_gector/lib/src/backend.dart": {
+          "mode": "100644",
+          "git_blob": "0f5316ecf09db5a5194fdf471548e5bc93e86b90",
+          "bytes": 5233
+        },
+        "packages/quds_proofing_gector/lib/src/bundle.dart": {
+          "mode": "100644",
+          "git_blob": "8ca166749da68cdd84a9a3fd201a9c13d4ccd83f",
+          "bytes": 9405
+        },
+        "packages/quds_proofing_gector/lib/src/decoder.dart": {
+          "mode": "100644",
+          "git_blob": "a9467213bd1c9728aae6b4a7ac5d1f49628f200f",
+          "bytes": 14524
+        },
+        "packages/quds_proofing_gector/lib/src/guards.dart": {
+          "mode": "100644",
+          "git_blob": "eb7ef7944a29d3c3ff5e889311f85bbf4742ac34",
+          "bytes": 16443
+        },
+        "packages/quds_proofing_gector/lib/src/lexicon.dart": {
+          "mode": "100644",
+          "git_blob": "cffa2781a4e893fddf52b8e2360ee63f26477eb2",
+          "bytes": 884
+        },
+        "packages/quds_proofing_gector/lib/src/native_backend.dart": {
+          "mode": "100644",
+          "git_blob": "47c877ffd336197aadf56514fb3019204274cc88",
+          "bytes": 10194
+        },
+        "packages/quds_proofing_gector/lib/src/provider.dart": {
+          "mode": "100644",
+          "git_blob": "e374abafb7da0a506e10e76966ab5c535f25e352",
+          "bytes": 7409
+        },
+        "packages/quds_proofing_gector/lib/src/segmentation.dart": {
+          "mode": "100644",
+          "git_blob": "ddc4013c71112af7332acf5bdaf7dea53fca6413",
+          "bytes": 11984
+        },
+        "packages/quds_proofing_gector/lib/src/source_text.dart": {
+          "mode": "100644",
+          "git_blob": "f914f276392b9f9967d967f8166091b085798fe2",
+          "bytes": 10358
+        },
+        "packages/quds_proofing_gector/lib/src/tokenizer.dart": {
+          "mode": "100644",
+          "git_blob": "f37e0fb2beb670420d459e16c7f72d6fb8f4b03a",
+          "bytes": 6878
+        },
+        "packages/quds_proofing_gector/lib/src/transport.dart": {
+          "mode": "100644",
+          "git_blob": "d97cc2cded433503e3bf28fc0c9b86478685ac09",
+          "bytes": 1534
+        },
+        "packages/quds_proofing_gector/lib/src/unicode_case.dart": {
+          "mode": "100644",
+          "git_blob": "8ae73420b992e19553a5c2c533d406000e5eeae3",
+          "bytes": 3237
+        },
+        "packages/quds_proofing_gector/lib/src/worker_native.dart": {
+          "mode": "100644",
+          "git_blob": "19c62a410eee757e656d4a372478152044bea051",
+          "bytes": 12981
+        },
+        "packages/quds_proofing_gector/lib/src/worker_unsupported.dart": {
+          "mode": "100644",
+          "git_blob": "76df52a28239ae8b23c574f39f9da85e254be945",
+          "bytes": 679
+        },
+        "packages/quds_proofing_gector/pubspec.yaml": {
+          "mode": "100644",
+          "git_blob": "483c4c391100368154eac40db9c2a6e50b7707ad",
+          "bytes": 377
+        },
+        "packages/quds_proofing_gector/test/bundle_test.dart": {
+          "mode": "100644",
+          "git_blob": "8a0f217c6dd56390f973a3868603d5b741413978",
+          "bytes": 2118
+        },
+        "packages/quds_proofing_gector/test/decoder_test.dart": {
+          "mode": "100644",
+          "git_blob": "37b941324cf351ce06c60d0b2b35f06f89e861f7",
+          "bytes": 8282
+        },
+        "packages/quds_proofing_gector/test/fixtures/README.md": {
+          "mode": "100644",
+          "git_blob": "773895cafe7c5c139b07d889e7e32a305efa66f4",
+          "bytes": 1792
+        },
+        "packages/quds_proofing_gector/test/fixtures/decoder_oracle.json": {
+          "mode": "100644",
+          "git_blob": "0ac55ce0e1dbefd9d67acb2157eb2b08c3420a89",
+          "bytes": 33402
+        },
+        "packages/quds_proofing_gector/test/fixtures/proofbird_metadata.json.gz": {
+          "mode": "100644",
+          "git_blob": "5f2bfdf143e0e73fc522fe31fd10aac29de7f79e",
+          "bytes": 523767
+        },
+        "packages/quds_proofing_gector/test/fixtures/tokenizer_oracle.json": {
+          "mode": "100644",
+          "git_blob": "d89f23c0b44ab34c33630a9491182cf9b74fba39",
+          "bytes": 6859
+        },
+        "packages/quds_proofing_gector/test/guards_test.dart": {
+          "mode": "100644",
+          "git_blob": "a496309286ec964a1f57a77677989b5046483418",
+          "bytes": 8090
+        },
+        "packages/quds_proofing_gector/test/incremental_quality_test.dart": {
+          "mode": "100644",
+          "git_blob": "9bd3aeefd4f8ec6de9da4fb493c79217d2f25aef",
+          "bytes": 15663
+        },
+        "packages/quds_proofing_gector/test/native_backend_test.dart": {
+          "mode": "100644",
+          "git_blob": "56a83859377ee6efe86c8c83fb207a1360e84905",
+          "bytes": 3741
+        },
+        "packages/quds_proofing_gector/test/provider_test.dart": {
+          "mode": "100644",
+          "git_blob": "335c95144ba34e1d6d16ea6a0529c6cd7bcd75d2",
+          "bytes": 15647
+        },
+        "packages/quds_proofing_gector/test/segmentation_test.dart": {
+          "mode": "100644",
+          "git_blob": "794e58f1b17024238523d5242871b4ac26d167b1",
+          "bytes": 13466
+        },
+        "packages/quds_proofing_gector/test/segmented_decoder_test.dart": {
+          "mode": "100644",
+          "git_blob": "122feabdf9072fdadd5844d40820689fdb4e1694",
+          "bytes": 12603
+        },
+        "packages/quds_proofing_gector/test/source_text_test.dart": {
+          "mode": "100644",
+          "git_blob": "901a474580f3e31c1e5d1b3cadac5ea4aae9327a",
+          "bytes": 2476
+        },
+        "packages/quds_proofing_gector/test/support.dart": {
+          "mode": "100644",
+          "git_blob": "b749be1a448aee90db4b0417bbc5814a736faade",
+          "bytes": 3962
+        },
+        "packages/quds_proofing_gector/test/tokenizer_test.dart": {
+          "mode": "100644",
+          "git_blob": "46b562d382632bae5d5d1c2ae2c55ca1e5a86691",
+          "bytes": 972
+        },
+        "packages/quds_proofing_gector/test/worker_test.dart": {
+          "mode": "100644",
+          "git_blob": "885136ae4d9120f581ff9aa816a757fcac44088c",
+          "bytes": 16476
+        },
+        "packages/quds_proofing_gector/third_party/PROOFBIRD_LICENSE": {
+          "mode": "100644",
+          "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+          "bytes": 11358
+        },
+        "packages/quds_proofing_gector/third_party/PROOFBIRD_NOTICE": {
+          "mode": "100644",
+          "git_blob": "9eddd1c7afac84f993f57d7543f61d7587eb0152",
+          "bytes": 444
+        },
+        "packages/quds_proofing_gector/tool/replay_reference.dart": {
+          "mode": "100644",
+          "git_blob": "be3eb8f2f377446568d69591068789cedeab2713",
+          "bytes": 12454
+        }
+      },
+      "mismatches": {},
+      "passed": true
+    },
+    {
+      "name": "Inherited GECToR tooling with explicit newer morphology additions",
+      "donor_commit": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3",
+      "scopes": [
+        "tools/proofing/german_model/"
+      ],
+      "explicitly_excluded_paths": [
+        "tools/proofing/german_model/INCREMENTAL_QUALITY.md",
+        "tools/proofing/german_model/README.md",
+        "tools/proofing/german_model/evaluate_guarded_onnx.dart",
+        "tools/proofing/german_model/onnx_probe_backend.py"
+      ],
+      "scope_meaning": "Exact path-set, Git blob bytes, and mode equality only; no whole-repository or historical import-closure equivalence is claimed.",
+      "compared_paths": 30,
+      "equal_files": 30,
+      "equal_bytes": 377407,
+      "files": {
+        "tools/proofing/german_model/LOCAL_PROVIDER.md": {
+          "mode": "100644",
+          "git_blob": "dbf15618607edff7a8e4616b8fa5e2f07ba1bb89",
+          "bytes": 6245
+        },
+        "tools/proofing/german_model/NATIVE_PACK.md": {
+          "mode": "100644",
+          "git_blob": "74e744b535cdaa8b712c763107585a23517eeb4c",
+          "bytes": 4892
+        },
+        "tools/proofing/german_model/PROSPECTIVE_CASES.md": {
+          "mode": "100644",
+          "git_blob": "429b89fef87835d7291a048709ca760488765190",
+          "bytes": 4627
+        },
+        "tools/proofing/german_model/REFERENCE_FIXTURES.md": {
+          "mode": "100644",
+          "git_blob": "30e47c38467f4ce09acf75f86e55e56bd3cad739",
+          "bytes": 9057
+        },
+        "tools/proofing/german_model/artifacts.json": {
+          "mode": "100644",
+          "git_blob": "7e2750199183bcad22645ca1b59ee65b37a91db0",
+          "bytes": 3428
+        },
+        "tools/proofing/german_model/build_gector_aot.py": {
+          "mode": "100644",
+          "git_blob": "78a6ec3b73e283603cffbecc46cbf6faf939c098",
+          "bytes": 13030
+        },
+        "tools/proofing/german_model/build_native_pack.py": {
+          "mode": "100644",
+          "git_blob": "b1361069ee544fc1fdb7e88cdf212516676fd447",
+          "bytes": 16510
+        },
+        "tools/proofing/german_model/cases.json": {
+          "mode": "100644",
+          "git_blob": "80d159cee37fe677eeacaecf279d1d0b01bf7cc8",
+          "bytes": 3088
+        },
+        "tools/proofing/german_model/compare_guarded_provider.py": {
+          "mode": "100644",
+          "git_blob": "73e676692fe5bb011db270297b1f10cda5eecf51",
+          "bytes": 26805
+        },
+        "tools/proofing/german_model/evaluate.py": {
+          "mode": "100644",
+          "git_blob": "02e4917cd18b0d1eaf5f394d889095907cc2ea14",
+          "bytes": 5111
+        },
+        "tools/proofing/german_model/export_reference.py": {
+          "mode": "100644",
+          "git_blob": "1e09ea18a921f35f0f26124fb729616120908674",
+          "bytes": 22145
+        },
+        "tools/proofing/german_model/incremental_quality.dart": {
+          "mode": "100644",
+          "git_blob": "8a52dbcd8baee98dffe71e18b2f57c76ac7761e0",
+          "bytes": 16270
+        },
+        "tools/proofing/german_model/prospective_cases_20261117.json": {
+          "mode": "100644",
+          "git_blob": "cf3ee6ec58f438c7599611ad317aeaf8bf0a8204",
+          "bytes": 15488
+        },
+        "tools/proofing/german_model/qualify_native.py": {
+          "mode": "100644",
+          "git_blob": "4fe8df2a28e55bd9de23a56daecf72f86028c4b7",
+          "bytes": 46103
+        },
+        "tools/proofing/german_model/quantize_int4.py": {
+          "mode": "100644",
+          "git_blob": "5cec5d8efc9667144703223ffebc151eb0434892",
+          "bytes": 12973
+        },
+        "tools/proofing/german_model/requirements-qualification.txt": {
+          "mode": "100644",
+          "git_blob": "ed0e992562c51b67e6d45958ad9ab0846099996c",
+          "bytes": 184
+        },
+        "tools/proofing/german_model/requirements.txt": {
+          "mode": "100644",
+          "git_blob": "4ba75111a8d9c078c44e2c597be6d413a2b95d1b",
+          "bytes": 76
+        },
+        "tools/proofing/german_model/run_gector_dart.dart": {
+          "mode": "100644",
+          "git_blob": "963aedf430735804bc81c7e4c28876c29ecf2ef3",
+          "bytes": 30518
+        },
+        "tools/proofing/german_model/run_incremental_quality.dart": {
+          "mode": "100644",
+          "git_blob": "f7d83ed89b2cf3888fc925dbacd911322cfdf598",
+          "bytes": 12118
+        },
+        "tools/proofing/german_model/run_stage.py": {
+          "mode": "100644",
+          "git_blob": "a11dba1062c93dfd7628c9542f65f325e475c224",
+          "bytes": 4542
+        },
+        "tools/proofing/german_model/summarize_qualification.py": {
+          "mode": "100644",
+          "git_blob": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+          "bytes": 15581
+        },
+        "tools/proofing/german_model/test_export_reference.py": {
+          "mode": "100644",
+          "git_blob": "023325e7c52ab2ce34f00b0ae864e6755a07b590",
+          "bytes": 10663
+        },
+        "tools/proofing/german_model/test_gector_aot_build.py": {
+          "mode": "100644",
+          "git_blob": "82935c04df9dc4a11214627ce7bce71839ba1e27",
+          "bytes": 16822
+        },
+        "tools/proofing/german_model/test_guarded_provider_comparison.py": {
+          "mode": "100644",
+          "git_blob": "fe7444a83109f8451eb7fa6c590d9836bd794de3",
+          "bytes": 16281
+        },
+        "tools/proofing/german_model/test_native_pack.py": {
+          "mode": "100644",
+          "git_blob": "db94f581bb8390a6a3db970d559a9f1a15abe02c",
+          "bytes": 10350
+        },
+        "tools/proofing/german_model/test_native_qualification.py": {
+          "mode": "100644",
+          "git_blob": "2c4d8ae9187d9d90e92969a0b118dd6f1f12008e",
+          "bytes": 20388
+        },
+        "tools/proofing/german_model/test_qualification.py": {
+          "mode": "100644",
+          "git_blob": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+          "bytes": 9564
+        },
+        "tools/proofing/german_model/vendor/LICENSE": {
+          "mode": "100644",
+          "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+          "bytes": 11358
+        },
+        "tools/proofing/german_model/vendor/NOTICE": {
+          "mode": "100644",
+          "git_blob": "9eddd1c7afac84f993f57d7543f61d7587eb0152",
+          "bytes": 444
+        },
+        "tools/proofing/german_model/vendor/quickstart.py": {
+          "mode": "100644",
+          "git_blob": "f36323aec4b3a1b95346534be0ef6748a002dfd2",
+          "bytes": 12746
+        }
+      },
+      "mismatches": {},
+      "passed": true
+    },
+    {
+      "name": "Four newer morphology tooling/doc paths",
+      "donor_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "scopes": [
+        "tools/proofing/german_model/INCREMENTAL_QUALITY.md",
+        "tools/proofing/german_model/README.md",
+        "tools/proofing/german_model/evaluate_guarded_onnx.dart",
+        "tools/proofing/german_model/onnx_probe_backend.py"
+      ],
+      "explicitly_excluded_paths": [],
+      "scope_meaning": "Exact path-set, Git blob bytes, and mode equality only; no whole-repository or historical import-closure equivalence is claimed.",
+      "compared_paths": 4,
+      "equal_files": 4,
+      "equal_bytes": 21323,
+      "files": {
+        "tools/proofing/german_model/INCREMENTAL_QUALITY.md": {
+          "mode": "100644",
+          "git_blob": "e635f7b3d4a5e98ebabd6efc134fdef52f614b0e",
+          "bytes": 5318
+        },
+        "tools/proofing/german_model/README.md": {
+          "mode": "100644",
+          "git_blob": "7355c052270366554fabbf25deed762f81e9d96d",
+          "bytes": 6879
+        },
+        "tools/proofing/german_model/evaluate_guarded_onnx.dart": {
+          "mode": "100644",
+          "git_blob": "a26a47091ce87fbb22a9e7493b1b62f2d7090300",
+          "bytes": 7707
+        },
+        "tools/proofing/german_model/onnx_probe_backend.py": {
+          "mode": "100644",
+          "git_blob": "25cd96df2808421763a54c718dfcee0f8dbc3191",
+          "bytes": 1419
+        }
+      },
+      "mismatches": {},
+      "passed": true
+    },
+    {
+      "name": "Latest German evidence retained across shading vendor merge",
+      "donor_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "scopes": [
+        "docs/validation/german-options-20261117/README.md",
+        "docs/validation/german-options-20261117/evidence-index.json",
+        "docs/validation/german-options-20261117/evidence.tar.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/build.json.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/frozen.json.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/prospective.json.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/summary.json",
+        "tools/proofing/german_model/README.md"
+      ],
+      "explicitly_excluded_paths": [],
+      "scope_meaning": "Exact path-set, Git blob bytes, and mode equality only; no whole-repository or historical import-closure equivalence is claimed.",
+      "compared_paths": 8,
+      "equal_files": 8,
+      "equal_bytes": 326382,
+      "files": {
+        "docs/validation/german-options-20261117/README.md": {
+          "mode": "100644",
+          "git_blob": "9339b22fe0a29448971f2dd45d401d74bee8627a",
+          "bytes": 7877
+        },
+        "docs/validation/german-options-20261117/evidence-index.json": {
+          "mode": "100644",
+          "git_blob": "e00a050442a67a029e65cec320b6b27cc0f8e329",
+          "bytes": 16538
+        },
+        "docs/validation/german-options-20261117/evidence.tar.gz": {
+          "mode": "100644",
+          "git_blob": "3cf431afd63494f26968c63995b3a1cd2656b011",
+          "bytes": 140607
+        },
+        "docs/validation/german-proofing-next-20261117/baseline/build.json.gz": {
+          "mode": "100644",
+          "git_blob": "896b7ba744e861ce8f24aa71bcdfef2ad44fb853",
+          "bytes": 14016
+        },
+        "docs/validation/german-proofing-next-20261117/baseline/frozen.json.gz": {
+          "mode": "100644",
+          "git_blob": "6ce62116a49bafbb27d56876ad15c3fef893e953",
+          "bytes": 16552
+        },
+        "docs/validation/german-proofing-next-20261117/baseline/prospective.json.gz": {
+          "mode": "100644",
+          "git_blob": "f2da9a9d3d2510f36b5e8446cc7b29bc1e7ab507",
+          "bytes": 24615
+        },
+        "docs/validation/german-proofing-next-20261117/baseline/summary.json": {
+          "mode": "100644",
+          "git_blob": "9f24a3cc54e0a757529607f81deefc2ab02641b8",
+          "bytes": 99298
+        },
+        "tools/proofing/german_model/README.md": {
+          "mode": "100644",
+          "git_blob": "7355c052270366554fabbf25deed762f81e9d96d",
+          "bytes": 6879
+        }
+      },
+      "mismatches": {},
+      "passed": true
+    }
+  ],
+  "generated_manifest_checks": [
+    {
+      "path": "packages/quds_office_engine/third_party/proofing/manifest.json",
+      "sha256": "439e0c1e2892746d3986c1065d33a592edd371a2a1f9c85fd5bb8c3a0c2393cf",
+      "generated_files": {
+        "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": {
+          "expected_sha256": "68b4d849635c1f6587f7e58e4c3bcb2fc03ad9c72c10265fa0bf122fec846bfa",
+          "actual_sha256": "68b4d849635c1f6587f7e58e4c3bcb2fc03ad9c72c10265fa0bf122fec846bfa",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": {
+          "expected_sha256": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+          "actual_sha256": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": {
+          "expected_sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+          "actual_sha256": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": {
+          "expected_sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+          "actual_sha256": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": {
+          "expected_sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+          "actual_sha256": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": {
+          "expected_sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+          "actual_sha256": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": {
+          "expected_sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+          "actual_sha256": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": {
+          "expected_sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+          "actual_sha256": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": {
+          "expected_sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+          "actual_sha256": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": {
+          "expected_sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+          "actual_sha256": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": {
+          "expected_sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+          "actual_sha256": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": {
+          "expected_sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+          "actual_sha256": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": {
+          "expected_sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+          "actual_sha256": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": {
+          "expected_sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+          "actual_sha256": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": {
+          "expected_sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+          "actual_sha256": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": {
+          "expected_sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+          "actual_sha256": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": {
+          "expected_sha256": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+          "actual_sha256": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "path": "packages/quds_office_engine/third_party/proofing/morphology_manifest.json",
+      "sha256": "2957d1462cca375fa9ce58fb11e5933f0711ebf201b9eebd67e9ce1ab56e77b1",
+      "generated_files": {
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": {
+          "expected_sha256": "2def2223516731f632e5ab4a37f94377142d0644a5df5f50964fefaa92b2d193",
+          "actual_sha256": "2def2223516731f632e5ab4a37f94377142d0644a5df5f50964fefaa92b2d193",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": {
+          "expected_sha256": "cd79dee10538a3fa7ec47246e35dd45a3535720202c7e146e66f844523fd51bc",
+          "actual_sha256": "cd79dee10538a3fa7ec47246e35dd45a3535720202c7e146e66f844523fd51bc",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": {
+          "expected_sha256": "39c3bf9d907cdccdbfb0cc64c06ad76f2c0272790b4747626325d43f7497e7f4",
+          "actual_sha256": "39c3bf9d907cdccdbfb0cc64c06ad76f2c0272790b4747626325d43f7497e7f4",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": {
+          "expected_sha256": "5af756aff60cbc4a77425f1a1e5d48d712231b9892aa1d646af46b4e6c034a59",
+          "actual_sha256": "5af756aff60cbc4a77425f1a1e5d48d712231b9892aa1d646af46b4e6c034a59",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": {
+          "expected_sha256": "ec59197668f522895e525879f1acf1cd9d52c27740dda4d17293e95b28208bcf",
+          "actual_sha256": "ec59197668f522895e525879f1acf1cd9d52c27740dda4d17293e95b28208bcf",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": {
+          "expected_sha256": "6cace804210b0f52008da94ededb29692cc5a39041976aa4e999d17dfedfe2f4",
+          "actual_sha256": "6cace804210b0f52008da94ededb29692cc5a39041976aa4e999d17dfedfe2f4",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": {
+          "expected_sha256": "cd70267d1d9580aa6b9a46e56b006ac961e614f0c6103d8850aa9b091b0b8627",
+          "actual_sha256": "cd70267d1d9580aa6b9a46e56b006ac961e614f0c6103d8850aa9b091b0b8627",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": {
+          "expected_sha256": "afc12eeb4b6772d262451802f12758c955607ed6239adca1ef63c0e335f62e9f",
+          "actual_sha256": "afc12eeb4b6772d262451802f12758c955607ed6239adca1ef63c0e335f62e9f",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": {
+          "expected_sha256": "773e74ed12d9891f1fc1b83c0cd4dcd33675c745edccee35e3fa42ea2004a839",
+          "actual_sha256": "773e74ed12d9891f1fc1b83c0cd4dcd33675c745edccee35e3fa42ea2004a839",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": {
+          "expected_sha256": "bc34d24db3703a5f4bc7fdb73e5f91f269316db17ad0f375e656cf838d0713d2",
+          "actual_sha256": "bc34d24db3703a5f4bc7fdb73e5f91f269316db17ad0f375e656cf838d0713d2",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": {
+          "expected_sha256": "4ee5929fca1b20454093614cf3fc9f733c6a246dbb24e7d2865f56aa7829762e",
+          "actual_sha256": "4ee5929fca1b20454093614cf3fc9f733c6a246dbb24e7d2865f56aa7829762e",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": {
+          "expected_sha256": "5800bdb1c6f699fb2d7080e4d3c5327734724ba0212465aba019c3c37eba9b50",
+          "actual_sha256": "5800bdb1c6f699fb2d7080e4d3c5327734724ba0212465aba019c3c37eba9b50",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": {
+          "expected_sha256": "06f35af0a008762feea1b0529867f5f60a4b11c4fa6365734b534a4672d6d829",
+          "actual_sha256": "06f35af0a008762feea1b0529867f5f60a4b11c4fa6365734b534a4672d6d829",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": {
+          "expected_sha256": "104de822d57601b57eb0626ed49b33f5ad71c5923459121de94a447c17a7e991",
+          "actual_sha256": "104de822d57601b57eb0626ed49b33f5ad71c5923459121de94a447c17a7e991",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": {
+          "expected_sha256": "8e6dc9e9e3c174af9719f3ec8f1814972dec97f9a6e41d481b54ff29650d0c72",
+          "actual_sha256": "8e6dc9e9e3c174af9719f3ec8f1814972dec97f9a6e41d481b54ff29650d0c72",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": {
+          "expected_sha256": "fbfc005247f5dd9bcb50347e2f32707e6b46233e6465ceff85cb3962dd8d9cde",
+          "actual_sha256": "fbfc005247f5dd9bcb50347e2f32707e6b46233e6465ceff85cb3962dd8d9cde",
+          "passed": true
+        },
+        "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": {
+          "expected_sha256": "356f006c4a82ecfc09387ff2f1fe921fbd13abe55773eb640dfcb91a426374d9",
+          "actual_sha256": "356f006c4a82ecfc09387ff2f1fe921fbd13abe55773eb640dfcb91a426374d9",
+          "passed": true
+        },
+        "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE": {
+          "expected_sha256": "b2d3b5d59972767d52997d9f47e67cd30661bcfc3eeb6e3e1ada1ee06634be52",
+          "actual_sha256": "b2d3b5d59972767d52997d9f47e67cd30661bcfc3eeb6e3e1ada1ee06634be52",
+          "passed": true
+        },
+        "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE": {
+          "expected_sha256": "6c3b259b688a278e42f70c8b1b99ac0729111bec980c487e4f3245cd08899e22",
+          "actual_sha256": "6c3b259b688a278e42f70c8b1b99ac0729111bec980c487e4f3245cd08899e22",
+          "passed": true
+        }
+      },
+      "passed": true
+    }
+  ],
+  "source_reconciliation": {
+    "document_sha256": "ce349e0626297b71d6d3cff6faf8029c5d70677b94315b15ece1f2f04abfd151",
+    "shading_mirrors": [
+      {
+        "head": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+        "whole_tree_equals_captured_main": true,
+        "actual_differing_paths": [],
+        "reported_differences_exact": true,
+        "no_production_or_test_difference": true,
+        "passed": true
+      },
+      {
+        "head": "22ce45e70591a6be561a5abee1807455e3df52be",
+        "whole_tree_equals_captured_main": false,
+        "actual_differing_paths": [
+          "docs/validation/german-options-20261117/README.md",
+          "docs/validation/german-options-20261117/evidence-index.json",
+          "docs/validation/german-options-20261117/evidence.tar.gz",
+          "docs/validation/german-proofing-next-20261117/baseline/build.json.gz",
+          "docs/validation/german-proofing-next-20261117/baseline/frozen.json.gz",
+          "docs/validation/german-proofing-next-20261117/baseline/prospective.json.gz",
+          "docs/validation/german-proofing-next-20261117/baseline/summary.json",
+          "tools/proofing/german_model/README.md"
+        ],
+        "reported_differences_exact": true,
+        "no_production_or_test_difference": true,
+        "passed": true
+      }
+    ],
+    "odp_assertion": {
+      "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "donor_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "assertion_occurrences_donor": 1,
+      "assertion_occurrences_target": 1,
+      "removal_inverse_exact": true,
+      "meaning": "The entire file differs solely by the location of one unchanged hyperlink assertion; all other bytes are identical.",
+      "passed": true
+    }
+  },
+  "frame_expectations": {
+    "reviewed_commit_only": "f29373cf29048a6a6b133e2e75628d58c4b2b23f",
+    "uncommitted_writer_source_read": false,
+    "document_path": "docs/validation/office-recovery-20261117/frame-reconciliation.md",
+    "document_sha256": "aa89feadf89b555424e9dc65f7be114295236d4b20cb1720555888be754aef73",
+    "frame_test": {
+      "path": "packages/quds_office_engine/test/odf_frame_extraction_test.dart",
+      "donor_commit": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3",
+      "donor_sha256": "301c511c8027cd90e7a04940faa7722e5b22d3d902e16da7262fed3e897485ff",
+      "target_sha256": "e6272ae9fb6caf0526b736bc8b55e8c78cde78d1e9b53b83502a0353990cf65f",
+      "inverse_reconstruction_equals_donor": true,
+      "exact_intentional_changes": [
+        "Three added linked-frame controls (two table states and one hidden-wrapper case).",
+        "Rename mixed-blank case and remove only the synthetic empty text-box anchor from its expected paragraph/search sequence."
+      ],
+      "added_controls_sha256": "4602844f7cb4b7070775ec11b41c34d63f56f9c3c5c1c964bf7296546a431ab9"
+    },
+    "text_box_test": {
+      "path": "packages/quds_office_engine/test/odf_text_box_extraction_test.dart",
+      "donor_commit": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "donor_sha256": "2b88a1ef383d20268d9a800c104f795b568e2e4497e58aa52f457b7344bfcf4f",
+      "target_sha256": "e9958812a57a0f02fbeff7aba148b71b2c7f4986430875ab714bab3c4802fd4f",
+      "inverse_reconstruction_equals_donor": true,
+      "exact_intentional_changes": [
+        "Extend helper to assert paragraphs and tables separately while retaining original read/search expectation.",
+        "For the one covered-cell fixture, assert paragraphs ['AB'] and table [[['Visible']]] while retaining text sequence AB\\nVisible."
+      ]
+    },
+    "production_reconciliation_scope": {
+      "unchanged_from_gector": [
+        "packages/quds_office_engine/lib/src/extract/office_search_text.dart"
+      ],
+      "explicitly_reconciled": [
+        "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+        "packages/quds_office_engine/lib/src/odf/odf_text.dart"
+      ],
+      "whole_odf_branch_equality_claimed": false
+    },
+    "contract_assessment": "The exact fixture inverses support the report: original fixture XML and visible nonempty text were retained. Structured table ownership and the synthetic-empty-anchor behavior are deliberate contract decisions, not unchanged expectations. This audit does not establish runtime correctness.",
+    "passed": true
+  },
+  "retained_development_log_review": {
+    "kind": "Reconstruction of retained development logs only; this is not a new test execution or frozen-source qualification.",
+    "log_integrity": [
+      {
+        "name": "analyze-final.log",
+        "compressed_sha256": "451bf1461f818a55a640656cf46a9969a385201a96f588772c5dcb2264a71009",
+        "bytes": 57560,
+        "sha256": "7b421448f4bfa67360e95a12783a86f07ab95ad1867db9c83fd7f01487e7649e",
+        "passed": true
+      },
+      {
+        "name": "analyze-packages.log",
+        "compressed_sha256": "03f2ded2d78cdafb1f59e9cbd885bfb7ca644cc6c1184ae2b3efadd33b0bb66b",
+        "bytes": 164,
+        "sha256": "c76254ac566786f2aa9efb94f3e97b2e3e2bd37efb2120fa8b87f239b5f88cdf",
+        "passed": true
+      },
+      {
+        "name": "focused-final.jsonl",
+        "compressed_sha256": "4d25ce02c8e98847269ebbf3ef22646da7ae7ec497ae9a8191fd9150138e513f",
+        "bytes": 48237,
+        "sha256": "dd7bce9fc8d611fdaa29ee15ce08ad1e1a88c118d855d447a72a094660bd1490",
+        "passed": true
+      },
+      {
+        "name": "focused-final.stderr",
+        "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "passed": true
+      },
+      {
+        "name": "focused-initial.jsonl",
+        "compressed_sha256": "24decd6b2c200348f8b2b7919561d6c0d11f437c96383499d2a80d410e62e28f",
+        "bytes": 13322,
+        "sha256": "26b0bd6385840610d51e8121161341592068f23868abc681ff071e7b4ea8c1d0",
+        "passed": true
+      },
+      {
+        "name": "focused-initial.stderr",
+        "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "passed": true
+      }
+    ],
+    "successful_case_executions_by_file": {
+      "odf_annotation_extraction_test.dart": 11,
+      "odf_covered_cell_extraction_test.dart": 12,
+      "odf_export_text_fidelity_test.dart": 19,
+      "odf_frame_extraction_test.dart": 12,
+      "odf_text_box_extraction_test.dart": 18,
+      "office_search_fidelity_test.dart": 27
+    },
+    "visible_completed_tests": 99,
+    "errors": 0,
+    "skips": 0,
+    "failures": 0,
+    "terminal_success": true,
+    "initial_analysis_failure_retained": true,
+    "corrected_analysis_success_retained": true,
+    "source_bound_qualification_claimed": false,
+    "passed": true
+  },
+  "clarifications": [
+    {
+      "severity": "scope clarification",
+      "subject": "GECToR tooling donor",
+      "detail": "The optional GECToR package is exactly 78cd772c. The tools/proofing/german_model directory combines its unchanged inherited files with four explicitly listed newer morphology121 files; it is not wholly equal to 78cd772c."
+    },
+    {
+      "severity": "documentation precision",
+      "subject": "Namespace statement in frame-reconciliation.md",
+      "detail": "Frame and inline-story traversal checks namespace identity. The inherited top-level OfficeTextExtractor table/table-row/table-cell streaming dispatch still tests local names, so the unqualified sentence \"Namespace identity is required\" should be scoped to the frame/inline paths reviewed here."
+    },
+    {
+      "severity": "documentation precision",
+      "subject": "UTF-8 separator budget statement in frame-reconciliation.md",
+      "detail": "Search/readOdfText charges emitted paragraph separators. Generic structured extraction charges decoded content and separators inside cells, while wrappers and block separators later added by OfficeTextExtract.plainString remain outside that budget, as OdfTextBudget already documents. Keep that distinction if describing the contract broadly."
+    }
+  ],
+  "all_requested_structural_checks_passed": true,
+  "status": "passed_with_scope_clarifications",
+  "audit_script_sha256": "a684ad60f264e584c1f08a73ce86b0fe24d3948e759c680bcadb8926e6a86a01"
+}

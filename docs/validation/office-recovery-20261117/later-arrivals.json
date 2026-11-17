@@ -1,0 +1,69 @@
+{
+  "qualified_source": "966196f386ec1776c836664b3eb7c93e8e92605c",
+  "initial_integration_cutoff_utc": "2026-11-17T15:58:36.682217+00:00",
+  "later_observation_completed_utc": "2026-11-17T16:21:18.015667+00:00",
+  "late_heads_are_qualified": false,
+  "policy": "All initially captured branch and PR heads were integrated before implementation. Later independent work is recorded separately; it does not silently change the frozen qualification source.",
+  "new_or_moved_external_refs": [
+    {
+      "remote": "origin",
+      "sha": "9e5314fb07a615e410a41d45fde6123ae93ce657",
+      "ref": "refs/heads/codex/aot-proofing-analysis-20261117",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "sha": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "ref": "refs/heads/codex/german-morphology-20261117",
+      "previous_sha": "121f3be504a89e56bde40bda8f93f4e81d8c2503"
+    },
+    {
+      "remote": "origin",
+      "sha": "cc394ee2b8468d543ecd0b3ff1bc7f8ac10fd270",
+      "ref": "refs/heads/codex/office-qualified-resume-20261117",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "sha": "c98c75eae50ddabfa8eb9aa918ed1af9754b7923",
+      "ref": "refs/heads/feat/german-gector-proofing",
+      "previous_sha": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3"
+    },
+    {
+      "remote": "origin",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "ref": "refs/heads/feat/odt-table-borders",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "ref": "refs/heads/main",
+      "previous_sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad"
+    },
+    {
+      "remote": "origin",
+      "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "ref": "refs/heads/vendor/odt-table-borders",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "sha": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "ref": "refs/pull/114/head",
+      "previous_sha": "121f3be504a89e56bde40bda8f93f4e81d8c2503"
+    },
+    {
+      "remote": "origin",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "ref": "refs/pull/115/head",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "sha": "cc394ee2b8468d543ecd0b3ff1bc7f8ac10fd270",
+      "ref": "refs/pull/116/head",
+      "previous_sha": null
+    }
+  ]
+}
