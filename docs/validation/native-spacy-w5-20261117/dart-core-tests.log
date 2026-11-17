@@ -1,0 +1,17 @@
+00:00 +0: loading packages/quds_proofing_spacy/test/analysis_test.dart
+00:00 +0: packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +1: packages/quds_proofing_spacy/test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +2: packages/quds_proofing_spacy/test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +3: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +4: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +5: packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +6: packages/quds_proofing_spacy/test/analysis_test.dart: empty is explicit and nonempty cannot masquerade as empty success
+00:00 +7: packages/quds_proofing_spacy/test/analysis_test.dart: result owns immutable lists and preserves original nonzero offsets
+00:00 +8: packages/quds_proofing_spacy/test/analysis_test.dart: repeated strings must match exact coordinates and source coverage
+00:00 +9: packages/quds_proofing_spacy/test/analysis_test.dart: coordinate drift and scalar splits fail rather than clamp
+00:00 +10: packages/quds_proofing_spacy/test/analysis_test.dart: sentence flags, roots and cross-sentence dependencies are checked
+00:00 +11: packages/quds_proofing_spacy/test/analysis_test.dart: a cycle disconnected from the one root is rejected
+00:00 +12: packages/quds_proofing_spacy/test/analysis_test.dart: coalescing keys are unambiguous and snapshot identity is complete
+00:00 +13: packages/quds_proofing_spacy/test/analysis_test.dart: failed results cannot carry a successful partial document
+00:00 +14: packages/quds_proofing_spacy/test/analysis_test.dart: success is scoped to the exact declared locale and runtime profile
+00:00 +15: All tests passed!

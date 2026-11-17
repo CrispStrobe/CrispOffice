@@ -1,0 +1,102 @@
+{
+  "annotations": {
+    "sentences": [],
+    "tokens": []
+  },
+  "attribute_ruler_matches": [],
+  "before_attribute_ruler": {
+    "sentences": [],
+    "tokens": []
+  },
+  "case": {
+    "family": "empty",
+    "id": "empty",
+    "locale": "de-DE",
+    "text": ""
+  },
+  "empty_input_policy": "zero tokens and no executed CNN/parser stages",
+  "features": {
+    "buckets": [],
+    "columns": [
+      "NORM",
+      "PREFIX",
+      "SUFFIX",
+      "SHAPE",
+      "SPACY",
+      "IS_SPACE"
+    ],
+    "hash_seeds": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "rows": [
+      5000,
+      1000,
+      2500,
+      2500,
+      50,
+      50
+    ],
+    "uint64_decimal": []
+  },
+  "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "lemma_decisions": [],
+  "ordinary_pipeline_annotations_exact": true,
+  "ordinary_tok2vec_bit_exact": true,
+  "parser_steps": [],
+  "schema": "crispembed.spacy.reference.v1",
+  "traces": {
+    "lemmatizer.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 0,
+      "order": "C",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "shape": [
+        0,
+        1311
+      ],
+      "size_bytes": 0
+    },
+    "morphologizer.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 0,
+      "order": "C",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "shape": [
+        0,
+        671
+      ],
+      "size_bytes": 0
+    },
+    "tagger.scores": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 0,
+      "order": "C",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "shape": [
+        0,
+        55
+      ],
+      "size_bytes": 0
+    },
+    "tok2vec.output": {
+      "dtype": "float32-le",
+      "file": "traces.f32",
+      "offset_bytes": 0,
+      "order": "C",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "shape": [
+        0,
+        96
+      ],
+      "size_bytes": 0
+    }
+  }
+}

@@ -79,6 +79,16 @@ XmlElement _style(XmlElement content, XmlElement owner) {
       );
 }
 
+XmlElement _frameStyle(XmlElement styles, XmlElement frame) {
+  final name = frame.getAttribute('style-name', namespaceUri: _drawNs);
+  return styles
+      .firstChild('styles')!
+      .childrenNamed('style')
+      .singleWhere(
+        (style) => style.getAttribute('name', namespaceUri: _styleNs) == name,
+      );
+}
+
 String? _master(XmlElement content, XmlElement owner) => _style(
   content,
   owner,
@@ -357,7 +367,7 @@ void main() {
   test(
     'a first frame anchors on the current page with physical page coordinates',
     () {
-      final content = _export(
+      final output = _export(
         _two([
           WmlFrame(
             x: 60,
@@ -368,7 +378,8 @@ void main() {
           ),
           _p('After frame'),
         ]),
-      ).content;
+      );
+      final content = output.content;
       final anchor = _body(content).childElements.elementAt(1);
       expect(anchor.localName, 'p');
       expect(_master(content, anchor), 'mp1');
@@ -377,7 +388,10 @@ void main() {
         frame.getAttribute('anchor-type', namespaceUri: _textNs),
         'paragraph',
       );
-      final graphic = _style(content, frame).firstChild('graphic-properties')!;
+      final graphic = _frameStyle(
+        output.styles,
+        frame,
+      ).firstChild('graphic-properties')!;
       expect(
         graphic.getAttribute('horizontal-rel', namespaceUri: _styleNs),
         'page',
@@ -389,6 +403,56 @@ void main() {
       expect(_master(content, _paragraph(content, 'After frame')), isNull);
     },
   );
+
+  test('floating frame ranges share a common graphic style in styles.xml', () {
+    WmlFrame frame(String id, String name) => WmlFrame(
+      x: 36,
+      y: 190,
+      width: 210,
+      height: 35,
+      blocks: [
+        WmlParagraph(
+          inlines: [
+            WmlBookmarkBoundary(id: id, isStart: true, name: name),
+            WmlRun(text: '${name}Text'),
+            WmlBookmarkBoundary(id: id, isStart: false),
+          ],
+        ),
+      ],
+    );
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          blocks: [
+            frame('1', 'FirstMark'),
+            _p('Between'),
+            frame('2', 'LaterMark'),
+          ],
+        ),
+      ],
+    );
+    final result = _export(document);
+    final emitted = _elements(_body(result.content), 'frame').toList();
+    expect(emitted, hasLength(2));
+    final commonNames = <String>{};
+    for (var index = 0; index < emitted.length; index++) {
+      final common = _frameStyle(result.styles, emitted[index]);
+      // A common graphic style preserves bookmark ranges when desktop DOCX
+      // conversion imports the frame as its own text-box story.
+      commonNames.add(common.getAttribute('name', namespaceUri: _styleNs)!);
+      expect(common.getAttribute('family', namespaceUri: _styleNs), 'graphic');
+      final name = index == 0 ? 'FirstMark' : 'LaterMark';
+      expect(
+        _elements(emitted[index], 'bookmark-start').single.getAttribute('name'),
+        name,
+      );
+      expect(
+        _elements(emitted[index], 'bookmark-end').single.getAttribute('name'),
+        name,
+      );
+    }
+    expect(commonNames, hasLength(1));
+  });
 
   test('a later frame retains its page-relative paragraph anchor', () {
     final frame = WmlFrame(
@@ -411,7 +475,8 @@ void main() {
         WmlSection(blocks: [_p('Before'), frame, _p('After')]),
       ],
     );
-    final content = _export(document).content;
+    final output = _export(document);
+    final content = output.content;
     final anchor = _body(content).childElements.elementAt(1);
     expect(anchor.localName, 'p');
     expect(_master(content, anchor), isNull);
@@ -437,7 +502,10 @@ void main() {
     expect(emitted.getAttribute('y'), '190.00pt');
     expect(emitted.getAttribute('width'), '210.00pt');
     expect(emitted.getAttribute('height'), '35.00pt');
-    final graphic = _style(content, emitted).firstChild('graphic-properties')!;
+    final graphic = _frameStyle(
+      output.styles,
+      emitted,
+    ).firstChild('graphic-properties')!;
     expect(
       graphic.getAttribute('horizontal-rel', namespaceUri: _styleNs),
       'page',

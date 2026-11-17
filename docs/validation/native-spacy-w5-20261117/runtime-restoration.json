@@ -1,0 +1,184 @@
+{
+  "acceptance_rerun": false,
+  "all_dependencies_match_frozen": true,
+  "bundle": {
+    "LICENSE": {
+      "sha256": "3933c176979b68bc6d0bcc902c7d6c130f1d127f476f17ba5cdba8d99cfd0012",
+      "size_bytes": 1056
+    },
+    "LICENSES_SOURCES": {
+      "sha256": "0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869",
+      "size_bytes": 13470
+    },
+    "model.gguf": {
+      "sha256": "fae2e6ab8d6c611d7a9dddd4b3259a871a1d2f95cacc8259f49c1e4ff31ff6cd",
+      "size_bytes": 7383104
+    },
+    "resources.json": {
+      "sha256": "b42496cc373ada57a67ed2f4c2c25f8d22f80c08db5841a7cdb91c8a6e18562a",
+      "size_bytes": 1404948
+    }
+  },
+  "bundle_manifest_matches_frozen_bytes": true,
+  "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "ci_queried_or_waited": false,
+  "flutter": {
+    "actual_runtime": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "bootstrap_program": {
+      "path": "docs/validation/proofing-20261116/integration-followup/flutter-setup/bootstrap_flutter.py",
+      "repository": "CrispStrobe/quds_office_suite",
+      "sha256": "1a40dcce1e40cadb985561f4f2d2349ed1469fddfbc4a7a48ef7841543bc9311"
+    },
+    "initial_workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "official_archive_bytes": 1581444364,
+    "official_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "official_archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "offline_enforced_workspace_resolution_passed": true,
+    "offline_flutter_tools_resolution_passed": true,
+    "offline_workspace_resolution_passed": true,
+    "resolved_workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "verified_pub_archives": 162
+  },
+  "frozen_candidate_archive_commit": "84327ac9af9f8925ff1f0723e027d6b76b2a2dc2",
+  "frozen_candidate_archive_sha256": "b0cd3ae4d47af442d32a6d2382143c36f8b019470cff7c509f97e4682b67489b",
+  "frozen_protocol_sha256": "78c17652ebce834d853209927bf24493eb1b362de99a0115a55b5202fcef2d92",
+  "host": {
+    "libc": [
+      "glibc",
+      "2.41"
+    ],
+    "machine": "x86_64",
+    "system": "Linux"
+  },
+  "installed_files_verified": 15,
+  "logs": [
+    {
+      "bytes": 2212,
+      "path": "runtime-logs/restored-api-controls.log",
+      "sha256": "cf4f5e597c82c6361af970a7826955dec6581fdfc2b0bfa942b153929f2901e1"
+    },
+    {
+      "bytes": 10133,
+      "path": "runtime-logs/reference-install.log",
+      "sha256": "a28c4701cb220d0e369a5c59118c58b23c54bc3c8961613a71e2acf0958b26c3"
+    },
+    {
+      "bytes": 169,
+      "path": "runtime-logs/conversion.log",
+      "sha256": "c65f19db7bf69a1031e2f925535d8664f59d8de5a0db91ba7d1f3e2911f1978c"
+    },
+    {
+      "bytes": 11859,
+      "path": "runtime-logs/flutter-bootstrap.log",
+      "sha256": "eea7354c0ac7167a7fcecd98463f48e1931a15c7c786159794d793004dcc6d61"
+    },
+    {
+      "bytes": 68,
+      "path": "runtime-logs/workspace-enforced.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "bytes": 1187,
+      "path": "runtime-logs/model-wheel-download.log",
+      "sha256": "d5945237b2082187ddf3900ec2ee70f9bf07df83a82f72feec15312e11f9dba1"
+    },
+    {
+      "bytes": 1166,
+      "path": "runtime-logs/flutter-tools-offline.log",
+      "sha256": "5be5fe9536798e5a064baa337b7ffb36ea9b8acd0e13efadc3c6ca63af52fc0d"
+    },
+    {
+      "bytes": 627,
+      "path": "runtime-logs/flutter-version.log",
+      "sha256": "7c8556de982c20e5f8d88033447f7bd61824c11a056aecc3e6d81135f78565da"
+    },
+    {
+      "bytes": 68,
+      "path": "runtime-logs/workspace-offline.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ],
+  "model_wheel": {
+    "bytes": 14639490,
+    "sha256": "fec69fec52b1780f2d269d5af7582a5e28028738bd3190532459aeb473bfa3e7",
+    "url": "https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.8.0/de_core_news_sm-3.8.0-py3-none-any.whl"
+  },
+  "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "native_rebuilt": false,
+  "native_source_commit": "51c2ac328ef40b00f18eb9b03130fb67c3f11313",
+  "pcre2_version": "10.46 2025-08-27",
+  "python": "3.12.14",
+  "reference_install_options": [
+    "--require-hashes",
+    "--only-binary=:all:"
+  ],
+  "reference_lock_sha256": "e1bd56aef4aba0c45135fb2b51961c0d94c3be99a785be71a46c698cd22cc98a",
+  "restored_native_api_controls": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 21,
+    "receipt": "restored-api-controls.json",
+    "sha256": "81c00b22f7bdf381c430c8e2c6a31215aa3bcfb825ac5917cf9d271203be5f05",
+    "skips": 0
+  },
+  "runtime_dependencies": [
+    {
+      "bytes": 711216,
+      "matches_frozen": true,
+      "resolved_filename": "libpcre2-8.so.0.14.0",
+      "sha256": "92e9b4167f9bbc237ca8f5526d82ee99ec9f8dbd0270ef1dd0ab24e2217f48e3",
+      "soname": "libpcre2-8.so.0"
+    },
+    {
+      "bytes": 2497768,
+      "matches_frozen": true,
+      "resolved_filename": "libstdc++.so.6.0.33",
+      "sha256": "972bb2a18b71140dab0240f8a1f68ab3fb1d56bcd4c4f824a91b70888faf5a00",
+      "soname": "libstdc++.so.6"
+    },
+    {
+      "bytes": 977112,
+      "matches_frozen": true,
+      "resolved_filename": "libm.so.6",
+      "sha256": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3",
+      "soname": "libm.so.6"
+    },
+    {
+      "bytes": 182856,
+      "matches_frozen": true,
+      "resolved_filename": "libgcc_s.so.1",
+      "sha256": "30c61ab012a4241bed033725a09b61f5fdd3bb7df95ee852d0b096520524c7af",
+      "soname": "libgcc_s.so.1"
+    },
+    {
+      "bytes": 1995216,
+      "matches_frozen": true,
+      "resolved_filename": "libc.so.6",
+      "sha256": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92",
+      "soname": "libc.so.6"
+    },
+    {
+      "bytes": 225672,
+      "matches_frozen": true,
+      "resolved_filename": "ld-linux-x86-64.so.2",
+      "sha256": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307",
+      "soname": "ld-linux-x86-64.so.2"
+    }
+  ],
+  "schema": "quds.spacy.w5.restored_validation_runtime.v1",
+  "scope": "Local Linux x86-64 restoration for Dart/editor binding controls; no held-out acceptance execution, packaging, grammar benefit or release qualification.",
+  "status": "passed"
+}

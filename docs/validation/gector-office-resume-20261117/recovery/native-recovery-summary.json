@@ -1,0 +1,52 @@
+{
+  "schema": "quds.gector.native-prerequisite-recovery.v1",
+  "created_utc": "2026-11-17T21:23:37.884657+00:00",
+  "passed": true,
+  "scope": "Exact previously qualified development artifacts recovered from pinned sources; no new native binary or trust-policy revision. Current-source inference/timing still pending.",
+  "source_commit": "853a1ce6089e5d5486e37307f37051ad6a928745",
+  "ggml_commit": "3a27b6c665b191cb230be367db5c52d81dd3e2ac",
+  "all_112_source_hashes_match": true,
+  "native_artifacts": {
+    "library": {
+      "file": "libcrispembed-gector.so",
+      "matches_original": true,
+      "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+      "size_bytes": 2064104
+    },
+    "quantizer": {
+      "file": "crispembed-gector-quantize",
+      "matches_original": true,
+      "sha256": "8d38bcb36ed82e6ebae6c320ea07ff3a97343feafbc0f7c024b6c1d4c5373a46",
+      "size_bytes": 915904
+    }
+  },
+  "f32": {
+    "bytes": 453355328,
+    "sha256": "497657528f3a660b85b807a7da0db663abb5964ada81f819e26ed48b6e96b6c1"
+  },
+  "mixed": {
+    "bytes": 82756896,
+    "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b"
+  },
+  "upstream_onnx": {
+    "bytes": 452972247,
+    "sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+  },
+  "pack_manifest": {
+    "bytes": 9315,
+    "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+  },
+  "pack_file_count": 23,
+  "pack_verified": true,
+  "native_contract_ctest_passed": true,
+  "thread_sweep_audit_controls": 23,
+  "raw_reference_json": {
+    "bytes": 256295,
+    "sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8"
+  },
+  "raw_80_output_buffers_regenerated": false,
+  "raw_buffer_note": "Not needed for candidate qualification because original native bytes were recovered; previous numerical evidence remains bound to the identical native/model bytes. No claim of regenerated buffers.",
+  "production_pins_changed": false,
+  "github_actions_used": false,
+  "current_source_inference_or_performance_qualification": false
+}

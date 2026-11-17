@@ -1,0 +1,15 @@
+{
+  "cases": 16,
+  "comparator_sha256": "0f16db02b2c189822fe30277d6e329bf1629ea265c0f6179e99861b25d393045",
+  "differing_files": [],
+  "files_compared": 36,
+  "first_manifest_sha256": "9a3bb6bae6114adcf579840834ddcb64dea4e0aaa8361718dc7a551d663c8f7c",
+  "parser_steps": 244,
+  "payload_bytes_compared": 7122950,
+  "schema": "crispembed.spacy.reference-repeatability.v1",
+  "scope": "Independent Python oracle exports; no native inference qualification",
+  "second_manifest_sha256": "9a3bb6bae6114adcf579840834ddcb64dea4e0aaa8361718dc7a551d663c8f7c",
+  "status": "pass",
+  "tokens": 113,
+  "trace_stages": 1201
+}

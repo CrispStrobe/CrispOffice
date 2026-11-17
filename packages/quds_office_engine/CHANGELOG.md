@@ -4,6 +4,9 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve floating text-frame bookmarks through LibreOffice ODT-to-DOCX
+  conversion by placing their shared graphic style among common ODF styles.
+
 - Keep ODT column breaks and keep-together settings distinct when caching
   paragraph styles, and emit section column settings on the ODF columns child.
 

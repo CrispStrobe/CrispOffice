@@ -1,0 +1,242 @@
+{
+  "analyzer": {
+    "log": "ui-logs/ui-analyze-final.log",
+    "status": "passed"
+  },
+  "browser_import": {
+    "build_log": "ui-logs/ui-web-import-final-build.log",
+    "compiler": "dart2js",
+    "execution": "Node with self=globalThis",
+    "final_change": "A developer-only avoid_print suppression documents the unchanged diagnostic print; no executable behavior changed after browser compilation.",
+    "native_or_ffi_loaded": false,
+    "outcome": "Local German text analysis is unavailable in this browser.",
+    "run_log": "ui-logs/ui-web-import-final-run.log"
+  },
+  "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "ci_queried_or_waited": false,
+  "command_context": "Run from repository root with the recorded Flutter SDK on PATH and FLUTTER_ROOT set. The explicit native gate fails if configuration/assets are missing and refuses to overwrite an existing PNG. Native target remains Linux x86-64.",
+  "commands": [
+    "flutter test --no-pub packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart --reporter expanded",
+    "CRISPEMBED_SPACY=1 QUDS_SPACY_BUNDLE=\"$VERIFIED_BUNDLE\" QUDS_SPACY_LIBRARY=\"$NATIVE_SHA_DIRECTORY/libcrispembed-spacy.so\" QUDS_SPACY_LIBRARY_SHA256=\"$NATIVE_SHA256\" QUDS_SPACY_PANEL_OUTPUT=\"$NEW_PANEL_PNG\" flutter test --no-pub packages/quds_office_editor/example/test/studio_linguistic_analysis_native_gate.dart --reporter expanded",
+    "dart compile js --packages=.dart_tool/package_config.json -o \"$UI_WEB_JS\" packages/quds_office_editor/example/test/studio_spacy_web_import_gate.dart",
+    "node -e 'globalThis.self=globalThis;require(process.argv[1]);' \"$UI_WEB_JS\"",
+    "dart analyze packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart packages/quds_office_editor/example/lib/studio_spacy_config.dart packages/quds_office_editor/example/lib/studio_spacy_config_native.dart packages/quds_office_editor/example/lib/studio_spacy_config_unsupported.dart packages/quds_office_editor/example/lib/suite_workspace.dart packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart packages/quds_office_editor/example/test/studio_linguistic_analysis_native_gate.dart packages/quds_office_editor/example/test/studio_spacy_web_import_gate.dart"
+  ],
+  "core_package_checkpoint": "589759cca3f8283264232bf2aa813a605b42eea5",
+  "coverage": [
+    "Exact original source text, document/paragraph identity, revision, generation, configuration, locale and nonzero UTF-16 origin.",
+    "Repeated text, emoji and exact navigation with one origin addition; no document edit or undo command.",
+    "Body/table/content-control ownership whitelist, excluding frames, generated TOC and auxiliary stories, including after source ownership changes.",
+    "Cross-paragraph and split-surrogate/grapheme selection rejection; mixed locale and unsupported region rejection before worker loading.",
+    "Stale pending and displayed results on text, locale, document and configuration changes; no automatic rerun.",
+    "Cancel, close, late success/failure, loading cancellation, disposal once, startup failure, invalid reply snapshot and timeout status.",
+    "Failed startup after cancellation clears only its owned opening future; explicit retry opens fresh once.",
+    "Unavailable worker is released; only the next explicit action opens a replacement. Timeout/cancel retain physical-slot ownership."
+  ],
+  "dart_version": "3.13.7",
+  "flutter_version": "3.47.8",
+  "grammar_provider_registered": false,
+  "heldout_acceptance_rerun": false,
+  "initial_observations": [
+    {
+      "attempt": "ui-tests-first.log",
+      "outcome": "Test compilation failed because its header/footer setup omitted the required footer named argument. No tests ran. Corrected test setup only."
+    },
+    {
+      "attempt": "ui-native-first.log",
+      "outcome": "No observed result before the 60-second test timeout. tester.runAsync alone did not pump Flutter fake-clock continuations. Replaced the harness wait with bounded real event-loop turns plus widget-clock pumping; native sources, assets and expected results unchanged."
+    },
+    {
+      "attempt": "analysis-panel-initial.png",
+      "outcome": "Initial rendering omitted MaterialIcons font and used a smaller test MediaQuery than its rendered surface. Retained; final harness loads authentic fonts and sets actual view dimensions."
+    },
+    {
+      "outcome": "Found cancelled startup failure and dead unavailable-worker retry defects. Corrected ownership cleanup and added both exact regression sequences without changing timeout/cancellation in-flight ownership.",
+      "review": "independent UI review"
+    },
+    {
+      "outcome": "Added explicit body/table ownership traversal because the general document paragraph list also includes frames and generated TOC; one regression verifies capture rejection and stale ownership.",
+      "review": "independent UI scope review"
+    }
+  ],
+  "logs": [
+    {
+      "bytes": 569,
+      "path": "ui-logs/ui-analyze-complete.log",
+      "sha256": "53c729b7f4af6510c3717f717f285712cc39ce1bc8889a59d6dcf55a5d1663fe"
+    },
+    {
+      "bytes": 477,
+      "path": "ui-logs/ui-analyze-final-source.log",
+      "sha256": "b043cf86036ff95e6d706ce9ec4b3fc38aac3c0b9bf80664d099e19f470b15e4"
+    },
+    {
+      "bytes": 299,
+      "path": "ui-logs/ui-analyze-final.log",
+      "sha256": "9b98312a3d300820f49b0630a5afaa536d4b0a181d24d08e1ffc6e9eb7b2f945"
+    },
+    {
+      "bytes": 1136,
+      "path": "ui-logs/ui-analyze-initial.log",
+      "sha256": "35a47ce4c689c0821088c073446b334115ea0d4e344f856621b26c2548cfd37f"
+    },
+    {
+      "bytes": 569,
+      "path": "ui-logs/ui-analyze-reviewed.log",
+      "sha256": "53c729b7f4af6510c3717f717f285712cc39ce1bc8889a59d6dcf55a5d1663fe"
+    },
+    {
+      "bytes": 235,
+      "path": "ui-logs/ui-native-final-source.log",
+      "sha256": "112cf130723532d35a1535f8117d827a6331d6fbeca0d47313b74dc442fa6c6a"
+    },
+    {
+      "bytes": 2186,
+      "path": "ui-logs/ui-native-first.log",
+      "sha256": "2ebca6c7015a9c75c4231ff6820aa5e628c35cb419ce1895eed5c8bf1d628cf2"
+    },
+    {
+      "bytes": 235,
+      "path": "ui-logs/ui-native-render.log",
+      "sha256": "112cf130723532d35a1535f8117d827a6331d6fbeca0d47313b74dc442fa6c6a"
+    },
+    {
+      "bytes": 235,
+      "path": "ui-logs/ui-native-reviewed.log",
+      "sha256": "112cf130723532d35a1535f8117d827a6331d6fbeca0d47313b74dc442fa6c6a"
+    },
+    {
+      "bytes": 235,
+      "path": "ui-logs/ui-native-second.log",
+      "sha256": "e80dbc69aeb78284fe03d596ea9399c1a65df6ffa74c12a3ef6356aff4ee721c"
+    },
+    {
+      "bytes": 68,
+      "path": "ui-logs/ui-pub-get.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "bytes": 1741,
+      "path": "ui-logs/ui-tests-final-source.log",
+      "sha256": "6bbf1b5bbbd58add130f05bc0d6132e58fbc5f0df136be0c25406a1cd43d8788"
+    },
+    {
+      "bytes": 1520,
+      "path": "ui-logs/ui-tests-final.log",
+      "sha256": "a0faac45f0ed3e5568e07384eb6ef1cf5c6a016d3680c498f14f425e2903fbc3"
+    },
+    {
+      "bytes": 2008,
+      "path": "ui-logs/ui-tests-first.log",
+      "sha256": "a0aab7ad1d42715497515ea5ed9f22831dab017c41cde0f97a03be646e8ff96c"
+    },
+    {
+      "bytes": 1664,
+      "path": "ui-logs/ui-tests-reviewed.log",
+      "sha256": "cfad9379a64a6313448807a88ab245d4e46181b0a8372ca5ba8b52daa697ada0"
+    },
+    {
+      "bytes": 1370,
+      "path": "ui-logs/ui-tests-second.log",
+      "sha256": "8a82c3b38d987bac96c4a6b885a613208bcc061e03ba0f2cc9669a98f2847974"
+    },
+    {
+      "bytes": 111,
+      "path": "ui-logs/ui-web-import-build.log",
+      "sha256": "6dc756eba1c648623dbbfb6ce01c641dab6f26b0ff2bc7d1f177ee70d58f0845"
+    },
+    {
+      "bytes": 111,
+      "path": "ui-logs/ui-web-import-final-build.log",
+      "sha256": "fb5deabf08dbbca87470104a2ef059e8cbd2f89839ea83560fddc6631ed85742"
+    },
+    {
+      "bytes": 59,
+      "path": "ui-logs/ui-web-import-final-run.log",
+      "sha256": "a38ecf5406e84b9ee914aa90658283c448cf0a8d701f41355f344b67e88bc636"
+    },
+    {
+      "bytes": 59,
+      "path": "ui-logs/ui-web-import-run.log",
+      "sha256": "a38ecf5406e84b9ee914aa90658283c448cf0a8d701f41355f344b67e88bc636"
+    }
+  ],
+  "model_free_tests": {
+    "classification": "Seven source-snapshot controls and fifteen widget controls using an explicitly synthetic transport; no model-quality claim.",
+    "failed": 0,
+    "log": "ui-logs/ui-tests-final-source.log",
+    "passed": 22
+  },
+  "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "native_widget_gate": {
+    "actual_frozen_native_library": true,
+    "actual_worker_and_host_configuration": true,
+    "checked_lemmas": [
+      "Katze",
+      "schlafen"
+    ],
+    "document_text_unchanged": true,
+    "failed": 0,
+    "log": "ui-logs/ui-native-final-source.log",
+    "passed": 1,
+    "repeated_attempts_are_not_additional_unique_evidence": true,
+    "revealed_end_utf16": 21,
+    "revealed_start_utf16": 16,
+    "safe_shutdown_completed": true,
+    "selected_input": "Die Katze schl\u00e4ft.",
+    "selected_token": "Katze",
+    "selection_start_utf16": 12,
+    "sentences": 1,
+    "source_paragraph": "\ud83d\ude00 Vorlauf. Die Katze schl\u00e4ft.",
+    "tokens": 4,
+    "tokens_exact": [
+      "Die",
+      "Katze",
+      "schl\u00e4ft",
+      "."
+    ],
+    "unique_authored_inputs": 1
+  },
+  "production_defaults_changed": false,
+  "schema": "quds.spacy.w5.editor_validation.v1",
+  "scope": "Optional manual Studio analysis of one original body/table paragraph or a selection within it; no grammar provider, corrections, defaults, release or mobile qualification.",
+  "screenshot_qa": {
+    "all_four_token_rows_readable": true,
+    "final": "analysis-panel.png",
+    "height": 780,
+    "icons_and_buttons_visible": true,
+    "native_source_used": true,
+    "not_a_golden_comparison": true,
+    "width": 1100
+  },
+  "screenshots": [
+    {
+      "bytes": 53172,
+      "path": "analysis-panel-initial.png",
+      "sha256": "cb06b5b8748e6d97a8f790e6b888c67a93f27c22bd58cdb0bb6d65abc73dc4aa"
+    },
+    {
+      "bytes": 58345,
+      "path": "analysis-panel-scroll.png",
+      "sha256": "638ecdfbb1e87cd05d41a7e7b03504ecfe68e1cdcd054b9928554ddeac5639a1"
+    },
+    {
+      "bytes": 67740,
+      "path": "analysis-panel.png",
+      "sha256": "89015af144416ff6883674bf35ddfdb09f6766f87ca7cbd72e00e99cf8b4cf10"
+    }
+  ],
+  "source_sha256": {
+    "packages/quds_office_editor/example/fonts/Tajawal-Regular.ttf": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19",
+    "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart": "5d867deb17d9a13f980333d17d3729bbc89287a9c5ea5d53d3038c9668e846c4",
+    "packages/quds_office_editor/example/lib/studio_spacy_config.dart": "7fe927599588816227d694fb5ad70c8684dc0753556b43a94afcac3d56178091",
+    "packages/quds_office_editor/example/lib/studio_spacy_config_native.dart": "9ff37d83b5fcbdf6f426d18783e71c4ea70177dbafc6e3ac9034984b2c38c82d",
+    "packages/quds_office_editor/example/lib/studio_spacy_config_unsupported.dart": "ed8d3392d6378de3c1afdf283a309ec19947eee8906f50de31a0dab728254b68",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "b1593e377d19fb6677e7ca9ca3522f3fca2d1e7ec59aa9aad3830136eab09d59",
+    "packages/quds_office_editor/example/pubspec.yaml": "ccd93525f92813df224a3691d45f30d1c99482a1168844568841721487f0945f",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_native_gate.dart": "227c3d94d77fd2a108db461691d0cda62050596e5fa299062e950133fba15d55",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart": "df9ed994a76ed366e88ea2cca7953c8c8882b920fcf9ba3436a31ba921aac220",
+    "packages/quds_office_editor/example/test/studio_spacy_web_import_gate.dart": "5a1ed586e08ff103fc0b480c7877247c4f045a7bad472a06b42a7d445a49d7d5"
+  },
+  "status": "passed"
+}

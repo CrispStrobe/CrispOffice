@@ -1,0 +1,159 @@
+{
+  "branch": "feat/native-spacy-reference-20261117",
+  "checks": {
+    "direct_and_worker_each": {
+      "authored_controls": 10,
+      "development_cases": 16,
+      "differences": 0,
+      "exposed_fields": 2571,
+      "sentences": 22,
+      "tokens": 113
+    },
+    "existing_proofing_regressions": 75,
+    "live_native_contexts": 0,
+    "live_native_documents": 0,
+    "malformed_native_controls": 20,
+    "merged_source_checks": "passed; source and runtime bytes unchanged",
+    "native_documents_freed": 30,
+    "package_tests": 29,
+    "real_native_widget_tests": 1,
+    "restored_native_api_groups": 21,
+    "static_analysis": "passed, zero issues",
+    "studio_controls": 22,
+    "web_imports": "compiled and returned explicit unavailable, zero native calls"
+  },
+  "ci_queried_polled_waited_or_rerun": false,
+  "completed": [
+    "Counted-string owned C ABI binding",
+    "Immutable original-source analysis DTOs",
+    "Bounded persistent isolate transport",
+    "Explicit manual Studio analysis and exact navigation",
+    "Source/locale/configuration/lifecycle guards",
+    "Source-bound local evidence and incremental remote checkpoints"
+  ],
+  "evidence_index": "evidence-index.json",
+  "limits_and_next_gate": [
+    "W6: separately frozen incremental grammar benefit against deterministic main 4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+    "Native compute interruption latency through Dart is not qualified",
+    "Other platforms and regional locales are not qualified",
+    "NER, quantization and alternative model profiles are not qualified",
+    "Full packaged app/device/performance, distribution/notices and release promotion remain separate gates"
+  ],
+  "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "native_pull_request": "https://github.com/CrispStrobe/CrispEmbed/pull/236",
+  "original_native_acceptance": {
+    "commit": "2176c896dc6bb8c832a9d03b04fd07c7c991fdc5",
+    "reexecuted": false,
+    "tuned": false
+  },
+  "pull_request": 139,
+  "qualified_sources_sha256": {
+    "packages/quds_office_editor/example/fonts/Tajawal-Regular.ttf": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19",
+    "packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart": "5d867deb17d9a13f980333d17d3729bbc89287a9c5ea5d53d3038c9668e846c4",
+    "packages/quds_office_editor/example/lib/studio_spacy_config.dart": "7fe927599588816227d694fb5ad70c8684dc0753556b43a94afcac3d56178091",
+    "packages/quds_office_editor/example/lib/studio_spacy_config_native.dart": "9ff37d83b5fcbdf6f426d18783e71c4ea70177dbafc6e3ac9034984b2c38c82d",
+    "packages/quds_office_editor/example/lib/studio_spacy_config_unsupported.dart": "ed8d3392d6378de3c1afdf283a309ec19947eee8906f50de31a0dab728254b68",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "b1593e377d19fb6677e7ca9ca3522f3fca2d1e7ec59aa9aad3830136eab09d59",
+    "packages/quds_office_editor/example/pubspec.yaml": "ccd93525f92813df224a3691d45f30d1c99482a1168844568841721487f0945f",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_native_gate.dart": "227c3d94d77fd2a108db461691d0cda62050596e5fa299062e950133fba15d55",
+    "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart": "df9ed994a76ed366e88ea2cca7953c8c8882b920fcf9ba3436a31ba921aac220",
+    "packages/quds_office_editor/example/test/studio_spacy_web_import_gate.dart": "5a1ed586e08ff103fc0b480c7877247c4f045a7bad472a06b42a7d445a49d7d5",
+    "packages/quds_office_editor/test/word_manual_proofing_test.dart": "a5f09c786724dfbfd53a970e4f24121bbf28935d2b5394e5e0e729b28c1a4d7a",
+    "packages/quds_office_editor/test/word_proofing_correction_test.dart": "97ff02bafff82ad46be47643a341595fd579e7d5027a6586358f4f14fd044910",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart": "837664a53fc12278cc511c39a1bfa2bfb31453c8b54e968327608eb5159e5f12",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart": "d2ec35f73260fc3bee0d86726aecb9478665355258f0722e77055f09b5e8eb19",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy_native.dart": "b4d68e940536d8272680f21057f1a7695eb78d8a02c338320b2376c6a159a002",
+    "packages/quds_proofing_spacy/lib/src/analysis.dart": "65d0577b9ff41e498df5a8606b85a6058623a3bc5591e1efb05a74b5b97c0464",
+    "packages/quds_proofing_spacy/lib/src/backend.dart": "4b3cf6561ec8811d8a85a48a7025efda7714ad0a088add42fc065a738993a732",
+    "packages/quds_proofing_spacy/lib/src/bundle.dart": "970ec6672efada2bcbacd7223804b8cf8d504ec647aec0c289ee43e5c1f802cb",
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart": "fe15180d48d19b0e79874615708106a88d6f948a026eaef61d26f39961ce9f1b",
+    "packages/quds_proofing_spacy/lib/src/native_backend_unsupported.dart": "ff38d1a0fd5fa93c2157649fdd064dd73830047497359ed2d51d7a07ff2814ae",
+    "packages/quds_proofing_spacy/lib/src/source_text.dart": "fd2f2fdda8e608d32bf3b4a05c10b8777a106495cf97cbfafd3b05dd5e559330",
+    "packages/quds_proofing_spacy/lib/src/transport.dart": "78b38b82fcec385d0d2d96d5861f0e2b0333b8af58bc542dd6d5cc23677f6305",
+    "packages/quds_proofing_spacy/lib/src/worker_native.dart": "4d63dcc14292025493cbab07b839a26fefb66c6e5d4a2558c4fd01e74d46da80",
+    "packages/quds_proofing_spacy/lib/src/worker_unsupported.dart": "074c3ad98e4a873ec5d55535b3c1a404da4eb557068437a3b4eb9a622d1e3078",
+    "packages/quds_proofing_spacy/pubspec.yaml": "89f1587511568fa253be06db2d2a6ad7af3efeeccd472636bfd8bcaa863f5c52",
+    "packages/quds_proofing_spacy/test/analysis_test.dart": "8bb386066dac0091533152b0c9e03214f868014dd4ccba88f7822fa6ca57eefa",
+    "packages/quds_proofing_spacy/test/bundle_test.dart": "62521074823fc36013007fca61dd72c63bac6dd184f45f60b43d90dd3723d7f5",
+    "packages/quds_proofing_spacy/test/worker_test.dart": "a2731ca47b669548bbe5c19acec2fc24ba00a065d781bedd2eecbedbd52e51eb",
+    "packages/quds_proofing_spacy/tool/native_fault_fixture.c": "51caed1bfe6573c13a0e9fce8cafd47543336097b7d55ff80b3775d71cc77ac7",
+    "packages/quds_proofing_spacy/tool/native_fault_probe.dart": "4b3815c0cb30eaba6b7390363d539ab335c6a76e2d06937507653e45c948b086",
+    "packages/quds_proofing_spacy/tool/replay_development.dart": "6b20ae590df51fa30f73a37b50db9057b6f90bdfebea2b3f90d50bfedbf8c76a",
+    "packages/quds_proofing_spacy/tool/web_capability_probe.dart": "30e67cd52955cb925ac7b475ac31b2ec1e7f7c9f2cdf6241bf0cd64b2e881492",
+    "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "pubspec.yaml": "f0115daba20b901e543f242861092c69d0486a2135e0d11c862b0015d1e82f30"
+  },
+  "recorded_at": "2026-11-17T21:50:07.679459+00:00",
+  "remote_checkpoints": [
+    {
+      "commit": "2176c896dc6bb8c832a9d03b04fd07c7c991fdc5",
+      "purpose": "Retained original first native acceptance",
+      "repository": "CrispStrobe/CrispEmbed"
+    },
+    {
+      "commit": "5ae3f03d154ad8aecb0e8e0a4347ffcaed78f2dc",
+      "purpose": "Recovered acceptance handoff and initial W5 source inventory",
+      "repository": "CrispStrobe/CrispEmbed"
+    },
+    {
+      "commit": "4471324a612853946fd5c3b2e7077f570abbc10e",
+      "purpose": "Initial main merge before W5 implementation",
+      "repository": "CrispStrobe/quds_office_suite"
+    },
+    {
+      "commit": "589759cca3f8283264232bf2aa813a605b42eea5",
+      "purpose": "Optional Dart core/binding/worker and initial development evidence",
+      "repository": "CrispStrobe/quds_office_suite"
+    },
+    {
+      "commit": "a127e5047563a7b53d1c45ac9910d679aa234fd9",
+      "purpose": "Sealed direct/worker replay, malformed FFI and package qualification",
+      "repository": "CrispStrobe/quds_office_suite"
+    },
+    {
+      "commit": "b5b1fa99228f6f1862af0bc4efba6e527c2bec43",
+      "purpose": "Manual Studio analysis with UI/native-widget qualification",
+      "repository": "CrispStrobe/quds_office_suite"
+    },
+    {
+      "commit": "8d89e4f7cdecdfd43c632994649f4e91d4cf109c",
+      "purpose": "Latest-main merge preserving the complete W5 code and evidence",
+      "repository": "CrispStrobe/quds_office_suite"
+    }
+  ],
+  "remote_save_verification": "Every checkpoint was created with an expected-head lease, its tree matched the local Git tree, and the saved branch was fetched and verified before continuation.",
+  "repeated_runs_are_not_additional_unique_linguistic_evidence": true,
+  "retained_initial_failures": [
+    "Dart whitespace-root label assumption with exact first source archive",
+    "Initial report relative-dot sanitizer",
+    "Convenience Dart runner implicit setup stall",
+    "Developer web/UI harness compilation and fake-clock waiting failures",
+    "First render font/view-size shortcomings"
+  ],
+  "review_fixes": [
+    "Cancelled startup failure releases only its owned opening future",
+    "Unavailable worker is released for the next explicit retry",
+    "Explicit body/table ownership traversal excludes frame/TOC sources"
+  ],
+  "safety_contract": {
+    "application_python_daemon_subprocess_or_network_fallback": false,
+    "automatic_background_inference": false,
+    "automatic_model_download": false,
+    "cancellation": "Logical caller/result cancellation. Native in-flight call retains physical worker/context ownership until completion and joined cleanup.",
+    "default_gate": "off",
+    "grammar_provider_registered": false,
+    "text_edits_or_undo_items_from_analysis": false
+  },
+  "schema": "quds.spacy.w5.completion.v1",
+  "source_commit": "8d89e4f7cdecdfd43c632994649f4e91d4cf109c",
+  "source_tree": "56f580ee75a1319792be2919d01c31e96c2f8a4a",
+  "spacy_adapter_runtime_sources_changed_after_sealed_replays": false,
+  "status": "passed_with_declared_scope",
+  "target": {
+    "execution": "CPU",
+    "locale": "de-DE",
+    "model": "de_core_news_sm 3.8.0",
+    "platform": "Linux x86-64/AVX2",
+    "precision": "F32"
+  }
+}

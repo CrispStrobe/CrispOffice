@@ -1,0 +1,170 @@
+{
+  "common_style_review": {
+    "consumer_comparison_contract": "Exact package style-only delta; strict FrameMark selected text; page-relative36/190/210/35pt frame box; identical visible words/page ownership; surrounding text coordinate drift at most0.05pt. Internal text metric change is recorded explicitly.",
+    "properties": "Same from-left/from-top, page-relative and wrap-none properties retained. No-frame documents do not gain an unused graphic style.",
+    "registration_order": "All body recursion, including note/frame/container/table stories, finishes in _bodyXml. Master-page stories and their note recursion finish before office:styles is emitted. _contentXml only writes already accumulated content afterward.",
+    "verdict": "No correctness defect found in bounded relocation.",
+    "visibility": "One SectionFrame common graphic style is emitted in styles.xml when either body or master-story layout records use; automatic-style duplicates are removed."
+  },
+  "comparison_parents": {
+    "incoming_pr144": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+    "original_gector": "34c70ece1e9c14954398826f93c1bb6aa61007a8"
+  },
+  "consumer_receipt_review": {
+    "completed_at_utc": "2026-11-17T21:39:45.826105+00:00",
+    "gates": [
+      {
+        "name": "retained-33",
+        "raw_output_hashes_verified": 415,
+        "receipt_sha256": "7292d29a0054acd2c0a30cc33cc096baa75c1ec0bd9495e86b571b1431e599c6",
+        "summary": {
+          "all_integrity_checks_passed": true,
+          "failed": 0,
+          "fixtures": 33,
+          "input_counts": {
+            "runtime": 10420,
+            "source": 403
+          },
+          "passed": 33,
+          "schema_parts_passed": 132,
+          "schema_parts_total": 132
+        }
+      },
+      {
+        "name": "retained-7",
+        "raw_output_hashes_verified": 208,
+        "receipt_sha256": "4182e135ee9af076cff62f19082576fe40bc2e65f3f5c74b50bdebff9aedf0f3",
+        "summary": {
+          "all_integrity_checks_passed": true,
+          "failed": 0,
+          "fixtures": 7,
+          "input_counts": {
+            "runtime": 10529,
+            "source": 406
+          },
+          "lxml_false_negatives": 3,
+          "passed": 7,
+          "schema_parts_passed": 28,
+          "schema_parts_total": 28
+        }
+      },
+      {
+        "name": "boundary-5",
+        "raw_output_hashes_verified": 105,
+        "receipt_sha256": "b961af24feef9a06699a4cd9a4412e2cb8c3134c69ad82a6de10bf8af6205065",
+        "summary": {
+          "fixtures_passed": 5,
+          "input_files": 398,
+          "inputs_unchanged": true,
+          "pdf_variants": 15,
+          "reopened_docx": 10,
+          "schema_parts_accepted": 40
+        }
+      }
+    ],
+    "harnesses_unchanged": true,
+    "historical_results_counted": false,
+    "source_commit": "8c98daf5ff7b72f8f73017c5747eb4fe4dde25de"
+  },
+  "github_actions_queried_or_awaited": false,
+  "historical_results_counted_as_current": false,
+  "open_correctness_findings": [],
+  "planned_coverage": {
+    "boundary_consumer_fixtures": 5,
+    "changed_existing_test_files_from_either_parent": 22,
+    "changed_test_files_outside_all_final_gates": [],
+    "changed_test_files_outside_main_runner": [
+      "packages/quds_office_editor/example/test/widget_test.dart"
+    ],
+    "cohort_counts": {
+      "editor-integration": 37,
+      "editor-zotero": 13,
+      "engine-integration": 136,
+      "engine-zotero": 19,
+      "gector-contract": 14,
+      "harper-contract": 3
+    },
+    "main_unique_files": 222,
+    "missing_original_odt_files": [],
+    "native_fixture_hashes": {
+      "GECTOR_TEST_LIBRARY": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+      "GECTOR_TEST_MODEL": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b"
+    },
+    "new_frame_test_in_analysis": true,
+    "new_frame_test_in_format": true,
+    "portable_file_count": 17,
+    "portable_files": [
+      "test/odt_page_field_fidelity_test.dart",
+      "test/odt_imported_field_fidelity_test.dart",
+      "test/odt_inline_field_fidelity_test.dart",
+      "test/odt_inline_column_break_fidelity_test.dart",
+      "test/odt_section_fidelity_test.dart",
+      "test/word_field_span_test.dart",
+      "test/word_zotero_simple_field_test.dart",
+      "test/word_toc_test.dart",
+      "test/word_revision_validation_test.dart",
+      "test/odt_page_marker_column_break_test.dart",
+      "test/odt_column_break_style_fidelity_test.dart",
+      "test/odt_bookmark_name_ambiguity_test.dart",
+      "test/odt_bookmark_range_fidelity_test.dart",
+      "test/odt_section_columns_test.dart",
+      "test/odt_header_variant_order_test.dart",
+      "test/odt_header_variant_comment_fidelity_test.dart",
+      "test/odt_frame_common_style_test.dart"
+    ],
+    "portable_significant_whitespace_controls": 6,
+    "retained_consumer_fixtures": [
+      33,
+      7
+    ],
+    "retained_original_odt_files": 38,
+    "scoped_frame_consumer_fixtures": 5,
+    "separate_example_gate": "packages/quds_office_editor/example/test/widget_test.dart"
+  },
+  "preserved_behaviors": [
+    "Original required header/default/left/first then footer/default/left/first order, including empty default stories.",
+    "Comment identities from all six header/footer variants remain in master-page equivalence keys.",
+    "Every modeled text frame remains paragraph anchored with page-relative authored geometry.",
+    "PR144 shared field plan, leading empty fragment at every multicolumn section boundary, native explicit-page precedence and TOC section ownership remain intact.",
+    "PR144 story-scoped bookmark pairing and strict PAGE/NUMPAGES parser are retained. DATE/TIME/TITLE remain styled visible caches under the explicit current contract.",
+    "Significant native-field cache whitespace retains styled, linked ODF text children and source model values."
+  ],
+  "qualification_status": "Source and final gate-selection review complete; fresh retained33+7 and boundary5 consumer gates passed and raw outputs verified. Root VM/Node/example receipts and native receipts remain pending independent review.",
+  "resolved_gate_gaps": [
+    {
+      "finding": "Original example widget repair is outside engine/editor test-root selection.",
+      "resolution": "run_editor_example.py adds exactly test/widget_test.dart with source, dependencies, runtime, workspace, harness and HEAD integrity checks."
+    },
+    {
+      "finding": "Old14-suite Node plan omitted restored header ordering/comment controls and new common-style regression.",
+      "resolution": "Current17-suite Node plan retains all14 and includes those three pure-Dart suites."
+    },
+    {
+      "finding": "Significant-whitespace controls were confined to VM-only complex-field fixture-export suite.",
+      "resolution": "Six exact PAGE/NUMPAGES spaces/tab/newline fallbacks are now also in portable inline-field suite."
+    }
+  ],
+  "reviewed_at_utc": "2026-11-17T21:38:54.790193+00:00",
+  "reviewed_file_sha256": {
+    "docs/validation/gector-office-resume-20261117/office-consumer/run_consumers.py": "a04f7a0c37e297182c603a93dc665680c4b8dd0c74776a392170cd0345c1696a",
+    "docs/validation/gector-office-resume-20261117/office-consumer/verify_frame_repair.py": "bdb695d2fc47ca1bb9bcb7ae65249c19507cc508b6f1830b13fce2ca0725821a",
+    "docs/validation/gector-office-resume-20261117/run_editor_example.py": "37f625e26a909389e5a27d15bd5f279be48604e2086eaf795f24aafeb84c6638",
+    "docs/validation/gector-office-resume-20261117/run_portable.py": "ed6e4ed8d6f93864a9ed23eeacec3553a92af266a4ab78940034a271d008a2dd",
+    "docs/validation/office-reconciled-20261117/qualification/prior_run_qualification.py": "d5b52d06f778704d17aad737651c4b63548c6f1b5ad931cb7651d25314d6579a",
+    "docs/validation/office-reconciled-20261117/qualification/run_qualification.py": "196165c41377f40ef3e97e25aad1d7580ba35602c5581b35384760571bf376c8",
+    "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart": "b1f92acec245ca4a237ef7411d1e6029824ca7b5f0169d944efecf2c586d42a5",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "7c0019e03e767e42b2ad223f2333bb0256e4469ca55ceab0ae316a414729764a",
+    "packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart": "6a7ed77189920b0d41705493811f3f76464b7544df6964346ec4eb3931ad7565",
+    "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart": "53ceb317fbe88db26436bb4d9f9b5f0eb58abc7ba892f1880d0429c094ec18d0",
+    "packages/quds_office_engine/test/odt_frame_common_style_test.dart": "86ebf7a3ad60da5a1a1eef9b37b80a82ecb46ac224b9da096590d829d34093e7",
+    "packages/quds_office_engine/test/odt_header_variant_comment_fidelity_test.dart": "322ad3d26a459683cc470a48f97ff64431b7dd1e6ca99d2ad2121fab06e481fd",
+    "packages/quds_office_engine/test/odt_header_variant_order_test.dart": "5562a08c9ae8a9b90ee0d881912b50d9289ec5e51f67d537d0ecd0fa828dbaa0",
+    "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart": "4bc403038fa502f4d475b477bc04c897318e3a93e79a81584749c7a67f9dd221",
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": "d697dc12fe5766b720d1307d2c69e011977b22ae123a81ebea5e7017621162bd"
+  },
+  "reviewer": "incoming_audit independent peer",
+  "source_commit": "8c98daf5ff7b72f8f73017c5747eb4fe4dde25de",
+  "source_edited_by_reviewer": false,
+  "source_frozen": true,
+  "source_tree": "2c31329a272b0b6f6696b4058fdc41146e8692b6"
+}

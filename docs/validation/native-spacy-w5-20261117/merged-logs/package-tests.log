@@ -1,0 +1,31 @@
+00:00 +0: loading ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart
+00:00 +0: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart: source map keeps UTF8, scalars, UTF16, NUL and decomposed text distinct
+00:00 +1: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart: unpaired UTF16 never silently becomes replacement UTF8
+00:00 +2: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart: byte admission checks multibyte input without truncation
+00:00 +3: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart: empty is explicit and nonempty cannot masquerade as empty success
+00:00 +4: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +5: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +6: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +7: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: closed bundle includes exact source notices and never accepts path input
+00:00 +8: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart: sentence flags, roots and cross-sentence dependencies are checked
+00:00 +9: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: native configuration rejects ambiguous hashes and NUL paths
+00:00 +10: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart: a cycle disconnected from the one root is rejected
+00:00 +11: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +12: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +13: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/bundle_test.dart: missing explicit assets fail startup rather than produce empty success
+00:00 +14: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/analysis_test.dart: success is scoped to the exact declared locale and runtime profile
+00:00 +15: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: persistent native ownership serializes calls and recovers after failure
+00:00 +16: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: 200 superseding snapshots retain one physical slot and other-key order
+00:00 +17: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: invalid replacement does not cancel valid in-flight source
+00:00 +18: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: cancel releases caller but preserves slot until native acknowledgement
+00:00 +19: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: timeout retains physical slot and never publishes a late result
+00:00 +20: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: dispose rejects callers immediately and joins the active context safely
+00:00 +21: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: snapshot and runtime mismatch cannot become success
+00:00 +22: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: unexpected isolate exit rejects all callers
+00:00 +23: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: startup failure returns explicit unavailable
+00:00 +24: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: cleanup failure is explicit and repeated disposal preserves the error
+00:00 +25: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: spawn failure has no unhandled readiness error
+00:00 +26: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: startup timeout returns promptly then releases late initialized context
+00:00 +27: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: web worker boundary reports unavailable without opening backend
+00:00 +28: ${QUDS_ROOT}/packages/quds_proofing_spacy/test/worker_test.dart: worker limit admission is explicit
+00:00 +29: All tests passed!

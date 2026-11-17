@@ -6,6 +6,22 @@ fresh implementation agent. It records decisions, inspected source, existing
 experiments, work packages, and acceptance criteria without requiring access to
 the preceding conversation.
 
+**Current continuation, 17 November 2026:** the original status above describes
+the research handoff. Native W0–W4 and the first frozen eight-case acceptance
+are complete at [CrispEmbed `2176c89`](https://github.com/CrispStrobe/CrispEmbed/commit/2176c896dc6bb8c832a9d03b04fd07c7c991fdc5).
+All 98 tokens, 13 sentences, 201 parser transitions, 294 classifier choices and
+851 numerical stages pass with exact annotations/spans. The consumed acceptance
+split remains unchanged. Quds main through `16e2477f` was integrated before W5;
+the later refresh through `4b2b4e78` is preserved in remote merge `8d89e4f7`.
+
+The [W5 continuation](../../validation/native-spacy-w5-20261117/README.md)
+qualifies the optional Dart analysis package, persistent worker and manual
+Studio view on Linux x86-64/AVX2 with the same frozen binary. Local package/UI,
+actual-native widget and existing proofing checks pass after the latest-main
+merge. Use that current receipt for completed checks and remaining work.
+Grammar benefit, mobile qualification and distribution remain separate gates.
+The historical roadmap below retains its original source/evidence boundaries.
+
 ## Start here
 
 Build an optional, offline German linguistic-analysis backend for Quds using

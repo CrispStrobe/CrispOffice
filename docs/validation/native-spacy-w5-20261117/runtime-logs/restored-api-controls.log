@@ -1,0 +1,26 @@
+test_admission_hashes_and_missing_resources (__main__.TextAPITests.test_admission_hashes_and_missing_resources) ... ok
+test_cancellation_after_work_begins (__main__.TextAPITests.test_cancellation_after_work_begins) ... ok
+test_cancellation_and_recovery (__main__.TextAPITests.test_cancellation_and_recovery) ... ok
+test_corrupt_and_oversized_resources_rejected (__main__.TextAPITests.test_corrupt_and_oversized_resources_rejected) ... ok
+test_counted_nul_and_original_offsets (__main__.TextAPITests.test_counted_nul_and_original_offsets) ... ok
+test_disabled_gate_on_contexts_and_calls (__main__.TextAPITests.test_disabled_gate_on_contexts_and_calls) ... ok
+test_document_lifetime_after_context (__main__.TextAPITests.test_document_lifetime_after_context) ... ok
+test_empty_counted_and_null_empty (__main__.TextAPITests.test_empty_counted_and_null_empty) ... ok
+test_error_buffer_capacity (__main__.TextAPITests.test_error_buffer_capacity) ... ok
+test_immutable_document_concurrent_readers (__main__.TextAPITests.test_immutable_document_concurrent_readers) ... ok
+test_input_buffer_is_not_borrowed (__main__.TextAPITests.test_input_buffer_is_not_borrowed) ... ok
+test_invalid_document_views_are_cleared (__main__.TextAPITests.test_invalid_document_views_are_cleared) ... ok
+test_legacy_context_rejects_text (__main__.TextAPITests.test_legacy_context_rejects_text) ... ok
+test_malformed_utf8_and_output_reset (__main__.TextAPITests.test_malformed_utf8_and_output_reset) ... ok
+test_null_argument_combinations (__main__.TextAPITests.test_null_argument_combinations) ... ok
+test_resources_owned_after_open (__main__.TextAPITests.test_resources_owned_after_open) ... ok
+test_same_context_concurrent_calls (__main__.TextAPITests.test_same_context_concurrent_calls) ... ok
+test_text_byte_boundary (__main__.TextAPITests.test_text_byte_boundary) ... ok
+test_token_count_boundary (__main__.TextAPITests.test_token_count_boundary) ... ok
+test_trace_abort_and_recovery (__main__.TextAPITests.test_trace_abort_and_recovery) ... ok
+test_versions_and_capabilities (__main__.TextAPITests.test_versions_and_capabilities) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.917s
+
+OK

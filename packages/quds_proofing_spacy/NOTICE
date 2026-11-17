@@ -1,0 +1,11 @@
+This optional Dart adapter is original Quds code under the MIT license.
+It does not include native binaries, model weights, spaCy Python packages,
+Python execution, AOT libraries, dictionaries, or a grammar correction planner.
+
+The explicitly installed native runtime and model have their own notices.
+The model admission contract authenticates the original LICENSE and
+LICENSES_SOURCES files for de_core_news_sm 3.8.0. Distributors must retain those
+files plus the notices installed by CrispEmbed's standalone spaCy target,
+including its ggml, PCRE2, CPython-derived Unicode data and Unicode notices.
+See docs/roadmaps/native-spacy/licensing-and-distribution.md in Quds and
+tools/spacy/README.md in CrispEmbed for the recorded provenance and boundaries.

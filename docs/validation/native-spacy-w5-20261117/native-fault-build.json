@@ -1,0 +1,18 @@
+{
+  "schema": "quds.spacy.dart.native-fault-build.v1",
+  "scope": "Test-only fake C ABI; no inference and never a runtime distribution",
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "command": "gcc -std=c11 -O2 -Wall -Wextra -Werror -shared -fPIC -I\"$CRISPEMBED_CHECKOUT/src\" packages/quds_proofing_spacy/tool/native_fault_fixture.c -o \"$QUDS_SPACY_FAULT_LIBRARY\"",
+  "compiled_sha256": "2c66cf8dea3116af54421680022ec85f0da7d152a4a8adab8f63126708bfbfb3",
+  "compiled_bytes": 16480,
+  "inputs": {
+    "fixture_c": {
+      "sha256": "51caed1bfe6573c13a0e9fce8cafd47543336097b7d55ff80b3775d71cc77ac7",
+      "bytes": 4597
+    },
+    "abi_header": {
+      "sha256": "756c25b664b38d26d1da13264d47417d9914f8dd805c588a539fe6f3681f7e62",
+      "bytes": 10045
+    }
+  }
+}
