@@ -108,6 +108,36 @@ each timed complete check. Timing does not measure only one native forward.
 These repeated-sentence probes establish bounded execution and source coverage,
 not representative long-paragraph German quality or an interactive-device SLA.
 
+## Explore native thread counts locally
+
+The complete-check runner accepts `--native-threads N`, a decimal integer from
+1 through 64. Omitting it retains **two native threads**, including the existing
+factory default. The selected count is passed to the native backend and recorded
+as `runtime.native_threads`; failure receipts retain `native_threads` too.
+Unknown or repeated options are rejected before opening model assets.
+
+For a controlled exploratory sweep, finish all tests and compilation first,
+then run **1, 2, 4 and 8 threads serially through the same freshly compiled AOT**.
+Use the same verified model, native library, F32 reference and decoding options
+for every run, with a fresh report/log path for each count. Keep
+`--segment-target-tokens 64` fixed to compare complete distinct long paragraphs;
+hold any `--reuse-identical-inputs` setting fixed as well. Each arm retains all
+original short cases, clean controls, operational controls, one warmup and three
+timed samples per input. The runner does not select an optimal count or change
+the application default.
+
+Require the source map, executable/runtime hashes, model/library identities,
+segment partitions, findings, corrected text and completed coverage to agree
+across arms before interpreting timing differences. Compare whole-check
+latencies and peak RSS, preserving all samples and failed attempts. With three
+samples per input, the reported per-input p95 is simply their maximum. A local
+thread-count result is exploratory evidence; repeat on intended hardware before
+choosing a host configuration.
+
+The frozen `compare_guarded_provider.py` protocol admits two native threads.
+Use it for the two-thread arm, then independently compare the other arms with
+that validated arm while retaining their actual thread-count metadata.
+
 ## Interpretation
 
 The 30-case panel is synthetic and small. A successful comparison establishes

@@ -27,6 +27,67 @@ void main() {
     'output',
   ];
 
+  test('native thread CLI preserves two threads by default', () {
+    expect(
+      runner.gectorRunnerArguments(requiredArguments)['native-threads'],
+      '2',
+    );
+  });
+
+  test('native thread CLI admits explicit bounded decimal counts', () {
+    for (final threads in <String>['1', '2', '4', '8', '64']) {
+      expect(
+        runner.gectorRunnerArguments(<String>[
+          ...requiredArguments,
+          '--native-threads',
+          threads,
+        ])['native-threads'],
+        threads,
+      );
+    }
+  });
+
+  test('native thread CLI rejects invalid counts before opening assets', () {
+    for (final invalid in <String>[
+      '0',
+      '65',
+      '-1',
+      '2.5',
+      '1e0',
+      '',
+      'many',
+      ' 2 ',
+      '0x2',
+      '+2',
+    ]) {
+      expect(
+        () => runner.gectorRunnerArguments(<String>[
+          ...requiredArguments,
+          '--native-threads',
+          invalid,
+        ]),
+        throwsArgumentError,
+        reason: invalid,
+      );
+    }
+  });
+
+  test('thread CLI rejects missing, duplicate and unknown options', () {
+    for (final extra in <List<String>>[
+      ['--native-threads'],
+      ['--native-threads', '2', '--native-threads', '4'],
+      ['--thread-count', '2'],
+    ]) {
+      expect(
+        () => runner.gectorRunnerArguments(<String>[
+          ...requiredArguments,
+          ...extra,
+        ]),
+        throwsArgumentError,
+      );
+    }
+  });
+
   test('reuse CLI requires an explicit segmented mode and boolean value', () {
     expect(
       runner

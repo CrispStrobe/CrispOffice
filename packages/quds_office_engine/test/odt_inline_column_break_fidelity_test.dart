@@ -255,58 +255,57 @@ void main() {
     },
   );
 
-  test(
-    'section and page precedence stay on the first column fragment only',
-    () {
-      final document = _import(
-        '<w:p><w:pPr><w:sectPr><w:cols w:num="2"/></w:sectPr></w:pPr>'
-        '<w:r><w:t>First section</w:t></w:r></w:p>'
-        '<w:p><w:pPr><w:pageBreakBefore/></w:pPr>'
-        '<w:r><w:br w:type="column"/><w:t>Second section</w:t>'
-        '<w:br w:type="column"/><w:t>Continuation</w:t></w:r></w:p>',
-      );
-      expect(document.sections, hasLength(2));
-      final content = _export(document);
-      final paragraphs = _elements(_body(content), 'p').toList();
-      expect(paragraphs.map(_visible), [
-        'First section',
-        'Second section',
-        'Continuation',
-      ]);
-      final first = paragraphs[1];
-      final last = paragraphs[2];
-      expect(_breakBefore(content, first), 'page');
+  test('section and page boundaries precede both authored column breaks', () {
+    final document = _import(
+      '<w:p><w:pPr><w:sectPr><w:cols w:num="2"/></w:sectPr></w:pPr>'
+      '<w:r><w:t>First section</w:t></w:r></w:p>'
+      '<w:p><w:pPr><w:pageBreakBefore/></w:pPr>'
+      '<w:r><w:br w:type="column"/><w:t>Second section</w:t>'
+      '<w:br w:type="column"/><w:t>Continuation</w:t></w:r></w:p>',
+    );
+    expect(document.sections, hasLength(2));
+    final content = _export(document);
+    final paragraphs = _elements(_body(content), 'p').toList();
+    expect(paragraphs.map(_visible), [
+      'First section',
+      '',
+      'Second section',
+      'Continuation',
+    ]);
+    final first = paragraphs[1];
+    expect(_breakBefore(content, first), 'page');
+    expect(
+      _style(
+        content,
+        first,
+      ).getAttribute('master-page-name', namespaceUri: _styleNs),
+      'mp1',
+    );
+    expect(
+      _properties(
+        content,
+        first,
+      ).getAttribute('page-number', namespaceUri: _styleNs),
+      'auto',
+    );
+    for (final fragment in paragraphs.skip(2)) {
+      expect(_breakBefore(content, fragment), 'column');
       expect(
         _style(
           content,
-          first,
-        ).getAttribute('master-page-name', namespaceUri: _styleNs),
-        'mp1',
-      );
-      expect(
-        _properties(
-          content,
-          first,
-        ).getAttribute('page-number', namespaceUri: _styleNs),
-        'auto',
-      );
-      expect(_breakBefore(content, last), 'column');
-      expect(
-        _style(
-          content,
-          last,
+          fragment,
         ).getAttribute('master-page-name', namespaceUri: _styleNs),
         isNull,
       );
       expect(
         _properties(
           content,
-          last,
+          fragment,
         ).getAttribute('page-number', namespaceUri: _styleNs),
         isNull,
       );
-    },
-  );
+    }
+  });
 
   test(
     'line and page breaks retain their existing position beside a column break',
