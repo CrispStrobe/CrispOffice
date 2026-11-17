@@ -1,0 +1,19 @@
+{
+  "source_commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "reviewer": "/root/incoming_review",
+  "mode": "Read-only source and targeted-test review; no tests rerun or expanded.",
+  "blockers": [],
+  "reviewed": [
+    "Section activation reaches the first exported list paragraph, including nested content controls, without applying activation to later items.",
+    "List counters continue across body sections; auxiliary stories and covered cells use isolated counters.",
+    "Deferred section styles resolve master-page reuse after header/footer comparison, preserving equivalent continuous sections and odd/even entry masters.",
+    "Shared paragraph-style generation applies RTL physical-margin mapping to ordinary paragraphs, headings, and section-leading list paragraphs.",
+    "Direction remains part of style identity; hanging-indent precedence, invalid-value omission, and source properties remain intact.",
+    "Existing targeted section/list/RTL regressions align with these paths."
+  ],
+  "retained_limits": [
+    "Tables inside paragraph-anchored text boxes contribute visible cell paragraphs instead of separate structured table entries.",
+    "Anchor text precedes text-box stories in source order; extraction does not infer visual-position order."
+  ],
+  "github_actions": "Not queried or awaited."
+}

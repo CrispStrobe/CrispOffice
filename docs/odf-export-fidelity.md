@@ -31,7 +31,7 @@ Horizontal indents also retain their physical sides. For explicit RTL
 paragraphs, the model's right indent becomes `fo:margin-left` and its left
 indent becomes `fo:margin-right`, matching ODF's direction-dependent paragraph
 margins. LTR and unspecified direction keep the ordinary mapping. The
-[ODF 1.4 paragraph-tab-position note](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html#attribute-text_relative-tab-stop-position)
+[ODF 1.4 paragraph-tab-position note](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html#property-text_relative-tab-stop-position)
 makes that RTL margin interpretation explicit; generated files remain ODF 1.3.
 Hanging indentation retains precedence over first-line indentation.
 
