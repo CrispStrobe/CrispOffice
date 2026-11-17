@@ -622,6 +622,7 @@ abstract final class OdtDocumentWriter {
   static void _writeInline(XmlWriter w, WmlInline inline, _OdtLayout layout) {
     switch (inline) {
       case WmlRun():
+        if (layout.fieldResultSuppressed) break;
         final style = layout.runStyle(inline.properties);
         final href = switch (inline.hyperlink) {
           final link? =>
@@ -686,9 +687,29 @@ abstract final class OdtDocumentWriter {
           prefix: 'text',
         );
       case WmlFieldBoundary():
-        // Instructions are hidden field metadata, not document text. The
-        // surrounding result runs remain in the inline sequence, including
-        // citations and bibliographies that span several paragraphs.
+        if (inline.kind == WmlFieldBoundaryKind.begin) {
+          layout.beginField();
+        } else if (inline.kind == WmlFieldBoundaryKind.instruction) {
+          final name = inline.text
+              .trim()
+              .split(RegExp(r'\s+'))
+              .first
+              .toUpperCase();
+          final element = switch (name) {
+            'PAGE' => 'page-number',
+            'NUMPAGES' => 'page-count',
+            'DATE' => 'date',
+            'TIME' => 'time',
+            'TITLE' => 'title',
+            _ => null,
+          };
+          if (element != null) {
+            w.writeEmptyElement(element, prefix: 'text');
+            layout.suppressFieldResult();
+          }
+        } else if (inline.kind == WmlFieldBoundaryKind.end) {
+          layout.endField();
+        }
         break;
       case WmlBookmarkBoundary():
         final name = inline.name;
@@ -1390,6 +1411,21 @@ class _OdtLayout {
   bool inCommentBody = false;
   bool inNoteBody = false;
   bool noteReferenceSpacePending = false;
+  int _fieldDepth = 0;
+  int? _suppressFieldDepth;
+
+  void beginField() => _fieldDepth++;
+
+  void suppressFieldResult() => _suppressFieldDepth = _fieldDepth;
+
+  bool get fieldResultSuppressed =>
+      _suppressFieldDepth != null && _fieldDepth >= _suppressFieldDepth!;
+
+  void endField() {
+    if (_suppressFieldDepth == _fieldDepth) _suppressFieldDepth = null;
+    if (_fieldDepth > 0) _fieldDepth--;
+  }
+
   final Map<String, String> _runStyles = <String, String>{};
   final Map<String, String> _paragraphStyles = <String, String>{};
   final Map<String, String> _columnStyles = <String, String>{};
