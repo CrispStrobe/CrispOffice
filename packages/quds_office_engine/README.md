@@ -21,7 +21,7 @@
 
 **A pure Dart Office, PDF, and report engine.** Open, build, and write
 `.docx`, `.xlsx`, and `.pptx`; import bounded legacy `.doc`/`.xls` and
-OpenDocument `.odt`/`.ods`/`.odp` inputs; export `.ods`. Open real PDF files. Design **band reports**
+OpenDocument `.odt`/`.ods`/`.odp` inputs; export `.ods`, and emit new-document `.odt`/`.odp` subsets. Open real PDF files. Design **band reports**
 (`.qrep`) with expressions, grouping, charts, and Arabic amount-in-words, then
 export them to PDF, XLSX, and DOCX. Compose pages with a Flutter-like widget
 layout, pick from **100+ direction-aware PDF templates**, export Office models
@@ -1453,7 +1453,7 @@ dart run example/rich_export_gallery.dart
 | `.ppt` / `.pps` / `.pot` | Partial | — | Current-slide text in the engine; rich preview is a host integration |
 | `.odt` | Yes | — | Formatted read-only model: headings, lists, tables, notes, pictures, text boxes, headers/footers |
 | `.ods` | Yes | Yes | Typed modeled subset including pictures, conditional formats, validations, row groups, page setup and header/footer sections; `OdsSheetWriter` emits a new package, not an in-place ODF rewrite |
-| `.odp` | Yes | — | Positioned read-only deck: page size, shapes, text, fills, images, notes |
+| `.odp` | Yes | Yes | New-document deck subset: page size, positioned text, pictures, tables, fills/strokes and notes; no in-place ODF preservation |
 | `.pdf` | Yes | Yes | `PdfFile` open; native 1.7 write and toolbox graft |
 | `.qrep` | Yes | Yes | Band-report XML with line:column diagnostics; exports PDF, XLSX, DOCX |
 | Password-protected OOXML | Yes | Yes | When a password is supplied |
