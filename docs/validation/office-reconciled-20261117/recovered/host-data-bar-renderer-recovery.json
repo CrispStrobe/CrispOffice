@@ -1,0 +1,12 @@
+{
+  "captured_repository": "CrispStrobe/CrispCloud",
+  "captured_commit": "cc538a4ac0435781671bd02d2cac7c0bf922322a",
+  "path": "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+  "before_sha256": "3c9bd2d1721d391a1bae88063b5cea4055524e7273e4dffaed398220b5222bee",
+  "after_sha256": "f92844b4c0c6c77522dc2cef9d52ed4ee8696f165f19f8c63968431782fbb8da",
+  "captured_git_blob": "d161e0f3f1569743780b01d5cde6a06e1d010ce1",
+  "only_change": "Exact14-line conditional-data-bar drawing block after conditional fill/table band and before editing/selection overlays.",
+  "inserted_lines": 14,
+  "entire_file_matches_captured_host": true,
+  "canonical_source_tests_run": false
+}

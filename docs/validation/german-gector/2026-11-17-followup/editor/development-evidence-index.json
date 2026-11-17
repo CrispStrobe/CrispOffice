@@ -1,0 +1,65 @@
+[
+  {
+    "path": "studio-before.jsonl.gz",
+    "bytes": 1459,
+    "sha256": "d2d09fb92f88d15943939afa00aa3889036e4159aaaeb2b526714f81fd093bc3",
+    "uncompressed_bytes": 4550,
+    "uncompressed_sha256": "ba25aada700a02ed6a09ac614b834ff0957ebcaeb93b5de8d44e7a77e2060b5e"
+  },
+  {
+    "path": "studio-before.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "uncompressed_bytes": 0,
+    "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "studio-after.jsonl.gz",
+    "bytes": 903,
+    "sha256": "08ba15adc703905bc00b65560faf5bb6608b30fb68578f2537fe4ea0de108d65",
+    "uncompressed_bytes": 2657,
+    "uncompressed_sha256": "4df70c8c92709308804d880e7427c9fee205d023e8cdb7b3e9de06ddb8c6265f"
+  },
+  {
+    "path": "studio-after.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "uncompressed_bytes": 0,
+    "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "editor-proofing.jsonl.gz",
+    "bytes": 10218,
+    "sha256": "14fc2a5f690e3b4f6f05bd9f8750ea232feeda47d2543fc3eeea839e7f3c27c0",
+    "uncompressed_bytes": 103600,
+    "uncompressed_sha256": "9cb508ea7a96bce39eb6974d9e2f68b8534986a8c722479562677118d72beec7"
+  },
+  {
+    "path": "editor-proofing.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "uncompressed_bytes": 0,
+    "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "editor-proofing-receipt.json.gz",
+    "bytes": 25243,
+    "sha256": "b7ded311d1117dbb26c8acfed2e056910bf294cd4ea74064ac63a236fc2f8354",
+    "uncompressed_bytes": 89020,
+    "uncompressed_sha256": "0fccd1dc26a64dec10d49a1856586e71811f4acfc6c89dd28787e4e8c6cade32"
+  },
+  {
+    "path": "editor-integration-after.jsonl.gz",
+    "bytes": 1641,
+    "sha256": "42f85ca9efbcc06602e8a7a4d79ab38b8ef324e03daba76da12ba8d89c87322c",
+    "uncompressed_bytes": 16423,
+    "uncompressed_sha256": "a0c8143424506c2a10aaa22a037283e78fd631ad28e1581173b4b02983aa9f79"
+  },
+  {
+    "path": "editor-integration-after.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "uncompressed_bytes": 0,
+    "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

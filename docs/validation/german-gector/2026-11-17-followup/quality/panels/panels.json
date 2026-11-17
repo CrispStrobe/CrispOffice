@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "panels": [
+    {
+      "name": "original-30",
+      "source_path": "tools/proofing/german_model/cases.json",
+      "source_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+      "source_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "run_file": "original-30.json",
+      "run_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "adapter": "none; exact source bytes",
+      "cases": 30,
+      "errors": 18,
+      "clean": 12
+    },
+    {
+      "name": "development-76",
+      "source_path": "tools/proofing/german_model/prospective_cases_20261117.json",
+      "source_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+      "source_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "run_file": "development-76.json",
+      "run_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "adapter": "none; exact source bytes",
+      "cases": 76,
+      "errors": 32,
+      "clean": 44
+    },
+    {
+      "name": "syntax-56",
+      "source_path": "tools/proofing/german_model/syntax_cases_20261117.json",
+      "source_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+      "source_sha256": "6f67e56d9278ea96ef424d837741d23a87a5485206ddc1cc91b83d32af49a811",
+      "run_file": "syntax-56.json",
+      "run_sha256": "7cfb69b8e7a3d261e21d7b3616f6e71942ffd5b41ef96ce5a1f5e38dd38e24f6",
+      "adapter": "Rename metadata key area to category; all values, case order and other keys unchanged.",
+      "cases": 56,
+      "errors": 20,
+      "clean": 36
+    },
+    {
+      "name": "context-83",
+      "source_path": "tools/proofing/german_model/context_cases_20261117.json",
+      "source_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+      "source_sha256": "2522bc58c300a9233cf69c7004136ea66a7d3bb546cd8485a3fa5e972be0bbe3",
+      "run_file": "context-83.json",
+      "run_sha256": "2522bc58c300a9233cf69c7004136ea66a7d3bb546cd8485a3fa5e972be0bbe3",
+      "adapter": "none; exact source bytes",
+      "cases": 83,
+      "errors": 23,
+      "clean": 60
+    },
+    {
+      "name": "completion-28",
+      "source_path": "tools/proofing/german_model/context_completion_cases_20261117.json",
+      "source_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+      "source_sha256": "274f861d9944206781de3acbb8fbc0d2a762515d1e9e554820803f6f0f0f6ad5",
+      "run_file": "completion-28.json",
+      "run_sha256": "274f861d9944206781de3acbb8fbc0d2a762515d1e9e554820803f6f0f0f6ad5",
+      "adapter": "none; exact source bytes",
+      "cases": 28,
+      "errors": 8,
+      "clean": 20
+    },
+    {
+      "name": "holdout-104",
+      "source_path": "tools/proofing/german_model/context_holdout_20261117.json",
+      "source_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+      "source_sha256": "cbbd3a5ea368d0b7e66484161c35245dc96a4f488d3185fc7dbd24a3a77e9d2a",
+      "run_file": "holdout-104.json",
+      "run_sha256": "cbbd3a5ea368d0b7e66484161c35245dc96a4f488d3185fc7dbd24a3a77e9d2a",
+      "adapter": "none; exact source bytes",
+      "cases": 104,
+      "errors": 46,
+      "clean": 58
+    }
+  ],
+  "case_count": 377,
+  "interpretation": "Reused, previously frozen synthetic panels. These do not establish representative or prospectively independent German accuracy. No input, expected text, locale or case order is altered."
+}

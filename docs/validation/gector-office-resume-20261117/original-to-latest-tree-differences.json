@@ -1,0 +1,1261 @@
+{
+  "original": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+  "continuation": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+  "differences": [
+    {
+      "path": "docs/PROOFING.md",
+      "original_blob": "e504fa092ee2693acae0f2e648f6e9c1e22e9018",
+      "continuation_blob": "53fb236fb41d309af40c2f7cc3977edb5574524a"
+    },
+    {
+      "path": "docs/odf-export-fidelity.md",
+      "original_blob": "e7953e87c4ff1cdb176a53aa0e9ed50e1c881dae",
+      "continuation_blob": "e0ec6e28f094f9be3101a165bb2f8aba52f10ce7"
+    },
+    {
+      "path": "docs/office-remaining-gaps.md",
+      "original_blob": "ae0d058d92e03a9e2d3aa0da81806f7f92d7ff47",
+      "continuation_blob": "d526389ec58bfb570c52837f584faf98861ebdd0"
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/EXACT_MODEL_RECOVERY.md",
+      "original_blob": "3115a57c1313d3b5dd31e339bf45a742c8b42c27",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/README.md",
+      "original_blob": "c49189cc0e9838ca6ab215afb84a7bbcae2d034f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/cooperating-ref-audit.json",
+      "original_blob": "4bc8525d6347f33113c11e3d4a99c8912940304c",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/README.md",
+      "original_blob": "0f302cd75f9836471815f8f4400c3c713e4edeb1",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/development-evidence-index.json",
+      "original_blob": "507ffb71c407923e5da5403f2e0d14b0bfbfa9f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-integration-after.jsonl.gz",
+      "original_blob": "ad53ea8a27d5b48bd989eeb9be4a7b1172b2439a",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-integration-after.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-final-receipt.json.gz",
+      "original_blob": "7d6972229327d0a04951c03024add401e0cd93d7",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-final.jsonl.gz",
+      "original_blob": "2956fef07d8934713d4ce11da954b561bc443fdb",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-final.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-receipt.json.gz",
+      "original_blob": "23cd17f73be2436cbb51418dadefc6add5bf20e8",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing.jsonl.gz",
+      "original_blob": "4da18ebf62b3ee847186e3efac8d7a4a9a5262ce",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/final-summary.json",
+      "original_blob": "f7579e4113502c7e46c6dddee3b988b415ddb84d",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/studio-after.jsonl.gz",
+      "original_blob": "663f28cdb0fe766a84c34347f61e65f9c43a9d66",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/studio-after.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/studio-before.jsonl.gz",
+      "original_blob": "81342def5aa06fcf9a9b0814305e26e8c30f3af2",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/editor/studio-before.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/german-merge-resolution.json",
+      "original_blob": "606ca0cd9a8e529f0ff42dc585bd31d8d7d2a9b7",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/incoming-snapshot.json",
+      "original_blob": "ec94aa26bc9a59b59d36a68952e27797cecc93d8",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration-decisions.json",
+      "original_blob": "7abfba8c252f877a1fd00f7d4577017ef3f2ab5b",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration/equivalence-audit.json",
+      "original_blob": "cd71a1ff849c144929fc248fafa088f129f77cf4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration/fetched-reference-set.json",
+      "original_blob": "14e55ee13f9581c524b1c0766555ead37d75dc5f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration/imported-historical-evidence.json",
+      "original_blob": "7b32e8f2166b743fce2ff21ccdb428a8a039da23",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration/maximal-incoming-details.json",
+      "original_blob": "a19c7f79e1b81526ada2d9638187a8a7c50b88e5",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration/office-merge-notes.md",
+      "original_blob": "9f4a82703e861a37644914fc81a68729efcf61a6",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration/retention-decisions.json",
+      "original_blob": "3403d03add1b897f59526f4f93a391dcc16b55f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/integration/vendor-equivalence.json",
+      "original_blob": "4ae1c97eb5fc38e5de11218432c14a9fd89dcf6a",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/merge-inputs-index.json",
+      "original_blob": "02ce9278b3bda33caaf6d40d20143d8d61bea139",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/merge-inputs.tar.xz",
+      "original_blob": "3a14c60891a34830b032f8b26a77ec4f85d281ec",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/check_thread_sweep_audit.py",
+      "original_blob": "6e3468a81a9e8301e5bfc7a5f4ba8557aecfc98c",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/evidence-index.json",
+      "original_blob": "aeec0124f713f137de11c331ed838b69a22f64b4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-analyze.log.gz",
+      "original_blob": "997b524544c09320e77038035404e3b81a546ba8",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-focused-test-results.json.gz",
+      "original_blob": "dddbd50aed22b9fdc6bcb24087e540939633eda5",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-native-backend-config.jsonl.gz",
+      "original_blob": "5b51181b01204a117e201ceb08c640dd11699744",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-native-backend-config.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs-package-cwd.jsonl.gz",
+      "original_blob": "df3bd2ebf8c589f96d7ae4767f0ac5e756315212",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs-package-cwd.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs.jsonl.gz",
+      "original_blob": "750688e151f8564c0e430ad071bd1c48361cf7c2",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-analysis-command.json.gz",
+      "original_blob": "d27b6cf99e8d8eceb2244b44b0a89de057d697d6",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-analysis.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-analysis.stdout.gz",
+      "original_blob": "163439194bf3c74a5052748d4c0a02dce687447e",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-full-command.json.gz",
+      "original_blob": "1740c9a78826db4c9c84663bae7e8916ba7d4ae7",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-full.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-full.stdout.gz",
+      "original_blob": "674f9d711a4bb43e4c6eaf3f70c6e0b967688049",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-test-identities.json.gz",
+      "original_blob": "0ef407c2f1abd68127ae4d74ef3b480194fcf6c9",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/python-results.json.gz",
+      "original_blob": "016462a8769d6f46462a187d030423b1b78ecb74",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/python-tooling-command.json.gz",
+      "original_blob": "10728dcb3aeb527e996f622b2d083b1280f8cd36",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/python-tooling.stderr.gz",
+      "original_blob": "9ba7a809b66f0d138f569024317a4d641bd53ac4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/python-tooling.stdout.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/run_native_thread_sweep.py",
+      "original_blob": "38b8d92079604bc35beef2c6b82fbcb9a9886105",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/runtime-verification.json.gz",
+      "original_blob": "1549948812733f6d74c2389776e459fd04fa8f17",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/thread-sweep-audit-controls-recovery.json",
+      "original_blob": "3dac6e4b654dc7752a4d292ac255b61249443947",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/validation-summary.json",
+      "original_blob": "f15335e6d421fe43455fc065573b225e6733def4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/native-threads/workspace-resolution.json.gz",
+      "original_blob": "9049c19dd1512eb0b37d41132055e008274be439",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/POST_RESET_VALIDATION.md",
+      "original_blob": "85f46a34731fefeeb15c1562da5ee5e35e01e48f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/README.md",
+      "original_blob": "4984f760375d98938c9a1c842cbe2ede287607cf",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/SETUP.md",
+      "original_blob": "afdc83dc4e93cce1b7a4d4d7b2a4ae1b1187ed2d",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/emergency-recovery.json",
+      "original_blob": "95aa3a4c4ebe48685e685660d2c116f8e4120960",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/make_fixtures.dart",
+      "original_blob": "1848d60199c2e9504453b48f73c68ba7fdfd3239",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/post-reset-validation-1-index.json",
+      "original_blob": "55c85a1a2daab750ad91c9a6a8d82bb6d14f7dd5",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/post-reset-validation-1.tar.xz",
+      "original_blob": "5d77140b4edbc4fa944ee141a5f268cb6d962061",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/probe_bookmark_consumers.py",
+      "original_blob": "4d8eba6a409ea2aac371ed7394ce487fb5de60b0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/run_consumers.py",
+      "original_blob": "e17f14bafddbad2360f510f16406399fba245be7",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-consumer/run_office_cohort.py",
+      "original_blob": "2808309b7eb25c6b6fd5f17719b4e8dcdee884bb",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office-review/recovered-source-review-94efdd3c.json",
+      "original_blob": "50a012f0b25a44e1ee7b03fe9924cbb007db12b4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office/README.md",
+      "original_blob": "523062a7bb9ab6f1dc42484f2a5dcf84a732e125",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office/office-regression-evidence-index.json",
+      "original_blob": "c4ce6310d27e5648d713be181654b314be2971b4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/office/office-regression-evidence.tar.xz",
+      "original_blob": "506d302225be16f14f01e6fa2c017463f996a6ba",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/README.md",
+      "original_blob": "a56bfcfa8aeacaa9ab5398bd22bf9721593a61ad",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/RECOVERY.md",
+      "original_blob": "10e7733a3844a749f554e64d5f2a5277f1f735c3",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/baseline-baseline-replay-plan.json.gz",
+      "original_blob": "672c091fe451fb2779fd57b2bcec8c88c73d9283",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/baseline-build.log.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/baseline-controls.json.gz",
+      "original_blob": "689d3bf4c2136fb5da026fdc9aee905753b10eb5",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/baseline-offline-resolution.json.gz",
+      "original_blob": "7d1fe2a3eef9faaa2d5837367f81c89ff98a4ca3",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/baseline-offline-resolution.log.gz",
+      "original_blob": "ab9976a689a904b3040b26f02fe534158fc56a95",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/baseline-quality-build.json.gz",
+      "original_blob": "2a160e104f7d1c5239bb3a7c0e5520bbc80a91ba",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/baseline-snapshot.json.gz",
+      "original_blob": "cc855e10b2b2248e03b3757e18a4fc43eae34431",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/compare_quality_replay.py",
+      "original_blob": "74cb405814f33d752283ff8493439d29d0d0a827",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/panels/completion-28.json",
+      "original_blob": "a443ce8b1de587d16ce33ecf28fda9a10ee72ea4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/panels/context-83.json",
+      "original_blob": "07417a9a7a749a87fa00edb8f0a0414ee8b85fcc",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/panels/development-76.json",
+      "original_blob": "cf3ee6ec58f438c7599611ad317aeaf8bf0a8204",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/panels/holdout-104.json",
+      "original_blob": "70e54fb9e57316ae404051aad5f308785d084b53",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/panels/original-30.json",
+      "original_blob": "80d159cee37fe677eeacaecf279d1d0b01bf7cc8",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/panels/panels.json",
+      "original_blob": "1860cdbe8fe5eb5ac4d20833e7216fadab92fce5",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/panels/syntax-56.json",
+      "original_blob": "3ebee7bdb93588075518335920827282699c013d",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/preparation-index.json",
+      "original_blob": "f91975858677cbd372a57ae0e3104ab927f939d9",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/preparation.json",
+      "original_blob": "22eab0bbf3c8e297375127d32f13ecdf15568193",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/prepare_panels.py",
+      "original_blob": "27973b81fd42c19558ae794bc61dce1dd924c755",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/prepare_snapshot.py",
+      "original_blob": "7b948420f13cdf0baf31dc4add59b93090465dd0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/recovered-baseline-observations.json",
+      "original_blob": "777e4a98f86774143fa14658067ee6fefa18d573",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/quality/run_quality_replay.py",
+      "original_blob": "1e1eb1e2341e99e20c7d93a3aaff807e9a2c988f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/recovery/complete_native_recovery.py",
+      "original_blob": "9079a984fbba32d76d5cd8c10887ea5fcbd474f9",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/recovery/dart-analytics-suppression-source-audit.json",
+      "original_blob": "862c4fa3bb93e6c86759d475808da32635723e1c",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/recovery/rebuild_pinned_native.py",
+      "original_blob": "6f7221fc2275db1a7f18512a45935ed8ae9064d9",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/remote-checkpoints.json",
+      "original_blob": "a6c36eb57d1d12745812527ab6398b20a96d0d9d",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/runtime-verification.json",
+      "original_blob": "434cf2091db444a33f1adf5238968d3fcc0ea5d4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/README.md",
+      "original_blob": "4fce1551fe5a0b105727f7b33626291fae9f2798",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/german-full-after.jsonl.gz",
+      "original_blob": "6cadc1619b74528741499bdf19b278f15547d013",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/german-full-after.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/german-strict-analysis.txt.gz",
+      "original_blob": "34c965763e32de9c3d1b57848a7d30484e76e442",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused-fixed.jsonl.gz",
+      "original_blob": "70e26314e92791751b9bacf2195261b1fb7a0265",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused-fixed.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused.jsonl.gz",
+      "original_blob": "4205240ef5d8632963700eff448ad5c6a175ed82",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-fail-before.jsonl.gz",
+      "original_blob": "807a7fce2708e9eb8f45e5368acf5a3987c6da91",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-fail-before.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-focused-after.jsonl.gz",
+      "original_blob": "cac9ed29e6c5dd5f4e65c22a35128bcacee9d595",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-focused-after.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-node-after.jsonl.gz",
+      "original_blob": "5e403da22a765d0c0c0f2655407c891e4c4ac503",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-node-after.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/sein-participles/summary.json",
+      "original_blob": "4927f5fe035bef8fcfa8280cc0c89020ba628781",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-followup/workspace-resolution.json",
+      "original_blob": "d8851fa578471e418597c4722d4b599cf8299d88",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/FINAL_VALIDATION_HARNESS.md",
+      "original_blob": "6b2011c33b9402d8c110cefed51c64ec79dc5e39",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/README.md",
+      "original_blob": "2dac8d3e02f7b804008d5906206fd110e6f24356",
+      "continuation_blob": "6803cb87a5e30f31954b9bccb365a5551f0c3939"
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-1/focused-receipt.json.gz",
+      "original_blob": "721c8109b5f318f5dd76c96aebf110fa907f703b",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-1/focused.jsonl.gz",
+      "original_blob": "a40e866d88ead2c55659aa2157da162763d6f435",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-1/german_grammar.dart.gz",
+      "original_blob": "10bfa7050e20b91811b6e29f6016c048dd542fea",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-2/focused-receipt.json.gz",
+      "original_blob": "c1930e9c4efdbbd8f8b9fd41d8e5a13fd4f4329e",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-2/focused.jsonl.gz",
+      "original_blob": "d21cebedf95f0cbc56e07413d55d57a4b14d2045",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-2/german_grammar.dart.gz",
+      "original_blob": "ae397a23e49b6ee82233aaf01088ae25d7e56235",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/analysis-receipt.json.gz",
+      "original_blob": "d2eb6d71e41ccc39a00b2f53d8292b3ef0643359",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/analysis.log.gz",
+      "original_blob": "6e0458471b95bf45d4ce3c262e765360db547a9d",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/focused-receipt.json.gz",
+      "original_blob": "c092d44505583e3869612df444644c58c26c3c0a",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/focused.jsonl.gz",
+      "original_blob": "f9329504952ba96015282db23cb39b7abbade007",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/archived-files.json",
+      "original_blob": "3c59a3201e5c6d55ea76599148a2c4da9ee0a9af",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/before-fix/focused-receipt.json.gz",
+      "original_blob": "78e3c3c0df0317812611b7b590a8a8c44b3f57ca",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/before-fix/focused.jsonl.gz",
+      "original_blob": "341230628cd97759c0f947d399aa09ae0c3f32d3",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/before-fix/german_verb_object_case_test.dart.gz",
+      "original_blob": "c0d06039ad826de28ed2d4e8e0a5ae62821667de",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/checkpoint-2d7b2a39/regression-receipt.json.gz",
+      "original_blob": "885231d3ae46bc83e827f6bc67b1258c11c03f76",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/checkpoint-2d7b2a39/regression.jsonl.gz",
+      "original_blob": "0acc999c31f76d30cc08030aff418a62b082c10f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/evidence-index.json.gz",
+      "original_blob": "475f7e607f46c633d6af6298e14f754213a21271",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/setup.log.gz",
+      "original_blob": "ab9976a689a904b3040b26f02fe534158fc56a95",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/accusative/validate_accusative.py.gz",
+      "original_blob": "5f1b1757ee48e67d907e538989f5800ac4536fd7",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-ancestry.json",
+      "original_blob": "6a2791e438ec8d4841975d294ed441f1417a8849",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-audit-evidence.index.json",
+      "original_blob": "0a917a15cf2f6c812a7f5af71a1da0d70753c6c8",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-audit-evidence.tar.xz",
+      "original_blob": "5abb6de784360f54f2a01e8ab64a51fb66627816",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-local-evidence.index.json",
+      "original_blob": "b6b1b3f6d49d8aa650fdcf54c5097cc883191af7",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-local-evidence.tar.xz",
+      "original_blob": "307b2adacb02d1d77cdabbcedc20ae6434dcbd7f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-native-evidence.index.json",
+      "original_blob": "eae380b6666e57d1526d47fd48ff1ad8a9ac63ae",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-native-evidence.tar.xz",
+      "original_blob": "7c7e10cae820f9a0e83abc8bee5d4b79b208f01a",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-quality-evidence.index.json",
+      "original_blob": "e5575700ef8a7dc95376dd8d29aee378cc9435a6",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-quality-evidence.tar.xz",
+      "original_blob": "945a7e448e8f89e07f7850cfd980cd99593da081",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final-validation.json",
+      "original_blob": "afbbdaffb99f82e4e234aac98fa9255dc20ba3a3",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/final_validation_suites.json",
+      "original_blob": "dccf8aa3ce084fa022f84a8852d2e6622e1490fe",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/latest-incoming-ancestry.json",
+      "original_blob": "41d04cdb31c0e763485413501dd20744abe14c6a",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/latest-incoming-snapshot.json",
+      "original_blob": "dfb6d3e9b0cf2d360258ec3f2745ff3e53f58edd",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/latest-integration-decisions.json",
+      "original_blob": "3a6ae05ff5f46737fc0be5da4eec73011929f361",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/local-validation.json",
+      "original_blob": "f465cd7f31221aefd60ef0a340ecd856db0cf383",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/native-results.json",
+      "original_blob": "f592d1ef00be4797ad58bbbe8cd54a31b24b7fb5",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/after-source-map.json.gz",
+      "original_blob": "59332c6e8920de19a3ec9136d113ee6cce708a30",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/analysis-command.json.gz",
+      "original_blob": "4a63079518e7cd8ccdd239565abfddceee19c029",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/analysis.log.gz",
+      "original_blob": "ca2401336d52224b25d89bcb3d818c8dc5ef9d26",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/analysis.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/archived-files.json",
+      "original_blob": "076cf359d730e5f49ab51e77b70ed7ad48527109",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/before-command.json.gz",
+      "original_blob": "c750cba998a5f67a9650458139f7acf96ed84ade",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/before-normalized-command.json.gz",
+      "original_blob": "7649a3ef0a6c9700508644740cf26ae2917d7ee5",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/before-normalized.jsonl.gz",
+      "original_blob": "d1e3e4a6b3eabff70f98899f6a894c418c395d32",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/before-normalized.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/before.jsonl.gz",
+      "original_blob": "d558bb5562e39e3e3762681f6c7265e503950521",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/before.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/focused-command.json.gz",
+      "original_blob": "df7fb2c8dacf08dfc2ee8c46565f13e575965094",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/focused.log.gz",
+      "original_blob": "20286e613c84cb359ed003e664c35cc5e1ae2b7b",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/focused.stderr.gz",
+      "original_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/office-columns/report.json.gz",
+      "original_blob": "6fab360b8ce118545ec863cbf979ffb4c5b9c365",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/quality-results.json",
+      "original_blob": "8148270804f2498f5c82d5d950b1edd43042b216",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/recovery/python-reference-verification.json.gz",
+      "original_blob": "1a3189073f017f0bf5a2bbeecdaeeee5eab5eda9",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/remote-checkpoints.json",
+      "original_blob": "4750ab49aed467add8f879c16e3a7254e9d766a0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/reviews/accusative-independent-review.json.gz",
+      "original_blob": "ea75714483964788d37fa476ee09a675f7198bcc",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/reviews/final-harness-review.json.gz",
+      "original_blob": "f6a53362dd03a52040ef9032e951f2bd065ca0e0",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/reviews/runner-telemetry-independent-review.json.gz",
+      "original_blob": "07f7d3a67fdd5e07e0088ee4ec7d6aaaa7d6e2db",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/run_native_modes.py",
+      "original_blob": "f91d55b115fdd9f24c721188ee61641241876000",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/run_quality_panels.py",
+      "original_blob": "ec36e7d8d191726c307c61bf4ba7de0b1d2bc117",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/archived-files.json",
+      "original_blob": "498e91b49c9a255f71776579bd43879cdd46d881",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-analysis-receipt.json.gz",
+      "original_blob": "ffde60e77626a7c40c594289d6ec0628a9271dea",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-analysis.log.gz",
+      "original_blob": "f92c2949f0dfbda4138ea5706c6bda3b0a672038",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-tests-receipt.json.gz",
+      "original_blob": "dcee3af26dca875f3c4010b3701a29b663a34cb3",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-tests.jsonl.gz",
+      "original_blob": "8dca77215152740db232ed40c1cecb7b4520479c",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/validate_final.py",
+      "original_blob": "ced0814f68799cd4ca938bd6fa4fc21e761f1490",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+      "original_blob": "cadec3d4bc3062d33f3d71501be01a5998592738",
+      "continuation_blob": "c645d21a4fecd134bf6a24cd13fa703579846e1c"
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/README.md",
+      "original_blob": "67e2dfd0c5ad44f9da829a15b12027d69c3dd54f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/evidence-index.json",
+      "original_blob": "38e1d3dec7c30ec68f1a5898e256520caa2af991",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/evidence.tar.xz",
+      "original_blob": "3895441e9564eab089627dbfa1e3e333a8036f2a",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/independent-review.json",
+      "original_blob": "a1555868d1d84661ee9efe2d6d57e66c03bfb33f",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/qualification.json",
+      "original_blob": "a10b7357da9fb4746909bce672c04ea7176a94f2",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/run_validation.py",
+      "original_blob": "397045a0d62b06971e803b4610e92607fcb06c26",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/source-equivalence.json",
+      "original_blob": "1582e5938014ddf324b187b09640218a0d7adb3c",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-improvements-20261117/verify_delivery.py",
+      "original_blob": "cf0bf1f8a1bb340940fd662416014cb2758223b4",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__german-gector__2026-11-17-long-input__README.md.incoming-main-13",
+      "original_blob": "eb43009501b0b196cfa6ef3dbd0d25831f687007",
+      "continuation_blob": null
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__office-resume-20261117__README.md.incoming-main-13",
+      "original_blob": "f82e333ffd90957294ae5df35dbd3cee0b6973c2",
+      "continuation_blob": null
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "original_blob": "00b94f2d132a0f26438058eb1426b93865969612",
+      "continuation_blob": "7a729eaa967b0d010f881833e7557e399792c0b8"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+      "original_blob": "d6b03c23eef85e7063ea8d7eff84e6bce195f2bc",
+      "continuation_blob": "d161e0f3f1569743780b01d5cde6a06e1d010ce1"
+    },
+    {
+      "path": "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+      "original_blob": "54ed4e391e0b7de2ca0a44120c3c69f1b6ba8855",
+      "continuation_blob": "7b6207f37d3626de7c65d6f8614c3c55b5661255"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "original_blob": "9e9b3c83e352e2d382f9fe2a336dac8a6921ba9b",
+      "continuation_blob": "65cdd6361f3fb462fdedd2e535b444274bf7e61c"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+      "original_blob": "42f10e200e97de5344d5b00dd71069147c8745f0",
+      "continuation_blob": "cb1c11764f87daf75506b4825bc5a4af6ee345a8"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+      "original_blob": "1854fb9bdfa878fa8890d9b72b9f2ca38b4530e3",
+      "continuation_blob": "799a17aeaea2d5473ff08c6a716e8d24cb5bd8f6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "original_blob": "8865a9b79a2074c7286a0137c659948e92f59a1d",
+      "continuation_blob": "d68718e532e9876069321a48938dbde0fe662d71"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "original_blob": "60e6a9768c4a6846f6bcf8a6148aed7083907193",
+      "continuation_blob": "8ca935eba741770c85b934ebdd2d1f1fe201a4cf"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart",
+      "original_blob": "761eff4a86df46b97d0d6ea2ac031c6e3775f5b8",
+      "continuation_blob": "6cda1b95732c35a18643b991dd23ac5612e578c5"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart",
+      "original_blob": "5bbb9435201a89422f2c8e81394a12022c1af469",
+      "continuation_blob": "4a7a798f772a5f20036561141de9eb2f769881da"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart",
+      "original_blob": "94caa96fd63ed5b9330524472c5f0e598ab2e49e",
+      "continuation_blob": "292ebf0cc7e028a4b2c87eb8d70e31a4035c0609"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart",
+      "original_blob": "3ef2a84901d73e7960bdc0c237e739f31c036e1b",
+      "continuation_blob": "36567fe428716bad444879005d42e8006aec9893"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart",
+      "original_blob": "66c5ed3e90f8e57e8f49cc8818903b4a24644c5d",
+      "continuation_blob": "ad0f8c1c7db304872c80ad6d4387f2a57715a7b3"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart",
+      "original_blob": "7d29a984b0089eca356cda6be4566e72f9e36f98",
+      "continuation_blob": "195ab2e2e156cdac09bd9639053dab4c3becb14f"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart",
+      "original_blob": "eeb7462060b56461ef8da5ac533ef6441031c561",
+      "continuation_blob": "caee1db780b6c6681982180642dcb15fba5123f0"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart",
+      "original_blob": "4cd63decc9a52c13176e416f7bbec53a55b14bcc",
+      "continuation_blob": "8994cb328a5437a1ed6e363eab4f5ebe5154ad1b"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart",
+      "original_blob": "eac98a96e657698e2fd1e5aa512e119e692e123a",
+      "continuation_blob": "47aacc66cdfa845e611102dcdc92a8a70086670c"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart",
+      "original_blob": "313c61c38aa1e87b60cb961a376b63c74097613e",
+      "continuation_blob": "4de9eda37444f2f5f0428b2227a1f7b4dbf104be"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart",
+      "original_blob": "03d095cba51b7ef558901be1c4ea3294d7364059",
+      "continuation_blob": "6a1c049d1117826687138d2cb62e9dde4dca8db4"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart",
+      "original_blob": "acd9eeff67f05a853a994b0ea6b202dbdc542de1",
+      "continuation_blob": "e45ca6464a9ae7b6034768b0c7d18b83a8531d93"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart",
+      "original_blob": "504c9488de6fa1cecac1fa887d7f6b7982779148",
+      "continuation_blob": "7c9cf524d9fd6f9bacc28dd7ecfe1abff3d6490e"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart",
+      "original_blob": "afa39b3360639ceb0712cc293263247b9f35b354",
+      "continuation_blob": "f777982e76d89bef7c8146e3cb118207335d3835"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart",
+      "original_blob": "f6f813eb19522b51c7a1396369d84dca97cc0471",
+      "continuation_blob": "b37a134299b74c3cbfd219eb8416c8b017fb5857"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart",
+      "original_blob": "02b30f1aa2f8d6ab2dd2c5c8dbbefedbe57f9e2d",
+      "continuation_blob": "72b5501d9e1c66aef514fcfeb6f9c01942202b90"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart",
+      "original_blob": "ff4cf83b1565ff5d79407417132e30030b04f993",
+      "continuation_blob": "b0f490a5496d6baf96d6d482ec01cc762ff70831"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart",
+      "original_blob": "bf40de2844f45e770a41db1493e2d9f667622701",
+      "continuation_blob": "05bd0f57e62e4f364d2f1bbe56d73637c0ebdb4c"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "original_blob": "f68b130d60177dfeebc035d5cb2f6793e789ad2d",
+      "continuation_blob": "ab4dca93e2ae971cc8e97d5a65f48e0a96a93fa6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+      "original_blob": "9205b4766e0dee334df51633becf15a1eb15d962",
+      "continuation_blob": "989c1efe35143f00ea7116222ff5e9e35bcfbe75"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+      "original_blob": "28b791eacae394ac6a41f275ca855a76704753ac",
+      "continuation_blob": "894d8eddb91c9d501e2a7ee504f368a14c65f5b6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+      "original_blob": "423e36bc3edb83083d1c2b2710eec2a8b248c936",
+      "continuation_blob": "9fd8f1427480fae7eed35591afff404844bc8da8"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+      "original_blob": "4f2e4e0cd140cf1c576cd50893c5ec75e5aaf93e",
+      "continuation_blob": "dc0582747fd1947857093ba54ebd044b514180e0"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+      "original_blob": "da7b6bad867a2e73e8bce3a0ca23138cf68b9064",
+      "continuation_blob": "03e657937c1016d2a0e01c806816bb104202df19"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+      "original_blob": "68e73703888ef50a896f6b5241cbc52208bc0921",
+      "continuation_blob": "f52ba407769c2b9d830ffd3024798b007f219489"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart",
+      "original_blob": "d93d063315ba5c4d4b116705d8f58e552a571e36",
+      "continuation_blob": "7205069e29c991379cd970c38b7a2e939efe90d2"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "original_blob": "5d733188f3a9a7fb6377e12470c8febe11bd73b7",
+      "continuation_blob": "dd8e51808910d444dfd1289e89e23bd0ab2f883a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "original_blob": "bf8f105be7752a51ea3b0a75820c3631bbee2069",
+      "continuation_blob": "4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "original_blob": "8ff18a9d27fcea2ed97c3f593ed502db98fd6359",
+      "continuation_blob": "0198e7eee783b011cbba9c8603e09cea72e3b0b7"
+    },
+    {
+      "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+      "original_blob": "5885b357cca728676080fcfbccdc05feb0bd7fb1",
+      "continuation_blob": "ef53503e93013c705465b931bc9024de278b8d75"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart",
+      "original_blob": "30cb8e80237a00f7a88216d3dd209634f8b3df30",
+      "continuation_blob": "a1a20ba33096036481640a67a3ad075b716a116e"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_column_break_style_fidelity_test.dart",
+      "original_blob": "7f380a6bfb959f9a67a5adeae6443b93537322c1",
+      "continuation_blob": "35bc319a660217122198ce28569c86d6a897d328"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+      "original_blob": "a7fb946fb737f4793d8a5c2f867a32ab8f04b184",
+      "continuation_blob": "e5200e9cacf1e79e9551e615154b7a800e427ea1"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_header_variant_comment_fidelity_test.dart",
+      "original_blob": "418cc55c749451c93320903dd34c35ed068cca6d",
+      "continuation_blob": null
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_header_variant_order_test.dart",
+      "original_blob": "f04fbec260054d29b2079d541976ec5e534ead09",
+      "continuation_blob": null
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+      "original_blob": "498c7174ccbcd1f444967f5874078436ef5a96fa",
+      "continuation_blob": "2ef8909f569304399bd81843d32db9dad42f7c42"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+      "original_blob": "b5b3d540ed356b2bac40e8db34b01cc56750a63e",
+      "continuation_blob": "c55ce969036615e0f1a145edc7a48191b33ad152"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+      "original_blob": "9ff7c33463db03b9739e8f5c1c5a1e931d37d484",
+      "continuation_blob": "0a4331683f037aa8a23e70b043bc6a7b8af2de62"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+      "original_blob": "b968fc83e83f0631ca50563ab7e65d89c641db8f",
+      "continuation_blob": "b2f6071e1838da88302ab8bee0030fc0d670028c"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_paragraph_decoration_resume_test.dart",
+      "original_blob": "4cfa1f9a9c3b81543c2b7b6f736cb0bac1ced287",
+      "continuation_blob": null
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+      "original_blob": "44a4cb8078d09d950ccdee6e963d6d23b63e1564",
+      "continuation_blob": "b4da128db7e8c071809b1d30fc6258f7430aaea8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+      "original_blob": "e1fee70fd38b4ed8acabaa14736557c6828f447d",
+      "continuation_blob": "c22c128b9047c2a79c9ddf3b212349a3d158edf2"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_table_tab_gector_fidelity_test.dart",
+      "original_blob": "7b8203fc8e9c407910735b22af996fc1cecb4287",
+      "continuation_blob": null
+    },
+    {
+      "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+      "original_blob": "7889fc71208811a8c04a98bae03d1f5e68ed6c93",
+      "continuation_blob": "60ac7e76fca22c81a551cf1e10ae5a86f68e3a80"
+    },
+    {
+      "path": "packages/quds_office_engine/third_party/proofing/manifest.json",
+      "original_blob": "49dc2a314e909bf32148a22dc2541003d8ab6f54",
+      "continuation_blob": "88bb0023d4fed5ccecbe08e7761431a883255668"
+    },
+    {
+      "path": "packages/quds_office_engine/third_party/proofing/morphology_manifest.json",
+      "original_blob": "d9487021bcaed49367e2000cc9c3ca9db3817cce",
+      "continuation_blob": "0d6ed0e388b2cdc96067473cd6c2329481253cc4"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/proofing/generate_german_morphology.py",
+      "original_blob": "11f80a861997eb2d9a74aeeaa7484a51efacba81",
+      "continuation_blob": "0dec5324dbc2e8e1a53f77ca0f08f86a5e790d86"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+      "original_blob": "c6f1906abf595c8bb520912432ac33b45bc6ce33",
+      "continuation_blob": "bc0599ca22a3a027f5858ed723e89747fe919d55"
+    },
+    {
+      "path": "tools/proofing/german_model/recover_exact_native_model.py",
+      "original_blob": "b3a7385766bf14bf9182f0936082ade0ef8e579a",
+      "continuation_blob": null
+    }
+  ]
+}

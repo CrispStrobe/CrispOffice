@@ -1024,3 +1024,33 @@ an unqualified grammar-coverage claim on the evidence recorded here.
 - [Harper span convention](https://writewithharper.com/docs/harperjs/spans)
 - [Flutter platform spelling service](https://api.flutter.dev/flutter/services/DefaultSpellCheckService-class.html)
 - [German ONNX model card](https://huggingface.co/proofbird/gector-bert-de)
+
+## Bounded German continuation — 17 November 2026
+
+The deterministic provider now checks a finite set of complete accusative
+verb-object frames. For example, `Sie hat ein roten Mantel.` offers `einen`,
+and `Ich sehe ein kleinen Hund.` offers `einen`, under the separate
+`de.grammar.verb-object-case` rule. It requires a matching personal pronoun and
+reviewed present-tense verb, one modeled noun phrase, and actual final
+punctuation. The entire context is limited to six words and 512 UTF-16 units;
+protected text and grapheme boundaries still veto unsafe findings. Inversion,
+coordination, auxiliary continuations, incomplete clauses and unresolved
+morphology remain outside this inference. Valid fronted-object readings such
+as `Sie sieht ein kleiner Hund.` are retained. Apparent object frames that fail
+this gate do not fall through to the old nominative adjective guess.
+
+Unknown, overregularized participles can prefer a verified irregular form in a
+bounded pronoun-plus-`haben` or reviewed `sein` contexts, while known words and personal vocabulary
+keep their existing acceptance. This is suggestion ordering, not an automatic
+rewrite or a claim to recover intended meaning. The authored finite supplement
+also accepts `Lernen` and `Schuppen`; pinned upstream and Swiss word sets are
+unchanged. The noun-subject predicate gate uses a linear scanner rather than
+overlapping regular-expression repetitions.
+
+The optional GECToR provider preserves repeated pronoun/article homographs
+whose grammatical roles can differ, including `Wenn sie sie sehen, winken sie.`
+Hosts can separately opt into bounded prediction reuse within one segmented
+request. Every occurrence reruns source guards and offset validation. Reuse is
+off by default; the package README describes its deterministic-backend contract
+and resource bounds. Repeated boilerplate and unique paragraphs are measured
+separately in the [continuation evidence](validation/german-gector/2026-11-17-resume/README.md).

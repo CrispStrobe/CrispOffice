@@ -1,0 +1,209 @@
+{
+  "title": "Office consumer corrections recovered after execution filesystem failure",
+  "status": "Provisional recovery checkpoint; final source validation incomplete",
+  "base_ref": "50b5569a",
+  "base_blobs": {
+    "writer": "f2d82ee29ce1a15c5e251ba746c1cf3fa91621c5",
+    "section_test": "3e401505a984f5a51bad43a8c74e74939394274d"
+  },
+  "recovered_blobs": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "sha": "2d53d45d564e8eeaef66fc03cc2b0820efe752da",
+      "origin": "Exact six executed source edits replayed onto verified base. dart format reported no changes after each source edit, but filesystem readback is blocked."
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_header_variant_order_test.dart",
+      "sha": "0a44c34570039c775500615bcd5a3c71bc8ac7af",
+      "origin": "Exact originally submitted apply_patch bytes before formatting. The local formatter changed layout; post-format disk bytes unavailable. Four regressions have identical test logic."
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+      "sha": "35000d56868465c48413c6afb2e8b0767e637d3d",
+      "origin": "Verified remote base plus exact originally submitted frame test insertion before formatting. The local formatter changed layout; post-format disk bytes unavailable."
+    }
+  ],
+  "source_replay": [
+    {
+      "description": "Remove early default header/footer emission; a shared variant helper emits them in the ordered sequence below.",
+      "from": "      if (section.header.isNotEmpty || section.headerVisuals.isNotEmpty) {\n        story.writeStartElement('header', prefix: 'style');\n        stories.withStory(\n          () => _writeBlocks(story, [\n            ...section.header,\n            ...section.headerVisuals,\n          ], stories),\n        );\n        story.writeEndElement();\n      }\n      if (section.footer.isNotEmpty || section.footerVisuals.isNotEmpty) {\n        story.writeStartElement('footer', prefix: 'style');\n        stories.withStory(\n          () => _writeBlocks(story, [\n            ...section.footer,\n            ...section.footerVisuals,\n          ], stories),\n        );\n        story.writeEndElement();\n      }\n",
+      "to": ""
+    },
+    {
+      "description": "Remove previous interleaved first/left ordering.",
+      "from": "      variant('header-first', section.firstHeader, section.firstHeaderVisuals);\n      variant('footer-first', section.firstFooter, section.firstFooterVisuals);\n      variant('header-left', section.evenHeader, section.evenHeaderVisuals);\n      variant('footer-left', section.evenFooter, section.evenFooterVisuals);\n",
+      "to": ""
+    },
+    {
+      "description": "Emit default header before its variants, retaining the existing empty-default condition.",
+      "from": "      if (hasFirstOrEvenHeader &&\n",
+      "to": "      // ODF master pages require each default story before its left and first\n      // variants, with the complete header group before the footer group.\n      variant('header', section.header, section.headerVisuals);\n      if (hasFirstOrEvenHeader &&\n"
+    },
+    {
+      "description": "Finish header group before default footer.",
+      "from": "      if (hasFirstOrEvenFooter &&\n",
+      "to": "      variant('header-left', section.evenHeader, section.evenHeaderVisuals);\n      variant('header-first', section.firstHeader, section.firstHeaderVisuals);\n      variant('footer', section.footer, section.footerVisuals);\n      if (hasFirstOrEvenFooter &&\n"
+    },
+    {
+      "description": "Finish footer group left then first.",
+      "from": "      final storyXml = story.toXml();\n",
+      "to": "      variant('footer-left', section.evenFooter, section.evenFooterVisuals);\n      variant('footer-first', section.firstFooter, section.firstFooterVisuals);\n      final storyXml = story.toXml();\n"
+    },
+    {
+      "description": "Use the existing page-relative paragraph anchor for nonleading frames as well as leading frames.",
+      "from": "      case WmlFrame():\n        if (sectionStart != null) {\n          w.writeStartElement('p', prefix: 'text');\n          w.writeAttribute(\n            'text:style-name',\n            layout.paragraphStyle(\n              WmlParagraphProps(),\n              sectionStart: sectionStart,\n              emptyAnchor: true,\n            ),\n          );\n          sectionStart.consumed = true;\n          _writeFrame(w, block, layout, inParagraph: true);\n          w.writeEndElement();\n        } else {\n          _writeFrame(w, block, layout);\n        }\n",
+      "to": "      case WmlFrame():\n        // A page-relative frame needs a story anchor even after the section's\n        // first block. Desktop consumers can omit a bare page-anchored frame.\n        w.writeStartElement('p', prefix: 'text');\n        w.writeAttribute(\n          'text:style-name',\n          layout.paragraphStyle(\n            WmlParagraphProps(),\n            sectionStart: sectionStart,\n            emptyAnchor: true,\n          ),\n        );\n        sectionStart?.consumed = true;\n        _writeFrame(w, block, layout, inParagraph: true);\n        w.writeEndElement();\n"
+    }
+  ],
+  "original_pre_format_frame_test_insertion": "  test('a later frame retains its page-relative paragraph anchor', () {\n    final frame = WmlFrame(\n      x: 36,\n      y: 190,\n      width: 210,\n      height: 35,\n      blocks: [\n        WmlParagraph(\n          inlines: [\n            WmlBookmarkBoundary(id: '1', isStart: true, name: 'FrameMark'),\n            WmlRun(text: 'FrameBookmark'),\n            WmlBookmarkBoundary(id: '1', isStart: false),\n          ],\n        ),\n      ],\n    );\n    final document = WmlDocument(\n      sections: [\n        WmlSection(blocks: [_p('Before'), frame, _p('After')]),\n      ],\n    );\n    final content = _export(document).content;\n    final anchor = _body(content).childElements.elementAt(1);\n    expect(anchor.localName, 'p');\n    expect(_master(content, anchor), isNull);\n    final properties = _style(content, anchor).firstChild('paragraph-properties')!;\n    expect(properties.getAttribute('margin-top', namespaceUri: _foNs), '0.00pt');\n    expect(properties.getAttribute('margin-bottom', namespaceUri: _foNs), '0.00pt');\n    expect(properties.getAttribute('line-height', namespaceUri: _foNs), '1pt');\n    final emitted = _elements(anchor, 'frame').single;\n    expect(emitted.getAttribute('anchor-type', namespaceUri: _textNs), 'paragraph');\n    expect(emitted.getAttribute('x'), '36.00pt');\n    expect(emitted.getAttribute('y'), '190.00pt');\n    expect(emitted.getAttribute('width'), '210.00pt');\n    expect(emitted.getAttribute('height'), '35.00pt');\n    final graphic = _style(content, emitted).firstChild('graphic-properties')!;\n    expect(graphic.getAttribute('horizontal-rel', namespaceUri: _styleNs), 'page');\n    expect(graphic.getAttribute('vertical-rel', namespaceUri: _styleNs), 'page');\n    expect(_elements(emitted, 'bookmark-start').single.getAttribute('name'), 'FrameMark');\n    expect(_elements(emitted, 'bookmark-end').single.getAttribute('name'), 'FrameMark');\n    expect(document.sections.single.blocks[1], same(frame));\n    expect(frame.x, 36);\n    expect(frame.y, 190);\n    expect(frame.height, 35);\n  });\n\n",
+  "recovery_notes": {
+    "reason": "Filesystem execution failed with ENOSPC and then exec-server os error 2 after the source edits below. Recovered from executed apply_patch tool history; no filesystem read was possible.",
+    "latest_verified_before": "50b5569a (provided by root)",
+    "source_paths": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "packages/quds_office_engine/test/odt_header_variant_order_test.dart",
+      "packages/quds_office_engine/test/odt_section_fidelity_test.dart"
+    ],
+    "confirmed_before": [
+      "Five final-writer ODTs at source HEAD 773c6b00 yielded 19/20 Jing XML parts and 4/5 desktop semantic checks.",
+      "Header variants desktop render correctly, but styles.xml violates exact ODF master-page child order.",
+      "Four added header child-order regression tests all failed before repair.",
+      "After header repair, 31 tests in header-order/header-fidelity/document-writer suites passed.",
+      "Frame text/bookmark omitted in reopened DOCX and PDF.",
+      "Scratch A/B: repacked control fails; height 35->80 pt alone fails; text:anchor-page-number=1 alone fails; paragraph wrapper with page-relative graphic style succeeds.",
+      "New nonleading frame regression failed before its repair.",
+      "After frame source repair dart format reported zero changes; the test process could not create its temp directory because ENOSPC. No post-frame passing tests claimed.",
+      "Actual original native-fields PDF rendered PAGE/NUMPAGES/DATE/TIME/TITLE values in LiberationSans-Bold, color #123456; all original source caches and hyperlink/native DOCX codes preserved. LibreOffice refreshes field values and places exported DOCX formatting on field-begin run."
+    ],
+    "pending": [
+      "Recover and remotely checkpoint pending header/frame source and tests.",
+      "Run frame/header targeted tests, strict analysis, dynamic broad Office selection (previous694 +4header +1frame = expected699 across50files).",
+      "Rerun same five generated consumer fixtures into a fresh directory using final writer; preserve run/ and before-repair snapshots.",
+      "Add optional actual PDF font/color assertions matching already observed five native fields; retain consumer identities.",
+      "Package original failed consumer evidence, A/B packages, new failed-before and passing-after tests, final source seals. Parent owns commit/ref mutations.",
+      "No native timings until consumer/test jobs finish; no GitHub CI waits or polling."
+    ]
+  },
+  "original_consumer_summary_from_tool_output": {
+    "started_at_utc": "2026-11-17T19:52:39.282953+00:00",
+    "completed_at_utc": "2026-11-17T19:53:02.793282+00:00",
+    "head_at_start": "773c6b00cfd4fae4e6e8670d25e46a5cc329606b",
+    "source_inputs_unchanged": true,
+    "source_input_count": 390,
+    "fixture_count": 5,
+    "fixture_passes": 4,
+    "schema_parts": 20,
+    "jing_valid": 19,
+    "lxml_valid": 18,
+    "scope": "Five generated ODTs from the final writer; native fields, malformed fallback, header variants, bookmark ranges and column ordering; one installed headless LibreOffice build only."
+  },
+  "consumer_identity": {
+    "libreoffice": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "jing": "org.relaxng:jing:20241231; invoked with -i to disable unrelated ID/IDREF compatibility checks, retaining RelaxNG validation",
+    "schema": "OASIS OpenDocument v1.3",
+    "content_schema_sha256": "40bad03efdbb02825230d357da0aa6ac679934c5bf56c6281752c0c24d58e4e6",
+    "manifest_schema_sha256": "8aee71f03484be112af972d622cc9031280c007b0a454ae8815e8e333c9bdd17",
+    "lxml": "6.1.1 / libxml2 2.14.6"
+  },
+  "header_failure": {
+    "schema_rule": "style-master-page: optional(header, optional(header-left), optional(header-first)), optional(footer, optional(footer-left), optional(footer-first))",
+    "original_order": "header, footer, header-first, footer-first, header-left, footer-left; empty default stories were appended after variants",
+    "repair": "Reuse the existing story helper, emitting each default (possibly empty) before left and first variants; finish all headers before footers.",
+    "test_cases": [
+      "all variants",
+      "variants with empty defaults",
+      "first variants with empty defaults",
+      "even variants with empty defaults"
+    ],
+    "failed_before": 4,
+    "focused_after": {
+      "cases": 31,
+      "passed": 31,
+      "suites": [
+        "odt_header_variant_order_test.dart",
+        "odt_header_footer_fidelity_test.dart",
+        "odt_document_writer_test.dart"
+      ]
+    }
+  },
+  "frame_failure": {
+    "original_geometry_pt": {
+      "x": 36,
+      "y": 190,
+      "width": 210,
+      "height": 35
+    },
+    "observed": "FrameBookmark absent from reopened DOCX and actual PDF. Source ODT includes the frame and paired FrameMark bookmark.",
+    "ab_probes_from_tool_output": [
+      {
+        "variant": "repacked-control",
+        "visible_frame": false
+      },
+      {
+        "variant": "height-only",
+        "change": "height 35 -> 80 pt",
+        "visible_frame": false
+      },
+      {
+        "variant": "page-number-only",
+        "change": "text:anchor-page-number=1",
+        "visible_frame": false
+      },
+      {
+        "variant": "paragraph-anchor",
+        "change": "wrap existing frame in text:p, anchor-type paragraph, existing page-relative graphic style",
+        "visible_frame": true
+      }
+    ],
+    "source_cause": "Section-leading frames already use a page-relative paragraph anchor; later frames were emitted directly under office:text with anchor-type page.",
+    "repair": "Use the existing one-point, zero-margin paragraph anchor for all WmlFrame blocks, retaining physical page coordinates and independent frame story processing.",
+    "added_test": "a later frame retains its page-relative paragraph anchor",
+    "failed_before": true,
+    "post_repair_validation": "Not completed. dart format passed with zero changes; test process failed creating its temporary directory (ENOSPC)."
+  },
+  "native_field_observation": {
+    "kinds": [
+      "PAGE",
+      "NUMPAGES",
+      "DATE",
+      "TIME",
+      "TITLE"
+    ],
+    "source_caches": {
+      "PAGE": "37",
+      "NUMPAGES": "121",
+      "DATE": "17.11.2026",
+      "TIME": "12:34:56",
+      "TITLE": "Authored title"
+    },
+    "actual_pdf_font": "LiberationSans-Bold",
+    "actual_pdf_color": "#123456",
+    "actual_pdf_font_flags": 16,
+    "source_styles_and_links_verified": true,
+    "reopened_docx_native_codes_and_hyperlinks_verified": true,
+    "limitations": "Native field values refresh in the consumer. LibreOffice DOCX export places bold/color on the field-begin run while result runs carry defaults; no claim that every field-result style survives arbitrary DOCX round trips."
+  },
+  "raw_evidence_on_workspace_not_recovered_to_this_blob": [
+    "incoming-audit/office-consumer/run/",
+    "incoming-audit/office-consumer/before-repair/",
+    "incoming-audit/office-consumer/header-order-failed-before.jsonl",
+    "incoming-audit/office-consumer/header-order-after.jsonl",
+    "incoming-audit/office-consumer/frame-anchor-failed-before.jsonl",
+    "incoming-audit/office-consumer/frame-anchor-probe/",
+    "incoming-audit/office-consumer/make_fixtures.dart",
+    "incoming-audit/office-consumer/run_consumers.py",
+    "incoming-audit/office-consumer/probe_frame_anchor.py"
+  ],
+  "next_commands": [
+    "source /workspace/scratch/8a4017da88e9/runtime-recovery/activate.sh",
+    "cd /workspace/scratch/8a4017da88e9/quds_office_suite/packages/quds_office_engine",
+    "dart format lib/src/word/serial/odt_document_writer.dart test/odt_header_variant_order_test.dart test/odt_section_fidelity_test.dart",
+    "dart test --reporter json test/odt_section_fidelity_test.dart test/odt_header_variant_order_test.dart",
+    "dart analyze --fatal-infos lib/src/word/serial/odt_document_writer.dart test/odt_header_variant_order_test.dart test/odt_section_fidelity_test.dart",
+    "Select all engine *_test.dart names containing odt, odf, or bookmark plus ods_text_story_import_test.dart and odp_presentation_writer_test.dart; expected 50 files, 699 cases after the five added cases; seal all engine library and selected test files before and after.",
+    "Preserve incoming-audit/office-consumer/run as the original failed run. Change the harness OUTPUT to a fresh run-final directory, then run python incoming-audit/office-consumer/run_consumers.py with the activated runtime. Do not overwrite original evidence.",
+    "Require all 20 parts to pass Jing and all five fixture checks; preserve actual PDF font/color observations and reopen bookmark selections. Record failures without relabeling them.",
+    "Readback-verify an archive of consumer evidence before root commits and pushes. Resume native timing only after consumers and tests end."
+  ],
+  "ci_policy": "No GitHub Actions requests, waiting, or polling."
+}

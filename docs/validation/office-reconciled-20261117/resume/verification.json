@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "status": "blocked_execution_workspace_unavailable",
+  "accepted_release": false,
+  "source_saved_remotely": true,
+  "source_commit": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+  "source_tree": "3aab8c7bb1522468c4a821e4ae588c826acbea27",
+  "branch": "codex/odt-column-boundary-followup-20261117",
+  "draft_pr": 144,
+  "pr_base": "main",
+  "source_parents": [
+    "4557f66052ad1a7863fd9fdf5545ad6cb39fc95d",
+    "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+  ],
+  "captured_reconciliation": {
+    "initial_branch_heads": 175,
+    "initial_pr_heads": 143,
+    "refreshed_branch_heads": 177,
+    "refreshed_pr_heads": 144,
+    "latest_main": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+    "included_pr143": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+    "original_handoff_merged_in_pr": 140,
+    "native_spacy_pr139": "Fetched and inventoried; separately owned and not merged",
+    "aot_rml": "Remain removed",
+    "reference_files": [
+      "incoming-refs.json",
+      "incoming-refresh.json"
+    ]
+  },
+  "new_changes": [
+    "Retain the leading source fragment at every multi-column section start in the ODT writer.",
+    "Add eight later-section controls and retain standalone page-break precedence; reconcile exact imported DOCX three-page behavior.",
+    "Reconcile the restored negative-gap test with the unchanged conservative writer profile.",
+    "Correct one stale German editor rule-ID expectation without changing its correction, clean recheck, undo or redo assertions."
+  ],
+  "odt_writer_sha256": "1018bd1bf3fc1fc476a63029b043e391fc3e709642de1bb374ed5a0b948fd886",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "dependency_packages": 108,
+    "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "native_library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+    "native_model_sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b"
+  },
+  "final_full_run": {
+    "source_commit": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+    "status": "final_outcome_unobserved_after_environment_loss",
+    "unique_test_files": 217,
+    "cohort_files": {
+      "engine-zotero": 19,
+      "editor-zotero": 13,
+      "engine-integration": 131,
+      "editor-integration": 37,
+      "harper-contract": 3,
+      "gector-contract": 14
+    },
+    "observed_command_passes": [
+      "engine-strict-analysis",
+      "editor-strict-analysis",
+      "harper-strict-analysis",
+      "gector-strict-analysis",
+      "proofing-tools-strict-analysis",
+      "format",
+      "python-controls"
+    ],
+    "last_observed_start": "engine-zotero",
+    "final_cohort_counts": null,
+    "after_run_integrity_audit": null,
+    "raw_receipt_uploaded": false,
+    "last_known_output": "/workspace/scratch/9089a56d3a33/qualification-9e21e4c0",
+    "local_session_id": 9164,
+    "qualification_complete": false
+  },
+  "final_portable_run": {
+    "source_commit": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+    "selected_test_files": 14,
+    "status": "final_outcome_unobserved_after_environment_loss",
+    "final_pass_count": null,
+    "raw_receipt_uploaded": false,
+    "last_known_output": "/workspace/scratch/9089a56d3a33/portable-9e21e4c0",
+    "local_session_id": 11760
+  },
+  "fresh_consumer_observations": {
+    "source_commit": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+    "retained_fixtures_reported_passed": 40,
+    "retained_xml_parts_reported_passed": 160,
+    "new_repaired_layouts_reported_passed": 4,
+    "new_bounded_precedence_controls_reported_passed": 1,
+    "new_pdf_variants_reported_passed": 15,
+    "new_reopened_docx_reported_passed": 10,
+    "raw_evidence_uploaded": false,
+    "counts_qualify_auditable_final_release": false,
+    "detail_file": "interruption-observations.json"
+  },
+  "durable_source_bound_results": {
+    "counts_are_not_additive": true,
+    "final_test_bytes_on_incoming_writer": {
+      "expected_failures": 9,
+      "other_passes": 12,
+      "defect_scope": "The nine failures exercise one lost-column-boundary defect."
+    },
+    "focused_repaired_writer": {
+      "vm_passes": 21,
+      "node_passes": 21,
+      "zero_skips": true,
+      "source": "9b33bec0 writer with final regression bytes",
+      "raw_archive": "evidence/column-boundary-controls.tar.xz"
+    },
+    "portable_622f58c8": {
+      "passes": 207,
+      "selected_files": 14,
+      "errors": 0,
+      "skips": 0,
+      "source": "622f58c82f30def218ec564fc99b9bff7009ab7f",
+      "raw_archive": "evidence/qualification-622f58c8-attempt.tar.xz"
+    },
+    "broad_622f58c8": {
+      "engine_zotero_passes": 390,
+      "editor_zotero_passes": 186,
+      "engine_integration_raw_passes": 2781,
+      "engine_integration_substantive_passes": 2779,
+      "editor_integration_passes_before_failure": 408,
+      "editor_integration_errors": 1,
+      "harper_and_gector": "Not run after editor failure",
+      "accepted_complete_run": false,
+      "raw_archive": "evidence/qualification-622f58c8-attempt.tar.xz"
+    },
+    "merged_tree_editor_rule_id_fix": {
+      "passes": 32,
+      "errors": 0,
+      "skips": 0,
+      "inputs_unchanged": true,
+      "source": "Merged working tree before 9e21e4c0; HEAD4557f660 with merge parent16e2477f and exact one-line expectation fix",
+      "raw_archive": "evidence/editor-grammar-rule-id.tar.xz"
+    },
+    "retained_consumers_9b33bec0": {
+      "fixtures": 40,
+      "xml_parts": 160,
+      "archive_members": 708,
+      "raw_archive": "evidence/consumers-9b33bec0.tar.xz",
+      "scope_after_new_main_merge": "Historical; superseded bridge explicitly recorded"
+    },
+    "new_boundary_controls_earlier_source": {
+      "strict_repaired_layouts": 4,
+      "strict_pdf_variants": 12,
+      "bounded_precedence_controls": 1,
+      "bounded_pdf_variants": 3,
+      "odt_to_docx_reopens": 10,
+      "xml_parts": 40,
+      "additional_section_explicit_page_pdf_variants": 12,
+      "exact_raw_docx_observations": 4,
+      "raw_archive": "evidence/column-boundary-controls.tar.xz"
+    }
+  },
+  "durable_archives": [
+    {
+      "file": "runtime-recovery.tar.xz",
+      "git_blob": "f5fbe5a50adee7077ff5acf7befa411f4d258509",
+      "sha256": "c38931276c5b174fb6b244edd1d44e16d76d1a79a82d415c74aca0226d7ec379",
+      "bytes": 192636,
+      "scope": "Pinned runtime recovery and reproducibility evidence"
+    },
+    {
+      "file": "intermediate-e95cb0ce.tar.xz",
+      "git_blob": "5626331200f181cf45d04ed76a61fb338afa148f",
+      "sha256": "899b4da82e1ff35ea960189351af2ef26d4724a5697027a32f7a8e8411cd5beb",
+      "bytes": 2704876,
+      "scope": "Rejected broader candidate; not current qualification"
+    },
+    {
+      "file": "consumers-9b33bec0.tar.xz",
+      "git_blob": "bf393b15e0da8fa97b8e28d492281722892f940f",
+      "sha256": "1b75f527804c5621174e0bab13199065064063e7f810443a249e3ddf124247f9",
+      "bytes": 2209444,
+      "scope": "40 retained consumers / 160 XML parts at 9b33bec0; historical after latest main merge"
+    },
+    {
+      "file": "qualification-9b33bec0-attempt.tar.xz",
+      "git_blob": "cfbe3d2d44e9eb0c0b0e7c53b875141e7e1342c0",
+      "sha256": "39c01e911bd1ce571edb4a4c6a5bd0892670978fab9eb9bb40655f04560b8613",
+      "bytes": 1413020,
+      "scope": "Failed intermediate broad/portable attempts; retained without counting as final"
+    },
+    {
+      "file": "column-boundary-controls.tar.xz",
+      "git_blob": "c0f1577e9679ac729502c567744f87b6f44150c1",
+      "sha256": "306810de6113bdb98fc2c17f69ae376254418d648e1618c127833fa5e41c7f0e",
+      "bytes": 160024,
+      "scope": "Final-test-byte negative controls and focused VM/Node/independent native consumers at earlier source"
+    },
+    {
+      "file": "qualification-622f58c8-attempt.tar.xz",
+      "git_blob": "601f1667a82e8fae8dc9b2868e40cb3a7f2f8fde",
+      "sha256": "9290f791e2fda677167c3cc5eb94be30308ba8ba9f61b3e0be763822b80bbec0",
+      "bytes": 1518344,
+      "scope": "Complete passing engine and portable cohorts; broad attempt failed one inherited editor rule-ID expectation"
+    },
+    {
+      "file": "editor-grammar-rule-id.tar.xz",
+      "git_blob": "dee09de97e10846d4519712dc43a23e86e1ebc41",
+      "sha256": "ca74e2517e3f8e103980129ef1a8ee634641c78b1f75294e8ff7ad92f06f0f84",
+      "bytes": 56372,
+      "scope": "Exact stale expectation failure, one-line correction and 32 passing focused editor tests on merged working tree"
+    }
+  ],
+  "limits": [
+    "No final all-green qualification is claimed for 9e21e4c0.",
+    "Observed fresh consumer stdout is preserved separately; it does not replace unavailable raw receipts and hash maps.",
+    "Native DOCX comparisons use LibreOffice, not a live Microsoft Word installation.",
+    "The bounded standalone page-precedence control retains a preexisting ODT/native DOCX follower-balancing difference.",
+    "Two known private PDF fixture early returns are excluded from substantive full-run pass counts; they are not certified passes.",
+    "The VM-only complex-field fixture-export helper is excluded from the Node selection and retained in the VM cohort.",
+    "Historical and intermediate outcomes remain attributed to their original inputs and are not added to current totals."
+  ],
+  "interruption": {
+    "observed_date_utc": "2026-11-17",
+    "error": "exec-server transport disconnected; recovery timed out after 45s",
+    "environment_status": "unavailable",
+    "recovery_control_available": false,
+    "source_or_test_edits_pending_at_last_observed_checkout": false,
+    "source_checkout_was_clean_before_run": true,
+    "post_outage_local_state": "unavailable; no claim of a final clean-checkout verification",
+    "remote_docs_checkpoint_required": false,
+    "documentation_checkpoint_contains_this_record": true
+  },
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "rerun": false
+  },
+  "next_step": "Restore execution access, recover existing exact-source receipts if intact; otherwise rerun the unchanged full and portable gates plus missing consumer evidence on one clean frozen commit. Verify stable maps, archive and upload receipts, then update this draft."
+}

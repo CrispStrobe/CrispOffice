@@ -1,0 +1,134 @@
+{
+  "review_scope": "Independent read-only review of third-wave 33-fixture consumer extension and actual old-source negative evidence; no consumer rerun by reviewer",
+  "status": "passed",
+  "prior_31_fixture_specifications_exact": true,
+  "prior_31_generation_source_unchanged_after_removing_only_new_fixture_append": true,
+  "prior_31_odt_member_payloads_identical": 31,
+  "prior_31_whole_zip_bytes_identical": 31,
+  "unchanged_checkers_and_baselines": {
+    "check_current_fixtures.py": true,
+    "check_recovery_fixtures.py": true,
+    "check_second_wave.py": true,
+    "historical-fixtures-26.json": true,
+    "historical-fixtures-29.json": true
+  },
+  "unchanged_verifier_function_AST": [
+    "now",
+    "digest",
+    "require",
+    "json_write",
+    "all_files",
+    "configured_packages",
+    "runtime_inputs",
+    "snapshot",
+    "page_words",
+    "check_red_picture",
+    "check_fixture"
+  ],
+  "changed_verifier_functions": [
+    "source_inputs",
+    "main"
+  ],
+  "verifier_change_review": "source_inputs adds the new checker/history hashes; main adds exactly two fixtures, the exact31-history guard and new independent checker invocation. Existing check_fixture logic, validators, converter commands, tolerances and final acceptance conditions are unchanged.",
+  "new_raw_docx_fixtures": [
+    {
+      "name": "docx-leading-inline-column-break",
+      "source_sha256": "c7df38d853dab64826450e61a8280b572ce1cec18d733047406ae529e0302929",
+      "run_child_column_breaks": 1,
+      "expected_geometry": {
+        "kind": "leading",
+        "count": 2,
+        "gap_pt": 24,
+        "words": {
+          "ImportedLeadLeft": 36,
+          "ImportedLeadRight": 212,
+          "ImportedLeadFollower": 212
+        },
+        "after_word": "ImportedLeadRight",
+        "follower_word": "ImportedLeadFollower"
+      }
+    },
+    {
+      "name": "docx-midparagraph-inline-column-break",
+      "source_sha256": "eab2eacb623d2965c6b1429e44cc0dba1aa51996e0d0682f39a2d8dbb03086ad",
+      "run_child_column_breaks": 1,
+      "expected_geometry": {
+        "kind": "midparagraph",
+        "count": 2,
+        "gap_pt": 24,
+        "words": {
+          "ImportedMidBefore": 48,
+          "ImportedMidAfter": 212,
+          "ImportedMidFollower": 212
+        },
+        "after_word": "ImportedMidAfter",
+        "follower_word": "ImportedMidFollower",
+        "run_styles": {
+          "ImportedMidBefore": "b",
+          "ImportedMidAfter": "i"
+        }
+      }
+    }
+  ],
+  "imported_model_guard_review": "Generator requires exactly one WmlBreak.column after WordDeserializer and no paragraph.properties.columnBreakBefore in either fixture, so model-flag substitution cannot bypass the imported-inline defect.",
+  "geometry_derivation": {
+    "page_width_pt": 400,
+    "margins_pt": [
+      36,
+      36
+    ],
+    "columns": 2,
+    "gap_pt": 24,
+    "column_width_pt": 152,
+    "right_column_x_pt": 212,
+    "first_line_indent_pt": 12,
+    "mid_first_x_pt": 48,
+    "horizontal_tolerance_pt": 0.4
+  },
+  "independent_semantic_checks": [
+    "Unique rendered words and expected page indices through unchanged base checker",
+    "PDF x coordinates and following paragraph below the continuation",
+    "Reopened DOCX column count and24ptgap",
+    "Reopened DOCX bold/italic via actual style inheritance",
+    "Leading keep-together and following plain paragraph via unchanged checker"
+  ],
+  "negative_control": {
+    "source": "48b6998bb47ffdf43e95025229dc5a5eab09ee9a",
+    "summary": {
+      "fixtures": 33,
+      "passed": 31,
+      "failed": 2,
+      "schema_parts_passed": 132,
+      "schema_parts_total": 132
+    },
+    "failures": [
+      {
+        "name": "docx-leading-inline-column-break",
+        "error": "docx-leading-inline-column-break: ImportedLeadRight at 36.1, expected 212"
+      },
+      {
+        "name": "docx-midparagraph-inline-column-break",
+        "error": "docx-midparagraph-inline-column-break: expected one occurrence of ImportedMidBefore, got 0"
+      }
+    ],
+    "input_maps_exact_before_after": true,
+    "recorded_outputs_hash_verified": 415,
+    "receipt_sha256": "a1cc76320002de69e2f7b061e08f5dea99df71ddd6f8e2af9661cc92bbfe2020"
+  },
+  "limits": [
+    "This review confirms the negative control and unchanged prior scope, not positive acceptance of the pending repair.",
+    "The mid fixture authors12ptbefore/18ptafter spacing, but this consumer checker explicitly measures first-line indent and column x geometry; it does not independently assert exact vertical before/after paragraph spacing.",
+    "Keep-together is reopened DOCX property retention, not exhaustive multiline-pagination acceptance."
+  ],
+  "harness_sha256": {
+    "check_current_fixtures.py": "7eaf1c839872ba70e431321357117e22118efee3996ea3065439b97233f51ebc",
+    "check_recovery_fixtures.py": "27bd7ef3dcca7f6c44f7cbe6a778a527924700e83199df56cc9ae0d6ce087a49",
+    "historical-fixtures-31.json": "0e791601152b1e3cc6201b789a8d84c588c68fd37ea0fdd77a1190bbde57011e",
+    "check_second_wave.py": "df8cffe09f7266239641b9f98dbd288807580eb62f3ff2fd91bd0650fbd799f9",
+    "make_fixtures.dart": "9bb18796d1967ce3b555e8983c1636391b0a00e055624a91bfabc504778ef41a",
+    "verify_consumers.py": "d4b208ccbd0ab76e780c7438ae7eb77e2e463c32596c293c480bdceb6947d12d",
+    "historical-fixtures-29.json": "723040dd773fad4cf0ef0de375b117ffedeac6b79ea1e40444edb4028d88f61b",
+    "check_inline_breaks.py": "5ff43f176baa32caf8960f928c7807d5b4cbaeabc9fde2be66506425b20d4b88",
+    "historical-fixtures-26.json": "19bf753029ae5bf2549b451ee518b1d960478b2f6d6dc9af0f566037e4659845"
+  }
+}
