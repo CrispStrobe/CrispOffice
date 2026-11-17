@@ -234,3 +234,42 @@ respectively, plus all 109 resolved package libraries and the SDK. Runtime
 receipts below must match their source maps and compiled/runtime pins; a build
 alone is not an inference result. `pack-verification.json` verifies all 23 files
 and the unchanged 86,356,331-byte development pack.
+
+## Native segmentation results
+
+Both modes ran serially through the same fresh compiled provider runner after
+all test/compiler activity finished. The native receipts match the build's
+selected source map and actual AOT/runtime pins. Both strict frozen comparators
+pass. All 30 frozen case statuses, corrected strings and findings exactly match
+the previous continuation: 6/18 exact fixes, 10/10 supported clean cases unchanged,
+and two Swiss controls explicitly unsupported. The original eight controls and
+all six additional segmentation controls pass.
+
+| Measurement | Single sequence | Sentence segments, target 64 |
+| --- | ---: | ---: |
+| Short-check median | 21.269 ms | 24.761 ms |
+| Short-check p95 | 74.229 ms | 73.321 ms |
+| Peak process RSS | 342.50 MiB | 294.55 MiB |
+| Verified startup | 3.354 s | 3.235 s |
+| 126-token structural p95 | 369.684 ms | 416.366 ms |
+| 256-token structural p95 | 607.917 ms | 724.617 ms |
+| 636-token structural p95 | Outside single-sequence capacity | 2,179.809 ms |
+| 1,276-token structural p95 | Outside single-sequence capacity | 3,804.643 ms |
+
+The two new long probes use 11/22 segments and 646/1,297 actual initial model
+tokens, respectively, including per-segment specials and normalization. Their
+logical original-source counts are 636/1,276, and every original UTF-16 code
+unit is covered. The known late `geht` correction after a long prefix and emoji
+lands exactly at document offsets 2543–2547; protected code remains unchanged.
+Late oversized content, request-token, segment-count and source-length limits
+fail the whole request without partial findings.
+
+These measurements demonstrate bounded coverage beyond 512 tokens, **not a
+long-input speedup**. The 256-token probe is slower in this run with target64,
+and all longer probes exceed 500 ms. Short-check and memory budgets pass.
+Segmentation remains a host opt-in; its sentence heuristic and within-call
+native cancellation limits remain. The long texts are repeated clean sentences,
+not a representative paragraph-quality evaluation. Each structural timing has
+three measured samples after a warmup; this is one local-host observation.
+`native-results.json` provides the compact index and source checks. Complete
+receipts and logs are compressed with byte hashes retained in that index.
