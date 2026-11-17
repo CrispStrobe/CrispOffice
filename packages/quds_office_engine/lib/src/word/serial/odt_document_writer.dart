@@ -48,17 +48,18 @@ abstract final class OdtDocumentWriter {
     for (var index = 0; index < document.sections.length; index++) {
       final section = document.sections[index];
       String? firstStyle;
-      if (index > 0) {
-        final first = section.blocks.whereType<WmlParagraph>().firstOrNull;
-        if (first != null) {
-          firstStyle = layout.sectionBreakStyle(
-            index,
-            section.breakKind,
-            baseStyle: layout.paragraphStyle(
-              first.properties,
-              heading: first.properties.headingLevel,
-            ),
-          );
+      // A master-page assignment itself forces a page break in ODF. Keep
+      // continuous sections on the current master instead of inventing one.
+      if (index > 0 && section.breakKind != WmlSectionBreakKind.continuous) {
+        final first = section.blocks.firstOrNull;
+        final anchor = first is WmlParagraph ? first : WmlParagraph();
+        final sectionStyle = layout.sectionBreakStyle(index, anchor.properties);
+        if (first is WmlParagraph) {
+          firstStyle = sectionStyle;
+        } else {
+          // Nonparagraph starts need a top-level boundary before their story.
+          // This real empty paragraph can affect spacing in paged consumers.
+          _writeParagraph(body, anchor, layout, styleOverride: sectionStyle);
         }
       }
       _writeBlocks(
@@ -90,10 +91,15 @@ abstract final class OdtDocumentWriter {
     // stories use those in content.xml. Keep the style registries separate and
     // share the package media registry so header/footer pictures cannot collide.
     final stories = _OdtLayout(document, sharedMedia: layout);
+    // ODF requires a master page even for an explicitly empty document. This
+    // fallback supplies styles only and never changes the source sections.
+    final sections = document.sections.isEmpty
+        ? <WmlSection>[WmlSection()]
+        : document.sections;
     final master = XmlWriter();
     master.writeStartElement('master-styles', prefix: 'office');
-    for (var index = 0; index < document.sections.length; index++) {
-      final section = document.sections[index];
+    for (var index = 0; index < sections.length; index++) {
+      final section = sections[index];
       master.writeStartElement('master-page', prefix: 'style');
       master.writeAttribute('style:name', index == 0 ? 'Standard' : 'mp$index');
       master.writeAttribute('style:page-layout-name', 'pm$index');
@@ -186,8 +192,8 @@ abstract final class OdtDocumentWriter {
     }
     w.writeEndElement();
     w.writeStartElement('automatic-styles', prefix: 'office');
-    for (var index = 0; index < document.sections.length; index++) {
-      final section = document.sections[index];
+    for (var index = 0; index < sections.length; index++) {
+      final section = sections[index];
       final page = section.pageSize;
       final margins = section.margins;
       w.writeStartElement('page-layout', prefix: 'style');
@@ -276,7 +282,7 @@ abstract final class OdtDocumentWriter {
           list.add(next);
           index++;
         }
-        _writeList(w, list, layout);
+        _writeList(w, list, layout, firstParagraphStyle: override);
       } else {
         _writeBlock(w, block, layout, paragraphStyle: override);
       }
@@ -286,21 +292,50 @@ abstract final class OdtDocumentWriter {
   static void _writeList(
     XmlWriter w,
     List<WmlParagraph> paragraphs,
-    _OdtLayout layout,
-  ) {
+    _OdtLayout layout, {
+    String? firstParagraphStyle,
+  }) {
+    final roots = <_OdtListItem>[];
+    final stack = <_OdtListItem>[];
+    for (final paragraph in paragraphs) {
+      var level = paragraph.properties.ilvl.clamp(0, 8);
+      if (level > stack.length) level = stack.length;
+      while (stack.length > level) {
+        stack.removeLast();
+      }
+      final item = _OdtListItem(paragraph);
+      if (stack.isEmpty) {
+        roots.add(item);
+      } else {
+        stack.last.children.add(item);
+      }
+      stack.add(item);
+    }
     final ordered = paragraphs.any((paragraph) {
       final label = paragraph.properties.listLabel?.trim() ?? '';
       return label.isNotEmpty &&
           !const <String>{'•', '◦', '▪', 'o'}.contains(label);
     });
-    w.writeStartElement('list', prefix: 'text');
-    w.writeAttribute('text:style-name', layout.listStyle(ordered: ordered));
-    for (final paragraph in paragraphs) {
-      w.writeStartElement('list-item', prefix: 'text');
-      _writeParagraph(w, paragraph, layout);
+    var first = true;
+    void writeItems(List<_OdtListItem> items) {
+      w.writeStartElement('list', prefix: 'text');
+      w.writeAttribute('text:style-name', layout.listStyle(ordered: ordered));
+      for (final item in items) {
+        w.writeStartElement('list-item', prefix: 'text');
+        _writeParagraph(
+          w,
+          item.paragraph,
+          layout,
+          styleOverride: first ? firstParagraphStyle : null,
+        );
+        first = false;
+        if (item.children.isNotEmpty) writeItems(item.children);
+        w.writeEndElement();
+      }
       w.writeEndElement();
     }
-    w.writeEndElement();
+
+    writeItems(roots);
   }
 
   static void _writeBlock(
@@ -367,7 +402,15 @@ abstract final class OdtDocumentWriter {
     switch (inline) {
       case WmlRun():
         final style = layout.runStyle(inline.properties);
-        final href = inline.hyperlink?.url;
+        final href = switch (inline.hyperlink) {
+          final link? =>
+            link.url ??
+                link.file ??
+                (link.anchor == null || link.anchor!.isEmpty
+                    ? null
+                    : '#${link.anchor}'),
+          null => null,
+        };
         final commentLink =
             layout.inCommentBody && href != null && href.isNotEmpty;
         if (href != null && href.isNotEmpty) {
@@ -426,9 +469,16 @@ abstract final class OdtDocumentWriter {
         // surrounding result runs remain in the inline sequence, including
         // citations and bibliographies that span several paragraphs.
         break;
-      case WmlContentControlBoundary() ||
-          WmlNoteMarker() ||
-          WmlBookmarkBoundary():
+      case WmlBookmarkBoundary():
+        final name = inline.name;
+        if (name != null && name.isNotEmpty) {
+          w.writeEmptyElement(
+            inline.isStart ? 'bookmark-start' : 'bookmark-end',
+            prefix: 'text',
+            attributes: {'text:name': name},
+          );
+        }
+      case WmlContentControlBoundary() || WmlNoteMarker():
         break;
       case WmlObject():
       case WmlOpaqueInline():
@@ -1100,14 +1150,24 @@ class _OdtLayout {
     });
   }
 
-  String paragraphStyle(WmlParagraphProps props, {int? heading}) {
+  String paragraphStyle(
+    WmlParagraphProps props, {
+    int? heading,
+    int? sectionIndex,
+  }) {
     final key =
+        '${sectionIndex == null ? '' : 'section:$sectionIndex|'}'
         '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}';
     return _paragraphStyles.putIfAbsent(key, () {
-      final name = 'P${_paragraphStyles.length + 1}';
+      final name = sectionIndex == null
+          ? 'P${_paragraphStyles.length + 1}'
+          : 'SB$sectionIndex';
+      final masterPage = sectionIndex == null
+          ? ''
+          : ' style:master-page-name="mp$sectionIndex"';
       final buffer = StringBuffer(
         '<style:style style:name="$name" style:family="paragraph" '
-        'style:parent-style-name="${heading == null ? 'Standard' : 'Heading_20_${heading.clamp(1, 9)}'}">'
+        'style:parent-style-name="${heading == null ? 'Standard' : 'Heading_20_${heading.clamp(1, 9)}'}"$masterPage>'
         '<style:paragraph-properties',
       );
       // The model's left/right alignment is physical, independently of the
@@ -1148,7 +1208,10 @@ class _OdtLayout {
             }
         }
       }
-      if (props.pageBreakBefore) buffer.write(' fo:break-before="page"');
+      if (props.pageBreakBefore || sectionIndex != null) {
+        buffer.write(' fo:break-before="page"');
+      }
+      if (sectionIndex != null) buffer.write(' style:page-number="auto"');
       if (props.indent.left != 0) {
         if (_paragraphDecimal(props.indent.left) case final left?) {
           buffer.write(' fo:margin-left="${left}pt"');
@@ -1203,29 +1266,12 @@ class _OdtLayout {
     });
   }
 
-  String sectionBreakStyle(
-    int index,
-    WmlSectionBreakKind kind, {
-    required String baseStyle,
-  }) {
-    final name = 'SB$index';
-    if (_sectionBreakStyles.add(name)) {
-      final buffer = StringBuffer(
-        '<style:style style:name="$name" style:family="paragraph" '
-        'style:parent-style-name="$baseStyle" '
-        'style:master-page-name="mp$index">'
-        '<style:paragraph-properties',
+  String sectionBreakStyle(int index, WmlParagraphProps properties) =>
+      paragraphStyle(
+        properties,
+        heading: properties.headingLevel,
+        sectionIndex: index,
       );
-      if (kind != WmlSectionBreakKind.continuous) {
-        buffer.write(' fo:break-before="page"');
-      }
-      buffer.write(' style:page-number="auto"/></style:style>');
-      _styleBuffers.add(buffer.toString());
-    }
-    return name;
-  }
-
-  final Set<String> _sectionBreakStyles = <String>{};
 
   String listStyle({required bool ordered}) => ordered ? 'L2' : 'L1';
 
@@ -1266,4 +1312,11 @@ class _OdtLayout {
       .replaceAll('<', '&lt;')
       .replaceAll('>', '&gt;')
       .replaceAll('"', '&quot;');
+}
+
+class _OdtListItem {
+  _OdtListItem(this.paragraph);
+
+  final WmlParagraph paragraph;
+  final List<_OdtListItem> children = <_OdtListItem>[];
 }

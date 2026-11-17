@@ -445,7 +445,6 @@ final class WordProofingSession extends ChangeNotifier {
     final configuration = _configurationKey;
     final manual = includeManualProviders ? _manualService : null;
     final useManual = manual?.providers.isNotEmpty ?? false;
-    final manualSkipped = !includeManualProviders && hasManualProviders;
     if (!identical(document, _observedDocument)) {
       _cache.clear();
       _ignoredOnce.clear();
@@ -455,6 +454,8 @@ final class WordProofingSession extends ChangeNotifier {
     _observedConfiguration = configuration;
     final documentId = _documentIds[document] ??= 'document-${++_nextId}';
     final captured = _capture(document);
+    final manualSkipped =
+        !includeManualProviders && _manualProvidersApplyTo(captured);
     _summary = WordProofingSummary(
       paragraphCount: captured.paragraphs.length,
       checking: true,
@@ -557,6 +558,28 @@ final class WordProofingSession extends ChangeNotifier {
     );
     notifyListeners();
     return _summary;
+  }
+
+  bool _manualProvidersApplyTo(_DocumentSnapshot captured) {
+    final manual = _manualService;
+    if (manual == null || manual.providers.isEmpty) return false;
+    final languages = <String>{
+      for (final paragraph in captured.paragraphs)
+        for (final segment in paragraph.segments)
+          normalizeProofingLanguage(segment.language),
+    };
+    for (final provider in manual.providers) {
+      for (final language in languages) {
+        try {
+          if (provider.supportsLanguage(language)) return true;
+        } on Object {
+          // An invalid capability declaration is not evidence of coverage.
+          // An explicit check will preserve its operational failure.
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   /// Existing deterministic findings take precedence over overlapping model

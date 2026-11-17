@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "kind": "Complete section-main source readback and formatter receipt",
+  "source_commit": "e042841fa062e18af1a3d184b846a58f0875dccc",
+  "tree": "9b7330beb36c344fd1ce5e45d1d478e40fa0d9a6",
+  "parent_shas": [
+    "a63f23db60d34b4da274ff89e29c69668291216b",
+    "6f9caa0736828dbbb2c4d00d2af89277243dbf2b"
+  ],
+  "full_tree_blob_count": 6733,
+  "expected_blob_count": 6733,
+  "unexpected_differences": [],
+  "full_content_readbacks": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "blob": "ecfd108bcb9c6907b2d88c949bf846c4ac3e9d93",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "blob": "33f849c561d4aa7b28edb681c2e3a70b3c40858a",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+      "blob": "5ff12a885f4dde8ac88027341bb0d2288d376577",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+      "blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+      "blob": "1a18c6d03798e649c335eb7b6534ad3b10db3334",
+      "exact": true
+    }
+  ],
+  "zotero_count": 50,
+  "zotero_all_unchanged": true,
+  "remote_branch": "codex/office-continuation-20261117",
+  "remote_ref_read_back_exact": true,
+  "baseline_before_arrival": "ec5da06988f21c982c8105436dde988572dc0c3c",
+  "actual_merge_base": "3458c8977cef969a86a07b39734c761ba62e4b40",
+  "incoming_main": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+  "incoming_delta_complete": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart"
+  ],
+  "source_preservation": {
+    "protected_spans": [
+      {
+        "name": "inline_and_comment_logic",
+        "characters": 3401,
+        "exact": true
+      },
+      {
+        "name": "note_definition_logic",
+        "characters": 2597,
+        "exact": true
+      },
+      {
+        "name": "note_table_fallback",
+        "characters": 945,
+        "exact": true
+      },
+      {
+        "name": "table_serialization",
+        "characters": 3372,
+        "exact": true
+      },
+      {
+        "name": "frame_serialization",
+        "characters": 942,
+        "exact": true
+      },
+      {
+        "name": "indexed_note_state",
+        "characters": 1838,
+        "exact": true
+      }
+    ],
+    "inverse_edits_reproduce_pre_arrival_writer": true,
+    "incoming_and_existing_main_writer_tests_preserved_verbatim": true,
+    "existing_annotation_and_note_tests_only_formatted": [
+      {
+        "path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+        "old_blob": "d16f39b66d8d7ad3d0b4ec8a860a75e27bd70af6",
+        "new_blob": "5ff12a885f4dde8ac88027341bb0d2288d376577",
+        "changes": "Whitespace and optional trailing commas emitted by Dart formatter only",
+        "normalized_equal": true,
+        "string_fragments_equal": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "old_blob": "fab22f0897d49e528ead09cdaed1f5f2b701c547",
+        "new_blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+        "changes": "Whitespace and optional trailing commas emitted by Dart formatter only",
+        "normalized_equal": true,
+        "string_fragments_equal": true
+      }
+    ],
+    "all_other_paths_exact_except_named_stage_evidence": true,
+    "initial_231_refs_retained": "The parent chain retains ec5da069 and its prior audited 231-reference ancestry; new main is the second parent of e042841f.",
+    "prior_audit": "pre-section-main-canonical-source-audit.json"
+  },
+  "formatter": {
+    "language_version": "3.12",
+    "sdk_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "accepted_final_exit": 0,
+    "accepted_final_stdout": "Formatted 5 files (0 changed) in 0.16 seconds.\n",
+    "accepted_file_count": 5,
+    "accepted_changed_count": 0,
+    "raw_log": "section-main-format.log",
+    "rejected_attempt": {
+      "reason": "Annotation test filename typo excluded one file; warning despite exit0 means this attempt is not accepted.",
+      "exit": 0,
+      "stdout": "No file or directory found at \"oddf_annotation_extraction_test.dart\".\nFormatted 4 files (0 changed) in 0.12 seconds.\n"
+    },
+    "files": [
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "blob": "ecfd108bcb9c6907b2d88c949bf846c4ac3e9d93",
+        "sha256": "a36bec120974e5e457166371b258be94b94359768b911c5d19224e06ea0277cf"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "blob": "33f849c561d4aa7b28edb681c2e3a70b3c40858a",
+        "sha256": "aa60ee45778b854ab36cc87f703eefc1e89cd64a0ddc4373d6a8370823c9dc23"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+        "blob": "5ff12a885f4dde8ac88027341bb0d2288d376577",
+        "sha256": "62d996c94fff2b01e499201ed666ef0d1e27ad795c9246be4e3300a189deadcb"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+        "sha256": "075bc0b0087c54abaa2d1cecca84e3d78859e82eb693e88f4cbbd46f9a4120a3"
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "blob": "1a18c6d03798e649c335eb7b6534ad3b10db3334",
+        "sha256": "6070136de6c8fe526f05d00156e3f96a79a3c58459b814f9a7ef0ee0cbdcd14b"
+      }
+    ]
+  },
+  "independent_review": {
+    "blob": "7d215779bebe7b4ac77859f81efa6c8cd78e9f2f",
+    "reviewed_source": "e042841fa062e18af1a3d184b846a58f0875dccc",
+    "result": "No remaining concrete source or expectation blocker after correcting the frame test before runtime qualification.",
+    "authored_section_cases": 12
+  },
+  "runtime_test_status": "Root and independent reviewer are qualifying this immutable source separately; no test result is claimed by this receipt.",
+  "github_actions_or_ci_status_endpoints_queried": false
+}

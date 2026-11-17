@@ -1,0 +1,65 @@
+{
+  "reviewer": "/root/runtime",
+  "reviewed_at_utc": "2026-11-17T14:38:46.507810+00:00",
+  "passed": true,
+  "blocking_findings": [],
+  "product_source": "07481e944799e282f15e6286192b926cff1165df",
+  "verifier_correction_commit": "86242782115fa3433f03d00f3f98c08b890904b9",
+  "review_method": "Independent read-only reconstruction; no rendering, consumer commands, schema checks or product tests rerun.",
+  "audit_script_sha256": "50eed86e4dada08c34735f3c54d4b40a2a8e5da09bd2fa9200cfa59fdd38b02b",
+  "summary_script_sha256": "8e70ab527c3325750f38309af7ec2baa5de467e3b507df4e8708e619a4a58d4d",
+  "summary_json_sha256": "330b4d26956eff5cc878f7659d619eed50c9bb937c008c1dfbbeb4e57270bb63",
+  "receipts_sha256": {
+    "initial": "d158189c98da8a1a8a762e3904112e85f22ef97abaeae524fd8043dfcfa5ed5b",
+    "rtl": "1fe21b1e6734f6210faf375196e29c52d63365b94f88fed8f68c06d3bef12af8",
+    "generation": "d057df7a72bd498578d74aafa9e14f57d8992d7441c18a19a88d2bb5ca63e748",
+    "rotation": "07789b566627565b42ce4617299f40ee3e28169fbb3972372db768dc4538a823",
+    "rotation_runtime": "53272daaedee3e723a9682785e316e41ec0d374c8447a529ddbd3cfaab3551bb",
+    "logical_pdf": "44cdaafaa8c7cdee7cdb4b8325f8d7f8b2a0d652f4bd17aba529eca787761373",
+    "conditional_pdf": "b99610215bfeb563872dea5f8d77548868a65f13ca0e97e01c12d297f01555de"
+  },
+  "reconstructed": {
+    "original_named_fixtures": 27,
+    "original_passes": 26,
+    "original_failures": [
+      "slide-table-rtl.odp"
+    ],
+    "accepted_replacement_fixtures": 1,
+    "all_generated_inputs_unchanged": 27,
+    "rtl_original_and_corrected_png_sha256": "6ccf4ff8f8edc33a7486d805046198e66e9247a1f1f2c75cb1bc2737565b0802",
+    "rtl_first_word_left_edge": 317.622,
+    "rtl_second_word_right_edge": 172.861,
+    "rotation_named_fixtures": 16,
+    "rotation_xml_parts": 64,
+    "rotation_color_geometry_checks": 33,
+    "rotation_unchanged_current_inputs": 6730,
+    "rotation_hashed_font_files": 557,
+    "rotation_manifest_sha256": {
+      "before": "a56cf540601f7d535cc597b829a15019447717d36cae0ce80cbd270c992448e1",
+      "after": "a56cf540601f7d535cc597b829a15019447717d36cae0ce80cbd270c992448e1"
+    },
+    "distinct_accepted_odf_fixtures": 43,
+    "accepted_xml_parts": 172,
+    "logical_pdf_comparisons_with_bit_identical_pngs": 3,
+    "conditional_pdf_receipt_and_files_match": true,
+    "generation_source_inputs_rechecked": 1122,
+    "distinct_current_file_hash_checks": 7758
+  },
+  "source_binding": {
+    "generation_uses_final_passed_engine_receipt": true,
+    "generators_and_checkers_match_recorded_git_objects": true,
+    "correction_commit_changes_only_validation_documentation": true,
+    "full_27_package_inventory_matches_original_generation_and_correction": true,
+    "rotation_before_after_manifests_identical_and_current": true,
+    "original_failed_receipt_preserved_sha256": "d158189c98da8a1a8a762e3904112e85f22ef97abaeae524fd8043dfcfa5ed5b"
+  },
+  "review_notes": [
+    "The accepted 172 XML parts are 43 distinct fixture packages times four parts. The four repeated RTL validations are not counted again.",
+    "The corrected RTL oracle uses exact, distinct Unicode character inventories and raw coordinates for these two named fixture words. It does not assert general Arabic extraction order or general shaping parity.",
+    "Retained schema/consumer receipts support covered fixtures only. Some general fixtures have no additional semantic oracle; comment DOCX import limitations remain explicit in the summary.",
+    "The composition helper trusts the recorded conditional status and rotation runtime counts. This review independently checked their raw artifact hashes, manifest counts, current inputs and source bindings.",
+    "The original failure is a verifier string-order mismatch. Input package and RTL raster bytes are unchanged across the correction.",
+    "No remaining production-code blocker was found in this evidence review. It does not broaden the earlier implementation or selected-test coverage claims."
+  ],
+  "github_actions_used": false
+}
