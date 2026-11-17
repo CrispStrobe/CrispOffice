@@ -16,10 +16,17 @@ importing the model wheel's Python package.
 ## Scope and frozen cases
 
 `fixtures/cases.json` was authored before native implementation. It separates
-16 development inputs from 8 untouched acceptance inputs. The development
+16 development inputs from 8 separately frozen acceptance inputs. The development
 reference contains **113 tokens, 244 parser transitions and 1,201 numerical
 stages**. Empty text is one explicit case; it has zero tokens and no executed
 CNN/parser stages. A run consisting only of empty input cannot qualify.
+
+The first frozen native acceptance run is complete and saved at
+[CrispEmbed `2176c89`](https://github.com/CrispStrobe/CrispEmbed/commit/2176c896dc6bb8c832a9d03b04fd07c7c991fdc5).
+All eight cases pass; the complete original reference was published here at
+`4ae8e9e` before that run. This split is now consumed. W5 adapter validation
+reuses the development panel and separately authored lifecycle controls; see
+the [current continuation](../../../docs/validation/native-spacy-w5-20261117/README.md).
 
 The inputs cover German ambiguity, repeated source substrings, abbreviations,
 URLs, emails, punctuation, CRLF, nonbreaking whitespace, umlauts, sharp S,

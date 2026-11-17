@@ -1,5 +1,23 @@
 # Native spaCy implementation — 17 November 2026
 
+## Current continuation
+
+The first native held-out acceptance is complete at
+[CrispEmbed `2176c89`](https://github.com/CrispStrobe/CrispEmbed/commit/2176c896dc6bb8c832a9d03b04fd07c7c991fdc5):
+eight cases, 98 tokens, 13 sentences, 201 native parser transitions, 294
+classifier choices and 851 numerical stages / 1,068,891 F32 elements pass.
+All discrete outputs match; maximum absolute error is `5.340576171875e-5`
+under the unchanged `2e-4 + 2e-5*abs(reference)` budget. This repository's
+complete original reference at `4ae8e9e` was saved before native execution.
+The preserved first run is not rerun or tuned during adapter work.
+
+[W5 Dart/editor continuation](../native-spacy-w5-20261117/README.md) is the current
+entry point. Quds main `16e2477f`, including newer deterministic grammar and
+Office fixes, is integrated and remotely saved at `4471324a`. The complete
+[ref inventory and retained-result audit](https://github.com/CrispStrobe/CrispEmbed/blob/5ae3f03d154ad8aecb0e8e0a4347ffcaed78f2dc/docs/validation/native-spacy-20261117/resume-w5-source-snapshot.json)
+record other live branches without importing unrelated in-progress work.
+The sections below retain the historical checkpoint sequence.
+
 ## Source reconciliation (W0)
 
 This implementation starts from current CrispEmbed `b34a132c6c204b71f5c58ba8bc1705b8769edb9b`

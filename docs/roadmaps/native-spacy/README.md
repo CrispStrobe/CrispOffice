@@ -6,15 +6,19 @@ fresh implementation agent. It records decisions, inspected source, existing
 experiments, work packages, and acceptance criteria without requiring access to
 the preceding conversation.
 
-**Implementation continuation, 17 November 2026:** the original status above
-describes the research handoff. The later native CPU/F32 implementation is saved
-at [CrispEmbed `51c2ac328`](https://github.com/CrispStrobe/CrispEmbed/commit/51c2ac328ef40b00f18eb9b03130fb67c3f11313).
-Its installed Linux raw-text path passes the complete 16-case development
-comparison, with native tokenization and linguistic decoding. The eight-case
-acceptance freeze/run and W5 application integration remain pending at this
-continuation checkpoint. Read the [current implementation receipt](../../validation/native-spacy-20261117/README.md)
-before choosing the next work package. Historical evidence below remains
-source-bound.
+**Current continuation, 17 November 2026:** the original status above describes
+the research handoff. Native W0–W4 and the first frozen eight-case acceptance
+are complete at [CrispEmbed `2176c89`](https://github.com/CrispStrobe/CrispEmbed/commit/2176c896dc6bb8c832a9d03b04fd07c7c991fdc5).
+All 98 tokens, 13 sentences, 201 parser transitions, 294 classifier choices and
+851 numerical stages pass with exact annotations/spans. The consumed acceptance
+split remains unchanged. Quds main through `16e2477f` is preserved in the
+remotely saved merge `4471324a`.
+
+The [W5 continuation](../../validation/native-spacy-w5-20261117/README.md)
+adds the optional Dart analysis package, persistent worker and manual editor
+view. Use that current receipt for completed checks and remaining work.
+Grammar benefit, mobile qualification and distribution remain separate gates.
+The historical roadmap below retains its original source/evidence boundaries.
 
 ## Start here
 
