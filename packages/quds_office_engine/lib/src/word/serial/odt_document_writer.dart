@@ -126,26 +126,6 @@ abstract final class OdtDocumentWriter {
     for (var index = 0; index < layout.sections.length; index++) {
       final section = layout.sections[index];
       final story = XmlWriter();
-      if (section.header.isNotEmpty || section.headerVisuals.isNotEmpty) {
-        story.writeStartElement('header', prefix: 'style');
-        stories.withStory(
-          () => _writeBlocks(story, [
-            ...section.header,
-            ...section.headerVisuals,
-          ], stories),
-        );
-        story.writeEndElement();
-      }
-      if (section.footer.isNotEmpty || section.footerVisuals.isNotEmpty) {
-        story.writeStartElement('footer', prefix: 'style');
-        stories.withStory(
-          () => _writeBlocks(story, [
-            ...section.footer,
-            ...section.footerVisuals,
-          ], stories),
-        );
-        story.writeEndElement();
-      }
       void variant(
         String tag,
         List<WmlParagraph> paragraphs,
@@ -159,10 +139,6 @@ abstract final class OdtDocumentWriter {
         story.writeEndElement();
       }
 
-      variant('header-first', section.firstHeader, section.firstHeaderVisuals);
-      variant('footer-first', section.firstFooter, section.firstFooterVisuals);
-      variant('header-left', section.evenHeader, section.evenHeaderVisuals);
-      variant('footer-left', section.evenFooter, section.evenFooterVisuals);
       final hasFirstOrEvenHeader =
           section.firstHeader.isNotEmpty ||
           section.firstHeaderVisuals.isNotEmpty ||
@@ -173,16 +149,24 @@ abstract final class OdtDocumentWriter {
           section.firstFooterVisuals.isNotEmpty ||
           section.evenFooter.isNotEmpty ||
           section.evenFooterVisuals.isNotEmpty;
+      // ODF master pages require each default story before its left and first
+      // variants, with the complete header group before the footer group.
+      variant('header', section.header, section.headerVisuals);
       if (hasFirstOrEvenHeader &&
           section.header.isEmpty &&
           section.headerVisuals.isEmpty) {
         story.writeEmptyElement('header', prefix: 'style');
       }
+      variant('header-left', section.evenHeader, section.evenHeaderVisuals);
+      variant('header-first', section.firstHeader, section.firstHeaderVisuals);
+      variant('footer', section.footer, section.footerVisuals);
       if (hasFirstOrEvenFooter &&
           section.footer.isEmpty &&
           section.footerVisuals.isEmpty) {
         story.writeEmptyElement('footer', prefix: 'style');
       }
+      variant('footer-left', section.evenFooter, section.evenFooterVisuals);
+      variant('footer-first', section.firstFooter, section.firstFooterVisuals);
       final storyXml = story.toXml();
       final pageKey =
           '${_pageLayoutKey(section)}|${_storyKey(storyXml, section, stories)}';
@@ -564,22 +548,20 @@ abstract final class OdtDocumentWriter {
         _writeVisual(w, block.visual, layout, inline: true);
         w.writeEndElement();
       case WmlFrame():
-        if (sectionStart != null) {
-          w.writeStartElement('p', prefix: 'text');
-          w.writeAttribute(
-            'text:style-name',
-            layout.paragraphStyle(
-              WmlParagraphProps(),
-              sectionStart: sectionStart,
-              emptyAnchor: true,
-            ),
-          );
-          sectionStart.consumed = true;
-          _writeFrame(w, block, layout, inParagraph: true);
-          w.writeEndElement();
-        } else {
-          _writeFrame(w, block, layout);
-        }
+        // A page-relative frame needs a story anchor even after the section's
+        // first block. Desktop consumers can omit a bare page-anchored frame.
+        w.writeStartElement('p', prefix: 'text');
+        w.writeAttribute(
+          'text:style-name',
+          layout.paragraphStyle(
+            WmlParagraphProps(),
+            sectionStart: sectionStart,
+            emptyAnchor: true,
+          ),
+        );
+        sectionStart?.consumed = true;
+        _writeFrame(w, block, layout, inParagraph: true);
+        w.writeEndElement();
       case WmlEquation():
         break;
       case WmlContentControlBlock():
