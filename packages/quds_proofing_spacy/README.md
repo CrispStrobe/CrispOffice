@@ -6,7 +6,8 @@ dependencies and sentences for the pinned `de_core_news_sm` 3.8.0 F32 profile.
 It does not register a grammar provider or generate corrections. Existing
 deterministic proofing remains independent.
 
-The initial adapter supports **Linux x86-64, de-DE, CPU/F32**. Other platforms,
+The initial adapter supports **Linux x86-64/AVX2, de-DE, CPU/F32**, using the
+qualified PCRE2 10.46 dependency. Other platforms,
 regional locale profiles, NER, model release/distribution and mobile device
 qualification remain separate work. The portable entry point and conditional
 native entry point are safe to import from web; its native factory explicitly
@@ -83,6 +84,14 @@ CRISPEMBED_SPACY=1 dart run packages/quds_proofing_spacy/tool/replay_development
   --bundle "$QUDS_SPACY_BUNDLE" --quds-root . --report "$QUDS_SPACY_REPORT"
 ```
 
+Add `--mode worker` to run the same comparisons through the real persistent
+isolate. Both modes record source hashes before and after execution and fail
+if the imported source closure changes. Each invocation needs a new report
+path. The separate `tool/native_fault_fixture.c` and
+`tool/native_fault_probe.dart` exercise this binding against deliberately
+malformed C ABI outputs, including counted NUL, bounded errors and exact frees.
+They are test-only artifacts and perform no trained inference.
+
 This driver replays the existing 16 **development** documents and authored API
 controls through the actual Dart binding. It compares every exposed annotation
 and sentence, including nonzero origins. It does not rerun or retune the frozen
@@ -90,3 +99,13 @@ eight-case native acceptance, and repeat development executions are not new
 independent linguistic-quality evidence. Numerical native-stage evidence stays
 in CrispEmbed's immutable acceptance receipt. No GitHub Actions query or wait is
 needed for these checks.
+
+The first Dart comparison rejected a correct whitespace-only source sentence
+because it incorrectly required a self-headed token's label to be `ROOT`.
+Original spaCy labels that whitespace root `dep`. The corrected validator uses
+the ABI's own-index root contract and preserves same-sentence, single-root and
+cycle checks. The first failing receipt and its exact hash-matched source
+archive remain in `docs/validation/native-spacy-w5-20261117/`; goldens and the
+native binary were unchanged. Its initial diagnostic sanitizer also replaced
+the relative root argument `.` inside a message. Later reports sanitize
+absolute paths; the original negative receipt is retained verbatim.

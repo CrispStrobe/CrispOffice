@@ -25,12 +25,20 @@ Future<void> main(List<String> args) async {
     '--quds-root',
     '--report',
   };
-  if (options.length != names.length || !names.every(options.containsKey)) {
-    throw ArgumentError('Required: ${names.join(', ')}');
+  if (!names.every(options.containsKey) ||
+      options.keys.any((name) => !names.contains(name) && name != '--mode')) {
+    throw ArgumentError(
+      'Required: ${names.join(', ')}; optional --mode direct|worker',
+    );
+  }
+  final mode = options['--mode'] ?? 'direct';
+  if (mode != 'direct' && mode != 'worker') {
+    throw ArgumentError('--mode must be direct or worker.');
   }
   final reportFile = File(options['--report']!);
   if (reportFile.existsSync()) throw StateError('Receipt already exists.');
   final root = Directory(options['--quds-root']!).absolute.path;
+  final sourcesBefore = sourceHashes(root);
   final fixtureRoot = '$root/tools/proofing/spacy/fixtures/development';
   final manifestBytes = File('$fixtureRoot/manifest.json').readAsBytesSync();
   require(
@@ -53,6 +61,8 @@ Future<void> main(List<String> args) async {
   );
   final report = <String, Object?>{
     'schema': 'quds.spacy.dart.development.v1',
+    'mode': mode,
+    'source_sha256_before': sourcesBefore,
     'started_at': DateTime.now().toUtc().toIso8601String(),
     'scope':
         'Dart FFI and complete exposed annotations on the existing 16 '
@@ -67,10 +77,19 @@ Future<void> main(List<String> args) async {
   SpacyBackend? backend;
   try {
     final loadWatch = Stopwatch()..start();
-    backend = await factory.open(const SpacyBundle.germanF32());
+    backend = mode == 'worker'
+        ? _WorkerBackend(
+            await startSpacyWorker(
+              bundle: const SpacyBundle.germanF32(),
+              backendFactory: factory,
+              maximumTextCodeUnits: 1024 * 1024,
+            ),
+          )
+        : await factory.open(const SpacyBundle.germanF32());
     report['open_microseconds'] = loadWatch.elapsedMicroseconds;
     report['identity'] = backend.identity.toJson();
     final cases = <Map<String, Object?>>[];
+    report['cases'] = cases; // Preserve completed cases if a later one fails.
     final ids = <String>{};
     var tokenCount = 0;
     var sentenceCount = 0;
@@ -172,6 +191,7 @@ Future<void> main(List<String> args) async {
     };
 
     final controls = <Map<String, Object?>>[];
+    report['controls'] = controls;
     Future<void> control(
       String id,
       String text,
@@ -255,17 +275,15 @@ Future<void> main(List<String> args) async {
   } finally {
     await backend?.dispose();
     report['completed_at'] = DateTime.now().toUtc().toIso8601String();
-    final sources = <String, String>{};
-    for (final entity in Directory(
-      '$root/packages/quds_proofing_spacy',
-    ).listSync(recursive: true)) {
-      if (entity is File && entity.path.endsWith('.dart')) {
-        sources[entity.path.substring(root.length + 1)] = sha256
-            .convert(entity.readAsBytesSync())
-            .toString();
-      }
+    final sourcesAfter = sourceHashes(root);
+    report['source_sha256_after'] = sourcesAfter;
+    report['source_unchanged'] =
+        jsonEncode(sourcesBefore) == jsonEncode(sourcesAfter);
+    if (report['source_unchanged'] != true) {
+      report['passed'] = false;
+      report['failure'] = 'Source files changed during validation.';
+      exitCode = 1;
     }
-    report['source_sha256'] = sources;
     reportFile.parent.createSync(recursive: true);
     reportFile.writeAsStringSync(
       '${const JsonEncoder.withIndent('  ').convert(report)}\n',
@@ -279,6 +297,37 @@ Future<void> main(List<String> args) async {
       'failure': report['failure'],
     }),
   );
+}
+
+Map<String, String> sourceHashes(String root) {
+  final paths = <String>[
+    ...Directory('$root/packages/quds_proofing_spacy/lib')
+        .listSync(recursive: true)
+        .whereType<File>()
+        .where((file) => file.path.endsWith('.dart'))
+        .map((file) => file.path),
+    '$root/packages/quds_proofing_spacy/tool/replay_development.dart',
+  ]..sort();
+  return {
+    for (final path in paths)
+      path.substring(root.length + 1): sha256
+          .convert(File(path).readAsBytesSync())
+          .toString(),
+  };
+}
+
+/// Same comparison code through the real native worker; no golden output is
+/// sent to the worker and no fake backend stands in for its synchronous FFI.
+final class _WorkerBackend implements SpacyBackend {
+  _WorkerBackend(this.transport);
+  final SpacyTransport transport;
+  @override
+  SpacyBackendIdentity get identity => transport.identity;
+  @override
+  Future<LinguisticAnalysisResult> analyze(LinguisticAnalysisRequest request) =>
+      transport.analyze(request);
+  @override
+  Future<void> dispose() => transport.dispose();
 }
 
 void require(bool value, String message) {

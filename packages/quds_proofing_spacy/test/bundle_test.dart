@@ -1,4 +1,3 @@
-import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy_native.dart';
 import 'package:test/test.dart';
 

@@ -86,10 +86,12 @@ final class _Factory implements SpacyBackendFactory {
     this.events, {
     this.controlOpen = false,
     this.failOpen = false,
+    this.failClose = false,
   });
   final SendPort events;
   final bool controlOpen;
   final bool failOpen;
+  final bool failClose;
   @override
   Future<SpacyBackend> open(SpacyBundle bundle) async {
     if (failOpen) throw StateError('Injected initialization failure');
@@ -99,13 +101,22 @@ final class _Factory implements SpacyBackendFactory {
       await port.first;
       port.close();
     }
-    return _Backend(events);
+    return _Backend(events, failClose: failClose);
   }
 }
 
+final class _UnsendableFactory implements SpacyBackendFactory {
+  const _UnsendableFactory(this.port);
+  final ReceivePort port;
+  @override
+  Future<SpacyBackend> open(SpacyBundle bundle) async =>
+      throw StateError('Unsendable factory cannot reach the worker.');
+}
+
 final class _Backend implements SpacyBackend {
-  _Backend(this.events);
+  _Backend(this.events, {this.failClose = false});
   final SendPort events;
+  final bool failClose;
   int calls = 0;
   bool active = false;
   bool disposed = false;
@@ -138,10 +149,12 @@ final class _Backend implements SpacyBackend {
 
   @override
   Future<void> dispose() async {
-    if (active || disposed)
+    if (active || disposed) {
       throw StateError('Unsafe or duplicate context free');
+    }
     disposed = true;
     events.send(const _Closed());
+    if (failClose) throw StateError('Injected cleanup failure');
   }
 }
 
@@ -363,6 +376,40 @@ void main() {
       ),
       throwsA(isA<SpacyUnavailableException>()),
     );
+  });
+
+  test(
+    'cleanup failure is explicit and repeated disposal preserves the error',
+    () async {
+      final worker = await startSpacyWorker(
+        bundle: const SpacyBundle.germanF32(),
+        backendFactory: _Factory(probe.events.sendPort, failClose: true),
+      );
+      await expectLater(
+        worker.dispose(),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      expect(await probe.next(), isA<_Closed>());
+      await expectLater(
+        worker.dispose(),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      expect(
+        (await worker.analyze(_request('Haus'))).status,
+        LinguisticAnalysisStatus.unavailable,
+      );
+    },
+  );
+
+  test('spawn failure has no unhandled readiness error', () async {
+    await expectLater(
+      startSpacyWorker(
+        bundle: const SpacyBundle.germanF32(),
+        backendFactory: _UnsendableFactory(probe.events),
+      ),
+      throwsArgumentError,
+    );
+    await Future<void>.delayed(Duration.zero);
   });
 
   test(
