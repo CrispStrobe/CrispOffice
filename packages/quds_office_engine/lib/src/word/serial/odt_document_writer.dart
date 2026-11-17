@@ -135,18 +135,27 @@ abstract final class OdtDocumentWriter {
       }
       previousPageKey = pageKey;
       final name = index == 0 ? 'Standard' : 'mp$index';
-      void writeMaster(String masterName, String pageLayout, {String? next}) {
+      void writeMaster(
+        String masterName,
+        String pageLayout, {
+        String? next,
+        String? contents,
+      }) {
         master.writeStartElement('master-page', prefix: 'style');
         master.writeAttribute('style:name', masterName);
         master.writeAttribute('style:page-layout-name', pageLayout);
         if (next != null) master.writeAttribute('style:next-style-name', next);
-        master.writeRaw(storyXml);
+        master.writeRaw(contents ?? storyXml);
         master.writeEndElement();
       }
 
-      writeMaster(name, 'pm$index');
       if (layout.sectionStarts[index].parity != null) {
+        // The entry and continuation masters repeat visible stories, but a
+        // shared annotation definition must appear only once in the package.
+        writeMaster(name, 'pm$index', contents: _withoutAnnotations(storyXml));
         writeMaster('${name}Start', 'pm${index}Start', next: name);
+      } else {
+        writeMaster(name, 'pm$index');
       }
     }
     master.writeEndElement();
@@ -277,24 +286,45 @@ abstract final class OdtDocumentWriter {
     section.margins.right,
   ].map((value) => value.toStringAsFixed(2)).join('|');
 
-  static String _storyKey(String xml, WmlSection section, _OdtLayout layout) {
+  static XmlElement _storyRoot(String xml) {
     final envelope = XmlWriter();
     envelope.writeStartElement('master-styles', prefix: 'office');
     _namespaces(envelope);
     envelope.writeRaw(xml);
     envelope.writeEndElement();
-    final root = XmlDocument.parse(envelope.toXml()).root!;
+    return XmlDocument.parse(envelope.toXml()).root!;
+  }
+
+  static void _removeAnnotations(XmlElement element) {
+    element.children.removeWhere(
+      (node) =>
+          node is XmlElement &&
+          node.localName == 'annotation' &&
+          node.namespaceUri ==
+              'urn:oasis:names:tc:opendocument:xmlns:office:1.0',
+    );
+    for (final child in element.childElements) {
+      _removeAnnotations(child);
+    }
+  }
+
+  static String _withoutAnnotations(String xml) {
+    final root = _storyRoot(xml);
+    _removeAnnotations(root);
+    final result = XmlWriter();
+    for (final child in root.children) {
+      child.writeTo(result);
+    }
+    return result.toXml();
+  }
+
+  static String _storyKey(String xml, WmlSection section, _OdtLayout layout) {
+    final root = _storyRoot(xml);
+    // Annotation emission is deliberately shared across all stories. Its
+    // bookkeeping must not turn repeated authored headers into new pages;
+    // compare their reference positions below instead of emitted bodies.
+    _removeAnnotations(root);
     void normalize(XmlElement element) {
-      // Annotation emission is deliberately shared across all stories. Its
-      // bookkeeping must not turn repeated authored headers into new pages;
-      // compare their reference positions below instead of emitted bodies.
-      element.children.removeWhere(
-        (node) =>
-            node is XmlElement &&
-            node.localName == 'annotation' &&
-            node.namespaceUri ==
-                'urn:oasis:names:tc:opendocument:xmlns:office:1.0',
-      );
       if (element.localName == 'image' &&
           element.namespaceUri ==
               'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0') {
@@ -1556,6 +1586,15 @@ class _OdtLayout {
   _OdtListMarker listMarker(WmlParagraph paragraph) {
     final props = paragraph.properties;
     final level = props.ilvl.clamp(0, 8);
+    // A new parent item resets supported child sequences even when its own
+    // marker is a bullet or a literal Roman/multilevel label. Its marker need
+    // not be a mapped decimal for the authored hierarchy to remain meaningful.
+    final active = _listCounters[props.numId];
+    if (active != null) {
+      for (var deeper = level + 1; deeper < active.length; deeper++) {
+        active[deeper] = null;
+      }
+    }
     final definition =
         _listDefinitions.levels[(props.numId!, level)] ??
         _listDefinitions.levels[(props.numId!, 0)];
@@ -1624,9 +1663,6 @@ class _OdtLayout {
         ? (previous == null ? initial : previous + BigInt.one)
         : BigInt.from(props.listRestart!);
     counters[level] = value;
-    for (var deeper = level + 1; deeper < counters.length; deeper++) {
-      counters[deeper] = null;
-    }
     // ODF start-value is positiveInteger. Nonpositive Word values remain
     // visible literal labels, without emitting schema-invalid attributes.
     if (value <= BigInt.zero) {

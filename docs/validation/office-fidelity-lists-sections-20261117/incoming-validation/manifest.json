@@ -1,0 +1,357 @@
+{
+  "archive": "incoming-validation.tar.xz",
+  "archive_sha256": "19f6e427602c077ae0796dac55d0ae1c9fb9fa71c429288c4132067606dcdbd0",
+  "archive_bytes": 870660,
+  "file_count": 86,
+  "uncompressed_bytes": 5429383,
+  "archive_prefix": "incoming-validation/",
+  "exclusions": [
+    "disposable __pycache__ directories"
+  ],
+  "files": {
+    "README.md": {
+      "sha256": "00a3f6b0db96b1b184a3bdc1e09b54c7afe177d850b217c7e49fe966a67ae7b6",
+      "bytes": 5936
+    },
+    "corrected-source/editor/analyze.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "corrected-source/editor/analyze.stdout.gz": {
+      "sha256": "25dc0578075e5fd3d651a69d804c7946a0d17987f7a2da16abac97becb996dce",
+      "bytes": 136
+    },
+    "corrected-source/editor/dart-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "corrected-source/editor/dart-version.stdout": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "corrected-source/editor/flutter-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "corrected-source/editor/flutter-version.stdout": {
+      "sha256": "3e84cedd9fa2b7e8451d29ef69a603c8c56776ccaf16e073333e0ccdf98ab0e4",
+      "bytes": 665
+    },
+    "corrected-source/editor/format.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "corrected-source/editor/format.stdout.gz": {
+      "sha256": "d2b396e38e78c5fd5f58f32189dff94272a64cee5d1b193a3a8681b00fa19c7f",
+      "bytes": 67
+    },
+    "corrected-source/editor/node-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "corrected-source/editor/node-version.stdout": {
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+      "bytes": 9
+    },
+    "corrected-source/editor/receipt.json": {
+      "sha256": "a3677a2fce1fb7e268c6ca4e936b4625418097c5d6507bf74b180b17b6623692",
+      "bytes": 510670
+    },
+    "corrected-source/editor/runtime-after.json.gz": {
+      "sha256": "4fdbd99760ff27d8a163a7b6242ae2d7f20246412d1dc9b8ca29a1bc99cea855",
+      "bytes": 402581
+    },
+    "corrected-source/editor/runtime-before.json.gz": {
+      "sha256": "4fdbd99760ff27d8a163a7b6242ae2d7f20246412d1dc9b8ca29a1bc99cea855",
+      "bytes": 402581
+    },
+    "corrected-source/editor/test-1.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "corrected-source/editor/test-1.stdout.gz": {
+      "sha256": "0e8ad132935bf0fde127b455fd1bc15f68923d59ce7e0d4fbc732260bc6cfb58",
+      "bytes": 2981
+    },
+    "corrected-source/editor/test-2.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "corrected-source/editor/test-2.stdout.gz": {
+      "sha256": "6f5060df4dccb2ff1ce89a4e0b70bc6b48dd6cbbff65570e7e5e8b0cb7841d38",
+      "bytes": 4034
+    },
+    "corrected-source/engine-node/analyze.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "corrected-source/engine-node/analyze.stdout.gz": {
+      "sha256": "9f5d70f4b1ac05284e25a1453ac73de039b96fc2efc1823089661974b29211d5",
+      "bytes": 145
+    },
+    "corrected-source/engine-node/dart-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "corrected-source/engine-node/dart-version.stdout": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "corrected-source/engine-node/flutter-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "corrected-source/engine-node/flutter-version.stdout": {
+      "sha256": "3e84cedd9fa2b7e8451d29ef69a603c8c56776ccaf16e073333e0ccdf98ab0e4",
+      "bytes": 665
+    },
+    "corrected-source/engine-node/format.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "corrected-source/engine-node/format.stdout.gz": {
+      "sha256": "d2b396e38e78c5fd5f58f32189dff94272a64cee5d1b193a3a8681b00fa19c7f",
+      "bytes": 67
+    },
+    "corrected-source/engine-node/node-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "corrected-source/engine-node/node-version.stdout": {
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+      "bytes": 9
+    },
+    "corrected-source/engine-node/receipt.json": {
+      "sha256": "97ac334fc8ca4697034fb2de0a83a7b8a4a189f970baf85caf2d8c63693db4cf",
+      "bytes": 507419
+    },
+    "corrected-source/engine-node/runtime-after.json.gz": {
+      "sha256": "4fdbd99760ff27d8a163a7b6242ae2d7f20246412d1dc9b8ca29a1bc99cea855",
+      "bytes": 402581
+    },
+    "corrected-source/engine-node/runtime-before.json.gz": {
+      "sha256": "4fdbd99760ff27d8a163a7b6242ae2d7f20246412d1dc9b8ca29a1bc99cea855",
+      "bytes": 402581
+    },
+    "corrected-source/engine-node/test-1.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "corrected-source/engine-node/test-1.stdout.gz": {
+      "sha256": "6cb098e947e8f854ec20c3af77af22e7e1aaad31ab4187c2441310a8c1680d50",
+      "bytes": 3033
+    },
+    "engine-vm/analyze.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "engine-vm/analyze.stdout.gz": {
+      "sha256": "28d160ff08468af641f64421816a5f167da45b13ca027d960e0ac65a761284d0",
+      "bytes": 276
+    },
+    "engine-vm/dart-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "engine-vm/dart-version.stdout": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "engine-vm/flutter-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "engine-vm/flutter-version.stdout": {
+      "sha256": "3e84cedd9fa2b7e8451d29ef69a603c8c56776ccaf16e073333e0ccdf98ab0e4",
+      "bytes": 665
+    },
+    "engine-vm/format.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "engine-vm/format.stdout.gz": {
+      "sha256": "6af43e368c12d48f7eaf2a8c0ab424cbe12aafdca4c94b10d22b9eb5ecdabb1d",
+      "bytes": 100
+    },
+    "engine-vm/node-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "engine-vm/node-version.stdout": {
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+      "bytes": 9
+    },
+    "engine-vm/receipt.json": {
+      "sha256": "1621925bbafe6bac5572a61d4eb14071373b78e866b67c1c886b5ea29e681dad",
+      "bytes": 510106
+    },
+    "engine-vm/runtime-after.json.gz": {
+      "sha256": "4fdbd99760ff27d8a163a7b6242ae2d7f20246412d1dc9b8ca29a1bc99cea855",
+      "bytes": 402581
+    },
+    "engine-vm/runtime-before.json.gz": {
+      "sha256": "4fdbd99760ff27d8a163a7b6242ae2d7f20246412d1dc9b8ca29a1bc99cea855",
+      "bytes": 402581
+    },
+    "engine-vm/test-1.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "engine-vm/test-1.stdout.gz": {
+      "sha256": "e3997040a86ec42c61aa6186c6a73eb5537b1148e6594c3cbd137783f766b6ed",
+      "bytes": 1745
+    },
+    "engine-vm/test-2.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "engine-vm/test-2.stdout.gz": {
+      "sha256": "53b94d7ab39bb39e14d40753fdb3a9e1b05c8a3f476e6fb11461a20e236fbea8",
+      "bytes": 3074
+    },
+    "evidence-index.json": {
+      "sha256": "842e11bf26fce36d34b955ef33192191e49f66962366617d8524f5035849d37d",
+      "bytes": 9313
+    },
+    "gector-vm/analyze.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "gector-vm/analyze.stdout.gz": {
+      "sha256": "83af2bc8a131de312201aee2da82d7a79c99f288c5c0577aee45eeec5dac8770",
+      "bytes": 64
+    },
+    "gector-vm/dart-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "gector-vm/dart-version.stdout": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "gector-vm/flutter-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "gector-vm/flutter-version.stdout": {
+      "sha256": "3e84cedd9fa2b7e8451d29ef69a603c8c56776ccaf16e073333e0ccdf98ab0e4",
+      "bytes": 665
+    },
+    "gector-vm/format.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "gector-vm/format.stdout.gz": {
+      "sha256": "88ab77c45f91a7823b0896f06cc7a43207506a59afc89cf595f869853fabf5fe",
+      "bytes": 68
+    },
+    "gector-vm/node-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "gector-vm/node-version.stdout": {
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+      "bytes": 9
+    },
+    "gector-vm/receipt.json": {
+      "sha256": "23fa3fc22e2daff5321172fb558e2b163d756cb8e317330b6af1340792f87e89",
+      "bytes": 511960
+    },
+    "gector-vm/runtime-after.json.gz": {
+      "sha256": "138868cd9877ea9e014458f11a2103e3c7cce3854006e39a6e75a2d891fa7442",
+      "bytes": 402520
+    },
+    "gector-vm/runtime-before.json.gz": {
+      "sha256": "138868cd9877ea9e014458f11a2103e3c7cce3854006e39a6e75a2d891fa7442",
+      "bytes": 402520
+    },
+    "gector-vm/test-1.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "gector-vm/test-1.stdout.gz": {
+      "sha256": "9301d43bad4e8dacfd131ef09bb0e7b3b1bc003fc322b9863b312e35838cf334",
+      "bytes": 2563
+    },
+    "gector-vm/test-2.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "gector-vm/test-2.stdout.gz": {
+      "sha256": "db9f8ba672a22c6d88d30c15e88052b8ee115c5f6c46155f6a9164094eca31d6",
+      "bytes": 1555
+    },
+    "gector-vm/test-3.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "gector-vm/test-3.stdout.gz": {
+      "sha256": "4ddbc4763c3ab4e4bb027f66a9a7b38984b0ade5c4f9d6302f2046b2b3246279",
+      "bytes": 1422
+    },
+    "package-restoration.json": {
+      "sha256": "2bf5766d72296e2d6548486a4158be16bae07631fd9fb24bf7d3377859769812",
+      "bytes": 327
+    },
+    "python/receipt.json": {
+      "sha256": "f0398f5f28e334e60877af3924ea2d107653fd10d60f16b6eb109fbdab7db399",
+      "bytes": 4216
+    },
+    "python/runtime-after.json.gz": {
+      "sha256": "b4867182fdac0c4263b7f69dc93833e234adb64f6929a2fdcf19f7110a84dd7a",
+      "bytes": 41902
+    },
+    "python/stderr.gz": {
+      "sha256": "c87a22a626d37e6018f88e6069f0d2dc1a6b8c3a4b36d0bb152afe672f0629ae",
+      "bytes": 2036
+    },
+    "python/stdout.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "run_cohort.py": {
+      "sha256": "15c25d75f1fcb478d56819b28b52b7f8e990220b3b4ae54cc2e2dcdddd99fb84",
+      "bytes": 10262
+    },
+    "run_corrected.py": {
+      "sha256": "e5b10c24a654277692ed01b1b59879cf494067e5f58ef67b896cdba5fd658b64",
+      "bytes": 676
+    },
+    "setup-exact.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "setup-exact.stdout": {
+      "sha256": "1239cb23bc1b32d91a8dad44317786dfdcff1e879a5cbd73908d94b3225c69f3",
+      "bytes": 237
+    },
+    "setup.json": {
+      "sha256": "1eeb1f52acc03c2aa7a3e7135dc788664f2c21fe12f07cea11e3ec76089c05fb",
+      "bytes": 1364
+    },
+    "setup.stderr": {
+      "sha256": "30aa4020f4e853774eab04f8b4abd1529d447e441a5ac230a017ddeb7b10bfb2",
+      "bytes": 160
+    },
+    "setup.stdout": {
+      "sha256": "962269e69928c38720a44066c6df40f2344f9f70bcf9854eda03aa9f37be8cf2",
+      "bytes": 120
+    },
+    "strict-correction.patch": {
+      "sha256": "efae2d60ab3a8ed1cb4644ea0f2a6aea0ed64253c319ee4f36395a909d3b422f",
+      "bytes": 1768
+    },
+    "strict-requalification.json": {
+      "sha256": "c03a432337b6e99c49be28bd4c1ed0854a05fc3487801e5a9f0c32a8a62b2f03",
+      "bytes": 1226
+    },
+    "summarize.py": {
+      "sha256": "687084e487d1ec5f7ec9b7c075f772734ca316f961c8208a617b798f56752a0f",
+      "bytes": 4022
+    },
+    "summary.json": {
+      "sha256": "982416ac9b4cca2c8eec63c7c0d2ca635c21d953beb1bb7bdda5ff612c888753",
+      "bytes": 60443
+    }
+  }
+}

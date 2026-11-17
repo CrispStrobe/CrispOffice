@@ -1,0 +1,80 @@
+{
+  "cohorts": [
+    {
+      "name": "gector-vm",
+      "receipt": "gector-vm/receipt.json",
+      "source_commit": "097475fbda96aa4a6497d92f28d10f1aa5f640b4",
+      "outcomes": {
+        "success": 97,
+        "skipped": 1
+      },
+      "test_file_count": 8,
+      "source_files": 1667,
+      "runtime_files": 8606,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true,
+      "passed_with_recorded_scope": true
+    },
+    {
+      "name": "engine-vm",
+      "receipt": "engine-vm/receipt.json",
+      "source_commit": "097475fbda96aa4a6497d92f28d10f1aa5f640b4",
+      "outcomes": {
+        "success": 78
+      },
+      "test_file_count": 5,
+      "source_files": 1667,
+      "runtime_files": 8607,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true,
+      "passed_with_recorded_scope": false
+    },
+    {
+      "name": "corrected-source/engine-node",
+      "receipt": "corrected-source/engine-node/receipt.json",
+      "source_commit": "56dc162bf9a1003189e36e1f2a4678620c824546",
+      "outcomes": {
+        "success": 49
+      },
+      "test_file_count": 3,
+      "source_files": 1668,
+      "runtime_files": 8607,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true,
+      "passed_with_recorded_scope": true
+    },
+    {
+      "name": "corrected-source/editor",
+      "receipt": "corrected-source/editor/receipt.json",
+      "source_commit": "56dc162bf9a1003189e36e1f2a4678620c824546",
+      "outcomes": {
+        "success": 119
+      },
+      "test_file_count": 6,
+      "source_files": 1668,
+      "runtime_files": 8607,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true,
+      "passed_with_recorded_scope": true
+    }
+  ],
+  "dart_flutter_execution_outcomes": {
+    "success": 343,
+    "skipped": 1
+  },
+  "file_executions": 22,
+  "node_is_repetition": true,
+  "engine_static_requalification": "strict-requalification.json",
+  "ancillary_python": {
+    "reported_tests": 65,
+    "reported_skips": 0,
+    "receipt": "python/receipt.json"
+  },
+  "claims": "Bounded incoming-work coverage. Native inference fixture skipped. No GECToR JavaScript suite was run; its original tests import dart:io. Original engine VM receipt failed static gates before the isolated nonsemantic correction; passing test events retained with explicit strict requalification.",
+  "archive": "incoming-validation.tar.xz",
+  "archive_sha256": "19f6e427602c077ae0796dac55d0ae1c9fb9fa71c429288c4132067606dcdbd0"
+}

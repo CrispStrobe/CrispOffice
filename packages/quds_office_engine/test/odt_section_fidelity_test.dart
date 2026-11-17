@@ -511,6 +511,38 @@ void main() {
   });
 
   test(
+    'parity masters repeat visible headers but emit each comment only once',
+    () {
+      final document = _two([
+        _p('Odd section'),
+      ], kind: WmlSectionBreakKind.oddPage);
+      document.sections.last.header = [
+        WmlParagraph(
+          inlines: [
+            WmlRun(text: 'Reviewed header', commentIds: [1]),
+          ],
+        ),
+      ];
+      document.comments.add(WmlComment(id: 1, text: 'Review on first page'));
+      final result = _export(document);
+      final masters = _elements(result.styles, 'master-page').toList();
+      final first = masters.singleWhere(
+        (master) =>
+            master.getAttribute('name', namespaceUri: _styleNs) == 'mp1Start',
+      );
+      final normal = masters.singleWhere(
+        (master) =>
+            master.getAttribute('name', namespaceUri: _styleNs) == 'mp1',
+      );
+      expect(_elements(result.styles, 'annotation'), hasLength(1));
+      expect(_elements(first, 'annotation'), hasLength(1));
+      expect(_elements(normal, 'annotation'), isEmpty);
+      expect(_text(normal.firstChild('header')!), 'Reviewed header');
+      expect(_text(first.firstChild('header')!), contains('Reviewed header'));
+    },
+  );
+
+  test(
     'empty unchanged continuous sections add no paragraph or vertical gap',
     () {
       final result = _export(

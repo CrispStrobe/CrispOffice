@@ -249,6 +249,82 @@ void main() {
 
 void markerTests() {
   group('ODT list markers and starts', () {
+    for (final parentFormat in ['upperRoman', 'bullet']) {
+      test('native $parentFormat parents restart decimal child sequences', () {
+        final source = _nativeNumbering(
+          '<w:abstractNum w:abstractNumId="7"><w:lvl w:ilvl="0">'
+          '<w:numFmt w:val="$parentFormat"/>'
+          '<w:lvlText w:val="${parentFormat == 'bullet' ? '•' : '%1.'}"/>'
+          '</w:lvl><w:lvl w:ilvl="1"><w:start w:val="1"/>'
+          '<w:numFmt w:val="decimal"/><w:lvlText w:val="%2."/>'
+          '</w:lvl></w:abstractNum>'
+          '<w:num w:numId="7"><w:abstractNumId w:val="7"/></w:num>',
+        );
+        final first = parentFormat == 'bullet' ? null : 'I.';
+        final second = parentFormat == 'bullet' ? null : 'II.';
+        final blocks = [
+          _item('Parent first', id: 7, label: first),
+          _item('Child first', id: 7, level: 1),
+          _item('Child next', id: 7, level: 1),
+          _item('Parent second', id: 7, label: second),
+          _item('Child reset', id: 7, level: 1),
+        ];
+        final package = _export(
+          WmlDocument(
+            package: source,
+            sections: [WmlSection(blocks: blocks)],
+          ),
+        );
+        expect(_starts(_xml(package)), [null, '1', '2', null, '1']);
+        expect(blocks.map((paragraph) => paragraph.properties.listLabel), [
+          first,
+          null,
+          null,
+          second,
+          null,
+        ]);
+      });
+    }
+
+    test('special native child restart rules retain literal cached labels', () {
+      final source = _nativeNumbering(
+        '<w:abstractNum w:abstractNumId="7"><w:lvl w:ilvl="0">'
+        '<w:numFmt w:val="bullet"/><w:lvlText w:val="•"/></w:lvl>'
+        '<w:lvl w:ilvl="1"><w:start w:val="1"/>'
+        '<w:numFmt w:val="decimal"/><w:lvlText w:val="%2."/>'
+        '<w:lvlRestart w:val="0"/></w:lvl></w:abstractNum>'
+        '<w:num w:numId="7"><w:abstractNumId w:val="7"/></w:num>',
+      );
+      final package = _export(
+        WmlDocument(
+          package: source,
+          sections: [
+            WmlSection(
+              blocks: [
+                _item('Parent first', id: 7),
+                _item('Child first', id: 7, level: 1, label: '3.'),
+                _item('Parent next', id: 7),
+                _item('Child continued', id: 7, level: 1, label: '4.'),
+              ],
+            ),
+          ],
+        ),
+      );
+      expect(_starts(_xml(package)), [null, null, null, null]);
+      final markers = _elements(
+        _xml(package),
+        'list-level-style-number',
+      ).where((style) => style.getAttribute('level') == '1');
+      expect(markers.map((style) => style.getAttribute('num-prefix')), [
+        '3.',
+        '4.',
+      ]);
+      expect(markers.map((style) => style.getAttribute('num-format')), [
+        '',
+        '',
+      ]);
+    });
+
     for (final (native, expected) in [('\uf0b7', '•'), ('o', '◦'), ('', '•')]) {
       test(
         'uncached native bullet "$native" uses model fallback "$expected"',
