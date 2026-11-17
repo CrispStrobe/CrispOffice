@@ -11,6 +11,7 @@ import '../../xml/xml_node.dart';
 import '../../xml/xml_reader.dart';
 import '../../xml/xml_writer.dart';
 import '../model/wml_document.dart';
+import '../model/word_bookmarks.dart';
 import '../model/word_fields.dart';
 import '../model/word_notes.dart';
 import '../properties/wml_properties.dart';
@@ -851,7 +852,7 @@ abstract final class OdtDocumentWriter {
         // citations and bibliographies that span several paragraphs.
         break;
       case WmlBookmarkBoundary():
-        final name = inline.name;
+        final name = layout.bookmarks.nameFor(inline);
         if (name != null && name.isNotEmpty) {
           w.writeEmptyElement(
             inline.isStart ? 'bookmark-start' : 'bookmark-end',
@@ -1355,6 +1356,27 @@ class _OdtNoteRecord {
   final String label;
 }
 
+class _OdtBookmarks {
+  _OdtBookmarks(WmlDocument document)
+    : _endStarts = WordBookmarks.pairedEnds(document);
+
+  final Map<WmlBookmarkBoundary, WmlBookmarkBoundary> _endStarts;
+  final _emittedStarts = Set<WmlBookmarkBoundary>.identity();
+
+  String? nameFor(WmlBookmarkBoundary marker) {
+    final name = marker.name;
+    if (marker.isStart) {
+      if (name != null && name.isNotEmpty) _emittedStarts.add(marker);
+      return name;
+    }
+    if (name != null && name.isNotEmpty) return name;
+    final start = _endStarts[marker];
+    // A structurally valid pair may start in content this bounded writer
+    // omits, such as an unmodeled TOC cache. Never invent a visible orphan end.
+    return start != null && _emittedStarts.contains(start) ? start.name : null;
+  }
+}
+
 /// Note definitions and labels are independent of per-part style registries.
 class _OdtNotes {
   _OdtNotes(this.document) {
@@ -1527,6 +1549,7 @@ class _OdtLayout {
       _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
       notes = sharedMedia?.notes ?? _OdtNotes(document),
       comments = sharedMedia?.comments ?? _OdtComments(document),
+      bookmarks = sharedMedia?.bookmarks ?? _OdtBookmarks(document),
       noteBodiesAllowed = sharedMedia == null;
 
   final WmlDocument document;
@@ -1538,6 +1561,7 @@ class _OdtLayout {
   final List<String> media;
   final _OdtNotes notes;
   final _OdtComments comments;
+  final _OdtBookmarks bookmarks;
   bool noteBodiesAllowed;
   bool commentsAllowed = true;
   bool inCommentBody = false;
