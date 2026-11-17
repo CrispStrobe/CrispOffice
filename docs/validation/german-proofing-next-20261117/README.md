@@ -29,5 +29,26 @@ The next step is to combine the captured histories, verify ancestry and
 preservation, then measure the optional model's incremental benefit over the
 deterministic checker using the actual application conflict policy.
 
+## Combined source and shared overlap policy
+
+The three histories are integrated at
+`17f1483a02c1d9819ff4a1b3dcf2dbc512cdfb57`. The
+[ancestry audit](integration.json) confirms that **all 235 captured refs are
+ancestors** of that checkpoint. Conflict resolution retained both historical
+evidence series, combined authored list levels/marker kinds with current ODT
+section and bookmark handling, and preserved the morphology/worker/locale fixes.
+
+The editor's existing deterministic-first overlap policy is now the pure-Dart
+`mergeOfficeProofingReports` helper. The editor and forthcoming quality runner
+use the same policy. It preserves provider failures/unsupported statuses and
+original offsets, rejects mixed snapshots or duplicate provider ownership,
+and treats insertion points at either range boundary as conflicts. It never
+applies edits or enables additional background checking.
+
+Focused checks pass: 20 new merge-contract tests, 14 existing service tests,
+11 manual/F7 editor tests, and strict changed-file analysis. Complete local
+qualification and the prospective synthetic panel will be recorded separately
+from the earlier source-specific reports.
+
 No main merge, release or model publication is performed. No workflow is
 dispatched, awaited, or used as a validation gate.
