@@ -28,12 +28,19 @@ void main() {
     test('finite nouns retain their case in $locale', () async {
       final report = await check(
         'Die Leiter steht im Schuppen. Ich mag das Lernen. '
-        'Das Lernen macht Freude.',
+        'Das Lernen macht Freude. Das Wissen hilft.',
         locale: locale,
       );
       expect(report.complete, isTrue);
       expect(report.findings, isEmpty);
-      for (final word in ['Schuppen', 'Schuppens', 'Lernen', 'Lernens']) {
+      for (final word in [
+        'Schuppen',
+        'Schuppens',
+        'Lernen',
+        'Lernens',
+        'Wissen',
+        'Wissens',
+      ]) {
         expect(
           await provider.isKnownWord(word, language: locale),
           isTrue,

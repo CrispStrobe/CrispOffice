@@ -4,16 +4,21 @@ Roadmap accepted and implementation resumed: 16 November 2026. Original
 baseline: `bad2d9d30fd94db8de92a4f4bf83a55b0692b884`.
 
 The CrispStrobe fork implements offline German spelling, automatic German and
-US/UK English hyphenation, seventeen German writing-rule categories, and a
+US/UK English hyphenation, twenty-one German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
 web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
-## AOT evaluation
+## Context rules without AOT/RML — 17 November 2026
 
-AOT/RML was evaluated but is not shipped in this fork. The implementation and dependency were removed; the historical validation reports remain under `validation/` for provenance.
+The [independent context qualification](validation/german-context-20261117/README.md)
+records bounded verb case, copula number, word order and participle checks,
+review/undo behavior, and the actual default 18/18 original-panel result.
+AOT.ru/RML stays on its feature branches. No analyzer daemon, pipe, model or
+spaCy runtime is added to the application. Broader panels and retained misses
+are reported separately from the small original panel.
 
 ## Noun agreement and syntax/model evaluation — 17 November 2026
 
@@ -617,7 +622,7 @@ authorized by this roadmap.
 ## Using Word proofing
 
 `WordEditorController.proofing` owns a lazy `WordProofingSession`. Its built-in
-providers are German spelling and the seventeen German writing-rule categories. Background
+providers are German spelling and the twenty-one German writing-rule categories. Background
 checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced

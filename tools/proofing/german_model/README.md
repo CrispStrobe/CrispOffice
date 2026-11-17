@@ -1,5 +1,12 @@
 # German grammar model qualification
 
+For the current **in-process native** QA run, see
+[the context qualification](../../../docs/validation/german-context-20261117/README.md).
+`native_ort_probe.c` links the official ONNX Runtime 1.23.2 C API;
+`evaluate_native_quality.dart` loads it directly in the Quds worker and verifies
+model, shim and runtime hashes. It registers no application backend. The older
+process-based evaluators below remain historical research tools only.
+
 For a local F32 diagnostic run through the actual Quds worker, tokenizer,
 decoder, guards and deterministic-first report merge, create an isolated Python
 environment with `requirements.txt` and supply the complete pinned, verified

@@ -132,6 +132,7 @@ final class GectorProofingProvider extends OfficeProofingProvider {
       }
       final boundaries = source.graphemeBoundaries;
       final protected = OfficeProofingTextRanges(request.text);
+      final literals = GermanLiteralTextRanges(request.text);
       final findings = <OfficeProofingFinding>[];
       final seen = <(int, int, String)>{};
       var previousEnd = -1;
@@ -151,6 +152,7 @@ final class GectorProofingProvider extends OfficeProofingProvider {
             !boundaries.contains(edit.start) ||
             !boundaries.contains(edit.end) ||
             protected.overlaps(edit.start, edit.end) ||
+            literals.overlaps(edit.start, edit.end) ||
             _personalOverlap(source, personal, edit) ||
             !seen.add((edit.start, edit.end, edit.replacement)) ||
             request.ignoredRuleIds.contains('gector.de.grammar')) {
