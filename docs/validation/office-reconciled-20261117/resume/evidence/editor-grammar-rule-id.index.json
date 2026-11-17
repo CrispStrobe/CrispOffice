@@ -1,0 +1,94 @@
+{
+  "archive": {
+    "file": "editor-grammar-rule-id.tar.xz",
+    "sha256": "ca74e2517e3f8e103980129ef1a8ee634641c78b1f75294e8ff7ad92f06f0f84",
+    "bytes": 56372,
+    "members": 11
+  },
+  "diagnosis": {
+    "failed_source_commit": "622f58c82f30def218ec564fc99b9bff7009ab7f",
+    "failing_test": "real German verb-case correction and undo: Sie hat ein roten Mantel.",
+    "failure": "singleWhere found no issue with the stale rule identifier de.grammar.verb-case.",
+    "documented_contract": {
+      "rule_id": "de.grammar.verb-object-case",
+      "replacement": "einen",
+      "corrected_text": "Sie hat einen roten Mantel.",
+      "sources": [
+        "packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart",
+        "docs/PROOFING.md (Bounded German continuation)"
+      ]
+    },
+    "incoming_main": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+    "incoming_effect": "New main adds an independent demonstrative-dative guard and noun data; it does not change the retained complete accusative-frame rule ID.",
+    "change": "One scenario expected rule ID updated to verb-object-case; all editor behavioral assertions retained.",
+    "fresh_result": {
+      "passed": 32,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "inputs_unchanged": true
+    },
+    "production_code_changed_by_this_fix": false
+  },
+  "verification": {
+    "every_member_read_back": true,
+    "all_hashes_match": true
+  },
+  "members": {
+    "after-editor.jsonl": {
+      "sha256": "26c75fb86859bf76d904abed88d1fb121438d54c2938d2fc2df89fecafc16147",
+      "bytes": 16762,
+      "classification": "accepted-merged-source-expectation-fix-evidence"
+    },
+    "after-editor.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "classification": "accepted-merged-source-expectation-fix-evidence"
+    },
+    "before-622f58c8/failure-events.json": {
+      "sha256": "4b4127d71d6d64d1d153a2714e5c8d8dff2ae7c4a3f380313fbd5fb9bcc7cbad",
+      "bytes": 386,
+      "classification": "retained-failing-622f58c8-editor-evidence"
+    },
+    "before-622f58c8/stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "classification": "retained-failing-622f58c8-editor-evidence"
+    },
+    "before-622f58c8/stdout.gz": {
+      "sha256": "18a29bc9c05981646c2be08faaf72b71b9f266a381d9cb3c7aceeba821f17c7e",
+      "bytes": 21167,
+      "classification": "retained-failing-622f58c8-editor-evidence"
+    },
+    "before-622f58c8/test-summary.json": {
+      "sha256": "0b78d5f6804a1ffc3c799dc3ee26c802722ce48d8d05b2ffa680524a7e13f200",
+      "bytes": 78105,
+      "classification": "retained-failing-622f58c8-editor-evidence"
+    },
+    "before-622f58c8/word_german_grammar_integration_test.dart": {
+      "sha256": "84bb452abe68b1f3fd3d74cb8b5249ea25f2b242caafa8f5de8c1d5c98116125",
+      "bytes": 10448,
+      "classification": "retained-failing-622f58c8-editor-evidence"
+    },
+    "diagnosis.json": {
+      "sha256": "e8874aa4e154d8bc6d61f1f6fd4a3d670e6e5a1808a6de128782e3461ecb583c",
+      "bytes": 1095,
+      "classification": "accepted-merged-source-expectation-fix-evidence"
+    },
+    "receipt.json": {
+      "sha256": "5459a7a6cc7c41b560c8eb3ea48319d15f73f93ee35dc79d923f17dec486adf4",
+      "bytes": 180409,
+      "classification": "accepted-merged-source-expectation-fix-evidence"
+    },
+    "test-expectation.patch": {
+      "sha256": "1f39331c8f4ddad27d452e23ce633ca4442b72de142f1cf881a2e0d3f2fd0ff6",
+      "bytes": 626,
+      "classification": "accepted-merged-source-expectation-fix-evidence"
+    },
+    "word_german_grammar_integration_test.dart": {
+      "sha256": "0d5e390b9bb7d5e63cc24e7b841474b14ddd2d6b03195128567f6130c4196565",
+      "bytes": 10455,
+      "classification": "accepted-merged-source-expectation-fix-evidence"
+    }
+  }
+}

@@ -42,5 +42,8 @@
       }
     }
   ],
-  "interpretation": "The consumer result applies to these exact unchanged source inputs. Do not relabel the consumer run commit or add historical/intermediate results to its count."
+  "interpretation": "The consumer result applies to these exact unchanged source inputs. Do not relabel the consumer run commit or add historical/intermediate results to its count.",
+  "valid_for_checkpoint": "622f58c82f30def218ec564fc99b9bff7009ab7f",
+  "superseded_by_incoming_main": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+  "status": "Historical source bridge; current merged source receives fresh consumer qualification because ODF/extraction/lexicon bytes changed."
 }
