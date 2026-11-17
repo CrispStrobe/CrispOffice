@@ -273,3 +273,49 @@ not a representative paragraph-quality evaluation. Each structural timing has
 three measured samples after a warmup; this is one local-host observation.
 `native-results.json` provides the compact index and source checks. Complete
 receipts and logs are compressed with byte hashes retained in that index.
+
+## First prospective incremental-quality measurement
+
+The separate quality runner was built from the same final implementation and
+run once per case in default single-sequence mode. Its selected-source maps,
+actual AOT/runtime pins and corpus hashes match the fresh quality build. The
+76-row corpus is byte-identical to its earlier remote freeze `60c550b4`; neither
+inputs nor rules were changed after inspecting these outputs. Both the original
+30-row and prospective 76-row runs complete with every expected status contract
+and stable before/after source maps.
+
+Results below use only de-DE quality rows; the four prospective regional
+controls are separate and the model returns unsupported for all of them.
+
+| Lane | Exact fixes / 32 prospective errors | Changed clean / 40 | Flagged clean / 40 |
+| --- | ---: | ---: | ---: |
+| Writing rules only | 14 | 0 | 0 |
+| Deterministic spelling + writing | 14 | 1 | 1 |
+| Guarded model only | 12 | 0 | 0 |
+| Combined, production manual/F7 merge | 19 | 1 | 1 |
+
+The model adds five exact combined fixes, loses no deterministic exact fixes,
+and adds no changed or flagged clean cases in this panel. Six model proposals
+are accepted and six overlap proposals are suppressed. A sixth model-only exact
+fix becomes a nonexact combined projection because spelling independently
+changes `im Hof` to `im Hofe`. The same existing spelling suggestion changes its
+already-correct clean counterpart. `Hofe` is a grammatical dative alternative;
+this is still an unnecessary suggestion on correct input and an exact-target
+mismatch, not proof that the resulting sentence is ungrammatical.
+
+On the original panel, deterministic checking fixes 7/18 and the combined
+projection fixes 9/18, adding `verb-ihr` and `das-relative` without losing a
+deterministic fix. The model-only result remains 6/18. Existing deterministic
+clean changes include lowercasing `Das` after a German opening quotation mark;
+the regional Swiss-name case remains separate from de-DE scoring. These are
+retained findings for follow-up, not silently removed from the corpus.
+
+The projection uses the first replacement in provider/result order and never
+chooses alternatives from the expected answer. It is not automatic correction
+behavior. The panel is authored, synthetic and deliberately selected; it does
+not establish general precision/recall, training-data exclusion, regional model
+support, long-paragraph quality or default-provider readiness. `quality-results.json`
+indexes all locale-separated counts, changed-clean examples and source checks;
+complete findings, alternatives, accepted/suppressed proposals and per-case
+statuses remain in the compressed raw receipts. No performance conclusion is
+drawn from this one-check-per-case quality runner.
