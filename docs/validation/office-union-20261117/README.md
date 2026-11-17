@@ -27,3 +27,9 @@ The spreadsheet repair now emits valid graphic conditional-format child order, r
 Floating frames now inherit from one common `QudsTextFrame` graphic style. This preserves bookmarks when LibreOffice converts ODT frames to DOCX without changing frame anchors or geometry. The final regression fails once on the old writer; all 39 section tests pass on VM and Node. Fresh independently converted fixtures retain frame bookmark text in both DOCX text-box alternatives and pass all eight before/after XML schema-part checks. The source and runtime maps for these focused controls are stable.
 
 The final frozen-source selection is 221 unique files across six disjoint cohorts, plus the unchanged 14-file portable selection, a separate two-test example smoke, 40 retained consumers, five boundary consumers and the pending serial native thread sweep. Its exact plan and limits are recorded in `qualification-plan.json`. The consumer wrapper adds independent clean-HEAD/Git-byte/runtime guards without changing the retained harness or oracle.
+
+## Preserved first preflight and formatting correction
+
+The first frozen attempt at `0598a7b7` passed all five strict analyses and failed formatting in two inherited test files before any broad test cohort started. The source, dependency, runtime, workspace, system and harness maps remained unchanged and the analyzer configuration was restored. Complete raw receipts are preserved in `evidence/preflight-0598a7b7-format-attempt.tar.xz`.
+
+The pinned formatter was applied only to the example smoke file and the complex-field regression file. No assertions or product logic changed. The next exact commit receives a fresh canonical run; completed earlier consumer/smoke outputs keep their original source attribution.
