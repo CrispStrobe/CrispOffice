@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "verified_at_utc": "2026-11-17T06:45:07.991963+00:00",
+  "qualified_source": "3a2ada5a04395fd2fa01c7878f4df9f1b9215558",
+  "checked_head": "ee030afda1bcffd64db4af74842d330996506571",
+  "evidence_files": 197,
+  "source_inputs": 2102,
+  "runtime_files_checked": 9,
+  "captured_refs": 206,
+  "captured_distinct_heads": 138,
+  "changes_after_qualification_are_documentation_only": true,
+  "errors": []
+}

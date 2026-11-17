@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-11-17T06:43:06.670573+00:00",
+  "created_at_utc": "2026-11-17T06:45:25.369741+00:00",
   "qualified_source": "3a2ada5a04395fd2fa01c7878f4df9f1b9215558",
   "scope": "Exact final source-bound acceptance receipts and explicitly labelled development probes; groups overlap. Inventory excludes itself and Python caches.",
-  "file_count": 197,
-  "total_bytes": 2592212,
+  "file_count": 198,
+  "total_bytes": 2593154,
   "files": {
     "README.md": {
-      "bytes": 18633,
-      "sha256": "869ee4ec3bbbec7109304f396c2de544b4ef0fc91da118c469f2179f4d6ab47d"
+      "bytes": 19149,
+      "sha256": "248690122d64a022c91cc679fcab8b11e95fd5640d0f75cec73f2a1601033ada"
     },
     "browser/README.md": {
       "bytes": 934,
@@ -579,6 +579,10 @@
     "license/receipt.json": {
       "bytes": 47519,
       "sha256": "6129830ae03b0079006d76e6231a4a74558c01c21dcef917e5b43812370237c7"
+    },
+    "post-qualification-source-equivalence.json": {
+      "bytes": 426,
+      "sha256": "dcc02852d483cea529697bb4440f10b52754f70a34b45c9d587d0516b2bd1d91"
     },
     "reconciliation.json": {
       "bytes": 37539,

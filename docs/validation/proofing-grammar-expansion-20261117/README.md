@@ -5,7 +5,11 @@ Implementation is saved on `codex/proofing-en-de-20261117` and proposed in
 [draft PR #91](https://github.com/CrispStrobe/quds_office_suite/pull/91).
 The source selected for the full local gate is
 **`3a2ada5a04395fd2fa01c7878f4df9f1b9215558`**. Later documentation/evidence
-commits preserve the qualified source and are verified separately.
+commits preserve the qualified source and are verified separately. After the
+evidence save `ee030afd`, the [saved-source verification](post-qualification-source-equivalence.json)
+confirmed all 2,102 source inputs, nine runtime files and captured incoming
+heads still match. The subsequent receipt checkpoint changes documentation
+and the evidence index only.
 
 **The complete local integration gate passed**, finishing at 07:41 CET on
 17 November 2026. All **2,102 recorded source inputs** and **nine runtime files**
@@ -251,6 +255,8 @@ Every update used an expected current branch SHA with `force: false`.
 | `466298ff97d98342ae7e5f5e97e60967bd7664b9` | Cooperative suggestion scheduling and lexical personal terms |
 | `6bb618e160bbb871fbc1abc80389d83718a14902` | 57-family agreement, Swiss handling and clause safeguards |
 | `3a2ada5a04395fd2fa01c7878f4df9f1b9215558` | Final incoming reconciliation and broader local gate |
+| `ee030afda1bcffd64db4af74842d330996506571` | Completed local qualification, independent comparisons and full evidence |
+| Receipt checkpoint following `ee030afd` | Saved-source equivalence receipt and final report/index |
 
 Later commits save completed documentation and evidence. No GitHub Actions
 execution is needed to interpret or reproduce this qualification.
