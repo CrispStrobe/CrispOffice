@@ -1,0 +1,83 @@
+{
+  "CrispStrobe/CrispEmbed": {
+    "branch_counts": [
+      243,
+      244
+    ],
+    "pr_counts": [
+      215,
+      216
+    ],
+    "added_or_changed_branches": [
+      {
+        "name": "feat/native-spacy-20261117",
+        "sha": "2176c896dc6bb8c832a9d03b04fd07c7c991fdc5"
+      }
+    ],
+    "removed_branches": [],
+    "added_pulls": [
+      {
+        "number": 236,
+        "title": "Begin native German spaCy with authenticated conversion and F32 scoring",
+        "state": "open",
+        "draft": true,
+        "merged_at": null,
+        "updated_at": "2026-11-17T20:46:20Z",
+        "head": "feat/native-spacy-20261117",
+        "sha": "2176c896dc6bb8c832a9d03b04fd07c7c991fdc5",
+        "base": "main",
+        "base_sha": "b34a132c6c204b71f5c58ba8bc1705b8769edb9b"
+      }
+    ],
+    "removed_pulls": [],
+    "changed_pulls": [],
+    "compared_pr_fields": [
+      "head_sha",
+      "state",
+      "updated_at",
+      "merged_at"
+    ]
+  },
+  "CrispStrobe/onnx_runtime_dart": {
+    "branch_counts": [
+      4,
+      4
+    ],
+    "pr_counts": [
+      3,
+      3
+    ],
+    "added_or_changed_branches": [],
+    "removed_branches": [],
+    "added_pulls": [],
+    "removed_pulls": [],
+    "changed_pulls": [],
+    "compared_pr_fields": [
+      "head_sha",
+      "state",
+      "updated_at",
+      "merged_at"
+    ]
+  },
+  "CrispStrobe/fastembed-rs": {
+    "branch_counts": [
+      10,
+      10
+    ],
+    "pr_counts": [
+      1,
+      1
+    ],
+    "added_or_changed_branches": [],
+    "removed_branches": [],
+    "added_pulls": [],
+    "removed_pulls": [],
+    "changed_pulls": [],
+    "compared_pr_fields": [
+      "head_sha",
+      "state",
+      "updated_at",
+      "merged_at"
+    ]
+  }
+}

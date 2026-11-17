@@ -1,0 +1,77 @@
+{
+  "archive": "final-native-evidence.tar.xz",
+  "bytes": 40732,
+  "sha256": "0bbb9304b441313da2be0149a9facb7d6bba324b488fd3e8db415a911495bbb6",
+  "files": [
+    {
+      "path": "native/reuse-comparison.json",
+      "bytes": 6907,
+      "sha256": "0f4896745b257624eef4415fb817a8d6b23f4f302151613e3765dc76e3d1eee5"
+    },
+    {
+      "path": "native/reuse-comparison.log",
+      "bytes": 130,
+      "sha256": "eecfdf810040b349427d2b8553268b0475bb491c2daaf2a7b6e81d807f6a8c32"
+    },
+    {
+      "path": "native/reuse.json",
+      "bytes": 661975,
+      "sha256": "001da25dbf26f226df20a465c265e2b061889f0efd441af12bb1ceae6eb398c2"
+    },
+    {
+      "path": "native/reuse.log",
+      "bytes": 1106,
+      "sha256": "8fe95c7bbc34152a4b1f67b86a48a7c640dbe7455567a5adb69b519467145640"
+    },
+    {
+      "path": "native/segmented-comparison.json",
+      "bytes": 6906,
+      "sha256": "7cfcdcc6301d5abc66bf82cede7cc44726589b47389195919350db419b4cd817"
+    },
+    {
+      "path": "native/segmented-comparison.log",
+      "bytes": 130,
+      "sha256": "eecfdf810040b349427d2b8553268b0475bb491c2daaf2a7b6e81d807f6a8c32"
+    },
+    {
+      "path": "native/segmented.json",
+      "bytes": 662860,
+      "sha256": "8cb827cff38804037326a00870ae9c3cb08346dc60a9fbf31cdb1d567b323659"
+    },
+    {
+      "path": "native/segmented.log",
+      "bytes": 1105,
+      "sha256": "8cf5878b7841a37d8b6401fff0a42e3f3aa6975a598c2f85fe91de0ab6b86ddd"
+    },
+    {
+      "path": "native/serial-receipt.json",
+      "bytes": 6577,
+      "sha256": "bfdf6b5769f56817e98508abf14e5fb41e9dbafd85df0c80b761d6744d17dfbd"
+    },
+    {
+      "path": "native/single-comparison.json",
+      "bytes": 6908,
+      "sha256": "aeaf4fe89d6d045c30cadeb4f04ff0f4a077327745b5f9c63c229eb3d7b9058b"
+    },
+    {
+      "path": "native/single-comparison.log",
+      "bytes": 130,
+      "sha256": "eecfdf810040b349427d2b8553268b0475bb491c2daaf2a7b6e81d807f6a8c32"
+    },
+    {
+      "path": "native/single.json",
+      "bytes": 225484,
+      "sha256": "cef685e2b81cb5485718b22b0d32ae0553a0b1f328e69576a3cf1ab443cccaac"
+    },
+    {
+      "path": "native/single.log",
+      "bytes": 1114,
+      "sha256": "66560b229aeed6213e254588af379af2fcfa8cd8c4f0065de608a3098827269f"
+    },
+    {
+      "path": "build/provider-build.json",
+      "bytes": 66049,
+      "sha256": "7e2edb78ef1684959ac32f4500489847ec420d8c5587e659bfdb7a3be1ae9360"
+    }
+  ]
+}

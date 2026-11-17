@@ -1,0 +1,622 @@
+{
+  "schema_version": 1,
+  "description": "Explicit final combined-source validation after fixed-cutoff integrations and grammar/Office repairs. Repeated web tests are supplemental to distinct totals.",
+  "suites": {
+    "gector": {
+      "runner": "dart-test",
+      "cwd": "packages/quds_proofing_gector",
+      "tests": [
+        "test/bundle_test.dart",
+        "test/decoder_test.dart",
+        "test/duplicate_role_guards_test.dart",
+        "test/guards_test.dart",
+        "test/incremental_quality_test.dart",
+        "test/inference_reuse_test.dart",
+        "test/native_backend_test.dart",
+        "test/provider_test.dart",
+        "test/runner_inputs_test.dart",
+        "test/segmentation_test.dart",
+        "test/segmented_decoder_test.dart",
+        "test/source_text_test.dart",
+        "test/tokenizer_test.dart",
+        "test/worker_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_proofing_gector/pubspec.yaml",
+        "tools/proofing/german_model/run_gector_dart.dart",
+        "tools/proofing/german_model/incremental_quality.dart",
+        "tools/proofing/german_model/run_incremental_quality.dart",
+        "tools/proofing/german_model/cases.json",
+        "tools/proofing/german_model/prospective_cases_20261117.json"
+      ],
+      "source_globs": [
+        "packages/quds_proofing_gector/lib/**/*.dart",
+        "packages/quds_proofing_gector/test/fixtures/**/*",
+        "packages/quds_proofing_gector/test/*.dart",
+        "packages/quds_office_engine/lib/src/proofing/**/*.dart"
+      ]
+    },
+    "german": {
+      "runner": "dart-test",
+      "cwd": "packages/quds_office_engine",
+      "tests": [
+        "test/proofing/german_agreement_context_test.dart",
+        "test/proofing/german_genitive_noun_test.dart",
+        "test/proofing/german_grammar_test.dart",
+        "test/proofing/german_lexical_gap_test.dart",
+        "test/proofing/german_lexicon_query_test.dart",
+        "test/proofing/german_morphology_grammar_test.dart",
+        "test/proofing/german_morphology_loading_test.dart",
+        "test/proofing/german_nominal_word_forms_test.dart",
+        "test/proofing/german_noun_agreement_test.dart",
+        "test/proofing/german_participle_suggestions_test.dart",
+        "test/proofing/german_spelling_quotes_test.dart",
+        "test/proofing/german_spelling_test.dart",
+        "test/proofing/german_suggestion_quality_test.dart",
+        "test/proofing/german_verb_object_case_test.dart",
+        "test/proofing/german_writing_rules_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_engine/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ]
+    },
+    "shared-report": {
+      "runner": "dart-test",
+      "cwd": "packages/quds_office_engine",
+      "tests": [
+        "test/proofing/proofing_report_merge_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/proofing_locale_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_engine/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ]
+    },
+    "odt-odf": {
+      "runner": "dart-test",
+      "cwd": "packages/quds_office_engine",
+      "tests": [
+        "test/odf_annotation_extraction_test.dart",
+        "test/odf_covered_cell_extraction_test.dart",
+        "test/odf_export_text_fidelity_test.dart",
+        "test/odf_frame_extraction_test.dart",
+        "test/odf_text_box_extraction_test.dart",
+        "test/odt_column_break_style_fidelity_test.dart",
+        "test/odt_comment_fidelity_test.dart",
+        "test/odt_document_writer_test.dart",
+        "test/odt_header_footer_fidelity_test.dart",
+        "test/odt_list_fidelity_test.dart",
+        "test/odt_note_fidelity_test.dart",
+        "test/odt_page_field_fidelity_test.dart",
+        "test/odt_paragraph_decoration_fidelity_test.dart",
+        "test/odt_paragraph_decoration_resume_test.dart",
+        "test/odt_paragraph_decoration_test.dart",
+        "test/odt_paragraph_properties_test.dart",
+        "test/odt_section_continuation_test.dart",
+        "test/odt_section_fidelity_test.dart",
+        "test/odt_section_integration_test.dart",
+        "test/odt_structure_fidelity_test.dart",
+        "test/odt_tab_stop_fidelity_test.dart",
+        "test/odt_tab_style_cache_test.dart",
+        "test/odt_table_merge_test.dart",
+        "test/odt_table_tab_fidelity_test.dart",
+        "test/odt_table_tab_qualification_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_engine/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ]
+    },
+    "odp": {
+      "runner": "dart-test",
+      "cwd": "packages/quds_office_engine",
+      "tests": [
+        "test/odp_presentation_writer_test.dart",
+        "test/odp_table_fidelity_test.dart",
+        "test/odp_transform_fidelity_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_engine/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ]
+    },
+    "editor": {
+      "runner": "flutter-test",
+      "cwd": "packages/quds_office_editor",
+      "tests": [
+        "test/word_german_grammar_integration_test.dart",
+        "test/word_manual_proofing_test.dart",
+        "test/word_proofing_context_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_dialog_test.dart",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_proofing_navigation_test.dart",
+        "test/word_proofing_session_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_editor/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_editor/lib/**/*.dart",
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ]
+    },
+    "aot": {
+      "runner": "dart-test",
+      "cwd": "packages/quds_proofing_aot",
+      "tests": [
+        "test/client_cache_test.dart",
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/native_source_mapping_test.dart",
+        "test/process_transport_platform_test.dart",
+        "test/process_transport_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_proofing_aot/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_proofing_aot/lib/**/*.dart",
+        "packages/quds_proofing_aot/test/**/*.dart",
+        "packages/quds_office_engine/lib/src/proofing/**/*.dart"
+      ]
+    },
+    "tooling": {
+      "runner": "python-unittest",
+      "cwd": "tools/proofing/german_model",
+      "tests": [
+        "test_candidate_admission.py",
+        "test_export_reference.py",
+        "test_gector_aot_build.py",
+        "test_guarded_provider_comparison.py",
+        "test_native_pack.py",
+        "test_native_qualification.py",
+        "test_qualification.py"
+      ],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "docs/validation/german-gector/2026-11-17-native-dart/provider-aot-v1.json"
+      ],
+      "source_globs": [
+        "tools/proofing/german_model/*.py",
+        "tools/proofing/german_model/*.dart",
+        "tools/proofing/german_model/*.json",
+        "tools/proofing/german_model/requirements*.txt"
+      ]
+    },
+    "studio": {
+      "runner": "flutter-test",
+      "cwd": "packages/quds_office_editor/example",
+      "tests": [
+        "test/studio_aot_test.dart",
+        "test/widget_test.dart"
+      ],
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_editor/example/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_editor/example/lib/**/*.dart",
+        "packages/quds_office_editor/lib/**/*.dart",
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/quds_proofing_aot/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ]
+    },
+    "german-web": {
+      "runner": "dart-test",
+      "cwd": "packages/quds_office_engine",
+      "tests": [
+        "test/proofing/german_verb_object_case_test.dart",
+        "test/proofing/german_nominal_word_forms_test.dart",
+        "test/proofing/german_participle_suggestions_test.dart",
+        "test/proofing/german_noun_agreement_test.dart"
+      ],
+      "arguments": [
+        "--platform=node"
+      ],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_engine/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ],
+      "supplemental_runtime": true
+    },
+    "analysis-engine": {
+      "runner": "dart-analyze",
+      "cwd": ".",
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_engine/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ],
+      "paths": [
+        "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+        "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+        "packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart",
+        "packages/quds_office_engine/test/odf_export_text_fidelity_test.dart",
+        "packages/quds_office_engine/test/odf_frame_extraction_test.dart",
+        "packages/quds_office_engine/test/odf_text_box_extraction_test.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "packages/quds_office_engine/test/odp_table_fidelity_test.dart",
+        "packages/quds_office_engine/test/odp_transform_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_column_break_style_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_comment_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_list_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_resume_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_properties_test.dart",
+        "packages/quds_office_engine/test/odt_section_continuation_test.dart",
+        "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_section_integration_test.dart",
+        "packages/quds_office_engine/test/odt_structure_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_style_cache_test.dart",
+        "packages/quds_office_engine/test/odt_table_merge_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_qualification_test.dart",
+        "packages/quds_office_engine/test/proofing/german_agreement_context_test.dart",
+        "packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart",
+        "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+        "packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart",
+        "packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart",
+        "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+        "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+        "packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+        "packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+        "packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+        "packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+        "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+        "packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+        "packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart",
+        "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+        "packages/quds_office_engine/test/proofing/proofing_locale_test.dart",
+        "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart",
+        "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart"
+      ]
+    },
+    "analysis-gector": {
+      "runner": "dart-analyze",
+      "cwd": ".",
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_proofing_gector/pubspec.yaml",
+        "tools/proofing/german_model/run_gector_dart.dart",
+        "tools/proofing/german_model/incremental_quality.dart",
+        "tools/proofing/german_model/run_incremental_quality.dart",
+        "tools/proofing/german_model/cases.json",
+        "tools/proofing/german_model/prospective_cases_20261117.json"
+      ],
+      "source_globs": [
+        "packages/quds_proofing_gector/lib/**/*.dart",
+        "packages/quds_proofing_gector/test/fixtures/**/*",
+        "packages/quds_proofing_gector/test/*.dart",
+        "packages/quds_office_engine/lib/src/proofing/**/*.dart"
+      ],
+      "paths": [
+        "packages/quds_proofing_gector/lib/quds_proofing_gector.dart",
+        "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart",
+        "packages/quds_proofing_gector/lib/src/backend.dart",
+        "packages/quds_proofing_gector/lib/src/bundle.dart",
+        "packages/quds_proofing_gector/lib/src/decoder.dart",
+        "packages/quds_proofing_gector/lib/src/guards.dart",
+        "packages/quds_proofing_gector/lib/src/lexicon.dart",
+        "packages/quds_proofing_gector/lib/src/native_backend.dart",
+        "packages/quds_proofing_gector/lib/src/provider.dart",
+        "packages/quds_proofing_gector/lib/src/segmentation.dart",
+        "packages/quds_proofing_gector/lib/src/source_text.dart",
+        "packages/quds_proofing_gector/lib/src/tokenizer.dart",
+        "packages/quds_proofing_gector/lib/src/transport.dart",
+        "packages/quds_proofing_gector/lib/src/unicode_case.dart",
+        "packages/quds_proofing_gector/lib/src/worker_native.dart",
+        "packages/quds_proofing_gector/lib/src/worker_unsupported.dart",
+        "packages/quds_proofing_gector/test/bundle_test.dart",
+        "packages/quds_proofing_gector/test/decoder_test.dart",
+        "packages/quds_proofing_gector/test/duplicate_role_guards_test.dart",
+        "packages/quds_proofing_gector/test/guards_test.dart",
+        "packages/quds_proofing_gector/test/incremental_quality_test.dart",
+        "packages/quds_proofing_gector/test/inference_reuse_test.dart",
+        "packages/quds_proofing_gector/test/native_backend_test.dart",
+        "packages/quds_proofing_gector/test/provider_test.dart",
+        "packages/quds_proofing_gector/test/runner_inputs_test.dart",
+        "packages/quds_proofing_gector/test/segmentation_test.dart",
+        "packages/quds_proofing_gector/test/segmented_decoder_test.dart",
+        "packages/quds_proofing_gector/test/source_text_test.dart",
+        "packages/quds_proofing_gector/test/tokenizer_test.dart",
+        "packages/quds_proofing_gector/test/worker_test.dart",
+        "tools/proofing/german_model/incremental_quality.dart",
+        "tools/proofing/german_model/run_gector_dart.dart",
+        "tools/proofing/german_model/run_incremental_quality.dart"
+      ]
+    },
+    "analysis-aot": {
+      "runner": "dart-analyze",
+      "cwd": ".",
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_proofing_aot/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_proofing_aot/lib/**/*.dart",
+        "packages/quds_proofing_aot/test/**/*.dart",
+        "packages/quds_office_engine/lib/src/proofing/**/*.dart"
+      ],
+      "paths": [
+        "packages/quds_proofing_aot/lib/quds_proofing_aot.dart",
+        "packages/quds_proofing_aot/lib/src/client.dart",
+        "packages/quds_proofing_aot/lib/src/german_rules.dart",
+        "packages/quds_proofing_aot/lib/src/models.dart",
+        "packages/quds_proofing_aot/lib/src/provider.dart",
+        "packages/quds_proofing_aot/lib/src/transport.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process_io.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process_stub.dart",
+        "packages/quds_proofing_aot/test/client_cache_test.dart",
+        "packages/quds_proofing_aot/test/client_test.dart",
+        "packages/quds_proofing_aot/test/german_rules_test.dart",
+        "packages/quds_proofing_aot/test/models_test.dart",
+        "packages/quds_proofing_aot/test/native_source_mapping_test.dart",
+        "packages/quds_proofing_aot/test/process_transport_platform_test.dart",
+        "packages/quds_proofing_aot/test/process_transport_test.dart",
+        "packages/quds_proofing_aot/test/provider_test.dart",
+        "packages/quds_proofing_aot/test/transport_test.dart",
+        "packages/quds_proofing_aot/test/upstream_morphology_test.dart",
+        "packages/quds_proofing_aot/tool/aot.dart"
+      ]
+    },
+    "analysis-editor": {
+      "runner": "dart-analyze",
+      "cwd": ".",
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_editor/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_editor/lib/**/*.dart",
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ],
+      "paths": [
+        "packages/quds_office_editor/lib/quds_office_editor.dart",
+        "packages/quds_office_editor/lib/quds_reports.dart",
+        "packages/quds_office_editor/lib/src/core/command_pipeline.dart",
+        "packages/quds_office_editor/lib/src/core/input_bridge.dart",
+        "packages/quds_office_editor/lib/src/core/virtual_viewport.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/paint_pdf_display_list.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/pdf_find.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/pdf_font_faces.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_layout.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_rotation.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/pdf_page_thumb.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/pdf_raster.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/pdf_text_selection.dart",
+        "packages/quds_office_editor/lib/src/editor_pdf/render_pdf_canvas.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/quds_report_designer.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/render_report_data_explorer.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/render_report_designer.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/render_report_inspector.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/render_report_preview.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/render_report_problems.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/render_report_toolbar.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/render_report_toolbox.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_bundled_fonts.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_completion_popup.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_design_layout.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_designer_controller.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_designer_strings.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_element_painter.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_inspector_glyphs.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_layout_painter.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_pinch_zoom.dart",
+        "packages/quds_office_editor/lib/src/editor_reports/report_template_library.dart",
+        "packages/quds_office_editor/lib/src/editor_sheet/formula_ref_style.dart",
+        "packages/quds_office_editor/lib/src/editor_sheet/inline_cell_editor.dart",
+        "packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart",
+        "packages/quds_office_editor/lib/src/editor_sheet/selection_matrix.dart",
+        "packages/quds_office_editor/lib/src/editor_sheet/sheet_font_metrics.dart",
+        "packages/quds_office_editor/lib/src/editor_sheet/sheet_scroll_extent.dart",
+        "packages/quds_office_editor/lib/src/editor_slide/paint_slide_motion.dart",
+        "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "packages/quds_office_editor/lib/src/editor_slide/snap_guidelines.dart",
+        "packages/quds_office_editor/lib/src/editor_slide/transform_handles.dart",
+        "packages/quds_office_editor/lib/src/editor_word/caret_engine.dart",
+        "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+        "packages/quds_office_editor/lib/src/editor_word/paint_equation.dart",
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_editor/lib/src/editor_word/proofing_geometry.dart",
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+        "packages/quds_office_editor/lib/src/editor_word/table_history.dart",
+        "packages/quds_office_editor/lib/src/editor_word/table_resizer.dart",
+        "packages/quds_office_editor/lib/src/editor_word/word_run_metrics.dart",
+        "packages/quds_office_editor/lib/src/embed/office_clipboard.dart",
+        "packages/quds_office_editor/lib/src/embed/office_context_menu.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/office_direction_keys.dart",
+        "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+        "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+        "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+        "packages/quds_office_editor/lib/src/embed/office_units.dart",
+        "packages/quds_office_editor/lib/src/embed/office_uri.dart",
+        "packages/quds_office_editor/lib/src/embed/office_uri_io.dart",
+        "packages/quds_office_editor/lib/src/embed/office_uri_stub.dart",
+        "packages/quds_office_editor/lib/src/embed/pdf_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/pdf_editors.dart",
+        "packages/quds_office_editor/lib/src/embed/pdf_viewer_options.dart",
+        "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+        "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_tab_stops_editor.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart",
+        "packages/quds_office_editor/lib/src/embedded/embedded_object_host.dart",
+        "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart",
+        "packages/quds_office_editor/lib/src/visual/paint_drawing_line.dart",
+        "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+        "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+        "packages/quds_office_editor/test/word_manual_proofing_test.dart",
+        "packages/quds_office_editor/test/word_proofing_context_test.dart",
+        "packages/quds_office_editor/test/word_proofing_correction_test.dart",
+        "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+        "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+        "packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+        "packages/quds_office_editor/test/word_proofing_session_test.dart"
+      ]
+    },
+    "analysis-studio": {
+      "runner": "dart-analyze",
+      "cwd": ".",
+      "arguments": [],
+      "timeout_seconds": 1200,
+      "allow_skips": false,
+      "sources": [
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".dart_tool/package_config.json",
+        "analysis_options.yaml",
+        "packages/quds_office_editor/example/pubspec.yaml"
+      ],
+      "source_globs": [
+        "packages/quds_office_editor/example/lib/**/*.dart",
+        "packages/quds_office_editor/lib/**/*.dart",
+        "packages/quds_office_engine/lib/**/*.dart",
+        "packages/quds_proofing_aot/lib/**/*.dart",
+        "packages/legacy_doc_parser/lib/**/*.dart"
+      ],
+      "paths": [
+        "packages/quds_office_editor/example/lib/studio_aot.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_aot_test.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart"
+      ]
+    }
+  }
+}

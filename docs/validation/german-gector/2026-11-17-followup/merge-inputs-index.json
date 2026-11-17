@@ -1,0 +1,266 @@
+{
+  "saved_branch": "088705198d38811fde869707bc9711e20524d5f0",
+  "incoming_main": "081af8a55338c713ba8b350f2519f2021d9caee3",
+  "members": [
+    {
+      "path": "base/docs/PROOFING.md",
+      "bytes": 63283,
+      "sha256": "d693d2d54e83a59369c62d943b11ef1aaf619c167c815ee9860b0b838bc89b1b"
+    },
+    {
+      "path": "saved-branch/docs/PROOFING.md",
+      "bytes": 69385,
+      "sha256": "93fdc680f01b5033d1f9420be56c6d3cbc291f33befccfbea0c3d24c85234629"
+    },
+    {
+      "path": "incoming-main/docs/PROOFING.md",
+      "bytes": 67195,
+      "sha256": "b14f9cc81642ae62da68c689995ab7af2a49e561207f409028f032cb6f9630f7"
+    },
+    {
+      "path": "saved-branch/docs/validation/aot-daemon-free-20261117/README.md",
+      "bytes": 1116,
+      "sha256": "28d463debaee9111aca7f6696d2db3034d265979161d22e9b5d50a0257ad703c"
+    },
+    {
+      "path": "incoming-main/docs/validation/aot-daemon-free-20261117/README.md",
+      "bytes": 5661,
+      "sha256": "d41099ed1157e9eb8ceeb87567f78d136c2990255cbbb9dd9c11ad426fd9ac38"
+    },
+    {
+      "path": "saved-branch/docs/validation/aot-daemon-free-20261117/evidence/native-build.log.gz",
+      "bytes": 2404,
+      "sha256": "c34103aa39abb1730356b709c7dfa699fa4200f25717fafe6530ee65b8a78cfb"
+    },
+    {
+      "path": "incoming-main/docs/validation/aot-daemon-free-20261117/evidence/native-build.log.gz",
+      "bytes": 2585,
+      "sha256": "e35bce93879ccbda26a0cadf6fc02f496e8b0a990acf92b3ad907e8b387a06b8"
+    },
+    {
+      "path": "saved-branch/docs/validation/aot-daemon-free-20261117/evidence/native-runtime-manifest.json",
+      "bytes": 2518,
+      "sha256": "bb7585aca19fab42aae3dbb233350d9a3de1042123eb2cf9337fbf3a4a657cfc"
+    },
+    {
+      "path": "incoming-main/docs/validation/aot-daemon-free-20261117/evidence/native-runtime-manifest.json",
+      "bytes": 2772,
+      "sha256": "3ad5780532d86df8491e09ea417cd26850e8cd7cf62734811bdc8de90bfeada4"
+    },
+    {
+      "path": "saved-branch/docs/validation/aot-daemon-free-20261117/evidence/native-smoke.json",
+      "bytes": 968,
+      "sha256": "312f136013c37e02eaf84967e5f8da557051e8418cf8183996863bc80a4ef321"
+    },
+    {
+      "path": "incoming-main/docs/validation/aot-daemon-free-20261117/evidence/native-smoke.json",
+      "bytes": 968,
+      "sha256": "7a193d79871620900bf4e8aaf3676a12b5bc7c58011244ffc51f281fead1d892"
+    },
+    {
+      "path": "saved-branch/docs/validation/german-gector/2026-11-17-resume/README.md",
+      "bytes": 14603,
+      "sha256": "bbc81eebae181defe693485f44eea59b3f70f08333d4811456689c8341a26056"
+    },
+    {
+      "path": "incoming-main/docs/validation/german-gector/2026-11-17-resume/README.md",
+      "bytes": 3587,
+      "sha256": "d0ab02c1b2274c1df3236bfe48869f4074eb8114d70a39d28f50a51cb980e036"
+    },
+    {
+      "path": "saved-branch/docs/validation/german-proofing-recovery-20261117/README.md",
+      "bytes": 919,
+      "sha256": "cd38ddc6677b330aea02340ce6bf574f1519b2ecba906425e92c695f7be78262"
+    },
+    {
+      "path": "incoming-main/docs/validation/german-proofing-recovery-20261117/README.md",
+      "bytes": 17702,
+      "sha256": "7d87af514b4eb33b76e2d022060e3067f992c78b40cadfb81d90be6914358ea8"
+    },
+    {
+      "path": "saved-branch/docs/validation/office-consolidation-20261117/README.md",
+      "bytes": 6012,
+      "sha256": "540a72beb3c779fadfdc1896ed0b7b2a7e584143dffeb7811007ae4106bc6e59"
+    },
+    {
+      "path": "incoming-main/docs/validation/office-consolidation-20261117/README.md",
+      "bytes": 6429,
+      "sha256": "d5eff07f1f18d37d7c8a936b8c8208e06142e3d7887b9e75c86496c615734c3b"
+    },
+    {
+      "path": "saved-branch/docs/validation/office-consolidation-20261117/checkpoints.json",
+      "bytes": 3885,
+      "sha256": "1b1702647d784fcf3b7c3e9e94b4a04b80af5fe33cbf11e94e9bcf405ba0eab7"
+    },
+    {
+      "path": "incoming-main/docs/validation/office-consolidation-20261117/checkpoints.json",
+      "bytes": 4195,
+      "sha256": "4ef5ab845ffbbe9f18e7a5cef776a3068350ae93258ba7ecda65f570c11dd31d"
+    },
+    {
+      "path": "base/packages/quds_office_engine/CHANGELOG.md",
+      "bytes": 55670,
+      "sha256": "8a041f87137c257f6477f3b3a366bda366da464716109d2a23625b9ebc8292a8"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/CHANGELOG.md",
+      "bytes": 57675,
+      "sha256": "79a404373fb27f6b3aaccd773c21e4e14f97396ea403f310146316bfb7d85345"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/CHANGELOG.md",
+      "bytes": 57495,
+      "sha256": "6352d2c3c79e209f6cfe0c5f17ded8f56082ac1f49c75dd680827cdb38fd09bb"
+    },
+    {
+      "path": "base/packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+      "bytes": 14739,
+      "sha256": "c397a5c434fb9d13057ccab1febed460802c259f3cf0fe8b9b6ad2a8beff0b83"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+      "bytes": 14770,
+      "sha256": "0674b8ccd6c9fea34cbe5c54fd342552d14328db3cc6078780ec38f50a201e65"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+      "bytes": 14805,
+      "sha256": "561f7cfc094e1dc8658395f0704898ce482b9b5c51558e30083bdec6ed9308d2"
+    },
+    {
+      "path": "base/packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+      "bytes": 15424,
+      "sha256": "c7a8e41d044085ba2d01fcea36ffee05edc4c0f28ae06bc09347d72040e770d7"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+      "bytes": 16808,
+      "sha256": "31b6c681e340f3cd66179714a027515a83835fc3e7e070a0747fe4f16b62ffaf"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+      "bytes": 17033,
+      "sha256": "ef25ec5a58622b9e4ea6b41ac26c2a125c8eabeb1f8a8d7a260a50083d1e15e9"
+    },
+    {
+      "path": "base/packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "bytes": 9574,
+      "sha256": "85492f892da8d73419e60c02696fc40ded3c54717cc89bae2f4a2cbebae1335a"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "bytes": 10681,
+      "sha256": "02446fdfc7c27a25323a42285e898de5c02a7ceb2b35607cff86bcb355025e05"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "bytes": 11218,
+      "sha256": "3fe7a344229c0b8f0da1fca3f85426d4a804eaa1f5fafcfdffb3382e15ed824a"
+    },
+    {
+      "path": "base/packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "bytes": 1047,
+      "sha256": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "bytes": 1071,
+      "sha256": "ef9569388440e4d5aa24bb0990ad53441f076a3df1993fa0c0b52d4a6fa3faf4"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "bytes": 1091,
+      "sha256": "3a41eb74e53bd167105211b275de2af73d91077fb2c4441e1bbbb1daa880ebcd"
+    },
+    {
+      "path": "base/packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "bytes": 45290,
+      "sha256": "ab44aae00a5687bd3033a8adfbfd44eb6773c14089cab15bc656db3660360f91"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "bytes": 54982,
+      "sha256": "150f15eecdde2a9a5426f6e8fbc1c50de6ba418d05b19f9b7523b9d2b138fc5c"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "bytes": 49702,
+      "sha256": "ff726d5e982f0b9a897563de46183a352e581748e3d36a450fa57197bc460984"
+    },
+    {
+      "path": "base/packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "bytes": 32669,
+      "sha256": "bd796b422d9dd6b95414bfb6a0695e3c1a83205b4235da803b9de86cf2157535"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "bytes": 40018,
+      "sha256": "1ec06293016d825e034f33fe7bfa07ae8dea88cec4c1f636ae1c7ac43e3be9aa"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "bytes": 40170,
+      "sha256": "abe540438761605cfac0cbdaf452403b14dbb18fc7c525d73b2c30be726c9d6e"
+    },
+    {
+      "path": "base/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "bytes": 73180,
+      "sha256": "b510b6eb5fa496bb066cf087c553c40b36468ce5d301b68bf60ca5e2fb754881"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "bytes": 77968,
+      "sha256": "315e8589644c7d861f05c2c615b29166b0c6102b0191329a02953b3c4ff1ed5d"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "bytes": 85990,
+      "sha256": "4091baf8dbe3eebcb56477a11b2fb5a0d0165877bb82de811a854f1ca3d13a0d"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+      "bytes": 9951,
+      "sha256": "24af5f2a20cc2d307e00d1d07d5dd11544699f069e7812120eba86fb088c0182"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+      "bytes": 9809,
+      "sha256": "9682d19df64ee294ea7562935ecf089492443e1ada5738b52923073cf396ceed"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+      "bytes": 19863,
+      "sha256": "1ea199e578782942b3d596d54ec23df6cbcf768d0fe99e6cc223698e726afd21"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+      "bytes": 13868,
+      "sha256": "85f3abe009df346b8388107e974ad034a08c982876036813d41d1ce3c2511c67"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+      "bytes": 2926,
+      "sha256": "14f064972f9e07dc9413153c5548284eac98bb4cf1c505fbc3e46359e75ede9a"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+      "bytes": 3022,
+      "sha256": "2c02ff894e1b6a2bb6f06d236a74133aa205a3646c7a4eecfa63665f31908b2d"
+    },
+    {
+      "path": "base/packages/quds_office_engine/third_party/proofing/manifest.json",
+      "bytes": 4263,
+      "sha256": "a80e60bbe0f02f14fb561aace7b8927e0016824653c4cd3b46cdca8d63945b6a"
+    },
+    {
+      "path": "saved-branch/packages/quds_office_engine/third_party/proofing/manifest.json",
+      "bytes": 4263,
+      "sha256": "fced930763cd98c579b11e0797cb53978cf1ff273e3499c97c3c36a2e78d30f9"
+    },
+    {
+      "path": "incoming-main/packages/quds_office_engine/third_party/proofing/manifest.json",
+      "bytes": 4264,
+      "sha256": "58f5d9fe627b63024e36f13123abd93fb964164c3da1893963d4e4a44cbb6532"
+    }
+  ]
+}

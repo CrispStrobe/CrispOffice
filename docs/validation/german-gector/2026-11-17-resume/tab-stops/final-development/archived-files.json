@@ -1,0 +1,26 @@
+[
+  {
+    "file": "tab-stops/final-development/odt-analysis-receipt.json.gz",
+    "uncompressed_file": "odt-analysis-receipt.json",
+    "bytes": 116819,
+    "sha256": "6e30928edfb9eab6d510b2a0e95c6302d4ac5f1b96ef6010088ea478e797c987"
+  },
+  {
+    "file": "tab-stops/final-development/odt-analysis.log.gz",
+    "uncompressed_file": "odt-analysis.log",
+    "bytes": 207,
+    "sha256": "eec7a996b1c27d9ef5e4155628b23216e5131d8a9168946e315428b5a3b8ad8a"
+  },
+  {
+    "file": "tab-stops/final-development/odt-tests-receipt.json.gz",
+    "uncompressed_file": "odt-tests-receipt.json",
+    "bytes": 117620,
+    "sha256": "6a6f76cb437634919ef052f169c4c11124f55006d391b5937b0029ce76fde95e"
+  },
+  {
+    "file": "tab-stops/final-development/odt-tests.jsonl.gz",
+    "uncompressed_file": "odt-tests.jsonl",
+    "bytes": 168729,
+    "sha256": "f3f03c98ee3014a1f14cf221826c7d8727b32fbcb7953298830f5603946d57cf"
+  }
+]

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "gector-native-thread-option-local-validation",
+  "observed_utc": "2026-11-17T19:39:31.944619+00:00",
+  "passed": true,
+  "all_recorded_input_maps_stable": true,
+  "gector": {
+    "passed": 251,
+    "failed": 0,
+    "skipped": 0,
+    "distinct": 251,
+    "native_fixture_executed_and_passed": true,
+    "identities": "gector-test-identities.json.gz",
+    "events": "gector-full.stdout.gz"
+  },
+  "python_tooling": {
+    "passed": 117,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "distinct": 117,
+    "identities": "python-results.json.gz",
+    "modules": [
+      "test_candidate_admission",
+      "test_export_reference",
+      "test_gector_aot_build",
+      "test_guarded_provider_comparison",
+      "test_native_pack",
+      "test_native_qualification",
+      "test_qualification"
+    ]
+  },
+  "strict_analysis": {
+    "passed": true,
+    "scope": [
+      "packages/quds_proofing_gector",
+      "tools/proofing/german_model"
+    ],
+    "log": "gector-analysis.stdout.gz"
+  },
+  "distinct_tests_passed": 368,
+  "focused_cli": {
+    "passed": 8,
+    "native_configuration_passed": 2,
+    "additional_distinct_tests": 0,
+    "note": "These ten tests are contained in the full 251-test package result; do not add them again."
+  },
+  "retained_initial_failure": {
+    "log": "focused-runner-inputs.jsonl.gz",
+    "cause": "Initial invocation used repository root; fixture loading requires package working directory. Rerun changed cwd only and passed."
+  },
+  "native_timing_benchmark_executed": false,
+  "github_actions_dispatched_polled_or_awaited": false,
+  "source_files": {
+    "tools/proofing/german_model/run_gector_dart.dart": "3300f8b2524f6628493b0870f8911df28c8e4c9a84f177de1f0f94cf29166d2b",
+    "packages/quds_proofing_gector/test/runner_inputs_test.dart": "b9fa9a1409eec215d500143be86ca14b7f0e0fc678e26da47e23a31bce19f06f",
+    "tools/proofing/german_model/LOCAL_PROVIDER.md": "a680041d7b69042a14f3dd81d656076eeb3b44a6021fe94456db553cb4cb9cf8"
+  },
+  "observed_source_heads": {
+    "gector-full": "139dcbbe7b80667bd3d203717fb56cb11b455da4",
+    "gector-analysis": "139dcbbe7b80667bd3d203717fb56cb11b455da4",
+    "python-tooling": "139dcbbe7b80667bd3d203717fb56cb11b455da4"
+  },
+  "source_binding_note": "Git HEAD is an observation, not a claim that all tested bytes were committed at suite start. Per-suite before/after SHA-256 maps bind the actual tested working-tree inputs, including the new native-thread option."
+}

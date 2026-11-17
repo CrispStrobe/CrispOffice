@@ -1,0 +1,140 @@
+{
+  "archive": "native-recovery-20261117.tar.xz",
+  "bytes": 34792,
+  "sha256": "20545618421679279d1af7610cbfaa6ef291998e2b2d211791757d91d5b6c528",
+  "classification": "Exact pinned native runtime restored; native contract passes; canonical final qualification pending",
+  "member_count": 26,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "native/CMakeCache.txt",
+      "bytes": 30946,
+      "sha256": "d59ccf39cea3f7a5700ac26c8353c277e0558baafd21168b312aca7cd4e0d141"
+    },
+    {
+      "path": "native/build.log",
+      "bytes": 3071,
+      "sha256": "8638fa7f5bfc984dd6cf1a7f6a4305bf33ae0937f846ec1cdcc59d2365888016"
+    },
+    {
+      "path": "native/commands.json",
+      "bytes": 3884,
+      "sha256": "26c8cb3721349e70b5df54054f71b31ed96ceabe796d4ef669eca88b4c46cbd8"
+    },
+    {
+      "path": "native/compile_commands.json",
+      "bytes": 34535,
+      "sha256": "6de04bdb0d47b1515be7cbf148e862a83de3ddcdcb226551b2a17ea1d089a1b7"
+    },
+    {
+      "path": "native/configure-command.json",
+      "bytes": 545,
+      "sha256": "76a710ae44a86dcfc99700fcd045b0e14635fe130a4e8886e7a284eed7ee61df"
+    },
+    {
+      "path": "native/configure.log",
+      "bytes": 1274,
+      "sha256": "468f894449fe442f40b91ad1dffdfd877714e4c6e25966223d2d87b0ec1cfef7"
+    },
+    {
+      "path": "native/convert-f32.log",
+      "bytes": 256,
+      "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97"
+    },
+    {
+      "path": "native/download_bundle.py",
+      "bytes": 1017,
+      "sha256": "ec6cc5a543b63ffeba927f1f5565c28d92e46af602adb7ce28f4e54f2ffbe7dd"
+    },
+    {
+      "path": "native/font-prerequisites.json",
+      "bytes": 1869,
+      "sha256": "6e58d6ea10292085a4fbf7e42154e377b1505bec62ad71af001c0d9167f26180"
+    },
+    {
+      "path": "native/gector-de-f32.gguf.manifest.json",
+      "bytes": 132371,
+      "sha256": "9c01e05a10ba6f57b30e29476ddf83823dc2170ab478e8435cb1ea7b06c36cf4"
+    },
+    {
+      "path": "native/install.log",
+      "bytes": 511,
+      "sha256": "cfa0c5d7aabc499f0ebc92212ccca34c573c28976df0a19d6856fc0f8159e6fb"
+    },
+    {
+      "path": "native/model-download-verification.json",
+      "bytes": 3662,
+      "sha256": "d27bc7c1bf3e4b6e0734c4d1b1dbf86c1cd171211d82452bd544fdc735ad9c7d"
+    },
+    {
+      "path": "native/model-download.log",
+      "bytes": 1108,
+      "sha256": "299c44cc34a9074f86e910d6543e91826665abcf1d174acffab5926604adcf21"
+    },
+    {
+      "path": "native/native-contract.log",
+      "bytes": 250,
+      "sha256": "238270d92fdc2c452118ba9b517b04bd8e82996ebee7f712b776036e5dc5fc13"
+    },
+    {
+      "path": "native/native-env.sh",
+      "bytes": 790,
+      "sha256": "a3a6c550341356b2981332943549ae3dcd714e3f44164270e411d41dfaa3deb8"
+    },
+    {
+      "path": "native/pack-build.json",
+      "bytes": 1835,
+      "sha256": "2eed3837ea6052f654b12b195677eb8177a070446cc4fb419111402c43b3c46a"
+    },
+    {
+      "path": "native/pack-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/pack-verify.json",
+      "bytes": 1835,
+      "sha256": "2eed3837ea6052f654b12b195677eb8177a070446cc4fb419111402c43b3c46a"
+    },
+    {
+      "path": "native/pack-verify.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/pack.json",
+      "bytes": 9315,
+      "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+    },
+    {
+      "path": "native/python-freeze.txt",
+      "bytes": 459,
+      "sha256": "e224cc3c1a40e66221e2e9b805db802e8b5a28186aa4a6cb0d74e1ce97489c32"
+    },
+    {
+      "path": "native/python-install.log",
+      "bytes": 8951,
+      "sha256": "3449d53f3892dd39c3ccf0a94b8db4a768c4c3073398fef5bdedbee29b402d5f"
+    },
+    {
+      "path": "native/quantize-command.json",
+      "bytes": 645,
+      "sha256": "9ba7932fbd62ec21ecfd7554a54a182562d6138a7a045db808c5617a920260eb"
+    },
+    {
+      "path": "native/quantize.log",
+      "bytes": 18085,
+      "sha256": "e079c7e1a0367cb66f0412fa72ee44ce86ad06aecfab3635b82cae795117e70b"
+    },
+    {
+      "path": "native/recovery.json",
+      "bytes": 3125,
+      "sha256": "444071661866226ba9b73db8c2a18d954fc3295f58c465556fd41550398f0724"
+    },
+    {
+      "path": "native/source-audit.json",
+      "bytes": 27480,
+      "sha256": "81e1c80ebea81e1d32a8499da6aa2edbb3435c193d3cc869c676006d3b9cc929"
+    }
+  ]
+}

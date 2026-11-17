@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "record_type": "reconciled_source_and_runtime_checkpoint",
+  "captured_utc": "2026-11-17T21:28:28.260772+00:00",
+  "branch": "codex/office-union-qualification-20261117",
+  "base_checkpoint": "8ed0a60ba60650aebeac74a1b30c23232b200703",
+  "captured_main": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+  "captured_pr144": "3c725e6bfdadf4ff02c79926ba5c8c51cdcb3438",
+  "captured_gector_office": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+  "remote_inventory_counts": {
+    "branches": 179,
+    "pull_request_heads": 145
+  },
+  "all_reference_heads_fetched": true,
+  "qualification_accepted": false,
+  "runtime_restored": {
+    "flutter": {
+      "version": {
+        "frameworkVersion": "3.47.8",
+        "channel": "stable",
+        "repositoryUrl": "https://github.com/flutter/flutter.git",
+        "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+        "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+        "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+        "engineCommitDate": "2026-10-23 02:13:38.000Z",
+        "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+        "engineBuildDate": "2026-10-22 20:34:48.330",
+        "dartSdkVersion": "3.13.7",
+        "devToolsVersion": "2.60.0",
+        "flutterVersion": "3.47.8",
+        "flutterRoot": "/workspace/scratch/3cddf06175f0/toolchains/flutter"
+      },
+      "workspace": "/workspace/scratch/3cddf06175f0/full-validation-workspace",
+      "runtime": "/workspace/scratch/3cddf06175f0/toolchains/flutter",
+      "pub_cache": "/workspace/scratch/3cddf06175f0/toolchains/pub-cache",
+      "elapsed_seconds": 108.97443461418152,
+      "finished_utc": "2026-11-17T21:27:06.615484+00:00"
+    },
+    "native": {
+      "created_utc": "2026-11-17T21:27:05.016463+00:00",
+      "scope": "Recovery of exact previously admitted development fixtures; no new model-quality or release claim.",
+      "source_commit": "853a1ce6089e5d5486e37307f37051ad6a928745",
+      "ggml_commit": "3a27b6c665b191cb230be367db5c52d81dd3e2ac",
+      "source_inventory_files": 112,
+      "source_inventory_all_match": true,
+      "source_modified": false,
+      "required_trust_pins_modified": false,
+      "artifacts": {
+        "native_library": {
+          "path": "/workspace/scratch/3cddf06175f0/native-qualification-runtime/native-development-pack/native/9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604/libcrispembed-gector.so",
+          "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+          "bytes": 2064104,
+          "matches_prior": true
+        },
+        "quantizer": {
+          "path": "/workspace/scratch/3cddf06175f0/native-qualification-runtime/build/gector/crispembed-gector-quantize",
+          "sha256": "8d38bcb36ed82e6ebae6c320ea07ff3a97343feafbc0f7c024b6c1d4c5373a46",
+          "bytes": 915904,
+          "matches_prior": true
+        },
+        "f32_model": {
+          "path": "/workspace/scratch/3cddf06175f0/native-qualification-runtime/gector-de-f32.gguf",
+          "sha256": "497657528f3a660b85b807a7da0db663abb5964ada81f819e26ed48b6e96b6c1",
+          "bytes": 453355328,
+          "matches_prior": true
+        },
+        "mixed_model": {
+          "path": "/workspace/scratch/3cddf06175f0/native-qualification-runtime/native-development-pack/model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/gector-de-mixed-q4_k.gguf",
+          "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+          "bytes": 82756896,
+          "matches_prior": true
+        },
+        "pack_manifest": {
+          "path": "/workspace/scratch/3cddf06175f0/native-qualification-runtime/native-development-pack/pack.json",
+          "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841",
+          "bytes": 9315,
+          "matches_prior": true
+        }
+      },
+      "pack_verified": true,
+      "pack_files": 23,
+      "native_contract_ctest": {
+        "passed": true,
+        "tests": 1,
+        "log": "native-contract.log"
+      },
+      "python_freeze_exactly_matches_previous": true,
+      "python_frozen_packages": 27,
+      "python_controls": "Not separately repeated here; full canonical qualification runner executes the unchanged required controls.",
+      "all_eight_font_prerequisites_present": true,
+      "all_eight_font_hashes_match_previous": true,
+      "compiler_version": "c++ (Debian 14.2.0-19) 14.2.0",
+      "reproduction_notes": [
+        "Pinned CrispEmbed and ggml source, 112 input hashes identical.",
+        "git core.abbrev=7 retained for original GGML_COMMIT macro.",
+        "GCC -ffile-prefix-map maps this workspace source to original embedded paths; binaries byte-identical without source changes.",
+        "Mixed model preserves original --standard-file-type and precision metadata recipe.",
+        "Exact Python freeze, ONNX bundle, f32 model, mixed model, native library, quantizer and development pack manifest all reproduce existing pins.",
+        "No GitHub Actions/workflow/check/status endpoint queried or awaited."
+      ]
+    }
+  },
+  "remaining_work": [
+    "Complete floating-frame common-style repair with independent consumer regression",
+    "Repair incoming icon-set OOXML shape, template invalidation and relative thresholds",
+    "Run current-source focused, broad, portable and retained/boundary consumer gates",
+    "Archive complete source-bound receipts and independent review"
+  ],
+  "scope_decisions": [
+    "Preserve source and all historical evidence from current PR144 and GECToR continuation",
+    "Include merged PR145 from current main",
+    "Retain deliberate AOT/RML removal",
+    "Keep native spaCy PR139 separate",
+    "No historical pass outcome certifies this union",
+    "Original PR144 received a concurrent doc checkpoint; preserve it, publish new work on isolated branch"
+  ],
+  "github_actions_queried_or_awaited": false
+}

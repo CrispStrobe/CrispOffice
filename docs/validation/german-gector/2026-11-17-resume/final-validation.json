@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "kind": "quds-german-continuation-final-validation",
+  "completed": true,
+  "passed": true,
+  "implementation_commit": "143bad2f69976c331ac98ea7b4adbaec430af916",
+  "baseline_commit": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+  "starting_commit": "c98c75eae50ddabfa8eb9aa918ed1af9754b7923",
+  "evidence_commit_before_final_handoff": "91959bb5e405bc5a44f278c9a79c75b1b53fd243",
+  "production_and_tests_unchanged_since_qualified_implementation": true,
+  "incoming": {
+    "branch_tips": 150,
+    "pr_heads": 122,
+    "snapshot_interval_utc": [
+      "2026-11-17T18:04:35Z",
+      "2026-11-17T18:04:37Z"
+    ],
+    "all_captured_refs_integrated": true,
+    "proof": "final-ancestry.json",
+    "cooperating_ref_audit": "cooperating-ref-audit.json"
+  },
+  "local_validation": {
+    "summary": "local-validation.json",
+    "distinct_passed_tests": 1968,
+    "supplemental_node_passed_tests": 196,
+    "failed": 0,
+    "skipped": 0,
+    "strict_analysis_suites": 5,
+    "resolved_libraries": 110,
+    "workspace_roots": 11,
+    "native_fixture_passed": true
+  },
+  "native_validation": {
+    "summary": "native-results.json",
+    "modes": [
+      "single",
+      "segmented",
+      "reuse"
+    ],
+    "all_requested_checks_passed": true,
+    "same_aot_for_all_modes": true,
+    "serial_after_tests_and_compilation": true,
+    "repeated_vs_varied_reported_separately": true
+  },
+  "quality_validation": {
+    "summary": "quality-results.json",
+    "panels": [
+      "original-30",
+      "development-76",
+      "syntax-56"
+    ],
+    "all_operational_contracts_passed": true,
+    "all_final_de_DE_clean_inputs_unmodified_and_unflagged": true,
+    "no_previous_exact_fixes_lost": true,
+    "reused_synthetic_panels": true
+  },
+  "independent_audits": {
+    "archive": "final-audit-evidence.tar.xz",
+    "primary_outer_gates_passed": 81,
+    "primary_outer_gates_total": 81,
+    "serial_gates_passed": 97,
+    "serial_gates_total": 97,
+    "all_passed": true,
+    "primary_report_sha256": "ce4596c3a16d2acf27325727771979bd47f0b8f98407d04929ba7968ca0ffd94",
+    "serial_report_sha256": "0647cf7d333a4bb5ae6da10d1f6e54266f99bfd6bee78076cc754207fab8bb7f"
+  },
+  "archive_integrity_checks": [
+    {
+      "index": "final-audit-evidence.index.json",
+      "archive": "final-audit-evidence.tar.xz",
+      "archive_sha256": "71818f09da1a37c83ef34e4897b52f7a9d70877eeb2c1e1fcf4713a71eb759c8",
+      "members_verified": 13,
+      "passed": true
+    },
+    {
+      "index": "final-local-evidence.index.json",
+      "archive": "final-local-evidence.tar.xz",
+      "archive_sha256": "d3de3548cc7b5049376db5aa97baa15850032da6cd9a620c8ca19211061a0b33",
+      "members_verified": 97,
+      "passed": true
+    },
+    {
+      "index": "final-native-evidence.index.json",
+      "archive": "final-native-evidence.tar.xz",
+      "archive_sha256": "0bbb9304b441313da2be0149a9facb7d6bba324b488fd3e8db415a911495bbb6",
+      "members_verified": 14,
+      "passed": true
+    },
+    {
+      "index": "final-quality-evidence.index.json",
+      "archive": "final-quality-evidence.tar.xz",
+      "archive_sha256": "08748ac935c92d052d9c84994e363b15e62c4907a985c5897db8b4683588fc98",
+      "members_verified": 8,
+      "passed": true
+    }
+  ],
+  "no_github_actions_dispatched_polled_or_awaited": true,
+  "remaining": [
+    "Distinct long-input native latency remains in seconds.",
+    "Safe participle preference for sein contexts and the retained gegangt/gebangt projection remain open.",
+    "Representative frozen sentence/paragraph quality evaluation remains open.",
+    "Intended-device responsiveness and platform/distribution acceptance remain open.",
+    "Final-source complete ODF schema and desktop-consumer acceptance remain open."
+  ],
+  "evidence_notes": [
+    "The original publisher configuration/reference and original evaluation corpora were preserved.",
+    "Syntax metadata adapter preserves inputs, expected strings, kinds, locales and row order.",
+    "Individual development counts overlap; only final principal cohorts are summed.",
+    "Early reuse-development failures lacked raw filesystem logs and are explicitly documented without reconstructed logs.",
+    "Final source, dependencies, runtime identities, actual decoded passes, offsets, tokenization, quality projections and report merging were independently audited."
+  ]
+}

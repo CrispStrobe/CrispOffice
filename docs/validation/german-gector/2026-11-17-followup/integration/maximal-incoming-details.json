@@ -1,0 +1,523 @@
+{
+  "head": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+  "refs": [
+    {
+      "ref": "refs/remotes/origin/codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-qualified-resume-20261117",
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-first-even-headers",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159"
+    },
+    {
+      "ref": "refs/remotes/origin/fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc"
+    },
+    {
+      "ref": "refs/remotes/origin/integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f"
+    },
+    {
+      "ref": "refs/remotes/origin/integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-preset-shapes",
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599"
+    },
+    {
+      "ref": "refs/remotes/pull/114",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac"
+    },
+    {
+      "ref": "refs/remotes/pull/116",
+      "sha": "6a32a919325d71c121c63e3879cfd1b28d64312e"
+    },
+    {
+      "ref": "refs/remotes/pull/120",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4"
+    },
+    {
+      "ref": "refs/remotes/pull/123",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8"
+    },
+    {
+      "ref": "refs/remotes/pull/124",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06"
+    },
+    {
+      "ref": "refs/remotes/pull/125",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83"
+    },
+    {
+      "ref": "refs/remotes/pull/126",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791"
+    },
+    {
+      "ref": "refs/remotes/pull/127",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159"
+    },
+    {
+      "ref": "refs/remotes/pull/128",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328"
+    },
+    {
+      "ref": "refs/remotes/pull/129",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f"
+    },
+    {
+      "ref": "refs/remotes/pull/130",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc"
+    },
+    {
+      "ref": "refs/remotes/pull/131",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389"
+    },
+    {
+      "ref": "refs/remotes/pull/132",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39"
+    },
+    {
+      "ref": "refs/remotes/pull/133",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8"
+    }
+  ],
+  "maximal": [
+    {
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "refs": [
+        "refs/remotes/origin/codex/office-qualified-resume-20261117"
+      ],
+      "merge_base": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "changed_paths_count": 470,
+      "changed_code": [
+        "README.md",
+        "packages/quds_office_editor/example/lib/studio_aot.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/pubspec.yaml",
+        "packages/quds_office_editor/example/test/studio_aot_test.dart",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+        "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_name_ambiguity_test.dart",
+        "packages/quds_office_engine/test/odt_columns_breaks_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+        "packages/quds_office_engine/test/odt_section_columns_test.dart",
+        "packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_style_cache_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_consolidation_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_qualification_test.dart",
+        "packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+        "packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+        "packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+        "packages/quds_office_engine/third_party/proofing/manifest.json",
+        "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+        "packages/quds_proofing_aot/CHANGELOG.md",
+        "packages/quds_proofing_aot/README.md",
+        "packages/quds_proofing_aot/UPSTREAM.json",
+        "packages/quds_proofing_aot/lib/quds_proofing_aot.dart",
+        "packages/quds_proofing_aot/lib/src/client.dart",
+        "packages/quds_proofing_aot/lib/src/german_rules.dart",
+        "packages/quds_proofing_aot/lib/src/models.dart",
+        "packages/quds_proofing_aot/lib/src/provider.dart",
+        "packages/quds_proofing_aot/lib/src/transport.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process_io.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process_stub.dart",
+        "packages/quds_proofing_aot/native/CMakeLists.txt",
+        "packages/quds_proofing_aot/native/NOTICE.md",
+        "packages/quds_proofing_aot/native/README.md",
+        "packages/quds_proofing_aot/native/worker.cpp",
+        "packages/quds_proofing_aot/pubspec.yaml",
+        "packages/quds_proofing_aot/test/aot_fixture_data.dart",
+        "packages/quds_proofing_aot/test/client_cache_test.dart",
+        "packages/quds_proofing_aot/test/client_test.dart",
+        "packages/quds_proofing_aot/test/fixtures/process_worker.dart",
+        "packages/quds_proofing_aot/test/fixtures/upstream_german_morphology.dart",
+        "packages/quds_proofing_aot/test/german_rules_test.dart",
+        "packages/quds_proofing_aot/test/grammar_support.dart",
+        "packages/quds_proofing_aot/test/models_test.dart",
+        "packages/quds_proofing_aot/test/native_source_mapping_test.dart",
+        "packages/quds_proofing_aot/test/process_transport_platform_test.dart",
+        "packages/quds_proofing_aot/test/process_transport_test.dart",
+        "packages/quds_proofing_aot/test/provider_test.dart",
+        "packages/quds_proofing_aot/test/transport_test.dart",
+        "packages/quds_proofing_aot/test/upstream_morphology_test.dart",
+        "packages/quds_proofing_aot/tool/aot.dart",
+        "packages/quds_proofing_aot/tool/build_native.py",
+        "packages/quds_proofing_aot/tool/qualify_cli.py",
+        "packages/quds_proofing_aot/tool/smoke_native.py",
+        "packages/quds_proofing_gector/README.md",
+        "packages/quds_proofing_gector/lib/src/backend.dart",
+        "packages/quds_proofing_gector/lib/src/decoder.dart",
+        "packages/quds_proofing_gector/lib/src/guards.dart",
+        "packages/quds_proofing_gector/lib/src/native_backend.dart",
+        "packages/quds_proofing_gector/lib/src/segmentation.dart",
+        "packages/quds_proofing_gector/test/duplicate_role_guards_test.dart",
+        "packages/quds_proofing_gector/test/inference_reuse_test.dart",
+        "packages/quds_proofing_gector/test/native_backend_test.dart",
+        "packages/quds_proofing_gector/test/runner_inputs_test.dart",
+        "pubspec.yaml",
+        "tools/proofing/german_model/README.md",
+        "tools/proofing/german_model/evaluate_candidate.py",
+        "tools/proofing/german_model/run_gector_dart.dart",
+        "tools/proofing/german_model/test_candidate_admission.py"
+      ],
+      "new_paths": [
+        "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/column-bookmark-publication-map.json",
+        "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__german-gector__2026-11-17-long-input__README.md.incoming-main-13",
+        "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__office-resume-20261117__README.md.incoming-main-13",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/README.md",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-leading-inline-column-break.png",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-midparagraph-inline-column-break.png",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/final-receipt.json",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/independent-harness-review.json",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/visual-review.json",
+        "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-README.md",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-independent-review.json",
+        "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-README.md",
+        "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/merge-resolution.json",
+        "packages/quds_office_editor/example/lib/studio_aot.dart",
+        "packages/quds_office_editor/example/test/studio_aot_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_name_ambiguity_test.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+        "packages/quds_proofing_aot/CHANGELOG.md",
+        "packages/quds_proofing_aot/README.md",
+        "packages/quds_proofing_aot/UPSTREAM.json",
+        "packages/quds_proofing_aot/lib/quds_proofing_aot.dart",
+        "packages/quds_proofing_aot/lib/src/client.dart",
+        "packages/quds_proofing_aot/lib/src/german_rules.dart",
+        "packages/quds_proofing_aot/lib/src/models.dart",
+        "packages/quds_proofing_aot/lib/src/provider.dart",
+        "packages/quds_proofing_aot/lib/src/transport.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process_io.dart",
+        "packages/quds_proofing_aot/lib/src/transport_process_stub.dart",
+        "packages/quds_proofing_aot/native/CMakeLists.txt",
+        "packages/quds_proofing_aot/native/NOTICE.md",
+        "packages/quds_proofing_aot/native/README.md",
+        "packages/quds_proofing_aot/native/worker.cpp",
+        "packages/quds_proofing_aot/pubspec.yaml",
+        "packages/quds_proofing_aot/test/aot_fixture_data.dart",
+        "packages/quds_proofing_aot/test/client_cache_test.dart",
+        "packages/quds_proofing_aot/test/client_test.dart",
+        "packages/quds_proofing_aot/test/fixtures/process_worker.dart",
+        "packages/quds_proofing_aot/test/fixtures/upstream_german_morphology.dart",
+        "packages/quds_proofing_aot/test/german_rules_test.dart",
+        "packages/quds_proofing_aot/test/grammar_support.dart",
+        "packages/quds_proofing_aot/test/models_test.dart",
+        "packages/quds_proofing_aot/test/native_source_mapping_test.dart",
+        "packages/quds_proofing_aot/test/process_transport_platform_test.dart",
+        "packages/quds_proofing_aot/test/process_transport_test.dart",
+        "packages/quds_proofing_aot/test/provider_test.dart",
+        "packages/quds_proofing_aot/test/transport_test.dart",
+        "packages/quds_proofing_aot/test/upstream_morphology_test.dart",
+        "packages/quds_proofing_aot/tool/aot.dart",
+        "packages/quds_proofing_aot/tool/build_native.py",
+        "packages/quds_proofing_aot/tool/qualify_cli.py",
+        "packages/quds_proofing_aot/tool/smoke_native.py"
+      ],
+      "documentation_changed_count": 385
+    },
+    {
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "refs": [
+        "refs/remotes/origin/feat/odf-story-fidelity",
+        "refs/remotes/pull/132"
+      ],
+      "merge_base": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "changed_paths_count": 9,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+        "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+        "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odf_revision_extraction_test.dart",
+        "packages/quds_office_engine/test/ods_text_story_import_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_story_visual_fidelity_test.dart"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 0
+    },
+    {
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "refs": [
+        "refs/remotes/origin/codex/office-fidelity-improvements-20261117-e1978379",
+        "refs/remotes/pull/128"
+      ],
+      "merge_base": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "changed_paths_count": 61,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+        "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+        "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odf_revision_extraction_test.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "packages/quds_office_engine/test/ods_text_story_import_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_columns_schema_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "packages/quds_office_engine/test/odt_story_visual_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_style_fidelity_test.dart"
+      ],
+      "new_paths": [
+        "docs/validation/office-improvements-20261117/README.md",
+        "docs/validation/office-improvements-20261117/evidence-index.json",
+        "docs/validation/office-improvements-20261117/evidence.tar.xz",
+        "docs/validation/office-improvements-20261117/independent-review.json",
+        "docs/validation/office-improvements-20261117/qualification.json",
+        "docs/validation/office-improvements-20261117/run_validation.py",
+        "docs/validation/office-improvements-20261117/source-equivalence.json",
+        "docs/validation/office-improvements-20261117/verify_delivery.py",
+        "packages/quds_office_engine/test/odt_columns_schema_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_style_fidelity_test.dart"
+      ],
+      "documentation_changed_count": 47
+    },
+    {
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "refs": [
+        "refs/remotes/origin/fix/odt-inline-fields",
+        "refs/remotes/pull/130"
+      ],
+      "merge_base": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "changed_paths_count": 1,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 0
+    },
+    {
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "refs": [
+        "refs/remotes/origin/feat/odt-toc",
+        "refs/remotes/pull/127"
+      ],
+      "merge_base": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "changed_paths_count": 2,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 0
+    },
+    {
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "refs": [
+        "refs/remotes/origin/feat/odp-preset-shapes",
+        "refs/remotes/pull/126"
+      ],
+      "merge_base": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "changed_paths_count": 2,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 0
+    },
+    {
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "refs": [
+        "refs/remotes/origin/integrate/codex-office-continuation-20261117",
+        "refs/remotes/pull/125"
+      ],
+      "merge_base": "93cb0773f82b3d41a75bc50705074efcb9d4df78",
+      "changed_paths_count": 156,
+      "changed_code": [
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+        "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+        "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+        "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odf_frame_extraction_test.dart",
+        "packages/quds_office_engine/test/odf_text_box_extraction_test.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+        "packages/quds_office_engine/test/odt_section_continuation_test.dart",
+        "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_section_integration_test.dart",
+        "packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart",
+        "packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+        "packages/quds_office_engine/third_party/proofing/manifest.json",
+        "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+        "tools/proofing/german_model/INCREMENTAL_QUALITY.md"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 136
+    },
+    {
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "refs": [
+        "refs/remotes/origin/feat/odt-fields",
+        "refs/remotes/pull/124"
+      ],
+      "merge_base": "9626152fced037379a79ef4fec458645e0d8c2ff",
+      "changed_paths_count": 2,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 0
+    },
+    {
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "refs": [
+        "refs/remotes/origin/integrate/aot-then-remove-20261117",
+        "refs/remotes/pull/129"
+      ],
+      "merge_base": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "changed_paths_count": 456,
+      "changed_code": [
+        "README.md",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odp_chart_fallback_test.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_break_style_test.dart",
+        "packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_resume_test.dart",
+        "packages/quds_proofing_gector/README.md",
+        "packages/quds_proofing_gector/lib/src/backend.dart",
+        "packages/quds_proofing_gector/lib/src/decoder.dart",
+        "packages/quds_proofing_gector/lib/src/guards.dart",
+        "packages/quds_proofing_gector/lib/src/native_backend.dart",
+        "packages/quds_proofing_gector/lib/src/segmentation.dart",
+        "packages/quds_proofing_gector/test/duplicate_role_guards_test.dart",
+        "packages/quds_proofing_gector/test/inference_reuse_test.dart",
+        "packages/quds_proofing_gector/test/native_backend_test.dart",
+        "packages/quds_proofing_gector/test/runner_inputs_test.dart",
+        "tools/proofing/german_model/README.md",
+        "tools/proofing/german_model/evaluate_candidate.py",
+        "tools/proofing/german_model/run_gector_dart.dart",
+        "tools/proofing/german_model/test_candidate_admission.py"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 427
+    },
+    {
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "refs": [
+        "refs/remotes/origin/feat/odt-first-even-headers",
+        "refs/remotes/pull/133"
+      ],
+      "merge_base": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "changed_paths_count": 2,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 0
+    },
+    {
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "refs": [
+        "refs/remotes/origin/docs/native-spacy-handoff-20261117",
+        "refs/remotes/pull/131"
+      ],
+      "merge_base": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "changed_paths_count": 9,
+      "changed_code": [
+        "README.md"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 8
+    },
+    {
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "refs": [
+        "refs/remotes/origin/vendor/odp-preset-shapes"
+      ],
+      "merge_base": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "changed_paths_count": 2,
+      "changed_code": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart"
+      ],
+      "new_paths": [],
+      "documentation_changed_count": 0
+    }
+  ]
+}

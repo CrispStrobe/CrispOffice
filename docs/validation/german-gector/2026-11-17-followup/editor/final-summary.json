@@ -1,0 +1,43 @@
+{
+  "start_utc": "2026-11-17T19:49:55.189143+00:00",
+  "elapsed_seconds": 15.140205130002869,
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/platform_spelling_provider_test.dart",
+    "test/word_german_grammar_integration_test.dart",
+    "test/word_hyphenation_caret_test.dart",
+    "test/word_hyphenation_paint_test.dart",
+    "test/word_hyphenation_resume_test.dart",
+    "test/word_hyphenation_source_presentation_test.dart",
+    "test/word_manual_proofing_test.dart",
+    "test/word_proofing_context_test.dart",
+    "test/word_proofing_correction_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_proofing_session_test.dart"
+  ],
+  "source_stable": true,
+  "passed": 189,
+  "failed": 0,
+  "skipped": 0,
+  "test_files": [
+    "packages/quds_office_editor/test/platform_spelling_provider_test.dart",
+    "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+    "packages/quds_office_editor/test/word_hyphenation_caret_test.dart",
+    "packages/quds_office_editor/test/word_hyphenation_paint_test.dart",
+    "packages/quds_office_editor/test/word_hyphenation_resume_test.dart",
+    "packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart",
+    "packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "packages/quds_office_editor/test/word_proofing_correction_test.dart",
+    "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart"
+  ]
+}
