@@ -1,0 +1,3525 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded post-cutoff arrival checkpoint",
+  "created_utc": "2026-11-17 14:20:07 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "continuation_base": "e239bd7e54321b884cc5550da3defeabe7a0a9b8",
+  "continuation_base_tree": "233620997e87c64787ad87eee7e967ded982eac2",
+  "fixed_initial_inventory": "incoming-inventory.json",
+  "fixed_initial_inventory_unchanged": true,
+  "observation": "arrival-observation.json",
+  "observation_blob": "93cd7a8de21ef6a56483f13928ed28243e1438ab",
+  "status": "Source integration pending; exact captured arrivals only",
+  "limits": {
+    "ci_or_status_endpoints_queried": false,
+    "runtime_tests_executed": false,
+    "analysis_or_formatter_executed": false,
+    "local_shell_unavailable": "bwrap cannot create workspace .git placeholder: No space left on device"
+  },
+  "arrivals": [
+    {
+      "branch": "office",
+      "tip": "685b341333dc260db0734658d67798a72b33868c",
+      "merge_base": "8106752eb410a6c2f66ff03c3fa983123760058d",
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 2,
+        "behind_by": 10,
+        "total_commits": 2,
+        "base_commit": "e239bd7e54321b884cc5550da3defeabe7a0a9b8",
+        "merge_base_commit": "8106752eb410a6c2f66ff03c3fa983123760058d",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/compare/e239bd7e54321b884cc5550da3defeabe7a0a9b8...685b341333dc260db0734658d67798a72b33868c"
+      },
+      "classification": [
+        {
+          "path": ".github/workflows/german-gector-qualification.yml",
+          "status": "already_identical",
+          "base": {
+            "sha": "b517d03f5a098c20929da12fa0bbe63a7bd66d1f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "807e4b3f181160ca5125561480622283db54c6b5",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "807e4b3f181160ca5125561480622283db54c6b5",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/PROOFING.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "58a5282dc42c5a376bb23309aea139c8103b032a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/roadmaps/german-gector-proofing.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "211486c0760e4d2e33cc7c830620a811921c056e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/cases.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "173299a8a376f7086843ab49831cce4e646761cc",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "173299a8a376f7086843ab49831cce4e646761cc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/cases.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/baseline.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "6f8e55179a9da0dd16469dc0ea4036cb85d26db4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/archive-integrity.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/continuity.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/accuracy-and-variant-check.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/all-buckets-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/analysis-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/editor-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/engine-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "21e696f6581091985a796ada117202d801ae7e5b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "21e696f6581091985a796ada117202d801ae7e5b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-long-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-short-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-bundle-sha256.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-license-collection.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/source-binding.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "6d865bb2a808ca02ae6fdd9b7d6d9b317ad5f445",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "e40ae18b89f8796155b6c27305ece3ffd5a489e9",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e40ae18b89f8796155b6c27305ece3ffd5a489e9",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/checkpoint-history.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c3e836a109d09d42f35287c70612b9ad2f43f501",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c3e836a109d09d42f35287c70612b9ad2f43f501",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/final-canonical-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "38dfbfc921da81094c8921b09a781cfe415aac61",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "38dfbfc921da81094c8921b09a781cfe415aac61",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/final-canonical-static-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "f95f6124a5d90dcabf3928e0d340b1ef448c3fb4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f95f6124a5d90dcabf3928e0d340b1ef448c3fb4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "20c8b23b13c697e72df9f8dc24ce1e6ab3ba1dd9",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "20c8b23b13c697e72df9f8dc24ce1e6ab3ba1dd9",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "e13062098a0790cb7227ecae9c44d8060dd73d14",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e13062098a0790cb7227ecae9c44d8060dd73d14",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9c3c2c15a528e5796260af49820b0eb8e365379f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9c3c2c15a528e5796260af49820b0eb8e365379f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c36d717c3fbf57bb18dd136b21cf1b35461bfa43",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c36d717c3fbf57bb18dd136b21cf1b35461bfa43",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "89ec5f7f773ab049a29b1df92c96a1667d5a5ce2",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "89ec5f7f773ab049a29b1df92c96a1667d5a5ce2",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-source-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9438a082b79c4fd439cf44cc0227abf2e939414e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9438a082b79c4fd439cf44cc0227abf2e939414e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-amendment-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "abd0eee678cb0e32bbbde2998a24e53fddcf7d4a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "abd0eee678cb0e32bbbde2998a24e53fddcf7d4a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "f9f3b4a7491d19da75a89508adaa8342e085da1b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f9f3b4a7491d19da75a89508adaa8342e085da1b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "34db49c200cd1d9ecc366e4d5b2efc6f35b603f7",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "34db49c200cd1d9ecc366e4d5b2efc6f35b603f7",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "880a9aee283bb2d79e17e5bfd04516afc4b90f4a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "880a9aee283bb2d79e17e5bfd04516afc4b90f4a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-amendment-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "e19d5f1069b8babd32b7d1c81628d89cb5999510",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e19d5f1069b8babd32b7d1c81628d89cb5999510",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-amendment-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9ba50b8b3a269b1c43ee4ca7a443a5c99aa6c292",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9ba50b8b3a269b1c43ee4ca7a443a5c99aa6c292",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9e9fb057dd49498fdaec986ca34ba7364624409a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9e9fb057dd49498fdaec986ca34ba7364624409a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2512a6b731669935999d59556916a7483c25526c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2512a6b731669935999d59556916a7483c25526c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "ff0f5daca013affb1813b4557168f16ac9ddf0ee",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "ff0f5daca013affb1813b4557168f16ac9ddf0ee",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/quds-final-ref-audit.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "status": "both_changed",
+          "base": {
+            "sha": "4aef29f817a7a7701251e9cc5b82e975e0ca4f51",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "abae52f0d08b0cbe66c5c86c97f0f28e36de60aa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9f7e4ebbca093167a3acf135d8bdf03d17c7ea07",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+          "status": "already_identical",
+          "base": {
+            "sha": "11cb887770b044b57697384b124553e4e75a9719",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "0f566fb4fb5e73b055f0820f8c3e8518ca5cca9c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/summarize_qualification.py",
+          "status": "already_identical",
+          "base": {
+            "sha": "04614837c81b621de1e57ba7d1cd1460d344bdaa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/test_qualification.py",
+          "status": "already_identical",
+          "base": {
+            "sha": "f0bb6add0f15c142d025d148d57d5ddbe7763605",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "26cc8276da8a14a76bb5a62fc1b7392f37e03846",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-observation.json",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "deb9ef6b5970615f8237b0d50046570363f0f7eb",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "aacd461204f83f1af8d2f0d7547712447c0b2c9e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-observation.json",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "b42ceeee03b44f791adeba98ad4ec9a1e828fe14",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "37fe987db91c27a3d43b35c9c93797051b34278b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/runtime/runtime-receipt.json",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "0e96d613846b4cc68bd6f2ef96c19dc6be905fa5",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/runtime/setup.tar.gz",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "0a4f4d64e9e2e949691c4a699303a4780e02e1ca",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/verify_consumers.py",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "18bdc2428fd698bc1a84e415b49620dbc37e3219",
+            "mode": "100644",
+            "type": "blob"
+          }
+        }
+      ]
+    },
+    {
+      "branch": "morphology",
+      "tip": "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+      "merge_base": "8106752eb410a6c2f66ff03c3fa983123760058d",
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 5,
+        "behind_by": 9,
+        "total_commits": 5,
+        "base_commit": "e239bd7e54321b884cc5550da3defeabe7a0a9b8",
+        "merge_base_commit": "8106752eb410a6c2f66ff03c3fa983123760058d",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/compare/e239bd7e54321b884cc5550da3defeabe7a0a9b8...010d07fc81a1c87f6a2aae7915c9c020928b9465"
+      },
+      "classification": [
+        {
+          "path": ".github/workflows/german-gector-qualification.yml",
+          "status": "already_identical",
+          "base": {
+            "sha": "b517d03f5a098c20929da12fa0bbe63a7bd66d1f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "807e4b3f181160ca5125561480622283db54c6b5",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "807e4b3f181160ca5125561480622283db54c6b5",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/PROOFING.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "58a5282dc42c5a376bb23309aea139c8103b032a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/odf-export-fidelity.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "7d0160d1a1b08e0bcad9d0d5cb3bd37888d962ad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "7d0160d1a1b08e0bcad9d0d5cb3bd37888d962ad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "adc41d39d750bb7422486384f1ddbea480b247d3",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/roadmaps/german-gector-proofing.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "211486c0760e4d2e33cc7c830620a811921c056e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/cases.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "173299a8a376f7086843ab49831cce4e646761cc",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "173299a8a376f7086843ab49831cce4e646761cc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/cases.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/baseline.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "6f8e55179a9da0dd16469dc0ea4036cb85d26db4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/archive-integrity.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/continuity.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/accuracy-and-variant-check.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/all-buckets-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/analysis-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/editor-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/engine-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "21e696f6581091985a796ada117202d801ae7e5b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "21e696f6581091985a796ada117202d801ae7e5b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-long-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-short-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-bundle-sha256.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-license-collection.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/source-binding.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-continuation-20261117/README.md",
+          "status": "both_changed",
+          "base": {
+            "sha": "2361575940ba568c4104378efcd7c74433aa41ab",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "132b344abbde8ef862707215a26e8f9257495f4a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "71d5a0acf8b2a0f32caef05598849ae87ab4569c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-continuation-20261117/incoming-inventory.json",
+          "status": "already_identical",
+          "base": {
+            "sha": "714d4ecaf9fab3c58e4f2e93436adae587c31822",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "9717139d0017665ea7805419404be33ca375e291",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9717139d0017665ea7805419404be33ca375e291",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-continuation-20261117/incoming-reconciliation.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "8920dcaf30f45c7a0797aaf7ff812e241ddc271a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "8920dcaf30f45c7a0797aaf7ff812e241ddc271a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "6d865bb2a808ca02ae6fdd9b7d6d9b317ad5f445",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "e40ae18b89f8796155b6c27305ece3ffd5a489e9",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e40ae18b89f8796155b6c27305ece3ffd5a489e9",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/checkpoint-history.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c3e836a109d09d42f35287c70612b9ad2f43f501",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c3e836a109d09d42f35287c70612b9ad2f43f501",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/final-canonical-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "38dfbfc921da81094c8921b09a781cfe415aac61",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "38dfbfc921da81094c8921b09a781cfe415aac61",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/final-canonical-static-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "f95f6124a5d90dcabf3928e0d340b1ef448c3fb4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f95f6124a5d90dcabf3928e0d340b1ef448c3fb4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "20c8b23b13c697e72df9f8dc24ce1e6ab3ba1dd9",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "20c8b23b13c697e72df9f8dc24ce1e6ab3ba1dd9",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "e13062098a0790cb7227ecae9c44d8060dd73d14",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e13062098a0790cb7227ecae9c44d8060dd73d14",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9c3c2c15a528e5796260af49820b0eb8e365379f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9c3c2c15a528e5796260af49820b0eb8e365379f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c36d717c3fbf57bb18dd136b21cf1b35461bfa43",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c36d717c3fbf57bb18dd136b21cf1b35461bfa43",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "89ec5f7f773ab049a29b1df92c96a1667d5a5ce2",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "89ec5f7f773ab049a29b1df92c96a1667d5a5ce2",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-source-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9438a082b79c4fd439cf44cc0227abf2e939414e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9438a082b79c4fd439cf44cc0227abf2e939414e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-amendment-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "abd0eee678cb0e32bbbde2998a24e53fddcf7d4a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "abd0eee678cb0e32bbbde2998a24e53fddcf7d4a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "f9f3b4a7491d19da75a89508adaa8342e085da1b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f9f3b4a7491d19da75a89508adaa8342e085da1b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "34db49c200cd1d9ecc366e4d5b2efc6f35b603f7",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "34db49c200cd1d9ecc366e4d5b2efc6f35b603f7",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "880a9aee283bb2d79e17e5bfd04516afc4b90f4a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "880a9aee283bb2d79e17e5bfd04516afc4b90f4a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-amendment-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "e19d5f1069b8babd32b7d1c81628d89cb5999510",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e19d5f1069b8babd32b7d1c81628d89cb5999510",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-amendment-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9ba50b8b3a269b1c43ee4ca7a443a5c99aa6c292",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9ba50b8b3a269b1c43ee4ca7a443a5c99aa6c292",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9e9fb057dd49498fdaec986ca34ba7364624409a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9e9fb057dd49498fdaec986ca34ba7364624409a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2512a6b731669935999d59556916a7483c25526c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2512a6b731669935999d59556916a7483c25526c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "ff0f5daca013affb1813b4557168f16ac9ddf0ee",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "ff0f5daca013affb1813b4557168f16ac9ddf0ee",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/quds-final-ref-audit.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "b228bcd96191d35fd609022299983127c9204512",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "b228bcd96191d35fd609022299983127c9204512",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "932348e18672e1094719a0d1d60d55c973fe378b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/CHANGELOG.md",
+          "status": "incoming_only",
+          "base": {
+            "sha": "cc4c877887ed655492ee5fdc2748807b3290ea90",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "cc4c877887ed655492ee5fdc2748807b3290ea90",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "bb2f4cf3e743e8ab639c5d8aca6ebdb477310644",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "status": "both_changed",
+          "base": {
+            "sha": "4aef29f817a7a7701251e9cc5b82e975e0ca4f51",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "abae52f0d08b0cbe66c5c86c97f0f28e36de60aa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e0a85220651ea168b13b1aca080e6c5eb7dfed74",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+          "status": "already_identical",
+          "base": {
+            "sha": "11cb887770b044b57697384b124553e4e75a9719",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+          "status": "both_changed",
+          "base": {
+            "sha": "03974e9752325a979e25bb4512b4d6c95d1284d9",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "e79f52c766229b19ce30a065e15c591632dc075a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "b849dc12937decfe2ab774847c8c36363513b1bd",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "0f566fb4fb5e73b055f0820f8c3e8518ca5cca9c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/summarize_qualification.py",
+          "status": "already_identical",
+          "base": {
+            "sha": "04614837c81b621de1e57ba7d1cd1460d344bdaa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/test_qualification.py",
+          "status": "already_identical",
+          "base": {
+            "sha": "f0bb6add0f15c142d025d148d57d5ddbe7763605",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "c3f7de7928c3007a4e58e2e53f28f55c877ba9e2",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-observation.json",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "deb9ef6b5970615f8237b0d50046570363f0f7eb",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "aacd461204f83f1af8d2f0d7547712447c0b2c9e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-observation.json",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "b42ceeee03b44f791adeba98ad4ec9a1e828fe14",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-refs.tsv",
+          "status": "incoming_only",
+          "base": null,
+          "current": null,
+          "incoming": {
+            "sha": "37fe987db91c27a3d43b35c9c93797051b34278b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        }
+      ]
+    },
+    {
+      "branch": "gector",
+      "tip": "9f1ca6441e723646769d4b01211cb5f14edee1d7",
+      "merge_base": "8106752eb410a6c2f66ff03c3fa983123760058d",
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 2,
+        "behind_by": 12,
+        "total_commits": 2,
+        "base_commit": "e239bd7e54321b884cc5550da3defeabe7a0a9b8",
+        "merge_base_commit": "8106752eb410a6c2f66ff03c3fa983123760058d",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/compare/e239bd7e54321b884cc5550da3defeabe7a0a9b8...9f1ca6441e723646769d4b01211cb5f14edee1d7"
+      },
+      "classification": [
+        {
+          "path": ".github/workflows/german-gector-qualification.yml",
+          "status": "already_identical",
+          "base": {
+            "sha": "b517d03f5a098c20929da12fa0bbe63a7bd66d1f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "807e4b3f181160ca5125561480622283db54c6b5",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "807e4b3f181160ca5125561480622283db54c6b5",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/PROOFING.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "58a5282dc42c5a376bb23309aea139c8103b032a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/roadmaps/german-gector-proofing.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "211486c0760e4d2e33cc7c830620a811921c056e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/cases.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "173299a8a376f7086843ab49831cce4e646761cc",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "173299a8a376f7086843ab49831cce4e646761cc",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/cases.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-optimization/evidence.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/README.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-gector/2026-11-17-local-smoke/baseline.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "6f8e55179a9da0dd16469dc0ea4036cb85d26db4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/archive-integrity.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/continuity.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/exploratory-evidence.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/final-validation.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/morphology-corpora.tar.gz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/accuracy-and-variant-check.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/all-buckets-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/analysis-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/editor-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/engine-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "21e696f6581091985a796ada117202d801ae7e5b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "21e696f6581091985a796ada117202d801ae7e5b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/independent-review-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-long-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/timing-short-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-bundle-sha256.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-license-collection.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/qualification/web-receipt.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/german-morphology-20261117/source-binding.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "6d865bb2a808ca02ae6fdd9b7d6d9b317ad5f445",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "e40ae18b89f8796155b6c27305ece3ffd5a489e9",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e40ae18b89f8796155b6c27305ece3ffd5a489e9",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/checkpoint-history.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c3e836a109d09d42f35287c70612b9ad2f43f501",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c3e836a109d09d42f35287c70612b9ad2f43f501",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/final-canonical-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "38dfbfc921da81094c8921b09a781cfe415aac61",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "38dfbfc921da81094c8921b09a781cfe415aac61",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/final-canonical-static-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "f95f6124a5d90dcabf3928e0d340b1ef448c3fb4",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f95f6124a5d90dcabf3928e0d340b1ef448c3fb4",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "20c8b23b13c697e72df9f8dc24ce1e6ab3ba1dd9",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "20c8b23b13c697e72df9f8dc24ce1e6ab3ba1dd9",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "e13062098a0790cb7227ecae9c44d8060dd73d14",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e13062098a0790cb7227ecae9c44d8060dd73d14",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9c3c2c15a528e5796260af49820b0eb8e365379f",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9c3c2c15a528e5796260af49820b0eb8e365379f",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "c36d717c3fbf57bb18dd136b21cf1b35461bfa43",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "c36d717c3fbf57bb18dd136b21cf1b35461bfa43",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "89ec5f7f773ab049a29b1df92c96a1667d5a5ce2",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "89ec5f7f773ab049a29b1df92c96a1667d5a5ce2",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/note-source-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9438a082b79c4fd439cf44cc0227abf2e939414e",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9438a082b79c4fd439cf44cc0227abf2e939414e",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-amendment-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "abd0eee678cb0e32bbbde2998a24e53fddcf7d4a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "abd0eee678cb0e32bbbde2998a24e53fddcf7d4a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "f9f3b4a7491d19da75a89508adaa8342e085da1b",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "f9f3b4a7491d19da75a89508adaa8342e085da1b",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "34db49c200cd1d9ecc366e4d5b2efc6f35b603f7",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "34db49c200cd1d9ecc366e4d5b2efc6f35b603f7",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odf-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "880a9aee283bb2d79e17e5bfd04516afc4b90f4a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "880a9aee283bb2d79e17e5bfd04516afc4b90f4a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-amendment-independent-review.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "e19d5f1069b8babd32b7d1c81628d89cb5999510",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "e19d5f1069b8babd32b7d1c81628d89cb5999510",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-amendment-receipt-summary.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9ba50b8b3a269b1c43ee4ca7a443a5c99aa6c292",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9ba50b8b3a269b1c43ee4ca7a443a5c99aa6c292",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-amendment.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "9e9fb057dd49498fdaec986ca34ba7364624409a",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9e9fb057dd49498fdaec986ca34ba7364624409a",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-evidence.tar.xz",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2512a6b731669935999d59556916a7483c25526c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2512a6b731669935999d59556916a7483c25526c",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/odt-list-index.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "ff0f5daca013affb1813b4557168f16ac9ddf0ee",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "ff0f5daca013affb1813b4557168f16ac9ddf0ee",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "docs/validation/zotero-landing-20261117/quds-final-ref-audit.json",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "status": "both_changed",
+          "base": {
+            "sha": "4aef29f817a7a7701251e9cc5b82e975e0ca4f51",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "abae52f0d08b0cbe66c5c86c97f0f28e36de60aa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "9f7e4ebbca093167a3acf135d8bdf03d17c7ea07",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+          "status": "already_identical",
+          "base": {
+            "sha": "11cb887770b044b57697384b124553e4e75a9719",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md",
+          "status": "already_identical",
+          "base": null,
+          "current": {
+            "sha": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/proofing/README.md",
+          "status": "already_identical",
+          "base": {
+            "sha": "0f566fb4fb5e73b055f0820f8c3e8518ca5cca9c",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/summarize_qualification.py",
+          "status": "already_identical",
+          "base": {
+            "sha": "04614837c81b621de1e57ba7d1cd1460d344bdaa",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "mode": "100644",
+            "type": "blob"
+          }
+        },
+        {
+          "path": "tools/proofing/german_model/test_qualification.py",
+          "status": "already_identical",
+          "base": {
+            "sha": "f0bb6add0f15c142d025d148d57d5ddbe7763605",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "current": {
+            "sha": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "mode": "100644",
+            "type": "blob"
+          },
+          "incoming": {
+            "sha": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "mode": "100644",
+            "type": "blob"
+          }
+        }
+      ]
+    }
+  ],
+  "resolution_plan": {
+    "writer": "Retain current reviewed writer blob abae52f0d08b0cbe66c5c86c97f0f28e36de60aa. Office/GECToR differs only in guard and placement of identical registry; morphology executable guard is identical, with explanatory comment and registry placement differences.",
+    "note_test": "Retain current source and insert exact incoming before/after-comment test. Preserve current footnote/endnote and duplicate visible-reference tests.",
+    "source_attribution": "Incoming runtime receipts retain their author, source and execution attribution; this continuation does not claim to have executed them.",
+    "archives": [
+      {
+        "branch": "office",
+        "tip": "685b341333dc260db0734658d67798a72b33868c",
+        "path": "docs/validation/office-continuation-20261117/README.md",
+        "current": {
+          "sha": "132b344abbde8ef862707215a26e8f9257495f4a",
+          "mode": "100644"
+        },
+        "incoming": {
+          "sha": "2361575940ba568c4104378efcd7c74433aa41ab",
+          "mode": "100644",
+          "size": 13998
+        },
+        "archivePath": "docs/validation/office-continuation-20261117/arrivals/office/README.md"
+      },
+      {
+        "branch": "office",
+        "tip": "685b341333dc260db0734658d67798a72b33868c",
+        "path": "docs/validation/office-continuation-20261117/incoming-inventory.json",
+        "current": {
+          "sha": "9717139d0017665ea7805419404be33ca375e291",
+          "mode": "100644"
+        },
+        "incoming": {
+          "sha": "714d4ecaf9fab3c58e4f2e93436adae587c31822",
+          "mode": "100644",
+          "size": 30078
+        },
+        "archivePath": "docs/validation/office-continuation-20261117/arrivals/office/incoming-inventory.json"
+      },
+      {
+        "branch": "morphology",
+        "tip": "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+        "path": "docs/validation/office-continuation-20261117/README.md",
+        "current": {
+          "sha": "132b344abbde8ef862707215a26e8f9257495f4a",
+          "mode": "100644"
+        },
+        "incoming": {
+          "sha": "71d5a0acf8b2a0f32caef05598849ae87ab4569c",
+          "mode": "100644",
+          "size": 2027
+        },
+        "archivePath": "docs/validation/office-continuation-20261117/arrivals/morphology/README.md"
+      },
+      {
+        "branch": "gector",
+        "tip": "9f1ca6441e723646769d4b01211cb5f14edee1d7",
+        "path": "docs/validation/office-continuation-20261117/README.md",
+        "current": {
+          "sha": "132b344abbde8ef862707215a26e8f9257495f4a",
+          "mode": "100644"
+        },
+        "incoming": {
+          "sha": "2361575940ba568c4104378efcd7c74433aa41ab",
+          "mode": "100644",
+          "size": 13998
+        },
+        "archivePath": "docs/validation/office-continuation-20261117/arrivals/gector/README.md"
+      },
+      {
+        "branch": "gector",
+        "tip": "9f1ca6441e723646769d4b01211cb5f14edee1d7",
+        "path": "docs/validation/office-continuation-20261117/incoming-inventory.json",
+        "current": {
+          "sha": "9717139d0017665ea7805419404be33ca375e291",
+          "mode": "100644"
+        },
+        "incoming": {
+          "sha": "714d4ecaf9fab3c58e4f2e93436adae587c31822",
+          "mode": "100644",
+          "size": 30078
+        },
+        "archivePath": "docs/validation/office-continuation-20261117/arrivals/gector/incoming-inventory.json"
+      },
+      {
+        "branch": "morphology",
+        "tip": "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+        "path": "docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+        "current": {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "26cc8276da8a14a76bb5a62fc1b7392f37e03846",
+          "size": 1533,
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/blobs/26cc8276da8a14a76bb5a62fc1b7392f37e03846"
+        },
+        "incoming": {
+          "path": "docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c3f7de7928c3007a4e58e2e53f28f55c877ba9e2",
+          "size": 1208,
+          "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/blobs/c3f7de7928c3007a4e58e2e53f28f55c877ba9e2"
+        },
+        "archivePath": "docs/validation/office-continuation-20261117/arrivals/morphology/docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+        "reason": "Divergent incoming evidence; office variant retained at original path"
+      }
+    ],
+    "copy_entries": [
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/incoming/integration.json",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "26cc8276da8a14a76bb5a62fc1b7392f37e03846",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-observation.json",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "deb9ef6b5970615f8237b0d50046570363f0f7eb",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/incoming/origin-refs.tsv",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "aacd461204f83f1af8d2f0d7547712447c0b2c9e",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-observation.json",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "b42ceeee03b44f791adeba98ad4ec9a1e828fe14",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/incoming/upstream-refs.tsv",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "37fe987db91c27a3d43b35c9c93797051b34278b",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/runtime/runtime-receipt.json",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "0e96d613846b4cc68bd6f2ef96c19dc6be905fa5",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/runtime/setup.tar.gz",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "0a4f4d64e9e2e949691c4a699303a4780e02e1ca",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/office-fidelity-resume-20261117/verify_consumers.py",
+        "source_commit": "685b341333dc260db0734658d67798a72b33868c",
+        "branch": "office",
+        "sha": "18bdc2428fd698bc1a84e415b49620dbc37e3219",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/odf-export-fidelity.md",
+        "source_commit": "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+        "branch": "morphology",
+        "sha": "adc41d39d750bb7422486384f1ddbea480b247d3",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_editor/CHANGELOG.md",
+        "source_commit": "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+        "branch": "morphology",
+        "sha": "932348e18672e1094719a0d1d60d55c973fe378b",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/CHANGELOG.md",
+        "source_commit": "010d07fc81a1c87f6a2aae7915c9c020928b9465",
+        "branch": "morphology",
+        "sha": "bb2f4cf3e743e8ab639c5d8aca6ebdb477310644",
+        "mode": "100644"
+      }
+    ]
+  }
+}
