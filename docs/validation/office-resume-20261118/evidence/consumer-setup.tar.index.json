@@ -1,0 +1,170 @@
+{
+  "archive": "consumer-setup.tar.xz",
+  "bytes": 163516,
+  "sha256": "048ac47a59fee4262d49933034c4f3ff4789d827eb6bc7fd01d9d849cfe62033",
+  "member_count": 32,
+  "all_members_read_back_and_verified": true,
+  "scope": "Consumer runtime recovery and historical frame evidence audit; no new product qualification.",
+  "members": [
+    {
+      "path": "consumer-recovery/restore_runtime.py",
+      "bytes": 6478,
+      "sha256": "98d93e6281920cf5aa71f4446e31338d1785a6f4230b0c1e32b7efc1044256fa"
+    },
+    {
+      "path": "consumer-recovery/verify_runtime.py",
+      "bytes": 3027,
+      "sha256": "11e7442bb47aaf634236109c1bc849ddebf552ea837954c9da39397a9e3940c3"
+    },
+    {
+      "path": "consumer-runtime/env.sh",
+      "bytes": 748,
+      "sha256": "b49891b256a8f945c9b1362ce7ef50c0599271b4cb55cf32357773a47400adc6"
+    },
+    {
+      "path": "consumer-runtime/logs/java-version.stderr",
+      "bytes": 181,
+      "sha256": "0fc83381287ccbc8623d257bce2b0d03997ba0e85ff4492d38b409aea37a8aa9"
+    },
+    {
+      "path": "consumer-runtime/logs/java-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/logs/pdfinfo-version.stderr",
+      "bytes": 143,
+      "sha256": "56221b4464aa8299b97e80d0fc7efcdb23d7a4146aa304611ec9e5c9c7984001"
+    },
+    {
+      "path": "consumer-runtime/logs/pdfinfo-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/logs/pdftoppm-version.stderr",
+      "bytes": 144,
+      "sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286"
+    },
+    {
+      "path": "consumer-runtime/logs/pdftoppm-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/logs/pdftotext-version.stderr",
+      "bytes": 145,
+      "sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0"
+    },
+    {
+      "path": "consumer-runtime/logs/pdftotext-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/logs/soffice-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/logs/soffice-version.stdout",
+      "bytes": 73,
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89"
+    },
+    {
+      "path": "consumer-runtime/recovery.json",
+      "bytes": 1276217,
+      "sha256": "96423a2076dba4dfc8e903e87ff6ad72f1faa10258899e85e8257decbd146636"
+    },
+    {
+      "path": "consumer-runtime/smoke/historical-extraction.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/historical-extraction.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/historical-render.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/historical-render.stdout",
+      "bytes": 274,
+      "sha256": "1da3fccb0f35898b7bccefa62901fa8ba133cbac736405031f54da644c67087c"
+    },
+    {
+      "path": "consumer-runtime/smoke/invalid-field-attribute.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/invalid-field-attribute.stdout",
+      "bytes": 270,
+      "sha256": "81d2e80922ce48c0a8db5c540855af02dc423bedc104b317a5e968a66f518980"
+    },
+    {
+      "path": "consumer-runtime/smoke/invalid-field-child-span.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/invalid-field-child-span.stdout",
+      "bytes": 224,
+      "sha256": "58fa37f780438a4e90b29f3e71401929f9eb1d6f52c176e05f305b6f26f93a55"
+    },
+    {
+      "path": "consumer-runtime/smoke/linked-styled-page-count.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/linked-styled-page-count.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/receipt.json",
+      "bytes": 4733,
+      "sha256": "67a9e55618d3bbdac834f4defcd060a4722ce3da11726a9a927c2064d50c0a7c"
+    },
+    {
+      "path": "consumer-runtime/smoke/toc-fields.bbox.xhtml",
+      "bytes": 3784,
+      "sha256": "bcbe13465b1b0a74c69ad42c0a97d072a18922f3d1794a11080855a2a372c868"
+    },
+    {
+      "path": "consumer-runtime/smoke/toc-fields.pdf",
+      "bytes": 22000,
+      "sha256": "4b76d5b85f5da12caced79f69c04daf6b8a940a4b8485fe43cc0aab59b0824aa"
+    },
+    {
+      "path": "consumer-runtime/smoke/unchanged-styled-page-count.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumer-runtime/smoke/unchanged-styled-page-count.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "frame-baseline-audit.json",
+      "bytes": 20976,
+      "sha256": "f272e25b052a717953c49704c3119365ea49196c4b73c767e0c74e44cfd12afa"
+    },
+    {
+      "path": "frame-baseline-restoration.json",
+      "bytes": 424,
+      "sha256": "4015e684f7a0905d4842ca5fce72d9e74bc06439d2962cb2bfc88e5537918901"
+    },
+    {
+      "path": "run_consumer_gate.py",
+      "bytes": 4636,
+      "sha256": "601770ddf25a268a0a89c3416349d0175be6e15f322dac104da8d3860c9377f6"
+    }
+  ]
+}

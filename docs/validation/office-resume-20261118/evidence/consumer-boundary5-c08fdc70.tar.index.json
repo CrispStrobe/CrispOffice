@@ -1,0 +1,902 @@
+{
+  "archive": "consumer-boundary5-c08fdc70.tar.xz",
+  "bytes": 750668,
+  "sha256": "921930819f6f4755e57f454f4537a5f1fe7ce82c87b6ac38206f9378c2e63309",
+  "source_commit": "c08fdc703acd986850ce6d1c079a0576fd438046",
+  "gate": "boundary5",
+  "member_count": 178,
+  "all_members_read_back_and_verified": true,
+  "excluded": "Disposable profile/cache/temp directories only; all raw fixture/output/receipt/hash maps retained.",
+  "members": [
+    {
+      "path": "guard/child.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "guard/child.stdout.log",
+      "bytes": 156,
+      "sha256": "ea7570c90e41d69761245ea3d76e8042c684ee9a1964234b61e2bfc67fd8306e"
+    },
+    {
+      "path": "guard/inputs-after.json.gz",
+      "bytes": 652943,
+      "sha256": "8d887d6cc00de32034dc32e63cf30bc6ea45a96184ca32e45ab8a9b6b5cfd766"
+    },
+    {
+      "path": "guard/inputs-before.json.gz",
+      "bytes": 652944,
+      "sha256": "2ecea255878ab8b7cb32713a65c48408e7f468319b14ccd95fc1b5ff9cbee972"
+    },
+    {
+      "path": "guard/receipt.json",
+      "bytes": 1742,
+      "sha256": "e18af055812b0dd26d2ff57656831b9d125c122ec3e65634eb5b2638565824e5"
+    },
+    {
+      "path": "invocation.json",
+      "bytes": 4296,
+      "sha256": "7e36c448d48eb040d3779345a9024a9566b08d53b6e2e9393336a6e1fbacf63b"
+    },
+    {
+      "path": "launcher.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "launcher.stdout.log",
+      "bytes": 1742,
+      "sha256": "e18af055812b0dd26d2ff57656831b9d125c122ec3e65634eb5b2638565824e5"
+    },
+    {
+      "path": "run/fixtures/fixtures.json",
+      "bytes": 2762,
+      "sha256": "0cfbcefa1841e2fa524f3409dac3034d17b6ee8bdc5fcae2fe91f774923dd12d"
+    },
+    {
+      "path": "run/fixtures/later-continuous.direct.odt",
+      "bytes": 3066,
+      "sha256": "19872a1e34dd968720b430d8309aa92e3809387505446ec196f20efc949983e9"
+    },
+    {
+      "path": "run/fixtures/later-continuous.imported.odt",
+      "bytes": 3122,
+      "sha256": "3084ff923c622a3f439ee972ff6ad78f2a272fa446f031670cd72f070620dff8"
+    },
+    {
+      "path": "run/fixtures/later-continuous.models.json",
+      "bytes": 2719,
+      "sha256": "2fff94e045fc48850aa13e59b8595b1e29c08695adf77ad6adeabde2e4175df8"
+    },
+    {
+      "path": "run/fixtures/later-continuous.source.docx",
+      "bytes": 5257,
+      "sha256": "16ed214b37bae1a29c48bc8ce8dbb0f920aab75aee1d5ddf15a2c24867ef315e"
+    },
+    {
+      "path": "run/fixtures/later-even-page.direct.odt",
+      "bytes": 3125,
+      "sha256": "157687799ecf26413c1d58749fbcb4c978b1a4e3585a2d0906bebd703878b471"
+    },
+    {
+      "path": "run/fixtures/later-even-page.imported.odt",
+      "bytes": 3181,
+      "sha256": "b32adc4c489cf07c52d454d04dceb10c4aeef5c4973a1ae7b54f5e238833cda2"
+    },
+    {
+      "path": "run/fixtures/later-even-page.models.json",
+      "bytes": 2655,
+      "sha256": "298f548b6a670a86d0fa88d32b792c3f548fbf690581d9031f924322ce32d65c"
+    },
+    {
+      "path": "run/fixtures/later-even-page.source.docx",
+      "bytes": 5252,
+      "sha256": "9633404bd9ad2be0d6ef7ccc0a32c61506c0f7cb70446ed4f1df8dcc9a71844f"
+    },
+    {
+      "path": "run/fixtures/later-next-page.direct.odt",
+      "bytes": 3080,
+      "sha256": "b6c6696dc2456945eb25152d1d1bf20827a4c48137b7c1b37b47719ad439b89c"
+    },
+    {
+      "path": "run/fixtures/later-next-page.imported.odt",
+      "bytes": 3136,
+      "sha256": "07db04d44125f5e44c7e080ec09452da39c82fa18ba3e7c398beb963aafe9209"
+    },
+    {
+      "path": "run/fixtures/later-next-page.models.json",
+      "bytes": 2655,
+      "sha256": "d96a35a5daa2191f083a3d9bd0427db441d5bc45a54d3b1ee8dabf5d0a3b6066"
+    },
+    {
+      "path": "run/fixtures/later-next-page.source.docx",
+      "bytes": 5247,
+      "sha256": "e8d36e68f114e1dec8b686950ed54d103c281cc39e625377f6439deff6c0cb4c"
+    },
+    {
+      "path": "run/fixtures/later-odd-page.direct.odt",
+      "bytes": 3122,
+      "sha256": "155f91157be12f0b4749edfa2683a10d3024e6c46d0fb86ed94e860715106a8d"
+    },
+    {
+      "path": "run/fixtures/later-odd-page.imported.odt",
+      "bytes": 3178,
+      "sha256": "83791147572f4335bcd1133bd7ba447bbce3025294a46796546d67be8ecef748"
+    },
+    {
+      "path": "run/fixtures/later-odd-page.models.json",
+      "bytes": 2643,
+      "sha256": "ee53730693f6a1470f9b0c646fc7fc3e808177fd5da3de77657387d58e1c8e3f"
+    },
+    {
+      "path": "run/fixtures/later-odd-page.source.docx",
+      "bytes": 5251,
+      "sha256": "42daeaf38ba919fa79573ee06c428a41ae5b26ad6ff1cde4c757539ad1a3fa37"
+    },
+    {
+      "path": "run/fixtures/paragraph-page-then-column.direct.odt",
+      "bytes": 3009,
+      "sha256": "e6a664639c8af189861b46a069c251904879a738de17e69cfbc06ae1fe7a841a"
+    },
+    {
+      "path": "run/fixtures/paragraph-page-then-column.imported.odt",
+      "bytes": 3065,
+      "sha256": "5856926708490fbaff36f133cf0503970935bbcd2f74886d74950531eb2de4f7"
+    },
+    {
+      "path": "run/fixtures/paragraph-page-then-column.models.json",
+      "bytes": 2479,
+      "sha256": "66dc02326581c88e628787e8f1496658535a85576f4abe57a72c8be05134ef54"
+    },
+    {
+      "path": "run/fixtures/paragraph-page-then-column.source.docx",
+      "bytes": 5253,
+      "sha256": "eab7bf22fd052ec4856e79c562a7d0e55f55d57af00cbe38f04f0630e0ac8d11"
+    },
+    {
+      "path": "run/inputs-after.json",
+      "bytes": 74368,
+      "sha256": "af211639de6c419140e2ac4b6c488bf7d84e4d68d70423ed24e9d1da665450b0"
+    },
+    {
+      "path": "run/inputs-before.json",
+      "bytes": 74368,
+      "sha256": "af211639de6c419140e2ac4b6c488bf7d84e4d68d70423ed24e9d1da665450b0"
+    },
+    {
+      "path": "run/logs/bbox-later-continuous.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-continuous.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-continuous.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-continuous.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-continuous.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-continuous.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-even-page.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-even-page.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-even-page.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-even-page.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-even-page.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-even-page.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-next-page.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-next-page.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-next-page.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-next-page.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-next-page.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-next-page.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-odd-page.direct.stderr",
+      "bytes": 13,
+      "sha256": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9"
+    },
+    {
+      "path": "run/logs/bbox-later-odd-page.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-odd-page.imported.stderr",
+      "bytes": 13,
+      "sha256": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9"
+    },
+    {
+      "path": "run/logs/bbox-later-odd-page.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-later-odd-page.source.stderr",
+      "bytes": 13,
+      "sha256": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9"
+    },
+    {
+      "path": "run/logs/bbox-later-odd-page.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-paragraph-page-then-column.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-paragraph-page-then-column.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-paragraph-page-then-column.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-paragraph-page-then-column.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-paragraph-page-then-column.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/bbox-paragraph-page-then-column.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/dart-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/dart-version.stdout",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "run/logs/fixtures.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/fixtures.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/pdftotext-version.stderr",
+      "bytes": 145,
+      "sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0"
+    },
+    {
+      "path": "run/logs/pdftotext-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/render-pdf.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/render-pdf.stdout",
+      "bytes": 5161,
+      "sha256": "c5cb8d436e3ab7489c050facf5859a4ae7dd68c59ca88a62d60bbf171cfdc97e"
+    },
+    {
+      "path": "run/logs/reopen-docx.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/reopen-docx.stdout",
+      "bytes": 2974,
+      "sha256": "133b045598db22280356227f5610a3716c5265480682632396e9cc563f2d1a70"
+    },
+    {
+      "path": "run/logs/soffice-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run/logs/soffice-version.stdout",
+      "bytes": 73,
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89"
+    },
+    {
+      "path": "run/pdf/later-continuous.direct.bbox.xhtml",
+      "bytes": 876,
+      "sha256": "9c7dfeabec374213f9b307494137fa25c7154db98ce43746da8ffb267e1a1c65"
+    },
+    {
+      "path": "run/pdf/later-continuous.direct.pdf",
+      "bytes": 12732,
+      "sha256": "d59d6cbf27392f90479fe8c162973e27073d3cbebcb704b48bb8be54efeeb4ff"
+    },
+    {
+      "path": "run/pdf/later-continuous.imported.bbox.xhtml",
+      "bytes": 876,
+      "sha256": "9c7dfeabec374213f9b307494137fa25c7154db98ce43746da8ffb267e1a1c65"
+    },
+    {
+      "path": "run/pdf/later-continuous.imported.pdf",
+      "bytes": 12732,
+      "sha256": "f2ab58bf6a2224398030099d58bdd312101b4004cd4d74803cfce02ca160e836"
+    },
+    {
+      "path": "run/pdf/later-continuous.source.bbox.xhtml",
+      "bytes": 876,
+      "sha256": "9c7dfeabec374213f9b307494137fa25c7154db98ce43746da8ffb267e1a1c65"
+    },
+    {
+      "path": "run/pdf/later-continuous.source.pdf",
+      "bytes": 12732,
+      "sha256": "933fe411492b887a2e581dd3a07ad06e769e3a77543ea864975d85d800f79bbf"
+    },
+    {
+      "path": "run/pdf/later-even-page.direct.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "9a55a1a8b6b0bdf78986ffc417e4263987ad48b60e4dff5a7fffc8f801df0c2d"
+    },
+    {
+      "path": "run/pdf/later-even-page.direct.pdf",
+      "bytes": 12829,
+      "sha256": "80f332076a32b78c712e8b78a6dfb336a2fa0415ec240b5f4538daa650d29948"
+    },
+    {
+      "path": "run/pdf/later-even-page.imported.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "9a55a1a8b6b0bdf78986ffc417e4263987ad48b60e4dff5a7fffc8f801df0c2d"
+    },
+    {
+      "path": "run/pdf/later-even-page.imported.pdf",
+      "bytes": 12829,
+      "sha256": "8ee8d0f8c8226ef0ba18ec3c95686363d2027b361e9f1b39659ce8030ac714f6"
+    },
+    {
+      "path": "run/pdf/later-even-page.source.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "b234408477486a8192f573d4f28dc9f632b651894679ff3ae19a3d1ed423680d"
+    },
+    {
+      "path": "run/pdf/later-even-page.source.pdf",
+      "bytes": 12829,
+      "sha256": "51612eb25c97fd8e3571b009fae3af3d3cef2f08201daac5864ddb074863ee55"
+    },
+    {
+      "path": "run/pdf/later-next-page.direct.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "d8f87f78d2eb402f1dacd034590d204b3dd8e64e5a383a8062c87229c506941e"
+    },
+    {
+      "path": "run/pdf/later-next-page.direct.pdf",
+      "bytes": 12953,
+      "sha256": "c07b21aa4f019d432096b22c4ad7c4e2b9a6524b5caeeadc1a445cbe12816154"
+    },
+    {
+      "path": "run/pdf/later-next-page.imported.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "d8f87f78d2eb402f1dacd034590d204b3dd8e64e5a383a8062c87229c506941e"
+    },
+    {
+      "path": "run/pdf/later-next-page.imported.pdf",
+      "bytes": 12953,
+      "sha256": "578231e7faab68af6c779543dfbf5da2c35dd7953ec70caa310e32ec9a26dd34"
+    },
+    {
+      "path": "run/pdf/later-next-page.source.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "d8f87f78d2eb402f1dacd034590d204b3dd8e64e5a383a8062c87229c506941e"
+    },
+    {
+      "path": "run/pdf/later-next-page.source.pdf",
+      "bytes": 12953,
+      "sha256": "ec6a406fe8701170a47e383638bf5e4798c977a0db4c55a95793f236fcb3d44a"
+    },
+    {
+      "path": "run/pdf/later-odd-page.direct.bbox.xhtml",
+      "bytes": 961,
+      "sha256": "f99a5905eabefffb08dfd7dfd6f40ac54d8f53ed94461668b877b84d480f935b"
+    },
+    {
+      "path": "run/pdf/later-odd-page.direct.pdf",
+      "bytes": 12977,
+      "sha256": "6ff40632634be6bc57624376d1b4f4252b5401f1171f74383ba8b707418f5659"
+    },
+    {
+      "path": "run/pdf/later-odd-page.imported.bbox.xhtml",
+      "bytes": 961,
+      "sha256": "f99a5905eabefffb08dfd7dfd6f40ac54d8f53ed94461668b877b84d480f935b"
+    },
+    {
+      "path": "run/pdf/later-odd-page.imported.pdf",
+      "bytes": 12977,
+      "sha256": "bdd64c163707cecc407a796a39c35886b070baebc9db29e35ca364b65bddeef9"
+    },
+    {
+      "path": "run/pdf/later-odd-page.source.bbox.xhtml",
+      "bytes": 961,
+      "sha256": "f99a5905eabefffb08dfd7dfd6f40ac54d8f53ed94461668b877b84d480f935b"
+    },
+    {
+      "path": "run/pdf/later-odd-page.source.pdf",
+      "bytes": 12977,
+      "sha256": "132627814ba14a1e83daa0dd0ed487e16d36feed9e2f7e0179a8683c79e47830"
+    },
+    {
+      "path": "run/pdf/paragraph-page-then-column.direct.bbox.xhtml",
+      "bytes": 921,
+      "sha256": "b39e2c6abcdf719d4148a5d81ab1d7071bcd34aaa4f85c91cbe925511d15657e"
+    },
+    {
+      "path": "run/pdf/paragraph-page-then-column.direct.pdf",
+      "bytes": 13463,
+      "sha256": "7d0f26eed1ce505c7e2c8bff5588a860e76e728cbbe27a3bd5fb4c00cdaee4ed"
+    },
+    {
+      "path": "run/pdf/paragraph-page-then-column.imported.bbox.xhtml",
+      "bytes": 921,
+      "sha256": "b39e2c6abcdf719d4148a5d81ab1d7071bcd34aaa4f85c91cbe925511d15657e"
+    },
+    {
+      "path": "run/pdf/paragraph-page-then-column.imported.pdf",
+      "bytes": 13463,
+      "sha256": "90623cacfda8ca83066e4435a6242d85154cf83a625848ffebd906371892f0e5"
+    },
+    {
+      "path": "run/pdf/paragraph-page-then-column.source.bbox.xhtml",
+      "bytes": 919,
+      "sha256": "569f902aaaf541c9964f619556ed47aff0e34fa0adfa77749f46468b0ad073fe"
+    },
+    {
+      "path": "run/pdf/paragraph-page-then-column.source.pdf",
+      "bytes": 13462,
+      "sha256": "dce8fea18e6461c24f548c8374593f6513bb833aeded2e810d0151c6bce0abc4"
+    },
+    {
+      "path": "run/profiles/docx/user/autotext/mytexts.bau",
+      "bytes": 557,
+      "sha256": "7eb002c35131ec0d3103ad2ab2df79b396eb76bf2493828e633b5690fc29a4a1"
+    },
+    {
+      "path": "run/profiles/docx/user/basic/Standard/Module1.xba",
+      "bytes": 1124,
+      "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+    },
+    {
+      "path": "run/profiles/docx/user/basic/Standard/dialog.xlb",
+      "bytes": 288,
+      "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+    },
+    {
+      "path": "run/profiles/docx/user/basic/Standard/script.xlb",
+      "bytes": 349,
+      "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+    },
+    {
+      "path": "run/profiles/docx/user/basic/dialog.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "run/profiles/docx/user/basic/script.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "run/profiles/docx/user/config/autotbl.fmt",
+      "bytes": 35313,
+      "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+    },
+    {
+      "path": "run/profiles/docx/user/database/biblio/biblio.dbf",
+      "bytes": 75798,
+      "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+    },
+    {
+      "path": "run/profiles/docx/user/database/biblio/biblio.dbt",
+      "bytes": 46601,
+      "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+    },
+    {
+      "path": "run/profiles/docx/user/database/biblio.odb",
+      "bytes": 2892,
+      "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+    },
+    {
+      "path": "run/profiles/docx/user/database/evolocal.odb",
+      "bytes": 3759,
+      "sha256": "c72f8fd2b0e8f2b90e967a4cc29ae2f6333901a25862d69a81fc47fe44a444df"
+    },
+    {
+      "path": "run/profiles/docx/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "run/profiles/docx/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "run/profiles/docx/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "run/profiles/docx/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "run/profiles/docx/user/gallery/sg30.sdv",
+      "bytes": 2048,
+      "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+    },
+    {
+      "path": "run/profiles/docx/user/gallery/sg30.thm",
+      "bytes": 565,
+      "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/ExtensionInfo.pack",
+      "bytes": 32,
+      "sha256": "8f94c7bcb2083a786f6e479c41c0b6b9edea5ef8d6c7afb767b1424ec2e1186f"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/autotext/mytexts.pack",
+      "bytes": 403,
+      "sha256": "002d52262669c997c29a5d9acf25889f34409a3681d02462152e734ed2c7e8a8"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/basic/Standard/Module1.pack",
+      "bytes": 644,
+      "sha256": "fe0861e0d877fa3649f03890b80a99adb2a0625e158c4dd1d932515d339bca5a"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/basic/Standard/dialog.pack",
+      "bytes": 220,
+      "sha256": "48f7e1fdd8661f0be6e676f55c9e0d0ccdfffbee9c67dd977d951129e45648fb"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/basic/Standard/script.pack",
+      "bytes": 241,
+      "sha256": "6961af566352be513bb45dbcc2b92151b0833b59cb65bee346919d31a69d788a"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/basic/dialog.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/basic/script.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/config/autotbl.pack",
+      "bytes": 1780,
+      "sha256": "1d3e419163e832bfba4c7f8424dd268cca313564ae87b1ede785b6488db6238a"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/database/biblio/biblio.pack",
+      "bytes": 2147,
+      "sha256": "d0db6a1f5a456ffe7ec476e6dda13eef51628deafea9f80d23e6cdc366776d4e"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/database/biblio.pack",
+      "bytes": 2432,
+      "sha256": "093d969bcb085884376e2c69353852e5a57fe7614de2257097984dcc29043b2e"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/database/evolocal.pack",
+      "bytes": 1203,
+      "sha256": "9555163d322df5d630457d72562431f39e384beedce6ab8329d99f06b590afbd"
+    },
+    {
+      "path": "run/profiles/docx/user/pack/registrymodifications.pack",
+      "bytes": 964,
+      "sha256": "0b4801300cc90702335c338af13383f50c5d546b36140ccc20cc0acbe7a19afb"
+    },
+    {
+      "path": "run/profiles/docx/user/registrymodifications.xcu",
+      "bytes": 8479,
+      "sha256": "62b4364f4a725342c8ac2d24ca99b991d0c7869fce36c055b784b4f6e6b60621"
+    },
+    {
+      "path": "run/profiles/docx/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "run/profiles/docx/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "run/profiles/pdf/user/autotext/mytexts.bau",
+      "bytes": 557,
+      "sha256": "7eb002c35131ec0d3103ad2ab2df79b396eb76bf2493828e633b5690fc29a4a1"
+    },
+    {
+      "path": "run/profiles/pdf/user/basic/Standard/Module1.xba",
+      "bytes": 1124,
+      "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+    },
+    {
+      "path": "run/profiles/pdf/user/basic/Standard/dialog.xlb",
+      "bytes": 288,
+      "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+    },
+    {
+      "path": "run/profiles/pdf/user/basic/Standard/script.xlb",
+      "bytes": 349,
+      "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+    },
+    {
+      "path": "run/profiles/pdf/user/basic/dialog.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "run/profiles/pdf/user/basic/script.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "run/profiles/pdf/user/config/autotbl.fmt",
+      "bytes": 35313,
+      "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+    },
+    {
+      "path": "run/profiles/pdf/user/database/biblio/biblio.dbf",
+      "bytes": 75798,
+      "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+    },
+    {
+      "path": "run/profiles/pdf/user/database/biblio/biblio.dbt",
+      "bytes": 46601,
+      "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+    },
+    {
+      "path": "run/profiles/pdf/user/database/biblio.odb",
+      "bytes": 2892,
+      "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+    },
+    {
+      "path": "run/profiles/pdf/user/database/evolocal.odb",
+      "bytes": 3759,
+      "sha256": "c72f8fd2b0e8f2b90e967a4cc29ae2f6333901a25862d69a81fc47fe44a444df"
+    },
+    {
+      "path": "run/profiles/pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "run/profiles/pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "run/profiles/pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "run/profiles/pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "run/profiles/pdf/user/gallery/sg30.sdv",
+      "bytes": 2048,
+      "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+    },
+    {
+      "path": "run/profiles/pdf/user/gallery/sg30.thm",
+      "bytes": 565,
+      "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/ExtensionInfo.pack",
+      "bytes": 32,
+      "sha256": "8f94c7bcb2083a786f6e479c41c0b6b9edea5ef8d6c7afb767b1424ec2e1186f"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/autotext/mytexts.pack",
+      "bytes": 403,
+      "sha256": "002d52262669c997c29a5d9acf25889f34409a3681d02462152e734ed2c7e8a8"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/basic/Standard/Module1.pack",
+      "bytes": 644,
+      "sha256": "fe0861e0d877fa3649f03890b80a99adb2a0625e158c4dd1d932515d339bca5a"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/basic/Standard/dialog.pack",
+      "bytes": 220,
+      "sha256": "48f7e1fdd8661f0be6e676f55c9e0d0ccdfffbee9c67dd977d951129e45648fb"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/basic/Standard/script.pack",
+      "bytes": 241,
+      "sha256": "6961af566352be513bb45dbcc2b92151b0833b59cb65bee346919d31a69d788a"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/basic/dialog.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/basic/script.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/config/autotbl.pack",
+      "bytes": 1780,
+      "sha256": "1d3e419163e832bfba4c7f8424dd268cca313564ae87b1ede785b6488db6238a"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/database/biblio/biblio.pack",
+      "bytes": 2147,
+      "sha256": "d0db6a1f5a456ffe7ec476e6dda13eef51628deafea9f80d23e6cdc366776d4e"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/database/biblio.pack",
+      "bytes": 2432,
+      "sha256": "093d969bcb085884376e2c69353852e5a57fe7614de2257097984dcc29043b2e"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/database/evolocal.pack",
+      "bytes": 1203,
+      "sha256": "9555163d322df5d630457d72562431f39e384beedce6ab8329d99f06b590afbd"
+    },
+    {
+      "path": "run/profiles/pdf/user/pack/registrymodifications.pack",
+      "bytes": 964,
+      "sha256": "0b4801300cc90702335c338af13383f50c5d546b36140ccc20cc0acbe7a19afb"
+    },
+    {
+      "path": "run/profiles/pdf/user/registrymodifications.xcu",
+      "bytes": 8479,
+      "sha256": "62b4364f4a725342c8ac2d24ca99b991d0c7869fce36c055b784b4f6e6b60621"
+    },
+    {
+      "path": "run/profiles/pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "run/profiles/pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "run/receipt.json",
+      "bytes": 51917,
+      "sha256": "c818d493039002ce9f081a586d9560a4f4f86f0846050c74ee47247cf317ce70"
+    },
+    {
+      "path": "run/reopened/later-continuous.direct.docx",
+      "bytes": 5867,
+      "sha256": "5c44192fbdcddc8d59b098379470aff4a5a5cfc83c05583dd78dbf63c880e92e"
+    },
+    {
+      "path": "run/reopened/later-continuous.imported.docx",
+      "bytes": 5920,
+      "sha256": "87258cc2334777a7362057a18f836eca7c92f84433673713d2923e0f4a909fe7"
+    },
+    {
+      "path": "run/reopened/later-even-page.direct.docx",
+      "bytes": 5881,
+      "sha256": "125326a66f7ad72716757439d8c5f8fe4200b50fb8047598fea130043e1717ef"
+    },
+    {
+      "path": "run/reopened/later-even-page.imported.docx",
+      "bytes": 5934,
+      "sha256": "ef15e85b22d5eb1bfb91b11cae9d34ae167fc705a3f6df1a9db60185d03ba097"
+    },
+    {
+      "path": "run/reopened/later-next-page.direct.docx",
+      "bytes": 5875,
+      "sha256": "84bb011f29e40789fbd12d4cf267d2a1db0ff7d94b482dbc7b73fd97283f1209"
+    },
+    {
+      "path": "run/reopened/later-next-page.imported.docx",
+      "bytes": 5928,
+      "sha256": "6a2bb7bc45fca6b3d01c63c4f7890dbad739f2f8bb5d59e1cd0f7314802a48a6"
+    },
+    {
+      "path": "run/reopened/later-odd-page.direct.docx",
+      "bytes": 5880,
+      "sha256": "39365f41e6b9e5767876078b1c12f0c6097b215e4b01a194bdf6c992d4bb7c73"
+    },
+    {
+      "path": "run/reopened/later-odd-page.imported.docx",
+      "bytes": 5933,
+      "sha256": "f7de5bc85643e983a23af9f907c6a441a7491b90a189829094810b8bc3a20985"
+    },
+    {
+      "path": "run/reopened/paragraph-page-then-column.direct.docx",
+      "bytes": 5842,
+      "sha256": "f588a982be7a849e5824fc04874115a8ea07f5ccdded2055220917df32d3427b"
+    },
+    {
+      "path": "run/reopened/paragraph-page-then-column.imported.docx",
+      "bytes": 5895,
+      "sha256": "26188236c3d35b31580f2a228b55d47db8be7d2eee5e27aaabb34465e2d8af00"
+    }
+  ]
+}
