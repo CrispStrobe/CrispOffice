@@ -21,3 +21,9 @@ The original Zotero qualification reports, incoming Office/morphology/GECToR evi
 No runtime tests have run in this continuation. Shell startup currently fails before a command runs with `bwrap: Can't create file /workspace/scratch/f6cd2da02657/.git: No space left on device`. GitHub tree operations permit durable, reviewable source checkpoints while that execution limitation is assessed. Static integration checks verify exact source identities and the removal-inverse conflict proofs; they are not Dart/Flutter test execution.
 
 No GitHub Actions, workflow-run, check-run or CI-status endpoint has been queried or awaited. Checkpoint commit messages use `[skip ci]`. Remote updates are non-force with an expected head, followed by ref readback.
+
+## Captured-reference and source verification
+
+[Fresh comparison results](captured-ref-audit.json) directly checked all 155 distinct captured heads against source checkpoint `8b2ee333b883bfb64d51d44629c16151e1e0a2d7`: 153 are ancestors. The original comment PR head has an exact whole-tree equivalent in main; the vendor comment head changes only two source files, whose blobs and modes equal main's versions. Their comment additions remain verbatim in the reconciled files. The audit commit retains both represented comment histories as parents, making all 231 captured references ancestors without another source change.
+
+[Complete tree verification](source-verification.json) found zero unexpected blob/mode differences. Both reconciled files were fetched back in full and matched the prepared content exactly; removal-inverse checks reproduce the incoming office files. These results establish source and history preservation, not execution qualification.
