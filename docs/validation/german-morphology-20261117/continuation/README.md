@@ -1,10 +1,11 @@
 # German morphology continuation — completion
 
 Date: 17 November 2026. Branch: `codex/german-morphology-20261117`.
+Review: [PR #105](https://github.com/CrispStrobe/quds_office_suite/pull/105).
 
 The recovered morphology implementation, source-bound evidence, latest captured
 Office/Zotero work and GECToR qualification tooling are reconciled. The completed
-source is [`8432238d`](https://github.com/CrispStrobe/quds_office_suite/commit/8432238d8a694350d6035f1b3314b51ce4254ce4).
+source is [`b58e66da`](https://github.com/CrispStrobe/quds_office_suite/commit/b58e66da1ced48f3f87aa85633da9235191a6023).
 This continuation fixes an ODT comment/footnote integration edge, retains the
 incoming annotation visibility fix, supplies the missing release notes, and
 corrects two historical evidence bookkeeping errors. The German proofing runtime
@@ -52,12 +53,14 @@ coverage proof and independent review are retained in the evidence archive.
 | `010d07fc` | Comment/footnote guard, regression and package release notes saved. |
 | `c12bd784` | Final 233-ref snapshot integrated while retaining that guard. |
 | `8432238d` | Incoming annotation fixture's strict-analysis lint and formatting corrected. |
+| `b58e66da` | PR base advancement to main `6f9caa07` integrated with section layouts and the existing note/annotation safeguards. |
 
 GitHub's tree/commit API preserved each checkpoint with a lease on the expected
 branch head. Remote and local commits differ in metadata; their complete Git
-trees match. [source-binding.json](source-binding.json) binds the actual tested
-files to the final remote source. No GitHub Actions run was awaited or used as a
-gate for this continuation.
+trees match. [source-binding.json](source-binding.json) binds the first completed
+snapshot; [pr-base-binding.json](pr-base-binding.json) binds the final source after
+the later main advancement. No GitHub Actions run was awaited or used as a gate
+for this continuation.
 
 ## Integration corrections
 
@@ -83,6 +86,15 @@ The second writer merge contained only relocation of identical comment members
 plus an older unguarded comment loop. Resolution preserves the already tested
 guarded writer exactly; it does not reintroduce the superseded note API.
 
+**PR-base advancement is resolved.** Main advanced to `6f9caa07` with ODT section
+layouts and page breaks (PR #104) while PR #105 was being opened. The additional
+merge keeps the new section master pages, page layouts and paragraph overrides,
+along with the existing bounded note API, header/footer styling and annotation
+note-body guard. The conflict reintroduced obsolete note helpers next to the
+new section-style helper; resolution retains the section helper and omits those
+obsolete methods. Its source review and fresh validation are preserved in a
+separate evidence bundle, leaving the earlier bundle unchanged.
+
 ## Fresh local validation
 
 Flutter **3.47.8**, Dart **3.13.7** and Node **24.22.1** match the earlier proofing
@@ -94,6 +106,7 @@ verified; offline workspace resolution preserved the exact historical lockfile.
 | Combined-source baseline | `bcf05fd0`: strict engine analysis clean; **503 VM proofing tests**, **156 editor proofing/hyphenation tests**, **105 ODF tests** passed. |
 | Comment/footnote correction | Exact source saved at `010d07fc`: strict analysis clean; **66 affected ODT tests** passed. The new regression failed before the fix and passed after it. |
 | Final extraction integration | Exact source saved at `8432238d`: strict engine analysis clean; **278 ODF/search/ODS tests across 12 files** passed. |
+| Later PR-base integration | Exact source saved at `b58e66da`: strict engine analysis clean; **279 tests across the same 12 files** passed, including the incoming section-layout regression. |
 | GECToR qualification tooling | **18 passed, one skipped, zero failures/errors** among 19 discovered Python tests. The tiny real converter control was skipped because ONNX/ONNX Runtime are not installed; no model inference was run. |
 
 These test sets overlap and must not be summed as distinct tests. The final run
@@ -147,6 +160,12 @@ the initial lint failure, reference inventories, source reviews, continuity
 checks and toolchain setup receipts. [evidence-index.json](evidence-index.json)
 records the archive hash and every member hash, including its internal manifest.
 Historical archives remain at their original paths in the parent report.
+
+[pr-base-refresh.tar.xz](pr-base-refresh.tar.xz) and its
+[complete index](pr-base-evidence-index.json) retain the subsequent main-conflict
+resolution, source snapshots and 279-test run. The final binding checks all
+1,862 inputs against `b58e66da`, verifies the 136 unchanged proofing inputs, and
+confirms both the captured integration and main `6f9caa07` are ancestors.
 
 To repeat the substantive checks on a configured workspace, run strict engine
 analysis (`dart analyze --fatal-infos lib test tool`), `dart test test/proofing`,
