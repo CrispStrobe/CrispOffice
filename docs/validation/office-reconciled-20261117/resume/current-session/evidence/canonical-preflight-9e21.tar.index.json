@@ -1,0 +1,145 @@
+{
+  "archive": "canonical-preflight-9e21.tar.xz",
+  "bytes": 583920,
+  "sha256": "b7acad3f03a30224a23d98358f9b49c7596b3fbb556435a350c4590cc1618b46",
+  "classification": "Completed preflight checkpoint; canonical full and portable cohorts pending",
+  "member_count": 27,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "preflight/analysis-package-config.json",
+      "bytes": 27426,
+      "sha256": "8e5fc43287232b17094ecea7d9f51a3a6d789116e626b1b95131bdafa78d9bb9"
+    },
+    {
+      "path": "preflight/canonical-env.sh",
+      "bytes": 1374,
+      "sha256": "ea14151c883ed9daabc50a80d09b772e146d7269e981b2e8e9942236e347253b"
+    },
+    {
+      "path": "preflight/canonical-setup.json",
+      "bytes": 28891,
+      "sha256": "04b2941662a5253ce8a2be0d2a1aec622b4dd6c350cc301ed759f3e99745f490"
+    },
+    {
+      "path": "preflight/dependencies-before.json",
+      "bytes": 1161667,
+      "sha256": "3ba7a38a3a8f87f17aa546d3f9bc410abb919e670164499015a94e3f201beb85"
+    },
+    {
+      "path": "preflight/editor-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "preflight/editor-strict-analysis/stdout.gz",
+      "bytes": 266,
+      "sha256": "b41eb6c816a261d8860a1a3e26a67eaa13d42014763c1ade7b322098249860a9"
+    },
+    {
+      "path": "preflight/engine-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "preflight/engine-strict-analysis/stdout.gz",
+      "bytes": 989,
+      "sha256": "8d73e5236dddb287b8861e096fe183b519819fbfc42bdabce3011bc53547b8ae"
+    },
+    {
+      "path": "preflight/fixture-audit.json",
+      "bytes": 13588,
+      "sha256": "6662b2b19c4e186effa208ae7d09fccdd97ee1ad4b4261b50d0249d04735c391"
+    },
+    {
+      "path": "preflight/format/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "preflight/format/stdout.gz",
+      "bytes": 69,
+      "sha256": "31eb5ed25042ab8bc187bdb1be87fe7e41d57f1c30f3fa79dbb0e0671d911244"
+    },
+    {
+      "path": "preflight/gector-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "preflight/gector-strict-analysis/stdout.gz",
+      "bytes": 272,
+      "sha256": "f4edd3d9d866c4097a950186e452da09cd069751b2ce9cb558a0cfb233769e8d"
+    },
+    {
+      "path": "preflight/harness-before.json",
+      "bytes": 2156,
+      "sha256": "9f0053c1d5c803214e0e38122f5674712d7949734d94ee9fcf0edc6e9ff094eb"
+    },
+    {
+      "path": "preflight/harper-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "preflight/harper-strict-analysis/stdout.gz",
+      "bytes": 142,
+      "sha256": "031721d32fc84f1af1dbe7912a90a3deb0376a3ed65fe2d694beb299864e2c1d"
+    },
+    {
+      "path": "preflight/plan.json",
+      "bytes": 80089,
+      "sha256": "51ff0ff0588866d30b3feb9739201b20d674c02015e7d95b446e9515d234a5af"
+    },
+    {
+      "path": "preflight/proofing-tools-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "preflight/proofing-tools-strict-analysis/stdout.gz",
+      "bytes": 137,
+      "sha256": "d1db93804f0dd605e5622d411906aec6969ffe13ff9fd516b856c65922f1fa83"
+    },
+    {
+      "path": "preflight/python-controls-summary.json",
+      "bytes": 1277814,
+      "sha256": "eb61ce468a1bed5ff7f395c0bf64e064880b8d6523f54304e1f2b2c5acf27a2f"
+    },
+    {
+      "path": "preflight/python-controls/stderr.gz",
+      "bytes": 3674,
+      "sha256": "a5fade13f7224026cebb22693cb39b32c2740cdcd69c6fb05213f0fc792a0ca3"
+    },
+    {
+      "path": "preflight/python-controls/stdout.gz",
+      "bytes": 97,
+      "sha256": "f7fa9fb70c57e1eebf6298cdfded4ed0d3ca723b4d8bc2257b29f77ca847a9b8"
+    },
+    {
+      "path": "preflight/receipt.json",
+      "bytes": 1350552,
+      "sha256": "8f9762673bdd2a095b7139e29b25c4aa96aa996707aad73940bf09d0b8f326e8"
+    },
+    {
+      "path": "preflight/runtime-before.json",
+      "bytes": 2781,
+      "sha256": "c3421fcdacb64c7dec4e6b042d7041e5b4d1406f48dddbe68b9a373f58c2d2cc"
+    },
+    {
+      "path": "preflight/source-before.json",
+      "bytes": 927615,
+      "sha256": "67cc8426de35f8d12e9c9bd8c3d2e5ea1da13648159ee3867d427b3e220a983e"
+    },
+    {
+      "path": "preflight/system-before.json",
+      "bytes": 1259,
+      "sha256": "858f626314bf16284e3e81972a076d517a9cffea7a93886b70d66f48424f39fd"
+    },
+    {
+      "path": "preflight/workspace-before.json",
+      "bytes": 20095,
+      "sha256": "ad062200474b7547d0663086071e418c1fb3e97826f5f66c35a73341d7672e31"
+    }
+  ]
+}

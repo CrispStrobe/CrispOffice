@@ -1,0 +1,217 @@
+{
+  "original": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+  "incoming": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+  "merge_base": "c6fca4c687354d3d396c896820aea5cfc455a7f3",
+  "original_changed_product_paths": [
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "base": "7a729eaa967b0d010f881833e7557e399792c0b8",
+      "original": "00b94f2d132a0f26438058eb1426b93865969612",
+      "incoming": "7a729eaa967b0d010f881833e7557e399792c0b8",
+      "index": {
+        "0": "00b94f2d132a0f26438058eb1426b93865969612"
+      },
+      "classification": "original_exact"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+      "base": "aeb77bb4adaf0414dba59e7a95d87be5fc2ddf2c",
+      "original": "ef9e02f5ec7b1d6a54cc21be4b2a2bcf28bdc67d",
+      "incoming": "ef9e02f5ec7b1d6a54cc21be4b2a2bcf28bdc67d",
+      "index": {
+        "0": "ef9e02f5ec7b1d6a54cc21be4b2a2bcf28bdc67d"
+      },
+      "classification": "original_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart",
+      "base": "018e8b07474a8580bedde147ae848029e2858c92",
+      "original": "d93d063315ba5c4d4b116705d8f58e552a571e36",
+      "incoming": "7205069e29c991379cd970c38b7a2e939efe90d2",
+      "index": {
+        "0": "7205069e29c991379cd970c38b7a2e939efe90d2"
+      },
+      "classification": "incoming_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "base": "aa957dea723a154bf8cbbcdee139a618302b4db9",
+      "original": "5d733188f3a9a7fb6377e12470c8febe11bd73b7",
+      "incoming": "dd8e51808910d444dfd1289e89e23bd0ab2f883a",
+      "index": {
+        "0": "1bc6b756db87ea0a3b882b35df22b58842166c91"
+      },
+      "classification": "reconciled"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart",
+      "base": "c16d594859567b8143faf89df50087831422ae36",
+      "original": "30cb8e80237a00f7a88216d3dd209634f8b3df30",
+      "incoming": "a1a20ba33096036481640a67a3ad075b716a116e",
+      "index": {
+        "0": "987e8d313d2d22d4baffa63d9069a2e4d8f403af"
+      },
+      "classification": "reconciled"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_bookmark_name_ambiguity_test.dart",
+      "base": null,
+      "original": "a2827d1f1c91b1725b73b91727c915fac0536c11",
+      "incoming": "a2827d1f1c91b1725b73b91727c915fac0536c11",
+      "index": {
+        "0": "a2827d1f1c91b1725b73b91727c915fac0536c11"
+      },
+      "classification": "original_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_column_break_style_fidelity_test.dart",
+      "base": "917b84ba78a19dd253677e3170d74fd696757094",
+      "original": "7f380a6bfb959f9a67a5adeae6443b93537322c1",
+      "incoming": "35bc319a660217122198ce28569c86d6a897d328",
+      "index": {
+        "0": "35bc319a660217122198ce28569c86d6a897d328"
+      },
+      "classification": "incoming_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_columns_schema_fidelity_test.dart",
+      "base": null,
+      "original": "919ab9445f238bf9c66244fe1fba2b0e44f613b8",
+      "incoming": "919ab9445f238bf9c66244fe1fba2b0e44f613b8",
+      "index": {
+        "0": "919ab9445f238bf9c66244fe1fba2b0e44f613b8"
+      },
+      "classification": "original_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+      "base": null,
+      "original": "a7fb946fb737f4793d8a5c2f867a32ab8f04b184",
+      "incoming": "e5200e9cacf1e79e9551e615154b7a800e427ea1",
+      "index": {
+        "0": "a4fe92a838c4d8943b43ef5da70569f4822dc4a9"
+      },
+      "classification": "reconciled"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_header_variant_comment_fidelity_test.dart",
+      "base": null,
+      "original": "418cc55c749451c93320903dd34c35ed068cca6d",
+      "incoming": null,
+      "index": {
+        "0": "418cc55c749451c93320903dd34c35ed068cca6d"
+      },
+      "classification": "original_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_header_variant_order_test.dart",
+      "base": null,
+      "original": "f04fbec260054d29b2079d541976ec5e534ead09",
+      "incoming": null,
+      "index": {
+        "0": "f04fbec260054d29b2079d541976ec5e534ead09"
+      },
+      "classification": "original_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+      "base": "88af0999f82080125b962ac100a76626a7495187",
+      "original": "b5b3d540ed356b2bac40e8db34b01cc56750a63e",
+      "incoming": "c55ce969036615e0f1a145edc7a48191b33ad152",
+      "index": {
+        "0": "c55ce969036615e0f1a145edc7a48191b33ad152"
+      },
+      "classification": "incoming_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+      "base": null,
+      "original": "b968fc83e83f0631ca50563ab7e65d89c641db8f",
+      "incoming": "b2f6071e1838da88302ab8bee0030fc0d670028c",
+      "index": {
+        "0": "b2f6071e1838da88302ab8bee0030fc0d670028c"
+      },
+      "classification": "incoming_exact"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+      "base": "3e401505a984f5a51bad43a8c74e74939394274d",
+      "original": "44a4cb8078d09d950ccdee6e963d6d23b63e1564",
+      "incoming": "b4da128db7e8c071809b1d30fc6258f7430aaea8",
+      "index": {
+        "0": "76788e0f989a1dc5cff6a33c6d7de1fffa5712a9"
+      },
+      "classification": "reconciled"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_tab_style_fidelity_test.dart",
+      "base": null,
+      "original": "712567f1e5cdc81f33f7ea7ab205efda551d637d",
+      "incoming": "712567f1e5cdc81f33f7ea7ab205efda551d637d",
+      "index": {
+        "0": "712567f1e5cdc81f33f7ea7ab205efda551d637d"
+      },
+      "classification": "original_exact"
+    },
+    {
+      "path": "tools/proofing/german_model/recover_exact_native_model.py",
+      "base": null,
+      "original": "b3a7385766bf14bf9182f0936082ade0ef8e579a",
+      "incoming": null,
+      "index": {
+        "0": "b3a7385766bf14bf9182f0936082ade0ef8e579a"
+      },
+      "classification": "original_exact"
+    }
+  ],
+  "key_identities": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "original": "ad4b07acd65ad7c8b1af14739b6d5ed1c5975536",
+      "incoming": "ad4b07acd65ad7c8b1af14739b6d5ed1c5975536",
+      "index": {
+        "0": "ad4b07acd65ad7c8b1af14739b6d5ed1c5975536"
+      },
+      "original_exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+      "original": "ef9e02f5ec7b1d6a54cc21be4b2a2bcf28bdc67d",
+      "incoming": "ef9e02f5ec7b1d6a54cc21be4b2a2bcf28bdc67d",
+      "index": {
+        "0": "ef9e02f5ec7b1d6a54cc21be4b2a2bcf28bdc67d"
+      },
+      "original_exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/widget_test.dart",
+      "original": "00b94f2d132a0f26438058eb1426b93865969612",
+      "incoming": "7a729eaa967b0d010f881833e7557e399792c0b8",
+      "index": {
+        "0": "00b94f2d132a0f26438058eb1426b93865969612"
+      },
+      "original_exact": true
+    },
+    {
+      "path": "tools/proofing/german_model/recover_exact_native_model.py",
+      "original": "b3a7385766bf14bf9182f0936082ade0ef8e579a",
+      "incoming": null,
+      "index": {
+        "0": "b3a7385766bf14bf9182f0936082ade0ef8e579a"
+      },
+      "original_exact": true
+    },
+    {
+      "path": "tools/proofing/german_model/run_gector_dart.dart",
+      "original": "942cb06f8be42605e4fad250818f3e005f82933b",
+      "incoming": "942cb06f8be42605e4fad250818f3e005f82933b",
+      "index": {
+        "0": "942cb06f8be42605e4fad250818f3e005f82933b"
+      },
+      "original_exact": true
+    }
+  ],
+  "gector_file_count": 43,
+  "gector_mismatches": [],
+  "note": "Intermediate merge index snapshot; not final source qualification. Office conflicts are handled by separate reviewer."
+}

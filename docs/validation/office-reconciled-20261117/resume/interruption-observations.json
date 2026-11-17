@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "record_type": "conversation_tool_observations_not_raw_receipts",
+  "source_commit": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+  "retained_consumers": {
+    "status": "observed_pass_raw_evidence_unavailable",
+    "source_head": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+    "source_tree": "3aab8c7bb1522468c4a821e4ae588c826acbea27",
+    "retained33": {
+      "exit_code": 0,
+      "passed": true,
+      "fixtures_passed": 33,
+      "fixtures_total": 33,
+      "schema_parts_passed": 132,
+      "schema_parts_total": 132,
+      "fatal_error": null,
+      "duration_seconds": 21.65762424468994
+    },
+    "current7": {
+      "exit_code": 0,
+      "passed": true,
+      "fixtures_passed": 7,
+      "fixtures_total": 7,
+      "schema_parts_passed": 28,
+      "schema_parts_total": 28,
+      "lxml_false_negatives_retained_as_diagnostics": 3,
+      "fatal_error": null,
+      "duration_seconds": 26.375948429107666
+    },
+    "disjoint_totals": {
+      "fixtures": 40,
+      "schema_parts": 160
+    },
+    "snapshot_acceptance": {
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "fixtures_unchanged": true,
+      "head_unchanged": true,
+      "basis": "Both unchanged runners emitted passed=true; acceptance requires the four before/after stability gates. Underlying receipt files became inaccessible after environment loss."
+    },
+    "runner_support_archive": "docs/validation/office-reconciled-20261117/recovered/consumer-intermediate-1d8325d4.tar.xz",
+    "runner_support_archive_sha256": "49b519e8ef949a3dd6ff6cf1befa7f0264b90dab23da932aaa93879afc2e2951",
+    "runner_files": [
+      "wave3-runner/verify_consumers.py",
+      "verify_current_consumers.py"
+    ],
+    "runner_common_arguments": {
+      "repo": "/workspace/scratch/9089a56d3a33/full-validation-workspace",
+      "source_repo": "/workspace/scratch/9089a56d3a33/quds_office_suite",
+      "dart": "/workspace/scratch/9089a56d3a33/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "schemas": "/workspace/scratch/9089a56d3a33/consumer-merged-qualification/schemas",
+      "expected_head": "9e21e4c08a0a7f04c165dedc316038038b2c47d4"
+    },
+    "last_known_output_directories": [
+      "/workspace/scratch/9089a56d3a33/consumer-merged-qualification/qualification-9e21e4c0-retained33",
+      "/workspace/scratch/9089a56d3a33/consumer-merged-qualification/qualification-9e21e4c0-current7"
+    ],
+    "completed_archive": {
+      "path": "/workspace/scratch/9089a56d3a33/consumers-9e21e4c0.tar.xz",
+      "index_path": "/workspace/scratch/9089a56d3a33/consumers-9e21e4c0.tar.index.json",
+      "bytes": 2225404,
+      "sha256": "02eaa4edd604072300c683cb3266b1b55017c7add82d3ee50572c664eea245ac",
+      "member_count": 708,
+      "full_readback_verified": true,
+      "retained_support_files_byte_identical": 14,
+      "retained_fixture_specifications_identical": 33,
+      "uploaded": false,
+      "repo_copy_completed": false,
+      "remote_blob_sha": null
+    },
+    "interruption": "After successful packaging, the local archive-copy/hash command failed before starting: exec-server transport disconnected; recovery timed out after 45 seconds. The environment then reported unavailable.",
+    "local_retries_stopped": true,
+    "github_actions_queried_or_awaited": false
+  },
+  "boundary_consumers": {
+    "record_type": "observed_execution_result",
+    "source_commit_requested": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+    "source_tree_supplied_by_parent": "3aab8c7bb1522468c4a821e4ae588c826acbea27",
+    "observed_process_exit_code": 0,
+    "observed_stdout": {
+      "passed": true,
+      "fixtures": 5,
+      "repaired_layouts": 4,
+      "bounded_precedence_controls": 1,
+      "pdf_variants": 15,
+      "reopened_docx": 10,
+      "inputs_unchanged": true
+    },
+    "scope": {
+      "strict_repaired_layout_pdf_variants": 12,
+      "bounded_precedence_pdf_variants": 3,
+      "odf_schema_part_checks_implied_by_completed_harness": 40,
+      "limitation": "The fifth control validates target page and left-column origin, follower pages, source text and bookmark order. Its preexisting ODT/native DOCX follower-balancing difference remains outside layout-equivalence claims."
+    },
+    "command": [
+      "python3",
+      "docs/validation/office-reconciled-20261117/resume/consumer-new/verify_boundary_consumers.py",
+      "--repo",
+      "/workspace/scratch/9089a56d3a33/quds_office_suite",
+      "--workspace",
+      "/workspace/scratch/9089a56d3a33/full-validation-workspace",
+      "--dart",
+      "/workspace/scratch/9089a56d3a33/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--schemas",
+      "/workspace/scratch/9089a56d3a33/consumer-qualification/schemas",
+      "--output",
+      "/workspace/scratch/9089a56d3a33/boundary-consumers-9e21e4c0",
+      "--commit",
+      "9e21e4c08a0a7f04c165dedc316038038b2c47d4"
+    ],
+    "command_cwd": "/workspace/scratch/9089a56d3a33/quds_office_suite",
+    "checker_identity": {
+      "path": "docs/validation/office-reconciled-20261117/resume/consumer-new/verify_boundary_consumers.py",
+      "sha256_verified_in_preflight": "bb842e4a0a03b921ed59f8a2c48a781b3975b3b569f054d449fc4c8624cce84d",
+      "scope_or_oracle_modified_for_this_run": false
+    },
+    "last_known_output_directory": "/workspace/scratch/9089a56d3a33/boundary-consumers-9e21e4c0",
+    "last_known_receipt_path": "/workspace/scratch/9089a56d3a33/boundary-consumers-9e21e4c0/receipt.json",
+    "raw_evidence_status": {
+      "packaged": false,
+      "uploaded": false,
+      "receipt_hash_obtained": false,
+      "independently_read_back_or_archive_verified": false,
+      "currently_accessible": false
+    },
+    "interruption": {
+      "operation": "Start archive preparation and hash verification",
+      "operation_started": false,
+      "tool_error": "Failed to create unified exec process: exec-server transport disconnected; failed to resume exec-server session: recovery timed out after 45s",
+      "environment_subsequently_reported": "unavailable"
+    },
+    "qualification_limit": "This record preserves observed tool output only. It is not a reconstructed raw receipt or a durable fresh evidence archive. Input stability was reported by the completed harness; its underlying hash maps were not retrieved before interruption.",
+    "product_test_harness_or_git_changes_made_during_this_task": false,
+    "further_local_retries": false
+  }
+}

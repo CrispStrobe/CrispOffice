@@ -1,0 +1,40 @@
+{
+  "archive": "canonical-portable-9e21.tar.xz",
+  "bytes": 518640,
+  "sha256": "270d26de506787dbcbcd0e26dc25be9ab82d37666b1ff1f3b0bc5c258ed99550",
+  "classification": "Completed exact-source portable Node qualification:14 files,207 passes; all integrity maps unchanged",
+  "member_count": 6,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "portable-launch.log",
+      "bytes": 249,
+      "sha256": "e1e0388289d5d9453ec9c442f6852a8d9c18e0fd9ac56e00333cecb3869002c8"
+    },
+    {
+      "path": "portable/inputs-after.json.gz",
+      "bytes": 501084,
+      "sha256": "96c99cb6f309c4b7498e51d1cdfbdb63af98690c4f265a07ff38164d773321a9"
+    },
+    {
+      "path": "portable/inputs-before.json.gz",
+      "bytes": 501084,
+      "sha256": "96c99cb6f309c4b7498e51d1cdfbdb63af98690c4f265a07ff38164d773321a9"
+    },
+    {
+      "path": "portable/receipt.json",
+      "bytes": 42472,
+      "sha256": "971e3c65edfbd3069b66bb9fb7709ee3b6022cbdda077f48479afc6c244597e6"
+    },
+    {
+      "path": "portable/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "portable/stdout.gz",
+      "bytes": 10255,
+      "sha256": "1d3605406b0bd7aee333d8a410f392b03edc4bd399aa0a5897998e4b11bd44f4"
+    }
+  ]
+}

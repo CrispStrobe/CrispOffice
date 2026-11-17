@@ -1,0 +1,15 @@
+{
+  "cutoff": "2026-11-17T18:04:35Z..2026-11-17T18:04:37Z",
+  "branch_count": 150,
+  "pr_head_count": 122,
+  "integrated_at": "06120cb042b3f26d3f345e922032c9d72f4f5bc2",
+  "decisions": [
+    "Merge morphology04f first, retaining all later local reuse/finite-noun/duplicate guards. Its linear scanner does not overlap the new verb-object context helpers.",
+    "Retain all incoming Office source and consumer evidence through consolidation842 and qualifiedec5. Those historic consumer outputs are not a final-source acceptance claim.",
+    "Merge daemon-free AOT929 and Studio source; retain previous frame extraction, tabs, row heights, colors, hyperlinks and all independent tests.",
+    "Merge main914. The sole ODP assertion conflict retained both the existing hyperlink expectation and new Q1/Q2 chart labels.",
+    "Retain independent feature/vendor ODP and paragraph-break tips using history-only merge after byte-identical source patch proofs, recorded in latest-incoming-snapshot.json.",
+    "Review found paragraph break/keep flags absent from the style key and section columns emitted on the wrong XML element. Focused repairs and final combined validation follow this snapshot."
+  ],
+  "no_github_actions_dispatched_polled_or_awaited": true
+}

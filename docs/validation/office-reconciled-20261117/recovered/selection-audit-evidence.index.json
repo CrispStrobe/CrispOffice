@@ -1,0 +1,40 @@
+{
+  "archive": "selection-audit-evidence.tar.xz",
+  "bytes": 17876,
+  "sha256": "41f604380038fb64be728a49135d076209a8d8c9175a36960e0dfe27a2cb9bf9",
+  "member_count": 6,
+  "members": [
+    {
+      "path": "recovery-status.md",
+      "bytes": 3916,
+      "sha256": "735ad843057a906e963a7782d4d0c1bb40149ec28dde43c9f1755dd407ff6890"
+    },
+    {
+      "path": "qualification-runner-review.md",
+      "bytes": 3262,
+      "sha256": "2721f6e97dda28d2edcb7fa933c5fded29d7130f88e7faaf433b87b16ab55e0b"
+    },
+    {
+      "path": "recount_selection.py",
+      "bytes": 7061,
+      "sha256": "d920a285a096e1d392ca5e574364480c2643f2ab088892a6bedc6184811a2402"
+    },
+    {
+      "path": "reconstructed-selection-6a32a919.json",
+      "bytes": 41339,
+      "sha256": "fcc40bbb42a09b6aacb55730e4b92d4e1287b1c124cce2be21dc23d29a535927"
+    },
+    {
+      "path": "current-plan-1d8325d4.json",
+      "bytes": 76232,
+      "sha256": "2b18ff78badc40bcc29129706dcdd3508d3a52404e3eea98162ba525be942abf"
+    },
+    {
+      "path": "independent-selection-retention.json",
+      "bytes": 4143,
+      "sha256": "1c914a768bc26dc705a674d694e12c4d0bf91382b1c07e517dbae982ff2180b4"
+    }
+  ],
+  "readback_verified": true,
+  "test_outcomes_included": false
+}

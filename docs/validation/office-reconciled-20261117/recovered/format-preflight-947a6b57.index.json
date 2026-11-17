@@ -1,0 +1,164 @@
+{
+  "archive": "format-preflight-947a6b57.tar.xz",
+  "bytes": 443688,
+  "sha256": "ca97db483a1f518b6311c88f034c216ba1a1982f8a8b9549fbbcb89f78d5ee92",
+  "members": [
+    {
+      "path": "analysis-package-config.json",
+      "bytes": 27796,
+      "sha256": "70e2898631a6aeaa14c857c644d71d468c34318d699ee578fa24fc27bf7d8065"
+    },
+    {
+      "path": "dependencies-after.json",
+      "bytes": 1161667,
+      "sha256": "3ba7a38a3a8f87f17aa546d3f9bc410abb919e670164499015a94e3f201beb85"
+    },
+    {
+      "path": "dependencies-before.json",
+      "bytes": 1161667,
+      "sha256": "3ba7a38a3a8f87f17aa546d3f9bc410abb919e670164499015a94e3f201beb85"
+    },
+    {
+      "path": "editor-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "editor-strict-analysis/stdout.gz",
+      "bytes": 252,
+      "sha256": "40d26868d93c11eac2b8c07f91241de36f99aacf68576b67c082299a0603599a"
+    },
+    {
+      "path": "engine-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "engine-strict-analysis/stdout.gz",
+      "bytes": 963,
+      "sha256": "b3d4110e3120a8885c2d5b4693d6f5bc5abdb3744ade618f76c5a5d927d9f384"
+    },
+    {
+      "path": "fixture-audit.json",
+      "bytes": 13834,
+      "sha256": "bc0dea54aba9fa78f95d230a580658f84d511c0a055fdbd3d3bfbf6addd3e46d"
+    },
+    {
+      "path": "format/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "format/stdout.gz",
+      "bytes": 126,
+      "sha256": "ce1d2795e500df8bf8a06003d60154a3f88bd35b7ee40369e88926da8fef6dc5"
+    },
+    {
+      "path": "gector-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "gector-strict-analysis/stdout.gz",
+      "bytes": 272,
+      "sha256": "f4edd3d9d866c4097a950186e452da09cd069751b2ce9cb558a0cfb233769e8d"
+    },
+    {
+      "path": "harness-after.json",
+      "bytes": 2332,
+      "sha256": "a855ee642f022a655c7fe5f81374e347296df330ea5831913579adcf79a1e83f"
+    },
+    {
+      "path": "harness-before.json",
+      "bytes": 2332,
+      "sha256": "a855ee642f022a655c7fe5f81374e347296df330ea5831913579adcf79a1e83f"
+    },
+    {
+      "path": "harper-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "harper-strict-analysis/stdout.gz",
+      "bytes": 142,
+      "sha256": "031721d32fc84f1af1dbe7912a90a3deb0376a3ed65fe2d694beb299864e2c1d"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 78456,
+      "sha256": "5d3ade3084f7e47b4bf86c243caf07517d85908be15704c1243870df5d4fd1c1"
+    },
+    {
+      "path": "progress.log",
+      "bytes": 1416,
+      "sha256": "128bfec03abe9a80cd97c8b7afb537f307bcfaebd51c5ad0766537b2f47886b5"
+    },
+    {
+      "path": "proofing-tools-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "proofing-tools-strict-analysis/stdout.gz",
+      "bytes": 137,
+      "sha256": "d1db93804f0dd605e5622d411906aec6969ffe13ff9fd516b856c65922f1fa83"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 34463,
+      "sha256": "9494e6e1920638662bae3267ecbfcc7157b6c434fe53fbc36c74cd8cf6dacac3"
+    },
+    {
+      "path": "run-used.py",
+      "bytes": 4784,
+      "sha256": "196165c41377f40ef3e97e25aad1d7580ba35602c5581b35384760571bf376c8"
+    },
+    {
+      "path": "runner-error.json",
+      "bytes": 733,
+      "sha256": "90c88816c6fd5adc358bc47f20897110086d8abee45b3a38dc58ed280d5b2c39"
+    },
+    {
+      "path": "runtime-after.json",
+      "bytes": 2781,
+      "sha256": "c3421fcdacb64c7dec4e6b042d7041e5b4d1406f48dddbe68b9a373f58c2d2cc"
+    },
+    {
+      "path": "runtime-before.json",
+      "bytes": 2781,
+      "sha256": "c3421fcdacb64c7dec4e6b042d7041e5b4d1406f48dddbe68b9a373f58c2d2cc"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 926854,
+      "sha256": "e839dbe5fcc491df0006c753be354bec48d68c561610a1ff74b6662fab05a51f"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 926854,
+      "sha256": "e839dbe5fcc491df0006c753be354bec48d68c561610a1ff74b6662fab05a51f"
+    },
+    {
+      "path": "system-after.json",
+      "bytes": 1259,
+      "sha256": "858f626314bf16284e3e81972a076d517a9cffea7a93886b70d66f48424f39fd"
+    },
+    {
+      "path": "system-before.json",
+      "bytes": 1259,
+      "sha256": "858f626314bf16284e3e81972a076d517a9cffea7a93886b70d66f48424f39fd"
+    },
+    {
+      "path": "workspace-after.json",
+      "bytes": 25405,
+      "sha256": "a0f902ab976af26d701f079b29a08cad2071e2c9caf6f243c1870226e61dc63c"
+    },
+    {
+      "path": "workspace-before.json",
+      "bytes": 25405,
+      "sha256": "a0f902ab976af26d701f079b29a08cad2071e2c9caf6f243c1870226e61dc63c"
+    }
+  ],
+  "readback_verified": true,
+  "outcome": "All five strict analysis scopes passed; formatting rejected one line wrap introduced by the lint correction. No test cohorts ran. All six input-integrity maps unchanged. Corrected by02a246eb."
+}

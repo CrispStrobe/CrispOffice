@@ -1,0 +1,1085 @@
+{
+  "schema_version": 1,
+  "acquired_at_utc": "2026-11-17T21:17:09.282Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch_count": 177,
+  "branches": [
+    {
+      "name": "codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4"
+    },
+    {
+      "name": "codex/aot-proofing-analysis-20261117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d"
+    },
+    {
+      "name": "codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac"
+    },
+    {
+      "name": "codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254"
+    },
+    {
+      "name": "codex/odt-column-boundary-followup-20261117",
+      "sha": "e9889e07c983ac15ff002771cf78854d1bc0d572"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8"
+    },
+    {
+      "name": "codex/office-continuation-20261117",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0"
+    },
+    {
+      "name": "codex/office-fidelity-20261117",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec"
+    },
+    {
+      "name": "codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328"
+    },
+    {
+      "name": "codex/office-qualified-resume-20261117",
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1"
+    },
+    {
+      "name": "codex/office-reconciled-20261117",
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1"
+    },
+    {
+      "name": "codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "name": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "name": "codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "name": "codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+    },
+    {
+      "name": "codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99"
+    },
+    {
+      "name": "codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466"
+    },
+    {
+      "name": "codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0"
+    },
+    {
+      "name": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "name": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "name": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "name": "codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841"
+    },
+    {
+      "name": "codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+    },
+    {
+      "name": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "name": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "name": "codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb"
+    },
+    {
+      "name": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "name": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "name": "docs/aot-removal",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74"
+    },
+    {
+      "name": "docs/build30-validation-20261117",
+      "sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+    },
+    {
+      "name": "docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "name": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "name": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "name": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "name": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "name": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "name": "docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389"
+    },
+    {
+      "name": "docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+    },
+    {
+      "name": "docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "docs/ods-dynamic-validation",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102"
+    },
+    {
+      "name": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "name": "docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "name": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "name": "docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "name": "docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "name": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "name": "docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+    },
+    {
+      "name": "docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "name": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "name": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "name": "docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "name": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "name": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "name": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "name": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "name": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "name": "feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "name": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "name": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "name": "feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "name": "feat/german-context-20261117",
+      "sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef"
+    },
+    {
+      "name": "feat/german-gector-proofing",
+      "sha": "34c70ece1e9c14954398826f93c1bb6aa61007a8"
+    },
+    {
+      "name": "feat/grammar-release-20261117",
+      "sha": "96e65705ad69f969710d3ff6d2897bd4aa38fbf9"
+    },
+    {
+      "name": "feat/native-spacy-reference-20261117",
+      "sha": "4ae8e9e0e9b83b1a01176485bae55d9595e99b1c"
+    },
+    {
+      "name": "feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9"
+    },
+    {
+      "name": "feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39"
+    },
+    {
+      "name": "feat/odp-chart-data",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f"
+    },
+    {
+      "name": "feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "name": "feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791"
+    },
+    {
+      "name": "feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418"
+    },
+    {
+      "name": "feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "name": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "name": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "name": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "name": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "name": "feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "name": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "name": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "name": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "name": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "name": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "name": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "name": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "name": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "name": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "name": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "name": "feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "name": "feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "name": "feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "name": "feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "name": "feat/odt-columns",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902"
+    },
+    {
+      "name": "feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+    },
+    {
+      "name": "feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "name": "feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06"
+    },
+    {
+      "name": "feat/odt-first-even-headers",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8"
+    },
+    {
+      "name": "feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a"
+    },
+    {
+      "name": "feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+    },
+    {
+      "name": "feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+    },
+    {
+      "name": "feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826"
+    },
+    {
+      "name": "feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+    },
+    {
+      "name": "feat/odt-page-fields",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91"
+    },
+    {
+      "name": "feat/odt-paragraph-breaks",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da"
+    },
+    {
+      "name": "feat/odt-paragraph-shading",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0"
+    },
+    {
+      "name": "feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+    },
+    {
+      "name": "feat/odt-tab-stops",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f"
+    },
+    {
+      "name": "feat/odt-table-borders",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54"
+    },
+    {
+      "name": "feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159"
+    },
+    {
+      "name": "feat/office-proofing-followup-20261117",
+      "sha": "e3a38789359adaa33b2da1345c952fa1c2d8aebb"
+    },
+    {
+      "name": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "name": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "name": "feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "name": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "name": "fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "name": "fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc"
+    },
+    {
+      "name": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "name": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "name": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "name": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "name": "integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f"
+    },
+    {
+      "name": "integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83"
+    },
+    {
+      "name": "main",
+      "sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+    },
+    {
+      "name": "vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae"
+    },
+    {
+      "name": "vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263"
+    },
+    {
+      "name": "vendor/odf-metadata",
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9"
+    },
+    {
+      "name": "vendor/odp-chart-data",
+      "sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb"
+    },
+    {
+      "name": "vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248"
+    },
+    {
+      "name": "vendor/odp-preset-shapes",
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599"
+    },
+    {
+      "name": "vendor/odp-shape-links",
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb"
+    },
+    {
+      "name": "vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8"
+    },
+    {
+      "name": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "name": "vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "name": "vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5"
+    },
+    {
+      "name": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "name": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "name": "vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+    },
+    {
+      "name": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "name": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "name": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "name": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "name": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "name": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "name": "vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "name": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "name": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "name": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "name": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "name": "vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "name": "vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "name": "vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "name": "vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "name": "vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "name": "vendor/odt-columns",
+      "sha": "1f417ad7a61dfb69034704a67f85243eff89830a"
+    },
+    {
+      "name": "vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    },
+    {
+      "name": "vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f"
+    },
+    {
+      "name": "vendor/odt-fields",
+      "sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c"
+    },
+    {
+      "name": "vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308"
+    },
+    {
+      "name": "vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18"
+    },
+    {
+      "name": "vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892"
+    },
+    {
+      "name": "vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb"
+    },
+    {
+      "name": "vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4"
+    },
+    {
+      "name": "vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074"
+    },
+    {
+      "name": "vendor/odt-page-fields",
+      "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3"
+    },
+    {
+      "name": "vendor/odt-paragraph-breaks",
+      "sha": "b990f9041cce78e3768c2ee0190413bf26962431"
+    },
+    {
+      "name": "vendor/odt-paragraph-shading",
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be"
+    },
+    {
+      "name": "vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82"
+    },
+    {
+      "name": "vendor/odt-tab-stops",
+      "sha": "156cc755df74dcbafec0ebd882945349c40a5005"
+    },
+    {
+      "name": "vendor/odt-table-borders",
+      "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c"
+    },
+    {
+      "name": "vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+    }
+  ],
+  "recent_prs": [
+    {
+      "number": 144,
+      "title": "Reconcile Office fidelity and preserve later-section column breaks",
+      "state": "open",
+      "draft": true,
+      "merged_at": null,
+      "updated_at": "2026-11-17T21:14:32Z",
+      "head": "codex/odt-column-boundary-followup-20261117",
+      "sha": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+      "base": "main",
+      "base_sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+    },
+    {
+      "number": 139,
+      "title": "Freeze German spaCy oracle and connect the native CrispEmbed handoff",
+      "state": "open",
+      "draft": true,
+      "merged_at": null,
+      "updated_at": "2026-11-17T20:42:42Z",
+      "head": "feat/native-spacy-reference-20261117",
+      "sha": "4ae8e9e0e9b83b1a01176485bae55d9595e99b1c",
+      "base": "main",
+      "base_sha": "d6010059644b34accd6f188e0e2a4863ab63e318"
+    },
+    {
+      "number": 143,
+      "title": "Fix ODT field and bookmark boundaries; reconcile German proofing controls",
+      "state": "open",
+      "draft": true,
+      "merged_at": null,
+      "updated_at": "2026-11-17T20:32:43Z",
+      "head": "codex/office-reconciled-20261117",
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "base": "main",
+      "base_sha": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "number": 140,
+      "title": "Preserve cached page fields through DOCX import and ODT export",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T20:14:56Z",
+      "updated_at": "2026-11-17T20:14:56Z",
+      "head": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "base": "main",
+      "base_sha": "d6010059644b34accd6f188e0e2a4863ab63e318"
+    },
+    {
+      "number": 142,
+      "title": "Record data bars",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T20:14:26Z",
+      "updated_at": "2026-11-17T20:14:26Z",
+      "head": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "base": "main",
+      "base_sha": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "number": 141,
+      "title": "Support data-bar conditional formats",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T20:13:20Z",
+      "updated_at": "2026-11-17T20:13:20Z",
+      "head": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "base": "main",
+      "base_sha": "d6010059644b34accd6f188e0e2a4863ab63e318"
+    },
+    {
+      "number": 138,
+      "title": "Record dynamic ODS validation links",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T20:02:18Z",
+      "updated_at": "2026-11-17T20:02:18Z",
+      "head": "docs/ods-dynamic-validation",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "base": "main",
+      "base_sha": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "number": 137,
+      "title": "Preserve range-backed ODS list validations",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T20:01:17Z",
+      "updated_at": "2026-11-17T20:01:17Z",
+      "head": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "base": "main",
+      "base_sha": "4eaca83b192897edad82658107dfeb5bcbed0920"
+    },
+    {
+      "number": 136,
+      "title": "Record color scales",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:47:40Z",
+      "updated_at": "2026-11-17T19:47:40Z",
+      "head": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "base": "main",
+      "base_sha": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "number": 135,
+      "title": "Support color-scale conditional formats",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:45:42Z",
+      "updated_at": "2026-11-17T19:45:42Z",
+      "head": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "base": "main",
+      "base_sha": "e3a38789359adaa33b2da1345c952fa1c2d8aebb"
+    },
+    {
+      "number": 134,
+      "title": "Record AOT removal",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:25:07Z",
+      "updated_at": "2026-11-17T19:25:07Z",
+      "head": "docs/aot-removal",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "base": "main",
+      "base_sha": "fdec8c24fde94fbffee212a7541b0cb236f682e4"
+    },
+    {
+      "number": 133,
+      "title": "Write ODT first and even header/footer variants",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:23:07Z",
+      "updated_at": "2026-11-17T19:23:08Z",
+      "head": "feat/odt-first-even-headers",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "base": "main",
+      "base_sha": "081af8a55338c713ba8b350f2519f2021d9caee3"
+    },
+    {
+      "number": 128,
+      "title": "Fix visible ODF extraction and ODT story fidelity",
+      "state": "closed",
+      "draft": false,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:17:14Z",
+      "head": "codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "base": "main",
+      "base_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff"
+    },
+    {
+      "number": 132,
+      "title": "Preserve ODF stories, header media and bookmark ranges",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:17:06Z",
+      "updated_at": "2026-11-17T19:17:06Z",
+      "head": "feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "base": "main",
+      "base_sha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0"
+    },
+    {
+      "number": 131,
+      "title": "Document native spaCy/CrispEmbed implementation handoff",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:15:25Z",
+      "updated_at": "2026-11-17T19:15:25Z",
+      "head": "docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "base": "main",
+      "base_sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f"
+    },
+    {
+      "number": 114,
+      "title": "Complete German proofing qualification and repair Office integration [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:15:08Z",
+      "head": "codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "base": "main",
+      "base_sha": "13e7172977d671190ba8c3cf964deec4d7473090"
+    },
+    {
+      "number": 116,
+      "title": "Qualify Office continuation and repair paragraph decoration caching [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:15:04Z",
+      "head": "codex/office-qualified-resume-20261117",
+      "sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "base": "main",
+      "base_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62"
+    },
+    {
+      "number": 117,
+      "title": "Add optional AOT grammar checking and linguistic analysis [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:15:01Z",
+      "head": "codex/aot-proofing-analysis-20261117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "base": "main",
+      "base_sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3"
+    },
+    {
+      "number": 120,
+      "title": "Run AOT locally without SynanDaemon and improve analysis workflow [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:14:58Z",
+      "head": "codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "base": "main",
+      "base_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c"
+    },
+    {
+      "number": 123,
+      "title": "Consolidate Office and proofing continuations with local qualification [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "merged_at": null,
+      "updated_at": "2026-11-17T19:14:55Z",
+      "head": "codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "base": "main",
+      "base_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62"
+    },
+    {
+      "number": 130,
+      "title": "Preserve inline ODT PAGE and NUMPAGES fields",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:11:34Z",
+      "updated_at": "2026-11-17T19:11:35Z",
+      "head": "fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "base": "main",
+      "base_sha": "6061aa72e2e59ba23085451c04286184aa23b9e0"
+    },
+    {
+      "number": 129,
+      "title": "Merge remaining proofing branches and remove AOT/RML",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T19:09:23Z",
+      "updated_at": "2026-11-17T19:09:24Z",
+      "head": "integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "base": "main",
+      "base_sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef"
+    },
+    {
+      "number": 127,
+      "title": "Write cached ODT table-of-contents entries",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T18:59:52Z",
+      "updated_at": "2026-11-17T18:59:52Z",
+      "head": "feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "base": "main",
+      "base_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff"
+    },
+    {
+      "number": 126,
+      "title": "Export ODP ellipse and rounded-rectangle shapes",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T18:38:00Z",
+      "updated_at": "2026-11-17T18:38:01Z",
+      "head": "feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "base": "main",
+      "base_sha": "13e7172977d671190ba8c3cf964deec4d7473090"
+    },
+    {
+      "number": 113,
+      "title": "Reconcile Office, proofing and Zotero continuation [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "merged_at": null,
+      "updated_at": "2026-11-17T18:26:04Z",
+      "head": "codex/office-continuation-20261117",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "base": "main",
+      "base_sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad"
+    },
+    {
+      "number": 125,
+      "title": "Merge Office continuation without AOT",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T18:25:42Z",
+      "updated_at": "2026-11-17T18:25:42Z",
+      "head": "integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "base": "main",
+      "base_sha": "93cb0773f82b3d41a75bc50705074efcb9d4df78"
+    },
+    {
+      "number": 124,
+      "title": "Write ODT field results",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T18:17:58Z",
+      "updated_at": "2026-11-17T18:17:59Z",
+      "head": "feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "base": "main",
+      "base_sha": "9626152fced037379a79ef4fec458645e0d8c2ff"
+    },
+    {
+      "number": 111,
+      "title": "Archive local qualification for merged ODF lists and sections",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T18:12:57Z",
+      "updated_at": "2026-11-17T18:12:57Z",
+      "head": "codex/office-fidelity-20261117",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "base": "main",
+      "base_sha": "9941c80d09145310efd752b1558356c7bfb97f02"
+    },
+    {
+      "number": 122,
+      "title": "Write ODT column breaks and keep-together",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T18:00:25Z",
+      "updated_at": "2026-11-17T18:00:25Z",
+      "head": "feat/odt-paragraph-breaks",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "base": "main",
+      "base_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c"
+    },
+    {
+      "number": 121,
+      "title": "Preserve ODP chart data as tables",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-17T17:54:19Z",
+      "updated_at": "2026-11-17T17:54:19Z",
+      "head": "feat/odp-chart-data",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "base": "main",
+      "base_sha": "924f09bab2caf7b5985ffa6c16702a837a58d7bc"
+    }
+  ],
+  "note": "Read-only recent-PR window plus complete two-page branch inventory. Parent separately owns complete PR inventory and fetching.",
+  "original_head": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+  "latest_continuation_head": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+  "latest_product_checkpoint": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+  "main": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+  "merge_base": "c6fca4c687354d3d396c896820aea5cfc455a7f3",
+  "no_ci_queries": true
+}

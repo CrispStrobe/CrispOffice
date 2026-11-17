@@ -1,0 +1,23 @@
+{
+  "reviewed_at_utc": "2026-11-17T19:16:17.975973+00:00",
+  "source": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+  "method": "Direct visual inspection of the two final raster images, supplementing archived PDF coordinate and reopened DOCX assertions.",
+  "observations": {
+    "docx-leading-inline-column-break": "Left text remains in the first column; right text starts in the second column with its follower directly below. All three labels are legible and unclipped.",
+    "docx-midparagraph-inline-column-break": "Bold text retains the first-line indent in the first column. Italic continuation starts in the second column, with the regular follower below. All labels are legible and unclipped."
+  },
+  "limits": [
+    "Visual review does not independently establish exact vertical paragraph margins or exhaustive multiline keep-together pagination.",
+    "Rendering uses the pinned LibreOfficeDev build recorded in the receipt, not live Microsoft Word."
+  ],
+  "images": {
+    "docx-leading-inline-column-break.png": {
+      "size": 6963,
+      "sha256": "c3d269b2c088dbb29cec7b91d6f5fa72e101e80d1aff1f800718c134781f5d3d"
+    },
+    "docx-midparagraph-inline-column-break.png": {
+      "size": 9268,
+      "sha256": "aa527375fe3783bde8f3ef9902944b464d7c80fd31f1e25f728706ec9f8e8494"
+    }
+  }
+}

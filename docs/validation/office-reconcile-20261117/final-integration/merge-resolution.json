@@ -1,0 +1,14 @@
+{
+  "captured_main": "13e7172977d671190ba8c3cf964deec4d7473090",
+  "parent_checkpoint": "7523a031f725cfa3416971b749a8aa63db5ced05",
+  "main_product_delta": "PR124 live generic field support; prior Office/proofing squash source retained without removing later work.",
+  "resolutions": [
+    "Retain later morphology, nominal dictionary source/generated/manifest as an atomic set, AOT and GECToR integrations, normalized dimensions/colors/tab identity, schema-valid columns, paragraph cache flags, inline column fragments and imported bookmark ownership.",
+    "Retain both historical report versions by keeping newer working reports and archiving incoming conflict references; all captured main histories remain parents.",
+    "Retain incoming PAGE/NUMPAGES test unchanged; safe fields emit empty native placeholders. Avoid global suppression; preserve unsafe cache ownership and use valid direct NUMPAGES representation.",
+    "Combine generated-field/column prepass and explicit PAGE-marker edge with non-mutating story-owned bookmark resolution; count all emitted start names before ID validation.",
+    "Remove only a duplicate identical ODP hyperlink assertion; retain original hyperlink and Q1/Q2 data assertions."
+  ],
+  "validation": "Focused controls passed as separately recorded source-bound milestones; fresh complete qualification follows this combined source checkpoint.",
+  "github_ci_queried_or_awaited": false
+}

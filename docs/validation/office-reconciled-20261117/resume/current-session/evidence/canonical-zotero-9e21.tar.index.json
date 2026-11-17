@@ -1,0 +1,45 @@
+{
+  "archive": "canonical-zotero-9e21.tar.xz",
+  "bytes": 47996,
+  "sha256": "b9db83d64ad301344a280e477290379a6b429dd395e3b8774dafaebd768030a7",
+  "classification": "Completed engine390/editor186 Zotero cohort checkpoint; full final integrity pending",
+  "member_count": 7,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "checkpoint.json",
+      "bytes": 132733,
+      "sha256": "a20da387cb4f866289dd3860ac60a5bf6f71f2451be5babec08d814f6027da46"
+    },
+    {
+      "path": "editor-zotero/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "editor-zotero/stdout.gz",
+      "bytes": 10043,
+      "sha256": "00c35c5bfb974a69e63bcbe19c359cdb46b0448aa482c880105d9a962592ec51"
+    },
+    {
+      "path": "editor-zotero/test-summary.json",
+      "bytes": 35455,
+      "sha256": "936fc695f67e07c7af553bd69a58364da5227d6eaa125221198fe383670ab950"
+    },
+    {
+      "path": "engine-zotero/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "engine-zotero/stdout.gz",
+      "bytes": 18001,
+      "sha256": "09547ab4788b1a4e3b827dd717db90b7095c3d4b5bbec7287ca6d94bce03975d"
+    },
+    {
+      "path": "engine-zotero/test-summary.json",
+      "bytes": 68688,
+      "sha256": "4d7624c667eb3601e7c1723f34b1f14e8742d709312461da634e336130d8ecdd"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "status": "merged_source_before_local_qualification",
+  "documentation": [
+    {
+      "path": "docs/validation/aot-daemon-free-20261117/README.md",
+      "selected_stage": 3,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/validation/aot-daemon-free-20261117/evidence/native-build.log.gz",
+      "selected_stage": 3,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/validation/aot-daemon-free-20261117/evidence/native-runtime-manifest.json",
+      "selected_stage": 3,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/validation/aot-daemon-free-20261117/evidence/native-smoke.json",
+      "selected_stage": 3,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/validation/german-gector/2026-11-17-resume/README.md",
+      "selected_stage": 2,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+      "selected_stage": 3,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/validation/office-consolidation-20261117/README.md",
+      "selected_stage": 3,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/validation/office-consolidation-20261117/checkpoints.json",
+      "selected_stage": 3,
+      "other_version_preserved_in": "merge-inputs.tar.xz"
+    },
+    {
+      "path": "docs/PROOFING.md",
+      "decision": "Incoming active architecture/removal plus saved bounded German and reuse scope; retired AOT section omitted."
+    }
+  ],
+  "office": "Captured main source, preserving independent saved tab suite as odt_table_tab_gector_fidelity_test.dart; retain explicit AOT removal."
+}

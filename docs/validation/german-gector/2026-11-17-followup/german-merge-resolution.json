@@ -1,0 +1,14 @@
+{
+  "resolution": "Main generated chunk and manifest; auto-merged supplement equals main; all prior common word forms preserved.",
+  "prior_additional_forms": 210,
+  "merged_additional_forms": 214,
+  "added_forms": [
+    "Frage",
+    "Gerät",
+    "Wissen",
+    "trotzdem"
+  ],
+  "supplement_sha256": "c294a7a543c0178284dbc14486461130ddc1362465bd1f41139edb3179b14a57",
+  "generated_hashes_verified": 17,
+  "grammar_resolution": "Preserve stricter de.grammar.verb-object-case first for reviewed accusative contexts; incoming dative/copula contexts use unified articleRuleId parameter and generic default article message. Preserve incoming literal guard and predicate adjectives."
+}

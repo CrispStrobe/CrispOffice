@@ -59,7 +59,14 @@ _GermanVerbContext? _grammarVerbContext(
   if (noun != words.length - 1) return null;
   if (!_contextPronouns.contains(subject) || words[1].capitalized) return null;
   final paradigm = GermanWritingRulesProvider._presentByForm[verb];
-  if (paradigm == null) return null;
+  if (paradigm == null || !_contextAgrees(paradigm, verb, subject)) return null;
+  // Share the incoming object/subject ambiguity veto with the older verb
+  // contexts too. In particular, "Ihr antwortet der Lehrer" can mean that
+  // the teacher answers her, rather than that you answer the teacher.
+  if (const {'sie', 'es', 'ihr'}.contains(subject) &&
+      _grammarPossiblePostverbalSubject(words, 2, noun, paradigm, words[1])) {
+    return null;
+  }
   final grammaticalCase = switch (paradigm.infinitive) {
     'haben' ||
     'sehen' ||

@@ -1,0 +1,6 @@
+{
+  "vendor": "49ff505edab618f35f423b93134a23e26e3d50fd",
+  "feature": "49ff505edab618f35f423b93134a23e26e3d50fd",
+  "production_patch_identical": true,
+  "test_difference": "Vendor adds Q1/Q2 chart assertions already present on feature base. Both Q1/Q2 and ellipse assertions exist in integrated test; source patch identity checked separately."
+}

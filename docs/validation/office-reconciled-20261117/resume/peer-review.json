@@ -1,0 +1,139 @@
+{
+  "reviewer": "github_inventory subagent",
+  "review_scope": "Independent review of the ODT change, related test reconciliations, incoming-main merge, and available evidence. Reviewer earlier prepared native/Python prerequisites.",
+  "reviewed_commit": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+  "reviewed_tree": "3aab8c7bb1522468c4a821e4ae588c826acbea27",
+  "accepted_release": false,
+  "source_review": "No blocking finding in the inspected source, tests, or merge scope.",
+  "final_qualification": "Blocked: environment became unavailable before final full-run and portable-run receipts could be independently audited.",
+  "observed_ancestry": {
+    "parents": [
+      "4557f66052ad1a7863fd9fdf5545ad6cb39fc95d",
+      "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+    ],
+    "verified_ancestors": [
+      "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "83f8c380f9271b6bf34a300c3aedc19442cb61f1"
+    ]
+  },
+  "observed_source_and_tests": {
+    "odt_writer_sha256": "1018bd1bf3fc1fc476a63029b043e391fc3e709642de1bb374ed5a0b948fd886",
+    "odt_writer_identical_to_9b33bec0": true,
+    "test_hashes_identical_to_622f58c8": {
+      "odt_page_marker_column_break_test.dart": "1d0ee494f2b743f7f5d770cf83285005b528517841e78d823109eba30b54956a",
+      "odt_inline_column_break_fidelity_test.dart": "a6f3212e8fdf7ce14796cee36ebbde5565b3745720d403e139ce9c24c0c7d40e",
+      "odt_column_break_style_fidelity_test.dart": "f9b312f55f4133842891602d86ec9fcf3bd1be76cf604dd27e169a86cbcc5fad"
+    },
+    "boundary_behavior": "Retain the empty source fragment at actual multi-column section starts. Standalone explicit paragraph page-break precedence remains unchanged.",
+    "controls": "Eight section/property combinations and the exact raw-DOCX two-break case preserve native page/column order. Standalone page precedence is separately bounded.",
+    "negative_gap": "Test reconciliation preserves the existing omission profile; it does not claim that ODF forbids signed lengths.",
+    "editor_grammar_change": "Only one scenario's expected rule ID changes from verb-case to verb-object-case. Replacement, corrected text, clean recheck, undo and redo assertions remain unchanged.",
+    "merge_review": "Renderer overlap is byte-identical. Incoming demonstrative-dative grammar logic is preserved alongside the existing accusative-frame implementation. Incoming ODS whitespace and extraction changes retain default ODT collapsing behavior."
+  },
+  "earlier_completed_evidence_audits": {
+    "boundary_controls": {
+      "final_test_bytes_match_reviewed_commit": true,
+      "baseline": {
+        "writer_source": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+        "passed": 12,
+        "expected_failed_tests": 9,
+        "skipped": 0
+      },
+      "focused_vm": {
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0
+      },
+      "focused_node": {
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0
+      },
+      "input_snapshots_stable": true,
+      "counting_note": "The baseline's nine assertion-error events belong to the same nine failed tests. Focused results overlap broader cohorts."
+    },
+    "retained_consumers": {
+      "source_commit": "9b33bec05df4e08bde06c6768f1e6b5a4af59a1a",
+      "fixtures": 40,
+      "xml_parts": 160,
+      "output_hashes_independently_verified": 623,
+      "both_input_snapshots_equal": true
+    },
+    "scoped_boundary_consumers": {
+      "source_commit": "9b33bec05df4e08bde06c6768f1e6b5a4af59a1a",
+      "repaired_layouts": 4,
+      "bounded_precedence_controls": 1,
+      "pdf_variants": 15,
+      "reopened_docx": 10,
+      "xml_parts": 40,
+      "output_hashes_independently_verified": 105,
+      "stable_input_hashes": 398,
+      "limitation": "The fifth control verifies target page/left-column precedence, follower pages, text and bookmarks. It does not claim native-equivalent follower balancing.",
+      "baseline_equivalence": "Direct/imported fifth-control content.xml and styles.xml independently verified byte-identical to the incoming writer.",
+      "supplemental_raw_bbox_files_independently_checked": 16
+    },
+    "portable_622": {
+      "source_commit": "622f58c82f30def218ec564fc99b9bff7009ab7f",
+      "passed": 207,
+      "suites": 14,
+      "skipped": 0,
+      "errors": 0,
+      "six_input_maps_equal": true,
+      "head_stable": true,
+      "receipt_sha256": "7068ad97bcfc6f102c30ebe9f596d49f1d6fcc5eaf7475d8dcf5f875f75cfde7"
+    },
+    "editor_rule_id_reconciliation": {
+      "focused_passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "Merged-source preparation before the final frozen checkpoint; not a replacement for the final broad run."
+    }
+  },
+  "earlier_archive_integrity_audits": [
+    {
+      "archive": "consumers-9b33bec0.tar.xz",
+      "sha256": "1b75f527804c5621174e0bab13199065064063e7f810443a249e3ddf124247f9",
+      "all_member_hashes_verified": 708
+    },
+    {
+      "archive": "column-boundary-controls.tar.xz",
+      "original_name": "field-review-evidence.tar.xz",
+      "sha256": "306810de6113bdb98fc2c17f69ae376254418d648e1618c127833fa5e41c7f0e",
+      "all_member_hashes_verified": 465
+    },
+    {
+      "archive": "editor-grammar-rule-id.tar.xz",
+      "sha256": "ca74e2517e3f8e103980129ef1a8ee634641c78b1f75294e8ff7ad92f06f0f84",
+      "all_member_hashes_verified": 11
+    },
+    {
+      "archive": "qualification-9b33bec0-attempt.tar.xz",
+      "all_member_hashes_verified": 81
+    },
+    {
+      "archive": "runtime-recovery.tar.xz",
+      "all_member_hashes_verified": 35
+    },
+    {
+      "archive": "intermediate-e95cb0ce.tar.xz",
+      "all_member_hashes_verified": 32
+    }
+  ],
+  "failed_and_superseded_results": {
+    "e95cb0ce": "Rejected standalone page-break behavior; its outcomes do not qualify the final source.",
+    "9b33bec0_full_attempt": "Stopped on the stale imported-DOCX coalescing expectation.",
+    "622f58c8_full_attempt": "Failed one editor lookup using the stale verb-case rule ID. Input-integrity checks passed, but the full run did not qualify.",
+    "counting_policy": "Failed, superseded, repeated and overlapping outcomes are not added to final passing totals."
+  },
+  "current_9e21_evidence_and_durability": {
+    "source_checkpoint": "Parent reports the reviewed source and completed earlier evidence saved remotely; ancestry and local commit contents were inspected before environment loss.",
+    "fresh_consumers": "Agents reported successful fresh consumer runs. Their final receipts and archive hashes were not independently read by this reviewer before environment loss.",
+    "fresh_full_and_portable_runs": "Started by parent. Final exit status, event counts and input-integrity receipts were not observed by this reviewer.",
+    "fresh_raw_artifacts": "Do not assume artifacts remaining in the unavailable workspace are durable unless a successful remote upload is separately verified.",
+    "prior_consumer_bridge": "The exact-source bridge from 9b33 no longer qualifies 9e21 because incoming main changes recorded engine inputs; fresh results are required.",
+    "report_persistence": "This record was supplied directly in the reviewer's message after environment loss. No local file update succeeded after the environment became unavailable."
+  },
+  "remaining_gate": "Recover or reproduce and audit final merged-source full, portable and consumer receipts before reporting complete qualification.",
+  "github_actions_queried_or_awaited": false,
+  "reviewer_source_or_remote_mutations": false
+}

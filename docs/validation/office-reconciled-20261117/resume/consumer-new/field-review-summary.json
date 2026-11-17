@@ -1,0 +1,96 @@
+{
+  "product_source_commit": "9b33bec05df4e08bde06c6768f1e6b5a4af59a1a",
+  "baseline_writer_commit": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+  "source_change": "Retain a leading hard-column source fragment at any later multi-column section boundary; ordinary paragraph page-break precedence remains unchanged.",
+  "final_control_inputs": {
+    "baseline-odt_document_writer.dart": "13393410e95f281e67cb9e427107bfd45b24e91822e23d4f8cb53feb6cd90b72",
+    "final-odt_document_writer.dart": "1018bd1bf3fc1fc476a63029b043e391fc3e709642de1bb374ed5a0b948fd886",
+    "odt_inline_column_break_fidelity_test.dart": "a6f3212e8fdf7ce14796cee36ebbde5565b3745720d403e139ce9c24c0c7d40e",
+    "odt_page_marker_column_break_test.dart": "1d0ee494f2b743f7f5d770cf83285005b528517841e78d823109eba30b54956a"
+  },
+  "final_counts": {
+    "negative_baseline": {
+      "expected_failures": 9,
+      "passes": 12,
+      "skips": 0
+    },
+    "dart_vm": {
+      "passes": 21,
+      "failures": 0,
+      "skips": 0
+    },
+    "node": {
+      "passes": 21,
+      "failures": 0,
+      "skips": 0
+    }
+  },
+  "consumer_scope": {
+    "repaired_layouts": 4,
+    "strict_pdf_variants": 12,
+    "bounded_precedence_controls": 1,
+    "bounded_pdf_variants": 3,
+    "reopened_odt_to_docx": 10,
+    "accepted_odf_schema_parts": 40,
+    "additional_combined_page_section_pdf_variants": 12,
+    "exact_raw_before_after_pdf_variants": 4
+  },
+  "limitations": [
+    "Fifth control validates target page/left-column origin and text/bookmark order; ODT final-section follower balancing differs from native DOCX and is byte-identical to the baseline writer.",
+    "Exact raw DOCX omits page size: native LibreOffice chooses Letter, engine import A4. Audit compares derived column/page semantics, not identical defaults.",
+    "Native references are interpreted by LibreOffice; no live Microsoft Word acceptance is claimed.",
+    "Passing test groups overlap and are not additive."
+  ],
+  "retained_rejected_attempts": [
+    {
+      "path": "consumers",
+      "reason": "Custom-paper native DOCX height normalization rejected the overly broad geometry oracle."
+    },
+    {
+      "path": "consumers-final",
+      "reason": "All-follower same-column assertion was too broad for the unchanged ordinary page-precedence control."
+    },
+    {
+      "path": "all-boundaries-before.receipt.json",
+      "reason": "Preliminary five-failure count includes a withdrawn ordinary page-before expectation; it is not the final defect count."
+    }
+  ],
+  "receipt_index": [
+    {
+      "path": "complete-boundary-controls-baseline.receipt.json",
+      "sha256": "9b135c18fc4d0f3385350956621ad218e6d62737b4a16ed580a65f4f3374d035",
+      "bytes": 147368
+    },
+    {
+      "path": "complete-boundary-controls-vm.receipt.json",
+      "sha256": "f92679ca3ff021cd7e8d35fdeaca7fd8f1360652f88d1b706a968007c784de60",
+      "bytes": 150553
+    },
+    {
+      "path": "complete-boundary-controls-node.receipt.json",
+      "sha256": "bd063a5476226528f36d85d4c2a7e5088dab6b43ab0cf7dd0f96579bdd09729d",
+      "bytes": 150558
+    },
+    {
+      "path": "consumers-qualified/receipt.json",
+      "sha256": "ef960bb804f0350848cbd97e989facf777ba84bfb50c8f20de0391f13cdc8f66",
+      "bytes": 51823
+    },
+    {
+      "path": "precedence-baseline/receipt.json",
+      "sha256": "3be1dfdad65f767ff653d944fd71c0d9f6a7337c367ab1980ad7721eeb7cdfb2",
+      "bytes": 122905
+    },
+    {
+      "path": "section-explicit-page-interaction/audit.json",
+      "sha256": "38868f6fce09c81b954e4dfd9ac1e0c7d7d4332b6517969abca67fc5c50f4c21",
+      "bytes": 2566
+    },
+    {
+      "path": "exact-restored-control/audit.json",
+      "sha256": "27204d3596572b902a27f7371fcf87e1b49b8d5c896b56ea3a96acf5eb37403d",
+      "bytes": 5300
+    }
+  ],
+  "accepted_scoped_checker_sha256": "bb842e4a0a03b921ed59f8a2c48a781b3975b3b569f054d449fc4c8624cce84d"
+}
