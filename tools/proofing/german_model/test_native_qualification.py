@@ -53,6 +53,147 @@ class NumericalEvidenceTests(unittest.TestCase):
         self.assertEqual(native.STRICT_ABSOLUTE_DIAGNOSTIC, .002)
 
 
+class LongProbeGateTests(unittest.TestCase):
+    @staticmethod
+    def probes():
+        return [{"token_count": length,
+                 "heads": {name: {"shape": [1, length, width], "minimum_token_cosine": .999,
+                                  "raw_argmax_mismatches": 0}
+                           for name, width in native.HEAD_WIDTHS.items()}}
+                for length in (64, 128, 256)]
+
+    @staticmethod
+    def status(gates, unchanged=True):
+        return native.qualification_status({
+            "cases": [{}], "validation": [{}], "expected_cases": 1, "expected_passes": 1,
+            "long_probe_gates": gates, "quality_vs_original": {
+                "frozen_probe_nonregression_passed": True, "differences": []},
+            "selected_tags_exact": True, "precision_policy_passed": True,
+            "precision": "f32", "policy_sources_unchanged_during_run": unchanged})
+
+    def test_all_three_lengths_and_both_heads_are_required_for_final_pass(self):
+        gates = native.long_probe_gates(self.probes(), .99)
+        self.assertEqual(gates["required_token_counts"], [64, 128, 256])
+        self.assertTrue(gates["raw_argmax_exact"])
+        self.assertEqual(self.status(gates), (True, True))
+
+    def test_missing_duplicate_extra_and_noninteger_lengths_cannot_complete(self):
+        for lengths in ([64, 128], [64, 128, 128], [64, 128, 256, 512],
+                        [64, 128, "256"], [64, 128, [256]]):
+            probes = self.probes()
+            for row, length in zip(probes, lengths):
+                row["token_count"] = length
+            if len(lengths) < 3:
+                probes = probes[:len(lengths)]
+            elif len(lengths) > 3:
+                probes.append({"token_count": lengths[-1], "heads": {}})
+            with self.subTest(lengths=lengths):
+                self.assertEqual(self.status(native.long_probe_gates(probes, .99)), (False, False))
+
+    def test_missing_extra_or_wrong_shape_head_cannot_complete(self):
+        for change in ("missing", "extra", "wrong_width", "wrong_length"):
+            probes = self.probes()
+            heads = probes[1]["heads"]
+            if change == "missing":
+                del heads["logits_d"]
+            elif change == "extra":
+                heads["hidden"] = heads["logits_d"]
+            elif change == "wrong_width":
+                heads["logits_labels"]["shape"][-1] -= 1
+            else:
+                heads["logits_d"]["shape"][1] -= 1
+            with self.subTest(change=change):
+                self.assertEqual(self.status(native.long_probe_gates(probes, .99)), (False, False))
+
+    def test_one_long_head_failure_blocks_otherwise_passing_short_panel(self):
+        for precision_threshold in (.99, .94):
+            for index in range(3):
+                for head in native.HEAD_WIDTHS:
+                    for cosine in (precision_threshold, .5, float("nan"), float("inf"), 1.01, True, None):
+                        probes = self.probes()
+                        probes[index]["heads"][head]["minimum_token_cosine"] = cosine
+                        with self.subTest(threshold=precision_threshold, length=index, head=head, cosine=cosine):
+                            gates = native.long_probe_gates(probes, precision_threshold)
+                            self.assertEqual(self.status(gates), (True, False))
+
+    def test_raw_argmax_remains_visible_as_a_nongating_long_diagnostic(self):
+        probes = self.probes()
+        probes[2]["heads"]["logits_labels"]["raw_argmax_mismatches"] = 1
+        gates = native.long_probe_gates(probes, .99)
+        self.assertFalse(gates["raw_argmax_exact"])
+        self.assertEqual(self.status(gates), (True, True))
+
+    def test_changed_policy_cannot_receive_a_final_pass(self):
+        self.assertEqual(self.status(native.long_probe_gates(self.probes(), .99), unchanged=False), (True, False))
+
+
+class BaselineLinkageTests(unittest.TestCase):
+    def setUp(self):
+        self.sources = {name: "0" * 64 for name in ("qualify_native.py", *native.POLICY_HELPERS)}
+        self.build = {"library": {"sha256": "1" * 64, "size_bytes": 50},
+                      "source_inventory_sha256": "2" * 64}
+        self.parent = {"file": "source-f32.gguf", "sha256": "3" * 64, "size_bytes": 100}
+        self.reference = "4" * 64
+        self.baseline = {"precision": "f32", "protocol_version": native.PROTOCOL_VERSION,
+                         "complete": True, "passed": True, "reference_sha256": self.reference,
+                         "build": self.build, "qualification_source_sha256": self.sources,
+                         "policy_sources_unchanged_during_run": True, "model": self.parent}
+
+    def test_exact_declared_parent_and_policy_are_admitted(self):
+        native.verify_baseline(self.baseline, self.reference, self.build, self.sources, self.parent)
+
+    def test_different_f32_hash_size_or_name_is_not_this_mixed_parent(self):
+        for change in ({"sha256": "5" * 64}, {"size_bytes": 101}, {"file": "another-f32.gguf"}):
+            baseline = {**self.baseline, "model": {**self.parent, **change}}
+            with self.subTest(change=change):
+                with self.assertRaisesRegex(ValueError, "exact declared parent GGUF"):
+                    native.verify_baseline(baseline, self.reference, self.build, self.sources, self.parent)
+
+    def test_old_incomplete_changed_or_unsealed_policy_is_not_a_baseline(self):
+        changes = [{"protocol_version": 1}, {"complete": False}, {"passed": False},
+                   {"policy_sources_unchanged_during_run": False}, {"qualification_source_sha256": {}},
+                   {"reference_sha256": "5" * 64}, {"precision": "mixed-q4_k"}]
+        for name in native.POLICY_HELPERS:
+            changes.append({"qualification_source_sha256": {**self.sources, name: "f" * 64}})
+        for change in changes:
+            with self.subTest(change=change):
+                with self.assertRaisesRegex(ValueError, "reference/source/binary/policy"):
+                    native.verify_baseline({**self.baseline, **change}, self.reference,
+                                           self.build, self.sources, self.parent)
+
+    def test_another_binary_or_source_cannot_serve_as_control(self):
+        for change in ({"library": {"sha256": "f" * 64, "size_bytes": 50}},
+                       {"source_inventory_sha256": "f" * 64}):
+            baseline = {**self.baseline, "build": {**self.build, **change}}
+            with self.subTest(change=change):
+                with self.assertRaises(ValueError):
+                    native.verify_baseline(baseline, self.reference, self.build, self.sources, self.parent)
+
+
+class PolicySourceTests(unittest.TestCase):
+    def test_qualifier_and_every_local_policy_helper_are_hashed(self):
+        inventory = native.policy_source_inventory()
+        self.assertEqual(set(inventory), {"qualify_native.py", "export_reference.py", "evaluate.py",
+                                          "quantize_int4.py", "summarize_qualification.py"})
+        original = native.source_inventory_digest(inventory)
+        self.assertEqual(original, native.source_inventory_digest(dict(reversed(list(inventory.items())))))
+        for name in inventory:
+            changed = {**inventory, name: "f" * 64}
+            self.assertNotEqual(original, native.source_inventory_digest(changed))
+
+    def test_imported_helper_from_another_directory_is_refused(self):
+        for name in native.POLICY_HELPERS[:3]:
+            with self.subTest(name=name), patch.dict(native.sys.modules, {
+                    name.removesuffix(".py"): SimpleNamespace(__file__="/another-source/" + name)}):
+                with self.assertRaisesRegex(ValueError, "outside the declared source directory"):
+                    native.policy_source_inventory()
+
+    def test_missing_helper_is_refused(self):
+        with patch.dict(native.sys.modules, {"export_reference": SimpleNamespace()}):
+            with self.assertRaises(ValueError):
+                native.policy_source_inventory()
+
+
 class DecisionEvidenceTests(unittest.TestCase):
     def setUp(self):
         labels = np.zeros((1, 3, 5000), dtype=np.float32)

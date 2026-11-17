@@ -16,6 +16,7 @@ from collections import Counter
 import ctypes as C
 from datetime import datetime, timezone
 import hashlib
+import importlib.metadata
 import json
 import os
 from pathlib import Path
@@ -40,6 +41,9 @@ from summarize_qualification import compare_references, timing_summary
 GGML_REVISION = "3a27b6c665b191cb230be367db5c52d81dd3e2ac"
 STRICT_ABSOLUTE_DIAGNOSTIC = 0.002
 HEAD_WIDTHS = {"logits_labels": 5000, "logits_d": 2}
+PROTOCOL_VERSION = 2
+LONG_PROBE_LENGTHS = (64, 128, 256)
+POLICY_HELPERS = ("export_reference.py", "summarize_qualification.py", "quantize_int4.py", "evaluate.py")
 RECIPE = {
     "name": "mixed-q4_k",
     "encoder_matrices": "Q4_K",
@@ -68,6 +72,77 @@ def write_new_json(path: Path, value: Any) -> None:
 
 def sha_array(array: np.ndarray) -> str:
     return hashlib.sha256(memoryview(np.ascontiguousarray(array)).cast("B")).hexdigest()
+
+
+def policy_source_inventory() -> dict[str, str]:
+    directory = Path(__file__).resolve().parent
+    for name in POLICY_HELPERS[:3]:
+        module = sys.modules.get(name.removesuffix(".py"))
+        location = getattr(module, "__file__", None)
+        if location is None or Path(location).resolve() != directory / name:
+            raise ValueError(f"Imported policy helper is outside the declared source directory: {name}")
+    return {name: digest(directory / name) for name in (Path(__file__).name, *POLICY_HELPERS)}
+
+
+def source_inventory_digest(inventory: dict[str, str]) -> str:
+    return hashlib.sha256(json.dumps(inventory, sort_keys=True).encode()).hexdigest()
+
+
+def verify_baseline(baseline: dict[str, Any], reference_sha256: str, build: dict[str, Any],
+                    policy_sources: dict[str, str], parent_gguf: dict[str, Any] | None = None) -> None:
+    if (baseline.get("precision") != "f32" or baseline.get("protocol_version") != PROTOCOL_VERSION
+            or baseline.get("complete") is not True or baseline.get("passed") is not True
+            or baseline.get("reference_sha256") != reference_sha256
+            or baseline.get("build", {}).get("library") != build["library"]
+            or baseline.get("build", {}).get("source_inventory_sha256") != build["source_inventory_sha256"]
+            or baseline.get("qualification_source_sha256") != policy_sources
+            or baseline.get("policy_sources_unchanged_during_run") is not True):
+        raise ValueError("Native F32 baseline is incomplete, failed, or from a different reference/source/binary/policy")
+    if parent_gguf is not None and baseline.get("model") != parent_gguf:
+        raise ValueError("Native F32 baseline is not this mixed model's exact declared parent GGUF")
+
+
+def long_probe_gates(probes: list[dict[str, Any]], threshold: float) -> dict[str, Any]:
+    """Frozen shape and precision admission for every required prepared length."""
+    lengths = [probe.get("token_count") for probe in probes]
+    complete = (len(lengths) == len(LONG_PROBE_LENGTHS) and all(type(length) is int for length in lengths)
+                and set(lengths) == set(LONG_PROBE_LENGTHS))
+    precision = complete
+    raw_argmax_exact = complete
+    for probe in probes:
+        heads = probe.get("heads", {})
+        if set(heads) != set(HEAD_WIDTHS):
+            complete = precision = raw_argmax_exact = False
+            continue
+        for name, width in HEAD_WIDTHS.items():
+            head = heads[name]
+            if head.get("shape") != [1, probe.get("token_count"), width]:
+                complete = precision = raw_argmax_exact = False
+            cosine = head.get("minimum_token_cosine")
+            if (type(cosine) not in (int, float) or not np.isfinite(cosine)
+                    or not -1 <= cosine <= 1 or cosine <= threshold):
+                precision = False
+            if head.get("raw_argmax_mismatches") != 0:
+                raw_argmax_exact = False
+    return {"required_token_counts": list(LONG_PROBE_LENGTHS), "complete": complete,
+            "precision_policy_passed": complete and precision, "raw_argmax_exact": complete and raw_argmax_exact,
+            "minimum_token_cosine_exclusive": threshold,
+            "scope": "Gating shapes/numerics for both heads at every required length; timing and raw argmax are retained diagnostics."}
+
+
+def qualification_status(report: dict[str, Any]) -> tuple[bool, bool]:
+    complete = (len(report["cases"]) == report["expected_cases"]
+                and len(report["validation"]) == report["expected_passes"]
+                and report["long_probe_gates"]["complete"])
+    quality = report["quality_vs_original"]["frozen_probe_nonregression_passed"]
+    if "quality_vs_native_f32" in report:
+        quality = quality and report["quality_vs_native_f32"]["frozen_probe_nonregression_passed"]
+    f32_exact = report["selected_tags_exact"] and not report["quality_vs_original"]["differences"]
+    passed = (complete and report["precision_policy_passed"]
+              and report["long_probe_gates"]["precision_policy_passed"]
+              and report["policy_sources_unchanged_during_run"]
+              and quality and (report["precision"] != "f32" or f32_exact))
+    return complete, passed
 
 
 def relative_source(path: Path, source: Path) -> str:
@@ -471,13 +546,17 @@ def qualify(args) -> dict[str, Any]:
         raise ValueError("Output directory must be new or empty; retain previous evidence")
     if args.warmups < 0 or args.repeats < 1 or not 1 <= args.threads <= 64:
         raise ValueError("Invalid warmup/repeat/thread budget")
+    if args.eval_dir.resolve() != Path(__file__).resolve().parent:
+        raise ValueError("Qualification requires the local source-bound evaluation helpers")
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    report = {"schema": "quds.gector.native-qualification.v1", "complete": False, "passed": False,
+    report = {"schema": "quds.gector.native-qualification.v1", "protocol_version": PROTOCOL_VERSION,
+              "complete": False, "passed": False,
               "precision": args.precision, "timestamp_utc": datetime.now(timezone.utc).isoformat(),
               "warmups": args.warmups, "repeats": args.repeats, "threads": args.threads,
               "cases": [], "validation": [], "long_probes": []}
     session = None
     try:
+        policy_sources = policy_source_inventory()
         assets, revision = verify_bundle(args.eval_dir, args.model_dir)
         build = verify_build(args.build_manifest, args.source_dir, args.library)
         model, census = verify_model(args.model, args.model_manifest, args.precision)
@@ -497,11 +576,11 @@ def qualify(args) -> dict[str, Any]:
         baseline = read_json(args.baseline) if args.baseline else None
         if args.precision == "mixed-q4_k" and baseline is None:
             raise ValueError("Mixed qualification requires a completed native F32 control")
-        if baseline is not None and (baseline.get("precision") != "f32" or baseline.get("complete") is not True
-                or baseline.get("passed") is not True or baseline.get("reference_sha256") != digest(args.reference)
-                or baseline.get("build", {}).get("library") != build["library"]
-                or baseline.get("build", {}).get("source_inventory_sha256") != build["source_inventory_sha256"]):
-            raise ValueError("Native F32 baseline is incomplete, failed, or from a different model/source/binary")
+        if baseline is not None:
+            if args.precision == "mixed-q4_k" and not isinstance(model.get("parent_gguf"), dict):
+                raise ValueError("Mixed model manifest is missing its exact parent GGUF")
+            verify_baseline(baseline, digest(args.reference), build, policy_sources,
+                            model["parent_gguf"] if args.precision == "mixed-q4_k" else None)
         baseline_passes = {(row["id"], row["pass"]): row for row in baseline["validation"]} if baseline else {}
         report.update({
             "model": model["output"], "model_manifest_sha256": digest(args.model_manifest),
@@ -509,9 +588,14 @@ def qualify(args) -> dict[str, Any]:
             "cases_sha256": digest(cases_path), "source_revision": revision,
             "build_manifest_sha256": digest(args.build_manifest), "build": build,
             "qualifier_sha256": digest(Path(__file__)), "tensor_types": dict(Counter(item["type"] for item in census)),
+            "qualification_source_sha256": policy_sources,
+            "qualification_source_inventory_sha256": source_inventory_digest(policy_sources),
+            "policy_sources_unchanged_during_run": False,
             "expected_cases": len(expected), "expected_passes": sum(len(case["passes"]) for case in reference["cases"]),
             "runtime": {"python": sys.version, "platform": platform.platform(), "machine": platform.machine(),
-                        "cpu_count": os.cpu_count(), "gate": "CRISPEMBED_GECTOR=1"},
+                        "cpu_count": os.cpu_count(), "gate": "CRISPEMBED_GECTOR=1",
+                        "packages": {name: importlib.metadata.version(name)
+                                     for name in ("numpy", "gguf", "onnxruntime", "tokenizers", "huggingface-hub")}},
             "limits": ["Native CPU qualification on one local host; no target-device or shipping approval.",
                        "Original iterative decoder is unchanged; application guards/editor costs are omitted.",
                        "Forward timings do not satisfy the complete-checker latency target.",
@@ -600,7 +684,7 @@ def qualify(args) -> dict[str, Any]:
         options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
         oracle = ort.InferenceSession(str(args.model_dir / "model.onnx"), options, providers=["CPUExecutionProvider"])
         seed = reference["cases"][0]["passes"][0]["input_ids"][0]
-        for length in (64, 128, 256):
+        for length in LONG_PROBE_LENGTHS:
             body = (seed[1:-1] * ((length - 2 + len(seed[1:-1]) - 1) // len(seed[1:-1])))[:length - 2]
             ids_array = np.array([[seed[0], *body, seed[-1]]], dtype=np.int64)
             inputs = {"input_ids": ids_array, "attention_mask": np.ones_like(ids_array)}
@@ -621,20 +705,18 @@ def qualify(args) -> dict[str, Any]:
             report["quality_vs_native_f32"] = compare_references(baseline, report, expected)
         report["selected_tags_exact"] = all(row["selected_tags_exact"] for row in report["validation"])
         report["precision_policy_passed"] = all(row["precision_policy_passed"] for row in report["validation"])
+        report["long_probe_gates"] = long_probe_gates(report["long_probes"], threshold)
         report["precision_policy"] = {"minimum_token_cosine_exclusive": threshold,
-                                      "applies_to": "both trained heads, every saved token/pass, original and native F32 when supplied",
+                                      "applies_to": "Both trained heads at every saved token/pass against original and native F32 when supplied; also every token of required 64/128/256 probes against original ONNX.",
                                       "strict_absolute_diagnostic": STRICT_ABSOLUTE_DIAGNOSTIC}
         report["timings"] = {
             "first_forward": timing_summary([{**case["first_pass_benchmark"], "id": case["id"], "token_count": case["token_count"]} for case in report["cases"]]),
             "complete_unguarded_correction": timing_summary([{**case["correction_benchmark"], "id": case["id"], "token_count": case["token_count"]} for case in report["cases"]]),
         }
-        f32_exact = (report["selected_tags_exact"] and not report["quality_vs_original"]["differences"])
-        report["complete"] = (len(report["cases"]) == report["expected_cases"]
-                              and len(report["validation"]) == report["expected_passes"])
-        quality = report["quality_vs_original"]["frozen_probe_nonregression_passed"]
-        if baseline:
-            quality = quality and report["quality_vs_native_f32"]["frozen_probe_nonregression_passed"]
-        report["passed"] = report["complete"] and report["precision_policy_passed"] and quality and (args.precision != "f32" or f32_exact)
+        if policy_sources != policy_source_inventory():
+            raise ValueError("Qualification policy source changed during execution")
+        report["policy_sources_unchanged_during_run"] = True
+        report["complete"], report["passed"] = qualification_status(report)
         report["peak_process_rss_bytes"] = peak_rss_bytes()
         return report
     except Exception as error:
