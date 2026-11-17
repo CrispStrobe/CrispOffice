@@ -116,3 +116,32 @@ retains this branch's segmentation options and native-runner controls, combines
 the historical roadmap descriptions, and preserves the incoming tooling and
 corpus unchanged. New report-merge, quality-tool and manual/F7 tests will run
 against the final combined source.
+
+Office fidelity `28fb08e61682913184e2a3c089bd5290a665c78e` supplies the newer
+section activation, odd/even entry masters, continuous-page-style comparison,
+numbering continuation/restart and auxiliary-story isolation, plus physical RTL
+indents. The merged writer uses that implementation and retains the existing
+bookmark, file-link and anchor-link behavior. The note and comment state classes,
+inline rendering and note-table text handling match the receiving branch;
+comment block rendering additionally gains the incoming isolated list story.
+
+Both independently developed section suites remain. The prior suite is now
+`odt_section_integration_test.dart`; it checks section ownership and geometry
+rather than obsolete style IDs or extra anchor paragraphs that the newer table
+activation eliminates. List-style lookup covers both default styles in
+`styles.xml` and automatic styles in `content.xml`. For an explicitly empty
+`sections: []` model, the existing empty body invariant wins: default master and
+page geometry are exported without adding an authored body paragraph or
+mutating the model. The incoming empty-document test retains its master and
+nonmutation assertions with this reconciled body expectation. The first merge
+run's three expectation failures are retained alongside the corrected run.
+
+The incoming Office consumer archives include failed attempts and explicitly
+leave final-source consumer qualification pending. Their presence and passing
+Dart tests must not be read as completed desktop-consumer validation.
+
+The reconciled Office merge passes all 208 tests in its ten-file ODT cohort
+and strict analysis of the writer and both section suites. The updated Python
+build, comparator and pack tooling passes all 51 tests. Logs retain the initial
+merge expectation failures; the final full-source validation is recorded below
+when complete.

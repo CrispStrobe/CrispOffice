@@ -8,6 +8,9 @@ and actual LibreOffice consumer evidence for the behavior below.
 The [resumed qualification](validation/office-fidelity-resume-20261117/README.md)
 adds the later comment integration, comment-story repairs, and centered slide
 rotation checks against a fresh saved source checkpoint.
+The [list and section continuation](validation/office-fidelity-lists-sections-20261117/README.md)
+adds the later incoming branches and hardens section activation, page parity,
+list nesting, markers, and numbering against fresh local consumer checks.
 
 ## Word paragraphs
 
@@ -24,6 +27,12 @@ their paragraph alignment, before/after spacing, line spacing, and explicit
 direction. Explicit zero margins override the generated default style.
 `left` and `right` retain physical alignment independently of RTL/LTR direction;
 explicit writing direction is not automatically recalculated by the consumer.
+Horizontal indents also retain their physical sides. For explicit RTL
+paragraphs, the model's right indent becomes `fo:margin-left` and its left
+indent becomes `fo:margin-right`, matching ODF's direction-dependent paragraph
+margins. LTR and unspecified direction keep the ordinary mapping. The
+[ODF 1.4 paragraph-tab-position note](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html#attribute-text_relative-tab-stop-position)
+makes that RTL margin interpretation explicit; generated files remain ODF 1.3.
 Hanging indentation retains precedence over first-line indentation.
 
 Nonfinite values and exponent-form values that cannot be serialized as ODF
@@ -58,9 +67,38 @@ physical source rows/cells. Repetition attributes represent large horizontal
 spans, omissions, and padding without allocating or looping over a logical
 grid. A consumer may impose its own table-size limits.
 
+## Word sections
+
+Each section retains its modeled page size, page margins, and normal header
+and footer through an ODF master page. A section starts on its first exported
+paragraph or list item, or directly on its first table. Empty content controls
+and unsupported blocks do not consume that boundary. Pictures and frames can
+carry the section on a paragraph anchor; frame positions remain relative to
+the page. Empty sections use a small empty anchor without modifying the source.
+First paragraphs inherit from a common body/heading style and retain their
+resolved spacing, indentation, alignment, and direction directly.
+
+An odd/even start selects a temporary right/left page master whose next style
+is the normal section master. This constrains only the first page of the
+section. Consumers may insert a blank page to satisfy parity; PDF conversion
+must retain automatically inserted empty pages to measure physical page order.
+
+Continuous sections reuse the active master when the emitted page geometry
+and modeled normal stories are equivalent. Picture comparison uses the exact
+image bytes, and comment comparison uses authored reference positions rather
+than global annotation-emission state. An empty equivalent continuous section
+adds no output paragraph. A changed page size, margin, or normal story uses a
+new master and therefore starts a new page: this is an explicit fallback for
+page-style changes that cannot apply midway through an ODF page.
+
+First-page/alternating header selection, inherited `linkToPrevious` resolution,
+columns, line numbering, and unmodeled native section settings remain outside
+this export. The writer exports the normal stories already present in each
+section; it does not reconstruct missing stories from native relationships.
+
 ## Header and footer stories
 
-The first section's header/footer paragraphs use the same inline writer as
+Each section's normal header/footer paragraphs use the same inline writer as
 body text. This retains explicit line breaks, whitespace, run formatting,
 hyperlinks, inline pictures/fallback text, and visible cached field results.
 Hidden field instructions remain omitted.
@@ -71,9 +109,8 @@ picture names and bytes share one package registry. This permits the same
 automatic-style name to have the appropriate local definition without media
 name collisions. Image links include required `xlink:type="simple"`.
 
-Per-section, alternating, and first-page-specific master-page reconstruction is
-outside this writer. Field instructions and editable field metadata are not
-retained by this new-document export.
+Header and footer lists use independent numbering scopes. Field instructions
+and editable field metadata are not retained by this new-document export.
 
 ## Footnotes and endnotes
 
@@ -210,23 +247,45 @@ click suppression are outside this export. Schema checks and LibreOffice-importe
 transition properties establish structural and consumer retention; they do not
 establish playback or frame-by-frame rendering parity.
 
-## Incoming list support
+## Word lists
 
-The integrated list writers group consecutive paragraphs sharing a numbering
-ID into flat bullet or decimal lists. List paragraphs continue through the
-same paragraph writer, including lists inside table cells. Decimal styles use
-the core `style:num-format` and `style:num-suffix` attributes; the redundant
-LibreOffice extension was removed after strict schema checking and a
-pixel-identical consumer comparison.
+Consecutive paragraphs sharing a nonzero numbering ID form structural ODF
+lists. Nesting compares authored levels, so repeated skipped levels remain
+siblings and a list beginning above level zero does not invent missing items.
+Malformed levels are bounded to nine levels. Mixed bullet/number markers keep
+their own styles. Numbering ID zero and suppressed numbering remain ordinary
+paragraphs. All list paragraphs retain their resolved paragraph/run formatting.
 
-Nested levels, restart values, complex numbering formats, and header/footer or
-frame list grouping remain outside this bounded list implementation.
+Simple decimal definitions retain supported native starts and per-instance
+overrides; `listRestart` is authoritative. Without an unambiguous native
+definition, a simple first cached decimal label seeds its numbering identity
+and level. Subsequent occurrences advance exact `BigInt` counters across
+ordinary paragraphs, tables, controls, and sections. Authored higher-level
+items reset supported default child counters, including bullet/literal parents.
+Every positive value is written explicitly as `text:start-value`.
+
+Headers, footers, frames, comments, notes, and hidden covered-cell stories have
+independent counters, so auxiliary or hidden occurrences cannot consume visible
+body numbering. Orphaned merge continuations remain visible. Default bullet
+glyphs, native symbol-font bullet normalization, and explicitly cached bullet
+glyphs are preserved.
+
+Roman, alphabetic, multilevel, special-restart, and otherwise unsupported native
+numbering semantics are not reconstructed. Their available cached marker text
+is retained literally using core ODF prefix/suffix properties; nonpositive
+numeric starts also use literal text because ODF start values must be positive.
+Cached labels are trimmed and use normal list-tab separation. The exporter
+does not infer a new restart from an arbitrary later cached decimal label, and
+does not retain native marker fonts or full editable numbering definitions.
+Explicit per-item values and literal fallbacks preserve the tested appearance
+without claiming a complete native numbering round trip.
 
 ## Standards and validation boundaries
 
 The mappings follow [ODF 1.3 Part 3](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html),
 particularly sections 6.3 and 7.7.7 (notes and note references),
 9.1.3–9.1.7 (rows, cells, covered cells, and columns), 17.25 (drawing-page properties),
+19.501 (master-page selection), 19.504–19.507 (number formats and affixes),
 19.680 and 19.682 (spans), 19.744 (first-row styling), 20.204 (line height),
 20.254 (column width), 20.317 (minimum line height), 20.340.2 (relative table
 width), 20.348 (row height), and 20.404–20.405 (writing direction).
