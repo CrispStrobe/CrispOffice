@@ -1,0 +1,21 @@
+{
+  "accepted": true,
+  "all_non_evidence_input_path_sets_equal": true,
+  "all_test_inputs_byte_identical": true,
+  "changed_input_paths": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+  ],
+  "entire_plan_equal_except_source_commit": true,
+  "exact_single_const_keyword_delta_verified": true,
+  "fresh_product_passes": 3280,
+  "fresh_python_passes": 107,
+  "historical_test_totals_used_for_acceptance": false,
+  "non_evidence_input_count": 3448,
+  "runner_byte_identical": true,
+  "selected_test_files": 179,
+  "source_after": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+  "source_before": "4c49b0435bc6611221bc49b58b15e735059467ff",
+  "test_execution_performed_by_reviewer": false,
+  "writer_after_sha256": "2754aef31a7b6be004e74a3862bb8452e21a2073fb28a97c110b2d963e923660",
+  "writer_before_sha256": "e4b91087325c4478c38e9791dffe60917d8288ec0c9405ca8630b2aa3680377f"
+}
