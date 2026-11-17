@@ -1,0 +1,12 @@
+PASS real Wasm success
+PASS Dart web transport maps scalar offsets to source UTF16
+PASS real Wasm checks across an authored discretionary hyphen
+PASS real Wasm correction retains original soft-hyphen source span
+PASS real Wasm leaves code untouched and checks following English prose
+PASS concurrent checks keep dialects, ignores and unsupported status separate
+PASS oversized paragraph reports failure
+PASS missing worker reports unavailable on attempt 1
+PASS missing worker reports unavailable on attempt 2
+PASS disposal invalidates an outstanding web request
+PASS disposed web provider rejects future requests
+{"status":"passed","checks":11,"scope":"Compiled Dart web transport and real shipped Wasm worker; Node substitutes browser Worker messaging and local file fetch. This is not browser CSP or HTTP hosting acceptance.","workers_created":3,"workers_terminated":3}

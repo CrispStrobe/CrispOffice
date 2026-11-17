@@ -1,0 +1,378 @@
+00:00 +0: loading test/ods_sheet_reader_test.dart
+00:00 +0: test/ods_sheet_writer_test.dart: writes a readable ODS package with values, formulas and metadata
+00:00 +1: test/ods_sheet_writer_test.dart: writes a readable ODS package with values, formulas and metadata
+00:00 +2: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +3: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +4: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +5: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +6: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +7: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +8: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +9: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +10: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +11: test/sheet_save_cache_and_freeze_test.dart: a no-edit save keeps native formula caches
+00:00 +12: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +13: test/ods_sheet_reader_test.dart: ODS keeps dates, times, booleans, formats and sheet references
+00:00 +14: test/ods_sheet_writer_test.dart: writes row outline groups and geometry outside the cell extent
+00:00 +15: test/zotero_backoff_state_test.dart: shared 429 pause survives new credentials and expires exactly
+00:00 +16: test/zotero_backoff_state_test.dart: shared 429 pause survives new credentials and expires exactly
+00:00 +17: test/zotero_backoff_state_test.dart: shared 429 pause survives new credentials and expires exactly
+00:00 +18: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +19: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +20: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +21: test/ods_sheet_reader_test.dart: edge ODS survives an xlsx round trip
+00:00 +22: test/ods_sheet_writer_test.dart: writes list validation prompts and errors
+00:00 +23: test/ods_sheet_writer_test.dart: writes list validation prompts and errors
+00:00 +24: test/ods_sheet_writer_test.dart: writes list validation prompts and errors
+00:00 +25: test/ods_sheet_writer_test.dart: writes list validation prompts and errors
+00:00 +26: test/ods_sheet_writer_test.dart: writes list validation prompts and errors
+00:00 +27: test/ods_sheet_writer_test.dart: writes list validation prompts and errors
+00:00 +28: test/ods_sheet_writer_test.dart: writes list validation prompts and errors
+00:00 +29: test/ods_sheet_reader_test.dart: inherited styled padding stays sparse while explicit blanks survive
+00:00 +30: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +31: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +32: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +33: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +34: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +35: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +36: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +37: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +38: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +39: test/ods_sheet_writer_test.dart: writes top and bottom conditional rules
+00:00 +40: test/ods_sheet_reader_test.dart: ODS elapsed minutes and seconds format survives XLSX save
+00:00 +41: test/ods_sheet_writer_test.dart: writes conditional formats and validates them on read
+00:00 +42: test/ods_sheet_reader_test.dart: ODS elapsed seconds format survives XLSX save
+00:00 +43: test/ods_sheet_writer_test.dart: writes authored number formats
+00:00 +44: test/ods_sheet_reader_test.dart: ODS pictures become worksheet drawings and survive save
+00:00 +45: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +46: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +47: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +48: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +49: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +50: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +51: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +52: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +53: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +54: test/ods_sheet_writer_test.dart: writes multiple sheets, hidden state and tab colours
+00:00 +55: test/ods_sheet_reader_test.dart: ODS conditional formats import and serialize
+00:00 +56: test/ods_sheet_writer_test.dart: translates a sheet-qualified formula before writing
+00:00 +57: test/ods_sheet_writer_test.dart: translates a sheet-qualified formula before writing
+00:00 +58: test/ods_sheet_reader_test.dart: blank validation references obey expansion and grid limits
+00:00 +59: test/ods_sheet_reader_test.dart: spreadsheet-level list validations apply to every referring sheet
+00:00 +60: test/ods_sheet_reader_test.dart: spreadsheet-level range lists resolve a later source sheet
+00:00 +61: test/ods_sheet_reader_test.dart: table-local definitions stay isolated and override shared names
+00:00 +62: test/ods_sheet_reader_test.dart: foreign validation containers cannot define spreadsheet rules
+00:00 +63: test/ods_sheet_reader_test.dart: ODS validation prompts and error styles round-trip
+00:00 +64: test/ods_sheet_reader_test.dart: ODS custom formula validations translate relative refs
+00:00 +65: test/ods_sheet_reader_test.dart: ODS whole, decimal, date and text-length validations import
+00:00 +66: test/ods_sheet_reader_test.dart: ODS list source preserves spaces in quoted sheet names
+00:00 +67: test/ods_sheet_reader_test.dart: ODS validation source range is bounded before scanning empty cells
+00:00 +68: test/ods_sheet_reader_test.dart: ODS range-source list validations resolve across sheets
+00:00 +69: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +70: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +71: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +72: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +73: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +74: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +75: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +76: test/ods_sheet_reader_test.dart: ODS validation source work is shared across definitions
+00:01 +77: test/word_zotero_source_identity_test.dart: missing-snapshot bridges resolve transitive aliases
+00:01 +78: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:01 +79: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:01 +80: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:01 +81: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:01 +82: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:01 +83: test/ods_sheet_reader_test.dart: ODS list validations become typed XLSX validations
+00:01 +84: test/zotero_client_test.dart: key verification uses a header, strips returned secrets and resolves access
+00:01 +85: test/zotero_client_test.dart: key verification uses a header, strips returned secrets and resolves access
+00:01 +86: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:01 +87: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:01 +88: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +89: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +90: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +91: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +92: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +93: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +94: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +95: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +96: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +97: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +98: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +99: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +100: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +101: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +102: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +103: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +104: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +105: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +106: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +107: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +108: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +109: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +110: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +111: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +112: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +113: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +114: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +115: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +116: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +117: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +118: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +119: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +120: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +121: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +122: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +123: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +124: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +125: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +126: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +127: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +128: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +129: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +130: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +131: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +132: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +133: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +134: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +135: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +136: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +137: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +138: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +139: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +140: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +141: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +142: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +143: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +144: test/word_zotero_source_identity_test.dart: document export resolves aliases without rewriting saved fields
+00:02 +145: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:02 +146: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:02 +147: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:02 +148: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:02 +149: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:02 +150: test/ods_sheet_reader_test.dart: an imported ODS saves as a readable .xlsx
+00:02 +151: test/zotero_identity_client_test.dart: database changes between preflight and formatting never return output
+00:02 +152: test/ods_sheet_reader_test.dart: covered cells and internal repeated empty rows keep positions
+00:02 +153: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:02 +154: test/zotero_identity_client_test.dart: preflight backoff prevents an immediate export request
+00:02 +155: test/ods_sheet_reader_test.dart: merged covered cells consume one coordinate and retain row spans
+00:02 +156: test/ods_sheet_reader_test.dart: merged covered cells consume one coordinate and retain row spans
+00:02 +157: test/zotero_identity_client_test.dart: returned CSL identities reject explicit ports before URI normalization
+00:02 +158: test/ods_sheet_reader_test.dart: repeated blank rows retain later data at exact coordinates
+00:02 +159: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:02 +160: test/zotero_identity_client_test.dart: local aggregate output requires a usable preflight library version
+00:02 +161: test/ods_sheet_reader_test.dart: foreign lookalike elements and attributes cannot change sheet values
+00:02 +162: test/zotero_identity_client_test.dart: deletion or modification between verification and output is detected
+00:02 +163: test/ods_sheet_reader_test.dart: named inherited cell wrap styles survive an XLSX roundtrip
+00:02 +164: test/ods_sheet_reader_test.dart: named inherited cell wrap styles survive an XLSX roundtrip
+00:02 +165: test/ods_sheet_reader_test.dart: column groups retain dimensions and repeated values
+00:02 +166: test/ods_sheet_reader_test.dart: blank trailing padding is skipped without truncating data silently
+00:02 +167: test/ods_sheet_reader_test.dart: rejects cross-product expansion before materializing repeated cells
+00:02 +168: test/ods_sheet_reader_test.dart: workbook budget is shared by multiple individually small sheets
+00:02 +169: test/ods_sheet_reader_test.dart: repeated text is bounded before it can expand during XLSX save
+00:02 +170: test/ods_sheet_reader_test.dart: rejects invalid or out-of-range meaningful repeats instead of clipping
+00:02 +171: test/ods_sheet_reader_test.dart: formula conversion preserves delimiters and brackets inside literals
+00:02 +172: test/ods_sheet_reader_test.dart: repeated formulas decline rather than cloning incorrect references
+00:02 +173: test/ods_sheet_reader_test.dart: preserves ODF explicit spaces, tabs and paragraph boundaries
+00:02 +174: test/ods_sheet_reader_test.dart: rejects XML with spreadsheet local names in the wrong namespace
+00:02 +175: test/ods_sheet_reader_test.dart: rejects cyclic named styles and excessive XML nesting
+00:02 +176: test/ods_sheet_reader_test.dart: keeps internal repeated blank rows without expanding trailing padding
+00:02 +177: test/sfnt_cmap_validation_test.dart: cmap selection Unicode mappings take precedence over a denser legacy table
+00:02 +178: test/sfnt_cmap_validation_test.dart: cmap selection Unicode mappings take precedence over a denser legacy table
+00:02 +179: test/ods_sheet_reader_test.dart: horizontal merge consumes explicit placeholder once
+00:02 +180: test/sfnt_cmap_validation_test.dart: cmap selection full Unicode table is authoritative even if BMP has more hits
+00:02 +181: test/ods_sheet_reader_test.dart: horizontal merge consumes repeated placeholders once
+00:02 +182: test/ods_sheet_reader_test.dart: horizontal merge consumes repeated placeholders once
+00:02 +183: test/sfnt_cmap_validation_test.dart: cmap selection legacy format 0 remains available when Unicode is unavailable
+00:02 +184: test/ods_sheet_reader_test.dart: horizontal merge consumes additional covered column once
+00:02 +185: test/ods_sheet_reader_test.dart: horizontal merge consumes additional covered column once
+00:02 +186: test/sfnt_cmap_validation_test.dart: cmap selection legacy Big5 byte pairs are not mistaken for Unicode surrogates
+00:02 +187: test/ods_sheet_reader_test.dart: consecutive merged origins retain explicit covered positions
+00:02 +188: test/ods_sheet_reader_test.dart: consecutive merged origins retain explicit covered positions
+00:02 +189: test/sfnt_cmap_validation_test.dart: valid cmap mappings format 4 applies deltas only to nonzero glyph-array entries
+00:02 +190: test/ods_sheet_reader_test.dart: merge spans retain in-range cells and refuse column overflow
+00:02 +191: test/sfnt_cmap_validation_test.dart: valid cmap mappings format 4 missing-glyph surrogate entries are not exposed
+00:02 +192: test/ods_sheet_reader_test.dart: styled trailing row padding stays sparse within the admitted grid
+00:02 +193: test/ods_sheet_reader_test.dart: styled trailing row padding stays sparse within the admitted grid
+00:02 +194: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +195: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +196: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +197: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +198: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +199: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +200: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +201: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +202: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +203: test/sfnt_cmap_validation_test.dart: valid cmap mappings bundled fonts and new subsets retain valid glyph identities
+00:02 +204: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +205: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +206: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +207: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +208: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +209: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +210: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +211: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +212: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +213: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +214: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +215: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +216: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +217: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +218: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +219: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +220: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +221: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +222: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +223: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +224: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +225: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +226: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +227: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +228: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +229: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +230: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +231: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +232: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +233: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +234: test/pdf_actual_text_scope_test.dart: final text operator does not require trailing whitespace
+00:02 +235: test/sfnt_cmap_validation_test.dart: format 0 and directory validation cmap subtable offsets are relative to the cursor table start
+00:02 +236: test/pdf_actual_text_scope_test.dart: nested ordinary marks share one ActualText replacement
+00:02 +237: test/pdf_actual_text_scope_test.dart: nested ordinary marks share one ActualText replacement
+00:02 +238: test/pdf_actual_text_scope_test.dart: nested ordinary marks share one ActualText replacement
+00:02 +239: test/pdf_actual_text_scope_test.dart: nested ordinary marks share one ActualText replacement
+00:02 +240: test/sfnt_cmap_validation_test.dart: format 0 and directory validation truncated SFNT directory reports a typed font error
+00:02 +241: test/pdf_actual_text_scope_test.dart: replacement first emitted in nested marks stays consumed
+00:02 +242: test/sfnt_cmap_validation_test.dart: format 0 and directory validation SFNT table extent must remain inside the font
+00:02 +243: test/pdf_actual_text_scope_test.dart: outer ActualText owns its complete nested replacement
+00:02 +244: test/pdf_actual_text_scope_test.dart: outer ActualText owns its complete nested replacement
+00:02 +245: test/sfnt_cmap_validation_test.dart: format 0 and directory validation duplicate SFNT table tags are rejected before table parsing
+00:02 +246: test/sfnt_cmap_validation_test.dart: format 0 and directory validation duplicate SFNT table tags are rejected before table parsing
+00:02 +247: test/pdf_actual_text_scope_test.dart: adjacent identical replacements each emit once
+00:02 +248: test/sfnt_cmap_validation_test.dart: cmap glyph IDs must exist in maxp invalid explicit glyph counts are rejected
+00:02 +249: test/pdf_actual_text_scope_test.dart: named indirect property lists retain replacement text
+00:02 +250: test/pdf_actual_text_scope_test.dart: named indirect property lists retain replacement text
+00:02 +251: test/sfnt_cmap_validation_test.dart: cmap glyph IDs must exist in maxp format 4 delta
+00:02 +252: test/sfnt_cmap_validation_test.dart: cmap glyph IDs must exist in maxp format 4 glyph array
+00:02 +253: test/pdf_actual_text_scope_test.dart: UTF-16 literal and hex strings carry the same source text
+00:02 +254: test/pdf_actual_text_scope_test.dart: UTF-16 literal and hex strings carry the same source text
+00:02 +255: test/pdf_actual_text_scope_test.dart: UTF-16 literal and hex strings carry the same source text
+00:02 +256: test/pdf_actual_text_scope_test.dart: hidden first showing does not consume or enlarge a replacement
+00:02 +257: test/pdf_actual_text_scope_test.dart: replacement bounds include all showing operators and TJ gaps
+00:02 +258: test/pdf_actual_text_scope_test.dart: replacement geometry accumulates across baselines and nested marks
+00:02 +259: test/pdf_actual_text_scope_test.dart: generic rotated ActualText never changes painted glyphs
+00:02 +260: test/pdf_actual_text_scope_test.dart: empty rotated replacement suppresses extraction only
+00:02 +261: test/pdf_actual_text_scope_test.dart: invisible text still contributes source and span bounds
+00:02 +262: test/pdf_actual_text_scope_test.dart: empty showing retains source without losing later span bounds
+00:02 +263: test/pdf_actual_text_scope_test.dart: explicit marked-line writer keeps logical watermark painting
+00:02 +264: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 645 631 62d 628 627
+00:03 +265: test/sheet_conditional_fidelity_test.dart: edits to imported conditional rules persist rank-only edit survives repeated top saves
+00:03 +266: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +267: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +268: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +269: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +270: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +271: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +272: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +273: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +274: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +275: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +276: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +277: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +278: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +279: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +280: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +281: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +282: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +283: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +284: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +285: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +286: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +287: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +288: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +289: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +290: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +291: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +292: test/pdf_logical_text_export_test.dart: Word PDF retains logical source 644 627 20 644 64e 627 20 644 623 20 644 625 20 644 622
+00:03 +293: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +294: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +295: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +296: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +297: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +298: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +299: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +300: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +301: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +302: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +303: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +304: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +305: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +306: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +307: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +308: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer formula
+00:03 +309: test/pdf_logical_text_export_test.dart: worksheet PDF retains logical Arabic and mixed bidi text
+00:03 +310: test/sheet_conditional_fidelity_test.dart: native expression predicates remain distinct ODS formula-is uses the existing reference and string translator
+00:03 +311: test/sheet_conditional_fidelity_test.dart: native expression predicates remain distinct ODS formula-is uses the existing reference and string translator
+00:03 +312: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer native extension
+00:03 +313: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer native extension
+00:03 +314: test/pdf_logical_text_export_test.dart: rotated presentation preserves source without repainting replacements
+00:03 +315: test/sheet_conditional_fidelity_test.dart: rename ownership excludes modeled page layout first apply still rejects a newer native page edit
+00:03 +316: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer name collision
+00:03 +317: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer name collision
+00:03 +318: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer name collision
+00:03 +319: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically apply rejects newer name collision
+00:03 +320: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +321: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +322: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +323: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +324: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +325: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +326: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +327: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +328: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +329: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +330: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +331: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +332: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +333: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +334: test/pdf_logical_text_export_test.dart: wrapped worksheet lines retain source separators
+00:03 +335: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically undo rejects newer native extension
+00:03 +336: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically undo rejects newer native extension
+00:03 +337: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically undo rejects newer native extension
+00:03 +338: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically undo rejects newer native extension
+00:03 +339: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically undo rejects newer native extension
+00:03 +340: test/sheet_rename_adversarial_test.dart: prepared rename preserves newer state atomically undo rejects newer native extension
+00:03 +341: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:03 +342: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:03 +343: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:03 +344: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:03 +345: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:03 +346: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:04 +347: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:04 +348: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:04 +349: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:04 +350: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:04 +351: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:04 +352: test/sheet_rename_fidelity_test.dart: independent native formula owners survive three saves
+00:04 +353: test/sheet_rename_adversarial_test.dart: unrecognized affected native owners reject atomically unrecognized leaf in the SpreadsheetML namespace
+00:04 +354: test/sheet_rename_fidelity_test.dart: unknown XML formula owner rejects without any model or native mutation
+00:04 +355: test/sheet_rename_adversarial_test.dart: external sparse chart cache stays opaque through three saves
+00:04 +356: test/sheet_rename_adversarial_test.dart: external sparse chart cache stays opaque through three saves
+00:04 +357: test/sheet_rename_fidelity_test.dart: unknown extension formula namespace rejects without any model or native mutation
+00:04 +358: test/sheet_rename_adversarial_test.dart: duplicate-source native chart series survive rename and three saves
+00:04 +359: test/sheet_rename_adversarial_test.dart: duplicate-source native chart series survive rename and three saves
+00:04 +360: test/sheet_rename_fidelity_test.dart: renaming after source cell changes keeps native chart references and fresh values
+00:04 +361: test/sheet_rename_fidelity_test.dart: array formula topology is guarded before model changes
+00:04 +362: test/sheet_rename_fidelity_test.dart: unrelated opaque text and a valid exclamation mark in a sheet name
+00:04 +363: test/sheet_rename_fidelity_test.dart: modified native name projection is guarded atomically
+00:04 +364: test/sheet_rename_fidelity_test.dart: modified native validation projection is guarded atomically
+00:04 +365: test/sheet_rename_fidelity_test.dart: modified native conditional projection is guarded atomically
+00:04 +366: test/sheet_rename_fidelity_test.dart: modified native chart projection is guarded atomically
+00:04 +367: test/sheet_rename_fidelity_test.dart: invalid names and malformed qualifiers cannot partially rename
+00:04 +368: test/sheet_rename_fidelity_test.dart: no-op is clean and undo/redo preserves saved values and native references
+00:05 +369: test/sheet_rename_fidelity_test.dart: script renames native references before three direct/isolate saves
+00:05 +370: test/sheet_rename_fidelity_test.dart: edited native formula =Data!B2+1 remains owned by the model across save and undo
+00:05 +371: test/sheet_rename_fidelity_test.dart: edited native formula null remains owned by the model across save and undo
+00:05 +372: test/sheet_rename_fidelity_test.dart: unqualified native shared formula topology rejects atomically
+00:05 +373: test/sheet_rename_fidelity_test.dart: unqualified native array formula topology rejects atomically
+00:05 +374: test/sheet_rename_fidelity_test.dart: unqualified native dataTable formula topology rejects atomically
+00:05 +375: test/sheet_rename_fidelity_test.dart: complete shared formula groups rename as equivalent independent formulas
+00:05 +376: All tests passed!

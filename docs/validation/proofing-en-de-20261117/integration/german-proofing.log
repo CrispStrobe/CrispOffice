@@ -1,0 +1,9 @@
+dart-version: exit 0
+node-version: exit 0
+analyze: exit 0
+tests: exit 0
+javascript-tests: exit 0
+dictionary-reproducibility: exit 0
+compile-javascript: exit 0
+javascript-smoke: exit 0
+Passed; receipt: /workspace/scratch/65e4ff9d3bff/validation-20261117/integration/german/receipt.json

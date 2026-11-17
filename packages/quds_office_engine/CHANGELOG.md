@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Unify English/German protected-text ranges, including Unicode email/URI
+  handling, bounded backtick pairing and German identifier/contraction guards.
+  Preserve equivalent German language aliases across styled runs.
+- Improve bounded German orthographic suggestions, sentence-initial casing,
+  personal compound vocabulary and lossless language-alias restoration.
+- Expand finite German agreement to 25 families, add conservative seit/seid
+  guidance, and project writing findings across discretionary soft hyphens
+  while preserving original UTF-16/grapheme ranges and nominal-word guards.
+- Exercise new proofing and hyphenation regressions on Dart VM and compiled
+  JavaScript in the local verification gate, without GitHub Actions.
+
 - Preserve authored logical text in shaped Word, worksheet and presentation
   PDF spans, including Arabic joining, lam-alef, bidi punctuation, source
   hyphens, generated labels and trimmed wrap separators. Keep painted glyphs

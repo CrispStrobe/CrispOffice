@@ -1,0 +1,19 @@
+Running rust-tests
+rust-tests: exit 0
+Running dart-analyze
+dart-analyze: exit 0
+Running dart-native-tests
+dart-native-tests: exit 0
+Running dart-javascript-tests
+dart-javascript-tests: exit 0
+Running wasm-worker
+wasm-worker: exit 0
+Running compile-web-transport
+compile-web-transport: exit 0
+Running web-transport
+web-transport: exit 1
+Running license-policy
+license-policy: exit 0
+Running host-packaging
+host-packaging: exit 0
+{"status": "failed", "output": "/workspace/scratch/65e4ff9d3bff/validation-20261117/harper-final", "checks": 9}

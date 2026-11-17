@@ -1,0 +1,44 @@
+00:00 +0: loading test/harper_provider_test.dart
+00:00 +0: loading test/harper_source_text_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 17,138,610 input bytes (13,978,290 characters source) to 1,274,095 characters JavaScript in 9.56 seconds
+
+00:00 +0: test/harper_source_text_test.dart: soft hyphens do not split checked words or shift source findings
+00:00 +1: test/harper_source_text_test.dart: word ranges own internal controls without swallowing adjacent ones
+00:00 +2: test/harper_source_text_test.dart: empty input and control-only text have explicit insertion ownership
+00:00 +3: test/harper_source_text_test.dart: punctuation, no-break controls and authored line endings stay literal
+00:00 +4: test/harper_source_text_test.dart: never exposes partial source or projected graphemes
+00:00 +5: test/harper_source_text_test.dart: rejects negative, reversed and out-of-bounds backend ranges
+00:00 +6: test/harper_source_text_test.dart: many findings keep exact positions after supplementary characters
+00:00 +7: loading test/harper_source_contract_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 19,856,932 input bytes (16,696,612 characters source) to 1,373,483 characters JavaScript in 11.0 seconds
+
+00:00 +7: test/harper_source_contract_test.dart: English code findings do not hide ordinary prose corrections
+00:00 +7: loading test/harper_provider_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 19,850,654 input bytes (16,690,334 characters source) to 1,338,196 characters JavaScript in 11.3 seconds
+
+00:01 +8: test/harper_source_contract_test.dart: protected English spans use original source after soft hyphens
+00:01 +9: test/harper_source_contract_test.dart: unmatched backticks and punctuation following links remain checkable
+00:01 +10: test/harper_source_contract_test.dart: code protection never conceals malformed backend ranges
+00:01 +11: test/harper_source_contract_test.dart: backend sees complete English words and findings retain Word offsets
+00:01 +12: test/harper_source_contract_test.dart: zero-length corrections beside controls keep source insertion points
+00:01 +13: test/harper_provider_test.dart: rejects zero and negative timeouts before using a transport
+00:01 +14: test/harper_source_contract_test.dart: partial accent findings cannot discard unrelated grammar findings
+00:01 +15: test/harper_provider_test.dart: converts scalar offsets after emoji and preserves segment identity
+00:01 +16: test/harper_source_contract_test.dart: source projection does not turn malformed backend ranges into success
+00:01 +17: test/harper_provider_test.dart: unsupported language never invokes English backend
+00:01 +18: test/harper_source_contract_test.dart: shared vocabulary suppresses only spelling in its own dialect
+00:01 +19: test/harper_provider_test.dart: unavailable backend differs from a successful clean result
+00:01 +20: test/harper_source_contract_test.dart: an in-flight vocabulary change requires a fresh English check
+00:01 +21: test/harper_provider_test.dart: rejects invalid offset, format and category instead of clean success
+00:01 +22: test/harper_source_contract_test.dart: all supported English dialects and ignored rules survive projection
+00:01 +23: test/harper_provider_test.dart: timeout disposes worker and future checks are unavailable
+00:01 +24: test/harper_source_contract_test.dart: original source size remains bounded before projecting controls
+00:01 +25: test/harper_provider_test.dart: disposal rejects an already in-flight result
+00:01 +26: test/harper_provider_test.dart: timeout result survives throwing and stuck disposal
+00:01 +27: All tests passed!

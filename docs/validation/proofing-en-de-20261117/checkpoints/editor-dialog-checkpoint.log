@@ -1,0 +1,24 @@
+00:00 +0: loading /workspace/scratch/65e4ff9d3bff/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart
+00:00 +0: German grammar correction preserves source and undo: seid
+00:02 +1: German grammar correction preserves source and undo: habe
+00:02 +2: German grammar correction preserves source and undo: gibst
+00:02 +3: seit-seid ignore can be restored by its visible rule name
+00:03 +4: spacing correction Insert space is visible and undoable
+00:04 +5: spacing correction Use space is visible and undoable
+00:04 +6: ignored words can be restored in their run language without clearing other preferences
+00:05 +7: an ignored writing rule can be restored from review
+00:05 +8: ignored occurrences can be reviewed again in a read-only document
+00:05 +9: swapping the dialog controller checks its document and clears old notices
+00:06 +10: a previous controller completing its check cannot replace the new results
+00:06 +11: ignore once dismisses a finding without adding or ignoring its word
+00:06 +12: opening proofing checks the document and offers undoable corrections
+00:06 +13: unavailable provider never produces a clean-document message
+00:07 +14: unsupported provider never produces a clean-document message
+00:07 +15: failed provider never produces a clean-document message
+00:07 +16: read-only documents retain review but disable correction and formatting
+00:07 +17: adding a personal word dismisses its finding without changing document text
+00:07 +18: ignore word applies to the session and leaves personal words unchanged
+00:07 +19: language and hyphenation controls save source settings with undo
+00:08 +20: unsupported existing language and a narrow viewport remain reviewable
+00:08 +21: show in document selects the current finding and closes review
+00:08 +22: All tests passed!
