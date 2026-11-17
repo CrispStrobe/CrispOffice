@@ -24,9 +24,10 @@ String _odfText(XmlNode node) {
   return node.children.map(_odfText).join();
 }
 
-XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(
-  package.getPart('/content.xml')!.readText(),
-).root!.firstChild('body')!.firstChild('text')!;
+XmlElement _odtBody(OpcPackage package) =>
+    XmlDocument.parse(package.getPart('/content.xml')!.readText()).root!
+        .firstChild('body')!
+        .firstChild('text')!;
 
 void main() {
   linkTests();
@@ -36,7 +37,11 @@ void main() {
   footnoteTests();
   test('writes modeled Word text, runs, tables and pictures as ODT', () {
     final document = WmlDocument(
-      properties: OfficeDocumentProperties(title: 'Writer smoke'),
+      properties: OfficeDocumentProperties(
+        title: 'Writer smoke',
+        subject: 'Metadata',
+        creator: 'Author',
+      ),
       sections: [
         WmlSection(
           blocks: [
@@ -110,6 +115,10 @@ void main() {
     );
     final content = package.getPart('/content.xml')!.readText();
     final styles = package.getPart('/styles.xml')!.readText();
+    final meta = package.getPart('/meta.xml')!.readText();
+    expect(meta, contains('<dc:title>Writer smoke</dc:title>'));
+    expect(meta, contains('<dc:subject>Metadata</dc:subject>'));
+    expect(meta, contains('<dc:creator>Author</dc:creator>'));
     expect(content, contains('<text:h'));
     expect(content, contains('Quarterly review'));
     expect(
@@ -261,9 +270,9 @@ void main() {
     expect(content, contains('fo:font-weight="bold"'));
     expect(content, contains('fo:font-style="italic"'));
     expect(
-      WordZotero.fields(
-        document,
-      ).map((field) => (field.instruction, field.cachedText)).toList(),
+      WordZotero.fields(document)
+          .map((field) => (field.instruction, field.cachedText))
+          .toList(),
       before,
     );
   });
@@ -301,9 +310,10 @@ void main() {
     expect(content, contains('A'));
     expect(content, contains('&amp;'));
     expect(content, contains('&lt;B&gt;'));
-    final master = XmlDocument.parse(
-      package.getPart('/styles.xml')!.readText(),
-    ).root!.firstChild('master-styles')!.firstChild('master-page')!;
+    final master = XmlDocument.parse(package.getPart('/styles.xml')!.readText())
+        .root!
+        .firstChild('master-styles')!
+        .firstChild('master-page')!;
     expect(_odfText(master.firstChild('header')!), ' Head\tA  B ');
     expect(_odfText(master.firstChild('footer')!), 'Foot\nLine 2 ');
   });

@@ -42,3 +42,31 @@ pending at this checkpoint.
 No GitHub Actions, workflow, check-run or CI-status endpoint was queried or
 awaited. All local commits use `[skip ci]`; remote checkpoints are published
 with an expected-head update.
+
+## Integrated source checkpoints
+
+The inventory checkpoint was published as
+`9d057dfdd483e7e9c194c5b11baa2d5c1fe4c6c7`. The fidelity merge was
+published as `a499549e184069e33234bd0304417fb0fefb8ca1`; its exact
+writer combination and test relocation are recorded in `fidelity-merge.json`
+and `fidelity-writer-combination.patch`.
+
+The next combined checkpoint adds captured main and the vendor metadata
+history as explicit parents. `main-and-vendor-merge.json` records its sole
+test conflict and preservation decision. `vendor-equivalence.json` proves
+the mirror's complete production tree equals captured main, while retaining
+the current Zotero evidence and archiving the incoming README.
+
+`final-ref-audit.json` accounts for all 289 captured refs using ancestry or
+exact whole-tree witnesses in the combined checkpoint's parent closure.
+All 14 preceding section cases remain executable in
+`odt_section_continuation_test.dart`; the incoming section suite remains in
+`odt_section_fidelity_test.dart`. The former's old source is also retained
+verbatim for review. The section contract now applies the boundary to the
+first supported owner: table, list paragraph, frame container or nested
+control content. Equal continuous layouts reuse their current master.
+
+Fresh runtime qualification of this combined source is still pending. The
+formatting operations and source review recorded here are not substitutes
+for those runtime checks; previous evidence remains attributed to its
+original immutable source.
