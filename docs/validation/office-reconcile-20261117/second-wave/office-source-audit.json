@@ -1,0 +1,59 @@
+{
+  "recorded_utc": "2026-11-17T18:15:00.320867+00:00",
+  "scope": "Read-only source audit of fixed second-wave Office main and consolidation inputs; control artifacts prepared outside the source checkout.",
+  "qualified_source": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+  "qualified_docs_head": "b26fb29062e23b69e5ecdc88975a0808981a25b3",
+  "main": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+  "consolidation": "1138cffdc4a1c909b2b149db80312037c21909d8",
+  "consolidation_observed_before_fetch": "84283211709fba069564c181476f577c34bd2d64",
+  "latest_consolidation_extra": "Documentation and independent evidence only, no additional product/test changes.",
+  "main_new_commits": [
+    "914d74f13d1ae75d9b45ea0e51873c31ff63ec62 feat(word): write ODT column breaks and keep-together (#122)",
+    "edd023c3505942cd2433bfa6c815a7d009432a3c feat(slide): preserve ODP chart data as tables (#121)",
+    "924f09bab2caf7b5985ffa6c16702a837a58d7bc feat(word): write multi-column ODT sections (#119)"
+  ],
+  "multiple_merge_bases": [
+    "34d6be099906e5bde0af51330a8b1dcca26e728a",
+    "388bd7451067794b58276d174fe05470aa9994ed",
+    "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+    "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+    "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e",
+    "c98c75eae50ddabfa8eb9aa918ed1af9754b7923"
+  ],
+  "new_features": [
+    {
+      "feature": "ODT multiple columns",
+      "pr": 119,
+      "problem": "fo:column-count and fo:column-gap are emitted on section-properties instead of its style:columns child; the generated two-column ODT fails the OASIS 1.3 RelaxNG schema. Nonfinite/exponent gap values are unguarded.",
+      "necessary_repair": "Use a style:columns child and normalize/omit unsupported gap dimensions before cache identity and output."
+    },
+    {
+      "feature": "ODP chart data fallback",
+      "pr": 121,
+      "finding": "Charts with points export a label/value table through the existing table serializer. This preserves modeled point values as text; it is not native editable chart export. No blocking source defect found in the added branch."
+    },
+    {
+      "feature": "ODT paragraph column breaks and keep-together",
+      "pr": 122,
+      "problem": "Both emitted properties are missing from paragraph style cache identity, causing property leakage or loss between otherwise equivalent neighboring paragraphs.",
+      "necessary_repair": "Include both properties in style identity while retaining explicit page-break precedence."
+    }
+  ],
+  "consolidation_merge_guidance": [
+    "Retain the existing qualified writer, including normalized tab identity, row-minimum semantics, normalized cell colors/booleans, invalid-column-width omission and the inherited const fix.",
+    "Integrate additive style:leader-type=\"single\" and preserve the 37 incoming cases under a distinct filename from the 10 already-qualified tab/table cases.",
+    "Two paragraph-color cache cases are moved verbatim into a separate resume test; preserve the assertions without counting duplicate copies as new cases.",
+    "Retain the new linear German predicate-tail scanner and its 19 new admission/rejection/long-whitespace cases.",
+    "Retain evaluator execution of captured admitted quickstart.py bytes plus four fresh admission tests for valid source, stale timestamp pyc, unchecked-hash pyc and source replacement after native import."
+  ],
+  "controls": {
+    "source": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+    "test_sha256": "fb1501458751e464056cd6a98c5788672be463918f102243875cc27aba3af506",
+    "failures": 6,
+    "passes": 1,
+    "skips": 0,
+    "schema_fixture_valid": false,
+    "source_lib_files_exactly_matched_to_git": 319
+  },
+  "github_ci_endpoints_used": false
+}

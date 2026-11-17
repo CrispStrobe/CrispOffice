@@ -11,6 +11,7 @@ import '../../xml/xml_node.dart';
 import '../../xml/xml_reader.dart';
 import '../../xml/xml_writer.dart';
 import '../model/wml_document.dart';
+import '../model/word_bookmarks.dart';
 import '../model/word_fields.dart';
 import '../model/word_notes.dart';
 import '../properties/wml_properties.dart';
@@ -435,8 +436,7 @@ abstract final class OdtDocumentWriter {
           list.add(next);
           index++;
         }
-        final style = _sectionParagraphStyle(layout, start, block.properties);
-        _writeList(w, list, layout, firstParagraphStyle: style);
+        _writeList(w, list, layout, sectionStart: start);
       } else {
         _writeBlock(w, block, layout, sectionStart: start);
       }
@@ -447,7 +447,7 @@ abstract final class OdtDocumentWriter {
     XmlWriter w,
     List<WmlParagraph> paragraphs,
     _OdtLayout layout, {
-    String? firstParagraphStyle,
+    _OdtSectionStart? sectionStart,
   }) {
     final roots = <_OdtListItem>[];
     final stack = <_OdtListItem>[];
@@ -481,9 +481,9 @@ abstract final class OdtDocumentWriter {
         if (item.marker.start case final start?) {
           w.writeAttribute('text:start-value', '$start');
         }
-        final override = first ? firstParagraphStyle : null;
+        final start = first ? sectionStart : null;
         first = false;
-        _writeParagraph(w, item.paragraph, layout, styleOverride: override);
+        _writeParagraph(w, item.paragraph, layout, sectionStart: start);
         if (item.children.isNotEmpty) writeItems(item.children);
         w.writeEndElement();
       }
@@ -501,16 +501,7 @@ abstract final class OdtDocumentWriter {
   }) {
     switch (block) {
       case WmlParagraph():
-        _writeParagraph(
-          w,
-          block,
-          layout,
-          styleOverride: _sectionParagraphStyle(
-            layout,
-            sectionStart,
-            block.properties,
-          ),
-        );
+        _writeParagraph(w, block, layout, sectionStart: sectionStart);
       case WmlTable():
         if (layout.inNoteBody) {
           _writeNoteTableText(w, block, layout);
@@ -619,23 +610,55 @@ abstract final class OdtDocumentWriter {
     XmlWriter w,
     WmlParagraph paragraph,
     _OdtLayout layout, {
-    String? styleOverride,
+    _OdtSectionStart? sectionStart,
   }) {
     final heading = paragraph.properties.headingLevel;
     // An annotation accepts paragraphs and lists, not heading elements. Keep
     // its resolved heading style without emitting an illegal child element.
     final tag = heading == null || layout.inCommentBody ? 'p' : 'h';
-    w.writeStartElement(tag, prefix: 'text');
-    if (heading != null && !layout.inCommentBody) {
-      w.writeAttribute('text:outline-level', '${heading.clamp(1, 9)}');
+    final pageField = _isPageNumberParagraph(paragraph);
+    final parts = _columnParagraphParts(paragraph, pageField: pageField);
+    var partIndex = 0;
+    var leadingColumnBreak = parts.leadingColumnBreak;
+    void startParagraph() {
+      final properties = parts.properties[partIndex];
+      w.writeStartElement(tag, prefix: 'text');
+      if (heading != null && !layout.inCommentBody) {
+        w.writeAttribute('text:outline-level', '${heading.clamp(1, 9)}');
+      }
+      final start = partIndex == 0 ? sectionStart : null;
+      w.writeAttribute(
+        'text:style-name',
+        _sectionParagraphStyle(layout, start, properties) ??
+            layout.paragraphStyle(properties, heading: heading),
+      );
     }
-    w.writeAttribute(
-      'text:style-name',
-      styleOverride ??
-          layout.paragraphStyle(paragraph.properties, heading: heading),
-    );
-    final pageField =
-        layout.fieldDepth == 0 && _isPageNumberParagraph(paragraph);
+
+    void writeInline(
+      WmlInline inline, {
+      bool pageNumber = false,
+      String? textOverride,
+    }) {
+      if (inline is WmlBreak && inline.type == WmlBreakType.column) {
+        if (leadingColumnBreak) {
+          leadingColumnBreak = false;
+        } else {
+          w.writeEndElement();
+          partIndex++;
+          startParagraph();
+        }
+      } else {
+        _writeInline(
+          w,
+          inline,
+          layout,
+          pageNumber: pageNumber,
+          textOverride: textOverride,
+        );
+      }
+    }
+
+    startParagraph();
     if (layout.noteReferenceSpacePending) {
       layout.noteReferenceSpacePending = false;
       final text = paragraph.text;
@@ -644,154 +667,66 @@ abstract final class OdtDocumentWriter {
       }
     }
     if (pageField) {
-      _writePageNumberInlines(w, paragraph, layout);
+      _writePageNumberInlines(w, paragraph, writeInline);
     } else {
-      _writeParagraphInlines(w, paragraph.inlines, layout);
+      for (final inline in paragraph.inlines) {
+        writeInline(inline);
+      }
     }
     w.writeEndElement();
   }
 
-  static void _writeParagraphInlines(
-    XmlWriter w,
-    List<WmlInline> inlines,
-    _OdtLayout layout,
-  ) {
-    final fields = <int, ({int end, String element, WmlRun cache})>{};
-    var depth = layout.fieldDepth;
-    var start = -1;
-    var nested = false;
-    for (var index = 0; index < inlines.length; index++) {
-      final inline = inlines[index];
-      if (inline is! WmlFieldBoundary) continue;
-      if (inline.kind == WmlFieldBoundaryKind.begin) {
-        if (depth == 0) {
-          start = index;
-          nested = false;
-        } else {
-          nested = true;
-        }
-        depth++;
-      } else if (inline.kind == WmlFieldBoundaryKind.end && depth > 0) {
-        depth--;
-        if (depth == 0 && start >= 0 && !nested) {
-          final field = _simpleInlineField(inlines.sublist(start, index + 1));
-          if (field != null) {
-            fields[start] = (
-              end: index,
-              element: field.element,
-              cache: field.cache,
-            );
-          }
-        }
-        if (depth == 0) start = -1;
-      }
-    }
-    // A field spanning paragraphs prevents conversion of nested packets, but
-    // never suppresses any cached text. Independent stories reset this guard.
-    layout.fieldDepth = depth;
-    for (var index = 0; index < inlines.length; index++) {
-      final field = fields[index];
-      if (field == null) {
-        _writeInline(w, inlines[index], layout);
+  static ({List<WmlParagraphProps> properties, bool leadingColumnBreak})
+  _columnParagraphParts(WmlParagraph paragraph, {required bool pageField}) {
+    var atStart = true;
+    var leadingColumnBreak = false;
+    var columnBreaks = 0;
+    for (final inline in paragraph.inlines) {
+      if (inline is WmlBreak && inline.type == WmlBreakType.column) {
+        if (atStart) leadingColumnBreak = true;
+        columnBreaks++;
+        atStart = false;
       } else {
-        _writeInline(w, field.cache, layout, nativeField: field.element);
-        index = field.end;
+        final hasContent = switch (inline) {
+          WmlRun() =>
+            inline.text.isNotEmpty ||
+                inline.isAtomic ||
+                inline.commentIds.isNotEmpty ||
+                pageField,
+          WmlBookmarkBoundary() ||
+          WmlFieldBoundary() ||
+          WmlContentControlBoundary() ||
+          WmlNoteMarker() => false,
+          _ => true,
+        };
+        if (hasContent) atStart = false;
       }
     }
-  }
+    if (columnBreaks == 0) {
+      return (properties: [paragraph.properties], leadingColumnBreak: false);
+    }
 
-  static ({String element, WmlRun cache})? _simpleInlineField(
-    List<WmlInline> packet,
-  ) {
-    final instruction = StringBuffer();
-    var separated = false;
-    WmlRun? cache;
-    for (final inline in packet) {
-      if (inline is WmlFieldBoundary) {
-        if (!_plainFieldBoundary(inline)) return null;
-        if (inline.kind == WmlFieldBoundaryKind.instruction) {
-          if (separated) return null;
-          instruction.write(inline.text);
-        } else if (inline.kind == WmlFieldBoundaryKind.separate) {
-          if (separated) return null;
-          separated = true;
-        }
-      } else if (inline is WmlRun &&
-          separated &&
-          cache == null &&
-          !inline.isAtomic &&
-          !inline.fieldLocked) {
-        cache = inline;
+    // ODF represents hard column breaks on paragraphs, not as inline soft
+    // page markers. Split only at the authored boundary, inside the same list
+    // item/story; a leading break needs no invented empty paragraph. Do not
+    // trim whitespace or relocate zero-width bookmark/field endpoints.
+    final count = columnBreaks + (leadingColumnBreak ? 0 : 1);
+    final properties = <WmlParagraphProps>[];
+    for (var index = 0; index < count; index++) {
+      final part = paragraph.properties.copy();
+      if (index == 0) {
+        if (leadingColumnBreak) part.columnBreakBefore = true;
       } else {
-        return null;
+        part
+          ..pageBreakBefore = false
+          ..columnBreakBefore = true
+          ..spacingBefore = 0
+          ..indent = part.indent.copyWith(firstLine: 0, hanging: 0);
       }
+      if (index + 1 < count) part.spacingAfter = 0;
+      properties.add(part);
     }
-    if (!separated || cache == null) return null;
-    // Other switches may change the displayed value or number format. Retain
-    // that authored cache instead of guessing at an equivalent ODF field.
-    final match = RegExp(
-      r'^\s*(PAGE|NUMPAGES)(?:\s+\\\*\s+MERGEFORMAT)?\s*$',
-      caseSensitive: false,
-    ).firstMatch(instruction.toString());
-    if (match == null) return null;
-    return (
-      element: match[1]!.toUpperCase() == 'PAGE' ? 'page-number' : 'page-count',
-      cache: cache,
-    );
-  }
-
-  static bool _plainFieldBoundary(WmlFieldBoundary boundary) {
-    if (boundary.runPropertiesXml?.trim().isNotEmpty == true) return false;
-    final source = boundary.sourceXml;
-    if (source == null) return true;
-    if (boundary.kind == WmlFieldBoundaryKind.instruction) return false;
-    try {
-      final reader = XmlPullReader(source.trim());
-      if (!reader.next() ||
-          reader.eventType != XmlEventType.startElement ||
-          reader.localName != 'fldChar' ||
-          reader.namespaceUri != OfficeNamespaces.w ||
-          reader.getAttribute(
-                'fldCharType',
-                namespaceUri: OfficeNamespaces.w,
-              ) !=
-              boundary.kind.name) {
-        return false;
-      }
-      final seen = <String>{};
-      for (var index = 0; index < reader.attributeCount; index++) {
-        if (reader.attributePrefix(index) == 'xmlns' ||
-            reader.attributeQualifiedName(index) == 'xmlns') {
-          continue;
-        }
-        final name = reader.attributeLocalName(index);
-        final value = reader.attributeValue(index);
-        if (reader.attributeNamespace(index) != OfficeNamespaces.w ||
-            !seen.add(name) ||
-            !{'fldCharType', 'fldLock', 'dirty'}.contains(name)) {
-          return false;
-        }
-        if (name == 'fldLock' && !{'0', 'false', 'off'}.contains(value)) {
-          return false;
-        }
-        if (name == 'dirty' &&
-            !{'0', 'false', 'off', '1', 'true', 'on'}.contains(value)) {
-          return false;
-        }
-      }
-      // Require exactly one complete empty boundary element. Form data,
-      // malformed XML and foreign source metadata retain the visible cache.
-      return reader.next() &&
-          reader.eventType == XmlEventType.endElement &&
-          reader.next() &&
-          reader.eventType == XmlEventType.endDocument;
-    } on XmlParseException {
-      return false;
-    } on FormatException {
-      return false;
-    } on RangeError {
-      return false;
-    }
+    return (properties: properties, leadingColumnBreak: leadingColumnBreak);
   }
 
   static bool _isPageNumberParagraph(WmlParagraph paragraph) {
@@ -813,7 +748,8 @@ abstract final class OdtDocumentWriter {
   static void _writePageNumberInlines(
     XmlWriter w,
     WmlParagraph paragraph,
-    _OdtLayout layout,
+    void Function(WmlInline, {bool pageNumber, String? textOverride})
+    writeInline,
   ) {
     final text = paragraph.text;
     // Share the model's supported " | title" suffix, including when the
@@ -829,10 +765,8 @@ abstract final class OdtDocumentWriter {
       if (inline is WmlRun) {
         final start = (suffixStart - offset).clamp(0, inline.text.length);
         final end = (suffixEnd - offset).clamp(start, inline.text.length);
-        _writeInline(
-          w,
+        writeInline(
           inline,
-          layout,
           pageNumber: !emitted,
           textOverride: inline.text.substring(start, end),
         );
@@ -847,7 +781,7 @@ abstract final class OdtDocumentWriter {
           w.writeEmptyElement('page-number', prefix: 'text');
           emitted = true;
         }
-        _writeInline(w, inline, layout);
+        writeInline(inline);
       }
     }
     if (!emitted) w.writeEmptyElement('page-number', prefix: 'text');
@@ -955,7 +889,7 @@ abstract final class OdtDocumentWriter {
         // Other boundaries are hidden metadata around ordinary cached runs.
         break;
       case WmlBookmarkBoundary():
-        final name = inline.name;
+        final name = layout.bookmarks.nameFor(inline);
         if (name != null && name.isNotEmpty) {
           w.writeEmptyElement(
             inline.isStart ? 'bookmark-start' : 'bookmark-end',
@@ -1179,8 +1113,10 @@ abstract final class OdtDocumentWriter {
     for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
       final row = table.rows[rowIndex];
       w.writeStartElement('table-row', prefix: 'table');
-      if (layout.rowStyle(row.height) case final style?) {
-        w.writeAttribute('table:style-name', style);
+      if (row.height case final height?) {
+        if (layout.rowStyle(height) case final style?) {
+          w.writeAttribute('table:style-name', style);
+        }
       }
       _writeOmittedCells(
         w,
@@ -1457,6 +1393,27 @@ class _OdtNoteRecord {
   final String label;
 }
 
+class _OdtBookmarks {
+  _OdtBookmarks(WmlDocument document)
+    : _endStarts = WordBookmarks.pairedEnds(document);
+
+  final Map<WmlBookmarkBoundary, WmlBookmarkBoundary> _endStarts;
+  final _emittedStarts = Set<WmlBookmarkBoundary>.identity();
+
+  String? nameFor(WmlBookmarkBoundary marker) {
+    final name = marker.name;
+    if (marker.isStart) {
+      if (name != null && name.isNotEmpty) _emittedStarts.add(marker);
+      return name;
+    }
+    if (name != null && name.isNotEmpty) return name;
+    final start = _endStarts[marker];
+    // A structurally valid pair may start in content this bounded writer
+    // omits, such as an unmodeled TOC cache. Never invent a visible orphan end.
+    return start != null && _emittedStarts.contains(start) ? start.name : null;
+  }
+}
+
 /// Note definitions and labels are independent of per-part style registries.
 class _OdtNotes {
   _OdtNotes(this.document) {
@@ -1629,6 +1586,7 @@ class _OdtLayout {
       _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
       notes = sharedMedia?.notes ?? _OdtNotes(document),
       comments = sharedMedia?.comments ?? _OdtComments(document),
+      bookmarks = sharedMedia?.bookmarks ?? _OdtBookmarks(document),
       noteBodiesAllowed = sharedMedia == null;
 
   final WmlDocument document;
@@ -1640,6 +1598,7 @@ class _OdtLayout {
   final List<String> media;
   final _OdtNotes notes;
   final _OdtComments comments;
+  final _OdtBookmarks bookmarks;
   bool noteBodiesAllowed;
   bool commentsAllowed = true;
   bool inCommentBody = false;
@@ -1716,13 +1675,21 @@ class _OdtLayout {
     _OdtSectionStart? sectionStart,
     bool emptyAnchor = false,
   }) {
-    final shading = _odfColor(props.shadingFill);
-    final border = _odfColor(props.borderColor);
-    // Use exactly the emitted tabs for both identity and deferred style output.
-    // Invalid positions are omitted and positions share the XML's precision.
-    final tabs = _tabStops(props.tabs);
+    final shading = _rgbColor(props.shadingFill);
+    final border = _rgbColor(props.borderColor);
+    final tabs = <({WmlTabStop stop, String position})>[
+      for (final stop in props.tabs)
+        if (_paragraphDecimal(stop.position) case final position?)
+          (stop: stop, position: position),
+    ];
+    // Cache the serialized tab properties in authored order. Paragraphs with
+    // distinct stops must not inherit the first paragraph's tab configuration.
+    final tabKey = jsonEncode([
+      for (final tab in tabs)
+        [tab.position, tab.stop.alignment.index, tab.stop.leader.index],
+    ]);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${props.columnBreakBefore}|${props.keepTogether}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabs';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${props.columnBreakBefore}|${props.keepTogether}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabKey';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'
@@ -1826,7 +1793,40 @@ class _OdtLayout {
         if (tabs.isEmpty) {
           buffer.write('/>');
         } else {
-          buffer.write('>$tabs</style:paragraph-properties>');
+          buffer.write('><style:tab-stops>');
+          for (final tab in tabs) {
+            final type = switch (tab.stop.alignment) {
+              WmlTabAlignment.center => 'center',
+              WmlTabAlignment.right => 'right',
+              WmlTabAlignment.decimal => 'char',
+              WmlTabAlignment.left => 'left',
+            };
+            buffer.write(
+              '<style:tab-stop style:position="${tab.position}pt" '
+              'style:type="$type"',
+            );
+            if (tab.stop.alignment == WmlTabAlignment.decimal) {
+              buffer.write(' style:char="."');
+            }
+            final leader = switch (tab.stop.leader) {
+              WmlTabLeader.dot => 'dotted',
+              WmlTabLeader.hyphen || WmlTabLeader.underscore => 'solid',
+              WmlTabLeader.none => null,
+            };
+            final leaderText = switch (tab.stop.leader) {
+              WmlTabLeader.dot => '.',
+              WmlTabLeader.hyphen => '-',
+              WmlTabLeader.underscore => '_',
+              WmlTabLeader.none => null,
+            };
+            if (leader != null) {
+              buffer.write(' style:leader-type="single"');
+              buffer.write(' style:leader-style="$leader"');
+              buffer.write(' style:leader-text="$leaderText"');
+            }
+            buffer.write('/>');
+          }
+          buffer.write('</style:tab-stops></style:paragraph-properties>');
         }
         if (emptyAnchor) {
           buffer.write('<style:text-properties fo:font-size="1pt"/>');
@@ -1846,44 +1846,7 @@ class _OdtLayout {
     });
   }
 
-  static String _tabStops(List<WmlTabStop> tabs) {
-    final buffer = StringBuffer();
-    for (final tab in tabs) {
-      final position = _paragraphDecimal(tab.position);
-      if (position == null) continue;
-      final type = switch (tab.alignment) {
-        WmlTabAlignment.center => 'center',
-        WmlTabAlignment.right => 'right',
-        WmlTabAlignment.decimal => 'char',
-        WmlTabAlignment.left => 'left',
-      };
-      buffer.write(
-        '<style:tab-stop style:position="${position}pt" style:type="$type"',
-      );
-      if (tab.alignment == WmlTabAlignment.decimal) {
-        buffer.write(' style:char="."');
-      }
-      final leader = switch (tab.leader) {
-        WmlTabLeader.dot => '.',
-        WmlTabLeader.hyphen => '-',
-        WmlTabLeader.underscore => '_',
-        WmlTabLeader.none => null,
-      };
-      if (leader != null) {
-        // ODF leader text preserves the model's character; hyphen and underscore
-        // must not both degrade to the same solid leader line.
-        final lineStyle = tab.leader == WmlTabLeader.dot ? 'dotted' : 'solid';
-        buffer.write(
-          ' style:leader-type="single" style:leader-style="$lineStyle" '
-          'style:leader-text="$leader"',
-        );
-      }
-      buffer.write('/>');
-    }
-    return buffer.isEmpty ? '' : '<style:tab-stops>$buffer</style:tab-stops>';
-  }
-
-  static String? _odfColor(String? value) {
+  static String? _rgbColor(String? value) {
     // The model contract is exactly six RRGGBB digits. Omit invalid imported
     // values before both style deduplication and XML attribute construction.
     if (value == null ||
@@ -2041,7 +2004,7 @@ class _OdtLayout {
         suffix = match[3];
         initial = BigInt.tryParse(match[2]!);
       } else if (label.isEmpty) {
-        return _OdtListMarker.bullet('•');
+        return const _OdtListMarker.bullet('•');
       } else {
         return _OdtListMarker.literal(label);
       }
@@ -2147,7 +2110,7 @@ class _OdtLayout {
   }
 
   String? cellStyle(WmlTableCell cell) {
-    final fill = _odfColor(cell.fillColor);
+    final fill = _rgbColor(cell.fillColor);
     final borders = [
       cell.borderTop == true,
       cell.borderBottom == true,
@@ -2183,17 +2146,15 @@ class _OdtLayout {
     });
   }
 
-  String? rowStyle(double? height) {
-    if (height == null || height < 0) return null;
-    // The shared model and DOCX serializer treat height as a minimum. ODF's
-    // fixed row-height would constrain taller content. Canonicalize negative
-    // zero and omit nonfinite/exponent values before creating a style.
+  String? rowStyle(double height) {
     final key = _paragraphDecimal(height == 0 ? 0 : height);
-    if (key == null) return null;
+    if (height < 0 || key == null) return null;
     return _rowStyles.putIfAbsent(key, () {
       final name = 'Ro${_rowStyles.length + 1}';
       _styleBuffers.add(
         '<style:style style:name="$name" style:family="table-row">'
+        // The shared model and DOCX writer treat row height as a minimum.
+        // Fixed ODF row heights would clip content that needs a taller row.
         '<style:table-row-properties style:min-row-height="${key}pt"/>'
         '</style:style>',
       );

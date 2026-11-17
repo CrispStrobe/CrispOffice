@@ -1,0 +1,760 @@
+[
+  {
+    "name": "section-list",
+    "file": "section-list.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "FirstBody": 1,
+      "FirstHead": 1,
+      "FirstFoot": 1,
+      "SecondHead": 2,
+      "SecondFoot": 2,
+      "ListFirst": 2,
+      "ListSecond": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": []
+  },
+  {
+    "name": "section-control-list",
+    "file": "section-control-list.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "FirstBody": 1,
+      "FirstHead": 1,
+      "FirstFoot": 1,
+      "SecondHead": 2,
+      "SecondFoot": 2,
+      "ControlFirst": 2,
+      "ControlSecond": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": []
+  },
+  {
+    "name": "section-table",
+    "file": "section-table.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "FirstBody": 1,
+      "FirstHead": 1,
+      "FirstFoot": 1,
+      "SecondHead": 2,
+      "SecondFoot": 2,
+      "TableFirst": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": []
+  },
+  {
+    "name": "section-control-table",
+    "file": "section-control-table.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "FirstBody": 1,
+      "FirstHead": 1,
+      "FirstFoot": 1,
+      "SecondHead": 2,
+      "SecondFoot": 2,
+      "ControlTable": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": []
+  },
+  {
+    "name": "section-visual",
+    "file": "section-visual.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "FirstBody": 1,
+      "FirstHead": 1,
+      "FirstFoot": 1,
+      "SecondHead": 2,
+      "SecondFoot": 2,
+      "VisualTail": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "red_picture": {
+      "page": 2,
+      "left_pt": 36,
+      "width_pt": 40,
+      "height_pt": 20
+    }
+  },
+  {
+    "name": "section-frame",
+    "file": "section-frame.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "FirstBody": 1,
+      "FirstHead": 1,
+      "FirstFoot": 1,
+      "SecondHead": 2,
+      "SecondFoot": 2,
+      "FrameFirst": 2,
+      "FrameTail": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "reopened_frame": {
+      "word": "FrameFirst",
+      "geometry_pt": [
+        60,
+        100,
+        180,
+        40
+      ]
+    }
+  },
+  {
+    "name": "section-empty",
+    "file": "section-empty.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ],
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeEmpty": 1,
+      "EmptySectionHead": 2,
+      "AfterEmpty": 3
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": []
+  },
+  {
+    "name": "section-continuous",
+    "file": "section-continuous.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeContinuous": 1,
+      "AfterContinuous": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [
+      "BeforeContinuous",
+      "AfterContinuous"
+    ]
+  },
+  {
+    "name": "section-continuous-empty",
+    "file": "section-continuous-empty.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeContinuous": 1,
+      "AfterContinuous": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [
+      "BeforeContinuous",
+      "AfterContinuous"
+    ],
+    "same_layout_as": "section-continuous"
+  },
+  {
+    "name": "section-continuous-image-header",
+    "file": "section-continuous-image-header.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeHeaderPicture": 1,
+      "AfterHeaderPicture": 1,
+      "PictureHeader": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [
+      "BeforeHeaderPicture",
+      "AfterHeaderPicture"
+    ]
+  },
+  {
+    "name": "section-continuous-comment-header",
+    "file": "section-continuous-comment-header.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeHeaderComment": 1,
+      "AfterHeaderComment": 1,
+      "CommentHeader": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [
+      "BeforeHeaderComment",
+      "AfterHeaderComment"
+    ],
+    "scope": "Equivalent header comments must not force a page break; header annotation visibility is not asserted."
+  },
+  {
+    "name": "section-continuous-new-size",
+    "file": "section-continuous-new-size.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "BeforeNewSize": 1,
+      "AfterNewSize": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "scope": "Documented page-boundary fallback for changed geometry."
+  },
+  {
+    "name": "section-heading-layout",
+    "file": "section-heading-layout.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "BeforeHeading": 1,
+      "HeadingFirst": 2,
+      "HeadingSecond": 2
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "line_step": {
+      "words": [
+        "HeadingFirst",
+        "HeadingSecond"
+      ],
+      "points": 18
+    },
+    "right_edge": {
+      "words": [
+        "HeadingFirst",
+        "HeadingSecond"
+      ],
+      "points": 540
+    }
+  },
+  {
+    "name": "paragraph-rtl-indent",
+    "file": "paragraph-rtl-indent.odt",
+    "page_sizes_pt": [
+      [
+        600,
+        400
+      ]
+    ],
+    "word_pages": {
+      "RightFirst": 1,
+      "RightSecond": 1,
+      "LeftFirst": 1,
+      "LeftSecond": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [
+      "RightFirst",
+      "RightSecond",
+      "LeftFirst",
+      "LeftSecond"
+    ],
+    "line_step": {
+      "words": [
+        "RightFirst",
+        "RightSecond"
+      ],
+      "points": 18
+    },
+    "right_edge": {
+      "words": [
+        "RightFirst",
+        "RightSecond"
+      ],
+      "points": 540
+    },
+    "left_edge": {
+      "words": [
+        "LeftFirst",
+        "LeftSecond"
+      ],
+      "points": 66
+    },
+    "scope": "Ordinary RTL paragraphs preserve physical 30 pt left and 24 pt right indents, independently of section activation."
+  },
+  {
+    "name": "section-oddPage-after-1",
+    "file": "section-oddPage-after-1.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeParity": 1,
+      "ParityStart": 3,
+      "ParityContinue": 4
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "reopened_section_type": "oddPage"
+  },
+  {
+    "name": "section-oddPage-after-2",
+    "file": "section-oddPage-after-2.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeParity": 1,
+      "BeforeParitySecond": 2,
+      "ParityStart": 3,
+      "ParityContinue": 4
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "reopened_section_type": "oddPage"
+  },
+  {
+    "name": "section-evenPage-after-1",
+    "file": "section-evenPage-after-1.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeParity": 1,
+      "ParityStart": 2,
+      "ParityContinue": 3
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "reopened_section_type": "evenPage"
+  },
+  {
+    "name": "section-evenPage-after-2",
+    "file": "section-evenPage-after-2.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "BeforeParity": 1,
+      "BeforeParitySecond": 2,
+      "ParityStart": 4,
+      "ParityContinue": 5
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [],
+    "reopened_section_type": "evenPage"
+  },
+  {
+    "name": "list-skipped-levels",
+    "file": "list-skipped-levels.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "RootFirst": 1,
+      "ChildFirst": 1,
+      "ChildSecond": 1,
+      "RootSecond": 1
+    },
+    "same_x": [
+      [
+        "RootFirst",
+        "RootSecond"
+      ],
+      [
+        "ChildFirst",
+        "ChildSecond"
+      ]
+    ],
+    "indented": [
+      [
+        "RootFirst",
+        "ChildFirst"
+      ]
+    ],
+    "labels": {},
+    "vertical_order": [
+      "RootFirst",
+      "ChildFirst",
+      "ChildSecond",
+      "RootSecond"
+    ]
+  },
+  {
+    "name": "list-nonzero-start",
+    "file": "list-nonzero-start.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "NonzeroFirst": 1,
+      "NonzeroSecond": 1
+    },
+    "same_x": [
+      [
+        "NonzeroFirst",
+        "NonzeroSecond"
+      ]
+    ],
+    "indented": [],
+    "labels": {},
+    "vertical_order": [
+      "NonzeroFirst",
+      "NonzeroSecond"
+    ]
+  },
+  {
+    "name": "list-mixed-markers",
+    "file": "list-mixed-markers.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "NumberFirst": 1,
+      "BulletChild": 1,
+      "NumberSecond": 1
+    },
+    "same_x": [
+      [
+        "NumberFirst",
+        "NumberSecond"
+      ]
+    ],
+    "indented": [
+      [
+        "NumberFirst",
+        "BulletChild"
+      ]
+    ],
+    "labels": {
+      "NumberFirst": "1.",
+      "BulletChild": "•",
+      "NumberSecond": "2."
+    },
+    "vertical_order": []
+  },
+  {
+    "name": "list-restart-continuation",
+    "file": "list-restart-continuation.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "CountFirst": 1,
+      "Interruption": 1,
+      "CountSecond": 1,
+      "RestartSeven": 1,
+      "AfterRestart": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {
+      "CountFirst": "1.",
+      "CountSecond": "2.",
+      "RestartSeven": "7.",
+      "AfterRestart": "8."
+    },
+    "vertical_order": []
+  },
+  {
+    "name": "list-literal-labels",
+    "file": "list-literal-labels.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "RomanFourth": 1,
+      "RomanFifth": 1,
+      "CompositeLabel": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {
+      "RomanFourth": "IV.",
+      "RomanFifth": "V.",
+      "CompositeLabel": "2.3.1)"
+    },
+    "vertical_order": []
+  },
+  {
+    "name": "list-native-start-override",
+    "file": "list-native-start-override.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "NativeFive": 1,
+      "NativeSix": 1
+    },
+    "same_x": [],
+    "indented": [],
+    "labels": {
+      "NativeFive": "5)",
+      "NativeSix": "6)"
+    },
+    "vertical_order": []
+  },
+  {
+    "name": "paragraph-distinct-shading-borders",
+    "file": "paragraph-distinct-shading-borders.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "RedShade": 1,
+      "GreenShade": 1,
+      "PlainUnshaded": 1
+    },
+    "vertical_order": [
+      "RedShade",
+      "GreenShade",
+      "PlainUnshaded"
+    ],
+    "paragraph_decorations": {
+      "RedShade": {
+        "fill": "FF0000",
+        "border": "0000FF"
+      },
+      "GreenShade": {
+        "fill": "00FF00",
+        "border": "FF00FF"
+      },
+      "PlainUnshaded": {
+        "fill": null,
+        "border": null
+      }
+    },
+    "scope": "Adjacent paragraphs retain independent fills and borders; unshaded content stays unshaded in independently reopened DOCX."
+  },
+  {
+    "name": "page-field-styled-footer",
+    "file": "page-field-styled-footer.odt",
+    "page_sizes_pt": [
+      [
+        400,
+        500
+      ],
+      [
+        400,
+        500
+      ]
+    ],
+    "word_pages": {
+      "FirstBody": 1,
+      "SecondBody": 2
+    },
+    "styled_footer": {
+      "suffix": "| Al Tahreer Neighborhood Profile",
+      "page_numbers": [
+        1,
+        2
+      ],
+      "bold": true,
+      "color": "0000FF",
+      "font_size_half_points": 28
+    },
+    "scope": "Live footer PAGE field renders 1 and 2 with the entire authored title suffix; field and suffix retain bold blue 14pt styling."
+  }
+]

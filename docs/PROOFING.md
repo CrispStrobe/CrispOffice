@@ -11,42 +11,39 @@ web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
-## Optional AOT analysis and grammar — 17 November 2026
+## Daemon-free AOT analysis and grammar — 17 November 2026
 
-The [AOT package](../packages/quds_proofing_aot/README.md) adds an independent
-integration with the AOT/RML analyzer. Its client now defaults to a separately
-installed local worker; `AotClient.http(...)` explicitly selects an existing
-SynanDaemon service. It exposes
-German/Russian syntax analysis, German/Russian/English word morphology, and
-three conservative de-DE diagnostic families: personal-pronoun/verb agreement,
-selected fixed-preposition case, and article/adjective/noun agreement.
+The [AOT package](../packages/quds_proofing_aot/README.md) now defaults to a
+managed local worker calling the real AOT/RML libraries. No SynanDaemon, server,
+listening port, Qt build, or automatic network fallback is required. An explicit
+pinned build installs the engine and resources; HTTP remains optional.
 
-The Studio example enables **Review → AOT analysis** and manual AOT proofing
-only when `QUDS_AOT_ENDPOINT` is configured. Text is submitted on explicit analysis
-or document-check actions. Existing deterministic and Harper proofing continue;
-custom hosts can compose AOT with the optional GECToR manual provider.
-The captured Studio implementation still creates HTTP clients and owns a new
-client for each analysis/morphology action. Local Studio configuration and
-dialog-wide session reuse remain unfinished. Reused library clients have
-bounded morphology caching and request coalescing; construction starts nothing.
+Studio always exposes **Review → AOT analysis**. It starts its private worker on
+an explicit action and reuses it for syntax and word-form requests. German and
+Russian support syntax; German, Russian and English support standalone Word
+forms. Cancel, close, language changes, document staleness and failures release
+the session. `QUDS_AOT_EXECUTABLE` or `QUDS_AOT_ENABLE=true` enables the manual
+provider in **Check document / F7**. Ordinary typing proofing is unchanged.
 
-AOT parse structures are analysis, not errors. Suggestions require positive,
-recognized morphology and concrete compatible paradigm forms. Missing groups,
-unknown words and ambiguous valid readings cannot justify a correction. Exact
-UTF-16/grapheme mapping, protected text, ignored rules and vocabulary safeguards
-apply. Unsupported locales, incomplete coverage and operational failures remain
-visible. Grammar support is de-DE; other analysis languages do not gain a grammar
-provider. No compiled native engine or dictionaries are redistributed.
+The three de-DE grammar families remain conservative: personal-pronoun/verb
+agreement, selected fixed-preposition case, and article/adjective/noun agreement.
+Suggestions require recognized same-lemma paradigms and concrete compatible
+features. Parse structures themselves are not errors. Exact source mapping,
+protected text, personal/ignored vocabulary and rule ignores remain enforced.
 
-The [local integration report](validation/aot-integration-20261117/README.md)
-records incoming-branch reconciliation and fixture-based validation. These tests
-do not establish live-daemon accuracy or general grammar coverage.
-The [captured daemon-free continuation](validation/aot-daemon-free-20261117/README.md)
-separately records local process/client and native-metadata consumer fixtures.
-At `0b4c0107`, the native worker still emits the upstream serializer's original
-tokens without source-span metadata. Consumer tests therefore do not qualify
-live normalized-token mapping, native installation or complete local CLI
-behavior; those native and Studio acceptance items remain open.
+The native worker preserves verified original UTF-16 source spans alongside
+normalized analyzer surfaces. This fixes complete coverage for both previously
+failing `zu-helfen` examples without guessing a location. Normalized token
+contexts remain protected from corrections. A bounded client morphology cache
+avoids repeated lookups; syntax document text and failures are not cached.
+
+The [daemon-free validation report](validation/aot-daemon-free-20261117/README.md)
+records the incoming branch reconciliation, native build, source patches,
+production client/CLI smoke, VM/browser contract tests and Studio tests. Native
+Linux is exercised locally; macOS/Windows builds are not qualified by that run.
+Browsers/mobile report native-worker unavailability. Grammar remains de-DE;
+other analysis languages and regional German locales do not gain grammar rules.
+No finite fixture panel is presented as general grammar accuracy.
 
 ## Noun agreement and syntax/model evaluation — 17 November 2026
 

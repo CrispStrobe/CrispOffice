@@ -16,6 +16,8 @@ All notable changes to `quds_office_engine` are documented here.
 - Write ODT section columns with the required nested column properties, keep
   empty-section page anchors inside their column section, and omit invalid
   column gaps without changing the document model.
+- Accept the missing finite noun forms `Schuppen` and `Lernen` without
+  lowercasing correct text; keep pinned upstream and Swiss dictionaries intact.
 
 - Prefer verified irregular participles for unknown overregularized spellings
   in bounded pronoun-and-haben contexts, keeping ordinary ranking elsewhere.
