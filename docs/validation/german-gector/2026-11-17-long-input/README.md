@@ -62,3 +62,57 @@ and package configuration were unchanged throughout each run.
 The expanded ODT cohort is broader than the previous 148-test cohort; it is not
 an arithmetic continuation of that historical test count. No visual desktop
 word-processor export or intended-device qualification is claimed.
+
+## Opt-in sentence segmentation implementation
+
+The guarded decoder now accepts `GectorDecodeOptions(segmentation:
+GectorSegmentationOptions())`. Default single-sequence behavior and the frozen
+reference path remain unchanged. The planner preserves complete original-source
+slices, prefers 64-token sentence groups, admits an intact sentence up to 512
+and rejects over-limit/ambiguous text explicitly. Default request limits are
+32 segments, 4,096 initial model tokens and 20,480 actual forward tokens over all
+passes, alongside the existing source ceiling and whole-request deadline.
+
+Later segments cannot acquire original-start insertions or case-differing
+adjacent-duplicate privileges. Each segment's edits are rebased directly, with
+no fresh paragraph diff. Cycles, pass limits, backend failure and cancellation
+cannot publish an earlier segment's partial suggestions. Global protected,
+personal and grapheme checks remain in the provider.
+
+The first implementation checkpoint passes 174 package tests, including the
+real pinned native fixture, and whole-package strict analysis. This includes
+51 planner tests, 15 new decoder tests, and 5 new worker/provider regressions.
+`implementation-tests.json` binds the observed result to its post-run source
+map and retained logs. The runner also passes 7 CLI admission controls and the
+existing 45 Python tooling tests. These unit/control results precede the fresh
+complete native AOT measurements and do not claim long-paragraph model quality.
+
+## Bounded planner review fix
+
+Review found repeated full copies of an unmatched-delimiter stack while scanning
+possible sentence boundaries. The planner now checks closing depth in place.
+A new 30,999-unit adversarial input with 16,000 unmatched openers and 3,000
+sentence-like terminators is rejected intact at the hard token limit. All 52
+planner tests and focused analysis pass. This bounds delimiter scanning without
+changing source partition semantics or relaxing the model limit.
+
+`pre-review-aot-build.json` preserves the successful source-sealed build of
+`fa3b67675d7f0f567fc88551fe6e4b87deea5065` before this review fix. No inference
+result is attributed to that earlier binary. Final native runs will rebuild the
+reviewed integrated source using fresh output and receipt paths.
+
+## Second incoming snapshot
+
+A fresh inventory at 2026-11-17 15:32:37 UTC found 130 Quds branch tips, including
+new morphology and Office-fidelity heads and merged PR #108 for ODP text-shape
+hyperlinks. `latest-refs-observation.json` and `latest-pr-observation.json`
+record this fixed snapshot. The following integration precedes final native
+measurements; those measurements will not claim to cover later moving refs.
+
+Morphology `7808a8711c91d721e8bb2b7034349008be80895b` adds the shared production
+policy for deterministic/manual report merging, a prospectively frozen 76-case
+synthetic German challenge and a separate incremental-quality runner. The merge
+retains this branch's segmentation options and native-runner controls, combines
+the historical roadmap descriptions, and preserves the incoming tooling and
+corpus unchanged. New report-merge, quality-tool and manual/F7 tests will run
+against the final combined source.
