@@ -20,7 +20,7 @@ paragraph actually emitted, including cached, generated, titleless and title-onl
 contents. Empty contents leave activation for the next visible block. The export
 preserves page geometry and odd/even master selection without a trailing blank
 anchor or changes to the source model. Eleven focused section regressions were
-committed before the repair; nine failed on the original implementation.
+committed before the repair; ten failed on the original implementation.
 
 The broad regression run exposed 21 pre-existing integration failures. The
 bounded inline-field implementation authored at `898c4c07` had been displaced
