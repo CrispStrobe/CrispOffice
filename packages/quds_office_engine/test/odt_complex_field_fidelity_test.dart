@@ -36,8 +36,9 @@ WmlDocument _document(List<WmlInline> inlines) => WmlDocument(
   }
   final package = OpcPackage.openBytes(bytes);
   return (
-    content: XmlDocument.parse(package.getPart('/content.xml')!.readText())
-        .root!,
+    content: XmlDocument.parse(
+      package.getPart('/content.xml')!.readText(),
+    ).root!,
     styles: XmlDocument.parse(package.getPart('/styles.xml')!.readText()).root!,
   );
 }
