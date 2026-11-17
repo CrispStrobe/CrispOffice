@@ -10,7 +10,7 @@ All 183 captured branch heads and 149 PR heads were fetched before reconciliatio
 
 ## Reconciled source
 
-The product libraries are unchanged from `16c7b0fb`: this preserves the spreadsheet conditional-format repairs and the common-parent frame bookmark repair. The incoming alternate direct-common-style implementation is reconciled to that existing parent-style implementation. Its added frame tests retain first/later frame anchors, geometry and bookmark assertions, and now also cover header/footer-only parent registration. The six cached PAGE/NUMPAGES whitespace cases move into the inline suite so they also run on Node. No assertion is discarded.
+The product libraries are unchanged from `16c7b0fb`: this preserves the spreadsheet conditional-format repairs and the common-parent frame bookmark repair. The incoming alternate direct-common-style implementation is reconciled to that existing parent-style implementation. Its added frame tests retain first/later frame anchors, geometry and bookmark assertions. The six cached PAGE/NUMPAGES whitespace cases move into the inline suite so they also run on Node. No assertion is discarded.
 
 The canonical selection now has 222 unique files (the previous 221 plus the frame regression), and the portable selection retains all previous 14 suites plus the two header variant suites and frame suite (17 total). The separate two-test example smoke, 40 retained document consumers, five boundary consumers and serial native 1/2/4/8-thread sweep remain required. Independent review explicitly checks every gate; the older generic audit does not by itself cover smoke and native receipts.
 
@@ -22,4 +22,4 @@ Checkpoint publication uses GitHub Git Data objects and non-forced expected-SHA 
 
 ## Active frozen run
 
-The qualification source is published at `3d487008d9ba93d29b1f3a6b0eca5f77bbd7cc70`, with draft PR #150. The test checkout stays detached and clean at that commit. This evidence checkpoint changes only validation documentation; all source, tests and harnesses remain frozen.
+Draft PR #150 preserves every checkpoint. The first candidate `3d487008` was rejected by its focused compile check: an added regression attempted to place a body-only WmlFrame into a header/footer visual list. That unsupported test construction is removed; both incoming body/no-unused-style cases remain. No product API or product logic changes. The final source will be re-frozen and all gates rerun. The completed 33-consumer run on the rejected candidate is retained only as historical evidence.

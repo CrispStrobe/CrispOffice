@@ -7,7 +7,6 @@
     "Historical outcomes remain historical",
     "Independent archive readback and receipt review required before final acceptance"
   ],
-  "frozen_source_commit": "3d487008d9ba93d29b1f3a6b0eca5f77bbd7cc70",
   "gates": {
     "boundary_consumers": {
       "bounded_precedence_control": 1,
@@ -74,7 +73,7 @@
     }
   },
   "gector_cutoff": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
-  "incoming_frame_resolution": "Retain union common-parent writer unchanged; adapt incoming frame regression to actual style inheritance and add header/footer-only registration. Move six whitespace-cache assertions from complex suite to inline suite for Node.",
+  "incoming_frame_resolution": "Retain union common-parent writer unchanged; adapt both incoming frame regression cases to actual style inheritance. Remove new unsupported header/footer WmlFrame construction caught by compile check; do not expand product API. Move six whitespace-cache assertions from complex suite to inline suite for Node.",
   "main_cutoff": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
   "new_repairs": {
     "frame_local_source_commit": "877fe3bdaec0afd6ed82dff3aa10d728d6df759e",

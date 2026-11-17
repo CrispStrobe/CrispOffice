@@ -6,7 +6,7 @@
     148
   ],
   "conflict_resolutions": {
-    "gector": "Retain common-parent writer and section regression; preserve all other incoming evidence and the whitespace-test relocation. Adapt added frame suite and retain no-unused-style case; add master-page-only coverage.",
+    "gector": "Retain common-parent writer and section regression; preserve all other incoming evidence and the whitespace-test relocation. Adapt added body-frame suite and retain no-unused-style case. New header/footer WmlFrame case was invalid for model API and removed after compile control.",
     "main": "Retain newer union test formatting, frame regression, and cumulative handoff. Product tree unchanged."
   },
   "gector_recovery": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
