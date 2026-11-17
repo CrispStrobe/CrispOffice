@@ -35,6 +35,11 @@ Read these documents in order:
    findings, the clarified user policy, selected spaCy assets, and App Store
    commercial-distribution considerations.
 
+The supplementary [historical AOT build receipt](aot-license-build-evidence.md)
+preserves the exact link/dependency/notices observations behind the licensing
+record. It is evidence about the earlier Linux prototype, not new runtime or
+mobile qualification.
+
 ## Instructions and constraints carried forward
 
 - Save small, meaningful commits to a **remote GitHub branch incrementally**.
@@ -95,6 +100,20 @@ or dictionaries is not part of the recommended spaCy implementation.
 | CrispEmbed standalone GECToR precedent | [`853a1ce6089e5d5486e37307f37051ad6a928745`](https://github.com/CrispStrobe/CrispEmbed/tree/853a1ce6089e5d5486e37307f37051ad6a928745) | Small CPU target and strict model admission; historical feature pin, not current-main spaCy support |
 
 ## First session for a fresh agent
+
+For a new clone in an empty working directory, the saved handoff is available
+without recovering any previous agent workspace:
+
+```sh
+git clone https://github.com/CrispStrobe/quds_office_suite.git quds_office_suite
+cd quds_office_suite
+git switch --track origin/docs/native-spacy-handoff-20261117
+git remote add upstream https://github.com/MohammedAsaadAsaad/quds_office_suite.git
+```
+
+For an existing checkout, inspect its status and fetch the documentation branch
+before switching; preserve uncommitted work. Keep these handoff commits when
+creating the implementation branch and reconcile newer main into that branch.
 
 1. Read this directory and any applicable `AGENTS.md` in each repository.
    Confirm a clean or safely isolated checkout; never reset another person's
