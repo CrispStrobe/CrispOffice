@@ -1,0 +1,52 @@
+{
+  "kind": "quds-pre-frame-fix-attempt",
+  "source_commit": "c89e7eedda4473eae98953e61d9244d0125f440f",
+  "passed": false,
+  "native_inference_executed": false,
+  "failure": "ODT frame text extraction returned an empty string from the new section-owning paragraph wrapper; existing whitespace assertion retained.",
+  "suites": [
+    {
+      "suite": "odt",
+      "source_commit_at_start": "c89e7eedda4473eae98953e61d9244d0125f440f",
+      "source_commit_at_end": "c89e7eedda4473eae98953e61d9244d0125f440f",
+      "exit_code": 1,
+      "passed_count": 249,
+      "all_tests_passed_marker": false,
+      "source_stable": true,
+      "log": {
+        "bytes": 29507,
+        "file": "odt.log",
+        "sha256": "4301641a570e8cb80e5ab7f1388ba6d70c33af73bd4bdd8e5b5c417472b0ca30"
+      }
+    },
+    {
+      "suite": "odp",
+      "source_commit_at_start": "c89e7eedda4473eae98953e61d9244d0125f440f",
+      "source_commit_at_end": "c89e7eedda4473eae98953e61d9244d0125f440f",
+      "exit_code": 0,
+      "passed_count": 35,
+      "all_tests_passed_marker": true,
+      "source_stable": true,
+      "log": {
+        "bytes": 4001,
+        "file": "odp.log",
+        "sha256": "5562fb7616e93d2c17194afcd960057e39aaf4c0bd5a12249f3493f214b2a79c"
+      }
+    },
+    {
+      "suite": "german",
+      "source_commit_at_start": "c89e7eedda4473eae98953e61d9244d0125f440f",
+      "source_commit_at_end": "c89e7eedda4473eae98953e61d9244d0125f440f",
+      "exit_code": 0,
+      "passed_count": 268,
+      "all_tests_passed_marker": true,
+      "source_stable": true,
+      "log": {
+        "bytes": 32449,
+        "file": "german.log",
+        "sha256": "da1e23f03352afe094924fe3a68db16769def66c269ec7df9e459b1c71d72304"
+      }
+    }
+  ],
+  "scope": "Intermediate preserved attempt; source-sealed AOT builds succeeded, but neither binary was used for inference."
+}

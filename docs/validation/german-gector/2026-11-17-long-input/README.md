@@ -162,3 +162,19 @@ feature and main also have identical complete trees. A history-only merge keeps
 both equivalent branch tips as ancestors without replacing the receiving
 branch's newer Office behavior. These are the final missing tips in the fixed
 130-branch snapshot.
+
+## Preserved broader-cohort failure before frame extraction fix
+
+At `c89e7eedda4473eae98953e61d9244d0125f440f`, all 130 captured branch tips and
+108 fetched PR heads are ancestors (`second-integrated-ancestry.json`). The
+broader ODT/ODF cohort exposed one real integration failure: a frame inside the
+new section-owning paragraph was extracted as an empty string instead of its
+whitespace-preserving text. The existing assertion is not relaxed. This run
+had 249 passing ODT/ODF tests and one failure; 35 ODP and 268 German tests passed.
+All three source maps were stable. `pre-frame-fix-attempt.json` indexes the
+retained failed attempt and compressed source-bound logs/receipts.
+
+The two `pre-frame-fix-*-build.json` receipts describe successful builds with
+stable source, dependency and SDK seals. Neither resulting binary was used for
+inference. Native measurements will rebuild the corrected source into fresh
+paths; these successful earlier builds do not qualify the later fix.
