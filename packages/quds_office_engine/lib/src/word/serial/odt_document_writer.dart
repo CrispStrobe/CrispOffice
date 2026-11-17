@@ -13,6 +13,8 @@ import '../properties/wml_properties.dart';
 /// This is an export path. It emits the modeled text, paragraph/run formatting,
 /// tables, pictures, frames, page geometry and basic headers/footers. It does
 /// not claim to preserve arbitrary imported ODF XML or every Word feature.
+/// Word and Zotero fields export their visible cached results; their native
+/// instructions and editable field metadata are not part of this export.
 abstract final class OdtDocumentWriter {
   /// Serializes [document] as a new ODT package.
   static Uint8List writeBytes(WmlDocument document) {
@@ -254,7 +256,10 @@ abstract final class OdtDocumentWriter {
           prefix: 'text',
         );
       case WmlFieldBoundary():
-        if (inline.text.isNotEmpty) writeOdfText(w, inline.text);
+        // Instructions are hidden field metadata, not document text. The
+        // surrounding result runs remain in the inline sequence, including
+        // citations and bibliographies that span several paragraphs.
+        break;
       case WmlContentControlBoundary() ||
           WmlNoteMarker() ||
           WmlBookmarkBoundary():
