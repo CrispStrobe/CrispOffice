@@ -1,0 +1,24 @@
+{
+  "allowed_changed_prefix": "docs/",
+  "delivery_files": "canonical-delivery-files.json",
+  "delivery_readback": "canonical-delivery-readback.json",
+  "earlier_accepted_source": "4c49b0435bc6611221bc49b58b15e735059467ff",
+  "finalization_parent": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+  "non_documentation_path_count": 3448,
+  "non_documentation_path_mode_type_object_map_sha256": "899c072ac1bea3a2a34115f9f0246cdc7c3c9c7cf93237a0aae61e676779335e",
+  "preservation": "Both accepted archives, all prior control/preflight archives and their recorded source attribution remain unchanged. The final report corrects only the description of the five-line incoming test delta; archive bytes are unchanged.",
+  "product_tests_rerun_during_finalization": false,
+  "proof_method": "Compare every non-docs Git tree entry (path, mode, type and object) between the staged final tree and qualified def52; reject any changed or untracked non-docs path. Final commit and clean status are verified separately after creation.",
+  "qualified_host_canonical_pin": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+  "qualified_host_source": "511361a4623e6ddf787b5cccfaed4ba14ae1899f",
+  "qualified_source_commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+  "qualified_source_tree": "2c85776b996e04c8e6e3350c956b01eb730aba24",
+  "recorded_at_utc": "2026-11-17T16:48:55.975193+00:00",
+  "source_equivalence_verified": true,
+  "source_reviews": [
+    "qualified-def52d84/canonical-qualified-def52d84-review.json",
+    "qualified-def52d84/canonical-qualified-def52d84-positive-coverage.json",
+    "qualified-def52d84/canonical-post-const-equivalence.json",
+    "host-final-qualification-review.json"
+  ]
+}

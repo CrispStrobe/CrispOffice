@@ -1,0 +1,104 @@
+{
+  "accepted": true,
+  "delivery_archives": [
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "canonical-qualified-4c49b043.tar.xz",
+      "archive_bytes": 887836,
+      "archive_sha256": "384c9a9405f40e0b3a668b0afad3d8a414da60a539352f32e14fd24c019c433e",
+      "members_verified": 129,
+      "receipt_sha256": "eb5dab169362dcdae910870161d7b0f3b75bb4d771cea906a32aeb34c2e44082",
+      "setup_members_verified": 22,
+      "source_commit": "4c49b0435bc6611221bc49b58b15e735059467ff",
+      "source_tree": "b098f1fb6ae8ab7b4a0614d6a2c25b1623bab1de"
+    },
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "canonical-qualified-def52d84.tar.xz",
+      "archive_bytes": 886556,
+      "archive_sha256": "a58a73166a36d36223e7cc215dd6b32caa27e5e6d268fe1b91d0b2323f6f9a5b",
+      "members_verified": 129,
+      "receipt_sha256": "a3c8df8a1440c867d11ddf53de790cef22b5fec82175be2c0f6e70a6fd361be0",
+      "setup_members_verified": 22,
+      "source_commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+      "source_tree": "2c85776b996e04c8e6e3350c956b01eb730aba24"
+    }
+  ],
+  "git_objects_read_only": true,
+  "original_104b_failed_preflight_and_setup": {
+    "all_member_hashes_and_sizes_match": true,
+    "archive": "qualification-preflight-b32dee6f.tar.xz",
+    "archive_bytes": 483904,
+    "archive_sha256": "38b96302069d2ea970d0002a761d114eee7df4776ac540ca550278b6840895ec",
+    "commit": "104b239c971ef3b2d62495a27ad04b519398a1fc",
+    "index_path": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f-index.json",
+    "members_verified": 63,
+    "path": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f.tar.xz",
+    "product_tests_run": 0,
+    "qualified_source": "b32dee6f1fb6993c928a466b553226209cf27fb8"
+  },
+  "product_tests_executed_by_verifier": false,
+  "retained_archives_at_recorded_commits": [
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "qualification-preflight-b32dee6f.tar.xz",
+      "archive_bytes": 483904,
+      "archive_sha256": "38b96302069d2ea970d0002a761d114eee7df4776ac540ca550278b6840895ec",
+      "commit": "4c49b0435bc6611221bc49b58b15e735059467ff",
+      "index_path": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f-index.json",
+      "members_verified": 63,
+      "path": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f.tar.xz"
+    },
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "canonical-controls-evidence.tar.xz",
+      "archive_bytes": 373648,
+      "archive_sha256": "f2051224efcb61032961a97dd943b0bb5f6d9b46647af4b8d1e1c6c92c673618",
+      "commit": "4c49b0435bc6611221bc49b58b15e735059467ff",
+      "index_path": "docs/validation/office-resume-20261117/canonical-controls-evidence-index.json",
+      "members_verified": 38,
+      "path": "docs/validation/office-resume-20261117/canonical-controls-evidence.tar.xz"
+    },
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "cache-control-evidence.tar.xz",
+      "archive_bytes": 350876,
+      "archive_sha256": "dfd729676f2f926e2a8a85a3a116c61fa15659011e9613cc60dd3764c1dad3ad",
+      "commit": "4c49b0435bc6611221bc49b58b15e735059467ff",
+      "index_path": "docs/validation/office-resume-20261117/cache-control-evidence-index.json",
+      "members_verified": 43,
+      "path": "docs/validation/office-resume-20261117/cache-control-evidence.tar.xz"
+    },
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "qualification-preflight-b32dee6f.tar.xz",
+      "archive_bytes": 483904,
+      "archive_sha256": "38b96302069d2ea970d0002a761d114eee7df4776ac540ca550278b6840895ec",
+      "commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+      "index_path": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f-index.json",
+      "members_verified": 63,
+      "path": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f.tar.xz"
+    },
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "canonical-controls-evidence.tar.xz",
+      "archive_bytes": 373648,
+      "archive_sha256": "f2051224efcb61032961a97dd943b0bb5f6d9b46647af4b8d1e1c6c92c673618",
+      "commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+      "index_path": "docs/validation/office-resume-20261117/canonical-controls-evidence-index.json",
+      "members_verified": 38,
+      "path": "docs/validation/office-resume-20261117/canonical-controls-evidence.tar.xz"
+    },
+    {
+      "all_member_hashes_and_sizes_match": true,
+      "archive": "cache-control-evidence.tar.xz",
+      "archive_bytes": 350876,
+      "archive_sha256": "dfd729676f2f926e2a8a85a3a116c61fa15659011e9613cc60dd3764c1dad3ad",
+      "commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+      "index_path": "docs/validation/office-resume-20261117/cache-control-evidence-index.json",
+      "members_verified": 43,
+      "path": "docs/validation/office-resume-20261117/cache-control-evidence.tar.xz"
+    }
+  ],
+  "verifier_sha256": "cb3f9fb13b406e43949c2bb2c317e992f332250499d23e7e850a6f16cc6fcc95"
+}
