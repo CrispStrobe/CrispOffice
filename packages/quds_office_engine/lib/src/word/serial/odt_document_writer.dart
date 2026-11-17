@@ -21,9 +21,10 @@ import '../properties/wml_properties.dart';
 /// This is an export path. It emits the modeled text, paragraph/run formatting,
 /// tables, pictures, frames, page geometry and basic headers/footers. It does
 /// not claim to preserve arbitrary imported ODF XML or every Word feature.
-/// Simple paragraph PAGE fields use a native ODF page number. Other Word and
-/// Zotero fields export their visible cached results; their native instructions
-/// and editable field metadata are not part of this export.
+/// Simple paragraph PAGE fields use a native ODF page number. Safe complete
+/// paragraph-local PAGE/NUMPAGES/DATE/TIME/TITLE boundary fields use native
+/// ODF fields. Other Word and Zotero fields export visible cached results
+/// without their native instructions or editable field metadata.
 abstract final class OdtDocumentWriter {
   /// Serializes [document] as a new ODT package.
   static Uint8List writeBytes(WmlDocument document) {
@@ -610,6 +611,7 @@ abstract final class OdtDocumentWriter {
       WmlInline inline, {
       bool pageNumber = false,
       String? textOverride,
+      String? fieldElement,
     }) {
       if (inline is WmlBreak && inline.type == WmlBreakType.column) {
         if (leadingColumnBreak) {
@@ -626,6 +628,7 @@ abstract final class OdtDocumentWriter {
           layout,
           pageNumber: pageNumber,
           textOverride: textOverride,
+          fieldElement: fieldElement,
         );
       }
     }
@@ -641,19 +644,26 @@ abstract final class OdtDocumentWriter {
     if (pageField) {
       _writePageNumberInlines(w, paragraph, writeInline);
     } else {
-      for (final inline in paragraph.inlines) {
-        writeInline(inline);
-      }
+      _writeComplexFieldInlines(paragraph.inlines, writeInline);
     }
     w.writeEndElement();
   }
 
   static ({List<WmlParagraphProps> properties, bool leadingColumnBreak})
   _columnParagraphParts(WmlParagraph paragraph, {required bool pageField}) {
+    final hasRun = paragraph.inlines.any((inline) => inline is WmlRun);
+    final generatedFieldIndices = <int>{};
+    if (!pageField) {
+      _writeComplexFieldInlines(
+        paragraph.inlines,
+        (_, {String? fieldElement}) {},
+        generatedFieldIndices: generatedFieldIndices,
+      );
+    }
     var atStart = true;
     var leadingColumnBreak = false;
     var columnBreaks = 0;
-    for (final inline in paragraph.inlines) {
+    for (final (index, inline) in paragraph.inlines.indexed) {
       if (inline is WmlBreak && inline.type == WmlBreakType.column) {
         if (atStart) leadingColumnBreak = true;
         columnBreaks++;
@@ -664,11 +674,13 @@ abstract final class OdtDocumentWriter {
             inline.text.isNotEmpty ||
                 inline.isAtomic ||
                 inline.commentIds.isNotEmpty ||
-                pageField,
-          WmlBookmarkBoundary() ||
-          WmlFieldBoundary() ||
-          WmlContentControlBoundary() ||
-          WmlNoteMarker() => false,
+                pageField ||
+                generatedFieldIndices.contains(index),
+          // An uncached PAGE paragraph emits its field before the first end
+          // bookmark. A following column token must stay after that field.
+          WmlBookmarkBoundary() => pageField && !hasRun && !inline.isStart,
+          WmlFieldBoundary() => generatedFieldIndices.contains(index),
+          WmlContentControlBoundary() || WmlNoteMarker() => false,
           _ => true,
         };
         if (hasContent) atStart = false;
@@ -699,6 +711,151 @@ abstract final class OdtDocumentWriter {
       properties.add(part);
     }
     return (properties: properties, leadingColumnBreak: leadingColumnBreak);
+  }
+
+  // Native complex fields are recognized only within a complete, independent
+  // paragraph-local range. Unsupported shapes keep their visible cached runs;
+  // no suppression state can escape into another paragraph or owned story.
+  static void _writeComplexFieldInlines(
+    List<WmlInline> inlines,
+    void Function(WmlInline inline, {String? fieldElement}) writeInline, {
+    Set<int>? generatedFieldIndices,
+  }) {
+    var index = 0;
+    while (index < inlines.length) {
+      final first = inlines[index];
+      if (first is! WmlFieldBoundary ||
+          first.kind != WmlFieldBoundaryKind.begin) {
+        writeInline(first);
+        index++;
+        continue;
+      }
+      var depth = 1;
+      var nested = false;
+      var malformed = false;
+      int? separator;
+      int? end;
+      final instruction = StringBuffer();
+      for (var scan = index + 1; scan < inlines.length; scan++) {
+        final inline = inlines[scan];
+        if (inline is! WmlFieldBoundary) {
+          if (separator == null && depth == 1) malformed = true;
+          continue;
+        }
+        switch (inline.kind) {
+          case WmlFieldBoundaryKind.begin:
+            depth++;
+            nested = true;
+          case WmlFieldBoundaryKind.instruction:
+            if (depth == 1 && separator == null) {
+              instruction.write(inline.text);
+            } else {
+              malformed = true;
+            }
+          case WmlFieldBoundaryKind.separate:
+            if (depth == 1 && separator == null) {
+              separator = scan;
+            } else {
+              malformed = true;
+            }
+          case WmlFieldBoundaryKind.end:
+            depth--;
+            if (depth == 0) end = scan;
+        }
+        if (end != null) break;
+      }
+      final stop = end ?? inlines.length - 1;
+      final name = instruction.toString().trim().split(RegExp(r'\s+')).first;
+      final element = switch (name.toUpperCase()) {
+        'PAGE' => 'page-number',
+        'NUMPAGES' => 'page-count',
+        'DATE' => 'date',
+        'TIME' => 'time',
+        'TITLE' => 'title',
+        _ => null,
+      };
+      final emptyCache =
+          end != null && separator != null && end == separator + 1;
+      final cache = emptyCache
+          ? WmlRun()
+          : end != null && separator != null && end == separator + 2
+          ? inlines[separator + 1]
+          : null;
+      // ODF field content is text-only. Multiple styled runs, bookmarks inside
+      // the cache, notes, visuals, column breaks and whitespace requiring ODF
+      // child elements retain their original representation rather than lose
+      // source ownership or introduce invalid field children.
+      final safeCache =
+          cache is WmlRun &&
+          !cache.isAtomic &&
+          !RegExp(r'[\t\r\n]|^\s|\s$| {2,}').hasMatch(cache.text);
+      if (end != null &&
+          separator != null &&
+          !nested &&
+          !malformed &&
+          element != null &&
+          _fieldSourceAllowsRefresh(first) &&
+          safeCache &&
+          (element != 'page-count' || _unstyledPageCount(cache))) {
+        generatedFieldIndices?.add(emptyCache ? separator : separator + 1);
+        writeInline(cache, fieldElement: element);
+      } else {
+        for (var scan = index; scan <= stop; scan++) {
+          writeInline(inlines[scan]);
+        }
+      }
+      index = stop + 1;
+    }
+  }
+
+  // The pinned ODF grammar permits page-count directly in the paragraph,
+  // while its styled/hyperlinked wrapper form does not validate. Only a plain
+  // source run can inherit paragraph styling without dropping authored state.
+  static bool _unstyledPageCount(WmlRun run) {
+    final props = run.properties;
+    return run.hyperlink == null &&
+        props.styleId == null &&
+        !props.bold &&
+        !props.italic &&
+        props.underline == WmlUnderline.none &&
+        !props.strike &&
+        !props.smallCaps &&
+        props.color.toLowerCase() == '000000' &&
+        props.highlight == null &&
+        props.fontSizeHalfPoints == 22 &&
+        props.asciiFont == 'Arial' &&
+        props.csFont == 'Arial' &&
+        props.vertAlign == WmlVertAlign.baseline &&
+        props.proofingLanguage == null &&
+        props.noProof == null &&
+        (props.sourcePropertiesXml?.isEmpty ?? true) &&
+        props.explicitProperties.isEmpty;
+  }
+
+  static bool _fieldSourceAllowsRefresh(WmlFieldBoundary boundary) {
+    final source = boundary.sourceXml;
+    if (source == null) return true;
+    try {
+      final wrapper = XmlDocument.parse(
+        '<root xmlns:w="${OfficeNamespaces.w}">$source</root>',
+      ).root!;
+      final elements = wrapper.childElements.toList();
+      if (elements.length != 1) return false;
+      final field = elements.single;
+      if (field.namespaceUri != OfficeNamespaces.w ||
+          field.localName != 'fldChar' ||
+          field.childElements.isNotEmpty) {
+        return false;
+      }
+      final locked = field.getAttribute(
+        'fldLock',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      return locked == null ||
+          const {'0', 'false', 'off'}.contains(locked.toLowerCase());
+    } on FormatException {
+      return false;
+    }
   }
 
   static bool _isPageNumberParagraph(WmlParagraph paragraph) {
@@ -765,6 +922,7 @@ abstract final class OdtDocumentWriter {
     _OdtLayout layout, {
     bool pageNumber = false,
     String? textOverride,
+    String? fieldElement,
   }) {
     switch (inline) {
       case WmlRun():
@@ -788,16 +946,20 @@ abstract final class OdtDocumentWriter {
           // text:a can carry the same style directly, with its text unchanged.
           if (commentLink) w.writeAttribute('text:style-name', style);
         }
-        if (pageNumber) {
-          if (!commentLink) {
+        if (pageNumber || fieldElement != null) {
+          if (!commentLink && fieldElement != 'page-count') {
             w.writeStartElement('span', prefix: 'text');
             w.writeAttribute('text:style-name', style);
           }
-          w.writeEmptyElement('page-number', prefix: 'text');
-          if (textOverride != null && textOverride.isNotEmpty) {
-            writeOdfText(w, textOverride);
+          if (fieldElement != null) {
+            w.writeEmptyElement(fieldElement, prefix: 'text');
+          } else {
+            w.writeEmptyElement('page-number', prefix: 'text');
+            if (textOverride != null && textOverride.isNotEmpty) {
+              writeOdfText(w, textOverride);
+            }
           }
-          if (!commentLink) w.writeEndElement();
+          if (!commentLink && fieldElement != 'page-count') w.writeEndElement();
         } else if (inline.noteRefId != null) {
           final note = layout.notes.resolve(inline);
           if (note != null) {
@@ -847,9 +1009,8 @@ abstract final class OdtDocumentWriter {
           prefix: 'text',
         );
       case WmlFieldBoundary():
-        // Instructions are hidden field metadata, not document text. The
-        // surrounding result runs remain in the inline sequence, including
-        // citations and bibliographies that span several paragraphs.
+        // Instructions and delimiters are hidden metadata. Safe complete
+        // paragraph-local fields are handled before writing individual runs.
         break;
       case WmlBookmarkBoundary():
         final name = layout.bookmarks.nameFor(inline);
