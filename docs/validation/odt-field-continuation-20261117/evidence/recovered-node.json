@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "label": "recovered-node",
+  "head": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+  "startedAt": "2026-11-17T20:08:18.427797+00:00",
+  "finishedAt": "2026-11-17T20:09:31.045549+00:00",
+  "durationSeconds": 72.54699035500005,
+  "cwd": "packages/quds_office_engine",
+  "command": [
+    "/workspace/scratch/8762e41974dc/runtime-recovery/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/8762e41974dc/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8762e41974dc/runtime-recovery/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "2",
+    "--platform",
+    "node",
+    "test/odt_page_field_fidelity_test.dart",
+    "test/odt_imported_field_fidelity_test.dart",
+    "test/odt_inline_field_fidelity_test.dart",
+    "test/odt_inline_column_break_fidelity_test.dart",
+    "test/odt_section_fidelity_test.dart",
+    "test/word_field_span_test.dart",
+    "test/word_zotero_simple_field_test.dart",
+    "test/word_toc_test.dart",
+    "test/word_revision_validation_test.dart"
+  ],
+  "exitCode": 0,
+  "expectedExitCode": 0,
+  "sourceScopes": [
+    "packages/quds_office_engine/lib",
+    "packages/legacy_doc_parser/lib",
+    "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+    "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+    "packages/quds_office_engine/test/word_field_span_test.dart",
+    "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+    "packages/quds_office_engine/test/word_toc_test.dart",
+    "packages/quds_office_engine/test/word_revision_validation_test.dart",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml"
+  ],
+  "sourceInputCount": 399,
+  "changedInputs": [],
+  "inputManifest": "recovered-node.inputs.json.gz",
+  "inputManifestSha256": "0c299dd46a6db2330a277c90721a491ce18ee39dcb95886e7b9c3377c51cff22",
+  "packageConfigSha256": "7c4b428b1e1829fd448efe9c67d81be488b494b085ded663bf94fdbdbfec0713",
+  "dartExecutableSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "substantiveTestCounts": {
+    "success": 165
+  },
+  "terminalEvents": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 60959
+    }
+  ],
+  "testErrors": [],
+  "outputs": {
+    "stdout": {
+      "path": "recovered-node.stdout.gz",
+      "uncompressedBytes": 81937,
+      "uncompressedSha256": "e168f041a43e1a0a5bc38397a17812b36c8434f2bb711b86af1986c8c2271f0c",
+      "compressedSha256": "2e6a1bedbc887d6655229d7140b32c18b2b1f32b7371f2be248c75355d5eff0b"
+    },
+    "stderr": {
+      "path": "recovered-node.stderr.gz",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressedSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  },
+  "passed": true,
+  "harnessSha256": "d9a3d42f56662c096f7dab4c8385bc931ebe8481118977fbc3be2ebf412de057",
+  "packageConfigBeforeSha256": "7c4b428b1e1829fd448efe9c67d81be488b494b085ded663bf94fdbdbfec0713",
+  "packageConfigStable": true
+}

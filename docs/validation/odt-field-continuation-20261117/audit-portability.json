@@ -1,0 +1,24 @@
+{
+  "auditExitCode": 0,
+  "auditScriptSha256": "bd943559e5556c69a5e43da4b1f752681a9e56b7db671a5c79927549c0688c7c",
+  "checkedAtUtc": "2026-11-17T20:09:32.300950+00:00",
+  "checkoutHead": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+  "cloneOptions": [
+    "--filter=blob:none",
+    "--no-checkout",
+    "--depth=2",
+    "--single-branch",
+    "--branch",
+    "codex/odt-field-continuation-20261117"
+  ],
+  "freshCloneSource": "https://github.com/CrispStrobe/quds_office_suite.git",
+  "originalCommitObjectPresent": false,
+  "originalObjectProbeLazyFetchDisabled": true,
+  "originalPayloadSha256": "d363556bbe604292f3b42040b818f090530234b7707c69510c2c62ad60126290",
+  "passed": true,
+  "schemaVersion": 1,
+  "scope": "Fresh sparse clone has the published source commit and its baseline parent. The audit script and original raw commit payload were supplied from the prepared report; no original unpublished Git commit object was available.",
+  "unchangedScopesVerified": 9,
+  "verifiedHistoricalMembers": 205,
+  "verifiedProductTree": "3080e51ec487a97c08696d119dbef97a442a2e67"
+}
