@@ -23,3 +23,9 @@ their own source identity. `docs/PROOFING.md` now distinguishes those reports.
 Further incoming merges and local regression results will be recorded here
 before the long-input implementation. This checkpoint is an integration save,
 not a claim that the incoming combined tree has already been retested.
+
+Second merge: Office continuation `555eb728ce3ea872cb5ceb3e5fd2104b21f932aa`.
+The section tests adopt its interpolation lint fixes. The annotation fixture
+keeps the already-equivalent local `annotationText` variable, so both branches'
+4,096-character byte-budget assertion is preserved without an unused variable.
+The incoming initial-analysis-failure receipt is retained unchanged.

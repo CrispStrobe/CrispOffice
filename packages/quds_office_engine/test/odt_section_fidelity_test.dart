@@ -109,7 +109,7 @@ Map<String, String> _resolvedProperties(XmlElement style) => {
             attribute.localName == 'break-before') &&
         !(attribute.namespaceUri == _styleNs &&
             attribute.localName == 'page-number'))
-      attribute.namespaceUri + '|' + attribute.localName: attribute.value,
+      '${attribute.namespaceUri}|${attribute.localName}': attribute.value,
 };
 
 void main() {
@@ -319,11 +319,11 @@ void main() {
       const page = WmlPageSize();
       expect(
         _attribute(properties, 'page-width', _foNs),
-        page.width.toStringAsFixed(2) + 'pt',
+        '${page.width.toStringAsFixed(2)}pt',
       );
       expect(
         _attribute(properties, 'page-height', _foNs),
-        page.height.toStringAsFixed(2) + 'pt',
+        '${page.height.toStringAsFixed(2)}pt',
       );
       expect(document.sections, isEmpty);
     },
@@ -500,7 +500,7 @@ void main() {
         final bodyComment = _elements(content, 'annotation', _officeNs).single;
         expect(_elements(bodyComment, 'note', _textNs), isEmpty);
         expect(_elements(bodyComment, 'note-ref', _textNs), isEmpty);
-        expect(_visibleText(bodyComment), contains('Comment story ' + label));
+        expect(_visibleText(bodyComment), contains('Comment story $label'));
         expect(_elements(styles, 'note', _textNs), isEmpty);
         expect(_elements(styles, 'note-ref', _textNs), isEmpty);
         final masters = styles.firstChild(
@@ -538,11 +538,11 @@ void main() {
         );
         expect(
           _visibleText(master.firstChild('footer', namespaceUri: _styleNs)!),
-          'Second footer ' + label,
+          'Second footer $label',
         );
         expect(
           _visibleText(_elements(master, 'annotation', _officeNs).single),
-          contains('Comment story ' + label),
+          contains('Comment story $label'),
         );
         expect(note.id, 7);
         expect(note.text, 'Note body');
