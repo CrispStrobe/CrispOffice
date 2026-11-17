@@ -1,0 +1,15 @@
+{
+  "baseline": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+  "main": "8a778f1884b15065ef74f4c20f828d34b2374e06",
+  "additional_heads": [
+    "7dc17c9718b60844c4a8a888c77014aecbb57c0d",
+    "837d06edbde08a2465e99cbbb15927ee4c87d8ac"
+  ],
+  "references": 207,
+  "distinct_commits": 140,
+  "all_captured_heads_are_ancestors": true,
+  "merge_conflicts": [],
+  "local_merge_tree": "3c3c938a38d4efbd2e10482ca79e7d1b51fcd4ad",
+  "initial_source_diff_from_main": "",
+  "ci_queried_or_awaited": false
+}
