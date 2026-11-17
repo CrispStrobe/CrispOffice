@@ -56,6 +56,31 @@ retains source-specific validation of the incoming opt-in segmentation and
 Office export changes. PR #114 follows PR #105, which was merged externally
 during this continuation; no CI queue is used as a gate.
 
+## Optional AOT analysis and grammar — 17 November 2026
+
+The [AOT package](../packages/quds_proofing_aot/README.md) adds an independent
+HTTP/JSON integration with a separately installed AOT/RML SynanDaemon. It exposes
+German/Russian syntax analysis, German/Russian/English word morphology, and
+three conservative de-DE diagnostic families: personal-pronoun/verb agreement,
+selected fixed-preposition case, and article/adjective/noun agreement.
+
+The Studio example enables **Review → AOT analysis** and manual AOT proofing
+only when `QUDS_AOT_ENDPOINT` is configured. Text is submitted on explicit analysis
+or document-check actions. Existing deterministic and Harper proofing continue;
+custom hosts can compose AOT with the optional GECToR manual provider.
+
+AOT parse structures are analysis, not errors. Suggestions require positive,
+recognized morphology and concrete compatible paradigm forms. Missing groups,
+unknown words and ambiguous valid readings cannot justify a correction. Exact
+UTF-16/grapheme mapping, protected text, ignored rules and vocabulary safeguards
+apply. Unsupported locales, incomplete coverage and operational failures remain
+visible. Grammar support is de-DE; other analysis languages do not gain a grammar
+provider. No native engine or dictionaries are redistributed.
+
+The [local integration report](validation/aot-integration-20261117/README.md)
+records incoming-branch reconciliation and fixture-based validation. These tests
+do not establish live-daemon accuracy or general grammar coverage.
+
 ## Earlier German proofing continuation — 17 November 2026
 
 The [morphology continuation report](validation/german-proofing-continuation-20261117/README.md)
