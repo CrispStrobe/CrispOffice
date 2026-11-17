@@ -7,6 +7,10 @@ import 'package:http/http.dart' as http;
 
 import 'models.dart';
 
+/// POST is preferred. GET is an explicit compatibility choice for older
+/// deployments and puts supplied text in URLs and intermediary logs.
+enum AotRequestMethod { post, get }
+
 enum AotErrorCode {
   unavailable,
   http,
@@ -39,7 +43,7 @@ abstract interface class AotTransport {
   Future<void> dispose();
 }
 
-/// Bounded form-POST transport for the upstream SynanDaemon.
+/// Bounded transport for the upstream SynanDaemon, using form POST by default.
 ///
 /// AOT serializes requests internally, so this transport sends one at a time.
 /// The deadline includes queueing and reading the response. Timed-out requests
@@ -54,6 +58,7 @@ final class AotHttpTransport implements AotTransport {
     Uri? endpoint,
     bool allowRemote = false,
     http.Client? httpClient,
+    this.requestMethod = AotRequestMethod.post,
     this.timeout = const Duration(seconds: 15),
     this.maximumQueryCodeUnits = 32768,
     this.maximumRequestBytes = 256 * 1024,
@@ -76,6 +81,7 @@ final class AotHttpTransport implements AotTransport {
   }
 
   final Uri endpoint;
+  final AotRequestMethod requestMethod;
   final Duration timeout;
   final int maximumQueryCodeUnits;
   final int maximumRequestBytes;
@@ -125,21 +131,27 @@ final class AotHttpTransport implements AotTransport {
       );
     }
     final _PendingAotRequest pending = _PendingAotRequest();
+    final Map<String, String> fields = <String, String>{
+      'action': action,
+      'langua': language.daemonName,
+      'query': query,
+      if (withParadigms && action == 'morph') 'withparadigms': '1',
+    };
+    final Uri requestUri = requestMethod == AotRequestMethod.get
+        ? endpoint.replace(queryParameters: fields)
+        : endpoint;
     final http.AbortableRequest request =
         http.AbortableRequest(
-            'POST',
-            endpoint,
+            requestMethod == AotRequestMethod.post ? 'POST' : 'GET',
+            requestUri,
             abortTrigger: pending.abort.future,
           )
           ..followRedirects = false
-          ..headers['Accept'] = 'application/json'
-          ..bodyFields = <String, String>{
-            'action': action,
-            'langua': language.daemonName,
-            'query': query,
-            if (withParadigms && action == 'morph') 'withparadigms': '1',
-          };
-    if (request.bodyBytes.length > maximumRequestBytes) {
+          ..headers['Accept'] = 'application/json';
+    if (requestMethod == AotRequestMethod.post) request.bodyFields = fields;
+    if (request.bodyBytes.length > maximumRequestBytes ||
+        (requestMethod == AotRequestMethod.get &&
+            utf8.encode(requestUri.toString()).length > maximumRequestBytes)) {
       throw const AotException(
         AotErrorCode.limit,
         'Encoded text exceeds the configured AOT request limit.',

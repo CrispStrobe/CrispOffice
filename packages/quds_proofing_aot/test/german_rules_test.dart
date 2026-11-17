@@ -358,4 +358,175 @@ void main() {
     ]);
     expect(results.single.replacements, <String>['GEHE']);
   });
+
+  test(
+    'correlated number/person unions cannot generate an invented verb form',
+    () async {
+      final result = await check(
+        'Du gehen.',
+        <List<GrammarWord>>[
+          <GrammarWord>[
+            const GrammarWord('Du', 'SIE', 'PRO sin,2,nom,per,;'),
+            const GrammarWord(
+              'gehen',
+              'GEHEN',
+              'VER plu,1,prae,; plu,3,prae,;',
+            ),
+            punkt,
+          ],
+        ],
+        morph: (word) => word == 'gehen'
+            ? morphologyFixture(word, 'GEHEN', 'VER', <(String, String)>[
+                ('GEHEN', 'plu,1,prae'),
+                ('GEHT', 'sin,plu,2,3,prae'),
+                ('GEHST', 'sin,2,prae'),
+              ])
+            : standardMorphology(word),
+      );
+      expect(result.single.replacements, <String>['gehst']);
+    },
+  );
+
+  test(
+    'correlated case/gender unions cannot generate a wrong adjective form',
+    () async {
+      final result = await check(
+        'den kleines Hund',
+        <List<GrammarWord>>[
+          <GrammarWord>[den, kleines, hund],
+        ],
+        morph: (word) => word == 'kleines'
+            ? morphologyFixture(word, 'KLEIN', 'ADJ', <(String, String)>[
+                ('KLEINES', 'sin,neu,nom,akk,sol,gru'),
+                // This union can mean masculine nominative OR feminine
+                // nominative/accusative. It does not prove masculine accusative.
+                ('KLEINE', 'sin,mas,fem,nom,akk,def,gru'),
+                ('KLEINEN', 'sin,mas,akk,def,gru'),
+              ])
+            : standardMorphology(word),
+      );
+      expect(result.single.replacements, <String>['kleinen']);
+    },
+  );
+
+  test(
+    'adjective correction preserves degree instead of changing meaning',
+    () async {
+      final result = await check(
+        'Der gutes Hund',
+        <List<GrammarWord>>[
+          <GrammarWord>[
+            der,
+            const GrammarWord('gutes', 'GUT', 'ADJ sin,neu,nom,akk,sol,gru,;'),
+            hund,
+          ],
+        ],
+        morph: (word) => word == 'gutes'
+            ? morphologyFixture(word, 'GUT', 'ADJ', <(String, String)>[
+                ('GUTES', 'sin,neu,nom,akk,sol,gru'),
+                ('GUTE', 'sin,mas,nom,def,gru'),
+                ('BESSERE', 'sin,mas,nom,def,kom'),
+                ('BESTE', 'sin,mas,nom,def,sup'),
+              ])
+            : standardMorphology(word),
+      );
+      expect(result.single.replacements, <String>['gute']);
+    },
+  );
+
+  test('missing adjective degree causes abstention', () async {
+    final result = await check(
+      'Der kleines Hund',
+      <List<GrammarWord>>[
+        <GrammarWord>[der, kleines, hund],
+      ],
+      morph: (word) => word == 'kleines'
+          ? morphologyFixture(word, 'KLEIN', 'ADJ', <(String, String)>[
+              ('KLEINES', 'sin,neu,nom,akk,sol'),
+              ('KLEINE', 'sin,mas,nom,def,gru'),
+            ])
+          : standardMorphology(word),
+    );
+    expect(result, isEmpty);
+  });
+
+  test('expletive Es with a postposed plural subject is left alone', () async {
+    var morphCalls = 0;
+    final result = await check(
+      'Es kommen Gäste.',
+      <List<GrammarWord>>[
+        <GrammarWord>[
+          const GrammarWord('Es', 'SIE', 'PRO sin,3,neu,nom,per,;'),
+          const GrammarWord(
+            'kommen',
+            'KOMMEN',
+            'VER plu,1,prae,; plu,3,prae,;',
+          ),
+          const GrammarWord('Gäste', 'GAST', 'SUB plu,nom,akk,gen,;'),
+          punkt,
+        ],
+      ],
+      morph: (word) {
+        morphCalls++;
+        return standardMorphology(word);
+      },
+    );
+    expect(result, isEmpty);
+    expect(morphCalls, 0);
+  });
+
+  test(
+    'explicit du with a matching imperative is not changed to indicative',
+    () async {
+      expect(
+        await check('Du gehe!', <List<GrammarWord>>[
+          <GrammarWord>[
+            const GrammarWord('Du', 'SIE', 'PRO sin,2,nom,per,;'),
+            const GrammarWord(
+              'gehe',
+              'GEHEN',
+              'VER sin,1,prae,; sin,imp,; sin,3,kj1,;',
+            ),
+            const GrammarWord('!', '!', ''),
+          ],
+        ]),
+        isEmpty,
+      );
+    },
+  );
+
+  test(
+    'morphology restores imperative alternatives pruned by syntax',
+    () async {
+      expect(
+        await check('Du gehe!', <List<GrammarWord>>[
+          <GrammarWord>[
+            const GrammarWord('Du', 'SIE', 'PRO sin,2,nom,per,;'),
+            const GrammarWord('gehe', 'GEHEN', 'VER sin,1,prae,; sin,3,kj1,;'),
+            const GrammarWord('!', '!', ''),
+          ],
+        ]),
+        isEmpty,
+      );
+    },
+  );
+
+  for (final introducer in <String>['um', 'ohne']) {
+    test(
+      'infinitive introducer $introducer does not govern the following object',
+      () async {
+        expect(
+          await check('$introducer mir zu helfen', <List<GrammarWord>>[
+            <GrammarWord>[
+              GrammarWord(introducer, introducer.toUpperCase(), 'PRP akk,;'),
+              const GrammarWord('mir', 'SIE', 'PRO sin,1,dat,per,;'),
+              const GrammarWord('zu', 'ZU', 'PRP'),
+              const GrammarWord('helfen', 'HELFEN', 'VER inf,;'),
+            ],
+          ]),
+          isEmpty,
+        );
+      },
+    );
+  }
 }

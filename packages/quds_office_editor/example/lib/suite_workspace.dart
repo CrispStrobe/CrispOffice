@@ -55,6 +55,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   static const String _aotEndpointSetting = String.fromEnvironment(
     'QUDS_AOT_ENDPOINT',
   );
+  static const bool _aotUseGet = bool.fromEnvironment('QUDS_AOT_USE_GET');
   Uri? _aotEndpoint;
   String? _aotConfigurationError;
   SuiteApp _app = SuiteApp.word;
@@ -4794,22 +4795,31 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         try {
           final endpoint = Uri.parse(_aotEndpointSetting.trim());
           final analyzer = AotClient(
-            transport: AotHttpTransport(endpoint: endpoint),
+            transport: AotHttpTransport(
+              endpoint: endpoint,
+              requestMethod: _aotUseGet
+                  ? AotRequestMethod.get
+                  : AotRequestMethod.post,
+            ),
           );
           // This service owns its client. The analysis dialog owns separate
           // clients, so canceling its requests cannot interrupt grammar checks.
           // Only Check document/F7 invokes this service; typing stays local.
-          controller.proofing.configureManual(
-            OfficeProofingService(
-              timeout: const Duration(seconds: 30),
-              providers: [
-                AotProofingProvider(
-                  analyzer: analyzer,
-                  vocabulary: controller.proofing.vocabulary,
-                ),
-              ],
-            ),
+          final manual = OfficeProofingService(
+            timeout: const Duration(seconds: 30),
+            providers: [
+              AotProofingProvider(
+                analyzer: analyzer,
+                vocabulary: controller.proofing.vocabulary,
+              ),
+            ],
           );
+          try {
+            controller.proofing.configureManual(manual);
+          } on Object {
+            unawaited(manual.dispose());
+            rethrow;
+          }
           _aotEndpoint = endpoint;
         } on Object catch (error) {
           _aotConfigurationError = 'AOT could not be configured: $error';
@@ -4943,8 +4953,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       context: context,
       builder: (context) => StudioAotAnalysisDialog(
         controller: _word,
-        createAnalyzer: () =>
-            AotClient(transport: AotHttpTransport(endpoint: endpoint)),
+        createAnalyzer: () => AotClient(
+          transport: AotHttpTransport(
+            endpoint: endpoint,
+            requestMethod: _aotUseGet
+                ? AotRequestMethod.get
+                : AotRequestMethod.post,
+          ),
+        ),
         initialLanguage: _word.proofing.language.startsWith('ru')
             ? AotLanguage.russian
             : AotLanguage.german,

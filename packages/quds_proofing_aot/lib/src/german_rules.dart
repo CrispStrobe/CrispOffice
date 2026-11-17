@@ -63,6 +63,11 @@ final class AotGermanGrammar {
         actual.add(lemma);
         for (final form in item.forms) {
           for (final features in form.grammar.alternatives) {
+            if (forms.length >= 2048) {
+              throw const FormatException(
+                'AOT paradigm exceeds grammar limits.',
+              );
+            }
             forms.add(
               _Form(
                 form.text,
@@ -77,7 +82,9 @@ final class AotGermanGrammar {
         for (final form in forms)
           if (form.text.toLowerCase() == token.text.toLowerCase()) form.reading,
       ];
-      return source.isEmpty ? null : _Lexeme(source, forms);
+      return source.isEmpty || source.length > 64
+          ? null
+          : _Lexeme(source, forms);
     }
 
     bool safe(List<AotToken> words) {
@@ -138,7 +145,8 @@ final class AotGermanGrammar {
               safe(words.take(2).toList()) &&
               _subjectEvidence(subject, expected) &&
               _finite(verb).isNotEmpty &&
-              !_finite(verb).any((item) => _verbAgrees(item, expected))) {
+              !_finite(verb).any((item) => _verbAgrees(item, expected)) &&
+              !_matchingImperative(verb, expected)) {
             final subjectMorph = await lexeme(words[0], subject);
             final verbMorph = await lexeme(words[1], verb);
             if (subjectMorph != null && verbMorph != null) {
@@ -148,14 +156,16 @@ final class AotGermanGrammar {
               final finite = _finite(verbMorph.source);
               if (_subjectEvidence(subjects, expected) &&
                   finite.isNotEmpty &&
-                  !finite.any((item) => _verbAgrees(item, expected))) {
+                  !finite.any((item) => _verbAgrees(item, expected)) &&
+                  !_matchingImperative(verbMorph.source, expected)) {
                 add(
                   words[1],
                   subjectVerbRule,
                   'Die Verbform passt nicht zu diesem Personalpronomen.',
                   <String>[
                     for (final form in verbMorph.forms)
-                      if (_isFinite(form.reading) &&
+                      if (_safeInflection(form.reading) &&
+                          _isFinite(form.reading) &&
                           _verbAgrees(form.reading, expected) &&
                           finite.any(
                             (original) =>
@@ -178,6 +188,7 @@ final class AotGermanGrammar {
           for (var i = 0; i + 1 < words.length; i++) {
             final requiredCase = _prepositions[words[i].text.toLowerCase()];
             if (requiredCase == null ||
+                _introducesInfinitive(words, i) ||
                 _syntax(clause, i, const <String>{'PRP'}) == null) {
               continue;
             }
@@ -198,7 +209,8 @@ final class AotGermanGrammar {
                     )) {
                   final candidates = <String>{
                     for (final form in morph.forms)
-                      if (form.reading.pos == 'PRO' &&
+                      if (_safeInflection(form.reading) &&
+                          form.reading.pos == 'PRO' &&
                           form.reading.features.contains(requiredCase) &&
                           source.any(
                             (original) =>
@@ -256,7 +268,8 @@ final class AotGermanGrammar {
                 _caseMessage(requiredCase),
                 <String>[
                   for (final form in articleMorph.forms)
-                    if (form.reading.pos == 'ART' &&
+                    if (_safeInflection(form.reading) &&
+                        form.reading.pos == 'ART' &&
                         nouns.any(
                           (noun) => _nominalAgreement(
                             form.reading,
@@ -276,7 +289,8 @@ final class AotGermanGrammar {
                 _caseMessage(requiredCase),
                 <String>[
                   for (final form in nounMorph.forms)
-                    if (form.reading.pos == 'SUB' &&
+                    if (_safeInflection(form.reading) &&
+                        form.reading.pos == 'SUB' &&
                         articles.any(
                           (article) => _nominalAgreement(
                             article,
@@ -347,7 +361,9 @@ final class AotGermanGrammar {
               'Die Adjektivform passt nicht zu Artikel und Substantiv.',
               <String>[
                 for (final form in adjectiveMorph.forms)
-                  if (form.reading.pos == 'ADJ' &&
+                  if (_safeInflection(form.reading) &&
+                      form.reading.pos == 'ADJ' &&
+                      _preservesAdjectiveDegree(adjectives, form.reading) &&
                       _anyAdjectiveAgreement(
                         articles,
                         <_Reading>[form.reading],
@@ -391,11 +407,14 @@ const _genders = <String>{'mas', 'fem', 'neu'};
 const _cases = <String>{'nom', 'gen', 'dat', 'akk'};
 const _persons = <String>{'1', '2', '3'};
 const _finiteModes = <String>{'prae', 'prt', 'kj1', 'kj2'};
+const _degrees = <String>{'gru', 'kom', 'sup'};
+// Es can be expletive before a plural postposed subject (Es kommen Gäste).
+// Sie and Ihr also carry ambiguity; only the explicit feature-checked
+// personal use of ihr is considered below, while es/Sie/sie are omitted.
 const _subjects = <String, ({String person, String number})>{
   'ich': (person: '1', number: 'sin'),
   'du': (person: '2', number: 'sin'),
   'er': (person: '3', number: 'sin'),
-  'es': (person: '3', number: 'sin'),
   'wir': (person: '1', number: 'plu'),
   'ihr': (person: '2', number: 'plu'),
 };
@@ -513,21 +532,25 @@ bool _anyAdjectiveAgreement(
   List<_Reading> adjectives,
   List<_Reading> nouns,
   String declension,
-) => articles.any(
-  (article) => nouns.any((noun) {
-    if (!_nominalAgreement(article, noun)) return false;
-    return adjectives.any((adjective) {
-      if (!adjective.features.contains(declension)) return false;
-      // All three must share one number/case/gender tuple. Pairwise overlap
-      // could otherwise invent a compatible tuple from disjoint alternatives.
-      final common = article.features.intersection(noun.features);
-      final triple = common.intersection(adjective.features);
-      return triple.any(_numbers.contains) &&
-          triple.any(_cases.contains) &&
-          (triple.contains('plu') || triple.any(_genders.contains));
-    });
-  }),
-);
+) =>
+    // Excessively ambiguous syntax is not evidence of an error. Limit the
+    // Cartesian comparison rather than taking only convenient alternatives.
+    articles.length * adjectives.length * nouns.length > 4096 ||
+    articles.any(
+      (article) => nouns.any((noun) {
+        if (!_nominalAgreement(article, noun)) return false;
+        return adjectives.any((adjective) {
+          if (!adjective.features.contains(declension)) return false;
+          // All three must share one number/case/gender tuple. Pairwise overlap
+          // could otherwise invent a compatible tuple from disjoint alternatives.
+          final common = article.features.intersection(noun.features);
+          final triple = common.intersection(adjective.features);
+          return triple.any(_numbers.contains) &&
+              triple.any(_cases.contains) &&
+              (triple.contains('plu') || triple.any(_genders.contains));
+        });
+      }),
+    );
 
 bool _personalCaseEvidence(List<_Reading> readings) =>
     readings.isNotEmpty &&
@@ -591,4 +614,74 @@ String _caseLike(String original, String replacement) {
     return '${lower[0].toUpperCase()}${lower.substring(1)}';
   }
   return lower;
+}
+
+// The upstream paradigm serializer normally reconstructs one gramtab row.
+// Unknown rows or malformed integrations can still contain several varying
+// dimensions, hiding correlations (such as third-person singular OR second-
+// person plural). Such a union may justify abstention about existing text,
+// but cannot prove a replacement valid.
+bool _safeInflection(_Reading reading) {
+  final dimensions = <Set<String>>[
+    _numbers,
+    _genders,
+    _cases,
+    _persons,
+    _finiteModes,
+    _degrees,
+    const <String>{'def', 'ind', 'sol'},
+  ];
+  if (reading.pos == 'VER' &&
+      (reading.features.intersection(_numbers).length != 1 ||
+          reading.features.intersection(_persons).length != 1 ||
+          reading.features.intersection(_finiteModes).length != 1)) {
+    return false;
+  }
+  return dimensions
+          .where(
+            (dimension) => reading.features.intersection(dimension).length > 1,
+          )
+          .length <=
+      1;
+}
+
+bool _preservesAdjectiveDegree(List<_Reading> source, _Reading candidate) {
+  final originals = source.where(
+    (original) => original.pos == 'ADJ' && original.lemma == candidate.lemma,
+  );
+  if (originals.isEmpty) return false;
+  final degrees = <String>{};
+  for (final original in originals) {
+    final values = original.features.intersection(_degrees);
+    if (values.length != 1) return false;
+    degrees.add(values.single);
+  }
+  final replacementDegrees = candidate.features.intersection(_degrees);
+  return degrees.length == 1 &&
+      replacementDegrees.length == 1 &&
+      degrees.single == replacementDegrees.single;
+}
+
+bool _matchingImperative(
+  List<_Reading> readings,
+  ({String person, String number}) subject,
+) =>
+    subject.person == '2' &&
+    readings.any(
+      (reading) =>
+          reading.pos == 'VER' &&
+          reading.features.contains('imp') &&
+          reading.features.contains(subject.number),
+    );
+
+bool _introducesInfinitive(List<AotToken> words, int at) {
+  if (!const <String>{'um', 'ohne'}.contains(words[at].text.toLowerCase())) {
+    return false;
+  }
+  for (var next = at + 1; next < words.length; next++) {
+    final lower = words[next].text.toLowerCase();
+    if (const <String>{'.', '!', '?', ';', ':'}.contains(lower)) return false;
+    if (lower == 'zu') return true;
+  }
+  return false;
 }

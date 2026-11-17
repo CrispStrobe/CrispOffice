@@ -19,6 +19,7 @@ Options:
                                   Default: de-DE; English morphology only
   --endpoint URL                  Default: http://127.0.0.1:17018/
   --allow-remote                  Explicitly allow sending text off this machine
+  --get                           Legacy GET mode (text appears in the URL)
   --help                          Print this help without connecting
 
 Requires a running AOT SynanDaemon. Output is JSON. Operational failures return
@@ -34,9 +35,14 @@ Future<void> main(List<String> arguments) async {
   try {
     final options = <String, String>{};
     var allowRemote = false;
+    var useGet = false;
     const valued = {'--mode', '--text', '--file', '--language', '--endpoint'};
     for (var i = 0; i < arguments.length; i++) {
       final key = arguments[i];
+      if (key == '--get') {
+        useGet = true;
+        continue;
+      }
       if (key == '--allow-remote') {
         allowRemote = true;
         continue;
@@ -69,6 +75,7 @@ Future<void> main(List<String> arguments) async {
       transport: AotHttpTransport(
         endpoint: Uri.parse(options['--endpoint'] ?? 'http://127.0.0.1:17018/'),
         allowRemote: allowRemote,
+        requestMethod: useGet ? AotRequestMethod.get : AotRequestMethod.post,
       ),
     );
     final Map<String, Object?> output;

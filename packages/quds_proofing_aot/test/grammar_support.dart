@@ -132,6 +132,7 @@ AotMorphology standardMorphology(String word) {
   }.contains(lower)) {
     return morphologyFixture(word, 'GEHEN', 'VER', <(String, String)>[
       ('GEHE', 'sin,1,prae'),
+      ('GEHE', 'sin,imp'),
       ('GEHE', 'sin,1,kj1'),
       ('GEHE', 'sin,3,kj1'),
       ('GEHT', 'sin,3,prae'),
@@ -184,13 +185,13 @@ AotMorphology standardMorphology(String word) {
     'kleinen',
   }.contains(lower)) {
     return morphologyFixture(word, 'KLEIN', 'ADJ', <(String, String)>[
-      ('KLEINES', 'sin,neu,nom,akk,sol,ind'),
-      ('KLEINES', 'sin,mas,gen,sol'),
-      ('KLEINE', 'sin,mas,nom,def'),
-      ('KLEINE', 'sin,fem,nom,akk,def,ind'),
-      ('KLEINER', 'sin,mas,nom,ind,sol'),
-      ('KLEINEN', 'sin,mas,akk,dat,gen,def,ind'),
-      ('KLEINEN', 'plu,nom,akk,dat,gen,def'),
+      ('KLEINES', 'sin,neu,nom,akk,sol,ind,gru'),
+      ('KLEINES', 'sin,mas,gen,sol,gru'),
+      ('KLEINE', 'sin,mas,nom,def,gru'),
+      ('KLEINE', 'sin,fem,nom,akk,def,ind,gru'),
+      ('KLEINER', 'sin,mas,nom,ind,sol,gru'),
+      ('KLEINEN', 'sin,mas,akk,dat,gen,def,ind,gru'),
+      ('KLEINEN', 'plu,nom,akk,dat,gen,def,gru'),
     ]);
   }
   if (const <String>{'hund', 'hundes', 'hunden', 'hunde'}.contains(lower)) {

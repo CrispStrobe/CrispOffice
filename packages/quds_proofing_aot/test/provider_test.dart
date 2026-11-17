@@ -112,7 +112,7 @@ void main() {
       final provider = AotProofingProvider(analyzer: analyzer);
       final result = await provider.check(request(text));
       expect(result.status, OfficeProofingStatus.success);
-      expect(result.findings.single.start, 18);
+      expect(result.findings.single.start, 19);
       expect(result.findings.single.replacements, <String>['dem']);
       provider.vocabulary.addWord('Hund');
       final personal = await provider.check(request(text));

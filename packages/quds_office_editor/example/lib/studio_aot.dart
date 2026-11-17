@@ -49,6 +49,9 @@ final class StudioAotTextSnapshot {
       if (start < 0 || end < start || end > text.length) {
         throw StateError('The selection changed. Select the text again.');
       }
+      if (_splitsSurrogate(text, start) || _splitsSurrogate(text, end)) {
+        throw StateError('Select complete Unicode characters for analysis.');
+      }
       final length = end - start + (count == 0 ? 0 : 1);
       if (buffer.length + length > maximumCodeUnits) {
         throw StateError(
@@ -74,6 +77,14 @@ final class StudioAotTextSnapshot {
   final String scope;
   final WmlDocument document;
   final int revision;
+
+  static bool _splitsSurrogate(String text, int offset) =>
+      offset > 0 &&
+      offset < text.length &&
+      text.codeUnitAt(offset - 1) >= 0xd800 &&
+      text.codeUnitAt(offset - 1) <= 0xdbff &&
+      text.codeUnitAt(offset) >= 0xdc00 &&
+      text.codeUnitAt(offset) <= 0xdfff;
 
   bool isCurrent(WordEditorController controller) =>
       identical(document, controller.document) &&

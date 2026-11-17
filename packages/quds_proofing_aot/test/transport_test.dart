@@ -7,6 +7,85 @@ import 'package:quds_proofing_aot/quds_proofing_aot.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('explicit GET compatibility', () {
+    test('encodes parameters in URI with no body and no redirects', () async {
+      final List<http.Request> requests = <http.Request>[];
+      final AotHttpTransport transport = AotHttpTransport(
+        requestMethod: AotRequestMethod.get,
+        httpClient: _Client((http.BaseRequest base) async {
+          requests.add(base as http.Request);
+          return _jsonResponse('[]');
+        }),
+      );
+      addTearDown(transport.dispose);
+      await transport.request(
+        action: 'morph',
+        language: AotLanguage.german,
+        query: 'Für 😀 & + = ?',
+        withParadigms: true,
+      );
+      await transport.request(
+        action: 'morph',
+        language: AotLanguage.german,
+        query: 'Hund',
+      );
+      expect(requests.first.method, 'GET');
+      expect(requests.first.followRedirects, isFalse);
+      expect(requests.first.bodyBytes, isEmpty);
+      expect(requests.first.url.queryParameters, <String, String>{
+        'action': 'morph',
+        'langua': 'German',
+        'query': 'Für 😀 & + = ?',
+        'withparadigms': '1',
+      });
+      expect(
+        requests.last.url.queryParameters.containsKey('withparadigms'),
+        isFalse,
+      );
+    });
+
+    test('caps the full encoded URI before dispatch', () async {
+      final _Client client = _Client(
+        (http.BaseRequest _) async => _jsonResponse('[]'),
+      );
+      final AotHttpTransport transport = AotHttpTransport(
+        endpoint: Uri.parse('http://localhost/${'long-path-' * 8}'),
+        requestMethod: AotRequestMethod.get,
+        maximumRequestBytes: 100,
+        httpClient: client,
+      );
+      addTearDown(transport.dispose);
+      await expectLater(
+        transport.request(
+          action: 'syntax',
+          language: AotLanguage.german,
+          query: 'a',
+        ),
+        _throwsCode(AotErrorCode.limit),
+      );
+      expect(client.calls, 0);
+    });
+
+    test('never silently retries a POST error using GET', () async {
+      final _Client client = _Client((http.BaseRequest request) async {
+        expect(request.method, 'POST');
+        return _jsonResponse('', status: 400);
+      });
+      final AotHttpTransport transport = AotHttpTransport(httpClient: client);
+      addTearDown(transport.dispose);
+      expect(transport.requestMethod, AotRequestMethod.post);
+      await expectLater(
+        transport.request(
+          action: 'syntax',
+          language: AotLanguage.german,
+          query: 'Ich gehe.',
+        ),
+        _throwsCode(AotErrorCode.http),
+      );
+      expect(client.calls, 1);
+    });
+  });
+
   group('endpoint consent', () {
     test(
       'loopback is allowed, external and ambiguous URLs require opt-in',
