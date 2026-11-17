@@ -11,4 +11,8 @@ All branch and PR collections were read to a subsequent empty page. Branch pages
 
 No GitHub Actions jobs, checks, statuses, or queue state were queried or awaited.
 
-Raw response files are stored as `.json.gz`. Decompression recovers the exact captured payload bytes and original hashes in `sha256.json`. The normalized inventory adds compressed file routing; its original snapshot hash can be reconstructed by the preserved original normalization and is not a hash of this routing update.
+Raw response files are stored as `.json.gz`; decompressing them recovers the
+exact captured payload bytes. `captured-sha256.json` retains the original hashes,
+including those of the original README/inventory under `snapshot-originals/`.
+The current `inventory.json` changes only routing to compressed raw files and
+adds a storage note. `sha256.json` binds the current stored files.
