@@ -1,0 +1,998 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-hosted-optimized",
+  "record_id": "2026-11-17-hosted-optimized-opt-in-narrow-direct",
+  "job_correctness_and_frozen_nonregression_passed": true,
+  "application_qualified": false,
+  "shipping_backend_selected": false,
+  "workflow": {
+    "repository": "CrispStrobe/quds_office_suite",
+    "workflow": "German GECToR qualification",
+    "run_id": 44062093617,
+    "job_id": 133966294406,
+    "run_attempt": 1,
+    "event": "push",
+    "branch": "feat/german-gector-proofing",
+    "head_sha": "69d153c0f81596af894e48e21880f0957b963994",
+    "status": "completed",
+    "conclusion": "success",
+    "run_created_at_utc": "2026-11-17T10:08:53Z",
+    "run_updated_at_utc": "2026-11-17T10:13:09Z",
+    "record_audited_at_utc": "2026-11-17T10:25:23.409027+00:00",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44062093617",
+    "job_url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44062093617/job/133966294406"
+  },
+  "artifacts": {
+    "evidence": {
+      "id": 14318039568,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44062093617/artifacts/14318039568",
+      "downloaded_zip_sha256": "9244e83ded64639b1b5cc8fc095d59e3973a115db1c85ebd95eee29273b64327"
+    },
+    "candidate": {
+      "id": 14317884182,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44062093617/artifacts/14317884182",
+      "artifact_digest_sha256": "a56fa4c4e2862770ae01227fc5e4e2b8c5af0ab04563769811207faf2f035c2b",
+      "archive_digest_source": "Hosted artifact metadata supplied with the retrieved evidence; this documentation audit did not independently hash the candidate archive.",
+      "model_sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "model_size_bytes": 158365857
+    },
+    "configured_retention_days": 30,
+    "retention_note": "The committed compact evidence persists independently of the hosted artifact retention period."
+  },
+  "source_identity": {
+    "quds_commit": "69d153c0f81596af894e48e21880f0957b963994",
+    "onnx_runtime_dart_declared_commit": "b10258682d459847b63e012eaaba58a528e93956",
+    "onnx_runtime_dart_actual_commit": "b10258682d459847b63e012eaaba58a528e93956",
+    "quds_file_sha256": {
+      ".github/workflows/german-gector-qualification.yml": "491641a8029965dbe7d3747c2b5f6bd19ace10137783a99f3e0a5a8d5f2d257e",
+      "tools/proofing/german_model/artifacts.json": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+      "tools/proofing/german_model/cases.json": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "tools/proofing/german_model/requirements.txt": "3a2f382b748e6d01a2890b164ee52751bbc6f5b43e820081f982694342df5b61",
+      "tools/proofing/german_model/requirements-qualification.txt": "12f94e12c2629a7374e261f353427598e7f9371424d1951a002a7c726764ed73",
+      "tools/proofing/german_model/export_reference.py": "72db08102013c6999e6664299beaf40c6339e73d80ea1f4a1709db06a1772f7c",
+      "tools/proofing/german_model/quantize_int4.py": "e2739095ab37e66bd0cac8b734eadec48b1fc1bc39bf86bd81fce6113cbbb0e8",
+      "tools/proofing/german_model/run_stage.py": "5b91badb10edeaa8823b73b4cf3e81df5108be18a04fee21063f4501773c9373",
+      "tools/proofing/german_model/summarize_qualification.py": "58c5ed2790945f53a891db1cdf63a9ca0b79bf144ae32b9d97cd03ca75229ff1"
+    },
+    "dart_artifact_identity": {
+      "pubspec.yaml": {
+        "sha256": "f18af5414027e95bf3cfca2df23812242eed832719e22a1cc7d9f08715fe80df",
+        "size_bytes": 490
+      },
+      "pubspec.lock": {
+        "sha256": "c0509a7d97a68e018f71d86a5759e09aaff4b6fd7038d69edca9c16bc71dc87f",
+        "size_bytes": 12316
+      },
+      "tool/gector_benchmark.dart": {
+        "sha256": "2977b2c69ee6c71f530ebdcfe090e8cb2ade1fd1b7cbf82d28eef03a6c329bc6",
+        "size_bytes": 27491
+      },
+      "build/gector_benchmark": {
+        "sha256": "928d335c96574c7de182dcc6095a90b11db07498474efc73b0f4306a126d44b4",
+        "size_bytes": 8193056
+      }
+    },
+    "evaluator_sha256": "4ef9f05add47c308155ed107051e2aea686a31ecac0918c6de03b6f6ea48eb35",
+    "source_evidence_sha256": {
+      "reports/qualification-summary.json": "5e553403ffd8e9b43c868fe75ca893815b74b5d53833b138115fb50cfa06a33b",
+      "reports/provenance.json": "a9e9ad6a4fa93c88fff8b5f75739d87a5c3b84ecbd8da8d2702e7a705644b6c5",
+      "reports/dart-f32.json": "a7c5e267f8a879c2fcf15fa5a159a4a4785593273e719cd1ce154bdad7acb755",
+      "reports/dart-int4.json": "26bcc9cad4798e5dcf7175f5698225f4626c5d3c04eb97a0842e54098e74c93a",
+      "reports/dart-artifact-identity.json": "7260899a15ecc48fd010d750ab2cd9e764c18db06eafae8131001bbf19da2db6",
+      "reports/dart-pubspec.lock": "c0509a7d97a68e018f71d86a5759e09aaff4b6fd7038d69edca9c16bc71dc87f",
+      "reports/python-tests.log": "aea9383dcff51b611a3d93e2fdf9d1e52c897c3bcdfad029df5ca7cd52e21c52",
+      "reference-f32/reference.json": "dafd4d21d96f503e284b946f410e39a8a97bc481e5b26347709c1f7eb1b6fd34",
+      "reference-f32/onnx-census.json": "71893dc62e7a6c45093cf2796608d3b7417f14fa40ceb2b136a7f38a8c791839",
+      "reference-int4/reference.json": "7c40cfdf6cb37f4cdb06d8db9d9e7cb07225dc874858a6f673275ccf7dd364c2",
+      "candidate/candidate.json": "3e27c3aabf30db44729680bdd7f3aab7194ddd83acdebfc83be70e5b4a6d9f98",
+      "reports/dart-compile.status.json": "fc64c8f62eb9d1730a3a67dd81fa56a48621bd1c4ddc34f25fd2709b4ad0ca7f",
+      "reports/dart-dependencies.status.json": "95d54a4653564ed593de55d551b7ad810d2be5fe76d21684d095d86bae5d8958",
+      "reports/dart-f32.status.json": "db3ca23ad4c2e6a109c61796df7b7e38fd5b86cf761e867609fdeed61b99d83a",
+      "reports/dart-int4.status.json": "7bb1fd995ce14e78f65ef319988e06d325535f98b9229ce2c9671014cdfe26d8",
+      "reports/python-dependencies.status.json": "a27053a84d8738a5c72f6a6acb5415f2b02941b7ca1ddb61b02667915f9de135",
+      "reports/python-tests.status.json": "292698de4f02b0720ca219b529be09e688600af92b6b0ab7b45827c8692db8ec",
+      "reports/quantize-int4.status.json": "264095612cc12a5bc351cfb71626fb2e4f62c6f695e0696fa2e09f8a32b3b0a1",
+      "reports/reference-f32.status.json": "070762048bc2f59f6296d2c13cc4e7edc5ce60f03284543d727eeb971a085dd4",
+      "reports/reference-int4.status.json": "f5c2a44f9572dc2925b3d6ab13ad6fe2281100460865f5e1ee379fd1abf7ebea"
+    },
+    "conditional_backend_roadmaps": {
+      "CrispEmbed": "04b19ad76485ab3a12d6c30d27c6424ef50a9adc",
+      "fastembed-rs": "75a98204a58ab3fc7414e279b1f0a08b02513d13",
+      "native_backends_executed": false
+    }
+  },
+  "experiment_integrity": {
+    "declared": {
+      "dart-f32": [],
+      "dart-int4": [
+        "narrowDirectGemm"
+      ]
+    },
+    "actual": {
+      "dart-f32": [],
+      "dart-int4": [
+        "narrowDirectGemm"
+      ]
+    },
+    "exact_match": true,
+    "complete_reports_required": true,
+    "integrity_gate_enforced_by_hosted_summary": true,
+    "default_library_behavior": "narrowDirectGemm is opt-in; this run explicitly enables it only for the INT4 arm."
+  },
+  "host": {
+    "runner_os": "Linux",
+    "runner_arch": "X64",
+    "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+    "cpu_model": "Intel(R) Xeon(R) 6975P-C",
+    "logical_cpus": 4,
+    "cores_per_socket": 2,
+    "threads_per_core": 2,
+    "sockets": 1,
+    "online_cpu_list": "0-3",
+    "hypervisor": "KVM",
+    "memory_total_bytes": 16464297984,
+    "selected_cpu_flags": {
+      "sse2": true,
+      "fma": true,
+      "avx2": true,
+      "avx512f": true,
+      "avx512_bf16": true
+    },
+    "thread_settings": {
+      "ort_intra": 2,
+      "ort_inter": 1,
+      "dart_workers": 2,
+      "note": "Dart uses two GEMM workers plus its caller; this is not an identical ORT thread schedule."
+    },
+    "timing_controls": {
+      "warmups": 1,
+      "repeats": 3,
+      "overall_budget_seconds": 2100,
+      "maximum_dart_arm_seconds": 720
+    },
+    "cpu_affinity": "No explicit affinity constraint in this hosted workflow; do not import local affinity or nice controls.",
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "python_packages": {
+      "onnxruntime": "1.23.2",
+      "onnx": "1.19.1",
+      "tokenizers": "0.22.1",
+      "huggingface-hub": "0.36.0",
+      "numpy": "2.3.5"
+    },
+    "dart": "Dart SDK version: 3.14.0 (stable) (Wed Nov 4 16:28:39 2026 -0800) on \"linux_x64\""
+  },
+  "scope": {
+    "frozen_case_count": 30,
+    "error_cases": 18,
+    "clean_controls": 12,
+    "saved_pass_count_per_model": 40,
+    "first_pass_wordpiece_min": 5,
+    "first_pass_wordpiece_max": 12,
+    "measured_samples_per_arm": 90,
+    "warmup_iterations_per_case": 1,
+    "measured_iterations_per_case": 3,
+    "dart_complete_correction_measured": false,
+    "native_complete_reference_correction_measured": true,
+    "rust_backend_measured": false,
+    "crispembed_ggml_backend_measured": false,
+    "q4_k_measured": false,
+    "local_timings_included": false,
+    "optimization_applied": true,
+    "optimization_scope": "Bounded MatMulNBits column tiles plus explicit narrowDirectGemm for the INT4 arm."
+  },
+  "model": {
+    "repository": "proofbird/gector-bert-de",
+    "upstream_tag": "v2.1.0",
+    "revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+    "input_sha256": {
+      "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "NOTICE": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3",
+      "README.md": "e2e5120e6c25299f962120463936427056fd9b468c714a1bf785f555edabf00f",
+      "quickstart.py": "f5ce68cc466b5891fc3f13280dc9db3a55bf9016505c2b2d84eb1d2cb07c2b40",
+      "gector-meta.json": "acb7edf298f6ac4ba8b83c628ad512404eadb6c43120c1878d4f3356ebd8b5a5",
+      "config.json": "c870008059c0f354e1ebc30c816ae5f55fa14a77ffa7da5271310ccf5e24e170",
+      "gector-guards.json": "57c4824e541d323e9cff4c543bd80cfd93c333d3be64cce83297bf5b8a44627a",
+      "language-rules.json": "901b350a9c751fc95d51eb5ee3ba7b7f0d11b61c6cc17e67bce2996e17bc5815",
+      "tokenizer_config.json": "4e5738ad97f034b944ce8b7b8c3165f7a6333b524b7b77044f7e9e9b963f4dea",
+      "model.onnx": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "tokenizer.json": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "vocab.txt": "bf186f7fb9cb667d811c08b45ce64d1e8e262277bb053f05d1aef3e9f13039a3",
+      "verb-form-vocab.txt": "7582e7c2f480d7e49ac18677195cfff4ad1d0c350b0448f1271aacf290205b68"
+    },
+    "decoder": {
+      "keep_label_id": 0,
+      "incorrect_label_id": 1,
+      "keep_confidence": 0.0,
+      "min_error_prob": 0.0
+    },
+    "f32": {
+      "file": "model.onnx",
+      "variant": "float32",
+      "sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "size_bytes": 452972247,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+    },
+    "int4": {
+      "file": "model.int4.onnx",
+      "variant": "matmulnbits-int4",
+      "sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "size_bytes": 158365857,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "candidate_manifest_sha256": "3e27c3aabf30db44729680bdd7f3aab7194ddd83acdebfc83be70e5b4a6d9f98",
+      "recipe": {
+        "format": "ONNX MatMulNBits",
+        "algorithm": "ORT DEFAULT round-to-nearest",
+        "bits": 4,
+        "block_size": 128,
+        "symmetric": true,
+        "accuracy_level": 0,
+        "quantized_ops": [
+          "MatMul"
+        ],
+        "excluded_heads": [
+          {
+            "output": "logits_labels",
+            "node": "/m/labels_head/MatMul",
+            "op_type": "MatMul",
+            "weight": "onnx::MatMul_1682",
+            "shape": [
+              768,
+              5000
+            ],
+            "dtype": "FLOAT",
+            "tensor_proto_sha256": "1a9af2bc338483bc606686818dc64e6e5ce169df8424047d79a72db51ef9f301"
+          },
+          {
+            "output": "logits_d",
+            "node": "/m/detect_head/MatMul",
+            "op_type": "MatMul",
+            "weight": "onnx::MatMul_1683",
+            "shape": [
+              768,
+              2
+            ],
+            "dtype": "FLOAT",
+            "tensor_proto_sha256": "8cf60803d117a0dd49a7b19c8cb5d26b1d17014aa4db70bdda5484241fcb0db8"
+          }
+        ],
+        "non_matmul_policy": "Original precision; embeddings, bias and norms unchanged",
+        "eligible_node_names": [
+          "/m/encoder/encoder/layer.0/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.0/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.0/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.0/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.0/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.0/output/dense/MatMul",
+          "/m/encoder/encoder/layer.1/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.1/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.1/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.1/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.1/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.1/output/dense/MatMul",
+          "/m/encoder/encoder/layer.2/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.2/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.2/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.2/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.2/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.2/output/dense/MatMul",
+          "/m/encoder/encoder/layer.3/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.3/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.3/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.3/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.3/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.3/output/dense/MatMul",
+          "/m/encoder/encoder/layer.4/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.4/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.4/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.4/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.4/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.4/output/dense/MatMul",
+          "/m/encoder/encoder/layer.5/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.5/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.5/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.5/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.5/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.5/output/dense/MatMul",
+          "/m/encoder/encoder/layer.6/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.6/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.6/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.6/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.6/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.6/output/dense/MatMul",
+          "/m/encoder/encoder/layer.7/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.7/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.7/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.7/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.7/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.7/output/dense/MatMul",
+          "/m/encoder/encoder/layer.8/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.8/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.8/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.8/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.8/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.8/output/dense/MatMul",
+          "/m/encoder/encoder/layer.9/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.9/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.9/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.9/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.9/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.9/output/dense/MatMul",
+          "/m/encoder/encoder/layer.10/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.10/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.10/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.10/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.10/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.10/output/dense/MatMul",
+          "/m/encoder/encoder/layer.11/attention/self/query/MatMul",
+          "/m/encoder/encoder/layer.11/attention/self/key/MatMul",
+          "/m/encoder/encoder/layer.11/attention/self/value/MatMul",
+          "/m/encoder/encoder/layer.11/attention/output/dense/MatMul",
+          "/m/encoder/encoder/layer.11/intermediate/dense/MatMul",
+          "/m/encoder/encoder/layer.11/output/dense/MatMul"
+        ]
+      }
+    },
+    "quantization_recipe": {
+      "format": "ONNX MatMulNBits",
+      "algorithm": "ORT DEFAULT round-to-nearest",
+      "bits": 4,
+      "block_size": 128,
+      "symmetric": true,
+      "accuracy_level": 0,
+      "quantized_ops": [
+        "MatMul"
+      ],
+      "excluded_heads": [
+        {
+          "output": "logits_labels",
+          "node": "/m/labels_head/MatMul",
+          "op_type": "MatMul",
+          "weight": "onnx::MatMul_1682",
+          "shape": [
+            768,
+            5000
+          ],
+          "dtype": "FLOAT",
+          "tensor_proto_sha256": "1a9af2bc338483bc606686818dc64e6e5ce169df8424047d79a72db51ef9f301"
+        },
+        {
+          "output": "logits_d",
+          "node": "/m/detect_head/MatMul",
+          "op_type": "MatMul",
+          "weight": "onnx::MatMul_1683",
+          "shape": [
+            768,
+            2
+          ],
+          "dtype": "FLOAT",
+          "tensor_proto_sha256": "8cf60803d117a0dd49a7b19c8cb5d26b1d17014aa4db70bdda5484241fcb0db8"
+        }
+      ],
+      "non_matmul_policy": "Original precision; embeddings, bias and norms unchanged"
+    },
+    "quantized_encoder_matmul_count": 72,
+    "converter_versions": {
+      "onnx": "1.19.1",
+      "onnxruntime": "1.23.2",
+      "numpy": "2.3.5"
+    },
+    "format_note": "ONNX MatMulNBits INT4 is not ggml/GGUF Q4_K."
+  },
+  "measurements": {
+    "native_ort_f32": {
+      "inference_model": {
+        "variant": "float32",
+        "sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+        "size_bytes": 452972247,
+        "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+      },
+      "setup_seconds": 0.6801161930000035,
+      "peak_process_rss_bytes": 655798272,
+      "setup_peak_process_rss_bytes": 655798272,
+      "ort_session": {
+        "providers": [
+          "CPUExecutionProvider"
+        ],
+        "intra_op_num_threads": 2,
+        "inter_op_num_threads": 1,
+        "execution_mode": "ExecutionMode.ORT_SEQUENTIAL",
+        "graph_optimization_level": "GraphOptimizationLevel.ORT_ENABLE_ALL",
+        "thread_count_note": "Zero requests ONNX Runtime's automatic thread selection."
+      },
+      "case_count": 30,
+      "pass_count": 40,
+      "first_pass_inference": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.01680246249999584,
+        "aggregate_sample_p95_seconds": 0.018682708000000048,
+        "maximum_sample_seconds": 0.018886635000001206,
+        "worst_case": {
+          "id": "clean-sharp-s",
+          "token_count": 9,
+          "median_seconds": 0.0173508869999921,
+          "p95_seconds": 0.018886635000001206,
+          "maximum_seconds": 0.018886635000001206
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "complete_reference_correction": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.018372986499997523,
+        "aggregate_sample_p95_seconds": 0.03668019099998787,
+        "maximum_sample_seconds": 0.037802464000009195,
+        "worst_case": {
+          "id": "das-relative",
+          "token_count": 12,
+          "median_seconds": 0.03744240799997556,
+          "p95_seconds": 0.037802464000009195,
+          "maximum_seconds": 0.037802464000009195
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      }
+    },
+    "native_ort_int4": {
+      "inference_model": {
+        "variant": "matmulnbits-int4",
+        "sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+        "size_bytes": 158365857,
+        "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+      },
+      "setup_seconds": 0.260331003999994,
+      "peak_process_rss_bytes": 358817792,
+      "setup_peak_process_rss_bytes": 358817792,
+      "ort_session": {
+        "providers": [
+          "CPUExecutionProvider"
+        ],
+        "intra_op_num_threads": 2,
+        "inter_op_num_threads": 1,
+        "execution_mode": "ExecutionMode.ORT_SEQUENTIAL",
+        "graph_optimization_level": "GraphOptimizationLevel.ORT_ENABLE_ALL",
+        "thread_count_note": "Zero requests ONNX Runtime's automatic thread selection."
+      },
+      "case_count": 30,
+      "pass_count": 40,
+      "first_pass_inference": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.0157722095000139,
+        "aggregate_sample_p95_seconds": 0.01706026100001168,
+        "maximum_sample_seconds": 0.018979017000020804,
+        "worst_case": {
+          "id": "clean-sharp-s",
+          "token_count": 9,
+          "median_seconds": 0.016226910000000316,
+          "p95_seconds": 0.018979017000020804,
+          "maximum_seconds": 0.018979017000020804
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "complete_reference_correction": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.016906577999989736,
+        "aggregate_sample_p95_seconds": 0.03321957800000064,
+        "maximum_sample_seconds": 0.03380531099998052,
+        "worst_case": {
+          "id": "das-relative",
+          "token_count": 12,
+          "median_seconds": 0.033721589000009544,
+          "p95_seconds": 0.03380531099998052,
+          "maximum_seconds": 0.03380531099998052
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      }
+    },
+    "dart_f32": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "stage": "complete",
+      "error": null,
+      "model_variant": "float32",
+      "experiments": [],
+      "graph_load_seconds": 0.897933,
+      "pool_setup_seconds": 0.320949,
+      "cold_first_inference_seconds": 0.188748,
+      "inference_peak_rss_bytes": 1674711040,
+      "checkpoint_peak_rss_bytes": 1674711040,
+      "post_validation_peak_rss_bytes": 1674711040,
+      "rss_before_load_bytes": 23298048,
+      "rss_after_load_bytes": 1021747200,
+      "rss_after_pool_bytes": 1363779584,
+      "expected_cases": 30,
+      "expected_passes": 40,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "thread_scope": "workers controls the Dart GEMM isolate pool, not total process threads. Operators without pool support stay on the caller isolate, including MatMulNBits; it is not equivalent to ORT intra-op thread scheduling.",
+      "inference_timing": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.200334,
+        "aggregate_sample_p95_seconds": 0.250041,
+        "maximum_sample_seconds": 0.270291,
+        "worst_case": {
+          "id": "clean-subclause",
+          "token_count": 12,
+          "median_seconds": 0.250041,
+          "p95_seconds": 0.270291,
+          "maximum_seconds": 0.270291
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "top_profile_operators": [
+        {
+          "op": "MatMul",
+          "calls": 98,
+          "seconds": 0.211811
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.016435
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.010592
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.002641
+        },
+        {
+          "op": "Mul",
+          "calls": 28,
+          "seconds": 0.000877
+        },
+        {
+          "op": "Transpose",
+          "calls": 48,
+          "seconds": 0.000809
+        }
+      ],
+      "first_tokenizer_failures": [],
+      "first_runtime_failures": []
+    },
+    "dart_int4": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "stage": "complete",
+      "error": null,
+      "model_variant": "matmulnbits-int4",
+      "experiments": [
+        "narrowDirectGemm"
+      ],
+      "graph_load_seconds": 0.287533,
+      "pool_setup_seconds": 0.016337,
+      "cold_first_inference_seconds": 0.470511,
+      "inference_peak_rss_bytes": 487698432,
+      "checkpoint_peak_rss_bytes": 487698432,
+      "post_validation_peak_rss_bytes": 487698432,
+      "rss_before_load_bytes": 23343104,
+      "rss_after_load_bytes": 449798144,
+      "rss_after_pool_bytes": 358215680,
+      "expected_cases": 30,
+      "expected_passes": 40,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "thread_scope": "workers controls the Dart GEMM isolate pool, not total process threads. Operators without pool support stay on the caller isolate, including MatMulNBits; it is not equivalent to ORT intra-op thread scheduling.",
+      "inference_timing": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.4634255,
+        "aggregate_sample_p95_seconds": 0.545531,
+        "maximum_sample_seconds": 0.553788,
+        "worst_case": {
+          "id": "clean-three-das",
+          "token_count": 11,
+          "median_seconds": 0.546898,
+          "p95_seconds": 0.553788,
+          "maximum_seconds": 0.553788
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "top_profile_operators": [
+        {
+          "op": "MatMulNBits",
+          "calls": 72,
+          "seconds": 0.431173
+        },
+        {
+          "op": "MatMul",
+          "calls": 26,
+          "seconds": 0.008276
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.008012
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.007112
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.004515
+        },
+        {
+          "op": "Mul",
+          "calls": 28,
+          "seconds": 0.000749
+        }
+      ],
+      "first_tokenizer_failures": [],
+      "first_runtime_failures": []
+    },
+    "candidate_artifact": {
+      "status": "passed",
+      "output": {
+        "file": "model.int4.onnx",
+        "sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+        "size_bytes": 158365857
+      },
+      "quantized_node_count": 72,
+      "elapsed_seconds": 2.500541609999999,
+      "peak_process_rss_bytes": 1009340416,
+      "error": null
+    },
+    "stage_resources": {
+      "dart-compile": {
+        "status": "passed",
+        "elapsed_seconds": 2.823533886000007,
+        "child_peak_rss_bytes": 172777472,
+        "error": null
+      },
+      "dart-dependencies": {
+        "status": "passed",
+        "elapsed_seconds": 1.0167483120000043,
+        "child_peak_rss_bytes": 128360448,
+        "error": null
+      },
+      "dart-f32": {
+        "status": "passed",
+        "elapsed_seconds": 37.86827082900001,
+        "child_peak_rss_bytes": 1674711040,
+        "error": null
+      },
+      "dart-int4": {
+        "status": "passed",
+        "elapsed_seconds": 78.03971381899999,
+        "child_peak_rss_bytes": 487698432,
+        "error": null
+      },
+      "python-dependencies": {
+        "status": "passed",
+        "elapsed_seconds": 14.902428430000015,
+        "child_peak_rss_bytes": 128454656,
+        "error": null
+      },
+      "python-tests": {
+        "status": "passed",
+        "elapsed_seconds": 2.01904342200001,
+        "child_peak_rss_bytes": 147587072,
+        "error": null
+      },
+      "quantize-int4": {
+        "status": "passed",
+        "elapsed_seconds": 2.721263031999996,
+        "child_peak_rss_bytes": 1009340416,
+        "error": null
+      },
+      "reference-f32": {
+        "status": "passed",
+        "elapsed_seconds": 17.210566313000015,
+        "child_peak_rss_bytes": 1490079744,
+        "error": null
+      },
+      "reference-int4": {
+        "status": "passed",
+        "elapsed_seconds": 6.078476240000015,
+        "child_peak_rss_bytes": 358817792,
+        "error": null
+      }
+    }
+  },
+  "same_model_dart_ort_parity": {
+    "f32": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "tokenizer_sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "fixture_sha256": "dafd4d21d96f503e284b946f410e39a8a97bc481e5b26347709c1f7eb1b6fd34",
+      "experiments": [],
+      "raw_tag_mismatches": 0,
+      "thresholded_tag_mismatches": 0,
+      "max_label_probability_error": 1.2785544040161412e-06,
+      "max_incorrect_probability_error": 6.926992944800148e-07,
+      "heads": {
+        "logits_labels": {
+          "max_absolute_error": 4.00543212890625e-05,
+          "minimum_cosine": 0.9999999999996759,
+          "all_passed": true
+        },
+        "logits_d": {
+          "max_absolute_error": 1.0967254638671875e-05,
+          "minimum_cosine": 0.9999999999996585,
+          "all_passed": true
+        }
+      },
+      "numeric_thresholds": {
+        "minimum_cosine": 0.999999,
+        "absolute_floor": 0.001,
+        "relative_to_max_magnitude": 0.00025,
+        "selected_probability_absolute": 0.0001
+      }
+    },
+    "int4": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "model_sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "tokenizer_sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "fixture_sha256": "7c40cfdf6cb37f4cdb06d8db9d9e7cb07225dc874858a6f673275ccf7dd364c2",
+      "experiments": [
+        "narrowDirectGemm"
+      ],
+      "raw_tag_mismatches": 0,
+      "thresholded_tag_mismatches": 0,
+      "max_label_probability_error": 2.639683996052966e-06,
+      "max_incorrect_probability_error": 2.554306205881929e-06,
+      "heads": {
+        "logits_labels": {
+          "max_absolute_error": 2.86102294921875e-05,
+          "minimum_cosine": 0.9999999999996388,
+          "all_passed": true
+        },
+        "logits_d": {
+          "max_absolute_error": 1.33514404296875e-05,
+          "minimum_cosine": 0.9999999999994571,
+          "all_passed": true
+        }
+      },
+      "numeric_thresholds": {
+        "minimum_cosine": 0.999999,
+        "absolute_floor": 0.001,
+        "relative_to_max_magnitude": 0.00025,
+        "selected_probability_absolute": 0.0001
+      }
+    }
+  },
+  "quantization_task_comparison": {
+    "complete": true,
+    "case_count": 30,
+    "baseline_error_fixes": 9,
+    "candidate_error_fixes": 9,
+    "baseline_changed_clean_controls": 1,
+    "candidate_changed_clean_controls": 1,
+    "lost_baseline_fixes": [],
+    "new_or_changed_false_edits_on_clean": [],
+    "differences": [],
+    "frozen_probe_nonregression_passed": true,
+    "error_cases": 18,
+    "clean_controls": 12,
+    "all_40_cross_model_pass_inputs_and_raw_and_thresholded_label_ids_equal": true,
+    "retained_false_edit": {
+      "id": "clean-swiss-name",
+      "locale": "de-CH",
+      "input": "Grüezi, ich heisse André.",
+      "output_both_models": "Grüezi, ich heiße André."
+    }
+  },
+  "memory_interpretation": {
+    "native_f32_before_optional_census_peak_bytes": 655798272,
+    "native_f32_entire_stage_child_peak_bytes": 1490079744,
+    "native_f32_difference": "The exporter writes reference.json before the optional ONNX census. The later census loads the graph/protobuf and raises the stage peak; the stage peak is not the reference inference-phase figure.",
+    "native_int4_optional_census_requested": false,
+    "rss_scope": "Whole process including runtime, weights and allocations; not tensor-weight storage alone.",
+    "dart_scope": "inference_peak_rss_bytes is captured before profile/reference-output validation; post-validation peaks are preserved separately.",
+    "load_scope": "Hash verification warms filesystem caches before graph loading; load measurements are not cold disk I/O."
+  },
+  "provisional_product_budget_observations": {
+    "complete_checker_p95_seconds": 0.5,
+    "peak_process_rss_budget_bytes": 805306368,
+    "preferred_model_pack_bytes": 167772160,
+    "dart_f32_short_forward_p95_below_500ms": true,
+    "dart_f32_peak_memory_budget_passed": false,
+    "dart_int4_short_forward_p95_below_500ms": false,
+    "dart_int4_peak_memory_budget_passed_on_this_host": true,
+    "int4_artifact_pack_size_budget_passed": true,
+    "complete_dart_checker_latency_qualified": false
+  },
+  "lightweight_tests": {
+    "passed": 19,
+    "failed": 0,
+    "skipped": 0,
+    "test_runner_elapsed_seconds": 0.897,
+    "includes_real_tiny_onnx_conversion_control": true,
+    "includes_experiment_declaration_integrity_controls": true,
+    "note": "These are recorded hosted results; the documentation audit reran no tests."
+  },
+  "documentation_audit": {
+    "passed": true,
+    "downloaded_evidence_zip_sha256_checked": true,
+    "raw_tensor_files_hashed": 160,
+    "raw_tensor_bytes_hashed": 12324928,
+    "quds_source_file_hashes_checked_against_pinned_git": 9,
+    "dart_benchmark_and_pubspec_hashes_checked_against_pinned_git": true,
+    "archived_dart_dependency_lock_hash_checked": true,
+    "case_file_hash_and_order_checked_against_pinned_git": true,
+    "model_fixture_candidate_source_links_checked": true,
+    "declared_and_actual_experiment_flags_checked": true,
+    "candidate_recipe_and_protected_head_metadata_checked": true,
+    "all_aggregate_medians_and_p95_recomputed_from_samples": true,
+    "no_new_inference_or_model_loading_performed": true,
+    "model_weight_hash_source": "Native exporter, converter and Dart reports independently record exact file identity; this documentation audit verifies their linkage and the manifests without loading model weights."
+  },
+  "licenses": [
+    {
+      "component": "Quds evaluation code",
+      "license": "MIT",
+      "source": "https://github.com/CrispStrobe/quds_office_suite/blob/69d153c0f81596af894e48e21880f0957b963994/LICENSE"
+    },
+    {
+      "component": "onnx_runtime_dart",
+      "license": "MIT",
+      "source": "https://github.com/CrispStrobe/onnx_runtime_dart/blob/b10258682d459847b63e012eaaba58a528e93956/LICENSE"
+    },
+    {
+      "component": "Proofbird frozen model/reference bundle",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/proofbird/gector-bert-de/blob/8e3b50beef7d775cedb7b876009e88bcf2e8d6af/LICENSE",
+      "notice": "https://huggingface.co/proofbird/gector-bert-de/blob/8e3b50beef7d775cedb7b876009e88bcf2e8d6af/NOTICE"
+    }
+  ],
+  "limits": [
+    "Successful correctness/nonregression CI is not a product latency, memory or accuracy approval.",
+    "The frozen panel is small and synthetic; 9/18 exact fixes and 1/12 changed clean controls do not estimate population accuracy.",
+    "The de-CH heisse-to-heiße false edit remains in both models.",
+    "Reference corrections omit application guards and spelling checks.",
+    "Dart times saved first-pass forwards, not a complete independently implemented correction loop.",
+    "First-pass lengths are only 5 to 12 wordpieces, not the planned 64/128/256-token coverage.",
+    "Aggregate medians/p95 combine 90 samples across different short sentence lengths; each per-case p95 is the maximum of only three measurements.",
+    "The two hosted runs use different CPU families and hypervisors; their timings are descriptive observations, not a randomized same-host A/B estimate of the optimization.",
+    "Hosted and local CPU results must not be pooled.",
+    "No Rust, ggml, Q4_K, mobile, browser or editor integration was measured."
+  ],
+  "cross_run_descriptive_comparison": {
+    "baseline_run_id": 44053903485,
+    "baseline_evidence_sha256": "401708d835730d37fa3131abb79d0f120ab11ef7cc7ab05496454afb484afbaa",
+    "baseline_cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "baseline_platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "baseline_hypervisor": "Microsoft",
+    "optimized_run_id": 44062093617,
+    "optimized_cpu_model": "Intel(R) Xeon(R) 6975P-C",
+    "optimized_platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+    "optimized_hypervisor": "KVM",
+    "baseline_dart_int4_median_seconds": 0.7672555,
+    "baseline_dart_int4_p95_seconds": 0.835173,
+    "optimized_dart_int4_median_seconds": 0.4634255,
+    "optimized_dart_int4_p95_seconds": 0.545531,
+    "same_model_file_sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+    "same_frozen_case_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+    "randomized_same_host_ab": false,
+    "samples_pooled": false,
+    "causal_speedup_claim": false
+  },
+  "followup_decision": {
+    "bounded_pure_dart_tuning": "Stop after the two bounded hypotheses; preserve this opt-in runtime path and evidence.",
+    "next_qualification_lane": "CrispEmbed/ggml: establish an F32 conversion/runtime control, then separately qualify the mixed Q4_K candidate with proposed F16 output heads.",
+    "fallback_qualification_lane": "Rust/native ONNX Runtime using the frozen ONNX artifact and decoder contract, conditional on exact API-24 runtime compatibility and a complete permissive-license dependency qualification.",
+    "native_ort_shipping_license_approved": false,
+    "native_ort_license_observation": "ORT 1.23.2 top-level MIT does not approve its distribution: pinned ThirdPartyNotices.txt includes Eigen under MPL-2.0, outside the feature's strict permissive allowlist. This run uses ORT as a development/performance oracle.",
+    "native_ort_license_source": "https://github.com/microsoft/onnxruntime/blob/a83fc4d58cb48eb68890dd689f94f28288cf2278/ThirdPartyNotices.txt",
+    "new_native_implementation_completed": false,
+    "q4_k_converted_or_measured": false,
+    "shipping_backend_selected": false,
+    "required_next_evidence": "Exact dual-head and tag parity, guarded full correction quality, longer-input and target-device latency/memory, then editor integration."
+  },
+  "followup_policy": "Keep the hosted baseline and local evidence unchanged. Store native qualification and any later optimization as new evidence with exact source and artifact identities.",
+  "diagnostic_profiles": {
+    "f32": {
+      "id": "verb-du",
+      "pass": 1,
+      "wall_seconds": 0.245801,
+      "operator_total_seconds": 0.244214,
+      "top_operators": [
+        {
+          "op": "MatMul",
+          "calls": 98,
+          "seconds": 0.211811
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.016435
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.010592
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.002641
+        },
+        {
+          "op": "Mul",
+          "calls": 28,
+          "seconds": 0.000877
+        },
+        {
+          "op": "Transpose",
+          "calls": 48,
+          "seconds": 0.000809
+        }
+      ],
+      "separate_from_timing_samples": true
+    },
+    "int4": {
+      "id": "verb-du",
+      "pass": 1,
+      "wall_seconds": 0.462606,
+      "operator_total_seconds": 0.461273,
+      "top_operators": [
+        {
+          "op": "MatMulNBits",
+          "calls": 72,
+          "seconds": 0.431173
+        },
+        {
+          "op": "MatMul",
+          "calls": 26,
+          "seconds": 0.008276
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.008012
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.007112
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.004515
+        },
+        {
+          "op": "Mul",
+          "calls": 28,
+          "seconds": 0.000749
+        }
+      ],
+      "separate_from_timing_samples": true
+    }
+  }
+}

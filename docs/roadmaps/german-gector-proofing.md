@@ -1,6 +1,6 @@
 # German grammar proofing: scoped implementation roadmap
 
-Status: full hosted baseline parity and frozen-probe nonregression passed; bounded optimization under review; application qualification pending.
+Status: bounded Dart runtime qualification complete; CrispEmbed mixed Q4_K selected for the next native implementation/qualification slice; application provider pending.
 Date: 2026-11-17.
 Coordinated branch: `feat/german-gector-proofing`.
 
@@ -46,15 +46,18 @@ quality qualification. Evaluate a newer model release as a separate experiment.
 
 - Q4_K means the ggml/GGUF K-quant format, not generic ONNX INT4.
 - onnx_runtime_dart currently consumes ONNX MatMulNBits packed 4-bit tensors;
-  it does not load GGUF. Its current implementation expands each matrix to
-  Float32List before multiplication on every call. Measure execution and peak
-  RAM rather than treating a smaller artifact as a speed improvement.
+  it does not load GGUF. This branch replaces full-matrix reconstruction with
+  bounded 32-column Float32List tiles and optional direct GEMM, but still
+  reconstructs weights on every call. Measure execution and peak RAM rather
+  than treating a smaller artifact as a speed improvement.
 - Start the ONNX candidate with a declared weight-only MatMulNBits recipe and
   record block size, symmetry, operator inventory, excluded tensors, converter
   version, source/model SHA and resulting artifact SHA. Preserve both heads.
-- The conditional ggml candidate uses Q4_K encoder matrices. Keep sensitive
-  tensors and the edit/detection heads in F16 or Q8_0 if decoded quality requires
-  it; record the complete mixed-precision tensor manifest.
+- The selected ggml lane first preserves F32 tensors and both output heads for
+  conversion/runtime parity. Its proposed mixed candidate uses Q4_K encoder
+  matrices, Q8_0 token embeddings and F16 positions/heads. Qualify that precision
+  reduction separately; record the complete tensor manifest and retain higher
+  precision wherever decoded quality requires it.
 - Keep F32 and, where relevant, F16 controls. A Q4 candidate must preserve
   useful corrections and avoid additional false edits on clean controls.
   Logit cosine or file-size savings alone do not qualify it.
@@ -81,9 +84,10 @@ quality qualification. Evaluate a newer model release as a separate experiment.
 - [x] Add a reusable pretokenized WordPiece API with source-word alignment and
   tests for cased German, punctuation, special tokens and truncation.
 - [x] Execute the same-host native ORT control and Dart candidate, with declared
-  thread budgets, cold load, first inference, warm median/p95, iteration counts,
-  sequence-length coverage and peak RSS. Separate inference time from complete
-  correction latency and from model download/verification.
+  thread budgets, graph/session load (filesystem caches may already be warm),
+  cold first inference, warm median/p95, iteration counts, sequence-length
+  coverage and peak RSS. Separate inference time from complete correction
+  latency and from model download/verification.
 - [x] Preserve exact workflow/job/source/SDK/model/converter identities and all
   failures. CI timings qualify only that host, not mobile/browser hardware.
 
@@ -98,14 +102,14 @@ quality qualification. Evaluate a newer model release as a separate experiment.
 - [x] Limit the initial Dart optimization round to two measured hypotheses.
   If resource or latency targets remain unsuitable, open the native lane rather
   than growing an unbounded runtime project.
-- [ ] Select a backend from recorded evidence; no backend is selected merely
-  because its API accepts the model.
+- [x] Select the next backend implementation/qualification lane from recorded
+  evidence. A shipping backend still requires the downstream gates below.
 
 Provisional desktop engineering targets for the eventual complete checker:
-warm p95 <=500 ms for sentences up to64 wordpieces, peak process RSS <=768 MiB,
+warm p95 <=500 ms for sentences up to 64 wordpieces, peak process RSS <=768 MiB,
 and preferred downloadable model pack <=160 MiB. Report pass/fail against these
 budgets without treating a hosted-runner pass as target-device qualification.
-Longer128/256-token inputs are measured separately and must not be silently
+Longer 128/256-token inputs are measured separately and must not be silently
 truncated. Record full iterative correction latency; per-forward timing alone
 cannot satisfy the complete-check target. Refine target-device budgets openly
 before mobile/browser rollout, not after viewing results to make a run pass.
@@ -131,9 +135,11 @@ before mobile/browser rollout, not after viewing results to make a run pass.
 - [ ] Apply suggestions through the existing guarded editor command, including
   rich text, undo, tracked changes, protection and stale-result controls.
 
-### M4: conditional native backends
+### M4: selected native lane and fallback
 
-CrispEmbed/ggml: convert the exact fine-tuned encoder plus both GECToR heads;
+CrispEmbed/ggml (selected next): use a small native target with controlled
+BERT/GGUF/ggml CPU dependencies; the current full library is monolithic.
+Convert the exact fine-tuned encoder plus both GECToR heads;
 provide a default-off prepared-ID interface with an explicit unpadded/all-ones
 mask contract or fully implement masks. Use ggml matrix operations for the heads.
 Prove F32/F16 equivalence first, then Q4_K/mixed-precision decoded nonregression.
@@ -145,10 +151,23 @@ The pooled embed() API is unsuitable; raw transform outputs are available but
 the current public string path discards alignment. Use the original ONNX model
 or a separately qualified ONNX quantized artifact; this is not a Q4_K backend.
 
+Native ORT is a performance control and a conditional engineering fallback,
+not an approved shipping dependency. The measured ORT 1.23.2 distribution's
+[third-party notices](https://github.com/microsoft/onnxruntime/blob/a83fc4d58cb48eb68890dd689f94f28288cf2278/ThirdPartyNotices.txt)
+include Eigen under MPL-2.0 despite ORT's MIT top-level license. Under the
+strict permissive-license requirement, qualify the exact runtime binary and
+its dependency closure before considering distribution; do not infer approval
+from the Rust wrapper's or runtime's top-level license. The fork's API-24
+runtime would require a separate version-specific audit. The selected ggml
+target also needs its compiled-source, linked-library and packaged-asset
+license inventory. No native ORT application dependency is added here.
+
 ## Acceptance and evidence
 
 1. Reproducible source/model/tokenizer/label/guard provenance and permissive
-   code/model notices; no GPL/LGPL/AGPL/NC dependency added for this feature.
+   licenses/notices for the complete shipped dependency and asset closure.
+   GPL/LGPL/AGPL/MPL/NC components do not pass this feature's strict allowlist;
+   a development oracle does not approve a runtime for shipping.
 2. Exact input IDs, masks and word alignment before numerical comparisons.
 3. Both heads present with correct shapes, finite values and recorded numeric
    errors; exact selected decisions and final corrections for the F32 port.
@@ -162,130 +181,100 @@ or a separately qualified ONNX quantized artifact; this is not a Q4_K backend.
 7. Optional features stay unavailable until their exact artifacts are verified;
    no successful empty report for inference failure or unprocessed text.
 
-## Current execution state
+## Measured decision and current state
 
-Roadmaps were published and read back before implementation:
+### Completed implementation
 
-- Quds: `4cceff38040d423c4cfc08a0039b0379c6b35bbf`.
-- Dart runtime: `3ac10dd64c655657186ba89e673cb183d2250682`.
-- CrispEmbed: `85e973fba7c1be3f8bf028bb43de82ce0537174f` (including PLAN ownership).
-- Rust fallback: `99d21fbc830e3dbaaafff3d60a0864097b1b795b`.
+Roadmaps were pushed and read back before implementation in all four
+repositories. The initial Quds scope commit is
+`4cceff38040d423c4cfc08a0039b0379c6b35bbf`; the other initial roadmap commits
+are retained in each repository's history.
 
-The first implementation adds `export_reference.py`, its documented fixture
-contract and nine lightweight integrity/alignment tests. All nine pass with
-synthetic data; no real model inference is implied by those tests. The exporter
-preserves the original evaluator, vendored runner, cases and recorded results.
-It captures actual iterative passes and separately measures native ORT forward
-and complete-correction timing for both an original and verified derived model.
+Quds now has the authenticated reference exporter, explicit INT4 converter,
+bounded stage runner, evidence-chain and correction nonregression checks, and
+a pinned hosted workflow. The original evaluator, vendored runner, artifact
+manifest, frozen cases and earlier recorded results remain intact.
 
-The reference exporter is pushed at Quds
-`6f1bc7fac478118fb46c06918f285a670b4c6b1f`. The Dart API, benchmark and tests are
-pushed at `onnx_runtime_dart@0b49ca47fa056e6fc122ffe0192a9abb05627622`.
-Twenty-two targeted Dart tests, full-repository analysis with fatal infos and
-AOT compilation pass under Dart 3.14.0.
+The final measured Dart source is
+`onnx_runtime_dart@b10258682d459847b63e012eaaba58a528e93956`. It adds aligned
+pretokenized WordPiece input, the exact-input dual-head AOT benchmark, bounded
+32-column INT4 reconstruction, corrected packed zero-point column alignment,
+and opt-in reuse of the existing narrow direct GEMM strategy. The existing
+`OnnxExperiment.narrowDirectGemm` default stays disabled. The benchmark
+explicitly records its selection, and CI rejects a report/declaration mismatch.
 
-The feature-scoped `German GECToR qualification` workflow pins that Dart source
-and runs the original ORT control, a separate block-128 symmetric MatMulNBits
-INT4 candidate with unchanged output heads, and both Dart arms on one hosted
-CPU. It retains source/model hashes, actual tensor inventories, raw references,
-timings, memory, failures and complete correction differences. The original
-and candidate native references remain separate. Q4_K is still the conditional
-ggml deployment candidate, not a label for this ONNX experiment.
+Twenty-seven final focused Dart operator/configuration/reference checks pass,
+as do analysis and AOT compilation. The original tokenizer/harness increment
+passed its 22 targeted tests. Quds' final 19 lightweight Python controls pass,
+including an actual tiny ONNX conversion and negative experiment-integrity
+cases. The real checkpoint was additionally exercised in both completed
+hosted runs described below.
 
-Hosted execution and quantized task quality remain pending until the actual
-workflow completes and its evidence is reviewed. Record that run without
-replacing initial failures. No application provider or target platform is
-qualified by implementation, lightweight tests or a queued workflow.
+### Final hosted result and backend decision
 
+[Optimized run 44062093617](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44062093617)
+used Quds source `69d153c0f81596af894e48e21880f0957b963994` and the final
+Dart source above. Both model variants passed all 30 cases / 40 saved passes,
+with exact token alignment, both heads, selected tags and experiment selection
+checked. The INT4 candidate still has SHA-256
+`6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70` and
+size 158,365,857 bytes (151.03 MiB).
 
-## Local runtime checkpoint: baseline retained
+On that run's Intel CPU, comparing the same INT4 bytes within one job:
 
-The [2026-11-17 bounded local diagnostic](../validation/german-gector/2026-11-17-local-smoke/README.md)
-and its machine-readable report preserve source/model/binary hashes, every
-timing sample, parity metrics, CPU limits and known failures. This executes
-only two selected sentences (7 and 10 wordpieces), not the complete 30-case
-qualification panel. The hosted run
-[44053903485](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485)
-was still queued when the evidence was captured.
-
-Both original and ONNX INT4 models passed Dart/native parity on all four
-saved passes, including token alignment and exact selected tags. Baseline
-Dart forward medians were 1.78/2.39 seconds for F32 and 1.90/2.15 seconds for
-INT4. The INT4 artifact is 158,365,857 bytes and Dart inference-phase peak RSS
-was 488,251,392 bytes, versus 1,523,953,664 bytes for F32. Matrix operations
-dominate both profiles. The complete Dart checker is not implemented or timed.
-
-The native ONNX INT4 control completed the unguarded two-pass corrections in
-85/98 ms median on the same capped host. This makes a native backend a credible
-fallback; it does not measure a Rust bridge or ggml. Both model variants retain
-the known Swiss heisse -> heiße false edit. The full frozen probe and broader
-German task-quality gates remain open.
-
-The first measured optimization hypothesis is bounded 32-column dequantization
-and multiplication tiles for MatMulNBits. Preserve this baseline, compare the
-changed kernel with the identical candidate bytes and reference fixtures, and
-record the result separately before selecting a backend. Q4_K remains the
-preferred conditional ggml target and has not been executed.
-
-
-## Hosted baseline checkpoint: full frozen panel
-
-[Run 44053903485](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485)
-completed successfully. Its [durable audited record](../validation/german-gector/2026-11-17-hosted-baseline/README.md)
-retains all case outcomes/timings, source and artifact hashes, host settings,
-per-pass decisions and the distinction between correctness and application
-qualification. Independent review verified all 160 raw reference tensor files.
-
-Both original and INT4 Dart arms passed exact tokenization, both-head numerical
-checks and all selected tags on 30 cases / 40 saved passes each. INT4 retained
-all nine baseline fixes among the 18 error cases and the same one changed
-clean control among 12; there were no input, selected-tag, final-text or
-suggestion-span differences between the models on this panel. The known
-Swiss false edit remains. These are small synthetic-case results, not
-population accuracy or regional support.
-
-On this dedicated hosted VM, aggregate first-forward median/p95 values were:
-
-| Runtime | F32 | ONNX INT4 |
+| Measurement | Optimized Dart INT4 | Native ONNX INT4 control |
 | --- | ---: | ---: |
-| Native ORT | 13.7 / 16.4 ms | 16.2 / 20.0 ms |
-| Dart AOT baseline | 225 / 286 ms | 767 / 835 ms |
+| First-forward median | 463.426 ms | 15.772 ms |
+| First-forward p95 | 545.531 ms | 17.060 ms |
+| Inference/reference process peak RSS | 487,698,432 bytes | 358,817,792 bytes |
+| Complete unguarded reference correction p95 | Not implemented/measured | 33.220 ms |
 
-Dart peak RSS was 1,713,364,992 bytes for F32 and 499,945,472 for INT4. Native
-INT4 complete reference corrections had a 36.5 ms aggregate p95, excluding
-application guards. Native F32's inference report and later architecture
-census have different memory scopes, both documented in the evidence.
+These pooled figures cover only 5..12 wordpieces, one warmup and three samples
+per case. They are not target-device qualification or the full Quds pipeline.
+The original hosted baseline used an AMD/Azure VM; the optimized job used an
+Intel/AWS VM. Cross-run timing differences cannot be attributed solely to code.
+The separate local record retains all noisy before/after observations and the
+uncommitted prototype without substituting its best timing for the final run.
 
-This panel covers only 5..12 wordpieces. The original Dart INT4 forward already
-exceeds the complete-check budget; F32 exceeds the memory/pack budgets. Neither
-arm qualifies a shipping provider. The two initial runtime hypotheses are
-bounded dequantization tiles and reuse of the existing narrow direct GEMM
-path. Keep the latter under the existing per-model experiment flag and
-measure the final source on the hosted protocol before deciding the next
-implementation lane. Longer inputs and a full Dart correction loop remain
-explicit gates.
+The optimized Dart forward alone still exceeds the provisional 500 ms
+complete-check p95 budget on short inputs. The initial two runtime hypotheses
+are complete, so stop this initial kernel tuning round. Select CrispEmbed/ggml
+with the declared mixed Q4_K recipe as the next implementation/qualification
+lane, retaining native ONNX through Rust as the fallback if Q4_K fails its
+quality, performance or packaging gates and the native ONNX license boundary
+can be satisfied. This selects the next engineering step, not an already
+qualified shipping backend.
 
+### Product quality and remaining work
 
-## Optimized source handoff
+Both models retain 9/18 exact expected error corrections and 1/12 changed
+clean controls on the frozen synthetic panel, including the incorrect de-CH
+heisse -> heiße edit. Quantization introduced no changed inputs, selected tags,
+final text or suggestion spans on this panel. These counts do not estimate
+general German accuracy. Broader held-out evaluation and incremental value
+over existing deterministic rules remain required.
 
-The two initial hypotheses are implemented in
-`onnx_runtime_dart@b10258682d459847b63e012eaaba58a528e93956`: bounded
-32-column reconstruction and the existing opt-in narrow direct GEMM path.
-The first tile source is retained at
-`6988d46f3978643076f27a340deb5ccc737458d7`. Hardware-sensitive direct GEMM
-remains disabled by default and is explicitly enabled for the INT4
-qualification arm. The F32 control leaves it disabled. Both declared and
-reported experiment selections are retained and checked.
+The next code slice is the exact fine-tuned ONNX-to-GGUF conversion, both
+trained heads and prepared-ID native entry point, followed by F32 control
+parity and actual mixed Q4_K qualification. The CrispEmbed roadmap and PLAN
+record its observed architecture, required tensor transposes, Q/K rounding
+order, proposed small native dependency boundary and hosted-build gates.
+The Rust roadmap preserves the explicit API-24/native-runtime version check
+and outstanding FFI packaging work.
 
-All 27 focused runtime/operator/benchmark-configuration tests pass. The
-final opt-in AOT local verification matches the same candidate and reference
-bytes on all four saved passes, with medians 1.36/1.41 seconds and peak RSS
-463,605,760 bytes. Earlier baseline/tile/prototype samples are retained
-separately. Local noise prevents treating the faster prototype observation
-as the final result.
+No GGUF model, native GECToR backend or application provider is implemented
+by this initial qualification slice. M3 and native implementation remain open.
+Preserve shared Dart tokenization/decoding/guards, protected ranges, UTF-16
+source mapping, bounded workers and manual/F7 integration as scoped above.
+Measure longer 64/128/256-token inputs and complete checks before qualification.
 
-The hosted workflow now pins this exact source for the full 30-case replay.
-Keep the original completed hosted run unchanged and compare the new result
-with its own host/native controls. This finishes the initial two-hypothesis
-runtime tuning scope. It does not implement the complete Dart checker or
-qualify long-input, editor, mobile or browser behavior.
+### Durable evidence
+
+- [Original local two-case baseline](../validation/german-gector/2026-11-17-local-smoke/README.md).
+- [Original full hosted baseline](../validation/german-gector/2026-11-17-hosted-baseline/README.md), run 44053903485.
+- [All local optimization observations](../validation/german-gector/2026-11-17-local-optimization/README.md), including the slower final opt-in repeat.
+- [Final full hosted optimized result](../validation/german-gector/2026-11-17-hosted-optimized/README.md), run 44062093617.
+
+Keep source/model/binary identities, each complete report and all failures.
+The recorded correctness/nonregression passes do not mark the application
+qualified. F32 remains a control; ONNX INT4 remains distinct from Q4_K.
