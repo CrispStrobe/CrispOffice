@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "parents": [
+    "a499549e184069e33234bd0304417fb0fefb8ca1",
+    "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+    "3a5cacc12c23e577903dcb6d9eba085da6e205a9"
+  ],
+  "main_merge_base": "67482c25a90631d54dd6dff6cda489687efb380f",
+  "incoming_main_prs": [
+    106,
+    107,
+    108,
+    109
+  ],
+  "unique_main_changes_at_this_stage": [
+    "ODP text-shape hyperlinks",
+    "ODT/ODP subject, creator, description, keywords, initial creator, creation/modified dates and generator metadata"
+  ],
+  "conflicts": [
+    {
+      "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "resolution": "Keep incoming hyperlink assertion and current namespace-aware SMIL transition style/duration checks. Incoming old presentation:transition-style and lexical PT5.00S expectations predate the already qualified transition representation."
+    }
+  ],
+  "production_merge": "Both writer production files merged automatically. All non-ODF production inputs from the parent remain unchanged.",
+  "vendor_history": "Included as third parent after exact non-evidence tree equality to main and preservation of the sole differing README under incoming/.",
+  "fresh_combined_runtime": "pending",
+  "git_diff_check": "passed"
+}

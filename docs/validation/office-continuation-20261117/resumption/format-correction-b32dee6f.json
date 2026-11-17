@@ -1,0 +1,244 @@
+{
+  "recorded_utc": "2026-11-17T15:53:46.375729+00:00",
+  "source_commit_before": "b32dee6f1fb6993c928a466b553226209cf27fb8",
+  "source_tree_before": "f7fb563ed4b107e1e2d5c19ac489084f08919931",
+  "passed": true,
+  "production_files_modified": false,
+  "prior_verifier_limit": "The first verifier required literal token identity and rejected the formatter's nine optional trailing commas. Its receipt, logs and exact script remain retained. The final verification requires parsed AST equality and permits only the explicitly listed inserted commas immediately before closing parentheses.",
+  "files": {
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart": {
+      "before_sha256": "2a7c46d84505b213e0565e856cb9d9dab0b3cbb2099b134fbf9374fc6557013d",
+      "after_sha256": "b25d142b3f0296fca752b675988bee083123aaa42abc926a3140801c019f92f6",
+      "before_git_blob": "5356f55659e2da7e467b8b349911d5cc09e20460",
+      "after_git_blob": "30edcd36d5d15e732ce0be90fb712e56dd702686",
+      "before_token_count": 2767,
+      "after_token_count": 2769,
+      "token_changes": [
+        {
+          "before_token_offset": 2165,
+          "after_token_offset": 2165,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        },
+        {
+          "before_token_offset": 2256,
+          "after_token_offset": 2257,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        }
+      ],
+      "all_other_token_types_and_lexemes_identical": true,
+      "parsed_ast_source_equal": true,
+      "parsed_ast_source_sha256": "0a26c8647c28952c5833d6a48682a1a90a02aa38b82e6aa53a1a995ecc7b3e1e"
+    },
+    "packages/quds_office_engine/test/odt_document_writer_test.dart": {
+      "before_sha256": "7373be481a3153f557e41b2e7c1cf337928dcbfdb1b4557954cbd8002f8f09a8",
+      "after_sha256": "a1b5a1281dee1d16e718d9d76db7884dafdf09a42b3f3127a01aff99807831d7",
+      "before_git_blob": "b9e5483566926a3c33dd09cfacc45034afff5b70",
+      "after_git_blob": "c4bbd3d90d4a623da6bf1de1961d5f47430e50e8",
+      "before_token_count": 2799,
+      "after_token_count": 2802,
+      "token_changes": [
+        {
+          "before_token_offset": 136,
+          "after_token_offset": 136,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        },
+        {
+          "before_token_offset": 1482,
+          "after_token_offset": 1483,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        },
+        {
+          "before_token_offset": 1749,
+          "after_token_offset": 1751,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        }
+      ],
+      "all_other_token_types_and_lexemes_identical": true,
+      "parsed_ast_source_equal": true,
+      "parsed_ast_source_sha256": "054050289611768707c85d7504da7abc5df8c88156c460529091f2858cf17e17"
+    },
+    "packages/quds_office_engine/test/odt_section_continuation_test.dart": {
+      "before_sha256": "c81f5b6c4a08e15674e3f537ac5ca11e12dbd18b56741b4de504dab547ea4520",
+      "after_sha256": "f3ec35410522d23464fbed7c7b5de47bae5b9e8476b5b17e10dec82b453fe061",
+      "before_git_blob": "08f9ce78ea631960c15d7aa6127379175211e410",
+      "after_git_blob": "44ff9ca642e61622b25abf21a26dafff7bb9122a",
+      "before_token_count": 3473,
+      "after_token_count": 3476,
+      "token_changes": [
+        {
+          "before_token_offset": 1196,
+          "after_token_offset": 1196,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        },
+        {
+          "before_token_offset": 1919,
+          "after_token_offset": 1920,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        },
+        {
+          "before_token_offset": 2536,
+          "after_token_offset": 2538,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        }
+      ],
+      "all_other_token_types_and_lexemes_identical": true,
+      "parsed_ast_source_equal": true,
+      "parsed_ast_source_sha256": "ff2d35ca80fb4ac9f30790aff37c7c0268dac555ba0ac3bdf86d053963c0cf03"
+    },
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": {
+      "before_sha256": "3e128eaa3b7306c47960b1194fa0b16bc1e3a7633e04a353d9867f6e348d14ab",
+      "after_sha256": "da92ba0531623223dc3beb3e5531b8b55286e6cf5118b81588ea5f1efd3cc0fc",
+      "before_git_blob": "9f4e54c2cc1eb2fe1496e806bc507f06ba6a04bb",
+      "after_git_blob": "d922a11264e483958de81c4d7b2444dfbb140f34",
+      "before_token_count": 4061,
+      "after_token_count": 4062,
+      "token_changes": [
+        {
+          "before_token_offset": 1833,
+          "after_token_offset": 1833,
+          "inserted": [
+            [
+              "COMMA",
+              ","
+            ]
+          ],
+          "following_token": [
+            "CLOSE_PAREN",
+            ")"
+          ]
+        }
+      ],
+      "all_other_token_types_and_lexemes_identical": true,
+      "parsed_ast_source_equal": true,
+      "parsed_ast_source_sha256": "4e26a6db28bd63e50c4463eaef9a40b7e2db2443d8b633dc4353cf14e0a271ed"
+    }
+  },
+  "optional_trailing_commas_inserted": 9,
+  "analyzer_config_restored": true,
+  "same_resolved_graph_sha256": "adcb7997bffd49436319e6095eff35d781623e0a4d0b3ce1f56a7a78ebe2d27f",
+  "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "verification_script_sha256": "2fc88e904137b72f8e801ac9a7cb7067d046902ede696e621cf7e6abaedfd2d6",
+  "ast_helper_sha256": "7abc5d7f69bbde40e378031cc4dce7a9632290e87b1b6ee08046d019527e5917",
+  "ast_commands": [
+    [
+      "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/18384bc07dad/runtime-work/quds/.dart_tool/package_config.json",
+      "/workspace/scratch/18384bc07dad/runtime-work/qualification/dart_syntax.dart",
+      "/workspace/scratch/18384bc07dad/runtime-work/qualification/format-correction-b32dee6f/before/packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "/workspace/scratch/18384bc07dad/runtime-work/qualification/format-correction-b32dee6f/before/packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "/workspace/scratch/18384bc07dad/runtime-work/qualification/format-correction-b32dee6f/before/packages/quds_office_engine/test/odt_section_continuation_test.dart",
+      "/workspace/scratch/18384bc07dad/runtime-work/qualification/format-correction-b32dee6f/before/packages/quds_office_engine/test/odt_section_fidelity_test.dart"
+    ],
+    [
+      "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/18384bc07dad/runtime-work/quds/.dart_tool/package_config.json",
+      "/workspace/scratch/18384bc07dad/runtime-work/qualification/dart_syntax.dart",
+      "/workspace/scratch/18384bc07dad/quds/packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "/workspace/scratch/18384bc07dad/quds/packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "/workspace/scratch/18384bc07dad/quds/packages/quds_office_engine/test/odt_section_continuation_test.dart",
+      "/workspace/scratch/18384bc07dad/quds/packages/quds_office_engine/test/odt_section_fidelity_test.dart"
+    ]
+  ],
+  "ast_command_exit_codes": [
+    0,
+    0
+  ],
+  "format_recheck": {
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "format",
+      "--language-version=3.12",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "packages/quds_office_engine/test/odt_section_continuation_test.dart",
+      "packages/quds_office_engine/test/odt_section_fidelity_test.dart"
+    ],
+    "cwd": "/workspace/scratch/18384bc07dad/quds",
+    "exit_code": 0,
+    "stdout_sha256": "70d9a66c9edc9b037d0258771b8461e5d82172a8a41e4d3e888add746de5a936",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "raw_output_sha256": {
+    "ast-after.stdout": "092eced0e2ba5970608a03ec5015a9a7ac6e8c4a53d434bed955bfa102df381d",
+    "ast-before.stdout": "de72ae06f3dbde1a3df564fd7154763d1ef4a00ea0abdf1388d818bf34be6d53",
+    "format-recheck.stdout": "70d9a66c9edc9b037d0258771b8461e5d82172a8a41e4d3e888add746de5a936",
+    "format.stdout": "57fb1226123e98d55315d46e5cb220ef49cb7f2d099d6a14fcf2fbf2481c6f29",
+    "tokens-after.stdout": "49429679d28db15876ba91561a9c4bbab69296b2eb83daf62d8309737f9e3f25",
+    "tokens-before.stdout": "07a4344ebf4ebbe420fe51bf8f170a89f22e3010b61649b523fffcfe9ecd23ec"
+  },
+  "tests_run": false
+}
