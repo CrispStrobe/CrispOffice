@@ -43,6 +43,7 @@ reference and the ancestor check.
 | `be465bfba548006cc5fd5c3798cd166cdbcc5c63` | Retain original PR #95/#96 histories; all 213 captured references are ancestors. |
 | `3fe1937984a3e5421efefa98dd550694cdcd6156` | Save the initial licensed implementation before resolving eager web initialization and remaining source-data issues. |
 | `8649b79efe0f2ad57d8f187233ed3f8b8177b3a0` | Freeze the reviewed lazy resource, grammar safeguards, spelling supplement and regression tests. |
+| `b70999ad9d5a1c6df12be4c27010ce77a097b84a` | Preserve corpus results, initial final receipts, source binding and implementation documentation while web packaging completes. |
 
 The authenticated GitHub tree API was used for remote saves. The local test
 commit `153012a92ec5fcbd8911d06f16c20cf8e254b256` and remote `8649b79e` have the
@@ -62,8 +63,9 @@ Examples include `mit dem Kunde → mit dem Kunden`,
 in `für unseren neuen Krankenhaus → für unser neues Krankenhaus`.
 
 The resource includes 189 compact suffix patterns and preserves distinct
-readings, genuine gender ambiguities and alternative case forms. Unknown or
-incomplete readings cause abstention. In particular:
+readings, genuine gender ambiguities and alternative case forms. Incomplete
+paradigms are omitted; known contextual or gender-incomplete alternatives cause
+abstention. In particular:
 
 - Candidate lemmas must already belong to the modern spelling vocabulary.
   Generated inflections require corroboration by the actual source surface,
@@ -203,6 +205,7 @@ receipts bind 1,071 source, test, tool, license and example inputs.
 | Both independent corpora | VM/Node identical; source and runtime inputs unchanged. |
 | Every morphology bucket | All **256 buckets / 127,987 readings** validated on VM and Node. |
 | Exact regeneration | **20 morphology files and 18 spelling files verified.** |
+| Release web build and license collection | **Passed**; complete Unicode license and Inflection attribution retained in packaged `assets/NOTICES`. |
 
 The focused 247-test grammar/loading run is a subset of the 503 proofing tests,
 not an additional unique test count. Earlier in this same continuation,
@@ -212,8 +215,13 @@ probe passed 28 checks over 2,000 ranges, and incoming ODT/ODP regressions passe
 test count, new native Rust/Wasm-library execution, actual browser interaction,
 or Android/iOS device qualification is claimed by this continuation.
 
-Release web packaging is recorded in the final runtime evidence and is the last
-packaging check. Its final outcome is recorded below when the build completes.
+The release web build succeeded with unchanged source. The output manifest
+records 117 files / 64,615,057 bytes; the complete Unicode-3.0 license and
+Inflection attribution appear verbatim in packaged `assets/NOTICES` (with a
+formatting blank line between attribution and license). The build emitted a
+CupertinoIcons font-asset warning, retained in its log. Compilation and notice
+packaging do not establish browser interaction or startup behavior. See
+[web-license-collection.json](qualification/web-license-collection.json).
 
 ### Cold-start behavior and bounded lazy decoding
 
@@ -224,7 +232,10 @@ between newly decoded buckets. A warm call returns a future belonging to the
 current zone, fixing the earlier widget-test initialization hang. Exposed
 readings are immutable and each bucket is validated before publication.
 
-Actual `OfficeProofingService` checks used the **default 10-second timeout**:
+The actual `OfficeProofingService` checks use its **default 10-second timeout**
+and register only `GermanWritingRulesProvider`. They measure the changed grammar
+path; spelling initialization, rendering and whole-application startup are
+outside this timing scope.
 
 | Input / runtime | Cold check | Median of 40 warm checks | Buckets / readings cached |
 | --- | ---: | ---: | ---: |
@@ -254,9 +265,12 @@ hash. Reproducible generated JS/maps are omitted; their hashes and exact
 compilation commands remain in receipts. The checked-in harness and corpora
 recreate them with the recorded toolchain.
 
-The final runtime archive contains component/editor/analyzer/build logs,
-source snapshots, runtime and dependency receipts, performance results, and
-exact runner copies. The exploratory archive retains earlier failed tests,
+The [final runtime archive](final-validation.tar.gz) contains
+component/editor/analyzer/build logs, source snapshots, runtime and dependency
+receipts, performance results, and exact runner copies; its
+[index](final-validation-index.json) records every member hash.
+The [exploratory archive](exploratory-evidence.tar.gz) and its
+[index](exploratory-evidence-index.json) retain earlier failed tests,
 eager loading measurements and the successful baseline replay. These are
 historical evidence and are not represented as passing final-source runs.
 Notable failures include incorrect source inflections and ambiguity,
