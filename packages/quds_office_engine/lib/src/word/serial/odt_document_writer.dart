@@ -797,7 +797,18 @@ abstract final class OdtDocumentWriter {
   }) {
     switch (inline) {
       case WmlRun():
+        if (layout.fieldResultSuppressed) break;
         final style = layout.runStyle(inline.properties);
+        if (layout.pendingFieldElement case final element?) {
+          w.writeStartElement('span', prefix: 'text');
+          w.writeAttribute('text:style-name', style);
+          w.writeStartElement(element, prefix: 'text');
+          writeOdfText(w, inline.text);
+          w.writeEndElement();
+          w.writeEndElement();
+          layout.consumeFieldResult();
+          break;
+        }
         final href = switch (inline.hyperlink) {
           final link? =>
             link.url ??
@@ -885,8 +896,26 @@ abstract final class OdtDocumentWriter {
           prefix: 'text',
         );
       case WmlFieldBoundary():
-        // Converted packets are handled as a unit by _writeParagraphInlines.
-        // Other boundaries are hidden metadata around ordinary cached runs.
+        if (inline.kind == WmlFieldBoundaryKind.begin) {
+          layout.beginField();
+        } else if (inline.kind == WmlFieldBoundaryKind.instruction) {
+          final name = inline.text
+              .trim()
+              .split(RegExp(r'\s+'))
+              .first
+              .toUpperCase();
+          final element = switch (name) {
+            'PAGE' => 'page-number',
+            'NUMPAGES' => 'page-count',
+            'DATE' => 'date',
+            'TIME' => 'time',
+            'TITLE' => 'title',
+            _ => null,
+          };
+          if (element != null) layout.pendingFieldElement = element;
+        } else if (inline.kind == WmlFieldBoundaryKind.end) {
+          layout.endField();
+        }
         break;
       case WmlBookmarkBoundary():
         final name = layout.bookmarks.nameFor(inline);
@@ -1605,6 +1634,24 @@ class _OdtLayout {
   bool inNoteBody = false;
   bool noteReferenceSpacePending = false;
   int fieldDepth = 0;
+  String? pendingFieldElement;
+  int? _fieldResultDepth;
+
+  void beginField() => fieldDepth++;
+
+  bool get fieldResultSuppressed =>
+      _fieldResultDepth != null && fieldDepth >= _fieldResultDepth!;
+
+  void consumeFieldResult() {
+    pendingFieldElement = null;
+    _fieldResultDepth = fieldDepth;
+  }
+
+  void endField() {
+    if (_fieldResultDepth == fieldDepth) _fieldResultDepth = null;
+    pendingFieldElement = null;
+    if (fieldDepth > 0) fieldDepth--;
+  }
 
   final Map<String, String> _runStyles = <String, String>{};
   final Map<String, String> _paragraphStyles = <String, String>{};
