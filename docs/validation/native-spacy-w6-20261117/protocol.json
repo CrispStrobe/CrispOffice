@@ -1,24 +1,24 @@
 {
   "schema": "quds.spacy.grammar.protocol.v1",
   "created_date": "2026-11-17",
-  "status": "frozen-before-first-candidate-execution",
+  "status": "amended-before-first-qualification-execution",
   "scope": "Bounded exploratory de-DE noun/finite-verb agreement; actual accepted CPU/F32 native annotations and pure Dart lexical guard; manual opt-in only if this gate and editor controls pass.",
   "baseline": {
     "repository": "CrispStrobe/quds_office_suite",
-    "main_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+    "main_commit": "6245a6956a76a38f925e1eb18851c0086730112d",
     "feature_initial_commit": "e7c67f29b34f1c1909e51aa25997fc774bb8ac80",
     "provider": "GermanWritingRulesProvider with every current rule enabled except explicit per-case ignored IDs",
     "ordinary_provider_sources_sha256": {
-      "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart": "a3c0ba12d84a68ff69612344d5eef194ab8589797825d22f6106291cb540b761",
-      "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "2dc05a989969644e71d5f2a52e1dc7d99685b3b9b2dc950d05f92d5e56ae40b9",
-      "packages/quds_office_engine/lib/src/proofing/german_literal_ranges.dart": "5585e4acf19165237e60eed7a20109d5ad74c03b9fbcd2b78b27cd00c8bb726a",
+      "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart": "9f3b6006ad8da9f5f0e6c5e76df6b135fd325604185f2ca3c97fdd2c4823f1d9",
+      "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "ab3947b5c27f91084f40433d3a12784559fb67dcaa6ff0b929196844d2ba6897",
+      "packages/quds_office_engine/lib/src/proofing/german_literal_ranges.dart": "c975a512605f7c0b2d9251547492253319c80a37a9829e04de48ff2a4e271f23",
       "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
       "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "9e51dd774237e6a22232ad88f905cc32314f75ee3ffeb263fee7cdbade93f82c",
-      "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "6bac6546836194f00a22a8afc4a763fdbaa7ef94e8e75a16efb36d6482684189",
+      "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "636050b5c5ec111e64377387e5013bb207f16e3fc4f92fa7dcdb65b23540ddb9",
       "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "5a2711e5102948b88524aa6933c447791bf0839e83429c7e861d7a51cd23518e",
       "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
     },
-    "note": "Later independent Office changes may be reconciled before candidate freeze; current deterministic behavior must remain byte-identical except an additive reviewed-facts API, and the final source closure will be sealed."
+    "note": "Latest main includes German phrase completion and formatting-preserving correction. These baseline semantics supersede the initial protocol main before qualification. Original current-main files must remain byte-identical except the additive shared-facts part; candidate source/runtime are sealed separately."
   },
   "native": {
     "repository": "CrispStrobe/CrispEmbed",
@@ -81,5 +81,17 @@
     "If output-informed planner changes are needed, classify this panel as development and require a new independently frozen panel for a new qualification claim.",
     "Publish outcome whether positive or negative; keep grammar default off and packaging separate."
   ],
-  "ci_endpoints_queried_or_waited": false
+  "ci_endpoints_queried_or_waited": false,
+  "amendment": {
+    "revision": 2,
+    "original_protocol_sha256": "5fa7ff99f43020fd6506ecf832fc264fa97834ce838733a8d395ba57e6c6978e",
+    "original_protocol_path": "protocol-initial.json",
+    "original_freeze_commit": "846fc0371b23bf4a84542db7a3f24eee2d8609dd",
+    "reason": "New deterministic German main arrived during prequalification refresh; compare to current behavior rather than the superseded baseline.",
+    "qualification_executions_before_amendment": 0,
+    "qualification_outputs_seen": false,
+    "panel_inputs_expectations_denominators_unchanged": true,
+    "success_thresholds_and_scoring_unchanged": true,
+    "native_planner_provider_and_evaluator_unchanged": true
+  }
 }

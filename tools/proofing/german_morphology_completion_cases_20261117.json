@@ -1,0 +1,455 @@
+{
+  "description": "First-party follow-up cases frozen before implementation. Historical 81-error corpus remains unchanged. Includes explicit abstention for valid rare or locative readings.",
+  "cases": [
+    {
+      "id": "completion-error-001",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Das ist für diesem Schlüssel.",
+      "expected": "Das ist für diesen Schlüssel."
+    },
+    {
+      "id": "completion-error-002",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Wir suchen nach dieses Schlüssel.",
+      "expected": "Wir suchen nach diesem Schlüssel."
+    },
+    {
+      "id": "completion-error-003",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Sie kommt ohne jenem Schlüssel.",
+      "expected": "Sie kommt ohne jenen Schlüssel."
+    },
+    {
+      "id": "completion-error-004",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Er arbeitet mit diesen Schlüssel.",
+      "expected": "Er arbeitet mit diesen Schlüsseln."
+    },
+    {
+      "id": "completion-error-005",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Das ist das Auto der Student.",
+      "expected": "Das ist das Auto des Studenten."
+    },
+    {
+      "id": "completion-error-006",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Dies ist der Mantel der Journalist.",
+      "expected": "Dies ist der Mantel des Journalisten."
+    },
+    {
+      "id": "completion-error-007",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Es ist die Tasche der Kollege.",
+      "expected": "Es ist die Tasche des Kollegen."
+    },
+    {
+      "id": "completion-error-008",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Das ist das Buch der neuen Student.",
+      "expected": "Das ist das Buch des neuen Studenten."
+    },
+    {
+      "id": "completion-error-009",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Ich sehe der neue Kunde.",
+      "expected": "Ich sehe den neuen Kunden."
+    },
+    {
+      "id": "completion-error-010",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Wir kennen der alte Kunde.",
+      "expected": "Wir kennen den alten Kunden."
+    },
+    {
+      "id": "completion-error-011",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Ich habe ein schönen Tag.",
+      "expected": "Ich habe einen schönen Tag."
+    },
+    {
+      "id": "completion-error-012",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Du hast ein langen Tag.",
+      "expected": "Du hast einen langen Tag."
+    },
+    {
+      "id": "completion-error-013",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Er ist stolz auf dem Ergebnis.",
+      "expected": "Er ist stolz auf das Ergebnis."
+    },
+    {
+      "id": "completion-error-014",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Wir sind stolz auf diesem Erfolg.",
+      "expected": "Wir sind stolz auf diesen Erfolg."
+    },
+    {
+      "id": "completion-error-015",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Sie ist stolz auf der guten Leistung.",
+      "expected": "Sie ist stolz auf die gute Leistung."
+    },
+    {
+      "id": "completion-error-016",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Ich warte auf dem Ergebnis.",
+      "expected": "Ich warte auf das Ergebnis."
+    },
+    {
+      "id": "completion-error-017",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Sie wartet auf der neuen Nachricht.",
+      "expected": "Sie wartet auf die neue Nachricht."
+    },
+    {
+      "id": "completion-error-018",
+      "kind": "error",
+      "scope": "completion-holdout",
+      "area": "governed-phrase",
+      "language": "de-DE",
+      "text": "Wir warten auf diesem Anruf.",
+      "expected": "Wir warten auf diesen Anruf."
+    },
+    {
+      "id": "completion-control-001",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Mensch.",
+      "expected": "Wir sprechen mit dem Mensch."
+    },
+    {
+      "id": "completion-control-002",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Menschen.",
+      "expected": "Wir sprechen mit dem Menschen."
+    },
+    {
+      "id": "completion-control-003",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Wir helfen der Kunde.",
+      "expected": "Wir helfen der Kunde."
+    },
+    {
+      "id": "completion-control-004",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Wir helfen dem Kunden.",
+      "expected": "Wir helfen dem Kunden."
+    },
+    {
+      "id": "completion-control-005",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Wir stehen bei den Computern.",
+      "expected": "Wir stehen bei den Computern."
+    },
+    {
+      "id": "completion-control-006",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Sie antwortet den Lehrern.",
+      "expected": "Sie antwortet den Lehrern."
+    },
+    {
+      "id": "completion-control-007",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Ich sehe die neue Kunde.",
+      "expected": "Ich sehe die neue Kunde."
+    },
+    {
+      "id": "completion-control-008",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Ich sehe den neuen Kunden.",
+      "expected": "Ich sehe den neuen Kunden."
+    },
+    {
+      "id": "completion-control-009",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Ich habe ein schönes Tag.",
+      "expected": "Ich habe ein schönes Tag."
+    },
+    {
+      "id": "completion-control-010",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Ich habe einen schönen Tag.",
+      "expected": "Ich habe einen schönen Tag."
+    },
+    {
+      "id": "completion-control-011",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist das Auto der Studenten.",
+      "expected": "Das ist das Auto der Studenten."
+    },
+    {
+      "id": "completion-control-012",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist das Auto des Studenten.",
+      "expected": "Das ist das Auto des Studenten."
+    },
+    {
+      "id": "completion-control-013",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist das Auto der Lehrerin.",
+      "expected": "Das ist das Auto der Lehrerin."
+    },
+    {
+      "id": "completion-control-014",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist das Auto der Lehrer.",
+      "expected": "Das ist das Auto der Lehrer."
+    },
+    {
+      "id": "completion-control-015",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist der Frau ihr Auto.",
+      "expected": "Das ist der Frau ihr Auto."
+    },
+    {
+      "id": "completion-control-016",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist das Auto, der Student kommt.",
+      "expected": "Das ist das Auto, der Student kommt."
+    },
+    {
+      "id": "completion-control-017",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist das Auto der Qudsbrand.",
+      "expected": "Das ist das Auto der Qudsbrand."
+    },
+    {
+      "id": "completion-control-018",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Das ist das Auto der Student und das Fahrrad der Frau.",
+      "expected": "Das ist das Auto der Student und das Fahrrad der Frau."
+    },
+    {
+      "id": "completion-control-019",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Die Stimme der Student zählt.",
+      "expected": "Die Stimme der Student zählt."
+    },
+    {
+      "id": "completion-control-020",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Er ist stolz auf dem Dach.",
+      "expected": "Er ist stolz auf dem Dach."
+    },
+    {
+      "id": "completion-control-021",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Sie ist stolz auf dem neuen Bus.",
+      "expected": "Sie ist stolz auf dem neuen Bus."
+    },
+    {
+      "id": "completion-control-022",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Sie wartet auf dem neuen Bus.",
+      "expected": "Sie wartet auf dem neuen Bus."
+    },
+    {
+      "id": "completion-control-023",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Wir warten auf der Bank.",
+      "expected": "Wir warten auf der Bank."
+    },
+    {
+      "id": "completion-control-024",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Ich warte auf dem Bahnsteig.",
+      "expected": "Ich warte auf dem Bahnsteig."
+    },
+    {
+      "id": "completion-control-025",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Er ist stolz auf der Arbeit.",
+      "expected": "Er ist stolz auf der Arbeit."
+    },
+    {
+      "id": "completion-control-026",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Er arbeitet auf dem Ergebnis.",
+      "expected": "Er arbeitet auf dem Ergebnis."
+    },
+    {
+      "id": "completion-control-027",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Er steht auf dem Ergebnis.",
+      "expected": "Er steht auf dem Ergebnis."
+    },
+    {
+      "id": "completion-control-028",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Ich sehe der neue Kunde kommen.",
+      "expected": "Ich sehe der neue Kunde kommen."
+    },
+    {
+      "id": "completion-control-029",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "„Für diesem Schlüssel“ steht hier als Zitat.",
+      "expected": "„Für diesem Schlüssel“ steht hier als Zitat."
+    },
+    {
+      "id": "completion-control-030",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "`Das ist für diesem Schlüssel.`",
+      "expected": "`Das ist für diesem Schlüssel.`"
+    },
+    {
+      "id": "completion-control-031",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Er ist stolz, auf dem Ergebnis steht sein Name.",
+      "expected": "Er ist stolz, auf dem Ergebnis steht sein Name."
+    },
+    {
+      "id": "completion-control-032",
+      "kind": "control",
+      "scope": "completion-holdout",
+      "area": "ambiguity-safety",
+      "language": "de-DE",
+      "text": "Sie wartet auf dem Ergebnis und geht danach.",
+      "expected": "Sie wartet auf dem Ergebnis und geht danach."
+    }
+  ]
+}
