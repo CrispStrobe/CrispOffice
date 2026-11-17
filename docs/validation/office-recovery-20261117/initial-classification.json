@@ -1,0 +1,138 @@
+{
+  "head": "104b239c971ef3b2d62495a27ad04b519398a1fc",
+  "total_refs": 258,
+  "unique_heads": 173,
+  "missing_objects": [],
+  "unmerged": [
+    {
+      "sha": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "refs": [
+        "origin:refs/heads/codex/german-morphology-20261117",
+        "origin:refs/pull/114/head"
+      ],
+      "subject": "Retain captured page-field feature and vendor ancestry [skip ci]"
+    },
+    {
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "refs": [
+        "origin:refs/heads/codex/office-fidelity-20261117",
+        "origin:refs/pull/111/head"
+      ],
+      "subject": "Record published-tree audit and follow-up evidence PR [skip ci]"
+    },
+    {
+      "sha": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3",
+      "refs": [
+        "origin:refs/heads/feat/german-gector-proofing"
+      ],
+      "subject": "Record 924 local regression tests and rebuilt native runner seals [skip ci]"
+    },
+    {
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "refs": [
+        "origin:refs/heads/feat/odf-metadata",
+        "origin:refs/pull/109/head"
+      ],
+      "subject": "feat(odf): export document metadata in ODT and ODP"
+    },
+    {
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "refs": [
+        "origin:refs/heads/feat/odp-shape-links",
+        "origin:refs/pull/108/head"
+      ],
+      "subject": "feat(slide): write ODP text-shape hyperlinks"
+    },
+    {
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "refs": [
+        "origin:refs/heads/feat/odt-page-fields",
+        "origin:refs/pull/110/head"
+      ],
+      "subject": "feat(word): write ODT page-number fields"
+    },
+    {
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "refs": [
+        "origin:refs/heads/feat/odt-paragraph-shading",
+        "origin:refs/pull/112/head"
+      ],
+      "subject": "feat(word): write ODT paragraph shading and borders"
+    },
+    {
+      "sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "refs": [
+        "origin:refs/heads/main"
+      ],
+      "subject": "feat(word): write ODT paragraph shading and borders (#112)"
+    },
+    {
+      "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "refs": [
+        "origin:refs/heads/vendor/odt-page-fields"
+      ],
+      "subject": "feat(word): write ODT page-number fields"
+    },
+    {
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "refs": [
+        "origin:refs/heads/vendor/odt-paragraph-shading"
+      ],
+      "subject": "feat(word): write ODT paragraph shading and borders"
+    },
+    {
+      "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "refs": [
+        "origin:refs/pull/105/head"
+      ],
+      "subject": "Preserve initial live incremental-quality evidence before spelling repairs [skip ci]"
+    }
+  ],
+  "maximal_unmerged": [
+    {
+      "sha": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "refs": [
+        "origin:refs/heads/codex/german-morphology-20261117",
+        "origin:refs/pull/114/head"
+      ],
+      "subject": "Retain captured page-field feature and vendor ancestry [skip ci]"
+    },
+    {
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "refs": [
+        "origin:refs/heads/codex/office-fidelity-20261117",
+        "origin:refs/pull/111/head"
+      ],
+      "subject": "Record published-tree audit and follow-up evidence PR [skip ci]"
+    },
+    {
+      "sha": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3",
+      "refs": [
+        "origin:refs/heads/feat/german-gector-proofing"
+      ],
+      "subject": "Record 924 local regression tests and rebuilt native runner seals [skip ci]"
+    },
+    {
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "refs": [
+        "origin:refs/heads/feat/odt-paragraph-shading",
+        "origin:refs/pull/112/head"
+      ],
+      "subject": "feat(word): write ODT paragraph shading and borders"
+    },
+    {
+      "sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "refs": [
+        "origin:refs/heads/main"
+      ],
+      "subject": "feat(word): write ODT paragraph shading and borders (#112)"
+    },
+    {
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "refs": [
+        "origin:refs/heads/vendor/odt-paragraph-shading"
+      ],
+      "subject": "feat(word): write ODT paragraph shading and borders"
+    }
+  ]
+}
