@@ -86,6 +86,10 @@
     }
   ],
   "files": {
+    "CONTENTS_SHA256.json": {
+      "bytes": 9566,
+      "sha256": "3bb110a1f0d54c75e7b5cd523dd9e2ad10adeee29a1078f5960baf92fe476412"
+    },
     "OMITTED_REPRODUCIBLE_OUTPUTS.json": {
       "bytes": 1554,
       "sha256": "31f5ec7cf5d31f5afa4e3461a4b050a81e1b3b80ea285980a2052ad1e09c8259"

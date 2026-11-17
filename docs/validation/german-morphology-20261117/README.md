@@ -1,5 +1,9 @@
 # German morphology continuation — 17 November 2026
 
+The [completion report](continuation/README.md) records the final 233-reference
+integration, fresh local checks, annotation fixes and recovered evidence audit.
+The results below retain their original frozen-source scope.
+
 ## Delivered result
 
 The offline German phrase analyzer now uses **67,492 noun lemmas, 127,987
@@ -12,8 +16,11 @@ and compiled JavaScript. No Python server, C++ runtime or NLP model is required.
 The implementation is saved remotely at
 [`8649b79efe0f2ad57d8f187233ed3f8b8177b3a0`](https://github.com/CrispStrobe/quds_office_suite/commit/8649b79efe0f2ad57d8f187233ed3f8b8177b3a0)
 on `codex/german-morphology-20261117`. Later commits contain documentation and
-qualification evidence only. GitHub Actions was not queried, awaited, or used
-as a validation gate.
+qualification evidence only through recovered checkpoint
+[`286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86`](https://github.com/CrispStrobe/quds_office_suite/commit/286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86).
+This report qualifies the frozen source; subsequent branch integrations have
+their own continuation evidence. GitHub Actions was not queried, awaited, or
+used as a validation gate for this morphology qualification.
 
 The unchanged comparison corpus improves **1/73 to 68/73 exact targeted
 morphology corrections**, with **0/175 valid controls flagged** before and
@@ -49,7 +56,10 @@ The authenticated GitHub tree API was used for remote saves. The local test
 commit `153012a92ec5fcbd8911d06f16c20cf8e254b256` and remote `8649b79e` have the
 **same complete Git tree**, `efa8c68569f579e5ff63452eeed0b3607a54fe9c`; only commit
 metadata differs. [source-binding.json](source-binding.json) checks the source
-hashes from the final receipts against the saved remote tree. The old
+hashes from the final receipts against the saved remote tree. The ignored
+workspace `pubspec.lock` is bound separately to an identical
+[tracked historical copy](../proofing-grammar-expansion-20261117/integration/pubspec.lock);
+it is not a file in that Git tree. The old
 [continuation-checkpoint.json](continuation-checkpoint.json) is historical and
 explicitly describes an unqualified intermediate implementation.
 
@@ -194,7 +204,8 @@ The official pinned toolchain is Flutter **3.47.8**, Dart **3.13.7**, Node
 **24.22.1**. The SDK archive and all 162 required Pub archives were checked
 against their recorded hashes. The workspace lockfile is unchanged. Final
 source snapshots remained stable throughout each run; the component and editor
-receipts bind 1,071 source, test, tool, license and example inputs.
+receipts bind 1,070 tracked source, test, tool, license and example inputs, plus
+the separately preserved workspace lockfile.
 
 | Local check | Result |
 | --- | --- |
@@ -269,6 +280,13 @@ The [final runtime archive](final-validation.tar.gz) contains
 component/editor/analyzer/build logs, source snapshots, runtime and dependency
 receipts, performance results, and exact runner copies; its
 [index](final-validation-index.json) records every member hash.
+The [recovery audit](recovery-audit.json) independently verifies the three
+archive digests, their 131 member digests, the recorded command-log digests and
+the source bindings against the frozen source. It also records the historical
+lockfile mapping and the correction to the external final-archive index, which
+had omitted its internal `CONTENTS_SHA256.json` member. Archive and historical
+test-log bytes are unchanged. This audit is an integrity check of prior runs,
+not a new execution of those tests or a qualification of later merged source.
 The [exploratory archive](exploratory-evidence.tar.gz) and its
 [index](exploratory-evidence-index.json) retain earlier failed tests,
 eager loading measurements and the successful baseline replay. These are
