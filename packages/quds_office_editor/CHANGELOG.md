@@ -4,6 +4,9 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Report omitted manual-model coverage only for applicable document languages,
+  so a de-DE-only manual provider does not mark an English check incomplete.
+
 - Show a readable name for the German noun-case rule in ignored checks, using
   the existing review and undoable correction flow for broader noun morphology.
 - Add an optional manual proofing service for preloaded grammar providers. F7

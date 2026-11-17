@@ -1,3 +1,9 @@
+## Unreleased
+
+- Coalesce superseded requests before they enter the isolate mailbox, retain
+  remote queue slots until acknowledged, and preserve progress for other keys.
+- Reject over-limit text before it can cancel a valid in-flight request.
+
 ## 0.1.0
 
 - Introduce an optional German GECToR decoder and proofing provider with exact

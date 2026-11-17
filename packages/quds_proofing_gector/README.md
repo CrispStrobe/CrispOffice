@@ -197,7 +197,12 @@ broad false-positive rate or authorize automatic application of suggestions.
 The worker loads one backend and one lexicon, then serializes requests. The
 default queue admits at most three outstanding requests; the configurable limit
 is 1–8. A newer request for the same document/block/base-offset key supersedes
-the older snapshot. Cancellation is checked between passes, after forwards,
+the older snapshot. Superseding a caller retains the old remote slot until the
+worker acknowledges it; only the latest unsent snapshot for each key is kept
+locally. This bounds both unacknowledged requests and waiting snapshots even
+while synchronous inference blocks the worker's message loop. Over-limit text
+is rejected before it can cancel existing valid work or cross the isolate.
+Cancellation is checked between passes, after forwards,
 and while applying guards. Synchronous native inference cannot be interrupted
 mid-call, but its cancelled result is discarded before another pass.
 
@@ -251,6 +256,12 @@ gate. Without explicit native fixtures it is skipped, not claimed as passing.
 The full real-worker/provider path is exercised by the repository's separate
 `tools/proofing/german_model/run_gector_dart.dart` tool. These checks run locally
 without waiting for GitHub Actions.
+
+When compiling that tool to an executable outside the checkout, pass
+`--source-root /path/to/quds_office_suite` so its input hashes refer to the
+reviewed source. The report records the actual executable path and SHA-256
+alongside Dart product mode; retain the compilation command and input hashes
+with the measurement. Compiled measurements do not replace earlier JIT results.
 
 ## Licensing
 

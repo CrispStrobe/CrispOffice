@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Repair required noun endings after unambiguous genitive determiners, such as
+  `des Student` and `des schlimmen Fehler`, using the existing noun-case rule.
+  Retain ambiguous articles, valid alternatives, nominalized adjectives,
+  source/grapheme guards and modern-spelling corroboration.
+
 - Broaden offline German article, case and adjective checking with 67,492
   noun lemmas from pinned Unicode-3.0 Inflection data. Load lexical buckets
   lazily on Dart VM and web, preserve ambiguous and alternative readings, and

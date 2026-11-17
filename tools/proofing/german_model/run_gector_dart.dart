@@ -46,7 +46,12 @@ Future<void> _run(
   File output,
   Map<String, Object?> partial,
 ) async {
-  final root = Directory.fromUri(Platform.script.resolve('../../../'));
+  // A compiled executable can live outside the checkout. Its script URI is
+  // the binary path, so callers must be able to identify the source explicitly.
+  final sourceRoot = options['source-root'];
+  final root = sourceRoot == null
+      ? Directory.fromUri(Platform.script.resolve('../../../'))
+      : Directory(sourceRoot).absolute;
   partial['stage'] = 'source-and-reference-admission';
   final sourcesBefore = await _sources(root);
   partial['source_files'] = sourcesBefore;
@@ -367,6 +372,14 @@ Future<void> _run(
         'This small panel is not target-device or representative quality qualification.',
     'runtime': {
       'dart': Platform.version,
+      'product_mode': const bool.fromEnvironment('dart.vm.product'),
+      'executable': Platform.resolvedExecutable,
+      'executable_sha256':
+          (await sha256
+                  .bind(File(Platform.resolvedExecutable).openRead())
+                  .first)
+              .toString(),
+      'script': Platform.script.toString(),
       'os': Platform.operatingSystem,
       'os_version': Platform.operatingSystemVersion,
       'processors': Platform.numberOfProcessors,
@@ -480,6 +493,7 @@ Map<String, String> _arguments(List<String> arguments) {
     'reference',
     'output',
   };
+  const optional = {'source-root'};
   final result = <String, String>{};
   for (var index = 0; index < arguments.length; index += 2) {
     if (index + 1 >= arguments.length || !arguments[index].startsWith('--')) {
@@ -488,7 +502,8 @@ Map<String, String> _arguments(List<String> arguments) {
       );
     }
     final key = arguments[index].substring(2);
-    if (!required.contains(key) || result.containsKey(key)) {
+    if ((!required.contains(key) && !optional.contains(key)) ||
+        result.containsKey(key)) {
       throw ArgumentError('Unknown or duplicated option: $key');
     }
     result[key] = arguments[index + 1];
