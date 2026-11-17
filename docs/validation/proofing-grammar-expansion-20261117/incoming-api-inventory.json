@@ -1,0 +1,1349 @@
+{
+  "captured_at": "2026-11-17T06:14:28.375Z",
+  "branches": [
+    {
+      "name": "codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "name": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "name": "codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "name": "codex/proofing-en-de-20261117",
+      "sha": "62563c61f02ee44504776d9e7d26557f9bae490a"
+    },
+    {
+      "name": "codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99"
+    },
+    {
+      "name": "codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466"
+    },
+    {
+      "name": "codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0"
+    },
+    {
+      "name": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "name": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "name": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "name": "codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841"
+    },
+    {
+      "name": "codex/text-rendering-20261116",
+      "sha": "74b6b39e7941ab351133023b4165cbd6101d2877"
+    },
+    {
+      "name": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "name": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "name": "codex/zotero-recovery-20261116",
+      "sha": "c929960790274e7f552587cb05ff8020f6afc425"
+    },
+    {
+      "name": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "name": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "name": "docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "name": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "name": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "name": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "name": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "name": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "name": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "name": "docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "name": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "name": "docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "name": "docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "name": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "name": "docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "name": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "name": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "name": "docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "name": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "name": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "name": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "name": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "name": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "name": "feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "name": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "name": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "name": "feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "name": "feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "name": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "name": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "name": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "name": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "name": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "name": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "name": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "name": "feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "name": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "name": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "name": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "name": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "name": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "name": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "name": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "name": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "name": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "name": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "name": "feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "name": "feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "name": "feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "name": "feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "name": "feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "name": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "name": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "name": "feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "name": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "name": "fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "name": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "name": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "name": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "name": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "name": "main",
+      "sha": "5c38679bab0819c8726444a98d4fbf6ab8437b40"
+    },
+    {
+      "name": "vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae"
+    },
+    {
+      "name": "vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263"
+    },
+    {
+      "name": "vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248"
+    },
+    {
+      "name": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "name": "vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "name": "vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5"
+    },
+    {
+      "name": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "name": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "name": "vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+    },
+    {
+      "name": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "name": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "name": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "name": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "name": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "name": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "name": "vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "name": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "name": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "name": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "name": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "name": "vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "name": "vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "name": "vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "name": "vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "name": "vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "name": "vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f"
+    },
+    {
+      "name": "vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+    }
+  ],
+  "prs": [
+    {
+      "number": 93,
+      "title": "Add a bounded ODP presentation writer",
+      "state": "closed",
+      "head": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "branch": "feat/odp-presentation-writer",
+      "base": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e",
+      "updated": "2026-11-17T06:11:15Z",
+      "merged": "2026-11-17T06:11:15Z"
+    },
+    {
+      "number": 85,
+      "title": "Complete Zotero recovery, incoming sync and local qualification [skip ci]",
+      "state": "open",
+      "head": "c929960790274e7f552587cb05ff8020f6afc425",
+      "branch": "codex/zotero-recovery-20261116",
+      "base": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+      "updated": "2026-11-17T00:04:06Z",
+      "merged": null
+    },
+    {
+      "number": 72,
+      "title": "Improve text rendering, PDF fidelity and spreadsheet persistence",
+      "state": "open",
+      "head": "74b6b39e7941ab351133023b4165cbd6101d2877",
+      "branch": "codex/text-rendering-20261116",
+      "base": "50b3694ecd3d23436325e42e11be08e9ccc5fef8",
+      "updated": "2026-11-16T23:48:43Z",
+      "merged": null
+    },
+    {
+      "number": 91,
+      "title": "Improve English/German proofing and reconcile current fork histories",
+      "state": "open",
+      "head": "62563c61f02ee44504776d9e7d26557f9bae490a",
+      "branch": "codex/proofing-en-de-20261117",
+      "base": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+      "updated": "2026-11-16T23:47:03Z",
+      "merged": null
+    },
+    {
+      "number": 92,
+      "title": "Add a bounded ODT document writer",
+      "state": "closed",
+      "head": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "branch": "feat/odt-document-writer",
+      "base": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+      "updated": "2026-11-16T23:41:09Z",
+      "merged": "2026-11-16T23:41:09Z"
+    },
+    {
+      "number": 90,
+      "title": "Record ODT frame dimensions",
+      "state": "closed",
+      "head": "6da74faa9160275df9c10a864c758033c92f114d",
+      "branch": "docs/odt-frame-size",
+      "base": "50b3694ecd3d23436325e42e11be08e9ccc5fef8",
+      "updated": "2026-11-16T23:32:48Z",
+      "merged": "2026-11-16T23:32:48Z"
+    },
+    {
+      "number": 89,
+      "title": "Retain conditional-format dxf styles",
+      "state": "closed",
+      "head": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "branch": "feat/conditional-dxf-styles",
+      "base": "8e405a09e7b6a017c95ffc6bd32b49ab613a7a3f",
+      "updated": "2026-11-16T23:17:46Z",
+      "merged": "2026-11-16T23:17:46Z"
+    },
+    {
+      "number": 88,
+      "title": "Record ranked and average conditional rules",
+      "state": "closed",
+      "head": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "branch": "docs/conditional-top-bottom",
+      "base": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "updated": "2026-11-16T23:15:43Z",
+      "merged": "2026-11-16T23:15:43Z"
+    },
+    {
+      "number": 87,
+      "title": "Improve English/German hyphenation, spelling and grammar without GPL components",
+      "state": "open",
+      "head": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "branch": "codex/proofing-en-de-20261116",
+      "base": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "updated": "2026-11-16T20:28:29Z",
+      "merged": null
+    },
+    {
+      "number": 86,
+      "title": "Import and export top, bottom and average conditional rules",
+      "state": "closed",
+      "head": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "branch": "feat/conditional-top-bottom",
+      "base": "63194d8e482892f284eaccb95ce48a8a8132376d",
+      "updated": "2026-11-16T20:11:30Z",
+      "merged": "2026-11-16T20:11:30Z"
+    },
+    {
+      "number": 84,
+      "title": "Record ODS header and footer round-trips",
+      "state": "closed",
+      "head": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "branch": "docs/ods-header-footer",
+      "base": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "updated": "2026-11-16T19:59:59Z",
+      "merged": "2026-11-16T19:59:59Z"
+    },
+    {
+      "number": 83,
+      "title": "Round-trip ODS header and footer sections",
+      "state": "closed",
+      "head": "331be9688e2de1feb52635490b534042dea10c27",
+      "branch": "feat/ods-header-footer",
+      "base": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "updated": "2026-11-16T19:57:58Z",
+      "merged": "2026-11-16T19:57:58Z"
+    },
+    {
+      "number": 82,
+      "title": "Finish the ODS page-setup note",
+      "state": "closed",
+      "head": "4497c737623c1339d2422487d53941c20472bac9",
+      "branch": "docs/page-setup-fix",
+      "base": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa",
+      "updated": "2026-11-16T19:50:02Z",
+      "merged": "2026-11-16T19:50:02Z"
+    },
+    {
+      "number": 81,
+      "title": "Record worksheet page setup",
+      "state": "closed",
+      "head": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "branch": "docs/sheet-page-setup",
+      "base": "36db2a6cbc0f028dd15b558914045f995aeae949",
+      "updated": "2026-11-16T19:49:42Z",
+      "merged": "2026-11-16T19:49:42Z"
+    },
+    {
+      "number": 80,
+      "title": "Model and round-trip worksheet page setup",
+      "state": "closed",
+      "head": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "branch": "feat/sheet-page-setup",
+      "base": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "updated": "2026-11-16T19:47:41Z",
+      "merged": "2026-11-16T19:47:41Z"
+    },
+    {
+      "number": 79,
+      "title": "Record ODS row groups",
+      "state": "closed",
+      "head": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "branch": "docs/ods-row-groups",
+      "base": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "updated": "2026-11-16T19:25:30Z",
+      "merged": "2026-11-16T19:25:30Z"
+    },
+    {
+      "number": 78,
+      "title": "Write ODS row outline groups and off-extent geometry",
+      "state": "closed",
+      "head": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "branch": "feat/ods-row-groups",
+      "base": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "updated": "2026-11-16T19:23:13Z",
+      "merged": "2026-11-16T19:23:12Z"
+    },
+    {
+      "number": 77,
+      "title": "Record ODS filter predicates",
+      "state": "closed",
+      "head": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "branch": "docs/ods-filter-predicates",
+      "base": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "updated": "2026-11-16T19:21:01Z",
+      "merged": "2026-11-16T19:21:01Z"
+    },
+    {
+      "number": 76,
+      "title": "Write ODS autofilter predicates",
+      "state": "closed",
+      "head": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "branch": "feat/ods-filter-conditions",
+      "base": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "updated": "2026-11-16T19:17:10Z",
+      "merged": "2026-11-16T19:17:09Z"
+    },
+    {
+      "number": 75,
+      "title": "Record the host ODT picture registry",
+      "state": "closed",
+      "head": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "branch": "docs/odt-image-registry",
+      "base": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "updated": "2026-11-16T19:15:03Z",
+      "merged": "2026-11-16T19:15:03Z"
+    },
+    {
+      "number": 74,
+      "title": "Describe the current Office and ODF capabilities",
+      "state": "closed",
+      "head": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "branch": "docs/current-office-capabilities",
+      "base": "aee79048dc74d2fe413ae0e57cca9189c7202a0f",
+      "updated": "2026-11-16T18:52:45Z",
+      "merged": "2026-11-16T18:52:45Z"
+    },
+    {
+      "number": 63,
+      "title": "Improve Zotero source identity, dialog scaling, and session backoff",
+      "state": "closed",
+      "head": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "branch": "codex/zotero-capabilities-20261116",
+      "base": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "updated": "2026-11-16T18:48:29Z",
+      "merged": "2026-11-16T18:48:29Z"
+    },
+    {
+      "number": 73,
+      "title": "Define the ODS writer default page layout",
+      "state": "closed",
+      "head": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "branch": "fix/ods-writer-page-layout",
+      "base": "ed5facb4bd503667749ed3d13378da6a1b34738b",
+      "updated": "2026-11-16T18:30:45Z",
+      "merged": "2026-11-16T18:30:45Z"
+    },
+    {
+      "number": 71,
+      "title": "Record ODS writer picture support",
+      "state": "closed",
+      "head": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "branch": "docs/ods-writer-images",
+      "base": "8ddbb76580fc914f1bb60b8cda76ee7f71caacdf",
+      "updated": "2026-11-16T15:58:08Z",
+      "merged": "2026-11-16T15:58:08Z"
+    },
+    {
+      "number": 70,
+      "title": "Write worksheet pictures into ODS packages",
+      "state": "closed",
+      "head": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "branch": "feat/ods-writer-images",
+      "base": "b6d13f6546e1f240b2d4c5940fbf66bcf9ca53f2",
+      "updated": "2026-11-16T15:55:20Z",
+      "merged": "2026-11-16T15:55:20Z"
+    },
+    {
+      "number": 69,
+      "title": "Write ODS conditional formats and validations",
+      "state": "closed",
+      "head": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "branch": "feat/ods-writer-conditional",
+      "base": "91f82b8007e4555b855d807a9d9785914e73b650",
+      "updated": "2026-11-16T15:49:13Z",
+      "merged": "2026-11-16T15:49:13Z"
+    },
+    {
+      "number": 68,
+      "title": "Extend the ODS writer to metadata and number formats",
+      "state": "closed",
+      "head": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "branch": "feat/ods-writer-metadata",
+      "base": "3398d53198263d3b76189fabb25b9d53ddf934db",
+      "updated": "2026-11-16T15:16:47Z",
+      "merged": "2026-11-16T15:16:47Z"
+    },
+    {
+      "number": 67,
+      "title": "Add a bounded ODS workbook writer",
+      "state": "closed",
+      "head": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "branch": "feat/ods-writer",
+      "base": "ea88b25f0242ecb0145fea96bf2f8471dba93cad",
+      "updated": "2026-11-16T15:11:42Z",
+      "merged": "2026-11-16T15:11:41Z"
+    },
+    {
+      "number": 66,
+      "title": "Record ODS filter operator progress",
+      "state": "closed",
+      "head": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "branch": "docs/filter-operators",
+      "base": "5d89092e779d2cbf776f21f2f7682f7416c0d25f",
+      "updated": "2026-11-16T14:16:19Z",
+      "merged": "2026-11-16T14:16:19Z"
+    },
+    {
+      "number": 65,
+      "title": "Support ODS filter comparison operators",
+      "state": "closed",
+      "head": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "branch": "feat/ods-filter-operators",
+      "base": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "updated": "2026-11-16T14:13:30Z",
+      "merged": "2026-11-16T14:13:30Z"
+    },
+    {
+      "number": 64,
+      "title": "Close ODS metadata and validation backlog",
+      "state": "closed",
+      "head": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "branch": "docs/filters-closed",
+      "base": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+      "updated": "2026-11-16T13:52:50Z",
+      "merged": "2026-11-16T13:52:49Z"
+    },
+    {
+      "number": 62,
+      "title": "Preserve ODS filter predicates",
+      "state": "closed",
+      "head": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "branch": "feat/ods-filter-predicates",
+      "base": "3624a9702054f6f64f7132b374bbcf827bfcf232",
+      "updated": "2026-11-16T13:37:18Z",
+      "merged": "2026-11-16T13:37:17Z"
+    },
+    {
+      "number": 61,
+      "title": "Record ODS metadata and hyperlink progress",
+      "state": "closed",
+      "head": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "branch": "docs/metadata-complete",
+      "base": "0969b2203a6758116bf42b53d7348898cc79d7ea",
+      "updated": "2026-11-16T13:35:44Z",
+      "merged": "2026-11-16T13:35:44Z"
+    },
+    {
+      "number": 60,
+      "title": "Preserve ODS outline groups",
+      "state": "closed",
+      "head": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "branch": "feat/ods-outline",
+      "base": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "updated": "2026-11-16T13:32:41Z",
+      "merged": "2026-11-16T13:32:40Z"
+    },
+    {
+      "number": 59,
+      "title": "Preserve ODS cell hyperlinks",
+      "state": "closed",
+      "head": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "branch": "feat/ods-hyperlinks",
+      "base": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "updated": "2026-11-16T13:26:38Z",
+      "merged": "2026-11-16T13:26:38Z"
+    },
+    {
+      "number": 56,
+      "title": "Optimize Zotero metadata refresh and native citation scaling",
+      "state": "closed",
+      "head": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "branch": "codex/zotero-optimization-20261116",
+      "base": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884",
+      "updated": "2026-11-16T11:33:19Z",
+      "merged": "2026-11-16T11:33:19Z"
+    },
+    {
+      "number": 50,
+      "title": "Improve Zotero catalog insertion, rich citations and note numbering [skip ci]",
+      "state": "closed",
+      "head": "428679a33381f943a8ae63117d4207f01dd15462",
+      "branch": "codex/zotero-support-20261116",
+      "base": "dc5f93b673e6087cccc6d66b33dfbfd099668f77",
+      "updated": "2026-11-16T11:33:19Z",
+      "merged": "2026-11-16T11:33:19Z"
+    },
+    {
+      "number": 58,
+      "title": "Import ODS named expressions",
+      "state": "closed",
+      "head": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "branch": "feat/ods-named-expressions",
+      "base": "91d574acefb45f326a82b9e416719213050068cc",
+      "updated": "2026-11-16T10:37:36Z",
+      "merged": "2026-11-16T10:37:36Z"
+    },
+    {
+      "number": 57,
+      "title": "Preserve ODS worksheet tab colours",
+      "state": "closed",
+      "head": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "branch": "feat/ods-tab-color",
+      "base": "6c2e3d173b8ed3a84b26792105a061bd9dd57c35",
+      "updated": "2026-11-16T10:30:10Z",
+      "merged": "2026-11-16T10:30:10Z"
+    },
+    {
+      "number": 55,
+      "title": "Close the modeled ODS validation backlog",
+      "state": "closed",
+      "head": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "branch": "docs/validation-complete",
+      "base": "73eee5d925998e94643be4f3988cc46e1f559e63",
+      "updated": "2026-11-16T09:17:36Z",
+      "merged": "2026-11-16T09:17:36Z"
+    },
+    {
+      "number": 54,
+      "title": "Import ODS validation prompts and error styles",
+      "state": "closed",
+      "head": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "branch": "feat/ods-validation-messages",
+      "base": "adffad55e28479bcae20a87a95fb4e96e25cd96c",
+      "updated": "2026-11-16T09:10:51Z",
+      "merged": "2026-11-16T09:10:51Z"
+    },
+    {
+      "number": 53,
+      "title": "Import ODS custom formula validations",
+      "state": "closed",
+      "head": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "branch": "feat/ods-custom-validation",
+      "base": "bd130094b4d1bc666aa9b166e6ed7fb1b447aeb3",
+      "updated": "2026-11-16T09:04:41Z",
+      "merged": "2026-11-16T09:04:41Z"
+    },
+    {
+      "number": 52,
+      "title": "Record numeric validation progress",
+      "state": "closed",
+      "head": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "branch": "docs/validation-operators",
+      "base": "d9508c94cccc8e638ca6ae5badfcb2ef50e71259",
+      "updated": "2026-11-16T08:41:03Z",
+      "merged": "2026-11-16T08:41:03Z"
+    },
+    {
+      "number": 51,
+      "title": "Import ODS numeric, date and length validations",
+      "state": "closed",
+      "head": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "branch": "feat/ods-validation-operators",
+      "base": "dc5f93b673e6087cccc6d66b33dfbfd099668f77",
+      "updated": "2026-11-16T08:32:58Z",
+      "merged": "2026-11-16T08:32:57Z"
+    },
+    {
+      "number": 49,
+      "title": "Record ODS metadata and validation progress",
+      "state": "closed",
+      "head": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "branch": "docs/metadata-closed",
+      "base": "80be2b337a80af47b9e50de5758e31ffbd6ac99d",
+      "updated": "2026-11-15T23:08:16Z",
+      "merged": "2026-11-15T23:08:16Z"
+    },
+    {
+      "number": 48,
+      "title": "Import ODS workbook metadata",
+      "state": "closed",
+      "head": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "branch": "feat/ods-metadata",
+      "base": "dbad8f1ca289eda1c4677c282e845df01ec754f6",
+      "updated": "2026-11-15T23:02:26Z",
+      "merged": "2026-11-15T23:02:25Z"
+    },
+    {
+      "number": 47,
+      "title": "Add native Zotero citation tools and document-wide style refresh",
+      "state": "closed",
+      "head": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "branch": "codex/zotero-support-20261115",
+      "base": "68d5bd8a34e881dcd4c6077493fcde55bbfb0064",
+      "updated": "2026-11-15T22:52:54Z",
+      "merged": "2026-11-15T22:52:54Z"
+    },
+    {
+      "number": 46,
+      "title": "Link the remaining office-format backlog",
+      "state": "closed",
+      "head": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "branch": "docs/readme-remaining-gaps",
+      "base": "d5db3b28384c317809f9926b1fec1653741380ae",
+      "updated": "2026-11-15T22:24:09Z",
+      "merged": "2026-11-15T22:24:09Z"
+    },
+    {
+      "number": 45,
+      "title": "Document remaining Office engine work and update changelogs",
+      "state": "closed",
+      "head": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "branch": "docs/remaining-gaps",
+      "base": "33d36cd0e111fbfdd152c49d54532286fe8e8d2d",
+      "updated": "2026-11-15T22:22:35Z",
+      "merged": "2026-11-15T22:22:34Z"
+    },
+    {
+      "number": 44,
+      "title": "Split content controls across multiple document sections",
+      "state": "closed",
+      "head": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "branch": "fix/sdt-multi-section-control",
+      "base": "7f005ef2592d2c1691762c6f0a3826302fedbdbc",
+      "updated": "2026-11-15T22:18:55Z",
+      "merged": "2026-11-15T22:18:54Z"
+    },
+    {
+      "number": 40,
+      "title": "Add Zotero online and desktop libraries with DOCX citation fields",
+      "state": "closed",
+      "head": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "branch": "codex/zotero-support-20261115",
+      "base": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "updated": "2026-11-15T22:12:58Z",
+      "merged": "2026-11-15T22:12:58Z"
+    },
+    {
+      "number": 43,
+      "title": "Support begins-with and ends-with conditions",
+      "state": "closed",
+      "head": "20681b8658392212c128f51b4c91f0b638942448",
+      "branch": "feat/conditional-affix",
+      "base": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "updated": "2026-11-15T22:05:48Z",
+      "merged": "2026-11-15T22:05:48Z"
+    },
+    {
+      "number": 42,
+      "title": "Lift a trailing section break out of a body content control",
+      "state": "closed",
+      "head": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "branch": "fix/sdt-trailing-section-break",
+      "base": "42b7f1e767454a962ef3a21342eac335bbf925db",
+      "updated": "2026-11-15T20:24:56Z",
+      "merged": "2026-11-15T20:24:56Z"
+    },
+    {
+      "number": 41,
+      "title": "Support between conditional rules",
+      "state": "closed",
+      "head": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "branch": "feat/conditional-between",
+      "base": "c210315bee537776b556ae9885e907483b6df7bd",
+      "updated": "2026-11-15T20:23:41Z",
+      "merged": "2026-11-15T20:23:40Z"
+    },
+    {
+      "number": 39,
+      "title": "Import ODS list validations",
+      "state": "closed",
+      "head": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "branch": "feat/ods-validations",
+      "base": "9f1efe0758f5e67f10cec05883cc587a3b08b14c",
+      "updated": "2026-11-15T19:18:35Z",
+      "merged": "2026-11-15T19:18:34Z"
+    },
+    {
+      "number": 38,
+      "title": "Import ODS contains-text and duplicate rules",
+      "state": "closed",
+      "head": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "branch": "feat/conditional-text",
+      "base": "85f5109c8067133bc30942d71b0be6ea9d9bf68c",
+      "updated": "2026-11-15T19:13:56Z",
+      "merged": "2026-11-15T19:13:56Z"
+    },
+    {
+      "number": 37,
+      "title": "Emit conditional dxf styles for generated rules",
+      "state": "closed",
+      "head": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "branch": "feat/conditional-dxf",
+      "base": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+      "updated": "2026-11-15T19:10:36Z",
+      "merged": "2026-11-15T19:10:36Z"
+    },
+    {
+      "number": 36,
+      "title": "Support the full numeric conditional comparators",
+      "state": "closed",
+      "head": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "branch": "feat/conditional-operators",
+      "base": "1d7fee380def59d5a766cab106e519952d5c3292",
+      "updated": "2026-11-15T19:01:57Z",
+      "merged": "2026-11-15T19:01:57Z"
+    },
+    {
+      "number": 35,
+      "title": "Import ODS conditional formats and paint matches",
+      "state": "closed",
+      "head": "e59751246a200e7477657d0e4835bf77b153422c",
+      "branch": "feat/ods-conditional",
+      "base": "7b3b0bbba3a8530678d77325bbec1091f6aae9c9",
+      "updated": "2026-11-15T18:57:27Z",
+      "merged": "2026-11-15T18:57:27Z"
+    },
+    {
+      "number": 34,
+      "title": "Accept UTF-16 custom XML while probing bibliography ownership",
+      "state": "closed",
+      "head": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "branch": "fix/utf16-custom-xml",
+      "base": "3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa",
+      "updated": "2026-11-15T18:49:26Z",
+      "merged": "2026-11-15T18:49:26Z"
+    },
+    {
+      "number": 33,
+      "title": "Preserve hidden ODS worksheets",
+      "state": "closed",
+      "head": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "branch": "feat/sheet-hidden-sheets",
+      "base": "49769a21ba26cf2866ee26c66938d3ce8d5ad3d9",
+      "updated": "2026-11-15T18:39:22Z",
+      "merged": "2026-11-15T18:39:22Z"
+    },
+    {
+      "number": 32,
+      "title": "Preserve hidden ODS rows and columns",
+      "state": "closed",
+      "head": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "branch": "feat/sheet-hidden-state",
+      "base": "2f47132206a88c6dd0f724a665fb6b7158cf3a57",
+      "updated": "2026-11-15T16:51:32Z",
+      "merged": "2026-11-15T16:51:32Z"
+    },
+    {
+      "number": 31,
+      "title": "Honor nameless ODS default styles and geometry",
+      "state": "closed",
+      "head": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "branch": "feat/ods-default-geometry",
+      "base": "39761edb40a140fc488b3bdb0ddc36dbee557a93",
+      "updated": "2026-11-15T16:45:53Z",
+      "merged": "2026-11-15T16:45:53Z"
+    },
+    {
+      "number": 30,
+      "title": "Apply ODS document default cell styles",
+      "state": "closed",
+      "head": "49b447324159595c59e64d8425b54a09f79ec736",
+      "branch": "feat/ods-default-style",
+      "base": "5532d598499eceac0a75098fda3d54bfd9515ed0",
+      "updated": "2026-11-15T16:25:32Z",
+      "merged": "2026-11-15T16:25:32Z"
+    },
+    {
+      "number": 28,
+      "title": "Prove edited XLSM/XLTX saves preserve package type",
+      "state": "closed",
+      "head": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "branch": "test/xlsm-preservation",
+      "base": "6d7c696e2ae9095b395fba9f3bc22ec1c1139ed6",
+      "updated": "2026-11-15T14:59:45Z",
+      "merged": "2026-11-15T14:17:35Z"
+    },
+    {
+      "number": 25,
+      "title": "Accept OOXML step vocabulary, keep all Word underline styles, continue formatting after a split",
+      "state": "closed",
+      "head": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "branch": "fix/word-steps-vocabulary",
+      "base": "f90bc0e20e3fa8e4af72a06e8d941faa3677db6d",
+      "updated": "2026-11-15T14:59:44Z",
+      "merged": "2026-11-15T11:30:45Z"
+    },
+    {
+      "number": 22,
+      "title": "Keep inline pictures inside their line of text",
+      "state": "closed",
+      "head": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "branch": "fix/word-inline-pictures",
+      "base": "eae58542dffd73cf30e97cc60a59a5474656d676",
+      "updated": "2026-11-15T14:59:44Z",
+      "merged": "2026-11-15T07:11:20Z"
+    },
+    {
+      "number": 21,
+      "title": "Apply headings the way Word does; shade theme colours in HSL",
+      "state": "closed",
+      "head": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "branch": "fix/word-heading-like-word",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T14:59:44Z",
+      "merged": "2026-11-15T06:24:52Z"
+    },
+    {
+      "number": 20,
+      "title": "Keep shapes without text free of empty text boxes on save",
+      "state": "closed",
+      "head": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "branch": "fix/word-shape-no-textbox",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T14:59:44Z",
+      "merged": "2026-11-15T06:24:51Z"
+    },
+    {
+      "number": 27,
+      "title": "Fix the reviewed Word golden checks on Linux",
+      "state": "closed",
+      "head": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "branch": "fix/linux-goldens",
+      "base": "efa6d911fb5c670ff551f480884c3e7d44a9188c",
+      "updated": "2026-11-15T14:59:43Z",
+      "merged": "2026-11-15T12:23:53Z"
+    },
+    {
+      "number": 26,
+      "title": "Declare archive for the ODS fixture builder",
+      "state": "closed",
+      "head": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "branch": "fix/odf-legacy-spreadsheets",
+      "base": "89574c359034582e0db1a9ba88a3308b6b36e045",
+      "updated": "2026-11-15T14:59:43Z",
+      "merged": "2026-11-15T11:41:44Z"
+    },
+    {
+      "number": 19,
+      "title": "Word-like text selection in the Word editor",
+      "state": "closed",
+      "head": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "branch": "feat/word-like-selection",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T14:59:43Z",
+      "merged": "2026-11-15T06:13:02Z"
+    },
+    {
+      "number": 18,
+      "title": "Preserve cell drafts during worksheet and find navigation",
+      "state": "closed",
+      "head": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "branch": "codex/office-recovery-20261115",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T14:59:43Z",
+      "merged": "2026-11-15T06:13:02Z"
+    },
+    {
+      "number": 29,
+      "title": "Carry ODS pictures into worksheet drawings",
+      "state": "closed",
+      "head": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "branch": "feat/ods-images",
+      "base": "df533bebc6b1a96341a79e9c1a03fc5a90985a28",
+      "updated": "2026-11-15T14:12:12Z",
+      "merged": "2026-11-15T14:12:12Z"
+    },
+    {
+      "number": 24,
+      "title": "Finish ODS fidelity: geometry and date formats",
+      "state": "closed",
+      "head": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "branch": "fix/odf-legacy-spreadsheets",
+      "base": "f90bc0e20e3fa8e4af72a06e8d941faa3677db6d",
+      "updated": "2026-11-15T11:30:45Z",
+      "merged": "2026-11-15T11:30:45Z"
+    },
+    {
+      "number": 23,
+      "title": "Read OpenDocument spreadsheets into the workbook model",
+      "state": "closed",
+      "head": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "branch": "fix/odf-legacy-spreadsheets",
+      "base": "59c7c071cb26171abcf9041fcacc0a7570de8593",
+      "updated": "2026-11-15T08:57:54Z",
+      "merged": "2026-11-15T08:57:53Z"
+    },
+    {
+      "number": 16,
+      "title": "Import legacy .xls workbooks and harden spreadsheet saves",
+      "state": "closed",
+      "head": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "branch": "fix/excel-legacy-import",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T08:51:16Z",
+      "merged": "2026-11-15T06:13:02Z"
+    },
+    {
+      "number": 15,
+      "title": "Make tracked-change import and save linear instead of quadratic",
+      "state": "closed",
+      "head": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "branch": "fix/word-revision-quadratic",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T06:20:56Z",
+      "merged": "2026-11-15T06:13:02Z"
+    },
+    {
+      "number": 17,
+      "title": "Keep unmodelable header/footer parts verbatim instead of refusing documents",
+      "state": "closed",
+      "head": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "branch": "fix/word-header-controls",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T06:20:55Z",
+      "merged": "2026-11-15T06:13:02Z"
+    },
+    {
+      "number": 14,
+      "title": "Keep complex fields as spans instead of wrapping whole paragraphs",
+      "state": "closed",
+      "head": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "branch": "fix/word-field-loss",
+      "base": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "updated": "2026-11-15T06:20:55Z",
+      "merged": "2026-11-15T06:13:02Z"
+    },
+    {
+      "number": 13,
+      "title": "Preserve legacy VML content (w:pict) instead of dropping it on import",
+      "state": "closed",
+      "head": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "branch": "fix/word-preserve-vml-pict",
+      "base": "b99995a089fde9396dd3553f6bfbcf38ce911bf1",
+      "updated": "2026-11-15T06:20:55Z",
+      "merged": "2026-11-14T22:11:16Z"
+    },
+    {
+      "number": 12,
+      "title": "test(office): preserve combined sorting and worksheet history regression",
+      "state": "closed",
+      "head": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "branch": "integration/crispcloud-storage-reconcile-20261114",
+      "base": "c1678ade3b5b9fd13088e94d752fd17fd14eb3e8",
+      "updated": "2026-11-14T22:37:41Z",
+      "merged": "2026-11-14T22:03:26Z"
+    },
+    {
+      "number": 10,
+      "title": "Stop text boxes anchored in one paragraph from nesting exponentially",
+      "state": "closed",
+      "head": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "branch": "fix/word-textbox-nesting",
+      "base": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+      "updated": "2026-11-14T22:37:41Z",
+      "merged": "2026-11-14T22:03:26Z"
+    },
+    {
+      "number": 9,
+      "title": "Keep symbol-font characters (w:sym) through import and save",
+      "state": "closed",
+      "head": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "branch": "fix/word-sym-chars",
+      "base": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+      "updated": "2026-11-14T22:37:41Z",
+      "merged": "2026-11-14T22:03:26Z"
+    },
+    {
+      "number": 11,
+      "title": "Reuse identical media payloads instead of storing a copy on every save",
+      "state": "closed",
+      "head": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "branch": "fix/word-media-dedupe",
+      "base": "c1678ade3b5b9fd13088e94d752fd17fd14eb3e8",
+      "updated": "2026-11-14T22:37:40Z",
+      "merged": "2026-11-14T22:03:26Z"
+    },
+    {
+      "number": 8,
+      "title": "Import real-world Word packages the importer used to refuse (17.3% \u2192 3.3%)",
+      "state": "closed",
+      "head": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "branch": "fix/word-block-bookmarks",
+      "base": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+      "updated": "2026-11-14T22:37:40Z",
+      "merged": "2026-11-14T20:19:59Z"
+    },
+    {
+      "number": 7,
+      "title": "Resolve Office fonts consistently across layout and PDF export",
+      "state": "closed",
+      "head": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "branch": "feature/document-fonts-20261113",
+      "base": "475033efcdc979256ae0e62bd9fa0828b28ee1a6",
+      "updated": "2026-11-13T21:24:42Z",
+      "merged": "2026-11-13T21:16:46Z"
+    },
+    {
+      "number": 6,
+      "title": "Pin canonical parser d14f03f and record complete workspace validation",
+      "state": "closed",
+      "head": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "branch": "feature/legacy-doc-fidelity-continuation-20261112",
+      "base": "e3b81f56e95e9ebc9f1802fb31fc8d8aa756bb08",
+      "updated": "2026-11-13T00:08:18Z",
+      "merged": "2026-11-12T20:58:32Z"
+    },
+    {
+      "number": 4,
+      "title": "Update vendored legacy DOC parser fidelity checkpoint",
+      "state": "closed",
+      "head": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "branch": "feature/legacy-doc-fidelity-20261112",
+      "base": "e2b00bae0600e7e384ca633a7364e8dcd2e95c58",
+      "updated": "2026-11-12T20:12:31Z",
+      "merged": "2026-11-12T18:25:32Z"
+    },
+    {
+      "number": 5,
+      "title": "Continue legacy DOC fidelity integration from current main",
+      "state": "closed",
+      "head": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "branch": "feature/legacy-doc-fidelity-continuation-20261112",
+      "base": "74960237cea7c560f3db7ee96ca37641c4438567",
+      "updated": "2026-11-12T20:10:12Z",
+      "merged": "2026-11-12T20:10:12Z"
+    },
+    {
+      "number": 2,
+      "title": "Preserve spreadsheet font metrics and add Word grid and tab controls",
+      "state": "closed",
+      "head": "08b09485588d2b6270f594a07c983689c087587d",
+      "branch": "feature/office-fidelity-followup-20261112",
+      "base": "54f0f8de01416640560519aa9d732f668f603709",
+      "updated": "2026-11-12T18:16:24Z",
+      "merged": "2026-11-12T15:25:55Z"
+    },
+    {
+      "number": 3,
+      "title": "Expand shared Office fidelity and recover interrupted workflows",
+      "state": "closed",
+      "head": "e550723b0f2a7cd849970f58820d260c36857502",
+      "branch": "feature/office-fidelity-expansion-20261112",
+      "base": "08b09485588d2b6270f594a07c983689c087587d",
+      "updated": "2026-11-12T18:16:22Z",
+      "merged": null
+    },
+    {
+      "number": 1,
+      "title": "Preserve worksheet cache types and add bounded legacy Word conversion",
+      "state": "closed",
+      "head": "54f0f8de01416640560519aa9d732f668f603709",
+      "branch": "feature/office-fidelity-gap-closure-20261112",
+      "base": "50f16f8707cb7a6d8d72378174bb84b0b13bd1cf",
+      "updated": "2026-11-12T15:28:23Z",
+      "merged": "2026-11-12T11:37:16Z"
+    }
+  ]
+}

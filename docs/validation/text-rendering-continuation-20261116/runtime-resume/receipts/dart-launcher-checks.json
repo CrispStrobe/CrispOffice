@@ -1,0 +1,14 @@
+{
+  "previous_symlink_target": "/workspace/scratch/0caf1983021b/toolchain/flutter-source/bin/cache/dart-sdk/bin/dart",
+  "replacement": "shell shim execs exact genuine SDK executable",
+  "sdk_binary_sha256_before": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "sdk_binary_sha256_after": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "symlink_test_help_exit": 124,
+  "timeout_seconds": 30,
+  "exact_sdk_test_help_exit": 0,
+  "direct_vm_test_help_exit": 0,
+  "shim_test_help_exit": 0,
+  "causal_conclusion": "Inconclusive: help probes overlapped the original cohort cold compilation/cache warming. The original cohort subsequently passed. No symlink defect is established.",
+  "sdk_binary_changed": false,
+  "product_or_test_source_changed": false
+}

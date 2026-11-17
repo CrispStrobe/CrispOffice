@@ -1,7 +1,9 @@
 # Text rendering strategy and license review
 
-Reviewed and implemented: **16 November 2026**. Integration baseline:
+Reviewed and implemented: **16 November 2026**. Original integration baseline:
 `bfb24bf57d5efd52f00ab7079b4ac8968259a478`.
+The backend/license review below was refreshed against pinned upstream sources
+on the same date; it does not add or enable a native backend.
 
 ## Decision
 
@@ -71,6 +73,76 @@ Format 12 carries a superset of BMP mappings when both subtables are present;
 large sparse sets use format 12 alone instead of emitting a corrupt format 4.
 Older readers restricted to format 4 do not gain support for that overflow case.
 
+### Continuation: TrueType structure and independent PDF character codes
+
+The [continuation report](validation/text-rendering-continuation-20261116/README.md)
+records the next implementation and its local qualification. Office PDF exports
+now allocate a distinct CID for each mapped Unicode scalar, even when several
+scalars share one font glyph. A real `CIDToGIDMap` stream maps these character
+codes to the embedded subset's glyph IDs; widths and ToUnicode use the same
+encoding. Word, worksheet and presentation exports therefore preserve authored
+aliases for extraction and search. Font resources are immutable once emitted,
+limited to 65,535 mapped characters, and split/reused for larger repertoires.
+Low-level writer callers can retain their existing identity encoding.
+
+The subsetter aligns glyph records before writing `loca`, retains and remaps
+composite dependencies without recursively expanding their outlines, and rejects
+cycles, dangling references and truncated records with typed errors. It preserves
+font-wide OS/2 metrics and embedding metadata while recomputing Unicode coverage
+for the subset, and retains post style metrics in a version 3 table. The numeric
+OS/2 interval transcription carries the upstream FontTools MIT notice; no
+FontTools runtime or new native dependency is introduced.
+
+The independent PDF fixture compares explicit CID mapping with an identity-mapped
+reference containing the same embedded font and positioned glyphs. It checks
+actual PDF raster output and Unicode extraction separately. Synthetic emoji/CJK
+code points deliberately alias a Latin outline in this fixture; they test mapping
+and transport, not emoji/CJK font coverage or a new shaping backend.
+
+A separate cmap-only diagnostic found that changing font character coverage can
+change autohint output in Matplotlib 3.10.8's bundled FreeType 2.6.1 even when
+all glyph outlines, IDs and metrics remain identical. Its native-hinting and
+unhinted controls stayed identical. That result establishes a mechanism in that
+runtime; it does not identify Flutter 3.47.8's exact cause or establish general
+full-font/subset raster equality. Shared positioned-glyph shaping and exact
+editor/headless parity remain separate future work.
+
+### 17 November continuation: logical PDF text and bounded font maps
+
+The [office continuation report](validation/office-continuation-20261117/README.md)
+records the next integration and local qualification. PDF drawing still uses
+the existing selected font, shaped code points and positioned glyphs. When
+those differ from the authored text, a separate `ActualText` span now carries
+the logical source. Word spans compose explicit glyph-owned source ranges,
+synthetic presentations and generated labels without borrowing visible text
+from sparse gaps. Worksheet and slide spans use the breaker's logical source
+ranges; omitted wrap separators remain available for copy and search.
+
+The reader shares one replacement owner through nested marked content and
+accumulates its selectable box across the covered text showings. Generic
+replacement metadata no longer changes rotated painting. The explicit
+`PdfCanvas.showMarkedLine` watermark helper retains its existing Quds logical
+painting policy through a separate `QudsLogicalLine` hint. Other readers keep
+using the same content-stream glyphs and may apply their own extraction order
+and whitespace conventions.
+
+The cmap parser now checks declared subtable boundaries, group/segment order,
+Unicode ranges and glyph limits before accepting a mapping. Format 12 remains
+compact instead of allocating one map entry per scalar during parsing.
+Supported Unicode tables take precedence over legacy mappings; among legacy
+tables the deterministic fallback order is Windows Symbol, Macintosh, then
+other supported encodings. This fallback order is an application policy.
+Malformed tables fail with `SfntException`; no native dependency is added.
+
+These changes preserve logical text within the tested source spans and wrapped
+single-paragraph paths. They do not establish a shared shaping pipeline,
+universal paragraph/newline reconstruction, or complete PDF marked-content
+conformance. Selection boxes cover whole replacement spans, not independently
+positioned source characters. Type3/image-only replacement content and full
+PDFDocEncoding remain separate reader work. The report distinguishes exact
+Quds extraction from external text-extractor behavior and records independent
+PDF raster comparisons.
+
 ## State of the art: components with different responsibilities
 
 A modern stack separates Unicode segmentation/bidi, font matching, OpenType
@@ -91,22 +163,43 @@ top-level license does not describe every optional dependency or test font.
 | FreeType | Font loading, metrics, hinted outlines and rasterization | Explicitly select **FTL**, its BSD-style license with credit clause, rather than the alternative GPL license | Eligible under the similar-permissive route when FTL obligations and enabled dependencies are honored. Adding it does not solve shaping by itself. [License choices](https://freetype.org/license) |
 | Skia | 2D graphics and text drawing infrastructure | BSD-3-Clause for Skia; separate notices for dependencies | An established renderer, but a second Skia integration adds substantial packaging work to an existing Flutter application. [License](https://skia.googlesource.com/skia/+/main/LICENSE) |
 | Parley / Fontique + HarfRust + Skrifa + ICU4X | Modern Rust layout, font discovery, shaping, font processing and Unicode data | Parley/Fontique MIT OR Apache-2.0; HarfRust MIT; Fontations MIT OR Apache-2.0; ICU4X Unicode-3.0 | Promising future shared native/Wasm backend. Assess the whole dependency graph, maturity and fidelity before adoption. [Parley](https://github.com/linebender/parley), [HarfRust](https://github.com/harfbuzz/harfrust), [Fontations](https://github.com/googlefonts/fontations), [ICU4X](https://github.com/unicode-org/icu4x) |
+| Raqm + HarfBuzz + SheenBidi + FreeType | Native bidi/script itemization and positioned glyph output | Raqm MIT; HarfBuzz Old MIT; SheenBidi Apache-2.0; FreeType **FTL** | An eligible configuration when SheenBidi is selected explicitly and the resulting dependencies are audited. The default FriBidi build does not meet this review's no-GPL-family policy. [Pinned Raqm license](https://github.com/HOST-Oman/libraqm/blob/08ee1537e63f93bf926498e12b12ed15ee383216/COPYING), [SheenBidi license](https://github.com/Tehreer/SheenBidi), [glyph API](https://host-oman.github.io/libraqm/raqm-Raqm.html#raqm-glyph-t) |
 | COSMIC Text + Swash | Rust text layout/editing primitives and font scaling | MIT OR Apache-2.0 for both projects | Another permissive Rust option; compare script coverage, font fallback and editor integration against the same corpus. [COSMIC Text](https://github.com/pop-os/cosmic-text), [Swash](https://github.com/dfrg/swash) |
 | SheenBidi | Standalone Unicode bidirectional algorithm | Apache-2.0 | A focused candidate if replacing the custom bidi component independently of shaping. [Project and license](https://github.com/Tehreer/SheenBidi) |
 
 The Rust option has production evidence beyond a new-library claim: Chrome's
-official April 2026 update reports Fontations use for Linux/Android system
-fonts and removal of FreeType from Blink in Chrome 145. Skrifa supplies font
-processing and outlines; this does not mean it supplies office layout or
-replaces every shaping/rasterization responsibility.
+official **24 April 2026** update reports Fontations use for Linux/Android
+system fonts from Chrome 136 and removal of FreeType from Blink in Chrome 145.
+This supports the maturity of Skrifa's font processing and outline work;
+Parley's layout and HarfRust's shaping need their own qualification. Chrome's
+adoption does not establish Quds editor/PDF parity or a performance result.
 ([Chrome's migration report](https://developer.chrome.com/blog/memory-safety-fonts))
 
 DirectWrite and CoreText can be host/platform adapters, but their APIs and
 system components do not constitute a portable MIT/BSD library that Quds can
 redistribute identically on every target. They are not required for this
-increment. LGPL stacks such as [FriBidi](https://github.com/fribidi/fribidi)
-must not be treated as automatically equivalent to the requested
-permissive/MPL set. No GPL implementation is proposed.
+increment. [Pango](https://gnome.pages.gitlab.gnome.org/gtk/Pango/) and
+[FriBidi](https://github.com/fribidi/fribidi) identify LGPL-2.1-or-later licenses;
+this review excludes them under the conservative no-GPL-family policy. No GPL
+implementation is proposed.
+
+### Verified Raqm configuration
+
+The Raqm source fetched for this review is **0.11.0**, commit
+[`08ee1537e63f93bf926498e12b12ed15ee383216`](https://github.com/HOST-Oman/libraqm/commit/08ee1537e63f93bf926498e12b12ed15ee383216).
+Its [Meson options](https://github.com/HOST-Oman/libraqm/blob/08ee1537e63f93bf926498e12b12ed15ee383216/meson_options.txt)
+define `sheenbidi` with a default of `false`. Its
+[build logic](https://github.com/HOST-Oman/libraqm/blob/08ee1537e63f93bf926498e12b12ed15ee383216/meson.build)
+selects SheenBidi with `-Dsheenbidi=true`; the other branch selects FriBidi.
+The same file requests HarfBuzz without GLib/GObject/Cairo when building its
+fallback dependency. Those fallback defaults do not certify an externally
+installed HarfBuzz or FreeType library: inspect the actual linked dependency
+closure and preserve the selected FTL and other notices.
+
+This is source verification of an available configuration, not a completed
+Quds build or deployment. Raqm's output supplies font glyph IDs, positions and
+source clusters. It still needs Quds font fallback, line breaking, PDF mapping
+and target-specific packaging; it is not an office pagination engine.
 
 ### Rechecked backend decision
 
@@ -114,12 +207,38 @@ The follow-up review retains **HarfBuzz plus ICU as the conservative native
 shaping candidate**, and **Parley/Fontique, HarfRust and Skrifa/Fontations as
 the Rust candidate to evaluate**. Parley's current documented stack includes
 Fontique, HarfRust, Skrifa and ICU4X. Its repository also identifies differently
-licensed test/benchmark assets. HarfRust documents known conformance gaps and
-requires callers to scale its units-per-em output. These facts support a
-qualified evaluation, not an immediate replacement of the current editor.
+licensed test/benchmark assets. These facts support a qualified evaluation
+before replacing the current editor.
 ([Parley README](https://github.com/linebender/parley),
-[HarfRust README and limitations](https://github.com/harfbuzz/harfrust),
 [ICU4X Unicode-3.0 license](https://github.com/unicode-org/icu4x/blob/main/LICENSE))
+
+HarfRust needs a more precise assessment than its unversioned README alone.
+At the inspected commit
+[`26f5a7682d5c846a99e702c8b883a8d0113085b3`](https://github.com/harfbuzz/harfrust/commit/26f5a7682d5c846a99e702c8b883a8d0113085b3),
+the [workspace manifest](https://github.com/harfbuzz/harfrust/blob/26f5a7682d5c846a99e702c8b883a8d0113085b3/Cargo.toml)
+reports version 0.16.0 and includes an MIT
+[`harfrust_capi`](https://github.com/harfbuzz/harfrust/blob/26f5a7682d5c846a99e702c8b883a8d0113085b3/harfrust_capi/README.md)
+that builds static/shared C libraries. It exposes positioned shaping output,
+font scale/variation settings, and optional Skrifa drawing/painting and Skera
+subsetting. This is a possible Dart FFI entry point, without writing a Rust
+bridge from scratch. It has documented API gaps and behavioral differences:
+custom Unicode callbacks are unavailable, allocation failure aborts, and
+font/table callbacks must be thread safe. Its optional outline API does not
+expose hinting. None of these features has been built or qualified for Quds.
+
+The pinned
+[`HARFBUZZ.md`](https://github.com/harfbuzz/harfrust/blob/26f5a7682d5c846a99e702c8b883a8d0113085b3/HARFBUZZ.md)
+still records nine Arabic fallback failures from **24 August 2026**, but the
+same revision's
+[`arabic.rs`](https://github.com/harfbuzz/harfrust/blob/26f5a7682d5c846a99e702c8b883a8d0113085b3/harfrust/src/ot/shaper/arabic.rs)
+now constructs and applies an Arabic fallback plan. The historical count is
+not evidence of nine current failures, and source inspection is not proof of
+full conformance. The
+[pinned README](https://github.com/harfbuzz/harfrust/blob/26f5a7682d5c846a99e702c8b883a8d0113085b3/README.md)
+still documents Graphite and experimental feature gaps. Run the actual selected
+release against the office corpus,
+including malformed fonts and Arabic fonts without OpenType substitutions.
+This review makes no comparative throughput or memory claim.
 
 Flutter's documented `GlyphInfo` exposes grapheme ranges, layout bounds and
 direction; it does not expose the exact font identity and positioned glyph
@@ -130,13 +249,22 @@ run. This is an inference from the public API surface.
 [Paragraph](https://api.flutter.dev/flutter/dart-ui/Paragraph-class.html))
 
 A shared backend must connect the whole path: exact font bytes/face index,
-glyph IDs, advances and offsets, source clusters, feature/language settings,
-line-boundary context, subsetting and final PDF emission. A shaping cluster
+variation coordinates, glyph IDs, advances and offsets, source clusters,
+feature/language settings, line-boundary context, subsetting and final PDF
+emission. Preserve the original logical text and its UTF-16 indexing separately
+from visual glyph order. A shaping cluster
 may span multiple editing graphemes or produce multiple glyphs. The current
 PDF emission path still resolves glyphs by code point, so an unused result
 type or a measurement-only FFI adapter would not close that gap.
 ([HarfBuzz cluster contract](https://harfbuzz.github.io/working-with-harfbuzz-clusters.html),
 [Quds PDF emission](../packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart))
+
+HarfBuzz's `UNSAFE_TO_BREAK` output identifies boundaries that require
+reshaping. A complete export path must subset the glyphs actually selected
+by shaping, including glyphs with no direct character mapping, and preserve
+logical extraction for ligatures and multi-glyph clusters. Better advances
+alone do not implement these behaviors.
+([Shaping output and break safety](https://harfbuzz.github.io/getting-started.html))
 
 The next adoption should pin concrete versions and enabled features, audit
 their complete code/data/font dependency and notice set, and qualify fixed-font
@@ -291,9 +419,12 @@ notice sources and verification limits. Font binaries are unchanged.
 
 OFL is a separate, non-GPL font license suitable for bundling and embedding
 under its conditions. Keep the copyright and full license with the assets,
-honor Reserved Font Names for modifications, and do not sell the fonts alone.
+honor Reserved Font Names for redistributed font modifications, and do not sell
+the fonts alone. The official FAQ permits full or subset embedding in documents;
+its document-embedding rules differ from distributing a modified font for reuse.
 Font derivatives retain OFL; documents created with them do not inherit it.
-([Official OFL 1.1 terms](https://openfontlicense.org/open-font-license-official-text/))
+([Official OFL 1.1 terms](https://openfontlicense.org/open-font-license-official-text/),
+[OFL FAQ, embedding and subsetting](https://openfontlicense.org/ofl-faq/))
 
 Engine code, Unicode data, font files and dictionary data have separate
 licenses. A permissive shaper does not authorize bundling a commercial font.

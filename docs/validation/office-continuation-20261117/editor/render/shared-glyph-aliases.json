@@ -1,0 +1,20 @@
+{
+  "scope": "Synthetic aliases of one bundled Latin outline; PDF-reopened versus directly generated identical cmap. No emoji/CJK coverage or original-font raster-parity claim.",
+  "source_code_points": [
+    "U+0041",
+    "U+1F600",
+    "U+20000",
+    "U+0041",
+    "U+005A"
+  ],
+  "extracted_code_points": [
+    "U+0041",
+    "U+1F600",
+    "U+20000",
+    "U+0041",
+    "U+005A"
+  ],
+  "width": 209.84375,
+  "ink_pixels": 3355,
+  "differing_pixels": 0
+}

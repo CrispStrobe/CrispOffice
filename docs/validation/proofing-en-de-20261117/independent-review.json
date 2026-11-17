@@ -1,0 +1,88 @@
+{
+  "recorded_at_utc": "2026-11-16T23:37:55.821612+00:00",
+  "source_commit": "b9ac68fbbb33c7731a3241e4065f6dfb71e36a57",
+  "repository_clean_at_start": true,
+  "receipts": [
+    {
+      "path": "docs/validation/proofing-en-de-20261117/reconciliation.json",
+      "sha256": "14d421e7acdb4c58b889df806a51c2f79d255fa590990862e8d92dde132e69cc",
+      "named_refs": 189,
+      "unique_heads": 128,
+      "ancestors": 128,
+      "not_ancestors": [],
+      "errors": []
+    },
+    {
+      "path": "docs/validation/proofing-en-de-20261117/reconciliation-late.json",
+      "sha256": "37051708ceacbc784d83750ee5f13b0d6ad44418a09486d6baa565ad1fb1df1c",
+      "named_refs": 187,
+      "unique_heads": 127,
+      "ancestors": 127,
+      "not_ancestors": [],
+      "errors": []
+    }
+  ],
+  "combined_unique_heads": 135,
+  "all_pinned_heads_are_ancestors": true,
+  "english_notice_verification": [
+    {
+      "language": "en-US",
+      "license": "LicenseRef-Kuiken-permissive",
+      "source_sha256_matches": true,
+      "source_git_blob_matches": true,
+      "notice_matches_full_original_preamble": true,
+      "notice_sha256": "1011c22144f360184ed86200fa2d2ca9df9ac19dd2ab4a31c0b4c94d998bb6f1",
+      "generated_sha256_matches": true
+    },
+    {
+      "language": "en-GB",
+      "license": "MIT",
+      "source_sha256_matches": true,
+      "source_git_blob_matches": true,
+      "notice_matches_full_original_preamble": true,
+      "notice_sha256": "8a9d78cb8e3aa30383acc91fb05962035eed59877016263bd97be63c63341977",
+      "generated_sha256_matches": true
+    }
+  ],
+  "github_actions_used": false,
+  "source_mutations": false,
+  "conditional_merge_review": {
+    "resolved_fields_retained": [
+      "fillRgb from styles.dxfFills",
+      "fontRgb from styles.dxfFonts",
+      "dxfId",
+      "priority",
+      "stopIfTrue through XML boolean parser"
+    ],
+    "combined_regression": "packages/quds_office_engine/test/sheet_conditional_style_priority_integration_test.dart",
+    "combined_regression_sha256": "4b7dc0a8510d37cf20c1e1d259e7315988757abe6baad872ed002be1305d5af0",
+    "combined_regression_scope": "Read-reviewed three isolate save/reopen cycles preserving colors, priority, stopIfTrue and an edited rank; execution belongs to root integration gate.",
+    "concrete_inherited_edge": {
+      "description": "A font-only differential style with no fill imports with a synthetic yellow model fill (FFF2CC). The original font-only native dxf survives a rank-only save, but the model still contains the unintended fill. This fallback is inherited from incoming main, not a conflict-resolution omission.",
+      "source": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+      "reproduction": "/workspace/scratch/65e4ff9d3bff/conditional_merge_review.dart",
+      "probe_executed": true,
+      "probe_exit_code": 0,
+      "original_dxf_has_fill": false,
+      "imported_fillRgb": "FFF2CC",
+      "imported_fontRgb": "0000FF",
+      "priority_preserved": 7,
+      "stopIfTrue_preserved": true,
+      "rank_after_edit": 2,
+      "native_dxf_unchanged_after_rank_edit": true
+    }
+  },
+  "moved_main_review": {
+    "previous_main": "50b3694ecd3d23436325e42e11be08e9ccc5fef8",
+    "observed_main": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+    "new_commit_subject": "docs: record ODT frame dimensions (#90)",
+    "changed_files": [
+      "docs/office-remaining-gaps.md"
+    ],
+    "source_runtime_test_delta": false,
+    "merge_base_with_verified_source": "50b3694ecd3d23436325e42e11be08e9ccc5fef8",
+    "recommended_reconciliation": "After the running gate completes, an ordinary merge adds only the documentation hunk and preserves qualified source bytes."
+  },
+  "source_commit_at_end": "b9ac68fbbb33c7731a3241e4065f6dfb71e36a57",
+  "repository_clean_at_end": true
+}

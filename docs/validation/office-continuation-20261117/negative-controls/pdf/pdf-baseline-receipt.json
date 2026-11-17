@@ -1,0 +1,39 @@
+{
+  "baseline_commit": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+  "command": [
+    "/workspace/scratch/f423a275b479/toolchain/bin/dart",
+    "--packages=/workspace/scratch/f423a275b479/sheet-work/baseline-source/packages/quds_office_engine/.dart_tool/package_config.json",
+    "/workspace/scratch/f423a275b479/toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter=json",
+    "test/pdf_actual_text_scope_test.dart",
+    "test/pdf_logical_text_export_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f423a275b479/sheet-work/baseline-source/packages/quds_office_engine",
+  "started_at_utc": "2026-11-16T23:22:12.865025+00:00",
+  "production_source_modified": false,
+  "github_actions_used": false,
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-16T23:22:31.340200+00:00",
+  "log_sha256": "8f057a0b582ec531ace2fcca4cecca91b13b124a3a65940cfbc28082cb9fcc24",
+  "results": {
+    "test/pdf_actual_text_scope_test.dart": {
+      "success": 3,
+      "failure": 13,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/pdf_logical_text_export_test.dart": {
+      "success": 0,
+      "failure": 17,
+      "error": 0,
+      "skipped": 0
+    }
+  },
+  "terminal": {
+    "success": false,
+    "type": "done",
+    "time": 1972
+  },
+  "inputs_unchanged": true,
+  "inputs_sha256": "b263d83093f8349e11780d653f13a9ae908700e5332d4db7ed102e54ded778bc"
+}

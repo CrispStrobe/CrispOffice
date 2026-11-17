@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:quds_office_engine/quds_office_engine.dart';
 
+import 'harper_source_text.dart';
 import 'harper_transport.dart';
 import 'harper_transport_stub.dart'
     if (dart.library.io) 'harper_transport_native.dart'
@@ -16,8 +17,10 @@ final class HarperProofingProvider extends OfficeProofingProvider {
     String? nativeLibraryPath,
     Uri? workerUrl,
     HarperTransport? transport,
+    OfficeProofingVocabulary? vocabulary,
     this.timeout = const Duration(seconds: 15),
-  }) : _transport =
+  }) : vocabulary = vocabulary ?? OfficeProofingVocabulary(),
+       _transport =
            transport ??
            platform.createHarperTransport(
              nativeLibraryPath: nativeLibraryPath,
@@ -26,12 +29,18 @@ final class HarperProofingProvider extends OfficeProofingProvider {
     if (timeout <= Duration.zero) throw ArgumentError.value(timeout, 'timeout');
   }
 
+  /// Host-owned language-scoped vocabulary, shared with the Word session when
+  /// supplied. Only spelling findings are suppressed; grammar still runs.
+  final OfficeProofingVocabulary vocabulary;
   final HarperTransport _transport;
   final Duration timeout;
   bool _disposed = false;
 
   @override
   String get id => 'harper';
+
+  @override
+  int get configurationRevision => vocabulary.revision;
 
   @override
   bool supportsLanguage(String language) => const {
@@ -66,11 +75,14 @@ final class HarperProofingProvider extends OfficeProofingProvider {
         'Harper segment exceeds the 32768-character limit.',
       );
     }
+    final vocabularyRevision = vocabulary.revision;
     try {
+      final source = HarperSourceText(request.text);
+      final protected = OfficeProofingTextRanges(request.text);
       final raw = await _transport
           .check(
             jsonEncode({
-              'text': request.text,
+              'text': source.text,
               'language': normalizeProofingLanguage(request.language),
               'ignored_rules': request.ignoredRuleIds.toList(),
             }),
@@ -81,6 +93,13 @@ final class HarperProofingProvider extends OfficeProofingProvider {
           request,
           OfficeProofingStatus.unavailable,
           'Harper has been disposed.',
+        );
+      }
+      if (vocabulary.revision != vocabularyRevision) {
+        return _result(
+          request,
+          OfficeProofingStatus.failed,
+          'Personal vocabulary changed during this check; check again.',
         );
       }
       final Object? decoded = jsonDecode(raw);
@@ -136,12 +155,22 @@ final class HarperProofingProvider extends OfficeProofingProvider {
           'style' => OfficeProofingCategory.style,
           _ => throw const FormatException('Unknown Harper category.'),
         };
+        final range = source.sourceRange(start, end);
+        if (range == null) continue;
+        if (protected.overlaps(range.start, range.end)) continue;
+        if (category == OfficeProofingCategory.spelling &&
+            vocabulary.contains(
+              request.text.substring(range.start, range.end),
+              language: request.language,
+            )) {
+          continue;
+        }
         findings.add(
           OfficeProofingFinding.forRequest(
             request,
             providerId: id,
-            start: scalarOffsetToUtf16(request.text, start),
-            end: scalarOffsetToUtf16(request.text, end),
+            start: range.start,
+            end: range.end,
             ruleId: rule,
             message: explanation,
             category: category,

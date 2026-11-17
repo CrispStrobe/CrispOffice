@@ -1,0 +1,1609 @@
+diff --git a/packages/quds_office_editor/example/lib/suite_workspace.dart b/packages/quds_office_editor/example/lib/suite_workspace.dart
+index 47d0960..98a0965 100644
+--- a/packages/quds_office_editor/example/lib/suite_workspace.dart
++++ b/packages/quds_office_editor/example/lib/suite_workspace.dart
+@@ -4773,9 +4773,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
+           providers: [
+             GermanSpellingProvider(vocabulary: controller.proofing.vocabulary),
+             GermanWritingRulesProvider(),
+-            HarperProofingProvider(
+-              vocabulary: controller.proofing.vocabulary,
+-            ),
++            HarperProofingProvider(vocabulary: controller.proofing.vocabulary),
+           ],
+         ),
+       );
+diff --git a/packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart b/packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart
+index 539e090..56ff244 100644
+--- a/packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart
++++ b/packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart
+@@ -85,7 +85,8 @@ abstract final class EnglishHyphenator {
+       if (languageAt != null) {
+         var homogeneous = true;
+         for (var at = word.start; at < word.end; at++) {
+-          if (_language(languageAt(at) ?? language) != _language(wordLanguage)) {
++          if (_language(languageAt(at) ?? language) !=
++              _language(wordLanguage)) {
+             homogeneous = false;
+             break;
+           }
+diff --git a/packages/quds_office_engine/lib/src/proofing/german_spelling.dart b/packages/quds_office_engine/lib/src/proofing/german_spelling.dart
+index 4ff3412..068445d 100644
+--- a/packages/quds_office_engine/lib/src/proofing/german_spelling.dart
++++ b/packages/quds_office_engine/lib/src/proofing/german_spelling.dart
+@@ -368,7 +368,11 @@ class GermanSpellingProvider extends OfficeProofingProvider {
+       int unknown = -1;
+       if (parts.length <= 8 && parts.every((String part) => part.isNotEmpty)) {
+         for (int i = 0; i < parts.length; i++) {
+-          if (lexicon.contains(parts[i], swiss: swiss, sentenceInitial: false)) {
++          if (lexicon.contains(
++            parts[i],
++            swiss: swiss,
++            sentenceInitial: false,
++          )) {
+             continue;
+           }
+           if (unknown >= 0) {
+@@ -379,11 +383,19 @@ class GermanSpellingProvider extends OfficeProofingProvider {
+         }
+         if (unknown >= 0) {
+           final List<String> compounds = <String>[];
+-          for (final String replacement in _suggest(parts[unknown], lexicon, swiss)) {
++          for (final String replacement in _suggest(
++            parts[unknown],
++            lexicon,
++            swiss,
++          )) {
+             final List<String> corrected = List<String>.of(parts);
+             corrected[unknown] = replacement;
+             final String candidate = corrected.join('-');
+-            if (lexicon.contains(candidate, swiss: swiss, sentenceInitial: false)) {
++            if (lexicon.contains(
++              candidate,
++              swiss: swiss,
++              sentenceInitial: false,
++            )) {
+               compounds.add(candidate);
+             }
+           }
+@@ -470,10 +482,9 @@ class GermanSpellingProvider extends OfficeProofingProvider {
+     String source,
+     List<String> replacements,
+   ) {
+-    final List<String> separators = RegExp(r'[-\u2010\u2011]')
+-        .allMatches(source)
+-        .map((RegExpMatch match) => match.group(0)!)
+-        .toList();
++    final List<String> separators = RegExp(
++      r'[-\u2010\u2011]',
++    ).allMatches(source).map((RegExpMatch match) => match.group(0)!).toList();
+     if (separators.every((String separator) => separator == '-')) {
+       return replacements;
+     }
+diff --git a/packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart b/packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart
+index e4b80fe..83f76c4 100644
+--- a/packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart
++++ b/packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart
+@@ -95,26 +95,54 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
+         _GermanPresentParadigm('sein', 'bin', 'bist', 'ist', 'sind', 'seid'),
+         _GermanPresentParadigm('haben', 'habe', 'hast', 'hat', 'haben', 'habt'),
+         _GermanPresentParadigm(
+-          'werden', 'werde', 'wirst', 'wird', 'werden', 'werdet',
++          'werden',
++          'werde',
++          'wirst',
++          'wird',
++          'werden',
++          'werdet',
+         ),
+         _GermanPresentParadigm(
+-          'können', 'kann', 'kannst', 'kann', 'können', 'könnt',
++          'können',
++          'kann',
++          'kannst',
++          'kann',
++          'können',
++          'könnt',
+         ),
+         _GermanPresentParadigm(
+-          'müssen', 'muss', 'musst', 'muss', 'müssen', 'müsst',
++          'müssen',
++          'muss',
++          'musst',
++          'muss',
++          'müssen',
++          'müsst',
+         ),
+         _GermanPresentParadigm(
+-          'dürfen', 'darf', 'darfst', 'darf', 'dürfen', 'dürft',
++          'dürfen',
++          'darf',
++          'darfst',
++          'darf',
++          'dürfen',
++          'dürft',
+         ),
+         _GermanPresentParadigm(
+-          'sollen', 'soll', 'sollst', 'soll', 'sollen', 'sollt',
++          'sollen',
++          'soll',
++          'sollst',
++          'soll',
++          'sollen',
++          'sollt',
+         ),
+         _GermanPresentParadigm(
+-          'wollen', 'will', 'willst', 'will', 'wollen', 'wollt',
+-        ),
+-        _GermanPresentParadigm(
+-          'mögen', 'mag', 'magst', 'mag', 'mögen', 'mögt',
++          'wollen',
++          'will',
++          'willst',
++          'will',
++          'wollen',
++          'wollt',
+         ),
++        _GermanPresentParadigm('mögen', 'mag', 'magst', 'mag', 'mögen', 'mögt'),
+       ];
+   static final Map<String, _GermanPresentParadigm> _presentByForm =
+       <String, _GermanPresentParadigm>{
+@@ -178,8 +206,12 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
+     final _GermanPresentParadigm? paradigm = _presentByForm[verb];
+     if (coordination != null &&
+         (coordination.group(1) == null ||
+-            !prefix.substring(0, coordination.start).trimRight().endsWith(',') ||
+-            paradigm != null && (verb == paradigm.wir || verb == paradigm.ihr))) {
++            !prefix
++                .substring(0, coordination.start)
++                .trimRight()
++                .endsWith(',') ||
++            paradigm != null &&
++                (verb == paradigm.wir || verb == paradigm.ihr))) {
+       return true;
+     }
+     final String originalSubject = match.group(1)!;
+@@ -202,7 +234,8 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
+     final String clause = stop == null
+         ? following
+         : following.substring(0, stop.start);
+-    return _followingSubject.hasMatch(clause) || _followingNoun.hasMatch(clause);
++    return _followingSubject.hasMatch(clause) ||
++        _followingNoun.hasMatch(clause);
+   }
+ 
+   static bool _hasLetterBefore(String text, int offset) =>
+@@ -358,9 +391,7 @@ class GermanWritingRulesProvider extends OfficeProofingProvider {
+         'Diese Form von „${paradigm.infinitive}“ passt normalerweise nicht zum unmittelbar vorangehenden Pronomen.',
+         category: OfficeProofingCategory.grammar,
+         replacements: <String>[
+-          verb == verb.toUpperCase()
+-              ? replacement.toUpperCase()
+-              : replacement,
++          verb == verb.toUpperCase() ? replacement.toUpperCase() : replacement,
+         ],
+       );
+     }
+diff --git a/packages/quds_office_engine/test/english_hyphenation_test.dart b/packages/quds_office_engine/test/english_hyphenation_test.dart
+index 0e22e63..de17e96 100644
+--- a/packages/quds_office_engine/test/english_hyphenation_test.dart
++++ b/packages/quds_office_engine/test/english_hyphenation_test.dart
+@@ -8,21 +8,29 @@ void main() {
+   group('licensed English patterns', () {
+     test('American and British patterns preserve distinct break choices', () {
+       expect(EnglishHyphenator.wordOffsets('dictionary'), [3, 6]);
+-      expect(
+-        EnglishHyphenator.wordOffsets('dictionary', language: 'en-GB'),
+-        [3, 7],
+-      );
++      expect(EnglishHyphenator.wordOffsets('dictionary', language: 'en-GB'), [
++        3,
++        7,
++      ]);
+       expect(EnglishHyphenator.wordOffsets('hyphenation'), [2, 6]);
++      expect(EnglishHyphenator.wordOffsets('hyphenation', language: 'en-GB'), [
++        2,
++        6,
++        7,
++      ]);
++      expect(EnglishHyphenator.wordOffsets('internationalization'), [
++        2,
++        5,
++        7,
++        11,
++        13,
++        16,
++      ]);
+       expect(
+-        EnglishHyphenator.wordOffsets('hyphenation', language: 'en-GB'),
+-        [2, 6, 7],
+-      );
+-      expect(
+-        EnglishHyphenator.wordOffsets('internationalization'),
+-        [2, 5, 7, 11, 13, 16],
+-      );
+-      expect(
+-        EnglishHyphenator.wordOffsets('internationalisation', language: 'en-GB'),
++        EnglishHyphenator.wordOffsets(
++          'internationalisation',
++          language: 'en-GB',
++        ),
+         [2, 5, 7, 11, 13, 16],
+       );
+     });
+@@ -54,31 +62,34 @@ void main() {
+       expect(EnglishHyphenator.breakOffsets('dictionary'), isEmpty);
+     });
+ 
+-    test('US upstream exceptions override patterns including no-break entries', () {
+-      const exceptions = <String, List<int>>{
+-        'associate': [2, 4],
+-        'associates': [2, 4],
+-        'declination': [3, 5, 7],
+-        'obligatory': [5, 6],
+-        'philanthropic': [4, 6],
+-        'present': [],
+-        'presents': [],
+-        'project': [],
+-        'projects': [],
+-        'reciprocity': [4],
+-        'recognizance': [2, 5, 7],
+-        'reformation': [3, 5, 7],
+-        'retribution': [3, 5, 7],
+-        'table': [2],
+-      };
+-      for (final entry in exceptions.entries) {
+-        expect(
+-          EnglishHyphenator.wordOffsets(entry.key),
+-          entry.value,
+-          reason: entry.key,
+-        );
+-      }
+-    });
++    test(
++      'US upstream exceptions override patterns including no-break entries',
++      () {
++        const exceptions = <String, List<int>>{
++          'associate': [2, 4],
++          'associates': [2, 4],
++          'declination': [3, 5, 7],
++          'obligatory': [5, 6],
++          'philanthropic': [4, 6],
++          'present': [],
++          'presents': [],
++          'project': [],
++          'projects': [],
++          'reciprocity': [4],
++          'recognizance': [2, 5, 7],
++          'reformation': [3, 5, 7],
++          'retribution': [3, 5, 7],
++          'table': [2],
++        };
++        for (final entry in exceptions.entries) {
++          expect(
++            EnglishHyphenator.wordOffsets(entry.key),
++            entry.value,
++            reason: entry.key,
++          );
++        }
++      },
++    );
+ 
+     test('British upstream exceptions remain unchanged', () {
+       const exceptions = <String, List<int>>{
+@@ -98,10 +109,7 @@ void main() {
+           reason: entry.key,
+         );
+       }
+-      expect(
+-        EnglishHyphenator.wordOffsets('project', language: 'en-GB'),
+-        [3],
+-      );
++      expect(EnglishHyphenator.wordOffsets('project', language: 'en-GB'), [3]);
+     });
+ 
+     test('English minimum fragments are two before and three after', () {
+@@ -129,19 +137,19 @@ void main() {
+       }
+       expect(EnglishHyphenator.wordOffsets('four'), isEmpty);
+       expect(EnglishHyphenator.wordOffsets('color'), isEmpty);
+-      expect(
+-        EnglishHyphenator.wordOffsets('British', language: 'en-GB'),
+-        [4],
+-      );
++      expect(EnglishHyphenator.wordOffsets('British', language: 'en-GB'), [4]);
+     });
+ 
+-    test('casing does not change positions or expose mutable cache storage', () {
+-      expect(EnglishHyphenator.wordOffsets('DICTIONARY'), [3, 6]);
+-      expect(EnglishHyphenator.wordOffsets('Dictionary'), [3, 6]);
+-      final offsets = EnglishHyphenator.wordOffsets('dictionary')..clear();
+-      expect(offsets, isEmpty);
+-      expect(EnglishHyphenator.wordOffsets('dictionary'), [3, 6]);
+-    });
++    test(
++      'casing does not change positions or expose mutable cache storage',
++      () {
++        expect(EnglishHyphenator.wordOffsets('DICTIONARY'), [3, 6]);
++        expect(EnglishHyphenator.wordOffsets('Dictionary'), [3, 6]);
++        final offsets = EnglishHyphenator.wordOffsets('dictionary')..clear();
++        expect(offsets, isEmpty);
++        expect(EnglishHyphenator.wordOffsets('dictionary'), [3, 6]);
++      },
++    );
+ 
+     test('manual hyphens and non-ASCII words are not partially normalized', () {
+       for (final word in [
+@@ -161,89 +169,107 @@ void main() {
+       }
+     });
+ 
+-    test('paragraph offsets retain emoji prefixes and surrounding quotation', () {
+-      const text = '😀 “dictionary” ‘hyphenation’';
+-      expect(
+-        EnglishHyphenator.breakOffsets(text, language: 'en-US'),
+-        [7, 10, 19, 23],
+-      );
+-      expect(text.substring(4, 14), 'dictionary');
+-      expect(text.substring(17, 28), 'hyphenation');
+-    });
++    test(
++      'paragraph offsets retain emoji prefixes and surrounding quotation',
++      () {
++        const text = '😀 “dictionary” ‘hyphenation’';
++        expect(EnglishHyphenator.breakOffsets(text, language: 'en-US'), [
++          7,
++          10,
++          19,
++          23,
++        ]);
++        expect(text.substring(4, 14), 'dictionary');
++        expect(text.substring(17, 28), 'hyphenation');
++      },
++    );
+ 
+-    test('apostrophes keep contractions whole while compounds use components', () {
+-      for (final text in [
+-        "dictionary's",
+-        'dictionary’s',
+-        'dictionaryʼs',
+-        "internationalization's",
+-      ]) {
++    test(
++      'apostrophes keep contractions whole while compounds use components',
++      () {
++        for (final text in [
++          "dictionary's",
++          'dictionary’s',
++          'dictionaryʼs',
++          "internationalization's",
++        ]) {
++          expect(
++            EnglishHyphenator.breakOffsets(text, language: 'en-US'),
++            isEmpty,
++            reason: text,
++          );
++        }
+         expect(
+-          EnglishHyphenator.breakOffsets(text, language: 'en-US'),
+-          isEmpty,
+-          reason: text,
++          EnglishHyphenator.breakOffsets(
++            'dictionary-based',
++            language: 'en-US',
++          ).where((offset) => offset < 10),
++          [3, 6],
+         );
+-      }
+-      expect(
+-        EnglishHyphenator.breakOffsets('dictionary-based', language: 'en-US')
+-            .where((offset) => offset < 10),
+-        [3, 6],
+-      );
+-      expect(
+-        EnglishHyphenator.breakOffsets("'dictionary'", language: 'en-US'),
+-        [4, 7],
+-      );
+-    });
+-
+-    test('identifiers and number-adjacent fragments are not ordinary words', () {
+-      for (final text in [
+-        'dictionary123',
+-        '123dictionary',
+-        'dictionary_name',
+-        'name_dictionary',
+-        'dictionary@grammar',
+-        '\u{1d7d8}dictionary',
+-        'dictionary\u{1d7d8}',
+-      ]) {
+         expect(
+-          EnglishHyphenator.breakOffsets(text, language: 'en-US'),
+-          isEmpty,
+-          reason: text,
++          EnglishHyphenator.breakOffsets("'dictionary'", language: 'en-US'),
++          [4, 7],
+         );
+-      }
+-    });
++      },
++    );
+ 
+-    test('URL, email and closed backtick spans do not gain dictionary breaks', () {
+-      for (final text in [
+-        'HTTPS://internationalization.example/dictionary',
+-        'www.internationalization.example',
+-        'internationalization@dictionary.example',
+-        '`dictionary`',
+-        '``dictionary``',
+-        '```dictionary\nhyphenation```',
+-        '``dictionary `hyphenation` organization``',
+-      ]) {
++    test(
++      'identifiers and number-adjacent fragments are not ordinary words',
++      () {
++        for (final text in [
++          'dictionary123',
++          '123dictionary',
++          'dictionary_name',
++          'name_dictionary',
++          'dictionary@grammar',
++          '\u{1d7d8}dictionary',
++          'dictionary\u{1d7d8}',
++        ]) {
++          expect(
++            EnglishHyphenator.breakOffsets(text, language: 'en-US'),
++            isEmpty,
++            reason: text,
++          );
++        }
++      },
++    );
++
++    test(
++      'URL, email and closed backtick spans do not gain dictionary breaks',
++      () {
++        for (final text in [
++          'HTTPS://internationalization.example/dictionary',
++          'www.internationalization.example',
++          'internationalization@dictionary.example',
++          '`dictionary`',
++          '``dictionary``',
++          '```dictionary\nhyphenation```',
++          '``dictionary `hyphenation` organization``',
++        ]) {
++          expect(
++            EnglishHyphenator.breakOffsets(text, language: 'en-US'),
++            isEmpty,
++            reason: text,
++          );
++        }
++        const prose = 'dictionary (HTTPS://example.invalid). hyphenation';
++        final start = prose.indexOf('hyphenation');
++        expect(EnglishHyphenator.breakOffsets(prose, language: 'en-US'), [
++          3,
++          6,
++          start + 2,
++          start + 6,
++        ]);
+         expect(
+-          EnglishHyphenator.breakOffsets(text, language: 'en-US'),
+-          isEmpty,
+-          reason: text,
++          EnglishHyphenator.breakOffsets('`dictionary', language: 'en-US'),
++          [4, 7],
+         );
+-      }
+-      const prose = 'dictionary (HTTPS://example.invalid). hyphenation';
+-      final start = prose.indexOf('hyphenation');
+-      expect(
+-        EnglishHyphenator.breakOffsets(prose, language: 'en-US'),
+-        [3, 6, start + 2, start + 6],
+-      );
+-      expect(
+-        EnglishHyphenator.breakOffsets('`dictionary', language: 'en-US'),
+-        [4, 7],
+-      );
+-      expect(
+-        EnglishHyphenator.breakOffsets('``dictionary`', language: 'en-US'),
+-        [5, 8],
+-      );
+-    });
++        expect(
++          EnglishHyphenator.breakOffsets('``dictionary`', language: 'en-US'),
++          [5, 8],
++        );
++      },
++    );
+ 
+     test('join controls suppress adjoining lexical fragments', () {
+       for (final joiner in ['\u200c', '\u200d', '\u2060', '\ufeff']) {
+@@ -302,31 +328,34 @@ void main() {
+   });
+ 
+   group('English and German shared layout dispatch', () {
+-    test('mixed paragraphs return sorted UTF-16 candidates in each language', () {
+-      const text = 'dictionary Silbentrennung dictionary';
+-      expect(
+-        OfficeHyphenator.breakOffsets(
+-          text,
+-          languageAt: (offset) {
+-            if (offset < 11) return 'en-US';
+-            if (offset < 25) return 'de-DE';
+-            return 'en-GB';
+-          },
+-        ),
+-        [3, 6, 14, 17, 21, 29, 33],
+-      );
+-      expect(OfficeHyphenator.supports('de-CH'), isTrue);
+-      expect(OfficeHyphenator.supports('en-GB'), isTrue);
+-      expect(OfficeHyphenator.supports('fr-FR'), isFalse);
+-      expect(
+-        OfficeHyphenator.wordOffsets('Silbentrennung', language: 'de-DE'),
+-        GermanHyphenator.wordOffsets('Silbentrennung'),
+-      );
+-      expect(
+-        OfficeHyphenator.breakOffsets('dictionary', language: 'fr-FR'),
+-        isEmpty,
+-      );
+-    });
++    test(
++      'mixed paragraphs return sorted UTF-16 candidates in each language',
++      () {
++        const text = 'dictionary Silbentrennung dictionary';
++        expect(
++          OfficeHyphenator.breakOffsets(
++            text,
++            languageAt: (offset) {
++              if (offset < 11) return 'en-US';
++              if (offset < 25) return 'de-DE';
++              return 'en-GB';
++            },
++          ),
++          [3, 6, 14, 17, 21, 29, 33],
++        );
++        expect(OfficeHyphenator.supports('de-CH'), isTrue);
++        expect(OfficeHyphenator.supports('en-GB'), isTrue);
++        expect(OfficeHyphenator.supports('fr-FR'), isFalse);
++        expect(
++          OfficeHyphenator.wordOffsets('Silbentrennung', language: 'de-DE'),
++          GermanHyphenator.wordOffsets('Silbentrennung'),
++        );
++        expect(
++          OfficeHyphenator.breakOffsets('dictionary', language: 'fr-FR'),
++          isEmpty,
++        );
++      },
++    );
+ 
+     test('English selected hyphens own no authored units', () {
+       const text = 'dictionary';
+@@ -351,30 +380,36 @@ void main() {
+       expect(text, 'dictionary');
+     });
+ 
+-    test('Word layout dispatches English defaults and paragraph suppression', () {
+-      final doc = WmlDocument.empty(text: 'internationalization')
+-        ..proofingLanguage = 'en-US'
+-        ..autoHyphenation = true;
+-      doc.sections.single.pageSize = const WmlPageSize(width: 80, height: 180);
+-      doc.sections.single.margins = const WmlPageMargins(
+-        left: 10,
+-        right: 10,
+-        top: 10,
+-        bottom: 10,
+-      );
+-      bool hasHyphen() => WordLayoutEngine(font: null)
+-          .layout(doc)
+-          .pages
+-          .expand((page) => page.lines)
+-          .expand((line) => line.glyphs)
+-          .any((glyph) => glyph.glyph.isDiscretionaryHyphen);
+-      expect(hasHyphen(), isTrue);
+-      expect(doc.paragraphs.single.text, 'internationalization');
+-      doc.paragraphs.single.properties.suppressAutoHyphens = true;
+-      expect(hasHyphen(), isFalse);
+-      doc.paragraphs.single.properties.suppressAutoHyphens = false;
+-      doc.proofingLanguage = 'en-CA';
+-      expect(hasHyphen(), isFalse);
+-    });
++    test(
++      'Word layout dispatches English defaults and paragraph suppression',
++      () {
++        final doc = WmlDocument.empty(text: 'internationalization')
++          ..proofingLanguage = 'en-US'
++          ..autoHyphenation = true;
++        doc.sections.single.pageSize = const WmlPageSize(
++          width: 80,
++          height: 180,
++        );
++        doc.sections.single.margins = const WmlPageMargins(
++          left: 10,
++          right: 10,
++          top: 10,
++          bottom: 10,
++        );
++        bool hasHyphen() => WordLayoutEngine(font: null)
++            .layout(doc)
++            .pages
++            .expand((page) => page.lines)
++            .expand((line) => line.glyphs)
++            .any((glyph) => glyph.glyph.isDiscretionaryHyphen);
++        expect(hasHyphen(), isTrue);
++        expect(doc.paragraphs.single.text, 'internationalization');
++        doc.paragraphs.single.properties.suppressAutoHyphens = true;
++        expect(hasHyphen(), isFalse);
++        doc.paragraphs.single.properties.suppressAutoHyphens = false;
++        doc.proofingLanguage = 'en-CA';
++        expect(hasHyphen(), isFalse);
++      },
++    );
+   });
+ }
+diff --git a/packages/quds_office_engine/test/proofing/german_spelling_test.dart b/packages/quds_office_engine/test/proofing/german_spelling_test.dart
+index 10993e7..3e73e07 100644
+--- a/packages/quds_office_engine/test/proofing/german_spelling_test.dart
++++ b/packages/quds_office_engine/test/proofing/german_spelling_test.dart
+@@ -220,53 +220,61 @@ void main() {
+     );
+     expect((await provider.check(input('HAUS-TÜR'))).findings, isEmpty);
+   });
+-  test('explicit compound suggestions preserve other nouns and hyphen styles',
+-      () async {
+-    const List<(String, String)> cases = <(String, String)>[
+-      ('Huas-Tür', 'Haus-Tür'),
+-      ('Haus-Tür-Huas', 'Haus-Tür-Haus'),
+-      ('HUAS-TÜR', 'HAUS-TÜR'),
+-      ('Huas\u2010Tür', 'Haus\u2010Tür'),
+-      ('Huas\u2011Tür', 'Haus\u2011Tür'),
+-      ('Huas-Tür\u2011Haus', 'Haus-Tür\u2011Haus'),
+-    ];
+-    for (final (String, String) entry in cases) {
+-      final String text = '🙂 ${entry.$1}';
+-      final OfficeProofingResult result = await provider.check(input(text));
+-      expect(result.findings, hasLength(1), reason: text);
+-      final OfficeProofingFinding finding = result.findings.single;
+-      expect(finding.originalText, entry.$1);
+-      expect(finding.start, 3);
+-      expect(finding.end, text.length);
+-      expect(finding.replacements, contains(entry.$2));
+-      expect(finding.replacements.length, lessThanOrEqualTo(5));
+-    }
+-  });
+-  test('explicit compound repair honors the ordinary candidate budget',
+-      () async {
+-    final GermanSpellingProvider bounded = GermanSpellingProvider(
+-      maximumSuggestions: 1,
+-      maximumCandidateChecks: 100,
+-    );
+-    final OfficeProofingResult result = await bounded.check(input('Huas-Tür'));
+-    expect(result.findings.single.replacements, <String>['Haus-Tür']);
+-    await bounded.dispose();
+-  });
+-  test('compound suggestions keep per-occurrence separators and Swiss forms',
+-      () async {
+-    final OfficeProofingResult mixed = await provider.check(
+-      input('Huas-Tür Huas\u2011Tür'),
+-    );
+-    expect(mixed.findings, hasLength(2));
+-    expect(mixed.findings[0].replacements, contains('Haus-Tür'));
+-    expect(mixed.findings[1].replacements, contains('Haus\u2011Tür'));
+-    final OfficeProofingResult swiss = await provider.check(
+-      input('Straße-Tür STRAẞE-TÜR', language: 'de-CH'),
+-    );
+-    expect(swiss.findings, hasLength(2));
+-    expect(swiss.findings[0].replacements, contains('Strasse-Tür'));
+-    expect(swiss.findings[1].replacements, contains('STRASSE-TÜR'));
+-  });
++  test(
++    'explicit compound suggestions preserve other nouns and hyphen styles',
++    () async {
++      const List<(String, String)> cases = <(String, String)>[
++        ('Huas-Tür', 'Haus-Tür'),
++        ('Haus-Tür-Huas', 'Haus-Tür-Haus'),
++        ('HUAS-TÜR', 'HAUS-TÜR'),
++        ('Huas\u2010Tür', 'Haus\u2010Tür'),
++        ('Huas\u2011Tür', 'Haus\u2011Tür'),
++        ('Huas-Tür\u2011Haus', 'Haus-Tür\u2011Haus'),
++      ];
++      for (final (String, String) entry in cases) {
++        final String text = '🙂 ${entry.$1}';
++        final OfficeProofingResult result = await provider.check(input(text));
++        expect(result.findings, hasLength(1), reason: text);
++        final OfficeProofingFinding finding = result.findings.single;
++        expect(finding.originalText, entry.$1);
++        expect(finding.start, 3);
++        expect(finding.end, text.length);
++        expect(finding.replacements, contains(entry.$2));
++        expect(finding.replacements.length, lessThanOrEqualTo(5));
++      }
++    },
++  );
++  test(
++    'explicit compound repair honors the ordinary candidate budget',
++    () async {
++      final GermanSpellingProvider bounded = GermanSpellingProvider(
++        maximumSuggestions: 1,
++        maximumCandidateChecks: 100,
++      );
++      final OfficeProofingResult result = await bounded.check(
++        input('Huas-Tür'),
++      );
++      expect(result.findings.single.replacements, <String>['Haus-Tür']);
++      await bounded.dispose();
++    },
++  );
++  test(
++    'compound suggestions keep per-occurrence separators and Swiss forms',
++    () async {
++      final OfficeProofingResult mixed = await provider.check(
++        input('Huas-Tür Huas\u2011Tür'),
++      );
++      expect(mixed.findings, hasLength(2));
++      expect(mixed.findings[0].replacements, contains('Haus-Tür'));
++      expect(mixed.findings[1].replacements, contains('Haus\u2011Tür'));
++      final OfficeProofingResult swiss = await provider.check(
++        input('Straße-Tür STRAẞE-TÜR', language: 'de-CH'),
++      );
++      expect(swiss.findings, hasLength(2));
++      expect(swiss.findings[0].replacements, contains('Strasse-Tür'));
++      expect(swiss.findings[1].replacements, contains('STRASSE-TÜR'));
++    },
++  );
+   test(
+     'known explicit compounds and URL/email tokens avoid spurious findings',
+     () async {
+@@ -287,42 +295,45 @@ void main() {
+       expect(result.findings.single.replacements, contains('Haus'));
+     },
+   );
+-  test('matching backtick spans protect code without hiding following prose',
+-      () async {
+-    for (final String code in <String>[
+-      '`Huas`',
+-      '``Huas ` inner``',
+-      '```dart\nHuas\n```',
+-      '`HTTPS://example.invalid/Huas Huas`',
+-    ]) {
+-      final String text = '🙂 $code Huas';
+-      final OfficeProofingReport report = await OfficeProofingService(
+-        providers: <OfficeProofingProvider>[provider],
+-      ).check(OfficeProofingRequest(
+-        documentId: 'doc',
+-        blockId: 'p',
+-        revision: 1,
+-        text: text,
+-        startOffset: 20,
+-      ));
+-      expect(report.complete, isTrue, reason: code);
+-      expect(report.findings, hasLength(1), reason: code);
+-      expect(report.findings.single.originalText, 'Huas');
+-      expect(report.findings.single.start, 20 + text.lastIndexOf('Huas'));
+-      expect(report.findings.single.replacements, contains('Haus'));
+-    }
+-  });
+-  test('unmatched backtick delimiters do not suppress the remaining paragraph',
+-      () async {
+-    for (final String text in <String>[
+-      '`Huas',
+-      '``Huas`',
+-      '```Huas``',
+-    ]) {
+-      final OfficeProofingResult result = await provider.check(input(text));
+-      expect(result.findings.single.originalText, 'Huas', reason: text);
+-    }
+-  });
++  test(
++    'matching backtick spans protect code without hiding following prose',
++    () async {
++      for (final String code in <String>[
++        '`Huas`',
++        '``Huas ` inner``',
++        '```dart\nHuas\n```',
++        '`HTTPS://example.invalid/Huas Huas`',
++      ]) {
++        final String text = '🙂 $code Huas';
++        final OfficeProofingReport report =
++            await OfficeProofingService(
++              providers: <OfficeProofingProvider>[provider],
++            ).check(
++              OfficeProofingRequest(
++                documentId: 'doc',
++                blockId: 'p',
++                revision: 1,
++                text: text,
++                startOffset: 20,
++              ),
++            );
++        expect(report.complete, isTrue, reason: code);
++        expect(report.findings, hasLength(1), reason: code);
++        expect(report.findings.single.originalText, 'Huas');
++        expect(report.findings.single.start, 20 + text.lastIndexOf('Huas'));
++        expect(report.findings.single.replacements, contains('Haus'));
++      }
++    },
++  );
++  test(
++    'unmatched backtick delimiters do not suppress the remaining paragraph',
++    () async {
++      for (final String text in <String>['`Huas', '``Huas`', '```Huas``']) {
++        final OfficeProofingResult result = await provider.check(input(text));
++        expect(result.findings.single.originalText, 'Huas', reason: text);
++      }
++    },
++  );
+   test(
+     'personal words and ignores stay owned, reversible and language-scoped',
+     () async {
+diff --git a/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart b/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart
+index 9183791..6255f91 100644
+--- a/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart
++++ b/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart
+@@ -130,132 +130,144 @@ void main() {
+       <String>['BIN', 'SIND', 'BIN'],
+     );
+   });
+-  test('finite auxiliary and modal agreement preserves exact source offsets',
+-      () async {
+-    final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+-    const List<(String, String)> cases = <(String, String)>[
+-      ('ich hast', 'habe'),
+-      ('du hat', 'hast'),
+-      ('wir habe', 'haben'),
+-      ('ich wirst', 'werde'),
+-      ('du wird', 'wirst'),
+-      ('wir werdet', 'werden'),
+-      ('ich kannst', 'kann'),
+-      ('du kann', 'kannst'),
+-      ('wir könnt', 'können'),
+-      ('ich musst', 'muss'),
+-      ('du muss', 'musst'),
+-      ('wir müsst', 'müssen'),
+-      ('ich darfst', 'darf'),
+-      ('du darf', 'darfst'),
+-      ('wir dürft', 'dürfen'),
+-      ('ich sollst', 'soll'),
+-      ('du soll', 'sollst'),
+-      ('wir sollt', 'sollen'),
+-      ('ich willst', 'will'),
+-      ('du will', 'willst'),
+-      ('wir wollt', 'wollen'),
+-      ('ich magst', 'mag'),
+-      ('du mag', 'magst'),
+-      ('wir mögt', 'mögen'),
+-    ];
+-    for (final (String, String) entry in cases) {
+-      final String text = '🙂 ${entry.$1} hier.';
+-      final String original = entry.$1.split(' ').last;
+-      final OfficeProofingReport report = await OfficeProofingService(
+-        providers: <OfficeProofingProvider>[provider],
+-      ).check(OfficeProofingRequest(
+-        documentId: 'doc',
+-        blockId: 'p',
+-        revision: 1,
+-        text: text,
+-        startOffset: 20,
+-      ));
+-      expect(report.complete, isTrue, reason: text);
+-      expect(report.findings, hasLength(1), reason: text);
+-      final OfficeProofingFinding finding = report.findings.single;
+-      expect(finding.ruleId, 'de.grammar.pronoun-verb');
+-      expect(finding.category, OfficeProofingCategory.grammar);
+-      expect(finding.start, 20 + text.indexOf(original));
+-      expect(finding.end, finding.start + original.length);
+-      expect(finding.originalText, original);
+-      expect(finding.replacements, <String>[entry.$2]);
+-    }
+-    await provider.dispose();
+-  });
+-  test('valid German constructions remain outside finite agreement findings',
+-      () async {
+-    final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+-    for (final String text in <String>[
+-      'Ich habe Zeit. Du hast Zeit. Wir haben Zeit.',
+-      'Ich werde warten. Du wirst warten. Wir werden warten.',
+-      'Ich kann warten. Du kannst warten. Wir können warten.',
+-      'Ich muss warten. Du musst warten. Wir müssen warten.',
+-      'Ich darf warten. Du darfst warten. Wir dürfen warten.',
+-      'Ich soll warten. Du sollst warten. Wir sollen warten.',
+-      'Ich will warten. Du willst warten. Wir wollen warten.',
+-      'Ich mag Bücher. Du magst Bücher. Wir mögen Bücher.',
+-      'Ich sei bereit. Du seiest bereit. Wir seien bereit.',
+-      'Ich hätte Zeit. Du hättest Zeit. Wir hätten Zeit.',
+-      'Ich könnte kommen. Du könntest kommen. Wir könnten kommen.',
+-      'Ich möchte bleiben. Du möchtest bleiben. Wir möchten bleiben.',
+-      'Sei ruhig! Seid ruhig! Hab Geduld! Werde gesund!',
+-      'Du, hab Geduld! Ihr, seid ruhig!',
+-      'Du und ich sind hier. Peter und ich haben Zeit.',
+-      'Mein Bruder, den du kennst, und ich haben Zeit.',
+-      'Meine Schwester, die du kennst, sowie ich können helfen.',
+-      'Weder du noch ich haben Zeit. Du sowie ich können kommen.',
+-      'Nicht nur du, sondern auch ich haben Zeit.',
+-      'Wie du haben wir Zeit. Anders als ich hast du Zeit.',
+-      'Das Ich hat Grenzen. Mein wahres Ich hat Zeit.',
+-      'Das Wir ist stark. Unser gemeinsames Wir hat Bestand.',
+-      'Ich ist ein Personalpronomen. Du ist ein Personalpronomen.',
+-      '„ich“ und „du“ sind Personalpronomen.',
+-      'Ihr ist kalt. Ihr ist es gelungen.',
+-      'Ihr bin ich dankbar. Ihr bist du wichtig.',
+-      'Ihr sind die Bücher wichtig. Ihr sind Menschen wichtig.',
+-      'Ihr sind heute alle dankbar. Mit ihr sind wir zufrieden.',
+-      'Von ihr haben wir gehört. Bei nur ihr bin ich ruhig.',
+-      'Sie haben wir gesehen. Es haben wir erwähnt.',
+-      'foo_ich haben value_du hat object-wir ist',
+-      'ich haben2 du hat_teil wir ist-was',
+-      'ich\nhaben. du\nhat.',
+-      'ich haſt hier.',
+-    ]) {
+-      final OfficeProofingResult result = await provider.check(input(text));
+-      expect(result.findings, isEmpty, reason: text);
+-    }
+-    await provider.dispose();
+-  });
+-  test('finite agreement handles horizontal spaces, regions and capitals',
+-      () async {
+-    final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+-    for (final String language in <String>['de-DE', 'de-AT', 'de-CH']) {
+-      for (final String space in <String>[' ', '\t', '\u00a0', '\u202f']) {
+-        final OfficeProofingResult result = await provider.check(
+-          input('ICH${space}HAST Zeit. WIR${space}KANN warten.',
+-              language: language),
+-        );
+-        expect(
+-          result.findings.map((OfficeProofingFinding finding) =>
+-              finding.replacements.single),
+-          <String>['HABE', 'KÖNNEN'],
+-          reason: '$language / $space',
+-        );
++  test(
++    'finite auxiliary and modal agreement preserves exact source offsets',
++    () async {
++      final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
++      const List<(String, String)> cases = <(String, String)>[
++        ('ich hast', 'habe'),
++        ('du hat', 'hast'),
++        ('wir habe', 'haben'),
++        ('ich wirst', 'werde'),
++        ('du wird', 'wirst'),
++        ('wir werdet', 'werden'),
++        ('ich kannst', 'kann'),
++        ('du kann', 'kannst'),
++        ('wir könnt', 'können'),
++        ('ich musst', 'muss'),
++        ('du muss', 'musst'),
++        ('wir müsst', 'müssen'),
++        ('ich darfst', 'darf'),
++        ('du darf', 'darfst'),
++        ('wir dürft', 'dürfen'),
++        ('ich sollst', 'soll'),
++        ('du soll', 'sollst'),
++        ('wir sollt', 'sollen'),
++        ('ich willst', 'will'),
++        ('du will', 'willst'),
++        ('wir wollt', 'wollen'),
++        ('ich magst', 'mag'),
++        ('du mag', 'magst'),
++        ('wir mögt', 'mögen'),
++      ];
++      for (final (String, String) entry in cases) {
++        final String text = '🙂 ${entry.$1} hier.';
++        final String original = entry.$1.split(' ').last;
++        final OfficeProofingReport report =
++            await OfficeProofingService(
++              providers: <OfficeProofingProvider>[provider],
++            ).check(
++              OfficeProofingRequest(
++                documentId: 'doc',
++                blockId: 'p',
++                revision: 1,
++                text: text,
++                startOffset: 20,
++              ),
++            );
++        expect(report.complete, isTrue, reason: text);
++        expect(report.findings, hasLength(1), reason: text);
++        final OfficeProofingFinding finding = report.findings.single;
++        expect(finding.ruleId, 'de.grammar.pronoun-verb');
++        expect(finding.category, OfficeProofingCategory.grammar);
++        expect(finding.start, 20 + text.indexOf(original));
++        expect(finding.end, finding.start + original.length);
++        expect(finding.originalText, original);
++        expect(finding.replacements, <String>[entry.$2]);
+       }
+-    }
+-    await provider.dispose();
+-  });
+-  test('finite agreement preserves exclusions and narrow ihr checks',
+-      () async {
++      await provider.dispose();
++    },
++  );
++  test(
++    'valid German constructions remain outside finite agreement findings',
++    () async {
++      final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
++      for (final String text in <String>[
++        'Ich habe Zeit. Du hast Zeit. Wir haben Zeit.',
++        'Ich werde warten. Du wirst warten. Wir werden warten.',
++        'Ich kann warten. Du kannst warten. Wir können warten.',
++        'Ich muss warten. Du musst warten. Wir müssen warten.',
++        'Ich darf warten. Du darfst warten. Wir dürfen warten.',
++        'Ich soll warten. Du sollst warten. Wir sollen warten.',
++        'Ich will warten. Du willst warten. Wir wollen warten.',
++        'Ich mag Bücher. Du magst Bücher. Wir mögen Bücher.',
++        'Ich sei bereit. Du seiest bereit. Wir seien bereit.',
++        'Ich hätte Zeit. Du hättest Zeit. Wir hätten Zeit.',
++        'Ich könnte kommen. Du könntest kommen. Wir könnten kommen.',
++        'Ich möchte bleiben. Du möchtest bleiben. Wir möchten bleiben.',
++        'Sei ruhig! Seid ruhig! Hab Geduld! Werde gesund!',
++        'Du, hab Geduld! Ihr, seid ruhig!',
++        'Du und ich sind hier. Peter und ich haben Zeit.',
++        'Mein Bruder, den du kennst, und ich haben Zeit.',
++        'Meine Schwester, die du kennst, sowie ich können helfen.',
++        'Weder du noch ich haben Zeit. Du sowie ich können kommen.',
++        'Nicht nur du, sondern auch ich haben Zeit.',
++        'Wie du haben wir Zeit. Anders als ich hast du Zeit.',
++        'Das Ich hat Grenzen. Mein wahres Ich hat Zeit.',
++        'Das Wir ist stark. Unser gemeinsames Wir hat Bestand.',
++        'Ich ist ein Personalpronomen. Du ist ein Personalpronomen.',
++        '„ich“ und „du“ sind Personalpronomen.',
++        'Ihr ist kalt. Ihr ist es gelungen.',
++        'Ihr bin ich dankbar. Ihr bist du wichtig.',
++        'Ihr sind die Bücher wichtig. Ihr sind Menschen wichtig.',
++        'Ihr sind heute alle dankbar. Mit ihr sind wir zufrieden.',
++        'Von ihr haben wir gehört. Bei nur ihr bin ich ruhig.',
++        'Sie haben wir gesehen. Es haben wir erwähnt.',
++        'foo_ich haben value_du hat object-wir ist',
++        'ich haben2 du hat_teil wir ist-was',
++        'ich\nhaben. du\nhat.',
++        'ich haſt hier.',
++      ]) {
++        final OfficeProofingResult result = await provider.check(input(text));
++        expect(result.findings, isEmpty, reason: text);
++      }
++      await provider.dispose();
++    },
++  );
++  test(
++    'finite agreement handles horizontal spaces, regions and capitals',
++    () async {
++      final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
++      for (final String language in <String>['de-DE', 'de-AT', 'de-CH']) {
++        for (final String space in <String>[' ', '\t', '\u00a0', '\u202f']) {
++          final OfficeProofingResult result = await provider.check(
++            input(
++              'ICH${space}HAST Zeit. WIR${space}KANN warten.',
++              language: language,
++            ),
++          );
++          expect(
++            result.findings.map(
++              (OfficeProofingFinding finding) => finding.replacements.single,
++            ),
++            <String>['HABE', 'KÖNNEN'],
++            reason: '$language / $space',
++          );
++        }
++      }
++      await provider.dispose();
++    },
++  );
++  test('finite agreement preserves exclusions and narrow ihr checks', () async {
+     final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+     const String text =
+         '🙂 `ich hast` ``du hat`` HTTPS://example.invalid/wir kann. '
+         'ich hast\u200d. ich hast. ihr bist hier.';
+     final OfficeProofingResult result = await provider.check(input(text));
+     expect(
+-      result.findings.map((OfficeProofingFinding finding) =>
+-          finding.replacements.single),
++      result.findings.map(
++        (OfficeProofingFinding finding) => finding.replacements.single,
++      ),
+       <String>['habe', 'seid'],
+     );
+     expect(result.findings.first.start, text.lastIndexOf('hast'));
+@@ -413,23 +425,25 @@ void main() {
+         );
+     expect(result.findings, isEmpty);
+   });
+-  test('matching multi-backtick spans protect grammar and punctuation',
+-      () async {
+-    final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
+-    for (final String code in <String>[
+-      '`ich bist [`',
+-      '``ich bist ` [`x``',
+-      '```dart\nich bist [\n```',
+-    ]) {
+-      final String text = '🙂 $code Ich bist hier.';
+-      final OfficeProofingResult result = await provider.check(input(text));
+-      expect(result.findings, hasLength(1), reason: code);
+-      expect(result.findings.single.originalText, 'bist');
+-      expect(result.findings.single.start, text.lastIndexOf('bist'));
+-      expect(result.findings.single.replacements, <String>['bin']);
+-    }
+-    await provider.dispose();
+-  });
++  test(
++    'matching multi-backtick spans protect grammar and punctuation',
++    () async {
++      final GermanWritingRulesProvider provider = GermanWritingRulesProvider();
++      for (final String code in <String>[
++        '`ich bist [`',
++        '``ich bist ` [`x``',
++        '```dart\nich bist [\n```',
++      ]) {
++        final String text = '🙂 $code Ich bist hier.';
++        final OfficeProofingResult result = await provider.check(input(text));
++        expect(result.findings, hasLength(1), reason: code);
++        expect(result.findings.single.originalText, 'bist');
++        expect(result.findings.single.start, text.lastIndexOf('bist'));
++        expect(result.findings.single.replacements, <String>['bin']);
++      }
++      await provider.dispose();
++    },
++  );
+   test(
+     'protected tokens cannot supply a subject for following prose',
+     () async {
+diff --git a/packages/quds_proofing_harper/test/harper_source_contract_test.dart b/packages/quds_proofing_harper/test/harper_source_contract_test.dart
+index 373c543..bde90a7 100644
+--- a/packages/quds_proofing_harper/test/harper_source_contract_test.dart
++++ b/packages/quds_proofing_harper/test/harper_source_contract_test.dart
+@@ -51,163 +51,211 @@ Map<String, Object?> _finding(
+   'replacements': replacements,
+ };
+ 
+-String _response(List<Map<String, Object?>> findings) => jsonEncode(
+-  <String, Object?>{
+-    'status': 'success',
+-    'offsets': 'unicode-scalar',
+-    'findings': findings,
+-  },
+-);
++String _response(List<Map<String, Object?>> findings) =>
++    jsonEncode(<String, Object?>{
++      'status': 'success',
++      'offsets': 'unicode-scalar',
++      'findings': findings,
++    });
+ 
+ void main() {
+-  test('backend sees complete English words and findings retain Word offsets', () async {
+-    const source = '😀 hy\u00adphen an test.';
+-    final transport = _ReplyTransport((raw) async {
+-      final decoded = jsonDecode(raw) as Map<String, Object?>;
+-      expect(decoded['text'], '😀 hyphen an test.');
+-      expect(decoded['language'], 'en-US');
+-      return _response(<Map<String, Object?>>[
+-        _finding(2, 8),
+-        _finding(9, 11, category: 'grammar', rule: 'harper.AnA'),
+-      ]);
+-    });
+-    final provider = HarperProofingProvider(transport: transport);
+-    final service = OfficeProofingService(providers: <OfficeProofingProvider>[provider]);
+-    addTearDown(service.dispose);
+-    final request = _request(source, startOffset: 7);
+-    final report = await service.check(request);
+-    expect(report.complete, isTrue);
+-    expect(report.findings, hasLength(2));
+-    expect(report.findings.first.start, 10);
+-    expect(report.findings.first.end, 17);
+-    expect(report.findings.first.originalText, 'hy\u00adphen');
+-    expect(report.findings.last.start, 18);
+-    expect(report.findings.last.end, 20);
+-    expect(report.findings.last.originalText, 'an');
+-    expect(report.findings.last.revision, 9);
+-    expect(request.text, source);
+-  });
+-
+-  test('zero-length corrections beside controls keep source insertion points', () async {
+-    final provider = HarperProofingProvider(
+-      transport: _ReplyTransport((_) async => _response(<Map<String, Object?>>[
+-        _finding(1, 1, category: 'style', replacements: <String>[' ']),
+-        _finding(2, 2, category: 'style', replacements: <String>['.']),
+-      ])),
+-    );
+-    addTearDown(provider.dispose);
+-    final report = await OfficeProofingService(
+-      providers: <OfficeProofingProvider>[provider],
+-    ).check(_request('a\u00adb', startOffset: 10));
+-    expect(report.complete, isTrue);
+-    expect(report.findings.map((finding) => finding.start), <int>[12, 13]);
+-    expect(report.findings.map((finding) => finding.end), <int>[12, 13]);
+-    expect(report.findings.every((finding) => finding.originalText.isEmpty), isTrue);
+-  });
+-
+-  test('partial accent findings cannot discard unrelated grammar findings', () async {
+-    final provider = HarperProofingProvider(
+-      transport: _ReplyTransport((_) async => _response(<Map<String, Object?>>[
+-        _finding(0, 1),
+-        _finding(3, 5, category: 'grammar', rule: 'harper.AnA'),
+-      ])),
+-    );
+-    addTearDown(provider.dispose);
+-    final report = await OfficeProofingService(
+-      providers: <OfficeProofingProvider>[provider],
+-    ).check(_request('e\u0301 an test.'));
+-    expect(report.complete, isTrue);
+-    expect(report.findings.single.ruleId, 'harper.AnA');
+-    expect(report.findings.single.originalText, 'an');
+-  });
+-
+-  test('source projection does not turn malformed backend ranges into success', () async {
+-    for (final range in <(int, int)>[(-1, 1), (2, 1), (0, 5), (5, 5)]) {
++  test(
++    'backend sees complete English words and findings retain Word offsets',
++    () async {
++      const source = '😀 hy\u00adphen an test.';
++      final transport = _ReplyTransport((raw) async {
++        final decoded = jsonDecode(raw) as Map<String, Object?>;
++        expect(decoded['text'], '😀 hyphen an test.');
++        expect(decoded['language'], 'en-US');
++        return _response(<Map<String, Object?>>[
++          _finding(2, 8),
++          _finding(9, 11, category: 'grammar', rule: 'harper.AnA'),
++        ]);
++      });
++      final provider = HarperProofingProvider(transport: transport);
++      final service = OfficeProofingService(
++        providers: <OfficeProofingProvider>[provider],
++      );
++      addTearDown(service.dispose);
++      final request = _request(source, startOffset: 7);
++      final report = await service.check(request);
++      expect(report.complete, isTrue);
++      expect(report.findings, hasLength(2));
++      expect(report.findings.first.start, 10);
++      expect(report.findings.first.end, 17);
++      expect(report.findings.first.originalText, 'hy\u00adphen');
++      expect(report.findings.last.start, 18);
++      expect(report.findings.last.end, 20);
++      expect(report.findings.last.originalText, 'an');
++      expect(report.findings.last.revision, 9);
++      expect(request.text, source);
++    },
++  );
++
++  test(
++    'zero-length corrections beside controls keep source insertion points',
++    () async {
+       final provider = HarperProofingProvider(
+-        transport: _ReplyTransport((_) async => _response(<Map<String, Object?>>[
+-          _finding(range.$1, range.$2),
+-        ])),
++        transport: _ReplyTransport(
++          (_) async => _response(<Map<String, Object?>>[
++            _finding(1, 1, category: 'style', replacements: <String>[' ']),
++            _finding(2, 2, category: 'style', replacements: <String>['.']),
++          ]),
++        ),
+       );
+       addTearDown(provider.dispose);
+-      final result = await provider.check(_request('ab\u00adcd'));
+-      expect(result.status, OfficeProofingStatus.failed);
+-      expect(result.findings, isEmpty);
+-    }
+-  });
+-
+-  test('shared vocabulary suppresses only spelling in its own dialect', () async {
+-    final vocabulary = OfficeProofingVocabulary(ownerId: 'account-1');
+-    vocabulary.addWord('Quds', language: 'en-US');
+-    final provider = HarperProofingProvider(
+-      vocabulary: vocabulary,
+-      transport: _ReplyTransport((_) async => _response(<Map<String, Object?>>[
+-        _finding(0, 4),
+-        _finding(0, 4, category: 'grammar', rule: 'harper.TestGrammar'),
+-      ])),
+-    );
+-    addTearDown(provider.dispose);
+-    expect(provider.configurationRevision, vocabulary.revision);
+-    final american = await provider.check(_request('Qu\u00adds'));
+-    expect(american.findings.single.category, OfficeProofingCategory.grammar);
+-    final british = await provider.check(_request('Quds', language: 'en-GB'));
+-    expect(british.findings, hasLength(2));
+-    final revision = provider.configurationRevision;
+-    vocabulary.ignoreWord('Quds', language: 'en-GB');
+-    expect(provider.configurationRevision, greaterThan(revision));
+-    final ignored = await provider.check(_request('Quds', language: 'en-GB'));
+-    expect(ignored.findings.single.category, OfficeProofingCategory.grammar);
+-    vocabulary.unignoreWord('Quds', language: 'en-GB');
+-    expect(
+-      (await provider.check(_request('Quds', language: 'en-GB'))).findings,
+-      hasLength(2),
+-    );
+-  });
+-
+-  test('an in-flight vocabulary change requires a fresh English check', () async {
+-    final vocabulary = OfficeProofingVocabulary();
+-    final gate = Completer<String>();
+-    final provider = HarperProofingProvider(
+-      vocabulary: vocabulary,
+-      transport: _ReplyTransport((_) => gate.future),
+-    );
+-    addTearDown(provider.dispose);
+-    final pending = provider.check(_request('Quds'));
+-    vocabulary.addWord('Quds', language: 'en-US');
+-    gate.complete(_response(<Map<String, Object?>>[_finding(0, 4)]));
+-    final stale = await pending;
+-    expect(stale.status, OfficeProofingStatus.failed);
+-    expect(stale.findings, isEmpty);
+-    expect(stale.message, contains('vocabulary changed'));
+-  });
+-
+-  test('all supported English dialects and ignored rules survive projection', () async {
+-    for (final language in <String>['en', 'en_US', 'en-GB', 'en-CA', 'en-AU', 'en-IN']) {
++      final report = await OfficeProofingService(
++        providers: <OfficeProofingProvider>[provider],
++      ).check(_request('a\u00adb', startOffset: 10));
++      expect(report.complete, isTrue);
++      expect(report.findings.map((finding) => finding.start), <int>[12, 13]);
++      expect(report.findings.map((finding) => finding.end), <int>[12, 13]);
++      expect(
++        report.findings.every((finding) => finding.originalText.isEmpty),
++        isTrue,
++      );
++    },
++  );
++
++  test(
++    'partial accent findings cannot discard unrelated grammar findings',
++    () async {
++      final provider = HarperProofingProvider(
++        transport: _ReplyTransport(
++          (_) async => _response(<Map<String, Object?>>[
++            _finding(0, 1),
++            _finding(3, 5, category: 'grammar', rule: 'harper.AnA'),
++          ]),
++        ),
++      );
++      addTearDown(provider.dispose);
++      final report = await OfficeProofingService(
++        providers: <OfficeProofingProvider>[provider],
++      ).check(_request('e\u0301 an test.'));
++      expect(report.complete, isTrue);
++      expect(report.findings.single.ruleId, 'harper.AnA');
++      expect(report.findings.single.originalText, 'an');
++    },
++  );
++
++  test(
++    'source projection does not turn malformed backend ranges into success',
++    () async {
++      for (final range in <(int, int)>[(-1, 1), (2, 1), (0, 5), (5, 5)]) {
++        final provider = HarperProofingProvider(
++          transport: _ReplyTransport(
++            (_) async =>
++                _response(<Map<String, Object?>>[_finding(range.$1, range.$2)]),
++          ),
++        );
++        addTearDown(provider.dispose);
++        final result = await provider.check(_request('ab\u00adcd'));
++        expect(result.status, OfficeProofingStatus.failed);
++        expect(result.findings, isEmpty);
++      }
++    },
++  );
++
++  test(
++    'shared vocabulary suppresses only spelling in its own dialect',
++    () async {
++      final vocabulary = OfficeProofingVocabulary(ownerId: 'account-1');
++      vocabulary.addWord('Quds', language: 'en-US');
++      final provider = HarperProofingProvider(
++        vocabulary: vocabulary,
++        transport: _ReplyTransport(
++          (_) async => _response(<Map<String, Object?>>[
++            _finding(0, 4),
++            _finding(0, 4, category: 'grammar', rule: 'harper.TestGrammar'),
++          ]),
++        ),
++      );
++      addTearDown(provider.dispose);
++      expect(provider.configurationRevision, vocabulary.revision);
++      final american = await provider.check(_request('Qu\u00adds'));
++      expect(american.findings.single.category, OfficeProofingCategory.grammar);
++      final british = await provider.check(_request('Quds', language: 'en-GB'));
++      expect(british.findings, hasLength(2));
++      final revision = provider.configurationRevision;
++      vocabulary.ignoreWord('Quds', language: 'en-GB');
++      expect(provider.configurationRevision, greaterThan(revision));
++      final ignored = await provider.check(_request('Quds', language: 'en-GB'));
++      expect(ignored.findings.single.category, OfficeProofingCategory.grammar);
++      vocabulary.unignoreWord('Quds', language: 'en-GB');
++      expect(
++        (await provider.check(_request('Quds', language: 'en-GB'))).findings,
++        hasLength(2),
++      );
++    },
++  );
++
++  test(
++    'an in-flight vocabulary change requires a fresh English check',
++    () async {
++      final vocabulary = OfficeProofingVocabulary();
++      final gate = Completer<String>();
+       final provider = HarperProofingProvider(
+-        transport: _ReplyTransport((raw) async {
+-          final decoded = jsonDecode(raw) as Map<String, Object?>;
+-          expect(decoded['language'], normalizeProofingLanguage(language));
+-          expect(decoded['text'], 'Quds');
+-          expect(decoded['ignored_rules'], <String>['harper.TestSpelling']);
+-          return _response(<Map<String, Object?>>[_finding(0, 4)]);
+-        }),
++        vocabulary: vocabulary,
++        transport: _ReplyTransport((_) => gate.future),
+       );
+       addTearDown(provider.dispose);
+-      final result = await provider.check(_request(
+-        'Qu\u00adds',
+-        language: language,
+-        ignoredRuleIds: <String>{'harper.TestSpelling'},
+-      ));
+-      expect(result.status, OfficeProofingStatus.success);
+-      expect(result.findings, isEmpty);
+-    }
+-  });
+-
+-  test('original source size remains bounded before projecting controls', () async {
+-    final transport = _ReplyTransport((_) async => _response(<Map<String, Object?>>[]));
+-    final provider = HarperProofingProvider(transport: transport);
+-    addTearDown(provider.dispose);
+-    final result = await provider.check(_request(List<String>.filled(32769, '\u00ad').join()));
+-    expect(result.status, OfficeProofingStatus.failed);
+-    expect(transport.calls, 0);
+-  });
++      final pending = provider.check(_request('Quds'));
++      vocabulary.addWord('Quds', language: 'en-US');
++      gate.complete(_response(<Map<String, Object?>>[_finding(0, 4)]));
++      final stale = await pending;
++      expect(stale.status, OfficeProofingStatus.failed);
++      expect(stale.findings, isEmpty);
++      expect(stale.message, contains('vocabulary changed'));
++    },
++  );
++
++  test(
++    'all supported English dialects and ignored rules survive projection',
++    () async {
++      for (final language in <String>[
++        'en',
++        'en_US',
++        'en-GB',
++        'en-CA',
++        'en-AU',
++        'en-IN',
++      ]) {
++        final provider = HarperProofingProvider(
++          transport: _ReplyTransport((raw) async {
++            final decoded = jsonDecode(raw) as Map<String, Object?>;
++            expect(decoded['language'], normalizeProofingLanguage(language));
++            expect(decoded['text'], 'Quds');
++            expect(decoded['ignored_rules'], <String>['harper.TestSpelling']);
++            return _response(<Map<String, Object?>>[_finding(0, 4)]);
++          }),
++        );
++        addTearDown(provider.dispose);
++        final result = await provider.check(
++          _request(
++            'Qu\u00adds',
++            language: language,
++            ignoredRuleIds: <String>{'harper.TestSpelling'},
++          ),
++        );
++        expect(result.status, OfficeProofingStatus.success);
++        expect(result.findings, isEmpty);
++      }
++    },
++  );
++
++  test(
++    'original source size remains bounded before projecting controls',
++    () async {
++      final transport = _ReplyTransport(
++        (_) async => _response(<Map<String, Object?>>[]),
++      );
++      final provider = HarperProofingProvider(transport: transport);
++      addTearDown(provider.dispose);
++      final result = await provider.check(
++        _request(List<String>.filled(32769, '\u00ad').join()),
++      );
++      expect(result.status, OfficeProofingStatus.failed);
++      expect(transport.calls, 0);
++    },
++  );
+ }
+diff --git a/packages/quds_proofing_harper/test/harper_source_text_test.dart b/packages/quds_proofing_harper/test/harper_source_text_test.dart
+index 8566ee5..1fbd49b 100644
+--- a/packages/quds_proofing_harper/test/harper_source_text_test.dart
++++ b/packages/quds_proofing_harper/test/harper_source_text_test.dart
+@@ -13,43 +13,49 @@ void main() {
+     expect(source, '😀 hy\u00adphen\u00adation.');
+   });
+ 
+-  test('word ranges own internal controls without swallowing adjacent ones', () {
+-    const source = '\u00adab\u00adcd\u00ad';
+-    final projected = HarperSourceText(source);
+-    expect(projected.text, 'abcd');
+-    expect(projected.sourceRange(0, 2), (start: 1, end: 3));
+-    expect(projected.sourceRange(2, 4), (start: 4, end: 6));
+-    expect(projected.sourceRange(0, 4), (start: 1, end: 6));
+-    expect(projected.sourceRange(2, 2), (start: 4, end: 4));
+-    expect(projected.sourceRange(4, 4), (start: 7, end: 7));
+-  });
++  test(
++    'word ranges own internal controls without swallowing adjacent ones',
++    () {
++      const source = '\u00adab\u00adcd\u00ad';
++      final projected = HarperSourceText(source);
++      expect(projected.text, 'abcd');
++      expect(projected.sourceRange(0, 2), (start: 1, end: 3));
++      expect(projected.sourceRange(2, 4), (start: 4, end: 6));
++      expect(projected.sourceRange(0, 4), (start: 1, end: 6));
++      expect(projected.sourceRange(2, 2), (start: 4, end: 4));
++      expect(projected.sourceRange(4, 4), (start: 7, end: 7));
++    },
++  );
+ 
+-  test('empty input and control-only text have explicit insertion ownership', () {
+-    expect(HarperSourceText('').sourceRange(0, 0), (start: 0, end: 0));
+-    final projected = HarperSourceText('\u00ad\u00ad');
+-    expect(projected.text, '');
+-    expect(projected.sourceRange(0, 0), (start: 2, end: 2));
+-  });
++  test(
++    'empty input and control-only text have explicit insertion ownership',
++    () {
++      expect(HarperSourceText('').sourceRange(0, 0), (start: 0, end: 0));
++      final projected = HarperSourceText('\u00ad\u00ad');
++      expect(projected.text, '');
++      expect(projected.sourceRange(0, 0), (start: 2, end: 2));
++    },
++  );
+ 
+-  test('punctuation, no-break controls and authored line endings stay literal', () {
+-    const source = 'can’t co\u2011operate\u2060.\u00a0Next\r\nline.';
+-    final projected = HarperSourceText(source);
+-    expect(projected.text, source);
+-    expect(
+-      projected.sourceRange(0, projected.scalarLength),
+-      (start: 0, end: source.length),
+-    );
+-  });
++  test(
++    'punctuation, no-break controls and authored line endings stay literal',
++    () {
++      const source = 'can’t co\u2011operate\u2060.\u00a0Next\r\nline.';
++      final projected = HarperSourceText(source);
++      expect(projected.text, source);
++      expect(projected.sourceRange(0, projected.scalarLength), (
++        start: 0,
++        end: source.length,
++      ));
++    },
++  );
+ 
+   test('never exposes partial source or projected graphemes', () {
+     for (final source in <String>['e\u0301', 'e\u00ad\u0301']) {
+       final projected = HarperSourceText(source);
+       expect(projected.sourceRange(0, 1), isNull);
+       expect(projected.sourceRange(1, 1), isNull);
+-      expect(
+-        projected.sourceRange(0, 2),
+-        (start: 0, end: source.length),
+-      );
++      expect(projected.sourceRange(0, 2), (start: 0, end: source.length));
+     }
+     final joined = HarperSourceText('👩‍💻x');
+     expect(joined.sourceRange(0, 1), isNull);
+@@ -61,10 +67,7 @@ void main() {
+   test('rejects negative, reversed and out-of-bounds backend ranges', () {
+     final projected = HarperSourceText('ab\u00adcd');
+     for (final range in <(int, int)>[(-1, 1), (2, 1), (0, 5), (5, 5)]) {
+-      expect(
+-        () => projected.sourceRange(range.$1, range.$2),
+-        throwsRangeError,
+-      );
++      expect(() => projected.sourceRange(range.$1, range.$2), throwsRangeError);
+     }
+   });
+ 

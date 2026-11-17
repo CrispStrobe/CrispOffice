@@ -1,0 +1,575 @@
+{
+  "recorded_at_utc": "2026-11-16T20:13:24.796Z",
+  "snapshot_cutoff_utc": "2026-11-16T20:10:54.959Z",
+  "comparison_head": "f23675a4e6443c2958d0eef274bc3e301e6ff201",
+  "reviews": [
+    {
+      "sha": "5ed98a033b8d2efe24778649f190d559df3d5f74",
+      "merge_base": "3a8306e681f4eac80d918035ac812f8137ef9417",
+      "changed_path_count": 57,
+      "already_identical_count": 0,
+      "actual_differences": [
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/CHECKPOINT.md",
+          "incoming_blob": "4b86a87195713379648ae6131dcdeffc56d4da6f",
+          "current_blob": "1cf577f8a1dc83bcf36f9de5718ae8e33b43dc49",
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/analyze.stderr.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/analyze.stdout.gz",
+          "incoming_blob": "17f9410983ee00cfeec990d40408ec8736ddf0b2",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/format.stderr.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/format.stdout.gz",
+          "incoming_blob": "b0680fd7c2828627dfe3338e57d9e0151aadf60b",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/receipt.json",
+          "incoming_blob": "0e375658ea074a7043d9b27bfbb36fa66f969d9a",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/render/metrics.json",
+          "incoming_blob": "43e915ce22d21280e6ea8b47ff11216df165ce47",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/render/shared-glyph-aliases.json",
+          "incoming_blob": "47405ba044011efb4a3ca5665867c2f9161cf05c",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/render/shared-glyph-aliases.pdf",
+          "incoming_blob": "c7d62735d765140bb4a69ff7d14c7e78d5098c9c",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/render/unicode-subset-preview.png",
+          "incoming_blob": "00327c0942a33b80ae073cf138397ba890814d9c",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/render/unicode-subset.pdf",
+          "incoming_blob": "5dc8e379d48469b2bf63c2bb59355ef6fe79c44e",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/tests.stderr.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/tests.stdout.gz",
+          "incoming_blob": "b6990eceb70a629e42852d1a03786386ef7fe271",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/editor/validate-used.py",
+          "incoming_blob": "f623bfe124e53278265390510d20edbce9ed3c5a",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/incoming-merge-review.json",
+          "incoming_blob": "9c592f44607bb489829791bc3b44080a8956c513",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/incoming-refresh-before-merge.json",
+          "incoming_blob": "925c6e97a3ccb6cca1015891ae7f7d778ba2c130",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/MANIFEST.json",
+          "incoming_blob": "43ef54051ad372848a9eadd4eaa194b2b6429e4c",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/README.md",
+          "incoming_blob": "e616cff0a0fef472e3a87d3396a1797ca9a537c2",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/archive-integrity.json",
+          "incoming_blob": "763352d4980adbf0fe206844937bf4b207f24f75",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/final-precache-flag-attempt/runtime.json.gz",
+          "incoming_blob": "969a29917d7db121d33d365e17a94c0d54c7abe1",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/final-precache-flag-attempt/universal-artifacts.log.gz",
+          "incoming_blob": "192136a3f37eab90300d80cecd601b4f67f8a78f",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/final-precache-font-subset-attempt/runtime.json.gz",
+          "incoming_blob": "7bdfbd48a445e4364bbd472bb698ce729470acae",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/final-precache-font-subset-attempt/universal-artifacts.log.gz",
+          "incoming_blob": "ffd177efe6acc776d3ed3ae56687004de95dc340",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/final-precache-platform-attempt/runtime.json.gz",
+          "incoming_blob": "55ff617869f9c098e8f220e6f1324b5c088a10b1",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/final-precache-platform-attempt/universal-artifacts.log.gz",
+          "incoming_blob": "247e639cd388da0df25d56429e4d0c5ac8ac5c30",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-detached-tag-fetch/dart-sdk-install.log.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-detached-tag-fetch/direct-version-retry.log.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-detached-tag-fetch/direct-version.log.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-detached-tag-fetch/engine-version.log.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-detached-tag-fetch/flutter-tools-offline.log.gz",
+          "incoming_blob": "2fe1b7456022ea38447123be2bf6e1e4264370b1",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-detached-tag-fetch/flutter-version.log.gz",
+          "incoming_blob": "710b3e55da93d646c6369a805ade2a00e8218473",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-detached-tag-fetch/receipt.json.gz",
+          "incoming_blob": "ff22bd51a81d7c034798fa52e3d7992bea122a60",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-initial-cache-metadata/dart-sdk-install.log.gz",
+          "incoming_blob": "31b70cd529710ac736aa11fa4c92424663841049",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-initial-cache-metadata/direct-version.log.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-initial-cache-metadata/engine-version.log.gz",
+          "incoming_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-initial-cache-metadata/flutter-tools-offline.log.gz",
+          "incoming_blob": "9120bef042bac66f5e067c85ab2f06ce20535a75",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-initial-cache-metadata/flutter-version.log.gz",
+          "incoming_blob": "a11d35102a0fc8dabdc8e6cfe39edbfecf757c99",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/installation-initial-cache-metadata/receipt.json.gz",
+          "incoming_blob": "b0f3fe737bb0c4bc71e0ef738b731ab4d52fcc49",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/workspace-resolution/pub-get.log.gz",
+          "incoming_blob": "f7ce63290a43bb99f332d52b53e969dcc7d3f897",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/attempts/workspace-resolution/receipt.json.gz",
+          "incoming_blob": "9e24aca58963a7400a8b1b23a58ca2008d1d80f0",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/dart-sdk-linux-x64.zip.receipt.json",
+          "incoming_blob": "4fe455749a0735697f6d7e87011589e162f06ac7",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/download_parts.py",
+          "incoming_blob": "38069c36731cced8f25d23f4d121ecb398857c8c",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/env.sh",
+          "incoming_blob": "56a36597100cf0953799a5bccfe643b9b05aced8",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/extract_available_dart.py",
+          "incoming_blob": "b3e136876263534b8479790a7abcc4cfe0dc3cb3",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/fetch_flutter_assets.py",
+          "incoming_blob": "e8a61a07660769f022bcd5e9347c6d3e36e373fe",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/finalize_flutter_cache.py",
+          "incoming_blob": "95803f255bf7431fb82e67e1d298351d043ac23a",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/flutter-assets-receipt.json",
+          "incoming_blob": "3e2da787cf5c5e0c00a2d15a68a9bd87dc41e0be",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/flutter_cli.sh",
+          "incoming_blob": "f1138a36c70fde9cdeffe3523510ff3ca3d3000e",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/install_verified_runtime.py",
+          "incoming_blob": "c2fa73d375505a41138ec18d44c3d1c9a2fc00cb",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/linux-x64-artifacts.zip.receipt.json",
+          "incoming_blob": "8a18b58c5a0abd8d12c63467aad700ce631a6c88",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/prepare_pub_cache.py",
+          "incoming_blob": "7e5849dea8a488dfab4aa1813ed440f754068442",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/pub-cache-receipt.json",
+          "incoming_blob": "bc884ddfe72e4f4766427b33f23fe5a21e1e901e",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/runtime.json",
+          "incoming_blob": "60c66ad652f136d2271c2fa30077c9e4b0268824",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/sdk-tools-pubspec.lock",
+          "incoming_blob": "cabb6d5931a771f1fce4612f38745935e92b88e6",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/universal-artifacts.log",
+          "incoming_blob": "bedaef094b7e50fd8ed56e0ffd38a969c38e90ec",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/runtime/version.log",
+          "incoming_blob": "be4b54474a05bf96d4a343c07be8a1c1863d59f2",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/validate.py",
+          "incoming_blob": "e57196f7fc0aa64b54cb17e0045d258127acdd4d",
+          "current_blob": "f623bfe124e53278265390510d20edbce9ed3c5a",
+          "already_identical": false
+        }
+      ],
+      "source_paths": []
+    },
+    {
+      "sha": "b87f9d6c3a2532c9695024adf48ca9fbd3c0927a",
+      "merge_base": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "changed_path_count": 73,
+      "already_identical_count": 62,
+      "actual_differences": [
+        {
+          "path": "docs/office-remaining-gaps.md",
+          "incoming_blob": "3c5e2d5b06de7f634437e0f2eadcb244f181f867",
+          "current_blob": "7e03bfa213c27f5d25b71d8b1d8159f194364d3e",
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/text-rendering-continuation-20261116/CHECKPOINT.md",
+          "incoming_blob": "4d390e5050b9af168211d7c2a9af9dc08f33ca58",
+          "current_blob": "1cf577f8a1dc83bcf36f9de5718ae8e33b43dc49",
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/zotero-recovery-20261116/README.md",
+          "incoming_blob": "f35c8346daf8cd5e382c9595f9a61b2ba5cdd7b6",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "docs/validation/zotero-recovery-20261116/incoming-refs.json",
+          "incoming_blob": "11ab4a7f26b3c916eec6a676e8d54f3e592ced1d",
+          "current_blob": null,
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/README.md",
+          "incoming_blob": "01558c1606af62d6cdde3cdcccd8d4e1e80b314f",
+          "current_blob": "a96b97c77edc8f254db03e4c5ae9c266805d23b1",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "incoming_blob": "9a326cfc3a7e662dce5fddb3108ed741d48083d0",
+          "current_blob": "68db5e6891e5d04f97a9cc0065ee51cfeb02d83a",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "incoming_blob": "4a614fe0d7677f708de753ca4b0cf73f63b93dee",
+          "current_blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+          "incoming_blob": "3cf161f32d8d8b3abf63d70cb1ba13962c104cfb",
+          "current_blob": "7f9f8961791056239191aa879a411fbfbf29558c",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "incoming_blob": "d239a50412284f100ed05c7476bc90ade871cc58",
+          "current_blob": "e2a79c8683980da5ecc445fdf7b86410611130ed",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "incoming_blob": "a7d871e6a3902f217a57ded35ecc75db82befbe1",
+          "current_blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "incoming_blob": "90f8fce3d7f280957c1cf5c25edbb09ec87cb0f6",
+          "current_blob": "7b4c8507db1e290311f607a4745d13beb5f40e89",
+          "already_identical": false
+        }
+      ],
+      "source_paths": [
+        {
+          "path": "packages/quds_office_editor/test/font_subset_render_test.dart",
+          "incoming_blob": "8a28e2eb68ff052ab1e9532ca567b34de3c88f6e",
+          "current_blob": "8a28e2eb68ff052ab1e9532ca567b34de3c88f6e",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/CHANGELOG.md",
+          "incoming_blob": "f5774e4e4f2be58893b9d67da4b16745e1cc595b",
+          "current_blob": "f5774e4e4f2be58893b9d67da4b16745e1cc595b",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/README.md",
+          "incoming_blob": "01558c1606af62d6cdde3cdcccd8d4e1e80b314f",
+          "current_blob": "a96b97c77edc8f254db03e4c5ae9c266805d23b1",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/fonts/font_subsetter.dart",
+          "incoming_blob": "7332885a95f34ea6d0d26c7b3160ff002bdd3c6d",
+          "current_blob": "7332885a95f34ea6d0d26c7b3160ff002bdd3c6d",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+          "incoming_blob": "8125d1993ea95c6eec10a6146e07759d4696460e",
+          "current_blob": "8125d1993ea95c6eec10a6146e07759d4696460e",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart",
+          "incoming_blob": "117dc13b83f4c102e517ae3cd19d90760fe03176",
+          "current_blob": "117dc13b83f4c102e517ae3cd19d90760fe03176",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+          "incoming_blob": "b2404c1894c485511a276ca1628bee2cec40e010",
+          "current_blob": "b2404c1894c485511a276ca1628bee2cec40e010",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/pdf/pdf_font.dart",
+          "incoming_blob": "d879fc69f81d1e331a1be9b93062fd227f96e5dc",
+          "current_blob": "d879fc69f81d1e331a1be9b93062fd227f96e5dc",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+          "incoming_blob": "9a326cfc3a7e662dce5fddb3108ed741d48083d0",
+          "current_blob": "68db5e6891e5d04f97a9cc0065ee51cfeb02d83a",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+          "incoming_blob": "4a614fe0d7677f708de753ca4b0cf73f63b93dee",
+          "current_blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+          "incoming_blob": "3cf161f32d8d8b3abf63d70cb1ba13962c104cfb",
+          "current_blob": "7f9f8961791056239191aa879a411fbfbf29558c",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+          "incoming_blob": "d239a50412284f100ed05c7476bc90ade871cc58",
+          "current_blob": "e2a79c8683980da5ecc445fdf7b86410611130ed",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/test/font_subset_structure_test.dart",
+          "incoming_blob": "87ec569055aca6d8ad77b61f86d949f4726f9c17",
+          "current_blob": "87ec569055aca6d8ad77b61f86d949f4726f9c17",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "incoming_blob": "a7d871e6a3902f217a57ded35ecc75db82befbe1",
+          "current_blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/test/pdf_cid_encoding_test.dart",
+          "incoming_blob": "708a0d726137dad5ffa43965fa3ceabb6f8fdb39",
+          "current_blob": "708a0d726137dad5ffa43965fa3ceabb6f8fdb39",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/pdf_unicode_alias_export_test.dart",
+          "incoming_blob": "5fec90d12f834114fccab4f19ff4ba6703bb71c1",
+          "current_blob": "5fec90d12f834114fccab4f19ff4ba6703bb71c1",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart",
+          "incoming_blob": "90f8fce3d7f280957c1cf5c25edbb09ec87cb0f6",
+          "current_blob": "7b4c8507db1e290311f607a4745d13beb5f40e89",
+          "already_identical": false
+        },
+        {
+          "path": "packages/quds_office_engine/test/support/pdf_alias_fixture.dart",
+          "incoming_blob": "1c7c50eab1c421b0eb913f9f7806f06bb8ac18f1",
+          "current_blob": "1c7c50eab1c421b0eb913f9f7806f06bb8ac18f1",
+          "already_identical": true
+        },
+        {
+          "path": "packages/quds_office_engine/third_party/fonttools/LICENSE",
+          "incoming_blob": "3fe0941a282a17c8687a60885e78855ae5fa7f68",
+          "current_blob": "3fe0941a282a17c8687a60885e78855ae5fa7f68",
+          "already_identical": true
+        }
+      ]
+    }
+  ],
+  "zotero_notes": [
+    "All rendering production/test/license blobs listed in the incoming compare are exactly identical to comparison_head.",
+    "All eight changed paths supplied by pinned main63194d8e are exactly identical at Zotero headb87f9d6c.",
+    "The only unique additions beyond rendering plus main are docs/validation/zotero-recovery-20261116/README.md and incoming-refs.json.",
+    "The older CHECKPOINT content is inherited from6bf486e, not a new Zotero edit. Normal merging should retain newer rendering checkpoint."
+  ],
+  "rendering_continuation_notes": [
+    "No production or test source path changes.",
+    "55 added evidence/runtime/historical diagnostic files; CHECKPOINT.md and validate.py modified.",
+    "Historical editor receipt:66 tests successful, analysis and formatting passed, inputs unchanged; starts at59b69ac and ends at6bf486e. Do not count as tests of the later integrated source.",
+    "validate.py adds ODS reader tests and progress/timeout handling. CHECKPOINT should reconcile with current final-source status."
+  ],
+  "proofing_recovery": {
+    "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+    "parents": [
+      "95185d2f803215d768d440cbbc2ee74789574005"
+    ],
+    "classification": "five added evidence files, no production or test source",
+    "paths": [
+      "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/README.md",
+      "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/checkpoint-integrity.json",
+      "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/evidence-review.json",
+      "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/remote-proofing-recovery.json",
+      "docs/validation/proofing-20261116/continuation-hardening/recovery-20261116/verify_evidence.py"
+    ]
+  },
+  "github_actions_used": false
+}

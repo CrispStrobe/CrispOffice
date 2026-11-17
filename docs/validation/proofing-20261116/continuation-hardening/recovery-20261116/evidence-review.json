@@ -1,0 +1,946 @@
+{
+  "checked_at_utc": "2026-11-16T19:40:04.811558+00:00",
+  "verifier_sha256": "907de33d33ede665e1a4e17b9429a3ca9b32a1e7f693cd329d3d9534ac704b5f",
+  "kind": "Independent recovered evidence integrity audit; no product tests or builds rerun",
+  "recovered_commit": "95185d2f803215d768d440cbbc2ee74789574005",
+  "tested_source": "8b93e866b4661d19f4bbad4e1069c0a609441ebb",
+  "passed": true,
+  "checks_count": 188,
+  "failed_checks": [],
+  "checks": [
+    {
+      "check": "editor/flutter-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/flutter-version: exit",
+      "passed": true
+    },
+    {
+      "check": "editor/dart-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/dart-version: exit",
+      "passed": true
+    },
+    {
+      "check": "editor/engine-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/engine-analyze: exit",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-analyze: exit",
+      "passed": true
+    },
+    {
+      "check": "editor/example-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/example-analyze: exit",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-tests: exit",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-ime-reattachment.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-ime-reattachment: exit",
+      "passed": true
+    },
+    {
+      "check": "editor/example-web-build.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/example-web-build: exit",
+      "passed": true
+    },
+    {
+      "check": "engine/dart-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/dart-version: exit",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests.events.jsonl: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests.events.jsonl: passed",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests.events.jsonl: failed",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests.events.jsonl: skipped",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests.events.jsonl: hidden",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests.events.jsonl: final done success",
+      "passed": true
+    },
+    {
+      "check": "engine/hyphenation-layout-export-tests: exit",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests.events.jsonl: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests.events.jsonl: passed",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests.events.jsonl: failed",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests.events.jsonl: skipped",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests.events.jsonl: hidden",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests.events.jsonl: final done success",
+      "passed": true
+    },
+    {
+      "check": "engine/incoming-ods-zotero-tests: exit",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests.events.jsonl: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests.events.jsonl: passed",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests.events.jsonl: failed",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests.events.jsonl: skipped",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests.events.jsonl: hidden",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests.events.jsonl: final done success",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-provider-tests: exit",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards.events.jsonl: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards.events.jsonl: passed",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards.events.jsonl: failed",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards.events.jsonl: skipped",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards.events.jsonl: hidden",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards.events.jsonl: final done success",
+      "passed": true
+    },
+    {
+      "check": "engine/harper-native-guards: exit",
+      "passed": true
+    },
+    {
+      "check": "german/dart-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "german/node-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "german/analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "german/tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "german/compile-javascript.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "german/javascript-smoke.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/source-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/source_before: uncompressed hash",
+      "passed": true
+    },
+    {
+      "check": "editor/source_before: count",
+      "passed": true
+    },
+    {
+      "check": "editor/source-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/source_after: uncompressed hash",
+      "passed": true
+    },
+    {
+      "check": "editor/source_after: count",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime_before: uncompressed hash",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime_before: count",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime_after: uncompressed hash",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime_after: count",
+      "passed": true
+    },
+    {
+      "check": "editor/web-artifacts-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/web_artifacts_before: uncompressed hash",
+      "passed": true
+    },
+    {
+      "check": "editor/web_artifacts_before: count",
+      "passed": true
+    },
+    {
+      "check": "editor/web-artifacts-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/web_artifacts_after: uncompressed hash",
+      "passed": true
+    },
+    {
+      "check": "editor/web_artifacts_after: count",
+      "passed": true
+    },
+    {
+      "check": "engine/source-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/source_manifest: count",
+      "passed": true
+    },
+    {
+      "check": "engine/source-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/source_after_manifest: count",
+      "passed": true
+    },
+    {
+      "check": "engine/runtime-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/runtime_manifest: count",
+      "passed": true
+    },
+    {
+      "check": "engine/runtime-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/runtime_after_manifest: count",
+      "passed": true
+    },
+    {
+      "check": "engine/dependencies-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/dependency_manifest: count",
+      "passed": true
+    },
+    {
+      "check": "engine/dependencies-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "engine/dependency_after_manifest: count",
+      "passed": true
+    },
+    {
+      "check": "editor/source: before equals after",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime: before equals after",
+      "passed": true
+    },
+    {
+      "check": "engine/source: before equals after",
+      "passed": true
+    },
+    {
+      "check": "engine/runtime: before equals after",
+      "passed": true
+    },
+    {
+      "check": "engine/dependencies: before equals after",
+      "passed": true
+    },
+    {
+      "check": "editor: resolved package count",
+      "passed": true
+    },
+    {
+      "check": "engine: resolved package count",
+      "passed": true
+    },
+    {
+      "check": "editor/receipt.json: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/active-process.json: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/active-process.json: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/dart-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/dart-version.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-analyze.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-ime-reattachment.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-ime-reattachment.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-tests.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/engine-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/engine-analyze.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/example-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/example-analyze.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/example-web-build.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/example-web-build.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/flutter-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/flutter-version.log: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/receipt.json: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/receipt.json: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime-after.json.gz: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/runtime-before.json.gz: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/source-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/source-after.json.gz: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/source-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/source-before.json.gz: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/summary.json: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/summary.json: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/verify_editor_final.py: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/verify_editor_final.py: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/web-artifacts-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/web-artifacts-after.json.gz: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/web-artifacts-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/web-artifacts-before.json.gz: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-after.package_config.json: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-after.package_config.json: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-after.pubspec.lock: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-after.pubspec.lock: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-before.package_config.json: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-before.package_config.json: bytes",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-before.pubspec.lock: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/workspace-before.pubspec.lock: bytes",
+      "passed": true
+    },
+    {
+      "check": "./editor/flutter-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/dart-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/engine-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/editor-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/example-analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/editor-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/editor-ime-reattachment.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/example-web-build.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/source-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/source-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/runtime-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/runtime-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/web-artifacts-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./editor/web-artifacts-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/dart-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/hyphenation-layout-export-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/incoming-ods-zotero-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/harper-provider-tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/harper-native-guards.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/source-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/source-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/runtime-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/runtime-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/dependencies-before.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./engine/dependencies-after.json.gz: sha256",
+      "passed": true
+    },
+    {
+      "check": "./german/dart-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./german/node-version.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./german/analyze.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./german/tests.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./german/compile-javascript.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "./german/javascript-smoke.log: sha256",
+      "passed": true
+    },
+    {
+      "check": "editor/engine-analyze: strict option",
+      "passed": true
+    },
+    {
+      "check": "editor/engine-analyze: no issues",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-analyze: strict option",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-analyze: no issues",
+      "passed": true
+    },
+    {
+      "check": "editor/example-analyze: strict option",
+      "passed": true
+    },
+    {
+      "check": "editor/example-analyze: no issues",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-tests: log success count",
+      "passed": true
+    },
+    {
+      "check": "editor/editor-ime-reattachment: log success count",
+      "passed": true
+    },
+    {
+      "check": "web build: successful marker",
+      "passed": true
+    },
+    {
+      "check": "web manifest: file count",
+      "passed": true
+    },
+    {
+      "check": "web manifest: total bytes",
+      "passed": true
+    },
+    {
+      "check": "exact tested tree",
+      "passed": true
+    },
+    {
+      "check": "only documentation/evidence changes after frozen source",
+      "passed": true
+    },
+    {
+      "check": "editor: source manifest matches frozen commit",
+      "passed": true
+    },
+    {
+      "check": "engine: source manifest matches frozen commit",
+      "passed": true
+    },
+    {
+      "check": "handoff evidence path count",
+      "passed": true
+    },
+    {
+      "check": "handoff evidence blobs unchanged",
+      "passed": true
+    },
+    {
+      "check": "all compressed evidence decoded",
+      "passed": true
+    },
+    {
+      "check": "report relative links resolve",
+      "passed": true
+    }
+  ],
+  "source_manifests": {
+    "editor": {
+      "entries": 2049,
+      "source_mismatches": [],
+      "post_validation_documentation_differences": [],
+      "retained_generated_inputs_checked_against_saved_copy": [
+        "pubspec.lock"
+      ]
+    },
+    "engine": {
+      "entries": 4291,
+      "source_mismatches": [],
+      "post_validation_documentation_differences": [
+        "docs/PROOFING.md",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_engine/CHANGELOG.md"
+      ],
+      "retained_generated_inputs_checked_against_saved_copy": []
+    }
+  },
+  "post_source_changed_paths_count": 121,
+  "post_source_non_evidence_docs": [
+    "docs/PROOFING.md",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_engine/CHANGELOG.md"
+  ],
+  "handoff_evidence_files_unchanged": 228,
+  "compressed_evidence_files": [
+    {
+      "path": "editor/runtime-after.json.gz",
+      "bytes": 958,
+      "sha256": "1de0f2c9140094ce77ae77e8b544117ac57e059255efc723a01ae108b865684c",
+      "decoded_bytes": 2544,
+      "json_entries": 16
+    },
+    {
+      "path": "editor/runtime-before.json.gz",
+      "bytes": 958,
+      "sha256": "1de0f2c9140094ce77ae77e8b544117ac57e059255efc723a01ae108b865684c",
+      "decoded_bytes": 2544,
+      "json_entries": 16
+    },
+    {
+      "path": "editor/source-after.json.gz",
+      "bytes": 94470,
+      "sha256": "eb11b143750d82208dfb45fd93c8879f33d266950fc3ddc5ab0dc00e2067d2e9",
+      "decoded_bytes": 294554,
+      "json_entries": 2049
+    },
+    {
+      "path": "editor/source-before.json.gz",
+      "bytes": 94470,
+      "sha256": "eb11b143750d82208dfb45fd93c8879f33d266950fc3ddc5ab0dc00e2067d2e9",
+      "decoded_bytes": 294554,
+      "json_entries": 2049
+    },
+    {
+      "path": "editor/web-artifacts-after.json.gz",
+      "bytes": 6386,
+      "sha256": "d3b3fe31074cabb9706663b70123e2e2d8b61f7fb5bf4bab411ac5b310be4650",
+      "decoded_bytes": 18466,
+      "json_entries": 117
+    },
+    {
+      "path": "editor/web-artifacts-before.json.gz",
+      "bytes": 23,
+      "sha256": "37a641f5b71f361a83c4bb5aae7e62bb31dff4340708786bd20df2313b0f1173",
+      "decoded_bytes": 3,
+      "json_entries": 0
+    },
+    {
+      "path": "editor-initial-731d370/runtime-before.json.gz",
+      "bytes": 958,
+      "sha256": "1de0f2c9140094ce77ae77e8b544117ac57e059255efc723a01ae108b865684c",
+      "decoded_bytes": 2544,
+      "json_entries": 16
+    },
+    {
+      "path": "editor-initial-731d370/source-before.json.gz",
+      "bytes": 94466,
+      "sha256": "139ca95b5f0808ce59438e6256c65864d134aac113daa43b2b8bebd8f8a1501c",
+      "decoded_bytes": 294554,
+      "json_entries": 2049
+    },
+    {
+      "path": "editor-initial-731d370/web-artifacts-before.json.gz",
+      "bytes": 23,
+      "sha256": "37a641f5b71f361a83c4bb5aae7e62bb31dff4340708786bd20df2313b0f1173",
+      "decoded_bytes": 3,
+      "json_entries": 0
+    },
+    {
+      "path": "engine/dependencies-after.json.gz",
+      "bytes": 381207,
+      "sha256": "b220460b602953d1fe29fdb8514cdd4f9e35513420d4b9e7cefae727904caa35",
+      "decoded_bytes": 971304,
+      "json_entries": 8097
+    },
+    {
+      "path": "engine/dependencies-before.json.gz",
+      "bytes": 381207,
+      "sha256": "b220460b602953d1fe29fdb8514cdd4f9e35513420d4b9e7cefae727904caa35",
+      "decoded_bytes": 971304,
+      "json_entries": 8097
+    },
+    {
+      "path": "engine/initial-attempt-731d370/dependencies-before.json.gz",
+      "bytes": 454536,
+      "sha256": "6c15ee6cd83285b6721a2bbd6869f8f2c04d16d723f39cd519e14222625ae910",
+      "decoded_bytes": 1181007,
+      "json_entries": 9813
+    },
+    {
+      "path": "engine/initial-attempt-731d370/runtime-before.json.gz",
+      "bytes": 2138,
+      "sha256": "0246d1f80b72647db84a5b852d217ef58bc720a0907419b44f8a502f8b3bbbbc",
+      "decoded_bytes": 6825,
+      "json_entries": 40
+    },
+    {
+      "path": "engine/initial-attempt-731d370/source-before.json.gz",
+      "bytes": 194877,
+      "sha256": "86b683fd6369cf89757d4b0fac1341178fd793c52cde4c5ea43f86649777db69",
+      "decoded_bytes": 648971,
+      "json_entries": 4291
+    },
+    {
+      "path": "engine/runtime-after.json.gz",
+      "bytes": 2139,
+      "sha256": "07a101355dd324420d66eadb3ef1ae8535203f208c1d900d00cee6a14ba25831",
+      "decoded_bytes": 6825,
+      "json_entries": 40
+    },
+    {
+      "path": "engine/runtime-before.json.gz",
+      "bytes": 2139,
+      "sha256": "07a101355dd324420d66eadb3ef1ae8535203f208c1d900d00cee6a14ba25831",
+      "decoded_bytes": 6825,
+      "json_entries": 40
+    },
+    {
+      "path": "engine/source-after.json.gz",
+      "bytes": 194878,
+      "sha256": "acf28312d23beb18e10e7faa2930149b23b8a3c17a631610eb8794a9c7cfe3aa",
+      "decoded_bytes": 648971,
+      "json_entries": 4291
+    },
+    {
+      "path": "engine/source-before.json.gz",
+      "bytes": 194878,
+      "sha256": "acf28312d23beb18e10e7faa2930149b23b8a3c17a631610eb8794a9c7cfe3aa",
+      "decoded_bytes": 648971,
+      "json_entries": 4291
+    },
+    {
+      "path": "runtime-setup.tar.gz",
+      "bytes": 82491,
+      "sha256": "0d594abc05d3d5deb2a7c219a3818105b5212d6a434df1b110990e8d9a0b13ed",
+      "decoded_bytes": 727040,
+      "tar_files_read": 15
+    }
+  ],
+  "test_counts": {
+    "editor": 347,
+    "ime": 1,
+    "layout_export": 295,
+    "incoming": 503,
+    "harper_provider": 8,
+    "harper_native_passed": 3,
+    "harper_native_skipped": 1
+  },
+  "web_manifest": {
+    "files": 117,
+    "bytes": 59826750,
+    "note": "Recorded output manifest integrity verified; original build output bytes not present in checkout."
+  },
+  "no_github_actions_queried": true,
+  "no_dart_flutter_runs": true,
+  "receipt_sha256": {
+    "editor": "55f650bf706d7f4cac9a063df9f0e6dcacbd89711fa422d96dd01fa1b4ca7f9c",
+    "engine": "09b16c606b20fa9ecdfad53e1724efdd3652c01a5bbdaf4cca36b2dfbabeb6c0"
+  }
+}

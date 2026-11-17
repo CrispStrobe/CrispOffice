@@ -1,0 +1,2 @@
+2026-11-16T23:30:40.998Z FAIL browserType.launchPersistentContext: ENOENT: no such file or directory, mkdtemp '/tmp/playwright-artifacts-J2jxKr'
+    at async file:///workspace/scratch/65e4ff9d3bff/quds_office_suite/tools/proofing/browser_transport_smoke.mjs:169:13

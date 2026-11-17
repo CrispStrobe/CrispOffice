@@ -1,0 +1,285 @@
+{
+  "pinned_snapshot": "2026-11-16T19:37:47.055Z",
+  "total_refs": 166,
+  "main_merge": "be9eeec9ea3455018de26fff5874c558dbc66798",
+  "main_merge_base": "0d19b16e10c6bc8492f47880321df2d9f2561223",
+  "all_changed_branch_heads": [
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "previous_sha": "91f82b8007e4555b855d807a9d9785914e73b650"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/main",
+      "sha": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "previous_sha": "c108be5f5033af9c0d07123e1650a16a361dd3e0"
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "previous_sha": null
+    }
+  ],
+  "main_already_contains_dialog_head": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+  "possible_additional_parents_for_squashed_or_vendor_histories": [
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "previous_sha": null
+    },
+    {
+      "remote": "origin",
+      "ref": "refs/heads/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "previous_sha": null
+    }
+  ],
+  "groups": [
+    {
+      "name": "ODS autofilter predicates",
+      "commits": [
+        {
+          "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+          "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+          "parents": [
+            "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "c77e81725fa0d17bb3f5dd756d46e9f8894749d5"
+            }
+          ]
+        },
+        {
+          "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+          "tree": "12543395e4f423ac6327fdff709a89bfa9a01169",
+          "parents": [
+            "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "f8384a68d354ca50369ae93c455a193ee9d26dba"
+            }
+          ]
+        },
+        {
+          "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+          "tree": "1f2119192dd82eb633ce9445d64da8e41608b200",
+          "parents": [
+            "9de9b4fb1287e935328dc6e653f7457eef7defa1"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "c77e81725fa0d17bb3f5dd756d46e9f8894749d5"
+            }
+          ]
+        },
+        {
+          "sha": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+          "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+          "parents": [
+            "ff873a4e304f247902cf4cd9a75d447baa8796d9"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "e3a1d1e78ad7809fe795cbb0bb00a76d3726c47e"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "c77e81725fa0d17bb3f5dd756d46e9f8894749d5"
+            }
+          ]
+        }
+      ],
+      "all_changed_file_blobs_equal": false,
+      "difference_note": "vendor/ods-filter-conditions has the same incoming patch and exact final writer blob as the feature/current vendor/mainline, but its final test file retains the unused local binding `final a1 =` on the initial A1 cascade. Removing that one unused binding gives byte-identical complete test files. Keep the cleaned current test while preserving the vendor ancestry."
+    },
+    {
+      "name": "ODS row groups and off-extent geometry",
+      "commits": [
+        {
+          "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+          "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+          "parents": [
+            "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f"
+            }
+          ]
+        },
+        {
+          "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+          "tree": "9cfcbbbc904b9baa2ca5c51ddbb5cc421f9a3b59",
+          "parents": [
+            "817982d580e990a5ca21d74c35135db4817e54b5"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f"
+            }
+          ]
+        },
+        {
+          "sha": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+          "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+          "parents": [
+            "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18"
+          ],
+          "identical_per_file_patch": true,
+          "files": [
+            {
+              "path": "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+              "blob": "d3b46ba7cfd22f031cd79bc5101375c5db375510"
+            },
+            {
+              "path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+              "blob": "e18a1f5b2c753e8eb57883d43e3ce90eabcb634f"
+            }
+          ]
+        }
+      ],
+      "all_changed_file_blobs_equal": true
+    }
+  ],
+  "incoming_test_scope": [
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+    "packages/quds_office_editor/test/pdf_font_faces_test.dart"
+  ],
+  "incoming_source_paths": [
+    "docs/office-remaining-gaps.md",
+    "docs/validation/crispcloud-rebuild-refresh-20261116.json",
+    "packages/quds_office_editor/test/pdf_font_faces_test.dart",
+    "packages/quds_office_engine/README.md",
+    "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+    "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+  ],
+  "ancestry_status": "Remote snapshot complete; awaiting local full clone to verify every ref ancestor and remove redundant merge parents."
+}

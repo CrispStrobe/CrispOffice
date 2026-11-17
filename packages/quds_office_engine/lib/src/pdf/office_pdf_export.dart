@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import '../bidi/arabic_shaping.dart';
 import '../bidi/line_breaker.dart';
+import '../bidi/uax9_bidi.dart';
 import '../fonts/font_metrics.dart';
 import '../fonts/font_subsetter.dart';
 import '../fonts/gpos_mark_to_base.dart';
@@ -28,6 +29,7 @@ import 'file/text/pdf_std14.dart';
 import 'office_pdf_visuals.dart';
 import 'pdf_canvas.dart';
 import 'pdf_document.dart';
+import 'pdf_font.dart';
 import 'pdf_save_options.dart';
 
 /// Print layout for worksheet PDF (Office Print defaults to A4 portrait).
@@ -939,9 +941,11 @@ abstract final class OfficePdfExport {
         );
       }
     }
+    final logicalText = _wordLineActualText(line);
+    if (logicalText != null) sink.canvas.beginActualText(logicalText);
     for (var i = 0; i < line.glyphs.length;) {
       final glyph = line.glyphs[i];
-      final actualText = glyph.actualText;
+      final actualText = logicalText == null ? glyph.actualText : null;
       var end = i + 1;
       if (actualText != null) {
         while (end < line.glyphs.length &&
@@ -959,6 +963,7 @@ abstract final class OfficePdfExport {
       if (actualText != null) sink.canvas.endActualText();
       i = end;
     }
+    if (logicalText != null) sink.canvas.endActualText();
     if (line.overlayText != null &&
         line.overlayText!.isNotEmpty &&
         line.glyphs.isNotEmpty) {
@@ -1837,7 +1842,8 @@ abstract final class OfficePdfExport {
             faceFor: sink.pack.fontFor,
           ),
         );
-        for (final BrokenLine line in lines) {
+        for (var lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+          final line = lines[lineIndex];
           if (line.glyphs.isEmpty) {
             cy += size * 1.25;
             continue;
@@ -1846,6 +1852,12 @@ abstract final class OfficePdfExport {
           var cx = rtl ? x + maxWidth - line.width : x;
           // Tm d=-1 grows glyphs up the flipped page; y is the baseline.
           final double baseline = cy + size;
+          final logicalText = _brokenLineActualText(
+            para,
+            line,
+            first: lineIndex == 0,
+          );
+          if (logicalText != null) sink.canvas.beginActualText(logicalText);
           for (final ShapedGlyph g in line.glyphs) {
             if (g.codePoint < 32) {
               continue;
@@ -1863,6 +1875,7 @@ abstract final class OfficePdfExport {
             );
             cx += g.advance;
           }
+          if (logicalText != null) sink.canvas.endActualText();
           cy += size * 1.35;
         }
       }
@@ -1908,6 +1921,111 @@ abstract final class OfficePdfExport {
 
 /// Line placement inside `maxWidth`; [auto] puts RTL lines on the right.
 enum _TextAlign { auto, left, center, right }
+
+// PDF character codes continue to select the existing shaped outlines. A
+// marked replacement carries the separate logical source when joining,
+// mirroring, bidi reordering or synthetic text changes those codes. Keeping
+// this on the complete line preserves order across differently styled runs.
+String? _wordLineActualText(LaidOutLine line) {
+  if (line.glyphs.isEmpty) return null;
+  final logical = List<LaidOutGlyph>.of(line.glyphs)
+    ..sort((a, b) {
+      final bySource = a.glyph.logicalIndex.compareTo(b.glyph.logicalIndex);
+      return bySource != 0
+          ? bySource
+          : a.displayOffset.compareTo(b.displayOffset);
+    });
+  final source = line.sourceText ?? line.sourceParagraph?.text;
+  final out = StringBuffer();
+  var sourceEnd = logical.first.glyph.logicalIndex;
+  if (source != null &&
+      line.isParagraphStart &&
+      _invisibleSourceRange(source, 0, sourceEnd)) {
+    out.write(source.substring(0, sourceEnd));
+  }
+  final displays = <(int, int, String)>{};
+  for (final glyph in logical) {
+    final start = glyph.glyph.logicalIndex;
+    final end = glyph.logicalEnd;
+    if (source != null &&
+        sourceEnd < start &&
+        _invisibleSourceRange(source, sourceEnd, start)) {
+      // A sparse host layout must not borrow visible text from another run.
+      // Only omitted source controls and unselected soft hyphens bridge gaps.
+      out.write(source.substring(sourceEnd, start));
+    }
+    if (glyph.displayText case final String display) {
+      if (displays.add((start, end, display))) {
+        // Generated note labels retain their displayed number; synthetic
+        // capitals and discretionary hyphens retain their authored source.
+        out.write(glyph.actualText ?? display);
+      }
+    } else if (source != null &&
+        start >= 0 &&
+        end >= start &&
+        end <= source.length) {
+      out.write(source.substring(start, end));
+    } else if (glyph.glyph.codePoint >= 32) {
+      out.writeCharCode(glyph.glyph.codePoint);
+    }
+    sourceEnd = math.max(sourceEnd, end);
+  }
+  if (source != null && sourceEnd >= 0 && sourceEnd <= source.length) {
+    final end = _afterOmittedLineEnd(source, sourceEnd);
+    out.write(source.substring(sourceEnd, end));
+  }
+  final text = out.toString();
+  final painted = String.fromCharCodes(
+    line.glyphs
+        .where((glyph) => glyph.glyph.codePoint >= 32)
+        .map((glyph) => glyph.glyph.codePoint),
+  );
+  return text == painted ? null : text;
+}
+
+String? _brokenLineActualText(
+  String source,
+  BrokenLine line, {
+  required bool first,
+}) {
+  var start = line.logicalStart;
+  final end = line.logicalEnd;
+  if (start < 0 || end < start || end > source.length) return null;
+  if (first && _invisibleSourceRange(source, 0, start)) start = 0;
+  final text = source.substring(start, _afterOmittedLineEnd(source, end));
+  final painted = String.fromCharCodes(
+    line.glyphs
+        .where((glyph) => glyph.codePoint >= 32)
+        .map((glyph) => glyph.codePoint),
+  );
+  return text == painted ? null : text;
+}
+
+bool _invisibleSourceRange(String source, int start, int end) =>
+    start >= 0 &&
+    end >= start &&
+    end <= source.length &&
+    source.substring(start, end).runes.every(_omittedSourceControl);
+
+bool _omittedSourceControl(int codePoint) =>
+    codePoint == 0x00ad || Uax9Bidi.isInvisibleFormat(codePoint);
+
+int _afterOmittedLineEnd(String source, int start) {
+  var end = start;
+  while (end < source.length) {
+    final cp = source.codeUnitAt(end);
+    // These spaces are trimmed by LineBreaker; they still separate authored
+    // words when copied across a visual wrap. Tabs retain their own glyph.
+    if (!_omittedSourceControl(cp) &&
+        cp != 0x20 &&
+        cp != 0x2000 &&
+        cp != 0x3000) {
+      break;
+    }
+    end++;
+  }
+  return end;
+}
 
 class _FontPack {
   _FontPack(this.set, this.codePoints, this.layoutFont);
@@ -2001,16 +2119,28 @@ class _FontPack {
         return (embedded: embedded, face: choice);
       }
     }
-    final used = <int>{
-      cp,
-      for (final point in codePoints)
-        if (choice.font.glyphIdFor(point) != 0) point,
+    final alreadyEncoded = <int>{
+      for (final embedded in faces)
+        if (identical(embedded.source, choice.font))
+          ...embedded.subset.unicodeToNewGlyph.keys,
     };
+    final used = <int>{cp};
+    for (final point in codePoints) {
+      if (used.length == PdfCidEncoding.maxCharacters) break;
+      if (!alreadyEncoded.contains(point) &&
+          choice.font.glyphIdFor(point) != 0) {
+        used.add(point);
+      }
+    }
     // A late generated label gets a new immutable subset if its character was
-    // not collected initially. Never renumber glyphs already emitted to PDF.
+    // not collected initially. A resource also contains at most 65535 Unicode
+    // mappings; larger repertoires use another resource with distinct CIDs.
+    // Never renumber character codes already emitted to PDF.
+    final subset = FontSubsetter(choice.font).subset(used);
     final embedded = PdfEmbeddedFace(
-      subset: FontSubsetter(choice.font).subset(used),
+      subset: subset,
       source: choice.font,
+      encoding: PdfCidEncoding.fromSubset(subset),
       // F2 is reserved for the Standard 14 Helvetica fallback.
       resourceName: faces.isEmpty ? 'F1' : 'F${faces.length + 2}',
     );
@@ -2184,6 +2314,8 @@ class _PageSink {
             _TextAlign.right => slack,
           };
         }
+        final logicalText = _brokenLineActualText(text, line, first: i == 0);
+        if (logicalText != null) canvas.beginActualText(logicalText);
         for (final ShapedGlyph g in line.glyphs) {
           if (g.codePoint < 32) {
             continue;
@@ -2202,6 +2334,7 @@ class _PageSink {
           );
           cx += g.advance;
         }
+        if (logicalText != null) canvas.endActualText();
         cy += size * 1.25;
       }
       return;
@@ -2270,8 +2403,11 @@ class _PageSink {
     }
     if (selected != null) {
       final face = selected.embedded;
-      final gid = face.subset.unicodeToNewGlyph[drawable] ?? 0;
-      if (gid != 0) {
+      final cid =
+          face.encoding?.unicodeToCid[drawable] ??
+          face.subset.unicodeToNewGlyph[drawable] ??
+          0;
+      if (cid != 0) {
         if (pack.set.faces.isNotEmpty) {
           pack.set.diagnostics?.reportSubstitution(
             family,
@@ -2282,7 +2418,7 @@ class _PageSink {
           x: x,
           y: y,
           fontSize: size,
-          glyphId: gid,
+          glyphId: cid,
           color: color,
           // Real bold/italic cuts already carry their own outlines. Simulate
           // only an unavailable style, retaining legacy single-face behavior.

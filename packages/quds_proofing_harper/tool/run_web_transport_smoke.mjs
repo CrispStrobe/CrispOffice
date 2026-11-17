@@ -47,7 +47,7 @@ try {
   await import(pathToFileURL(resolve(process.argv[2] ?? 'build/web_transport_smoke.js')));
   const result = await complete;
   assert.equal(result.status, 'passed', result.error);
-  assert.equal(result.checks, 8);
+  assert.equal(result.checks, 11, 'All source, protection and lifecycle checks must run');
   assert.equal(terminated, created, 'Every created Worker must be terminated');
   console.log(JSON.stringify({...result, workers_created: created, workers_terminated: terminated}));
 } finally {
