@@ -1,0 +1,12 @@
+{
+  "source": "48b6998bb47ffdf43e95025229dc5a5eab09ee9a",
+  "inspected": [
+    "section-columns-explicit-break",
+    "paragraph-keep-isolation-reverse"
+  ],
+  "observations": [
+    "LeftColumn is in the left column; RightColumn and RightFollower are in the right column, and RightFollower is below RightColumn, all on one page.",
+    "KeepFirst, PlainAfterKeep and KeepLast render once in the authored vertical order. Keep-together truth values are independently checked in reopened DOCX, not inferred from these one-line rasters."
+  ],
+  "limits": "No multi-line keep-together pagination claim; automated exact geometry and DOCX properties are recorded in final-receipt.json."
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "ref": "refs/remotes/origin/codex/aot-daemon-free-20261117",
+    "sha": "9297f077d68256042afd520d55d72f5997e746b3",
+    "previous": null,
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/codex/german-morphology-20261117",
+    "sha": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+    "previous": "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e",
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/codex/office-consolidation-20261117",
+    "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+    "previous": "34d6be099906e5bde0af51330a8b1dcca26e728a",
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/codex/office-qualified-resume-20261117",
+    "sha": "f9cc1c003892944881bab3699ba6b76620dc2f07",
+    "previous": "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/german-gector-proofing",
+    "sha": "2f12488c1687aaa5c2e1529adebcbfd803cbaba7",
+    "previous": "c98c75eae50ddabfa8eb9aa918ed1af9754b7923",
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/odp-chart-data",
+    "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+    "previous": null,
+    "ancestor_of_union": false
+  },
+  {
+    "ref": "refs/remotes/origin/feat/odt-columns",
+    "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+    "previous": null,
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/odt-paragraph-breaks",
+    "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+    "previous": null,
+    "ancestor_of_union": false
+  },
+  {
+    "ref": "refs/remotes/origin/main",
+    "sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+    "previous": "388bd7451067794b58276d174fe05470aa9994ed",
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/vendor/odp-chart-data",
+    "sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+    "previous": null,
+    "ancestor_of_union": false
+  },
+  {
+    "ref": "refs/remotes/origin/vendor/odt-columns",
+    "sha": "1f417ad7a61dfb69034704a67f85243eff89830a",
+    "previous": null,
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/origin/vendor/odt-paragraph-breaks",
+    "sha": "b990f9041cce78e3768c2ee0190413bf26962431",
+    "previous": null,
+    "ancestor_of_union": false
+  },
+  {
+    "ref": "refs/remotes/pull/114",
+    "sha": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+    "previous": "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e",
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/pull/116",
+    "sha": "b26fb29062e23b69e5ecdc88975a0808981a25b3",
+    "previous": "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/pull/119",
+    "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+    "previous": null,
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/pull/120",
+    "sha": "9297f077d68256042afd520d55d72f5997e746b3",
+    "previous": null,
+    "ancestor_of_union": true
+  },
+  {
+    "ref": "refs/remotes/pull/121",
+    "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+    "previous": null,
+    "ancestor_of_union": false
+  },
+  {
+    "ref": "refs/remotes/pull/122",
+    "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+    "previous": null,
+    "ancestor_of_union": false
+  }
+]

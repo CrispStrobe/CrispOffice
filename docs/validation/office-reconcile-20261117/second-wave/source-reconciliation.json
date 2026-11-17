@@ -1,0 +1,42 @@
+{
+  "fixed_snapshot_captured_at_utc": "2026-11-17T18:10:46.141435+00:00",
+  "canonical_ref_count": 280,
+  "canonical_union_checkpoint": "674bd994a16cfafec1f504884bea62d4054c6c70",
+  "previous_qualified_source": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+  "previous_qualified_evidence_checkpoint": "f9cc1c003892944881bab3699ba6b76620dc2f07",
+  "parents_of_union": [
+    "f9cc1c003892944881bab3699ba6b76620dc2f07",
+    "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+    "1138cffdc4a1c909b2b149db80312037c21909d8",
+    "8d6403021f797a05e9c9fc49052c3d19d3766844",
+    "9297f077d68256042afd520d55d72f5997e746b3",
+    "2f12488c1687aaa5c2e1529adebcbfd803cbaba7"
+  ],
+  "resolution_decisions": [
+    "Preserve qualified finite positive column widths, minimum row heights, normalized cell/decorations, authored tab cache order and leader characters; add incoming single leader type.",
+    "Preserve morphology schema-valid nested style:columns, bounded gap representation, resolved column count and empty-section anchor placement.",
+    "Repair new columnBreakBefore and keepTogether paragraph cache omissions without changing page-break precedence.",
+    "Retain original ten-case tab/table suite and incoming 37-case suite at separate paths; remove only exact duplicate two-case decoration resume file because both cases remain in the combined original suite.",
+    "Keep final captured AOT9297 local worker, Studio lifecycle and mapping over morphology precursor0b4c0107; replace obsolete HTTP-default documentation.",
+    "Combine bounded German predicate scanning and authenticated evaluator execution with GECToR request-local prediction reuse/duplicate-role guards and atomic spelling source/generated manifest updates.",
+    "Preserve ODP chart-data table fallback with existing hyperlink assertions; no native editable-chart export claim.",
+    "Retain initial ref inventory and archived alternate-editor decision. Six remaining changed chart/paragraph feature/vendor/PR refs are source-equivalent to captured main squashes, as proven by exact stable patch IDs in Office audit."
+  ],
+  "qualification_state": "Fresh final source qualification in progress; prior results remain attributed only to ec5ecbff.",
+  "counts_policy": "Fresh executions by source/file/test ID, not unique semantic features; overlapping parallel suites retained; runs never added together.",
+  "github_actions_queried_or_awaited": false,
+  "subsequent_ref_policy": "No moving-target loop: qualification binds this exact second fetched snapshot.",
+  "writer_fix_source": "4a4101c11d471adf525849b38dea0a52b9c0b394",
+  "writer_fix_tree": "62c8d234db993466083bb42a5ccacc408aa6c8e0",
+  "candidate_source": "48b6998bb47ffdf43e95025229dc5a5eab09ee9a",
+  "candidate_tree": "741494bdebf9afa7c2a341f745f85f07a799cad1",
+  "format_only_correction": {
+    "from": "4a4101c11d471adf525849b38dea0a52b9c0b394",
+    "to": "48b6998bb47ffdf43e95025229dc5a5eab09ee9a",
+    "files": [
+      "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "packages/quds_proofing_aot/lib/src/client.dart"
+    ],
+    "reason": "Existing canonical Dart3.12 formatter gate; declaration and call wrapping only."
+  }
+}
