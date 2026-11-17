@@ -1,9 +1,18 @@
 # ODT lists and sections — 17 November 2026
 
 Continuation of `8eb01db06c1457fa04ab3f3b8b2ef8fef791fb43` on
-`codex/office-fidelity-20261117`, draft PR #101. Work is saved as incremental
+`codex/office-fidelity-20261117`. Work is saved as incremental
 remote checkpoints with `[skip ci]`. GitHub Actions, check, and commit-status
 endpoints are neither queried nor awaited.
+
+PR #101 merged while these reports were being finalized, at **17 November 2026,
+16:43:05 Berlin time**. [Draft PR #111](https://github.com/CrispStrobe/quds_office_suite/pull/111)
+preserves the evidence and audit follow-up; its initial 20 changed files are all
+under `docs/`. The [publication-state receipt](publication-state.json) records
+the observed later main head `9941c80d`, including subsequent page-number-field
+work. Those later main changes are outside this qualification. All final test
+and consumer results below bind the exact source `cf60a17b`, not the later main
+tree or its integration conflict resolutions.
 
 ## Incoming histories
 
@@ -157,8 +166,9 @@ preservation, and restores every indexed archive. The
 eight archives** and **16,164 current file paths**. Its import closures cover
 **887 VM / 879 Node Dart files**. All **83 files / 3,617,117 bytes** in the prior
 `office-fidelity-resume-20261117` report retain the exact Git subtree and current
-bytes from `8eb01db0`. A subsequent published-tree run binds the saved evidence
-checkpoint.
+bytes from `8eb01db0`. The [published-tree rerun](published-tree-review.json)
+also passed against saved evidence commit `b8568306d22588d37597ef6bdc9ee5148c7bf085`,
+with the same qualified source and accepted evidence.
 
 An initial audit needed support for the extraction archive's declared `prefix`
 field alongside `archive_prefix`. The failed receipt, exact adapter correction,
