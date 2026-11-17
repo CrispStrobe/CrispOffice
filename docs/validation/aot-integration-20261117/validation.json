@@ -1,0 +1,89 @@
+{
+  "implementation_checkpoint": "9e5314fb07a615e410a41d45fde6123ae93ce657",
+  "recorded_at_utc": "2026-11-17T16:23:24.708266+00:00",
+  "flutter_version": "3.47.8",
+  "dart_version": "3.13.7",
+  "workspace_lock_sha256": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+  "cohorts": [
+    {
+      "name": "AOT package / Dart VM",
+      "passed": 99,
+      "skipped": 0,
+      "failed": 0,
+      "completed_successfully": true,
+      "event_log": "evidence/aot-package-vm.jsonl.gz",
+      "event_log_sha256": "c3581acef5a321baf79008fbd65c7892ac11942d70a0585d160e089bfca00c50",
+      "milliseconds": 3537
+    },
+    {
+      "name": "AOT package / Node",
+      "passed": 99,
+      "skipped": 0,
+      "failed": 0,
+      "completed_successfully": true,
+      "event_log": "evidence/aot-package-node.jsonl.gz",
+      "event_log_sha256": "55134cb915bc47f993b1d2af16aa2e76f0c5a2b39a64f7393ab68e65f7ad3207",
+      "milliseconds": 32253
+    },
+    {
+      "name": "Integrated Office and existing proofing",
+      "passed": 707,
+      "skipped": 0,
+      "failed": 0,
+      "completed_successfully": true,
+      "event_log": "evidence/incoming-engine-verified.jsonl.gz",
+      "event_log_sha256": "6dae50eddd4727273b3ffa6bf173c0e0c0e25882f8befeaa942c5c56647989f9",
+      "milliseconds": 8371
+    },
+    {
+      "name": "Word proofing integration",
+      "passed": 97,
+      "skipped": 0,
+      "failed": 0,
+      "completed_successfully": true,
+      "event_log": "evidence/editor-proofing.jsonl.gz",
+      "event_log_sha256": "f0b2ec017d22d1d21e7673ef132f2fdf0811bf3ecbcf34f13c734d87788e68f4",
+      "milliseconds": 22486
+    },
+    {
+      "name": "Studio analysis and configured workspace",
+      "passed": 13,
+      "skipped": 0,
+      "failed": 0,
+      "completed_successfully": true,
+      "event_log": "evidence/studio-enabled.jsonl.gz",
+      "event_log_sha256": "e7a0b5ee059d3b786326e02717b37f5555c728b7685fd837305cd652898d1fbb",
+      "milliseconds": 23499
+    }
+  ],
+  "source_sha256": {
+    "packages/quds_office_editor/example/lib/studio_aot.dart": "362bdb3b9b2b8308d4c5e164e12bb6e2f9662f0957406b84409001bb6c6a27ad",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "1de4a9e1a23418eca742d6811ec48bae7d180673189a2de79ca35bf92d83306c",
+    "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart": "0e49cd6de52441e77d2f12f2c03b57bff8d5d96b723e918aa1f729489fb46f6f",
+    "packages/quds_proofing_aot/lib/quds_proofing_aot.dart": "c9e35fd99e4d4f33440735a4985ed380b620816fb80ebd3675a36b4fe4575ee6",
+    "packages/quds_proofing_aot/lib/src/client.dart": "3e18382ed545853a1d186c7ee1515f0aa96dc167352a1a4cc63ebb8040480784",
+    "packages/quds_proofing_aot/lib/src/german_rules.dart": "69304d7caf718f09cd3ca645b9bebf7ce900756c75794b4c4bcd96f245946ad0",
+    "packages/quds_proofing_aot/lib/src/models.dart": "e579e8c7c4d1c821f59b73585f5833519a24062596ed9c8979d7950a9e4510cb",
+    "packages/quds_proofing_aot/lib/src/provider.dart": "d226a82e9d3c868aee72710cec8b5746ee9a1ce83c75fad8e220a6d57ffa0f52",
+    "packages/quds_proofing_aot/lib/src/transport.dart": "c8587cd1c356543855844adc5cc6a287cb86474a494f8347c6a380a92629a828",
+    "packages/quds_proofing_aot/test/aot_fixture_data.dart": "b59337eeb6de02d691bf41135b4d2b62b01f51f033f1e16128c2b69efa6d2519",
+    "packages/quds_proofing_aot/test/client_test.dart": "7784a3a531897751000b4a6b155ada56a6fb86dfe78054591abf011b9f067117",
+    "packages/quds_proofing_aot/test/fixtures/upstream_german_morphology.dart": "4bebf87664595a6a73bd825a6c4c7abf15ec8081d08c11a608ef5e19f4366d0d",
+    "packages/quds_proofing_aot/test/german_rules_test.dart": "c246ba8a781da6ae585489dd6bf124c6a5f9caaa5f6825b5b50d268be476e8f7",
+    "packages/quds_proofing_aot/test/grammar_support.dart": "0fb5c9239a7f5a730058ac6320ca9ac4c216d9911c6ad0fed53c313857362f4f",
+    "packages/quds_proofing_aot/test/models_test.dart": "5967d82d1255aa515e4f239d5774b60f275c7b1ee862b65373ee858177451842",
+    "packages/quds_proofing_aot/test/provider_test.dart": "8254697965788d14019a0c0b47871f5af242815e17fcdd33995f50e9793d96e5",
+    "packages/quds_proofing_aot/test/transport_test.dart": "6241301fa081868a4b8d98f8b80a0570a228daea71ee2febc91a8fe87dc352b2",
+    "packages/quds_proofing_aot/test/upstream_morphology_test.dart": "7a4457fd21b9985c12c4355e949c15bf5ee5a9faa8b496d7bca9ea0607b0ba31",
+    "packages/quds_proofing_aot/tool/aot.dart": "f3bd46e478c4108c8c212ddca82d925588a0fe4ddc92350e4749a0f1a9c932ff"
+  },
+  "static_analysis": "No issues found",
+  "live_smoke": {
+    "snippets": 11,
+    "expected_corrections": 3,
+    "clean_or_guard_samples": 6,
+    "explicit_incomplete_alignment": 2,
+    "distinct_responses": 17
+  },
+  "ci": "No GitHub Actions, workflow, check, or commit-status endpoints queried or awaited."
+}

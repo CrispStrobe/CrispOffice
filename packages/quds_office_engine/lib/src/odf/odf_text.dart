@@ -151,8 +151,9 @@ Iterable<XmlElement> odfTextBoxes(XmlElement element) sync* {
   } else if (element.namespaceUri == odfTextNamespace) {
     if (element.localName == 'note' ||
         element.localName == 'ruby-text' ||
-        element.localName == 'soft-page-break')
+        element.localName == 'soft-page-break') {
       return;
+    }
     if (element.localName == 'ruby') {
       for (final child in element.childElements) {
         if (child.namespaceUri == odfTextNamespace &&

@@ -256,7 +256,16 @@ The package has source-authored contract fixtures and local tests for schemas,
 Unicode positions, ambiguous/valid/error grammar cases, transport limits,
 failure states, cancellation and provider integration. Studio widget tests
 cover explicit invocation, token/word-form inspection and stale-result handling.
+The final local suite passes 99 tests on both Dart VM and JavaScript/Node. A
+separate production GET-transport smoke against the public demo confirmed the
+three representative corrections and six clean/guard controls. Two infinitive
+samples returned explicit incomplete alignment because the daemon rewrites
+`helfen` to `zu-helfen`; their analysis can be inspected, but no correction is
+attached to an invented range. The remote server revision is unknown; only
+synthetic snippets were submitted. Its POST endpoint rejected the requests.
+
 See the [integration report](../../docs/validation/aot-integration-20261117/README.md)
-for the exact local results and incoming-source reconciliation. Fixtures are not
-a live native-daemon run, an independently sampled grammar corpus, or a
-target-device performance measurement.
+for exact local results, raw live responses, source reconciliation and the
+smoke's extended timeout/cache configuration. Neither these finite examples nor
+the source-authored fixtures establish general grammar accuracy, local native
+packaging or target-device performance.
