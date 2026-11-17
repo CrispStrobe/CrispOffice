@@ -1,0 +1,681 @@
+{
+  "actions_used": false,
+  "arms": {
+    "f32": {
+      "build_manifest_sha256": "48996f283c24dbbf57590cf0314f4ec51d7e4076f4e14b9f99172e36f542dddf",
+      "complete": true,
+      "expected_cases": 30,
+      "expected_passes": 40,
+      "head_metrics": {
+        "logits_d": {
+          "original": {
+            "maximum_absolute_error": 5.7220458984375e-06,
+            "minimum_cosine": 0.9999999999999012,
+            "minimum_token_cosine": 0.999999999999731,
+            "raw_argmax_mismatches": 0,
+            "strict_absolute_diagnostic_passed": true
+          }
+        },
+        "logits_labels": {
+          "original": {
+            "maximum_absolute_error": 1.9073486328125e-05,
+            "minimum_cosine": 0.9999999999998993,
+            "minimum_token_cosine": 0.9999999999999429,
+            "raw_argmax_mismatches": 0,
+            "strict_absolute_diagnostic_passed": true
+          }
+        }
+      },
+      "limits": [
+        "Native CPU qualification on one local host; no target-device or shipping approval.",
+        "Original iterative decoder is unchanged; application guards/editor costs are omitted.",
+        "Forward timings do not satisfy the complete-checker latency target.",
+        "64/128/256-token probes repeat prepared IDs and test shape/numerics/timing, not linguistic quality.",
+        "Peak RSS covers Python, model validation and the later development ONNX oracle.",
+        "Intermediate comparisons use the same-source native F32 control, not original ONNX hidden dumps."
+      ],
+      "long_probe_gates": {
+        "complete": true,
+        "minimum_token_cosine_exclusive": 0.99,
+        "precision_policy_passed": true,
+        "raw_argmax_exact": true,
+        "required_token_counts": [
+          64,
+          128,
+          256
+        ],
+        "scope": "Gating shapes/numerics for both heads at every required length; timing and raw argmax are retained diagnostics."
+      },
+      "long_probes": [
+        {
+          "forward_benchmark": {
+            "maximum_seconds": 0.1687548379998134,
+            "median_seconds": 0.14454752899996492,
+            "p95_seconds": 0.1687548379998134,
+            "samples_seconds": [
+              0.1687548379998134,
+              0.11882896799988885,
+              0.14454752899996492
+            ]
+          },
+          "heads": {
+            "logits_d": {
+              "cosine": 0.9999999999998835,
+              "maximum_absolute_error": 4.5299530029296875e-06,
+              "mean_absolute_error": 1.3973331078886986e-06,
+              "minimum_token_cosine": 0.9999999999952156,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 1.7051196365446397e-06,
+              "shape": [
+                1,
+                64,
+                2
+              ],
+              "strict_absolute_diagnostic_passed": true
+            },
+            "logits_labels": {
+              "cosine": 0.9999999999999287,
+              "maximum_absolute_error": 1.1444091796875e-05,
+              "mean_absolute_error": 1.2616916617844254e-06,
+              "minimum_token_cosine": 0.9999999999999469,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 1.5998839729926716e-06,
+              "shape": [
+                1,
+                64,
+                5000
+              ],
+              "strict_absolute_diagnostic_passed": true
+            }
+          },
+          "input_sha256": "3f76ef2da4253e6b21cb9a1ac0785893555f3b7b144637e2d1f0cf9eda92424b",
+          "token_count": 64
+        },
+        {
+          "forward_benchmark": {
+            "maximum_seconds": 0.3103830529998959,
+            "median_seconds": 0.23205713400011518,
+            "p95_seconds": 0.3103830529998959,
+            "samples_seconds": [
+              0.23205713400011518,
+              0.3103830529998959,
+              0.20480254500012052
+            ]
+          },
+          "heads": {
+            "logits_d": {
+              "cosine": 0.9999999999996442,
+              "maximum_absolute_error": 9.894371032714844e-06,
+              "mean_absolute_error": 2.26474367082119e-06,
+              "minimum_token_cosine": 0.9999999999844424,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 2.987071939365377e-06,
+              "shape": [
+                1,
+                128,
+                2
+              ],
+              "strict_absolute_diagnostic_passed": true
+            },
+            "logits_labels": {
+              "cosine": 0.9999999999998049,
+              "maximum_absolute_error": 2.09808349609375e-05,
+              "mean_absolute_error": 1.9447743325144985e-06,
+              "minimum_token_cosine": 0.9999999999997576,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 2.476501715850436e-06,
+              "shape": [
+                1,
+                128,
+                5000
+              ],
+              "strict_absolute_diagnostic_passed": true
+            }
+          },
+          "input_sha256": "d15f7fc59d0bc34a5ac507593d9d13f5472d866c3e14d2f98ad3360da56e3d52",
+          "token_count": 128
+        },
+        {
+          "forward_benchmark": {
+            "maximum_seconds": 0.8441322379999292,
+            "median_seconds": 0.6929735040000651,
+            "p95_seconds": 0.8441322379999292,
+            "samples_seconds": [
+              0.8441322379999292,
+              0.678924009000184,
+              0.6929735040000651
+            ]
+          },
+          "heads": {
+            "logits_d": {
+              "cosine": 0.9999999999999075,
+              "maximum_absolute_error": 5.9604644775390625e-06,
+              "mean_absolute_error": 1.7157290130853653e-06,
+              "minimum_token_cosine": 0.9999999999993588,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 2.0664249421979163e-06,
+              "shape": [
+                1,
+                256,
+                2
+              ],
+              "strict_absolute_diagnostic_passed": true
+            },
+            "logits_labels": {
+              "cosine": 0.9999999999999298,
+              "maximum_absolute_error": 1.33514404296875e-05,
+              "mean_absolute_error": 1.0820595656696242e-06,
+              "minimum_token_cosine": 0.9999999999999449,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 1.3812538097354381e-06,
+              "shape": [
+                1,
+                256,
+                5000
+              ],
+              "strict_absolute_diagnostic_passed": true
+            }
+          },
+          "input_sha256": "596fcccef0c09612be54202c8895720d28f4cdd3ecbe39569fd8f3882fe6d9f4",
+          "token_count": 256
+        }
+      ],
+      "model": {
+        "file": "gector-de-f32.gguf",
+        "sha256": "497657528f3a660b85b807a7da0db663abb5964ada81f819e26ed48b6e96b6c1",
+        "size_bytes": 453355328
+      },
+      "model_manifest_sha256": "c17318bdb1ada8fc2b1c456948bab44c746b06c8287c445099826ad3573abde7",
+      "passed": true,
+      "peak_process_rss_bytes": 1133649920,
+      "policy_sources_unchanged_during_run": true,
+      "pre_oracle_peak_process_rss_bytes": 540258304,
+      "precision": "f32",
+      "precision_policy": {
+        "applies_to": "Both trained heads at every saved token/pass against original and native F32 when supplied; also every token of required 64/128/256 probes against original ONNX.",
+        "minimum_token_cosine_exclusive": 0.99,
+        "strict_absolute_diagnostic": 0.002
+      },
+      "precision_policy_passed": true,
+      "protocol_version": 2,
+      "qualification_source_inventory_sha256": "2b8f7a1245a3db231970498e8afb0c88d3fb69db43250e1d3cbd0c08fa2f2b28",
+      "qualification_source_sha256": {
+        "evaluate.py": "4ef9f05add47c308155ed107051e2aea686a31ecac0918c6de03b6f6ea48eb35",
+        "export_reference.py": "72db08102013c6999e6664299beaf40c6339e73d80ea1f4a1709db06a1772f7c",
+        "qualify_native.py": "3839ed4bbd72bd1577c3e5b4ba975c80d846c2aabb7e47c22fdda4aec1fa4ea1",
+        "quantize_int4.py": "e2739095ab37e66bd0cac8b734eadec48b1fc1bc39bf86bd81fce6113cbbb0e8",
+        "summarize_qualification.py": "58c5ed2790945f53a891db1cdf63a9ca0b79bf144ae32b9d97cd03ca75229ff1"
+      },
+      "qualifier_sha256": "3839ed4bbd72bd1577c3e5b4ba975c80d846c2aabb7e47c22fdda4aec1fa4ea1",
+      "quality_vs_original": {
+        "baseline_changed_clean_controls": 1,
+        "baseline_error_fixes": 9,
+        "candidate_changed_clean_controls": 1,
+        "candidate_error_fixes": 9,
+        "case_count": 30,
+        "complete": true,
+        "differences": [],
+        "frozen_probe_nonregression_passed": true,
+        "lost_baseline_fixes": [],
+        "new_or_changed_false_edits_on_clean": []
+      },
+      "reference_sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8",
+      "repeats": 3,
+      "report": {
+        "file": "qualification-f32-policy-v2.json.gz",
+        "uncompressed_sha256": "2399aad732032397c24ed92a4d25d80b8fcf68b1ae9d69feb9423afc3e711c49"
+      },
+      "runtime": {
+        "cpu_count": 9,
+        "gate": "CRISPEMBED_GECTOR=1",
+        "machine": "x86_64",
+        "packages": {
+          "gguf": "0.19.0",
+          "huggingface-hub": "2.4.0",
+          "numpy": "2.5.5",
+          "onnxruntime": "1.23.2",
+          "tokenizers": "0.23.3"
+        },
+        "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+      },
+      "selected_tags_exact": true,
+      "setup_peak_process_rss_bytes": 538497024,
+      "setup_seconds": 0.09734738799988918,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "source_revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+      "tensor_types": {
+        "F32": 201
+      },
+      "threads": 2,
+      "timings": {
+        "complete_unguarded_correction": {
+          "aggregate_sample_median_seconds": 0.031283270500011895,
+          "aggregate_sample_p95_seconds": 0.06510935799997242,
+          "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too.",
+          "cases": 30,
+          "maximum_sample_seconds": 0.11306235799997921,
+          "samples": 90,
+          "token_count_max": 12,
+          "token_count_min": 5,
+          "worst_case": {
+            "id": "accusative-article",
+            "maximum_seconds": 0.11306235799997921,
+            "median_seconds": 0.027199384999903486,
+            "p95_seconds": 0.11306235799997921,
+            "token_count": 7
+          }
+        },
+        "first_forward": {
+          "aggregate_sample_median_seconds": 0.02632594349995543,
+          "aggregate_sample_p95_seconds": 0.043383309000091685,
+          "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too.",
+          "cases": 30,
+          "maximum_sample_seconds": 0.178996153000071,
+          "samples": 90,
+          "token_count_max": 12,
+          "token_count_min": 5,
+          "worst_case": {
+            "id": "clean-imperative",
+            "maximum_seconds": 0.178996153000071,
+            "median_seconds": 0.030005989000073896,
+            "p95_seconds": 0.178996153000071,
+            "token_count": 7
+          }
+        }
+      },
+      "warmups": 1
+    },
+    "mixed-q4_k": {
+      "baseline_sha256": "2399aad732032397c24ed92a4d25d80b8fcf68b1ae9d69feb9423afc3e711c49",
+      "build_manifest_sha256": "48996f283c24dbbf57590cf0314f4ec51d7e4076f4e14b9f99172e36f542dddf",
+      "complete": true,
+      "expected_cases": 30,
+      "expected_passes": 40,
+      "head_metrics": {
+        "logits_d": {
+          "native_f32": {
+            "maximum_absolute_error": 0.7581996917724609,
+            "minimum_cosine": 0.9984422773272993,
+            "minimum_token_cosine": 0.9939970004577876,
+            "raw_argmax_mismatches": 0,
+            "strict_absolute_diagnostic_passed": false
+          },
+          "original": {
+            "maximum_absolute_error": 0.7581992149353027,
+            "minimum_cosine": 0.9984422801649162,
+            "minimum_token_cosine": 0.9939970652728253,
+            "raw_argmax_mismatches": 0,
+            "strict_absolute_diagnostic_passed": false
+          }
+        },
+        "logits_labels": {
+          "native_f32": {
+            "maximum_absolute_error": 1.2330772876739502,
+            "minimum_cosine": 0.9992773728066943,
+            "minimum_token_cosine": 0.9989468446078562,
+            "raw_argmax_mismatches": 0,
+            "strict_absolute_diagnostic_passed": false
+          },
+          "original": {
+            "maximum_absolute_error": 1.2330725193023682,
+            "minimum_cosine": 0.9992773713218389,
+            "minimum_token_cosine": 0.9989468450062958,
+            "raw_argmax_mismatches": 0,
+            "strict_absolute_diagnostic_passed": false
+          }
+        }
+      },
+      "intermediate_vs_native_f32": {
+        "embedding": {
+          "maximum_absolute_error": 0.030588850378990173,
+          "minimum_token_cosine": 0.9999487920388216
+        },
+        "layer.0": {
+          "maximum_absolute_error": 0.2949790954589844,
+          "minimum_token_cosine": 0.9986716502819627
+        },
+        "layer.1": {
+          "maximum_absolute_error": 0.27069374918937683,
+          "minimum_token_cosine": 0.9977953367528621
+        },
+        "layer.10": {
+          "maximum_absolute_error": 1.48484468460083,
+          "minimum_token_cosine": 0.9816539035461426
+        },
+        "layer.11": {
+          "maximum_absolute_error": 0.9987246990203857,
+          "minimum_token_cosine": 0.9811235392223765
+        },
+        "layer.2": {
+          "maximum_absolute_error": 0.2881011962890625,
+          "minimum_token_cosine": 0.9962398949833418
+        },
+        "layer.3": {
+          "maximum_absolute_error": 0.3591022491455078,
+          "minimum_token_cosine": 0.9952620619688987
+        },
+        "layer.4": {
+          "maximum_absolute_error": 0.6932706832885742,
+          "minimum_token_cosine": 0.9947336544938052
+        },
+        "layer.5": {
+          "maximum_absolute_error": 0.5907735824584961,
+          "minimum_token_cosine": 0.9938337211262903
+        },
+        "layer.6": {
+          "maximum_absolute_error": 0.4812965393066406,
+          "minimum_token_cosine": 0.9923623216764232
+        },
+        "layer.7": {
+          "maximum_absolute_error": 0.5660390853881836,
+          "minimum_token_cosine": 0.9916584670719457
+        },
+        "layer.8": {
+          "maximum_absolute_error": 0.6020383834838867,
+          "minimum_token_cosine": 0.9872302061123989
+        },
+        "layer.9": {
+          "maximum_absolute_error": 0.9513568878173828,
+          "minimum_token_cosine": 0.9830997750797853
+        }
+      },
+      "limits": [
+        "Native CPU qualification on one local host; no target-device or shipping approval.",
+        "Original iterative decoder is unchanged; application guards/editor costs are omitted.",
+        "Forward timings do not satisfy the complete-checker latency target.",
+        "64/128/256-token probes repeat prepared IDs and test shape/numerics/timing, not linguistic quality.",
+        "Peak RSS covers Python, model validation and the later development ONNX oracle.",
+        "Intermediate comparisons use the same-source native F32 control, not original ONNX hidden dumps."
+      ],
+      "long_probe_gates": {
+        "complete": true,
+        "minimum_token_cosine_exclusive": 0.94,
+        "precision_policy_passed": true,
+        "raw_argmax_exact": true,
+        "required_token_counts": [
+          64,
+          128,
+          256
+        ],
+        "scope": "Gating shapes/numerics for both heads at every required length; timing and raw argmax are retained diagnostics."
+      },
+      "long_probes": [
+        {
+          "forward_benchmark": {
+            "maximum_seconds": 0.16650404099982552,
+            "median_seconds": 0.15968720000000758,
+            "p95_seconds": 0.16650404099982552,
+            "samples_seconds": [
+              0.14413333799984684,
+              0.15968720000000758,
+              0.16650404099982552
+            ]
+          },
+          "heads": {
+            "logits_d": {
+              "cosine": 0.9996439255588948,
+              "maximum_absolute_error": 0.2696704864501953,
+              "mean_absolute_error": 0.0825367426732555,
+              "minimum_token_cosine": 0.9935599657963083,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 0.10214598626673906,
+              "shape": [
+                1,
+                64,
+                2
+              ],
+              "strict_absolute_diagnostic_passed": false
+            },
+            "logits_labels": {
+              "cosine": 0.9990667917512805,
+              "maximum_absolute_error": 0.9462175369262695,
+              "mean_absolute_error": 0.17875757985491073,
+              "minimum_token_cosine": 0.9988077756880543,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 0.2174116694759462,
+              "shape": [
+                1,
+                64,
+                5000
+              ],
+              "strict_absolute_diagnostic_passed": false
+            }
+          },
+          "input_sha256": "3f76ef2da4253e6b21cb9a1ac0785893555f3b7b144637e2d1f0cf9eda92424b",
+          "token_count": 64
+        },
+        {
+          "forward_benchmark": {
+            "maximum_seconds": 0.3384800809999433,
+            "median_seconds": 0.2900534699999753,
+            "p95_seconds": 0.3384800809999433,
+            "samples_seconds": [
+              0.3384800809999433,
+              0.2900534699999753,
+              0.26373288300010245
+            ]
+          },
+          "heads": {
+            "logits_d": {
+              "cosine": 0.9989617659260461,
+              "maximum_absolute_error": 0.4729987382888794,
+              "mean_absolute_error": 0.13002314558252692,
+              "minimum_token_cosine": 0.9933398481045677,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 0.1606767422629498,
+              "shape": [
+                1,
+                128,
+                2
+              ],
+              "strict_absolute_diagnostic_passed": false
+            },
+            "logits_labels": {
+              "cosine": 0.9988263465481431,
+              "maximum_absolute_error": 1.1313088536262512,
+              "mean_absolute_error": 0.20753601260603755,
+              "minimum_token_cosine": 0.9986627021373619,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 0.2557349600922501,
+              "shape": [
+                1,
+                128,
+                5000
+              ],
+              "strict_absolute_diagnostic_passed": false
+            }
+          },
+          "input_sha256": "d15f7fc59d0bc34a5ac507593d9d13f5472d866c3e14d2f98ad3360da56e3d52",
+          "token_count": 128
+        },
+        {
+          "forward_benchmark": {
+            "maximum_seconds": 0.6799864790000356,
+            "median_seconds": 0.667566989000079,
+            "p95_seconds": 0.6799864790000356,
+            "samples_seconds": [
+              0.6799864790000356,
+              0.667566989000079,
+              0.5088753759998781
+            ]
+          },
+          "heads": {
+            "logits_d": {
+              "cosine": 0.998903407168875,
+              "maximum_absolute_error": 0.6066657304763794,
+              "mean_absolute_error": 0.2537602951633744,
+              "minimum_token_cosine": 0.9984678001772366,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 0.2829355522662513,
+              "shape": [
+                1,
+                256,
+                2
+              ],
+              "strict_absolute_diagnostic_passed": false
+            },
+            "logits_labels": {
+              "cosine": 0.9991425011397912,
+              "maximum_absolute_error": 1.034968376159668,
+              "mean_absolute_error": 0.15388824837418744,
+              "minimum_token_cosine": 0.9988119997817249,
+              "raw_argmax_mismatches": 0,
+              "rms_error": 0.19404870093130344,
+              "shape": [
+                1,
+                256,
+                5000
+              ],
+              "strict_absolute_diagnostic_passed": false
+            }
+          },
+          "input_sha256": "596fcccef0c09612be54202c8895720d28f4cdd3ecbe39569fd8f3882fe6d9f4",
+          "token_count": 256
+        }
+      ],
+      "model": {
+        "file": "gector-de-mixed-q4_k.gguf",
+        "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+        "size_bytes": 82756896
+      },
+      "model_manifest_sha256": "db4ec2b79cdc3fb56c201f19fee58ad681f90182922c3725f77061e0e9efc630",
+      "passed": true,
+      "peak_process_rss_bytes": 770826240,
+      "policy_sources_unchanged_during_run": true,
+      "pre_oracle_peak_process_rss_bytes": 171212800,
+      "precision": "mixed-q4_k",
+      "precision_policy": {
+        "applies_to": "Both trained heads at every saved token/pass against original and native F32 when supplied; also every token of required 64/128/256 probes against original ONNX.",
+        "minimum_token_cosine_exclusive": 0.94,
+        "strict_absolute_diagnostic": 0.002
+      },
+      "precision_policy_passed": true,
+      "protocol_version": 2,
+      "qualification_source_inventory_sha256": "2b8f7a1245a3db231970498e8afb0c88d3fb69db43250e1d3cbd0c08fa2f2b28",
+      "qualification_source_sha256": {
+        "evaluate.py": "4ef9f05add47c308155ed107051e2aea686a31ecac0918c6de03b6f6ea48eb35",
+        "export_reference.py": "72db08102013c6999e6664299beaf40c6339e73d80ea1f4a1709db06a1772f7c",
+        "qualify_native.py": "3839ed4bbd72bd1577c3e5b4ba975c80d846c2aabb7e47c22fdda4aec1fa4ea1",
+        "quantize_int4.py": "e2739095ab37e66bd0cac8b734eadec48b1fc1bc39bf86bd81fce6113cbbb0e8",
+        "summarize_qualification.py": "58c5ed2790945f53a891db1cdf63a9ca0b79bf144ae32b9d97cd03ca75229ff1"
+      },
+      "qualifier_sha256": "3839ed4bbd72bd1577c3e5b4ba975c80d846c2aabb7e47c22fdda4aec1fa4ea1",
+      "quality_vs_native_f32": {
+        "baseline_changed_clean_controls": 1,
+        "baseline_error_fixes": 9,
+        "candidate_changed_clean_controls": 1,
+        "candidate_error_fixes": 9,
+        "case_count": 30,
+        "complete": true,
+        "differences": [],
+        "frozen_probe_nonregression_passed": true,
+        "lost_baseline_fixes": [],
+        "new_or_changed_false_edits_on_clean": []
+      },
+      "quality_vs_original": {
+        "baseline_changed_clean_controls": 1,
+        "baseline_error_fixes": 9,
+        "candidate_changed_clean_controls": 1,
+        "candidate_error_fixes": 9,
+        "case_count": 30,
+        "complete": true,
+        "differences": [],
+        "frozen_probe_nonregression_passed": true,
+        "lost_baseline_fixes": [],
+        "new_or_changed_false_edits_on_clean": []
+      },
+      "reference_sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8",
+      "repeats": 3,
+      "report": {
+        "file": "qualification-mixed-q4_k-policy-v2.json.gz",
+        "uncompressed_sha256": "a103c5b8da8e8d44669ee7f1cc92d92f55710665bd3a33d65f12e18e54ccfb35"
+      },
+      "runtime": {
+        "cpu_count": 9,
+        "gate": "CRISPEMBED_GECTOR=1",
+        "machine": "x86_64",
+        "packages": {
+          "gguf": "0.19.0",
+          "huggingface-hub": "2.4.0",
+          "numpy": "2.5.5",
+          "onnxruntime": "1.23.2",
+          "tokenizers": "0.23.3"
+        },
+        "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+      },
+      "selected_tags_exact": true,
+      "setup_peak_process_rss_bytes": 167903232,
+      "setup_seconds": 0.015041592999978093,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "source_revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+      "tensor_types": {
+        "F16": 3,
+        "F32": 125,
+        "Q4_K": 72,
+        "Q8_0": 1
+      },
+      "threads": 2,
+      "timings": {
+        "complete_unguarded_correction": {
+          "aggregate_sample_median_seconds": 0.025255033500002355,
+          "aggregate_sample_p95_seconds": 0.05489167899986569,
+          "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too.",
+          "cases": 30,
+          "maximum_sample_seconds": 0.13077756999996382,
+          "samples": 90,
+          "token_count_max": 12,
+          "token_count_min": 5,
+          "worst_case": {
+            "id": "verb-ihr",
+            "maximum_seconds": 0.13077756999996382,
+            "median_seconds": 0.04864096899996184,
+            "p95_seconds": 0.13077756999996382,
+            "token_count": 6
+          }
+        },
+        "first_forward": {
+          "aggregate_sample_median_seconds": 0.019477209000001494,
+          "aggregate_sample_p95_seconds": 0.035036556000022756,
+          "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too.",
+          "cases": 30,
+          "maximum_sample_seconds": 0.039645231999884345,
+          "samples": 90,
+          "token_count_max": 12,
+          "token_count_min": 5,
+          "worst_case": {
+            "id": "clean-imperative",
+            "maximum_seconds": 0.039645231999884345,
+            "median_seconds": 0.017351887999893734,
+            "p95_seconds": 0.039645231999884345,
+            "token_count": 7
+          }
+        }
+      },
+      "warmups": 1
+    }
+  },
+  "independent_read_only_audit": {
+    "checks": [
+      "all five current policy-source hashes and inventory digest equal reports",
+      "all 30 cases and 40 unique saved passes are present in each arm",
+      "long_probe_gates recomputes exactly and qualification_status returns complete=true/passed=true",
+      "mixed baseline report SHA and exact parent_gguf linkage verify",
+      "same library/source inventory and policy identity verify"
+    ],
+    "library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+    "passed": true,
+    "scope": "Separate native implementation agent inspected both completed v2 reports; no inference rerun or source mutation."
+  },
+  "protocol_version": 2,
+  "recorded_at_utc": "2026-11-17T14:26:58.582484+00:00",
+  "schema": "quds.gector.native-evidence-summary.v1",
+  "scope": "One bounded local CPU rerun per precision under corrected policy v2; earlier complete and failed reports retained separately.",
+  "source_checkpoints": {
+    "CrispEmbed": "853a1ce6089e5d5486e37307f37051ad6a928745",
+    "quds_office_suite": "60836ce0bea770b57764cc03f44e1847a859ff88"
+  },
+  "source_onnx_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+  "source_revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af"
+}

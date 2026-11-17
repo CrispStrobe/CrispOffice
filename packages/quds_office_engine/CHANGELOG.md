@@ -14,6 +14,9 @@ All notable changes to `quds_office_engine` are documented here.
   hyphenation behavior.
 - Keep note references inside exported ODT comments as labels, so annotations
   cannot consume or duplicate the note body belonging to a document reference.
+- Expose a read-only, language-scoped German dictionary query for optional
+  grammar guards, using the existing dictionary and owner vocabulary without
+  generating suggestions or accepting partial tokens.
 
 - Unify English/German protected-text ranges, including Unicode email/URI
   handling, bounded backtick pairing and German identifier/contraction guards.

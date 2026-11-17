@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-dart-reference-replay",
+  "pass": true,
+  "model_revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+  "model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+  "reference_sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8",
+  "reference_cases_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+  "reference_runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "cpu_count": 9,
+    "packages": {
+      "onnxruntime": "1.23.2",
+      "tokenizers": "0.22.1",
+      "huggingface-hub": "0.36.0",
+      "numpy": "2.3.5"
+    },
+    "ort_session": {
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "intra_op_num_threads": 2,
+      "inter_op_num_threads": 1,
+      "execution_mode": "ExecutionMode.ORT_SEQUENTIAL",
+      "graph_optimization_level": "GraphOptimizationLevel.ORT_ENABLE_ALL",
+      "thread_count_note": "Zero requests ONNX Runtime's automatic thread selection."
+    }
+  },
+  "dart_version": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "verified_asset_sha256": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "NOTICE": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3",
+    "README.md": "e2e5120e6c25299f962120463936427056fd9b468c714a1bf785f555edabf00f",
+    "quickstart.py": "f5ce68cc466b5891fc3f13280dc9db3a55bf9016505c2b2d84eb1d2cb07c2b40",
+    "gector-meta.json": "acb7edf298f6ac4ba8b83c628ad512404eadb6c43120c1878d4f3356ebd8b5a5",
+    "config.json": "c870008059c0f354e1ebc30c816ae5f55fa14a77ffa7da5271310ccf5e24e170",
+    "gector-guards.json": "57c4824e541d323e9cff4c543bd80cfd93c333d3be64cce83297bf5b8a44627a",
+    "language-rules.json": "901b350a9c751fc95d51eb5ee3ba7b7f0d11b61c6cc17e67bce2996e17bc5815",
+    "tokenizer_config.json": "4e5738ad97f034b944ce8b7b8c3165f7a6333b524b7b77044f7e9e9b963f4dea",
+    "tokenizer.json": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+    "vocab.txt": "bf186f7fb9cb667d811c08b45ce64d1e8e262277bb053f05d1aef3e9f13039a3",
+    "verb-form-vocab.txt": "7582e7c2f480d7e49ac18677195cfff4ad1d0c350b0448f1271aacf290205b68",
+    "model.onnx": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+  },
+  "cases": 30,
+  "cases_passed": 30,
+  "expected_passes": 40,
+  "compared_passes": 40,
+  "maximum_label_probability_drift": 2.7512629274806244e-7,
+  "maximum_detection_probability_drift": 6.107278971434482e-8,
+  "limits": [
+    "Replays authenticated F32 output tensors; does not execute native inference.",
+    "Reference mode omits application guards, as does the frozen original runner.",
+    "Dart softmax uses double intermediates; the original uses NumPy float32.",
+    "Cases measure bounded trace agreement, not broad German correction quality.",
+    "No replay timing is reported as model inference latency."
+  ],
+  "results": [
+    {
+      "id": "verb-du",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Du gehst heute nach Hause.",
+      "errors": []
+    },
+    {
+      "id": "verb-plural",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Die Kinder spielen im Garten.",
+      "errors": []
+    },
+    {
+      "id": "verb-er",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Er geht morgen nach Berlin.",
+      "errors": []
+    },
+    {
+      "id": "verb-wir",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Wir sind zufrieden.",
+      "errors": []
+    },
+    {
+      "id": "verb-ihr",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Ihr habt viel Zeit.",
+      "errors": []
+    },
+    {
+      "id": "agreement-das",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Das ist ein Problem.",
+      "errors": []
+    },
+    {
+      "id": "adjective-neuter",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Ich habe ein schöne Haus.",
+      "errors": []
+    },
+    {
+      "id": "accusative-article",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Sie hat ein roten Mantel.",
+      "errors": []
+    },
+    {
+      "id": "dative-help",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Er hilft den Kind.",
+      "errors": []
+    },
+    {
+      "id": "dative-mit",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Mit den Auto fahren wir.",
+      "errors": []
+    },
+    {
+      "id": "dass-conjunction",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Ich denke, dass er kommt.",
+      "errors": []
+    },
+    {
+      "id": "das-relative",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Das Buch, das ich lese, ist gut.",
+      "errors": []
+    },
+    {
+      "id": "word-order-subclause",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Weil es regnet, wir bleiben zu Hause.",
+      "errors": []
+    },
+    {
+      "id": "word-order-adverb",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Gestern ich habe gekocht.",
+      "errors": []
+    },
+    {
+      "id": "participle",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Er hat das Buch gelest.",
+      "errors": []
+    },
+    {
+      "id": "article-gender",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Das ist der beste Lösung.",
+      "errors": []
+    },
+    {
+      "id": "verb-flowers",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Die Blumen sind schön.",
+      "errors": []
+    },
+    {
+      "id": "comparison",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Sie ist größer wie ich.",
+      "errors": []
+    },
+    {
+      "id": "clean-simple",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Das ist ein schönes Haus.",
+      "errors": []
+    },
+    {
+      "id": "clean-repeated-das",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Ist das das Haus?",
+      "errors": []
+    },
+    {
+      "id": "clean-three-das",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Ich sehe, dass das das richtige Haus ist.",
+      "errors": []
+    },
+    {
+      "id": "clean-tag-question",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Du bist müde, oder?",
+      "errors": []
+    },
+    {
+      "id": "clean-imperative",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Gib mir bitte das Buch.",
+      "errors": []
+    },
+    {
+      "id": "clean-subclause",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Ich gehe in die Schule, weil ich lernen will.",
+      "errors": []
+    },
+    {
+      "id": "clean-sharp-s",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Ich weiß, dass das richtig ist.",
+      "errors": []
+    },
+    {
+      "id": "clean-swiss",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Die Strasse ist gross.",
+      "errors": []
+    },
+    {
+      "id": "clean-swiss-name",
+      "pass": true,
+      "expected_passes": 2,
+      "actual_passes": 2,
+      "corrected": "Grüezi, ich heiße André.",
+      "errors": []
+    },
+    {
+      "id": "clean-name",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Marie Curie lebte in Paris.",
+      "errors": []
+    },
+    {
+      "id": "clean-quotes",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Er sagte: „Das stimmt.“",
+      "errors": []
+    },
+    {
+      "id": "clean-date",
+      "pass": true,
+      "expected_passes": 1,
+      "actual_passes": 1,
+      "corrected": "Wir treffen uns am 16. November 2026.",
+      "errors": []
+    }
+  ]
+}
