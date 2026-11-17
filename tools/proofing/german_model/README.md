@@ -1,5 +1,12 @@
 # German model evaluation, kept separate from application proofing
 
+The feature work for an optional provider is scoped in the
+[German GECToR roadmap](../../../docs/roadmaps/german-gector-proofing.md).
+For exact-input runtime and quantization comparisons, see
+[REFERENCE_FIXTURES.md](REFERENCE_FIXTURES.md). The additional exporter records
+both classifier heads and the unchanged reference decoder's actual passes;
+its output is backend evidence, not an enabled application provider.
+
 This directory evaluates `proofbird/gector-bert-de` v2.1.0 at immutable revision
 `8e3b50beef7d775cedb7b876009e88bcf2e8d6af`. It does not register a provider or
 enable model inference in Quds Office. Document text is never uploaded by this

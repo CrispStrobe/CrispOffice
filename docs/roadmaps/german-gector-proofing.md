@@ -67,11 +67,11 @@ quality qualification. Evaluate a newer model release as a separate experiment.
 
 - [x] Record repository/model baselines, ownership, quantization distinction,
   decision gates and implementation order in feature-branch roadmaps.
-- [ ] Read back the pushed roadmaps before starting implementation commits.
+- [x] Read back the pushed roadmaps before starting implementation commits.
 
 ### M1: exact-input qualification, first implementation
 
-- [ ] Add a bounded Python exporter alongside the existing Quds evaluation.
+- [x] Add a bounded Python exporter alongside the existing Quds evaluation.
   Verify the existing manifest, execute the unmodified reference decoding loop,
   and capture exact input IDs/masks, word alignment, both output tensors,
   chosen tags/confidences and final corrected text with source hashes.
@@ -164,6 +164,20 @@ or a separately qualified ONNX quantized artifact; this is not a Q4_K backend.
 
 ## Current execution state
 
-Roadmap publication is the first commit. Implementation and benchmark results
-must update this section with exact commits/runs, including failed attempts.
-No runtime, quantized model, provider or target platform is qualified yet.
+Roadmaps were published and read back before implementation:
+
+- Quds: `4cceff38040d423c4cfc08a0039b0379c6b35bbf`.
+- Dart runtime: `3ac10dd64c655657186ba89e673cb183d2250682`.
+- CrispEmbed: `85e973fba7c1be3f8bf028bb43de82ce0537174f` (including PLAN ownership).
+- Rust fallback: `99d21fbc830e3dbaaafff3d60a0864097b1b795b`.
+
+The first implementation adds `export_reference.py`, its documented fixture
+contract and nine lightweight integrity/alignment tests. All nine pass with
+synthetic data; no real model inference is implied by those tests. The exporter
+preserves the original evaluator, vendored runner, cases and recorded results.
+It captures actual iterative passes and separately measures native ORT forward
+and complete-correction timing for both an original and verified derived model.
+
+Hosted model execution, Dart runtime qualification and quantized task quality
+remain pending. Record exact implementation commits/runs and retain failures
+as the work progresses. No application provider or target platform is qualified.
