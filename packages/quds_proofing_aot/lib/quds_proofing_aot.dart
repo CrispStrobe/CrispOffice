@@ -1,7 +1,8 @@
-/// Optional analysis and proofing through an explicitly configured AOT daemon.
+/// Optional analysis and proofing through a managed local AOT native worker.
 ///
-/// The default transport talks only to the local machine. No native engine or
-/// linguistic dictionaries are bundled with this package.
+/// The default requires no daemon or listening port. An explicit HTTP transport
+/// remains available for existing services. Native engine and language resource
+/// installation is separate from the pure Dart package.
 library;
 
 export 'src/client.dart';
