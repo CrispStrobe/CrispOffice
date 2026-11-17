@@ -29,3 +29,12 @@ The section tests adopt its interpolation lint fixes. The annotation fixture
 keeps the already-equivalent local `annotationText` variable, so both branches'
 4,096-character byte-budget assertion is preserved without an unused variable.
 The incoming initial-analysis-failure receipt is retained unchanged.
+
+Third merge: Office fidelity `4ca30ec3ba9e2a1c2288d78bb83d2a3ce3678e0d`
+(PR #101), including the previously deferred `097475fb` integration. The list
+writer compares authored levels and preserves per-item bullet/number styles.
+Its first-paragraph style stays applied once across nested lists. Existing
+section activation and bookmark/link tests are retained; older section-style
+code from the incoming merge does not replace the newer integrated behavior.
+Duplicate Unreleased changelog bullets from earlier integrations are collapsed.
+The new 13-case list-fidelity suite is retained for combined local validation.

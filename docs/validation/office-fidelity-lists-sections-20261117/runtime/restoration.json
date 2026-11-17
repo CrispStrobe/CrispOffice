@@ -1,0 +1,8 @@
+{
+  "download_url": "https://pub.dev/api/archives/url_launcher_android-6.3.33.tar.gz",
+  "archive_sha256": "611e87fb320b70d1dd721dc46af89c98aceccea9b31fde49e084591414e0c610",
+  "matches_preserved_lock": true,
+  "package": "url_launcher_android",
+  "version": "6.3.33",
+  "restored_at_utc": "2026-11-17T14:57:49.260044+00:00"
+}

@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-11-17T14:52:55.473937+00:00",
+  "baseline": "8eb01db06c1457fa04ab3f3b8b2ef8fef791fb43",
+  "inventory_checkpoint": "ba1e999a098d2d0b9fc22ff95317f998833526e9",
+  "named_references": 240,
+  "captured_reference_revision_pairs": 241,
+  "captured_distinct_heads": 162,
+  "all_captured_heads_are_ancestors": true,
+  "incoming_maximal_heads": [
+    "2277634a33b77405f045321ee3ea9ae432066f9a",
+    "3dc2c839f5507373e8c6c26e2f7269b193fd5e47",
+    "406798f7e47332f92438828dcfc6a2184d4361bb",
+    "5e7fbad97c4d2d66bab7d8b4e27b20d2680e7509",
+    "7686ec52876288e6799023fd686af79228236826"
+  ],
+  "conflict_decisions": [
+    "Retained bounded note/comment registries and omitted obsolete duplicate resolvers while adding incoming sectionBreakStyle.",
+    "Retained one copy of equivalent morphology and manual-proofing changelog entries in the parallel merge."
+  ],
+  "previous_final_evidence_unchanged": true,
+  "source_status": "Integrated checkpoint; fresh local validation follows.",
+  "github_actions_queried_or_awaited": false,
+  "scope": [
+    "ODT sections and nested-list additions, original and vendor histories",
+    "Optional GECToR package and manual editor lane",
+    "German morphology and lexical query contract",
+    "Annotation extraction visibility and note/comment regressions",
+    "All fetched fork/upstream branches and PR heads"
+  ],
+  "cutoff": "All exact revisions in api-inventory.json and git-fetch-inventory.json; later arrivals are outside this snapshot."
+}
