@@ -99,6 +99,30 @@ abstract final class OdtDocumentWriter {
       w.writeEndElement();
       w.writeEndElement();
     }
+    w.writeStartElement('list-style', prefix: 'text');
+    w.writeAttribute('style:name', 'L1');
+    for (var level = 1; level <= 9; level++) {
+      w.writeStartElement('list-level-style-bullet', prefix: 'text');
+      w.writeAttribute('text:level', '$level');
+      w.writeAttribute('text:bullet-char', '•');
+      w.writeStartElement('list-level-properties', prefix: 'style');
+      w.writeAttribute(
+        'text:list-level-position-and-space-mode',
+        'label-alignment',
+      );
+      w.writeEmptyElement(
+        'list-level-label-alignment',
+        prefix: 'style',
+        attributes: {
+          'text:label-followed-by': 'listtab',
+          'fo:margin-left': '${level * 0.25}in',
+          'fo:text-indent': '-0.25in',
+        },
+      );
+      w.writeEndElement();
+      w.writeEndElement();
+    }
+    w.writeEndElement();
     w.writeEndElement();
     w.writeStartElement('automatic-styles', prefix: 'office');
     final section = document.sections.firstOrNull;
@@ -184,9 +208,42 @@ abstract final class OdtDocumentWriter {
     List<WmlBlock> blocks,
     _OdtLayout layout,
   ) {
-    for (final block in blocks) {
-      _writeBlock(w, block, layout);
+    for (var index = 0; index < blocks.length; index++) {
+      final block = blocks[index];
+      if (block is WmlParagraph &&
+          block.properties.numId != null &&
+          !block.properties.numberingSuppressed) {
+        final list = <WmlParagraph>[block];
+        while (index + 1 < blocks.length) {
+          final next = blocks[index + 1];
+          if (next is! WmlParagraph ||
+              next.properties.numId != block.properties.numId ||
+              next.properties.numberingSuppressed) {
+            break;
+          }
+          list.add(next);
+          index++;
+        }
+        _writeList(w, list, layout);
+      } else {
+        _writeBlock(w, block, layout);
+      }
     }
+  }
+
+  static void _writeList(
+    XmlWriter w,
+    List<WmlParagraph> paragraphs,
+    _OdtLayout layout,
+  ) {
+    w.writeStartElement('list', prefix: 'text');
+    w.writeAttribute('text:style-name', layout.listStyle());
+    for (final paragraph in paragraphs) {
+      w.writeStartElement('list-item', prefix: 'text');
+      _writeParagraph(w, paragraph, layout);
+      w.writeEndElement();
+    }
+    w.writeEndElement();
   }
 
   static void _writeBlock(XmlWriter w, WmlBlock block, _OdtLayout layout) {
@@ -271,6 +328,7 @@ abstract final class OdtDocumentWriter {
   }
 
   static void _writeTable(XmlWriter w, WmlTable table, _OdtLayout layout) {
+    final cells = _OdtTableCells(table);
     w.writeStartElement('table', prefix: 'table');
     w.writeAttribute('table:name', 'Table${layout.tableCount++}');
     w.writeAttribute('table:style-name', layout.tableStyle());
@@ -279,12 +337,37 @@ abstract final class OdtDocumentWriter {
       w.writeAttribute('table:style-name', layout.columnStyle(width));
       w.writeEndElement();
     }
-    for (final row in table.rows) {
+    final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
+    if (inferredColumns > BigInt.zero) {
+      w.writeEmptyElement(
+        'table-column',
+        prefix: 'table',
+        attributes: inferredColumns == BigInt.one
+            ? null
+            : {'table:number-columns-repeated': '$inferredColumns'},
+      );
+    }
+    for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+      final row = table.rows[rowIndex];
       w.writeStartElement('table-row', prefix: 'table');
-      for (final cell in row.cells) {
-        w.writeStartElement('table-cell', prefix: 'table');
-        if (cell.gridSpan > 1) {
-          w.writeAttribute('table:number-columns-spanned', '${cell.gridSpan}');
+      _writeOmittedCells(w, row.gridBefore);
+      for (var index = 0; index < row.cells.length; index++) {
+        final cell = row.cells[index];
+        final placement = cells.rows[rowIndex][index];
+        w.writeStartElement(
+          placement.covered ? 'covered-table-cell' : 'table-cell',
+          prefix: 'table',
+        );
+        if (!placement.covered) {
+          if (placement.columns > 1) {
+            w.writeAttribute(
+              'table:number-columns-spanned',
+              '${placement.columns}',
+            );
+          }
+          if (placement.rows > 1) {
+            w.writeAttribute('table:number-rows-spanned', '${placement.rows}');
+          }
         }
         if (cell.fillColor case final fill?) {
           w.writeAttribute('table:style-name', layout.cellStyle(fill));
@@ -295,12 +378,30 @@ abstract final class OdtDocumentWriter {
           _writeBlocks(w, cell.blocks, layout);
         }
         w.writeEndElement();
-        for (var span = 1; span < cell.gridSpan; span++) {
-          w.writeEmptyElement('covered-table-cell', prefix: 'table');
-        }
+        _writeCoveredCells(w, placement.columns - 1);
       }
+      _writeOmittedCells(w, row.gridAfter);
       w.writeEndElement();
     }
+    w.writeEndElement();
+  }
+
+  static void _writeCoveredCells(XmlWriter w, int count) {
+    if (count <= 0) return;
+    w.writeEmptyElement(
+      'covered-table-cell',
+      prefix: 'table',
+      attributes: count == 1
+          ? null
+          : {'table:number-columns-repeated': '$count'},
+    );
+  }
+
+  static void _writeOmittedCells(XmlWriter w, int count) {
+    if (count <= 0) return;
+    w.writeStartElement('table-cell', prefix: 'table');
+    if (count > 1) w.writeAttribute('table:number-columns-repeated', '$count');
+    _writePlainParagraph(w, '');
     w.writeEndElement();
   }
 
@@ -407,6 +508,65 @@ abstract final class OdtDocumentWriter {
       : 'application/octet-stream';
 }
 
+/// Infers vertical ownership only for exactly aligned, consecutive cells.
+///
+/// Like WordTable's logical addressing, a continuation must have the same
+/// logical start and column span as its predecessor. An orphan or mismatched
+/// continuation stays visible as an ordinary cell, rather than hiding its
+/// content under an unrelated anchor. Invalid row metadata breaks all chains
+/// through that row. Known row omissions retain their logical positions.
+///
+/// Storage and iteration are proportional to physical cells, not authored
+/// column spans. BigInt offsets prevent cumulative span overflow on VM and web.
+class _OdtTableCells {
+  _OdtTableCells(WmlTable table) {
+    var previous = <(BigInt, int), _OdtTableCell>{};
+    for (final row in table.rows) {
+      final placements = <_OdtTableCell>[];
+      rows.add(placements);
+      final valid =
+          row.gridBefore >= 0 &&
+          row.gridAfter >= 0 &&
+          row.cells.every((cell) => cell.gridSpan > 0);
+      final current = <(BigInt, int), _OdtTableCell>{};
+      var column = BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0);
+      for (final cell in row.cells) {
+        final span = cell.gridSpan > 0 ? cell.gridSpan : 1;
+        final placement = _OdtTableCell(span);
+        placements.add(placement);
+        final key = (column, span);
+        if (valid) {
+          if (cell.vMerge == WmlVMerge.restart) {
+            current[key] = placement;
+          } else if (cell.vMerge == WmlVMerge.cont) {
+            final anchor = previous[key];
+            if (anchor != null) {
+              placement.covered = true;
+              anchor.rows++;
+              current[key] = anchor;
+            }
+          }
+        }
+        column += BigInt.from(span);
+      }
+      column += BigInt.from(row.gridAfter > 0 ? row.gridAfter : 0);
+      if (column > columnCount) columnCount = column;
+      previous = current;
+    }
+  }
+
+  final rows = <List<_OdtTableCell>>[];
+  BigInt columnCount = BigInt.one;
+}
+
+class _OdtTableCell {
+  _OdtTableCell(this.columns);
+
+  final int columns;
+  int rows = 1;
+  bool covered = false;
+}
+
 class _OdtLayout {
   _OdtLayout(this.document);
 
@@ -472,7 +632,7 @@ class _OdtLayout {
 
   String paragraphStyle(WmlParagraphProps props, {int? heading}) {
     final key =
-        '${heading ?? 0}|${props.justification.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = 'P${_paragraphStyles.length + 1}';
       final buffer = StringBuffer(
@@ -480,46 +640,62 @@ class _OdtLayout {
         'style:parent-style-name="${heading == null ? 'Standard' : 'Heading_20_${heading.clamp(1, 9)}'}">'
         '<style:paragraph-properties',
       );
-      if (heading == null) {
-        final align = switch (props.justification) {
-          WmlJustification.center => 'center',
-          WmlJustification.right => 'end',
-          WmlJustification.justify || WmlJustification.distributed => 'justify',
-          WmlJustification.left => 'start',
-        };
-        buffer.write(' fo:text-align="$align"');
-        if (props.spacingBefore != 0) {
-          buffer.write(
-            ' fo:margin-top="${props.spacingBefore.toStringAsFixed(2)}pt"',
-          );
-        }
-        if (props.spacingAfter != 0) {
-          buffer.write(
-            ' fo:margin-bottom="${props.spacingAfter.toStringAsFixed(2)}pt"',
-          );
-        }
-        if (props.lineSpacing > 0) {
-          buffer.write(
-            ' fo:line-height="${(props.lineSpacing * 100).round()}%"',
-          );
+      // The model's left/right alignment is physical, independently of the
+      // paragraph's BiDi base direction. ODF start/end would reverse it in RTL.
+      final align = switch (props.justification) {
+        WmlJustification.center => 'center',
+        WmlJustification.right => 'right',
+        WmlJustification.justify || WmlJustification.distributed => 'justify',
+        WmlJustification.left => 'left',
+      };
+      buffer.write(' fo:text-align="$align"');
+      if (props.rightToLeft case final direction?) {
+        buffer.write(' style:writing-mode="${direction ? 'rl-tb' : 'lr-tb'}"');
+        buffer.write(' style:writing-mode-automatic="false"');
+      }
+      // Write zero margins too: omission inherits the generated default style,
+      // whose bottom margin is nonzero. Headings retain their resolved values.
+      if (_paragraphDecimal(props.spacingBefore) case final before?) {
+        buffer.write(' fo:margin-top="${before}pt"');
+      }
+      if (_paragraphDecimal(props.spacingAfter) case final after?) {
+        buffer.write(' fo:margin-bottom="${after}pt"');
+      }
+      if (props.lineSpacing > 0) {
+        switch (props.lineSpacingRule) {
+          case WmlLineSpacingRule.auto:
+            if (_paragraphDecimal(props.lineSpacing * 100)
+                case final percent?) {
+              buffer.write(' fo:line-height="$percent%"');
+            }
+          case WmlLineSpacingRule.exact:
+            if (_paragraphDecimal(props.lineSpacing) case final points?) {
+              buffer.write(' fo:line-height="${points}pt"');
+            }
+          case WmlLineSpacingRule.atLeast:
+            if (_paragraphDecimal(props.lineSpacing) case final points?) {
+              buffer.write(' style:line-height-at-least="${points}pt"');
+            }
         }
       }
       if (props.pageBreakBefore) buffer.write(' fo:break-before="page"');
       if (props.indent.left != 0) {
-        buffer.write(
-          ' fo:margin-left="${props.indent.left.toStringAsFixed(2)}pt"',
-        );
+        if (_paragraphDecimal(props.indent.left) case final left?) {
+          buffer.write(' fo:margin-left="${left}pt"');
+        }
       }
       if (props.indent.right != 0) {
-        buffer.write(
-          ' fo:margin-right="${props.indent.right.toStringAsFixed(2)}pt"',
-        );
+        if (_paragraphDecimal(props.indent.right) case final right?) {
+          buffer.write(' fo:margin-right="${right}pt"');
+        }
       }
       final firstLine = props.indent.hanging != 0
           ? -props.indent.hanging
           : props.indent.firstLine;
       if (firstLine != 0) {
-        buffer.write(' fo:text-indent="${firstLine.toStringAsFixed(2)}pt"');
+        if (_paragraphDecimal(firstLine) case final points?) {
+          buffer.write(' fo:text-indent="${points}pt"');
+        }
       }
       buffer.write('/></style:style>');
       _styleBuffers.add(buffer.toString());
@@ -527,11 +703,19 @@ class _OdtLayout {
     });
   }
 
+  static String? _paragraphDecimal(double value) {
+    if (!value.isFinite) return null;
+    final decimal = value.toStringAsFixed(2);
+    // ODF lengths and percentages do not accept exponent notation, which
+    // toStringAsFixed uses for magnitudes of at least 10^21.
+    return decimal.contains('e') ? null : decimal;
+  }
+
   String tableStyle() {
     final name = 'Tab${tableCount + 1}';
     _styleBuffers.add(
       '<style:style style:name="$name" style:family="table">'
-      '<style:table-properties style:width="100%" table:align="margins"/></style:style>',
+      '<style:table-properties style:rel-width="100%" table:align="margins"/></style:style>',
     );
     return name;
   }
@@ -548,6 +732,8 @@ class _OdtLayout {
       return name;
     });
   }
+
+  String listStyle() => 'L1';
 
   String cellStyle(String fill) {
     return _cellStyles.putIfAbsent(fill, () {
