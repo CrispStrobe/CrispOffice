@@ -1,0 +1,115 @@
+{
+  "started_at_utc": "2026-11-17T09:13:42.160998+00:00",
+  "source_head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
+  "source_inputs_sha256": {
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": "2def2223516731f632e5ab4a37f94377142d0644a5df5f50964fefaa92b2d193",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": "cd79dee10538a3fa7ec47246e35dd45a3535720202c7e146e66f844523fd51bc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": "39c3bf9d907cdccdbfb0cc64c06ad76f2c0272790b4747626325d43f7497e7f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": "5af756aff60cbc4a77425f1a1e5d48d712231b9892aa1d646af46b4e6c034a59",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": "ec59197668f522895e525879f1acf1cd9d52c27740dda4d17293e95b28208bcf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": "6cace804210b0f52008da94ededb29692cc5a39041976aa4e999d17dfedfe2f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": "cd70267d1d9580aa6b9a46e56b006ac961e614f0c6103d8850aa9b091b0b8627",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": "afc12eeb4b6772d262451802f12758c955607ed6239adca1ef63c0e335f62e9f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": "773e74ed12d9891f1fc1b83c0cd4dcd33675c745edccee35e3fa42ea2004a839",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": "bc34d24db3703a5f4bc7fdb73e5f91f269316db17ad0f375e656cf838d0713d2",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": "4ee5929fca1b20454093614cf3fc9f733c6a246dbb24e7d2865f56aa7829762e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": "5800bdb1c6f699fb2d7080e4d3c5327734724ba0212465aba019c3c37eba9b50",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": "06f35af0a008762feea1b0529867f5f60a4b11c4fa6365734b534a4672d6d829",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": "104de822d57601b57eb0626ed49b33f5ad71c5923459121de94a447c17a7e991",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": "8e6dc9e9e3c174af9719f3ec8f1814972dec97f9a6e41d481b54ff29650d0c72",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": "fbfc005247f5dd9bcb50347e2f32707e6b46233e6465ceff85cb3962dd8d9cde",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": "356f006c4a82ecfc09387ff2f1fe921fbd13abe55773eb640dfcb91a426374d9",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "7101ec5f1288890b11eac8db586107c51c8c394c5476407e74ac3b3e14d81bb0",
+    "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "feccdacba30cf1d12b5ab5ee796b9c5aa747699241b8524e6f9e640f3646678f",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "f381f62d259a34930199be77829717042aed7c0b97185f41bff051b43e4b8307",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "64c38adeebc59e1b0a0145433db08ce5a12206bdfb849c573f925f016178890d",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+    "packages/quds_office_engine/third_party/proofing/morphology_manifest.json": "2957d1462cca375fa9ce58fb11e5933f0711ebf201b9eebd67e9ce1ab56e77b1",
+    "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "tools/proofing/validate_morphology_buckets.dart": "3638aebd25c9c78077c1e8b1726749f60001280d3b6f4ec1feeab2423b91bc67"
+  },
+  "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "node_sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+  "github_actions_used": false,
+  "commands": [
+    {
+      "argv": [
+        "/workspace/scratch/bfa280b382ef/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/bfa280b382ef/quds_office_suite/.dart_tool/package_config.json",
+        "-DQUDS_MORPHOLOGY_SOURCE_BINDING=8649b79efe0f2ad57d8f187233ed3f8b8177b3a0:2957d1462cca375fa9ce58fb11e5933f0711ebf201b9eebd67e9ce1ab56e77b1",
+        "/workspace/scratch/bfa280b382ef/quds_office_suite/tools/proofing/validate_morphology_buckets.dart"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 12.296994482996524,
+      "output": "vm.json",
+      "sha256": "a1dbb18cb302298f555a5270f444e59d0b30e45e94fa76cc4f2f258fbc750a94"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/bfa280b382ef/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "--packages=/workspace/scratch/bfa280b382ef/quds_office_suite/.dart_tool/package_config.json",
+        "-DQUDS_MORPHOLOGY_SOURCE_BINDING=8649b79efe0f2ad57d8f187233ed3f8b8177b3a0:2957d1462cca375fa9ce58fb11e5933f0711ebf201b9eebd67e9ce1ab56e77b1",
+        "/workspace/scratch/bfa280b382ef/quds_office_suite/tools/proofing/validate_morphology_buckets.dart",
+        "-o",
+        "/workspace/scratch/bfa280b382ef/morphology-final-buckets/all-buckets.js"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.36269463901408,
+      "output": "compile-js.log",
+      "sha256": "2d429cec1185a1b68eabae3975b8cc6ea6911e2908000d817b4e206e65356724"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self=globalThis; require(process.argv[1]);",
+        "/workspace/scratch/bfa280b382ef/morphology-final-buckets/all-buckets.js"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 8.128830233006738,
+      "output": "node.json",
+      "sha256": "c73f7d4d9c6eb239d4a99258d8bc4edeb60340eb4376d449d41e7bdff82a1e32"
+    }
+  ],
+  "vm": {
+    "status": "passed",
+    "source_binding": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0:2957d1462cca375fa9ce58fb11e5933f0711ebf201b9eebd67e9ce1ab56e77b1",
+    "buckets": 256,
+    "readings": 127987,
+    "elapsed_milliseconds": 5926,
+    "coverage": "Every bucket parsed, mask/id/descriptor checks passed; not linguistic accuracy."
+  },
+  "node": {
+    "status": "passed",
+    "source_binding": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0:2957d1462cca375fa9ce58fb11e5933f0711ebf201b9eebd67e9ce1ab56e77b1",
+    "buckets": 256,
+    "readings": 127987,
+    "elapsed_milliseconds": 7821,
+    "coverage": "Every bucket parsed, mask/id/descriptor checks passed; not linguistic accuracy."
+  },
+  "compiled_js_sha256": "bae8566ca6210d7c94d959f88bf0cb6b217204998ff961461b33199dac6e4154",
+  "source_unchanged": true,
+  "runtimes_unchanged": true,
+  "status": "passed",
+  "completed_at_utc": "2026-11-17T09:14:10.194187+00:00"
+}

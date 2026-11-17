@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
-      ONNX_RUNTIME_DART_SHA: 0b49ca47fa056e6fc122ffe0192a9abb05627622
-      CRISPEMBED_ROADMAP_SHA: 85e973fba7c1be3f8bf028bb43de82ce0537174f
-      FASTEMBED_ROADMAP_SHA: 99d21fbc830e3dbaaafff3d60a0864097b1b795b
+      ONNX_RUNTIME_DART_SHA: b10258682d459847b63e012eaaba58a528e93956
+      CRISPEMBED_ROADMAP_SHA: 04b19ad76485ab3a12d6c30d27c6424ef50a9adc
+      FASTEMBED_ROADMAP_SHA: 75a98204a58ab3fc7414e279b1f0a08b02513d13
       OMP_NUM_THREADS: '2'
       OPENBLAS_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
@@ -110,6 +110,7 @@ jobs:
               "memory": pathlib.Path("/proc/meminfo").read_text(),
               "python": sys.version, "packages": packages,
               "dart": command(["dart", "--version"]),
+              "declared_dart_experiments": {"dart-f32": [], "dart-int4": ["narrowDirectGemm"]},
               "declared_threads": {"ort_intra": 2, "ort_inter": 1, "dart_workers": 2,
                                    "note": "Dart uses two GEMM workers plus its caller; this is not an identical ORT thread schedule."},
               "timing": {"warmups": 1, "repeats": 3, "overall_budget_seconds": 2100,
@@ -210,7 +211,7 @@ jobs:
               --tokenizer "$GECTOR_ROOT/model/tokenizer.json" \
               --fixtures "$GECTOR_ROOT/reference-f32/reference.json" \
               --report "$GECTOR_ROOT/reports/dart-f32.json" \
-              --warmup 1 --iterations 3 --workers 2
+              --warmup 1 --iterations 3 --workers 2 --narrow-direct false
 
       - name: Measure INT4 model in Dart AOT
         if: always()
@@ -224,7 +225,7 @@ jobs:
               --tokenizer "$GECTOR_ROOT/model/tokenizer.json" \
               --fixtures "$GECTOR_ROOT/reference-int4/reference.json" \
               --report "$GECTOR_ROOT/reports/dart-int4.json" \
-              --warmup 1 --iterations 3 --workers 2
+              --warmup 1 --iterations 3 --workers 2 --narrow-direct true
 
       - name: Preserve Dart dependency and executable identity
         if: always()

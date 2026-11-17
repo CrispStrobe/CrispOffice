@@ -1,0 +1,3548 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-hosted-optimized-case-evidence",
+  "run_id": 44062093617,
+  "case_count": 30,
+  "saved_pass_count_per_model": 40,
+  "first_pass_wordpiece_range": [
+    5,
+    12
+  ],
+  "warmups_per_case": 1,
+  "measured_iterations_per_case": 3,
+  "experiments": {
+    "dart-f32": [],
+    "dart-int4": [
+      "narrowDirectGemm"
+    ]
+  },
+  "scope": "Native complete corrections use the frozen upstream runner; Dart timings and numerical parity use saved exact inputs. Same-model parity and F32-to-INT4 task comparison remain separate.",
+  "cases": [
+    {
+      "id": "verb-du",
+      "kind": "error",
+      "input": "Du geht heute nach Hause.",
+      "expected": "Du gehst heute nach Hause.",
+      "corrected_both_models": "Du gehst heute nach Hause.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 3,
+          "end": 7,
+          "original": "geht",
+          "replacement": "gehst"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            840,
+            1125,
+            1181,
+            333,
+            3873,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            122,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            122,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            840,
+            15153,
+            1181,
+            333,
+            3873,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017132296999989194,
+            0.017084119000003284,
+            0.01689754000000221
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03440658599998869,
+            0.03423098000001801,
+            0.03426203300000452
+          ],
+          "dart_first_pass_seconds": [
+            0.228567,
+            0.226548,
+            0.214371
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015579158999997844,
+            0.01539638500000251,
+            0.015147984999998698
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.031162051999984897,
+            0.030859675000016296,
+            0.03120398999999452
+          ],
+          "dart_first_pass_seconds": [
+            0.463532,
+            0.463173,
+            0.467561
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.9073486328125e-05,
+          "maximum_detection_head_absolute_error": 7.152557373046875e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.4781951904296875e-05,
+          "maximum_detection_head_absolute_error": 9.059906005859375e-06
+        }
+      }
+    },
+    {
+      "id": "verb-plural",
+      "kind": "error",
+      "input": "Die Kinder spielt im Garten.",
+      "expected": "Die Kinder spielen im Garten.",
+      "corrected_both_models": "Die Kinder spielen im Garten.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 11,
+          "end": 17,
+          "original": "spielt",
+          "replacement": "spielen"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            229,
+            1147,
+            4011,
+            223,
+            4076,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            132,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            132,
+            0,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            229,
+            1147,
+            3335,
+            223,
+            4076,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016838902000017697,
+            0.01680405300001553,
+            0.016545290000010482
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03490521000000513,
+            0.03527247099998476,
+            0.034646920000000136
+          ],
+          "dart_first_pass_seconds": [
+            0.186217,
+            0.188487,
+            0.190039
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015317271000014898,
+            0.015236300999987407,
+            0.01499301900000205
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03115074099997628,
+            0.031208152999994354,
+            0.03130106599999749
+          ],
+          "dart_first_pass_seconds": [
+            0.46546,
+            0.464575,
+            0.464178
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.9073486328125e-05,
+          "maximum_detection_head_absolute_error": 7.62939453125e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 1.33514404296875e-05
+        }
+      }
+    },
+    {
+      "id": "verb-er",
+      "kind": "error",
+      "input": "Er gehen morgen nach Berlin.",
+      "expected": "Er geht morgen nach Berlin.",
+      "corrected_both_models": "Er geht morgen nach Berlin.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 3,
+          "end": 8,
+          "original": "gehen",
+          "replacement": "geht"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            279,
+            1806,
+            5519,
+            333,
+            1270,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            128,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            128,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            279,
+            1125,
+            5519,
+            333,
+            1270,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016567300999980716,
+            0.016714454999998907,
+            0.01627420200000529
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03407715100001951,
+            0.03399384899998381,
+            0.034085137999994686
+          ],
+          "dart_first_pass_seconds": [
+            0.181778,
+            0.21359,
+            0.198202
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015085158999994519,
+            0.015127396999986331,
+            0.01508212400000275
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.031021051999999827,
+            0.03091730099998813,
+            0.0311956160000193
+          ],
+          "dart_first_pass_seconds": [
+            0.463295,
+            0.46868,
+            0.464608
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 8.106231689453125e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.9073486328125e-05,
+          "maximum_detection_head_absolute_error": 9.059906005859375e-06
+        }
+      }
+    },
+    {
+      "id": "verb-wir",
+      "kind": "error",
+      "input": "Wir ist zufrieden.",
+      "expected": "Wir sind zufrieden.",
+      "corrected_both_models": "Wir sind zufrieden.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 4,
+          "end": 7,
+          "original": "ist",
+          "replacement": "sind"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 5,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            505,
+            215,
+            6716,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            132,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            132,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            505,
+            341,
+            6716,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.014511074000012059,
+            0.014445255999987694,
+            0.014593703999992158
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.030063263000016605,
+            0.029651908999994703,
+            0.029570958999983077
+          ],
+          "dart_first_pass_seconds": [
+            0.167921,
+            0.174332,
+            0.173647
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.012995778000004066,
+            0.012905127999999877,
+            0.013107894000000897
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.026248565000003055,
+            0.026566372999980103,
+            0.02596710500000654
+          ],
+          "dart_first_pass_seconds": [
+            0.404898,
+            0.40482,
+            0.405116
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.3828277587890625e-05,
+          "maximum_detection_head_absolute_error": 6.198883056640625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.7642974853515625e-05,
+          "maximum_detection_head_absolute_error": 6.198883056640625e-06
+        }
+      }
+    },
+    {
+      "id": "verb-ihr",
+      "kind": "error",
+      "input": "Ihr hat viel Zeit.",
+      "expected": "Ihr habt viel Zeit.",
+      "corrected_both_models": "Ihr habt viel Zeit.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 4,
+          "end": 7,
+          "original": "hat",
+          "replacement": "habt"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 6,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            696,
+            308,
+            827,
+            577,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            130,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            130,
+            0,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            696,
+            7422,
+            827,
+            577,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.014917074999999613,
+            0.014853859999988117,
+            0.014810570999998163
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.031097321000004285,
+            0.030952310000003536,
+            0.03114613200000349
+          ],
+          "dart_first_pass_seconds": [
+            0.181322,
+            0.190754,
+            0.25366
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.01320659199998886,
+            0.013197863000016241,
+            0.013271518999999898
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.027069503999996414,
+            0.027015800000015133,
+            0.026958159999992404
+          ],
+          "dart_first_pass_seconds": [
+            0.436774,
+            0.435979,
+            0.442766
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.86102294921875e-05,
+          "maximum_detection_head_absolute_error": 9.5367431640625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 6.198883056640625e-06
+        }
+      }
+    },
+    {
+      "id": "agreement-das",
+      "kind": "error",
+      "input": "Das sind ein Problem.",
+      "expected": "Das ist ein Problem.",
+      "corrected_both_models": "Das ist ein Problem.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 4,
+          "end": 8,
+          "original": "sind",
+          "replacement": "ist"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 6,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            347,
+            341,
+            143,
+            1550,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            128,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            128,
+            0,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            347,
+            215,
+            143,
+            1550,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.015095543000001044,
+            0.015226493999989543,
+            0.015200079000010192
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03115823600001022,
+            0.03121365300000889,
+            0.03134559800000147
+          ],
+          "dart_first_pass_seconds": [
+            0.181602,
+            0.190068,
+            0.18148
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.013298261000016964,
+            0.013368204000016704,
+            0.013494503000003988
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.02748608300001365,
+            0.027858395999999175,
+            0.027412044000016067
+          ],
+          "dart_first_pass_seconds": [
+            0.436541,
+            0.434953,
+            0.435349
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.33514404296875e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "adjective-neuter",
+      "kind": "error",
+      "input": "Ich habe ein schöne Haus.",
+      "expected": "Ich habe ein schönes Haus.",
+      "corrected_both_models": "Ich habe ein schöne Haus.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            395,
+            704,
+            143,
+            8668,
+            860,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016674311000002717,
+            0.01658994699999994,
+            0.01651135100001966
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.016872726999991983,
+            0.01701855499999283,
+            0.016989082999998573
+          ],
+          "dart_first_pass_seconds": [
+            0.197097,
+            0.201449,
+            0.195171
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015081514000002016,
+            0.015431915999982948,
+            0.01547323500000175
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.015858229000002666,
+            0.015747382999990123,
+            0.01573663800002123
+          ],
+          "dart_first_pass_seconds": [
+            0.4618,
+            0.464747,
+            0.461954
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.33514404296875e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 9.059906005859375e-06
+        }
+      }
+    },
+    {
+      "id": "accusative-article",
+      "kind": "error",
+      "input": "Sie hat ein roten Mantel.",
+      "expected": "Sie hat einen roten Mantel.",
+      "corrected_both_models": "Sie hat ein roten Mantel.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            286,
+            308,
+            143,
+            11754,
+            22748,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016812309999977515,
+            0.01667183399999317,
+            0.016857563000002074
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017274256000007426,
+            0.017130587000025344,
+            0.01730688099999611
+          ],
+          "dart_first_pass_seconds": [
+            0.211755,
+            0.222578,
+            0.210921
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015618661999980077,
+            0.015548905000002833,
+            0.015524960000021792
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.015695974000010438,
+            0.01554933799999958,
+            0.01558419899998853
+          ],
+          "dart_first_pass_seconds": [
+            0.46255,
+            0.461902,
+            0.466423
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.621246337890625e-05,
+          "maximum_detection_head_absolute_error": 5.7220458984375e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 9.5367431640625e-06
+        }
+      }
+    },
+    {
+      "id": "dative-help",
+      "kind": "error",
+      "input": "Er hilft den Kind.",
+      "expected": "Er hilft dem Kind.",
+      "corrected_both_models": "Er hilft den Kind.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 6,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            279,
+            8399,
+            190,
+            2841,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.015469115999991345,
+            0.015445155000008981,
+            0.015278274999985797
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.015665701000017407,
+            0.015690522000028295,
+            0.015694211999999652
+          ],
+          "dart_first_pass_seconds": [
+            0.178498,
+            0.194828,
+            0.196157
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.013768735000013521,
+            0.01378407100000345,
+            0.013836312000023554
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.014275971000017762,
+            0.014152787000000444,
+            0.014182984999990822
+          ],
+          "dart_first_pass_seconds": [
+            0.43275,
+            0.432743,
+            0.435883
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.33514404296875e-05,
+          "maximum_detection_head_absolute_error": 9.5367431640625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "dative-mit",
+      "kind": "error",
+      "input": "Mit den Auto fahren wir.",
+      "expected": "Mit dem Auto fahren wir.",
+      "corrected_both_models": "Mit den Auto fahren wir.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            375,
+            190,
+            2510,
+            4728,
+            268,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.01676771399999666,
+            0.01699949400000378,
+            0.0167611509999972
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01730166999999483,
+            0.017210623000011083,
+            0.0171541070000103
+          ],
+          "dart_first_pass_seconds": [
+            0.201143,
+            0.199638,
+            0.179154
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015558296999984123,
+            0.015668888999982755,
+            0.01576621000000955
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.016246762999998055,
+            0.015753590999992184,
+            0.0158558859999971
+          ],
+          "dart_first_pass_seconds": [
+            0.461213,
+            0.468265,
+            0.462269
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 7.152557373046875e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 1.0967254638671875e-05
+        }
+      }
+    },
+    {
+      "id": "dass-conjunction",
+      "kind": "error",
+      "input": "Ich denke, das er kommt.",
+      "expected": "Ich denke, dass er kommt.",
+      "corrected_both_models": "Ich denke, dass er kommt.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 11,
+          "end": 14,
+          "original": "das",
+          "replacement": "dass"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 8,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            395,
+            5752,
+            818,
+            199,
+            180,
+            1582,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            90,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            90,
+            0,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            395,
+            5752,
+            818,
+            377,
+            180,
+            1582,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017262403000017912,
+            0.017296462999979667,
+            0.01723933899998542
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.034990340000007336,
+            0.035116874999999936,
+            0.03513862799999856
+          ],
+          "dart_first_pass_seconds": [
+            0.190291,
+            0.193751,
+            0.196465
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015762991999991982,
+            0.015716786000012917,
+            0.015703368000004048
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.032033452999996825,
+            0.031470777000009775,
+            0.031143945000025042
+          ],
+          "dart_first_pass_seconds": [
+            0.454085,
+            0.454078,
+            0.460912
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.6702880859375e-05,
+          "maximum_detection_head_absolute_error": 6.67572021484375e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.288818359375e-05,
+          "maximum_detection_head_absolute_error": 1.1444091796875e-05
+        }
+      }
+    },
+    {
+      "id": "das-relative",
+      "kind": "error",
+      "input": "Das Buch, dass ich lese, ist gut.",
+      "expected": "Das Buch, das ich lese, ist gut.",
+      "corrected_both_models": "Das Buch, das ich lese, ist gut.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 10,
+          "end": 14,
+          "original": "dass",
+          "replacement": "das"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 12,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            347,
+            1829,
+            818,
+            377,
+            383,
+            17585,
+            30881,
+            818,
+            215,
+            994,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            98,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            98,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            347,
+            1829,
+            818,
+            199,
+            383,
+            17585,
+            30881,
+            818,
+            215,
+            994,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017891361000010875,
+            0.01776361800000359,
+            0.01784622499999955
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03744240799997556,
+            0.03724395300000083,
+            0.037802464000009195
+          ],
+          "dart_first_pass_seconds": [
+            0.229176,
+            0.233113,
+            0.248432
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016115124000009473,
+            0.016612178000002586,
+            0.016159592999997585
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.033721589000009544,
+            0.03362504500000796,
+            0.03380531099998052
+          ],
+          "dart_first_pass_seconds": [
+            0.53719,
+            0.534565,
+            0.535457
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.288818359375e-05,
+          "maximum_detection_head_absolute_error": 1.0013580322265625e-05
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.86102294921875e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "word-order-subclause",
+      "kind": "error",
+      "input": "Weil es regnet, wir bleiben zu Hause.",
+      "expected": "Weil es regnet, bleiben wir zu Hause.",
+      "corrected_both_models": "Weil es regnet, wir bleiben zu Hause.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 11,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            3883,
+            288,
+            2193,
+            690,
+            818,
+            268,
+            2839,
+            205,
+            3873,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.018764559999993935,
+            0.018824532999985877,
+            0.018682708000000048
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.019172743000012815,
+            0.01915775599999847,
+            0.018880056999989847
+          ],
+          "dart_first_pass_seconds": [
+            0.228081,
+            0.228479,
+            0.23643
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016974112000013974,
+            0.016894731000007823,
+            0.01706026100001168
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017312258999993446,
+            0.017223287000007304,
+            0.017315475000003744
+          ],
+          "dart_first_pass_seconds": [
+            0.54292,
+            0.542382,
+            0.545531
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.1444091796875e-05,
+          "maximum_detection_head_absolute_error": 1.0967254638671875e-05
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 9.5367431640625e-06
+        }
+      }
+    },
+    {
+      "id": "word-order-adverb",
+      "kind": "error",
+      "input": "Gestern ich habe gekocht.",
+      "expected": "Gestern habe ich gekocht.",
+      "corrected_both_models": "Gestern ich habe gekocht.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            23435,
+            383,
+            704,
+            3514,
+            16369,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016491928999982974,
+            0.01679237100000819,
+            0.01676642300000708
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01737582100000168,
+            0.02194051800000807,
+            0.017136201999988998
+          ],
+          "dart_first_pass_seconds": [
+            0.189685,
+            0.188355,
+            0.178561
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.01582294700000375,
+            0.015820275000010042,
+            0.015855986000019584
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.016239192999989882,
+            0.01615300200001002,
+            0.016320419999999558
+          ],
+          "dart_first_pass_seconds": [
+            0.464344,
+            0.46298,
+            0.463335
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 6.198883056640625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.1444091796875e-05,
+          "maximum_detection_head_absolute_error": 7.152557373046875e-06
+        }
+      }
+    },
+    {
+      "id": "participle",
+      "kind": "error",
+      "input": "Er hat das Buch gelest.",
+      "expected": "Er hat das Buch gelesen.",
+      "corrected_both_models": "Er hat das Buch gelest.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 8,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            279,
+            308,
+            199,
+            1829,
+            1068,
+            331,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.01693231500001957,
+            0.016802331999997477,
+            0.016652534000002106
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017114286999998285,
+            0.017194852000017136,
+            0.0169423140000049
+          ],
+          "dart_first_pass_seconds": [
+            0.206309,
+            0.195292,
+            0.185941
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015663629999977502,
+            0.015945743000003176,
+            0.015874673000013217
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.0161970139999994,
+            0.01614775699999882,
+            0.016323967999994693
+          ],
+          "dart_first_pass_seconds": [
+            0.453695,
+            0.456059,
+            0.45431
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 4.76837158203125e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.288818359375e-05,
+          "maximum_detection_head_absolute_error": 1.0132789611816406e-05
+        }
+      }
+    },
+    {
+      "id": "article-gender",
+      "kind": "error",
+      "input": "Das ist der beste Lösung.",
+      "expected": "Das ist die beste Lösung.",
+      "corrected_both_models": "Das ist der beste Lösung.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            347,
+            215,
+            125,
+            5251,
+            4787,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.01666172599999527,
+            0.01696980799999892,
+            0.016509495999997625
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01725461599997402,
+            0.017179706999996824,
+            0.016938385999992533
+          ],
+          "dart_first_pass_seconds": [
+            0.199167,
+            0.188755,
+            0.205868
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015606542000000445,
+            0.015879649999988033,
+            0.01592288599999847
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.016451009000007843,
+            0.016235613999981524,
+            0.016147531000001436
+          ],
+          "dart_first_pass_seconds": [
+            0.461514,
+            0.466865,
+            0.462101
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.288818359375e-05,
+          "maximum_detection_head_absolute_error": 4.76837158203125e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.33514404296875e-05,
+          "maximum_detection_head_absolute_error": 5.0067901611328125e-06
+        }
+      }
+    },
+    {
+      "id": "verb-flowers",
+      "kind": "error",
+      "input": "Die Blumen ist schön.",
+      "expected": "Die Blumen sind schön.",
+      "corrected_both_models": "Die Blumen sind schön.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 11,
+          "end": 14,
+          "original": "ist",
+          "replacement": "sind"
+        }
+      ],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 6,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            229,
+            7825,
+            215,
+            2602,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            132,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            132,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            229,
+            7825,
+            341,
+            2602,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.015143983999990951,
+            0.015095424000008961,
+            0.015187170000018568
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03136789600000611,
+            0.031335241999983054,
+            0.033588009999988344
+          ],
+          "dart_first_pass_seconds": [
+            0.181653,
+            0.186769,
+            0.182749
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.013694079999993392,
+            0.013637732999995933,
+            0.013915056999991293
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.028775998000014624,
+            0.02844942800001604,
+            0.02877479599999333
+          ],
+          "dart_first_pass_seconds": [
+            0.431768,
+            0.434644,
+            0.433937
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 7.152557373046875e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "comparison",
+      "kind": "error",
+      "input": "Sie ist größer wie ich.",
+      "expected": "Sie ist größer als ich.",
+      "corrected_both_models": "Sie ist größer wie ich.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            286,
+            215,
+            5749,
+            335,
+            383,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016802592999994204,
+            0.016759363000005578,
+            0.016541672999977663
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01729519299999538,
+            0.01789438800000198,
+            0.01688190400000167
+          ],
+          "dart_first_pass_seconds": [
+            0.187267,
+            0.189014,
+            0.236037
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.01585123099999919,
+            0.016326494999987062,
+            0.01597492000001921
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.016339111999997158,
+            0.016402000999988786,
+            0.016478539000019055
+          ],
+          "dart_first_pass_seconds": [
+            0.464616,
+            0.461572,
+            0.469901
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.9073486328125e-05,
+          "maximum_detection_head_absolute_error": 6.67572021484375e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 6.67572021484375e-06
+        }
+      }
+    },
+    {
+      "id": "clean-simple",
+      "kind": "clean",
+      "input": "Das ist ein schönes Haus.",
+      "corrected_both_models": "Das ist ein schönes Haus.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            347,
+            215,
+            143,
+            19935,
+            860,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016711694000008492,
+            0.01666431999998963,
+            0.01682315200000062
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.018484394000012117,
+            0.017912335999994866,
+            0.016909118000000944
+          ],
+          "dart_first_pass_seconds": [
+            0.191854,
+            0.190324,
+            0.2019
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016002312000011898,
+            0.01577820900001825,
+            0.016036788999997498
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01627811800000245,
+            0.016427687999993168,
+            0.016664075999983652
+          ],
+          "dart_first_pass_seconds": [
+            0.465433,
+            0.461955,
+            0.464645
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 1.049041748046875e-05
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.1444091796875e-05,
+          "maximum_detection_head_absolute_error": 6.67572021484375e-06
+        }
+      }
+    },
+    {
+      "id": "clean-repeated-das",
+      "kind": "clean",
+      "input": "Ist das das Haus?",
+      "corrected_both_models": "Ist das das Haus?",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 6,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            2302,
+            199,
+            199,
+            860,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.014942055999995318,
+            0.015220451000004687,
+            0.015252943000007235
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.015658996000013303,
+            0.015921268999989024,
+            0.015681557999982942
+          ],
+          "dart_first_pass_seconds": [
+            0.178439,
+            0.201986,
+            0.193257
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.014702545000005784,
+            0.01451241500001288,
+            0.014047098999981245
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01467501800001969,
+            0.01462076600000728,
+            0.014401241999991043
+          ],
+          "dart_first_pass_seconds": [
+            0.438267,
+            0.433873,
+            0.433489
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.239776611328125e-05,
+          "maximum_detection_head_absolute_error": 5.0067901611328125e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.811981201171875e-05,
+          "maximum_detection_head_absolute_error": 7.62939453125e-06
+        }
+      }
+    },
+    {
+      "id": "clean-three-das",
+      "kind": "clean",
+      "input": "Ich sehe, dass das das richtige Haus ist.",
+      "corrected_both_models": "Ich sehe, dass das das richtige Haus ist.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 11,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            395,
+            6965,
+            818,
+            377,
+            199,
+            199,
+            7971,
+            860,
+            215,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.018817318000003525,
+            0.018590282999980445,
+            0.018608276000009027
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.018927350000012666,
+            0.018973067999979776,
+            0.01897462700000574
+          ],
+          "dart_first_pass_seconds": [
+            0.22875,
+            0.241163,
+            0.266302
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.017110100000024886,
+            0.01718061700000817,
+            0.017232349000011027
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017444505000014487,
+            0.017760631000015792,
+            0.017585037999992892
+          ],
+          "dart_first_pass_seconds": [
+            0.553788,
+            0.546898,
+            0.545305
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 1.0967254638671875e-05
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.384185791015625e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "clean-tag-question",
+      "kind": "clean",
+      "input": "Du bist müde, oder?",
+      "corrected_both_models": "Du bist müde, oder?",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            840,
+            2183,
+            19062,
+            818,
+            394,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.016607440999990786,
+            0.016709160000004886,
+            0.016839026000013746
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.0173486559999958,
+            0.017281096000004936,
+            0.017192945999994436
+          ],
+          "dart_first_pass_seconds": [
+            0.189145,
+            0.235641,
+            0.203915
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.015986733000005415,
+            0.0158412399999861,
+            0.016063748999982863
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01641436700001009,
+            0.016489575999997896,
+            0.016401795999996693
+          ],
+          "dart_first_pass_seconds": [
+            0.463516,
+            0.465053,
+            0.465054
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.1444091796875e-05,
+          "maximum_detection_head_absolute_error": 6.198883056640625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "clean-imperative",
+      "kind": "clean",
+      "input": "Gib mir bitte das Buch.",
+      "corrected_both_models": "Gib mir bitte das Buch.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 7,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            9717,
+            780,
+            2982,
+            199,
+            1829,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017060729000007768,
+            0.0167958729999782,
+            0.017027979999994614
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017604922999993278,
+            0.017490495999993527,
+            0.017261061000027667
+          ],
+          "dart_first_pass_seconds": [
+            0.197631,
+            0.184006,
+            0.200619
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016099316999998337,
+            0.015953855000020667,
+            0.015730257999990727
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.016373704999978145,
+            0.016341681999989532,
+            0.01623185400001148
+          ],
+          "dart_first_pass_seconds": [
+            0.466619,
+            0.465323,
+            0.460853
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.9073486328125e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 9.5367431640625e-06
+        }
+      }
+    },
+    {
+      "id": "clean-subclause",
+      "kind": "clean",
+      "input": "Ich gehe in die Schule, weil ich lernen will.",
+      "corrected_both_models": "Ich gehe in die Schule, weil ich lernen will.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 12,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            395,
+            6046,
+            153,
+            128,
+            3114,
+            818,
+            1521,
+            383,
+            6593,
+            978,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017954638999981398,
+            0.017692279000016242,
+            0.017527964000009888
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.018294682999993483,
+            0.018940508000014233,
+            0.018120347000007087
+          ],
+          "dart_first_pass_seconds": [
+            0.270291,
+            0.250041,
+            0.240404
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016804605999993782,
+            0.01674954700001763,
+            0.016720676000005597
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01728088100000491,
+            0.017278070000003254,
+            0.017258158000004187
+          ],
+          "dart_first_pass_seconds": [
+            0.534846,
+            0.537536,
+            0.535183
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 5.245208740234375e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.4781951904296875e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "clean-sharp-s",
+      "kind": "clean",
+      "input": "Ich weiß, dass das richtig ist.",
+      "corrected_both_models": "Ich weiß, dass das richtig ist.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 9,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            395,
+            1288,
+            818,
+            377,
+            199,
+            3870,
+            215,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.018886635000001206,
+            0.017312185999998064,
+            0.0173508869999921
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017683668999978863,
+            0.017898683999987952,
+            0.017866252999994003
+          ],
+          "dart_first_pass_seconds": [
+            0.213307,
+            0.229158,
+            0.213448
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016211736000002475,
+            0.016226910000000316,
+            0.018979017000020804
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.019867083999997703,
+            0.019950443000027462,
+            0.020073616000019
+          ],
+          "dart_first_pass_seconds": [
+            0.487902,
+            0.492516,
+            0.486654
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.09808349609375e-05,
+          "maximum_detection_head_absolute_error": 5.245208740234375e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 9.059906005859375e-06
+        }
+      }
+    },
+    {
+      "id": "clean-swiss",
+      "kind": "clean",
+      "locale": "de-CH",
+      "input": "Die Strasse ist gross.",
+      "corrected_both_models": "Die Strasse ist gross.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 6,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            229,
+            26828,
+            215,
+            20910,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.015320338000009315,
+            0.01528540000001044,
+            0.01525415300000077
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.015765033999997513,
+            0.015730318000009902,
+            0.01609763300001532
+          ],
+          "dart_first_pass_seconds": [
+            0.200049,
+            0.179341,
+            0.212689
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.0141355689999898,
+            0.014102020999985143,
+            0.014489125000011427
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.014683601000001545,
+            0.014617128999987017,
+            0.014511461000012105
+          ],
+          "dart_first_pass_seconds": [
+            0.43449,
+            0.436686,
+            0.432283
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 5.245208740234375e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.9073486328125e-05,
+          "maximum_detection_head_absolute_error": 4.291534423828125e-06
+        }
+      }
+    },
+    {
+      "id": "clean-swiss-name",
+      "kind": "clean",
+      "locale": "de-CH",
+      "input": "Grüezi, ich heisse André.",
+      "corrected_both_models": "Grüezi, ich heiße André.",
+      "suggestions_utf16_both_models": [
+        {
+          "start": 12,
+          "end": 18,
+          "original": "heisse",
+          "replacement": "heiße"
+        }
+      ],
+      "expected_behavior_satisfied": false,
+      "first_pass_wordpiece_count": 10,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            28472,
+            9386,
+            30883,
+            818,
+            383,
+            4159,
+            13410,
+            15119,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            8
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ]
+        },
+        {
+          "pass": 2,
+          "input_ids": [
+            102,
+            28472,
+            9386,
+            30883,
+            818,
+            383,
+            15996,
+            15119,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            7
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017901417000018682,
+            0.01805934000000775,
+            0.018283636999996133
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.036704103999994686,
+            0.03653269099999079,
+            0.03668019099998787
+          ],
+          "dart_first_pass_seconds": [
+            0.22201,
+            0.236578,
+            0.229045
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016368134999993345,
+            0.01655573200000049,
+            0.016369560000015326
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.03324287800001002,
+            0.03321957800000064,
+            0.03287369099999182
+          ],
+          "dart_first_pass_seconds": [
+            0.518783,
+            0.515542,
+            0.51411
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 4.00543212890625e-05,
+          "maximum_detection_head_absolute_error": 1.049041748046875e-05
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.288818359375e-05,
+          "maximum_detection_head_absolute_error": 9.059906005859375e-06
+        }
+      }
+    },
+    {
+      "id": "clean-name",
+      "kind": "clean",
+      "input": "Marie Curie lebte in Paris.",
+      "corrected_both_models": "Marie Curie lebte in Paris.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 8,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            10117,
+            14010,
+            110,
+            7817,
+            153,
+            3584,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017246164999988878,
+            0.017373885000012024,
+            0.01741477900000632
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017810267000015756,
+            0.01779460100001984,
+            0.017743336000023646
+          ],
+          "dart_first_pass_seconds": [
+            0.192268,
+            0.210063,
+            0.218157
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.016203754000002846,
+            0.015813894000018536,
+            0.01588944799999581
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.016360405000000355,
+            0.016336624999979676,
+            0.016193337999993673
+          ],
+          "dart_first_pass_seconds": [
+            0.456763,
+            0.456437,
+            0.452911
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.71661376953125e-05,
+          "maximum_detection_head_absolute_error": 7.62939453125e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.049041748046875e-05,
+          "maximum_detection_head_absolute_error": 8.58306884765625e-06
+        }
+      }
+    },
+    {
+      "id": "clean-quotes",
+      "kind": "clean",
+      "input": "Er sagte: „Das stimmt.“",
+      "corrected_both_models": "Er sagte: „Das stimmt.“",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 10,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            279,
+            1382,
+            853,
+            498,
+            347,
+            7558,
+            566,
+            2087,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.017970442000006415,
+            0.017949608999998645,
+            0.018045585000010078
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01849313499999994,
+            0.018549088000014535,
+            0.018451290000001563
+          ],
+          "dart_first_pass_seconds": [
+            0.210848,
+            0.212966,
+            0.232317
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.01633326000001034,
+            0.016198393999985683,
+            0.0162174749999906
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.01652522600002726,
+            0.016701804000007314,
+            0.016705548000004455
+          ],
+          "dart_first_pass_seconds": [
+            0.512232,
+            0.511993,
+            0.521273
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.9073486328125e-05,
+          "maximum_detection_head_absolute_error": 6.198883056640625e-06
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.33514404296875e-05,
+          "maximum_detection_head_absolute_error": 7.62939453125e-06
+        }
+      }
+    },
+    {
+      "id": "clean-date",
+      "kind": "clean",
+      "input": "Wir treffen uns am 16. November 2026.",
+      "corrected_both_models": "Wir treffen uns am 16. November 2026.",
+      "suggestions_utf16_both_models": [],
+      "expected_behavior_satisfied": true,
+      "first_pass_wordpiece_count": 11,
+      "identical_cross_model_pass_inputs_and_decisions": true,
+      "passes": [
+        {
+          "pass": 1,
+          "input_ids": [
+            102,
+            505,
+            4790,
+            734,
+            339,
+            792,
+            566,
+            1448,
+            27079,
+            30946,
+            103
+          ],
+          "first_subword_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "raw_selected_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "thresholded_label_ids_both": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "samples_seconds": {
+        "f32": {
+          "native_first_pass_seconds": [
+            0.018225332000014305,
+            0.01829950699999472,
+            0.018191556000004994
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.018991889000005813,
+            0.01902202400000874,
+            0.018647412999996504
+          ],
+          "dart_first_pass_seconds": [
+            0.252429,
+            0.21963,
+            0.22759
+          ]
+        },
+        "int4": {
+          "native_first_pass_seconds": [
+            0.01673409700001116,
+            0.016814971000002288,
+            0.016696779000000106
+          ],
+          "native_complete_reference_correction_seconds": [
+            0.017107607999975016,
+            0.017121798999994553,
+            0.017342111000004934
+          ],
+          "dart_first_pass_seconds": [
+            0.548234,
+            0.542833,
+            0.545565
+          ]
+        }
+      },
+      "same_model_dart_ort_parity": {
+        "f32": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 1.52587890625e-05,
+          "maximum_detection_head_absolute_error": 1.0967254638671875e-05
+        },
+        "int4": {
+          "all_saved_passes_passed": true,
+          "raw_tag_mismatches": 0,
+          "thresholded_tag_mismatches": 0,
+          "maximum_label_head_absolute_error": 2.288818359375e-05,
+          "maximum_detection_head_absolute_error": 8.106231689453125e-06
+        }
+      }
+    }
+  ]
+}

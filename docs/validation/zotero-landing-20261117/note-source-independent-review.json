@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "reviewed_utc": "2026-11-17T09:25:49.507444+00:00",
+  "source_commit": "b2dc226e2ed82cda8f1bada18fb0a1e17347b5fc",
+  "source_tree": "642436fb32d73cb73706a4dd1c1fce32d0f2fb8b",
+  "parents": [
+    "d95701cffb7bd6ca9085d073c2297373932f374e",
+    "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13"
+  ],
+  "accepted_base_source": "f510060e35d580cbc361985a123927705c92ddc4",
+  "accepted_base_review_sha256": "7ae2f60202e84c12097a854c8544b6c22e58a5ec1c0896435d4629ecf2056734",
+  "destination_main_preserved_as_parent": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+  "evidence_parent_changes_docs_directory_only": true,
+  "changed_paths_outside_docs_directory": {
+    "packages/quds_office_engine/README.md": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3eb07d3164ed6a675e38d1a852f927c2b3da678e"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c02158ec0c6834ebbfe0852252d40d819cd510e6"
+      }
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c06e08fd3d770f536b4d027e1ae9b536254db065"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6ce904f048e2bdeda2877c06f66990e15f534359"
+      }
+    },
+    "packages/quds_office_engine/test/odt_document_writer_test.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "399e0f1d00a21bf5f2b4ec938c941f5bc340e9ad"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "980f25e5be0a64b90c48ecf580d5ecf3bb88c099"
+      }
+    }
+  },
+  "unchanged_previous_source_input_count": 3332,
+  "all_50_original_zotero_blobs_and_modes_preserved": true,
+  "no_new_branch_inventory": true,
+  "application_tests_executed_by_this_review": 0,
+  "bounded_execution_receipt_pending": true,
+  "review_script_sha256": "be3b668345a7817646f93f78a29cc68bbc3a150af72db8efa2603d2e47159a55",
+  "review_helper_sha256": "2bbef41da1d762e7aa288ee14808ecfbddd4d4ca653ceea997b17618e918fd8f",
+  "blocking_discrepancies": []
+}

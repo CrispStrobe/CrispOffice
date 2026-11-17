@@ -1,0 +1,470 @@
+{
+  ".last_build_id": {
+    "bytes": 32,
+    "sha256": "49910e9d4b8dd65e7bcac12dddcc83f932416a769c8ffff7dfa7b8d5349ad302"
+  },
+  "assets/AssetManifest.bin": {
+    "bytes": 8427,
+    "sha256": "65b2879cff2b825d8df961c668bae0285c657ca701bf103a8abe4e16ed101a7f"
+  },
+  "assets/AssetManifest.bin.json": {
+    "bytes": 11238,
+    "sha256": "b8c3d547019fd4d40ea5746b383c4e6bcb7ef11706ed721cc5be67c8a58589a7"
+  },
+  "assets/FontManifest.json": {
+    "bytes": 82,
+    "sha256": "28b1eb2b3d2e1ad60b8c8b0f9100b1ccbf492f7fa97f5bebb51ea97e73926e7d"
+  },
+  "assets/NOTICES": {
+    "bytes": 1390612,
+    "sha256": "95bcbd5801d3ffb204562aea0dbcdac21cf11be9d2e1b52a876d09098a535004"
+  },
+  "assets/assets/al_tahreer/cover_map.jpg": {
+    "bytes": 512731,
+    "sha256": "b54ee3ad26042b783573d11a47d882dc59a9c239621cedf7672779007b03fa95"
+  },
+  "assets/assets/al_tahreer/cover_photo.jpg": {
+    "bytes": 369124,
+    "sha256": "3ef637bf99d90f8a16caf9444b1bc8b96ae0d62748fedf4b7868fb052ec0fa77"
+  },
+  "assets/assets/al_tahreer/fig_1_1_pillars.jpg": {
+    "bytes": 36868,
+    "sha256": "227f895e958e5890be918d4404ca0aca2f7284cd0e00688a6cde2dfc4bc00184"
+  },
+  "assets/assets/al_tahreer/fig_2_10_zone_b.jpg": {
+    "bytes": 118052,
+    "sha256": "ee099b7ded34d852905cf47c603fa538963ad08c13694e2d0bb50af56b76834b"
+  },
+  "assets/assets/al_tahreer/fig_2_11_zone_c.jpg": {
+    "bytes": 148333,
+    "sha256": "a18444067f5463920e9839c9697917d967a79a64c03c6266d8a97e4146552f15"
+  },
+  "assets/assets/al_tahreer/fig_2_12_longterm.jpg": {
+    "bytes": 136436,
+    "sha256": "8988b86355d8badb76e459a87c58d54ec7d8e9130fda432cab6d48ff2cb9d53a"
+  },
+  "assets/assets/al_tahreer/fig_2_1_location.jpg": {
+    "bytes": 772936,
+    "sha256": "a4e38dfa53583469624bf1ef6b83bb0e13ecb65ea64bb60c70d5d2c4dcb9fcda"
+  },
+  "assets/assets/al_tahreer/fig_2_3_general.jpg": {
+    "bytes": 282332,
+    "sha256": "9fd3ef460080226b8168c21a3750143da539b5fcb0c6d07d543933187379c11e"
+  },
+  "assets/assets/al_tahreer/fig_2_4_prewar.jpg": {
+    "bytes": 372350,
+    "sha256": "d6b50a2a283a72402e091a6b54b51c26e3c51f19a56e87261b39493b3966452f"
+  },
+  "assets/assets/al_tahreer/fig_2_5_landuse_a.jpg": {
+    "bytes": 319391,
+    "sha256": "a4cf7e18b8cae3c4c9684ca3ab3b085d12b795fd096321b7df8361f935cb9424"
+  },
+  "assets/assets/al_tahreer/fig_2_5_landuse_b.jpg": {
+    "bytes": 191638,
+    "sha256": "3542d3135b6846caa1d42d6e90222fea1c6f5f357331f84ae0c013372ba9b4aa"
+  },
+  "assets/assets/al_tahreer/fig_2_6_a.jpg": {
+    "bytes": 237890,
+    "sha256": "725f575e61fc6046181725e0aed19fd9ca6b2d650b3a87eddebe394fc3e7731a"
+  },
+  "assets/assets/al_tahreer/fig_2_6_b.jpg": {
+    "bytes": 203866,
+    "sha256": "22ef4e0c37e0d062f919f0a5e03b7ecd0fa79a3dbff984c5e8ac65efb77ac2f6"
+  },
+  "assets/assets/al_tahreer/fig_2_6_map.jpg": {
+    "bytes": 194785,
+    "sha256": "ce7701534df31cc7c43d732ee6d6f7476f6f0e8cac0ee067eece476e270f0462"
+  },
+  "assets/assets/al_tahreer/fig_2_7_post.jpg": {
+    "bytes": 301947,
+    "sha256": "6eef912442ea6c50ceeb8a651999dbc541eb84c72e56cd5e81de9a7ace9758d1"
+  },
+  "assets/assets/al_tahreer/fig_2_7_pre.jpg": {
+    "bytes": 295104,
+    "sha256": "2b5865fc2b976ecb55a7b799d3fad021d4b4273d69cd8fd06db899af2f1e58f9"
+  },
+  "assets/assets/al_tahreer/fig_2_8_zones.jpg": {
+    "bytes": 254551,
+    "sha256": "b891fe4a92a78942b4f74514331684a659dbf76eb34c82e028c1fc5201af34e3"
+  },
+  "assets/assets/al_tahreer/fig_2_9_zone_a.jpg": {
+    "bytes": 102631,
+    "sha256": "d25031255d25648aa27839adc49ceedc925df860f9ae37ee1b6418bb39676544"
+  },
+  "assets/assets/al_tahreer/fig_lt_zone_a.jpg": {
+    "bytes": 61162,
+    "sha256": "6a73f57b22cc6b67dc5adf1fbc71f42ddab67f65ddf66cd014a3d61298a97eda"
+  },
+  "assets/assets/al_tahreer/fig_lt_zone_b.jpg": {
+    "bytes": 73438,
+    "sha256": "fcb4943785be2ba180f073162b20d1f18490a7fbbde529ce489fd1d69f0d486a"
+  },
+  "assets/assets/al_tahreer/fig_lt_zone_c.jpg": {
+    "bytes": 69912,
+    "sha256": "861352a0309f69f25bc8c10abd6b077ff2c5c39233fb3cab33486d9105fb6e8d"
+  },
+  "assets/assets/al_tahreer/fig_urban_a.jpg": {
+    "bytes": 301077,
+    "sha256": "53f8ba556d175f80e62719f9837f3650a489a55e142fe544d11807f830816331"
+  },
+  "assets/assets/al_tahreer/fig_urban_b.jpg": {
+    "bytes": 196278,
+    "sha256": "359ffb2b9a8ac47e5fdf5c0a3b470f3bd1ec5df96d1061a1e3dfd03658be3de4"
+  },
+  "assets/assets/al_tahreer/fig_zone_a_inset.jpg": {
+    "bytes": 51043,
+    "sha256": "3dbe7e388b0f4d0253f5b054ae6a5b2b0234e3714c852841d9552e8c3d378d28"
+  },
+  "assets/assets/al_tahreer/fig_zone_b_inset.jpg": {
+    "bytes": 64652,
+    "sha256": "c3e066b9f4a548830146c3a0df3ea56502ce449dbb0f645b3968d4f425cccc7a"
+  },
+  "assets/assets/al_tahreer/fig_zone_c_inset.jpg": {
+    "bytes": 71563,
+    "sha256": "017e5b8247081e04cb7de408e307a8c8abd09323c07642d1e6702b0f086bc2af"
+  },
+  "assets/assets/al_tahreer/fig_zoning.jpg": {
+    "bytes": 141481,
+    "sha256": "24039d372359a31b35c21ee09711b1f2fcc53e9e916531ff172f6d6984a732e3"
+  },
+  "assets/assets/al_tahreer/logo_back.png": {
+    "bytes": 1218,
+    "sha256": "582f00446956c72edb649a7be3e961baeda6bd29828d005b5ae3c3743341ad4b"
+  },
+  "assets/assets/al_tahreer/logo_credits.jpg": {
+    "bytes": 14969,
+    "sha256": "e3c57845b58005f492c3f8efd1abc6576c7431325b2903729e1fca4e57191ea6"
+  },
+  "assets/assets/al_tahreer/logo_japan.png": {
+    "bytes": 118689,
+    "sha256": "855f619a0330184ea4672ace5ae65727a6a453ebe48dbe713df03ac46be5ce80"
+  },
+  "assets/assets/al_tahreer/logo_unhabitat.png": {
+    "bytes": 6582,
+    "sha256": "1861d89de25e9d5a3225b9f97122aedadc5604b613b642712d8acb19ba19d6a2"
+  },
+  "assets/assets/al_tahreer/photo_housing.jpg": {
+    "bytes": 168598,
+    "sha256": "f3a2d40c9d50867cf8c89f84be7b23e89121b8bf8e6c835e1cca28b9be7bbb0d"
+  },
+  "assets/assets/al_tahreer/photo_overview.jpg": {
+    "bytes": 173813,
+    "sha256": "de99ac0d3dd7348b671cc446b73ae3921f276bce2c980e5460fdb1b67fec159e"
+  },
+  "assets/assets/al_tahreer/photo_profile.jpg": {
+    "bytes": 172338,
+    "sha256": "aed06fb29526ef962783b41b5eb375f754a3018774f7ef7afc4f01d0479e2c53"
+  },
+  "assets/assets/al_tahreer/photo_unrwa.jpg": {
+    "bytes": 106138,
+    "sha256": "504d898ac16c7fb4691502af8437237c5703ef4e68565191d06d17bca0855ca9"
+  },
+  "assets/fonts/Cairo-Regular.ttf": {
+    "bytes": 188088,
+    "sha256": "ca9f630344d33e7b01abb9998a379465a135d1311430f33bbbfaa1e3eb99fdb5"
+  },
+  "assets/fonts/MaterialIcons-Regular.otf": {
+    "bytes": 45340,
+    "sha256": "646422787d65436f7e66ccb0ce9d5aade153a401cf30a8e6915b9c04b73a92be"
+  },
+  "assets/fonts/NOTICE.txt": {
+    "bytes": 668,
+    "sha256": "70c1d466792eacf702a9abd362a9cba1aefaf312a820777c9167c53f45cdaf38"
+  },
+  "assets/fonts/OFL-Cairo.txt": {
+    "bytes": 4473,
+    "sha256": "a4554e1799d42e1405924b61eb0e0722ae1623b1f1f07f995348f96c496362a9"
+  },
+  "assets/fonts/OFL-Tajawal.txt": {
+    "bytes": 4464,
+    "sha256": "9b584984f9db0ee30347391a76eff9c0a6b03dc450c3c6afe3757a2cb3a4db87"
+  },
+  "assets/fonts/Tajawal-Bold.ttf": {
+    "bytes": 59988,
+    "sha256": "0342ab6b74b6bd1b4b5bf7beda45a9734a2b3147a31e8a3a45b6a3417a52d9d7"
+  },
+  "assets/fonts/Tajawal-Regular.ttf": {
+    "bytes": 60364,
+    "sha256": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19"
+  },
+  "assets/packages/quds_office_editor/fonts/LICENSE-Liberation": {
+    "bytes": 4410,
+    "sha256": "a0c060f758d33ee59a674cd7b45914a560d0a5935968af5e87b0c6981fd89ddc"
+  },
+  "assets/packages/quds_office_editor/fonts/LICENSE-NotoNaskhArabic": {
+    "bytes": 4430,
+    "sha256": "07d7ff7e09c8b10fe6f1cb6c659d7a9cab691253abfc0b72794e70c598f06a1d"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationMono-Bold.ttf": {
+    "bytes": 308068,
+    "sha256": "50464e64aaadea741fb9516748aee296d570439406be11d63df22294e77ba867"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationMono-BoldItalic.ttf": {
+    "bytes": 284184,
+    "sha256": "291872531f0e8013df602c412fc570241860e41b1fa1b7972537c27a19024d4d"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationMono-Italic.ttf": {
+    "bytes": 281608,
+    "sha256": "35c3116d4366eb0e58494d8e432d4ee0c60c5735c7f775ffc096008bd2907c74"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationMono-Regular.ttf": {
+    "bytes": 319624,
+    "sha256": "d18235f1e874771f4eaec3ddd6ddb4db849d334bdc6930c5c2185d9344834e62"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSans-Bold.ttf": {
+    "bytes": 414568,
+    "sha256": "b72c65e551d653b54217ffad0d1454ce0657e4e8d4a28bcc79e0acd2598f4bf3"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSans-BoldItalic.ttf": {
+    "bytes": 409108,
+    "sha256": "64263238517af60213cdb469165fc7e9acd0c09c35f4155f924a379f97125a57"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSans-Italic.ttf": {
+    "bytes": 415920,
+    "sha256": "4ccb79043bd3a6d131b5a53901abb21261b1417f6052b38a9fa9716a4e5a3d81"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSans-Regular.ttf": {
+    "bytes": 410820,
+    "sha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSerif-Bold.ttf": {
+    "bytes": 370196,
+    "sha256": "bb033fae52dcbf67a55494a08829aaa788324624d72a195af7f93da3061c928f"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSerif-BoldItalic.ttf": {
+    "bytes": 376892,
+    "sha256": "10ec0fa22bc6f12a239d600c051752884d155997aafd19ebc24c4f4a8d2b98d0"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSerif-Italic.ttf": {
+    "bytes": 375760,
+    "sha256": "c1882fbb05e78537b9c39dad3c07c4f231c987a3747b20c8745737aed50cd488"
+  },
+  "assets/packages/quds_office_editor/fonts/LiberationSerif-Regular.ttf": {
+    "bytes": 393692,
+    "sha256": "350f4ffd773cae53560c63dca3d89a5070595614fde12f772bf43feb63d81064"
+  },
+  "assets/packages/quds_office_editor/fonts/NotoNaskhArabic-Bold.ttf": {
+    "bytes": 181192,
+    "sha256": "b5cbcb561b4b540ff11d7b6934577dbbbbb9e1d152d47f6f31f19176d58ff39c"
+  },
+  "assets/packages/quds_office_editor/fonts/NotoNaskhArabic-Regular.ttf": {
+    "bytes": 175792,
+    "sha256": "8c67eaa2f0086872628fc3f7f760386f83c8be5c5e9a1ba3a38891237b2ac7cb"
+  },
+  "assets/packages/quds_office_editor/templates/account_statement_ar.qrep": {
+    "bytes": 13288,
+    "sha256": "938fb48ce7f5b2298eb1ed5d6a6b5b8645b0f07f5f22bd52b75d481691bc8313"
+  },
+  "assets/packages/quds_office_editor/templates/account_statement_en.qrep": {
+    "bytes": 13036,
+    "sha256": "9f20bb4d48b57f97332c4e9b9602f158296a5869b7d308e4537766ec4cde0b0e"
+  },
+  "assets/packages/quds_office_editor/templates/certificate_ar.qrep": {
+    "bytes": 92048,
+    "sha256": "0105dc6d690351900cbd711b043fc921014cfbc8d63bed7dcf25d4c1d5fecbcd"
+  },
+  "assets/packages/quds_office_editor/templates/certificate_en.qrep": {
+    "bytes": 91946,
+    "sha256": "c2424bafd4ebc8ce5b5e2f68340e1ac5252759377cdacffdada83ff0a7e5fd10"
+  },
+  "assets/packages/quds_office_editor/templates/chart_gallery_ar.qrep": {
+    "bytes": 5136,
+    "sha256": "f8bb1645f4d6f463fa8d9270672b6bfe780657866e1fa5c9f680e30e589f14b5"
+  },
+  "assets/packages/quds_office_editor/templates/chart_gallery_en.qrep": {
+    "bytes": 4747,
+    "sha256": "fe784345d2289feafcee9b5b4af0f5206d7fb0644cd63c48bc78808c9f80d348"
+  },
+  "assets/packages/quds_office_editor/templates/class_certificate_ar.qrep": {
+    "bytes": 92669,
+    "sha256": "0a3b66348523ecc195a00403363f9b1f564789c5e1477a24c3e8f4ed39607f1b"
+  },
+  "assets/packages/quds_office_editor/templates/class_certificate_en.qrep": {
+    "bytes": 92517,
+    "sha256": "376147eb7c9a09bc057e2333f76321b184f69d81a2bf1ef6dc49a7edf9bcddfb"
+  },
+  "assets/packages/quds_office_editor/templates/commercial_invoice_ar.qrep": {
+    "bytes": 13161,
+    "sha256": "67f075000b89034d47415a0b4bdc94d39f2d021fabc1b37dcb40c7eee7405d7c"
+  },
+  "assets/packages/quds_office_editor/templates/feature_showcase_ar.qrep": {
+    "bytes": 13337,
+    "sha256": "ed8ce69cb6f83d0271d8487694c174e93943ff3f37f0776f39ff56047523b4bd"
+  },
+  "assets/packages/quds_office_editor/templates/feature_showcase_en.qrep": {
+    "bytes": 13062,
+    "sha256": "2f2971ee4fd6e8da682ac532b76c11cd09f4996f09c461063b033f74648f14c7"
+  },
+  "assets/packages/quds_office_editor/templates/inventory_ar.qrep": {
+    "bytes": 3964,
+    "sha256": "4c7b1d021f001691af7297412e85b6ac472081ad10d8b7fd123f4cf5c336a237"
+  },
+  "assets/packages/quds_office_editor/templates/inventory_en.qrep": {
+    "bytes": 3730,
+    "sha256": "fa5d9eea1c9fbd9f77dd85febf93021b7d217e29824054ded3a3b016c0e8c385"
+  },
+  "assets/packages/quds_office_editor/templates/invoice_en.qrep": {
+    "bytes": 12957,
+    "sha256": "4a896f9aa81e9f16c9706e4368bb6be7b7d6c0284818c504d74b2ae6cfa9c824"
+  },
+  "assets/packages/quds_office_editor/templates/product_catalog_ar.qrep": {
+    "bytes": 67057,
+    "sha256": "4f787fd637bd2b6e345f240cea779a3695d9e9862e677669fae70c3f3ff07623"
+  },
+  "assets/packages/quds_office_editor/templates/product_catalog_en.qrep": {
+    "bytes": 66690,
+    "sha256": "883cb5667a02a7fb3bb8b2cc1cad0b47f927454baad7c23f89f32d1023f85150"
+  },
+  "assets/packages/quds_office_editor/templates/receipt_voucher_ar.qrep": {
+    "bytes": 74005,
+    "sha256": "b95f0e2fd6e3073373a0a7866c5bdf0ed30ea23d7b152b3ce85b4861743fc23a"
+  },
+  "assets/packages/quds_office_editor/templates/receipt_voucher_en.qrep": {
+    "bytes": 73908,
+    "sha256": "199dfab33b8ada8668bd4381e91b6d0507a1d2ef76fd06c64e5b470118617d68"
+  },
+  "assets/packages/quds_office_editor/templates/sales_invoice_ar.qrep": {
+    "bytes": 75597,
+    "sha256": "f058766760b2656f099e50a23a8dfa46f6887be064b360f2f30516899ba3da68"
+  },
+  "assets/packages/quds_office_editor/templates/sales_invoice_en.qrep": {
+    "bytes": 75370,
+    "sha256": "21a7b541eef064a447fa0d2d70d8f1bf627087b71e0dc13d9aa13ea9e167c4e2"
+  },
+  "assets/packages/quds_office_editor/templates/sales_performance.qrep": {
+    "bytes": 13556,
+    "sha256": "e4e6e6feb768f0b9217a19bf224c456865013544975669f48ad4ac8de1761aa1"
+  },
+  "assets/packages/quds_office_editor/templates/sales_performance_ar.qrep": {
+    "bytes": 13705,
+    "sha256": "35de33593824d5b31f8f0f5d466e45ea3bbf75e1662589f7773a3148cb68a562"
+  },
+  "assets/shaders/ink_sparkle.frag": {
+    "bytes": 8890,
+    "sha256": "2dca5ab93d4ec29e963f996f3916320ba60825e9537dfb149a68008c7a16b026"
+  },
+  "assets/shaders/stretch_effect.frag": {
+    "bytes": 6737,
+    "sha256": "ab412f07a5b9b50b67a885b24dbe16929738ae28630407d6490c924caf0a3220"
+  },
+  "canvaskit/canvaskit.js": {
+    "bytes": 86987,
+    "sha256": "bb559f6080c7d312ac2a912b4abec9f68ff3d3022d4a603c7796b9b31460642b"
+  },
+  "canvaskit/canvaskit.js.symbols": {
+    "bytes": 1356926,
+    "sha256": "384f80b392972c83fd4f262527e3d06215a297d33ed59732c726721e9d9311bd"
+  },
+  "canvaskit/canvaskit.wasm": {
+    "bytes": 7284602,
+    "sha256": "fbed517a43e82452404446683f00f2e876d835aed84410695759e67b6bb01cd3"
+  },
+  "canvaskit/chromium/canvaskit.js": {
+    "bytes": 86226,
+    "sha256": "6018b12bd8ed37e6952eee72d59c1cf7ad707ccdb74a0a45190010f77edd9068"
+  },
+  "canvaskit/chromium/canvaskit.js.symbols": {
+    "bytes": 1235870,
+    "sha256": "31c86fac6042dd8b756150832c1d15495d0d07742e2718f75dbdde5a5a91455e"
+  },
+  "canvaskit/chromium/canvaskit.wasm": {
+    "bytes": 5428806,
+    "sha256": "ae8ff1d858140f7b1300ced3fa89fb8c9dce0a400a0f4f1e11f6dcfb3315fdcf"
+  },
+  "canvaskit/skwasm.js": {
+    "bytes": 63537,
+    "sha256": "71d7d3e34bf71b52bdba3b588b103bba8148ba28de5754083e01b3398e7a6e1c"
+  },
+  "canvaskit/skwasm.js.symbols": {
+    "bytes": 1540006,
+    "sha256": "9137f1a3ae744dea575043abfc6e063a047e910e6dab1ee53e496c975d1c033e"
+  },
+  "canvaskit/skwasm.wasm": {
+    "bytes": 3593715,
+    "sha256": "e540fd5e8303b7b68ec2718cb49e9c421f8ade3075b15e02a7059a62654df9a1"
+  },
+  "canvaskit/skwasm_heavy.js": {
+    "bytes": 63650,
+    "sha256": "cec554b46ddcf4c0e63d799e0556d546f42d2c3f69316fb4f67ed776f6104558"
+  },
+  "canvaskit/skwasm_heavy.js.symbols": {
+    "bytes": 1672152,
+    "sha256": "b6b79ed497e11d4cd13cc46724f9e289eacc744d2d185e31c72d595cdf62772b"
+  },
+  "canvaskit/skwasm_heavy.wasm": {
+    "bytes": 5216217,
+    "sha256": "565f5cc1cca6ab120f11934b105f01fec4b58b480c82e0889dca93af8e6f8635"
+  },
+  "canvaskit/webparagraph/canvaskit.js": {
+    "bytes": 76114,
+    "sha256": "3110e3e4d9b7b5657d336f253aaca8acca5777cde9319fb69ac302d6ff5a8b23"
+  },
+  "canvaskit/webparagraph/canvaskit.js.symbols": {
+    "bytes": 963641,
+    "sha256": "44d6c47919106235cf32252252490cdf798d907ee874ba343ab53dc94bc2a9dc"
+  },
+  "canvaskit/webparagraph/canvaskit.wasm": {
+    "bytes": 3729129,
+    "sha256": "0ce1b05082efdc8529550e8a01f6ff0593972d55525035010e26f5600aa9f254"
+  },
+  "canvaskit/wimp.js": {
+    "bytes": 59127,
+    "sha256": "8fd8a47480c6eb0a374d159912d0b3fb15661b41f5c113ecdd39c2f01f2bee46"
+  },
+  "canvaskit/wimp.js.symbols": {
+    "bytes": 1813030,
+    "sha256": "b4907ebd33131302a8cd99f7c55f52357bdfde04f421b605a616ba8764ae1de4"
+  },
+  "canvaskit/wimp.wasm": {
+    "bytes": 3581677,
+    "sha256": "e924eaafd801d41e017d178f3fd5cf8a417f641fe35c9ed34a4e1d7582283e0c"
+  },
+  "favicon.png": {
+    "bytes": 917,
+    "sha256": "7ab2525f4b86b65d3e4c70358a17e5a1aaf6f437f99cbcc046dad73d59bb9015"
+  },
+  "flutter.js": {
+    "bytes": 12136,
+    "sha256": "2beb1ce6b159c71540aa66030af1d7964b6a92377cc78473745e02f97b74effe"
+  },
+  "flutter_bootstrap.js": {
+    "bytes": 13091,
+    "sha256": "a104863afdbe9283cd01315934952029b4b90441c6e5a7257875c52afc153bed"
+  },
+  "flutter_service_worker.js": {
+    "bytes": 784,
+    "sha256": "a131df5ca46154cc4eb79044f7f5a14029c2f8bfccf8cef34e3ec3b5a9f5a88c"
+  },
+  "icons/Icon-192.png": {
+    "bytes": 5292,
+    "sha256": "3dce99077602f70421c1c6b2a240bc9b83d64d86681d45f2154143310c980be3"
+  },
+  "icons/Icon-512.png": {
+    "bytes": 8252,
+    "sha256": "baccb205ae45f0b421be1657259b4943ac40c95094ab877f3bcbe12cd544dcbe"
+  },
+  "icons/Icon-maskable-192.png": {
+    "bytes": 5594,
+    "sha256": "d2c842e22a9f4ec9d996b23373a905c88d9a203b220c5c151885ad621f974b5c"
+  },
+  "icons/Icon-maskable-512.png": {
+    "bytes": 20998,
+    "sha256": "6aee06cdcab6b2aef74b1734c4778f4421d2da100b0ff9e52b21b55240202929"
+  },
+  "index.html": {
+    "bytes": 1563,
+    "sha256": "39fae908200b7bf9f1b02eb1aac5de4cb974b523e7de84f5dcc321393ae7f82d"
+  },
+  "main.dart.js": {
+    "bytes": 12608911,
+    "sha256": "718d44776ce664a50ef484a98b28400a8d21f7466676376af019ffb08a95127b"
+  },
+  "manifest.json": {
+    "bytes": 932,
+    "sha256": "172af3694a20b455a53aa91926c57e81ada2289882620efdb40fe4cecdefc60a"
+  },
+  "version.json": {
+    "bytes": 106,
+    "sha256": "ccab95a8e3ea549da4d4c8cf96d6597cdbcf4c8878e633c2001ae08f813374c8"
+  }
+}

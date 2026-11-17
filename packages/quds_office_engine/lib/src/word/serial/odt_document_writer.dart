@@ -351,6 +351,26 @@ abstract final class OdtDocumentWriter {
         } else {
           _writeStyledText(w, inline.text, style);
         }
+        for (final commentId in inline.commentIds) {
+          final comment = layout.comment(commentId);
+          if (comment == null || !layout.markCommentWritten(commentId)) {
+            continue;
+          }
+          w.writeStartElement('annotation', prefix: 'office');
+          w.writeAttribute('office:display', 'true');
+          if (comment.author.isNotEmpty) {
+            w.writeStartElement('creator', prefix: 'dc');
+            w.writeText(comment.author);
+            w.writeEndElement();
+          }
+          if (comment.dateIso.isNotEmpty) {
+            w.writeStartElement('date', prefix: 'dc');
+            w.writeText(comment.dateIso);
+            w.writeEndElement();
+          }
+          _writeBlocks(w, comment.paragraphs, layout);
+          w.writeEndElement();
+        }
         if (inline.inlineVisual case final visual?) {
           _writeVisual(w, visual.visual, layout, inline: true);
         }
@@ -991,6 +1011,17 @@ class _OdtLayout {
       return name;
     });
   }
+
+  final Set<int> _writtenComments = <int>{};
+
+  WmlComment? comment(int id) {
+    for (final comment in document.comments) {
+      if (comment.id == id) return comment;
+    }
+    return null;
+  }
+
+  bool markCommentWritten(int id) => _writtenComments.add(id);
 
   String listStyle({required bool ordered}) => ordered ? 'L2' : 'L1';
 
