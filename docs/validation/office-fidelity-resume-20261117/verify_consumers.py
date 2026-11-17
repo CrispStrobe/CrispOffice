@@ -218,13 +218,30 @@ def check_semantics(name, content, text, bbox, raster):
         checks.update(blue_fill_pixels=blue, red_text_pixels=red, all_cells_visible=True)
     if name == 'slide-table-rtl':
         found = words(bbox)
-        # Poppler's raw word strings preserve Arabic code points; word order is
-        # determined from coordinates rather than the extractor's bidi ordering.
-        first = [w for w in found if w['text'] == 'الأول']
-        second = [w for w in found if w['text'] == 'الثاني']
-        require(len(first) == len(second) == 1, 'RTL fixture lost a cell word')
+        # Poppler may return a word's Arabic code points in visual order. These
+        # two authored fixture words have distinct character inventories, so
+        # exact Unicode multisets identify them without assuming bidi order or
+        # discarding/normalizing characters. Keep the entire two-word inventory
+        # as a separate gate: unexpected, duplicate, or missing words must fail.
+        labels = {'first': 'الأول', 'second': 'الثاني'}
+        signatures = {role: tuple(sorted(map(ord, label)))
+                      for role, label in labels.items()}
+        require(len(set(signatures.values())) == 2,
+                'RTL fixture words do not have unique Unicode signatures')
+        require(len(found) == 2, 'RTL fixture must contain exactly two cell words')
+        first = [w for w in found if tuple(sorted(map(ord, w['text']))) == signatures['first']]
+        second = [w for w in found if tuple(sorted(map(ord, w['text']))) == signatures['second']]
+        require(len(first) == len(second) == 1,
+                'RTL fixture lost or changed a uniquely identifiable cell word')
         require(first[0]['xMin'] > second[0]['xMin'], 'RTL logical first cell is not on the right')
-        checks.update(first_cell_x=first[0]['xMin'], second_cell_x=second[0]['xMin'])
+        checks.update(first_cell_x=first[0]['xMin'], second_cell_x=second[0]['xMin'],
+                      raw_words=found, exact_two_word_inventory=True,
+                      word_identity={role: {'authored_text': labels[role],
+                                            'raw_text': match['text'],
+                                            'unicode_codepoint_signature': list(signatures[role]),
+                                            'bounds': {key: value for key, value in match.items()
+                                                       if key != 'text'}}
+                                     for role, match in [('first', first[0]), ('second', second[0])]})
     return checks
 
 
@@ -235,6 +252,12 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--generation', type=Path, required=True,
                         help='Receipt binding freshly generated input packages to source')
+    parser.add_argument('--only', action='append', default=[],
+                        help='Check only this exact filename or unique fixture stem; may be repeated. '
+                             'The complete generated inventory is still verified first.')
+    parser.add_argument('--source',
+                        help='Expected product source commit; defaults to current HEAD. '
+                             'It must be an ancestor of the verifier HEAD.')
     args = parser.parse_args()
     output = args.output.resolve()
     require(not output.exists() or not any(output.iterdir()),
@@ -252,15 +275,32 @@ def main():
                     require(digest(path) == digest(fixtures[path.name]), 'Conflicting fixture names: ' + path.name)
                 fixtures[path.name] = path
     require(fixtures, 'No generated ODF fixtures found')
-    source_commit = subprocess.check_output(
+    verifier_head = subprocess.check_output(
         ['git', 'rev-parse', 'HEAD'], cwd=REPO, text=True).strip()
+    source_commit = verifier_head if args.source is None else subprocess.check_output(
+        ['git', 'rev-parse', '--verify', '--end-of-options', args.source + '^{commit}'],
+        cwd=REPO, text=True).strip()
+    ancestry = subprocess.run(['git', 'merge-base', '--is-ancestor', source_commit, verifier_head],
+                              cwd=REPO, capture_output=True)
+    require(ancestry.returncode == 0,
+            'Chosen product source commit must be an ancestor of the verifier HEAD')
     generation = json.loads(args.generation.read_text())
     require(generation.get('source_commit') == source_commit and generation.get('passed') is True,
-            'Fixture generation does not qualify the current source commit')
-    require({name: digest(path) for name, path in fixtures.items()}
+            'Fixture generation does not qualify the chosen product source commit')
+    inventory = {name: digest(path) for name, path in fixtures.items()}
+    require(inventory
             == generation.get('fixtures_sha256'), 'Fixture inventory differs from generation receipt')
-    report = {'started_utc': now(), 'source_commit': subprocess.check_output(
-        ['git', 'rev-parse', 'HEAD'], cwd=REPO, text=True).strip(),
+    # Selection follows the full hash comparison. A narrow rerun cannot hide a
+    # changed/missing package elsewhere in the original generated inventory.
+    selected = set(fixtures) if not args.only else set()
+    for selector in args.only:
+        matches = [name for name in fixtures if name == selector or Path(name).stem == selector]
+        require(len(matches) == 1, 'Unknown or ambiguous fixture selector: ' + selector)
+        selected.add(matches[0])
+    fixtures = {name: fixtures[name] for name in sorted(selected)}
+    report = {'started_utc': now(), 'source_commit': source_commit,
+        'verifier_head': verifier_head, 'source_ancestor_of_verifier_head': True,
+        'verified_fixture_inventory_sha256': inventory, 'selected_fixtures': sorted(fixtures),
         'script_sha256': digest(__file__), 'github_actions_used': False,
         'schemas': {path.name: digest(path) for path in (main_schema, manifest_schema)},
         'generation_receipt_sha256': digest(args.generation),
