@@ -1541,7 +1541,7 @@ class _OdtLayout {
     // Invalid positions are omitted and positions share the XML's precision.
     final tabs = _tabStops(props.tabs);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabs';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${props.columnBreakBefore}|${props.keepTogether}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabs';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'
@@ -1883,13 +1883,21 @@ class _OdtLayout {
   }
 
   String sectionColumnsStyle(int columns, double gap) {
-    final key = '$columns|${gap.toStringAsFixed(2)}';
+    // ODF 1.3 puts the count and gap on a style:columns child (17.12).
+    // Keep finite signed lengths, omitting only values that cannot be emitted
+    // as ODF decimals. Canonicalize zero and use the same value for identity.
+    final gapValue = _paragraphDecimal(gap == 0 ? 0 : gap);
+    final gapAttribute = gapValue == null
+        ? ''
+        : ' fo:column-gap="${gapValue}pt"';
+    final key = '$columns|$gapValue';
     return _sectionColumnStyles.putIfAbsent(key, () {
       final name = 'Sect${_sectionColumnStyles.length + 1}';
       _styleBuffers.add(
         '<style:style style:name="$name" style:family="section">'
-        '<style:section-properties fo:column-count="$columns" '
-        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/></style:style>',
+        '<style:section-properties>'
+        '<style:columns fo:column-count="$columns"$gapAttribute/>'
+        '</style:section-properties></style:style>',
       );
       return name;
     });

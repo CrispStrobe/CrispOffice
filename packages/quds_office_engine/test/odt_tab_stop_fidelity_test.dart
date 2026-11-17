@@ -155,7 +155,7 @@ void main() {
         ),
         WmlParagraphProps(
           tabs: const [
-            WmlTabStop(position: 72.004, leader: WmlTabLeader.underscore),
+            WmlTabStop(position: 72.004, leader: WmlTabLeader.hyphen),
           ],
         ),
       ];
@@ -177,10 +177,37 @@ void main() {
       ]);
       expect(properties.map((props) => props.tabs.single.leader), [
         WmlTabLeader.hyphen,
-        WmlTabLeader.underscore,
+        WmlTabLeader.hyphen,
       ]);
     },
   );
+
+  test('hyphen and underscore leaders retain distinct glyphs and styles', () {
+    final properties = [
+      for (final leader in [WmlTabLeader.hyphen, WmlTabLeader.underscore])
+        WmlParagraphProps(tabs: [WmlTabStop(position: 72, leader: leader)]),
+    ];
+    final styles = _styles(properties);
+    expect(styles.first.name, isNot(styles.last.name));
+    expect(styles.map((style) => _tabs(style).single['leader']), [
+      'solid',
+      'solid',
+    ]);
+    expect(
+      styles.map(
+        (style) => style.properties
+            .firstChild('tab-stops', namespaceUri: _styleNs)!
+            .childrenNamed('tab-stop', namespaceUri: _styleNs)
+            .single
+            .getAttribute('leader-text', namespaceUri: _styleNs),
+      ),
+      ['-', '_'],
+    );
+    expect(properties.map((props) => props.tabs.single.leader), [
+      WmlTabLeader.hyphen,
+      WmlTabLeader.underscore,
+    ]);
+  });
 
   test(
     'tabbed paragraph styles still distinguish shading and border colors',
