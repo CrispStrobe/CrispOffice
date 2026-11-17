@@ -63,7 +63,7 @@ def dart_summary(report: dict | None) -> dict | None:
     if report is None:
         return None
     keys = ("passed", "complete", "runtime_passed", "tokenizer_passed", "stage", "error",
-            "model_variant", "graph_load_seconds", "pool_setup_seconds", "cold_first_inference_seconds",
+            "model_variant", "experiments", "graph_load_seconds", "pool_setup_seconds", "cold_first_inference_seconds",
             "inference_peak_rss_bytes", "checkpoint_peak_rss_bytes", "post_validation_peak_rss_bytes",
             "rss_before_load_bytes", "rss_after_load_bytes", "rss_after_pool_bytes",
             "expected_cases", "expected_passes", "cases_timed", "passes_validated", "thread_scope")
@@ -122,7 +122,17 @@ def compare_references(baseline: dict, candidate: dict, expected: list[dict]) ->
 
 
 def verify_evidence_chain(root: Path, baseline: dict, candidate: dict, manifest: dict,
-                          dart_f32: dict, dart_int4: dict) -> None:
+                          dart_f32: dict, dart_int4: dict, *, provenance: dict | None = None) -> None:
+    # Historical runs did not declare experiment selection. Preserve their
+    # evidence, while requiring explicit matching metadata for newer runs.
+    declarations = None
+    if provenance is not None:
+        if not isinstance(provenance, dict):
+            raise ValueError("Source provenance must be an object")
+        if "declared_dart_experiments" in provenance:
+            declarations = provenance["declared_dart_experiments"]
+            if not isinstance(declarations, dict):
+                raise ValueError("Declared Dart experiments must be an object")
     if not manifest or manifest.get("status") != "passed" or manifest.get("source_model_sha256") != SOURCE_SHA256:
         raise ValueError("No authenticated successful INT4 conversion manifest")
     if manifest.get("kind") != "quds-gector-int4-candidate" or manifest.get("schema_version") != 1:
@@ -148,6 +158,13 @@ def verify_evidence_chain(root: Path, baseline: dict, candidate: dict, manifest:
                                                ("int4", candidate, dart_int4, candidate_sha)):
         if not actual or actual.get("complete") is not True:
             raise ValueError(f"Dart {variant} is missing or incomplete")
+        if declarations is not None:
+            arm = f"dart-{variant}"
+            declared = declarations.get(arm)
+            if not isinstance(declared, list) or not all(isinstance(name, str) for name in declared):
+                raise ValueError(f"Declared experiments for {arm} must be a list of names")
+            if actual.get("experiments") != declared:
+                raise ValueError(f"Dart {variant} experiment metadata is missing or differs from its declaration")
         cases = len(oracle["cases"])
         passes = sum(len(row["passes"]) for row in oracle["cases"])
         fixture_sha = hashlib.sha256((root / f"reference-{variant}" / "reference.json").read_bytes()).hexdigest()
@@ -199,7 +216,8 @@ def main() -> int:
     candidate_manifest = read(args.root / "candidate" / "candidate.json")
     try:
         verify_evidence_chain(args.root, baseline, candidate, candidate_manifest,
-                              result["dart_f32"], result["dart_int4"])
+                              result["dart_f32"], result["dart_int4"],
+                              provenance=result["source_provenance"])
         result["evidence_chain_passed"] = True
         result["evidence_chain_error"] = None
     except Exception as error:

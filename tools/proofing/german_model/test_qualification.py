@@ -2,11 +2,15 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
 
-from quantize_int4 import find_head, quantize
-from summarize_qualification import compare_references
+from quantize_int4 import SOURCE_REVISION, SOURCE_SHA256, find_head, quantize
+from summarize_qualification import compare_references, dart_summary, verify_evidence_chain
 
 
 def node(name, op, inputs, outputs):
@@ -54,6 +58,95 @@ class QualityGateTests(unittest.TestCase):
         source = [{"id": "x", "kind": "clean", "input": "valid"}]
         with self.assertRaisesRegex(ValueError, "coverage"):
             compare_references({"cases": []}, {"cases": []}, source)
+
+
+class ExperimentIntegrityTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.manifest = {
+            "schema_version": 1, "kind": "quds-gector-int4-candidate", "status": "passed",
+            "source_model_sha256": SOURCE_SHA256,
+            "output": {"sha256": "1" * 64, "size_bytes": 128},
+        }
+        manifest_path = self.root / "candidate" / "candidate.json"
+        manifest_path.parent.mkdir()
+        manifest_path.write_text(json.dumps(self.manifest))
+        self.references, self.reports = {}, {}
+        for variant in ("f32", "int4"):
+            model_sha = SOURCE_SHA256 if variant == "f32" else self.manifest["output"]["sha256"]
+            reference = {
+                "revision": SOURCE_REVISION,
+                "input_sha256": {"model.onnx": SOURCE_SHA256, "tokenizer.json": "2" * 64},
+                "inference_model": {
+                    "sha256": model_sha, "source_model_sha256": SOURCE_SHA256,
+                    "variant": "float32" if variant == "f32" else "matmulnbits-int4",
+                    "size_bytes": 128,
+                    "candidate_manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+                },
+                "cases": [{"id": "synthetic", "passes": [{}]}],
+            }
+            path = self.root / f"reference-{variant}" / "reference.json"
+            path.parent.mkdir()
+            path.write_text(json.dumps(reference))
+            self.references[variant] = reference
+            self.reports[variant] = {
+                "complete": True, "model_sha256": model_sha,
+                "fixture_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "tokenizer_sha256": "2" * 64,
+                "expected_cases": 1, "cases_timed": 1, "expected_passes": 1, "passes_validated": 1,
+                "timings": [{}], "validation": [{}],
+            }
+        self.provenance = {"declared_dart_experiments": {
+            "dart-f32": [], "dart-int4": ["narrowDirectGemm"],
+        }}
+
+    def verify(self, provenance=None):
+        verify_evidence_chain(self.root, self.references["f32"], self.references["int4"],
+                              self.manifest, self.reports["f32"], self.reports["int4"],
+                              provenance=provenance)
+
+    def test_historical_reports_without_experiment_declarations_remain_valid(self):
+        self.verify()
+        self.verify({"quds_commit": "historical"})
+        self.assertIsNone(dart_summary(self.reports["int4"])["experiments"])
+
+    def test_matching_declared_arms_pass_and_remain_visible_in_measurements(self):
+        self.reports["f32"]["experiments"] = []
+        self.reports["int4"]["experiments"] = ["narrowDirectGemm"]
+        self.verify(self.provenance)
+        self.assertEqual(dart_summary(self.reports["f32"])["experiments"], [])
+        self.assertEqual(dart_summary(self.reports["int4"])["experiments"], ["narrowDirectGemm"])
+
+    def test_declared_opt_in_rejects_missing_disabled_or_wrong_reported_experiment(self):
+        self.reports["f32"]["experiments"] = []
+        for reported in (None, [], ["cacheAttributes"]):
+            with self.subTest(reported=reported):
+                self.reports["int4"].pop("experiments", None)
+                if reported is not None:
+                    self.reports["int4"]["experiments"] = reported
+                with self.assertRaisesRegex(ValueError, "Dart int4 experiment metadata"):
+                    self.verify(self.provenance)
+
+    def test_declared_disabled_arm_rejects_missing_or_enabled_metadata(self):
+        self.reports["int4"]["experiments"] = ["narrowDirectGemm"]
+        for reported in (None, ["narrowDirectGemm"]):
+            with self.subTest(reported=reported):
+                self.reports["f32"].pop("experiments", None)
+                if reported is not None:
+                    self.reports["f32"]["experiments"] = reported
+                with self.assertRaisesRegex(ValueError, "Dart f32 experiment metadata"):
+                    self.verify(self.provenance)
+
+    def test_present_but_malformed_or_incomplete_declarations_fail_closed(self):
+        self.reports["f32"]["experiments"] = []
+        self.reports["int4"]["experiments"] = ["narrowDirectGemm"]
+        for declarations in (None, [], {}, {"dart-f32": []},
+                             {"dart-f32": [], "dart-int4": "narrowDirectGemm"}):
+            with self.subTest(declarations=declarations):
+                with self.assertRaisesRegex(ValueError, "[Dd]eclared.*experiments"):
+                    self.verify({"declared_dart_experiments": declarations})
 
 
 @unittest.skipUnless(importlib.util.find_spec("onnx") and importlib.util.find_spec("onnxruntime"),

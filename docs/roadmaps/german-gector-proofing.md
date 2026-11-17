@@ -95,7 +95,7 @@ quality qualification. Evaluate a newer model release as a separate experiment.
   include initializer lifetime, last-use intermediate reclamation, packed-weight
   execution or bounded reuse, and worker/thread allocation. Change one cause
   at a time, retain a reproducible baseline, and measure decoded parity.
-- [ ] Limit the initial Dart optimization round to two measured hypotheses.
+- [x] Limit the initial Dart optimization round to two measured hypotheses.
   If resource or latency targets remain unsuitable, open the native lane rather
   than growing an unbounded runtime project.
 - [ ] Select a backend from recorded evidence; no backend is selected merely
@@ -264,3 +264,28 @@ path. Keep the latter under the existing per-model experiment flag and
 measure the final source on the hosted protocol before deciding the next
 implementation lane. Longer inputs and a full Dart correction loop remain
 explicit gates.
+
+
+## Optimized source handoff
+
+The two initial hypotheses are implemented in
+`onnx_runtime_dart@b10258682d459847b63e012eaaba58a528e93956`: bounded
+32-column reconstruction and the existing opt-in narrow direct GEMM path.
+The first tile source is retained at
+`6988d46f3978643076f27a340deb5ccc737458d7`. Hardware-sensitive direct GEMM
+remains disabled by default and is explicitly enabled for the INT4
+qualification arm. The F32 control leaves it disabled. Both declared and
+reported experiment selections are retained and checked.
+
+All 27 focused runtime/operator/benchmark-configuration tests pass. The
+final opt-in AOT local verification matches the same candidate and reference
+bytes on all four saved passes, with medians 1.36/1.41 seconds and peak RSS
+463,605,760 bytes. Earlier baseline/tile/prototype samples are retained
+separately. Local noise prevents treating the faster prototype observation
+as the final result.
+
+The hosted workflow now pins this exact source for the full 30-case replay.
+Keep the original completed hosted run unchanged and compare the new result
+with its own host/native controls. This finishes the initial two-hypothesis
+runtime tuning scope. It does not implement the complete Dart checker or
+qualify long-input, editor, mobile or browser behavior.
