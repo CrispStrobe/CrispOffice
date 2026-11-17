@@ -1,0 +1,1280 @@
+[
+  {
+    "text": "Mit der Schule verbindet er viele schöne Erinnerungen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Der Ertrag des großen Hauses wird versteuert.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für meinen guten Freund ist das selbstverständlich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wegen des schönen Wetters bleiben wir draußen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das ist der Mann, dessen Auto ich fahre.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich bin mit dem Schreiben fertig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Jeder Deutsche hat dieselben Rechte.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Deutschen wählen heute ein neues Parlament.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich weiß, dass das das Auto ist, das du suchst.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das ist alles, was ich weiß.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Ware wird wieder geliefert.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich widerspreche dir nicht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie sagte, er habe keine Zeit.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wenn ich nur mehr Zeit hätte!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Seit wir hier sind, regnet es.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Seid, wenn möglich, pünktlich!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die beiden sind größer als ich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er arbeitet genauso schnell wie sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich bin anderer Meinung als du.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich helfe dir gern.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Der Schlüssel gehört mir.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Zwischen dir und mir bleibt alles unverändert.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Auto, das ich fahre, gehört uns.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Prof. Dr. Müller kommt heute.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Version 1.2.3 wird morgen veröffentlicht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich danke dir für deine Hilfe.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie folgt ihm auf Schritt und Tritt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er hat das Buch gestern gelesen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du hast dich geirrt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ihr habt euch gut vorbereitet.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich freue mich auf das Treffen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir treffen uns um zehn Uhr.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du erinnerst dich an meinen Bruder.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie freut sich über die Nachricht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich gehe in die Schule.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich bin in der Schule.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie legt das Buch auf den Tisch.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Buch liegt auf dem Tisch.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er ist ein guter Mann.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das sind meine guten Freunde.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich sehe einen alten Freund.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit einem guten Freund spricht man offen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Haus des alten Mannes ist groß.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Tür eines alten Hauses quietscht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Große Häuser sind teuer.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er braucht frisches Wasser.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie trinkt kalten Kaffee.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir kaufen frische Milch.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er reist mit leichtem Gepäck.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Bei schönem Wetter fahren wir Rad.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich bin für eine schnellere Entscheidung.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das ist die schnellste Verbindung.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er kommt später als erwartet.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie ist so groß wie ihr Bruder.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er weiß mehr, als er sagt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich frage mich, ob er kommt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube, dass er recht hat.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Buch, das dort liegt, ist neu.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie wusste, dass das nicht stimmt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er ist nach Hause gegangen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich habe ihm das gegeben.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er hat sich das anders vorgestellt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du sollst dich beeilen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ihr müsst euch entscheiden.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir können uns darauf verlassen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Ich ist ein philosophischer Begriff.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit dem Du beginnt eine engere Beziehung.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Essen ist fertig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Zum Lesen brauche ich Ruhe.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Beim Lernen hilft mir Musik.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die automatisch geänderte Datei ist neu.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Der öffentlich geprüfte Bericht ist vollständig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die endgültig geschlossene Tür bleibt zu.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Eine leicht beschädigte Tür wird ersetzt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ein vollständig geänderter Text liegt vor.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ein einfach schönes Haus steht dort.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Lage war früher wie heute schwierig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er war früher wie ein Bruder für mich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie sah später wie ihre Mutter aus.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das bleibt früher wie heute wichtig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich komme später wie vereinbart.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er ist schneller wie auch zuverlässiger geworden.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das sind meine neuen Bücher.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den neuen Bücherregalen ist alles gut.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er hilft mit, die neuen Bücher zu tragen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ohne ihm helfen zu können, geht sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Um dem Mann zu helfen, bleibt sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Um des Mannes willen bleibt sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das ist mit ein wichtiger Satz.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Seit ich hier bin, läuft es besser.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er stellt sich so klein als möglich dar.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ohne ihm böse zu sein, geht sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ohne mir weh zu tun, hilft er.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Um ihm nahe zu sein, bleibt sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Um mir einen Gefallen zu tun, kommt er.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ohne dem Kind weh zu tun, löst sie das Pflaster.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den Autos fahren wir zur Schule.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für die Autos brauchen wir neue Reifen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den Büros ist sie zufrieden.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den Computern arbeiten wir jeden Tag.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den Ferien beginnt eine schöne Zeit.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den Eltern spricht er morgen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den Daten können wir arbeiten.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit dem Jungen spricht sie über das Projekt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für den Herrn ist das Buch bestimmt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Bei dem Kollegen liegt die Datei.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit dem Menschen hat sie nichts zu tun.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für den Studenten ist die Aufgabe leicht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir fragen den Präsidenten nach seiner Meinung.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für Sie ist ein Zimmer reserviert.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit Ihnen würden wir gern sprechen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich schicke Ihnen den Bericht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gegenüber Ihnen verhält er sich höflich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Seit sie hier arbeitet, ist sie zufrieden.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Seit Sie hier arbeiten, ist alles besser.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir sprechen mit Frau Müller.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Datei gehört Herrn Müller.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit meinem Freund Hans besuche ich das Haus.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für den Zeugen Herrn Müller ist das wichtig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Beim Schreiben denke ich nach.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Zum Lesen fehlt mir die Zeit.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit dem Neuen ist alles gut.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit etwas Neuem fängt man an.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit den Deutschen sprechen wir Englisch.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für die Deutschen ist das eine neue Regel.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Für das Gute kämpfen wir gemeinsam.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube das. Er kommt später.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube, das ist richtig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich weiß das, er hat es mir gesagt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube, dass er kommt; du gehst.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube „das“, er glaubt „dies“.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube `das er kommt` ist Code.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich weiß, dass er https://example.de/mit/den/Kindern besucht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Datei `mit den Kinder` enthält Text.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie sagt „mit den Kindern“ und bleibt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube das\nEr kommt später.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Um den Mann herum steht eine Gruppe.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Um des Kindes willen bleibt sie hier.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das passiert ganz ohne mich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie ist ohne ihn nicht glücklich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie fährt für ihn nach Hause.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Von diesem Tage an blieb er zuhause.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Nach dem Jahre 1990 änderte sich vieles.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Aus dem Texte geht es hervor.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit dem Tage beginnt ein neues Leben.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ohne mir angesichts der mehrfachen Schwierigkeiten und der vielen unvorhersehbaren technischen Hindernisse in diesem besonders anspruchsvollen und langwierigen Projekt aus früheren Jahren helfen zu können, geht sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Um dem Kind nach diesem sehr langen und anstrengenden Tag voller ungewöhnlicher und überraschender Ereignisse im kleinen Haus am Rande der Stadt schließlich doch noch zu helfen, bleibt sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Man nehme zwei Eier.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er habe keine Zeit, sagte sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie sagt, er komme morgen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Man gehe vorsichtig vor.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er werde den Auftrag erfüllen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er sei krank.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er könne nicht kommen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er müsse gehen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Man halte Abstand.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Man gebe etwas Wasser hinzu.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Man esse langsam.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Habe du nur Geduld!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Lerne du erst einmal Deutsch!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gehe du nach Hause!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mache du das!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Arbeite du heute hier!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Geht ihr schon?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Kann ihr Bruder das?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Was gibt ihr Hoffnung?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich gebe ihr das Buch.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er sagt ihr nichts.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich sehe ihr Auto.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Liegt ihr Bericht hier?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das wird ihr helfen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ist ihr kalt?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Kann ich gehen?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Kannst du warten?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir können gehen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich werde kommen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wenn er komme, solle sie warten.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er konnte nicht kommen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gehe ich recht in der Annahme?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gehen wir beide?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gehen wir und unsere Kinder gemeinsam?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gehen ich und mein Bruder gemeinsam?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gehen er und seine Frau gemeinsam?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Haben du und ich Zeit?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Dass ich gehe, überrascht sie nicht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Weil ich Essen koche, bleibe ich hier.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich lasse ihn gehen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er lässt mich gehen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er hat sich schlafen gelegt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich kann mich sehen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Geht’s dir gut?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Seien Sie ruhig!",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Gib mir das Buch.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Machst du das?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Haben Ich und Du ihre Bedeutung verloren?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Du kann Nähe ausdrücken.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Ich hat seine Grenzen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er plant `ich gehen` als Test.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er geht.\nIch gehe.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Formular enthält die Wörter „er“ und „gehen“.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ein leise geschlossenes Fenster hilft dem Kind.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit dem leise geschlossenen Fenster ist es ruhig.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ein müde geprüfter Bericht liegt vor.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Könnte ich gehen?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Würde ich gehen?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Möchte ich helfen?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sollte ich warten?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Dürfte ich kommen?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wollte ich bleiben?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Auf Man leben viele Menschen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Insel Man haben wir besucht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Weil ich schlafen möchte, gehe ich nach Hause.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wenn er essen geht, wartet sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  }
+]

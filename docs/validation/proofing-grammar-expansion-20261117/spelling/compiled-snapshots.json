@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "Hashes/provenance for diagnostic generated JavaScript. Generated dictionary/runtime copies are intentionally not distributed in this evidence directory. Rebuild using the benchmark source and recorded SDK/checkpoint context.",
+  "compiler_logs": [
+    "logs/benchmark-compile.log.gz",
+    "logs/benchmark-after-compile.log.gz"
+  ],
+  "snapshots": [
+    {
+      "diagnostic": "before-yield",
+      "generated_javascript_sha256": "277081272937dd877bea375d1d514315991b50c418640c74f7cd9a3f4a49f749",
+      "generated_javascript_bytes": 2289878,
+      "removed_gzip_sha256": "f3be184a9444e48841e4d8c6de91f8aebfb947d0de3e08e90da8641bb0d90926",
+      "removed_gzip_bytes": 1423304,
+      "generated_bundle_in_deliverable": false,
+      "associated_checkpoint": "93a8950aee4aa013b34e4e20a43d6a694168148d",
+      "checkpoint_scope": "Before benchmark implementation checkpoint."
+    },
+    {
+      "diagnostic": "after-yield",
+      "generated_javascript_sha256": "13d47c47d314d2aca07e33b58a6a2c175baefb196734962b5005cab4c79259b5",
+      "generated_javascript_bytes": 2289506,
+      "removed_gzip_sha256": "6c7244489e30c9f9a0b85d26698f03c0a3a6446183649a7536e3d65487d0a5bb",
+      "removed_gzip_bytes": 1423158,
+      "generated_bundle_in_deliverable": false,
+      "associated_checkpoint": "466298ff97d98342ae7e5f5e97e60967bd7664b9",
+      "checkpoint_scope": "Delivered responsive implementation; includes the later personal phrase/length guard. The historical after benchmark preceded that guard and had no personal vocabulary."
+    }
+  ]
+}

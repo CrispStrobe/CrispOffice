@@ -1,0 +1,44 @@
+[
+  {
+    "text": "Ein leise geschlossenes Fenster hilft dem Kind.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "leise",
+        "start": 4,
+        "end": 9,
+        "replacements": [
+          "leises"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Mit dem leise geschlossenen Fenster ist es ruhig.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "leise",
+        "start": 8,
+        "end": 13,
+        "replacements": [
+          "leisen"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ein müde geprüfter Bericht liegt vor.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "müde",
+        "start": 4,
+        "end": 8,
+        "replacements": [
+          "müder"
+        ]
+      }
+    ]
+  }
+]

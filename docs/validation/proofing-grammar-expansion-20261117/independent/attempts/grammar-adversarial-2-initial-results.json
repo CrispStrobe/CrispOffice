@@ -1,0 +1,252 @@
+[
+  {
+    "text": "Ohne ihm böse zu sein, geht sie.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "ihm",
+        "start": 5,
+        "end": 8,
+        "replacements": [
+          "ihn"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ohne mir weh zu tun, hilft er.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "mir",
+        "start": 5,
+        "end": 8,
+        "replacements": [
+          "mich"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Um ihm nahe zu sein, bleibt sie.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "ihm",
+        "start": 3,
+        "end": 6,
+        "replacements": [
+          "ihn"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Um mir einen Gefallen zu tun, kommt er.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "mir",
+        "start": 3,
+        "end": 6,
+        "replacements": [
+          "mich"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ohne dem Kind weh zu tun, löst sie das Pflaster.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "dem",
+        "start": 5,
+        "end": 8,
+        "replacements": [
+          "das"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Mit den Autos fahren wir zur Schule.",
+    "findings": []
+  },
+  {
+    "text": "Für die Autos brauchen wir neue Reifen.",
+    "findings": []
+  },
+  {
+    "text": "Mit den Büros ist sie zufrieden.",
+    "findings": []
+  },
+  {
+    "text": "Mit den Computern arbeiten wir jeden Tag.",
+    "findings": []
+  },
+  {
+    "text": "Mit den Ferien beginnt eine schöne Zeit.",
+    "findings": []
+  },
+  {
+    "text": "Mit den Eltern spricht er morgen.",
+    "findings": []
+  },
+  {
+    "text": "Mit den Daten können wir arbeiten.",
+    "findings": []
+  },
+  {
+    "text": "Mit dem Jungen spricht sie über das Projekt.",
+    "findings": []
+  },
+  {
+    "text": "Für den Herrn ist das Buch bestimmt.",
+    "findings": []
+  },
+  {
+    "text": "Bei dem Kollegen liegt die Datei.",
+    "findings": []
+  },
+  {
+    "text": "Mit dem Menschen hat sie nichts zu tun.",
+    "findings": []
+  },
+  {
+    "text": "Für den Studenten ist die Aufgabe leicht.",
+    "findings": []
+  },
+  {
+    "text": "Wir fragen den Präsidenten nach seiner Meinung.",
+    "findings": []
+  },
+  {
+    "text": "Für Sie ist ein Zimmer reserviert.",
+    "findings": []
+  },
+  {
+    "text": "Mit Ihnen würden wir gern sprechen.",
+    "findings": []
+  },
+  {
+    "text": "Ich schicke Ihnen den Bericht.",
+    "findings": []
+  },
+  {
+    "text": "Gegenüber Ihnen verhält er sich höflich.",
+    "findings": []
+  },
+  {
+    "text": "Seit sie hier arbeitet, ist sie zufrieden.",
+    "findings": []
+  },
+  {
+    "text": "Seit Sie hier arbeiten, ist alles besser.",
+    "findings": []
+  },
+  {
+    "text": "Wir sprechen mit Frau Müller.",
+    "findings": []
+  },
+  {
+    "text": "Die Datei gehört Herrn Müller.",
+    "findings": []
+  },
+  {
+    "text": "Mit meinem Freund Hans besuche ich das Haus.",
+    "findings": []
+  },
+  {
+    "text": "Für den Zeugen Herrn Müller ist das wichtig.",
+    "findings": []
+  },
+  {
+    "text": "Beim Schreiben denke ich nach.",
+    "findings": []
+  },
+  {
+    "text": "Zum Lesen fehlt mir die Zeit.",
+    "findings": []
+  },
+  {
+    "text": "Mit dem Neuen ist alles gut.",
+    "findings": []
+  },
+  {
+    "text": "Mit etwas Neuem fängt man an.",
+    "findings": []
+  },
+  {
+    "text": "Mit den Deutschen sprechen wir Englisch.",
+    "findings": []
+  },
+  {
+    "text": "Für die Deutschen ist das eine neue Regel.",
+    "findings": []
+  },
+  {
+    "text": "Für das Gute kämpfen wir gemeinsam.",
+    "findings": []
+  },
+  {
+    "text": "Ich glaube das. Er kommt später.",
+    "findings": []
+  },
+  {
+    "text": "Ich glaube, das ist richtig.",
+    "findings": []
+  },
+  {
+    "text": "Ich weiß das, er hat es mir gesagt.",
+    "findings": []
+  },
+  {
+    "text": "Ich glaube, dass er kommt; du gehst.",
+    "findings": []
+  },
+  {
+    "text": "Ich glaube „das“, er glaubt „dies“.",
+    "findings": []
+  },
+  {
+    "text": "Ich glaube `das er kommt` ist Code.",
+    "findings": []
+  },
+  {
+    "text": "Ich weiß, dass er https://example.de/mit/den/Kindern besucht.",
+    "findings": []
+  },
+  {
+    "text": "Die Datei `mit den Kinder` enthält Text.",
+    "findings": []
+  },
+  {
+    "text": "Sie sagt „mit den Kindern“ und bleibt.",
+    "findings": []
+  },
+  {
+    "text": "Ich glaube das\nEr kommt später.",
+    "findings": []
+  },
+  {
+    "text": "Um den Mann herum steht eine Gruppe.",
+    "findings": []
+  },
+  {
+    "text": "Um des Kindes willen bleibt sie hier.",
+    "findings": []
+  },
+  {
+    "text": "Das passiert ganz ohne mich.",
+    "findings": []
+  },
+  {
+    "text": "Sie ist ohne ihn nicht glücklich.",
+    "findings": []
+  },
+  {
+    "text": "Sie fährt für ihn nach Hause.",
+    "findings": []
+  }
+]

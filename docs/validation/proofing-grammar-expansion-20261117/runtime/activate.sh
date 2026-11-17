@@ -1,0 +1,10 @@
+export PUB_CACHE=/workspace/scratch/d0298adcd22a/validation_license/cache/pub
+export CARGO_HOME=/workspace/scratch/d0298adcd22a/validation_license/cache/cargo
+export RUSTUP_HOME=/workspace/scratch/d0298adcd22a/validation_license/toolchains/rustup
+export XDG_CONFIG_HOME=/workspace/scratch/d0298adcd22a/validation_license/cache/config
+export XDG_CACHE_HOME=/workspace/scratch/d0298adcd22a/validation_license/cache/xdg
+export TMPDIR=/workspace/scratch/d0298adcd22a/validation_license/cache/tmp
+export FLUTTER_SUPPRESS_ANALYTICS=true
+export DART_SUPPRESS_ANALYTICS=true
+export CI=true
+export PATH=/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin/cache/dart-sdk/bin:/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin:/workspace/scratch/d0298adcd22a/validation_license/cache/cargo/bin:/workspace/scratch/d0298adcd22a/validation_license/toolchains/wasm-bindgen-0.2.130-x86_64-unknown-linux-musl:$PATH

@@ -1,0 +1,294 @@
+{
+  "candidate_cap": 6000,
+  "cold_init_ms": 4438,
+  "cold_max_heartbeat_gap_ms": 340,
+  "cold_heartbeat_ticks": 224,
+  "paragraph": "Kmmunikatoin Knfiguratoin Vrarbeitnug Rchtschreibnug Wssenschfat Shmetterlnig Zsammenarbiet Barbeitnug Etwicklnug Vrbessernug Txterkennnug Dkumentatoin Gammaitk Slbentrennnug Bnutzeroberflähce Enstellunegn Vröffentlichnug Üerprüfnug Rckmeldnug Gschwindigkiet Awendnug Seicherpltaz Oganisatoin Vraussetznug Ihaltsverzeichins kommuniqxza kommuniqxzb kommuniqxzc kommuniqxzd kommuniqxze kommuniqxzf kommuniqxzg kommuniqxzh kommuniqxzi kommuniqxzj kommuniqxzk kommuniqxzl kommuniqxzm kommuniqxzn kommuniqxzo kommuniqxzp kommuniqxzq kommuniqxzr kommuniqxzs kommuniqxzt kommuniqxzu kommuniqxzv kommuniqxzw kommuniqxzx",
+  "paragraph_tokens": 49,
+  "paragraph_trials": [
+    {
+      "check_ms": 333,
+      "max_heartbeat_gap_ms": 18,
+      "heartbeat_ticks": 44,
+      "findings": 49,
+      "status": "success"
+    },
+    {
+      "check_ms": 224,
+      "max_heartbeat_gap_ms": 12,
+      "heartbeat_ticks": 34,
+      "findings": 49,
+      "status": "success"
+    },
+    {
+      "check_ms": 229,
+      "max_heartbeat_gap_ms": 12,
+      "heartbeat_ticks": 34,
+      "findings": 49,
+      "status": "success"
+    }
+  ],
+  "independent_varied_typos": [
+    {
+      "expected": "Kommunikation",
+      "typo": "Kmmunikatoin",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Kommunikation"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Konfiguration",
+      "typo": "Knfiguratoin",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Konfiguration"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Verarbeitung",
+      "typo": "Vrarbeitnug",
+      "listed_target": true,
+      "expected_rank": 2,
+      "replacements": [
+        "Erarbeitung",
+        "Verarbeitung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Rechtschreibung",
+      "typo": "Rchtschreibnug",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Rechtschreibung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Wissenschaft",
+      "typo": "Wssenschfat",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Wissenschaft"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Schmetterling",
+      "typo": "Shmetterlnig",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Schmetterling"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Zusammenarbeit",
+      "typo": "Zsammenarbiet",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Zusammenarbeit"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Bearbeitung",
+      "typo": "Barbeitnug",
+      "listed_target": true,
+      "expected_rank": 2,
+      "replacements": [
+        "Abarbeitung",
+        "Bearbeitung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Entwicklung",
+      "typo": "Etwicklnug",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Entwicklung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Verbesserung",
+      "typo": "Vrbessernug",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Verbesserung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Texterkennung",
+      "typo": "Txterkennnug",
+      "listed_target": false,
+      "expected_rank": 0,
+      "replacements": [],
+      "findings": 1
+    },
+    {
+      "expected": "Dokumentation",
+      "typo": "Dkumentatoin",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Dokumentation"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Grammatik",
+      "typo": "Gammaitk",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Grammatik"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Silbentrennung",
+      "typo": "Slbentrennnug",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Silbentrennung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Benutzeroberfläche",
+      "typo": "Bnutzeroberflähce",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Benutzeroberfläche"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Einstellungen",
+      "typo": "Enstellunegn",
+      "listed_target": true,
+      "expected_rank": 3,
+      "replacements": [
+        "Anstellungen",
+        "Erstellungen",
+        "Einstellungen",
+        "Entstellungen"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Veröffentlichung",
+      "typo": "Vröffentlichnug",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Veröffentlichung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Überprüfung",
+      "typo": "Üerprüfnug",
+      "listed_target": true,
+      "expected_rank": 2,
+      "replacements": [
+        "Erprüfung",
+        "Überprüfung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Rückmeldung",
+      "typo": "Rckmeldnug",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Rückmeldung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Geschwindigkeit",
+      "typo": "Gschwindigkiet",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Geschwindigkeit"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Anwendung",
+      "typo": "Awendnug",
+      "listed_target": true,
+      "expected_rank": 3,
+      "replacements": [
+        "Abendzug",
+        "Abwendung",
+        "Anwendung",
+        "Wendung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Speicherplatz",
+      "typo": "Seicherpltaz",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Speicherplatz"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Organisation",
+      "typo": "Oganisatoin",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Organisation",
+        "Organisatorin"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Voraussetzung",
+      "typo": "Vraussetznug",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Voraussetzung"
+      ],
+      "findings": 1
+    },
+    {
+      "expected": "Inhaltsverzeichnis",
+      "typo": "Ihaltsverzeichins",
+      "listed_target": true,
+      "expected_rank": 1,
+      "replacements": [
+        "Inhaltsverzeichnis"
+      ],
+      "findings": 1
+    }
+  ],
+  "recalled_in_top5": 24,
+  "listed_targets": 24,
+  "total_ms": 5804
+}

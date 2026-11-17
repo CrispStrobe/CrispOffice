@@ -1,0 +1,1437 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "reviewed_at_utc": "2026-11-17T06:35:16.876757+00:00",
+  "baseline_commit": "62563c61f02ee44504776d9e7d26557f9bae490a",
+  "qualified_commit": "3a2ada5a04395fd2fa01c7878f4df9f1b9215558",
+  "scope": "Independent continuity audit of repository license/data/dependency inputs; not a new legal opinion on inherited dependencies.",
+  "protected_inputs": {
+    "count": 107,
+    "unchanged_count": 107,
+    "changed": [],
+    "entries": {
+      ".fvmrc": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+        }
+      },
+      "LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        }
+      },
+      "apps/quds_report_studio/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "ac479981a30f9917e0817de6c79f2392b6f4bf87"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "ac479981a30f9917e0817de6c79f2392b6f4bf87"
+        }
+      },
+      "packages/legacy_doc_parser/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "960630a8644e83089666436f6677ea3b2ba98533"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "960630a8644e83089666436f6677ea3b2ba98533"
+        }
+      },
+      "packages/legacy_doc_parser/NOTICE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "763d53250177978d633af16b72479f66e71ef610"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "763d53250177978d633af16b72479f66e71ef610"
+        }
+      },
+      "packages/legacy_doc_parser/doc/evidence/crisp-docx-oracles-20261113/LICENSE-crisp-docx.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9fc1d2d95a4dc3972f4407507b42ad1380608657"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9fc1d2d95a4dc3972f4407507b42ad1380608657"
+        }
+      },
+      "packages/legacy_doc_parser/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "f0389f352656d281988db1d853d6e86df67b51e7"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "f0389f352656d281988db1d853d6e86df67b51e7"
+        }
+      },
+      "packages/legacy_doc_parser/test/fixtures/external/poi-20261114/licenses/poi-LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "990301df8a1b7b0436b250682f52d79da93857eb"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "990301df8a1b7b0436b250682f52d79da93857eb"
+        }
+      },
+      "packages/legacy_doc_parser/test/fixtures/external/poi-20261114/licenses/poi-NOTICE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "cdea3ced2f8c4578c92d3edabdeb851bb7472cdf"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "cdea3ced2f8c4578c92d3edabdeb851bb7472cdf"
+        }
+      },
+      "packages/legacy_doc_parser/test/fixtures/external/poi-20261114/licenses/poi-README.md": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c67dcb7181912627e0ff13ea875b46810f0eb938"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c67dcb7181912627e0ff13ea875b46810f0eb938"
+        }
+      },
+      "packages/legacy_doc_parser/test/fixtures/word_native/COPYING.LibreOffice": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a612ad9813b006ce81d1ee438dd784da99a54007"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a612ad9813b006ce81d1ee438dd784da99a54007"
+        }
+      },
+      "packages/legacy_doc_parser/third_party/JSDoc-0BSD.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "43b5d35457b4fd691bf27c37dab0dab8e6d62d72"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "43b5d35457b4fd691bf27c37dab0dab8e6d62d72"
+        }
+      },
+      "packages/legacy_doc_parser/third_party/apache-poi-fixtures-LICENSE.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "5e848e9bbb6e7555af05b3284dac31470ede5c84"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "5e848e9bbb6e7555af05b3284dac31470ede5c84"
+        }
+      },
+      "packages/legacy_doc_parser/third_party/apache-poi-fixtures-NOTICE.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b19b741a18fe7d659f0bc66583b48bf07f9acbb9"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b19b741a18fe7d659f0bc66583b48bf07f9acbb9"
+        }
+      },
+      "packages/legacy_doc_parser/third_party/quds-fixtures-MIT.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        }
+      },
+      "packages/legacy_doc_parser/third_party/quds_office_engine-MIT.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f9d2644c2f2627200ec78494296773f193576b0"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f9d2644c2f2627200ec78494296773f193576b0"
+        }
+      },
+      "packages/legacy_doc_parser/third_party/wpf-isf/LICENSE.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "984713a49622a96da110443c15477613bc12656b"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "984713a49622a96da110443c15477613bc12656b"
+        }
+      },
+      "packages/legacy_doc_parser/tool/office-validation/LICENSE.quds": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        }
+      },
+      "packages/quds_office_editor/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        }
+      },
+      "packages/quds_office_editor/example/fonts/Cairo-Regular.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "61138c4efd72b8c695f2d6a9be0108aee69c45c3"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "61138c4efd72b8c695f2d6a9be0108aee69c45c3"
+        }
+      },
+      "packages/quds_office_editor/example/fonts/NOTICE.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "dc52af08aaf78a78e95be64e966c8b68ccbf360c"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "dc52af08aaf78a78e95be64e966c8b68ccbf360c"
+        }
+      },
+      "packages/quds_office_editor/example/fonts/Tajawal-Bold.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "71e1488e90215abcc8aedc541d94a2bcbec574f3"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "71e1488e90215abcc8aedc541d94a2bcbec574f3"
+        }
+      },
+      "packages/quds_office_editor/example/fonts/Tajawal-Regular.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "d23d25b8b68db86d5b727d181c2008fd874216eb"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "d23d25b8b68db86d5b727d181c2008fd874216eb"
+        }
+      },
+      "packages/quds_office_editor/example/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3c4a4bc74976e5c4800e6bc20346a175538f385b"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3c4a4bc74976e5c4800e6bc20346a175538f385b"
+        }
+      },
+      "packages/quds_office_editor/fonts/LICENSE-Liberation": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "465cf9c56dfa2eaf0b78d449cdcb929ecfc0a093"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "465cf9c56dfa2eaf0b78d449cdcb929ecfc0a093"
+        }
+      },
+      "packages/quds_office_editor/fonts/LICENSE-NotoNaskhArabic": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3b3e1afe59cb544b79cfddd69f5577f2952faf03"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3b3e1afe59cb544b79cfddd69f5577f2952faf03"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationMono-Bold.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "947b76f630a3654c848511510442575e7b43e2be"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "947b76f630a3654c848511510442575e7b43e2be"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationMono-BoldItalic.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a371481720603f7ea0c6024822dc7c3150f15490"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a371481720603f7ea0c6024822dc7c3150f15490"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationMono-Italic.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9a6592336ca5944a304891222ff8e470a5b4c955"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9a6592336ca5944a304891222ff8e470a5b4c955"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationMono-Regular.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "adbea0423031ac63ceee53e1f7b564182565b721"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "adbea0423031ac63ceee53e1f7b564182565b721"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSans-Bold.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "58c1be7b9bcf3fc510f70eb7b9f6cd4efc92c44b"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "58c1be7b9bcf3fc510f70eb7b9f6cd4efc92c44b"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSans-BoldItalic.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "727a88c073f35578095e15f3f0b8a2c274c4c217"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "727a88c073f35578095e15f3f0b8a2c274c4c217"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSans-Italic.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "17e29d2134e8c430701288837d96d1d202b7050b"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "17e29d2134e8c430701288837d96d1d202b7050b"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSans-Regular.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "328ef8be272813fa4864b1c2405491049dd3a7a3"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "328ef8be272813fa4864b1c2405491049dd3a7a3"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSerif-Bold.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c7f9c09bb346c1e90e610f1c47bf5d07cc0b645d"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c7f9c09bb346c1e90e610f1c47bf5d07cc0b645d"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSerif-BoldItalic.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6a20b81b3d15a6785d16732bf4c4208a22888ce3"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6a20b81b3d15a6785d16732bf4c4208a22888ce3"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSerif-Italic.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14d6455b7036856f4b309f1ddadc0229243f80a0"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14d6455b7036856f4b309f1ddadc0229243f80a0"
+        }
+      },
+      "packages/quds_office_editor/fonts/LiberationSerif-Regular.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "187d85ebec83992485d0c6c38ae556522a5019f3"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "187d85ebec83992485d0c6c38ae556522a5019f3"
+        }
+      },
+      "packages/quds_office_editor/fonts/NotoNaskhArabic-Bold.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "7ae5a31521d53028d67973115d2a1b8c840e230c"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "7ae5a31521d53028d67973115d2a1b8c840e230c"
+        }
+      },
+      "packages/quds_office_editor/fonts/NotoNaskhArabic-Regular.ttf": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "00a33b3dfe8411968dabf2bfd1deb02bb79ff0f6"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "00a33b3dfe8411968dabf2bfd1deb02bb79ff0f6"
+        }
+      },
+      "packages/quds_office_editor/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b5ce396826a085e04308a9917693ff33b47f795a"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b5ce396826a085e04308a9917693ff33b47f795a"
+        }
+      },
+      "packages/quds_office_engine/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f9d2644c2f2627200ec78494296773f193576b0"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f9d2644c2f2627200ec78494296773f193576b0"
+        }
+      },
+      "packages/quds_office_engine/example/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9e7cc2d8f24500c0403d39cd88ed1e9649d650df"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9e7cc2d8f24500c0403d39cd88ed1e9649d650df"
+        }
+      },
+      "packages/quds_office_engine/lib/src/bidi/english_gb_hyphenation_data.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "44af454c915b8653b3701b4c038138ecbe8f1d62"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "44af454c915b8653b3701b4c038138ecbe8f1d62"
+        }
+      },
+      "packages/quds_office_engine/lib/src/bidi/english_us_hyphenation_data.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "4398544149b0e7da21e36c3d9aaafd8696ce76ae"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "4398544149b0e7da21e36c3d9aaafd8696ce76ae"
+        }
+      },
+      "packages/quds_office_engine/lib/src/bidi/german_hyphenation_data.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "21a92de63ac7e9dcaa3f45f5aa937683013a6cdc"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "21a92de63ac7e9dcaa3f45f5aa937683013a6cdc"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "358d91dbd8c54fbf0f4a59a1439583f4d57539ef"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "035283d30116ad6c848a08bf1ff8ca37c731f704"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "035283d30116ad6c848a08bf1ff8ca37c731f704"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "04c3c29326db061b112056929620f0c945d9f383"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "04c3c29326db061b112056929620f0c945d9f383"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "23626dd5de7a13cc47a343db868406b07141d3d3"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "23626dd5de7a13cc47a343db868406b07141d3d3"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "39dcf2dddb717030d42334e5df980a2620906ed8"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "39dcf2dddb717030d42334e5df980a2620906ed8"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1496a30f00a49ad797b52a26741cc7be33ae7d1a"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "88d250fb4b76f9b839cf6014444206988d21ca67"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "88d250fb4b76f9b839cf6014444206988d21ca67"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1de49879083874f929be5057caf23c859bbdc348"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1de49879083874f929be5057caf23c859bbdc348"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8451faaef625b88ed8f77aab4b2721cf315541ab"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8451faaef625b88ed8f77aab4b2721cf315541ab"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "e21532a43d39cbc79489198d1453c824af41b431"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "e21532a43d39cbc79489198d1453c824af41b431"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b0c3c806061f98fc2f1d684121c58bafeb6ea864"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6e924797682775c9a38dac7b735b92bcbd3cd478"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6e924797682775c9a38dac7b735b92bcbd3cd478"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "565a4e8df2db99547454b22882d030ad0628ce57"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "565a4e8df2db99547454b22882d030ad0628ce57"
+        }
+      },
+      "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "bf40de2844f45e770a41db1493e2d9f667622701"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "bf40de2844f45e770a41db1493e2d9f667622701"
+        }
+      },
+      "packages/quds_office_engine/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b8df6a55e457b42e258a3cc7724df1be087464fb"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "b8df6a55e457b42e258a3cc7724df1be087464fb"
+        }
+      },
+      "packages/quds_office_engine/third_party/fonttools/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3fe0941a282a17c8687a60885e78855ae5fa7f68"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3fe0941a282a17c8687a60885e78855ae5fa7f68"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/ENGLISH.md": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8478143b3fc63072bfdb9cd52b94251643fb1154"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8478143b3fc63072bfdb9cd52b94251643fb1154"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/ENGLISH_GB_LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "63bc9b2a9952e8d3ced7cda81f6f287a4bca91f3"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "63bc9b2a9952e8d3ced7cda81f6f287a4bca91f3"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/ENGLISH_US_LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3adb22869fa55fe570be51277686528a24ce3eee"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "3adb22869fa55fe570be51277686528a24ce3eee"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "08a83386136303c78a76029837514310eb986fa8"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "08a83386136303c78a76029837514310eb986fa8"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/README.md": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "5d2be8fc0bd6c4d190fa322a88c59094a8a364d9"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "5d2be8fc0bd6c4d190fa322a88c59094a8a364d9"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/english-manifest.json": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0b20ffb501908c7519ff111e89b706151a02294b"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0b20ffb501908c7519ff111e89b706151a02294b"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/hyph-de-1996.tex": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "15641e1ec1619b89ec2939d31f37762cb8f1d12e"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "15641e1ec1619b89ec2939d31f37762cb8f1d12e"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/hyph-en-gb.tex": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a668f67d756532694a5d160740487cda435ee1f7"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a668f67d756532694a5d160740487cda435ee1f7"
+        }
+      },
+      "packages/quds_office_engine/third_party/hyphenation/hyph-en-us.tex": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "bd9b757d89074e3e11b590311ce13ba6667544aa"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "bd9b757d89074e3e11b590311ce13ba6667544aa"
+        }
+      },
+      "packages/quds_office_engine/third_party/proofing/QUDS_WORDS_LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9ee31c3e226a95df5c6e5ca40523517bb7f29e4a"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9ee31c3e226a95df5c6e5ca40523517bb7f29e4a"
+        }
+      },
+      "packages/quds_office_engine/third_party/proofing/README.md": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0f566fb4fb5e73b055f0820f8c3e8518ca5cca9c"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0f566fb4fb5e73b055f0820f8c3e8518ca5cca9c"
+        }
+      },
+      "packages/quds_office_engine/third_party/proofing/WORTLISTE_LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "42f6b7e7baac0b9d5d0fbc2ddecf8fe82f338e13"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "42f6b7e7baac0b9d5d0fbc2ddecf8fe82f338e13"
+        }
+      },
+      "packages/quds_office_engine/third_party/proofing/manifest.json": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "245c19ce4c19485cdbaf56e837c3bff49aa1c4fd"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "245c19ce4c19485cdbaf56e837c3bff49aa1c4fd"
+        }
+      },
+      "packages/quds_office_engine/tool/proofing/german_common_words.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6bb0edb62b45b6476cf2dfade3f532d830df2124"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6bb0edb62b45b6476cf2dfade3f532d830df2124"
+        }
+      },
+      "packages/quds_proofing_harper/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "14fac913ccf80234b1848540089a3bbcb6e5283d"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/manifest.json": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "04aa70397dc6bcc2933d9062c89e61b6efae0fe8"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "04aa70397dc6bcc2933d9062c89e61b6efae0fe8"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/notices-and-mpl-sources.tar.gz": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "72e27e15c633ec23fedc3711c481717b59f32c43"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "72e27e15c633ec23fedc3711c481717b59f32c43"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-APACHE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "cc8180554d61e267eb1d68fdd38104499aa73742"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "cc8180554d61e267eb1d68fdd38104499aa73742"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-MIT": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6b220b3d008f9161986ab2678498472f1f8275a6"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6b220b3d008f9161986ab2678498472f1f8275a6"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-APACHE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a18fcc67f20ed25de2c3305e994cca2481b2ad1c"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "a18fcc67f20ed25de2c3305e994cca2481b2ad1c"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-MIT": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6fca47c9fe75a38ac9940e808026534dab28fcba"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6fca47c9fe75a38ac9940e808026534dab28fcba"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-APACHE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f7956e2054b5f0c2731d8e53988cebb69510b65"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f7956e2054b5f0c2731d8e53988cebb69510b65"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-MIT": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1fe5730a49b22d22611e5eb8747ab709fb1146ca"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "1fe5730a49b22d22611e5eb8747ab709fb1146ca"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/HARPER-LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "28d2cac5045bb6add164520569a6ebff5f1df9d7"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "28d2cac5045bb6add164520569a6ebff5f1df9d7"
+        }
+      },
+      "packages/quds_proofing_harper/licenses/upstream/fallback-notices.json": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0dd9f717c7387076134e18d564eb11a689ee7189"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0dd9f717c7387076134e18d564eb11a689ee7189"
+        }
+      },
+      "packages/quds_proofing_harper/native/Cargo.lock": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "145751e865553d9496f32bf66ecd849fdbdfe797"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "145751e865553d9496f32bf66ecd849fdbdfe797"
+        }
+      },
+      "packages/quds_proofing_harper/native/Cargo.toml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "535f423556d7875890058037fb95aed350716c91"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "535f423556d7875890058037fb95aed350716c91"
+        }
+      },
+      "packages/quds_proofing_harper/native/rust-toolchain.toml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0a4aef2e51b797306de476ea2d622059a31ec5e1"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "0a4aef2e51b797306de476ea2d622059a31ec5e1"
+        }
+      },
+      "packages/quds_proofing_harper/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "21617bc027119539ebe87a94a97b622499d48c98"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "21617bc027119539ebe87a94a97b622499d48c98"
+        }
+      },
+      "packages/quds_proofing_harper/tool/license_bundle.py": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6381e803a88c79d7c344506d828ce4ce0938daf0"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "6381e803a88c79d7c344506d828ce4ce0938daf0"
+        }
+      },
+      "packages/quds_proofing_harper/tool/test_license_bundle.py": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c8ad4082aa9ec3e75de28b25dcb5e5803f6c6a64"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c8ad4082aa9ec3e75de28b25dcb5e5803f6c6a64"
+        }
+      },
+      "packages/quds_reports/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f9d2644c2f2627200ec78494296773f193576b0"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "8f9d2644c2f2627200ec78494296773f193576b0"
+        }
+      },
+      "packages/quds_reports/pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "206c04007457d37895bac387ddb78ff4813b9511"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "206c04007457d37895bac387ddb78ff4813b9511"
+        }
+      },
+      "pubspec.yaml": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c46e3c83272694b8cda24431ce5f89159798540e"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "c46e3c83272694b8cda24431ce5f89159798540e"
+        }
+      },
+      "tools/proofing/german_model/README.md": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "ee8e8e158ad83bdc60318d7026e5ad35863c3ee4"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "ee8e8e158ad83bdc60318d7026e5ad35863c3ee4"
+        }
+      },
+      "tools/proofing/german_model/artifacts.json": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "7e2750199183bcad22645ca1b59ee65b37a91db0"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "7e2750199183bcad22645ca1b59ee65b37a91db0"
+        }
+      },
+      "tools/proofing/german_model/cases.json": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "80d159cee37fe677eeacaecf279d1d0b01bf7cc8"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "80d159cee37fe677eeacaecf279d1d0b01bf7cc8"
+        }
+      },
+      "tools/proofing/german_model/evaluate.py": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "02e4917cd18b0d1eaf5f394d889095907cc2ea14"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "02e4917cd18b0d1eaf5f394d889095907cc2ea14"
+        }
+      },
+      "tools/proofing/german_model/requirements.txt": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "4ba75111a8d9c078c44e2c597be6d413a2b95d1b"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "4ba75111a8d9c078c44e2c597be6d413a2b95d1b"
+        }
+      },
+      "tools/proofing/german_model/vendor/LICENSE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+        }
+      },
+      "tools/proofing/german_model/vendor/NOTICE": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9eddd1c7afac84f993f57d7543f61d7587eb0152"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "9eddd1c7afac84f993f57d7543f61d7587eb0152"
+        }
+      },
+      "tools/proofing/german_model/vendor/quickstart.py": {
+        "baseline": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "f36323aec4b3a1b95346534be0ef6748a002dfd2"
+        },
+        "qualified": {
+          "mode": "100644",
+          "kind": "blob",
+          "blob": "f36323aec4b3a1b95346534be0ef6748a002dfd2"
+        }
+      }
+    },
+    "worktree_changes": []
+  },
+  "dependency_manifests": {
+    "count": 14,
+    "paths": [
+      ".fvmrc",
+      "apps/quds_report_studio/pubspec.yaml",
+      "packages/legacy_doc_parser/pubspec.yaml",
+      "packages/quds_office_editor/example/pubspec.yaml",
+      "packages/quds_office_editor/pubspec.yaml",
+      "packages/quds_office_engine/example/pubspec.yaml",
+      "packages/quds_office_engine/pubspec.yaml",
+      "packages/quds_proofing_harper/native/Cargo.lock",
+      "packages/quds_proofing_harper/native/Cargo.toml",
+      "packages/quds_proofing_harper/native/rust-toolchain.toml",
+      "packages/quds_proofing_harper/pubspec.yaml",
+      "packages/quds_reports/pubspec.yaml",
+      "pubspec.yaml",
+      "tools/proofing/german_model/requirements.txt"
+    ],
+    "all_unchanged": true
+  },
+  "german_data": {
+    "generated_files": {
+      "lib/src/proofing/data/german_common_00.dart": {
+        "expected": "8617711b9765cd8efcb9af4686aaf982eeeb7bab2d29db8e6f8ca7889f5362ab",
+        "actual": "8617711b9765cd8efcb9af4686aaf982eeeb7bab2d29db8e6f8ca7889f5362ab"
+      },
+      "lib/src/proofing/data/german_lexicon_data.dart": {
+        "expected": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+        "actual": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1"
+      },
+      "lib/src/proofing/data/german_standard_00.dart": {
+        "expected": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+        "actual": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4"
+      },
+      "lib/src/proofing/data/german_standard_01.dart": {
+        "expected": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+        "actual": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1"
+      },
+      "lib/src/proofing/data/german_standard_02.dart": {
+        "expected": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+        "actual": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3"
+      },
+      "lib/src/proofing/data/german_standard_03.dart": {
+        "expected": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+        "actual": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b"
+      },
+      "lib/src/proofing/data/german_standard_04.dart": {
+        "expected": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+        "actual": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf"
+      },
+      "lib/src/proofing/data/german_standard_05.dart": {
+        "expected": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+        "actual": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f"
+      },
+      "lib/src/proofing/data/german_standard_06.dart": {
+        "expected": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+        "actual": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e"
+      },
+      "lib/src/proofing/data/german_standard_07.dart": {
+        "expected": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+        "actual": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7"
+      },
+      "lib/src/proofing/data/german_standard_08.dart": {
+        "expected": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+        "actual": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332"
+      },
+      "lib/src/proofing/data/german_standard_09.dart": {
+        "expected": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+        "actual": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f"
+      },
+      "lib/src/proofing/data/german_standard_10.dart": {
+        "expected": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+        "actual": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc"
+      },
+      "lib/src/proofing/data/german_standard_11.dart": {
+        "expected": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+        "actual": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1"
+      },
+      "lib/src/proofing/data/german_standard_12.dart": {
+        "expected": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+        "actual": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642"
+      },
+      "lib/src/proofing/data/german_standard_13.dart": {
+        "expected": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+        "actual": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364"
+      },
+      "lib/src/proofing/data/german_swiss_00.dart": {
+        "expected": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+        "actual": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6"
+      }
+    },
+    "all_pins_match": true,
+    "manifest_sha256": "0569aca8785d12f5fd743e4323230cf017601b21b86f55c8f25f47349d9ef514"
+  },
+  "harper": {
+    "status": "passed",
+    "packages": 226,
+    "mpl_sources": 3,
+    "policy_cases": 9,
+    "selected_license_counts": {
+      "MIT": 196,
+      "MPL-2.0": 3,
+      "Zlib": 3,
+      "Apache-2.0": 5,
+      "Unicode-3.0": 19,
+      "CC0-1.0": 1
+    },
+    "mpl_sources_detail": [
+      {
+        "name": "colored",
+        "version": "3.1.1",
+        "source_sha256": "faf9468729b8cbcea668e36183cb69d317348c2e08e994829fb56ebfdfbaac34"
+      },
+      {
+        "name": "cssparser",
+        "version": "0.38.0",
+        "source_sha256": "11119743ad110e8c1bdccd930d7f5c30c99e5fc76a7b63ec9807e84eef0c5f59"
+      },
+      {
+        "name": "dtoa-short",
+        "version": "0.3.5",
+        "source_sha256": "cd1511a7b6a56299bd043a9c167a6d2bfb37bf84a6dfceaba651168adfb43c87"
+      }
+    ],
+    "manifest_sha256": "b63e7e67fa307683b9582756fe876d0724797bc2cc5f1dab388000b5d84c1b21",
+    "notice_bundle_sha256": "cd4c3cf344c5077b4ae94dcc9e42a328463a6f4254b92bbf1f1062bcd9ee6608"
+  },
+  "new_first_party_source_review": {
+    "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+    "sha256": "aac167c18943c338eaf657abf2654de51837e792b7de99f705aa359a600bc9bb",
+    "scope": "Reviewed newly authored bounded phrase rules, explicit noun/adjective paradigms and safeguards; same-library part file, no external rule corpus, network call or dependency import."
+  },
+  "limits": [
+    "No protected dependency, dictionary, pattern, model or license input changed; newly authored implementation is separately reviewed as first-party code.",
+    "MPL-2.0 is retained under existing accepted policy and its notices and source-distribution obligations remain explicit.",
+    "This audit does not establish runtime quality, browser acceptance or native support beyond separately executed validation."
+  ]
+}

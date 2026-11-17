@@ -39,7 +39,7 @@ EDITOR_TESTS = [
     "word_operation_history", "word_note_numbering", "word_selection_paint",
     "editor", "word_small_caps", "content_revision",
     "word_zotero_backoff_session", "word_zotero_dialog_scaling",
-    "word_zotero_source_identity",
+    "word_zotero_source_identity", "sheet_conditional_rendering",
 ]
 INCOMING_ENGINE_TESTS = [
     "ods_sheet_reader", "ods_sheet_writer", "sheet_save_cache_and_freeze",
@@ -49,6 +49,8 @@ INCOMING_ENGINE_TESTS = [
     "sheet_conditional_fidelity", "sheet_conditional_style_priority_integration",
     "sheet_rename_adversarial", "sheet_rename_fidelity",
     "odt_document_writer", "odp_presentation_writer",
+    "odf_export_text_fidelity", "odt_structure_fidelity",
+    "pdf_text_string_encoding", "sheet_conditional_rendering",
 ]
 HARPER_WEB_FILES = [
     "web/harper_worker.mjs", "web/quds_proofing_harper.js",
@@ -246,7 +248,7 @@ def main() -> int:
     record = {
         "schema_version": 1, "started_at_utc": now(), "status": "running", "passed": False,
         "source_commit": git("rev-parse", "HEAD"), "commands": [], "child_receipts": {},
-        "scope": "Local proofing/editor integration, incoming ODS/Zotero regressions, and optional Harper/web distribution checks.",
+        "scope": "Local proofing/editor integration, incoming ODF/PDF/sheet/Zotero regressions, and optional Harper/web distribution checks.",
         "source_policy": "Tracked and untracked workspace source/test/tool/runtime inputs; excludes docs, evidence and generated build/cache outputs. The ignored root pubspec.lock is an additional exact input.",
         "environment_paths": {name: environment.get(name) for name in ("TMPDIR", "PUB_CACHE", "XDG_CONFIG_HOME")},
         "limits": [

@@ -1,0 +1,10 @@
+{
+  "commit": "62563c61f02ee44504776d9e7d26557f9bae490a",
+  "scope": "Exact three-file baseline proofing projection; same pinned characters dependency; no active source mutation.",
+  "files_sha256": {
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "c57fad2a000f963322215cb5d2e727e4a68b4841fc633e1fa79ab4de0a372855",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "0ee4b795c444b4e8699f85c17f0c1ded538428de61edbc3bf9264d3ca565bcdf",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+  },
+  "license_sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+}

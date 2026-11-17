@@ -1,0 +1,132 @@
+[
+  {
+    "text": "Könnte ich gehen?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "gehen",
+        "start": 11,
+        "end": 16,
+        "replacements": [
+          "gehe"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Würde ich gehen?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "gehen",
+        "start": 10,
+        "end": 15,
+        "replacements": [
+          "gehe"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Möchte ich helfen?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "helfen",
+        "start": 11,
+        "end": 17,
+        "replacements": [
+          "helfe"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Sollte ich warten?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "warten",
+        "start": 11,
+        "end": 17,
+        "replacements": [
+          "warte"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Dürfte ich kommen?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "kommen",
+        "start": 11,
+        "end": 17,
+        "replacements": [
+          "komme"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Wollte ich bleiben?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "bleiben",
+        "start": 11,
+        "end": 18,
+        "replacements": [
+          "bleibe"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Auf Man leben viele Menschen.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "leben",
+        "start": 8,
+        "end": 13,
+        "replacements": [
+          "lebt"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Die Insel Man haben wir besucht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Weil ich schlafen möchte, gehe ich nach Hause.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wenn er essen geht, wartet sie.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  }
+]
