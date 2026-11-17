@@ -29,6 +29,8 @@ XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(
 ).root!.firstChild('body')!.firstChild('text')!;
 
 void main() {
+  fieldTests();
+  paragraphBreakTests();
   columnTests();
   tabStopTests();
   paragraphShadingTests();
@@ -619,5 +621,71 @@ void columnTests() {
     expect(content, contains('<text:section text:name="Section0"'));
     expect(content, contains('fo:column-count="2"'));
     expect(content, contains('fo:column-gap="18.00pt"'));
+  });
+}
+
+void paragraphBreakTests() {
+  test('writes column breaks and keep-together', () {
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          blocks: [
+            WmlParagraph(
+              properties: WmlParagraphProps(
+                columnBreakBefore: true,
+                keepTogether: true,
+              ),
+              inlines: [WmlRun(text: 'Keep')],
+            ),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final content = package.getPart('/content.xml')!.readText();
+    expect(content, contains('fo:break-before="column"'));
+    expect(content, contains('fo:keep-together="always"'));
+  });
+}
+
+void fieldTests() {
+  test('writes PAGE and NUMPAGES fields without cached results', () {
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          blocks: [
+            WmlParagraph(
+              inlines: [
+                WmlFieldBoundary(kind: WmlFieldBoundaryKind.begin),
+                WmlFieldBoundary(
+                  kind: WmlFieldBoundaryKind.instruction,
+                  text: ' PAGE \\* MERGEFORMAT ',
+                ),
+                WmlFieldBoundary(kind: WmlFieldBoundaryKind.separate),
+                WmlRun(text: '99'),
+                WmlFieldBoundary(kind: WmlFieldBoundaryKind.end),
+                WmlFieldBoundary(kind: WmlFieldBoundaryKind.begin),
+                WmlFieldBoundary(
+                  kind: WmlFieldBoundaryKind.instruction,
+                  text: ' NUMPAGES ',
+                ),
+                WmlFieldBoundary(kind: WmlFieldBoundaryKind.separate),
+                WmlRun(text: '99'),
+                WmlFieldBoundary(kind: WmlFieldBoundaryKind.end),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final content = package.getPart('/content.xml')!.readText();
+    expect(RegExp(r'<text:page-number/>').allMatches(content).length, 1);
+    expect(RegExp(r'<text:page-count/>').allMatches(content).length, 1);
+    expect(content, isNot(contains('>99<')));
   });
 }

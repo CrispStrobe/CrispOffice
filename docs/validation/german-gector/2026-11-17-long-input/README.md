@@ -116,3 +116,121 @@ retains this branch's segmentation options and native-runner controls, combines
 the historical roadmap descriptions, and preserves the incoming tooling and
 corpus unchanged. New report-merge, quality-tool and manual/F7 tests will run
 against the final combined source.
+
+Office fidelity `28fb08e61682913184e2a3c089bd5290a665c78e` supplies the newer
+section activation, odd/even entry masters, continuous-page-style comparison,
+numbering continuation/restart and auxiliary-story isolation, plus physical RTL
+indents. The merged writer uses that implementation and retains the existing
+bookmark, file-link and anchor-link behavior. The note and comment state classes,
+inline rendering and note-table text handling match the receiving branch;
+comment block rendering additionally gains the incoming isolated list story.
+
+Both independently developed section suites remain. The prior suite is now
+`odt_section_integration_test.dart`; it checks section ownership and geometry
+rather than obsolete style IDs or extra anchor paragraphs that the newer table
+activation eliminates. List-style lookup covers both default styles in
+`styles.xml` and automatic styles in `content.xml`. For an explicitly empty
+`sections: []` model, the existing empty body invariant wins: default master and
+page geometry are exported without adding an authored body paragraph or
+mutating the model. The incoming empty-document test retains its master and
+nonmutation assertions with this reconciled body expectation. The first merge
+run's three expectation failures are retained alongside the corrected run.
+
+The incoming Office consumer archives include failed attempts and explicitly
+leave final-source consumer qualification pending. Their presence and passing
+Dart tests must not be read as completed desktop-consumer validation.
+
+The reconciled Office merge passes all 208 tests in its ten-file ODT cohort
+and strict analysis of the writer and both section suites. The updated Python
+build, comparator and pack tooling passes all 51 tests. Logs retain the initial
+merge expectation failures; the final full-source validation is recorded below
+when complete.
+
+Merged PR #108 through main `4af75017a9b7df726c1f80741809f5bccdb70f4c`.
+Its six-line text-shape hyperlink implementation combines cleanly with the
+existing ODP transform logic. The test conflict retains the newer SMIL
+transition assertions and adds the incoming hyperlink assertion; it does not
+restore the superseded transition attributes. The first octopus merge attempt
+was rejected by Git because of this test conflict and left no partial merge;
+the normal main merge was then resolved explicitly.
+
+The feature `3ec638bd7de5cb6648774abbf14da1c315f5e418` and vendor
+`0585fac1a56c3dc5c3d728962794299ddfe50bbb` tips carry the identical eight-line
+ODP hyperlink patch already integrated from main. `odp-incoming-equivalence.json`
+records identical patch hashes and changed-file blobs for all three tips;
+feature and main also have identical complete trees. A history-only merge keeps
+both equivalent branch tips as ancestors without replacing the receiving
+branch's newer Office behavior. These are the final missing tips in the fixed
+130-branch snapshot.
+
+## Preserved broader-cohort failure before frame extraction fix
+
+At `c89e7eedda4473eae98953e61d9244d0125f440f`, all 130 captured branch tips and
+108 fetched PR heads are ancestors (`second-integrated-ancestry.json`). The
+broader ODT/ODF cohort exposed one real integration failure: a frame inside the
+new section-owning paragraph was extracted as an empty string instead of its
+whitespace-preserving text. The existing assertion is not relaxed. This run
+had 249 passing ODT/ODF tests and one failure; 35 ODP and 268 German tests passed.
+All three source maps were stable. `pre-frame-fix-attempt.json` indexes the
+retained failed attempt and compressed source-bound logs/receipts.
+
+The two `pre-frame-fix-*-build.json` receipts describe successful builds with
+stable source, dependency and SDK seals. Neither resulting binary was used for
+inference. Native measurements will rebuild the corrected source into fresh
+paths; these successful earlier builds do not qualify the later fix.
+
+## Frame extraction integration repair
+
+The shared ODF decoder now discovers each owned text box once and retains frame
+paragraphs separately from the enclosing paragraph's own inline text. The
+extractor preserves frame-contained tables as tables; frames within a consumed
+cell remain part of that cell's text. Empty frame anchors disappear only when
+visible paragraph blocks replace them. Ordinary blank and explicit-whitespace
+paragraphs remain, and annotation/note/covered-cell/ruby annotation stories stay
+excluded. Bounded search uses the same cumulative UTF-8 budget and now excludes
+note-only stories in its fallback as well.
+
+The original failing whitespace assertion and the ODT writer are unchanged.
+Nine new cases cover the newly exercised traversal, table, hidden-story and
+budget paths. The focused 51 tests and all 259 ODT/ODF tests pass; strict analysis
+is clean. A separate read-only review found no remaining correctness defect.
+`odf-frame-resolution.json` records the commands, source and log hashes and
+review. Initial failure evidence remains available above.
+
+`resolved-inputs.json` indexes byte-exact compressed copies of the resolved
+lockfile and package configuration used here. Restore the lock to reproduce
+package choices, but regenerate the configuration on another host because its
+paths describe this workspace. SDK and every resolved package library are
+additionally sealed by the AOT build receipts.
+
+## Final integrated source and local regressions
+
+Implementation source: `d092d50a844b5cfcc31bb6c39220704b4ff11cf5`.
+All nine final suites have identical before/after maps for 1,312 tracked inputs
+and resolved package configuration, with this same start/end commit. The
+retained summary and compressed receipts/logs cover:
+
+| Cohort | Passed |
+| --- | ---: |
+| GECToR package, including the pinned real native fixture | 194 |
+| Deterministic German grammar | 268 |
+| Shared deterministic/manual report merge | 20 |
+| Editor proofing and manual/F7 | 97 |
+| ODT/ODF including frame extraction | 259 |
+| ODP hyperlinks, transforms and transitions | 35 |
+| Python build, pack and strict comparison tooling | 51 |
+| Total distinct tests | 924 |
+
+There are no skipped tests in the six final Dart/Flutter cohorts. Three strict
+analysis suites also pass. The 51 Python tests were executed at `8801031a`;
+`tooling-source-recheck.json` verifies that every recorded tooling, corpus and
+baseline input remains byte-identical at the final implementation. They are not
+claimed as a second test execution. The original summary names raw files in its
+run directory; saved copies here use the `final-` prefix and gzip compression.
+
+`provider-build.json` and `incremental-quality-build.json` are fresh successful
+AOT builds after the frame repair. They seal 63 and 68 selected source files,
+respectively, plus all 109 resolved package libraries and the SDK. Runtime
+receipts below must match their source maps and compiled/runtime pins; a build
+alone is not an inference result. `pack-verification.json` verifies all 23 files
+and the unchanged 86,356,331-byte development pack.

@@ -1,0 +1,268 @@
+{
+  "actions_dispatched_polled_or_awaited": false,
+  "all_source_stable": true,
+  "completed": true,
+  "created_utc": "2026-11-17T15:55:47.780000+00:00",
+  "execution_note": "At most three independent suites ran concurrently. Unit-test wall times are not native performance benchmarks.",
+  "expected_source_commit": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+  "kind": "quds-final-local-regression-summary",
+  "native_fixture": {
+    "environment_gate": "CRISPEMBED_GECTOR=1",
+    "executed": true,
+    "library": {
+      "bytes": 2064104,
+      "file": "libcrispembed-gector.so",
+      "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604"
+    },
+    "model": {
+      "bytes": 82756896,
+      "file": "gector-de-mixed-q4_k.gguf",
+      "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b"
+    },
+    "pins_match": true,
+    "skip_count": 0,
+    "test_file": "test/native_backend_test.dart",
+    "test_name": "real native dual heads own their output and reject use after dispose"
+  },
+  "not_run": [],
+  "passed": true,
+  "runner": {
+    "file": "run_validation.py",
+    "sha256": "1ae2d4172776b4c6117ffb4d49cb87bd0cf83f68695ffe11507af3e09656465e"
+  },
+  "schema_version": 1,
+  "source_maps_consistent_across_suites": true,
+  "strict_analysis_suites_passed": 3,
+  "suites": {
+    "analysis": {
+      "all_tests_passed_marker": false,
+      "duration_seconds": 5.5915,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 463,
+        "file": "analysis.log",
+        "sha256": "3ae7379d2c31409e6693cce998b7d22ca5da457f70a7a9385102dd96615b676b"
+      },
+      "no_issues_found_marker": true,
+      "passed": true,
+      "passed_count": null,
+      "receipt": {
+        "bytes": 370990,
+        "file": "analysis.json",
+        "sha256": "0aa6295d5fff98e6e71bd222a6cecdaf319ed2f855d2885431ef29305ced5123"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "editor": {
+      "all_tests_passed_marker": true,
+      "duration_seconds": 12.343347,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 21928,
+        "file": "editor.log",
+        "sha256": "baf0f331cae1f91374b5d3c3e099902c58f49348686e8c3572f99ce6833fbf44"
+      },
+      "no_issues_found_marker": false,
+      "passed": true,
+      "passed_count": 97,
+      "receipt": {
+        "bytes": 370695,
+        "file": "editor.json",
+        "sha256": "f16306d0c84979047268e69626d8ab835e9fc9a1db5382548026397f57a3207d"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "gector": {
+      "all_tests_passed_marker": true,
+      "duration_seconds": 21.746172,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 18690,
+        "file": "gector.log",
+        "sha256": "2945b8e78e4e37323324934d7871eabfedf3fd41363d7fc5b69ea4ee1078dfdd"
+      },
+      "no_issues_found_marker": false,
+      "passed": true,
+      "passed_count": 194,
+      "receipt": {
+        "bytes": 370286,
+        "file": "gector.json",
+        "sha256": "5659f507ac9b7cdf43a26d476858ffe139003e9c93d904f79350340c78e1625e"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "gector_analysis": {
+      "all_tests_passed_marker": false,
+      "duration_seconds": 6.138784,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 46,
+        "file": "gector_analysis.log",
+        "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+      },
+      "no_issues_found_marker": true,
+      "passed": true,
+      "passed_count": null,
+      "receipt": {
+        "bytes": 370350,
+        "file": "gector_analysis.json",
+        "sha256": "cb57a222644c5271597b265fcbc900d6d79d0aa61aa6f58bfa1b1db893fcf6cb"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "german": {
+      "all_tests_passed_marker": true,
+      "duration_seconds": 19.976131,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 32712,
+        "file": "german.log",
+        "sha256": "f065462423fbb64620760ba885c81f43ea691d513316824fc3274607386c0ae3"
+      },
+      "no_issues_found_marker": false,
+      "passed": true,
+      "passed_count": 268,
+      "receipt": {
+        "bytes": 370449,
+        "file": "german.json",
+        "sha256": "32d6132fa31f24db79b7840b1b75982afb62c9b7736bbd3992c21fd387b373ac"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "odp": {
+      "all_tests_passed_marker": true,
+      "duration_seconds": 21.630707,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 3912,
+        "file": "odp.log",
+        "sha256": "66ced7cf33aec55c85280f77a42b79c334addc1ff66385d875dfa5973d914af7"
+      },
+      "no_issues_found_marker": false,
+      "passed": true,
+      "passed_count": 35,
+      "receipt": {
+        "bytes": 370367,
+        "file": "odp.json",
+        "sha256": "05ae86251241e0d309daf6da4ab633347562381d0bc32da7eb7d440b498c8b25"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "odt": {
+      "all_tests_passed_marker": true,
+      "duration_seconds": 22.914028,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 29265,
+        "file": "odt.log",
+        "sha256": "17da0deff8215d6e7888c18a057b56245bb260bb5a7e71be91975eb813155355"
+      },
+      "no_issues_found_marker": false,
+      "passed": true,
+      "passed_count": 259,
+      "receipt": {
+        "bytes": 370899,
+        "file": "odt.json",
+        "sha256": "0f79bbda4b98ca431d3a91fc9a58d14e6887212a820440ea54bf4300e3312305"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "report_merge": {
+      "all_tests_passed_marker": true,
+      "duration_seconds": 16.102823,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 1466,
+        "file": "report_merge.log",
+        "sha256": "2d990b91f233c168b244b91316f91fd72bf4c2c67ee0e48b3415544818f28adb"
+      },
+      "no_issues_found_marker": false,
+      "passed": true,
+      "passed_count": 20,
+      "receipt": {
+        "bytes": 370347,
+        "file": "report_merge.json",
+        "sha256": "4a2948d2025a5b8f52913c80f49d3168f80eaf02351e6ecb64ad224ccf93e829"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    },
+    "tool_analysis": {
+      "all_tests_passed_marker": false,
+      "duration_seconds": 5.088184,
+      "exit_code": 0,
+      "failed_count": 0,
+      "log": {
+        "bytes": 107,
+        "file": "tool_analysis.log",
+        "sha256": "9dc7ac22ba49b27fbf8c3cfdbe7d1b269ba6346eb02315778cb97dfd71234b4b"
+      },
+      "no_issues_found_marker": true,
+      "passed": true,
+      "passed_count": null,
+      "receipt": {
+        "bytes": 370464,
+        "file": "tool_analysis.json",
+        "sha256": "4f15640cf7de679b85f8c342bd66eda9394d3f31cf2913854f289738e8aa8090"
+      },
+      "skipped_count": 0,
+      "source_commit_at_end": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_commit_at_start": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+      "source_file_count": 1312,
+      "source_map_sha256": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "source_stable": true
+    }
+  },
+  "test_totals": {
+    "failed": 0,
+    "passed": 873,
+    "skipped": 0
+  }
+}

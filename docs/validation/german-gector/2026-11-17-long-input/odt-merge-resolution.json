@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-11-17T15:43:18.865817+00:00",
+  "scope": "Resolve two Office-fidelity merge conflicts, retaining incoming section/list behavior and existing bookmark, document-link, annotation and note safeguards.",
+  "repository": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite",
+  "head_before_merge": "8801031a5c031ad5872f0e41ec182576ae8d4872",
+  "incoming_merge_head": "28fb08e61682913184e2a3c089bd5290a665c78e",
+  "authorized_paths": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_section_integration_test.dart"
+  ],
+  "source_seals": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "sha256": "ff0c28d40ebaccb09d75aa07e615b0ea2bb15ec482282f4533d20bb01f8f9522",
+      "git_blob": "98aa3a343f3c728f31a3507addae172ad6b21019"
+    },
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": {
+      "sha256": "4f2b34c4230b9dd96658d662d77df00f7ec7df7d8e64ff44704e19a4a2731031",
+      "git_blob": "3e401505a984f5a51bad43a8c74e74939394274d"
+    },
+    "packages/quds_office_engine/test/odt_section_integration_test.dart": {
+      "sha256": "54718ea8aafc2f86f1ddb01927158b0a533f5aacfc2ef60abf4ad0531313cf0e",
+      "git_blob": "7d7987fdf469076c0ace2853262df135c4157e49"
+    }
+  },
+  "writer_stage2_blob": "65b2eb7b78ad5fc4f0a42460bd9e7e02c63a7b17",
+  "writer_stage3_blob": "208cfec67249d6e62e5532167ddb5e2ba1d6df09",
+  "section_suite_stage2_blob": "7df60e010e443f013fb9efc852e2e60c30652596",
+  "section_suite_stage3_blob": "d922a11264e483958de81c4d7b2444dfbb140f34",
+  "resolution": [
+    "Use the complete incoming writer implementation for section activation, parity, deferred/reused master pages, first-frame handling, explicit list definitions, numbering and RTL physical indents; avoid duplicated obsolete automatic-merge section/style code.",
+    "Restore the exact stage-2 inline hyperlink resolution order (URL, file, then nonempty #anchor) and bookmark-start/bookmark-end emission.",
+    "Retain the stage-2 explicitly-empty-document invariant: the synthetic section supplies default master/page styles but emits no authored body paragraph when document.sections is empty.",
+    "Keep the incoming section suite at odt_section_fidelity_test.dart and the independent stage-2 suite at odt_section_integration_test.dart."
+  ],
+  "changed_test_expectations": [
+    {
+      "suite": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+      "case": "an empty document has a usable default master without changing the model",
+      "change": "Expect no body children for explicitly empty sections=[] instead of one synthetic paragraph; retain Standard default master, one page layout and unchanged model assertions.",
+      "reason": "Deliberate preservation of the existing no-authored-body invariant; root explicitly agreed."
+    },
+    {
+      "suite": "packages/quds_office_engine/test/odt_section_integration_test.dart",
+      "case": "section style applies only to the first list item: ordered=false/true",
+      "change": "Resolve the referenced list style across content.xml and styles.xml and assert bullet/number marker semantics. Retain first-list-item-only SB1, mp1, RTL/right alignment and model nonmutation assertions.",
+      "reason": "The new writer supports generated marker styles as well as shared L1/L2 definitions; style identity/location is not the semantic contract."
+    },
+    {
+      "suite": "packages/quds_office_engine/test/odt_section_integration_test.dart",
+      "case": "leading table/frame/content-control section starts",
+      "change": "Expect three body elements without an extra empty section-anchor paragraph. Assert that the table, containing frame paragraph or first visible control paragraph owns mp1 and the page break; inner stories and following paragraph have no master assignment.",
+      "reason": "Incoming section activation deliberately attaches the boundary to emitted content and removes unnecessary empty body paragraphs."
+    },
+    {
+      "suite": "packages/quds_office_engine/test/odt_section_integration_test.dart",
+      "case": "continuous section with paragraph/table start",
+      "change": "Allow an unused/deferred section-style entry; assert no master-page assignment and no actual break on the emitted owner.",
+      "reason": "Incoming master reuse may retain a deferred style without introducing a page break."
+    }
+  ],
+  "stage2_safeguard_comparisons": [
+    {
+      "region": "_OdtTableCells",
+      "stage2_sha256": "9219cc0913c452ca40ecd53fd7aa765405e7af185a373398a9158575992b81de",
+      "resolved_sha256": "9219cc0913c452ca40ecd53fd7aa765405e7af185a373398a9158575992b81de",
+      "byte_identical": true
+    },
+    {
+      "region": "_OdtTableCell",
+      "stage2_sha256": "4e0fe16f4b337fbd12965c93e329392e5b1339091bfdfae2c9a2073c063f8b79",
+      "resolved_sha256": "4e0fe16f4b337fbd12965c93e329392e5b1339091bfdfae2c9a2073c063f8b79",
+      "byte_identical": true
+    },
+    {
+      "region": "_OdtNoteRecord",
+      "stage2_sha256": "473ab95dc3bf34562777feedc07e30aecee6d0ae0ee252c535d16df0f5b11b53",
+      "resolved_sha256": "473ab95dc3bf34562777feedc07e30aecee6d0ae0ee252c535d16df0f5b11b53",
+      "byte_identical": true
+    },
+    {
+      "region": "_OdtNotes",
+      "stage2_sha256": "8384b7faf4b9e10a65f3b7a2eedb71a3e8c09c787d42afd22353e95905baaaff",
+      "resolved_sha256": "8384b7faf4b9e10a65f3b7a2eedb71a3e8c09c787d42afd22353e95905baaaff",
+      "byte_identical": true
+    },
+    {
+      "region": "_OdtComments",
+      "stage2_sha256": "13be368e6b0d0359b285e5271f2db140937415d292c67fb0669ae48896113ad0",
+      "resolved_sha256": "13be368e6b0d0359b285e5271f2db140937415d292c67fb0669ae48896113ad0",
+      "byte_identical": true
+    },
+    {
+      "region": "_writeInline",
+      "stage2_sha256": "b2a249454adfb44f9805d921968daef24846e62c5e2bcc68600941327255b8ee",
+      "resolved_sha256": "b2a249454adfb44f9805d921968daef24846e62c5e2bcc68600941327255b8ee",
+      "byte_identical": true
+    },
+    {
+      "region": "_writeComment",
+      "stage2_sha256": "8aa0e1885755879ec430ae740c7a76d1f00d60a10ab8cff10c693427e48af7a0",
+      "resolved_sha256": "41f0b7edf407a9c7b4d277b05539ce5e28eb5e6c44271af3625682ae556e61ad",
+      "byte_identical": false,
+      "diff": "--- stage2\n+++ resolved\n@@ -36,7 +36,7 @@\n       // Comments are a separate story. Nested comment IDs must not consume a\n       // later visible anchor, and note references retain marks without moving\n       // their bodies here. This also bounds recursive comment/note expansion.\n-      _writeBlocks(w, comment.paragraphs, layout);\n+      layout.withListStory(() => _writeBlocks(w, comment.paragraphs, layout));\n       for (final visual in comment.visuals) {\n         w.writeStartElement('p', prefix: 'text');\n         _writeVisual(w, visual.visual, layout, inline: true);"
+    },
+    {
+      "region": "_writeNote",
+      "stage2_sha256": "e14c39a1d0bb8a1c6e70e5a7c444e989b0b19e0316357b839c2c45eab2bdd115",
+      "resolved_sha256": "a2c317be6e80e2a1f534c87731bec9c92df64ec1c02156fe949c9d89eb0bd167",
+      "byte_identical": false,
+      "diff": "--- stage2\n+++ resolved\n@@ -55,7 +55,7 @@\n       if (note.blocks.isEmpty) {\n         _writePlainParagraph(w, '');\n       } else {\n-        _writeBlocks(w, note.blocks, layout);\n+        layout.withListStory(() => _writeBlocks(w, note.blocks, layout));\n       }\n     } finally {\n       layout.noteBodiesAllowed = previous;"
+    },
+    {
+      "region": "_writeNoteTableText",
+      "stage2_sha256": "c4ffc699b287509fa059e929fdaebd1211a59ecc526901e276a52b64331f9e7f",
+      "resolved_sha256": "c4ffc699b287509fa059e929fdaebd1211a59ecc526901e276a52b64331f9e7f",
+      "byte_identical": true
+    },
+    {
+      "region": "_writeCoveredCells",
+      "stage2_sha256": "2b6ea9cd01624bcc199e7948917312f6ee0b51616343a407bc1107c66abec35b",
+      "resolved_sha256": "2b6ea9cd01624bcc199e7948917312f6ee0b51616343a407bc1107c66abec35b",
+      "byte_identical": true
+    },
+    {
+      "region": "_writeOmittedCells",
+      "stage2_sha256": "abc99ff94e9b03069da3b322517433395e92244c21a4b4c6ef36f05dd3357e98",
+      "resolved_sha256": "abc99ff94e9b03069da3b322517433395e92244c21a4b4c6ef36f05dd3357e98",
+      "byte_identical": true
+    },
+    {
+      "region": "_writeVisual",
+      "stage2_sha256": "e25d8bd85c936e336506d83f9d7d53e470f894b1205e8710427d0f21f010d37f",
+      "resolved_sha256": "e25d8bd85c936e336506d83f9d7d53e470f894b1205e8710427d0f21f010d37f",
+      "byte_identical": true
+    },
+    {
+      "region": "_writePlainParagraph",
+      "stage2_sha256": "43f3754ec74303bf665da4f6d0643bfb27f366b00f9f63db6c94f7760ed08333",
+      "resolved_sha256": "43f3754ec74303bf665da4f6d0643bfb27f366b00f9f63db6c94f7760ed08333",
+      "byte_identical": true
+    },
+    {
+      "region": "_manifestXml",
+      "stage2_sha256": "8a93e0b651e0a456bd1d286180b8c118eb89fe95936e4288eea12ef18b378a25",
+      "resolved_sha256": "8a93e0b651e0a456bd1d286180b8c118eb89fe95936e4288eea12ef18b378a25",
+      "byte_identical": true
+    },
+    {
+      "region": "_metaXml",
+      "stage2_sha256": "87b0ae77d0f393636a094de847ea582acdbd260745759e4d88bbe46ab7a0b695",
+      "resolved_sha256": "87b0ae77d0f393636a094de847ea582acdbd260745759e4d88bbe46ab7a0b695",
+      "byte_identical": true
+    }
+  ],
+  "writer_changes_relative_to_incoming": "--- incoming\n+++ resolved\n@@ -51,6 +51,9 @@\n   static List<({String xml, _OdtSectionStart start})> _bodyXml(\n     _OdtLayout layout,\n   ) {\n+    // The synthetic section supplies required default master/page styles only;\n+    // an explicitly empty document must not gain an authored body paragraph.\n+    if (layout.document.sections.isEmpty) return const [];\n     final parts = <({String xml, _OdtSectionStart start})>[];\n     for (var index = 0; index < layout.sections.length; index++) {\n       final body = XmlWriter();\n@@ -608,7 +611,15 @@\n     switch (inline) {\n       case WmlRun():\n         final style = layout.runStyle(inline.properties);\n-        final href = inline.hyperlink?.url;\n+        final href = switch (inline.hyperlink) {\n+          final link? =>\n+            link.url ??\n+                link.file ??\n+                (link.anchor == null || link.anchor!.isEmpty\n+                    ? null\n+                    : '#${link.anchor}'),\n+          null => null,\n+        };\n         final commentLink =\n             layout.inCommentBody && href != null && href.isNotEmpty;\n         if (href != null && href.isNotEmpty) {\n@@ -667,9 +678,16 @@\n         // surrounding result runs remain in the inline sequence, including\n         // citations and bibliographies that span several paragraphs.\n         break;\n-      case WmlContentControlBoundary() ||\n-          WmlNoteMarker() ||\n-          WmlBookmarkBoundary():\n+      case WmlBookmarkBoundary():\n+        final name = inline.name;\n+        if (name != null && name.isNotEmpty) {\n+          w.writeEmptyElement(\n+            inline.isStart ? 'bookmark-start' : 'bookmark-end',\n+            prefix: 'text',\n+            attributes: {'text:name': name},\n+          );\n+        }\n+      case WmlContentControlBoundary() || WmlNoteMarker():\n         break;\n       case WmlObject():\n       case WmlOpaqueInline():",
+  "validation": [
+    {
+      "name": "format",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite/packages/quds_office_engine",
+      "command": "source /workspace/scratch/c4115a2a85e2/quds_env.sh && \"$QUDS_DART\" format lib/src/word/serial/odt_document_writer.dart test/odt_section_fidelity_test.dart test/odt_section_integration_test.dart",
+      "exit_code": 0
+    },
+    {
+      "name": "initial-focused-ODT",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite/packages/quds_office_engine",
+      "command": "source /workspace/scratch/c4115a2a85e2/quds_env.sh && \"$QUDS_DART\" test test/odt_comment_fidelity_test.dart test/odt_document_writer_test.dart test/odt_header_footer_fidelity_test.dart test/odt_list_fidelity_test.dart test/odt_note_fidelity_test.dart test/odt_paragraph_properties_test.dart test/odt_section_fidelity_test.dart test/odt_section_integration_test.dart test/odt_structure_fidelity_test.dart test/odt_table_merge_test.dart --reporter expanded > /workspace/scratch/c4115a2a85e2/incoming-audit/odt-merge-tests-initial.log 2>&1",
+      "exit_code": 1,
+      "passed": 205,
+      "failed": 3,
+      "explanation": "Two new list-style lookups assumed automatic-styles rather than shared styles.xml; the incoming empty-document test still expected a synthetic paragraph. Resolved the documented expectation conflicts and preserved this failed receipt."
+    },
+    {
+      "name": "final-focused-ODT",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite/packages/quds_office_engine",
+      "command": "source /workspace/scratch/c4115a2a85e2/quds_env.sh && \"$QUDS_DART\" test test/odt_comment_fidelity_test.dart test/odt_document_writer_test.dart test/odt_header_footer_fidelity_test.dart test/odt_list_fidelity_test.dart test/odt_note_fidelity_test.dart test/odt_paragraph_properties_test.dart test/odt_section_fidelity_test.dart test/odt_section_integration_test.dart test/odt_structure_fidelity_test.dart test/odt_table_merge_test.dart --reporter expanded > /workspace/scratch/c4115a2a85e2/incoming-audit/odt-merge-tests-final.log 2>&1",
+      "exit_code": 0,
+      "passed": 208,
+      "failed": 0
+    },
+    {
+      "name": "analyze-resolved-files",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite/packages/quds_office_engine",
+      "command": "source /workspace/scratch/c4115a2a85e2/quds_env.sh && \"$QUDS_DART\" analyze lib/src/word/serial/odt_document_writer.dart test/odt_section_fidelity_test.dart test/odt_section_integration_test.dart > /workspace/scratch/c4115a2a85e2/incoming-audit/odt-merge-analyze.log 2>&1",
+      "exit_code": 0,
+      "result": "No issues found!"
+    },
+    {
+      "name": "diff-whitespace",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite",
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "logs": {
+    "odt-merge-tests-initial.log": {
+      "path": "/workspace/scratch/c4115a2a85e2/incoming-audit/odt-merge-tests-initial.log",
+      "sha256": "618af019edc6357c8854166e42cfe93b2b7322b058727ac762892b31a646479f",
+      "bytes": 24752
+    },
+    "odt-merge-tests-final.log": {
+      "path": "/workspace/scratch/c4115a2a85e2/incoming-audit/odt-merge-tests-final.log",
+      "sha256": "ed93d20dd75729a83e30b7045d0ecaf41114837e5e60eee92b851465d94455f0",
+      "bytes": 23388
+    },
+    "odt-merge-analyze.log": {
+      "path": "/workspace/scratch/c4115a2a85e2/incoming-audit/odt-merge-analyze.log",
+      "sha256": "17ef6d247ac347ab3cea012d0411b5919d1b27fbe400cdf5353f2f04fd8fb065",
+      "bytes": 122
+    }
+  },
+  "not_performed": [
+    "No staging, committing or pushing by this agent.",
+    "No GitHub Actions dispatched, polled or awaited.",
+    "No new consumer-application qualification; imported qualification limitations remain."
+  ]
+}

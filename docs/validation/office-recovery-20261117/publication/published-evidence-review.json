@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-17T16:32:18.234292+00:00",
+  "branch": "codex/office-continuation-20261117",
+  "published_evidence_commit": "b0f6d806a8ce3869c5a52e51bc7fed2bd4dbdbba",
+  "published_tree": "0877fe82173c03779cb7be541f8753368966ca8e",
+  "local_tree_matches_remote": true,
+  "qualified_source": "966196f386ec1776c836664b3eb7c93e8e92605c",
+  "production_diff_paths_since_qualification": [],
+  "captured_refs": 258,
+  "distinct_captured_heads": 173,
+  "all_captured_heads_are_ancestors": true,
+  "archives": [
+    {
+      "path": "docs/validation/office-recovery-20261117/consumer/evidence/final-966196f3.tar.xz",
+      "bytes": 871456,
+      "sha256": "9a4ff35ab6dd4dbfeee9964284360ec09c3919a28bb551296b3a5f18e7e33520",
+      "published_git_blob": "f9b2f3ed53e9cb1bc19e90ce412051253e7f7438",
+      "matches_reviewed_archive": true
+    },
+    {
+      "path": "docs/validation/office-recovery-20261117/qualification/evidence/qualification-966196f3.tar.xz",
+      "bytes": 893116,
+      "sha256": "5f7e3b60530bc8070684f6aa1bd23957a3e1d86629c8ca6f30097e2ab29411a2",
+      "published_git_blob": "6921ca0f94ddf8776038ea2b193096699079e21f",
+      "matches_reviewed_archive": true
+    }
+  ],
+  "clean_checkout_at_readback": true,
+  "github_ci_queried_or_awaited": false,
+  "passed": true
+}

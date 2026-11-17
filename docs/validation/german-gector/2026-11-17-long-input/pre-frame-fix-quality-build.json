@@ -1,0 +1,1406 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-dart-aot-build",
+  "timestamp_utc": "2026-11-17T15:45:30.025456+00:00",
+  "completed": true,
+  "passed": true,
+  "source_stable": true,
+  "dependencies_stable": true,
+  "sdk_stable": true,
+  "stage": "complete",
+  "dependency_scope": "All .dart files in every resolved package library directory; a conservative superset of package compiler inputs.",
+  "dependency_digest": "SHA256 of compact sorted JSON mapping library-relative paths to their SHA256 digests, encoded as UTF-8.",
+  "command": [
+    "<dart>",
+    "compile",
+    "aot-snapshot",
+    "--packages=.dart_tool/package_config.json",
+    "tools/proofing/german_model/run_incremental_quality.dart",
+    "-o",
+    "<staged-output>"
+  ],
+  "target": "incremental-quality",
+  "source_files": {
+    ".dart_tool/package_config.json": "08756302e05cdc5278a731450a35e95ce9ca6503157c9b95186c6663a4ddae97",
+    "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": "2def2223516731f632e5ab4a37f94377142d0644a5df5f50964fefaa92b2d193",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": "cd79dee10538a3fa7ec47246e35dd45a3535720202c7e146e66f844523fd51bc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": "39c3bf9d907cdccdbfb0cc64c06ad76f2c0272790b4747626325d43f7497e7f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": "5af756aff60cbc4a77425f1a1e5d48d712231b9892aa1d646af46b4e6c034a59",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": "ec59197668f522895e525879f1acf1cd9d52c27740dda4d17293e95b28208bcf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": "6cace804210b0f52008da94ededb29692cc5a39041976aa4e999d17dfedfe2f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": "cd70267d1d9580aa6b9a46e56b006ac961e614f0c6103d8850aa9b091b0b8627",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": "afc12eeb4b6772d262451802f12758c955607ed6239adca1ef63c0e335f62e9f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": "773e74ed12d9891f1fc1b83c0cd4dcd33675c745edccee35e3fa42ea2004a839",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": "bc34d24db3703a5f4bc7fdb73e5f91f269316db17ad0f375e656cf838d0713d2",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": "4ee5929fca1b20454093614cf3fc9f733c6a246dbb24e7d2865f56aa7829762e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": "5800bdb1c6f699fb2d7080e4d3c5327734724ba0212465aba019c3c37eba9b50",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": "06f35af0a008762feea1b0529867f5f60a4b11c4fa6365734b534a4672d6d829",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": "104de822d57601b57eb0626ed49b33f5ad71c5923459121de94a447c17a7e991",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": "8e6dc9e9e3c174af9719f3ec8f1814972dec97f9a6e41d481b54ff29650d0c72",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": "fbfc005247f5dd9bcb50347e2f32707e6b46233e6465ceff85cb3962dd8d9cde",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": "356f006c4a82ecfc09387ff2f1fe921fbd13abe55773eb640dfcb91a426374d9",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "ba3df92b652889da16d2278d9b22eeb3021d11d1b4ba076f1852bffef396fa21",
+    "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "bd796b422d9dd6b95414bfb6a0695e3c1a83205b4235da803b9de86cf2157535",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "f381f62d259a34930199be77829717042aed7c0b97185f41bff051b43e4b8307",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "406ebbb33e00d547bf9dbeaaa603de56f8517fbd81109284e00358052fcf40ef",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+    "packages/quds_office_engine/pubspec.yaml": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+    "packages/quds_proofing_gector/lib/src/backend.dart": "b8dac86a9e4ab1a9c824ccd346f1896a5a2f4ea9d79aaa1bbd9e51eb2641dad3",
+    "packages/quds_proofing_gector/lib/src/bundle.dart": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+    "packages/quds_proofing_gector/lib/src/decoder.dart": "674bd409d579c6a58c60d6b5c6bef2b04824a554b685389d9fe5cdc7508e2096",
+    "packages/quds_proofing_gector/lib/src/guards.dart": "6c9684c05e8f925df5d8d66cf1c4f5fa7bd772abd7658648ec950ec0803408e1",
+    "packages/quds_proofing_gector/lib/src/lexicon.dart": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+    "packages/quds_proofing_gector/lib/src/native_backend.dart": "9d25812acd0efb0e8d583392092d4ef803d5b164a7b832e6aa2adb9b9f95d6c7",
+    "packages/quds_proofing_gector/lib/src/provider.dart": "67cf9c2b7ec95f16cfa56bdac3caffc07267298bec830ac083d0817b0f5f0f56",
+    "packages/quds_proofing_gector/lib/src/segmentation.dart": "2dd791265fa98c35fe55cb9256ac8de2276729d37711aec690a186e3c594677f",
+    "packages/quds_proofing_gector/lib/src/source_text.dart": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+    "packages/quds_proofing_gector/lib/src/tokenizer.dart": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+    "packages/quds_proofing_gector/lib/src/transport.dart": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+    "packages/quds_proofing_gector/lib/src/unicode_case.dart": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+    "packages/quds_proofing_gector/lib/src/worker_native.dart": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231",
+    "packages/quds_proofing_gector/lib/src/worker_unsupported.dart": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+    "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+    "pubspec.lock": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+    "pubspec.yaml": "c7b68a447435871322327239d2886ff194423c65d97a39916b37cb18ca20f9a1",
+    "tools/proofing/german_model/artifacts.json": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+    "tools/proofing/german_model/incremental_quality.dart": "5843e82b170d00e5e50a243c88bbbce458eb664181701f7480eb4c310a9e7f4d",
+    "tools/proofing/german_model/run_incremental_quality.dart": "4e65ccd23c554e0b9afa91e1bea6d9670d50e5e555484738c8c9627bab16a1b7"
+  },
+  "sdk_inputs": {
+    "dart": {
+      "file": "dart",
+      "bytes": 4835712,
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "dartaotruntime": {
+      "file": "dartaotruntime",
+      "bytes": 5710176,
+      "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72"
+    },
+    "gen_snapshot": {
+      "file": "gen_snapshot",
+      "bytes": 4724824,
+      "sha256": "f1f382c42df99bc451cc652218bb534df46774890b2571e2ea6b4e40b9995ddf"
+    },
+    "bin/snapshots/dartdev_aot.dart.snapshot": {
+      "file": "dartdev_aot.dart.snapshot",
+      "bytes": 22954416,
+      "sha256": "3f675fe483acfb56e752121c2cf0b1505d4db0edf0fc16ca996d3d76eb252b55"
+    },
+    "bin/snapshots/gen_kernel_aot.dart.snapshot": {
+      "file": "gen_kernel_aot.dart.snapshot",
+      "bytes": 14156264,
+      "sha256": "d4b8f600d1195c5c505fa74951dd9b71971c8d63b3a144719d194f0852734140"
+    },
+    "bin/dartvm": {
+      "file": "dartvm",
+      "bytes": 42998912,
+      "sha256": "ec532a0620beed626fbf89234f1dcc857c15f4e064fb8e99715345027bfb129d"
+    },
+    "lib/_internal/vm_platform.dill": {
+      "file": "vm_platform.dill",
+      "bytes": 8663120,
+      "sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67"
+    },
+    "lib/_internal/vm_platform_product.dill": {
+      "file": "vm_platform_product.dill",
+      "bytes": 8663064,
+      "sha256": "0d8d95ad3515bcfef1ed6ee4d1f45c0d88a0aad92898eaee9d57e041928a4139"
+    },
+    "lib/_internal/vm_platform_strong.dill": {
+      "file": "vm_platform_strong.dill",
+      "bytes": 8663120,
+      "sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67"
+    },
+    "version": {
+      "file": "version",
+      "bytes": 7,
+      "sha256": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac"
+    }
+  },
+  "dependency_inputs": {
+    "package_config": {
+      "file": "package_config.json",
+      "bytes": 25574,
+      "sha256": "08756302e05cdc5278a731450a35e95ce9ca6503157c9b95186c6663a4ddae97"
+    },
+    "packages": {
+      "_fe_analyzer_shared": {
+        "library_directory_present": true,
+        "dart_file_count": 139,
+        "sha256": "8f11a3987c541a1c6fb1597de4cdbf09259fdb0493fc6ae28f156af59eaacfd3"
+      },
+      "analyzer": {
+        "library_directory_present": true,
+        "dart_file_count": 446,
+        "sha256": "128415f5b70d4aafa2dbd2870d639ffc540bcf404137a03f890c87f7311aff67"
+      },
+      "archive": {
+        "library_directory_present": true,
+        "dart_file_count": 172,
+        "sha256": "ab052d4ff3c242b258eb9bdcc874b91bbb25f016e27b13d435f29eac01f2970d"
+      },
+      "args": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "c10800588ca91bc5addb89ec5c03c214bcf0e7ab9caf4a966e0333a814d6bcb4"
+      },
+      "async": {
+        "library_directory_present": true,
+        "dart_file_count": 45,
+        "sha256": "33a1033b83bd20fb07db08bc737c331078b7f77331c340a591cf45c451cffda8"
+      },
+      "barcode": {
+        "library_directory_present": true,
+        "dart_file_count": 34,
+        "sha256": "85a457ea50905042c7dcf7aa82244d07ea4b31835aabf128d853f6549afe016d"
+      },
+      "bidi": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "646c91e9fb8a5cf198a679fd973cbeeba468de610183f0a33beb9e8740a2e704"
+      },
+      "boolean_selector": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "70484fb7727b15e63cd417954c75fd759b873585e9e19d7e70b6f25b3ee46d33"
+      },
+      "characters": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "bb5cc47845e770d371ca35b92b5bff5953bf673d3e36d3eec3fc97b29a1e9326"
+      },
+      "cli_config": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "1a5c420d9a8d92c749f1f1a708aa166830cfc4f21b8e19dd43a53190484f2238"
+      },
+      "cli_util": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "d4b59e2051bc31b3bc9551e59bb464f23c6e522e90b54cf46cd80e587a31e318"
+      },
+      "clock": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "c9a66bfd5c12eead7195dafb8636460a22152984611bf5de11971709f4b01e8d"
+      },
+      "collection": {
+        "library_directory_present": true,
+        "dart_file_count": 29,
+        "sha256": "e83d84fc4043d72c818e9f95937b3cdda23db1883290a3c68cf14987bfeef37b"
+      },
+      "convert": {
+        "library_directory_present": true,
+        "dart_file_count": 15,
+        "sha256": "edce1e586e4d3e3226266b0dea5ebf71a64202d96735585833cfa5a7fc24bef8"
+      },
+      "coverage": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "5f6f92047223c08e731c6e72e91cd00fc0ba418e1a01eab961f192f2a2b1ccf1"
+      },
+      "cross_file": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "a5125613d4eaba71fae752352357571a10c3ecb71274fc069bae7c355a64f4ff"
+      },
+      "crypto": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "04fade2fd578e46e49489653f774eb23c7b7ed5a5219f04b340a6e163a6a8772"
+      },
+      "dbus": {
+        "library_directory_present": true,
+        "dart_file_count": 38,
+        "sha256": "b9c9091f649bf9f046f7196219c07a98551b3e3ae89c7e1cad43811b24a71493"
+      },
+      "fake_async": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "32ad939f0205c871e42abc8f48af2b2b8d13b68f72659728a458ec7b446ea898"
+      },
+      "ffi": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "2f536a3afd89074091044f78153832421db55a61dbe58e7fd293c4b7b16f3901"
+      },
+      "file": {
+        "library_directory_present": true,
+        "dart_file_count": 49,
+        "sha256": "f74f3f5c6a36952f6da838c92a5ab15b861f99630362a9546316bef4fe457a64"
+      },
+      "file_picker": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "dab780e1ec3b50fdfd02e83631aa3c462810a442580f40c0ee80a3590c4c0904"
+      },
+      "flutter": {
+        "library_directory_present": true,
+        "dart_file_count": 695,
+        "sha256": "2c310527ddc356baa6904ec03a98f493ec9638ab23b6e4533b6aae3cc86112eb"
+      },
+      "flutter_lints": {
+        "library_directory_present": true,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "flutter_localizations": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "76a2148c73bd0065df60a37c99af525cfaea9cd23fd97c49c227495115747712"
+      },
+      "flutter_plugin_android_lifecycle": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "flutter_test": {
+        "library_directory_present": true,
+        "dart_file_count": 40,
+        "sha256": "031fbaec92fbd9f7f74499a70bb17256093facb44d68cac058df2b7750cd806c"
+      },
+      "flutter_web_plugins": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "66ec879c19ec57c026ef4d9fb506b87bfa0ffd90f92b373f48dcb8b6311b150a"
+      },
+      "frontend_server_client": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "6c31b654535a983df87aa6ab3f9d474517a59e99f71e64e8b7f4d78856cc8370"
+      },
+      "glob": {
+        "library_directory_present": true,
+        "dart_file_count": 6,
+        "sha256": "2cdf4a18e54e00071ddf6fdbc7cf06fa9bbda729bdbfe9bfc67f6943796c1018"
+      },
+      "http": {
+        "library_directory_present": true,
+        "dart_file_count": 27,
+        "sha256": "8c20d0c17743e6ab07ebc4b8a0d47c031e6a4c528da11105f484a2ce5f0497cd"
+      },
+      "http_multi_server": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "1566e50ee7d0b5a0247fa84d6e6410a80341d8bdb420cae5eb675ee314b98166"
+      },
+      "http_parser": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "9adb7d5f0c907c73441a3d918dbb75f3fc1f5edae95dce8c95c9e37a9c497b2a"
+      },
+      "image": {
+        "library_directory_present": true,
+        "dart_file_count": 398,
+        "sha256": "e0b5df1eb6b76b7c2b2ddb7bca1eb4c039f4b14080cbb2da3ff0231e9e68a720"
+      },
+      "intl": {
+        "library_directory_present": true,
+        "dart_file_count": 47,
+        "sha256": "dec68f8e65610b975f664d6f512e77989ff0af5eca15f6651b9aeaa9c582e863"
+      },
+      "io": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "dd1fd7e994f3cc5e7df1a11753c8557911b8a162a031cb1282df8eaf170b8f1e"
+      },
+      "json_annotation": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "1a9471338fb4522b31727c2b5febca95ea0a8a9a154d9746be3f3b881149caa2"
+      },
+      "leak_tracker": {
+        "library_directory_present": true,
+        "dart_file_count": 25,
+        "sha256": "6914e509291909ea21c1615230dae6615eea31c7d9ad68f954c9c6a44ac625d0"
+      },
+      "leak_tracker_flutter_testing": {
+        "library_directory_present": true,
+        "dart_file_count": 6,
+        "sha256": "8affb9df35915bfe67c6e88d2b901ac3f6c623d0aa013dfb078d2dddc27acba7"
+      },
+      "leak_tracker_testing": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "e0c5c56dbacb7637768da93cd77b856f8a2bb09280c27ed2c5733af6be2d014c"
+      },
+      "legacy_doc_parser": {
+        "library_directory_present": true,
+        "dart_file_count": 66,
+        "sha256": "607e88d705f6ffe51c5d750156f861483c6e46f4411aadf565ab015dfa293e5b"
+      },
+      "lints": {
+        "library_directory_present": true,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "logging": {
+        "library_directory_present": true,
+        "dart_file_count": 4,
+        "sha256": "0f0f0a5d92f3086b2d3ac74275ba676ab86f8ff88bbd11a965ab38c60522a504"
+      },
+      "matcher": {
+        "library_directory_present": true,
+        "dart_file_count": 32,
+        "sha256": "22dc846db73f3687b50a83e8783686c5d48ca7c13a29a2a529bc9a830ab73202"
+      },
+      "material_color_utilities": {
+        "library_directory_present": true,
+        "dart_file_count": 39,
+        "sha256": "0719bd4ab6ff33a249c65818c0df3424374291649920e9e739525f176f2e5b5d"
+      },
+      "meta": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "a954821ccb8d0f3b844ad2cfc1c9d575d66b6493519257021990d9063e0f5b5d"
+      },
+      "mime": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "9f951f710ebe1eae2eb7cc00be1182b624742ffa225dbb14f61a71a46cff3053"
+      },
+      "node_preamble": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "838c39fdc943ed9aeafc8076d5851adea1b305112f50cac0aa0d7da12ec1f59a"
+      },
+      "package_config": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "5da8b61a1e31dfb77f8d75edec2dbedf0142e69a6b33f8326b72fb3e0fdb24a2"
+      },
+      "path": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "1778844311f872ff42d5d13ce964c066373545bbad2ec331f16d3021b735a40a"
+      },
+      "path_parsing": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "a7eed3717cecc71fa0e5d30cac2c613720fbe149d33037806f177defea6d4c41"
+      },
+      "pdf": {
+        "library_directory_present": true,
+        "dart_file_count": 136,
+        "sha256": "f5e8c2e5adf251a1f1239df3b06b7ffaac663643b13b0ead160d4a09386db67f"
+      },
+      "pdf_widget_wrapper": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "301c5ed9c7f09490a6a11f34dcefa7dd518e103137ad62872c752c5f325817d1"
+      },
+      "petitparser": {
+        "library_directory_present": true,
+        "dart_file_count": 132,
+        "sha256": "19efcf63761e6e4e65dac27ef0b49e3eb87e25ff8557dbc29c653b3a88885079"
+      },
+      "plugin_platform_interface": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "1dbfdad60724c13997ca4234c43ba026f62000b8e56c3d139760e5146109f1ea"
+      },
+      "pool": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "b248dbab2318bda881053b2db39a551eb1d82eb620e83d8eb15ae99e92a4543c"
+      },
+      "posix": {
+        "library_directory_present": true,
+        "dart_file_count": 35,
+        "sha256": "b26e1e4e8409ee2a38addbd7433eaa5b3524c87bbbadb3ea04cbf0992a336c46"
+      },
+      "printing": {
+        "library_directory_present": true,
+        "dart_file_count": 27,
+        "sha256": "f269c1eba85d843750cfb440978c5f304016745ab61c7586b5b3ee3020a1a0a5"
+      },
+      "pub_semver": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "15eeb1511cac150f7fdac5dcc0c6f20cd5cdcbced58757a2b092e9e85eb9d862"
+      },
+      "qr": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "995e30ffb5eb49060009473bfbaee7d5570bec0e48531a6e7282f5a4d7d30ed8"
+      },
+      "quds_office_editor": {
+        "library_directory_present": true,
+        "dart_file_count": 76,
+        "sha256": "95d0538b17d4b25dd47850d99bce41e0d36ac1a6aece998d53525c607ec91f43"
+      },
+      "quds_office_engine": {
+        "library_directory_present": true,
+        "dart_file_count": 319,
+        "sha256": "9cf293d5ef02e3ac4581bcfeebc51306b4d9d0bc155eeb455cad6304e6a62612"
+      },
+      "quds_office_engine_example": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "quds_office_studio": {
+        "library_directory_present": true,
+        "dart_file_count": 26,
+        "sha256": "de776a6ce1496a0720cc2f8242f1f92533aa81540f7cb5b6df8771917fef5f95"
+      },
+      "quds_office_suite": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "quds_proofing_gector": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "34c2fcfd253498c8d4fddc18416f607ca81f5875b53bd7335905a1e008863475"
+      },
+      "quds_proofing_harper": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "e0665ae9e72bc2caa90d848715ccee6c71d4ab352b6d4991fd994376487dc01c"
+      },
+      "quds_report_studio": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "63562ea314e2239a8a52ddddff7a7cde4696bfac5646ab4cb556efd3e1c0761c"
+      },
+      "quds_reports": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "63f4f01174a095568b20c84030fbdee4cee7014bfe8ccebcde2aee103f7be105"
+      },
+      "screen_retriever": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "81a67a65d235400a6d30c8e78e863f118062f6c28b4d087066d41c84f880b478"
+      },
+      "screen_retriever_linux": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "screen_retriever_macos": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "screen_retriever_platform_interface": {
+        "library_directory_present": true,
+        "dart_file_count": 6,
+        "sha256": "03cc537efda63b9512cb3dce99c6a96f5c4dba83f97fa8fde6728ab7df4f37e0"
+      },
+      "screen_retriever_windows": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "shelf": {
+        "library_directory_present": true,
+        "dart_file_count": 20,
+        "sha256": "c03a2e922648b28256d0c6c7b7402e79b6009b896edc1b1a3a089d87c8a67088"
+      },
+      "shelf_packages_handler": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "081a61eb34da95c46cf56cdd4c8178851ae4b8a3389c7098379e98d37bb44269"
+      },
+      "shelf_static": {
+        "library_directory_present": true,
+        "dart_file_count": 4,
+        "sha256": "1022a6b8002333b17e901ee4048ecf25e55c2e7c27261563c8fd69402af77eca"
+      },
+      "shelf_web_socket": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "37910fd99a6669f3a707fe237112ab269c07eb9020864596acac25209822b6bc"
+      },
+      "sky_engine": {
+        "library_directory_present": true,
+        "dart_file_count": 280,
+        "sha256": "0456dba307fdde5863cbe5e942f8435f20fe1337c64528582dd79f68c7003405"
+      },
+      "source_map_stack_trace": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "096900e1ba4205632c6d8045ee6d26d7144e1565cbc54795179ec1322a8d64fc"
+      },
+      "source_maps": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "ea10537347eaa3504c350665ca7d64322e19f954b06ab140cb7d5fe066630cb1"
+      },
+      "source_span": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "0fe7d6aec5766be77604c262a4654acabe160d37a05640ff50ee25a00b6ddb24"
+      },
+      "stack_trace": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "47131ab910da07ba69d610924eebb695dc7a211d7f59dcfbc55f3017c2df9f09"
+      },
+      "stream_channel": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "e6dd9d9cc8705d0fb9ad8640af0d8eb6bcd8463816ee50b392d46bed4b272222"
+      },
+      "string_scanner": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "88599505c9c0d0d6393a3d60a737cc552116fce66d68e70948a0e5e216667321"
+      },
+      "term_glyph": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "3c0c9a12959033519fb92047fe5d4c1651940b3b8d2dbafcb6d478175014ef28"
+      },
+      "test": {
+        "library_directory_present": true,
+        "dart_file_count": 32,
+        "sha256": "22c7e3c6a5c6b379ecc51cfb127f8849174ce8c1ddb802e82a34c72e594ecbc1"
+      },
+      "test_api": {
+        "library_directory_present": true,
+        "dart_file_count": 44,
+        "sha256": "3a5cd32aa1b27f00e72b0f256c4dbc7f314b533fc464bcae90e67a3f13dc4829"
+      },
+      "test_core": {
+        "library_directory_present": true,
+        "dart_file_count": 75,
+        "sha256": "1ce2db2936648667eeea960ff98bd0680aacfc7598ff64ab24769069258fa4a7"
+      },
+      "typed_data": {
+        "library_directory_present": true,
+        "dart_file_count": 4,
+        "sha256": "e835d484f8514e107a4331228f5e3724ef5c5ba445f0946ac9e6bea9b7c9dd3f"
+      },
+      "url_launcher": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "664b995a58744877b819369db9ce588f17426f8cd61030969da0e3ea349004d1"
+      },
+      "url_launcher_android": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "a97d015bf7fa38c0135f4607814ba396abbd42aff3dff403330d9d772be3d605"
+      },
+      "url_launcher_ios": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "275097054d804023c98cd04a662ca4b378a2ee44c75956204de9ae56e179efb0"
+      },
+      "url_launcher_linux": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "2be27ee87c16a00c8ff22949a451015dd38b9bc054bcfdb3ed18aa21449f412e"
+      },
+      "url_launcher_macos": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "0c6b66060ac2e2633a3f9f0ff2ab72402b9998c733e0753d275be08a63fbbf87"
+      },
+      "url_launcher_platform_interface": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "3d0f42327ed15d28a06ab4ec63356154957e5b5ebf4b922247dcab38801ed78b"
+      },
+      "url_launcher_web": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "e765cdd497c8eb94866233dd8d7adfb4eddf3f9421db49cfb137dfcca148bc22"
+      },
+      "url_launcher_windows": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "c861f22aed40b10120244083eab2903fbac6eaabce11ab507a5dc178215a5aea"
+      },
+      "vector_math": {
+        "library_directory_present": true,
+        "dart_file_count": 73,
+        "sha256": "6333e139873e87998ec12712023700b40c810b73cc94a90e6810c84bb82760e4"
+      },
+      "vm_service": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "4fa0d47c3a4a2fa0f028d96aeab8f97f2909497970f335a3695f010957b262ae"
+      },
+      "watcher": {
+        "library_directory_present": true,
+        "dart_file_count": 26,
+        "sha256": "8ad37f47d74b0ec56d490a557c6174d9029a28a5163ede08f50b6c5fdc93bb1f"
+      },
+      "web": {
+        "library_directory_present": true,
+        "dart_file_count": 190,
+        "sha256": "57cccbe405095ef79a8067b0e94bd3c128680c715bcc9f4a4de8c7c632643d18"
+      },
+      "web_socket": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "783f1a21ecc5d7df15d5909b3eb1396b59a021ea6d8d0fe03098af55a8241074"
+      },
+      "web_socket_channel": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "10de1a6077e873a69817d44fa52f1aa046a8e3f3d3652a4ea05e7aacd2717454"
+      },
+      "webkit_inspection_protocol": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "69caae6e167722d36f3b95141ef5339d58becff8d917637ce7fd758b63972b59"
+      },
+      "win32": {
+        "library_directory_present": true,
+        "dart_file_count": 287,
+        "sha256": "fb50915544e8ff3fdc06bc6d659b54d0ecc584125b6091bf8e54cfbda9e07e69"
+      },
+      "window_manager": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "a25e2523ceb3deace13d3494080822e1ef59bc316c0c22ac38dec3252ec68c9b"
+      },
+      "xml": {
+        "library_directory_present": true,
+        "dart_file_count": 172,
+        "sha256": "ce473a7006e5b5510f007a14948b96be7847f536eb7e457b5f71bc40b7a76a39"
+      },
+      "yaml": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "a970da91801d8beed1ac58bb7867a0bd9aeb2c05ee47abbfb1f1fac38e24d962"
+      }
+    }
+  },
+  "compiler": {
+    "executable": {
+      "file": "dart",
+      "bytes": 4835712,
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    }
+  },
+  "source_entrypoint": {
+    "file": "run_incremental_quality.dart",
+    "bytes": 12118,
+    "sha256": "4e65ccd23c554e0b9afa91e1bea6d9670d50e5e555484738c8c9627bab16a1b7"
+  },
+  "compile": {
+    "returncode": 0,
+    "stdout_sha256": "a190b21ae49ee1d6ecd281c8578eb14ece2c7000f277149a7f0cdd7d9fb64548",
+    "stdout": "Generated: <staged-output>\n",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "source_files_after": {
+    ".dart_tool/package_config.json": "08756302e05cdc5278a731450a35e95ce9ca6503157c9b95186c6663a4ddae97",
+    "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": "2def2223516731f632e5ab4a37f94377142d0644a5df5f50964fefaa92b2d193",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": "cd79dee10538a3fa7ec47246e35dd45a3535720202c7e146e66f844523fd51bc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": "39c3bf9d907cdccdbfb0cc64c06ad76f2c0272790b4747626325d43f7497e7f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": "5af756aff60cbc4a77425f1a1e5d48d712231b9892aa1d646af46b4e6c034a59",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": "ec59197668f522895e525879f1acf1cd9d52c27740dda4d17293e95b28208bcf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": "6cace804210b0f52008da94ededb29692cc5a39041976aa4e999d17dfedfe2f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": "cd70267d1d9580aa6b9a46e56b006ac961e614f0c6103d8850aa9b091b0b8627",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": "afc12eeb4b6772d262451802f12758c955607ed6239adca1ef63c0e335f62e9f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": "773e74ed12d9891f1fc1b83c0cd4dcd33675c745edccee35e3fa42ea2004a839",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": "bc34d24db3703a5f4bc7fdb73e5f91f269316db17ad0f375e656cf838d0713d2",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": "4ee5929fca1b20454093614cf3fc9f733c6a246dbb24e7d2865f56aa7829762e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": "5800bdb1c6f699fb2d7080e4d3c5327734724ba0212465aba019c3c37eba9b50",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": "06f35af0a008762feea1b0529867f5f60a4b11c4fa6365734b534a4672d6d829",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": "104de822d57601b57eb0626ed49b33f5ad71c5923459121de94a447c17a7e991",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": "8e6dc9e9e3c174af9719f3ec8f1814972dec97f9a6e41d481b54ff29650d0c72",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": "fbfc005247f5dd9bcb50347e2f32707e6b46233e6465ceff85cb3962dd8d9cde",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": "356f006c4a82ecfc09387ff2f1fe921fbd13abe55773eb640dfcb91a426374d9",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "ba3df92b652889da16d2278d9b22eeb3021d11d1b4ba076f1852bffef396fa21",
+    "packages/quds_office_engine/lib/src/proofing/german_morphology.dart": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "bd796b422d9dd6b95414bfb6a0695e3c1a83205b4235da803b9de86cf2157535",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "f381f62d259a34930199be77829717042aed7c0b97185f41bff051b43e4b8307",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "406ebbb33e00d547bf9dbeaaa603de56f8517fbd81109284e00358052fcf40ef",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+    "packages/quds_office_engine/pubspec.yaml": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+    "packages/quds_proofing_gector/lib/src/backend.dart": "b8dac86a9e4ab1a9c824ccd346f1896a5a2f4ea9d79aaa1bbd9e51eb2641dad3",
+    "packages/quds_proofing_gector/lib/src/bundle.dart": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+    "packages/quds_proofing_gector/lib/src/decoder.dart": "674bd409d579c6a58c60d6b5c6bef2b04824a554b685389d9fe5cdc7508e2096",
+    "packages/quds_proofing_gector/lib/src/guards.dart": "6c9684c05e8f925df5d8d66cf1c4f5fa7bd772abd7658648ec950ec0803408e1",
+    "packages/quds_proofing_gector/lib/src/lexicon.dart": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+    "packages/quds_proofing_gector/lib/src/native_backend.dart": "9d25812acd0efb0e8d583392092d4ef803d5b164a7b832e6aa2adb9b9f95d6c7",
+    "packages/quds_proofing_gector/lib/src/provider.dart": "67cf9c2b7ec95f16cfa56bdac3caffc07267298bec830ac083d0817b0f5f0f56",
+    "packages/quds_proofing_gector/lib/src/segmentation.dart": "2dd791265fa98c35fe55cb9256ac8de2276729d37711aec690a186e3c594677f",
+    "packages/quds_proofing_gector/lib/src/source_text.dart": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+    "packages/quds_proofing_gector/lib/src/tokenizer.dart": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+    "packages/quds_proofing_gector/lib/src/transport.dart": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+    "packages/quds_proofing_gector/lib/src/unicode_case.dart": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+    "packages/quds_proofing_gector/lib/src/worker_native.dart": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231",
+    "packages/quds_proofing_gector/lib/src/worker_unsupported.dart": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+    "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+    "pubspec.lock": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+    "pubspec.yaml": "c7b68a447435871322327239d2886ff194423c65d97a39916b37cb18ca20f9a1",
+    "tools/proofing/german_model/artifacts.json": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+    "tools/proofing/german_model/incremental_quality.dart": "5843e82b170d00e5e50a243c88bbbce458eb664181701f7480eb4c310a9e7f4d",
+    "tools/proofing/german_model/run_incremental_quality.dart": "4e65ccd23c554e0b9afa91e1bea6d9670d50e5e555484738c8c9627bab16a1b7"
+  },
+  "dependency_inputs_after": {
+    "package_config": {
+      "file": "package_config.json",
+      "bytes": 25574,
+      "sha256": "08756302e05cdc5278a731450a35e95ce9ca6503157c9b95186c6663a4ddae97"
+    },
+    "packages": {
+      "_fe_analyzer_shared": {
+        "library_directory_present": true,
+        "dart_file_count": 139,
+        "sha256": "8f11a3987c541a1c6fb1597de4cdbf09259fdb0493fc6ae28f156af59eaacfd3"
+      },
+      "analyzer": {
+        "library_directory_present": true,
+        "dart_file_count": 446,
+        "sha256": "128415f5b70d4aafa2dbd2870d639ffc540bcf404137a03f890c87f7311aff67"
+      },
+      "archive": {
+        "library_directory_present": true,
+        "dart_file_count": 172,
+        "sha256": "ab052d4ff3c242b258eb9bdcc874b91bbb25f016e27b13d435f29eac01f2970d"
+      },
+      "args": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "c10800588ca91bc5addb89ec5c03c214bcf0e7ab9caf4a966e0333a814d6bcb4"
+      },
+      "async": {
+        "library_directory_present": true,
+        "dart_file_count": 45,
+        "sha256": "33a1033b83bd20fb07db08bc737c331078b7f77331c340a591cf45c451cffda8"
+      },
+      "barcode": {
+        "library_directory_present": true,
+        "dart_file_count": 34,
+        "sha256": "85a457ea50905042c7dcf7aa82244d07ea4b31835aabf128d853f6549afe016d"
+      },
+      "bidi": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "646c91e9fb8a5cf198a679fd973cbeeba468de610183f0a33beb9e8740a2e704"
+      },
+      "boolean_selector": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "70484fb7727b15e63cd417954c75fd759b873585e9e19d7e70b6f25b3ee46d33"
+      },
+      "characters": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "bb5cc47845e770d371ca35b92b5bff5953bf673d3e36d3eec3fc97b29a1e9326"
+      },
+      "cli_config": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "1a5c420d9a8d92c749f1f1a708aa166830cfc4f21b8e19dd43a53190484f2238"
+      },
+      "cli_util": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "d4b59e2051bc31b3bc9551e59bb464f23c6e522e90b54cf46cd80e587a31e318"
+      },
+      "clock": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "c9a66bfd5c12eead7195dafb8636460a22152984611bf5de11971709f4b01e8d"
+      },
+      "collection": {
+        "library_directory_present": true,
+        "dart_file_count": 29,
+        "sha256": "e83d84fc4043d72c818e9f95937b3cdda23db1883290a3c68cf14987bfeef37b"
+      },
+      "convert": {
+        "library_directory_present": true,
+        "dart_file_count": 15,
+        "sha256": "edce1e586e4d3e3226266b0dea5ebf71a64202d96735585833cfa5a7fc24bef8"
+      },
+      "coverage": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "5f6f92047223c08e731c6e72e91cd00fc0ba418e1a01eab961f192f2a2b1ccf1"
+      },
+      "cross_file": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "a5125613d4eaba71fae752352357571a10c3ecb71274fc069bae7c355a64f4ff"
+      },
+      "crypto": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "04fade2fd578e46e49489653f774eb23c7b7ed5a5219f04b340a6e163a6a8772"
+      },
+      "dbus": {
+        "library_directory_present": true,
+        "dart_file_count": 38,
+        "sha256": "b9c9091f649bf9f046f7196219c07a98551b3e3ae89c7e1cad43811b24a71493"
+      },
+      "fake_async": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "32ad939f0205c871e42abc8f48af2b2b8d13b68f72659728a458ec7b446ea898"
+      },
+      "ffi": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "2f536a3afd89074091044f78153832421db55a61dbe58e7fd293c4b7b16f3901"
+      },
+      "file": {
+        "library_directory_present": true,
+        "dart_file_count": 49,
+        "sha256": "f74f3f5c6a36952f6da838c92a5ab15b861f99630362a9546316bef4fe457a64"
+      },
+      "file_picker": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "dab780e1ec3b50fdfd02e83631aa3c462810a442580f40c0ee80a3590c4c0904"
+      },
+      "flutter": {
+        "library_directory_present": true,
+        "dart_file_count": 695,
+        "sha256": "2c310527ddc356baa6904ec03a98f493ec9638ab23b6e4533b6aae3cc86112eb"
+      },
+      "flutter_lints": {
+        "library_directory_present": true,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "flutter_localizations": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "76a2148c73bd0065df60a37c99af525cfaea9cd23fd97c49c227495115747712"
+      },
+      "flutter_plugin_android_lifecycle": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "flutter_test": {
+        "library_directory_present": true,
+        "dart_file_count": 40,
+        "sha256": "031fbaec92fbd9f7f74499a70bb17256093facb44d68cac058df2b7750cd806c"
+      },
+      "flutter_web_plugins": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "66ec879c19ec57c026ef4d9fb506b87bfa0ffd90f92b373f48dcb8b6311b150a"
+      },
+      "frontend_server_client": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "6c31b654535a983df87aa6ab3f9d474517a59e99f71e64e8b7f4d78856cc8370"
+      },
+      "glob": {
+        "library_directory_present": true,
+        "dart_file_count": 6,
+        "sha256": "2cdf4a18e54e00071ddf6fdbc7cf06fa9bbda729bdbfe9bfc67f6943796c1018"
+      },
+      "http": {
+        "library_directory_present": true,
+        "dart_file_count": 27,
+        "sha256": "8c20d0c17743e6ab07ebc4b8a0d47c031e6a4c528da11105f484a2ce5f0497cd"
+      },
+      "http_multi_server": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "1566e50ee7d0b5a0247fa84d6e6410a80341d8bdb420cae5eb675ee314b98166"
+      },
+      "http_parser": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "9adb7d5f0c907c73441a3d918dbb75f3fc1f5edae95dce8c95c9e37a9c497b2a"
+      },
+      "image": {
+        "library_directory_present": true,
+        "dart_file_count": 398,
+        "sha256": "e0b5df1eb6b76b7c2b2ddb7bca1eb4c039f4b14080cbb2da3ff0231e9e68a720"
+      },
+      "intl": {
+        "library_directory_present": true,
+        "dart_file_count": 47,
+        "sha256": "dec68f8e65610b975f664d6f512e77989ff0af5eca15f6651b9aeaa9c582e863"
+      },
+      "io": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "dd1fd7e994f3cc5e7df1a11753c8557911b8a162a031cb1282df8eaf170b8f1e"
+      },
+      "json_annotation": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "1a9471338fb4522b31727c2b5febca95ea0a8a9a154d9746be3f3b881149caa2"
+      },
+      "leak_tracker": {
+        "library_directory_present": true,
+        "dart_file_count": 25,
+        "sha256": "6914e509291909ea21c1615230dae6615eea31c7d9ad68f954c9c6a44ac625d0"
+      },
+      "leak_tracker_flutter_testing": {
+        "library_directory_present": true,
+        "dart_file_count": 6,
+        "sha256": "8affb9df35915bfe67c6e88d2b901ac3f6c623d0aa013dfb078d2dddc27acba7"
+      },
+      "leak_tracker_testing": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "e0c5c56dbacb7637768da93cd77b856f8a2bb09280c27ed2c5733af6be2d014c"
+      },
+      "legacy_doc_parser": {
+        "library_directory_present": true,
+        "dart_file_count": 66,
+        "sha256": "607e88d705f6ffe51c5d750156f861483c6e46f4411aadf565ab015dfa293e5b"
+      },
+      "lints": {
+        "library_directory_present": true,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "logging": {
+        "library_directory_present": true,
+        "dart_file_count": 4,
+        "sha256": "0f0f0a5d92f3086b2d3ac74275ba676ab86f8ff88bbd11a965ab38c60522a504"
+      },
+      "matcher": {
+        "library_directory_present": true,
+        "dart_file_count": 32,
+        "sha256": "22dc846db73f3687b50a83e8783686c5d48ca7c13a29a2a529bc9a830ab73202"
+      },
+      "material_color_utilities": {
+        "library_directory_present": true,
+        "dart_file_count": 39,
+        "sha256": "0719bd4ab6ff33a249c65818c0df3424374291649920e9e739525f176f2e5b5d"
+      },
+      "meta": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "a954821ccb8d0f3b844ad2cfc1c9d575d66b6493519257021990d9063e0f5b5d"
+      },
+      "mime": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "9f951f710ebe1eae2eb7cc00be1182b624742ffa225dbb14f61a71a46cff3053"
+      },
+      "node_preamble": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "838c39fdc943ed9aeafc8076d5851adea1b305112f50cac0aa0d7da12ec1f59a"
+      },
+      "package_config": {
+        "library_directory_present": true,
+        "dart_file_count": 11,
+        "sha256": "5da8b61a1e31dfb77f8d75edec2dbedf0142e69a6b33f8326b72fb3e0fdb24a2"
+      },
+      "path": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "1778844311f872ff42d5d13ce964c066373545bbad2ec331f16d3021b735a40a"
+      },
+      "path_parsing": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "a7eed3717cecc71fa0e5d30cac2c613720fbe149d33037806f177defea6d4c41"
+      },
+      "pdf": {
+        "library_directory_present": true,
+        "dart_file_count": 136,
+        "sha256": "f5e8c2e5adf251a1f1239df3b06b7ffaac663643b13b0ead160d4a09386db67f"
+      },
+      "pdf_widget_wrapper": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "301c5ed9c7f09490a6a11f34dcefa7dd518e103137ad62872c752c5f325817d1"
+      },
+      "petitparser": {
+        "library_directory_present": true,
+        "dart_file_count": 132,
+        "sha256": "19efcf63761e6e4e65dac27ef0b49e3eb87e25ff8557dbc29c653b3a88885079"
+      },
+      "plugin_platform_interface": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "1dbfdad60724c13997ca4234c43ba026f62000b8e56c3d139760e5146109f1ea"
+      },
+      "pool": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "b248dbab2318bda881053b2db39a551eb1d82eb620e83d8eb15ae99e92a4543c"
+      },
+      "posix": {
+        "library_directory_present": true,
+        "dart_file_count": 35,
+        "sha256": "b26e1e4e8409ee2a38addbd7433eaa5b3524c87bbbadb3ea04cbf0992a336c46"
+      },
+      "printing": {
+        "library_directory_present": true,
+        "dart_file_count": 27,
+        "sha256": "f269c1eba85d843750cfb440978c5f304016745ab61c7586b5b3ee3020a1a0a5"
+      },
+      "pub_semver": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "15eeb1511cac150f7fdac5dcc0c6f20cd5cdcbced58757a2b092e9e85eb9d862"
+      },
+      "qr": {
+        "library_directory_present": true,
+        "dart_file_count": 13,
+        "sha256": "995e30ffb5eb49060009473bfbaee7d5570bec0e48531a6e7282f5a4d7d30ed8"
+      },
+      "quds_office_editor": {
+        "library_directory_present": true,
+        "dart_file_count": 76,
+        "sha256": "95d0538b17d4b25dd47850d99bce41e0d36ac1a6aece998d53525c607ec91f43"
+      },
+      "quds_office_engine": {
+        "library_directory_present": true,
+        "dart_file_count": 319,
+        "sha256": "9cf293d5ef02e3ac4581bcfeebc51306b4d9d0bc155eeb455cad6304e6a62612"
+      },
+      "quds_office_engine_example": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "quds_office_studio": {
+        "library_directory_present": true,
+        "dart_file_count": 26,
+        "sha256": "de776a6ce1496a0720cc2f8242f1f92533aa81540f7cb5b6df8771917fef5f95"
+      },
+      "quds_office_suite": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "quds_proofing_gector": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "34c2fcfd253498c8d4fddc18416f607ca81f5875b53bd7335905a1e008863475"
+      },
+      "quds_proofing_harper": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "e0665ae9e72bc2caa90d848715ccee6c71d4ab352b6d4991fd994376487dc01c"
+      },
+      "quds_report_studio": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "63562ea314e2239a8a52ddddff7a7cde4696bfac5646ab4cb556efd3e1c0761c"
+      },
+      "quds_reports": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "63f4f01174a095568b20c84030fbdee4cee7014bfe8ccebcde2aee103f7be105"
+      },
+      "screen_retriever": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "81a67a65d235400a6d30c8e78e863f118062f6c28b4d087066d41c84f880b478"
+      },
+      "screen_retriever_linux": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "screen_retriever_macos": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "screen_retriever_platform_interface": {
+        "library_directory_present": true,
+        "dart_file_count": 6,
+        "sha256": "03cc537efda63b9512cb3dce99c6a96f5c4dba83f97fa8fde6728ab7df4f37e0"
+      },
+      "screen_retriever_windows": {
+        "library_directory_present": false,
+        "dart_file_count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "shelf": {
+        "library_directory_present": true,
+        "dart_file_count": 20,
+        "sha256": "c03a2e922648b28256d0c6c7b7402e79b6009b896edc1b1a3a089d87c8a67088"
+      },
+      "shelf_packages_handler": {
+        "library_directory_present": true,
+        "dart_file_count": 3,
+        "sha256": "081a61eb34da95c46cf56cdd4c8178851ae4b8a3389c7098379e98d37bb44269"
+      },
+      "shelf_static": {
+        "library_directory_present": true,
+        "dart_file_count": 4,
+        "sha256": "1022a6b8002333b17e901ee4048ecf25e55c2e7c27261563c8fd69402af77eca"
+      },
+      "shelf_web_socket": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "37910fd99a6669f3a707fe237112ab269c07eb9020864596acac25209822b6bc"
+      },
+      "sky_engine": {
+        "library_directory_present": true,
+        "dart_file_count": 280,
+        "sha256": "0456dba307fdde5863cbe5e942f8435f20fe1337c64528582dd79f68c7003405"
+      },
+      "source_map_stack_trace": {
+        "library_directory_present": true,
+        "dart_file_count": 1,
+        "sha256": "096900e1ba4205632c6d8045ee6d26d7144e1565cbc54795179ec1322a8d64fc"
+      },
+      "source_maps": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "ea10537347eaa3504c350665ca7d64322e19f954b06ab140cb7d5fe066630cb1"
+      },
+      "source_span": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "0fe7d6aec5766be77604c262a4654acabe160d37a05640ff50ee25a00b6ddb24"
+      },
+      "stack_trace": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "47131ab910da07ba69d610924eebb695dc7a211d7f59dcfbc55f3017c2df9f09"
+      },
+      "stream_channel": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "e6dd9d9cc8705d0fb9ad8640af0d8eb6bcd8463816ee50b392d46bed4b272222"
+      },
+      "string_scanner": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "88599505c9c0d0d6393a3d60a737cc552116fce66d68e70948a0e5e216667321"
+      },
+      "term_glyph": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "3c0c9a12959033519fb92047fe5d4c1651940b3b8d2dbafcb6d478175014ef28"
+      },
+      "test": {
+        "library_directory_present": true,
+        "dart_file_count": 32,
+        "sha256": "22c7e3c6a5c6b379ecc51cfb127f8849174ce8c1ddb802e82a34c72e594ecbc1"
+      },
+      "test_api": {
+        "library_directory_present": true,
+        "dart_file_count": 44,
+        "sha256": "3a5cd32aa1b27f00e72b0f256c4dbc7f314b533fc464bcae90e67a3f13dc4829"
+      },
+      "test_core": {
+        "library_directory_present": true,
+        "dart_file_count": 75,
+        "sha256": "1ce2db2936648667eeea960ff98bd0680aacfc7598ff64ab24769069258fa4a7"
+      },
+      "typed_data": {
+        "library_directory_present": true,
+        "dart_file_count": 4,
+        "sha256": "e835d484f8514e107a4331228f5e3724ef5c5ba445f0946ac9e6bea9b7c9dd3f"
+      },
+      "url_launcher": {
+        "library_directory_present": true,
+        "dart_file_count": 9,
+        "sha256": "664b995a58744877b819369db9ce588f17426f8cd61030969da0e3ea349004d1"
+      },
+      "url_launcher_android": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "a97d015bf7fa38c0135f4607814ba396abbd42aff3dff403330d9d772be3d605"
+      },
+      "url_launcher_ios": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "275097054d804023c98cd04a662ca4b378a2ee44c75956204de9ae56e179efb0"
+      },
+      "url_launcher_linux": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "2be27ee87c16a00c8ff22949a451015dd38b9bc054bcfdb3ed18aa21449f412e"
+      },
+      "url_launcher_macos": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "0c6b66060ac2e2633a3f9f0ff2ab72402b9998c733e0753d275be08a63fbbf87"
+      },
+      "url_launcher_platform_interface": {
+        "library_directory_present": true,
+        "dart_file_count": 5,
+        "sha256": "3d0f42327ed15d28a06ab4ec63356154957e5b5ebf4b922247dcab38801ed78b"
+      },
+      "url_launcher_web": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "e765cdd497c8eb94866233dd8d7adfb4eddf3f9421db49cfb137dfcca148bc22"
+      },
+      "url_launcher_windows": {
+        "library_directory_present": true,
+        "dart_file_count": 2,
+        "sha256": "c861f22aed40b10120244083eab2903fbac6eaabce11ab507a5dc178215a5aea"
+      },
+      "vector_math": {
+        "library_directory_present": true,
+        "dart_file_count": 73,
+        "sha256": "6333e139873e87998ec12712023700b40c810b73cc94a90e6810c84bb82760e4"
+      },
+      "vm_service": {
+        "library_directory_present": true,
+        "dart_file_count": 7,
+        "sha256": "4fa0d47c3a4a2fa0f028d96aeab8f97f2909497970f335a3695f010957b262ae"
+      },
+      "watcher": {
+        "library_directory_present": true,
+        "dart_file_count": 26,
+        "sha256": "8ad37f47d74b0ec56d490a557c6174d9029a28a5163ede08f50b6c5fdc93bb1f"
+      },
+      "web": {
+        "library_directory_present": true,
+        "dart_file_count": 190,
+        "sha256": "57cccbe405095ef79a8067b0e94bd3c128680c715bcc9f4a4de8c7c632643d18"
+      },
+      "web_socket": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "783f1a21ecc5d7df15d5909b3eb1396b59a021ea6d8d0fe03098af55a8241074"
+      },
+      "web_socket_channel": {
+        "library_directory_present": true,
+        "dart_file_count": 8,
+        "sha256": "10de1a6077e873a69817d44fa52f1aa046a8e3f3d3652a4ea05e7aacd2717454"
+      },
+      "webkit_inspection_protocol": {
+        "library_directory_present": true,
+        "dart_file_count": 10,
+        "sha256": "69caae6e167722d36f3b95141ef5339d58becff8d917637ce7fd758b63972b59"
+      },
+      "win32": {
+        "library_directory_present": true,
+        "dart_file_count": 287,
+        "sha256": "fb50915544e8ff3fdc06bc6d659b54d0ecc584125b6091bf8e54cfbda9e07e69"
+      },
+      "window_manager": {
+        "library_directory_present": true,
+        "dart_file_count": 12,
+        "sha256": "a25e2523ceb3deace13d3494080822e1ef59bc316c0c22ac38dec3252ec68c9b"
+      },
+      "xml": {
+        "library_directory_present": true,
+        "dart_file_count": 172,
+        "sha256": "ce473a7006e5b5510f007a14948b96be7847f536eb7e457b5f71bc40b7a76a39"
+      },
+      "yaml": {
+        "library_directory_present": true,
+        "dart_file_count": 16,
+        "sha256": "a970da91801d8beed1ac58bb7867a0bd9aeb2c05ee47abbfb1f1fac38e24d962"
+      }
+    }
+  },
+  "sdk_inputs_after": {
+    "dart": {
+      "file": "dart",
+      "bytes": 4835712,
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "dartaotruntime": {
+      "file": "dartaotruntime",
+      "bytes": 5710176,
+      "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72"
+    },
+    "gen_snapshot": {
+      "file": "gen_snapshot",
+      "bytes": 4724824,
+      "sha256": "f1f382c42df99bc451cc652218bb534df46774890b2571e2ea6b4e40b9995ddf"
+    },
+    "bin/snapshots/dartdev_aot.dart.snapshot": {
+      "file": "dartdev_aot.dart.snapshot",
+      "bytes": 22954416,
+      "sha256": "3f675fe483acfb56e752121c2cf0b1505d4db0edf0fc16ca996d3d76eb252b55"
+    },
+    "bin/snapshots/gen_kernel_aot.dart.snapshot": {
+      "file": "gen_kernel_aot.dart.snapshot",
+      "bytes": 14156264,
+      "sha256": "d4b8f600d1195c5c505fa74951dd9b71971c8d63b3a144719d194f0852734140"
+    },
+    "bin/dartvm": {
+      "file": "dartvm",
+      "bytes": 42998912,
+      "sha256": "ec532a0620beed626fbf89234f1dcc857c15f4e064fb8e99715345027bfb129d"
+    },
+    "lib/_internal/vm_platform.dill": {
+      "file": "vm_platform.dill",
+      "bytes": 8663120,
+      "sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67"
+    },
+    "lib/_internal/vm_platform_product.dill": {
+      "file": "vm_platform_product.dill",
+      "bytes": 8663064,
+      "sha256": "0d8d95ad3515bcfef1ed6ee4d1f45c0d88a0aad92898eaee9d57e041928a4139"
+    },
+    "lib/_internal/vm_platform_strong.dill": {
+      "file": "vm_platform_strong.dill",
+      "bytes": 8663120,
+      "sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67"
+    },
+    "version": {
+      "file": "version",
+      "bytes": 7,
+      "sha256": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac"
+    }
+  },
+  "runtime": {
+    "executable": {
+      "file": "dartaotruntime",
+      "bytes": 5710176,
+      "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72"
+    },
+    "entrypoint": {
+      "file": "incremental-quality.aot",
+      "bytes": 8278768,
+      "sha256": "81a76a0cfb1a0fc8b369f6a49851f0276a5eb4567830289dddce8e18372c02e0"
+    }
+  }
+}

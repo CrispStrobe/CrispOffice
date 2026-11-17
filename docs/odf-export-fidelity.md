@@ -31,7 +31,7 @@ Horizontal indents also retain their physical sides. For explicit RTL
 paragraphs, the model's right indent becomes `fo:margin-left` and its left
 indent becomes `fo:margin-right`, matching ODF's direction-dependent paragraph
 margins. LTR and unspecified direction keep the ordinary mapping. The
-[ODF 1.4 paragraph-tab-position note](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html#attribute-text_relative-tab-stop-position)
+[ODF 1.4 paragraph-tab-position note](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html#property-text_relative-tab-stop-position)
 makes that RTL margin interpretation explicit; generated files remain ODF 1.3.
 Hanging indentation retains precedence over first-line indentation.
 
@@ -39,6 +39,12 @@ Nonfinite values and exponent-form values that cannot be serialized as ODF
 decimal lengths/percentages are omitted. Values are serialized to two decimal
 places. This is a bounded mapping of resolved model properties, not a complete
 reconstruction of Word style inheritance or pagination.
+
+Paragraph shading and border colors accept exactly six hexadecimal `RRGGBB`
+digits. Valid colors are normalized for both style identity and XML output,
+so neighboring paragraphs keep their own decorations. Invalid values are
+omitted without changing the source model. Borders retain the supported
+`0.5pt solid` mapping; arbitrary border styles and widths are not reconstructed.
 
 ## Word tables
 
@@ -77,6 +83,8 @@ carry the section on a paragraph anchor; frame positions remain relative to
 the page. Empty sections use a small empty anchor without modifying the source.
 First paragraphs inherit from a common body/heading style and retain their
 resolved spacing, indentation, alignment, and direction directly.
+An explicitly empty document (`sections: []`) retains default master/page
+geometry without adding an authored body paragraph.
 
 An odd/even start selects a temporary right/left page master whose next style
 is the normal section master. This constrains only the first page of the
@@ -103,12 +111,15 @@ Generic text extraction and bounded search retain paragraphs inside anchored
 text boxes, including nested boxes and explicit whitespace. The anchor's own
 inline text remains contiguous and is followed by its text-box stories in
 source order. Empty anchor wrappers add no synthetic blank paragraph; authored
-empty paragraphs inside boxes remain distinct. Namespace identity, annotation
-and covered-cell suppression, and the cumulative text-expansion budget still
-apply. This is document traversal order, not visual reading-order inference.
-Tables nested inside paragraph-anchored text boxes contribute their visible
-cell paragraphs rather than a separate structured table entry; ordinary
-document tables and frames inside table cells keep their existing handling.
+empty paragraphs inside boxes remain distinct. Frame and inline traversal use
+namespace identity and suppress annotation, note, covered-cell and hidden
+inline stories. This is document traversal order, not visual reading-order
+inference. Tables inside paragraph-anchored text boxes remain structured table
+entries; their visible cell paragraphs still contribute to plain/search text.
+Empty and table-only text-box anchors add no synthetic paragraph. Generic
+extraction budgets decoded content and cell separators; bounded search also
+counts every emitted paragraph separator. Later generic `plainString` wrappers
+and block separators remain outside the decoder's content budget.
 
 ## Header and footer stories
 
@@ -125,6 +136,22 @@ name collisions. Image links include required `xlink:type="simple"`.
 
 Header and footer lists use independent numbering scopes. Field instructions
 and editable field metadata are not retained by this new-document export.
+
+## Page-number fields
+
+Simple paragraph PAGE fields use one live ODF page number. They retain the
+first run's formatting, the model's supported ` | title` suffix, and suffix
+formatting across separate runs. Existing hyperlinks, bookmark endpoints and
+comment ownership pass through the inline writer. Empty PAGE paragraphs do
+not require inserting a run into the source model.
+
+A nonempty explicit field instruction takes precedence over the compatibility
+flag. Other field instructions retain their cached text. Paragraphs containing
+complex-field boundaries or atomic inline fields, note references or pictures
+also retain their existing cached inline content. General native fields and
+arbitrary Word field switches remain outside this mapping. In note stories,
+the first PAGE paragraph consumes its own reference spacing, even when its
+numeric cache is empty.
 
 ## Footnotes and endnotes
 

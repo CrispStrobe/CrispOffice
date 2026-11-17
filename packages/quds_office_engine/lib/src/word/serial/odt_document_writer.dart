@@ -692,6 +692,7 @@ abstract final class OdtDocumentWriter {
   }) {
     switch (inline) {
       case WmlRun():
+        if (layout.fieldResultSuppressed) break;
         final style = layout.runStyle(inline.properties);
         final href = switch (inline.hyperlink) {
           final link? =>
@@ -771,9 +772,29 @@ abstract final class OdtDocumentWriter {
           prefix: 'text',
         );
       case WmlFieldBoundary():
-        // Instructions are hidden field metadata, not document text. The
-        // surrounding result runs remain in the inline sequence, including
-        // citations and bibliographies that span several paragraphs.
+        if (inline.kind == WmlFieldBoundaryKind.begin) {
+          layout.beginField();
+        } else if (inline.kind == WmlFieldBoundaryKind.instruction) {
+          final name = inline.text
+              .trim()
+              .split(RegExp(r'\s+'))
+              .first
+              .toUpperCase();
+          final element = switch (name) {
+            'PAGE' => 'page-number',
+            'NUMPAGES' => 'page-count',
+            'DATE' => 'date',
+            'TIME' => 'time',
+            'TITLE' => 'title',
+            _ => null,
+          };
+          if (element != null) {
+            w.writeEmptyElement(element, prefix: 'text');
+            layout.suppressFieldResult();
+          }
+        } else if (inline.kind == WmlFieldBoundaryKind.end) {
+          layout.endField();
+        }
         break;
       case WmlBookmarkBoundary():
         final name = inline.name;
@@ -1468,6 +1489,21 @@ class _OdtLayout {
   bool inCommentBody = false;
   bool inNoteBody = false;
   bool noteReferenceSpacePending = false;
+  int _fieldDepth = 0;
+  int? _suppressFieldDepth;
+
+  void beginField() => _fieldDepth++;
+
+  void suppressFieldResult() => _suppressFieldDepth = _fieldDepth;
+
+  bool get fieldResultSuppressed =>
+      _suppressFieldDepth != null && _fieldDepth >= _suppressFieldDepth!;
+
+  void endField() {
+    if (_suppressFieldDepth == _fieldDepth) _suppressFieldDepth = null;
+    if (_fieldDepth > 0) _fieldDepth--;
+  }
+
   final Map<String, String> _runStyles = <String, String>{};
   final Map<String, String> _paragraphStyles = <String, String>{};
   final Map<String, String> _columnStyles = <String, String>{};
@@ -1551,7 +1587,7 @@ class _OdtLayout {
         [tab.position, tab.stop.alignment.index, tab.stop.leader.index],
     ]);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabKey';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|${props.columnBreakBefore}|${props.keepTogether}|$shading|$border|$tabKey';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'
@@ -1611,6 +1647,11 @@ class _OdtLayout {
         }
         if (props.pageBreakBefore || sectionStart?.breakBefore == true) {
           buffer.write(' fo:break-before="page"');
+        } else if (props.columnBreakBefore) {
+          buffer.write(' fo:break-before="column"');
+        }
+        if (props.keepTogether) {
+          buffer.write(' fo:keep-together="always"');
         }
         if (sectionStart?.index case final index? when index > 0) {
           buffer.write(' style:page-number="auto"');

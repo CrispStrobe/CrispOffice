@@ -1,0 +1,50 @@
+{
+  "origin_archive": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f.tar.xz",
+  "origin_archive_sha256": "38b96302069d2ea970d0002a761d114eee7df4776ac540ca550278b6840895ec",
+  "original_runner_sha256": "a0f372f2f94d4675902ae5a8ddd3752d1e22a6625edea8d9f18be13cb30ff4d2",
+  "original_python_controls_sha256": "b065dcc3018b8def0b93bdd64a60983ee36e8d7d73f3a9b2aba1b79d225728de",
+  "current_runner_sha256": "5914db06da6ac78343b6da954a8ce415e0a8742de4c5683ad1c2b4c4d13c34a7",
+  "current_python_controls_sha256": "b065dcc3018b8def0b93bdd64a60983ee36e8d7d73f3a9b2aba1b79d225728de",
+  "baseline_plan_sha256": "8cc03280a15f06e51cf09d8b021d5d7fd6b913fda2b23cda61fc905917d67c6f",
+  "python_control_runner_unchanged": true,
+  "product_tests_run_during_harness_preparation": false,
+  "changes": [
+    "Require retention of all 174 original package/test paths, binding the original plan by SHA-256.",
+    "Require four incoming extraction/section/German suites plus two focused new paragraph/page-field suites. Existing automatic changed-file and complete ODF selections remain.",
+    "Add one separately captured Node repetition cohort for focused ODT/ODF/ODP suites with no unavailable platform imports in their test/relative-helper closure. List VM-only Node exclusions with source hashes and reasons.",
+    "Bound Node process to 600 seconds, suite loading to 180 seconds, individual cases to 60 seconds, and concurrency to two.",
+    "Compare Node case identity/outcome multisets to accepted VM suites and keep repetition totals separate from original primary success totals.",
+    "Bind resolved Node executable by version and SHA-256, including its binary in the existing before/after runtime map.",
+    "Require nonempty completed case events, complete started-case termination, and no duplicate starts/completions in addition to inherited exact suite, error, skip, and private-fixture checks.",
+    "Retain every original preflight/format/Python control, all other input identity guards, original failed logs, runtime versions, lock expectation, optional native skip and private-PDF early-return exclusions."
+  ],
+  "unchanged_expected_zotero_passes": {
+    "engine-zotero": 390,
+    "editor-zotero": 186
+  },
+  "zotero_count_reason": "No Zotero regression test source differs from b32dee6f in the incoming integration inspected during preparation; thresholds are not weakened. A future change must be reviewed explicitly.",
+  "harness_acceptance_controls": {
+    "scope": "Synthetic runner-event acceptance controls only; no application suites were executed.",
+    "runner_sha256": "5914db06da6ac78343b6da954a8ce415e0a8742de4c5683ad1c2b4c4d13c34a7",
+    "verification_script_sha256": "f9fe94792e5780140acb2e63231cb99ff9659606f51c16ec0ea4b1179777a36b",
+    "controls": {
+      "complete_success_accepted": true,
+      "unsuccessful_terminal_event_rejected": true,
+      "failed_assertion_rejected": true,
+      "unexpected_skip_rejected": true,
+      "unfinished_case_rejected": true,
+      "empty_suite_rejected": true,
+      "duplicate_completion_rejected": true,
+      "duplicate_start_rejected": true,
+      "missing_terminal_event_rejected": true,
+      "error_event_rejected": true,
+      "missing_selected_suite_rejected": true,
+      "private_fixture_early_returns_excluded_from_substantive_passes": true,
+      "named_optional_native_skip_accounted_separately": true,
+      "identical_node_case_identity_and_outcome_accepted": true,
+      "node_case_identity_change_rejected": true,
+      "node_case_outcome_change_rejected": true
+    },
+    "passed": true
+  }
+}

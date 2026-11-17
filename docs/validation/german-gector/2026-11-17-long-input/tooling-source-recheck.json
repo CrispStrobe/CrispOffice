@@ -1,0 +1,30 @@
+{
+  "source_commit": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+  "original_test_receipt": "quality-tooling-tests-8801031a.json",
+  "same_tested_sources": true,
+  "matched_sources": {
+    "docs/validation/german-gector/2026-11-17-native-dart/provider-aot-v1.json": true,
+    "tools/proofing/german_model/build_gector_aot.py": true,
+    "tools/proofing/german_model/build_native_pack.py": true,
+    "tools/proofing/german_model/cases.json": true,
+    "tools/proofing/german_model/compare_guarded_provider.py": true,
+    "tools/proofing/german_model/evaluate.py": true,
+    "tools/proofing/german_model/export_reference.py": true,
+    "tools/proofing/german_model/incremental_quality.dart": true,
+    "tools/proofing/german_model/prospective_cases_20261117.json": true,
+    "tools/proofing/german_model/qualify_native.py": true,
+    "tools/proofing/german_model/quantize_int4.py": true,
+    "tools/proofing/german_model/run_gector_dart.dart": true,
+    "tools/proofing/german_model/run_incremental_quality.dart": true,
+    "tools/proofing/german_model/run_stage.py": true,
+    "tools/proofing/german_model/summarize_qualification.py": true,
+    "tools/proofing/german_model/test_export_reference.py": true,
+    "tools/proofing/german_model/test_gector_aot_build.py": true,
+    "tools/proofing/german_model/test_guarded_provider_comparison.py": true,
+    "tools/proofing/german_model/test_native_pack.py": true,
+    "tools/proofing/german_model/test_native_qualification.py": true,
+    "tools/proofing/german_model/test_qualification.py": true
+  },
+  "test_count": 51,
+  "scope": "No additional test execution; every recorded tooling/corpus/baseline input remains byte-identical."
+}

@@ -1,0 +1,280 @@
+{
+  "added_test_files": [
+    [
+      "engine",
+      "test/odf_frame_extraction_test.dart"
+    ],
+    [
+      "engine",
+      "test/odt_page_field_fidelity_test.dart"
+    ],
+    [
+      "engine",
+      "test/odt_paragraph_decoration_test.dart"
+    ],
+    [
+      "engine",
+      "test/odt_section_integration_test.dart"
+    ],
+    [
+      "engine",
+      "test/proofing/german_lexical_gap_test.dart"
+    ],
+    [
+      "engine",
+      "test/proofing/german_spelling_quotes_test.dart"
+    ]
+  ],
+  "all13_commands_passed": true,
+  "analyzer_configuration_restored": true,
+  "archive": {
+    "file": "qualification-966196f3.tar.xz",
+    "member_count": 103,
+    "sha256": "5f7e3b60530bc8070684f6aa1bd23957a3e1d86629c8ca6f30097e2ab29411a2",
+    "size": 893116,
+    "uncompressed_bytes": 7941044
+  },
+  "combined_runtime_count_scope": "Node repeats cases already present in the primary VM cohort; combined runtime executions are not a unique-case count.",
+  "combined_substantive_runtime_executions": 3602,
+  "enforced_workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "executed_harness_member": "qualification/run-used.py",
+  "executed_harness_sha256": "5914db06da6ac78343b6da954a8ce415e0a8742de4c5683ad1c2b4c4d13c34a7",
+  "finished_utc": "2026-11-17T16:24:42.794122+00:00",
+  "fresh_archive_restore_verified": true,
+  "github_actions_queried_awaited_or_rerun": false,
+  "handwritten_format_paths": 77,
+  "head_after": "966196f386ec1776c836664b3eb7c93e8e92605c",
+  "index_file": "qualification-966196f3-index.json",
+  "input_counts": {
+    "external_dependency_files": 5099,
+    "harness_inputs": 9,
+    "selected_runtime_files": 14,
+    "source_files": 3449,
+    "system_fixture_entries": 6,
+    "workspace_files_and_links": 118
+  },
+  "input_integrity": {
+    "dependencies_unchanged": true,
+    "harness_unchanged": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "system_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "node_excluded_tests": {
+    "test/odf_export_text_fidelity_test.dart": {
+      "imports": [
+        {
+          "import": "dart:io",
+          "path": "test/odf_export_text_fidelity_test.dart"
+        }
+      ],
+      "reason": "Focused test or its relative helper imports a platform library unavailable to this Node/dart2js lane; unchanged test remains in the VM cohort."
+    },
+    "test/odp_presentation_writer_test.dart": {
+      "imports": [
+        {
+          "import": "dart:io",
+          "path": "test/odp_presentation_writer_test.dart"
+        }
+      ],
+      "reason": "Focused test or its relative helper imports a platform library unavailable to this Node/dart2js lane; unchanged test remains in the VM cohort."
+    },
+    "test/odp_table_fidelity_test.dart": {
+      "imports": [
+        {
+          "import": "dart:io",
+          "path": "test/odp_table_fidelity_test.dart"
+        }
+      ],
+      "reason": "Focused test or its relative helper imports a platform library unavailable to this Node/dart2js lane; unchanged test remains in the VM cohort."
+    },
+    "test/odt_comment_fidelity_test.dart": {
+      "imports": [
+        {
+          "import": "dart:io",
+          "path": "test/odt_comment_fidelity_test.dart"
+        }
+      ],
+      "reason": "Focused test or its relative helper imports a platform library unavailable to this Node/dart2js lane; unchanged test remains in the VM cohort."
+    },
+    "test/odt_document_writer_test.dart": {
+      "imports": [
+        {
+          "import": "dart:io",
+          "path": "test/odt_document_writer_test.dart"
+        }
+      ],
+      "reason": "Focused test or its relative helper imports a platform library unavailable to this Node/dart2js lane; unchanged test remains in the VM cohort."
+    },
+    "test/odt_header_footer_fidelity_test.dart": {
+      "imports": [
+        {
+          "import": "dart:io",
+          "path": "test/odt_header_footer_fidelity_test.dart"
+        }
+      ],
+      "reason": "Focused test or its relative helper imports a platform library unavailable to this Node/dart2js lane; unchanged test remains in the VM cohort."
+    },
+    "test/odt_structure_fidelity_test.dart": {
+      "imports": [
+        {
+          "import": "dart:io",
+          "path": "test/odt_structure_fidelity_test.dart"
+        }
+      ],
+      "reason": "Focused test or its relative helper imports a platform library unavailable to this Node/dart2js lane; unchanged test remains in the VM cohort."
+    }
+  },
+  "node_repetition_passes": 282,
+  "node_repetitions": {
+    "engine-focused-node": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 282
+      },
+      "raw_success_count": 282,
+      "repetition_comparison": {
+        "method": "Exact multiset comparison of selected VM and Node case identities and outcomes; invocation-local test IDs are ignored.",
+        "missing_or_changed_from_vm": [],
+        "node_case_executions": 282,
+        "passed": true,
+        "unexpected_or_changed_in_node": [],
+        "vm_case_executions": 282
+      },
+      "substantive_success_count": 282
+    }
+  },
+  "node_test_files": 14,
+  "original_test_files_preserved": 174,
+  "primary_cohorts": {
+    "editor-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 396
+      },
+      "raw_success_count": 396,
+      "selected_files": 37,
+      "substantive_success_count": 396
+    },
+    "editor-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 186
+      },
+      "raw_success_count": 186,
+      "selected_files": 13,
+      "substantive_success_count": 186
+    },
+    "engine-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [
+        {
+          "matched_case_name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "resolved_suite_path": "/workspace/scratch/f911bf3b5689/quds_office_suite/packages/quds_office_engine/test/pdf_file_test.dart",
+          "suite_id": 767,
+          "test_id": 803
+        },
+        {
+          "matched_case_name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "resolved_suite_path": "/workspace/scratch/f911bf3b5689/quds_office_suite/packages/quds_office_engine/test/pdf_file_test.dart",
+          "suite_id": 767,
+          "test_id": 807
+        }
+      ],
+      "raw_runner_outcomes": {
+        "success": 2128
+      },
+      "raw_success_count": 2128,
+      "selected_files": 97,
+      "substantive_success_count": 2126
+    },
+    "engine-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 390
+      },
+      "raw_success_count": 390,
+      "selected_files": 19,
+      "substantive_success_count": 390
+    },
+    "gector-contract": {
+      "allowed_skipped_cases": [
+        {
+          "name": "real native dual heads own their output and reject use after dispose",
+          "outcome": "skipped",
+          "reason": "Four explicitly pinned native model/library fixture variables are not provided. No real native acceptance claimed.",
+          "resolved_suite_path": "/workspace/scratch/f911bf3b5689/quds_office_suite/packages/quds_proofing_gector/test/native_backend_test.dart",
+          "suite_id": 67,
+          "test_id": 94
+        }
+      ],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "skipped": 1,
+        "success": 193
+      },
+      "raw_success_count": 193,
+      "selected_files": 11,
+      "substantive_success_count": 193
+    },
+    "harper-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 29
+      },
+      "raw_success_count": 29,
+      "selected_files": 3,
+      "substantive_success_count": 29
+    }
+  },
+  "primary_raw_successes": 3322,
+  "primary_substantive_passes": 3320,
+  "primary_test_files": 180,
+  "python_controls": {
+    "errors": [],
+    "failures": [],
+    "missing_selected_tests": [],
+    "passed": true,
+    "runtime_unchanged": true,
+    "skipped_cases": [
+      {
+        "reason": "Install qualification requirements for the tiny converter control",
+        "test": "test_qualification.TinyConverterTests.test_real_quantizer_preserves_both_head_matrices"
+      }
+    ],
+    "substantive_success_count": 107,
+    "tests_run": 108,
+    "unexpected_skipped_cases": []
+  },
+  "runtime_versions": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "node": "v24.22.1"
+  },
+  "schema": 1,
+  "source_commit": "966196f386ec1776c836664b3eb7c93e8e92605c",
+  "source_matches_frozen_commit": true,
+  "source_tree": "4287330a433e915d58ca779adfacb75942c6ab04",
+  "started_utc": "2026-11-17T16:20:04.263116+00:00",
+  "status": "passed",
+  "strict_analysis_paths": {
+    "editor": 18,
+    "engine": 80,
+    "gector": 29,
+    "harper": 10
+  },
+  "terminal_receipt_member": "qualification/receipt.json",
+  "terminal_receipt_sha256": "d4be506e8730d6693ebe0dcab769d94c5c2c67c72867e6f88158ad4e6dad424d"
+}
