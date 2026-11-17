@@ -1536,8 +1536,19 @@ class _OdtLayout {
   }) {
     final shading = _paragraphColor(props.shadingFill);
     final border = _paragraphColor(props.borderColor);
+    // Tab stops belong to the paragraph style. Include their ordered values,
+    // using the same position precision as the emitted XML, so neighboring
+    // paragraphs cannot inherit the first paragraph's tab configuration.
+    final tabs = jsonEncode([
+      for (final tab in props.tabs)
+        [
+          _paragraphDecimal(tab.position),
+          tab.alignment.index,
+          tab.leader.index,
+        ],
+    ]);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$shading|$border';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabs';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'

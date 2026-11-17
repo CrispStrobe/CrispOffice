@@ -9,3 +9,4 @@ export 'src/german_rules.dart';
 export 'src/models.dart';
 export 'src/provider.dart';
 export 'src/transport.dart';
+export 'src/transport_process.dart';
