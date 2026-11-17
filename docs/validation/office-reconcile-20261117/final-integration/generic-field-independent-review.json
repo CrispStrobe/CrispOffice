@@ -1,0 +1,257 @@
+{
+  "scope": "Read-only independent review of generic-field helper and column/bookmark/story interactions, not full application acceptance.",
+  "writer_sha256": "1cc8d826fa905ebf48b460587c3ac299c030956deace7f25cdf412f41a3caece",
+  "field_test_sha256": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0",
+  "incoming_original_test_sha256": "d6e2c87f63575484dbcd118347ef50bd4212c7a3fea460d556d2ef11f34b64dc",
+  "root_writer_smoke_test_sha256": "92ff04092b453d82357c76943a9a760e958178707bf95148dd177fe339d75e5f",
+  "incoming_generic_field_test_block_unchanged": true,
+  "entire_smoke_file_difference": "Exactly one inherited, previously qualified correction: style:row-height=\"24.00pt\" becomes style:min-row-height=\"24.00pt\". The added incoming field test block is unchanged.",
+  "fully_original_upstream_file_private_positive": {
+    "test_sha256": "d6e2c87f63575484dbcd118347ef50bd4212c7a3fea460d556d2ef11f34b64dc",
+    "writer_sha256": "1fbd2f7253a6ec7974d3d07cba66e9298f81fef27aeecf0f8d61eaefc09d82e0",
+    "source": "candidate",
+    "scope": "A distinct private candidate run; not substituted for the final integrated 543-case source."
+  },
+  "raw_event_reviews": [
+    {
+      "phase": "final23-negative-incoming13",
+      "counts": {
+        "failure": 15,
+        "success": 3,
+        "error": 5
+      },
+      "raw_sha256": "862f1b82653db22858544906a4a115727cef0188c3cb45df95c9a8a01a8e8434",
+      "complete_unique_terminal_ids": true,
+      "skips": 0,
+      "field_test_binding": {
+        "test": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0"
+      },
+      "negative_control_failures": 20,
+      "errors": [
+        {
+          "testID": 3,
+          "error": "Expected: an object with length of <2>\n  Actual: [Instance of 'XmlElement']\n   Which: has length of <1>\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 100:9  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1664
+        },
+        {
+          "testID": 4,
+          "error": "Expected: an object with length of <2>\n  Actual: [Instance of 'XmlElement']\n   Which: has length of <1>\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 100:9  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1683
+        },
+        {
+          "testID": 5,
+          "error": "Expected: an object with length of <2>\n  Actual: [Instance of 'XmlElement']\n   Which: has length of <1>\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 137:7  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1705
+        },
+        {
+          "testID": 7,
+          "error": "Bad state: No element",
+          "stackTrace": "dart:core                                         Iterable.singleWhere\ntest/odt_complex_field_fidelity_test.dart 213:11  main.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 1767
+        },
+        {
+          "testID": 8,
+          "error": "Bad state: No element",
+          "stackTrace": "dart:core                                         Iterable.singleWhere\ntest/odt_complex_field_fidelity_test.dart 213:11  main.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 1777
+        },
+        {
+          "testID": 9,
+          "error": "Bad state: No element",
+          "stackTrace": "dart:core                                         Iterable.singleWhere\ntest/odt_complex_field_fidelity_test.dart 213:11  main.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 1784
+        },
+        {
+          "testID": 10,
+          "error": "Bad state: No element",
+          "stackTrace": "dart:core                                         Iterable.singleWhere\ntest/odt_complex_field_fidelity_test.dart 213:11  main.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 1797
+        },
+        {
+          "testID": 12,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 263:7  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1813
+        },
+        {
+          "testID": 13,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 288:7  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1819
+        },
+        {
+          "testID": 14,
+          "error": "Bad state: No element",
+          "stackTrace": "dart:core                                         Iterable.single\ntest/odt_complex_field_fidelity_test.dart 313:53  main.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 1825
+        },
+        {
+          "testID": 15,
+          "error": "Expected: an object with length of <1>\n  Actual: _SyncStarIterable<XmlElement>:[]\n   Which: has length of <0>\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 335:5  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1832
+        },
+        {
+          "testID": 16,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement', Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 357:9  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1838
+        },
+        {
+          "testID": 17,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 357:9  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1846
+        },
+        {
+          "testID": 18,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 385:5  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1854
+        },
+        {
+          "testID": 19,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 401:5  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1860
+        },
+        {
+          "testID": 20,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 416:7  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1867
+        },
+        {
+          "testID": 21,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 431:5  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1875
+        },
+        {
+          "testID": 22,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 447:5  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1885
+        },
+        {
+          "testID": 23,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 467:7  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1892
+        },
+        {
+          "testID": 24,
+          "error": "Expected: empty\n  Actual: [Instance of 'XmlElement']\n",
+          "stackTrace": "package:matcher                                  expect\ntest/odt_complex_field_fidelity_test.dart 491:5  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 1897
+        }
+      ]
+    },
+    {
+      "phase": "final23-positive-integrated",
+      "counts": {
+        "success": 23
+      },
+      "raw_sha256": "7e2ef944f7cf46035a544366107bd702f7b8da2dcb3406c6cf81ebc55184db71",
+      "complete_unique_terminal_ids": true,
+      "skips": 0,
+      "field_test_binding": {
+        "test": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0"
+      },
+      "negative_control_failures": 0,
+      "errors": []
+    },
+    {
+      "phase": "final-combined-focused",
+      "counts": {
+        "success": 543
+      },
+      "raw_sha256": "ffd4fec3e210d148649710c8ac880367312a6c53bee4479d98e417b4ad740d23",
+      "complete_unique_terminal_ids": true,
+      "skips": 0,
+      "field_test_binding": {
+        "test/odt_complex_field_fidelity_test.dart": "772bcc2812ea4d6100eabb451acf8186ee5c64f62f0c5bbabac08d7a514166f0"
+      },
+      "negative_control_failures": 0,
+      "errors": []
+    }
+  ],
+  "schema_receipt_review": {
+    "parts": 92,
+    "fixtures": 23,
+    "all_passed": true,
+    "receipt_path": "/workspace/scratch/44ccebb41cba/runtime-audit/field-controls/accepted-schema-validation.json",
+    "receipt_sha256": "49331751ccb60f97c8ea5f9e64a108ed809b17ec09569e8dcc61663b2b6d4d47"
+  },
+  "findings_resolved": [
+    {
+      "finding": "An empty cached native field is visible generated content before a following column token.",
+      "resolution": "The pure field recognizer records exact generated source indices, and column planning counts those indices as content. No shared-run identity inference is used."
+    },
+    {
+      "finding": "Raw imported plain NUMPAGES carries empty sourcePropertiesXml, not null.",
+      "resolution": "The unstyled guard accepts null or empty sourcePropertiesXml while preserving style/link/explicit-property fallback checks."
+    },
+    {
+      "finding": "A complete field with no cached WmlRun still generates a placeholder at its separator position.",
+      "resolution": "The separator source index is marked as generated content and uses the same field decision for emission and column planning."
+    }
+  ],
+  "verified_reasoning": [
+    "No global field-depth/suppression state remains. Complete nested or malformed shapes retain cached runs within the paragraph; unmatched boundaries cannot suppress ordinary later paragraphs or separate stories.",
+    "Safe field replacement keeps the existing inline callback, so generated placeholders remain inside their source run style/link wrapper and comment dispatch follows existing ownership guards.",
+    "Atomic note/visual/inline-field caches, multiple cache runs, bookmark-containing caches and inline column/page/line breaks are rejected from replacement and retain their original inline order.",
+    "Column planning and emission use the same pure recognition helper; its classification pass has no XML, note, comment or source-model side effects.",
+    "NUMPAGES is direct only when the source run has no authored style/link state that the direct-only pinned grammar would lose; other shapes retain cached text.",
+    "The runless paragraph-wide PAGE/bookmark edge uses its separate generated-endpoint rule and standalone negative-controlled test.",
+    "Bookmark inferred names remain resolved independently by exact story-owned start/end identities; this helper does not replace, mutate, or reorder those boundaries."
+  ],
+  "known_limitations": [
+    "This is bounded conversion of supported complete paragraph-local fields. Unsupported forms and retained caches are not claimed to preserve editable Word field metadata.",
+    "This review does not qualify the subsequent bookmark-name ambiguity correction or a final combined source; those use separate controls and full frozen qualification."
+  ],
+  "remaining_blocking_findings_in_reviewed_helper": []
+}

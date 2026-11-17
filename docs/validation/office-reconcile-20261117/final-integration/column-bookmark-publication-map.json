@@ -1,0 +1,14 @@
+{
+  "controlled_local_source": "7596af95f763972995403d44dd251a1da22799be",
+  "publication_tree": "6a1684d6736cf3376ea76388b5a691750de27bf7",
+  "publication_base": "3a38f84dd9e5bb78fc69f2704ab20746cbd67a9e",
+  "non_documentation_source_identical": true,
+  "only_extra_documentation_paths": [
+    "docs/validation/office-reconcile-20261117/final-integration/documentation-whitespace-review.json",
+    "docs/validation/office-reconcile-20261117/final-integration/main-integration-observation.json",
+    "docs/validation/office-reconcile-20261117/intermediate-48b6998b/README.md",
+    "docs/validation/office-reconcile-20261117/intermediate-48b6998b/canonical-evidence-index.json",
+    "docs/validation/office-reconcile-20261117/intermediate-48b6998b/canonical-evidence.tar.xz"
+  ],
+  "worktree_head_unchanged": "7596af95f763972995403d44dd251a1da22799be"
+}

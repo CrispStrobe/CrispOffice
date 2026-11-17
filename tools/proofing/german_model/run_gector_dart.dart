@@ -51,6 +51,8 @@ Future<void> _run(
       : Directory(options['source-root']!).absolute;
   final segmentationTarget = options['segment-target-tokens'];
   final reuseIdenticalInputs = options['reuse-identical-inputs'] == 'true';
+  final nativeThreads = int.parse(options['native-threads']!);
+  partial['native_threads'] = nativeThreads;
   final decodeOptions = GectorDecodeOptions(
     segmentation: segmentationTarget == null
         ? null
@@ -177,7 +179,7 @@ Future<void> _run(
         modelDirectory: model.parent.path,
         libraryPath: options['library']!,
         librarySha256: options['library-sha256']!,
-        threads: 2,
+        threads: nativeThreads,
       ),
       lexiconFactory: const GectorGermanLexiconFactory(),
       options: decodeOptions,
@@ -664,7 +666,7 @@ Future<void> _run(
       'os': Platform.operatingSystem,
       'os_version': Platform.operatingSystemVersion,
       'processors': Platform.numberOfProcessors,
-      'native_threads': 2,
+      'native_threads': nativeThreads,
       'warmups_per_input': 1,
       'repeats_per_input': 3,
     },
@@ -1044,6 +1046,7 @@ Map<String, String> gectorRunnerArguments(List<String> arguments) {
               'source-root',
               'segment-target-tokens',
               'reuse-identical-inputs',
+              'native-threads',
             }.contains(key)) ||
         result.containsKey(key)) {
       throw ArgumentError('Unknown or duplicated option: $key');
@@ -1052,6 +1055,16 @@ Map<String, String> gectorRunnerArguments(List<String> arguments) {
   }
   if (!required.every(result.containsKey)) {
     throw ArgumentError('Required options: ${required.join(', ')}');
+  }
+  final nativeThreads = result.putIfAbsent('native-threads', () => '2');
+  final parsedNativeThreads = int.tryParse(nativeThreads);
+  if (!RegExp(r'^[0-9]+$').hasMatch(nativeThreads) ||
+      parsedNativeThreads == null ||
+      parsedNativeThreads < 1 ||
+      parsedNativeThreads > 64) {
+    throw ArgumentError(
+      '--native-threads must be an integer from 1 through 64.',
+    );
   }
   if (result['segment-target-tokens'] case final target?) {
     final parsed = int.tryParse(target);

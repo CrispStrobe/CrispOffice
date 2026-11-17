@@ -1,0 +1,31 @@
+--- canonical-before/packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart
++++ captured-host/packages/quds_office_editor/lib/src/editor_sheet/render_sheet_grid.dart
+@@ -771,14 +771,28 @@
+         final Color? fill = _rgbColor(conditional.fillRgb ?? styled?.fillRgb);
+         final Color? band = fill == null ? _tableBand(c, r) : null;
+         if (fill != null) {
+           canvas.drawRect(cell, ui.Paint()..color = fill);
+         } else if (band != null) {
+           canvas.drawRect(cell, ui.Paint()..color = band);
+         }
++        if (conditional.dataBarFraction case final fraction?) {
++          final barColor =
++              _rgbColor(conditional.dataBarColor) ?? const Color(0xFF638EC6);
++          final bar = ui.Rect.fromLTWH(
++            cell.left + 1,
++            cell.top + 1,
++            ((cell.width - 2) * fraction).clamp(0, cell.width - 2),
++            cell.height - 2,
++          );
++          canvas.drawRect(
++            bar,
++            ui.Paint()..color = barColor.withValues(alpha: 0.72),
++          );
++        }
+         final bool focusCell = _isEditCell(c, r, merge);
+         final bool isEdit = editing && focusCell;
+         if (isEdit) {
+           canvas.drawRect(cell, ui.Paint()..color = _theme.pageBackground);
+         } else if (config.allowsSelection &&
+             (merge == null
+                 ? selection.contains(SmlCellRef(c, r))

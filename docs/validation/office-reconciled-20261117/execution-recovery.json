@@ -1,0 +1,31 @@
+{
+  "source_checkpoint": "4595e30813a7864889953baa8c964809043efb88",
+  "event": "Previously mounted scratch workspace and recovered toolchain became unavailable between execution calls at approximately 2026-11-17 21:00 UTC. No cause is attributed. A permitted persistent execution area was verified and source recovered from the saved remote branch.",
+  "original_new_raw_run_artifacts_available": false,
+  "remote_source_and_historical_archives_retained": true,
+  "observed_pre_recovery_results": {
+    "provenance": "These figures were returned by the execution tool before the mount loss. They are observations, not a reconstructed raw-event archive or a final qualification.",
+    "five_strict_analysis_scopes": "passed",
+    "format_targets_passed": 120,
+    "python_controls_passed": 117,
+    "engine_zotero_passed": 390,
+    "editor_zotero_passed": 186,
+    "engine_integration": {
+      "substantive_successes": 2714,
+      "private_fixture_early_returns_excluded": 2,
+      "failure_events": 1,
+      "error_events": 15,
+      "status": "failed; individual diagnostics were unavailable after mount loss"
+    },
+    "input_integrity_flags_reported_unchanged": [
+      "source",
+      "dependencies",
+      "runtime",
+      "workspace",
+      "system",
+      "harness"
+    ],
+    "analysis_config_restored": true
+  },
+  "recovery_policy": "Reproduce diagnostics and final tests using exact saved source and pinned tool versions. Do not count old passing observations toward fresh totals. Preserve final controls and results incrementally in remote checkpoints."
+}

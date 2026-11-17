@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "record_type": "continuation_started",
+  "source_commit": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+  "source_tree": "3aab8c7bb1522468c4a821e4ae588c826acbea27",
+  "canonical_branch": "codex/odt-column-boundary-followup-20261117",
+  "incoming_head": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+  "canonical_main": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+  "fetched_canonical_branches": 178,
+  "fetched_canonical_pr_heads": 144,
+  "host_main": "91f4f097c062a4fd8f4effe9a07cfab48c5e6cf7",
+  "host_recovery_head": "e0437f32b41fc69930ee76913e79c06849c0b925",
+  "runtime": "Recovered Flutter 3.47.8, Dart 3.13.7, original native library/model and exact 108-package lock; bytes verified against existing pins.",
+  "work_remaining": [
+    "Run unchanged 217-file canonical qualification and 14-file portable selection on one frozen source",
+    "Run unchanged 40 retained and five boundary consumer fixtures; archive raw outputs and input maps",
+    "Reconcile current CrispCloud main and guarded-sync the canonical union; finish host gates",
+    "Independent review of final exact-source receipts and incremental remote publication"
+  ],
+  "constraints": [
+    "Preserve deliberate AOT/RML removal",
+    "Native spaCy PR139 remains a separate proposal",
+    "Do not revive rejected standalone paragraph-page-break disjunct",
+    "No GitHub Actions/workflow/check/status query or wait; checkpoint commits use [skip ci]",
+    "No force push; expected-SHA leases for subsequent Git Data publications"
+  ],
+  "accepted_final_qualification": false
+}
