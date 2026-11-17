@@ -6,9 +6,11 @@ PR #143 advanced while the first checkpoint was being saved. The further sheet-f
 
 ## Source changes
 
-A leading inline column break must remain separate from the paragraph that establishes a section or explicit page break. Previously only the first document section retained an empty source fragment. Later multi-column sections could combine the column and section/page boundaries on one paragraph, losing the column break to page/master precedence. The writer now retains that source fragment for any multi-column section start and for an explicit paragraph page break.
+A leading inline column break must remain separate from the paragraph that establishes a multi-column section. Previously only the first document section retained an empty source fragment. Later multi-column sections could combine the column and section/page boundaries on one paragraph, losing the column break to page/master precedence. The writer now retains that source fragment for any multi-column section start.
 
-Five new controls demonstrate the loss on the pre-fix writer: later next-page, continuous, odd-page, and even-page sections, plus an explicit paragraph page break. The existing imported-DOCX control now expects the distinct source fragment and checks model identity and flags. Bookmark order, text, section ownership, and later column breaks remain explicit assertions.
+Four new controls demonstrate the loss on the pre-fix writer: later next-page, continuous, odd-page, and even-page sections. A fifth control preserves the existing native precedence for an explicit paragraph page break. Bookmark order, text, section ownership, and model immutability remain explicit assertions. The older imported-DOCX precedence test is restored unchanged.
+
+The initially saved candidate `e95cb0ce562a39c7d3cddebff248c43eefe6442b` also separated an explicit paragraph page break from a leading inline column break. Independent rendering of the actual WordSerializer DOCX showed left-column placement for that case, while the candidate ODT put it in the right column. That proposed behavior was withdrawn; the final change is limited to the four independently confirmed section cases. The intermediate five-failure structural run is not presented as five product defects.
 
 A restored column-style test expected negative gaps to be exported, contrary to the existing writer and `odt_section_columns_test.dart` contract. Its assertion now preserves that existing conservative profile: omit the unsupported negative gap attribute while preserving count, visible text, source value, zero normalization, and style precision. This is a test reconciliation, not a new negative-gap behavior or a claim that the ODF grammar forbids signed lengths. ODF 1.3 section 19.233 and the official RNG declare `fo:column-gap` as `length`:
 
@@ -19,6 +21,8 @@ A restored column-style test expected negative gaps to be exported, contrary to 
 
 Fresh qualification is pending the saved source checkpoint. The runtime reproduces Flutter 3.47.8 / Dart 3.13.7, the locked 108-package dependency graph, and the exact native library/model hashes required by the existing runner. Historical passing results and interrupted runs are not counted as current results.
 
-The five failing pre-fix controls and initial focused attempts are retained separately. Final results will include the selected local test cohorts, strict analysis and formatting, Python controls, portable field checks, and independent ODF consumers where executed.
+Intermediate candidate `e95cb0ce` passed all five strict-analysis scopes but stopped at the formatter before test cohorts ran. Its retained 40-consumer run passed 160 XML-part checks; those outcomes remain attributed to that intermediate source and do not qualify the narrowed final source. A first new-consumer attempt also recorded custom-paper normalization in the native DOCX reference; the final equal-geometry controls use standard Letter paper. Failed attempts and their original observations remain separate.
+
+Final results will include the selected local test cohorts, strict analysis and formatting, Python controls, portable field checks, and independent ODF consumers where executed.
 
 No GitHub Actions, workflow, check-run, or CI-status endpoints are queried or awaited. Source and completed evidence are saved incrementally to the remote follow-up branch.

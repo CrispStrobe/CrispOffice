@@ -129,67 +129,73 @@ void main() {
     expect(_elements(content, 'soft-page-break'), isEmpty);
   });
 
-  test('imported middle column break retains exact runs, links and bookmark extent', () {
-    final document = _import(
-      '<w:p><w:pPr><w:spacing w:before="120" w:after="160"/>'
-      '<w:ind w:left="400" w:firstLine="240"/></w:pPr>'
-      '<w:bookmarkStart w:id="1" w:name="Across"/>'
-      '<w:r><w:rPr><w:b/><w:color w:val="1234AB"/></w:rPr>'
-      '<w:t xml:space="preserve"> Left </w:t><w:tab/>'
-      '<w:br w:type="column"/><w:t xml:space="preserve"> Right </w:t></w:r>'
-      '<w:hyperlink w:anchor="Across"><w:r><w:t>Link</w:t></w:r></w:hyperlink>'
-      '<w:bookmarkEnd w:id="1"/></w:p>',
-    );
-    final source = document.paragraphs.single;
-    final content = _export(document);
-    final paragraphs = _elements(_body(content), 'p').toList();
-    expect(paragraphs.map(_visible), [' Left \t', ' Right Link']);
-    expect(paragraphs.map((p) => _breakBefore(content, p)), [null, 'column']);
-    final first = _properties(content, paragraphs.first);
-    final last = _properties(content, paragraphs.last);
-    expect(first.getAttribute('margin-top', namespaceUri: _foNs), '6.00pt');
-    expect(first.getAttribute('margin-bottom', namespaceUri: _foNs), '0.00pt');
-    expect(first.getAttribute('text-indent', namespaceUri: _foNs), '12.00pt');
-    expect(last.getAttribute('margin-top', namespaceUri: _foNs), '0.00pt');
-    expect(last.getAttribute('margin-bottom', namespaceUri: _foNs), '8.00pt');
-    expect(last.getAttribute('text-indent', namespaceUri: _foNs), isNull);
-    for (final paragraph in paragraphs) {
+  test(
+    'imported middle column break retains exact runs, links and bookmark extent',
+    () {
+      final document = _import(
+        '<w:p><w:pPr><w:spacing w:before="120" w:after="160"/>'
+        '<w:ind w:left="400" w:firstLine="240"/></w:pPr>'
+        '<w:bookmarkStart w:id="1" w:name="Across"/>'
+        '<w:r><w:rPr><w:b/><w:color w:val="1234AB"/></w:rPr>'
+        '<w:t xml:space="preserve"> Left </w:t><w:tab/>'
+        '<w:br w:type="column"/><w:t xml:space="preserve"> Right </w:t></w:r>'
+        '<w:hyperlink w:anchor="Across"><w:r><w:t>Link</w:t></w:r></w:hyperlink>'
+        '<w:bookmarkEnd w:id="1"/></w:p>',
+      );
+      final source = document.paragraphs.single;
+      final content = _export(document);
+      final paragraphs = _elements(_body(content), 'p').toList();
+      expect(paragraphs.map(_visible), [' Left \t', ' Right Link']);
+      expect(paragraphs.map((p) => _breakBefore(content, p)), [null, 'column']);
+      final first = _properties(content, paragraphs.first);
+      final last = _properties(content, paragraphs.last);
+      expect(first.getAttribute('margin-top', namespaceUri: _foNs), '6.00pt');
       expect(
-        _properties(
+        first.getAttribute('margin-bottom', namespaceUri: _foNs),
+        '0.00pt',
+      );
+      expect(first.getAttribute('text-indent', namespaceUri: _foNs), '12.00pt');
+      expect(last.getAttribute('margin-top', namespaceUri: _foNs), '0.00pt');
+      expect(last.getAttribute('margin-bottom', namespaceUri: _foNs), '8.00pt');
+      expect(last.getAttribute('text-indent', namespaceUri: _foNs), isNull);
+      for (final paragraph in paragraphs) {
+        expect(
+          _properties(
+            content,
+            paragraph,
+          ).getAttribute('margin-left', namespaceUri: _foNs),
+          '20.00pt',
+        );
+        final span = _elements(paragraph, 'span').first;
+        final textProperties = _style(
           content,
-          paragraph,
-        ).getAttribute('margin-left', namespaceUri: _foNs),
-        '20.00pt',
-      );
-      final span = _elements(paragraph, 'span').first;
-      final textProperties = _style(
-        content,
-        span,
-      ).firstChild('text-properties')!;
+          span,
+        ).firstChild('text-properties')!;
+        expect(
+          textProperties.getAttribute('color', namespaceUri: _foNs),
+          '#1234ab',
+        );
+        expect(
+          textProperties.getAttribute('font-weight', namespaceUri: _foNs),
+          'bold',
+        );
+      }
+      expect(_elements(paragraphs.first, 'bookmark-start'), hasLength(1));
+      expect(_elements(paragraphs.first, 'bookmark-end'), isEmpty);
+      expect(_elements(paragraphs.last, 'bookmark-start'), isEmpty);
+      expect(_elements(paragraphs.last, 'bookmark-end'), hasLength(1));
       expect(
-        textProperties.getAttribute('color', namespaceUri: _foNs),
-        '#1234ab',
+        _elements(
+          paragraphs.last,
+          'a',
+        ).single.getAttribute('href', namespaceUri: _linkNs),
+        '#Across',
       );
-      expect(
-        textProperties.getAttribute('font-weight', namespaceUri: _foNs),
-        'bold',
-      );
-    }
-    expect(_elements(paragraphs.first, 'bookmark-start'), hasLength(1));
-    expect(_elements(paragraphs.first, 'bookmark-end'), isEmpty);
-    expect(_elements(paragraphs.last, 'bookmark-start'), isEmpty);
-    expect(_elements(paragraphs.last, 'bookmark-end'), hasLength(1));
-    expect(
-      _elements(
-        paragraphs.last,
-        'a',
-      ).single.getAttribute('href', namespaceUri: _linkNs),
-      '#Across',
-    );
-    expect(source.properties.spacingBefore, 6);
-    expect(source.properties.spacingAfter, 8);
-    expect(source.properties.indent.firstLine, 12);
-  });
+      expect(source.properties.spacingBefore, 6);
+      expect(source.properties.spacingAfter, 8);
+      expect(source.properties.indent.firstLine, 12);
+    },
+  );
 
   test(
     'authored whitespace before a column break remains before that break',
@@ -249,67 +255,58 @@ void main() {
     },
   );
 
-  test('section and page boundaries precede both authored column breaks', () {
-    final document = _import(
-      '<w:p><w:pPr><w:sectPr><w:cols w:num="2"/></w:sectPr></w:pPr>'
-      '<w:r><w:t>First section</w:t></w:r></w:p>'
-      '<w:p><w:pPr><w:pageBreakBefore/></w:pPr>'
-      '<w:r><w:br w:type="column"/><w:t>Second section</w:t>'
-      '<w:br w:type="column"/><w:t>Continuation</w:t></w:r></w:p>',
-    );
-    expect(document.sections, hasLength(2));
-    final source = document.sections.last.blocks
-        .whereType<WmlParagraph>()
-        .single;
-    final originalInlines = List<WmlInline>.of(source.inlines);
-    final originalProperties = source.properties;
-    final originalColumnBreak = source.properties.columnBreakBefore;
-    final content = _export(document);
-    final paragraphs = _elements(_body(content), 'p').toList();
-    expect(paragraphs.map(_visible), [
-      'First section',
-      '',
-      'Second section',
-      'Continuation',
-    ]);
-    final first = paragraphs[1];
-    expect(_breakBefore(content, first), 'page');
-    expect(
-      _style(
-        content,
-        first,
-      ).getAttribute('master-page-name', namespaceUri: _styleNs),
-      'mp1',
-    );
-    expect(
-      _properties(
-        content,
-        first,
-      ).getAttribute('page-number', namespaceUri: _styleNs),
-      'auto',
-    );
-    for (final fragment in paragraphs.skip(2)) {
-      expect(_breakBefore(content, fragment), 'column');
+  test(
+    'section and page precedence stay on the first column fragment only',
+    () {
+      final document = _import(
+        '<w:p><w:pPr><w:sectPr><w:cols w:num="2"/></w:sectPr></w:pPr>'
+        '<w:r><w:t>First section</w:t></w:r></w:p>'
+        '<w:p><w:pPr><w:pageBreakBefore/></w:pPr>'
+        '<w:r><w:br w:type="column"/><w:t>Second section</w:t>'
+        '<w:br w:type="column"/><w:t>Continuation</w:t></w:r></w:p>',
+      );
+      expect(document.sections, hasLength(2));
+      final content = _export(document);
+      final paragraphs = _elements(_body(content), 'p').toList();
+      expect(paragraphs.map(_visible), [
+        'First section',
+        'Second section',
+        'Continuation',
+      ]);
+      final first = paragraphs[1];
+      final last = paragraphs[2];
+      expect(_breakBefore(content, first), 'page');
       expect(
         _style(
           content,
-          fragment,
+          first,
+        ).getAttribute('master-page-name', namespaceUri: _styleNs),
+        'mp1',
+      );
+      expect(
+        _properties(
+          content,
+          first,
+        ).getAttribute('page-number', namespaceUri: _styleNs),
+        'auto',
+      );
+      expect(_breakBefore(content, last), 'column');
+      expect(
+        _style(
+          content,
+          last,
         ).getAttribute('master-page-name', namespaceUri: _styleNs),
         isNull,
       );
       expect(
         _properties(
           content,
-          fragment,
+          last,
         ).getAttribute('page-number', namespaceUri: _styleNs),
         isNull,
       );
-    }
-    expect(source.inlines, orderedEquals(originalInlines));
-    expect(source.properties, same(originalProperties));
-    expect(source.properties.pageBreakBefore, isTrue);
-    expect(source.properties.columnBreakBefore, originalColumnBreak);
-  });
+    },
+  );
 
   test(
     'line and page breaks retain their existing position beside a column break',

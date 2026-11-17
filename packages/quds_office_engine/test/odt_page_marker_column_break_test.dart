@@ -238,7 +238,7 @@ void main() {
   }
 
   test(
-    'an explicit paragraph page break precedes its leading column break',
+    'an explicit paragraph page break keeps precedence over its leading column break',
     () {
       final paragraph = WmlParagraph(
         properties: WmlParagraphProps(pageBreakBefore: true),
@@ -247,6 +247,8 @@ void main() {
           WmlRun(text: 'After page and column'),
         ],
       );
+      final originalInlines = List<WmlInline>.of(paragraph.inlines);
+      final originalProperties = paragraph.properties;
       final package = OpcPackage.openBytes(
         OdtDocumentWriter.writeBytes(
           WmlDocument(
@@ -271,10 +273,9 @@ void main() {
           .firstChild('section')!
           .childrenNamed('p', namespaceUri: _textNs)
           .toList();
-      expect(paragraphs, hasLength(3));
+      expect(paragraphs, hasLength(2));
       expect(paragraphs.map((node) => node.text), [
         'Before page break',
-        '',
         'After page and column',
       ]);
       String? breakBefore(XmlElement owner) {
@@ -290,7 +291,9 @@ void main() {
             .getAttribute('break-before', namespaceUri: _foNs);
       }
 
-      expect(paragraphs.map(breakBefore), [null, 'page', 'column']);
+      expect(paragraphs.map(breakBefore), [null, 'page']);
+      expect(paragraph.inlines, orderedEquals(originalInlines));
+      expect(paragraph.properties, same(originalProperties));
       expect(paragraph.properties.pageBreakBefore, isTrue);
       expect(paragraph.properties.columnBreakBefore, isFalse);
     },
