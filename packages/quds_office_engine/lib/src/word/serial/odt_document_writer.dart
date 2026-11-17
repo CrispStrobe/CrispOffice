@@ -6,6 +6,7 @@ import '../../opc/zip/zip_writer.dart';
 import '../../visual/office_visual.dart';
 import '../../xml/xml_writer.dart';
 import '../model/wml_document.dart';
+import '../model/word_notes.dart';
 import '../properties/wml_properties.dart';
 
 /// Bounded new-document ODT writer for the shared Word model.
@@ -65,6 +66,35 @@ abstract final class OdtDocumentWriter {
   }
 
   static String _stylesXml(WmlDocument document, _OdtLayout layout) {
+    // Master-page stories use automatic styles in styles.xml, while body
+    // stories use those in content.xml. Keep the style registries separate and
+    // share the package media registry so header/footer pictures cannot collide.
+    final stories = _OdtLayout(document, sharedMedia: layout);
+    final section = document.sections.firstOrNull;
+    final master = XmlWriter();
+    master.writeStartElement('master-styles', prefix: 'office');
+    master.writeStartElement('master-page', prefix: 'style');
+    master.writeAttribute('style:name', 'Standard');
+    master.writeAttribute('style:page-layout-name', 'pm1');
+    final header = section?.header ?? const <WmlParagraph>[];
+    final footer = section?.footer ?? const <WmlParagraph>[];
+    if (header.isNotEmpty) {
+      master.writeStartElement('header', prefix: 'style');
+      for (final paragraph in header) {
+        _writeParagraph(master, paragraph, stories);
+      }
+      master.writeEndElement();
+    }
+    if (footer.isNotEmpty) {
+      master.writeStartElement('footer', prefix: 'style');
+      for (final paragraph in footer) {
+        _writeParagraph(master, paragraph, stories);
+      }
+      master.writeEndElement();
+    }
+    master.writeEndElement();
+    master.writeEndElement();
+
     final w = XmlWriter();
     w.writeStartDocument();
     w.writeStartElement('document-styles', prefix: 'office');
@@ -99,33 +129,44 @@ abstract final class OdtDocumentWriter {
       w.writeEndElement();
       w.writeEndElement();
     }
-    w.writeStartElement('list-style', prefix: 'text');
-    w.writeAttribute('style:name', 'L1');
-    for (var level = 1; level <= 9; level++) {
-      w.writeStartElement('list-level-style-bullet', prefix: 'text');
-      w.writeAttribute('text:level', '$level');
-      w.writeAttribute('text:bullet-char', '•');
-      w.writeStartElement('list-level-properties', prefix: 'style');
-      w.writeAttribute(
-        'text:list-level-position-and-space-mode',
-        'label-alignment',
-      );
-      w.writeEmptyElement(
-        'list-level-label-alignment',
-        prefix: 'style',
-        attributes: {
-          'text:label-followed-by': 'listtab',
-          'fo:margin-left': '${level * 0.25}in',
-          'fo:text-indent': '-0.25in',
-        },
-      );
-      w.writeEndElement();
+    for (final ordered in <bool>[false, true]) {
+      w.writeStartElement('list-style', prefix: 'text');
+      w.writeAttribute('style:name', ordered ? 'L2' : 'L1');
+      for (var level = 1; level <= 9; level++) {
+        w.writeStartElement(
+          ordered ? 'list-level-style-number' : 'list-level-style-bullet',
+          prefix: 'text',
+        );
+        w.writeAttribute('text:level', '$level');
+        if (ordered) {
+          w.writeAttribute('loext:num-list-format', '%$level%.');
+          w.writeAttribute('style:num-format', '1');
+          w.writeAttribute('style:num-suffix', '.');
+        } else {
+          w.writeAttribute('text:bullet-char', '•');
+        }
+        w.writeStartElement('list-level-properties', prefix: 'style');
+        w.writeAttribute(
+          'text:list-level-position-and-space-mode',
+          'label-alignment',
+        );
+        w.writeEmptyElement(
+          'list-level-label-alignment',
+          prefix: 'style',
+          attributes: {
+            'text:label-followed-by': 'listtab',
+            'text:list-tab-stop-position': '${level * 0.25}in',
+            'fo:margin-left': '${level * 0.25}in',
+            'fo:text-indent': '-0.25in',
+          },
+        );
+        w.writeEndElement();
+        w.writeEndElement();
+      }
       w.writeEndElement();
     }
     w.writeEndElement();
-    w.writeEndElement();
     w.writeStartElement('automatic-styles', prefix: 'office');
-    final section = document.sections.firstOrNull;
     final page = section?.pageSize ?? const WmlPageSize();
     final margins = section?.margins ?? const WmlPageMargins();
     w.writeStartElement('page-layout', prefix: 'style');
@@ -145,29 +186,9 @@ abstract final class OdtDocumentWriter {
     );
     w.writeEndElement();
     w.writeEndElement();
+    stories.writeContentStyles(w);
     w.writeEndElement();
-    w.writeStartElement('master-styles', prefix: 'office');
-    w.writeStartElement('master-page', prefix: 'style');
-    w.writeAttribute('style:name', 'Standard');
-    w.writeAttribute('style:page-layout-name', 'pm1');
-    final header = section?.header ?? const <WmlParagraph>[];
-    final footer = section?.footer ?? const <WmlParagraph>[];
-    if (header.isNotEmpty) {
-      w.writeStartElement('header', prefix: 'style');
-      for (final paragraph in header) {
-        _writePlainParagraph(w, paragraph.text);
-      }
-      w.writeEndElement();
-    }
-    if (footer.isNotEmpty) {
-      w.writeStartElement('footer', prefix: 'style');
-      for (final paragraph in footer) {
-        _writePlainParagraph(w, paragraph.text);
-      }
-      w.writeEndElement();
-    }
-    w.writeEndElement();
-    w.writeEndElement();
+    w.writeRaw(master.toXml());
     w.writeEndElement();
     return w.toXml();
   }
@@ -201,6 +222,10 @@ abstract final class OdtDocumentWriter {
     w.writeNamespace('xlink', 'http://www.w3.org/1999/xlink');
     w.writeNamespace('dc', 'http://purl.org/dc/elements/1.1/');
     w.writeNamespace('meta', 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0');
+    w.writeNamespace(
+      'loext',
+      'urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0',
+    );
   }
 
   static void _writeBlocks(
@@ -236,8 +261,13 @@ abstract final class OdtDocumentWriter {
     List<WmlParagraph> paragraphs,
     _OdtLayout layout,
   ) {
+    final ordered = paragraphs.any((paragraph) {
+      final label = paragraph.properties.listLabel?.trim() ?? '';
+      return label.isNotEmpty &&
+          !const <String>{'•', '◦', '▪', 'o'}.contains(label);
+    });
     w.writeStartElement('list', prefix: 'text');
-    w.writeAttribute('text:style-name', layout.listStyle());
+    w.writeAttribute('text:style-name', layout.listStyle(ordered: ordered));
     for (final paragraph in paragraphs) {
       w.writeStartElement('list-item', prefix: 'text');
       _writeParagraph(w, paragraph, layout);
@@ -295,10 +325,54 @@ abstract final class OdtDocumentWriter {
           w.writeStartElement('a', prefix: 'text');
           w.writeAttribute('xlink:href', href);
         }
-        if (inline.text.isNotEmpty) {
+        if (inline.noteRefId case final noteId?) {
+          final note = layout.note(noteId, endnote: inline.noteRefEndnote);
+          if (note != null) {
+            final noteNumber = layout.noteNumber(
+              noteId,
+              endnote: inline.noteRefEndnote,
+            );
+            w.writeStartElement('note', prefix: 'text');
+            w.writeAttribute(
+              'text:note-class',
+              inline.noteRefEndnote ? 'endnote' : 'footnote',
+            );
+            w.writeAttribute(
+              'text:id',
+              '${inline.noteRefEndnote ? 'end' : 'ftn'}$noteNumber',
+            );
+            w.writeStartElement('note-citation', prefix: 'text');
+            w.writeText('$noteNumber');
+            w.writeEndElement();
+            w.writeStartElement('note-body', prefix: 'text');
+            _writeBlocks(w, note.blocks, layout);
+            w.writeEndElement();
+            w.writeEndElement();
+          }
+        } else if (inline.text.isNotEmpty) {
           w.writeStartElement('span', prefix: 'text');
           w.writeAttribute('text:style-name', style);
           writeOdfText(w, inline.text);
+          w.writeEndElement();
+        }
+        for (final commentId in inline.commentIds) {
+          final comment = layout.comment(commentId);
+          if (comment == null || !layout.markCommentWritten(commentId)) {
+            continue;
+          }
+          w.writeStartElement('annotation', prefix: 'office');
+          w.writeAttribute('office:display', 'true');
+          if (comment.author.isNotEmpty) {
+            w.writeStartElement('creator', prefix: 'dc');
+            w.writeText(comment.author);
+            w.writeEndElement();
+          }
+          if (comment.dateIso.isNotEmpty) {
+            w.writeStartElement('date', prefix: 'dc');
+            w.writeText(comment.dateIso);
+            w.writeEndElement();
+          }
+          _writeBlocks(w, comment.paragraphs, layout);
           w.writeEndElement();
         }
         if (inline.inlineVisual case final visual?) {
@@ -347,10 +421,18 @@ abstract final class OdtDocumentWriter {
             : {'table:number-columns-repeated': '$inferredColumns'},
       );
     }
+    if (table.rows.isEmpty) {
+      w.writeStartElement('table-row', prefix: 'table');
+      _writeOmittedCells(w, cells.columnCount);
+      w.writeEndElement();
+    }
     for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
       final row = table.rows[rowIndex];
       w.writeStartElement('table-row', prefix: 'table');
-      _writeOmittedCells(w, row.gridBefore);
+      _writeOmittedCells(
+        w,
+        BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0),
+      );
       for (var index = 0; index < row.cells.length; index++) {
         final cell = row.cells[index];
         final placement = cells.rows[rowIndex][index];
@@ -380,7 +462,12 @@ abstract final class OdtDocumentWriter {
         w.writeEndElement();
         _writeCoveredCells(w, placement.columns - 1);
       }
-      _writeOmittedCells(w, row.gridAfter);
+      _writeOmittedCells(
+        w,
+        BigInt.from(row.gridAfter > 0 ? row.gridAfter : 0) +
+            cells.columnCount -
+            cells.rowWidths[rowIndex],
+      );
       w.writeEndElement();
     }
     w.writeEndElement();
@@ -397,10 +484,12 @@ abstract final class OdtDocumentWriter {
     );
   }
 
-  static void _writeOmittedCells(XmlWriter w, int count) {
-    if (count <= 0) return;
+  static void _writeOmittedCells(XmlWriter w, BigInt count) {
+    if (count <= BigInt.zero) return;
     w.writeStartElement('table-cell', prefix: 'table');
-    if (count > 1) w.writeAttribute('table:number-columns-repeated', '$count');
+    if (count > BigInt.one) {
+      w.writeAttribute('table:number-columns-repeated', '$count');
+    }
     _writePlainParagraph(w, '');
     w.writeEndElement();
   }
@@ -440,7 +529,7 @@ abstract final class OdtDocumentWriter {
       w.writeEmptyElement(
         'image',
         prefix: 'draw',
-        attributes: {'xlink:href': path},
+        attributes: {'xlink:href': path, 'xlink:type': 'simple'},
       );
       w.writeEndElement();
     } else if (inline) {
@@ -519,7 +608,8 @@ abstract final class OdtDocumentWriter {
 /// Storage and iteration are proportional to physical cells, not authored
 /// column spans. BigInt offsets prevent cumulative span overflow on VM and web.
 class _OdtTableCells {
-  _OdtTableCells(WmlTable table) {
+  _OdtTableCells(WmlTable table)
+    : columnCount = BigInt.from(table.grid.isEmpty ? 1 : table.grid.length) {
     var previous = <(BigInt, int), _OdtTableCell>{};
     for (final row in table.rows) {
       final placements = <_OdtTableCell>[];
@@ -550,13 +640,15 @@ class _OdtTableCells {
         column += BigInt.from(span);
       }
       column += BigInt.from(row.gridAfter > 0 ? row.gridAfter : 0);
+      rowWidths.add(column);
       if (column > columnCount) columnCount = column;
       previous = current;
     }
   }
 
   final rows = <List<_OdtTableCell>>[];
-  BigInt columnCount = BigInt.one;
+  final rowWidths = <BigInt>[];
+  BigInt columnCount;
 }
 
 class _OdtTableCell {
@@ -568,10 +660,12 @@ class _OdtTableCell {
 }
 
 class _OdtLayout {
-  _OdtLayout(this.document);
+  _OdtLayout(this.document, {_OdtLayout? sharedMedia})
+    : media = sharedMedia?.media ?? <String>[],
+      _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{};
 
   final WmlDocument document;
-  final List<String> media = <String>[];
+  final List<String> media;
   final Map<String, String> _runStyles = <String, String>{};
   final Map<String, String> _paragraphStyles = <String, String>{};
   final Map<String, String> _columnStyles = <String, String>{};
@@ -587,7 +681,7 @@ class _OdtLayout {
     return path;
   }
 
-  final Map<String, Uint8List> _mediaBytes = <String, Uint8List>{};
+  final Map<String, Uint8List> _mediaBytes;
 
   Map<String, Uint8List> get mediaBytes => _mediaBytes;
 
@@ -733,7 +827,33 @@ class _OdtLayout {
     });
   }
 
-  String listStyle() => 'L1';
+  final Set<int> _writtenComments = <int>{};
+
+  WmlComment? comment(int id) {
+    for (final comment in document.comments) {
+      if (comment.id == id) return comment;
+    }
+    return null;
+  }
+
+  bool markCommentWritten(int id) => _writtenComments.add(id);
+
+  final Map<String, int> _noteNumbers = <String, int>{};
+
+  WmlNote? note(int id, {required bool endnote}) {
+    final notes = endnote ? document.endnotes : document.footnotes;
+    for (final note in notes) {
+      if (note.id == id) return note;
+    }
+    return null;
+  }
+
+  int noteNumber(int id, {required bool endnote}) {
+    final key = '${endnote ? 'e' : 'f'}:$id';
+    return _noteNumbers.putIfAbsent(key, () => _noteNumbers.length + 1);
+  }
+
+  String listStyle({required bool ordered}) => ordered ? 'L2' : 'L1';
 
   String cellStyle(String fill) {
     return _cellStyles.putIfAbsent(fill, () {

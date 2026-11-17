@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import '../../odf/odf_text.dart';
 import '../../opc/zip/zip_writer.dart';
 import '../../xml/xml_writer.dart';
+import '../anim/pml_motion.dart';
 import '../model/pml_presentation.dart';
 
 /// Bounded new-document ODP writer for the shared slide model.
@@ -65,6 +66,26 @@ abstract final class OdpPresentationWriter {
     w.writeAttribute('draw:name', 'page${index + 1}');
     w.writeAttribute('draw:style-name', pageStyle);
     w.writeAttribute('draw:master-page-name', 'mp1');
+    if (!slide.transition.isNone) {
+      w.writeAttribute(
+        'presentation:transition-style',
+        _transitionStyle(slide.transition),
+      );
+      w.writeAttribute(
+        'presentation:transition-speed',
+        slide.transition.durationMs <= 500
+            ? 'fast'
+            : slide.transition.durationMs >= 1000
+            ? 'slow'
+            : 'medium',
+      );
+      if (slide.transition.advanceAfterMs case final advance?) {
+        w.writeAttribute(
+          'presentation:duration',
+          'PT${(advance / 1000).toStringAsFixed(2)}S',
+        );
+      }
+    }
     for (final shape in slide.shapes) {
       _writeShape(w, shape, layout);
     }
@@ -83,6 +104,45 @@ abstract final class OdpPresentationWriter {
       w.writeEndElement();
     }
     w.writeEndElement();
+  }
+
+  static String _transitionStyle(PmlSlideTransition transition) {
+    String direction(PmlTransitionDir dir) => switch (dir) {
+      PmlTransitionDir.left => 'left',
+      PmlTransitionDir.right => 'right',
+      PmlTransitionDir.up => 'up',
+      PmlTransitionDir.down => 'down',
+      PmlTransitionDir.horizontal => 'horizontal',
+      PmlTransitionDir.vertical => 'vertical',
+      PmlTransitionDir.inward => 'in',
+      PmlTransitionDir.outward => 'out',
+    };
+    return switch (transition.kind) {
+      PmlTransitionKind.none => 'none',
+      PmlTransitionKind.fade => 'fade-over',
+      PmlTransitionKind.fadeThroughBlack => 'fade-through-black',
+      PmlTransitionKind.cut => 'cut',
+      PmlTransitionKind.push => 'push-${direction(transition.direction)}',
+      PmlTransitionKind.wipe => 'wipe-${direction(transition.direction)}',
+      PmlTransitionKind.split =>
+        'split-${transition.direction == PmlTransitionDir.horizontal ? 'horizontal' : 'vertical'}',
+      PmlTransitionKind.uncover => 'uncover-${direction(transition.direction)}',
+      PmlTransitionKind.cover => 'cover-${direction(transition.direction)}',
+      PmlTransitionKind.dissolve => 'dissolve',
+      PmlTransitionKind.checkerboard => 'checkerboard',
+      PmlTransitionKind.blinds => 'blinds-${direction(transition.direction)}',
+      PmlTransitionKind.clock => 'clock',
+      PmlTransitionKind.zoom => 'zoom-in',
+      PmlTransitionKind.flash => 'flash',
+      PmlTransitionKind.comb => 'comb-${direction(transition.direction)}',
+      PmlTransitionKind.strips => 'strips-${direction(transition.direction)}',
+      PmlTransitionKind.randomBars =>
+        'random-bars-${direction(transition.direction)}',
+      PmlTransitionKind.reveal => 'reveal-${direction(transition.direction)}',
+      PmlTransitionKind.gallery => 'gallery',
+      PmlTransitionKind.doors => 'doors-${direction(transition.direction)}',
+      _ => 'fade-over',
+    };
   }
 
   static void _writeShape(XmlWriter w, PmlShape shape, _OdpLayout layout) {
@@ -113,7 +173,7 @@ abstract final class OdpPresentationWriter {
       w.writeEmptyElement(
         'image',
         prefix: 'draw',
-        attributes: {'xlink:href': path},
+        attributes: {'xlink:href': path, 'xlink:type': 'simple'},
       );
     } else if (shape.table case final table?) {
       _writeTable(w, table, transform, layout);
@@ -139,7 +199,13 @@ abstract final class OdpPresentationWriter {
     w.writeAttribute('table:name', 'Table${layout.tableCount++}');
     w.writeAttribute(
       'table:style-name',
-      layout.tableStyle(transform.widthPoints, table.rightToLeft),
+      layout.tableStyle(transform.widthPoints),
+    );
+    // Impress omits rows wrapped in table-header-rows. Keep presentation rows
+    // direct and retain the first-row styling flag without a pagination wrapper.
+    w.writeAttribute(
+      'table:use-first-row-styles',
+      '${table.headerRow && table.rowCount > 0}',
     );
     w.writeEmptyElement(
       'table-column',
@@ -154,40 +220,50 @@ abstract final class OdpPresentationWriter {
       final row = index < table.rowCount
           ? table.rows[index]
           : const <PmlTableCell>[];
-      final isHeader = table.headerRow && index == 0 && table.rowCount > 0;
-      if (isHeader) w.writeStartElement('table-header-rows', prefix: 'table');
       w.writeStartElement('table-row', prefix: 'table');
       w.writeAttribute('table:style-name', rowStyle);
-      for (final cell in row) {
+      final missing = columns - row.length;
+      // Presentation readers do not consistently implement table writing-mode.
+      // Serialize physical left-to-right positions while keeping each cell's
+      // paragraph direction. The source model remains in logical column order.
+      if (table.rightToLeft) {
+        _writeEmptyTableCells(w, missing, layout, rightToLeft: true);
+      }
+      for (final cell in table.rightToLeft ? row.reversed : row) {
         w.writeStartElement('table-cell', prefix: 'table');
-        if (cell.fillColor.isNotEmpty) {
-          w.writeAttribute(
-            'table:style-name',
-            layout.cellStyle(cell.fillColor),
-          );
-        }
+        w.writeAttribute(
+          'table:style-name',
+          layout.cellStyle(cell.fillColor.isEmpty ? 'FFFFFF' : cell.fillColor),
+        );
         _writeParagraphs(
           w,
           cell.text,
           layout,
           null,
-          textColor: cell.textColor,
+          textColor: cell.textColor.isEmpty ? '1A1A1A' : cell.textColor,
           rightToLeft: table.rightToLeft,
         );
         w.writeEndElement();
       }
-      final missing = columns - row.length;
-      if (missing > 0) {
-        w.writeStartElement('table-cell', prefix: 'table');
-        if (missing > 1) {
-          w.writeAttribute('table:number-columns-repeated', '$missing');
-        }
-        _writeParagraphs(w, '', layout, null, rightToLeft: table.rightToLeft);
-        w.writeEndElement();
+      if (!table.rightToLeft) {
+        _writeEmptyTableCells(w, missing, layout, rightToLeft: false);
       }
       w.writeEndElement();
-      if (isHeader) w.writeEndElement();
     }
+    w.writeEndElement();
+  }
+
+  static void _writeEmptyTableCells(
+    XmlWriter w,
+    int count,
+    _OdpLayout layout, {
+    required bool rightToLeft,
+  }) {
+    if (count <= 0) return;
+    w.writeStartElement('table-cell', prefix: 'table');
+    if (count > 1) w.writeAttribute('table:number-columns-repeated', '$count');
+    w.writeAttribute('table:style-name', layout.cellStyle('FFFFFF'));
+    _writeParagraphs(w, '', layout, null, rightToLeft: rightToLeft);
     w.writeEndElement();
   }
 
@@ -475,14 +551,13 @@ class _OdpLayout {
     });
   }
 
-  String tableStyle(double width, bool rtl) {
+  String tableStyle(double width) {
     final length = _positiveLength(width);
-    final key = '$length|$rtl';
-    return _tables.putIfAbsent(key, () {
+    return _tables.putIfAbsent(length ?? '', () {
       final name = 'Ta${_tables.length + 1}';
       _buffers.add(
         '<style:style style:name="$name" style:family="table">'
-        '<style:table-properties style:writing-mode="${rtl ? 'rl-tb' : 'lr-tb'}"'
+        '<style:table-properties style:writing-mode="lr-tb"'
         '${length == null ? '' : ' style:width="$length"'}/>'
         '</style:style>',
       );

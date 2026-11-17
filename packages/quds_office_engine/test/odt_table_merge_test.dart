@@ -288,7 +288,7 @@ void main() {
       ).table;
       expect(_visibleGrid(output), [
         ['Left', 'Right'],
-        ['#'],
+        ['#', ''],
         ['#', 'Visible'],
       ]);
       final first = _slots(_rows(output).first);
@@ -565,7 +565,7 @@ void main() {
     ).table;
     expect(_visibleGrid(output), [
       ['Anchor'],
-      <String>[],
+      [''],
       ['Visible'],
     ]);
     expect(
@@ -573,4 +573,127 @@ void main() {
       isNull,
     );
   });
+
+  test('an empty table has declared columns and a nonempty blank row', () {
+    final source = _table([]);
+    final output = _export(source).table;
+    expect(output.childrenNamed('table-column'), hasLength(1));
+    expect(_visibleGrid(output), [
+      [''],
+    ]);
+    expect(source.rows, isEmpty);
+    expect(source.grid, isEmpty);
+  });
+
+  test('an empty table retains the full authored grid width', () {
+    final source = _table([], grid: [30, 60, 90]);
+    final output = _export(source).table;
+    expect(output.childrenNamed('table-column'), hasLength(3));
+    expect(_visibleGrid(output), [
+      ['', '', ''],
+    ]);
+    final placeholder = _physicalCells(_rows(output).single).single;
+    expect(placeholder.localName, 'table-cell');
+    expect(placeholder.getAttribute('number-columns-repeated'), '3');
+    expect(placeholder.childrenNamed('p'), hasLength(1));
+    expect(source.rows, isEmpty);
+  });
+
+  test(
+    'all empty rows retain their number and receive ordinary blank cells',
+    () {
+      final source = _table([[], [], []]);
+      final output = _export(source).table;
+      expect(_visibleGrid(output), [
+        [''],
+        [''],
+        [''],
+      ]);
+      expect(source.rows, hasLength(3));
+      expect(source.rows.every((row) => row.cells.isEmpty), isTrue);
+    },
+  );
+
+  test('ragged rows are padded compactly to the authored grid width', () {
+    final source = _table(
+      [
+        [_cell('A')],
+        [],
+        [_cell('B'), _cell('C')],
+      ],
+      grid: [40, 40, 40, 40],
+    );
+    final output = _export(source).table;
+    expect(_visibleGrid(output), [
+      ['A', '', '', ''],
+      ['', '', '', ''],
+      ['B', 'C', '', ''],
+    ]);
+    expect(
+      _physicalCells(
+        _rows(output).first,
+      ).last.getAttribute('number-columns-repeated'),
+      '3',
+    );
+    expect(source.rows.map((row) => row.cells.length), [1, 0, 2]);
+  });
+
+  test(
+    'ragged rows are padded to the widest inferred row without moving text',
+    () {
+      final source = _table([
+        [_cell('Wide', columns: 3)],
+        [_cell('Narrow')],
+        [_cell('Omitted')],
+      ]);
+      source.rows.last
+        ..gridBefore = 1
+        ..gridAfter = 1;
+      final output = _export(source).table;
+      expect(_visibleGrid(output), [
+        ['Wide', '#', '#'],
+        ['Narrow', '', ''],
+        ['', 'Omitted', ''],
+      ]);
+      expect(
+        _physicalCells(
+          _rows(output)[1],
+        ).last.getAttribute('number-columns-repeated'),
+        '2',
+      );
+    },
+  );
+
+  test(
+    'empty-row padding retains exact BigInt widths without grid allocation',
+    () {
+      final huge = int.parse('9007199254740991');
+      final source = _table([
+        [
+          _cell('First', columns: huge),
+          _cell('Second', columns: huge),
+          _cell('Last'),
+        ],
+        [],
+      ]);
+      final output = _export(source);
+      expect(
+        output.package.getPart('/content.xml')!.readText().length,
+        lessThan(6000),
+      );
+      const expected = '18014398509481983';
+      expect(
+        output.table
+            .childrenNamed('table-column')
+            .single
+            .getAttribute('number-columns-repeated'),
+        expected,
+      );
+      final placeholder = _physicalCells(_rows(output.table).last).single;
+      expect(placeholder.localName, 'table-cell');
+      expect(placeholder.getAttribute('number-columns-repeated'), expected);
+      expect(placeholder.childrenNamed('p'), hasLength(1));
+      expect(source.rows.last.cells, isEmpty);
+    },
+  );
 }

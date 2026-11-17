@@ -15,9 +15,15 @@ Iterable<XmlElement> _elements(XmlElement root, String name) sync* {
   }
 }
 
-XmlElement _export(List<PmlShape> shapes, {String? fixture}) {
+XmlElement _export(
+  List<PmlShape> shapes, {
+  String? fixture,
+  String notes = '',
+}) {
   final bytes = OdpPresentationWriter.writeBytes(
-    PmlPresentation(slides: [PmlSlide(id: 1, shapes: shapes)]),
+    PmlPresentation(
+      slides: [PmlSlide(id: 1, shapes: shapes, notes: notes)],
+    ),
   );
   final output = Platform.environment['QUDS_ODF_FIXTURE_OUTPUT'];
   if (fixture != null && output != null && output.isNotEmpty) {
@@ -106,7 +112,15 @@ void main() {
         ownerNamespace: _textNs,
       ).getAttribute('color', namespaceUri: _foNs);
     }).toList();
-    expect(colors, ['#ffffff', '#aa0011', null]);
+    expect(colors, ['#ffffff', '#aa0011', '#1a1a1a']);
+    expect(
+      _properties(
+        root,
+        cells.last,
+        'table-cell',
+      ).getAttribute('background-color', namespaceUri: _foNs),
+      '#ffffff',
+    );
   });
 
   test('equal text colors reuse styles without bleeding into other cells', () {
@@ -136,7 +150,7 @@ void main() {
   });
 
   test(
-    'right-to-left tables preserve logical cell order and paragraph direction',
+    'right-to-left tables export physical positions and paragraph direction',
     () {
       final table = PmlTable(
         rightToLeft: true,
@@ -152,12 +166,12 @@ void main() {
           exported,
           'table',
         ).getAttribute('writing-mode', namespaceUri: _styleNs),
-        'rl-tb',
+        'lr-tb',
       );
       final paragraphs = _elements(exported, 'p').toList();
       expect(paragraphs.map((paragraph) => paragraph.text), [
-        'الأول',
         'الثاني',
+        'الأول',
       ]);
       for (final paragraph in paragraphs) {
         final properties = _properties(
@@ -182,7 +196,7 @@ void main() {
     },
   );
 
-  test('LTR and RTL tables have distinct table and paragraph styles', () {
+  test('physical table layout and paragraph direction remain independent', () {
     final root = _export([
       for (final rtl in [false, true])
         _shape(
@@ -196,10 +210,6 @@ void main() {
     ]);
     final tables = _elements(root, 'table').toList();
     expect(
-      tables[0].getAttribute('style-name'),
-      isNot(tables[1].getAttribute('style-name')),
-    );
-    expect(
       _properties(
         root,
         tables[0],
@@ -208,6 +218,11 @@ void main() {
       'lr-tb',
     );
     final paragraph = _elements(tables[0], 'p').single;
+    final rtlParagraph = _elements(tables[1], 'p').single;
+    expect(
+      paragraph.getAttribute('style-name'),
+      isNot(rtlParagraph.getAttribute('style-name')),
+    );
     expect(
       _properties(
         root,
@@ -219,7 +234,7 @@ void main() {
     );
   });
 
-  test('header flag identifies only the first existing row', () {
+  test('header intent keeps every presentation row directly visible', () {
     final root = _export([
       _shape(
         PmlTable(
@@ -231,14 +246,16 @@ void main() {
       ),
     ]);
     final table = _elements(root, 'table').single;
-    final header = table
-        .childrenNamed('table-header-rows', namespaceUri: _tableNs)
-        .single;
-    expect(_elements(header, 'table-row'), hasLength(1));
-    expect(header.text, 'Heading');
     expect(
-      table.childrenNamed('table-row', namespaceUri: _tableNs).single.text,
-      'Body',
+      table.getAttribute('use-first-row-styles', namespaceUri: _tableNs),
+      'true',
+    );
+    expect(_elements(table, 'table-header-rows'), isEmpty);
+    expect(
+      table
+          .childrenNamed('table-row', namespaceUri: _tableNs)
+          .map((row) => row.text),
+      ['Heading', 'Body'],
     );
   });
 
@@ -255,6 +272,10 @@ void main() {
       ),
     ]);
     final table = _elements(root, 'table').single;
+    expect(
+      table.getAttribute('use-first-row-styles', namespaceUri: _tableNs),
+      'false',
+    );
     expect(_elements(table, 'table-header-rows'), isEmpty);
     expect(
       table.childrenNamed('table-row', namespaceUri: _tableNs),
@@ -413,4 +434,129 @@ void main() {
       }
     },
   );
+
+  for (final tableFirst in [true, false]) {
+    test(
+      'table insertion order $tableFirst preserves shape and note styles',
+      () {
+        final table = _shape(
+          PmlTable(
+            rightToLeft: true,
+            rows: [
+              [PmlTableCell(text: 'Cell', textColor: 'aabbcc')],
+            ],
+          ),
+        );
+        final shape = PmlShape(
+          id: 3,
+          name: 'Ordinary',
+          text: 'Shape',
+          textColor: 'AABBCC',
+          fontSizePt: 27,
+          textAlign: PmlTextAlign.center,
+        );
+        final root = _export(
+          tableFirst ? [table, shape] : [shape, table],
+          notes: 'Note',
+        );
+        final frame = _elements(
+          root,
+          'frame',
+        ).singleWhere((frame) => frame.getAttribute('name') == 'Ordinary');
+        final paragraph = _elements(frame, 'p').single;
+        final span = _elements(paragraph, 'span').single;
+        final text = _properties(root, span, 'text', ownerNamespace: _textNs);
+        expect(text.getAttribute('color', namespaceUri: _foNs), '#aabbcc');
+        expect(text.getAttribute('font-size', namespaceUri: _foNs), '27.0pt');
+        expect(
+          _properties(
+            root,
+            paragraph,
+            'paragraph',
+            ownerNamespace: _textNs,
+          ).getAttribute('text-align', namespaceUri: _foNs),
+          'center',
+        );
+        final note = _elements(_elements(root, 'notes').single, 'span').single;
+        final noteText = _properties(
+          root,
+          note,
+          'text',
+          ownerNamespace: _textNs,
+        );
+        expect(noteText.getAttribute('color', namespaceUri: _foNs), isNull);
+        expect(noteText.getAttribute('font-size', namespaceUri: _foNs), isNull);
+        final cell = _elements(
+          _elements(root, 'table-cell').single,
+          'span',
+        ).single;
+        final cellText = _properties(
+          root,
+          cell,
+          'text',
+          ownerNamespace: _textNs,
+        );
+        expect(cellText.getAttribute('color', namespaceUri: _foNs), '#aabbcc');
+        expect(cellText.getAttribute('font-size', namespaceUri: _foNs), isNull);
+      },
+    );
+  }
+
+  test('RTL empty header remains rectangular across repeated exports', () {
+    final first = <PmlTableCell>[];
+    final table = PmlTable(
+      rightToLeft: true,
+      rows: [
+        first,
+        [
+          PmlTableCell(text: '1'),
+          PmlTableCell(text: '2'),
+          PmlTableCell(text: '3'),
+        ],
+      ],
+    );
+    final shape = _shape(table, width: 100, height: 100);
+    for (final root in [
+      _export([shape]),
+      _export([shape]),
+    ]) {
+      final table = _elements(root, 'table').single;
+      expect(
+        table.getAttribute('use-first-row-styles', namespaceUri: _tableNs),
+        'true',
+      );
+      expect(_cellCount(_elements(table, 'table-row').first), 3);
+      expect(_elements(root, 'table-row'), hasLength(2));
+      expect(_elements(root, 'p').map((paragraph) => paragraph.text), [
+        '',
+        '3',
+        '2',
+        '1',
+      ]);
+    }
+    expect(identical(table.rows.first, first), isTrue);
+    expect(first, isEmpty);
+    expect(table.rows.map((row) => row.length), [0, 3]);
+  });
+
+  test('RTL ragged rows place missing logical cells on the physical left', () {
+    final table = PmlTable(
+      rightToLeft: true,
+      rows: [
+        [
+          PmlTableCell(text: 'First'),
+          PmlTableCell(text: 'Second'),
+          PmlTableCell(text: 'Third'),
+        ],
+        [PmlTableCell(text: 'Right')],
+      ],
+    );
+    final root = _export([_shape(table)]);
+    final cells = _elements(root, 'table-row').last.childrenNamed('table-cell');
+    expect(cells, hasLength(2));
+    expect(cells.first.getAttribute('number-columns-repeated'), '2');
+    expect(cells.first.text, '');
+    expect(cells.last.text, 'Right');
+    expect(table.rows.map((row) => row.length), [3, 1]);
+  });
 }

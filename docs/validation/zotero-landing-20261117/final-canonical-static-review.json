@@ -1,0 +1,256 @@
+{
+  "status": "passed",
+  "kind": "Static immutable-source/ref proof only; no application tests counted",
+  "reviewed_utc": "2026-11-17T09:03:37.832619+00:00",
+  "source_commit": "f510060e35d580cbc361985a123927705c92ddc4",
+  "source_tree": "15f19ae4c6b97760755fa25061af29312f98f348",
+  "base_qualified_source": "837d06edbde08a2465e99cbbb15927ee4c87d8ac",
+  "intermediate_odt_source": "2ae8bf3420bd20ec33115c96a44a38a0d3a78df0",
+  "changed_non_documentation_paths": {
+    "packages/quds_office_engine/README.md": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "671700e8f67d9e8f3752046ea4cf9e8cb9e0d90b"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3eb07d3164ed6a675e38d1a852f927c2b3da678e"
+      }
+    },
+    "packages/quds_office_engine/lib/src/extract/office_search_text.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "07c28974b4e7ca3367a265ddc31c1921e38af3fa"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4f66f5f219a106c4c17dc8c5c1591402ec6fef26"
+      }
+    },
+    "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5698e581239a3daf1a6ef6a4beeaded1da85df8f"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5b73554ff3f3ce976591b244d76f0d6effdb1fb9"
+      }
+    },
+    "packages/quds_office_engine/lib/src/odf/odf_text.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "14e7d46767476085cc17af0bd41b4667df9bf967"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f156a31b93ee68ae7fc3b34d6a5698e55c32f2be"
+      }
+    },
+    "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "462d9b5305bb3a3b140fdf2c492db1b5cef5dbc8"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3d83ec80becaf2e361c3165a183307c1e524baad"
+      }
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ed62f8b141a75858335fb00583b9bfd7a5c4893f"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c06e08fd3d770f536b4d027e1ae9b536254db065"
+      }
+    },
+    "packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2e8f0464ece37bf2d25139e624886be40f832945"
+      }
+    },
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "cf4eccfcd687583b578913e06cecc4183b6c3e02"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c5abd2c1643608aab31b000271a6fbc60fdb9d14"
+      }
+    },
+    "packages/quds_office_engine/test/odp_table_fidelity_test.dart": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9552245bf03606c5af65d748744ed650df869f09"
+      }
+    },
+    "packages/quds_office_engine/test/odt_document_writer_test.dart": {
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "97c359889ad0772e21af02fdcad8d7eb2002e055"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "399e0f1d00a21bf5f2b4ec938c941f5bc340e9ad"
+      }
+    },
+    "packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "990b05eeda9ae851be49c2f69a65295fd497a4e2"
+      }
+    },
+    "packages/quds_office_engine/test/odt_paragraph_properties_test.dart": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "721cd80e5eac71c5c65d885a1a88065b6502b825"
+      }
+    },
+    "packages/quds_office_engine/test/odt_table_merge_test.dart": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d84f15326f6e4d8564a3b15fff4b70134cbc852b"
+      }
+    },
+    "tools/proofing/german_morphology_cases.json": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "6fbd0f43df29c9606da6510c1f58a5253618f524"
+      }
+    },
+    "tools/proofing/qualify_german_morphology.dart": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b5a5a167151d1a59cf36ca2bb5486bb5860101bf"
+      }
+    },
+    "tools/proofing/run_morphology_qualification.py": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0c700a4871ed1c546dad97eff787a5c3c14a9313"
+      }
+    }
+  },
+  "changed_production_libraries": [
+    "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+    "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+    "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+    "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+  ],
+  "morphology_tooling_only": [
+    "tools/proofing/german_morphology_cases.json",
+    "tools/proofing/qualify_german_morphology.dart",
+    "tools/proofing/run_morphology_qualification.py"
+  ],
+  "no_german_runtime_changes": true,
+  "all_50_zotero_paths_identical_to_original_recovery_and_qualified_base": true,
+  "captured_ref_count": 220,
+  "snapshot_identity_and_multiplicity_verified": true,
+  "ref_counts": {
+    "ancestor": 214,
+    "exact_tree": 6
+  },
+  "unaccounted_refs": [],
+  "whole_tree_aliases": [
+    {
+      "ref": "refs/remotes/origin/feat/odp-transitions",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "status": "exact_tree",
+      "integrated_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-ordered-lists",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "status": "exact_tree",
+      "integrated_commit": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-transitions",
+      "commit": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "status": "exact_tree",
+      "integrated_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists2",
+      "commit": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "status": "exact_tree",
+      "integrated_commit": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/97",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "status": "exact_tree",
+      "integrated_commit": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/98",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "status": "exact_tree",
+      "integrated_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    }
+  ],
+  "source_audit_sha256": "7b3eb9983dd8be3c6b21334f24290674ac5b4613cb8012a0ab1da8b9b147b43f",
+  "snapshot_sha256": {
+    "quds-final-frozen-refs.json": "ca4cc4ae4c8a488526a2ee87e88711d76ebb8fecad20960425d61ff7e55b0eaa",
+    "quds-upstream-frozen-refs.json": "fea0172d373755c7dd4bf2e6c90bdffb205383b9eed8acd876e3ce444884d304"
+  },
+  "review_script_sha256": "70803a22d47b826bb9b4903b1f999128f86fda539f5504d37b7a903c7ae3c3b6",
+  "application_tests_run": false,
+  "original_full_run_counts_not_reattributed": true
+}

@@ -16,3 +16,16 @@ unchanged test files pass formatting. No production or test bytes were changed.
 `../runtime-setup.tar.gz` preserves the completed official runtime and locked
 workspace setup. Setup contributes zero application-test passes. Archive and
 member digests are recorded in `preflight-index.json`.
+
+The second attempt passed all analysis and formatting commands and the Dart
+runner completed all 390 engine Zotero cases successfully. Its qualification
+wrapper then rejected relative suite paths because it had expected absolute
+path suffixes. This is retained as an unsuccessful overall attempt in
+`suite-path-attempt-2.tar.xz`; none of its test counts is added to the final
+accepted total. `suite-path-index.json` verifies the archive and every member.
+
+The corrected wrapper resolves both observed and selected suite paths against
+the command working directory and requires exact equality, rejecting unexpected
+suites as well as missing suites. The third attempt repeats the complete
+canonical qualification with this correction. Source and test bytes, selected
+test files, and analysis/format scopes are unchanged.
