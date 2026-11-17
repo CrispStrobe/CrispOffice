@@ -1,0 +1,587 @@
+{
+  "started_utc": "2026-11-17T06:48:48.625220+00:00",
+  "source_commit": "a9516dd1b30e78b3b8d774b600ed54937f07773f",
+  "method": "Independent Python recomputation of event lifecycles, hashes, local import closure, Git blobs and ancestry; did not import the qualification runner or reusable auditor. No tests or CI rerun.",
+  "github_actions_used": false,
+  "blocking_findings": [],
+  "notes": [
+    "This review binds qualification to source commit a9516dd1; evidence/report commits may follow without production source changes. Final published evidence-tree verification remains the root verifier final step.",
+    "The reusable verifier now includes both conditional-render and odf-fixtures in its committed-artifact audit, closing the earlier omission.",
+    "The first fa0f9c qualification is explicitly superseded: its editor cohort had three save/rename undo errors and predates numeric boundedness guards.",
+    "Raster equality, Quds logical text assertions, external extraction conventions, ODF XML/text fidelity and synthetic font-alias metrics are distinct claims. No full editor/headless shaping parity, ODF schema/render parity, or real emoji/CJK coverage is inferred.",
+    "The common engine archives share one nonexecuted license-pointer filename; installed content matches the captured sky_engine variant. All unique executable/source member paths matched their captured artifacts."
+  ],
+  "cohorts": {
+    "engine": {
+      "passed_tests": 1416,
+      "selected_files": 71,
+      "executed_files": 71,
+      "per_suite_counts": {
+        "arabic_pdf_export_test.dart": 5,
+        "bidi_test.dart": 18,
+        "english_hyphenation_test.dart": 17,
+        "font_subset_structure_test.dart": 15,
+        "font_subset_unicode_test.dart": 7,
+        "fonts_test.dart": 2,
+        "german_hyphenation_context_test.dart": 6,
+        "legacy_sheet_reader_test.dart": 6,
+        "native_spreadsheet_test.dart": 2,
+        "odf_export_text_fidelity_test.dart": 19,
+        "odp_presentation_writer_test.dart": 1,
+        "ods_sheet_reader_test.dart": 102,
+        "ods_sheet_writer_test.dart": 13,
+        "odt_document_writer_test.dart": 3,
+        "odt_structure_fidelity_test.dart": 4,
+        "office_named_fonts_test.dart": 8,
+        "office_pdf_export_test.dart": 14,
+        "office_search_fidelity_test.dart": 27,
+        "pdf_actual_text_scope_test.dart": 16,
+        "pdf_cid_encoding_test.dart": 6,
+        "pdf_file_test.dart": 31,
+        "pdf_logical_text_export_test.dart": 17,
+        "pdf_templates_test.dart": 6,
+        "pdf_text_string_encoding_test.dart": 59,
+        "pdf_to_office_test.dart": 12,
+        "pdf_toolbox_test.dart": 6,
+        "pdf_unicode_alias_export_test.dart": 5,
+        "pdf_widgets_catalog_test.dart": 7,
+        "pdf_widgets_test.dart": 18,
+        "proofing/german_grammar_test.dart": 156,
+        "proofing/german_spelling_test.dart": 38,
+        "proofing/german_suggestion_quality_test.dart": 10,
+        "proofing/german_writing_rules_test.dart": 37,
+        "proofing/office_proofing_test.dart": 14,
+        "proofing/proofing_locale_test.dart": 6,
+        "proofing/proofing_text_ranges_test.dart": 6,
+        "proofing_hyphenation_test.dart": 20,
+        "sfnt_cmap_validation_test.dart": 55,
+        "sheet_authored_number_format_test.dart": 2,
+        "sheet_cell_state_preservation_test.dart": 2,
+        "sheet_comments_namespace_test.dart": 26,
+        "sheet_comments_schema_test.dart": 2,
+        "sheet_conditional_dxf_edit_test.dart": 20,
+        "sheet_conditional_fidelity_test.dart": 44,
+        "sheet_conditional_rendering_test.dart": 83,
+        "sheet_conditional_style_priority_integration_test.dart": 1,
+        "sheet_explicit_style_fidelity_test.dart": 7,
+        "sheet_fill_fidelity_test.dart": 7,
+        "sheet_formula_cache_fidelity_test.dart": 43,
+        "sheet_formula_dependency_cache_test.dart": 48,
+        "sheet_formula_test.dart": 26,
+        "sheet_import_fidelity_test.dart": 10,
+        "sheet_macro_preservation_test.dart": 2,
+        "sheet_nav_test.dart": 5,
+        "sheet_normal_font_metrics_test.dart": 23,
+        "sheet_qualified_name_error_test.dart": 80,
+        "sheet_qualified_names_test.dart": 32,
+        "sheet_rename_adversarial_test.dart": 14,
+        "sheet_rename_fidelity_test.dart": 37,
+        "sheet_save_cache_and_freeze_test.dart": 4,
+        "sheet_schema_fidelity_test.dart": 9,
+        "sheet_style_namespace_fidelity_test.dart": 14,
+        "sheet_time_number_format_test.dart": 8,
+        "sheet_wrap_text_fidelity_test.dart": 7,
+        "toolkit_builders_test.dart": 8,
+        "word_field_span_test.dart": 7,
+        "word_pdf_test.dart": 1,
+        "word_run_measure_boundaries_test.dart": 5,
+        "word_run_measure_test.dart": 17,
+        "word_small_caps_test.dart": 12,
+        "word_zotero_test.dart": 16
+      },
+      "hidden_loader_or_hook_events": 71,
+      "invalid_json_lines": [],
+      "source_inputs": 568,
+      "transitive_local_dart_files_checked": 438,
+      "changed_dart_files_analyzed_and_formatted": 40,
+      "receipt_sha256": "4a55e9021b5f31c8c7c6296c86e29d8cc06b8c15c803365e41163ddc5c9f8522",
+      "harness_sha256": "f42a9624354d015abc7f188bd14253689c4e6c5628a65a6c028d7819aaa8cc28",
+      "logs": [
+        {
+          "path": "docs/validation/office-fidelity-20261117/engine/tests.stdout.gz",
+          "decoded_sha256": "78eaac69375a1d1649cf7f69da6f239f966ccd2dc24f0bb31fb119a25bee7c10",
+          "stored_sha256": "33611e2cad95a3fc8e1066b05f62c55761c48c4481d2bcab600eed4dabdeb2cb"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/engine/tests.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/engine/analyze.stdout.gz",
+          "decoded_sha256": "a54c76fa52b2fd93ca521b3eaddc58fb122304e5b04ab500bb37ea76d82b1537",
+          "stored_sha256": "2f63afc1b90dd3f767874cd1cc971c1d258f00adc9e14ac7b58630a4930815bf"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/engine/analyze.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/engine/format.stdout.gz",
+          "decoded_sha256": "62b9ca17d3264f6d9dcc692c7fbc0d5dbd330f804fd6cc8c23b32b49163258e1",
+          "stored_sha256": "a782bf9f6b339a66643dcecd8eae10a3e77e3ece18fe2a10f00a2151d9a10abd"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/engine/format.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        }
+      ],
+      "source_binding": "All recorded inputs match current bytes; all except the two runtime-only ignored inputs match source_commit Git blobs."
+    },
+    "editor": {
+      "passed_tests": 370,
+      "selected_files": 34,
+      "executed_files": 34,
+      "per_suite_counts": {
+        "font_subset_render_test.dart": 3,
+        "host_fonts_test.dart": 5,
+        "paint_font_fallback_test.dart": 2,
+        "paint_run_text_unicode_test.dart": 12,
+        "pdf_font_faces_test.dart": 13,
+        "pdf_surface_test.dart": 12,
+        "pdf_viewer_options_test.dart": 6,
+        "sheet_cell_state_history_test.dart": 2,
+        "sheet_conditional_rendering_test.dart": 7,
+        "sheet_explicit_style_history_test.dart": 3,
+        "sheet_fill_intent_history_test.dart": 6,
+        "sheet_font_color_intent_test.dart": 2,
+        "sheet_grid_history_test.dart": 14,
+        "sheet_hidden_sheet_test.dart": 1,
+        "sheet_navigation_controller_test.dart": 26,
+        "sheet_navigation_widget_test.dart": 6,
+        "sheet_normal_font_auto_test.dart": 1,
+        "sheet_normal_font_metrics_test.dart": 17,
+        "sheet_rename_controller_test.dart": 13,
+        "sheet_sort_history_test.dart": 8,
+        "sheet_style_history_test.dart": 20,
+        "sheet_view_history_test.dart": 20,
+        "word_german_grammar_integration_test.dart": 19,
+        "word_hyphenation_caret_test.dart": 6,
+        "word_hyphenation_paint_test.dart": 9,
+        "word_hyphenation_resume_test.dart": 8,
+        "word_hyphenation_source_presentation_test.dart": 7,
+        "word_proofing_context_test.dart": 5,
+        "word_proofing_correction_test.dart": 33,
+        "word_proofing_dialog_test.dart": 22,
+        "word_proofing_geometry_test.dart": 10,
+        "word_proofing_session_test.dart": 31,
+        "word_run_metrics_test.dart": 13,
+        "word_shaped_wrap_test.dart": 8
+      },
+      "hidden_loader_or_hook_events": 58,
+      "invalid_json_lines": [],
+      "source_inputs": 607,
+      "transitive_local_dart_files_checked": 457,
+      "changed_dart_files_analyzed_and_formatted": 7,
+      "receipt_sha256": "232bacfea157f45dacffed615d8f62cc45b700077fa2f39136c031c94b243c98",
+      "harness_sha256": "f42a9624354d015abc7f188bd14253689c4e6c5628a65a6c028d7819aaa8cc28",
+      "logs": [
+        {
+          "path": "docs/validation/office-fidelity-20261117/editor/tests.stdout.gz",
+          "decoded_sha256": "90a36e1221d29fcf6d8104c1d04c4ea187fa32680ac36badcca790020631bbb2",
+          "stored_sha256": "dd073e9ad9b98b08c9b80ace37d98ffc2ff36674e77555944dffa529f0e0a1c1"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/editor/tests.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/editor/analyze.stdout.gz",
+          "decoded_sha256": "6b1189d29f46c9eea13154262cfc46cc23d75a491e822c6cc5a39a2211399ad4",
+          "stored_sha256": "d14de16f8e8801fe0bee040fc51e5659d13862348d5705aac2786d2e1c7facd4"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/editor/analyze.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/editor/format.stdout.gz",
+          "decoded_sha256": "bcc9a2790636cd0a936d547d8ee071de827912d9b23953dfb9466c2fa58d0a94",
+          "stored_sha256": "f3b8aeecbeef6777e9f704aeaf75a82234b22874e74c95107f8631413b715b93"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/editor/format.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        }
+      ],
+      "source_binding": "All recorded inputs match current bytes; all except the two runtime-only ignored inputs match source_commit Git blobs."
+    },
+    "harper": {
+      "passed_tests": 29,
+      "selected_files": 3,
+      "executed_files": 3,
+      "per_suite_counts": {
+        "harper_provider_test.dart": 10,
+        "harper_source_contract_test.dart": 12,
+        "harper_source_text_test.dart": 7
+      },
+      "hidden_loader_or_hook_events": 3,
+      "invalid_json_lines": [],
+      "source_inputs": 500,
+      "transitive_local_dart_files_checked": 352,
+      "changed_dart_files_analyzed_and_formatted": 1,
+      "receipt_sha256": "12dc1ab1485e0118710db7ace0aa135f2e2bafbd493cc4dd5e1cd2b94d3c9f1a",
+      "harness_sha256": "f42a9624354d015abc7f188bd14253689c4e6c5628a65a6c028d7819aaa8cc28",
+      "logs": [
+        {
+          "path": "docs/validation/office-fidelity-20261117/harper/tests.stdout.gz",
+          "decoded_sha256": "66ec742e3ef93f78d0a14b5f89b212d469443cdfa706735e89b9bce7f6839320",
+          "stored_sha256": "3d04c5c8c1217261d7d76eaf884530917a560d947629edfa02c8eb2b8247775d"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/harper/tests.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/harper/analyze.stdout.gz",
+          "decoded_sha256": "df0860f78f451688106190e83fe011ab39d932a48326bb7f6caa2f336adb6563",
+          "stored_sha256": "437ea9e7eb48a26e0d8ed5a0a210bed8c9d0cd32bacbd8e626c2a25cde72d784"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/harper/analyze.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/harper/format.stdout.gz",
+          "decoded_sha256": "ebf8691cd9669b02dd9d748aaf543551b337b2beb44f2d128dc7ffbfa0318f03",
+          "stored_sha256": "6872eb7d833f205278d975b7e7a51ea2fa83118dc3c896f40fe27f558a0041f5"
+        },
+        {
+          "path": "docs/validation/office-fidelity-20261117/harper/format.stderr.gz",
+          "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+        }
+      ],
+      "source_binding": "All recorded inputs match current bytes; all except the two runtime-only ignored inputs match source_commit Git blobs."
+    }
+  },
+  "total_passed_tests": 1815,
+  "total_selected_test_files": 108,
+  "unique_bound_source_inputs": 688,
+  "incoming": {
+    "initial_references": 204,
+    "initial_distinct_heads": 137,
+    "refresh_references": 206,
+    "refresh_distinct_heads": 138,
+    "union_reference_revision_pairs": 213,
+    "union_distinct_heads": 142,
+    "all_union_heads_are_ancestors": true,
+    "initial_integration_head": "b04ac1e0383bf2f7857ad8121508ddbfcb32f787",
+    "initial_heads_already_in_initial_integration": true,
+    "initial_api_pages": {
+      "fork/branches": [
+        [
+          1,
+          100
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "fork/pulls": [
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          0
+        ]
+      ],
+      "upstream/branches": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "upstream/pulls": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    "refresh_counts": {
+      "fork_branches": 104,
+      "fork_pulls": 94,
+      "upstream_branches": 4,
+      "upstream_pulls": 4
+    },
+    "refresh_observed_at_utc": [
+      "2026-11-17T06:26:03Z",
+      "2026-11-17T06:26:01Z"
+    ]
+  },
+  "runtime": {
+    "framework_version": "3.47.8",
+    "dart_sdk_version": "3.13.7",
+    "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "sdk_executables_sha256": {
+      "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+    },
+    "dart_selected_members_verified": 529,
+    "common_unique_paths_verified": 337,
+    "nonexecuted_license_pointer_collision": {
+      "bin/cache/pkg/LICENSE.zip_old_location.md": [
+        "c3937c6381ec4aa4aa9a6751ee5396ede260e58a05ccaec9d99806460d7740c6",
+        "d5d3e7ed269ba17a7cfc617a51d37353e18c0181c8b4fb7a610e82843426b054"
+      ]
+    },
+    "runtime_manifests_valid": true,
+    "workspace_package_count": 108,
+    "package_source_kinds": {
+      "hosted": 94,
+      "sdk": 5,
+      "workspace": 9
+    },
+    "all_hosted_package_versions_routes_and_download_hashes_match_lock": true,
+    "workspace_bindings": {
+      "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+      ".dart_tool/package_config.json": "e0f29030d3254965f17166b63f0e4846842d968104ab4878e75ba752ff99ebe1"
+    },
+    "whole_dart_archive_digest_claimed": false
+  },
+  "external_evidence": {
+    "logical_rasters": [
+      {
+        "fixture": "word-logical-source",
+        "size_pixels": [
+          993,
+          1404
+        ],
+        "differing_pixels": 0,
+        "nonwhite_pixels": [
+          1126,
+          1126
+        ],
+        "external_text_exact_match": false
+      },
+      {
+        "fixture": "worksheet-logical-source",
+        "size_pixels": [
+          993,
+          1404
+        ],
+        "differing_pixels": 0,
+        "nonwhite_pixels": [
+          5323,
+          5323
+        ],
+        "external_text_exact_match": false
+      },
+      {
+        "fixture": "rotated-slide-logical-source",
+        "size_pixels": [
+          1200,
+          675
+        ],
+        "differing_pixels": 0,
+        "nonwhite_pixels": [
+          222854,
+          222854
+        ],
+        "external_text_exact_match": false
+      }
+    ],
+    "conditional_pdf": {
+      "exact_color_pixels": {
+        "123456": 2541,
+        "ABCDEF": 9
+      },
+      "overridden_red_pixels": 0,
+      "nonwhite_pixels": 9555,
+      "size_pixels": [
+        1191,
+        1684
+      ],
+      "raw_text_matches_receipt": true,
+      "scope": "Known worksheet fixture: independently visible conditional fill and font colors",
+      "not_claimed": "Editor/PDF rendering parity, complete conditional-format support or universal font fidelity"
+    },
+    "odf": {
+      "fixtures": [
+        {
+          "file": "word-text.odt",
+          "paragraphs": [
+            "  A\tB  C\nD "
+          ],
+          "indent": null,
+          "sha256": "076236d7e18a7b0c669ef1444c0feca546bcb2fac38d9be9e5ce109500606c9f"
+        },
+        {
+          "file": "slide-text.odp",
+          "paragraphs": [
+            " Head\tA  B ",
+            "",
+            "Tail ",
+            "  Cell\tend ",
+            "  Note\tend "
+          ],
+          "indent": null,
+          "sha256": "803393d6eba87ee511f3a688742dbd577aa19a75fd7824d13f62d4d78b4d99fd"
+        },
+        {
+          "file": "word-indents.odt",
+          "paragraphs": [
+            "Body"
+          ],
+          "indent": "-18.00pt",
+          "sha256": "fc5a96557d1279f97bb527b0f78f64b549228f47d732e1bda316f13aacdfb0e7"
+        }
+      ],
+      "scope": "ZIP structure, XML well-formedness, known text semantics and hanging indent",
+      "not_claimed": "ODF schema conformance, native-model roundtrip or visual rendering parity"
+    },
+    "flutter_subset_metrics": {
+      "direct_subset_differing_pixels": 0,
+      "latin_reference_differing_pixels": 559,
+      "scope": "Synthetic Unicode aliases of Liberation Sans Latin outlines; compares PDF-reopened and directly generated identical Unicode subsets. No original-font or cross-cmap bitmap parity or emoji/CJK coverage claim.",
+      "note": "Metrics are bound to the passing real Flutter test stream and source hashes; no additional renderer invocation was performed."
+    }
+  },
+  "artifacts_sha256": {
+    "docs/validation/office-fidelity-20261117/engine/render/word-unicode-aliases.pdf": "4290a1930abed91021c42a659294f7729a29ac4c1eaac20a0c767aa9fb6463d1",
+    "docs/validation/office-fidelity-20261117/engine/render/authored-text.txt": "e74a676e1bda53634984fdb18c5e78dbedde1a9740844ab5b9f554f062298326",
+    "docs/validation/office-fidelity-20261117/engine/render/identity-glyph-reference.pdf": "9d4d1486ece4577369c9a8c156a2041349ae2919afc1a1ee57fcacfc491d8f31",
+    "docs/validation/office-fidelity-20261117/engine/render/encoded-aliases.pdf": "96feb2bab8f025dc9755d2e697bd0b5588bed2e3000d784f51ff2a3060bd2f23",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source-source.txt": "200206650a0647e3c264d9b0c9d37f2e81b903eade9d8d9f55e97c2dfe5d6f15",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/poppler-receipt.json": "7c47906a05bc0d4334a289e1e411845d2521716a4ca7a47969c8a180092b5360",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source.pdf": "613417c158e52924a2769e639cc512aaebf467ad7fb40efb9bdc0605bf9e9b65",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source.pdf": "590b5305b56bf3dd9b3ae5031d9aaab8362454d4c1baa4236130e452c805805b",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source.png": "dfcc1724afd2fdc2c4a34c1f6b450b0e087b6620794069fcffc584916cb23797",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source.png": "0ed54906503901245520bcc326b4964286b821e314e3efb11f4ae36e1adc1b08",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/external-check.stderr.log": "2c9234fc5f1c96a769d27ca1e2dd41b6472d7382d23f8f3fe366de53e8edb82b",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source-poppler-raw.txt": "ad6fb85ae81451662b03d8c31e0a61963b0cba80a2df84b7c0a64b96aafbda4c",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source-source.txt": "664e1dd7777a9eaa37314015774ed84881c31dad37196f597a6d99c961402dc9",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source.png": "9ff3f9ba0c8c9fb2c2e3f165bb9f81fd7e083c6ed72089edd38c993371e0577d",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source-paint-control.pdf": "cd9d46e5d786081635ee16d5b8f577e05c652775d27f308dd4ca571aad48e8f4",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/external-check.stdout.log": "0689fef0a5b300ac0e38daa324f52419d71cc11246877b783bf81cb760132ebe",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source-source.txt": "4a8fbfe8f9f8ea9becd92e00f01386ac9a34bc48e8c7c598a5847997ae75d1f7",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source-paint-control.pdf": "e4743e21dd0fb5d649a0015c4cd4062bc584fd20aa9c1e34c01c21cfd48401cf",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source-poppler-raw.txt": "9ff586ca1413b5c4be89433cc9012bf80905e1a168a89ea400f8e47497872387",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source-paint-control.png": "0ed54906503901245520bcc326b4964286b821e314e3efb11f4ae36e1adc1b08",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source-poppler-raw.txt": "af1c5a7477eac3e84cc68967c016ea6ea5c0162cc97aac096107989c039b5794",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source-paint-control.png": "9ff3f9ba0c8c9fb2c2e3f165bb9f81fd7e083c6ed72089edd38c993371e0577d",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source.pdf": "5deb00d64a7cfb957de946881d34d888ad0ae374cf0df1d0ac47267a6145bf1b",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source-paint-control.png": "dfcc1724afd2fdc2c4a34c1f6b450b0e087b6620794069fcffc584916cb23797",
+    "docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source-paint-control.pdf": "5a0daf26c96eb43587f22d403d55e668938bbfcf26d37683849fd5e619b27abe",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftotext-version.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/conditional-styles-poppler.png": "d7b7b0b6f781f444feea9e5edfffe8a3b2c515f891022a59bddc0efafc6935a0",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftotext.stdout.log": "0f876c1813a120d7c34595e504f31a6eb697ce438dc0f4e8a347d320d7fce347",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/poppler-receipt.json": "4c9d9ae31e3634fb70ee82dd22f35332c97ad9e70a70bf6991c295d14512cf16",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdfinfo-version.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftotext-version.stderr.log": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/conditional-styles-poppler-raw.txt": "0f876c1813a120d7c34595e504f31a6eb697ce438dc0f4e8a347d320d7fce347",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdfinfo.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdfinfo.stdout.log": "4e1a88c5bb96faf27e189033644c9a9967849fdda33f219c4521e077e91cdd52",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/conditional-styles.pdf": "15a02fcc627cf872c4fa753f95237034c356075a58ee78d6762730d3985185cf",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftoppm-version.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftoppm.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftoppm.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftotext.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdfinfo-version.stderr.log": "56221b4464aa8299b97e80d0fc7efcdb23d7a4146aa304611ec9e5c9c7984001",
+    "docs/validation/office-fidelity-20261117/engine/conditional-render/pdftoppm-version.stderr.log": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286",
+    "docs/validation/office-fidelity-20261117/engine/odf-fixtures/word-indents.odt": "fc5a96557d1279f97bb527b0f78f64b549228f47d732e1bda316f13aacdfb0e7",
+    "docs/validation/office-fidelity-20261117/engine/odf-fixtures/slide-text.odp": "803393d6eba87ee511f3a688742dbd577aa19a75fd7824d13f62d4d78b4d99fd",
+    "docs/validation/office-fidelity-20261117/engine/odf-fixtures/word-text.odt": "076236d7e18a7b0c669ef1444c0feca546bcb2fac38d9be9e5ce109500606c9f",
+    "docs/validation/office-fidelity-20261117/engine/odf-fixtures/external-xml-receipt.json": "7cb017e599ce1c219a4a0048faadd1bd46458bf97e2ab7964e0d34838d7a7eee",
+    "docs/validation/office-fidelity-20261117/editor/render/unicode-subset-preview.png": "f76a08a23bc1162cc4cd623bc1c34547c6320a2d040d3c49502621584ae78951",
+    "docs/validation/office-fidelity-20261117/editor/render/shared-glyph-aliases.pdf": "4290a1930abed91021c42a659294f7729a29ac4c1eaac20a0c767aa9fb6463d1",
+    "docs/validation/office-fidelity-20261117/editor/render/unicode-subset.pdf": "5acc911e9a694f75e6250333f59f2261a4f44de2b3123bafc4c85cdd88139762",
+    "docs/validation/office-fidelity-20261117/editor/render/shared-glyph-aliases.json": "08cf1709a1a1634d13d68a10a63d32f766c8192d991c192f332e14dc5f930522",
+    "docs/validation/office-fidelity-20261117/editor/render/metrics.json": "64dd67950c00e35ba64c8ecb85896c76afd9167a9ac1ceb51d2e9990c9d8ca26"
+  },
+  "reviewed_scripts_sha256": {
+    "docs/validation/office-fidelity-20261117/validate.py": "f42a9624354d015abc7f188bd14253689c4e6c5628a65a6c028d7819aaa8cc28",
+    "docs/validation/office-fidelity-20261117/verify_final.py": "af6a2ed5f28a02d323432ce5f854e59e02cb3ca4e5efb25dc339800cc023b1d6",
+    "docs/validation/office-fidelity-20261117/verify_conditional_pdf.py": "250d19ba748e3a7d93d004a7ffcfb7443811ea0082b4646284cfce652783e6d9",
+    "docs/validation/office-fidelity-20261117/verify_odf_fixtures.py": "0d732d2caba1e3370b8bc7efec2cb9e25f11ffebcb59649371d71cab75766591",
+    "docs/validation/office-continuation-20261117/verify_final.py": "a1b56d21b573d39d04ccbe8d2bdd098e742c175493a0c3f6e11ce5b4e0a7cd80"
+  },
+  "observed_remote_head": "a9516dd1b30e78b3b8d774b600ed54937f07773f",
+  "source_tree": "a60b1f7ecb2c55dc988d7cca00ce27d6b3ab4957",
+  "observed_checkout_head": "14b224403743c093eaa1698c3bea5bb0f04a1452",
+  "checked_receipts_and_logs_sha256": {
+    "docs/validation/office-fidelity-20261117/engine/receipt.json": "4a55e9021b5f31c8c7c6296c86e29d8cc06b8c15c803365e41163ddc5c9f8522",
+    "docs/validation/office-fidelity-20261117/engine/tests.stdout.gz": "33611e2cad95a3fc8e1066b05f62c55761c48c4481d2bcab600eed4dabdeb2cb",
+    "docs/validation/office-fidelity-20261117/engine/tests.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/engine/analyze.stdout.gz": "2f63afc1b90dd3f767874cd1cc971c1d258f00adc9e14ac7b58630a4930815bf",
+    "docs/validation/office-fidelity-20261117/engine/analyze.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/engine/format.stdout.gz": "a782bf9f6b339a66643dcecd8eae10a3e77e3ece18fe2a10f00a2151d9a10abd",
+    "docs/validation/office-fidelity-20261117/engine/format.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/editor/receipt.json": "232bacfea157f45dacffed615d8f62cc45b700077fa2f39136c031c94b243c98",
+    "docs/validation/office-fidelity-20261117/editor/tests.stdout.gz": "dd073e9ad9b98b08c9b80ace37d98ffc2ff36674e77555944dffa529f0e0a1c1",
+    "docs/validation/office-fidelity-20261117/editor/tests.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/editor/analyze.stdout.gz": "d14de16f8e8801fe0bee040fc51e5659d13862348d5705aac2786d2e1c7facd4",
+    "docs/validation/office-fidelity-20261117/editor/analyze.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/editor/format.stdout.gz": "f3b8aeecbeef6777e9f704aeaf75a82234b22874e74c95107f8631413b715b93",
+    "docs/validation/office-fidelity-20261117/editor/format.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/harper/receipt.json": "12dc1ab1485e0118710db7ace0aa135f2e2bafbd493cc4dd5e1cd2b94d3c9f1a",
+    "docs/validation/office-fidelity-20261117/harper/tests.stdout.gz": "3d04c5c8c1217261d7d76eaf884530917a560d947629edfa02c8eb2b8247775d",
+    "docs/validation/office-fidelity-20261117/harper/tests.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/harper/analyze.stdout.gz": "437ea9e7eb48a26e0d8ed5a0a210bed8c9d0cd32bacbd8e626c2a25cde72d784",
+    "docs/validation/office-fidelity-20261117/harper/analyze.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "docs/validation/office-fidelity-20261117/harper/format.stdout.gz": "6872eb7d833f205278d975b7e7a51ea2fa83118dc3c896f40fe27f558a0041f5",
+    "docs/validation/office-fidelity-20261117/harper/format.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  },
+  "passed": true,
+  "finished_utc": "2026-11-17T06:49:04.940699+00:00"
+}

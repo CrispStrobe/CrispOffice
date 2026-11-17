@@ -13,8 +13,12 @@ import gzip
 import hashlib
 import importlib.util
 import json
+import math
 from pathlib import Path
+import re
 import subprocess
+
+from PIL import Image, ImageChops
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
@@ -34,6 +38,230 @@ sha = audit.sha
 def read_json(path):
     data = path.read_bytes()
     return json.loads(gzip.decompress(data) if path.suffix == '.gz' else data)
+
+
+def external_file(directory, name, expected_sha256, tree):
+    require(isinstance(name, str) and Path(name).name == name,
+            'External artifact path escapes its directory: ' + repr(name))
+    path = directory / name
+    require(sha(path.read_bytes()) == expected_sha256,
+            'External artifact hash mismatch: ' + str(path))
+    audit.verify_committed(path, tree)
+    return path
+
+
+def external_receipt(directory, filename, script, tree, *, boolean_pass=False):
+    path = directory / filename
+    receipt = read_json(path)
+    audit.verify_committed(path, tree)
+    audit.verify_committed(script, tree)
+    require(receipt.get('script_sha256') == sha(script.read_bytes()),
+            'External verification script differs from its receipt: ' + str(script))
+    require((receipt.get('passed') is True) if boolean_pass
+            else receipt.get('status') == 'passed',
+            'External verification receipt did not pass: ' + str(path))
+    require(receipt.get('github_actions_used') is False,
+            'External verification receipt lacks its no-Actions declaration')
+    started = receipt.get('started_at_utc', receipt.get('started_utc'))
+    finished = receipt.get('finished_at_utc', receipt.get('finished_utc'))
+    require(started and finished and datetime.fromisoformat(finished) >= datetime.fromisoformat(started),
+            'External verification receipt is incomplete: ' + str(path))
+    return receipt
+
+
+def saved_raster(path, expected_dimensions):
+    with Image.open(path) as original:
+        require(list(original.size) == expected_dimensions,
+                'Saved raster has unexpected dimensions: ' + str(path))
+        image = original.convert('RGB')
+    colors = image.getcolors(maxcolors=image.width * image.height)
+    require(colors is not None, 'Saved raster histogram exceeded its pixel bound')
+    histogram = {color: count for count, color in colors}
+    nonwhite = image.width * image.height - histogram.get((255, 255, 255), 0)
+    require(nonwhite > 0, 'Saved raster is empty: ' + str(path))
+    return image, histogram, nonwhite
+
+
+def verify_logical_pdf_artifacts(tree):
+    directory = HERE / 'engine/logical-render'
+    script = PREVIOUS.parent / 'verify_pdf_visuals.py'
+    receipt = external_receipt(directory, 'poppler-receipt.json', script, tree,
+                               boolean_pass=True)
+    require(receipt.get('dpi') == 120, 'Logical PDF raster DPI changed')
+    dimensions = {'word-logical-source': [993, 1404],
+                  'worksheet-logical-source': [993, 1404],
+                  'rotated-slide-logical-source': [1200, 675]}
+    fixtures = receipt['fixtures']
+    require(len(fixtures) == 3 and {item['name'] for item in fixtures} == set(dimensions),
+            'Logical PDF fixture inventory differs')
+    checked = []
+    expected_commands = []
+    for fixture in fixtures:
+        name = fixture['name']
+        files = {name + suffix for suffix in [
+            '.pdf', '-paint-control.pdf', '.png', '-paint-control.png',
+            '-source.txt', '-poppler-raw.txt']}
+        require(set(fixture['files_sha256']) == files,
+                'Logical PDF fixture hash coverage differs: ' + name)
+        for filename, expected in fixture['files_sha256'].items():
+            external_file(directory, filename, expected, tree)
+        require(fixture['size_pixels'] == dimensions[name],
+                'Logical PDF receipt dimensions differ: ' + name)
+        images = []
+        ink = []
+        for suffix in ['', '-paint-control']:
+            image, _, nonwhite = saved_raster(directory / (name + suffix + '.png'), dimensions[name])
+            images.append(image)
+            ink.append(nonwhite)
+            pdf = directory / (name + suffix + '.pdf')
+            expected_commands.extend([
+                ['pdfinfo', str(pdf)],
+                ['pdftoppm', '-r', '120', '-singlefile', '-png', str(pdf), str(pdf.with_suffix(''))]])
+        difference = ImageChops.difference(*images)
+        histogram = difference.getcolors(maxcolors=difference.width * difference.height)
+        require(histogram is not None, 'Logical difference histogram exceeded its bound')
+        differing = sum(count for count, color in histogram if color != (0, 0, 0))
+        require(fixture['nonwhite_pixels'] == ink
+                and fixture['different_pixels'] == differing == 0
+                and fixture.get('raster_equal') is True,
+                'Logical PDF raster receipt does not match the saved images: ' + name)
+        raw = (directory / (name + '-poppler-raw.txt')).read_text()
+        source = (directory / (name + '-source.txt')).read_text()
+        require(raw == fixture['poppler_raw_text'] and source == fixture['source_text']
+                and fixture['external_text_matches_source_exactly'] is (raw == source),
+                'Logical PDF text receipt differs from its saved text: ' + name)
+        expected_commands.append(['pdftotext', '-raw', str(directory / (name + '.pdf')), '-'])
+        checked.append({'name': name, 'dimensions': dimensions[name], 'nonwhite_pixels': ink,
+                        'different_pixels': differing,
+                        'external_text_matches_source_exactly': raw == source})
+    require(receipt['commands'] == expected_commands,
+            'Logical PDF command arguments differ from the recorded fixture paths')
+    return {'passed': True, 'fixtures': checked, 'file_hashes_checked': 18,
+            'saved_rasters_recomputed': True}
+
+
+def load_external_verifier(script, module_name):
+    module_spec = importlib.util.spec_from_file_location(module_name, script)
+    module = importlib.util.module_from_spec(module_spec)
+    # Execute the already hash-checked source without creating bytecode files.
+    exec(compile(script.read_bytes(), str(script), 'exec'), module.__dict__)
+    return module
+
+
+def verify_conditional_artifacts(tree):
+    directory = HERE / 'engine/conditional-render'
+    script = HERE / 'verify_conditional_pdf.py'
+    receipt = external_receipt(directory, 'poppler-receipt.json', script, tree)
+    module = load_external_verifier(script, 'committed_conditional_verifier')
+    fixture_test = REPO / 'packages/quds_office_engine/test/sheet_conditional_rendering_test.dart'
+    audit.verify_committed(fixture_test, tree)
+    require(receipt['fixture_test_sha256'] == sha(fixture_test.read_bytes()),
+            'Conditional fixture test differs from external receipt')
+    pdf = external_file(directory, 'conditional-styles.pdf', receipt['input_pdf_sha256'], tree)
+    require(receipt['raster_file'] == 'conditional-styles-poppler.png'
+            and receipt['raw_text_file'] == 'conditional-styles-poppler-raw.txt',
+            'Conditional artifact filenames differ')
+    raster = external_file(directory, receipt['raster_file'], receipt['raster_sha256'], tree)
+    text_path = external_file(directory, receipt['raw_text_file'], receipt['raw_text_sha256'], tree)
+    require(set(receipt['tools']) == {'pdfinfo', 'pdftoppm', 'pdftotext'},
+            'Conditional verifier tool inventory differs')
+    for name, identity in receipt['tools'].items():
+        actual = module.tool_identity(name)  # Reads paths/hashes; launches no process.
+        require(actual == {key: identity[key] for key in actual},
+                'Conditional Poppler launcher/executable identity changed: ' + name)
+    launch = {name: item['launcher'] for name, item in receipt['tools'].items()}
+    stem = directory / 'conditional-styles-poppler'
+    commands = [(name + '-version', [launch[name], '-v'], True)
+                for name in ['pdfinfo', 'pdftoppm', 'pdftotext']]
+    commands.extend([
+        ('pdfinfo', [launch['pdfinfo'], str(pdf)], False),
+        ('pdftoppm', [launch['pdftoppm'], '-r', '144', '-singlefile', '-png', str(pdf), str(stem)], False),
+        ('pdftotext', [launch['pdftotext'], '-raw', str(pdf), '-'], False)])
+    require(len(receipt['commands']) == len(commands), 'Conditional command count differs')
+    output = {}
+    for recorded, (label, argv, version) in zip(receipt['commands'], commands):
+        require(recorded['argv'] == argv and recorded['exit_code'] == 0,
+                'Conditional command failed or used different arguments: ' + label)
+        channels = {}
+        for channel in ['stdout', 'stderr']:
+            filename = label + '.' + channel + '.log'
+            require(recorded[channel + '_file'] == filename, 'Conditional log filename differs')
+            log = external_file(directory, filename, recorded[channel + '_sha256'], tree)
+            channels[channel] = log.read_bytes()
+        require(version or not channels['stderr'].strip(),
+                'Conditional PDF tool emitted diagnostics: ' + label)
+        if version:
+            name = label.removesuffix('-version')
+            require(receipt['tools'][name]['version']
+                    == (channels['stdout'] + channels['stderr']).decode().strip(),
+                    'Conditional tool version differs from its saved log')
+        output[label] = channels['stdout']
+    info = output['pdfinfo'].decode()
+    pages = re.search(r'^Pages:\s+(\d+)\s*$', info, re.MULTILINE)
+    size = re.search(r'^Page size:\s+([\d.]+) x ([\d.]+) pts', info, re.MULTILINE)
+    rotation = re.search(r'^Page rot:\s+(-?\d+)\s*$', info, re.MULTILINE)
+    require(pages and int(pages[1]) == 1 and size and rotation and int(rotation[1]) == 0,
+            'Conditional saved PDF geometry is unexpected')
+    points = [float(size[1]), float(size[2])]
+    expected = [math.ceil(value * 144 / 72) for value in points]
+    require(receipt['dpi'] == 144 and receipt['pages'] == 1
+            and receipt['page_points'] == points
+            and receipt['expected_raster_dimensions'] == expected == [1191, 1684]
+            and receipt['actual_raster_dimensions'] == expected,
+            'Conditional raster dimensions do not match PDF geometry')
+    _, histogram, nonwhite = saved_raster(raster, expected)
+    counts = {name: histogram.get(tuple(bytes.fromhex(name)), 0) for name in ['123456', 'ABCDEF']}
+    require(receipt['nonwhite_pixels'] == nonwhite
+            and receipt['exact_color_pixels'] == counts and all(counts.values())
+            and receipt['overridden_red_pixels'] == histogram.get((255, 0, 0), 0) == 0,
+            'Conditional raster color counts differ from receipt')
+    raw = text_path.read_bytes()
+    require(raw == output['pdftotext'] and receipt['raw_extracted_text'] == raw.decode()
+            and re.search(r'(?<!\S)8(?!\S)', raw.decode()) is not None
+            and receipt['expected_cell_value'] == '8'
+            and receipt.get('cell_value_present') is True and receipt.get('pdf_unchanged') is True,
+            'Conditional extracted-text evidence or positive flags differ')
+    return {'passed': True, 'dimensions': expected, 'nonwhite_pixels': nonwhite,
+            'exact_color_pixels': counts, 'overridden_red_pixels': 0,
+            'commands_checked': len(commands), 'saved_raster_recomputed': True,
+            'cell_value_present': True, 'rendering_parity_claimed': False}
+
+
+def verify_odf_artifacts(tree):
+    directory = HERE / 'engine/odf-fixtures'
+    script = HERE / 'verify_odf_fixtures.py'
+    receipt = external_receipt(directory, 'external-xml-receipt.json', script, tree)
+    module = load_external_verifier(script, 'committed_odf_verifier')
+    expected = {
+        'word-text.odt': {'mime': 'application/vnd.oasis.opendocument.text',
+                          'paragraphs': ['  A\tB  C\nD ']},
+        'slide-text.odp': {'mime': 'application/vnd.oasis.opendocument.presentation',
+                           'paragraphs': [' Head\tA  B ', '', 'Tail ', '  Cell\tend ', '  Note\tend ']},
+        'word-indents.odt': {'mime': 'application/vnd.oasis.opendocument.text',
+                             'paragraphs': ['Body'], 'indent': '-18.00pt'}}
+    require(module.EXPECTED == expected, 'Committed ODF verifier fixture contract changed')
+    fixtures = receipt['fixtures']
+    require(len(fixtures) == 3 and {item['file'] for item in fixtures} == set(expected),
+            'ODF fixture inventory differs')
+    for fixture in fixtures:
+        path = external_file(directory, fixture['file'], fixture['sha256'], tree)
+        for flag in ['first_member_uncompressed_mimetype', 'xml_well_formed',
+                     'paragraph_text_matches', 'input_unchanged']:
+            require(fixture.get(flag) is True, 'ODF receipt lacks a positive check: ' + flag)
+        # This committed Python verifier only reads ZIP/XML/text; it does not
+        # launch a test, regenerate a fixture, or write a verification receipt.
+        recomputed = module.verify_fixture(path, expected[fixture['file']])
+        require(fixture == recomputed,
+                'ODF ZIP/XML/text hashes or semantic fields differ: ' + fixture['file'])
+    return {'passed': True, 'fixtures': [item['file'] for item in fixtures],
+            'xml_members_recomputed': 12, 'paragraph_text_recomputed': True,
+            'hanging_indent': '-18.00pt', 'schema_conformance_claimed': False}
+
+
+def verify_external_artifacts(tree):
+    return {'logical_pdf': verify_logical_pdf_artifacts(tree),
+            'conditional_pdf': verify_conditional_artifacts(tree),
+            'odf': verify_odf_artifacts(tree)}
 
 
 def verify_inventory(head, tree):
@@ -172,8 +400,7 @@ def main():
             for path in sorted(directory.rglob('*')):
                 if path.is_file():
                     cohorts['engine']['artifacts'][str(path.relative_to(HERE / 'engine'))] = audit.verify_committed(path, tree)
-        for name in ['verify_conditional_pdf.py', 'verify_odf_fixtures.py']:
-            audit.verify_committed(HERE / name, tree)
+        report['external_artifacts'] = verify_external_artifacts(tree)
         report['runtime'] = runtime
         report['cohorts'] = cohorts
         report['incoming'] = verify_inventory(args.head, tree)
