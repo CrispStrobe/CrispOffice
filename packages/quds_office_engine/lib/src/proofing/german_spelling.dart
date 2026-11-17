@@ -5,6 +5,7 @@ import 'package:characters/characters.dart';
 
 import '../opc/zip/deflate_codec.dart';
 import 'data/german_lexicon_data.dart';
+import 'german_literal_ranges.dart';
 import 'office_proofing.dart';
 import 'proofing_text_ranges.dart';
 
@@ -322,6 +323,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     final OfficeProofingTextRanges protectedRanges = OfficeProofingTextRanges(
       request.text,
     );
+    final literals = GermanLiteralTextRanges(request.text);
     final Map<(String, bool), List<String>> suggestions =
         <(String, bool), List<String>>{};
     int examined = 0;
@@ -343,6 +345,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         continue;
       }
       if (protectedRanges.overlaps(token.start, token.end) ||
+          literals.overlaps(token.start, token.end) ||
           _isIdentifierFragment(request.text, token.start, token.end)) {
         continue;
       }
