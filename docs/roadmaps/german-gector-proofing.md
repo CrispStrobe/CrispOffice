@@ -1,6 +1,6 @@
 # German grammar proofing: scoped implementation roadmap
 
-Status: initial runtime code and two-case baseline measured; hosted and application qualification pending.
+Status: full hosted baseline parity and frozen-probe nonregression passed; bounded optimization under review; application qualification pending.
 Date: 2026-11-17.
 Coordinated branch: `feat/german-gector-proofing`.
 
@@ -80,18 +80,18 @@ quality qualification. Evaluate a newer model release as a separate experiment.
   non-finite values or unacceptable numerical/decision differences.
 - [x] Add a reusable pretokenized WordPiece API with source-word alignment and
   tests for cased German, punctuation, special tokens and truncation.
-- [ ] Execute the same-host native ORT control and Dart candidate, with declared
+- [x] Execute the same-host native ORT control and Dart candidate, with declared
   thread budgets, cold load, first inference, warm median/p95, iteration counts,
   sequence-length coverage and peak RSS. Separate inference time from complete
   correction latency and from model download/verification.
-- [ ] Preserve exact workflow/job/source/SDK/model/converter identities and all
+- [x] Preserve exact workflow/job/source/SDK/model/converter identities and all
   failures. CI timings qualify only that host, not mobile/browser hardware.
 
 ### M2: bounded optimization and backend decision
 
-- [ ] Compare the original ONNX model with the declared ONNX INT4 candidate.
+- [x] Compare the original ONNX model with the declared ONNX INT4 candidate.
   Report exact artifact size, quantized operator inventory and unsupported paths.
-- [ ] Profile the limiting work before changing runtime code. Candidate changes
+- [x] Profile the limiting work before changing runtime code. Candidate changes
   include initializer lifetime, last-use intermediate reclamation, packed-weight
   execution or bounded reuse, and worker/thread allocation. Change one cause
   at a time, retain a reproducible baseline, and measure decoded parity.
@@ -226,3 +226,41 @@ and multiplication tiles for MatMulNBits. Preserve this baseline, compare the
 changed kernel with the identical candidate bytes and reference fixtures, and
 record the result separately before selecting a backend. Q4_K remains the
 preferred conditional ggml target and has not been executed.
+
+
+## Hosted baseline checkpoint: full frozen panel
+
+[Run 44053903485](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485)
+completed successfully. Its [durable audited record](../validation/german-gector/2026-11-17-hosted-baseline/README.md)
+retains all case outcomes/timings, source and artifact hashes, host settings,
+per-pass decisions and the distinction between correctness and application
+qualification. Independent review verified all 160 raw reference tensor files.
+
+Both original and INT4 Dart arms passed exact tokenization, both-head numerical
+checks and all selected tags on 30 cases / 40 saved passes each. INT4 retained
+all nine baseline fixes among the 18 error cases and the same one changed
+clean control among 12; there were no input, selected-tag, final-text or
+suggestion-span differences between the models on this panel. The known
+Swiss false edit remains. These are small synthetic-case results, not
+population accuracy or regional support.
+
+On this dedicated hosted VM, aggregate first-forward median/p95 values were:
+
+| Runtime | F32 | ONNX INT4 |
+| --- | ---: | ---: |
+| Native ORT | 13.7 / 16.4 ms | 16.2 / 20.0 ms |
+| Dart AOT baseline | 225 / 286 ms | 767 / 835 ms |
+
+Dart peak RSS was 1,713,364,992 bytes for F32 and 499,945,472 for INT4. Native
+INT4 complete reference corrections had a 36.5 ms aggregate p95, excluding
+application guards. Native F32's inference report and later architecture
+census have different memory scopes, both documented in the evidence.
+
+This panel covers only 5..12 wordpieces. The original Dart INT4 forward already
+exceeds the complete-check budget; F32 exceeds the memory/pack budgets. Neither
+arm qualifies a shipping provider. The two initial runtime hypotheses are
+bounded dequantization tiles and reuse of the existing narrow direct GEMM
+path. Keep the latter under the existing per-model experiment flag and
+measure the final source on the hosted protocol before deciding the next
+implementation lane. Longer inputs and a full Dart correction loop remain
+explicit gates.
