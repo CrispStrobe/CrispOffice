@@ -1,0 +1,69 @@
+{
+  "label": "fixture-generation",
+  "source_commit": "07481e944799e282f15e6286192b926cff1165df",
+  "archive_format": "tar.xz",
+  "archive_sha256": "7234fa9a988bbb4d8adca306182987439f6c6772c3e07db58c5cce0f76de1572",
+  "archive_bytes": 8844,
+  "chunks": [
+    {
+      "path": "fixture-generation.tar.xz.part000",
+      "size": 8844,
+      "sha256": "7234fa9a988bbb4d8adca306182987439f6c6772c3e07db58c5cce0f76de1572"
+    }
+  ],
+  "files": [
+    {
+      "path": "receipt.json",
+      "size": 3842,
+      "sha256": "d057df7a72bd498578d74aafa9e14f57d8992d7441c18a19a88d2bb5ca63e748"
+    },
+    {
+      "path": "stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "stdout.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "stderr.gz"
+    },
+    {
+      "path": "supplemental/slide-image.odp",
+      "size": 2597,
+      "sha256": "3de82c3fdba88a478984d7675ecec2e85d002d78f7247dc033e73fec49ffebbb"
+    },
+    {
+      "path": "supplemental/word-covered-notes.odt",
+      "size": 3099,
+      "sha256": "b2c354f63b96be418fc0a5dde7b742927d63defe7935482627810b803a004fd2"
+    },
+    {
+      "path": "supplemental/word-empty-tables.odt",
+      "size": 2992,
+      "sha256": "0b567df8d0ccbdbb9d582af482e4f5909a3407192a385049e0c5ab252659ae5c"
+    },
+    {
+      "path": "supplemental/word-list-integration.odt",
+      "size": 2903,
+      "sha256": "52380e2674ca23c4187d4197ae0dc3a787c43b9fa9d1d26c86efc51b245b3f8a"
+    },
+    {
+      "path": "supplemental/word-note-recursion.odt",
+      "size": 2972,
+      "sha256": "efcf3716ad0c1ede72a350a2fc08b40d0b23891361cdc94435ee8a5aa7549182"
+    },
+    {
+      "path": "supplemental/word-note-stories.odt",
+      "size": 3919,
+      "sha256": "4cd27fda50cd3a18ad5874f61478fa981e14087c07b7f5beb3e577ae5f5abfa9"
+    },
+    {
+      "path": "supplemental/word-paragraph-layout.odt",
+      "size": 3358,
+      "sha256": "c2ecf9e97ac1c79635d56e06ca92cb850c83bafa97457bdd62e7fea1e1613c8c"
+    }
+  ],
+  "file_count": 10,
+  "unique_content_count": 9
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "kind": "quds-final-integrated-gector-validation",
+  "implementation_commit": "a15d173ab05d0c569aa0693e33706358fe368da6",
+  "passed": true,
+  "files": {
+    "provider-aot-v3.json": {
+      "bytes": 70261,
+      "sha256": "81a0a1383bc27e76263c92125c09d8d28311b6df18f043b15cc182d18e8c09b3"
+    },
+    "provider-aot-v3-build.json": {
+      "bytes": 65404,
+      "sha256": "4b8ab49f51a644641c31d5950af459fd21a3388cb906944c7b884e5b813b2d6a"
+    },
+    "guarded-comparison-v3.json": {
+      "bytes": 4159,
+      "sha256": "48fdcd71c1c967ef9cdd73ecf1bbca0593fbf2dcb89651a1ca089d095031a092"
+    },
+    "provider-aot-v3.log.gz": {
+      "bytes": 600,
+      "sha256": "f43e1bcbdbc8450d44865cebd4f48e7c6ee6b4f8dda18a93463c676d8d32ae5e"
+    },
+    "second-integration.json": {
+      "bytes": 20021,
+      "sha256": "39823301523332d534c52912549d24cbfebb3d0c39e535e9c44bf3257160ddab"
+    },
+    "second-test-logs.json": {
+      "bytes": 1978,
+      "sha256": "9ae5c358a46824d0b615045047665fa090a9ed04e1ee4ec4233cf9ed6fba64d4"
+    },
+    "gector-package-tests-v3.log.gz": {
+      "bytes": 803,
+      "sha256": "981b0861e9557de56cee87030ffdbcf2ad2580c9299a8fbe880c2e12055f125f"
+    },
+    "german-grammar-tests-v3.log.gz": {
+      "bytes": 3974,
+      "sha256": "be825b60e1326cc76bebe90ca5083b9da277b3ab5ddf104c606b2b12bf5a58fe"
+    },
+    "editor-proofing-tests-v3.log.gz": {
+      "bytes": 2459,
+      "sha256": "5c7e8d1cff0063e179df2332bf57d399c18d3edfc86997fd2d176ff4404c7c41"
+    },
+    "second-odt-tests.log.gz": {
+      "bytes": 3681,
+      "sha256": "56193072b10ba3dd723674a79bccd16439455e094194462a8388803bd1c3a9bf"
+    },
+    "local-tooling-tests-v3.log.gz": {
+      "bytes": 56,
+      "sha256": "e07892263b51fe5e9e725db6560752466e88869e582be44060b335bafbe1ace4"
+    },
+    "development-pack-manifest.json": {
+      "bytes": 9315,
+      "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+    }
+  },
+  "source_binding": {
+    "build_runner_maps_equal": true,
+    "source_stable": true,
+    "dependencies_stable": true,
+    "sdk_stable": true,
+    "runtime_and_entrypoint_pins_match": true,
+    "actual_snapshot_sha256": "b3e68ff4f3291ceb16baf086ffbf0e19c3a34320eb8f80114085f0d91648126c"
+  },
+  "quality": {
+    "exact_fixes": 6,
+    "error_cases": 18,
+    "previous_baseline_fixes_preserved": 5,
+    "clean_controls_unchanged": 10,
+    "swiss_controls_unsupported": 2,
+    "operational_controls": 8,
+    "outcomes_identical_to_guarded_v2": true,
+    "added_from_original_v1": [
+      "verb-wir"
+    ],
+    "lost_fixes": []
+  },
+  "performance": {
+    "setup_ms": 3619.7,
+    "short_median_ms": 24.02,
+    "short_p95_ms": 66.072,
+    "peak_process_rss_bytes": 360497152,
+    "peak_process_rss_mib": 343.796875,
+    "long_probes": [
+      {
+        "tokens": 61,
+        "p95_ms": 165.031
+      },
+      {
+        "tokens": 126,
+        "p95_ms": 369.813
+      },
+      {
+        "tokens": 256,
+        "p95_ms": 816.225
+      }
+    ]
+  },
+  "tests": {
+    "gector_package": {
+      "passed": 103,
+      "skipped": 0,
+      "real_native_fixture": true
+    },
+    "german_grammar": 268,
+    "editor_proofing": 97,
+    "odt": 148,
+    "python_tooling": 45
+  },
+  "scope": "Frozen synthetic model panel and focused local integration checks. No target-device, general precision/recall, release or shipping claim. All previous JIT/AOT/native measurements remain retained.",
+  "actions_dispatched_polled_or_awaited": false,
+  "independent_review": {
+    "passed": true,
+    "checks": 65,
+    "method": "Separate review of saved receipts, actual artifacts and captured branch ancestry; no inference rerun or writes.",
+    "retained_results_reconstructed_from_utf16_edits": 74,
+    "short_timing_samples_recomputed": 87,
+    "captured_quds_branch_heads_confirmed_as_ancestors": 128,
+    "limits": [
+      "Complete per-case outputs are retained for the warmup and first measured run only; repeated-output stability remains producer-reported.",
+      "The later office-fidelity head 097475fbda96aa4a6497d92f28d10f1aa5f640b4 is outside the validated snapshot."
+    ]
+  }
+}

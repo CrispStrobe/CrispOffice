@@ -67,6 +67,58 @@ quality qualification. Evaluate a newer model release as a separate experiment.
 - Do not label ONNX MatMulNBits as Q4_K, silently ship F32, or overwrite frozen
   reference outputs with candidate outputs.
 
+## Current implemented state
+
+The [optional provider](../../packages/quds_proofing_gector/README.md) now owns
+verified bundle admission, tokenizer/alignment, iterative decoding, conservative
+German guards, UTF-16 source edits, a persistent bounded worker and explicit
+failure reporting. The native adapter uses the separately qualified default-off
+CrispEmbed prepared-input target. Manual/F7 registration is available through
+`configureManual`; typing checks continue to use the ordinary service.
+
+The [native qualification](../validation/german-gector/2026-11-17-native/README.md)
+retains exact F32 and mixed Q4_K agreement for all 30 cases / 40 saved passes,
+including the 64/128/256-token probes. The candidate GGUF is 82,756,896 bytes.
+The [guarded provider evidence](../validation/german-gector/2026-11-17-native-dart/README.md)
+retains both development-mode and compiled measurements. The compiled v1 run
+passes the local <=64-token latency and process-memory budgets at 62.017 ms p95
+and 309,854,208 bytes peak RSS. The JIT memory-budget failure is retained.
+
+The guarded v1 policy preserved five expected fixes. The
+[compiled continuation](../validation/german-gector/2026-11-17-continuation/README.md)
+recovers `Wir ist` through authenticated same-number verb-person aliases,
+raising the result to six expected fixes with no lost fixes or changed supported
+clean controls. The other three of the nine unguarded fixes remain held. Both
+Swiss controls are explicitly unsupported. This small synthetic panel does not
+establish general German accuracy. de-AT/de-CH, representative held-out quality,
+benefit beyond deterministic rules, intended-device responsiveness and the
+exact distribution/license closure remain open. Inputs beyond the model's
+512-token context fail explicitly; long-paragraph segmentation is not yet
+implemented.
+
+The continuation also supplies a source/dependency/SDK-bound AOT builder and an
+[offline local development pack](../../tools/proofing/german_model/NATIVE_PACK.md).
+The verified pack has 23 files totaling 86,356,331 bytes, including its manifest.
+The final v3 compiled run through it binds the integrated source at `a15d173`
+and passes all 30 operational cases, eight controls and guarded nonregression,
+at 66.072 ms short-input p95 and 360,497,152 bytes peak process RSS. Its case
+outputs match v2 exactly; v1 and v2 measurements remain retained. These are
+separate local observations and do not establish a speed change or
+intended-device qualification. The 256-token structural probe takes 816.225 ms
+at p95; the 500 ms budget applies to the short-input cohort.
+
+That integration retains all 128 Quds branch tips captured at
+2026-11-17 14:54:15 UTC. It includes explicit genitive corrections, bounded
+worker request coalescing, locale-aware manual coverage and the newer ODT
+section/nested-list/bookmark work. The continuation evidence records 103
+GECToR, 268 deterministic German grammar, 97 editor proofing, 148 ODT and 45
+tooling checks. Later incoming branch activity is listed separately from this
+fixed validation snapshot.
+
+The owner requested incremental remote checkpoints and local validation because
+GitHub Actions capacity is starved. No new hosted job or Actions completion is
+a prerequisite for this continuation. Preserve all receipts and source pins.
+
 ## Milestones
 
 ### M0: recoverable scope
@@ -127,6 +179,7 @@ before mobile/browser rollout, not after viewing results to make a run pass.
   unpublished Proofbird built-ins.
 - [x] Expose tested de-DE support first. Explicitly return unsupported for
   de-AT/de-CH; their locale policy and quality qualification remain future work.
+- [ ] Add qualified de-AT/de-CH policies and controls before advertising those locales.
 - [x] Construct results around the original request object; forRequest receives
   request-relative offsets and adds startOffset exactly once.
 - [x] Reuse protected ranges, personal-vocabulary and duplicate/conflict
@@ -142,6 +195,14 @@ before mobile/browser rollout, not after viewing results to make a run pass.
   rich text, undo, tracked changes, protection and stale-result controls.
 
 ### M4: selected native lane and fallback
+
+- [x] Implement and authenticate the exact fine-tuned converter and both heads.
+- [x] Qualify the small prepared-ID native target against saved F32 references.
+- [x] Qualify the declared mixed Q4_K recipe on frozen decoded outputs and
+  required longer inputs; retain strict numeric failures separately.
+- [x] Measure the complete guarded Dart worker/provider/service in JIT and AOT.
+- [ ] Qualify intended desktop devices and broader held-out German quality.
+- [ ] Complete exact platform/distribution and model-pack acceptance.
 
 CrispEmbed/ggml is implemented as a small CPU target with controlled
 BERT/GGUF/ggml dependencies. It converts the exact fine-tuned encoder and both
@@ -262,9 +323,12 @@ final text or suggestion spans on this panel. These counts do not estimate
 general German accuracy. Broader held-out evaluation and incremental value
 over existing deterministic rules remain required.
 
-### Completed native and application continuation
+### Earlier morphology-branch native and application continuation
 
-The newer Quds feature checkpoint `216d9a4ba11d87d27f861d84d26bf74ca1d4f298`
+This historical checkpoint precedes the v2/v3 continuation described above.
+Its separate measurements and evidence remain retained.
+
+The Quds feature checkpoint `216d9a4ba11d87d27f861d84d26bf74ca1d4f298`
 adds the optional application provider after the native conversion and
 qualification commits. It is integrated with the morphology and ODT fixes in
 PR #105. The [provider README](../../packages/quds_proofing_gector/README.md)

@@ -1,0 +1,357 @@
+{
+  "started_utc": "2026-11-17T14:41:33.857207+00:00",
+  "passed": true,
+  "evidence_directory": "/workspace/scratch/25fc1d269a82/validation-resume/final",
+  "requested_source": "9400b6ec3bd14f71035865121a03029db5f58697",
+  "audit_script_sha256": "afb4d2433eb512603f47e452b785b82ba4bd58b3116ce46076cbf47f61361459",
+  "github_actions_used": false,
+  "cohorts": {
+    "engine": {
+      "passed": true,
+      "tested_commit": "07481e944799e282f15e6286192b926cff1165df",
+      "test_files": 88,
+      "passing_tests": 1938,
+      "reported_skips": 0,
+      "batches": [
+        {
+          "name": "tests-01",
+          "passing_tests": 370,
+          "test_files": 22,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 392,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/arabic_pdf_export_test.dart": 5,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/bidi_test.dart": 18,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/font_subset_structure_test.dart": 15,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/font_subset_unicode_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/fonts_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/legacy_sheet_reader_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/ods_sheet_reader_test.dart": 102,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/ods_sheet_writer_test.dart": 13,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/office_named_fonts_test.dart": 8,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/office_pdf_export_test.dart": 14,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_actual_text_scope_test.dart": 16,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_cid_encoding_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_file_test.dart": 31,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_logical_text_export_test.dart": 17,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_templates_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_to_office_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_toolbox_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_unicode_alias_export_test.dart": 5,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_widgets_catalog_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_widgets_test.dart": 18,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sfnt_cmap_validation_test.dart": 55,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_pdf_test.dart": 1
+          }
+        },
+        {
+          "name": "tests-02",
+          "passing_tests": 421,
+          "test_files": 22,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 443,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/english_hyphenation_test.dart": 17,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/german_hyphenation_context_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_test.dart": 39,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": 37,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/office_proofing_test.dart": 14,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing_hyphenation_test.dart": 20,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_authored_number_format_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_cell_state_preservation_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_comments_namespace_test.dart": 26,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_comments_schema_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart": 44,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": 83,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_conditional_style_priority_integration_test.dart": 1,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_explicit_style_fidelity_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_formula_test.dart": 26,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_rename_adversarial_test.dart": 14,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_rename_fidelity_test.dart": 37,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart": 4,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_run_measure_boundaries_test.dart": 5,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_run_measure_test.dart": 17,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_small_caps_test.dart": 12
+          }
+        },
+        {
+          "name": "tests-03",
+          "passing_tests": 446,
+          "test_files": 22,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 468,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/native_spreadsheet_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odf_export_text_fidelity_test.dart": 19,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odp_presentation_writer_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_document_writer_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_structure_fidelity_test.dart": 4,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/office_search_fidelity_test.dart": 27,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/pdf_text_string_encoding_test.dart": 59,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_conditional_dxf_edit_test.dart": 20,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_fill_fidelity_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_formula_cache_fidelity_test.dart": 43,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_formula_dependency_cache_test.dart": 48,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_import_fidelity_test.dart": 10,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_macro_preservation_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_nav_test.dart": 5,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_normal_font_metrics_test.dart": 23,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_qualified_name_error_test.dart": 80,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_qualified_names_test.dart": 32,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_schema_fidelity_test.dart": 9,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_style_namespace_fidelity_test.dart": 14,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_time_number_format_test.dart": 8,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/sheet_wrap_text_fidelity_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/toolkit_builders_test.dart": 8
+          }
+        },
+        {
+          "name": "tests-04",
+          "passing_tests": 701,
+          "test_files": 22,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 723,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odp_table_fidelity_test.dart": 16,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odp_transform_fidelity_test.dart": 23,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_comment_fidelity_test.dart": 35,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart": 9,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_note_fidelity_test.dart": 23,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_paragraph_properties_test.dart": 13,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_table_merge_test.dart": 26,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart": 140,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/german_grammar_test.dart": 171,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart": 75,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart": 1,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart": 14,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_locale_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/table_grid_steps_test.dart": 46,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_field_span_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_note_numbering_test.dart": 22,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_table_direction_test.dart": 1,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_table_grid_addressing_test.dart": 22,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_table_nested_layout_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_table_test.dart": 11,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/word_zotero_test.dart": 16
+          }
+        }
+      ],
+      "source_input_count": 1120,
+      "runtime_input_count": 8607,
+      "generated_format_exclusions": 18,
+      "absent_optional_inputs": [
+        "/home/mohammed/Desktop/al_tahreer_profile.pdf"
+      ],
+      "receipt_sha256": "b9b8629b5b2a48737c11bf65ce0811a977e0a0499f555bf8fbf9d7f1251c5329",
+      "event_and_command_archives_sha256": {
+        "tests-01.stdout.gz": "7061b7d40e231d4c9a5e09e69f89dac49540dd318b11876468aa307549ad2a6d",
+        "tests-01.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "tests-02.stdout.gz": "6f4300b5062e735f7b4553cec0b71cda406b3b45f8264d01a24d3e9258d002d8",
+        "tests-02.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "tests-03.stdout.gz": "0cf0552ca1fc6910328e93f6477a937e24db9448ed8a19bf89a7d459d0ca1d06",
+        "tests-03.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "tests-04.stdout.gz": "ba07ea7697fdceae0f981ead30c5c5dcf8d0d3b365a1ddc0273a617f892ab547",
+        "tests-04.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "analyze.stdout.gz": "0d193cf0fc76b158b7fdc07c08be3ce404b894fcf0390c3a4bbf5c47a1c51eea",
+        "analyze.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "format.stdout.gz": "1af3c6e3a1d16b7adb2954705ed452468ef3ed59254d9558b0d4e651847cd20f",
+        "format.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    },
+    "editor": {
+      "passed": true,
+      "tested_commit": "07481e944799e282f15e6286192b926cff1165df",
+      "test_files": 34,
+      "passing_tests": 370,
+      "reported_skips": 0,
+      "batches": [
+        {
+          "name": "tests-01",
+          "passing_tests": 200,
+          "test_files": 17,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 237,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/font_subset_render_test.dart": 3,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/host_fonts_test.dart": 5,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/paint_font_fallback_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/pdf_font_faces_test.dart": 13,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/pdf_surface_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/pdf_viewer_options_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_caret_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_paint_test.dart": 9,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_resume_test.dart": 8,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_hyphenation_source_presentation_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart": 33,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart": 22,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart": 10,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart": 31,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_run_metrics_test.dart": 13,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_shaped_wrap_test.dart": 8
+          }
+        },
+        {
+          "name": "tests-02",
+          "passing_tests": 170,
+          "test_files": 17,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 191,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_cell_state_history_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_conditional_rendering_test.dart": 7,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_explicit_style_history_test.dart": 3,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_fill_intent_history_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_font_color_intent_test.dart": 2,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_grid_history_test.dart": 14,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_hidden_sheet_test.dart": 1,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_navigation_controller_test.dart": 26,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_navigation_widget_test.dart": 6,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_normal_font_auto_test.dart": 1,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_normal_font_metrics_test.dart": 17,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_rename_controller_test.dart": 13,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_sort_history_test.dart": 8,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_style_history_test.dart": 20,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/sheet_view_history_test.dart": 20,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_german_grammar_integration_test.dart": 19,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart": 5
+          }
+        }
+      ],
+      "source_input_count": 1200,
+      "runtime_input_count": 8607,
+      "generated_format_exclusions": 0,
+      "absent_optional_inputs": [
+        "/home/mohammed/Desktop/al_tahreer_profile.pdf"
+      ],
+      "receipt_sha256": "5be8a2995ccb5d63769e3ed68429e6767cedf0f98802d4091d41e1e62b9e195d",
+      "event_and_command_archives_sha256": {
+        "tests-01.stdout.gz": "d6408cdf9fae45886487ba553a91295e093cd859b4c983d8542a37cd440c5df4",
+        "tests-01.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "tests-02.stdout.gz": "4502e17c19e3df331b76c92caa720540bebda62e800d6ac259c1180bb426d6d2",
+        "tests-02.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "analyze.stdout.gz": "58f23846bca0123ef1968e6a4bd26cce6bf6f09a2306c6473197060ecfa56057",
+        "analyze.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "format.stdout.gz": "c6afd8447369c791fa8b224c5af0886eeda1f425d4026239aac29d7eb910f987",
+        "format.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    },
+    "harper": {
+      "passed": true,
+      "tested_commit": "07481e944799e282f15e6286192b926cff1165df",
+      "test_files": 3,
+      "passing_tests": 29,
+      "reported_skips": 0,
+      "batches": [
+        {
+          "name": "tests-01",
+          "passing_tests": 29,
+          "test_files": 3,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 32,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_proofing_harper/test/harper_provider_test.dart": 10,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_proofing_harper/test/harper_source_contract_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_proofing_harper/test/harper_source_text_test.dart": 7
+          }
+        }
+      ],
+      "source_input_count": 1031,
+      "runtime_input_count": 8607,
+      "generated_format_exclusions": 0,
+      "absent_optional_inputs": [
+        "/home/mohammed/Desktop/al_tahreer_profile.pdf"
+      ],
+      "receipt_sha256": "40c14dbdef4b1d485df451b8f90a64c50d32113fbd92049bfcec1ed96d46bb82",
+      "event_and_command_archives_sha256": {
+        "tests-01.stdout.gz": "088d8c74a7adbc4dbe944a4289eb0da6f27bd072ffe80fb0423219c9bc71fcaf",
+        "tests-01.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "analyze.stdout.gz": "031721d32fc84f1af1dbe7912a90a3deb0376a3ed65fe2d694beb299864e2c1d",
+        "analyze.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "format.stdout.gz": "6a3dc084dcefa6bf6206a767869f6433ccd0b3d325074e0c82f65749d8e47c90",
+        "format.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    },
+    "node": {
+      "passed": true,
+      "tested_commit": "07481e944799e282f15e6286192b926cff1165df",
+      "test_files": 6,
+      "passing_tests": 132,
+      "reported_skips": 0,
+      "batches": [
+        {
+          "name": "tests-01",
+          "passing_tests": 132,
+          "test_files": 6,
+          "reported_skips": 0,
+          "errors": 0,
+          "started_tests_including_hidden": 138,
+          "visible_tests_by_suite": {
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart": 12,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odp_transform_fidelity_test.dart": 23,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_comment_fidelity_test.dart": 35,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_note_fidelity_test.dart": 23,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_paragraph_properties_test.dart": 13,
+            "/workspace/scratch/25fc1d269a82/quds_office_suite/packages/quds_office_engine/test/odt_table_merge_test.dart": 26
+          }
+        }
+      ],
+      "source_input_count": 1038,
+      "runtime_input_count": 8607,
+      "generated_format_exclusions": 18,
+      "absent_optional_inputs": [
+        "/home/mohammed/Desktop/al_tahreer_profile.pdf"
+      ],
+      "receipt_sha256": "7717fbcded74f8cde8874329f5a39cd7e7128598c15b78a303a62b87058c7a8c",
+      "event_and_command_archives_sha256": {
+        "tests-01.stdout.gz": "3a93771afb7a27115544fb9872c347bd674c1b2ebf24923dbf87f9ef7eeeba7b",
+        "tests-01.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "analyze.stdout.gz": "0d193cf0fc76b158b7fdc07c08be3ce404b894fcf0390c3a4bbf5c47a1c51eea",
+        "analyze.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "format.stdout.gz": "2cac603d335f4f8f1f2a4698a3f6a22ab7bc14a1674eba55d0edcec6db22707f",
+        "format.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    }
+  },
+  "count_scope": "Visible successful testDone events. Reported skips are rejected. Inherited tests that return early can still report success; absent optional host inputs are disclosed per cohort.",
+  "source_commit": "9400b6ec3bd14f71035865121a03029db5f58697",
+  "source_tree": "70bc6ae53c2637eefe249d9cf45f622723c4a6a9",
+  "current_commit": "9400b6ec3bd14f71035865121a03029db5f58697",
+  "tested_commit": "07481e944799e282f15e6286192b926cff1165df",
+  "incoming": {
+    "references": 232,
+    "distinct_commits": 155,
+    "all_ancestors": true,
+    "observations": 4,
+    "reference_revision_pairs": 245,
+    "all_observed_distinct_commits": 167,
+    "union_sha256": "125ab5d1450da5167deb7971c68d972075297022ab4118a3024bd68c191c7f66",
+    "inventories_sha256": {
+      "docs/validation/office-fidelity-resume-20261117/incoming/origin-refs.tsv": "23c0f1334a3f0522ce5ae5fe59915e78c55721fb9562ee64f11b609c29e6d4d1",
+      "docs/validation/office-fidelity-resume-20261117/incoming/upstream-refs.tsv": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac",
+      "docs/validation/office-fidelity-continuation-20261117/incoming/origin-refs.tsv": "114a757b92a2f8359e2e09f122036b0695dd0bc8e4273aca509c3c7a37047507",
+      "docs/validation/office-fidelity-continuation-20261117/incoming/upstream-refs.tsv": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac",
+      "docs/validation/office-fidelity-continuation-20261117/refresh/origin-refs.tsv": "846131f4158d628620695e4d212ee4c92128b4712cfd803bd4957f5fab5dd166",
+      "docs/validation/office-fidelity-continuation-20261117/refresh/upstream-refs.tsv": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac",
+      "docs/validation/office-fidelity-continuation-20261117/final-refresh/origin-refs.tsv": "6b4abe0bfceb8db330c595188cd2ef643bcd1625817dcbd1f19faf052e89ae91",
+      "docs/validation/office-fidelity-continuation-20261117/final-refresh/upstream-refs.tsv": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac"
+    }
+  },
+  "total_passing_tests": 2469,
+  "total_test_files": 131,
+  "unique_source_input_count": 1302,
+  "unique_runtime_input_count": 8607,
+  "unique_current_file_hash_checks": 9925,
+  "source_input_map_sha256": "ecf6a8f683ecc320a7fd9b9334e067db5199b3ab289a245b8df91f88a7e3d916",
+  "runtime_input_map_sha256": "6f3edcf57431436a14229b525c7b0f8e2aa017713025914a0be5ffb5ad6081df",
+  "finished_utc": "2026-11-17T14:41:41.133155+00:00"
+}

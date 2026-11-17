@@ -1,0 +1,158 @@
+{
+  "label": "editor",
+  "source_commit": "07481e944799e282f15e6286192b926cff1165df",
+  "archive_format": "tar.xz",
+  "archive_sha256": "2906fa0b4b4ec4281f2dd47b1558189cd30d03ac446f5019761c634435bbd222",
+  "archive_bytes": 563640,
+  "chunks": [
+    {
+      "path": "editor.tar.xz.part000",
+      "size": 90000,
+      "sha256": "056d2a759b446958fc16ea3094f2da9c2400dbaed1e9098b09b9d0e87aee0bfb"
+    },
+    {
+      "path": "editor.tar.xz.part001",
+      "size": 90000,
+      "sha256": "35f69696b28f79c0612b92a8f9b807620875e5545a7bc2ad8efd00285c5011f1"
+    },
+    {
+      "path": "editor.tar.xz.part002",
+      "size": 90000,
+      "sha256": "bfa52ea5753846e9f5bc587f30b2f4610a9f35bbfe1a9a7ae98d2e99a41dfcbf"
+    },
+    {
+      "path": "editor.tar.xz.part003",
+      "size": 90000,
+      "sha256": "0385c4a169cc4dd95b5c8909eafef86c34ed2bfd8b6166f497b62c229aa17f42"
+    },
+    {
+      "path": "editor.tar.xz.part004",
+      "size": 90000,
+      "sha256": "605b0135894ec3094c4cd9d3cdb42499f698d37761f174cda1bdd454550cc84f"
+    },
+    {
+      "path": "editor.tar.xz.part005",
+      "size": 90000,
+      "sha256": "018b8968d001bceffa814a1fd51c5fbc57507368c64a5a8b1b966118dde832d5"
+    },
+    {
+      "path": "editor.tar.xz.part006",
+      "size": 23640,
+      "sha256": "8a10b019ff7cc187eefc8cb2f6670a4c2dbb0db682e6b8f01c8c66cc9d388685"
+    }
+  ],
+  "files": [
+    {
+      "path": "analyze.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "analyze.stdout.gz",
+      "size": 92,
+      "sha256": "58f23846bca0123ef1968e6a4bd26cce6bf6f09a2306c6473197060ecfa56057"
+    },
+    {
+      "path": "dart-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dart-version.stdout",
+      "size": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "flutter-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_bytes_as": "dart-version.stderr"
+    },
+    {
+      "path": "flutter-version.stdout",
+      "size": 642,
+      "sha256": "fbf179d7ddf21a85b6affea1a5ab13ff024f284dc391d5582e5c33b3175d052f"
+    },
+    {
+      "path": "format.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "analyze.stderr.gz"
+    },
+    {
+      "path": "format.stdout.gz",
+      "size": 67,
+      "sha256": "c6afd8447369c791fa8b224c5af0886eeda1f425d4026239aac29d7eb910f987"
+    },
+    {
+      "path": "receipt.json",
+      "size": 393390,
+      "sha256": "5be8a2995ccb5d63769e3ed68429e6767cedf0f98802d4091d41e1e62b9e195d"
+    },
+    {
+      "path": "render/metrics.json",
+      "size": 919,
+      "sha256": "64dd67950c00e35ba64c8ecb85896c76afd9167a9ac1ceb51d2e9990c9d8ca26"
+    },
+    {
+      "path": "render/shared-glyph-aliases.json",
+      "size": 456,
+      "sha256": "08cf1709a1a1634d13d68a10a63d32f766c8192d991c192f332e14dc5f930522"
+    },
+    {
+      "path": "render/shared-glyph-aliases.pdf",
+      "size": 6899,
+      "sha256": "4290a1930abed91021c42a659294f7729a29ac4c1eaac20a0c767aa9fb6463d1"
+    },
+    {
+      "path": "render/unicode-subset-preview.png",
+      "size": 78090,
+      "sha256": "f76a08a23bc1162cc4cd623bc1c34547c6320a2d040d3c49502621584ae78951"
+    },
+    {
+      "path": "render/unicode-subset.pdf",
+      "size": 7265,
+      "sha256": "5acc911e9a694f75e6250333f59f2261a4f44de2b3123bafc4c85cdd88139762"
+    },
+    {
+      "path": "runtime-inputs.after.json.gz",
+      "size": 401787,
+      "sha256": "a1d65f166dc26b7e41cc2ee949939a824664f50d813d9698663c3d46288f663c"
+    },
+    {
+      "path": "runtime-inputs.before.json.gz",
+      "size": 401787,
+      "sha256": "a1d65f166dc26b7e41cc2ee949939a824664f50d813d9698663c3d46288f663c",
+      "same_bytes_as": "runtime-inputs.after.json.gz"
+    },
+    {
+      "path": "tests-01.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "analyze.stderr.gz"
+    },
+    {
+      "path": "tests-01.stdout.gz",
+      "size": 11105,
+      "sha256": "d6408cdf9fae45886487ba553a91295e093cd859b4c983d8542a37cd440c5df4"
+    },
+    {
+      "path": "tests-02.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "analyze.stderr.gz"
+    },
+    {
+      "path": "tests-02.stdout.gz",
+      "size": 8360,
+      "sha256": "4502e17c19e3df331b76c92caa720540bebda62e800d6ac259c1180bb426d6d2"
+    },
+    {
+      "path": "validate-used.py",
+      "size": 38651,
+      "sha256": "757190927e2116270f4332c702e0025eb1c6faba18dc9f8d939f288634d05222"
+    }
+  ],
+  "file_count": 21,
+  "unique_content_count": 16
+}

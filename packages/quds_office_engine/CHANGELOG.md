@@ -4,6 +4,9 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Expose a read-only, language-scoped German dictionary query for optional
+  grammar guards, using the existing dictionary and owner vocabulary without
+  generating suggestions or accepting partial tokens.
 - Repair required noun endings after unambiguous genitive determiners, such as
   `des Student` and `des schlimmen Fehler`, using the existing noun-case rule.
   Retain ambiguous articles, valid alternatives, nominalized adjectives,

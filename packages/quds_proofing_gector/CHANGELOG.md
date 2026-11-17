@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Accept same-number person forms authenticated by the verb table, so a plural
+  `sind` label also agrees with `wir`. Preserve the conservative singular/plural,
+  coordination, and sentence-boundary restrictions.
+- Share the editor's personal vocabulary in the manual-provider setup example.
 - Coalesce superseded requests before they enter the isolate mailbox, retain
   remote queue slots until acknowledged, and preserve progress for other keys.
 - Reject over-limit text before it can cancel a valid in-flight request.

@@ -1,0 +1,188 @@
+{
+  "script_sha256": "a1d77e04ef74600ed1bd3a5093e54727d724f7d6fcb73b41828635fd6513cbde",
+  "bbox_sha256": "2c842d286a27d68251ece317b3d468c86dd5d7b7fbfa930025bc56f619ede296",
+  "existing_bbox_positive": {
+    "first_cell_x": 317.622,
+    "second_cell_x": 133.909,
+    "raw_words": [
+      {
+        "text": "لولأا",
+        "xMin": 317.622,
+        "yMin": -1.997827,
+        "xMax": 352.866,
+        "yMax": 36.018173
+      },
+      {
+        "text": "يناثلا",
+        "xMin": 133.909,
+        "yMin": -1.997827,
+        "xMax": 172.861,
+        "yMax": 36.018173
+      }
+    ],
+    "exact_two_word_inventory": true,
+    "word_identity": {
+      "first": {
+        "authored_text": "الأول",
+        "raw_text": "لولأا",
+        "unicode_codepoint_signature": [
+          1571,
+          1575,
+          1604,
+          1604,
+          1608
+        ],
+        "bounds": {
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        }
+      },
+      "second": {
+        "authored_text": "الثاني",
+        "raw_text": "يناثلا",
+        "unicode_codepoint_signature": [
+          1575,
+          1575,
+          1579,
+          1604,
+          1606,
+          1610
+        ],
+        "bounds": {
+          "xMin": 133.909,
+          "yMin": -1.997827,
+          "xMax": 172.861,
+          "yMax": 36.018173
+        }
+      }
+    }
+  },
+  "negative_controls": [
+    {
+      "case": "swapped_cell_positions",
+      "rejected": true,
+      "error": "RTL logical first cell is not on the right",
+      "words": [
+        {
+          "text": "لولأا",
+          "xMin": 133.909,
+          "yMin": -1.997827,
+          "xMax": 172.861,
+          "yMax": 36.018173
+        },
+        {
+          "text": "يناثلا",
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        }
+      ]
+    },
+    {
+      "case": "missing_first_observed_word",
+      "rejected": true,
+      "error": "RTL fixture must contain exactly two cell words",
+      "words": [
+        {
+          "text": "يناثلا",
+          "xMin": 133.909,
+          "yMin": -1.997827,
+          "xMax": 172.861,
+          "yMax": 36.018173
+        }
+      ]
+    },
+    {
+      "case": "missing_second_observed_word",
+      "rejected": true,
+      "error": "RTL fixture must contain exactly two cell words",
+      "words": [
+        {
+          "text": "لولأا",
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        }
+      ]
+    },
+    {
+      "case": "unexpected_extra_word",
+      "rejected": true,
+      "error": "RTL fixture must contain exactly two cell words",
+      "words": [
+        {
+          "text": "لولأا",
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        },
+        {
+          "text": "يناثلا",
+          "xMin": 133.909,
+          "yMin": -1.997827,
+          "xMax": 172.861,
+          "yMax": 36.018173
+        },
+        {
+          "text": "لولأا",
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        }
+      ]
+    },
+    {
+      "case": "duplicate_identity",
+      "rejected": true,
+      "error": "RTL fixture lost or changed a uniquely identifiable cell word",
+      "words": [
+        {
+          "text": "لولأا",
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        },
+        {
+          "text": "لولأا",
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        }
+      ]
+    },
+    {
+      "case": "changed_character_multiplicity",
+      "rejected": true,
+      "error": "RTL fixture lost or changed a uniquely identifiable cell word",
+      "words": [
+        {
+          "text": "لولأال",
+          "xMin": 317.622,
+          "yMin": -1.997827,
+          "xMax": 352.866,
+          "yMax": 36.018173
+        },
+        {
+          "text": "يناثلا",
+          "xMin": 133.909,
+          "yMin": -1.997827,
+          "xMax": 172.861,
+          "yMax": 36.018173
+        }
+      ]
+    }
+  ],
+  "source_commit": "07481e944799e282f15e6286192b926cff1165df",
+  "verifier_worktree_head": "0f8ee502c38716ba2d64463804cee3bc0f33616e",
+  "expected_source_is_ancestor": true,
+  "script_main_executed": false,
+  "passed": true
+}

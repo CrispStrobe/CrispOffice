@@ -1,5 +1,10 @@
 # Office fidelity continuation — 17 November 2026
 
+The later [resume report](../office-fidelity-resume-20261117/README.md) completes
+qualification from saved source `07481e94`, including the later incoming
+comment work, centered rotation, all four passing cohorts, and independent
+consumer evidence. The sections below preserve the earlier integration history.
+
 Work continues from `57bc0f98eb94997b73f22cc267bd8d61dccaee59` on
 `codex/office-fidelity-20261117`. All qualification is local; no GitHub Actions,
 workflow checks, or commit statuses are queried or awaited. Checkpoints use

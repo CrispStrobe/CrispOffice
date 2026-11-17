@@ -1,0 +1,1999 @@
+{
+  "description": "Initial GitHub-plugin REST inventory; subsequent git fetch observations are recorded separately. No Actions, checks or status endpoints queried.",
+  "recorded_at_utc": "2026-11-17T14:48:40.493Z",
+  "baseline": "8eb01db06c1457fa04ab3f3b8b2ef8fef791fb43",
+  "count": 240,
+  "distinct_heads": 161,
+  "refs": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/german-morphology-20261117",
+      "sha": "5e7fbad97c4d2d66bab7d8b4e27b20d2680e7509"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/office-continuation-20261117",
+      "sha": "a63f23db60d34b4da274ff89e29c69668291216b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/office-fidelity-20261117",
+      "sha": "8eb01db06c1457fa04ab3f3b8b2ef8fef791fb43"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/german-gector-proofing",
+      "sha": "a3273a420aa834c842257286b3909a9c7f214cc7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/main",
+      "sha": "2277634a33b77405f045321ee3ea9ae432066f9a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/105/head",
+      "sha": "5e7fbad97c4d2d66bab7d8b4e27b20d2680e7509",
+      "number": 105,
+      "title": "Broaden offline German grammar with Unicode morphology",
+      "state": "open",
+      "head_branch": "codex/german-morphology-20261117",
+      "updated_at": "2026-11-17T14:44:32Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/101/head",
+      "sha": "8eb01db06c1457fa04ab3f3b8b2ef8fef791fb43",
+      "number": 101,
+      "title": "Preserve ODF tables, notes, comments and centered slide rotation",
+      "state": "open",
+      "head_branch": "codex/office-fidelity-20261117",
+      "updated_at": "2026-11-17T14:42:58Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/106/head",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "number": 106,
+      "title": "Write nested ODT list levels",
+      "state": "closed",
+      "head_branch": "feat/odt-nested-lists",
+      "updated_at": "2026-11-17T14:40:23Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/104/head",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "number": 104,
+      "title": "Write ODT section layouts and page breaks",
+      "state": "closed",
+      "head_branch": "feat/odt-sections2",
+      "updated_at": "2026-11-17T14:18:03Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/103/head",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "number": 103,
+      "title": "Write ODT comments",
+      "state": "closed",
+      "head_branch": "feat/odt-comments",
+      "updated_at": "2026-11-17T13:47:00Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/102/head",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "number": 102,
+      "title": "Land combined Zotero and ODF source with fresh local qualification [skip ci]",
+      "state": "closed",
+      "head_branch": "codex/zotero-recovery-20261116",
+      "updated_at": "2026-11-17T09:42:21Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/85/head",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "number": 85,
+      "title": "Complete Zotero recovery, incoming sync and local qualification [skip ci]",
+      "state": "closed",
+      "head_branch": "codex/zotero-recovery-20261116",
+      "updated_at": "2026-11-17T09:36:10Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/100/head",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "number": 100,
+      "title": "Write ODT footnotes and endnotes",
+      "state": "closed",
+      "head_branch": "feat/odt-footnotes",
+      "updated_at": "2026-11-17T09:02:36Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/99/head",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "number": 99,
+      "title": "Record ODP transitions",
+      "state": "closed",
+      "head_branch": "docs/odp-transitions",
+      "updated_at": "2026-11-17T08:53:52Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/98/head",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "number": 98,
+      "title": "Write ODP slide transitions",
+      "state": "closed",
+      "head_branch": "feat/odp-transitions",
+      "updated_at": "2026-11-17T08:48:42Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/97/head",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "number": 97,
+      "title": "Write ordered ODT list groups",
+      "state": "closed",
+      "head_branch": "feat/odt-ordered-lists",
+      "updated_at": "2026-11-17T08:36:14Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/96/head",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "number": 96,
+      "title": "Correct ODT and ODP writer rows",
+      "state": "closed",
+      "head_branch": "docs/odt-odp-rows",
+      "updated_at": "2026-11-17T08:27:34Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/95/head",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "number": 95,
+      "title": "Write ODT list groups",
+      "state": "closed",
+      "head_branch": "feat/odt-lists",
+      "updated_at": "2026-11-17T08:24:48Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/91/head",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "number": 91,
+      "title": "Expand German grammar and strengthen English/German proofing",
+      "state": "closed",
+      "head_branch": "codex/proofing-en-de-20261117",
+      "updated_at": "2026-11-17T08:13:45Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/87/head",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "number": 87,
+      "title": "Improve English/German hyphenation, spelling and grammar without GPL components",
+      "state": "closed",
+      "head_branch": "codex/proofing-en-de-20261116",
+      "updated_at": "2026-11-17T08:13:45Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/72/head",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "number": 72,
+      "title": "Improve text rendering, worksheet conditional formats and ODF fidelity",
+      "state": "closed",
+      "head_branch": "codex/text-rendering-20261116",
+      "updated_at": "2026-11-17T08:13:45Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/94/head",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "number": 94,
+      "title": "Record the bounded ODP writer",
+      "state": "closed",
+      "head_branch": "docs/odp-presentation-writer",
+      "updated_at": "2026-11-17T06:17:07Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/93/head",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "number": 93,
+      "title": "Add a bounded ODP presentation writer",
+      "state": "closed",
+      "head_branch": "feat/odp-presentation-writer",
+      "updated_at": "2026-11-17T06:11:15Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/92/head",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "number": 92,
+      "title": "Add a bounded ODT document writer",
+      "state": "closed",
+      "head_branch": "feat/odt-document-writer",
+      "updated_at": "2026-11-16T23:41:09Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/90/head",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "number": 90,
+      "title": "Record ODT frame dimensions",
+      "state": "closed",
+      "head_branch": "docs/odt-frame-size",
+      "updated_at": "2026-11-16T23:32:48Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/89/head",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "number": 89,
+      "title": "Retain conditional-format dxf styles",
+      "state": "closed",
+      "head_branch": "feat/conditional-dxf-styles",
+      "updated_at": "2026-11-16T23:17:46Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/88/head",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "number": 88,
+      "title": "Record ranked and average conditional rules",
+      "state": "closed",
+      "head_branch": "docs/conditional-top-bottom",
+      "updated_at": "2026-11-16T23:15:43Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/86/head",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "number": 86,
+      "title": "Import and export top, bottom and average conditional rules",
+      "state": "closed",
+      "head_branch": "feat/conditional-top-bottom",
+      "updated_at": "2026-11-16T20:11:30Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/84/head",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "number": 84,
+      "title": "Record ODS header and footer round-trips",
+      "state": "closed",
+      "head_branch": "docs/ods-header-footer",
+      "updated_at": "2026-11-16T19:59:59Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/83/head",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "number": 83,
+      "title": "Round-trip ODS header and footer sections",
+      "state": "closed",
+      "head_branch": "feat/ods-header-footer",
+      "updated_at": "2026-11-16T19:57:58Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/82/head",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "number": 82,
+      "title": "Finish the ODS page-setup note",
+      "state": "closed",
+      "head_branch": "docs/page-setup-fix",
+      "updated_at": "2026-11-16T19:50:02Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/81/head",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "number": 81,
+      "title": "Record worksheet page setup",
+      "state": "closed",
+      "head_branch": "docs/sheet-page-setup",
+      "updated_at": "2026-11-16T19:49:42Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/80/head",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "number": 80,
+      "title": "Model and round-trip worksheet page setup",
+      "state": "closed",
+      "head_branch": "feat/sheet-page-setup",
+      "updated_at": "2026-11-16T19:47:41Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/79/head",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "number": 79,
+      "title": "Record ODS row groups",
+      "state": "closed",
+      "head_branch": "docs/ods-row-groups",
+      "updated_at": "2026-11-16T19:25:30Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/78/head",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "number": 78,
+      "title": "Write ODS row outline groups and off-extent geometry",
+      "state": "closed",
+      "head_branch": "feat/ods-row-groups",
+      "updated_at": "2026-11-16T19:23:13Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/77/head",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "number": 77,
+      "title": "Record ODS filter predicates",
+      "state": "closed",
+      "head_branch": "docs/ods-filter-predicates",
+      "updated_at": "2026-11-16T19:21:01Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/76/head",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "number": 76,
+      "title": "Write ODS autofilter predicates",
+      "state": "closed",
+      "head_branch": "feat/ods-filter-conditions",
+      "updated_at": "2026-11-16T19:17:10Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/75/head",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "number": 75,
+      "title": "Record the host ODT picture registry",
+      "state": "closed",
+      "head_branch": "docs/odt-image-registry",
+      "updated_at": "2026-11-16T19:15:03Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/74/head",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "number": 74,
+      "title": "Describe the current Office and ODF capabilities",
+      "state": "closed",
+      "head_branch": "docs/current-office-capabilities",
+      "updated_at": "2026-11-16T18:52:45Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/63/head",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "number": 63,
+      "title": "Improve Zotero source identity, dialog scaling, and session backoff",
+      "state": "closed",
+      "head_branch": "codex/zotero-capabilities-20261116",
+      "updated_at": "2026-11-16T18:48:29Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/73/head",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "number": 73,
+      "title": "Define the ODS writer default page layout",
+      "state": "closed",
+      "head_branch": "fix/ods-writer-page-layout",
+      "updated_at": "2026-11-16T18:30:45Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/71/head",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "number": 71,
+      "title": "Record ODS writer picture support",
+      "state": "closed",
+      "head_branch": "docs/ods-writer-images",
+      "updated_at": "2026-11-16T15:58:08Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/70/head",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "number": 70,
+      "title": "Write worksheet pictures into ODS packages",
+      "state": "closed",
+      "head_branch": "feat/ods-writer-images",
+      "updated_at": "2026-11-16T15:55:20Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/69/head",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "number": 69,
+      "title": "Write ODS conditional formats and validations",
+      "state": "closed",
+      "head_branch": "feat/ods-writer-conditional",
+      "updated_at": "2026-11-16T15:49:13Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/68/head",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "number": 68,
+      "title": "Extend the ODS writer to metadata and number formats",
+      "state": "closed",
+      "head_branch": "feat/ods-writer-metadata",
+      "updated_at": "2026-11-16T15:16:47Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/67/head",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "number": 67,
+      "title": "Add a bounded ODS workbook writer",
+      "state": "closed",
+      "head_branch": "feat/ods-writer",
+      "updated_at": "2026-11-16T15:11:42Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/66/head",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "number": 66,
+      "title": "Record ODS filter operator progress",
+      "state": "closed",
+      "head_branch": "docs/filter-operators",
+      "updated_at": "2026-11-16T14:16:19Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/65/head",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "number": 65,
+      "title": "Support ODS filter comparison operators",
+      "state": "closed",
+      "head_branch": "feat/ods-filter-operators",
+      "updated_at": "2026-11-16T14:13:30Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/64/head",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "number": 64,
+      "title": "Close ODS metadata and validation backlog",
+      "state": "closed",
+      "head_branch": "docs/filters-closed",
+      "updated_at": "2026-11-16T13:52:50Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/62/head",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "number": 62,
+      "title": "Preserve ODS filter predicates",
+      "state": "closed",
+      "head_branch": "feat/ods-filter-predicates",
+      "updated_at": "2026-11-16T13:37:18Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/61/head",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "number": 61,
+      "title": "Record ODS metadata and hyperlink progress",
+      "state": "closed",
+      "head_branch": "docs/metadata-complete",
+      "updated_at": "2026-11-16T13:35:44Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/60/head",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "number": 60,
+      "title": "Preserve ODS outline groups",
+      "state": "closed",
+      "head_branch": "feat/ods-outline",
+      "updated_at": "2026-11-16T13:32:41Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/59/head",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "number": 59,
+      "title": "Preserve ODS cell hyperlinks",
+      "state": "closed",
+      "head_branch": "feat/ods-hyperlinks",
+      "updated_at": "2026-11-16T13:26:38Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/56/head",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "number": 56,
+      "title": "Optimize Zotero metadata refresh and native citation scaling",
+      "state": "closed",
+      "head_branch": "codex/zotero-optimization-20261116",
+      "updated_at": "2026-11-16T11:33:19Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/50/head",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "number": 50,
+      "title": "Improve Zotero catalog insertion, rich citations and note numbering [skip ci]",
+      "state": "closed",
+      "head_branch": "codex/zotero-support-20261116",
+      "updated_at": "2026-11-16T11:33:19Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/58/head",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "number": 58,
+      "title": "Import ODS named expressions",
+      "state": "closed",
+      "head_branch": "feat/ods-named-expressions",
+      "updated_at": "2026-11-16T10:37:36Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/57/head",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "number": 57,
+      "title": "Preserve ODS worksheet tab colours",
+      "state": "closed",
+      "head_branch": "feat/ods-tab-color",
+      "updated_at": "2026-11-16T10:30:10Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/55/head",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "number": 55,
+      "title": "Close the modeled ODS validation backlog",
+      "state": "closed",
+      "head_branch": "docs/validation-complete",
+      "updated_at": "2026-11-16T09:17:36Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/54/head",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "number": 54,
+      "title": "Import ODS validation prompts and error styles",
+      "state": "closed",
+      "head_branch": "feat/ods-validation-messages",
+      "updated_at": "2026-11-16T09:10:51Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/53/head",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "number": 53,
+      "title": "Import ODS custom formula validations",
+      "state": "closed",
+      "head_branch": "feat/ods-custom-validation",
+      "updated_at": "2026-11-16T09:04:41Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/52/head",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "number": 52,
+      "title": "Record numeric validation progress",
+      "state": "closed",
+      "head_branch": "docs/validation-operators",
+      "updated_at": "2026-11-16T08:41:03Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/51/head",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "number": 51,
+      "title": "Import ODS numeric, date and length validations",
+      "state": "closed",
+      "head_branch": "feat/ods-validation-operators",
+      "updated_at": "2026-11-16T08:32:58Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/49/head",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "number": 49,
+      "title": "Record ODS metadata and validation progress",
+      "state": "closed",
+      "head_branch": "docs/metadata-closed",
+      "updated_at": "2026-11-15T23:08:16Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/48/head",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "number": 48,
+      "title": "Import ODS workbook metadata",
+      "state": "closed",
+      "head_branch": "feat/ods-metadata",
+      "updated_at": "2026-11-15T23:02:26Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/47/head",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "number": 47,
+      "title": "Add native Zotero citation tools and document-wide style refresh",
+      "state": "closed",
+      "head_branch": "codex/zotero-support-20261115",
+      "updated_at": "2026-11-15T22:52:54Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/46/head",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "number": 46,
+      "title": "Link the remaining office-format backlog",
+      "state": "closed",
+      "head_branch": "docs/readme-remaining-gaps",
+      "updated_at": "2026-11-15T22:24:09Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/45/head",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "number": 45,
+      "title": "Document remaining Office engine work and update changelogs",
+      "state": "closed",
+      "head_branch": "docs/remaining-gaps",
+      "updated_at": "2026-11-15T22:22:35Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/44/head",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "number": 44,
+      "title": "Split content controls across multiple document sections",
+      "state": "closed",
+      "head_branch": "fix/sdt-multi-section-control",
+      "updated_at": "2026-11-15T22:18:55Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/40/head",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "number": 40,
+      "title": "Add Zotero online and desktop libraries with DOCX citation fields",
+      "state": "closed",
+      "head_branch": "codex/zotero-support-20261115",
+      "updated_at": "2026-11-15T22:12:58Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/43/head",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "number": 43,
+      "title": "Support begins-with and ends-with conditions",
+      "state": "closed",
+      "head_branch": "feat/conditional-affix",
+      "updated_at": "2026-11-15T22:05:48Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/42/head",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "number": 42,
+      "title": "Lift a trailing section break out of a body content control",
+      "state": "closed",
+      "head_branch": "fix/sdt-trailing-section-break",
+      "updated_at": "2026-11-15T20:24:56Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/41/head",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "number": 41,
+      "title": "Support between conditional rules",
+      "state": "closed",
+      "head_branch": "feat/conditional-between",
+      "updated_at": "2026-11-15T20:23:41Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/39/head",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "number": 39,
+      "title": "Import ODS list validations",
+      "state": "closed",
+      "head_branch": "feat/ods-validations",
+      "updated_at": "2026-11-15T19:18:35Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/38/head",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "number": 38,
+      "title": "Import ODS contains-text and duplicate rules",
+      "state": "closed",
+      "head_branch": "feat/conditional-text",
+      "updated_at": "2026-11-15T19:13:56Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/37/head",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "number": 37,
+      "title": "Emit conditional dxf styles for generated rules",
+      "state": "closed",
+      "head_branch": "feat/conditional-dxf",
+      "updated_at": "2026-11-15T19:10:36Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/36/head",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "number": 36,
+      "title": "Support the full numeric conditional comparators",
+      "state": "closed",
+      "head_branch": "feat/conditional-operators",
+      "updated_at": "2026-11-15T19:01:57Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/35/head",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "number": 35,
+      "title": "Import ODS conditional formats and paint matches",
+      "state": "closed",
+      "head_branch": "feat/ods-conditional",
+      "updated_at": "2026-11-15T18:57:27Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/34/head",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "number": 34,
+      "title": "Accept UTF-16 custom XML while probing bibliography ownership",
+      "state": "closed",
+      "head_branch": "fix/utf16-custom-xml",
+      "updated_at": "2026-11-15T18:49:26Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/33/head",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "number": 33,
+      "title": "Preserve hidden ODS worksheets",
+      "state": "closed",
+      "head_branch": "feat/sheet-hidden-sheets",
+      "updated_at": "2026-11-15T18:39:22Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/32/head",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "number": 32,
+      "title": "Preserve hidden ODS rows and columns",
+      "state": "closed",
+      "head_branch": "feat/sheet-hidden-state",
+      "updated_at": "2026-11-15T16:51:32Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/31/head",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "number": 31,
+      "title": "Honor nameless ODS default styles and geometry",
+      "state": "closed",
+      "head_branch": "feat/ods-default-geometry",
+      "updated_at": "2026-11-15T16:45:53Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/30/head",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "number": 30,
+      "title": "Apply ODS document default cell styles",
+      "state": "closed",
+      "head_branch": "feat/ods-default-style",
+      "updated_at": "2026-11-15T16:25:32Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/28/head",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "number": 28,
+      "title": "Prove edited XLSM/XLTX saves preserve package type",
+      "state": "closed",
+      "head_branch": "test/xlsm-preservation",
+      "updated_at": "2026-11-15T14:59:45Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/25/head",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "number": 25,
+      "title": "Accept OOXML step vocabulary, keep all Word underline styles, continue formatting after a split",
+      "state": "closed",
+      "head_branch": "fix/word-steps-vocabulary",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/22/head",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "number": 22,
+      "title": "Keep inline pictures inside their line of text",
+      "state": "closed",
+      "head_branch": "fix/word-inline-pictures",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/21/head",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "number": 21,
+      "title": "Apply headings the way Word does; shade theme colours in HSL",
+      "state": "closed",
+      "head_branch": "fix/word-heading-like-word",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/20/head",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "number": 20,
+      "title": "Keep shapes without text free of empty text boxes on save",
+      "state": "closed",
+      "head_branch": "fix/word-shape-no-textbox",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/27/head",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "number": 27,
+      "title": "Fix the reviewed Word golden checks on Linux",
+      "state": "closed",
+      "head_branch": "fix/linux-goldens",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/26/head",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "number": 26,
+      "title": "Declare archive for the ODS fixture builder",
+      "state": "closed",
+      "head_branch": "fix/odf-legacy-spreadsheets",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/19/head",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "number": 19,
+      "title": "Word-like text selection in the Word editor",
+      "state": "closed",
+      "head_branch": "feat/word-like-selection",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/18/head",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "number": 18,
+      "title": "Preserve cell drafts during worksheet and find navigation",
+      "state": "closed",
+      "head_branch": "codex/office-recovery-20261115",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/29/head",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "number": 29,
+      "title": "Carry ODS pictures into worksheet drawings",
+      "state": "closed",
+      "head_branch": "feat/ods-images",
+      "updated_at": "2026-11-15T14:12:12Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/24/head",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "number": 24,
+      "title": "Finish ODS fidelity: geometry and date formats",
+      "state": "closed",
+      "head_branch": "fix/odf-legacy-spreadsheets",
+      "updated_at": "2026-11-15T11:30:45Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/23/head",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "number": 23,
+      "title": "Read OpenDocument spreadsheets into the workbook model",
+      "state": "closed",
+      "head_branch": "fix/odf-legacy-spreadsheets",
+      "updated_at": "2026-11-15T08:57:54Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/16/head",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "number": 16,
+      "title": "Import legacy .xls workbooks and harden spreadsheet saves",
+      "state": "closed",
+      "head_branch": "fix/excel-legacy-import",
+      "updated_at": "2026-11-15T08:51:16Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/15/head",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "number": 15,
+      "title": "Make tracked-change import and save linear instead of quadratic",
+      "state": "closed",
+      "head_branch": "fix/word-revision-quadratic",
+      "updated_at": "2026-11-15T06:20:56Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/17/head",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "number": 17,
+      "title": "Keep unmodelable header/footer parts verbatim instead of refusing documents",
+      "state": "closed",
+      "head_branch": "fix/word-header-controls",
+      "updated_at": "2026-11-15T06:20:55Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/14/head",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "number": 14,
+      "title": "Keep complex fields as spans instead of wrapping whole paragraphs",
+      "state": "closed",
+      "head_branch": "fix/word-field-loss",
+      "updated_at": "2026-11-15T06:20:55Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/13/head",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "number": 13,
+      "title": "Preserve legacy VML content (w:pict) instead of dropping it on import",
+      "state": "closed",
+      "head_branch": "fix/word-preserve-vml-pict",
+      "updated_at": "2026-11-15T06:20:55Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/12/head",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "number": 12,
+      "title": "test(office): preserve combined sorting and worksheet history regression",
+      "state": "closed",
+      "head_branch": "integration/crispcloud-storage-reconcile-20261114",
+      "updated_at": "2026-11-14T22:37:41Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/10/head",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "number": 10,
+      "title": "Stop text boxes anchored in one paragraph from nesting exponentially",
+      "state": "closed",
+      "head_branch": "fix/word-textbox-nesting",
+      "updated_at": "2026-11-14T22:37:41Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/9/head",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "number": 9,
+      "title": "Keep symbol-font characters (w:sym) through import and save",
+      "state": "closed",
+      "head_branch": "fix/word-sym-chars",
+      "updated_at": "2026-11-14T22:37:41Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/11/head",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "number": 11,
+      "title": "Reuse identical media payloads instead of storing a copy on every save",
+      "state": "closed",
+      "head_branch": "fix/word-media-dedupe",
+      "updated_at": "2026-11-14T22:37:40Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/8/head",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "number": 8,
+      "title": "Import real-world Word packages the importer used to refuse (17.3% → 3.3%)",
+      "state": "closed",
+      "head_branch": "fix/word-block-bookmarks",
+      "updated_at": "2026-11-14T22:37:40Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/7/head",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "number": 7,
+      "title": "Resolve Office fonts consistently across layout and PDF export",
+      "state": "closed",
+      "head_branch": "feature/document-fonts-20261113",
+      "updated_at": "2026-11-13T21:24:42Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/6/head",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "number": 6,
+      "title": "Pin canonical parser d14f03f and record complete workspace validation",
+      "state": "closed",
+      "head_branch": "feature/legacy-doc-fidelity-continuation-20261112",
+      "updated_at": "2026-11-13T00:08:18Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/4/head",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "number": 4,
+      "title": "Update vendored legacy DOC parser fidelity checkpoint",
+      "state": "closed",
+      "head_branch": "feature/legacy-doc-fidelity-20261112",
+      "updated_at": "2026-11-12T20:12:31Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/5/head",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "number": 5,
+      "title": "Continue legacy DOC fidelity integration from current main",
+      "state": "closed",
+      "head_branch": "feature/legacy-doc-fidelity-continuation-20261112",
+      "updated_at": "2026-11-12T20:10:12Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/2/head",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "number": 2,
+      "title": "Preserve spreadsheet font metrics and add Word grid and tab controls",
+      "state": "closed",
+      "head_branch": "feature/office-fidelity-followup-20261112",
+      "updated_at": "2026-11-12T18:16:24Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/3/head",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "number": 3,
+      "title": "Expand shared Office fidelity and recover interrupted workflows",
+      "state": "closed",
+      "head_branch": "feature/office-fidelity-expansion-20261112",
+      "updated_at": "2026-11-12T18:16:22Z"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/1/head",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "number": 1,
+      "title": "Preserve worksheet cache types and add bounded legacy Word conversion",
+      "state": "closed",
+      "head_branch": "feature/office-fidelity-gap-closure-20261112",
+      "updated_at": "2026-11-12T15:28:23Z"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/7/head",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "number": 7,
+      "title": "Class certificates: one page per student",
+      "state": "closed",
+      "head_branch": "cursor/class-certificates-2db8",
+      "updated_at": "2026-10-12T18:08:30Z"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/6/head",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "number": 6,
+      "title": "CI: resolve the workspace with Flutter and test Report Studio",
+      "state": "closed",
+      "head_branch": "ci/flutter-workspace",
+      "updated_at": "2026-10-10T19:22:04Z"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/5/head",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "number": 5,
+      "title": "Release engine 0.6.0 and editor 0.6.0: band reports, designer, Report Studio",
+      "state": "closed",
+      "head_branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "updated_at": "2026-10-10T19:13:47Z"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "kind": "pull_request",
+      "ref": "refs/pull/1/head",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "number": 1,
+      "title": "Engine 0.6.0: five fidelity waves (GPOS, AP, graft, AcroForm, JBIG2/CMS)",
+      "state": "closed",
+      "head_branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "updated_at": "2026-09-28T08:36:17Z"
+    }
+  ]
+}

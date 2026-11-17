@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "kind": "Destination-main source integration and authored regression checkpoint",
+  "base_continuation": "ec5da06988f21c982c8105436dde988572dc0c3c",
+  "checkpoint_parent": "a63f23db60d34b4da274ff89e29c69668291216b",
+  "incoming_main": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+  "actual_merge_base": "3458c8977cef969a86a07b39734c761ba62e4b40",
+  "three_way": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "status": "both_changed",
+      "base": {
+        "sha": "0aaa4623f6923d4be54366826f3488c057ae397c",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "current": {
+        "sha": "abae52f0d08b0cbe66c5c86c97f0f28e36de60aa",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "incoming": {
+        "sha": "d29350898f1efb07224e8b9b5823ee02f62ff5af",
+        "type": "blob",
+        "mode": "100644"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "status": "both_changed",
+      "base": {
+        "sha": "d91e77891e82437494670ac165d791e6808aa379",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "current": {
+        "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "incoming": {
+        "sha": "41c04dd18ac5b1453297e98fd7614505e193f936",
+        "type": "blob",
+        "mode": "100644"
+      }
+    }
+  ],
+  "result_blobs": {
+    "writer": "ecfd108bcb9c6907b2d88c949bf846c4ac3e9d93",
+    "writer_test": "33f849c561d4aa7b28edb681c2e3a70b3c40858a"
+  },
+  "main_port": {
+    "exact_base_patch_reproduces_incoming": true,
+    "port_removal_reproduces_current_writer": true,
+    "all_current_test_bytes_preserved": true,
+    "main_section_test_additions_preserved_verbatim": true,
+    "context_conflicts": [
+      "Port block paragraph override without replacing the newer note-table fallback",
+      "Port paragraph override while preserving noteReferenceSpacePending handling",
+      "Insert section style method without restoring obsolete note-number state"
+    ]
+  },
+  "source_preservation": {
+    "protected_spans": [
+      {
+        "name": "inline_and_comment_logic",
+        "characters": 3401,
+        "exact": true
+      },
+      {
+        "name": "note_definition_logic",
+        "characters": 2597,
+        "exact": true
+      },
+      {
+        "name": "note_table_fallback",
+        "characters": 945,
+        "exact": true
+      },
+      {
+        "name": "table_serialization",
+        "characters": 3372,
+        "exact": true
+      },
+      {
+        "name": "frame_serialization",
+        "characters": 942,
+        "exact": true
+      },
+      {
+        "name": "indexed_note_state",
+        "characters": 1838,
+        "exact": true
+      }
+    ],
+    "comment_note_guard_exactly_once": true,
+    "full_inverse_after_removing_fixes_and_main_port_matches_current": true,
+    "all_other_files_preserved_from_checkpoint": true
+  },
+  "corrections": [
+    "Apply section boundaries before every nonparagraph start and avoid forced continuous-section page breaks",
+    "Preserve default master/page geometry for an explicit empty document without model mutation",
+    "Generate every master/layout from the normalized styles-only section list",
+    "Pass the boundary style into a first numbered/list paragraph",
+    "Add an optional first-list-paragraph style while preserving all existing callers",
+    "Apply the section style to exactly the first list item",
+    "Reuse resolved paragraph properties for named section styles",
+    "Give section paragraph styles stable SB names and direct master assignments",
+    "Keep Standard/Heading common style parents instead of inheriting automatic P styles",
+    "Retain authored paragraph breaks and add explicit page breaks for noncontinuous sections",
+    "Serialize section formatting directly through the existing property implementation"
+  ],
+  "normative_basis": {
+    "source": "https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html",
+    "sections": {
+      "16.9": "Every document requires a master page.",
+      "19.501": "Assigning a master page to a paragraph or table style introduces a page break.",
+      "19.510": "A parent style must exist and cannot be an automatic style."
+    }
+  },
+  "bounded_behavior": [
+    "A first numbered paragraph receives the section style on only its first list item.",
+    "A nonparagraph or empty noncontinuous section starts with a real empty boundary paragraph. This may add vertical spacing; consumer layout acceptance remains pending.",
+    "Continuous sections retain the current active master. Mid-page page geometry/header/footer changes are not represented.",
+    "Odd/even section kinds retain an ordinary page break; parity handling is not qualified.",
+    "An explicit empty document receives default styles/master geometry without adding model sections or content."
+  ],
+  "pending": [
+    "Root runtime qualification using the recovered locked Flutter/Dart environment.",
+    "Independent expectation/API review of the twelve authored section regressions.",
+    "Real consumer layout qualification for structural anchors, master selection and unsupported continuous/parity behavior."
+  ],
+  "runtime_tests_executed": false,
+  "github_actions_or_ci_status_endpoints_queried": false,
+  "result_files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "blob": "ecfd108bcb9c6907b2d88c949bf846c4ac3e9d93",
+      "sha256": "a36bec120974e5e457166371b258be94b94359768b911c5d19224e06ea0277cf",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "blob": "33f849c561d4aa7b28edb681c2e3a70b3c40858a",
+      "sha256": "aa60ee45778b854ab36cc87f703eefc1e89cd64a0ddc4373d6a8370823c9dc23",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+      "blob": "5ff12a885f4dde8ac88027341bb0d2288d376577",
+      "sha256": "62d996c94fff2b01e499201ed666ef0d1e27ad795c9246be4e3300a189deadcb",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+      "blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+      "sha256": "075bc0b0087c54abaa2d1cecca84e3d78859e82eb693e88f4cbbd46f9a4120a3",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+      "blob": "1a18c6d03798e649c335eb7b6534ad3b10db3334",
+      "sha256": "6070136de6c8fe526f05d00156e3f96a79a3c58459b814f9a7ef0ee0cbdcd14b",
+      "mode": "100644"
+    }
+  ],
+  "formatting_only": [
+    {
+      "path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+      "old_blob": "d16f39b66d8d7ad3d0b4ec8a860a75e27bd70af6",
+      "new_blob": "5ff12a885f4dde8ac88027341bb0d2288d376577",
+      "changes": "Whitespace and optional trailing commas emitted by Dart formatter only",
+      "normalized_equal": true,
+      "string_fragments_equal": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+      "old_blob": "fab22f0897d49e528ead09cdaed1f5f2b701c547",
+      "new_blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+      "changes": "Whitespace and optional trailing commas emitted by Dart formatter only",
+      "normalized_equal": true,
+      "string_fragments_equal": true
+    }
+  ],
+  "authored_regression_cases": {
+    "path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+    "count": 12,
+    "coverage": [
+      "first bullet and ordered list items",
+      "table/frame/content-control starts",
+      "empty section and explicit empty document",
+      "continuous paragraph/table boundaries",
+      "direct paragraph formatting with defined common parent",
+      "footnote/endnote body references, hidden comments and second master header/footer linkage"
+    ],
+    "runtime_result": "Pending root qualification at this checkpoint"
+  },
+  "formatter": {
+    "sdk_path": "/workspace/scratch/f6cd2da02657/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "language_version": "3.12",
+    "working_directory": "/workspace/scratch/f6cd2da02657/section-main-review",
+    "format_command": "dart format --language-version=3.12 odt_document_writer.dart odt_document_writer_test.dart odf_annotation_extraction_test.dart odt_note_fidelity_test.dart odt_section_fidelity_test.dart",
+    "format_exit": 0,
+    "format_stdout": "Formatted odt_document_writer.dart\nFormatted odt_document_writer_test.dart\nFormatted odf_annotation_extraction_test.dart\nFormatted odt_note_fidelity_test.dart\nFormatted odt_section_fidelity_test.dart\nFormatted 5 files (5 changed) in 0.17 seconds.\n",
+    "verification_command": "dart format --language-version=3.12 --output=none --set-exit-if-changed odt_document_writer.dart odt_document_writer_test.dart odf_annotation_extraction_test.dart odt_note_fidelity_test.dart odt_section_fidelity_test.dart",
+    "verification_exit": 0,
+    "verification_stdout": "Formatted 5 files (0 changed) in 0.06 seconds.\n",
+    "post_review_format": {
+      "command": "dart format --language-version=3.12 odt_section_fidelity_test.dart",
+      "exit": 0,
+      "stdout": "Formatted 1 file (0 changed) in 0.01 seconds.\n"
+    }
+  },
+  "independent_prepublication_review": {
+    "source_result": "No new source blocker; inline/comment/note/frame/table logic and paragraph property preservation independently checked.",
+    "test_correction": "Corrected leading-frame regression expectation to the unchanged writer's top-level draw:frame shape, with exact namespace assertion, before runtime execution.",
+    "tests_review_status": "Final review pending"
+  }
+}
