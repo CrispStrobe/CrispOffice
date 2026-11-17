@@ -1,0 +1,110 @@
+[
+  {
+    "file": "accusative/after-fix-1/focused-receipt.json.gz",
+    "uncompressed_file": "after-fix-1/focused-receipt.json",
+    "bytes": 116023,
+    "sha256": "92d314273dc5b9c3716510d1d0be7d2f6ebf985edb890cbf1e77c4063b957138"
+  },
+  {
+    "file": "accusative/after-fix-1/focused.jsonl.gz",
+    "uncompressed_file": "after-fix-1/focused.jsonl",
+    "bytes": 1999,
+    "sha256": "792b907d496fb61d400f7c452ab08a5b42f7029dc3d3c13ff6b24998e9f9dd7a"
+  },
+  {
+    "file": "accusative/after-fix-1/german_grammar.dart.gz",
+    "uncompressed_file": "after-fix-1/german_grammar.dart",
+    "bytes": 52613,
+    "sha256": "30b248a839575adfe7f9707035bd507a11f9bce1e877d189d32a4b711e4d1e45"
+  },
+  {
+    "file": "accusative/after-fix-2/focused-receipt.json.gz",
+    "uncompressed_file": "after-fix-2/focused-receipt.json",
+    "bytes": 116371,
+    "sha256": "9b9a2dfb37901a6134adebd25ec0f7af083296326660033ed410dc61a61d5d9c"
+  },
+  {
+    "file": "accusative/after-fix-2/focused.jsonl.gz",
+    "uncompressed_file": "after-fix-2/focused.jsonl",
+    "bytes": 43719,
+    "sha256": "3d77a49d6be9e98a600ecbcf2214e4256d1a552b6c1ad29abee82c8d571a7689"
+  },
+  {
+    "file": "accusative/after-fix-2/german_grammar.dart.gz",
+    "uncompressed_file": "after-fix-2/german_grammar.dart",
+    "bytes": 52613,
+    "sha256": "7b383c50a6eb71e489336e3bb46d0ea8774758b3e4c673b608ded6caa52865ff"
+  },
+  {
+    "file": "accusative/after-fix-3/analysis-receipt.json.gz",
+    "uncompressed_file": "after-fix-3/analysis-receipt.json",
+    "bytes": 115985,
+    "sha256": "6af6ef25c997ef3d36fd0f9276b67f7e2564efffdaa25c131bb3d445f0f19b06"
+  },
+  {
+    "file": "accusative/after-fix-3/analysis.log.gz",
+    "uncompressed_file": "after-fix-3/analysis.log",
+    "bytes": 112,
+    "sha256": "323e5e163c254df1d3e29de72e89437e926006d44ef8f4c52add227065aef526"
+  },
+  {
+    "file": "accusative/after-fix-3/focused-receipt.json.gz",
+    "uncompressed_file": "after-fix-3/focused-receipt.json",
+    "bytes": 116023,
+    "sha256": "0204d5c4509a7272cdb24c7b866dc5bf35027d0243d3a481664b9f06f8c0ef4d"
+  },
+  {
+    "file": "accusative/after-fix-3/focused.jsonl.gz",
+    "uncompressed_file": "after-fix-3/focused.jsonl",
+    "bytes": 42760,
+    "sha256": "b2747b2d1b2b1d69e6e8f1acc0ea6fdf726bd606f0419a35ce20ecc6e86debc7"
+  },
+  {
+    "file": "accusative/before-fix/focused-receipt.json.gz",
+    "uncompressed_file": "before-fix/focused-receipt.json",
+    "bytes": 119685,
+    "sha256": "b04cf1335273d8180a340102396f8475987d9e9f972e76257636cd458188d74f"
+  },
+  {
+    "file": "accusative/before-fix/focused.jsonl.gz",
+    "uncompressed_file": "before-fix/focused.jsonl",
+    "bytes": 56960,
+    "sha256": "3aa72eb5ceec98bf895b54b4941b489bb209b1ae767aac551a10907510c5cb60"
+  },
+  {
+    "file": "accusative/before-fix/german_verb_object_case_test.dart.gz",
+    "uncompressed_file": "before-fix/german_verb_object_case_test.dart",
+    "bytes": 11337,
+    "sha256": "2fbef955cce196336ddba2af627036984300572fc47ca167284c8cb9a98a2feb"
+  },
+  {
+    "file": "accusative/checkpoint-2d7b2a39/regression-receipt.json.gz",
+    "uncompressed_file": "checkpoint-2d7b2a39/regression-receipt.json",
+    "bytes": 116351,
+    "sha256": "283ea91850db73ecf3df99e709da3e8b4e99634809669db3ebdc4616af357f28"
+  },
+  {
+    "file": "accusative/checkpoint-2d7b2a39/regression.jsonl.gz",
+    "uncompressed_file": "checkpoint-2d7b2a39/regression.jsonl",
+    "bytes": 289094,
+    "sha256": "31c2525e8b3c4941f9f21149739bb4f2fae775d1c9cb9359daa455d271de1db8"
+  },
+  {
+    "file": "accusative/evidence-index.json.gz",
+    "uncompressed_file": "evidence-index.json",
+    "bytes": 6945,
+    "sha256": "ebf607926fbba20e5ab56a655d2305abf81e99c2fcdc2abb96b0b61274d0289c"
+  },
+  {
+    "file": "accusative/setup.log.gz",
+    "uncompressed_file": "setup.log",
+    "bytes": 68,
+    "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+  },
+  {
+    "file": "accusative/validate_accusative.py.gz",
+    "uncompressed_file": "validate_accusative.py",
+    "bytes": 5563,
+    "sha256": "7971361eb35c01e0b3da091baf750c3ecd933973fc8f45fd9e4ac39f6673ebb9"
+  }
+]

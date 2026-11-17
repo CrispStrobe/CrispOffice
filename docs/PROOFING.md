@@ -11,6 +11,36 @@ web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
+## Bounded German continuation — 17 November 2026
+
+The deterministic provider now checks a finite set of complete accusative
+verb-object frames. For example, `Sie hat ein roten Mantel.` offers `einen`,
+and `Ich sehe ein kleinen Hund.` offers `einen`, under the separate
+`de.grammar.verb-object-case` rule. It requires a matching personal pronoun and
+reviewed present-tense verb, one modeled noun phrase, and actual final
+punctuation. The entire context is limited to six words and 512 UTF-16 units;
+protected text and grapheme boundaries still veto unsafe findings. Inversion,
+coordination, auxiliary continuations, incomplete clauses and unresolved
+morphology remain outside this inference. Valid fronted-object readings such
+as `Sie sieht ein kleiner Hund.` are retained. Apparent object frames that fail
+this gate do not fall through to the old nominative adjective guess.
+
+Unknown, overregularized participles can prefer a verified irregular form in a
+bounded pronoun-plus-`haben` context, while known words and personal vocabulary
+keep their existing acceptance. This is suggestion ordering, not an automatic
+rewrite or a claim to recover intended meaning. The authored finite supplement
+also accepts `Lernen` and `Schuppen`; pinned upstream and Swiss word sets are
+unchanged. The noun-subject predicate gate uses a linear scanner rather than
+overlapping regular-expression repetitions.
+
+The optional GECToR provider preserves repeated pronoun/article homographs
+whose grammatical roles can differ, including `Wenn sie sie sehen, winken sie.`
+Hosts can separately opt into bounded prediction reuse within one segmented
+request. Every occurrence reruns source guards and offset validation. Reuse is
+off by default; the package README describes its deterministic-backend contract
+and resource bounds. Repeated boilerplate and unique paragraphs are measured
+separately in the [continuation evidence](validation/german-gector/2026-11-17-resume/README.md).
+
 ## Daemon-free AOT analysis and grammar — 17 November 2026
 
 The [AOT package](../packages/quds_proofing_aot/README.md) now defaults to a
@@ -524,6 +554,7 @@ rule categories. It is not a general German grammar parser.
 | `de.grammar.seit-seid` | Grammar | `ihr seit` before listed predicates, or `seid` between a listed finite verb and a reviewed temporal expression; never a generic `seid + time` rewrite. |
 | `de.grammar.preposition-pronoun` | Grammar | Reviewed wrong pronoun cases after fixed-case prepositions, such as `mit mich → mit mir` and `für ihm → für ihn`; competing infinitive/additive/nominal contexts are excluded. |
 | `de.grammar.preposition-case` | Grammar | Article case/gender for reviewed nouns after fixed-case prepositions, such as `mit den Mann → mit dem Mann`. |
+| `de.grammar.verb-object-case` | Grammar | Accusative article forms in complete bounded pronoun/finite-verb/object clauses; ambiguous fronted subjects, incomplete frames and unresolved morphology abstain. |
 | `de.grammar.noun-verb` | Grammar | Unambiguous nominative noun subjects and reviewed finite verbs in bounded simple complete clauses; all lexical number alternatives retained, with ambiguity and unsupported-syntax abstention. |
 | `de.grammar.noun-case` | Grammar | Required noun endings in unambiguous determiner phrases, including weak nouns such as `mit dem Kunde → mit dem Kunden`; suggested forms must pass the modern spelling guard. |
 | `de.grammar.dative-plural` | Grammar | Missing dative plural `n` in reviewed forms, such as `mit den Kinder → mit den Kindern`; plural `n`/`s` forms and optional literary singular dative `e` are preserved. |
