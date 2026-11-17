@@ -1,6 +1,6 @@
 # German grammar proofing: scoped implementation roadmap
 
-Status: bounded Dart runtime qualification complete; CrispEmbed mixed Q4_K selected for the next native implementation/qualification slice; application provider pending.
+Status: optional de-DE manual provider, native F32/mixed Q4_K qualification and bounded complete-check AOT measurement implemented; broader quality, device and distribution gates remain open.
 Date: 2026-11-17.
 Coordinated branch: `feat/german-gector-proofing`.
 
@@ -64,6 +64,36 @@ quality qualification. Evaluate a newer model release as a separate experiment.
 - Do not label ONNX MatMulNBits as Q4_K, silently ship F32, or overwrite frozen
   reference outputs with candidate outputs.
 
+## Current implemented state
+
+The [optional provider](../../packages/quds_proofing_gector/README.md) now owns
+verified bundle admission, tokenizer/alignment, iterative decoding, conservative
+German guards, UTF-16 source edits, a persistent bounded worker and explicit
+failure reporting. The native adapter uses the separately qualified default-off
+CrispEmbed prepared-input target. Manual/F7 registration is available through
+`configureManual`; typing checks continue to use the ordinary service.
+
+The [native qualification](../validation/german-gector/2026-11-17-native/README.md)
+retains exact F32 and mixed Q4_K agreement for all 30 cases / 40 saved passes,
+including the 64/128/256-token probes. The candidate GGUF is 82,756,896 bytes.
+The [guarded provider evidence](../validation/german-gector/2026-11-17-native-dart/README.md)
+retains both development-mode and compiled measurements. The compiled v1 run
+passes the local <=64-token latency and process-memory budgets at 62.017 ms p95
+and 309,854,208 bytes peak RSS. The JIT memory-budget failure is retained.
+
+The guarded v1 policy preserves five expected fixes, holds four of the nine
+unguarded fixes, and leaves all ten supported clean controls unchanged. Both
+Swiss controls are explicitly unsupported. This small synthetic panel does not
+establish general German accuracy. de-AT/de-CH, representative held-out quality,
+benefit beyond deterministic rules, intended-device responsiveness and the
+exact distribution/license closure remain open. Inputs beyond the model's
+512-token context fail explicitly; long-paragraph segmentation is not yet
+implemented.
+
+The owner requested incremental remote checkpoints and local validation because
+GitHub Actions capacity is starved. No new hosted job or Actions completion is
+a prerequisite for this continuation. Preserve all receipts and source pins.
+
 ## Milestones
 
 ### M0: recoverable scope
@@ -116,28 +146,39 @@ before mobile/browser rollout, not after viewing results to make a run pass.
 
 ### M3: optional Quds provider
 
-- [ ] Add packages/quds_proofing_gector with a backend-neutral decoder, verified
+- [x] Add packages/quds_proofing_gector with a backend-neutral decoder, verified
   model-bundle loading and a persistent worker. Reuse Harper transport patterns.
-- [ ] Port word preparation, first-subword mapping, label/verb transformations,
+- [x] Port word preparation, first-subword mapping, label/verb transformations,
   bounded iterative edits and guard behavior with original-text UTF-16 mapping.
-- [ ] Expose tested de-DE support first. Add explicit de-AT/de-CH policy and
-  controls before advertising those locales.
-- [ ] Construct results around the original request object; forRequest receives
+- [x] Expose tested de-DE support and explicit unsupported de-AT/de-CH results.
+- [ ] Add qualified de-AT/de-CH policies and controls before advertising those locales.
+- [x] Construct results around the original request object; forRequest receives
   request-relative offsets and adds startOffset exactly once.
-- [ ] Reuse protected ranges; define personal-vocabulary and duplicate/conflict
+- [x] Reuse protected ranges; define personal-vocabulary and duplicate/conflict
   handling. Expose a read-only existing lexicon interface only if guards need it.
-- [ ] Load outside the service request deadline; bound the queue, cancel obsolete
+- [x] Load outside the service request deadline; bound the queue, cancel obsolete
   work between passes, invalidate caches on configuration changes and report
   missing/failed/partial work honestly.
-- [ ] Introduce the model through optional manual/F7 checking. Existing service
+- [x] Introduce the model through optional manual/F7 checking. Existing service
   Future.wait and end-of-scan publication require a separate scheduling change
   before responsive background model checks.
-- [ ] Apply suggestions through the existing guarded editor command, including
+- [x] Apply suggestions through the existing guarded editor command, including
   rich text, undo, tracked changes, protection and stale-result controls.
 
 ### M4: selected native lane and fallback
 
-CrispEmbed/ggml (selected next): use a small native target with controlled
+- [x] Implement and authenticate the exact fine-tuned converter and both heads.
+- [x] Qualify the small prepared-ID native target against saved F32 references.
+- [x] Qualify the declared mixed Q4_K recipe on frozen decoded outputs and
+  required longer inputs; retain strict numeric failures separately.
+- [x] Measure the complete guarded Dart worker/provider/service in JIT and AOT.
+- [ ] Qualify intended desktop devices and broader held-out German quality.
+- [ ] Complete exact platform/distribution and model-pack acceptance.
+
+The following native/fallback design was selected before implementation; the
+completed source and measurements are linked above.
+
+CrispEmbed/ggml (selected and implemented): use a small native target with controlled
 BERT/GGUF/ggml CPU dependencies; the current full library is monolithic.
 Convert the exact fine-tuned encoder plus both GECToR heads;
 provide a default-off prepared-ID interface with an explicit unpadded/all-ones
@@ -254,19 +295,21 @@ final text or suggestion spans on this panel. These counts do not estimate
 general German accuracy. Broader held-out evaluation and incremental value
 over existing deterministic rules remain required.
 
-The next code slice is the exact fine-tuned ONNX-to-GGUF conversion, both
-trained heads and prepared-ID native entry point, followed by F32 control
-parity and actual mixed Q4_K qualification. The CrispEmbed roadmap and PLAN
+The next code slice selected at the end of the earlier Dart qualification was
+the exact fine-tuned ONNX-to-GGUF conversion, both trained heads and prepared-ID
+native entry point, followed by F32 control parity and mixed Q4_K qualification.
+Those steps are now complete in the retained native evidence linked above. The CrispEmbed roadmap and PLAN
 record its observed architecture, required tensor transposes, Q/K rounding
 order, proposed small native dependency boundary and hosted-build gates.
 The Rust roadmap preserves the explicit API-24/native-runtime version check
 and outstanding FFI packaging work.
 
-No GGUF model, native GECToR backend or application provider is implemented
-by this initial qualification slice. M3 and native implementation remain open.
-Preserve shared Dart tokenization/decoding/guards, protected ranges, UTF-16
-source mapping, bounded workers and manual/F7 integration as scoped above.
-Measure longer 64/128/256-token inputs and complete checks before qualification.
+The initial Dart-only qualification did not implement a GGUF backend or
+application provider. The subsequent native and M3 work above closes that
+implementation gap. Preserve the shared Dart tokenization/decoding/guards,
+protected ranges, UTF-16 source mapping, bounded workers and manual/F7
+integration. Longer inputs and complete checks have local receipts; broader
+quality, complete packaging and intended-device qualification remain open.
 
 ### Durable evidence
 
