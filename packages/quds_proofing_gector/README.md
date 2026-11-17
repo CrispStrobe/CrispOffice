@@ -402,3 +402,13 @@ decoder and source alignment, original metadata fixtures, and source assets
 retain their Apache-2.0 provenance in `NOTICE` and `third_party/`. Native model
 installation must retain the model's license and notice. Dependency and native
 runtime notices remain the host distributor's responsibility.
+
+## Ambiguous repeated grammatical roles
+
+The guarded Dart path conservatively retains adjacent repeated personal
+pronouns and demonstrative/article homographs: `Wenn sie sie sehen, winken sie.`
+can use the two `sie` tokens for different roles. This first-party safeguard
+also preserves ambiguous triples and runs again for every reused prediction.
+It may leave an accidental repetition uncorrected. The existing original-start
+case-differing two-token exception remains; later segments do not acquire it.
+The pinned publisher JSON and unguarded reference path are unchanged.
