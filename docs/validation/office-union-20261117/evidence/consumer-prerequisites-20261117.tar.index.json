@@ -1,0 +1,40 @@
+{
+  "archive": "consumer-prerequisites-20261117.tar.xz",
+  "bytes": 444108,
+  "sha256": "bc04b62750007d70cd49429f7f983bc394f53a58e8b522e1c7dfb5611bb8671c",
+  "classification": "Consumer toolchain and unchanged harness restored; final frozen-source runs not yet started",
+  "member_count": 6,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "consumer/archive-restoration.json",
+      "bytes": 147896,
+      "sha256": "6d9e646771a866fea660804b96adcfa6052d8ed5d050c40bdd7c3ac2ef5038b4"
+    },
+    {
+      "path": "consumer/consumer-env.sh",
+      "bytes": 593,
+      "sha256": "fbcf6cfe0e81c51bb1207e71dc2dff17748410e1f03585c3df4c164ee2fbd8a5"
+    },
+    {
+      "path": "consumer/current7-runtime-audit.json",
+      "bytes": 3877237,
+      "sha256": "b247a64e49acadbbc9a83b5ecdea71335eaee6e70f7b330be2ee36e5f2fd0ae7"
+    },
+    {
+      "path": "consumer/readiness.json",
+      "bytes": 5720,
+      "sha256": "21e9924cc5c9eeb78b2c07afb8b06d5f152f29d28c367dd98e499605fa56de8d"
+    },
+    {
+      "path": "consumer/retained33-runtime-audit.json",
+      "bytes": 3838183,
+      "sha256": "d01bd8b5bfe3cf6af2b3982dcfe7518ab00f68e915371543f8e29f48470c144b"
+    },
+    {
+      "path": "consumer/runtime-versions.json",
+      "bytes": 1080,
+      "sha256": "0ed8a3cda0f74fe0f862ab4a63ae10d5e7b6ff06b41050be4d6206fa00a6a25d"
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "schema": "quds.gector.six-panel-baseline-recovery.v1",
+  "created_utc": "2026-11-17T21:32:57.489438+00:00",
+  "passed": true,
+  "baseline_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+  "case_rows": 377,
+  "lanes": 4,
+  "lane_outcomes": 1508,
+  "panel_count": 6,
+  "independently_reconstructed_all_rows": true,
+  "source_AOT_corpus_bound": true,
+  "build": {
+    "executable": {
+      "file": "dartaotruntime",
+      "bytes": 5710176,
+      "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72"
+    },
+    "entrypoint": {
+      "file": "quality.aot",
+      "bytes": 8358232,
+      "sha256": "e244b840334711c1032fc25bb915cb30fb0c9982edd485a1d6cb79f4df73dae9"
+    }
+  },
+  "panels": [
+    {
+      "panel": "completion-28",
+      "rows": 28,
+      "de_DE": {
+        "writing_only": {
+          "exact_error_count": 8,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 8,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 8,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 3,
+          "flagged_clean_count": 3,
+          "unsupported_only_count": 0
+        },
+        "combined": {
+          "exact_error_count": 8,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 3,
+          "flagged_clean_count": 3,
+          "unsupported_only_count": 0
+        }
+      }
+    },
+    {
+      "panel": "context-83",
+      "rows": 83,
+      "de_DE": {
+        "writing_only": {
+          "exact_error_count": 21,
+          "changed_nonexact_error_count": 1,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 21,
+          "changed_nonexact_error_count": 1,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 2,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "combined": {
+          "exact_error_count": 21,
+          "changed_nonexact_error_count": 1,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        }
+      }
+    },
+    {
+      "panel": "development-76",
+      "rows": 76,
+      "de_DE": {
+        "writing_only": {
+          "exact_error_count": 17,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 17,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 12,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "combined": {
+          "exact_error_count": 23,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        }
+      }
+    },
+    {
+      "panel": "holdout-104",
+      "rows": 104,
+      "de_DE": {
+        "writing_only": {
+          "exact_error_count": 45,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 45,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 0,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "combined": {
+          "exact_error_count": 45,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        }
+      }
+    },
+    {
+      "panel": "original-30",
+      "rows": 30,
+      "de_DE": {
+        "writing_only": {
+          "exact_error_count": 18,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 18,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 6,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "combined": {
+          "exact_error_count": 18,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        }
+      }
+    },
+    {
+      "panel": "syntax-56",
+      "rows": 56,
+      "de_DE": {
+        "writing_only": {
+          "exact_error_count": 12,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 12,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 5,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        },
+        "combined": {
+          "exact_error_count": 15,
+          "changed_nonexact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "unsupported_only_count": 0
+        }
+      }
+    }
+  ],
+  "reproduces_retained_pre_reset_baseline_counts": true,
+  "counts_note": "The six combined exact/error counts and existing completion clean flags reproduce the historical observation. This is fresh raw evidence; it does not recover the lost historical archive identity.",
+  "first_attempt": {
+    "result": "Failed before model admission and before any cases",
+    "cause": "Relative bundle path resolved under baseline source cwd",
+    "repair": "External invocation wrapper now normalizes all path arguments; source/model/gold unchanged",
+    "retained": "results-baseline/ and checkpoints-baseline/"
+  },
+  "timing_scope": "Diagnostic durations only; concurrent qualification workloads were allowed.",
+  "final_comparison_pending": true
+}
