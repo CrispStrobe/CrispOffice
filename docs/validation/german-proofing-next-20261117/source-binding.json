@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "accepted_product_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+  "source_tree": "925a8448eae7d22348171ef513be7656c16906e0",
+  "interpretation": "Historical executions retain their original source attribution. Continuity audits name unchanged relevant inputs and all broader-map Office differences; fresh affected Office runs qualify those differences.",
+  "fresh_accepted_office": {
+    "source_inputs": 755,
+    "declared_runtime_inputs": 5020,
+    "issues": [],
+    "seal": {
+      "archive_member": "validation/accepted-final/proofing/final-source-binding.json",
+      "bytes": 5792,
+      "sha256": "4d9a40a13d14878027641c72c852bc84d9b1ff8ee10a7cf41d8ecff40f1228c4"
+    }
+  },
+  "retained_proofing_and_flutter": {
+    "tested_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+    "original_source_inputs": 825,
+    "original_runtime_inputs": 5042,
+    "unchanged_core_paths": 222,
+    "broader_map_exceptions": [
+      "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+      "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    ],
+    "original_seal": {
+      "archive_member": "validation/final/proofing/final-source-binding.json",
+      "bytes": 4795,
+      "sha256": "165b2a4d06c49e7910c2d2ecc787a2df3d1f6bc600582e6da9f859643b367285"
+    },
+    "continuity": {
+      "archive_member": "validation/accepted-final/prior-c9-continuity.json",
+      "bytes": 32112,
+      "sha256": "c011fd4dcb3b501e8bf83f265295189d0c68a7604704a904b34d2e9b272635bd"
+    }
+  },
+  "retained_gector_and_incremental_quality": {
+    "tested_source": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+    "unchanged_model_related_inputs": 98,
+    "unchanged_unique_quality_inputs": 70,
+    "gector_broader_map_exception": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "continuity": {
+      "archive_member": "validation/accepted-final/retained-gector-native-quality.json",
+      "bytes": 5161,
+      "sha256": "3a4b2a74fa2be8c7c54919fe823c8c0c17387343da733c28129888c2ba5d9834"
+    },
+    "independent_quality_audit": {
+      "archive_member": "validation/quality-integrated/audit_integrated.json",
+      "bytes": 199402,
+      "sha256": "3e5206b83045fa89180340d3e8eb3c6d70724a38a61862a994db5e42269b3bfe"
+    }
+  },
+  "fresh_segmented_native_provider": {
+    "tested_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+    "build": {
+      "archive_member": "validation/provider-integrated/build-final.json",
+      "bytes": 65663,
+      "sha256": "a1769417cb74a1a3943898301f2476f30c8e0efc91f6488f642ff565952774b6"
+    },
+    "run": {
+      "archive_member": "validation/provider-integrated/run.json",
+      "bytes": 73987,
+      "sha256": "c3c080963e64a9efaaad7c58fea206eb9de133844142d6008a3c803985154e1f"
+    },
+    "independent_audit": {
+      "archive_member": "validation/provider-integrated/audit-final.json",
+      "bytes": 13620,
+      "sha256": "5af7696791a9024abfb10e19ee78fe783fc8dd47f29a35e5d9d89d55c5c79b22"
+    },
+    "source_binding": {
+      "tracked_sources": 62,
+      "workspace_sources": [
+        {
+          "path": "pubspec.lock",
+          "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+        }
+      ],
+      "resolved_packages": 109,
+      "resolved_dart_files": 4756,
+      "sdk_pins": 10
+    }
+  }
+}
