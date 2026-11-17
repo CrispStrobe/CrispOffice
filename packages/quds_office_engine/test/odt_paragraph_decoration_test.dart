@@ -140,7 +140,6 @@ void main() {
     );
   }
 
-
   test('neighboring paragraphs retain distinct shading and border colors', () {
     final paragraphs = [
       _paragraph('red', fill: 'FF0000'),
