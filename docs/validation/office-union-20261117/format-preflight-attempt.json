@@ -1,0 +1,16 @@
+{
+  "source_commit": "0598a7b7679a439e11aefff87bc838d1b40cba78",
+  "status": "rejected_preflight",
+  "five_strict_analysis_commands": "passed",
+  "format_check": "failed",
+  "format_only_paths": [
+    "packages/quds_office_editor/example/test/widget_test.dart",
+    "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart"
+  ],
+  "fix": "Run pinned dart format --language-version=3.12 on these two inherited test files. No assertions or product logic changed.",
+  "all_preflight_input_maps_stable": true,
+  "analysis_config_restored": true,
+  "broad_test_cohorts_started": false,
+  "next_step": "Publish format-only checkpoint; after all prior source guards close, freeze its exact commit and rerun unchanged qualification. Completed 0598 consumer/smoke results retain their source attribution.",
+  "accepted_final_qualification": false
+}
