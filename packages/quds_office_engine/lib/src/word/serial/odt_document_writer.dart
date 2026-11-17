@@ -65,6 +65,35 @@ abstract final class OdtDocumentWriter {
   }
 
   static String _stylesXml(WmlDocument document, _OdtLayout layout) {
+    // Master-page stories use automatic styles in styles.xml, while body
+    // stories use those in content.xml. Keep the style registries separate and
+    // share the package media registry so header/footer pictures cannot collide.
+    final stories = _OdtLayout(document, sharedMedia: layout);
+    final section = document.sections.firstOrNull;
+    final master = XmlWriter();
+    master.writeStartElement('master-styles', prefix: 'office');
+    master.writeStartElement('master-page', prefix: 'style');
+    master.writeAttribute('style:name', 'Standard');
+    master.writeAttribute('style:page-layout-name', 'pm1');
+    final header = section?.header ?? const <WmlParagraph>[];
+    final footer = section?.footer ?? const <WmlParagraph>[];
+    if (header.isNotEmpty) {
+      master.writeStartElement('header', prefix: 'style');
+      for (final paragraph in header) {
+        _writeParagraph(master, paragraph, stories);
+      }
+      master.writeEndElement();
+    }
+    if (footer.isNotEmpty) {
+      master.writeStartElement('footer', prefix: 'style');
+      for (final paragraph in footer) {
+        _writeParagraph(master, paragraph, stories);
+      }
+      master.writeEndElement();
+    }
+    master.writeEndElement();
+    master.writeEndElement();
+
     final w = XmlWriter();
     w.writeStartDocument();
     w.writeStartElement('document-styles', prefix: 'office');
@@ -101,7 +130,6 @@ abstract final class OdtDocumentWriter {
     }
     w.writeEndElement();
     w.writeStartElement('automatic-styles', prefix: 'office');
-    final section = document.sections.firstOrNull;
     final page = section?.pageSize ?? const WmlPageSize();
     final margins = section?.margins ?? const WmlPageMargins();
     w.writeStartElement('page-layout', prefix: 'style');
@@ -121,29 +149,9 @@ abstract final class OdtDocumentWriter {
     );
     w.writeEndElement();
     w.writeEndElement();
+    stories.writeContentStyles(w);
     w.writeEndElement();
-    w.writeStartElement('master-styles', prefix: 'office');
-    w.writeStartElement('master-page', prefix: 'style');
-    w.writeAttribute('style:name', 'Standard');
-    w.writeAttribute('style:page-layout-name', 'pm1');
-    final header = section?.header ?? const <WmlParagraph>[];
-    final footer = section?.footer ?? const <WmlParagraph>[];
-    if (header.isNotEmpty) {
-      w.writeStartElement('header', prefix: 'style');
-      for (final paragraph in header) {
-        _writePlainParagraph(w, paragraph.text);
-      }
-      w.writeEndElement();
-    }
-    if (footer.isNotEmpty) {
-      w.writeStartElement('footer', prefix: 'style');
-      for (final paragraph in footer) {
-        _writePlainParagraph(w, paragraph.text);
-      }
-      w.writeEndElement();
-    }
-    w.writeEndElement();
-    w.writeEndElement();
+    w.writeRaw(master.toXml());
     w.writeEndElement();
     return w.toXml();
   }
@@ -383,7 +391,7 @@ abstract final class OdtDocumentWriter {
       w.writeEmptyElement(
         'image',
         prefix: 'draw',
-        attributes: {'xlink:href': path},
+        attributes: {'xlink:href': path, 'xlink:type': 'simple'},
       );
       w.writeEndElement();
     } else if (inline) {
@@ -511,10 +519,12 @@ class _OdtTableCell {
 }
 
 class _OdtLayout {
-  _OdtLayout(this.document);
+  _OdtLayout(this.document, {_OdtLayout? sharedMedia})
+    : media = sharedMedia?.media ?? <String>[],
+      _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{};
 
   final WmlDocument document;
-  final List<String> media = <String>[];
+  final List<String> media;
   final Map<String, String> _runStyles = <String, String>{};
   final Map<String, String> _paragraphStyles = <String, String>{};
   final Map<String, String> _columnStyles = <String, String>{};
@@ -530,7 +540,7 @@ class _OdtLayout {
     return path;
   }
 
-  final Map<String, Uint8List> _mediaBytes = <String, Uint8List>{};
+  final Map<String, Uint8List> _mediaBytes;
 
   Map<String, Uint8List> get mediaBytes => _mediaBytes;
 

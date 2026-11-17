@@ -77,6 +77,7 @@ void main() {
     expect(content, contains('Hello deck'));
     expect(content, contains('<table:table'));
     expect(content, contains('Pictures/image1.png'));
+    expect(content, contains('xlink:type="simple"'));
     expect(content, contains('Speaker note'));
     expect(styles, contains('fo:page-width'));
     expect(package.getPart('/Pictures/image1.png'), isNotNull);
