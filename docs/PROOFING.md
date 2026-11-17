@@ -14,7 +14,9 @@ verified, manual-only de-DE option; no model is downloaded or enabled by default
 ## Optional AOT analysis and grammar — 17 November 2026
 
 The [AOT package](../packages/quds_proofing_aot/README.md) adds an independent
-HTTP/JSON integration with a separately installed AOT/RML SynanDaemon. It exposes
+integration with the AOT/RML analyzer. Its client now defaults to a separately
+installed local worker; `AotClient.http(...)` explicitly selects an existing
+SynanDaemon service. It exposes
 German/Russian syntax analysis, German/Russian/English word morphology, and
 three conservative de-DE diagnostic families: personal-pronoun/verb agreement,
 selected fixed-preposition case, and article/adjective/noun agreement.
@@ -23,6 +25,10 @@ The Studio example enables **Review → AOT analysis** and manual AOT proofing
 only when `QUDS_AOT_ENDPOINT` is configured. Text is submitted on explicit analysis
 or document-check actions. Existing deterministic and Harper proofing continue;
 custom hosts can compose AOT with the optional GECToR manual provider.
+The captured Studio implementation still creates HTTP clients and owns a new
+client for each analysis/morphology action. Local Studio configuration and
+dialog-wide session reuse remain unfinished. Reused library clients have
+bounded morphology caching and request coalescing; construction starts nothing.
 
 AOT parse structures are analysis, not errors. Suggestions require positive,
 recognized morphology and concrete compatible paradigm forms. Missing groups,
@@ -30,11 +36,17 @@ unknown words and ambiguous valid readings cannot justify a correction. Exact
 UTF-16/grapheme mapping, protected text, ignored rules and vocabulary safeguards
 apply. Unsupported locales, incomplete coverage and operational failures remain
 visible. Grammar support is de-DE; other analysis languages do not gain a grammar
-provider. No native engine or dictionaries are redistributed.
+provider. No compiled native engine or dictionaries are redistributed.
 
 The [local integration report](validation/aot-integration-20261117/README.md)
 records incoming-branch reconciliation and fixture-based validation. These tests
 do not establish live-daemon accuracy or general grammar coverage.
+The [captured daemon-free continuation](validation/aot-daemon-free-20261117/README.md)
+separately records local process/client and native-metadata consumer fixtures.
+At `0b4c0107`, the native worker still emits the upstream serializer's original
+tokens without source-span metadata. Consumer tests therefore do not qualify
+live normalized-token mapping, native installation or complete local CLI
+behavior; those native and Studio acceptance items remain open.
 
 ## Noun agreement and syntax/model evaluation — 17 November 2026
 

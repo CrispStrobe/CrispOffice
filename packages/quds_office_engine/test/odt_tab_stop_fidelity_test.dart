@@ -155,7 +155,7 @@ void main() {
         ),
         WmlParagraphProps(
           tabs: const [
-            WmlTabStop(position: 72.004, leader: WmlTabLeader.underscore),
+            WmlTabStop(position: 72.004, leader: WmlTabLeader.hyphen),
           ],
         ),
       ];
@@ -177,7 +177,7 @@ void main() {
       ]);
       expect(properties.map((props) => props.tabs.single.leader), [
         WmlTabLeader.hyphen,
-        WmlTabLeader.underscore,
+        WmlTabLeader.hyphen,
       ]);
     },
   );

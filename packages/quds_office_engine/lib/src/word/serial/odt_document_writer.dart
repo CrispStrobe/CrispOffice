@@ -61,7 +61,7 @@ abstract final class OdtDocumentWriter {
       final body = XmlWriter();
       final section = layout.sections[index];
       final start = layout.sectionStarts[index];
-      final columns = section.columnCount;
+      final columns = section.resolvedColumnCount;
       if (columns > 1) {
         body.writeStartElement('section', prefix: 'text');
         body.writeAttribute('text:name', 'Section$index');
@@ -71,13 +71,13 @@ abstract final class OdtDocumentWriter {
         );
       }
       _writeBlocks(body, section.blocks, layout, sectionStart: start);
-      if (columns > 1) body.writeEndElement();
       // Empty and entirely unmodeled sections still own a page boundary. The
       // small empty anchor cannot consume a later section's first paragraph.
       if (!start.consumed) {
         start.empty = true;
         _writeSectionAnchor(body, layout, start);
       }
+      if (columns > 1) body.writeEndElement();
       parts.add((xml: body.toXml(), start: start));
     }
     return parts;
@@ -1878,14 +1878,27 @@ class _OdtLayout {
   }
 
   String sectionColumnsStyle(int columns, double gap) {
-    final key = '$columns|${gap.toStringAsFixed(2)}';
+    // Keep invalid imported lengths out of ODF without changing the model.
+    // Omission leaves the gap unspecified; zero, including negative zero,
+    // remains an explicit zero-length gap. Cache the emitted representation.
+    final normalizedGap = gap < 0
+        ? null
+        : _paragraphDecimal(gap == 0 ? 0 : gap);
+    final key = '$columns|$normalizedGap';
     return _sectionColumnStyles.putIfAbsent(key, () {
       final name = 'Sect${_sectionColumnStyles.length + 1}';
-      _styleBuffers.add(
+      // ODF 1.3 sections 17.11 and 17.12 put column attributes on a
+      // style:columns child, not on style:section-properties itself.
+      final buffer = StringBuffer(
         '<style:style style:name="$name" style:family="section">'
-        '<style:section-properties fo:column-count="$columns" '
-        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/></style:style>',
+        '<style:section-properties>'
+        '<style:columns fo:column-count="$columns"',
       );
+      if (normalizedGap != null) {
+        buffer.write(' fo:column-gap="${normalizedGap}pt"');
+      }
+      buffer.write('/></style:section-properties></style:style>');
+      _styleBuffers.add(buffer.toString());
       return name;
     });
   }
