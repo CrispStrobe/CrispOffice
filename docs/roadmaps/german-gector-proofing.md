@@ -1,9 +1,9 @@
 # German grammar proofing: scoped implementation roadmap
 
-Status: optional de-DE manual provider, native F32/mixed Q4_K qualification and bounded complete-check AOT measurement implemented; broader quality, device and distribution gates remain open.
+Status: optional de-DE manual provider, native F32/mixed Q4_K qualification, bounded complete-check AOT measurement and synthetic combined-quality evaluation implemented; broader quality, device and distribution gates remain open.
 Date: 2026-11-17.
 Coordinated branch: `feat/german-gector-proofing`.
-Integrated continuation: `codex/german-morphology-20261117`, PR #105.
+Integrated continuation: `codex/german-morphology-20261117`, PR #114 after the externally merged PR #105.
 
 ## Outcome and scope
 
@@ -89,7 +89,7 @@ raising the result to six expected fixes with no lost fixes or changed supported
 clean controls. The other three of the nine unguarded fixes remain held. Both
 Swiss controls are explicitly unsupported. This small synthetic panel does not
 establish general German accuracy. de-AT/de-CH, representative held-out quality,
-benefit beyond deterministic rules, intended-device responsiveness and the
+representative benefit beyond deterministic rules, intended-device responsiveness and the
 exact distribution/license closure remain open. Inputs beyond the model's
 512-token context fail explicitly in the original single-sequence mode.
 The [long-input continuation](../validation/german-gector/2026-11-17-long-input/README.md)
@@ -143,6 +143,43 @@ are preserved before follow-up changes to any rules or corpus.
 The owner requested incremental remote checkpoints and local validation because
 GitHub Actions capacity is starved. No new hosted job or Actions completion is
 a prerequisite for this continuation. Preserve all receipts and source pins.
+
+### Combined deterministic and model evaluation
+
+The [next continuation](../validation/german-proofing-next-20261117/README.md)
+extracts the editor's existing deterministic-first conflict policy into the
+shared `mergeOfficeProofingReports` helper and measures actual native inference
+through that same policy. A newly authored 76-row synthetic panel was saved
+remotely before inference, separately from the unchanged original 30-row panel.
+The runner retains writing-only, deterministic, model-only and combined reports,
+all provider statuses, original UTF-16 offsets and accepted/suppressed findings.
+
+On the repaired development panels, the combined configuration gives **9/18**
+exact de-DE corrections versus **7/18** deterministic, and **20/32** versus
+**14/32** on the new panel. It loses no deterministic exact corrections and
+changes/flags none of the **10 + 40** supported clean controls. Fresh native
+execution after the segmentation integration reproduces all 424 lane outcomes.
+The model alone gives 6/18 and 12/32; unsupported regional cases remain separate.
+
+Initial observations informed bounded spelling repairs for quotation capitals,
+`Hof` and `Grüezi`. Only three finite forms were added to the existing supplement;
+all upstream dictionary shards remain unchanged. Therefore subsequent runs are
+development regressions, not new prospective evidence. Exact first-replacement
+projection is a measurement convention, not automatic application. Contextual
+participle and accusative misses remain visible in the raw reports. Broader
+language quality, intended devices and exact native distribution still need
+qualification. Earlier performance and quality receipts retain their own source
+and runtime identities.
+
+The accepted compiled provider at `6971819e` also qualifies opt-in segmentation
+with a 64-token target: eight original and six additional operational controls
+pass, including original UTF-16 offsets and whole-request capacity failure.
+Repeated-sentence probes of 636 and 1,276 logical tokens complete in 11 and 22
+segments. Their p95 times are 1.706 and 3.732 seconds; this establishes bounded
+long-input operation, not a speedup or representative long-text quality.
+The separate 87-sample short pool reaches 62.875 ms p95 with 359.6875 MiB peak
+process memory on this Linux host. Host installation and segmentation remain
+explicit options; the distribution and intended-device gates stay open.
 
 ## Milestones
 
@@ -222,6 +259,9 @@ before mobile/browser rollout, not after viewing results to make a run pass.
   on a separately frozen synthetic challenge; preserve full first outputs.
 - [x] Apply suggestions through the existing guarded editor command, including
   rich text, undo, tracked changes, protection and stale-result controls.
+- [x] Measure added model corrections under the actual deterministic-first
+  editor policy on fixed synthetic panels, retaining clean-text and coverage
+  controls. Representative incremental precision/recall remains open.
 
 ### M4: selected native lane and fallback
 
@@ -230,6 +270,8 @@ before mobile/browser rollout, not after viewing results to make a run pass.
 - [x] Qualify the declared mixed Q4_K recipe on frozen decoded outputs and
   required longer inputs; retain strict numeric failures separately.
 - [x] Measure the complete guarded Dart worker/provider/service in JIT and AOT.
+- [x] Execute bounded opt-in segmentation through the real compiled native
+  worker, including complete long-input coverage and atomic capacity failures.
 - [ ] Qualify intended desktop devices and broader held-out German quality.
 - [ ] Complete exact platform/distribution and model-pack acceptance.
 

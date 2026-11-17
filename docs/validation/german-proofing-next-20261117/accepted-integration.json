@@ -1,0 +1,11 @@
+{
+  "accepted_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+  "snapshot": "refresh-refs.json",
+  "snapshot_sha256": "25a8e76b73f88e56e2356282f70c5f4b65f840d248ce3ac11b4c7cbd7e668251",
+  "captured_refs": 244,
+  "all_captured_refs_are_ancestors": true,
+  "additional_main": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+  "additional_main_is_ancestor": true,
+  "checked_at_utc": "2026-11-17T16:18:08.329738+00:00",
+  "scope": "Fixed refreshed snapshot plus the subsequently observed paragraph-shading main commit. Later activity on independently moving branches is not implicitly qualified."
+}

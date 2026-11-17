@@ -1,0 +1,37 @@
+{
+  "kind": "read-only-office-integration-review",
+  "captured_head": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+  "main": "9941c80d09145310efd752b1558356c7bfb97f02",
+  "continuation": "a499549e184069e33234bd0304417fb0fefb8ca1",
+  "provider_branch": "0e31202fc8c59caf8b4713589c2ff2fa84cffd0b",
+  "checks": {
+    "odp_writer_matches_main": true,
+    "odf_text_matches_main": true,
+    "extractor_matches_main": true,
+    "frame_tests_matches_main": true,
+    "odt_tests_matches_main": true,
+    "odp_tests_matches_main": true,
+    "continuation_tests_match_continuation": true,
+    "odt_writer_exact_main_plus_empty_guard": true,
+    "all": true
+  },
+  "captured_heads_ancestry": {
+    "a499549e184069e33234bd0304417fb0fefb8ca1": true,
+    "9941c80d09145310efd752b1558356c7bfb97f02": true,
+    "35ae6328a884975c23d2aa5001bf0df05a436f91": true,
+    "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3": true,
+    "0e31202fc8c59caf8b4713589c2ff2fa84cffd0b": true
+  },
+  "sha256": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "ee0fe1d2ccf86ad2483cb32ffb658978829c4a6497ebbab2ac618f93ebd96c61",
+    "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": "bac6989bf16fba9afd9f532556b0d89aa4c13b2dfaf4d45b073e9b7f9b42cc69",
+    "packages/quds_office_engine/lib/src/odf/odf_text.dart": "85492f892da8d73419e60c02696fc40ded3c54717cc89bae2f4a2cbebae1335a",
+    "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart": "c7a8e41d044085ba2d01fcea36ffee05edc4c0f28ae06bc09347d72040e770d7",
+    "packages/quds_office_engine/test/odf_text_box_extraction_test.dart": "2b88a1ef383d20268d9a800c104f795b568e2e4497e58aa52f457b7344bfcf4f",
+    "packages/quds_office_engine/test/odt_section_continuation_test.dart": "c81f5b6c4a08e15674e3f537ac5ca11e12dbd18b56741b4de504dab547ea4520",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart": "39dbd85df7aa74d12a13f3176624e125a7298f508fc4bcef253e8efe67ac906c",
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart": "b13310803e5d3fd3713a5af1b6b36048ce742a234b041eb7c3faf7bd3f134b67",
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": "e022d1801f49b0c23305b3ab8f74f812bd282cd5bdaf2fa22767c2db22936831"
+  },
+  "scope": "Source inspection and exact blob comparisons only. Final VM/Node execution belongs to runtime_setup; no runtime pass is claimed by this review."
+}
