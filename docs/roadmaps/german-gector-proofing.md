@@ -117,6 +117,29 @@ GECToR, 268 deterministic German grammar, 97 editor proofing, 148 ODT and 45
 tooling checks. Later incoming branch activity is listed separately from this
 fixed validation snapshot.
 
+The later [bounded-input and prospective-quality continuation](../validation/german-gector/2026-11-17-long-input/README.md)
+binds implementation `d092d50a` and preserves all 130 branch tips captured at
+15:32:37 UTC plus all 108 fetched PR heads. It includes the newer section/list
+work, merged ODP hyperlinks and a regression repair for frame text extraction.
+The final local evidence covers 924 distinct tests and three strict analysis
+suites, with the real native fixture enabled and no skipped tests.
+
+The opt-in target64 segmented provider retains all six model fixes and ten
+supported clean controls. It covers complete 636/1,276-token probes with p95
+2,179.809/3,804.643 ms and peak RSS 294.55 MiB. Its 256-token p95 is 724.617 ms
+versus 607.917 ms single-sequence in the paired run; coverage has expanded, but
+these results do not show a speedup or 500 ms long-text compliance.
+
+A separate, prospectively frozen 76-row synthetic challenge uses the production
+merge policy. On its 32 de-DE errors, writing/deterministic/model/combined exact
+fixes are 14/14/12/19; the model adds five combined exact fixes without losing a
+deterministic fix or adding changed/flagged cases among 40 clean de-DE rows.
+One pre-existing spelling suggestion remains on a clean row. The original panel
+records 7/18 deterministic and 9/18 combined, versus 6/18 model-only. The
+first-replacement projection and corpus limitations are explicit; representative
+incremental benefit and long-paragraph quality remain unqualified. First outputs
+are preserved before follow-up changes to any rules or corpus.
+
 The owner requested incremental remote checkpoints and local validation because
 GitHub Actions capacity is starved. No new hosted job or Actions completion is
 a prerequisite for this continuation. Preserve all receipts and source pins.
@@ -230,6 +253,10 @@ before mobile/browser rollout, not after viewing results to make a run pass.
 - [x] Introduce the model through optional manual/F7 checking. Existing service
   Future.wait and end-of-scan publication require a separate scheduling change
   before responsive background model checks.
+- [x] Add opt-in bounded sentence grouping with preflight capacity limits,
+  original UTF-16 offsets, whole-request failure and cancellation checks.
+- [x] Measure model additions through the production deterministic/manual merge
+  on a separately frozen synthetic challenge; preserve full first outputs.
 - [x] Apply suggestions through the existing guarded editor command, including
   rich text, undo, tracked changes, protection and stale-result controls.
 - [x] Measure added model corrections under the actual deterministic-first

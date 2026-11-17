@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "audited_utc": "2026-11-17T16:01:29.291934+00:00",
+  "source_commit": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+  "observed_docs_head": "e3e51b32be6edbecd65e6226acd2a4d1ec8905cf",
+  "suite_audit": {
+    "analysis": {
+      "counts": {
+        "passed": null,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "0aa6295d5fff98e6e71bd222a6cecdaf319ed2f855d2885431ef29305ced5123",
+      "log_sha256": "3ae7379d2c31409e6693cce998b7d22ca5da457f70a7a9385102dd96615b676b",
+      "started_utc": "2026-11-17T15:55:04.229763+00:00",
+      "completed_utc": "2026-11-17T15:55:09.923070+00:00"
+    },
+    "editor": {
+      "counts": {
+        "passed": 97,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "f16306d0c84979047268e69626d8ab835e9fc9a1db5382548026397f57a3207d",
+      "log_sha256": "baf0f331cae1f91374b5d3c3e099902c58f49348686e8c3572f99ce6833fbf44",
+      "started_utc": "2026-11-17T15:54:25.783730+00:00",
+      "completed_utc": "2026-11-17T15:54:38.315455+00:00"
+    },
+    "gector": {
+      "counts": {
+        "passed": 194,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "5659f507ac9b7cdf43a26d476858ffe139003e9c93d904f79350340c78e1625e",
+      "log_sha256": "2945b8e78e4e37323324934d7871eabfedf3fd41363d7fc5b69ea4ee1078dfdd",
+      "started_utc": "2026-11-17T15:54:25.783710+00:00",
+      "completed_utc": "2026-11-17T15:54:48.037059+00:00"
+    },
+    "gector_analysis": {
+      "counts": {
+        "passed": null,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "cb57a222644c5271597b265fcbc900d6d79d0aa61aa6f58bfa1b1db893fcf6cb",
+      "log_sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65",
+      "started_utc": "2026-11-17T15:55:04.236547+00:00",
+      "completed_utc": "2026-11-17T15:55:10.491101+00:00"
+    },
+    "german": {
+      "counts": {
+        "passed": 268,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "32d6132fa31f24db79b7840b1b75982afb62c9b7736bbd3992c21fd387b373ac",
+      "log_sha256": "f065462423fbb64620760ba885c81f43ea691d513316824fc3274607386c0ae3",
+      "started_utc": "2026-11-17T15:53:48.254879+00:00",
+      "completed_utc": "2026-11-17T15:54:08.353612+00:00"
+    },
+    "odp": {
+      "counts": {
+        "passed": 35,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "05ae86251241e0d309daf6da4ab633347562381d0bc32da7eb7d440b498c8b25",
+      "log_sha256": "66ced7cf33aec55c85280f77a42b79c334addc1ff66385d875dfa5973d914af7",
+      "started_utc": "2026-11-17T15:53:48.254900+00:00",
+      "completed_utc": "2026-11-17T15:54:10.014940+00:00"
+    },
+    "odt": {
+      "counts": {
+        "passed": 259,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "0f79bbda4b98ca431d3a91fc9a58d14e6887212a820440ea54bf4300e3312305",
+      "log_sha256": "17da0deff8215d6e7888c18a057b56245bb260bb5a7e71be91975eb813155355",
+      "started_utc": "2026-11-17T15:53:48.254903+00:00",
+      "completed_utc": "2026-11-17T15:54:11.314346+00:00"
+    },
+    "report_merge": {
+      "counts": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "4a2948d2025a5b8f52913c80f49d3168f80eaf02351e6ecb64ad224ccf93e829",
+      "log_sha256": "2d990b91f233c168b244b91316f91fd72bf4c2c67ee0e48b3415544818f28adb",
+      "started_utc": "2026-11-17T15:54:25.782965+00:00",
+      "completed_utc": "2026-11-17T15:54:41.996922+00:00"
+    },
+    "tool_analysis": {
+      "counts": {
+        "passed": null,
+        "failed": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "receipt_hash": true,
+        "receipt_bytes": true,
+        "log_hash": true,
+        "log_bytes": true,
+        "preserved_receipt_bytes": true,
+        "preserved_log_bytes": true,
+        "counts_match_summary": true,
+        "passed_count_matches_receipt": true,
+        "source_commit": true,
+        "source_before_after": true,
+        "exit_zero": true,
+        "success_marker": true,
+        "no_failure_skip_markers": true,
+        "map_equal_across_suites": true
+      },
+      "receipt_sha256": "4f15640cf7de679b85f8c342bd66eda9394d3f31cf2913854f289738e8aa8090",
+      "log_sha256": "9dc7ac22ba49b27fbf8c3cfdbe7d1b269ba6346eb02315778cb97dfd71234b4b",
+      "started_utc": "2026-11-17T15:55:04.229780+00:00",
+      "completed_utc": "2026-11-17T15:55:09.416958+00:00"
+    }
+  },
+  "suite_check_failures": [],
+  "summary_sha256": "d76f33ce60577125d0d6c02ae6e22459e1cf296f6152482f0ba0567bd0defb75",
+  "preserved_summary_matches": true,
+  "runner_sha256": "1ae2d4172776b4c6117ffb4d49cb87bd0cf83f68695ffe11507af3e09656465e",
+  "runner_matches_summary": true,
+  "preserved_runner_matches": true,
+  "source_map": {
+    "file_count": 1312,
+    "current_mismatches": [],
+    "missing_from_map": [],
+    "unexpected_in_map": [],
+    "scope_counts": {
+      "packages/quds_office_engine": 820,
+      "packages/quds_office_editor": 418,
+      "packages/quds_proofing_gector": 40,
+      "tools/proofing/german_model": 32,
+      "pubspec.yaml": 1,
+      "pubspec.lock": 0,
+      ".dart_tool/package_config.json": 1
+    },
+    "hash_variants": {
+      "json-sort-compact": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+      "json-sort-default": "eac51151905341918a6517dc8755c08ed92a30e17987a77db45e9424a3fe95f9",
+      "json-sort-indent2": "41eb2e8f6c2732f137ac238c6daa12743c230146f0cd3bb4fd74e74464bdf449",
+      "json-sort-indent2-newline": "c954dfc3efa9b3b53bf55a4cd81c46f4bbf212d450165b65435d13403252e04b"
+    },
+    "summary_hash": "4b98e6b0b07bdff261902dd0b7ae84532b1d7b682ffb40f9d432cf69d7bcaead",
+    "tracked_scope_changed_since_source": [],
+    "all_changes_since_source_are_validation_docs": true
+  },
+  "ancestry": {
+    "receipt_sha256": "b682701738964ef0b9a4520a286d18f5f26fc3fa6022c27677d7ac50f88660f7",
+    "branch_snapshot_utc": "2026-11-17T15:32:37.264283+00:00",
+    "receipt_checked_utc": "2026-11-17T15:45:19.517472+00:00",
+    "integration_commit": "c89e7eedda4473eae98953e61d9244d0125f440f",
+    "total_refs": 238,
+    "branch_count": 130,
+    "pr_head_count": 108,
+    "unique_head_count": 160,
+    "branch_snapshot_matches": true,
+    "missing_from_source": [],
+    "missing_from_docs_head": [],
+    "pr_ref_first": [
+      {
+        "ref": "refs/remotes/pull/1",
+        "sha": "54f0f8de01416640560519aa9d732f668f603709",
+        "source": "fetched-pr-head",
+        "integrated": true
+      },
+      {
+        "ref": "refs/remotes/pull/10",
+        "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+        "source": "fetched-pr-head",
+        "integrated": true
+      }
+    ],
+    "pr_ref_last": [
+      {
+        "ref": "refs/remotes/pull/98",
+        "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+        "source": "fetched-pr-head",
+        "integrated": true
+      },
+      {
+        "ref": "refs/remotes/pull/99",
+        "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+        "source": "fetched-pr-head",
+        "integrated": true
+      }
+    ],
+    "pr_ids_exactly_1_through_108": true,
+    "pr_metadata_observation_utc": "2026-11-17T15:32:37.589Z",
+    "fetch_reflog_evidence": {
+      "refs/remotes/pull/108": "3ec638bd pull/108@{2026-11-17T16:33:10+01:00} fetch --prune origin +refs/heads/*:refs/remotes/origin/* +refs/pull/*/head:refs/remotes/pull/*: storing ref",
+      "refs/remotes/pull/105": "7808a871 pull/105@{2026-11-17T16:33:10+01:00} fetch --prune origin +refs/heads/*:refs/remotes/origin/* +refs/pull/*/head:refs/remotes/pull/*: fast-forward"
+    },
+    "pr_ref_latest_fetch_reflog_utc": "2026-11-17T15:33:10Z",
+    "snapshot_scope_note": "Branch tips fixed at 15:32:37.264283Z; recent PR metadata at 15:32:37.589Z. All-PR head fetch recorded locally at 15:33:10Z; ancestry receipt checked at 15:45:19.517472Z. These are separate bounded observations, not a claim about later moving remote refs."
+  },
+  "tooling": {
+    "receipt_sha256": "573576000afed5e92d075f44b5988ea4cf03703649999da95611525002208801",
+    "log_sha256": "0c7d3941588a8cc9c1775f64ae9c5e56e530b4a546957d4f3846fade17b79b92",
+    "log_matches_receipt": true,
+    "counts": {
+      "test_lines": 51,
+      "reported_count": 51,
+      "ok": true
+    },
+    "source_before_after_equal": true,
+    "current_source_mismatches": [],
+    "source_file_count": 21,
+    "historical_execution_source": "8801031a5c031ad5872f0e41ec182576ae8d4872"
+  },
+  "not_performed": [
+    "No tests, inference or Actions executed.",
+    "No repository writes, commits or pushes.",
+    "No claim that later moving incoming refs were integrated."
+  ],
+  "native_fixture": {
+    "named_test_in_log": true,
+    "no_skip_markers": true,
+    "suite_completed_successfully": true,
+    "runner_sets_native_gate": true,
+    "runner_sets_four_required_pins": true,
+    "fixture_test_sha256": "a7f1f43453886a5c0e8a1d053bf4494e4885f85778861248206788a71fdab9c8",
+    "actual_artifacts": {
+      "library": {
+        "path": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/assets/native-development-pack-v1/native/9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604/libcrispembed-gector.so",
+        "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+        "bytes": 2064104,
+        "matches_summary": true
+      },
+      "model": {
+        "path": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/assets/native-development-pack-v1/model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/gector-de-mixed-q4_k.gguf",
+        "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+        "bytes": 82756896,
+        "matches_summary": true
+      }
+    },
+    "execution_basis": "Preserved expanded test log names the non-skipped real fixture; suite exits zero with 194 passes. Byte-verified runner supplies all four nonempty pinned variables needed by the test; the test opens the actual native backend, forwards twice and checks output ownership/disposal. No new execution performed."
+  },
+  "runtime_seals": {
+    "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "dart_matches_receipt": true,
+    "flutter_tools_sha256": "1113a2db82af78a770879667feb60298c3a1df610ceba86fa82eb8bf3d601ed7",
+    "flutter_tools_matches_receipt": true
+  },
+  "resolved_inputs": {
+    "pubspec.lock": {
+      "sha256": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+      "bytes": 22684,
+      "capture_matches_index": true,
+      "capture_matches_current": true,
+      "included_in_regression_map": false
+    },
+    ".dart_tool/package_config.json": {
+      "sha256": "08756302e05cdc5278a731450a35e95ce9ca6503157c9b95186c6663a4ddae97",
+      "bytes": 25574,
+      "capture_matches_index": true,
+      "capture_matches_current": true,
+      "included_in_regression_map": true
+    }
+  },
+  "remote_observation": {
+    "branch": "refs/heads/feat/german-gector-proofing",
+    "sha": "78cd772c35f46ebe6d0e2a63bafcd87e767593f3",
+    "method": "git ls-remote origin refs/heads/feat/german-gector-proofing",
+    "scope": "Observed during this audit before the subsequent e3e51b32 documentation checkpoint. All preserved final regression receipts/logs are already present in this observed remote commit.",
+    "preserved_files_match_remote_commit": {
+      "final-regression-summary.json": true,
+      "run_local_regressions.py": true,
+      "second-integrated-ancestry.json": true,
+      "final-analysis.json.gz": true,
+      "final-analysis.log.gz": true,
+      "final-editor.json.gz": true,
+      "final-editor.log.gz": true,
+      "final-gector.json.gz": true,
+      "final-gector.log.gz": true,
+      "final-gector_analysis.json.gz": true,
+      "final-gector_analysis.log.gz": true,
+      "final-german.json.gz": true,
+      "final-german.log.gz": true,
+      "final-odp.json.gz": true,
+      "final-odp.log.gz": true,
+      "final-odt.json.gz": true,
+      "final-odt.log.gz": true,
+      "final-report_merge.json.gz": true,
+      "final-report_merge.log.gz": true,
+      "final-tool_analysis.json.gz": true,
+      "final-tool_analysis.log.gz": true
+    }
+  },
+  "regression_total": 873,
+  "distinct_test_total_including_unchanged_python_tooling": 924,
+  "all_checks_passed": true
+}
