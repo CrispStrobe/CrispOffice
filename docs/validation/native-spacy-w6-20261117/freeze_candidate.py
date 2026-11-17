@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+from urllib.parse import unquote, urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = Path(__file__).resolve().parent
@@ -38,6 +39,22 @@ def sources() -> dict[str, str]:
         paths.update(p for p in (ROOT / "packages" / name / "lib").rglob("*")
                      if p.is_file())
     return {str(p.relative_to(ROOT)): sha(p) for p in sorted(paths)}
+
+
+def package_configuration() -> dict:
+    path = ROOT / ".dart_tool/package_config.json"
+    configuration = json.loads(path.read_text())
+    packages = {entry["name"]: entry for entry in configuration["packages"]}
+    verified = {}
+    for name in ("legacy_doc_parser", "quds_office_engine", "quds_proofing_spacy"):
+        entry = packages[name]
+        uri = urlparse(urljoin(path.as_uri(), entry["rootUri"]))
+        actual = Path(unquote(uri.path)).resolve()
+        expected = (ROOT / "packages" / name).resolve()
+        if uri.scheme != "file" or actual != expected or entry.get("packageUri") != "lib/":
+            raise RuntimeError(f"Unexpected workspace package route: {name}")
+        verified[name] = str(expected.relative_to(ROOT))
+    return {"sha256": sha(path), "workspace_roots_verified": verified}
 
 
 def runtime() -> dict:
@@ -94,6 +111,7 @@ def main() -> None:
         "qualification_panel_sha256": protocol["qualification_panel"]["sha256"],
         "protocol_sha256": sha(PROTOCOL),
         "source_sha256": source,
+        "package_configuration": package_configuration(),
         "freeze_runner_sha256": sha(Path(__file__)),
         "prequalification_controls": {
             str(p.relative_to(OUT)): sha(p)

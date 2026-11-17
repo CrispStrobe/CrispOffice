@@ -1,0 +1,10 @@
+00:00 +0: loading QUDS_REPOSITORY/packages/quds_office_engine/test/sheet_time_period_calendar_test.dart
+00:00 +0: last seven days include both civil endpoints near local midnight
+00:00 +1: week ranges include Sunday and exclude the following Sunday
+00:00 +2: civil day/week arithmetic crosses DST at 2026-3-30
+00:00 +3: civil day/week arithmetic crosses DST at 2026-10-26
+00:00 +4: civil day/week arithmetic crosses DST at 2026-3-9
+00:00 +5: civil day/week arithmetic crosses DST at 2026-11-2
+00:00 +6: January month periods retain the local year near midnight
+00:00 +7: December next-month period crosses the local calendar year
+00:00 +8: All tests passed!
