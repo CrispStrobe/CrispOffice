@@ -1,0 +1,46 @@
+{
+  "consumer_tested_source": "9b33bec05df4e08bde06c6768f1e6b5a4af59a1a",
+  "product_changes_since_consumer_source": [],
+  "program_and_manifest_git_objects": {
+    "packages/quds_office_engine/lib": "2b62b30fb11ce0df5016c89bdc91efbd5f9982ba",
+    "packages/legacy_doc_parser/lib": "11649c1a3da84227b5da106f435d13ef30d0f010",
+    "packages/quds_office_engine/pubspec.yaml": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+    "packages/legacy_doc_parser/pubspec.yaml": "f0389f352656d281988db1d853d6e86df67b51e7",
+    "pubspec.yaml": "e61a2424fea83164962d3f14371f508532a7f964"
+  },
+  "current_uncommitted_changes": "Regression-test expectations/matrix and documentation/evidence only; no production or manifest changes.",
+  "retained_consumer_audits": [
+    {
+      "cohort": "retained33",
+      "source_head": "9b33bec05df4e08bde06c6768f1e6b5a4af59a1a",
+      "receipt_sha256": "4d01cdfc27c83f1e5210f1eea945f9f4621fd51500efd257032a7f3b6ee7c92f",
+      "source_input_count": 403,
+      "source_inputs_match_current_files": true,
+      "changed_source_inputs": [],
+      "summary": {
+        "fixtures": 33,
+        "passed": 33,
+        "failed": 0,
+        "schema_parts_passed": 132,
+        "schema_parts_total": 132
+      }
+    },
+    {
+      "cohort": "current7",
+      "source_head": "9b33bec05df4e08bde06c6768f1e6b5a4af59a1a",
+      "receipt_sha256": "cbf0751244c56104e84aca6588f066b1c32f97f1e088a5feced85b06de43b391",
+      "source_input_count": 406,
+      "source_inputs_match_current_files": true,
+      "changed_source_inputs": [],
+      "summary": {
+        "fixtures": 7,
+        "passed": 7,
+        "failed": 0,
+        "schema_parts_passed": 28,
+        "schema_parts_total": 28,
+        "lxml_false_negatives": 3
+      }
+    }
+  ],
+  "interpretation": "The consumer result applies to these exact unchanged source inputs. Do not relabel the consumer run commit or add historical/intermediate results to its count."
+}

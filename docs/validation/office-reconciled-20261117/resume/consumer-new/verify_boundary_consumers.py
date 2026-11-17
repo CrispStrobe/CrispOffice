@@ -4,7 +4,11 @@
 The same authored models are saved as direct ODT, native reference DOCX, and
 DOCX-imported ODT. All fifteen inputs are rendered to PDF; the ten ODT inputs
 are also reopened as DOCX. Two following paragraphs must share the destination
-column, preventing natural section balancing from imitating the authored break.
+column for each of the four repaired section-boundary cases, preventing natural
+section balancing from imitating the authored break. The fifth case retains
+native explicit-page precedence: only the target's left-column origin is part
+of its layout contract. Following paragraph positions are recorded because
+LibreOffice balances the ODT section differently from the native DOCX source.
 """
 from __future__ import annotations
 
@@ -166,13 +170,24 @@ def check_pdf(path, spec):
     destination = [measured[label] for label in [spec['target'], *spec['followers']]]
     for word in destination:
         require(word['page'] == spec['target_page'], f'{path.name}: {word["text"]} is on wrong page')
+    # A page-before paragraph keeps native page precedence, but the ODT section
+    # can balance its following paragraphs. The unchanged baseline writer has
+    # the same content.xml/styles.xml for this bounded no-regression control.
+    anchored = destination[:1] if spec['explicit_page_break'] else destination
+    for word in anchored:
         require(abs(word['xMin'] - expected_x) <= .4,
                 f'{path.name}: {word["text"]} x={word["xMin"]}, expected {spec["target_column"]} column {expected_x}')
-    require(all(a['yMin'] < b['yMin'] for a, b in zip(destination, destination[1:])),
-            f'{path.name}: following paragraphs do not stay below target in one column')
+    if not spec['explicit_page_break']:
+        require(all(a['yMin'] < b['yMin'] for a, b in zip(destination, destination[1:])),
+                f'{path.name}: following paragraphs do not stay below target in one column')
     return {'page_count': len(pages), 'expected_column_origin_pt': expected_x,
             'target_column': spec['target_column'],
-            'horizontal_tolerance_pt': .4, 'locations': measured}
+            'horizontal_tolerance_pt': .4, 'locations': measured,
+            'scope': ('Target origin/page, follower pages and text/bookmark source order only; '
+                      'final-section follower balancing differs from native DOCX and is unchanged '
+                      'from the baseline writer.' if spec['explicit_page_break'] else
+                      'Target plus both followers must occupy the authored destination column '
+                      'on the expected page, with followers below the target.')}
 
 
 def main():
@@ -196,7 +211,10 @@ def main():
     for name in ('logs', 'fixtures', 'pdf', 'reopened', 'profiles'):
         (output / name).mkdir()
     receipt = {'started_at_utc': datetime.now(timezone.utc).isoformat(),
-               'source_commit': args.commit, 'commands': [], 'fixtures': [], 'passed': False}
+               'source_commit': args.commit, 'commands': [], 'fixtures': [], 'passed': False,
+               'scope': 'Four repaired section-boundary layouts plus one bounded native '
+                        'page-precedence/no-regression control; not five fully equivalent '
+                        'native document layouts.'}
     before = snapshot(repo, workspace, dart, schema_dir)
     write_json(output / 'inputs-before.json', before)
     env = dict(os.environ, DART_SUPPRESS_ANALYTICS='true', CI='true',
@@ -254,6 +272,7 @@ def main():
         write_json(output / 'receipt.json', receipt)
     require(receipt['passed'], 'Consumer validation failed')
     print(json.dumps({'passed': True, 'fixtures': len(receipt['fixtures']),
+                      'repaired_layouts': 4, 'bounded_precedence_controls': 1,
                       'pdf_variants': sum(len(f['variants']) for f in receipt['fixtures']),
                       'reopened_docx': len(odts), 'inputs_unchanged': receipt['inputs_unchanged']}))
 

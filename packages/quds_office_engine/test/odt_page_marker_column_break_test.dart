@@ -168,73 +168,83 @@ void main() {
   }
 
   for (final kind in WmlSectionBreakKind.values) {
-    test('a leading column break remains separate from a later ${kind.name} '
-        'section boundary', () {
-      final paragraph = WmlParagraph(
-        inlines: [
-          WmlBookmarkBoundary(id: '17', isStart: true, name: 'LaterSection'),
-          WmlBreak(WmlBreakType.column),
-          WmlRun(text: 'After later section column break'),
-          WmlBookmarkBoundary(id: '17', isStart: false),
-        ],
-      );
-      final original = List<WmlInline>.of(paragraph.inlines);
-      final package = OpcPackage.openBytes(
-        OdtDocumentWriter.writeBytes(
-          WmlDocument(
-            sections: [
-              WmlSection(
-                blocks: [
-                  WmlParagraph(inlines: [WmlRun(text: 'Previous section')]),
-                ],
-              ),
-              WmlSection(breakKind: kind, columnCount: 2, blocks: [paragraph]),
-            ],
+    for (final explicitPage in [false, true]) {
+      test('a leading column break remains separate from a later ${kind.name} '
+          'section boundary with pageBreakBefore=$explicitPage', () {
+        final paragraph = WmlParagraph(
+          properties: WmlParagraphProps(pageBreakBefore: explicitPage),
+          inlines: [
+            WmlBookmarkBoundary(id: '17', isStart: true, name: 'LaterSection'),
+            WmlBreak(WmlBreakType.column),
+            WmlRun(text: 'After later section column break'),
+            WmlBookmarkBoundary(id: '17', isStart: false),
+          ],
+        );
+        final original = List<WmlInline>.of(paragraph.inlines);
+        final package = OpcPackage.openBytes(
+          OdtDocumentWriter.writeBytes(
+            WmlDocument(
+              sections: [
+                WmlSection(
+                  blocks: [
+                    WmlParagraph(inlines: [WmlRun(text: 'Previous section')]),
+                  ],
+                ),
+                WmlSection(
+                  breakKind: kind,
+                  columnCount: 2,
+                  blocks: [paragraph],
+                ),
+              ],
+            ),
           ),
-        ),
-      );
-      final content = XmlDocument.parse(
-        package.getPart('/content.xml')!.readText(),
-      ).root!;
-      final section = content
-          .firstChild('body')!
-          .firstChild('text')!
-          .childrenNamed('section', namespaceUri: _textNs)
-          .single;
-      final paragraphs = section
-          .childrenNamed('p', namespaceUri: _textNs)
-          .toList();
-      expect(paragraphs, hasLength(2));
-      expect(paragraphs.first.text, isEmpty);
-      expect(paragraphs.last.text, 'After later section column break');
-      expect(paragraphs.first.childElements.map((node) => node.localName), [
-        'bookmark-start',
-      ]);
-      expect(paragraphs.last.childElements.map((node) => node.localName), [
-        'span',
-        'bookmark-end',
-      ]);
-      String? breakBefore(XmlElement owner) {
-        final name = owner.getAttribute('style-name', namespaceUri: _textNs);
-        return content
-            .firstChild('automatic-styles')!
-            .childrenNamed('style', namespaceUri: _styleNs)
-            .singleWhere(
-              (style) =>
-                  style.getAttribute('name', namespaceUri: _styleNs) == name,
-            )
-            .firstChild('paragraph-properties')!
-            .getAttribute('break-before', namespaceUri: _foNs);
-      }
+        );
+        final content = XmlDocument.parse(
+          package.getPart('/content.xml')!.readText(),
+        ).root!;
+        final section = content
+            .firstChild('body')!
+            .firstChild('text')!
+            .childrenNamed('section', namespaceUri: _textNs)
+            .single;
+        final paragraphs = section
+            .childrenNamed('p', namespaceUri: _textNs)
+            .toList();
+        expect(paragraphs, hasLength(2));
+        expect(paragraphs.first.text, isEmpty);
+        expect(paragraphs.last.text, 'After later section column break');
+        expect(paragraphs.first.childElements.map((node) => node.localName), [
+          'bookmark-start',
+        ]);
+        expect(paragraphs.last.childElements.map((node) => node.localName), [
+          'span',
+          'bookmark-end',
+        ]);
+        String? breakBefore(XmlElement owner) {
+          final name = owner.getAttribute('style-name', namespaceUri: _textNs);
+          return content
+              .firstChild('automatic-styles')!
+              .childrenNamed('style', namespaceUri: _styleNs)
+              .singleWhere(
+                (style) =>
+                    style.getAttribute('name', namespaceUri: _styleNs) == name,
+              )
+              .firstChild('paragraph-properties')!
+              .getAttribute('break-before', namespaceUri: _foNs);
+        }
 
-      expect(
-        breakBefore(paragraphs.first),
-        kind == WmlSectionBreakKind.continuous ? isNull : 'page',
-      );
-      expect(breakBefore(paragraphs.last), 'column');
-      expect(paragraph.inlines, orderedEquals(original));
-      expect(paragraph.properties.columnBreakBefore, isFalse);
-    });
+        expect(
+          breakBefore(paragraphs.first),
+          kind == WmlSectionBreakKind.continuous && !explicitPage
+              ? isNull
+              : 'page',
+        );
+        expect(breakBefore(paragraphs.last), 'column');
+        expect(paragraph.inlines, orderedEquals(original));
+        expect(paragraph.properties.columnBreakBefore, isFalse);
+        expect(paragraph.properties.pageBreakBefore, explicitPage);
+      });
+    }
   }
 
   test(
