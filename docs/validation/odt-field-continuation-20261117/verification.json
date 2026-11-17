@@ -1,0 +1,225 @@
+{
+  "focusedPassingSubset": {
+    "test/odt_imported_field_fidelity_test.dart": 21,
+    "test/odt_inline_field_fidelity_test.dart": 23,
+    "test/odt_page_field_fidelity_test.dart": 34
+  },
+  "focusedPassingSubsetTotal": 78,
+  "limits": "Fresh reruns after recovery; test cohorts overlap. Lost unpublished prior logs were not reconstructed.",
+  "originalProductBaseline": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+  "pairedRegression": {
+    "changedInputs": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+    ],
+    "commonInputs": 392,
+    "identicalFinalRegressionFiles": true,
+    "note": "Baseline receipt HEAD is the published source; its two product-file input hashes bind to the exact original baseline. The substitution was restored before the passing runs."
+  },
+  "passed": true,
+  "qualifiedPublishedSource": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+  "receipts": {
+    "recovered-analysis": {
+      "byFile": {},
+      "counts": {},
+      "logsAndTerminalEventsVerified": true,
+      "receiptSha256": "66dc574d979c77671f5d1c7e43a0d5d357a000e2eb491580c89ad0320e7d6a82",
+      "recordedHead": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+      "sourceAndRuntimeBindingsVerified": true,
+      "sourceInputs": 392
+    },
+    "recovered-baseline": {
+      "byFile": {
+        "test/odt_imported_field_fidelity_test.dart": {
+          "failure": 14,
+          "success": 7
+        },
+        "test/odt_page_field_fidelity_test.dart": {
+          "failure": 10,
+          "success": 24
+        }
+      },
+      "counts": {
+        "failure": 24,
+        "success": 31
+      },
+      "logsAndTerminalEventsVerified": true,
+      "receiptSha256": "7a280faa959fffbcaecff4df45c42c0012a0c92639755e828f4efff6b9d4987b",
+      "recordedHead": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+      "sourceAndRuntimeBindingsVerified": true,
+      "sourceInputs": 392
+    },
+    "recovered-node": {
+      "byFile": {
+        "test/odt_imported_field_fidelity_test.dart": {
+          "success": 21
+        },
+        "test/odt_inline_column_break_fidelity_test.dart": {
+          "success": 9
+        },
+        "test/odt_inline_field_fidelity_test.dart": {
+          "success": 23
+        },
+        "test/odt_page_field_fidelity_test.dart": {
+          "success": 34
+        },
+        "test/odt_section_fidelity_test.dart": {
+          "success": 37
+        },
+        "test/word_field_span_test.dart": {
+          "success": 7
+        },
+        "test/word_revision_validation_test.dart": {
+          "success": 7
+        },
+        "test/word_toc_test.dart": {
+          "success": 8
+        },
+        "test/word_zotero_simple_field_test.dart": {
+          "success": 19
+        }
+      },
+      "counts": {
+        "success": 165
+      },
+      "logsAndTerminalEventsVerified": true,
+      "receiptSha256": "079da4800c8b10c44ccde78be7b2d99c38d8bed3751aac19d0b0e9784aab5120",
+      "recordedHead": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+      "sourceAndRuntimeBindingsVerified": true,
+      "sourceInputs": 399
+    },
+    "recovered-vm": {
+      "byFile": {
+        "test/inline_field_fidelity_test.dart": {
+          "success": 18
+        },
+        "test/odf_revision_extraction_test.dart": {
+          "success": 8
+        },
+        "test/odt_bookmark_end_fidelity_test.dart": {
+          "success": 6
+        },
+        "test/odt_bookmark_range_fidelity_test.dart": {
+          "success": 3
+        },
+        "test/odt_columns_breaks_fidelity_test.dart": {
+          "success": 7
+        },
+        "test/odt_columns_schema_fidelity_test.dart": {
+          "success": 2
+        },
+        "test/odt_comment_fidelity_test.dart": {
+          "success": 35
+        },
+        "test/odt_document_writer_test.dart": {
+          "success": 18
+        },
+        "test/odt_header_footer_fidelity_test.dart": {
+          "success": 9
+        },
+        "test/odt_imported_field_fidelity_test.dart": {
+          "success": 21
+        },
+        "test/odt_inline_column_break_fidelity_test.dart": {
+          "success": 9
+        },
+        "test/odt_inline_field_fidelity_test.dart": {
+          "success": 23
+        },
+        "test/odt_list_fidelity_test.dart": {
+          "success": 40
+        },
+        "test/odt_note_fidelity_test.dart": {
+          "success": 26
+        },
+        "test/odt_page_field_fidelity_test.dart": {
+          "success": 34
+        },
+        "test/odt_paragraph_break_style_test.dart": {
+          "success": 8
+        },
+        "test/odt_paragraph_decoration_fidelity_test.dart": {
+          "success": 20
+        },
+        "test/odt_paragraph_decoration_test.dart": {
+          "success": 22
+        },
+        "test/odt_paragraph_properties_test.dart": {
+          "success": 18
+        },
+        "test/odt_section_columns_test.dart": {
+          "success": 14
+        },
+        "test/odt_section_continuation_test.dart": {
+          "success": 14
+        },
+        "test/odt_section_fidelity_test.dart": {
+          "success": 37
+        },
+        "test/odt_section_integration_test.dart": {
+          "success": 14
+        },
+        "test/odt_story_visual_fidelity_test.dart": {
+          "success": 6
+        },
+        "test/odt_structure_fidelity_test.dart": {
+          "success": 4
+        },
+        "test/odt_tab_stop_fidelity_test.dart": {
+          "success": 8
+        },
+        "test/odt_tab_style_cache_test.dart": {
+          "success": 5
+        },
+        "test/odt_tab_style_fidelity_test.dart": {
+          "success": 2
+        },
+        "test/odt_table_merge_test.dart": {
+          "success": 26
+        },
+        "test/odt_table_tab_consolidation_test.dart": {
+          "success": 37
+        },
+        "test/odt_table_tab_fidelity_test.dart": {
+          "success": 11
+        },
+        "test/odt_table_tab_qualification_test.dart": {
+          "success": 10
+        },
+        "test/odt_table_tab_resume_test.dart": {
+          "success": 10
+        },
+        "test/word_bookmark_fidelity_test.dart": {
+          "success": 17
+        },
+        "test/word_field_span_test.dart": {
+          "success": 7
+        },
+        "test/word_native_presentation_test.dart": {
+          "success": 26
+        },
+        "test/word_revision_story_test.dart": {
+          "success": 11
+        },
+        "test/word_revision_validation_test.dart": {
+          "success": 7
+        },
+        "test/word_toc_test.dart": {
+          "success": 8
+        },
+        "test/word_zotero_simple_field_test.dart": {
+          "success": 19
+        }
+      },
+      "counts": {
+        "success": 620
+      },
+      "logsAndTerminalEventsVerified": true,
+      "receiptSha256": "98f892d04efcf1d924e39947e75488d14806cd9ad8605592b2b50b49dbf72e06",
+      "recordedHead": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+      "sourceAndRuntimeBindingsVerified": true,
+      "sourceInputs": 430
+    }
+  },
+  "schemaVersion": 1
+}

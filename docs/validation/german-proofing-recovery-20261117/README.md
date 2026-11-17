@@ -2,6 +2,12 @@
 
 This continuation recovered the interrupted publication, integrated the captured incoming work, repaired Office export integration defects, and completed fresh local proofing and export qualification. Work was saved incrementally to `codex/german-morphology-20261117` and is tracked in [PR #114](https://github.com/CrispStrobe/quds_office_suite/pull/114). No GitHub Actions workflow was dispatched or awaited.
 
+**Historical status:** PR #114 was subsequently reconciled through
+[PR #129](https://github.com/CrispStrobe/quds_office_suite/pull/129), which removed
+AOT/RML from the application. The measurements and archives below describe their
+stated source revisions. The [later field continuation](../odt-field-continuation-20261117/README.md)
+audits the published evidence and records the subsequent field safeguards.
+
 **Accepted final product source:** `898c4c07f421d86a8cea460b13fd3e136088b553`.
 **Earlier closing-main Office source:** `7002d750e20e44392c6c9ba1a92d910fd87fe593`.
 **Fresh proofing/native-quality source:** `8d6403021f797a05e9c9fc49052c3d19d3766844`.
@@ -94,7 +100,7 @@ Captured AOT source adds a local-process client default, an explicit HTTP factor
 
 The captured native worker still returns the pinned upstream serializer without the source metadata consumed by the new decoder. Fixture tests establish the Dart consumer contract; they do not establish live normalized-token mapping or completion of the separate daemon-free native work. No AOT worker or dictionaries are bundled or installed by this continuation.
 
-The first portable AOT run found one fixture problem: it used `0.0` as a supposedly nonintegral source offset, but JavaScript cannot preserve that distinction from `0`. The fixture now uses genuinely fractional `0.5`; product/decoder code is unchanged. The full VM suite passed 153 tests, the affected mapping VM suite passed 15 after the fixture repair, and the full portable Node cohort passed 129. The original 128-pass/one-failure Node attempt is preserved. [AOT reconciliation](evidence/aot-portability-reconciliation.json) · [Package documentation](../../../packages/quds_proofing_aot/README.md)
+The first portable AOT run found one fixture problem: it used `0.0` as a supposedly nonintegral source offset, but JavaScript cannot preserve that distinction from `0`. The fixture now uses genuinely fractional `0.5`; product/decoder code is unchanged. The full VM suite passed 153 tests, the affected mapping VM suite passed 15 after the fixture repair, and the full portable Node cohort passed 129. The original 128-pass/one-failure Node attempt is preserved. [AOT reconciliation](evidence/aot-portability-reconciliation.json) · [Historical package documentation](https://github.com/CrispStrobe/quds_office_suite/blob/867df7f257eac69adfe3355c051cdb2f773c53ac/packages/quds_proofing_aot/README.md)
 
 ## Local validation
 
