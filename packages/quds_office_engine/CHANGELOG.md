@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve ODT section page styles when the first content is a list, nested
+  control, table, picture, frame, or empty section. Keep resolved first-paragraph
+  formatting, honor odd/even starts, and avoid extra page breaks or empty
+  anchors in equivalent continuous sections.
+- Preserve nested-list sibling structure, mixed marker kinds, supported decimal
+  starts/restarts and continuation, exact large counters, and literal cached
+  markers for unsupported numbering. Keep auxiliary and covered-cell list
+  counters independent from visible document numbering.
+
 - Expose a read-only, language-scoped German dictionary query for optional
   grammar guards, using the existing dictionary and owner vocabulary without
   generating suggestions or accepting partial tokens.
