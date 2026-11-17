@@ -120,6 +120,8 @@ Iterable<_GermanGrammarIssue> _grammarContextIssues(
       }
     }
   }
+  yield* _contextIhrHaben(text, words);
+  yield* _contextReferentialRelative(text, words);
   yield* _contextWordOrder(text, words);
   yield* _contextParticiple(text, words);
 }
@@ -282,5 +284,117 @@ Iterable<_GermanGrammarIssue> _contextParticiple(
     words.last.end,
     replacement,
     'Nach diesem Hilfsverb ist hier normalerweise dieses unregelmäßige Partizip gemeint.',
+  );
+}
+
+// Restrict ambiguous dative/possessive "ihr" to a complete idiomatic
+// haben + mass-object clause. No following subject or participle is allowed.
+Iterable<_GermanGrammarIssue> _contextIhrHaben(
+  String text,
+  List<_GermanGrammarWord> words,
+) sync* {
+  if (words.length < 3 ||
+      words.length > 4 ||
+      words.first.lower != 'ihr' ||
+      words[1].capitalized ||
+      !const {'habe', 'hast', 'hat', 'haben'}.contains(words[1].lower) ||
+      !const {
+        'zeit',
+        'geld',
+        'arbeit',
+        'hunger',
+        'durst',
+        'angst',
+        'glück',
+        'pech',
+        'spaß',
+      }.contains(words.last.lower) ||
+      !words.last.capitalized ||
+      words.length == 4 &&
+          !const {'viel', 'wenig', 'genug', 'keine'}.contains(words[2].text)) {
+    return;
+  }
+  for (var i = 1; i < words.length; i++) {
+    if (!_grammarAdjacent(text, words[i - 1], words[i])) return;
+  }
+  yield _GermanGrammarIssue(
+    'de.grammar.pronoun-verb',
+    words[1].start,
+    words[1].end,
+    'habt',
+    'In dieser vollständigen Verbindung mit „haben“ passt „habt“ zu „ihr“.',
+  );
+}
+
+// Referential artifact heads admit the object relative pronoun "das".
+// The finite list records independently authored neuter singular noun facts.
+// Content-clause heads (Problem, Wissen, Tatsache, etc.) are deliberately
+// excluded. Do not infer a relative clause from arbitrary nouns or verbs.
+Iterable<_GermanGrammarIssue> _contextReferentialRelative(
+  String text,
+  List<_GermanGrammarWord> words,
+) sync* {
+  if (words.length < 7 || words.first.text != 'Das') return;
+  final commas = ','.allMatches(text).toList();
+  if (commas.length != 2) return;
+  final head = _grammarNounIndex(text, words, 0);
+  if (head == null || head > 4 || head + 5 >= words.length) return;
+  final noun = words[head];
+  if (!const {
+    'buch',
+    'haus',
+    'auto',
+    'dokument',
+    'bild',
+    'foto',
+    'gerät',
+    'fenster',
+    'zimmer',
+    'formular',
+    'paket',
+    'heft',
+    'video',
+    'rad',
+  }.contains(noun.lower)) {
+    return;
+  }
+  final relative = words[head + 1];
+  final subject = words[head + 2];
+  final finite = words[head + 3];
+  final matrix = words[head + 4];
+  if (relative.text != 'dass' ||
+      subject.text != subject.lower ||
+      finite.capitalized ||
+      matrix.text != 'ist' ||
+      text.substring(noun.end, relative.start).trim() != ',' ||
+      commas[0].start < noun.end ||
+      commas[0].start >= relative.start ||
+      text.substring(finite.end, matrix.start).trim() != ',' ||
+      commas[1].start < finite.end ||
+      commas[1].start >= matrix.start ||
+      !_grammarAdjacent(text, relative, subject) ||
+      !_grammarAdjacent(text, subject, finite)) {
+    return;
+  }
+  final paradigm = GermanWritingRulesProvider._presentByForm[finite.lower];
+  if (paradigm == null ||
+      !const {
+        'lesen',
+        'kennen',
+        'sehen',
+        'finden',
+        'kaufen',
+        'lieben',
+        'mögen',
+      }.contains(paradigm.infinitive) ||
+      !_contextAgrees(paradigm, finite.lower, subject.lower)) {
+    return;
+  }
+  yield _GermanGrammarIssue(
+    'de.grammar.das-dass',
+    relative.start,
+    relative.end,
+    'das',
+    'Dieser begrenzte Relativsatz bezieht sich auf das vorangehende sächliche Dingwort.',
   );
 }
