@@ -83,3 +83,11 @@ is not a linguistic nonregression gate. The guarded v1 baseline retains five
 of the nine unguarded expected fixes and leaves all ten supported clean
 controls unchanged. Later guard changes must compare against this frozen
 baseline without replacing either original JIT or AOT observation.
+
+## Later guarded continuation
+
+The [subsequent compiled run](../2026-11-17-continuation/README.md) preserves
+these original receipts and adds an independently source-bound AOT build,
+verified complete development pack and frozen guarded nonregression check.
+It recovers the `Wir ist` correction (6/18 expected fixes, ten clean controls
+unchanged). The original v1 values above remain unchanged historical evidence.

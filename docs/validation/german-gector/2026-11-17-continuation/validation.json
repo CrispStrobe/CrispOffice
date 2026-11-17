@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-continuation-validation",
+  "implementation_commit": "9a5775675e0d60e8d8cfe3381ff6a7661245722f",
+  "passed": true,
+  "github_actions_dispatched_polled_or_awaited": false,
+  "frozen_baseline_sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc",
+  "files": {
+    "provider-aot-v2.json": {
+      "bytes": 70257,
+      "sha256": "27f7ca946cb2cd02500d04d7f4304182c54714665255361f5f5f25a3cf35fc1e"
+    },
+    "provider-aot-v2-build.json": {
+      "bytes": 65404,
+      "sha256": "b00f426b7d726c5399e9488057f51a2e8f75fd49592ddac37d309955aea2d76c"
+    },
+    "guarded-comparison-v2.json": {
+      "bytes": 3903,
+      "sha256": "206a9a9a73201431a3ca8531b5b6f4fb88e505d1bae3e93abd39e1d32683f4b4"
+    },
+    "development-pack-manifest.json": {
+      "bytes": 9315,
+      "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+    },
+    "development-pack-verification.json": {
+      "bytes": 865,
+      "sha256": "cdd920079e33a5db154bb4d4fb279773dfd5fe03794f0a30a0986918f79c5190"
+    },
+    "gector-package-tests.log.gz": {
+      "bytes": 785,
+      "sha256": "11bfd31f72ab5a2c8e6171e365a8e4e56907b8385fe7df0fd1b78e5863ab18aa"
+    },
+    "local-tooling-tests.log.gz": {
+      "bytes": 56,
+      "sha256": "a9474757978fc8f5862b7da0e76d83ee6a7288e966af937b1d61ccac007bdfbf"
+    },
+    "provider-aot-v2.log.gz": {
+      "bytes": 595,
+      "sha256": "48a5e62c2c31417a4477a5feeea4e7e165a515d12826c18cb0fce925b923fe1a"
+    }
+  },
+  "build_runner_binding": {
+    "selected_source_maps_equal": true,
+    "runtime_and_entrypoint_pins_equal": true,
+    "actual_snapshot_sha256": "d65a179fe4e5635c133b2862d72582b9444e262563b4f55a73baf805ce842c40",
+    "source_stable": true,
+    "dependencies_stable": true,
+    "sdk_stable": true
+  },
+  "local_tests": {
+    "gector_package": {
+      "passed": 98,
+      "skipped": 0,
+      "live_native_fixture_executed": true
+    },
+    "new_python_tooling": {
+      "passed": 45,
+      "comparator": 27,
+      "pack": 11,
+      "aot_builder": 7
+    },
+    "integration_engine_distinct": 119
+  },
+  "guarded_quality": {
+    "baseline_exact_fixes": 5,
+    "candidate_exact_fixes": 6,
+    "supported_error_cases": 18,
+    "supported_clean_controls_unchanged": 10,
+    "unsupported_swiss_cases": 2,
+    "added_exact_fixes": [
+      "verb-wir"
+    ],
+    "lost_exact_fixes": [],
+    "new_unexpected_error_edits": [],
+    "operational_controls_passed": 8
+  },
+  "measurement": {
+    "setup_ms": 3130.889,
+    "short_p95_ms": 98.249,
+    "short_median_ms": 23.863,
+    "peak_process_rss_bytes": 294555648,
+    "long_probes": [
+      {
+        "wordpieces": 61,
+        "p95_ms": 151.724
+      },
+      {
+        "wordpieces": 126,
+        "p95_ms": 355.255
+      },
+      {
+        "wordpieces": 256,
+        "p95_ms": 717.319
+      }
+    ]
+  },
+  "pack": {
+    "files": 23,
+    "total_bytes_including_manifest": 86356331,
+    "used_for_real_provider_run": true,
+    "development_only": true
+  },
+  "remaining_limits": [
+    "Small synthetic panel does not establish representative German quality or incremental benefit over deterministic rules.",
+    "de-AT/de-CH remain unsupported in this model provider.",
+    "Inputs beyond512 tokens fail explicitly; long-paragraph segmentation remains unimplemented.",
+    "Synchronous native inference cannot be interrupted mid-call; intended-device/editor responsiveness remains separate.",
+    "Linux x86_64 development pack only; platform/ISA and system runtime licensing are not shipping approval."
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-guarded-provider-comparison",
+  "scope": "Nonregression on the frozen 30-case synthetic panel: 18 de-DE error cases, 10 de-DE clean controls, and 2 explicitly unsupported de-CH controls. The eight integration controls and three structural length probes are checked separately. This is not broad precision/recall, target-device qualification, or a release decision. Repeated outcome stability is reported by the producer; only its first result and warmup are retained.",
+  "frozen_baseline_sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc",
+  "baseline_sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc",
+  "candidate_sha256": "27f7ca946cb2cd02500d04d7f4304182c54714665255361f5f5f25a3cf35fc1e",
+  "cases_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+  "evidence_valid": true,
+  "operational_passed": true,
+  "guarded_nonregression_passed": true,
+  "passed": true,
+  "evidence_errors": [],
+  "baseline": {
+    "supported_error_cases": 18,
+    "exact_fixes": 5,
+    "supported_clean_controls": 10,
+    "unchanged_clean_controls": 10,
+    "operational_passed": true,
+    "product_mode": true,
+    "setup_ms": 3384.501,
+    "peak_process_rss_bytes": 309854208,
+    "short_timing": {
+      "median_ms": 21.91,
+      "p95_ms": 62.017,
+      "maximum_ms": 165.94
+    },
+    "engineering_budgets": {
+      "p95_at_most_500_ms": true,
+      "peak_rss_at_most_768_mib": true,
+      "gguf_at_most_160_mib": true,
+      "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+    }
+  },
+  "candidate": {
+    "supported_error_cases": 18,
+    "exact_fixes": 6,
+    "supported_clean_controls": 10,
+    "unchanged_clean_controls": 10,
+    "operational_passed": true,
+    "product_mode": true,
+    "setup_ms": 3130.889,
+    "peak_process_rss_bytes": 294555648,
+    "short_timing": {
+      "median_ms": 23.863,
+      "p95_ms": 98.249,
+      "maximum_ms": 151.724
+    },
+    "engineering_budgets": {
+      "p95_at_most_500_ms": true,
+      "peak_rss_at_most_768_mib": true,
+      "gguf_at_most_160_mib": true,
+      "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+    }
+  },
+  "gates": {
+    "status_policy_preserved": true,
+    "previous_exact_fixes_preserved": true,
+    "supported_clean_text_unchanged": true,
+    "no_new_unexpected_error_edits": true,
+    "integration_controls_preserved": true,
+    "structural_controls_preserved": true
+  },
+  "added_exact_fixes": [
+    "verb-wir"
+  ],
+  "lost_exact_fixes": [],
+  "supported_clean_changes": [],
+  "new_unexpected_error_edits": [],
+  "status_changes": [],
+  "finding_changes": [
+    {
+      "section": "cases",
+      "id": "verb-wir",
+      "baseline": [],
+      "candidate": [
+        {
+          "start": 11,
+          "end": 14,
+          "original": "ist",
+          "replacement": "sind",
+          "rule_id": "gector.de.grammar"
+        }
+      ]
+    }
+  ],
+  "outcome_changes": [
+    {
+      "section": "cases",
+      "id": "verb-wir",
+      "baseline": {
+        "status": "success",
+        "corrected": "Wir ist zufrieden.",
+        "findings": []
+      },
+      "candidate": {
+        "status": "success",
+        "corrected": "Wir sind zufrieden.",
+        "findings": [
+          {
+            "start": 11,
+            "end": 14,
+            "original": "ist",
+            "replacement": "sind",
+            "rule_id": "gector.de.grammar"
+          }
+        ]
+      }
+    }
+  ],
+  "source_changes": [
+    {
+      "path": "packages/quds_proofing_gector/lib/src/guards.dart",
+      "baseline": "79244938eb6ad4195167be4dff2df66257c9b31fe2ca8819ab2fe52837846191",
+      "candidate": "69715afe5972aba5c35a3877c8b0b3805dd9a258b16523c8c6d368ff73fb74d7"
+    }
+  ],
+  "performance_note": "Engineering budget flags are reported separately and do not prove target-device performance."
+}

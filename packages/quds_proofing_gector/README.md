@@ -98,6 +98,11 @@ create its lexicon inside the worker. `GectorWordSetLexiconFactory` supplies a
 closed, immutable word set when that is appropriate for a host. An empty word
 set deliberately blocks lexical replacements; it is not a permissive fallback.
 
+For the exact qualified Linux development build, the repository provides an
+[offline pack builder and verifier](../../tools/proofing/german_model/NATIVE_PACK.md).
+It supplies the verified paths and retains all model/native notices; it does
+not activate the provider or establish a release for other platforms.
+
 ## Backend contract and model identity
 
 `GectorBackendFactory.open` receives the verified `GectorModelArtifact` and
@@ -193,10 +198,15 @@ The implemented policy includes:
   unpublished built-ins' complete linguistic behavior or collapse pre-existing
   elision echoes.
 
-The first real native guarded run preserves 5/18 expected fixes on the frozen
-error panel, compared with 9/18 for the original unguarded decoder. It holds the
-noun-plural, `Wir ist`, demonstrative `Das sind`, and `Die Blumen ist` changes
-because this bounded policy cannot establish the needed person/subject evidence.
+The first real native guarded run preserved 5/18 expected fixes on the frozen
+error panel, compared with 9/18 for the original unguarded decoder. The
+[compiled continuation](../../docs/validation/german-gector/2026-11-17-continuation/README.md)
+now preserves **6/18**: authenticated same-number verb-person aliases allow
+`Wir ist zufrieden.` to become `Wir sind zufrieden.` even when the model selects
+the third-person-plural label for the shared surface form `sind`. All previous
+fixes remain. The verb-plural `Die Kinder spielt`, demonstrative `Das sind`, and
+`Die Blumen ist` changes remain held because the bounded policy cannot establish
+the needed subject evidence. Cross-number ambiguity is not relaxed.
 All ten supported de-DE clean controls remain unchanged; the two Swiss controls
 are explicitly unsupported. This is an experimental host opt-in, pending broader
 precision/recall and incremental-benefit evaluation.

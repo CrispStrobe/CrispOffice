@@ -81,14 +81,25 @@ retains both development-mode and compiled measurements. The compiled v1 run
 passes the local <=64-token latency and process-memory budgets at 62.017 ms p95
 and 309,854,208 bytes peak RSS. The JIT memory-budget failure is retained.
 
-The guarded v1 policy preserves five expected fixes, holds four of the nine
-unguarded fixes, and leaves all ten supported clean controls unchanged. Both
+The guarded v1 policy preserved five expected fixes. The
+[compiled continuation](../validation/german-gector/2026-11-17-continuation/README.md)
+recovers `Wir ist` through authenticated same-number verb-person aliases,
+raising the result to six expected fixes with no lost fixes or changed supported
+clean controls. The other three of the nine unguarded fixes remain held. Both
 Swiss controls are explicitly unsupported. This small synthetic panel does not
 establish general German accuracy. de-AT/de-CH, representative held-out quality,
 benefit beyond deterministic rules, intended-device responsiveness and the
 exact distribution/license closure remain open. Inputs beyond the model's
 512-token context fail explicitly; long-paragraph segmentation is not yet
 implemented.
+
+The continuation also supplies a source/dependency/SDK-bound AOT builder and an
+[offline local development pack](../../tools/proofing/german_model/NATIVE_PACK.md).
+The verified pack has 23 files totaling 86,356,331 bytes, including its manifest.
+A real compiled run through it passes all 30 operational cases, eight controls
+and guarded nonregression, at 98.249 ms short-input p95 and 294,555,648 bytes
+peak process RSS. These are separate local observations; they do not establish
+a speed change from the guard repair or intended-device qualification.
 
 The owner requested incremental remote checkpoints and local validation because
 GitHub Actions capacity is starved. No new hosted job or Actions completion is
