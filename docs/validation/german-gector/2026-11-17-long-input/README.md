@@ -153,3 +153,12 @@ transition assertions and adds the incoming hyperlink assertion; it does not
 restore the superseded transition attributes. The first octopus merge attempt
 was rejected by Git because of this test conflict and left no partial merge;
 the normal main merge was then resolved explicitly.
+
+The feature `3ec638bd7de5cb6648774abbf14da1c315f5e418` and vendor
+`0585fac1a56c3dc5c3d728962794299ddfe50bbb` tips carry the identical eight-line
+ODP hyperlink patch already integrated from main. `odp-incoming-equivalence.json`
+records identical patch hashes and changed-file blobs for all three tips;
+feature and main also have identical complete trees. A history-only merge keeps
+both equivalent branch tips as ancestors without replacing the receiving
+branch's newer Office behavior. These are the final missing tips in the fixed
+130-branch snapshot.
