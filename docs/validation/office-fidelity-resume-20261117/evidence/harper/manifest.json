@@ -1,0 +1,117 @@
+{
+  "label": "harper",
+  "source_commit": "07481e944799e282f15e6286192b926cff1165df",
+  "archive_format": "tar.xz",
+  "archive_sha256": "d362dd711de3d5688aceda33b48a22742e493ac5874f596246063d12d79793e3",
+  "archive_bytes": 455688,
+  "chunks": [
+    {
+      "path": "harper.tar.xz.part000",
+      "size": 90000,
+      "sha256": "866225f4bbaa4e181b1f192d0cf9679361df356553b4af2e785b823a7d23d38b"
+    },
+    {
+      "path": "harper.tar.xz.part001",
+      "size": 90000,
+      "sha256": "ee8d073857b57aafb0d2ea1b2ffa7bfac89a6e2a057a59f2c74af7c44b70bd62"
+    },
+    {
+      "path": "harper.tar.xz.part002",
+      "size": 90000,
+      "sha256": "d6b86c511648acd411e908e0bea04db54e7df9a98d134787ff9e268c72b8fdcd"
+    },
+    {
+      "path": "harper.tar.xz.part003",
+      "size": 90000,
+      "sha256": "b3c2d8a1f4778efbb7f843649412fc0bcf4e21cefd4a974bd3384d5c44d3cf1a"
+    },
+    {
+      "path": "harper.tar.xz.part004",
+      "size": 90000,
+      "sha256": "5b2d9b51f04ec4c05b3450a1ec7f5c09e57f5856ed0aa4b5d5c7733d36870d20"
+    },
+    {
+      "path": "harper.tar.xz.part005",
+      "size": 5688,
+      "sha256": "1955b9b3105a32619a103bb0817d12e23cf13d43db93ca42fe991ec3ce3094b6"
+    }
+  ],
+  "files": [
+    {
+      "path": "analyze.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "analyze.stdout.gz",
+      "size": 142,
+      "sha256": "031721d32fc84f1af1dbe7912a90a3deb0376a3ed65fe2d694beb299864e2c1d"
+    },
+    {
+      "path": "dart-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dart-version.stdout",
+      "size": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "flutter-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_bytes_as": "dart-version.stderr"
+    },
+    {
+      "path": "flutter-version.stdout",
+      "size": 642,
+      "sha256": "fbf179d7ddf21a85b6affea1a5ab13ff024f284dc391d5582e5c33b3175d052f"
+    },
+    {
+      "path": "format.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "analyze.stderr.gz"
+    },
+    {
+      "path": "format.stdout.gz",
+      "size": 68,
+      "sha256": "6a3dc084dcefa6bf6206a767869f6433ccd0b3d325074e0c82f65749d8e47c90"
+    },
+    {
+      "path": "receipt.json",
+      "size": 330576,
+      "sha256": "40c14dbdef4b1d485df451b8f90a64c50d32113fbd92049bfcec1ed96d46bb82"
+    },
+    {
+      "path": "runtime-inputs.after.json.gz",
+      "size": 401787,
+      "sha256": "a1d65f166dc26b7e41cc2ee949939a824664f50d813d9698663c3d46288f663c"
+    },
+    {
+      "path": "runtime-inputs.before.json.gz",
+      "size": 401787,
+      "sha256": "a1d65f166dc26b7e41cc2ee949939a824664f50d813d9698663c3d46288f663c",
+      "same_bytes_as": "runtime-inputs.after.json.gz"
+    },
+    {
+      "path": "tests-01.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "analyze.stderr.gz"
+    },
+    {
+      "path": "tests-01.stdout.gz",
+      "size": 2070,
+      "sha256": "088d8c74a7adbc4dbe944a4289eb0da6f27bd072ffe80fb0423219c9bc71fcaf"
+    },
+    {
+      "path": "validate-used.py",
+      "size": 38651,
+      "sha256": "757190927e2116270f4332c702e0025eb1c6faba18dc9f8d939f288634d05222"
+    }
+  ],
+  "file_count": 14,
+  "unique_content_count": 10
+}

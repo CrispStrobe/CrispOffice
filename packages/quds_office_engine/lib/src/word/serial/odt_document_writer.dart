@@ -45,8 +45,28 @@ abstract final class OdtDocumentWriter {
   static String _contentXml(WmlDocument document, _OdtLayout layout) {
     final body = XmlWriter();
     body.writeStartElement('text', prefix: 'office');
-    for (final section in document.sections) {
-      _writeBlocks(body, section.blocks, layout);
+    for (var index = 0; index < document.sections.length; index++) {
+      final section = document.sections[index];
+      String? firstStyle;
+      if (index > 0) {
+        final first = section.blocks.whereType<WmlParagraph>().firstOrNull;
+        if (first != null) {
+          firstStyle = layout.sectionBreakStyle(
+            index,
+            section.breakKind,
+            baseStyle: layout.paragraphStyle(
+              first.properties,
+              heading: first.properties.headingLevel,
+            ),
+          );
+        }
+      }
+      _writeBlocks(
+        body,
+        section.blocks,
+        layout,
+        firstParagraphStyle: firstStyle,
+      );
     }
     body.writeEndElement();
 
@@ -70,29 +90,29 @@ abstract final class OdtDocumentWriter {
     // stories use those in content.xml. Keep the style registries separate and
     // share the package media registry so header/footer pictures cannot collide.
     final stories = _OdtLayout(document, sharedMedia: layout);
-    final section = document.sections.firstOrNull;
     final master = XmlWriter();
     master.writeStartElement('master-styles', prefix: 'office');
-    master.writeStartElement('master-page', prefix: 'style');
-    master.writeAttribute('style:name', 'Standard');
-    master.writeAttribute('style:page-layout-name', 'pm1');
-    final header = section?.header ?? const <WmlParagraph>[];
-    final footer = section?.footer ?? const <WmlParagraph>[];
-    if (header.isNotEmpty) {
-      master.writeStartElement('header', prefix: 'style');
-      for (final paragraph in header) {
-        _writeParagraph(master, paragraph, stories);
+    for (var index = 0; index < document.sections.length; index++) {
+      final section = document.sections[index];
+      master.writeStartElement('master-page', prefix: 'style');
+      master.writeAttribute('style:name', index == 0 ? 'Standard' : 'mp$index');
+      master.writeAttribute('style:page-layout-name', 'pm$index');
+      if (section.header.isNotEmpty) {
+        master.writeStartElement('header', prefix: 'style');
+        for (final paragraph in section.header) {
+          _writeParagraph(master, paragraph, stories);
+        }
+        master.writeEndElement();
+      }
+      if (section.footer.isNotEmpty) {
+        master.writeStartElement('footer', prefix: 'style');
+        for (final paragraph in section.footer) {
+          _writeParagraph(master, paragraph, stories);
+        }
+        master.writeEndElement();
       }
       master.writeEndElement();
     }
-    if (footer.isNotEmpty) {
-      master.writeStartElement('footer', prefix: 'style');
-      for (final paragraph in footer) {
-        _writeParagraph(master, paragraph, stories);
-      }
-      master.writeEndElement();
-    }
-    master.writeEndElement();
     master.writeEndElement();
 
     final w = XmlWriter();
@@ -166,25 +186,31 @@ abstract final class OdtDocumentWriter {
     }
     w.writeEndElement();
     w.writeStartElement('automatic-styles', prefix: 'office');
-    final page = section?.pageSize ?? const WmlPageSize();
-    final margins = section?.margins ?? const WmlPageMargins();
-    w.writeStartElement('page-layout', prefix: 'style');
-    w.writeAttribute('style:name', 'pm1');
-    w.writeStartElement('page-layout-properties', prefix: 'style');
-    w.writeAttribute('fo:page-width', '${page.width.toStringAsFixed(2)}pt');
-    w.writeAttribute('fo:page-height', '${page.height.toStringAsFixed(2)}pt');
-    w.writeAttribute('fo:margin-top', '${margins.top.toStringAsFixed(2)}pt');
-    w.writeAttribute(
-      'fo:margin-bottom',
-      '${margins.bottom.toStringAsFixed(2)}pt',
-    );
-    w.writeAttribute('fo:margin-left', '${margins.left.toStringAsFixed(2)}pt');
-    w.writeAttribute(
-      'fo:margin-right',
-      '${margins.right.toStringAsFixed(2)}pt',
-    );
-    w.writeEndElement();
-    w.writeEndElement();
+    for (var index = 0; index < document.sections.length; index++) {
+      final section = document.sections[index];
+      final page = section.pageSize;
+      final margins = section.margins;
+      w.writeStartElement('page-layout', prefix: 'style');
+      w.writeAttribute('style:name', 'pm$index');
+      w.writeStartElement('page-layout-properties', prefix: 'style');
+      w.writeAttribute('fo:page-width', '${page.width.toStringAsFixed(2)}pt');
+      w.writeAttribute('fo:page-height', '${page.height.toStringAsFixed(2)}pt');
+      w.writeAttribute('fo:margin-top', '${margins.top.toStringAsFixed(2)}pt');
+      w.writeAttribute(
+        'fo:margin-bottom',
+        '${margins.bottom.toStringAsFixed(2)}pt',
+      );
+      w.writeAttribute(
+        'fo:margin-left',
+        '${margins.left.toStringAsFixed(2)}pt',
+      );
+      w.writeAttribute(
+        'fo:margin-right',
+        '${margins.right.toStringAsFixed(2)}pt',
+      );
+      w.writeEndElement();
+      w.writeEndElement();
+    }
     stories.writeContentStyles(w);
     w.writeEndElement();
     w.writeRaw(master.toXml());
@@ -226,10 +252,16 @@ abstract final class OdtDocumentWriter {
   static void _writeBlocks(
     XmlWriter w,
     List<WmlBlock> blocks,
-    _OdtLayout layout,
-  ) {
+    _OdtLayout layout, {
+    String? firstParagraphStyle,
+  }) {
+    var first = true;
     for (var index = 0; index < blocks.length; index++) {
       final block = blocks[index];
+      final override = first && block is WmlParagraph
+          ? firstParagraphStyle
+          : null;
+      first = false;
       if (block is WmlParagraph &&
           block.properties.numId != null &&
           !block.properties.numberingSuppressed) {
@@ -246,7 +278,7 @@ abstract final class OdtDocumentWriter {
         }
         _writeList(w, list, layout);
       } else {
-        _writeBlock(w, block, layout);
+        _writeBlock(w, block, layout, paragraphStyle: override);
       }
     }
   }
@@ -271,10 +303,15 @@ abstract final class OdtDocumentWriter {
     w.writeEndElement();
   }
 
-  static void _writeBlock(XmlWriter w, WmlBlock block, _OdtLayout layout) {
+  static void _writeBlock(
+    XmlWriter w,
+    WmlBlock block,
+    _OdtLayout layout, {
+    String? paragraphStyle,
+  }) {
     switch (block) {
       case WmlParagraph():
-        _writeParagraph(w, block, layout);
+        _writeParagraph(w, block, layout, styleOverride: paragraphStyle);
       case WmlTable():
         if (layout.inNoteBody) {
           _writeNoteTableText(w, block, layout);
@@ -297,17 +334,21 @@ abstract final class OdtDocumentWriter {
   static void _writeParagraph(
     XmlWriter w,
     WmlParagraph paragraph,
-    _OdtLayout layout,
-  ) {
+    _OdtLayout layout, {
+    String? styleOverride,
+  }) {
     final heading = paragraph.properties.headingLevel;
-    final tag = heading == null ? 'p' : 'h';
+    // An annotation accepts paragraphs and lists, not heading elements. Keep
+    // its resolved heading style without emitting an illegal child element.
+    final tag = heading == null || layout.inCommentBody ? 'p' : 'h';
     w.writeStartElement(tag, prefix: 'text');
-    if (heading != null) {
+    if (heading != null && !layout.inCommentBody) {
       w.writeAttribute('text:outline-level', '${heading.clamp(1, 9)}');
     }
     w.writeAttribute(
       'text:style-name',
-      layout.paragraphStyle(paragraph.properties, heading: heading),
+      styleOverride ??
+          layout.paragraphStyle(paragraph.properties, heading: heading),
     );
     if (layout.noteReferenceSpacePending) {
       layout.noteReferenceSpacePending = false;
@@ -327,10 +368,15 @@ abstract final class OdtDocumentWriter {
       case WmlRun():
         final style = layout.runStyle(inline.properties);
         final href = inline.hyperlink?.url;
+        final commentLink =
+            layout.inCommentBody && href != null && href.isNotEmpty;
         if (href != null && href.isNotEmpty) {
           w.writeStartElement('a', prefix: 'text');
           w.writeAttribute('xlink:href', href);
           w.writeAttribute('xlink:type', 'simple');
+          // Writer's annotation importer loses link text nested in a span.
+          // text:a can carry the same style directly, with its text unchanged.
+          if (commentLink) w.writeAttribute('text:style-name', style);
         }
         if (inline.noteRefId != null) {
           final note = layout.notes.resolve(inline);
@@ -342,39 +388,32 @@ abstract final class OdtDocumentWriter {
               _writeNote(w, inline, note, label, layout);
               w.writeEndElement();
             } else {
-              _writeStyledText(w, label, style);
+              _writeStyledText(w, label, style, styleOnParent: commentLink);
             }
           } else {
             // Missing or ambiguous definitions must not erase cached text.
-            _writeStyledText(w, inline.text, style);
+            _writeStyledText(w, inline.text, style, styleOnParent: commentLink);
           }
         } else {
-          _writeStyledText(w, inline.text, style);
-        }
-        for (final commentId in inline.commentIds) {
-          final comment = layout.comment(commentId);
-          if (comment == null || !layout.markCommentWritten(commentId)) {
-            continue;
-          }
-          w.writeStartElement('annotation', prefix: 'office');
-          w.writeAttribute('office:display', 'true');
-          if (comment.author.isNotEmpty) {
-            w.writeStartElement('creator', prefix: 'dc');
-            w.writeText(comment.author);
-            w.writeEndElement();
-          }
-          if (comment.dateIso.isNotEmpty) {
-            w.writeStartElement('date', prefix: 'dc');
-            w.writeText(comment.dateIso);
-            w.writeEndElement();
-          }
-          _writeBlocks(w, comment.paragraphs, layout);
-          w.writeEndElement();
+          _writeStyledText(w, inline.text, style, styleOnParent: commentLink);
         }
         if (inline.inlineVisual case final visual?) {
           _writeVisual(w, visual.visual, layout, inline: true);
         }
         if (href != null && href.isNotEmpty) w.writeEndElement();
+        if (layout.commentsAllowed) {
+          for (final commentId in inline.commentIds) {
+            final comment = layout.comments.definitions[commentId];
+            final eligible =
+                layout.noteBodiesAllowed ||
+                !layout.comments.bodyAnchors.contains(commentId);
+            if (comment != null &&
+                eligible &&
+                layout.comments.emitted.add(commentId)) {
+              _writeComment(w, comment, layout);
+            }
+          }
+        }
       case WmlBreak():
         w.writeEmptyElement(
           inline.type == WmlBreakType.textWrapping
@@ -397,11 +436,76 @@ abstract final class OdtDocumentWriter {
     }
   }
 
-  static void _writeStyledText(XmlWriter w, String text, String style) {
+  static void _writeStyledText(
+    XmlWriter w,
+    String text,
+    String style, {
+    bool styleOnParent = false,
+  }) {
     if (text.isEmpty) return;
+    if (styleOnParent) {
+      writeOdfText(w, text);
+      return;
+    }
     w.writeStartElement('span', prefix: 'text');
     w.writeAttribute('text:style-name', style);
     writeOdfText(w, text);
+    w.writeEndElement();
+  }
+
+  static void _writeComment(
+    XmlWriter w,
+    WmlComment comment,
+    _OdtLayout layout,
+  ) {
+    w.writeStartElement('annotation', prefix: 'office');
+    w.writeAttribute('office:display', 'true');
+    if (comment.author.isNotEmpty) {
+      w.writeStartElement('creator', prefix: 'dc');
+      w.writeText(comment.author);
+      w.writeEndElement();
+    }
+    if (comment.dateIso.isNotEmpty) {
+      final validDate = _OdtComments.isDateTime(comment.dateIso);
+      w.writeStartElement(
+        validDate ? 'date' : 'date-string',
+        prefix: validDate ? 'dc' : 'meta',
+      );
+      w.writeText(comment.dateIso);
+      w.writeEndElement();
+    }
+    if (comment.initials.isNotEmpty) {
+      w.writeStartElement('creator-initials', prefix: 'meta');
+      w.writeText(comment.initials);
+      w.writeEndElement();
+    }
+    final previousComments = layout.commentsAllowed;
+    final previousCommentBody = layout.inCommentBody;
+    final previousNotes = layout.noteBodiesAllowed;
+    final previousReferenceSpace = layout.noteReferenceSpacePending;
+    layout.commentsAllowed = false;
+    layout.inCommentBody = true;
+    layout.noteBodiesAllowed = false;
+    layout.noteReferenceSpacePending = false;
+    try {
+      // Comments are a separate story. Nested comment IDs must not consume a
+      // later visible anchor, and note references retain marks without moving
+      // their bodies here. This also bounds recursive comment/note expansion.
+      _writeBlocks(w, comment.paragraphs, layout);
+      for (final visual in comment.visuals) {
+        w.writeStartElement('p', prefix: 'text');
+        _writeVisual(w, visual.visual, layout, inline: true);
+        w.writeEndElement();
+      }
+      if (comment.paragraphs.isEmpty && comment.visuals.isEmpty) {
+        _writePlainParagraph(w, '');
+      }
+    } finally {
+      layout.commentsAllowed = previousComments;
+      layout.inCommentBody = previousCommentBody;
+      layout.noteBodiesAllowed = previousNotes;
+      layout.noteReferenceSpacePending = previousReferenceSpace;
+    }
     w.writeEndElement();
   }
 
@@ -556,7 +660,11 @@ abstract final class OdtDocumentWriter {
           w.writeAttribute('table:style-name', layout.cellStyle(fill));
         }
         final notesAllowed = layout.noteBodiesAllowed;
-        if (placement.covered) layout.noteBodiesAllowed = false;
+        final commentsAllowed = layout.commentsAllowed;
+        if (placement.covered) {
+          layout.noteBodiesAllowed = false;
+          layout.commentsAllowed = false;
+        }
         try {
           if (cell.blocks.isEmpty) {
             _writePlainParagraph(w, '');
@@ -565,6 +673,7 @@ abstract final class OdtDocumentWriter {
           }
         } finally {
           layout.noteBodiesAllowed = notesAllowed;
+          layout.commentsAllowed = commentsAllowed;
         }
         w.writeEndElement();
         _writeCoveredCells(w, placement.columns - 1);
@@ -838,17 +947,99 @@ class _OdtNotes {
   }
 }
 
+/// Comments use one definition/emission registry across body and master parts.
+/// Visible main-body anchors take precedence over auxiliary stories, whose
+/// first visible anchor otherwise emits the comment. Hidden/recursive anchors
+/// do not consume it. Missing/ambiguous definitions leave source runs untouched.
+class _OdtComments {
+  _OdtComments(WmlDocument document) {
+    for (final comment in document.comments) {
+      definitions[comment.id] = definitions.containsKey(comment.id)
+          ? null
+          : comment;
+    }
+    for (final section in document.sections) {
+      for (final paragraph in _OdtNotes._visibleParagraphs(section.blocks)) {
+        for (final run in paragraph.inlines.whereType<WmlRun>()) {
+          bodyAnchors.addAll(run.commentIds);
+        }
+      }
+    }
+  }
+
+  final definitions = <int, WmlComment?>{};
+  final emitted = <int>{};
+  final bodyAnchors = <int>{};
+
+  // XML Schema dateTime has stricter lexical/calendar constraints than
+  // DateTime.parse, which accepts overflow dates and compact ISO forms.
+  static final _dateTime = RegExp(
+    r'^(-?)([0-9]{4,})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+    r'T([01][0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9])'
+    r'(?:\.([0-9]+))?(Z|[+-](?:0[0-9]|1[0-4]):[0-5][0-9])?$',
+  );
+
+  static bool isDateTime(String value) {
+    // Scan just the edges. A trailing-whitespace regex can retry at every
+    // interior space and take quadratic time on malformed imported metadata.
+    var start = 0;
+    var end = value.length;
+    while (start < end && _isXmlWhitespace(value.codeUnitAt(start))) {
+      start++;
+    }
+    while (end > start && _isXmlWhitespace(value.codeUnitAt(end - 1))) {
+      end--;
+    }
+    final normalized = value.substring(start, end);
+    final match = _dateTime.firstMatch(normalized);
+    if (match == null || match.end != normalized.length) return false;
+    final year = match[2]!;
+    if (year == '0000' || (year.length > 4 && year.startsWith('0'))) {
+      return false;
+    }
+    // Only the last four digits affect leap years; do not parse an unbounded
+    // extended year into a machine integer or depend on the host time zone.
+    final cycle = int.parse(year.substring(year.length - 4));
+    final leap = cycle % 4 == 0 && (cycle % 100 != 0 || cycle % 400 == 0);
+    final month = int.parse(match[3]!);
+    final days = month == 2
+        ? (leap ? 29 : 28)
+        : const {4, 6, 9, 11}.contains(month)
+        ? 30
+        : 31;
+    if (int.parse(match[4]!) > days) return false;
+    if (match[5] == '24' &&
+        (match[6] != '00' ||
+            match[7] != '00' ||
+            (match[8]?.contains(RegExp('[1-9]')) ?? false))) {
+      return false;
+    }
+    final zone = match[9];
+    return zone == null ||
+        zone == 'Z' ||
+        zone.substring(1, 3) != '14' ||
+        zone.endsWith(':00');
+  }
+
+  static bool _isXmlWhitespace(int unit) =>
+      unit == 0x20 || unit == 0x09 || unit == 0x0a || unit == 0x0d;
+}
+
 class _OdtLayout {
   _OdtLayout(this.document, {_OdtLayout? sharedMedia})
     : media = sharedMedia?.media ?? <String>[],
       _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
       notes = sharedMedia?.notes ?? _OdtNotes(document),
+      comments = sharedMedia?.comments ?? _OdtComments(document),
       noteBodiesAllowed = sharedMedia == null;
 
   final WmlDocument document;
   final List<String> media;
   final _OdtNotes notes;
+  final _OdtComments comments;
   bool noteBodiesAllowed;
+  bool commentsAllowed = true;
+  bool inCommentBody = false;
   bool inNoteBody = false;
   bool noteReferenceSpacePending = false;
   final Map<String, String> _runStyles = <String, String>{};
@@ -1012,16 +1203,29 @@ class _OdtLayout {
     });
   }
 
-  final Set<int> _writtenComments = <int>{};
-
-  WmlComment? comment(int id) {
-    for (final comment in document.comments) {
-      if (comment.id == id) return comment;
+  String sectionBreakStyle(
+    int index,
+    WmlSectionBreakKind kind, {
+    required String baseStyle,
+  }) {
+    final name = 'SB$index';
+    if (_sectionBreakStyles.add(name)) {
+      final buffer = StringBuffer(
+        '<style:style style:name="$name" style:family="paragraph" '
+        'style:parent-style-name="$baseStyle" '
+        'style:master-page-name="mp$index">'
+        '<style:paragraph-properties',
+      );
+      if (kind != WmlSectionBreakKind.continuous) {
+        buffer.write(' fo:break-before="page"');
+      }
+      buffer.write(' style:page-number="auto"/></style:style>');
+      _styleBuffers.add(buffer.toString());
     }
-    return null;
+    return name;
   }
 
-  bool markCommentWritten(int id) => _writtenComments.add(id);
+  final Set<String> _sectionBreakStyles = <String>{};
 
   String listStyle({required bool ordered}) => ordered ? 'L2' : 'L1';
 

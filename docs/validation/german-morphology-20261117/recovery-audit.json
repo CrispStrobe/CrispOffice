@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "audited_at_utc": "2026-11-17T14:07:55.997669+00:00",
+  "scope": "Integrity and source binding of previously recorded validation. No tests or benchmarks rerun; later merged source is outside this audit.",
+  "recovered_evidence_commit": "286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86",
+  "qualified_remote_source": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
+  "qualified_source_tree": "efa8c68569f579e5ff63452eeed0b3607a54fe9c",
+  "github_actions_used": false,
+  "archives": {
+    "final-validation.tar.gz": {
+      "bytes": 348465,
+      "sha256": "3b06be9800e34aa3c78dd20dfa548ade18772470916aebaba1dfc3f382056428",
+      "member_digests_verified": 66,
+      "complete_member_index": true,
+      "unchanged_from_recovered_checkpoint": true
+    },
+    "morphology-corpora.tar.gz": {
+      "bytes": 98537,
+      "sha256": "ed9edba7c7c391eec6008d1fa2bfa2a9cb1c17e568fb8897f2b099f61c4b6a10",
+      "member_digests_verified": 22,
+      "complete_member_index": true,
+      "unchanged_from_recovered_checkpoint": true
+    },
+    "exploratory-evidence.tar.gz": {
+      "bytes": 1906060,
+      "sha256": "2d66661101a3450432f9128004f4cd2513ffdb2291fc71a5af6fc75d0b34334b",
+      "member_digests_verified": 43,
+      "complete_member_index": true,
+      "unchanged_from_recovered_checkpoint": true
+    }
+  },
+  "receipts": {
+    "engine": {
+      "sha256": "78b582b72a4c1f28096a5a6dd57fa2c9082a170a9dc1407b2cc372223017b06e",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 1070,
+      "preserved_workspace_inputs_verified": 1,
+      "preserved_harness_inputs_verified": 0,
+      "external_dependency_paths_not_revalidated": [],
+      "command_logs_verified": 4,
+      "mismatches": []
+    },
+    "editor": {
+      "sha256": "c2d6e97a4fdf088de4ff715551948da8d2bfbe11400d0ace2d3454f2e68c2dac",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 1070,
+      "preserved_workspace_inputs_verified": 1,
+      "preserved_harness_inputs_verified": 0,
+      "external_dependency_paths_not_revalidated": [],
+      "command_logs_verified": 1,
+      "mismatches": []
+    },
+    "analysis": {
+      "sha256": "e9ea0196f1bbd26ee0bdb656cff7ce9ca06a53e43b0ca84f582fa295f7861623",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 1070,
+      "preserved_workspace_inputs_verified": 1,
+      "preserved_harness_inputs_verified": 0,
+      "external_dependency_paths_not_revalidated": [],
+      "command_logs_verified": 3,
+      "mismatches": []
+    },
+    "web": {
+      "sha256": "d2e3ac1d1edf2c52dd3222353edf847474883c2f5cdc5fe8514610b4bbee143e",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 1070,
+      "preserved_workspace_inputs_verified": 1,
+      "preserved_harness_inputs_verified": 0,
+      "external_dependency_paths_not_revalidated": [],
+      "command_logs_verified": 1,
+      "mismatches": []
+    },
+    "frozen-corpus": {
+      "sha256": "1c5d9f43da0f41961f03147fa12db68f738728eb839f45c6a457a908660220dd",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 40,
+      "preserved_workspace_inputs_verified": 0,
+      "preserved_harness_inputs_verified": 0,
+      "external_dependency_paths_not_revalidated": [
+        "dependency:characters/lib/characters.dart",
+        "dependency:characters/lib/src/characters.dart",
+        "dependency:characters/lib/src/characters_impl.dart",
+        "dependency:characters/lib/src/extensions.dart",
+        "dependency:characters/lib/src/grapheme_clusters/breaks.dart",
+        "dependency:characters/lib/src/grapheme_clusters/constants.dart",
+        "dependency:characters/lib/src/grapheme_clusters/table.dart"
+      ],
+      "command_logs_verified": 0,
+      "mismatches": []
+    },
+    "independent-review": {
+      "sha256": "7786c64c0ee1fc7002c874763a6169bb7a74e954adf1e286f17e7f70f615f2ee",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 40,
+      "preserved_workspace_inputs_verified": 0,
+      "preserved_harness_inputs_verified": 0,
+      "external_dependency_paths_not_revalidated": [
+        "dependency:characters/lib/characters.dart",
+        "dependency:characters/lib/src/characters.dart",
+        "dependency:characters/lib/src/characters_impl.dart",
+        "dependency:characters/lib/src/extensions.dart",
+        "dependency:characters/lib/src/grapheme_clusters/breaks.dart",
+        "dependency:characters/lib/src/grapheme_clusters/constants.dart",
+        "dependency:characters/lib/src/grapheme_clusters/table.dart"
+      ],
+      "command_logs_verified": 0,
+      "mismatches": []
+    },
+    "all-buckets": {
+      "sha256": "538fdcde265674ad85fbfe7691bd71dc987d2735ffe3e2bd23a967b908fe9364",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 42,
+      "preserved_workspace_inputs_verified": 1,
+      "preserved_harness_inputs_verified": 0,
+      "external_dependency_paths_not_revalidated": [],
+      "command_logs_verified": 0,
+      "mismatches": []
+    },
+    "timing-short": {
+      "sha256": "8e03b9f905d3cde423f46bed9dece4cc421cfd5660901a6b2d27bbce2225293c",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 41,
+      "preserved_workspace_inputs_verified": 1,
+      "preserved_harness_inputs_verified": 2,
+      "external_dependency_paths_not_revalidated": [],
+      "command_logs_verified": 0,
+      "mismatches": []
+    },
+    "timing-long": {
+      "sha256": "ea66d1e01e38957abecdbba1b52ee457b1f88bf4660f826d0f6702c7667e4330",
+      "standalone_equals_archived": true,
+      "recorded_passed": true,
+      "tracked_source_paths_verified": 41,
+      "preserved_workspace_inputs_verified": 1,
+      "preserved_harness_inputs_verified": 2,
+      "external_dependency_paths_not_revalidated": [],
+      "command_logs_verified": 0,
+      "mismatches": []
+    }
+  },
+  "workspace_lockfile": {
+    "receipt_paths": [
+      "pubspec.lock",
+      "quds_office_suite/pubspec.lock"
+    ],
+    "tracked_evidence_path": "docs/validation/proofing-grammar-expansion-20261117/integration/pubspec.lock",
+    "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "reason": "The workspace lockfile is ignored by Git. This preserved historical copy has the exact digest recorded by the qualification receipts.",
+    "verified_against_frozen_tree": true
+  },
+  "morphology_resources": {
+    "generated_file_digests_verified": 19,
+    "generated_dart_files_with_complete_notice": 17,
+    "upstream_license_revision": "346cf8916249eddc3d5918cfbc27d2b24826ca37",
+    "license_sha256": "b2d3b5d59972767d52997d9f47e67cd30661bcfc3eeb6e3e1ada1ee06634be52",
+    "license_git_blob_sha": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+    "pinned_upstream_license_git_blob_verified_via_github": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+    "note": "Nineteen generated-resource entries plus the manifest comprise the prior twenty-file regeneration check. This audit verifies saved bytes and notices; it does not rerun source generation or linguistic qualification."
+  },
+  "metadata_corrections": [
+    "Added CONTENTS_SHA256.json to final-validation-index.json; the archive itself is unchanged.",
+    "Separated ignored workspace pubspec.lock from tracked-source counts and mapped it to its exact preserved historical copy."
+  ],
+  "total_archive_members_verified": 131,
+  "verification_method": "Compared SHA-256 and byte lengths of each archive/member, standalone/archived receipt equality, command-log digests, and every recorded repository source input against immutable Git source 8649b79e. Workspace lockfile and timing harnesses use the explicit preserved-file mappings. The seven characters dependency files in corpus receipts remain recorded but were not separately revalidated in this audit.",
+  "status": "passed",
+  "errors": []
+}

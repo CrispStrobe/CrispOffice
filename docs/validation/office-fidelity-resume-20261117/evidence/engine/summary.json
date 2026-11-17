@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "cohort": "engine",
+  "head_before": "07481e944799e282f15e6286192b926cff1165df",
+  "head_after": "07481e944799e282f15e6286192b926cff1165df",
+  "started_utc": "2026-11-17T14:22:06.554333+00:00",
+  "finished_utc": "2026-11-17T14:22:57.739704+00:00",
+  "test_file_count": 88,
+  "test_batch_count": 4,
+  "tests_summary": {
+    "outcomes": {
+      "success": 1938
+    },
+    "failures": [],
+    "skipped": [],
+    "errors": [],
+    "runner_success": true
+  },
+  "inputs_unchanged": true,
+  "head_unchanged": true,
+  "runtime_versions_match": true,
+  "lock_unchanged_and_pinned": true,
+  "runtime_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "test_batches_cover_selection": true,
+  "test_batches_passed": true,
+  "format_scope_unchanged": true,
+  "harness_sha256": "757190927e2116270f4332c702e0025eb1c6faba18dc9f8d939f288634d05222",
+  "source_input_count": 1120,
+  "runtime_input_count": 8607,
+  "generated_format_exclusions": 18,
+  "full_receipt": "receipt.json in indexed archive"
+}

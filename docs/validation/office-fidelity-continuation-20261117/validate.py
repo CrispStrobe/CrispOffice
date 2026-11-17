@@ -99,8 +99,10 @@ ENGINE = ['font_subset_structure_test.dart',
  'odt_paragraph_properties_test.dart',
  'odt_header_footer_fidelity_test.dart',
  'odt_note_fidelity_test.dart',
+ 'odt_comment_fidelity_test.dart',
  'word_note_numbering_test.dart',
  'odp_table_fidelity_test.dart',
+ 'odp_transform_fidelity_test.dart',
  'odf_covered_cell_extraction_test.dart',
  'word_table_test.dart',
  'word_table_grid_addressing_test.dart',
@@ -113,7 +115,8 @@ ENGINE = ['font_subset_structure_test.dart',
 EDITOR = ['pdf_font_faces_test.dart', 'font_subset_render_test.dart', 'pdf_surface_test.dart', 'pdf_viewer_options_test.dart', 'host_fonts_test.dart', 'word_run_metrics_test.dart', 'paint_run_text_unicode_test.dart', 'paint_font_fallback_test.dart', 'word_hyphenation_caret_test.dart', 'word_hyphenation_paint_test.dart', 'word_hyphenation_resume_test.dart', 'word_hyphenation_source_presentation_test.dart', 'word_shaped_wrap_test.dart', 'word_proofing_correction_test.dart', 'word_proofing_geometry_test.dart', 'word_proofing_dialog_test.dart', 'word_proofing_session_test.dart', 'sheet_cell_state_history_test.dart', 'sheet_conditional_rendering_test.dart', 'sheet_explicit_style_history_test.dart', 'sheet_fill_intent_history_test.dart', 'sheet_font_color_intent_test.dart', 'sheet_grid_history_test.dart', 'sheet_hidden_sheet_test.dart', 'sheet_navigation_controller_test.dart', 'sheet_navigation_widget_test.dart', 'sheet_normal_font_auto_test.dart', 'sheet_normal_font_metrics_test.dart', 'sheet_rename_controller_test.dart', 'sheet_sort_history_test.dart', 'sheet_style_history_test.dart', 'sheet_view_history_test.dart', 'word_german_grammar_integration_test.dart', 'word_proofing_context_test.dart']
 HARPER = ['harper_provider_test.dart', 'harper_source_text_test.dart', 'harper_source_contract_test.dart']
 NODE = ['odt_table_merge_test.dart', 'odt_paragraph_properties_test.dart',
-        'odf_covered_cell_extraction_test.dart', 'odt_note_fidelity_test.dart']
+        'odf_covered_cell_extraction_test.dart', 'odt_note_fidelity_test.dart',
+        'odt_comment_fidelity_test.dart', 'odp_transform_fidelity_test.dart']
 COHORTS = {'engine': ('quds_office_engine', ENGINE),
            'editor': ('quds_office_editor', EDITOR),
            'harper': ('quds_proofing_harper', HARPER),
@@ -320,7 +323,7 @@ def runtime_identity(manifest_path, flutter='flutter', include_node=False):
     # and build caches are outputs, not source inputs.
     # Flutter's FontConfigManager scans all artifacts for fallback fonts,
     # including material_fonts outside the engine subtree.
-    for directory in ('bin/cache/dart-sdk', 'bin/cache/artifacts',
+    for directory in ('bin/internal', 'bin/cache/dart-sdk', 'bin/cache/artifacts',
                       'packages/flutter/lib', 'packages/flutter_test/lib',
                       'packages/flutter_tools/lib', 'packages/flutter_tools/bin'):
         paths.update(tree_files(root / directory))
@@ -385,7 +388,9 @@ def version_identity(output, flutter, include_node=False):
 
 def summarize_events(raw):
     events = []
-    for line in raw.decode(errors='replace').splitlines():
+    # JSON strings can contain U+2028/U+2029 literally. NDJSON records are
+    # delimited by LF, not every Unicode separator recognized by splitlines().
+    for line in raw.decode(errors='replace').split('\n'):
         try:
             value = json.loads(line)
         except ValueError:
@@ -418,7 +423,7 @@ def event_integrity(raw, package, tests):
         decoded = raw.decode(errors='replace')
         valid_utf8 = False
     malformed_object_lines = []
-    for index, line in enumerate(decoded.splitlines(), 1):
+    for index, line in enumerate(decoded.split('\n'), 1):
         try:
             value = json.loads(line)
         except ValueError:
@@ -505,6 +510,8 @@ def main():
     parser.add_argument('--flutter', default='flutter', help='Flutter CLI executable or verified offline launcher')
     args = parser.parse_args()
     output = args.output.resolve()
+    if output.exists() and any(output.iterdir()):
+        raise ValueError('Qualification output must be empty: ' + str(output))
     output.mkdir(parents=True, exist_ok=True)
     package_name, tests = COHORTS[args.cohort]
     package = REPO / 'packages' / package_name

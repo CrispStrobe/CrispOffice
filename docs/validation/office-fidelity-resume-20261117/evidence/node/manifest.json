@@ -1,0 +1,128 @@
+{
+  "label": "node",
+  "source_commit": "07481e944799e282f15e6286192b926cff1165df",
+  "archive_format": "tar.xz",
+  "archive_sha256": "2a8296afa467d51fd01f5e4778c8f88443d97672c36276e75e3be03a5ab4c192",
+  "archive_bytes": 461768,
+  "chunks": [
+    {
+      "path": "node.tar.xz.part000",
+      "size": 90000,
+      "sha256": "ff71ce1a0a979309091a1e6094212d00606959c97e7a0dfabac4f2bb429abaff"
+    },
+    {
+      "path": "node.tar.xz.part001",
+      "size": 90000,
+      "sha256": "9fb45f6460353f657fddb16ea6373972738a0003add8845c4e82b8bab6835272"
+    },
+    {
+      "path": "node.tar.xz.part002",
+      "size": 90000,
+      "sha256": "23964d837dde19fab63035e8b21303eef0dbae5ead2216f3ffa4e820bc20f83d"
+    },
+    {
+      "path": "node.tar.xz.part003",
+      "size": 90000,
+      "sha256": "9a48bc4337f756c07f3da03a3bdaf7d50ac72c2dd00f5940532873d2f67cdecb"
+    },
+    {
+      "path": "node.tar.xz.part004",
+      "size": 90000,
+      "sha256": "046e0e7df26a890b26fd2618887f22ac9c19c5c8bf6753e5577c199a245e32f2"
+    },
+    {
+      "path": "node.tar.xz.part005",
+      "size": 11768,
+      "sha256": "b1b7db3bd5b7f56be97a7204a8fa350e4a6c7d3a2b97142972f7dc97e43d2b43"
+    }
+  ],
+  "files": [
+    {
+      "path": "analyze.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "analyze.stdout.gz",
+      "size": 395,
+      "sha256": "0d193cf0fc76b158b7fdc07c08be3ce404b894fcf0390c3a4bbf5c47a1c51eea"
+    },
+    {
+      "path": "dart-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dart-version.stdout",
+      "size": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "flutter-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_bytes_as": "dart-version.stderr"
+    },
+    {
+      "path": "flutter-version.stdout",
+      "size": 642,
+      "sha256": "fbf179d7ddf21a85b6affea1a5ab13ff024f284dc391d5582e5c33b3175d052f"
+    },
+    {
+      "path": "format.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "analyze.stderr.gz"
+    },
+    {
+      "path": "format.stdout.gz",
+      "size": 68,
+      "sha256": "2cac603d335f4f8f1f2a4698a3f6a22ab7bc14a1674eba55d0edcec6db22707f"
+    },
+    {
+      "path": "node-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "same_bytes_as": "dart-version.stderr"
+    },
+    {
+      "path": "node-version.stdout",
+      "size": 9,
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    {
+      "path": "receipt.json",
+      "size": 364212,
+      "sha256": "7717fbcded74f8cde8874329f5a39cd7e7128598c15b78a303a62b87058c7a8c"
+    },
+    {
+      "path": "runtime-inputs.after.json.gz",
+      "size": 401787,
+      "sha256": "a1d65f166dc26b7e41cc2ee949939a824664f50d813d9698663c3d46288f663c"
+    },
+    {
+      "path": "runtime-inputs.before.json.gz",
+      "size": 401787,
+      "sha256": "a1d65f166dc26b7e41cc2ee949939a824664f50d813d9698663c3d46288f663c",
+      "same_bytes_as": "runtime-inputs.after.json.gz"
+    },
+    {
+      "path": "tests-01.stderr.gz",
+      "size": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "same_bytes_as": "analyze.stderr.gz"
+    },
+    {
+      "path": "tests-01.stdout.gz",
+      "size": 6747,
+      "sha256": "3a93771afb7a27115544fb9872c347bd674c1b2ebf24923dbf87f9ef7eeeba7b"
+    },
+    {
+      "path": "validate-used.py",
+      "size": 38651,
+      "sha256": "757190927e2116270f4332c702e0025eb1c6faba18dc9f8d939f288634d05222"
+    }
+  ],
+  "file_count": 16,
+  "unique_content_count": 11
+}
