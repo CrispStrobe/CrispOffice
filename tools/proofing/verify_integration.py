@@ -31,6 +31,7 @@ COMMAND_TIMEOUT_SECONDS = 900
 EDITOR_TESTS = [
     "word_proofing_session", "word_proofing_dialog", "word_proofing_correction",
     "word_proofing_geometry", "word_proofing_navigation", "word_input_focus",
+    "word_proofing_context", "word_german_grammar_integration",
     "word_hyphenation_paint", "word_hyphenation_source_presentation",
     "word_hyphenation_resume", "word_hyphenation_caret",
     "platform_spelling_provider", "word_find_replace_history",
@@ -47,6 +48,7 @@ INCOMING_ENGINE_TESTS = [
     "sfnt_cmap_validation", "pdf_actual_text_scope", "pdf_logical_text_export",
     "sheet_conditional_fidelity", "sheet_conditional_style_priority_integration",
     "sheet_rename_adversarial", "sheet_rename_fidelity",
+    "odt_document_writer", "odp_presentation_writer",
 ]
 HARPER_WEB_FILES = [
     "web/harper_worker.mjs", "web/quds_proofing_harper.js",

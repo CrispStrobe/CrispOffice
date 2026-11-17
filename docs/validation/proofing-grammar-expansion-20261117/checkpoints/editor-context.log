@@ -1,0 +1,7 @@
+00:00 +0: loading /workspace/scratch/d0298adcd22a/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart
+00:00 +0: review centers a late finding and preserves Unicode clusters
+00:02 +1: an insertion has a visible and accessible context marker
+00:02 +2: short passages retain their complete context without ellipses
+00:02 +3: long findings remain bounded without splitting joined emoji
+00:03 +4: narrow review at large text scale does not hide its finding
+00:03 +5: All tests passed!

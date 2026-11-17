@@ -89,6 +89,73 @@ void main() {
     expect(transport.calls, 0);
   });
 
+  test(
+    'Latin and Unicode locale aliases dispatch the correct English dialect',
+    () async {
+      final List<String> languages = <String>[];
+      final _Transport transport = _Transport((String payload) async {
+        final Map<String, Object?> decoded =
+            jsonDecode(payload) as Map<String, Object?>;
+        languages.add(decoded['language']! as String);
+        return response();
+      });
+      final HarperProofingProvider provider = HarperProofingProvider(
+        transport: transport,
+      );
+      addTearDown(provider.dispose);
+      const Map<String, String> aliases = <String, String>{
+        'en-Latn': 'en-US',
+        'en-Latn-GB-u-nu-latn': 'en-GB',
+        'EN_latn_CA': 'en-CA',
+        'en-AU-u-ca-gregory': 'en-AU',
+        'en-Latn-IN': 'en-IN',
+      };
+      for (final MapEntry<String, String> alias in aliases.entries) {
+        expect(provider.supportsLanguage(alias.key), isTrue);
+        final OfficeProofingResult result = await provider.check(
+          request(language: alias.key),
+        );
+        expect(result.status, OfficeProofingStatus.success, reason: alias.key);
+        expect(languages.last, alias.value);
+        expect(result.findings.single.originalText, 'an');
+        expect(result.findings.single.start, 16);
+      }
+      expect(transport.calls, aliases.length);
+    },
+  );
+
+  test(
+    'unknown dialects, variants and scripts never become American English',
+    () async {
+      final _Transport transport = _Transport((_) async => response());
+      final HarperProofingProvider provider = HarperProofingProvider(
+        transport: transport,
+      );
+      addTearDown(provider.dispose);
+      for (final String tag in <String>[
+        'en-NZ',
+        'en-ZZ',
+        'en-Cyrl-US',
+        'en-US-1901',
+        'en-GB-oxendict',
+        'en-US-x-private',
+        'en-US-u',
+        'en-US-u-12',
+        'en--US',
+        'de-1901',
+        'de-Latn-DE-1996',
+      ]) {
+        expect(provider.supportsLanguage(tag), isFalse, reason: tag);
+        expect(
+          (await provider.check(request(language: tag))).status,
+          OfficeProofingStatus.unsupported,
+          reason: tag,
+        );
+      }
+      expect(transport.calls, 0);
+    },
+  );
+
   test('unavailable backend differs from a successful clean result', () async {
     final absent = HarperProofingProvider(
       transport: _Transport(
