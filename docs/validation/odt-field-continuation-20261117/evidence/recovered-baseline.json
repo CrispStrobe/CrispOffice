@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "label": "recovered-baseline",
+  "head": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+  "startedAt": "2026-11-17T20:07:08.172306+00:00",
+  "finishedAt": "2026-11-17T20:07:23.364143+00:00",
+  "durationSeconds": 15.139193519000003,
+  "cwd": "packages/quds_office_engine",
+  "command": [
+    "/workspace/scratch/8762e41974dc/runtime-recovery/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/8762e41974dc/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/8762e41974dc/runtime-recovery/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "test/odt_page_field_fidelity_test.dart",
+    "test/odt_imported_field_fidelity_test.dart"
+  ],
+  "exitCode": 1,
+  "expectedExitCode": 1,
+  "sourceScopes": [
+    "packages/quds_office_engine/lib",
+    "packages/legacy_doc_parser/lib",
+    "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+    "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml"
+  ],
+  "sourceInputCount": 392,
+  "changedInputs": [],
+  "inputManifest": "recovered-baseline.inputs.json.gz",
+  "inputManifestSha256": "3e8b6b14e3960592e5d8a8ab295d180b792373972a08b7c4c8b7db660ca41e66",
+  "packageConfigSha256": "7c4b428b1e1829fd448efe9c67d81be488b494b085ded663bf94fdbdbfec0713",
+  "dartExecutableSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "substantiveTestCounts": {
+    "success": 31,
+    "failure": 24
+  },
+  "terminalEvents": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 5263
+    }
+  ],
+  "testErrors": [
+    {
+      "testID": 7,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 109:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5008
+    },
+    {
+      "testID": 11,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 109:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5015
+    },
+    {
+      "testID": 12,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 109:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5022
+    },
+    {
+      "testID": 14,
+      "error": "Expected: null\n  Actual: ' NUMPAGES '\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 86:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 117:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5032
+    },
+    {
+      "testID": 16,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 124:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5036
+    },
+    {
+      "testID": 18,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 131:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5041
+    },
+    {
+      "testID": 19,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 138:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5045
+    },
+    {
+      "testID": 33,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5168
+    },
+    {
+      "testID": 34,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5174
+    },
+    {
+      "testID": 36,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 149:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5182
+    },
+    {
+      "testID": 35,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5184
+    },
+    {
+      "testID": 37,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 159:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5185
+    },
+    {
+      "testID": 39,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 172:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5188
+    },
+    {
+      "testID": 40,
+      "error": "Expected: '1718'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 1718\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 184:5  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5191
+    },
+    {
+      "testID": 38,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5193
+    },
+    {
+      "testID": 41,
+      "error": "Expected: null\n  Actual: ' PAGE \\\\* ROMAN '\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 86:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 202:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5194
+    },
+    {
+      "testID": 43,
+      "error": "Expected: '017'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 017\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 202:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5198
+    },
+    {
+      "testID": 42,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5199
+    },
+    {
+      "testID": 44,
+      "error": "Expected: '17'\n  Actual: ''\n   Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: 17\n",
+      "stackTrace": "package:matcher                                   expect\ntest/odt_imported_field_fidelity_test.dart 85:5   _expectCached\ntest/odt_imported_field_fidelity_test.dart 202:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5201
+    },
+    {
+      "testID": 45,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5203
+    },
+    {
+      "testID": 47,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5208
+    },
+    {
+      "testID": 48,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 392:9  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5213
+    },
+    {
+      "testID": 50,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 434:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5218
+    },
+    {
+      "testID": 51,
+      "error": "Expected: empty\n  Actual: _SyncStarIterable<XmlElement>:[Instance of 'XmlElement']\n",
+      "stackTrace": "package:matcher                               expect\ntest/odt_page_field_fidelity_test.dart 434:7  main.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 5225
+    }
+  ],
+  "outputs": {
+    "stdout": {
+      "path": "recovered-baseline.stdout.gz",
+      "uncompressedBytes": 34039,
+      "uncompressedSha256": "02fdcb646a05bc2d460adbc7c2a1c0be2c28370da1c752af3181b641f02834fe",
+      "compressedSha256": "0d45159a4f375b2b0f4d162ebc1099ecee614fd7557630a9bed4457713728744"
+    },
+    "stderr": {
+      "path": "recovered-baseline.stderr.gz",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressedSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  },
+  "passed": true,
+  "harnessSha256": "d9a3d42f56662c096f7dab4c8385bc931ebe8481118977fbc3be2ebf412de057",
+  "packageConfigBeforeSha256": "7c4b428b1e1829fd448efe9c67d81be488b494b085ded663bf94fdbdbfec0713",
+  "packageConfigStable": true
+}
