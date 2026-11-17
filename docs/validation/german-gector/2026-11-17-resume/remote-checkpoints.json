@@ -1,0 +1,189 @@
+{
+  "scope": "Verified first-parent remote checkpoints through the implementation preceding this evidence save. Each was fetched and its tree and ordered parents checked. Later final documentation checkpoints are visible in branch history.",
+  "checkpoints": [
+    {
+      "sha": "7df1f56824db306085a638f1f7debbae5efc754c",
+      "tree": "12704485b9c4cb7d2e4c69e08177cac5fe584f24",
+      "parents": [
+        "c98c75eae50ddabfa8eb9aa918ed1af9754b7923"
+      ],
+      "subject": "Freeze incoming refs before German proofing continuation [skip ci]"
+    },
+    {
+      "sha": "294b45f1c7b024f10e5165a0efba2ab3f6df4706",
+      "tree": "f4cc94d1349cab4a3fce0660f3671a056eaf6be0",
+      "parents": [
+        "7df1f56824db306085a638f1f7debbae5efc754c",
+        "388bd7451067794b58276d174fe05470aa9994ed"
+      ],
+      "subject": "Integrate captured main grammar and ODT changes [skip ci]"
+    },
+    {
+      "sha": "9f29e927f4e6ab01ca0a0115035144dea700172c",
+      "tree": "e2d34411c831cff63aa4f837c71a36aed0029f2c",
+      "parents": [
+        "294b45f1c7b024f10e5165a0efba2ab3f6df4706",
+        "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e"
+      ],
+      "subject": "Integrate captured spelling repairs and native quality evidence [skip ci]"
+    },
+    {
+      "sha": "ca01fb9a637c18298863f28263926150cff681d1",
+      "tree": "ff1c0634b876d2c20b10954221a1ed99278eaf3c",
+      "parents": [
+        "9f29e927f4e6ab01ca0a0115035144dea700172c",
+        "7a9702c3b74e0e905c76fcf467d608bbb852d004"
+      ],
+      "subject": "Integrate captured Office qualification and decoration repair [skip ci]"
+    },
+    {
+      "sha": "42d6f3025006599b0a00144c653db58f6a650b8d",
+      "tree": "eeb6bf6a99e76f92bc105d4362492c94e945c2af",
+      "parents": [
+        "ca01fb9a637c18298863f28263926150cff681d1",
+        "8b19ead89800f81ed9743ffbaf3279ac88fdd06d"
+      ],
+      "subject": "Integrate captured optional AOT analysis and Studio provider [skip ci]"
+    },
+    {
+      "sha": "2ea09a994ee1c1f8ced69aa24d3a0e5721ee88fa",
+      "tree": "042dff3ef65f069f6d8527edcb8ccb8d750aa48c",
+      "parents": [
+        "42d6f3025006599b0a00144c653db58f6a650b8d",
+        "93c832f53982a9f5956f19ae0cb9418f55fac8c0"
+      ],
+      "subject": "Retain captured Office continuation evidence and history [skip ci]"
+    },
+    {
+      "sha": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+      "tree": "042dff3ef65f069f6d8527edcb8ccb8d750aa48c",
+      "parents": [
+        "2ea09a994ee1c1f8ced69aa24d3a0e5721ee88fa",
+        "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+        "4391669c881cbcba372c742d2300c24cdc465a2f",
+        "156cc755df74dcbafec0ebd882945349c40a5005"
+      ],
+      "subject": "Retain byte-identical ODT feature and vendor patch ancestry [skip ci]"
+    },
+    {
+      "sha": "4b0d2f0858cfcd395b87c2093c1d8fb18d08b06d",
+      "tree": "678a23549bec27530287bf9a51b683d860a212b3",
+      "parents": [
+        "43d43061ac33e2e3b336a79fb4b07b036bc617a8"
+      ],
+      "subject": "Preserve integrated ancestry and fresh native quality baseline [skip ci]"
+    },
+    {
+      "sha": "b6fd19c4b2cf5f6ad84b925e9dd34759beb9bb2c",
+      "tree": "a06802c6d0e31e4b1b19c87ea85254e1d0203467",
+      "parents": [
+        "4b0d2f0858cfcd395b87c2093c1d8fb18d08b06d"
+      ],
+      "subject": "Keep paragraph tab stops distinct in cached ODT styles [skip ci]"
+    },
+    {
+      "sha": "f82b80c163ef03b80504f39104647f50946825e7",
+      "tree": "079581c200f3b4151cc069e2130966a7812a9c94",
+      "parents": [
+        "b6fd19c4b2cf5f6ad84b925e9dd34759beb9bb2c"
+      ],
+      "subject": "Prioritize verified irregular participles in bounded perfect contexts [skip ci]"
+    },
+    {
+      "sha": "d4b6e5b47db1c3d8c9e85521e97a3034896ccd76",
+      "tree": "79c2a69dcadaf7033cd301c08005fc0077286249",
+      "parents": [
+        "f82b80c163ef03b80504f39104647f50946825e7"
+      ],
+      "subject": "Reuse identical guarded model predictions within opted-in requests [skip ci]"
+    },
+    {
+      "sha": "86d1d26177a46331f40a8439bea487051ff30878",
+      "tree": "84604640de7878d04c280c52ff2b350f318bdb1e",
+      "parents": [
+        "d4b6e5b47db1c3d8c9e85521e97a3034896ccd76"
+      ],
+      "subject": "Measure request reuse with actual worker telemetry and varied paragraphs [skip ci]"
+    },
+    {
+      "sha": "72f41442596023e936c371f35bc75cc664770a85",
+      "tree": "f2ee5e1a302805d0da911691452155b674e81407",
+      "parents": [
+        "86d1d26177a46331f40a8439bea487051ff30878"
+      ],
+      "subject": "Preserve finite noun casing for Schuppen and Lernen [skip ci]"
+    },
+    {
+      "sha": "2f12488c1687aaa5c2e1529adebcbfd803cbaba7",
+      "tree": "8d7d408dcc558e7c8510057c96026328c44c59b2",
+      "parents": [
+        "72f41442596023e936c371f35bc75cc664770a85"
+      ],
+      "subject": "Preserve repeated German words with ambiguous grammatical roles [skip ci]"
+    },
+    {
+      "sha": "8d01c14dff747e21ff51b47325c3e33367f3443e",
+      "tree": "844c64467f6666df2494fdefb4d192960178350f",
+      "parents": [
+        "2f12488c1687aaa5c2e1529adebcbfd803cbaba7",
+        "04f66dbc01c33402fb719913d067a7e9fdaa8447"
+      ],
+      "subject": "Integrate bounded German scanner and reconciled Office/AOT work [skip ci]"
+    },
+    {
+      "sha": "0a997ef68572988c8ba54e438d2247166480f3b8",
+      "tree": "17d665791124cf72812137e8ed5eeb122d0615dc",
+      "parents": [
+        "8d01c14dff747e21ff51b47325c3e33367f3443e",
+        "84283211709fba069564c181476f577c34bd2d64"
+      ],
+      "subject": "Retain incoming Office consumer and qualification evidence [skip ci]"
+    },
+    {
+      "sha": "9200923cadfd7f9120199e0c6019e8f5404a77b5",
+      "tree": "b373abe2191d50af10a8f795ac811ee138a332dc",
+      "parents": [
+        "0a997ef68572988c8ba54e438d2247166480f3b8",
+        "ec5ecbff742580c0e7d1136507b953e8cc877e4c"
+      ],
+      "subject": "Retain qualified Office branch and formatting checkpoint [skip ci]"
+    },
+    {
+      "sha": "b51eb51a9597b1fdf62a56687e0082ca3898e322",
+      "tree": "1938c27ef534ef98d4c486ba1f1b2ca3e9387923",
+      "parents": [
+        "9200923cadfd7f9120199e0c6019e8f5404a77b5",
+        "9297f077d68256042afd520d55d72f5997e746b3"
+      ],
+      "subject": "Integrate daemon-free AOT transport and Studio qualification [skip ci]"
+    },
+    {
+      "sha": "d6bd5e62ed43e6f3f6226353f7d78a0093e0b8fe",
+      "tree": "4b0995be8f80dd8ad49ad4b3e8bf5b5e5911fca1",
+      "parents": [
+        "b51eb51a9597b1fdf62a56687e0082ca3898e322",
+        "914d74f13d1ae75d9b45ea0e51873c31ff63ec62"
+      ],
+      "subject": "Integrate recent main Office columns, chart data, and paragraph breaks [skip ci]"
+    },
+    {
+      "sha": "06120cb042b3f26d3f345e922032c9d72f4f5bc2",
+      "tree": "4b0995be8f80dd8ad49ad4b3e8bf5b5e5911fca1",
+      "parents": [
+        "d6bd5e62ed43e6f3f6226353f7d78a0093e0b8fe",
+        "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+        "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+        "b990f9041cce78e3768c2ee0190413bf26962431"
+      ],
+      "subject": "Retain byte-equivalent Office feature and vendor histories [skip ci]"
+    },
+    {
+      "sha": "800db3f205cef9d17d1f5d7f28de596fad507e1b",
+      "tree": "7bf8b9481df99419b23d0932d70715153e95eed1",
+      "parents": [
+        "06120cb042b3f26d3f345e922032c9d72f4f5bc2"
+      ],
+      "subject": "Bound German accusative object case to complete reviewed verb frames [skip ci]"
+    }
+  ]
+}

@@ -63,3 +63,20 @@ are the next implementation/validation steps. Reuse must rerun source guards
 and distinguish repeated boilerplate from unique prose in measurements.
 
 No GitHub Actions job has been dispatched, polled or awaited by this work.
+
+## Second fixed incoming snapshot and implementation checkpoints
+
+The second paginated snapshot spans 18:04:35–18:04:37 UTC (19:04 CET).
+All 150 captured branch tips and 122 PR heads are ancestors of
+`06120cb042b3f26d3f345e922032c9d72f4f5bc2`. See
+`latest-incoming-snapshot.json`, `latest-incoming-ancestry.json` and
+`latest-integration-decisions.json`. This fixed cutoff bounds the integration
+claim; it is not an assertion about later concurrent branch updates.
+
+The branch now also saves the authored participle preference, finite Lernen /
+Schuppen dictionary forms, duplicate grammatical-role protection, opt-in
+request-local native tag reuse and its actual-worker instrumentation, and the
+bounded accusative verb-object rule. `remote-checkpoints.json` indexes the
+verified remote checkpoints preceding this evidence save. Focused development
+tests are evidence for those individual changes; final combined-source tests
+and serial native measurements are pending.
