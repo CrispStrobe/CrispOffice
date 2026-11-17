@@ -4,13 +4,51 @@ Roadmap accepted and implementation resumed: 16 November 2026. Original
 baseline: `bad2d9d30fd94db8de92a4f4bf83a55b0692b884`.
 
 The CrispStrobe fork implements offline German spelling, automatic German and
-US/UK English hyphenation, fifteen German writing-rule categories, and a
+US/UK English hyphenation, sixteen German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
 web assets. Mobile system spelling has an adapter with protocol tests; the
 experimental German model remains a separate evaluation.
 
-## Current grammar expansion — 17 November 2026
+## Current licensed morphology expansion — 17 November 2026
+
+The [morphology continuation report](validation/german-morphology-20261117/README.md)
+records the integration of all 213 captured fork/upstream branch and PR
+references, incremental remote checkpoints, and local qualification. The
+qualified implementation is saved at `8649b79efe0f2ad57d8f187233ed3f8b8177b3a0`.
+No GitHub Actions queue is used or awaited.
+
+German phrase checks now use **67,492 noun lemmas and 127,987 distinct readings**
+derived from pinned Unicode Inflection data under **Unicode-3.0**. This broadens
+article case, noun case, dative plural and adjective agreement beyond the earlier
+60-noun handwritten inventory. The new independently ignorable
+`de.grammar.noun-case` rule handles forms such as `mit dem Kunde → mit dem Kunden`.
+The engine remains pure Dart and offline on native and web. Python is used only
+to regenerate the checked-in resource.
+
+The generator corroborates each inflection against the source dictionary,
+retains genuine gender and case alternatives, and records unresolved readings
+that veto confident corrections. A noun replacement must also belong to the
+existing modern spelling vocabulary for its locale. The source is not used to
+accept arbitrary spellings. A small first-party spelling supplement adds 14
+ordinary noun forms, of which seven were absent from the previous vocabulary.
+All original and Unicode license notices are retained.
+
+The unchanged 256-sentence comparison improves **1/73 to 68/73 exact targeted
+morphology corrections**, with **0/175 valid controls flagged** before and after.
+A separate 84-sentence review set reaches **24/24 exact corrections and 0/60
+flagged controls**. Dart VM and compiled JavaScript produce identical results,
+including protected-text, source-offset and ignored-rule variants. These are
+bounded qualification sets, not estimates of general German grammar accuracy.
+Broad sentence parsing remains outside this finite phrase analyzer.
+
+The resource uses 256 lazily decoded buckets. Prewarming follows actual noun
+phrase candidates, so unrelated capitals and protected text do not trigger
+whole-dictionary initialization. See the [morphology data documentation](../packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md)
+for generation, safeguards, format and limitations. Existing English Harper,
+English/German hyphenation, and the 57 finite German verb families are retained.
+
+## Earlier grammar expansion — 17 November 2026
 
 The [grammar expansion report](validation/proofing-grammar-expansion-20261117/README.md)
 records the continuation from `62563c61`, incoming fork/upstream reconciliation,
@@ -195,7 +233,7 @@ The experimental German model remains disabled and was not rerun.
   platform spelling backend. Provider absence must be visible to the host.
 - Evaluate the experimental German ONNX model separately; do not enable it by
   default or claim broad German grammar coverage from a limited rule set.
-- Accept MIT, BSD, Apache and MPL components with their actual obligations.
+- Accept MIT, BSD, Apache, Unicode-3.0 and MPL components with their actual obligations.
   Do not add GPL/AGPL or LGPL-only components, dictionaries or rules under this
   plan. An explicitly selectable MPL alternative is acceptable.
 - Review engine code, dictionary/affix data, hyphenation patterns, rules, model
@@ -236,11 +274,11 @@ live model properties and Word serialization coverage.
 | P1 | Shared asynchronous proofing contract, language selection and availability | Implemented | Distinct unavailable, unsupported, failed and successful results; stable document/block identity, revision, UTF-16 ranges, category, rule ID, explanation and literal replacements. |
 | P2 | Automatic German/US/UK English and explicit discretionary hyphenation | Implemented | Licensed patterns and measured break candidates in shared editor/PDF layout; source text unchanged, grapheme/bidi and source-hit coverage, Word setting round-trips. |
 | P3 | Offline German spelling and user vocabulary | Implemented | Pinned MIT finite word forms, locale/case handling, bounded suggestions, host-owned vocabulary and ignore controls; no claim of complete German morphology. |
-| P4 | German style and finite grammar rules | Implemented | Fifteen independently authored categories, including phrase morphology and contextual clauses, plus a host terminology provider; explicit exclusions and reviewable suggestions. |
+| P4 | German style and finite grammar rules | Implemented | Sixteen independently authored categories, with licensed noun morphology, contextual clauses and a host terminology provider; explicit exclusions and reviewable suggestions. |
 | P5 | Word proofing UI and lifecycle | Implemented | Whole-story traversal, manual/background checks, stale-result rejection, squiggles, F7 review, correction menu and guarded undoable corrections. |
 | P6 | Optional English Harper and mobile spelling adapters | Implemented with runtime limits | Actual Linux native and Node/Wasm integration exercised; browser startup blocked before loading a page; mobile adapter protocol tested without Android/iOS device acceptance. |
 | P7 | German model evaluation | Evaluated; not enabled | Exact artifacts and original notices retained; recorded probe matched 9/18 error cases and changed 1/12 valid controls. No application provider or automatic model download. |
-| P8 | Integration and documentation | Current source locally qualified and remotely saved | Source `3a2ada5a` passed four strict analyzers, 258 VM/23 Node hyphenation checks, 424 VM/424 Node proofing tests, 515 incoming regressions, 335 editor tests, separate IME regression and release web packaging. All 2,102 source inputs and nine runtime files stayed unchanged. Independent targeted grammar comparison improved 0/39 to 39/39 exact corrections and 4/213 to 0/213 false findings; actual native/Wasm English and license continuity also passed. Browser/device limits remain explicit. |
+| P8 | Integration and documentation | Current source locally qualified and remotely saved | Morphology source `8649b79e` retains all 213 captured incoming references. The current report records exact regeneration, VM/compiled-JavaScript corpora and component checks, editor integration, license continuity and runtime boundaries. Earlier qualification reports retain their original source attribution. |
 
 ## Chosen components and data
 
@@ -298,9 +336,9 @@ selected from the appropriate source columns; the first key column is not
 an allowlist. Historical `daß` and `Fluß` are not accepted merely because the
 source contains their keys.
 
-The generated standard vocabulary has **444,123 forms**: 443,925 selected
-source forms plus 198 additional forms from the independently authored
-1,264-form common-word supplement. There are **9,451 Swiss additions**.
+The generated standard vocabulary has **444,130 forms**: 443,925 selected
+source forms plus 205 additional forms from the independently authored
+1,278-form common-word supplement. There are **9,451 Swiss additions**.
 `de-DE` and `de-AT` share this vocabulary; it is not an exhaustive Austrian
 regional dictionary. `de-CH` also maps accepted sharp-s forms to `ss` and rejects
 sharp-s tokens. Exact notices, selection rules, hashes and reproduction commands
@@ -346,7 +384,7 @@ competing spelling engines in this implementation.
 
 ### German writing rules and terminology
 
-`GermanWritingRulesProvider` contains fifteen independently authored
+`GermanWritingRulesProvider` contains sixteen independently authored
 rule categories. It is not a general German grammar parser.
 
 | Rule ID | Category | Implemented boundary |
@@ -359,6 +397,7 @@ rule categories. It is not a general German grammar parser.
 | `de.grammar.seit-seid` | Grammar | `ihr seit` before listed predicates, or `seid` between a listed finite verb and a reviewed temporal expression; never a generic `seid + time` rewrite. |
 | `de.grammar.preposition-pronoun` | Grammar | Reviewed wrong pronoun cases after fixed-case prepositions, such as `mit mich → mit mir` and `für ihm → für ihn`; competing infinitive/additive/nominal contexts are excluded. |
 | `de.grammar.preposition-case` | Grammar | Article case/gender for reviewed nouns after fixed-case prepositions, such as `mit den Mann → mit dem Mann`. |
+| `de.grammar.noun-case` | Grammar | Required noun endings in unambiguous determiner phrases, including weak nouns such as `mit dem Kunde → mit dem Kunden`; suggested forms must pass the modern spelling guard. |
 | `de.grammar.dative-plural` | Grammar | Missing dative plural `n` in reviewed forms, such as `mit den Kinder → mit den Kindern`; plural `n`/`s` forms and optional literary singular dative `e` are preserved. |
 | `de.grammar.adjective-ending` | Grammar | Weak/mixed adjective endings when all retained determiner/noun analyses agree, such as `ein gute Buch → ein gutes Buch`; adverb modifiers and unresolved analyses are preserved. |
 | `de.grammar.das-dass` | Grammar | Selected matrix subject/verb plus a complement clause with its own subject and known finite final verb, such as `Ich denke, das du kommst.` |
@@ -404,16 +443,24 @@ closed matching-backtick spans are protected from these rules. Quote/bracket fin
 paragraphs can be unbalanced within an individual paragraph. No rule rewrites
 text without a user-selected correction.
 
-The phrase rules intentionally omit variable-case prepositions such as
-`wegen`, `trotz` and `dank`, two-way prepositions, unlisted noun forms, weak-noun
-inference and arbitrary compound analysis. Adverb/adjective phrases such as
+The phrase rules use the licensed noun resource described above, with the
+small first-party inventory retained only as a fallback for absent, resolved
+forms. They intentionally omit variable-case prepositions such as `wegen`,
+`trotz` and `dank`, two-way prepositions, unlisted noun forms and arbitrary
+compound analysis. Weak-noun endings are checked through complete recorded
+paradigms, without inferring a paradigm for an unknown word. Adverb/adjective phrases such as
 `die automatisch geänderte Datei`, `ohne/um ... zu` infinitives, and valid
 relative clauses have explicit negative controls. A bounded lookahead that
-cannot establish a complete context abstains. Overlapping article/adjective
-repairs are staged by rechecking after the user's first selected correction.
+cannot establish a complete context abstains. When a unique target analysis
+supports separate article and adjective repairs, both can be offered on
+disjoint ranges; subsequent checks still use the corrected source. Ambiguous
+genders, optional forms, nominalized adjective alternatives and unresolved
+source analyses cause abstention.
 
-The implementation, small lexicons and example corpus are independently
-authored. Conceptual references include the IDS descriptions of
+The rule implementation, adjective/verb inventories and example corpora are
+independently authored. The larger noun morphology resource is derived from
+Unicode Inflection under its original license, with seven bounded factual
+corrections or validity additions documented in its manifest. Conceptual references include the IDS descriptions of
 [prepositional case](https://grammis.ids-mannheim.de/kontrastive-grammatik/5747)
 and [adjective inflection](https://grammis.ids-mannheim.de/progr%40mm/5255).
 No external rule files or example corpus are included.
