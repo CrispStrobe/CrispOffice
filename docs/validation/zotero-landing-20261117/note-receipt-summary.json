@@ -1,0 +1,192 @@
+{
+  "full_receipt_archive_path": "canonical-validation/note-amendment/receipt.json",
+  "full_receipt_sha256": "4ce70c3367e37575271be81e4f46e65e3f1fcf84bc9e4af74fe1e0013e560212",
+  "accepted_base_environment_preserved": true,
+  "all_passed": true,
+  "analysis_config_restored": true,
+  "base_qualified_source_commit": "f510060e35d580cbc361985a123927705c92ddc4",
+  "expected_supplemental_tests": 2,
+  "finished_utc": "2026-11-17T09:28:19.645765+00:00",
+  "github_actions_queried_awaited_or_rerun": false,
+  "original_analyzer_config_sha256": null,
+  "repo": "/workspace/scratch/9f398661059e/quds-landing",
+  "runner_sha256": "76fcead5394bffd5fab2c949b41d51c944ecad779ccb834c6f2d188838155490",
+  "shared_helper_sha256": "c4e35225bc37fafbdf3fd24a00f485bea592d65fe5e7325e1f8dece7d057f761",
+  "source_commit": "b2dc226e2ed82cda8f1bada18fb0a1e17347b5fc",
+  "source_delta_sha256": "528acf4d17b4bfdd8202cbf0f8ac9e0bbab1bfe43920b9cb88928af23c6b0ab5",
+  "source_matches_frozen_commit": true,
+  "source_tree": "642436fb32d73cb73706a4dd1c1fce32d0f2fb8b",
+  "started_utc": "2026-11-17T09:25:59.651859+00:00",
+  "status": "passed",
+  "substantive_success_count": 116,
+  "unchanged_manifests_and_locked_versions": true,
+  "unchanged_non_evidence_files_from_previous_qualification": 3332,
+  "working_head_after": "b2dc226e2ed82cda8f1bada18fb0a1e17347b5fc",
+  "workspace": "/workspace/scratch/9f398661059e/canonical-validation/note-workspace",
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/9f398661059e/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "/workspace/scratch/9f398661059e/canonical-validation/note-workspace/packages/quds_office_engine/qualification/odt_note_boundary_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f398661059e/quds-landing",
+      "duration_seconds": 17.268,
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T09:26:24.755829+00:00",
+      "name": "strict-analysis",
+      "started_utc": "2026-11-17T09:26:07.487198+00:00",
+      "status": "passed",
+      "stderr": "strict-analysis/stderr.gz",
+      "stderr_gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "strict-analysis/stdout.gz",
+      "stdout_gzip_sha256": "96924fd127233e78b65e072a96a0bc1c626e229f7121ba418fe82cc46258f671",
+      "stdout_sha256": "69809e19c239e731d8181011ed00a0922c661d745f58e1d3b68c13dbc6f55939",
+      "timed_out": false,
+      "timeout_seconds": 600
+    },
+    {
+      "command": [
+        "/workspace/scratch/9f398661059e/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--language-version=3.12",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "/workspace/scratch/9f398661059e/canonical-validation/note-workspace/packages/quds_office_engine/qualification/odt_note_boundary_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f398661059e/quds-landing",
+      "duration_seconds": 0.258,
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T09:26:25.020004+00:00",
+      "name": "format",
+      "started_utc": "2026-11-17T09:26:24.760706+00:00",
+      "status": "passed",
+      "stderr": "format/stderr.gz",
+      "stderr_gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "format/stdout.gz",
+      "stdout_gzip_sha256": "aed40d801986b4bbff572299ab6b4148db0f7e556f3a082ac07331cf118120e9",
+      "stdout_sha256": "a40ad12fb00da204aef8022501e6a7f27cfb35fadc57fc68e24d4ab38915567c",
+      "timed_out": false,
+      "timeout_seconds": 600
+    },
+    {
+      "command": [
+        "/workspace/scratch/9f398661059e/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/odt_document_writer_test.dart",
+        "test/odf_export_text_fidelity_test.dart",
+        "test/odt_structure_fidelity_test.dart",
+        "test/odt_header_footer_fidelity_test.dart",
+        "test/odt_paragraph_properties_test.dart",
+        "test/odt_table_merge_test.dart",
+        "test/odf_covered_cell_extraction_test.dart",
+        "test/office_search_fidelity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f398661059e/canonical-validation/note-workspace/packages/quds_office_engine",
+      "duration_seconds": 83.678,
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T09:27:48.721959+00:00",
+      "name": "odt-note-regressions",
+      "started_utc": "2026-11-17T09:26:25.023998+00:00",
+      "status": "passed",
+      "stderr": "odt-note-regressions/stderr.gz",
+      "stderr_gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "odt-note-regressions/stdout.gz",
+      "stdout_gzip_sha256": "348ca13d2dfc88f9a6868326fb7b796aba63cc71ad03c84404722d75f784a7da",
+      "stdout_sha256": "eaaab85b7a2ad5ba74737e5570d0bd135fdeedc9b79b52f8edd00de9fe6bb230",
+      "timed_out": false,
+      "timeout_seconds": 600,
+      "test_summary": {
+        "errors": [],
+        "excluded_success_cases": [],
+        "exclusions_exact": true,
+        "expected_exclusion_names": [],
+        "missing_selected_suites": [],
+        "passed": true,
+        "raw_runner_outcomes": {
+          "success": 114
+        },
+        "raw_success_count": 114,
+        "resolved_suite_paths": [
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart",
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/odf_export_text_fidelity_test.dart",
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/odt_document_writer_test.dart",
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart",
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/odt_paragraph_properties_test.dart",
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/odt_structure_fidelity_test.dart",
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/odt_table_merge_test.dart",
+          "/workspace/scratch/9f398661059e/quds-landing/packages/quds_office_engine/test/office_search_fidelity_test.dart"
+        ],
+        "runner_success": true,
+        "substantive_success_count": 114,
+        "suite_paths": [
+          "test/odt_document_writer_test.dart",
+          "test/odf_export_text_fidelity_test.dart",
+          "test/odt_structure_fidelity_test.dart",
+          "test/odt_header_footer_fidelity_test.dart",
+          "test/odt_paragraph_properties_test.dart",
+          "test/odt_table_merge_test.dart",
+          "test/odf_covered_cell_extraction_test.dart",
+          "test/office_search_fidelity_test.dart"
+        ],
+        "unexpected_suites": []
+      }
+    },
+    {
+      "command": [
+        "/workspace/scratch/9f398661059e/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=2",
+        "--reporter=json",
+        "qualification/odt_note_boundary_test.dart"
+      ],
+      "cwd": "/workspace/scratch/9f398661059e/canonical-validation/note-workspace/packages/quds_office_engine",
+      "duration_seconds": 28.754,
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T09:28:17.490605+00:00",
+      "name": "note-boundary-probes",
+      "started_utc": "2026-11-17T09:27:48.734721+00:00",
+      "status": "passed",
+      "stderr": "note-boundary-probes/stderr.gz",
+      "stderr_gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "note-boundary-probes/stdout.gz",
+      "stdout_gzip_sha256": "95e67f60b8f154d22f3665a527491f100e9fa31ae84632c7c9fb362c8554523f",
+      "stdout_sha256": "3b38cf9c987c005cc60fdfc2185663f2865fd8aeb0c2f7e5fe6b09aa57d07112",
+      "timed_out": false,
+      "timeout_seconds": 600,
+      "test_summary": {
+        "errors": [],
+        "excluded_success_cases": [],
+        "exclusions_exact": true,
+        "expected_exclusion_names": [],
+        "expected_success_count": 2,
+        "missing_selected_suites": [],
+        "passed": true,
+        "raw_runner_outcomes": {
+          "success": 2
+        },
+        "raw_success_count": 2,
+        "resolved_suite_paths": [
+          "/workspace/scratch/9f398661059e/canonical-validation/note-workspace/packages/quds_office_engine/qualification/odt_note_boundary_test.dart"
+        ],
+        "runner_success": true,
+        "substantive_success_count": 2,
+        "suite_paths": [
+          "qualification/odt_note_boundary_test.dart"
+        ],
+        "unexpected_suites": []
+      }
+    }
+  ]
+}
