@@ -1,0 +1,117 @@
+{
+  "status": "passed",
+  "review_script_sha256": "b310e607a4ed556574c32d06046b57a381a34e1b2776e5b200388c17bb5283d3",
+  "review_helper_sha256": "2bbef41da1d762e7aa288ee14808ecfbddd4d4ca653ceea997b17618e918fd8f",
+  "source_commit": "2ae8bf3420bd20ec33115c96a44a38a0d3a78df0",
+  "base_qualified_source": "837d06edbde08a2465e99cbbb15927ee4c87d8ac",
+  "receipt_sha256": "5541de74fde52f9c76ba76628c05592f93cd127daf4bce83c3046e00139d828e",
+  "accepted_full_run_passes": 2576,
+  "amendment_passes_reported_separately": 26,
+  "counts_not_added_to_unique_total": true,
+  "exact_non_documentation_delta": {
+    "packages/quds_office_engine/README.md": {
+      "after": {
+        "blob": "3eb07d3164ed6a675e38d1a852f927c2b3da678e",
+        "mode": "100644"
+      },
+      "before": {
+        "blob": "671700e8f67d9e8f3752046ea4cf9e8cb9e0d90b",
+        "mode": "100644"
+      }
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "after": {
+        "blob": "9adfac930e156265220b59c2ded2dc64b9b5b752",
+        "mode": "100644"
+      },
+      "before": {
+        "blob": "ed62f8b141a75858335fb00583b9bfd7a5c4893f",
+        "mode": "100644"
+      }
+    },
+    "packages/quds_office_engine/test/odt_document_writer_test.dart": {
+      "after": {
+        "blob": "399e0f1d00a21bf5f2b4ec938c941f5bc340e9ad",
+        "mode": "100644"
+      },
+      "before": {
+        "blob": "97c359889ad0772e21af02fdcad8d7eb2002e055",
+        "mode": "100644"
+      }
+    }
+  },
+  "unchanged_non_documentation_input_files": 3324,
+  "commands": [
+    {
+      "name": "locked-offline-resolution",
+      "exit_code": 0,
+      "stdout_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "strict-analysis",
+      "exit_code": 0,
+      "stdout_sha256": "4f60eab074a30659a709db7133ab1bb86814916d49f368b22f503a92970af0f0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "format",
+      "exit_code": 0,
+      "stdout_sha256": "496e595f1c6c48775fe87dc8f716b26746dc64a8405f3168ac13bf5d14248b1a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "odt-tests",
+      "exit_code": 0,
+      "stdout_sha256": "863206190453f7641eed98f61e59403eac2028cbb47d2b7f4a7b05976eb4ee2d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed_tests": 26,
+      "skips": 0,
+      "test_suites": 3,
+      "all_exact_suite_identities_verified": true,
+      "duplicate_test_ids": false,
+      "terminal_success": true
+    }
+  ],
+  "input_maps": {
+    "source": {
+      "before_sha256": "b0b4ab52c83dfb24f267d50615bb3809504d45ea91f4e9571c83ccdc2840af8c",
+      "after_sha256": "b0b4ab52c83dfb24f267d50615bb3809504d45ea91f4e9571c83ccdc2840af8c",
+      "semantically_equal": true
+    },
+    "dependencies": {
+      "before_sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6",
+      "after_sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6",
+      "semantically_equal": true
+    },
+    "runtime": {
+      "before_sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be",
+      "after_sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be",
+      "semantically_equal": true
+    },
+    "workspace": {
+      "before_sha256": "6f1a46030de2edce09bcdf0a0eef0c7e91e55e41237f7e26578dc2c104c30ac1",
+      "after_sha256": "6f1a46030de2edce09bcdf0a0eef0c7e91e55e41237f7e26578dc2c104c30ac1",
+      "semantically_equal": true
+    },
+    "system": {
+      "before_sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0",
+      "after_sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0",
+      "semantically_equal": true
+    },
+    "harness": {
+      "before_sha256": "8e48e49a722416d73cce1f258dd92b522046db6dcd30ab10b4e3c00bb2fad1e7",
+      "after_sha256": "8e48e49a722416d73cce1f258dd92b522046db6dcd30ab10b4e3c00bb2fad1e7",
+      "semantically_equal": true
+    }
+  },
+  "source_binding": {
+    "verified_input_count": 3327,
+    "all_recorded_bytes_and_modes_match_immutable_commit": true,
+    "untracked_execution_inputs": []
+  },
+  "dependency_input_count": 5099,
+  "analyzer_config_restored": true,
+  "all_50_zotero_paths_unchanged": true,
+  "blocking_discrepancies": []
+}
