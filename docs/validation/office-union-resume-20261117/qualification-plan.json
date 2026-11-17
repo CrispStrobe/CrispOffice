@@ -7,6 +7,7 @@
     "Historical outcomes remain historical",
     "Independent archive readback and receipt review required before final acceptance"
   ],
+  "frozen_source_commit": "3d487008d9ba93d29b1f3a6b0eca5f77bbd7cc70",
   "gates": {
     "boundary_consumers": {
       "bounded_precedence_control": 1,
@@ -80,7 +81,7 @@
     "sheet": "14bd9c810691352e5b8c29005eb8d5af57bfa905"
   },
   "pr144_cutoff": "a1e026b496f91b54bbd3017aae54717bf25a5586",
-  "pr_number": null,
+  "pr_number": 150,
   "qualification_accepted": false,
   "schema_version": 1,
   "source_policy": "Freeze the published clean source commit after this checkpoint. Keep source/tests/harness/HEAD fixed; publish each completed evidence archive from a separate checkout. Historical outcomes remain historical."

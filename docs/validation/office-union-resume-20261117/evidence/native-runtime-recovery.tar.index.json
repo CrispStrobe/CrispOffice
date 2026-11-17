@@ -1,0 +1,225 @@
+{
+  "archive": "native-runtime-recovery.tar.xz",
+  "bytes": 42748,
+  "sha256": "8b636b8a026c80b5a1a095face543f5fe0f3e63cdf7a906633898e43d0c3a65c",
+  "classification": "exact-native-runtime-recovery-no-current-product-qualification",
+  "member_count": 43,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "binary/CMakeCache.txt",
+      "bytes": 30954,
+      "sha256": "652e476bde6919a7f7da08ea1b39bb3df923a923770070cbc7e26c1b0d8f769f"
+    },
+    {
+      "path": "binary/compile_commands.json",
+      "bytes": 38099,
+      "sha256": "c75a1fbf24d4095e91eaabc2f442cc477c743b11cc9ac967043e1f6f92420239"
+    },
+    {
+      "path": "binary/logs/01-compiler.log",
+      "bytes": 231,
+      "sha256": "78fc11ae2c3ff7c235eb18ed90989d18f6cc864fb27027f839368cd0888deebc"
+    },
+    {
+      "path": "binary/logs/02-cxx.log",
+      "bytes": 232,
+      "sha256": "00f7e3c3e6a0308d7b60cc02429720ef6000d84c0add523f7dc030058d19961b"
+    },
+    {
+      "path": "binary/logs/03-venv.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binary/logs/04-tool-install.log",
+      "bytes": 681,
+      "sha256": "da700e60920d298af840c6a3b698a5c0d5d3dd706e470076c157f22f8f26e03c"
+    },
+    {
+      "path": "binary/logs/05-CrispEmbed-init.log",
+      "bytes": 694,
+      "sha256": "66ac12bfeee9ebce3b69c7e7aa9ef4a64a186f4a14c7425bc8e08c378a7ab771"
+    },
+    {
+      "path": "binary/logs/06-CrispEmbed-remote.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binary/logs/07-CrispEmbed-abbrev.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binary/logs/08-sparse-source.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binary/logs/09-CrispEmbed-fetch.log",
+      "bytes": 123,
+      "sha256": "35a51495c2473636671965a79d223e284286643e1d16ee16dba035e1695799cf"
+    },
+    {
+      "path": "binary/logs/10-CrispEmbed-checkout.log",
+      "bytes": 102,
+      "sha256": "66a6568895c1a1e5a3b2617e11240f0973777d50d7581feaa549efeb284e6186"
+    },
+    {
+      "path": "binary/logs/11-CrispEmbed-head.log",
+      "bytes": 41,
+      "sha256": "52af8327eb47eecf3d8bc2493623a3aa19992cc119b41486df59c023bb1c064e"
+    },
+    {
+      "path": "binary/logs/12-CrispEmbed-ggml-init.log",
+      "bytes": 699,
+      "sha256": "5488431c9696683eb79e5b77d942226cc36260dcf4952659a11743ed6b5367a7"
+    },
+    {
+      "path": "binary/logs/13-CrispEmbed-ggml-remote.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binary/logs/14-CrispEmbed-ggml-abbrev.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "binary/logs/15-CrispEmbed-ggml-fetch.log",
+      "bytes": 117,
+      "sha256": "9803a8ea2765f838e947ecaabcfa1619e591f7adb3e2e7555866748c40970ac0"
+    },
+    {
+      "path": "binary/logs/16-CrispEmbed-ggml-checkout.log",
+      "bytes": 107,
+      "sha256": "9830338d860fae5b1563496e673cad511101f1c850a0dd303c9463dae5960c44"
+    },
+    {
+      "path": "binary/logs/17-CrispEmbed-ggml-head.log",
+      "bytes": 41,
+      "sha256": "e601323d793ee4e885b083f65101988246e42a4e9dd3aa1aec32f0124f3b45cc"
+    },
+    {
+      "path": "binary/logs/18-configure.log",
+      "bytes": 1261,
+      "sha256": "902fd5dad93518faf7139340c4569b097cec951d7bb693a1c951c8c2c855ffe9"
+    },
+    {
+      "path": "binary/logs/19-build.log",
+      "bytes": 3163,
+      "sha256": "0780c96ef9a41f6ee8d8af80d6644c942f763a994ed79f986a4a58c49c888bef"
+    },
+    {
+      "path": "binary/logs/20-native-contract.log",
+      "bytes": 237,
+      "sha256": "0a092aeec6e69cbdcb22e40bdc63d117e4bd323997c86018985545152a550c73"
+    },
+    {
+      "path": "binary/logs/21-install.log",
+      "bytes": 487,
+      "sha256": "9fe82df0d40b9553ca2e7715f3a1a660cd856f6fc900f3a97ae787e019ddf6ce"
+    },
+    {
+      "path": "binary/recovery.json",
+      "bytes": 39064,
+      "sha256": "c31e2fc52a633749891f25483e5bae791a152744d12d3f3506a30e262439e9f2"
+    },
+    {
+      "path": "binary/tool-install.json",
+      "bytes": 14891,
+      "sha256": "f4dbe3281d52a91c15f77ef72301d7a9d9fac1f76894cd83f1b9589a976bafa7"
+    },
+    {
+      "path": "model-and-python/binary-recovery.log",
+      "bytes": 920,
+      "sha256": "d412c01ad190c3540368024740b7dda0ed0c423f025f2f3c7523fd5f183f45fe"
+    },
+    {
+      "path": "model-and-python/convert-f32.log",
+      "bytes": 256,
+      "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97"
+    },
+    {
+      "path": "model-and-python/font-prerequisites.json",
+      "bytes": 2581,
+      "sha256": "810abbcac63ef88f9c78c230e8abd25dec8a14b2ba5729e86686583bd3a255dd"
+    },
+    {
+      "path": "model-and-python/gector-de-f32.gguf.manifest.json",
+      "bytes": 132371,
+      "sha256": "9c01e05a10ba6f57b30e29476ddf83823dc2170ab478e8435cb1ea7b06c36cf4"
+    },
+    {
+      "path": "model-and-python/model-download-verification.json",
+      "bytes": 3662,
+      "sha256": "d27bc7c1bf3e4b6e0734c4d1b1dbf86c1cd171211d82452bd544fdc735ad9c7d"
+    },
+    {
+      "path": "model-and-python/model-download.log",
+      "bytes": 1108,
+      "sha256": "14f0ac3369059f1256ff56ed32216a9a960a7e6fc2ad56b20be0bccc773c6c92"
+    },
+    {
+      "path": "model-and-python/native-env.sh",
+      "bytes": 743,
+      "sha256": "51a750285163e441bbd570ad5edf9fbf09f846958b90260e97b7378345717b6e"
+    },
+    {
+      "path": "model-and-python/pack-build.json",
+      "bytes": 1835,
+      "sha256": "46a12f818669d356910f04c3d32c74c7202c69a0aeadb4761d0cad8abeb188e0"
+    },
+    {
+      "path": "model-and-python/pack-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "model-and-python/pack-verify.json",
+      "bytes": 1835,
+      "sha256": "46a12f818669d356910f04c3d32c74c7202c69a0aeadb4761d0cad8abeb188e0"
+    },
+    {
+      "path": "model-and-python/pack-verify.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "model-and-python/pack.json",
+      "bytes": 9315,
+      "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+    },
+    {
+      "path": "model-and-python/python-freeze.txt",
+      "bytes": 459,
+      "sha256": "e224cc3c1a40e66221e2e9b805db802e8b5a28186aa4a6cb0d74e1ce97489c32"
+    },
+    {
+      "path": "model-and-python/python-install.log",
+      "bytes": 9867,
+      "sha256": "05dbf4d004efea86a66f1562af5aa29bc5eb48063339e3095a0de09fddae869e"
+    },
+    {
+      "path": "model-and-python/quantize.log",
+      "bytes": 18085,
+      "sha256": "446dd71d593eff629116072fdd41b3776199c77b78f7fe76217fabde05452da9"
+    },
+    {
+      "path": "model-and-python/ready.json",
+      "bytes": 2230,
+      "sha256": "483b74b4bc6a5734fe2610c9af987ca27cbca6d8feb1d89b81667b134e60b366"
+    },
+    {
+      "path": "scripts/download_bundle.py",
+      "bytes": 1019,
+      "sha256": "dcae5ac9de65d514fcdde7567194902d364d257d75203fe35cc996b694f27a1d"
+    },
+    {
+      "path": "scripts/recover_native_exact.py",
+      "bytes": 9027,
+      "sha256": "48e3ad87a8285e4a449b831ed637e54d90e3255c476587b87880949fe0f65d18"
+    }
+  ]
+}

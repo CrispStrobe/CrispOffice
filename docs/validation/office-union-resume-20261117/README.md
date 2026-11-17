@@ -16,6 +16,10 @@ The canonical selection now has 222 unique files (the previous 221 plus the fram
 
 ## Recovery and publication
 
-The consumer runtime was restored with all 710 archive members checked, 3,504 runtime file hashes matching, eight pinned fonts, and schema/render smoke controls. The complete recovery receipt is archived under `evidence/`. Flutter and native restoration are underway from the recorded exact pins.
+The consumer runtime was restored with all 710 archive members checked, 3,504 runtime file hashes matching, eight pinned fonts, and schema/render smoke controls. The complete recovery receipt is archived under `evidence/`. Flutter and native restoration are complete from the recorded exact pins. The rebuilt native library and quantizer, F32/mixed-Q4_K models, development pack, reference, and all 27 frozen Python dependencies reproduce their expected hashes. Native contract controls pass.
 
 Checkpoint publication uses GitHub Git Data objects and non-forced expected-SHA branch updates because this workspace has no CLI push credentials. Each meaningful source or completed-evidence checkpoint is published independently. A separate publication checkout will preserve the frozen test checkout. GitHub Actions and check/status endpoints are not queried or awaited.
+
+## Active frozen run
+
+The qualification source is published at `3d487008d9ba93d29b1f3a6b0eca5f77bbd7cc70`, with draft PR #150. The test checkout stays detached and clean at that commit. This evidence checkpoint changes only validation documentation; all source, tests and harnesses remain frozen.
