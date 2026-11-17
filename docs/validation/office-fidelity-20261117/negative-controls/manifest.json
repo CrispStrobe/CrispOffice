@@ -52,5 +52,34 @@
       "test.jsonl": "4aa3215c9358a64e2fe9128888730455078e2981674bddb8fba201b7e4dd8d0e",
       "test.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
+  },
+  "rename-save-undo": {
+    "archive": "rename-save-undo.tar.gz",
+    "sha256": "33f16b786a9f56b0e413f09498d00717c4a1fc3fb6e60511f6ae9279398aeeea",
+    "files": {
+      "receipt.json": "4766f70058056dbb2d1f3934c7490013211f7c0880ef4fd7742d6e122aa42073",
+      "sheet_conditional_dxf_edit_test.dart": "90afd3be386a5470ee8ec4e476da582731c2901726c6dd0aed9b41f959a53f06",
+      "sheet_rename.dart": "6ac82a96f6c196336990664acaafdfb0d5433348e353033280dac472365e5309",
+      "sheet_serial.dart": "5a8aa748b3b3e2caf5d8e3776e54fa18d2704cecbafcd0886a5e189fdf438854",
+      "tests.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests.stdout": "8185ced2c44f3a6d6a89a9a3552724db2c85f9cc6ff6bda53e96504416d0f2ed"
+    }
+  },
+  "numeric-guard-review": {
+    "archive": "numeric-guard-review.tar.gz",
+    "sha256": "fff8aa9c11f8d9b0a5d06a844b65c2e7780dcb6c2868c03879a335a8f4f3d3a9",
+    "files": {
+      "after/packages/quds_office_engine/lib/src/sheet/formula/formula_ast.dart": "766a72f98a95383007137824bdee899b67e2765ab612ae5ca19f22a782de1d0e",
+      "after/packages/quds_office_engine/lib/src/sheet/formula/formula_functions.dart": "01899654404992e8d68cd2846136b690117d02db2dd6dab446b03762404bfd4e",
+      "after/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": "682493a3bdb6c444c855c492c58936d74c7dc69afd64a5b49c27b3c95c58e23e",
+      "analyze.log": "4bee5604569d80723d61f11d52ea120a87fa1e516280282123d96d05fa411afe",
+      "before/packages/quds_office_engine/lib/src/sheet/formula/formula_ast.dart": "ad6c6e96375c0a68269a593e6dc74fd09314514f6abbc8c9a2e49f21a0f301b8",
+      "before/packages/quds_office_engine/lib/src/sheet/formula/formula_functions.dart": "e6b6020ba825d5c7302a09ee3346a52016f8c1279bfe39b30cbc1c38ef77b306",
+      "before/packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": "a2f5d5c535d2e1bcaca32e87ca0688b3f219d08703b2ef684840559e13bdccf2",
+      "before.json": "b3da8c808d441a94bf38ce3a018e7cc5a18930a4b36689c87c68c355e051b9fc",
+      "numeric-guards.patch": "c631527b1e972f5704434e19f3d8f00386c7969d51252373ff6d6d0112f62138",
+      "receipt.json": "c82ea9aaf2c7116b15da7a1638d4fef6e6c12420038c6f7c79e0b38d6108a9d5",
+      "tests.jsonl": "09f51915c8d289dcdcfd201861fe9dba06a2a1f28a473f422c8f9c82aecb1d7d"
+    }
   }
 }

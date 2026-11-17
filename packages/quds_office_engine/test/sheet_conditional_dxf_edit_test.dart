@@ -220,6 +220,82 @@ void main() {
     expect(reopened.firstSheet.conditionalFormats.last.fillRgb, '12AB34');
     _expectValidIds(reopened, saved);
   });
+
+  for (final state in [
+    'fresh empty',
+    'fresh rule',
+    'native empty',
+    'native edit',
+  ]) {
+    test('rename save checkpoint permits undo and redo: $state', () {
+      final book = state == 'native edit'
+          ? _native()
+          : state == 'native empty'
+          ? SheetDeserializer().read(_save(SmlWorkbook()))
+          : SmlWorkbook();
+      final sheet = book.firstSheet;
+      final originalName = sheet.name;
+      if (state == 'fresh rule') {
+        sheet.conditionalFormats.add(
+          _rule('A1', fill: '12AB34')..formula = '$originalName!A1>0',
+        );
+      } else if (state == 'native edit') {
+        sheet.conditionalFormats.single.fillRgb = '12AB34';
+      }
+      final originalState = sheet.conditionalFormatState();
+      final rename = SheetRename.rename(book, sheet, 'Next');
+      final renamedState = sheet.conditionalFormatState();
+      _save(book);
+      expect(sheet.sourceConditionalFormatState, renamedState);
+
+      rename.undo();
+      expect(sheet.name, originalName);
+      expect(sheet.conditionalFormatState(), originalState);
+      var reopened = SheetDeserializer().read(_save(book));
+      expect(reopened.firstSheet.name, originalName);
+      expect(
+        reopened.firstSheet.conditionalFormats.map((rule) => rule.formula),
+        sheet.conditionalFormats.map((rule) => rule.formula),
+      );
+
+      rename.apply();
+      expect(sheet.name, 'Next');
+      expect(sheet.conditionalFormatState(), renamedState);
+      reopened = SheetDeserializer().read(_save(book));
+      expect(reopened.firstSheet.name, 'Next');
+      expect(
+        reopened.firstSheet.conditionalFormats.map((rule) => rule.formula),
+        sheet.conditionalFormats.map((rule) => rule.formula),
+      );
+      if (sheet.conditionalFormats.isNotEmpty) {
+        expect(reopened.firstSheet.conditionalFormats.single.fillRgb, '12AB34');
+      }
+    });
+  }
+
+  test(
+    'rename save checkpoint still rejects a newer saved conditional edit',
+    () {
+      final book = _native();
+      final sheet = book.firstSheet;
+      final rename = SheetRename.rename(book, sheet, 'Next');
+      _save(book);
+      sheet.conditionalFormats.single.fillRgb = '12AB34';
+      _save(book);
+      final source = sheet.sourceConditionalFormatState;
+      final native = book.package!
+          .getPart('/xl/worksheets/sheet1.xml')!
+          .readText();
+      expect(rename.undo, throwsStateError);
+      expect(sheet.name, 'Next');
+      expect(sheet.conditionalFormats.single.fillRgb, '12AB34');
+      expect(sheet.sourceConditionalFormatState, source);
+      expect(
+        book.package!.getPart('/xl/worksheets/sheet1.xml')!.readText(),
+        native,
+      );
+    },
+  );
 }
 
 SmlConditionalRule _rule(String range, {String fill = '', String font = ''}) =>

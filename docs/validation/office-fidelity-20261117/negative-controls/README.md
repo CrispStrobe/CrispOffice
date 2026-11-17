@@ -24,3 +24,10 @@ executed against the old looping implementation.
 The first combined 108-file run is preserved separately under
 `../attempts/pre-numeric-and-save-undo-repair/`, including its three real editor
 errors. Final qualification uses the repaired source and fresh full cohorts.
+
+`rename-save-undo.tar.gz` retains the focused five-case integration probe: three
+runtime errors before repair and two positive stale-edit controls. The numeric
+archive contains source review and 200 passing scoped repaired-source tests,
+including 31 numeric guard regressions. It is deliberately not an old-source
+negative execution; potentially unbounded expressions were not run on the old
+implementation. Neither archive contributes additional tests to final totals.
