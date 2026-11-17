@@ -1,0 +1,399 @@
+{
+  "started_at_utc": "2026-11-17T15:39:41.110610+00:00",
+  "source_commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "passed": true,
+  "github_actions_queried_or_awaited": false,
+  "scope": "Independent raw-event reconstruction, exact source/runtime hashes, incoming ancestry and evidence archive reconstruction.",
+  "auditor_sha256": "841c00058eee6c0e27d1877a3cfd443a8c12df39c557045ef1bbc550a5ac84a9",
+  "source_tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547",
+  "checkout_head": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "final_cohorts": [
+    {
+      "cohort": "odt-vm",
+      "receipt": "docs/validation/office-fidelity-lists-sections-20261117/qualification/odt-vm/receipt.json",
+      "receipt_sha256": "e07ff27d45494331c24d10756d93c7214f4561a9862072a3d2490e5ed335e869",
+      "test_file_count": 18,
+      "outcomes": {
+        "success": 353
+      },
+      "batches": [
+        {
+          "name": "test-1",
+          "tests": [
+            "odt_document_writer_test.dart",
+            "odt_structure_fidelity_test.dart",
+            "odt_table_merge_test.dart"
+          ],
+          "outcomes": {
+            "success": 39
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-2",
+          "tests": [
+            "odt_paragraph_properties_test.dart",
+            "odt_header_footer_fidelity_test.dart",
+            "odt_note_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 53
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-3",
+          "tests": [
+            "odt_comment_fidelity_test.dart",
+            "odt_list_fidelity_test.dart",
+            "odt_section_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 101
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-4",
+          "tests": [
+            "odf_export_text_fidelity_test.dart",
+            "odp_transform_fidelity_test.dart",
+            "odp_table_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 58
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-5",
+          "tests": [
+            "odp_presentation_writer_test.dart",
+            "odf_annotation_extraction_test.dart",
+            "odf_covered_cell_extraction_test.dart"
+          ],
+          "outcomes": {
+            "success": 35
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-6",
+          "tests": [
+            "office_search_fidelity_test.dart",
+            "word_note_numbering_test.dart",
+            "odf_text_box_extraction_test.dart"
+          ],
+          "outcomes": {
+            "success": 67
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        }
+      ],
+      "versions": {
+        "flutter": "3.47.8",
+        "dart": "3.13.7",
+        "node": "v24.22.1",
+        "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+        "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8"
+      },
+      "source_inputs": 1670,
+      "runtime_inputs": 8606,
+      "import_closure_files": 887
+    },
+    {
+      "cohort": "odt-node",
+      "receipt": "docs/validation/office-fidelity-lists-sections-20261117/qualification/odt-node/receipt.json",
+      "receipt_sha256": "0c79b5d2dfc113fe06f0a878779496006767223c051fbba6f7ee0eae408dc7ff",
+      "test_file_count": 10,
+      "outcomes": {
+        "success": 236
+      },
+      "batches": [
+        {
+          "name": "test-1",
+          "tests": [
+            "odt_list_fidelity_test.dart",
+            "odt_section_fidelity_test.dart",
+            "odt_note_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 92
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-2",
+          "tests": [
+            "odt_comment_fidelity_test.dart",
+            "odp_transform_fidelity_test.dart",
+            "odt_paragraph_properties_test.dart"
+          ],
+          "outcomes": {
+            "success": 76
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-3",
+          "tests": [
+            "odf_text_box_extraction_test.dart",
+            "odf_annotation_extraction_test.dart",
+            "odf_covered_cell_extraction_test.dart"
+          ],
+          "outcomes": {
+            "success": 41
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-4",
+          "tests": [
+            "office_search_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 27
+          },
+          "hidden_successful_completions": 1,
+          "runner_success": true
+        }
+      ],
+      "versions": {
+        "flutter": "3.47.8",
+        "dart": "3.13.7",
+        "node": "v24.22.1",
+        "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+        "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8"
+      },
+      "source_inputs": 1670,
+      "runtime_inputs": 8606,
+      "import_closure_files": 879
+    }
+  ],
+  "final_execution_outcomes": {
+    "success": 589
+  },
+  "final_file_executions": 28,
+  "node_repeats_selected_vm_cases": true,
+  "unique_final_source_inputs": 1670,
+  "unique_final_runtime_inputs": 8606,
+  "incoming_ancestry": {
+    "named_references": 240,
+    "captured_reference_revision_pairs": 241,
+    "captured_distinct_heads": 162,
+    "all_captured_heads_are_ancestors": true,
+    "prior_checkpoint_is_ancestor": true,
+    "finite_cutoff": "All exact revisions in api-inventory.json and git-fetch-inventory.json; later arrivals are outside this snapshot."
+  },
+  "consumer": {
+    "receipt": "/workspace/scratch/167d435dbecc/consumer-final-cf60/receipt.json",
+    "receipt_sha256": "c7c087a97ad7ee974437718d2681164528d534241dfa7e6e95a7b5220d45f734",
+    "summary": {
+      "fixtures": 24,
+      "passed": 24,
+      "failed": 0,
+      "schema_parts_passed": 96,
+      "schema_parts_total": 96
+    },
+    "input_counts": {
+      "source": 392,
+      "runtime": 10420
+    },
+    "output_hashes_verified": 305,
+    "fixture_names": [
+      "section-list",
+      "section-control-list",
+      "section-table",
+      "section-control-table",
+      "section-visual",
+      "section-frame",
+      "section-empty",
+      "section-continuous",
+      "section-continuous-empty",
+      "section-continuous-image-header",
+      "section-continuous-comment-header",
+      "section-continuous-new-size",
+      "section-heading-layout",
+      "paragraph-rtl-indent",
+      "section-oddPage-after-1",
+      "section-oddPage-after-2",
+      "section-evenPage-after-1",
+      "section-evenPage-after-2",
+      "list-skipped-levels",
+      "list-nonzero-start",
+      "list-mixed-markers",
+      "list-restart-continuation",
+      "list-literal-labels",
+      "list-native-start-override"
+    ],
+    "scope": "Independent inventory, receipt and artifact hash review; semantic assertions remain in the source-bound consumer checker."
+  },
+  "archives": [
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/attempts/frame-extraction-4fdac35-index.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/attempts/frame-extraction-4fdac35.tar.xz",
+      "sha256": "a3ac75e987893690c7312e05d3822a2ec95dd20fe9e3396d465da0b15078f085",
+      "compressed_bytes": 495216,
+      "restored_files": 27,
+      "restored_bytes": 1359271,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/attempts__frame-extraction-4fdac35-index"
+    },
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/baseline-097-index.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/baseline-097.tar.xz",
+      "sha256": "7f9646543d4b84a65e67468e30c575a19d2e3412fa6d1f6271d1a5b486468a41",
+      "compressed_bytes": 488080,
+      "restored_files": 261,
+      "restored_bytes": 972293,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/consumer__evidence__baseline-097-index"
+    },
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-attempt-59b8-index.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-attempt-59b8.tar.xz",
+      "sha256": "e6c3e5d3c3d0d28a09d1433d98f173a54e21fdc93d5dd743e7472344823f3b0a",
+      "compressed_bytes": 780744,
+      "restored_files": 297,
+      "restored_bytes": 1387081,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/consumer__evidence__final-attempt-59b8-index"
+    },
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-consumers-cf60-index.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-consumers-cf60.tar.xz",
+      "sha256": "25e826d37d837730c8af0efbc88e6e399823f5b0b5c22bc29911d15c2d2dfe9b",
+      "compressed_bytes": 793796,
+      "restored_files": 309,
+      "restored_bytes": 1430763,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/consumer__evidence__final-consumers-cf60-index"
+    },
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/heading-diagnostic-4fd-index.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/heading-diagnostic-4fd.tar.xz",
+      "sha256": "67f5c083a5eab4fc0ff2610723e0c83c60afb35c93c3858d3cc1e20ae8e6deb9",
+      "compressed_bytes": 545856,
+      "restored_files": 33,
+      "restored_bytes": 596193,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/consumer__evidence__heading-diagnostic-4fd-index"
+    },
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/extraction-correction/manifest.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/extraction-correction/extraction-correction.tar.xz",
+      "sha256": "27af9f5a838a927922a719c168ceb0836bc1477720bda97df4575dfaf392a71f",
+      "compressed_bytes": 493096,
+      "restored_files": 47,
+      "restored_bytes": 3350777,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/extraction-correction__manifest"
+    },
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/manifest.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/incoming-validation/incoming-validation.tar.xz",
+      "sha256": "19f6e427602c077ae0796dac55d0ae1c9fb9fa71c429288c4132067606dcdbd0",
+      "compressed_bytes": 870660,
+      "restored_files": 86,
+      "restored_bytes": 5429383,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/incoming-validation__manifest"
+    },
+    {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/final-qualification-index.json",
+      "archive": "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/final-qualification.tar.xz",
+      "sha256": "15fef1f2385e1ac1473eea21aee65704e152db20e012b334ae0acaab1b226b26",
+      "compressed_bytes": 519016,
+      "restored_files": 49,
+      "restored_bytes": 2736942,
+      "all_restored_hashes_verified": true,
+      "restoration_directory": "/workspace/scratch/167d435dbecc/office-fidelity-independent-mzs2ms9z/qualification-evidence__final-qualification-index"
+    }
+  ],
+  "archive_restored_file_count": 1109,
+  "accepted_final_archive_bindings": {
+    "odt-vm": {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/final-qualification-index.json",
+      "verified_required_files": 25,
+      "archive_sha256": "15fef1f2385e1ac1473eea21aee65704e152db20e012b334ae0acaab1b226b26"
+    },
+    "odt-node": {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/final-qualification-index.json",
+      "verified_required_files": 21,
+      "archive_sha256": "15fef1f2385e1ac1473eea21aee65704e152db20e012b334ae0acaab1b226b26"
+    },
+    "consumer": {
+      "index": "docs/validation/office-fidelity-lists-sections-20261117/consumer/evidence/final-consumers-cf60-index.json",
+      "verified_required_files": 307,
+      "archive_sha256": "25e826d37d837730c8af0efbc88e6e399823f5b0b5c22bc29911d15c2d2dfe9b"
+    }
+  },
+  "historical_incoming": {
+    "cohorts": [
+      {
+        "name": "gector-vm",
+        "source_commit": "097475fbda96aa4a6497d92f28d10f1aa5f640b4",
+        "outcomes": {
+          "success": 97,
+          "skipped": 1
+        },
+        "file_executions": 8,
+        "recorded_static_and_test_pass": true
+      },
+      {
+        "name": "engine-vm",
+        "source_commit": "097475fbda96aa4a6497d92f28d10f1aa5f640b4",
+        "outcomes": {
+          "success": 78
+        },
+        "file_executions": 5,
+        "recorded_static_and_test_pass": false
+      },
+      {
+        "name": "corrected-source/engine-node",
+        "source_commit": "56dc162bf9a1003189e36e1f2a4678620c824546",
+        "outcomes": {
+          "success": 49
+        },
+        "file_executions": 3,
+        "recorded_static_and_test_pass": true
+      },
+      {
+        "name": "corrected-source/editor",
+        "source_commit": "56dc162bf9a1003189e36e1f2a4678620c824546",
+        "outcomes": {
+          "success": 119
+        },
+        "file_executions": 6,
+        "recorded_static_and_test_pass": true
+      }
+    ],
+    "outcomes": {
+      "success": 343,
+      "skipped": 1
+    },
+    "file_executions": 22,
+    "ancillary_python_successes": 65,
+    "ancillary_python_skips": 0,
+    "corrected_engine_static_gates_verified": true,
+    "scope": "Historical incoming executions, separate from final source qualification. Original engine static failure and native inference skip remain explicit."
+  },
+  "current_files_hash_verified": 16075,
+  "limits": [
+    "Selected cohorts and authored consumer fixtures; not complete package suites or universal office round trips.",
+    "Node executions repeat selected VM cases and do not increase the unique-case count.",
+    "Archived failed/development attempts are hash-verified historical evidence and are excluded from final passing totals.",
+    "Historical incoming source/runtime receipts are reviewed as recorded executions, not asserted to equal final product bytes.",
+    "Hash review does not repeat LibreOffice conversion or replace the consumer checker semantic assertions."
+  ],
+  "finished_at_utc": "2026-11-17T15:39:48.213822+00:00"
+}

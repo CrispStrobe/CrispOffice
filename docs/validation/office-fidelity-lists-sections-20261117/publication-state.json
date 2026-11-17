@@ -1,0 +1,33 @@
+{
+  "prior_state_observed_at_utc": "2026-11-17T15:50:03Z",
+  "qualified_source_commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "observed_evidence_branch_head": "b8568306d22588d37597ef6bdc9ee5148c7bf085",
+  "original_pr": {
+    "number": 101,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/101",
+    "state": "closed",
+    "merged": true,
+    "merged_at": "2026-11-17T15:43:05Z",
+    "merged_by": "CrispStrobe",
+    "head_at_merge": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+    "merge_commit_sha": "9545fbb500c1fa531201d53a47606d47efa3ac7d"
+  },
+  "observed_main": {
+    "sha": "9941c80d09145310efd752b1558356c7bfb97f02",
+    "tree": "7fcd15874c0ace88fa35dcd118dd4009b9d5c871",
+    "parents": [
+      "eaebdac8332ec365617152a7aec1fbfe2641532c"
+    ],
+    "message": "feat(word): write ODT page-number fields (#110)\n\nCo-authored-by: CrispStrobe <crispstrobe@users.noreply.github.com>"
+  },
+  "followup": {
+    "number": 111,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/111",
+    "draft": true,
+    "base_sha": "9941c80d09145310efd752b1558356c7bfb97f02",
+    "head_sha": "b8568306d22588d37597ef6bdc9ee5148c7bf085",
+    "initial_changed_file_count": 20,
+    "initial_all_paths_under_docs": true
+  },
+  "scope": "The original incoming cutoff and final qualified product source remain unchanged. PR101 merged during report finalization. Later main commits are outside this qualification; PR111 preserves the evidence and audit follow-up."
+}

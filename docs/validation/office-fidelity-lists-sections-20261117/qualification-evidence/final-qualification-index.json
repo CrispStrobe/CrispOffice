@@ -1,0 +1,243 @@
+{
+  "archive": "final-qualification.tar.xz",
+  "sha256": "15fef1f2385e1ac1473eea21aee65704e152db20e012b334ae0acaab1b226b26",
+  "bytes": 519016,
+  "file_count": 49,
+  "files": {
+    "odt-node/analyze.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-node/analyze.stdout.gz": {
+      "sha256": "89eb5feca876aaa73ccf615fadd5e261718b99dd36583aa0cc666572d00f076f",
+      "bytes": 193
+    },
+    "odt-node/dart-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-node/dart-version.stdout": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "odt-node/flutter-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-node/flutter-version.stdout": {
+      "sha256": "3e84cedd9fa2b7e8451d29ef69a603c8c56776ccaf16e073333e0ccdf98ab0e4",
+      "bytes": 665
+    },
+    "odt-node/format.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-node/format.stdout.gz": {
+      "sha256": "28ff77039bd4927e22575380c06d762401fc2fb3cb4e83589cd228a5f91bb66d",
+      "bytes": 68
+    },
+    "odt-node/node-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-node/node-version.stdout": {
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+      "bytes": 9
+    },
+    "odt-node/receipt.json": {
+      "sha256": "0c79b5d2dfc113fe06f0a878779496006767223c051fbba6f7ee0eae408dc7ff",
+      "bytes": 517017
+    },
+    "odt-node/runtime-after.json.gz": {
+      "sha256": "a5540d1bf0858a7e72dd72baa7f7909cc8bbf7c588b8ecc283f248e42a12743b",
+      "bytes": 402520
+    },
+    "odt-node/runtime-before.json.gz": {
+      "sha256": "a5540d1bf0858a7e72dd72baa7f7909cc8bbf7c588b8ecc283f248e42a12743b",
+      "bytes": 402520
+    },
+    "odt-node/test-1.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-node/test-1.stdout.gz": {
+      "sha256": "f43a4aabe0a742c0447bc1b5a3784fdb24b0f672c2f4f8d31e3de9648aaf3c8e",
+      "bytes": 5060
+    },
+    "odt-node/test-2.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-node/test-2.stdout.gz": {
+      "sha256": "950a257456674a38d2851741ce856fd7dd8bd7fd172fdfe4b84c68d2abd41e74",
+      "bytes": 3834
+    },
+    "odt-node/test-3.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-node/test-3.stdout.gz": {
+      "sha256": "d791aed673d918f5d47cc5855dcbe58124c0f2c6c93125d158fa1f0da44d5b71",
+      "bytes": 2615
+    },
+    "odt-node/test-4.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-node/test-4.stdout.gz": {
+      "sha256": "d8639fb2a227dd83695ba1fc55ed28a684ab3dd2f6e7dc9bd1e1f9357908053b",
+      "bytes": 2135
+    },
+    "odt-vm/analyze.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/analyze.stdout.gz": {
+      "sha256": "dd64b1570b832fe57134bcff525b3404898f4ed29709cee17b7afd99fa584155",
+      "bytes": 257
+    },
+    "odt-vm/dart-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-vm/dart-version.stdout": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "odt-vm/flutter-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-vm/flutter-version.stdout": {
+      "sha256": "3e84cedd9fa2b7e8451d29ef69a603c8c56776ccaf16e073333e0ccdf98ab0e4",
+      "bytes": 665
+    },
+    "odt-vm/format.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/format.stdout.gz": {
+      "sha256": "4e1270e23782815af3e9e6759e0b9be464c6ce2aba5449b8fb15ca7d6f82581c",
+      "bytes": 68
+    },
+    "odt-vm/node-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-vm/node-version.stdout": {
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+      "bytes": 9
+    },
+    "odt-vm/receipt.json": {
+      "sha256": "e07ff27d45494331c24d10756d93c7214f4561a9862072a3d2490e5ed335e869",
+      "bytes": 524829
+    },
+    "odt-vm/runtime-after.json.gz": {
+      "sha256": "a5540d1bf0858a7e72dd72baa7f7909cc8bbf7c588b8ecc283f248e42a12743b",
+      "bytes": 402520
+    },
+    "odt-vm/runtime-before.json.gz": {
+      "sha256": "a5540d1bf0858a7e72dd72baa7f7909cc8bbf7c588b8ecc283f248e42a12743b",
+      "bytes": 402520
+    },
+    "odt-vm/test-1.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-1.stdout.gz": {
+      "sha256": "f08598ba6eb8deaf6100a84b2ca27e7960dd7f77ca0f8799518404d5c558b97d",
+      "bytes": 2441
+    },
+    "odt-vm/test-2.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-2.stdout.gz": {
+      "sha256": "699a904a2ca4c6e467ec6602e9bd6318693b71ad2cdd1dffe0b269790b2ee7d7",
+      "bytes": 2822
+    },
+    "odt-vm/test-3.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-3.stdout.gz": {
+      "sha256": "da9cbb1a92759c5ba77a57052994992b6308b795fbc94c75c06f52c9210de246",
+      "bytes": 4929
+    },
+    "odt-vm/test-4.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-4.stdout.gz": {
+      "sha256": "5d29acfbaf3edbe4c2603a4f9fdbb8a25a49fb18d68b5b53916441870ce898b7",
+      "bytes": 3109
+    },
+    "odt-vm/test-5.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-5.stdout.gz": {
+      "sha256": "f81b2cd7577e62f2a5f008754cce4b8f09b22f12215ce33ae8252b0e549fc752",
+      "bytes": 2169
+    },
+    "odt-vm/test-6.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-6.stdout.gz": {
+      "sha256": "4737ebb9b6b688ac49bb75217c295fbae150fcdfdcc48b884f2c0621a245951e",
+      "bytes": 3804
+    },
+    "prior_validate.py": {
+      "sha256": "757190927e2116270f4332c702e0025eb1c6faba18dc9f8d939f288634d05222",
+      "bytes": 38651
+    },
+    "run_qualification.py": {
+      "sha256": "91ee7f1775175be9e162b082dfd5e782234dd6548db59aa8dd501fea62e9da9b",
+      "bytes": 9903
+    },
+    "summary.json": {
+      "sha256": "27c95aab7ba3f7e73a46baf63fb3ff77ec3a4265431129316ad02ae1005caaa6",
+      "bytes": 1166
+    }
+  },
+  "reconstruction_verified": true,
+  "summary": {
+    "source_commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+    "source_tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547",
+    "cohorts": {
+      "odt-vm": {
+        "passed": 353,
+        "test_file_count": 18,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "source_input_count": 1670,
+        "runtime_input_count": 8606,
+        "source_unchanged": true,
+        "runtime_unchanged": true,
+        "lock_unchanged": true,
+        "head_unchanged": true
+      },
+      "odt-node": {
+        "passed": 236,
+        "test_file_count": 10,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "source_input_count": 1670,
+        "runtime_input_count": 8606,
+        "source_unchanged": true,
+        "runtime_unchanged": true,
+        "lock_unchanged": true,
+        "head_unchanged": true
+      }
+    },
+    "new_regression_cases": 89,
+    "github_actions": "Not queried or awaited.",
+    "passing_executions": 589,
+    "file_executions": 28,
+    "node_scope": "Node repeats ten VM files; its 236 passes are not additional unique cases.",
+    "historical_scope": "Incoming and extraction-correction qualifications and rejected attempts remain separate from these final-source totals."
+  }
+}
