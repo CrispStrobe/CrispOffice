@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_studio/main.dart';
 
 void main() {
-  testWidgets('Review exposes local AOT analysis without an endpoint setting', (
+  testWidgets('Review keeps spelling available without the retired AOT action', (
     WidgetTester tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(1440, 1000));
@@ -12,15 +12,8 @@ void main() {
     await tester.pump();
     await tester.tap(find.text('مراجعة'));
     await tester.pump();
-    expect(find.text('تحليل AOT'), findsOneWidget);
-    await tester.tap(find.text('تحليل AOT'));
-    // The editor's caret continues blinking behind the dialog.
-    await tester.pump(const Duration(milliseconds: 350));
-    expect(find.text('AOT linguistic analysis'), findsOneWidget);
-    expect(find.text('Local AOT · stays on this device'), findsOneWidget);
-    expect(find.textContaining('Install the AOT worker'), findsNothing);
-    await tester.tap(find.text('Close'));
-    await tester.pump(const Duration(milliseconds: 350));
+    expect(find.text('تدقيق'), findsOneWidget);
+    expect(find.text('تحليل AOT'), findsNothing);
     await tester.pumpWidget(const SizedBox.shrink());
     expect(tester.takeException(), isNull);
   });

@@ -77,7 +77,13 @@ void _expectCached(List<WmlInline> inlines, String text) {
 }
 
 void main() {
-  for (final kind in [('PAGE', 'page-number'), ('NUMPAGES', 'page-count')]) {
+  for (final kind in [
+    ('PAGE', 'page-number'),
+    ('NUMPAGES', 'page-count'),
+    ('DATE', 'date'),
+    ('TIME', 'time'),
+    ('TITLE', 'title'),
+  ]) {
     test('${kind.$1} preserves its cached text, style and hyperlink', () {
       final cache = WmlRun(
         text: '17',
@@ -164,10 +170,11 @@ void main() {
   });
 
   for (final instruction in [
-    'DATE',
-    'TIME',
-    'TITLE',
     r'PAGE \* ROMAN',
+    r'NUMPAGES \* ROMAN',
+    r'DATE \@ "dd.MM.yyyy"',
+    r'TIME \@ "HH:mm"',
+    r'TITLE \* UPPER',
     'REF target',
   ]) {
     test('unsupported instruction $instruction retains its visible cache', () {

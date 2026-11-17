@@ -352,6 +352,10 @@ abstract final class WordBookmarks {
       for (final paragraph in story) {
         for (final marker
             in paragraph.inlines.whereType<WmlBookmarkBoundary>()) {
+          final name = marker.name;
+          if (marker.isStart && name != null) {
+            names[name] = (names[name] ?? 0) + 1;
+          }
           final String id;
           try {
             id = canonicalId(marker.id);
@@ -363,10 +367,6 @@ abstract final class WordBookmarks {
               ? null
               : (marker: marker, index: index);
           index++;
-          final name = marker.name;
-          if (marker.isStart && name != null) {
-            names[name] = (names[name] ?? 0) + 1;
-          }
         }
       }
       for (final entry in ends.entries) {

@@ -270,7 +270,7 @@ void main() {
   }
 
   test(
-    'finite gaps retain signed lengths and canonical precision in styles',
+    'nonnegative gaps retain canonical precision while negative gaps are omitted',
     () {
       final sections = [
         _section(2, 18.001, 'Rounded first'),
@@ -292,7 +292,7 @@ void main() {
               ).getAttribute('column-gap', namespaceUri: _fo),
             )
             .toList(),
-        ['18.00pt', '18.00pt', '0.00pt', '0.00pt', '-6.25pt'],
+        ['18.00pt', '18.00pt', '0.00pt', '0.00pt', null],
       );
       expect(
         output[0].getAttribute('style-name', namespaceUri: _text),
