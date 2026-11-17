@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
@@ -177,6 +179,19 @@ void main() {
   });
 
   test(
+    'personal phrases and controls are not offered as single-word corrections',
+    () async {
+      provider.vocabulary.addWord('Quds Cloud');
+      provider.vocabulary.addWord('Quds\u200dCloud');
+      provider.vocabulary.addWord('QudsCloud' * 1000);
+      final OfficeProofingResult result = await provider.check(
+        _request('QudsClodu'),
+      );
+      expect(result.findings.single.replacements, isEmpty);
+    },
+  );
+
+  test(
     'personal corrections also repair an explicit compound component',
     () async {
       provider.vocabulary.addWord('QudsCloud');
@@ -249,6 +264,66 @@ void main() {
       expect(result.findings[0].replacements, result.findings[1].replacements);
       expect(result.findings[1].start, text.lastIndexOf('Komunikazion'));
       expect(result.findings[0].replacements, contains('Kommunikation'));
+    },
+  );
+
+  test('distinct expensive suggestions yield between searches', () async {
+    await provider.warmUp();
+    bool running = true;
+    int turns = 0;
+    Future<void> heartbeat() async {
+      while (running) {
+        await Future<void>.delayed(Duration.zero);
+        turns++;
+      }
+    }
+
+    final Future<void> progress = heartbeat();
+    final OfficeProofingResult result = await provider.check(
+      _request('Komunikazion Rechschreibugn Wissenscahflt'),
+    );
+    running = false;
+    expect(result.findings, hasLength(3));
+    // This asserts scheduler progress, not elapsed wall time. One initial
+    // batch yield cannot satisfy the three independently computed searches.
+    expect(turns, greaterThanOrEqualTo(3));
+    await progress;
+  });
+
+  test('disposal during suggestion work rejects partial findings', () async {
+    await provider.warmUp();
+    Future<void> cancelAfterInitialTurn() async {
+      await Future<void>.delayed(Duration.zero);
+      await Future<void>.delayed(Duration.zero);
+      await provider.dispose();
+    }
+
+    final Future<void> cancellation = cancelAfterInitialTurn();
+    final OfficeProofingResult result = await provider.check(
+      _request('Komunikazion Rechschreibugn Wissenscahflt'),
+    );
+    await cancellation;
+    expect(result.status, OfficeProofingStatus.unavailable);
+    expect(result.findings, isEmpty);
+  });
+
+  test(
+    'vocabulary changes during suggestion work reject partial findings',
+    () async {
+      await provider.warmUp();
+      Future<void> editAfterInitialTurn() async {
+        await Future<void>.delayed(Duration.zero);
+        await Future<void>.delayed(Duration.zero);
+        provider.vocabulary.addWord('QudsCloud');
+      }
+
+      final Future<void> edit = editAfterInitialTurn();
+      final OfficeProofingResult result = await provider.check(
+        _request('Komunikazion Rechschreibugn Wissenscahflt'),
+      );
+      await edit;
+      expect(result.status, OfficeProofingStatus.failed);
+      expect(result.findings, isEmpty);
     },
   );
 }

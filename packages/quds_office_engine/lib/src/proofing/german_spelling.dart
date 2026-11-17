@@ -331,16 +331,35 @@ class GermanSpellingProvider extends OfficeProofingProvider {
           )) {
         continue;
       }
-      final List<String> replacements = suggestions.putIfAbsent(
-        (word, sentenceInitial),
-        () => _suggest(
+      final (String, bool) suggestionKey = (word, sentenceInitial);
+      List<String>? replacements = suggestions[suggestionKey];
+      if (replacements == null) {
+        replacements = _suggest(
           word,
           lexicon,
           swiss,
           personal: personal,
           sentenceInitial: sentenceInitial,
-        ),
-      );
+        );
+        suggestions[suggestionKey] = replacements;
+        // A new indexed search can consume the full candidate budget. Do not
+        // accumulate sixteen such searches in one UI event-loop turn. Known
+        // words and repeated misspellings keep the ordinary cheap batch path.
+        await Future<void>.delayed(Duration.zero);
+        if (_disposed) {
+          return result(
+            OfficeProofingStatus.unavailable,
+            message: 'German spelling provider is disposed.',
+          );
+        }
+        if (vocabulary.revision != vocabularyRevision) {
+          return result(
+            OfficeProofingStatus.failed,
+            message:
+                'Personal vocabulary changed during this check; check again.',
+          );
+        }
+      }
       findings.add(
         OfficeProofingFinding.forRequest(
           request,
@@ -570,6 +589,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
       if (value == word || !checked.add(value)) continue;
       examined++;
       personalChecks++;
+      if ((value.length - lower.length).abs() > 2 ||
+          _tokens.stringMatch(value) != value) {
+        continue;
+      }
       final int distance = _boundedEditDistance(
         lower,
         value.toLowerCase(),
