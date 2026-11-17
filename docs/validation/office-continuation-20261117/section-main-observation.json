@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "kind": "Separate destination-main arrival after the bounded three-branch arrival integration",
+  "repository": "CrispStrobe/quds_office_suite",
+  "previous_continuation_head": "ec5da06988f21c982c8105436dde988572dc0c3c",
+  "previous_continuation_tree": "961e7bf5b2604f2c774de44cf890bac3487b37b8",
+  "prior_source_commit": "7f116669d2512cf660c86d3c83feb64ab6b707fb",
+  "incoming_main": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+  "incoming_tree": "2909598a199b8a6a0bd839b0dcc5b5146d663553",
+  "actual_merge_base": "3458c8977cef969a86a07b39734c761ba62e4b40",
+  "incoming_parent": "3458c8977cef969a86a07b39734c761ba62e4b40",
+  "prior_final_audit_blob": "3f5802b11e843e8f44b9f9a1b4c4f82e530aba85",
+  "prior_final_audit_path": "pre-section-main-canonical-source-audit.json",
+  "three_way": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "status": "both_changed",
+      "base": {
+        "sha": "0aaa4623f6923d4be54366826f3488c057ae397c",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "current": {
+        "sha": "abae52f0d08b0cbe66c5c86c97f0f28e36de60aa",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "incoming": {
+        "sha": "d29350898f1efb07224e8b9b5823ee02f62ff5af",
+        "type": "blob",
+        "mode": "100644"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "status": "both_changed",
+      "base": {
+        "sha": "d91e77891e82437494670ac165d791e6808aa379",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "current": {
+        "sha": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+        "type": "blob",
+        "mode": "100644"
+      },
+      "incoming": {
+        "sha": "41c04dd18ac5b1453297e98fd7614505e193f936",
+        "type": "blob",
+        "mode": "100644"
+      }
+    }
+  ],
+  "complete_tree_incoming_delta": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart"
+  ],
+  "incoming_patch": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "patch": "@@ -45,8 +45,28 @@ abstract final class OdtDocumentWriter {\n   static String _contentXml(WmlDocument document, _OdtLayout layout) {\n     final body = XmlWriter();\n     body.writeStartElement('text', prefix: 'office');\n-    for (final section in document.sections) {\n-      _writeBlocks(body, section.blocks, layout);\n+    for (var index = 0; index < document.sections.length; index++) {\n+      final section = document.sections[index];\n+      String? firstStyle;\n+      if (index > 0) {\n+        final first = section.blocks.whereType<WmlParagraph>().firstOrNull;\n+        if (first != null) {\n+          firstStyle = layout.sectionBreakStyle(\n+            index,\n+            section.breakKind,\n+            baseStyle: layout.paragraphStyle(\n+              first.properties,\n+              heading: first.properties.headingLevel,\n+            ),\n+          );\n+        }\n+      }\n+      _writeBlocks(\n+        body,\n+        section.blocks,\n+        layout,\n+        firstParagraphStyle: firstStyle,\n+      );\n     }\n     body.writeEndElement();\n \n@@ -70,30 +90,30 @@ abstract final class OdtDocumentWriter {\n     // stories use those in content.xml. Keep the style registries separate and\n     // share the package media registry so header/footer pictures cannot collide.\n     final stories = _OdtLayout(document, sharedMedia: layout);\n-    final section = document.sections.firstOrNull;\n     final master = XmlWriter();\n     master.writeStartElement('master-styles', prefix: 'office');\n-    master.writeStartElement('master-page', prefix: 'style');\n-    master.writeAttribute('style:name', 'Standard');\n-    master.writeAttribute('style:page-layout-name', 'pm1');\n-    final header = section?.header ?? const <WmlParagraph>[];\n-    final footer = section?.footer ?? const <WmlParagraph>[];\n-    if (header.isNotEmpty) {\n-      master.writeStartElement('header', prefix: 'style');\n-      for (final paragraph in header) {\n-        _writeParagraph(master, paragraph, stories);\n+    for (var index = 0; index < document.sections.length; index++) {\n+      final section = document.sections[index];\n+      master.writeStartElement('master-page', prefix: 'style');\n+      master.writeAttribute('style:name', index == 0 ? 'Standard' : 'mp$index');\n+      master.writeAttribute('style:page-layout-name', 'pm$index');\n+      if (section.header.isNotEmpty) {\n+        master.writeStartElement('header', prefix: 'style');\n+        for (final paragraph in section.header) {\n+          _writeParagraph(master, paragraph, stories);\n+        }\n+        master.writeEndElement();\n       }\n-      master.writeEndElement();\n-    }\n-    if (footer.isNotEmpty) {\n-      master.writeStartElement('footer', prefix: 'style');\n-      for (final paragraph in footer) {\n-        _writeParagraph(master, paragraph, stories);\n+      if (section.footer.isNotEmpty) {\n+        master.writeStartElement('footer', prefix: 'style');\n+        for (final paragraph in section.footer) {\n+          _writeParagraph(master, paragraph, stories);\n+        }\n+        master.writeEndElement();\n       }\n       master.writeEndElement();\n     }\n     master.writeEndElement();\n-    master.writeEndElement();\n \n     final w = XmlWriter();\n     w.writeStartDocument();\n@@ -167,25 +187,31 @@ abstract final class OdtDocumentWriter {\n     }\n     w.writeEndElement();\n     w.writeStartElement('automatic-styles', prefix: 'office');\n-    final page = section?.pageSize ?? const WmlPageSize();\n-    final margins = section?.margins ?? const WmlPageMargins();\n-    w.writeStartElement('page-layout', prefix: 'style');\n-    w.writeAttribute('style:name', 'pm1');\n-    w.writeStartElement('page-layout-properties', prefix: 'style');\n-    w.writeAttribute('fo:page-width', '${page.width.toStringAsFixed(2)}pt');\n-    w.writeAttribute('fo:page-height', '${page.height.toStringAsFixed(2)}pt');\n-    w.writeAttribute('fo:margin-top', '${margins.top.toStringAsFixed(2)}pt');\n-    w.writeAttribute(\n-      'fo:margin-bottom',\n-      '${margins.bottom.toStringAsFixed(2)}pt',\n-    );\n-    w.writeAttribute('fo:margin-left', '${margins.left.toStringAsFixed(2)}pt');\n-    w.writeAttribute(\n-      'fo:margin-right',\n-      '${margins.right.toStringAsFixed(2)}pt',\n-    );\n-    w.writeEndElement();\n-    w.writeEndElement();\n+    for (var index = 0; index < document.sections.length; index++) {\n+      final section = document.sections[index];\n+      final page = section.pageSize;\n+      final margins = section.margins;\n+      w.writeStartElement('page-layout', prefix: 'style');\n+      w.writeAttribute('style:name', 'pm$index');\n+      w.writeStartElement('page-layout-properties', prefix: 'style');\n+      w.writeAttribute('fo:page-width', '${page.width.toStringAsFixed(2)}pt');\n+      w.writeAttribute('fo:page-height', '${page.height.toStringAsFixed(2)}pt');\n+      w.writeAttribute('fo:margin-top', '${margins.top.toStringAsFixed(2)}pt');\n+      w.writeAttribute(\n+        'fo:margin-bottom',\n+        '${margins.bottom.toStringAsFixed(2)}pt',\n+      );\n+      w.writeAttribute(\n+        'fo:margin-left',\n+        '${margins.left.toStringAsFixed(2)}pt',\n+      );\n+      w.writeAttribute(\n+        'fo:margin-right',\n+        '${margins.right.toStringAsFixed(2)}pt',\n+      );\n+      w.writeEndElement();\n+      w.writeEndElement();\n+    }\n     stories.writeContentStyles(w);\n     w.writeEndElement();\n     w.writeRaw(master.toXml());\n@@ -231,10 +257,16 @@ abstract final class OdtDocumentWriter {\n   static void _writeBlocks(\n     XmlWriter w,\n     List<WmlBlock> blocks,\n-    _OdtLayout layout,\n-  ) {\n+    _OdtLayout layout, {\n+    String? firstParagraphStyle,\n+  }) {\n+    var first = true;\n     for (var index = 0; index < blocks.length; index++) {\n       final block = blocks[index];\n+      final override = first && block is WmlParagraph\n+          ? firstParagraphStyle\n+          : null;\n+      first = false;\n       if (block is WmlParagraph &&\n           block.properties.numId != null &&\n           !block.properties.numberingSuppressed) {\n@@ -251,7 +283,7 @@ abstract final class OdtDocumentWriter {\n         }\n         _writeList(w, list, layout);\n       } else {\n-        _writeBlock(w, block, layout);\n+        _writeBlock(w, block, layout, paragraphStyle: override);\n       }\n     }\n   }\n@@ -276,10 +308,15 @@ abstract final class OdtDocumentWriter {\n     w.writeEndElement();\n   }\n \n-  static void _writeBlock(XmlWriter w, WmlBlock block, _OdtLayout layout) {\n+  static void _writeBlock(\n+    XmlWriter w,\n+    WmlBlock block,\n+    _OdtLayout layout, {\n+    String? paragraphStyle,\n+  }) {\n     switch (block) {\n       case WmlParagraph():\n-        _writeParagraph(w, block, layout);\n+        _writeParagraph(w, block, layout, styleOverride: paragraphStyle);\n       case WmlTable():\n         _writeTable(w, block, layout);\n       case WmlVisual():\n@@ -298,8 +335,9 @@ abstract final class OdtDocumentWriter {\n   static void _writeParagraph(\n     XmlWriter w,\n     WmlParagraph paragraph,\n-    _OdtLayout layout,\n-  ) {\n+    _OdtLayout layout, {\n+    String? styleOverride,\n+  }) {\n     final heading = paragraph.properties.headingLevel;\n     final tag = heading == null ? 'p' : 'h';\n     w.writeStartElement(tag, prefix: 'text');\n@@ -308,7 +346,8 @@ abstract final class OdtDocumentWriter {\n     }\n     w.writeAttribute(\n       'text:style-name',\n-      layout.paragraphStyle(paragraph.properties, heading: heading),\n+      styleOverride ??\n+          layout.paragraphStyle(paragraph.properties, heading: heading),\n     );\n     for (final inline in paragraph.inlines) {\n       _writeInline(w, inline, layout);\n@@ -853,6 +892,30 @@ class _OdtLayout {\n     return _noteNumbers.putIfAbsent(key, () => _noteNumbers.length + 1);\n   }\n \n+  String sectionBreakStyle(\n+    int index,\n+    WmlSectionBreakKind kind, {\n+    required String baseStyle,\n+  }) {\n+    final name = 'SB$index';\n+    if (_sectionBreakStyles.add(name)) {\n+      final buffer = StringBuffer(\n+        '<style:style style:name=\"$name\" style:family=\"paragraph\" '\n+        'style:parent-style-name=\"$baseStyle\" '\n+        'style:master-page-name=\"mp$index\">'\n+        '<style:paragraph-properties',\n+      );\n+      if (kind != WmlSectionBreakKind.continuous) {\n+        buffer.write(' fo:break-before=\"page\"');\n+      }\n+      buffer.write(' style:page-number=\"auto\"/></style:style>');\n+      _styleBuffers.add(buffer.toString());\n+    }\n+    return name;\n+  }\n+\n+  final Set<String> _sectionBreakStyles = <String>{};\n+\n   String listStyle({required bool ordered}) => ordered ? 'L2' : 'L1';\n \n   String cellStyle(String fill) {",
+      "additions": 109,
+      "deletions": 46
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "patch": "@@ -29,6 +29,7 @@ XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(\n ).root!.firstChild('body')!.firstChild('text')!;\n \n void main() {\n+  sectionTests();\n   commentTests();\n   footnoteTests();\n   test('writes modeled Word text, runs, tables and pictures as ODT', () {\n@@ -290,3 +291,42 @@ void commentTests() {\n     expect(content, contains('Comment text'));\n   });\n }\n+\n+void sectionTests() {\n+  test('writes section page layouts and breaks', () {\n+    final document = WmlDocument(\n+      sections: [\n+        WmlSection(\n+          blocks: [\n+            WmlParagraph(inlines: [WmlRun(text: 'First section')]),\n+          ],\n+        ),\n+        WmlSection(\n+          pageSize: WmlPageSize.letter(),\n+          margins: WmlPageMargins.narrow,\n+          header: [\n+            WmlParagraph(inlines: [WmlRun(text: 'Second header')]),\n+          ],\n+          footer: [\n+            WmlParagraph(inlines: [WmlRun(text: 'Second footer')]),\n+          ],\n+          blocks: [\n+            WmlParagraph(inlines: [WmlRun(text: 'Second section')]),\n+          ],\n+        ),\n+      ],\n+    );\n+    final package = OpcPackage.openBytes(\n+      OdtDocumentWriter.writeBytes(document),\n+    );\n+    final content = package.getPart('/content.xml')!.readText();\n+    final styles = package.getPart('/styles.xml')!.readText();\n+    expect(content, contains('text:style-name=\"SB1\"'));\n+    expect(content, contains('Second section'));\n+    expect(styles, contains('style:name=\"pm1\"'));\n+    expect(styles, contains('fo:page-width=\"612.00pt\"'));\n+    expect(styles, contains('style:page-layout-name=\"pm1\"'));\n+    expect(styles, contains('Second header'));\n+    expect(styles, contains('Second footer'));\n+  });\n+}",
+      "additions": 40,
+      "deletions": 0
+    }
+  ],
+  "review_findings": [
+    "Incoming section master/page-layout definitions and simple-paragraph regression must be retained.",
+    "Incoming _writeBlocks drops section style overrides for leading numbered paragraphs and consumes the first-block flag before table/frame/content-control starts. These confirmed source defects will be corrected with authored regression cases.",
+    "Current note/comment guard, _OdtNotes, annotation filtering and every existing regression remain preserved."
+  ],
+  "status": "Checkpoint before source reconciliation",
+  "runtime_tests_executed": false,
+  "github_actions_or_ci_status_endpoints_queried": false
+}
