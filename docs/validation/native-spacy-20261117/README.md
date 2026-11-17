@@ -12,10 +12,15 @@ complete original reference at `4ae8e9e` was saved before native execution.
 The preserved first run is not rerun or tuned during adapter work.
 
 [W5 Dart/editor continuation](../native-spacy-w5-20261117/README.md) is the current
-entry point. Quds main `16e2477f`, including newer deterministic grammar and
-Office fixes, is integrated and remotely saved at `4471324a`. The complete
+entry point. The optional Dart worker and manual Studio view are qualified on
+Linux x86-64/AVX2. Quds main `16e2477f` was merged at `4471324a` before adapter
+work; the newer Office/German main `4b2b4e78` is merged at `8d89e4f7` with all
+local package/UI, actual-native widget and existing proofing checks passing.
+The complete
 [ref inventory and retained-result audit](https://github.com/CrispStrobe/CrispEmbed/blob/5ae3f03d154ad8aecb0e8e0a4347ffcaed78f2dc/docs/validation/native-spacy-20261117/resume-w5-source-snapshot.json)
 record other live branches without importing unrelated in-progress work.
+The [later reconciliation receipt](../native-spacy-w5-20261117/main-reconciliation.json)
+records the final refresh and unchanged spaCy/reference source identities.
 The sections below retain the historical checkpoint sequence.
 
 ## Source reconciliation (W0)

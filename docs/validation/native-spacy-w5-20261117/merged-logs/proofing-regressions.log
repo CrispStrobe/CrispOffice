@@ -1,0 +1,77 @@
+00:00 +0: loading ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart
+00:00 +0: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: typing never invokes the manual model and reports omitted coverage
+00:00 +1: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: manual and background caches cannot stand in for each other
+00:00 +2: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: an unsupported manual locale does not reduce background coverage
+00:00 +3: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: a supported run still reports omitted manual coverage in a mixed document
+00:00 +4: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: manual failure stays visible alongside successful ordinary checking
+00:00 +5: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: deterministic findings take precedence over competing model proposals
+00:00 +6: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: configuration refuses shared ownership and duplicate provider IDs
+00:00 +7: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: replacing a service cannot dispose providers still in the replacement
+00:00 +8: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: replacing or clearing manual service disposes it and invalidates results
+00:00 +9: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: changed document rejects an in-flight manual result
+00:00 +10: ${QUDS_ROOT}/packages/quds_office_editor/test/word_manual_proofing_test.dart: session disposal owns both services exactly once
+00:00 +11: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: closed empty complex fields never reach providers
+00:00 +12: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked
+00:00 +13: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: generated page-number paragraphs never reach providers
+00:00 +14: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: page-number metadata invalidates findings without a text edit
+00:00 +15: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: pending page-number metadata changes discard provider results
+00:00 +16: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: nonempty findings use half-open hit ranges
+00:00 +17: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state
+00:00 +18: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: language changes inside a combining cluster retain the full cluster and its first language
+00:00 +19: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: a surrogate pair split across runs and languages remains one emoji in provider input
+00:00 +20: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: noProof on part of a combining cluster excludes the entire cluster
+00:00 +21: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: review traverses body, nested tables, frames, all headers/footers, notes and comments
+00:00 +22: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: formatting fragments join while language and noProof boundaries preserve UTF-16 offsets
+00:00 +23: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: run language overrides paragraph language, which overrides the document default
+00:00 +24: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: late results after a revision change never become current findings
+00:00 +25: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: direct model edits during a pending check invalidate its snapshot even without revision notification
+00:00 +26: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: replacing a document with identical text and revision rejects the old document result
+00:00 +27: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: provider reconfiguration cancels pending publication and disposes the previous provider
+00:00 +28: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: unchanged paragraphs reuse results while rebinding findings to the current revision
+00:00 +29: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: provider configuration revisions invalidate otherwise identical cached text
+00:00 +30: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: moving a paragraph between stories invalidates its old finding and cache
+00:00 +31: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: a document with no checkable paragraphs never claims a clean completed check
+00:00 +32: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: no configured provider is visibly unavailable
+00:00 +33: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: unavailable checks are incomplete and can be retried instead of cached as clean
+00:00 +34: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: unsupported checks are incomplete and can be retried instead of cached as clean
+00:00 +35: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: failed checks are incomplete and can be retried instead of cached as clean
+00:00 +36: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: an unsupported document language reports its locale without calling the checker
+00:00 +37: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: opaque body blocks and preserved header stories are explicit coverage gaps
+00:00 +38: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_session_test.dart: personal words are language-scoped and host snapshots preserve owner identity
+00:00 +39: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction history preserves the selection after switching comments
+00:00 +40: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction history preserves the selection after switching comments
+00:00 +41: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction history preserves the selection after switching comments
+00:00 +42: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction history preserves the selection after switching comments
+00:00 +43: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction history preserves the selection after switching header/footer stories
+00:01 +44: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction restores caret and selection through undo/redo (tracking: false)
+00:01 +45: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: correction restores caret and selection through undo/redo (tracking: true)
+00:01 +46: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: zero-width findings are hit only at their insertion point
+00:01 +47: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: already-enabled hyphenation on an untagged document saves the default language with reversible history
+00:01 +48: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: a correction across styled runs after emoji preserves source styles and one undo/redo step
+00:01 +49: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: empty replacement suggestions delete text and remain undoable
+00:01 +50: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: zero-width punctuation suggestions use a UTF-16 boundary after emoji
+00:01 +51: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: unoffered and multiline replacements do not open an undo transaction
+00:01 +52: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: a host switching to read-only prevents applying an existing result
+00:01 +53: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: live document protection prevents a result even before host mode synchronization
+00:01 +54: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: active IME composition blocks correction without invalidating the unchanged result
+00:01 +55: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: same-length source edits reject stale suggestions without a revision callback
+00:01 +56: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: a replaced document with the same text does not accept findings from the prior document
+00:01 +57: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: changing only noProof semantics invalidates an old finding and excludes a fresh check
+00:01 +58: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: live inline content-control locks reject old and freshly checked corrections
+00:01 +59: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: live container content-control locks reject old and freshly checked corrections
+00:01 +60: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: live wrapper content-control locks reject old and freshly checked corrections
+00:01 +61: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: data-bound content is reviewable but cannot be rewritten even without a content lock
+00:01 +62: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: an sdtLocked container still permits edits to its unlocked text content
+00:01 +63: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: simple generic field results are excluded while adjacent ordinary text remains correctable
+00:01 +64: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: complex fields spanning paragraphs and sections exclude cached results but permit text after the end
+00:01 +65: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: paragraph-level generic fields never produce editable cached-text findings
+00:01 +66: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction immediately before simple field cannot insert into that field
+00:01 +67: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction immediately before complex field cannot insert into that field
+00:01 +68: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction immediately before empty complex field cannot insert into that field
+00:01 +69: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction ending at a locked inline control boundary cannot inherit its insertion affinity
+00:01 +70: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked correction creates separate valid deletion and insertion with undo and DOCX accept/reject
+00:01 +71: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: tracked deletion suggestions create only a deletion and preserve accept/reject semantics
+00:01 +72: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: legacy pending insert revisions without targetParagraph block overlapping proofing edits
+00:01 +73: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: hyphenation on an untagged document saves its displayed language in the same undo step
+00:01 +74: ${QUDS_ROOT}/packages/quds_office_editor/test/word_proofing_correction_test.dart: adding a zero-width field with identical paragraph text invalidates prior structure-bound findings
+00:01 +75: All tests passed!
