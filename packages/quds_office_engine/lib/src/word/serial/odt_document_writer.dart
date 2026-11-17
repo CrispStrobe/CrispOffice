@@ -51,6 +51,9 @@ abstract final class OdtDocumentWriter {
   static List<({String xml, _OdtSectionStart start})> _bodyXml(
     _OdtLayout layout,
   ) {
+    // The synthetic section supplies required default master/page styles only;
+    // an explicitly empty document must not gain an authored body paragraph.
+    if (layout.document.sections.isEmpty) return const [];
     final parts = <({String xml, _OdtSectionStart start})>[];
     for (var index = 0; index < layout.sections.length; index++) {
       final body = XmlWriter();
@@ -591,6 +594,11 @@ abstract final class OdtDocumentWriter {
       styleOverride ??
           layout.paragraphStyle(paragraph.properties, heading: heading),
     );
+    if (paragraph.properties.pageNumberField) {
+      w.writeEmptyElement('page-number', prefix: 'text');
+      w.writeEndElement();
+      return;
+    }
     if (layout.noteReferenceSpacePending) {
       layout.noteReferenceSpacePending = false;
       final text = paragraph.text;

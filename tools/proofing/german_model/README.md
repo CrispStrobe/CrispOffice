@@ -1,5 +1,26 @@
 # German grammar model qualification
 
+For a local F32 diagnostic run through the actual Quds worker, tokenizer,
+decoder, guards and deterministic-first report merge, create an isolated Python
+environment with `requirements.txt` and supply the complete pinned, verified
+Proofbird v2.1.0 bundle (model and all metadata):
+
+```sh
+dart --packages=.dart_tool/package_config.json \
+  tools/proofing/german_model/evaluate_guarded_onnx.dart \
+  /path/to/verified-bundle /path/to/venv/bin/python \
+  tools/proofing/german_model/cases.json /path/to/new-results.json
+```
+
+Run from the Quds workspace after resolving its packages. The helper starts a
+bounded two-thread CPU ONNX process and verifies its model identity. It returns
+real F32 logits to Quds and records model-only and shared combined-policy
+results. It is an evaluation transport, not a registered application provider,
+CrispEmbed FFI test, shipping-precision qualification or deployment dependency.
+Model weights and the Python environment must stay outside Git. See the
+[17 November comparison](../../../docs/validation/german-options-20261117/README.md)
+for measured results and limits.
+
 The feature work for an optional provider is scoped in the
 [German GECToR roadmap](../../../docs/roadmaps/german-gector-proofing.md).
 For exact-input runtime and quantization comparisons, see
