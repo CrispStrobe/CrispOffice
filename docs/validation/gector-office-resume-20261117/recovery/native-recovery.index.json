@@ -1,0 +1,153 @@
+{
+  "artifact": "full-recovery.tar.xz",
+  "bytes": 136356,
+  "sha256": "cd7c3e54c0135643fc827e2be489e5cb9740e30d1d58d199cc15a12a7ce03a10",
+  "members": [
+    {
+      "path": "scripts/recover_native_exact.py",
+      "bytes": 9027,
+      "sha256": "48e3ad87a8285e4a449b831ed637e54d90e3255c476587b87880949fe0f65d18"
+    },
+    {
+      "path": "scripts/python-no-telemetry/sitecustomize.py",
+      "bytes": 650,
+      "sha256": "438a14c99c7025f4a27d1b8fc44649a6badd05717242b43c4043bbb6e3a0da6b"
+    },
+    {
+      "path": "evidence/conversion-install.json",
+      "bytes": 177628,
+      "sha256": "356683961dc7dfad14fddc9605818f72aa2f9b356e2e1bb6ce472a8a1a754958"
+    },
+    {
+      "path": "evidence/conversion-install.log",
+      "bytes": 3558,
+      "sha256": "2589e365d6e90403809d6d27b877ebd593fec938d121499cc28267b0733c62cf"
+    },
+    {
+      "path": "evidence/historical-commands.json",
+      "bytes": 3638,
+      "sha256": "c42f6fc15899d732f38b53a7e9b7428bd2b3c3d1ed11d9f7eb5db34951ed4bed"
+    },
+    {
+      "path": "evidence/historical-evidence-index.json",
+      "bytes": 3796,
+      "sha256": "9890f85cea4419084ccd83ac05b958c9f49069d9e6e3cbd58e0b0580cb23279a"
+    },
+    {
+      "path": "evidence/historical-python-freeze.txt",
+      "bytes": 459,
+      "sha256": "e224cc3c1a40e66221e2e9b805db802e8b5a28186aa4a6cb0d74e1ce97489c32"
+    },
+    {
+      "path": "evidence/historical-recovery.json",
+      "bytes": 3097,
+      "sha256": "ed5887c139b7cb15449788eca8a75ffcfb6c1fc7e94e14b7342ddfcda935a32d"
+    },
+    {
+      "path": "evidence/model-preparation.log",
+      "bytes": 22209,
+      "sha256": "6eb480922c82538bdfb47d2487c20ab3b4d254af6cb802b0f82e56c23e9beeb9"
+    },
+    {
+      "path": "evidence/model-quantization.log",
+      "bytes": 13488,
+      "sha256": "362100f4fc731f6c0de8f8ec6d3064967b3334e86195bbcda76b2482109f67fa"
+    },
+    {
+      "path": "evidence/native-build-checkpoint.index.json",
+      "bytes": 5247,
+      "sha256": "780893d8e60df491a5bc11b363c90b3307d553a09846a5fadaac509ed3a5973f"
+    },
+    {
+      "path": "evidence/native-build-checkpoint.tar.xz",
+      "bytes": 23920,
+      "sha256": "f35529d54ae10a97b24abc4e00e9a8713186530e371d785548f5e7116a4da9be"
+    },
+    {
+      "path": "evidence/pack-build.json",
+      "bytes": 1783,
+      "sha256": "727fa953a8d4d755502152d6d3c51618c9a983ad056492456732e082d52008f0"
+    },
+    {
+      "path": "evidence/pack-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/pack-verify.json",
+      "bytes": 1783,
+      "sha256": "727fa953a8d4d755502152d6d3c51618c9a983ad056492456732e082d52008f0"
+    },
+    {
+      "path": "evidence/pack-verify.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/qualification-freeze.txt",
+      "bytes": 432,
+      "sha256": "ea4edca9edd08a86458abd66f8e624698726e637daaf0580a364ae911f063e5d"
+    },
+    {
+      "path": "evidence/qualification-install.json",
+      "bytes": 330672,
+      "sha256": "638cde4b471a7b8ae1898feb3e21fad3e140050ffe280d0e2a5d2e3a5df920d1"
+    },
+    {
+      "path": "evidence/qualification-install.log",
+      "bytes": 9175,
+      "sha256": "7817acdbcc4e55caf9707ee1497ed107350ba1e8b51c22b014164c411a1d294a"
+    },
+    {
+      "path": "evidence/recovery-summary.json",
+      "bytes": 2095,
+      "sha256": "65574e0a0244710c9d9dcf5c22b17cd13bd087414087cc3fd173e11b84135dd8"
+    },
+    {
+      "path": "evidence/reference-verification.json",
+      "bytes": 117,
+      "sha256": "cb4395e07806f675d2d8d6f57703bcf4c4da74d8d9b0ce85d0055d3b63e4e096"
+    },
+    {
+      "path": "evidence/setup-host.json",
+      "bytes": 379,
+      "sha256": "7099fb5885dbbabbbef7cf5da038c51d271d982fc9c237b0bbc8bb70f6756a48"
+    },
+    {
+      "path": "evidence/thread-sweep-audit-controls.json",
+      "bytes": 3495,
+      "sha256": "003a0f54b23f3807228bbfc1af980a2d41b54a134e10d588fd76b2429f5f2164"
+    },
+    {
+      "path": "exact-model/events.jsonl",
+      "bytes": 35697,
+      "sha256": "1f2fb51ca17a91dfbc76e793c921d2a4027aca8a35fc3a250a0f21db469b360c"
+    },
+    {
+      "path": "exact-model/logs/20261117T212017667493Z-convert-f32.log",
+      "bytes": 256,
+      "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97"
+    },
+    {
+      "path": "exact-model/logs/20261117T212238830848Z-quantize.log",
+      "bytes": 18097,
+      "sha256": "7b53302a5611586bd08340641ed6c3ac9cba4409968d8c623aed85d179307adb"
+    },
+    {
+      "path": "exact-model/models/gector-de-f32.gguf.manifest.json",
+      "bytes": 132371,
+      "sha256": "c17318bdb1ada8fc2b1c456948bab44c746b06c8287c445099826ad3573abde7"
+    },
+    {
+      "path": "exact-model/result-20261117T212238830848Z.json",
+      "bytes": 989,
+      "sha256": "6a3902bc990848a1110f578485fe392c70a2a345b4b96507e0d7d85973dbdac1"
+    },
+    {
+      "path": "exact-model/sources/artifacts.json",
+      "bytes": 3428,
+      "sha256": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0"
+    }
+  ],
+  "scope": "Exact previously qualified development artifacts recovered from pinned sources; no new native binary or trust-policy revision. Current-source inference/timing still pending."
+}

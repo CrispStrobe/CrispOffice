@@ -1,0 +1,32 @@
+{
+  "local_focused_commit": "cd716a6d44a42d7663dc60099a2296ca15ee7395",
+  "root_cherry_pick": "6b3def0265f0d70714791f765fad0065979c7a35",
+  "fixes": [
+    "Emit ordered SpreadsheetML graphic conditional-format children; icons have thresholds only, bars one color, scales ordered colors",
+    "Read color-scale colors by ordinal",
+    "Invalidate preserved imported conditional XML when icon type, bar color or threshold type/value/color changes",
+    "Resolve num/number, percent, interpolated percentile, min and max consistently"
+  ],
+  "focused_results": {
+    "visible_passes": 189,
+    "errors": 0,
+    "skips": 0,
+    "strict_analysis": "passed",
+    "incoming_writer_negative_controls": {
+      "failures": 14,
+      "passes": 3
+    }
+  },
+  "focused_integrity_limit": "Development logs do not provide complete frozen-source pre/post maps. Final canonical qualification remains required.",
+  "limits": [
+    "Icon markers are not painted by current editor/PDF consumers",
+    "Unmodeled native reverse/showValue options retained for no-edit imported XLSX; edited-rule regeneration retains existing projection scope"
+  ],
+  "additional_reconciliation": {
+    "main": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+    "pr144": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+    "gector_office": "faffbc41",
+    "conflicts": "Retained richer existing changelog entry and all complex-field regressions; verified merge has no product-source delta relative to reconciled union."
+  },
+  "qualification_accepted": false
+}

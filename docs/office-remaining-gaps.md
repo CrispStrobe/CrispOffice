@@ -45,8 +45,8 @@ properties outside the modeled colors. See
 [conditional-format-rendering.md](conditional-format-rendering.md) for API,
 cache policy, formula limits and preservation scope.
 
-Remaining: icon sets, additional native date/time and text-condition kinds,
-and formula functionality outside the supported subset.
+Remaining: additional native date/time and text-condition kinds, and formula
+functionality outside the supported subset.
 Unmodeled differential properties such as bold, borders and number formats can
 be preserved in XLSX but are not applied by the conditional color renderer.
 Complete native ODS rule preservation, including cross-format priority/stopping

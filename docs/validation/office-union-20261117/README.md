@@ -15,3 +15,9 @@ The official Flutter 3.47.8 archive was verified by its recorded SHA-256; its Da
 ## Publication
 
 The first new source checkpoint is `8ed0a60ba60650aebeac74a1b30c23232b200703`. CLI push has no credentials; publication uses GitHub Git Data objects and expected-SHA ref updates with `force=false`. The original PR #144 branch advanced concurrently, so this continuation uses `codex/office-union-qualification-20261117` and retains the incoming checkpoint through ancestry. Commits use `[skip ci]`. No GitHub Actions, workflows, check runs or CI statuses have been queried, awaited or rerun.
+
+## Second reconciliation and spreadsheet repair
+
+Current main advanced through PR #146 and PR #147 to `bb5556e8`; #147 lands the earlier #144 source. The merge retains every richer Office regression and changes no reconciled product bytes. The newest #144 and GECToR evidence checkpoints are retained as additional ancestry, with historical attribution unchanged.
+
+The spreadsheet repair now emits valid graphic conditional-format child order, reads color-scale colors by ordinal, preserves edits to imported graphic rules, and uses range-relative percent/interpolated-percentile thresholds. The focused six-file selection has 189 visible passes with no errors/skips and strict analysis passes; final regression bytes reproduce 14 failures on incoming product. These are development controls, not a substitute for the frozen-source qualification. The raw logs and their stated integrity limitations are archived.
