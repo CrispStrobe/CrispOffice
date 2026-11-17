@@ -9,7 +9,9 @@ fork branch, PR head and upstream branch by ancestry. `incoming.json` records th
 exact fixed snapshot; concurrent updates after that snapshot are separate work.
 The latest captured German continuation is PR #114 at `62eafbe4`; Office #113 is
 `104b239c`, fidelity #111 is `d1738017`, and the GECToR branch is `78cd772c`.
-All prior source and validation archives remain in history.
+All prior source and validation archives remain in history. A final refresh
+also incorporates main `2eb080e7` / PR #115 (ODT table borders and row heights),
+which landed during implementation; it merged cleanly.
 
 Merge decisions:
 
@@ -59,8 +61,11 @@ excluded from test counts.
 | Integrated Office and existing proofing | 707 | 0 | 0 |
 | Word proofing integration | 97 | 0 | 0 |
 | Studio analysis and configured workspace | 13 | 0 | 0 |
+| Affected ODF tests repeated after latest main / PR #115 | 105 | 0 | 0 |
 
-Node repeats the same package tests. Static analysis of the AOT package,
+Node repeats the same package tests. The final 105-test ODF run repeats that
+subset of the earlier 707-test engine cohort after merging PR #115; these are
+not 105 additional unique test cases. Static analysis of the AOT package,
 changed example/editor files and reconciled ODF source/tests reports no issues.
 The Studio cohort includes the existing Word/Excel/PowerPoint smoke with a local
 AOT endpoint configured; it does not require a running daemon or start automatic
@@ -143,8 +148,9 @@ The work is saved incrementally on `codex/aot-proofing-analysis-20261117`:
 1. `cab8a69c`: reconcile all 256 captured branch/PR/upstream references.
 2. `18b73ccd`: add the typed client, grammar provider, analysis UI and CLI.
 3. `9e5314fb`: preserve review fixes, GET compatibility, regression tests and usage.
-4. Final follow-up: local evidence, live responses, readable ignored-rule labels
+4. `813421a8`: local evidence, live responses, readable ignored-rule labels
    and final documentation.
+5. Final follow-up: current main PR #115 plus fresh affected ODF tests/analysis.
 
 All checkpoint commits use `[skip ci]`. No GitHub Actions jobs, workflow runs,
 check runs or commit-status endpoints were queried or awaited.

@@ -54,6 +54,17 @@
       "event_log": "evidence/studio-enabled.jsonl.gz",
       "event_log_sha256": "e7a0b5ee059d3b786326e02717b37f5555c728b7685fd837305cd652898d1fbb",
       "milliseconds": 23499
+    },
+    {
+      "name": "Affected ODF regression repeat after final main PR #115",
+      "passed": 105,
+      "failed": 0,
+      "skipped": 0,
+      "completed_successfully": true,
+      "event_log": "evidence/final-odf-main.jsonl.gz",
+      "event_log_sha256": "f250393d2a41743d8e6bbc90fb49c1ac195cccd383d0f1cbc78c85200cba082c",
+      "milliseconds": 3103,
+      "scope": "Repeats the 105 ODF tests contained in the earlier 707-test engine cohort after the main update."
     }
   ],
   "source_sha256": {
@@ -75,7 +86,9 @@
     "packages/quds_proofing_aot/test/provider_test.dart": "8254697965788d14019a0c0b47871f5af242815e17fcdd33995f50e9793d96e5",
     "packages/quds_proofing_aot/test/transport_test.dart": "6241301fa081868a4b8d98f8b80a0570a228daea71ee2febc91a8fe87dc352b2",
     "packages/quds_proofing_aot/test/upstream_morphology_test.dart": "7a4457fd21b9985c12c4355e949c15bf5ee5a9faa8b496d7bca9ea0607b0ba31",
-    "packages/quds_proofing_aot/tool/aot.dart": "f3bd46e478c4108c8c212ddca82d925588a0fe4ddc92350e4749a0f1a9c932ff"
+    "packages/quds_proofing_aot/tool/aot.dart": "f3bd46e478c4108c8c212ddca82d925588a0fe4ddc92350e4749a0f1a9c932ff",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "9f82e90bb93b9adf24eb93ab628781317f074c5f12e90d3aa08e96e8fa5eb860",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart": "2e64f54aa30590930ace7958bc204f452e8590893aadc3f2d90f34766052481b"
   },
   "static_analysis": "No issues found",
   "live_smoke": {
@@ -85,5 +98,6 @@
     "explicit_incomplete_alignment": 2,
     "distinct_responses": 17
   },
-  "ci": "No GitHub Actions, workflow, check, or commit-status endpoints queried or awaited."
+  "ci": "No GitHub Actions, workflow, check, or commit-status endpoints queried or awaited.",
+  "followup_main": "2eb080e708257c36b54d3ade18b9e012ebc73ed3"
 }

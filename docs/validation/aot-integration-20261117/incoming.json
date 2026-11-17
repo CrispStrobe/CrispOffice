@@ -1283,5 +1283,13 @@
       "included_by_ancestry": true
     }
   ],
-  "all_captured_refs_included": true
+  "all_captured_refs_included": true,
+  "followup_refs": [
+    {
+      "ref": "refs/remotes/origin/main",
+      "sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "reason": "PR #115 landed during AOT implementation; merged before delivery",
+      "included_by_ancestry": true
+    }
+  ]
 }
