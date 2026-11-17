@@ -237,6 +237,45 @@ void main() {
     expect(_visibleText(root), contains('B 1'));
   });
 
+  test('comment references cannot consume the visible body note', () {
+    final document = _document(
+      [
+        WmlRun(text: 'Before', commentIds: [1]),
+        _ref(7),
+        WmlRun(text: 'After', commentIds: [2]),
+      ],
+      footnotes: [_note(7)],
+    );
+    document.comments.addAll([
+      for (final id in [1, 2])
+        WmlComment(
+          id: id,
+          paragraphs: [
+            WmlParagraph(inlines: [_ref(7)]),
+          ],
+        ),
+    ]);
+    final root = _xml(_package(document));
+    final annotations = root
+        .firstChild('body')!
+        .firstChild('text')!
+        .firstChild('p')!
+        .childrenNamed(
+          'annotation',
+          namespaceUri: 'urn:oasis:names:tc:opendocument:xmlns:office:1.0',
+        )
+        .toList();
+    expect(annotations, hasLength(2));
+    for (final annotation in annotations) {
+      expect(_elements(annotation, 'note'), isEmpty);
+      expect(_elements(annotation, 'note-ref'), isEmpty);
+      expect(_visibleText(annotation.firstChild('p')!), '1');
+    }
+    expect(_elements(root, 'note'), hasLength(1));
+    expect(_elements(root, 'note-ref'), isEmpty);
+    expect(_elements(root, 'note-body').single.text, contains('Note 7'));
+  });
+
   test(
     'header and footer references preserve text without duplicate note bodies',
     () {
