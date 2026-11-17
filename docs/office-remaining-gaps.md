@@ -61,8 +61,9 @@ title/message/style and correct Excel list quoting. Range sources resolve after
 all sheets exist.
 
 Not supported: ODF condition grammar outside the shared model (for example time
-or arbitrary multi-condition expressions) and dynamic source-range links; these
-decline rather than being approximated.
+or arbitrary multi-condition expressions); these decline rather than being
+approximated. Range-backed list sources are retained and written as native ODF
+range links.
 
 ### 4. ODS metadata and layout
 
