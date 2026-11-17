@@ -1536,9 +1536,10 @@ class _OdtLayout {
   }) {
     final fill = _paragraphColor(props.shadingFill);
     final border = _paragraphColor(props.borderColor);
-    final decorations = jsonEncode([fill, border]);
+    final tabStops = _paragraphTabStops(props.tabs);
+    final formatting = jsonEncode([fill, border, tabStops]);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$decorations';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$formatting';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'
@@ -1634,38 +1635,10 @@ class _OdtLayout {
         if (border != null) {
           buffer.write(' fo:border="0.5pt solid #$border"');
         }
-        if (props.tabs.isEmpty) {
+        if (tabStops.isEmpty) {
           buffer.write('/>');
         } else {
-          buffer.write('><style:tab-stops>');
-          for (final tab in props.tabs) {
-            if (_paragraphDecimal(tab.position) case final position?) {
-              final type = switch (tab.alignment) {
-                WmlTabAlignment.center => 'center',
-                WmlTabAlignment.right => 'right',
-                WmlTabAlignment.decimal => 'char',
-                WmlTabAlignment.left => 'left',
-              };
-              buffer.write(
-                '<style:tab-stop style:position="${position}pt" '
-                'style:type="$type"',
-              );
-              if (tab.alignment == WmlTabAlignment.decimal) {
-                buffer.write(' style:char="."');
-              }
-              final leader = switch (tab.leader) {
-                WmlTabLeader.dot => 'dotted',
-                WmlTabLeader.hyphen => 'solid',
-                WmlTabLeader.underscore => 'solid',
-                WmlTabLeader.none => null,
-              };
-              if (leader != null) {
-                buffer.write(' style:leader-style="$leader"');
-              }
-              buffer.write('/>');
-            }
-          }
-          buffer.write('</style:tab-stops></style:paragraph-properties>');
+          buffer.write('>$tabStops</style:paragraph-properties>');
         }
         if (emptyAnchor) {
           buffer.write('<style:text-properties fo:font-size="1pt"/>');
@@ -1683,6 +1656,42 @@ class _OdtLayout {
       }
       return name;
     });
+  }
+
+  static String _paragraphTabStops(List<WmlTabStop> tabs) {
+    if (tabs.isEmpty) return '';
+    // Deduplicate the exact normalized output. Different stops must not share
+    // a paragraph style, while rounded positions and equivalent leader styles
+    // can reuse it. Unrepresentable positions do not create an empty override.
+    final buffer = StringBuffer();
+    for (final tab in tabs) {
+      if (_paragraphDecimal(tab.position) case final position?) {
+        final type = switch (tab.alignment) {
+          WmlTabAlignment.center => 'center',
+          WmlTabAlignment.right => 'right',
+          WmlTabAlignment.decimal => 'char',
+          WmlTabAlignment.left => 'left',
+        };
+        buffer.write(
+          '<style:tab-stop style:position="${position}pt" '
+          'style:type="$type"',
+        );
+        if (tab.alignment == WmlTabAlignment.decimal) {
+          buffer.write(' style:char="."');
+        }
+        final leader = switch (tab.leader) {
+          WmlTabLeader.dot => 'dotted',
+          WmlTabLeader.hyphen => 'solid',
+          WmlTabLeader.underscore => 'solid',
+          WmlTabLeader.none => null,
+        };
+        if (leader != null) {
+          buffer.write(' style:leader-style="$leader"');
+        }
+        buffer.write('/>');
+      }
+    }
+    return buffer.isEmpty ? '' : '<style:tab-stops>$buffer</style:tab-stops>';
   }
 
   static String? _paragraphColor(String? value) {
