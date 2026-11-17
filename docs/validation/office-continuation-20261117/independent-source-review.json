@@ -1,0 +1,1303 @@
+{
+  "schema_version": 1,
+  "kind": "Independent remote Git/source preservation review; no new runtime qualification",
+  "reviewed_at_utc": "2026-11-17T14:09:18.328Z",
+  "source_commit": "8b2ee333b883bfb64d51d44629c16151e1e0a2d7",
+  "source_tree": "c7fb5aaff9a122d163707ea51002605e12084308",
+  "source_refs": {
+    "current_main": "3458c8977cef969a86a07b39734c761ba62e4b40",
+    "incoming_office": "8106752eb410a6c2f66ff03c3fa983123760058d",
+    "incoming_morphology": "286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86",
+    "incoming_gector": "2a30427893a9ddf009b5e6a74ae0d8f67a8d87d1",
+    "prior_zotero_landing": "1549a9c7884eb688732262398b5d9859a68103eb"
+  },
+  "checks": {
+    "all_source_tree_responses_untruncated": true,
+    "zotero": {
+      "path_count": 50,
+      "all_blob_and_mode_equal": true,
+      "entries": [
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_zotero.dart",
+          "before_blob": "7adb79ab19134f9d54f1c4c393a3e3d3362d6c9a",
+          "after_blob": "7adb79ab19134f9d54f1c4c393a3e3d3362d6c9a",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_zotero_local_io.dart",
+          "before_blob": "8a99108c6e82f68c1914793f37ef58b55061c58c",
+          "after_blob": "8a99108c6e82f68c1914793f37ef58b55061c58c",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_zotero_local_stub.dart",
+          "before_blob": "e8e714667c894b1f3bf094b81f1808b7083345d3",
+          "after_blob": "e8e714667c894b1f3bf094b81f1808b7083345d3",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+          "before_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+          "after_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+          "before_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+          "after_blob": "b2a422b9955973948da2f34b77dd9bfe777cea48",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_format.dart",
+          "before_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+          "after_blob": "cff6c2aba85d77bfa770b0a2a28ad4acb965a3cd",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+          "before_blob": "dd681f67fa1fb7acb548061d4da69fa1bab5a18a",
+          "after_blob": "dd681f67fa1fb7acb548061d4da69fa1bab5a18a",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+          "before_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+          "after_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+          "before_blob": "21a88d43d0dc81cede3583e748e32c544c6303e4",
+          "after_blob": "21a88d43d0dc81cede3583e748e32c544c6303e4",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+          "before_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+          "after_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+          "before_blob": "1a25b5d1bf5ad54add68b1c678f751bf47b20b92",
+          "after_blob": "1a25b5d1bf5ad54add68b1c678f751bf47b20b92",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+          "before_blob": "2c7ac95c3379050017bdd5470be9b7192115e7ae",
+          "after_blob": "2c7ac95c3379050017bdd5470be9b7192115e7ae",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+          "before_blob": "4b7656d940dbed1e811ebc9ea601e75d1fe16dc9",
+          "after_blob": "4b7656d940dbed1e811ebc9ea601e75d1fe16dc9",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+          "before_blob": "521e8af163fff94e2ea03438ce808f5252e8274a",
+          "after_blob": "521e8af163fff94e2ea03438ce808f5252e8274a",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+          "before_blob": "925dcc6878d5f81781908bb871a38c13dd853bda",
+          "after_blob": "925dcc6878d5f81781908bb871a38c13dd853bda",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_format_test.dart",
+          "before_blob": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f",
+          "after_blob": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+          "before_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+          "after_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+          "before_blob": "698c53581d0bc0f92052458d1704a142b33277bb",
+          "after_blob": "698c53581d0bc0f92052458d1704a142b33277bb",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+          "before_blob": "345b34eabd7b79d4dfaeabf2d978e9d6b5a36808",
+          "after_blob": "345b34eabd7b79d4dfaeabf2d978e9d6b5a36808",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+          "before_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+          "after_blob": "7716655a90429c9b76f73b3aedd3fb737915a3f6",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "before_blob": "6c1951e088391b620c8c1aacbc2b18b91c673e08",
+          "after_blob": "6c1951e088391b620c8c1aacbc2b18b91c673e08",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+          "before_blob": "7f30e37606603e5adae06caca9f71308123de465",
+          "after_blob": "7f30e37606603e5adae06caca9f71308123de465",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+          "before_blob": "e0265033bed528e8eeb1d1b96a9826f1b71eaa76",
+          "after_blob": "e0265033bed528e8eeb1d1b96a9826f1b71eaa76",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_client.dart",
+          "before_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+          "after_blob": "b6ec73c4601961cd34c89bdd97ca3c6a95567318",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart",
+          "before_blob": "3416e1301ddb3ec8819aee07cec162b3c4164838",
+          "after_blob": "3416e1301ddb3ec8819aee07cec162b3c4164838",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_models.dart",
+          "before_blob": "ef85d53e8daa3e793a7bdb0b4003a5a74999db08",
+          "after_blob": "ef85d53e8daa3e793a7bdb0b4003a5a74999db08",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/fixtures/zotero/citing/README.md",
+          "before_blob": "cfc7fc762c379b298b16abf67fc34b4f07c967f7",
+          "after_blob": "cfc7fc762c379b298b16abf67fc34b4f07c967f7",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/fixtures/zotero/citing/generate-fixtures.cjs",
+          "before_blob": "ccafdb1d7d5905505641b00c741d74e5f72ed643",
+          "after_blob": "ccafdb1d7d5905505641b00c741d74e5f72ed643",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/fixtures/zotero/citing/processor-output.json",
+          "before_blob": "935c6ac0d9a816fe578c30c3c4c7f3e27354d84d",
+          "after_blob": "935c6ac0d9a816fe578c30c3c4c7f3e27354d84d",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/fixtures/zotero/citing/protocol-contract.json",
+          "before_blob": "6ecacf41c116775e85687df3bc43bf17e13b5e9b",
+          "after_blob": "6ecacf41c116775e85687df3bc43bf17e13b5e9b",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/fixtures/zotero/word_document.xml",
+          "before_blob": "58ab654c095dca77ac89ed82c9933903dcc9a4da",
+          "after_blob": "58ab654c095dca77ac89ed82c9933903dcc9a4da",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+          "before_blob": "8ac20b3d733b295fd1b9a47d57bf11ce4a29d6b2",
+          "after_blob": "8ac20b3d733b295fd1b9a47d57bf11ce4a29d6b2",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+          "before_blob": "b1032ee4bab803997322170accb1cb94b15e432e",
+          "after_blob": "b1032ee4bab803997322170accb1cb94b15e432e",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+          "before_blob": "ba361688bb890e31edb80fc97a1e3201dfc104b9",
+          "after_blob": "ba361688bb890e31edb80fc97a1e3201dfc104b9",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+          "before_blob": "f6b3022292411a888bbfb6fe911e27ce077fe9e5",
+          "after_blob": "f6b3022292411a888bbfb6fe911e27ce077fe9e5",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+          "before_blob": "a08d47ab044b3612c3280d4aca110af00594d78c",
+          "after_blob": "a08d47ab044b3612c3280d4aca110af00594d78c",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+          "before_blob": "c53592cc431f3f6605c6f41e7980a4c6c034e1b5",
+          "after_blob": "c53592cc431f3f6605c6f41e7980a4c6c034e1b5",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+          "before_blob": "00002fbbf6518c2142978c4b0aed86235cefd7a9",
+          "after_blob": "00002fbbf6518c2142978c4b0aed86235cefd7a9",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+          "before_blob": "ca91db78f6fa4284d0708edddaa7873904f53ff0",
+          "after_blob": "ca91db78f6fa4284d0708edddaa7873904f53ff0",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+          "before_blob": "c62f5df2c981f4755e2ae0ac4f33e9cb1cb204ee",
+          "after_blob": "c62f5df2c981f4755e2ae0ac4f33e9cb1cb204ee",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+          "before_blob": "631232b4df6ec1e6f8226e01d8318f7163b58816",
+          "after_blob": "631232b4df6ec1e6f8226e01d8318f7163b58816",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+          "before_blob": "53f29938b5f31cff40648f356c444d06f96183ba",
+          "after_blob": "53f29938b5f31cff40648f356c444d06f96183ba",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+          "before_blob": "2f0663487f527d33e1855926c3f36803167f4423",
+          "after_blob": "2f0663487f527d33e1855926c3f36803167f4423",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+          "before_blob": "e420291eb421ccc4447416f29d3e356680236377",
+          "after_blob": "e420291eb421ccc4447416f29d3e356680236377",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_client_test.dart",
+          "before_blob": "590e6b2b7953b08bc0a1434f866f67935e12c3fa",
+          "after_blob": "590e6b2b7953b08bc0a1434f866f67935e12c3fa",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+          "before_blob": "b91cfd389a5b805bb78822e63dcbca499f5d9464",
+          "after_blob": "b91cfd389a5b805bb78822e63dcbca499f5d9464",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+          "before_blob": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65",
+          "after_blob": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+          "before_blob": "fbea53dd8badea6cf69b136945155f08305f82b1",
+          "after_blob": "fbea53dd8badea6cf69b136945155f08305f82b1",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+          "before_blob": "95943fabfffdb187c44ae5ff6be9503ffcac3734",
+          "after_blob": "95943fabfffdb187c44ae5ff6be9503ffcac3734",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        },
+        {
+          "path": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+          "before_blob": "483cf44306607d82e572fbab49d34084a1728c65",
+          "after_blob": "483cf44306607d82e572fbab49d34084a1728c65",
+          "before_mode": "100644",
+          "after_mode": "100644",
+          "equal": true
+        }
+      ]
+    },
+    "note_comment_merge": {
+      "emission_lines": 20,
+      "registry_lines": 11,
+      "emission_present_once": true,
+      "registry_present_once": true,
+      "writer_removal_inverse": true,
+      "comment_test_present_once": true,
+      "test_removal_inverse": true,
+      "writer_blob": "80d121737b042b29231afc19d0e5004dfc210aee",
+      "test_blob": "0b1df3418859c529c9bf89b14044e004b2a048fa",
+      "semantics_scope": "Exact preservation of incoming note implementation plus existing main comment emission/lookup and test. Hidden field-boundary suppression and writeOdfText remain present. Source review does not establish combined runtime or ODF interoperability acceptance."
+    },
+    "proofing": [
+      {
+        "name": "morph",
+        "source_commit": "286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86",
+        "path_count": 67,
+        "entries": [
+          {
+            "path": "LICENSE",
+            "source_blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+            "integrated_blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/PROOFING.md",
+            "source_blob": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "integrated_blob": "d25d72344d5e73dae8d63850785f7ad1295fb297",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/README.md",
+            "source_blob": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "integrated_blob": "88f961a00ef6376849634a81ae5fdd16ba41ec41",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+            "source_blob": "f1cc417681516dcde8cb0b809fea6a1ddc6a0236",
+            "integrated_blob": "f1cc417681516dcde8cb0b809fea6a1ddc6a0236",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/LICENSE",
+            "source_blob": "bba2123edc3d22ee22850dbca30807cfcb98cbe6",
+            "integrated_blob": "bba2123edc3d22ee22850dbca30807cfcb98cbe6",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+            "source_blob": "2596cf46f6c61869a505dcd7d528ac04cf176da4",
+            "integrated_blob": "2596cf46f6c61869a505dcd7d528ac04cf176da4",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+            "source_blob": "8f5ad3a0193d65f86f572b2a76fd64606abe38b1",
+            "integrated_blob": "8f5ad3a0193d65f86f572b2a76fd64606abe38b1",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+            "source_blob": "12bf2f08d09c307a44420d3f9becdb122c8b4347",
+            "integrated_blob": "12bf2f08d09c307a44420d3f9becdb122c8b4347",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+            "source_blob": "1b4fcc74f0cb722ee45fe8363edbf6778f3e4006",
+            "integrated_blob": "1b4fcc74f0cb722ee45fe8363edbf6778f3e4006",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+            "source_blob": "f3f6038f6759637ef803f33176bea2e88f79ce66",
+            "integrated_blob": "f3f6038f6759637ef803f33176bea2e88f79ce66",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/third_party/proofing/README.md",
+            "source_blob": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "integrated_blob": "215a2179c1a88d49ee1173788824b6ff47ea01c6",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/third_party/proofing/manifest.json",
+            "source_blob": "9eba6dcab488c1a13cf1c7aa2ef4936e81a28122",
+            "integrated_blob": "9eba6dcab488c1a13cf1c7aa2ef4936e81a28122",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+            "source_blob": "a7e977db059087763c729a2d64ca686c3acdcbbd",
+            "integrated_blob": "a7e977db059087763c729a2d64ca686c3acdcbbd",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/run_morphology_qualification.py",
+            "source_blob": "f1d612d473f6e30fe3ae99c529b80f5cdbc51e8b",
+            "integrated_blob": "f1d612d473f6e30fe3ae99c529b80f5cdbc51e8b",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/archive-integrity.json",
+            "source_blob": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "integrated_blob": "aab205de5d29621cc9ff108efbc1fbfc4c99bec4",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/continuation-checkpoint.json",
+            "source_blob": "658fa66275057dde926ceaaa9ec26a9d1fbb1910",
+            "integrated_blob": "658fa66275057dde926ceaaa9ec26a9d1fbb1910",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/continuity.json",
+            "source_blob": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "integrated_blob": "d005a19b0e588c348d099ab0b52324de6e098687",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/exploratory-evidence-index.json",
+            "source_blob": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "integrated_blob": "66169e86ec977d8f47ff7374c58e5774e32aad42",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/exploratory-evidence.tar.gz",
+            "source_blob": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "integrated_blob": "6a5a106a35e1f23c03f04eaca9b4527141995795",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/final-validation-index.json",
+            "source_blob": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "integrated_blob": "ebce17ddb06b6b0c2cdfab7b818ad3016763a887",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/final-validation.tar.gz",
+            "source_blob": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "integrated_blob": "50dd27d2e650c3765aae2d5824e62028d8dbd24d",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/incoming-resume.json",
+            "source_blob": "ef2a3297d6ba6091e70b129805f151263ef76521",
+            "integrated_blob": "ef2a3297d6ba6091e70b129805f151263ef76521",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/morphology-corpora-index.json",
+            "source_blob": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "integrated_blob": "8c3a6038a7ed5ef303efaeb9a44c707ef0510ce3",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/morphology-corpora.tar.gz",
+            "source_blob": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "integrated_blob": "a6e6bc55b496ee177396e785f519cc9065b4dc51",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/accuracy-and-variant-check.json",
+            "source_blob": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "integrated_blob": "6699532a01ac38875dd809e55cdb33bbdef333eb",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/all-buckets-receipt.json",
+            "source_blob": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "integrated_blob": "39c4862726ccb51ac55238fb376e529f66624d75",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/analysis-receipt.json",
+            "source_blob": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "integrated_blob": "5e2567a5e918aace23692bcc065ec03f23c0f498",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/editor-receipt.json",
+            "source_blob": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "integrated_blob": "89e3560a81f951694f452bc648ef2fe861727bc8",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/engine-receipt.json",
+            "source_blob": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "integrated_blob": "dd96a393fdcc4117c3352b2bb5e36067f1c75255",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-receipt.json",
+            "source_blob": "21e696f6581091985a796ada117202d801ae7e5b",
+            "integrated_blob": "21e696f6581091985a796ada117202d801ae7e5b",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/frozen-corpus-summary.json",
+            "source_blob": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "integrated_blob": "731b58e78ba79dc3af4521b2825c48347cb88ae7",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/independent-review-receipt.json",
+            "source_blob": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "integrated_blob": "dfd6d4bc908091e49431ff9f97cb18b50322fae8",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/independent-review-summary.json",
+            "source_blob": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "integrated_blob": "c6248ac2d4c68517cfe1f4f433019908dbda3d2b",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/summary.json",
+            "source_blob": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "integrated_blob": "721ca5e6ed52b8850a593a5febe5259b8fe3d606",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/timing-long-receipt.json",
+            "source_blob": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "integrated_blob": "88b684417838fcc2c64e3d532d8aafd51908e2ce",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/timing-short-receipt.json",
+            "source_blob": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "integrated_blob": "7d3937bb43e599ccc1701191905437f48d8e9be8",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/web-bundle-sha256.json",
+            "source_blob": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "integrated_blob": "3e8b8fe5c03dcbc8353680fc4ffc934205bb17af",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/web-license-collection.json",
+            "source_blob": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "integrated_blob": "64a60c47dff184a28f25c181b4db3b13837aca5c",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/qualification/web-receipt.json",
+            "source_blob": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "integrated_blob": "634a6dc739c69a2904db88c4ac3701d54437f482",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-morphology-20261117/source-binding.json",
+            "source_blob": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "integrated_blob": "abeec0cfc4e762e90aee3193e20b93a429ffe03f",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart",
+            "source_blob": "5287953366acf63968cdec7f66605cf8416d0e0a",
+            "integrated_blob": "5287953366acf63968cdec7f66605cf8416d0e0a",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart",
+            "source_blob": "43e1dbc0ac110707da8984608490661251296ff4",
+            "integrated_blob": "43e1dbc0ac110707da8984608490661251296ff4",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart",
+            "source_blob": "e3050865ca705f94b0553e5871bb39467386c7ae",
+            "integrated_blob": "e3050865ca705f94b0553e5871bb39467386c7ae",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart",
+            "source_blob": "0bf6559f479135c6a98a73babb78e2ba6fa0f769",
+            "integrated_blob": "0bf6559f479135c6a98a73babb78e2ba6fa0f769",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart",
+            "source_blob": "9901985b01388b3faf9a367d1538c3abe226f5b6",
+            "integrated_blob": "9901985b01388b3faf9a367d1538c3abe226f5b6",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart",
+            "source_blob": "5d010c01599665c5fcb440ae6c0f0de0eacd0a7a",
+            "integrated_blob": "5d010c01599665c5fcb440ae6c0f0de0eacd0a7a",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart",
+            "source_blob": "5d21a1853b52ad0bf55b5a65ac840d2efba560ac",
+            "integrated_blob": "5d21a1853b52ad0bf55b5a65ac840d2efba560ac",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart",
+            "source_blob": "38a9c3bb0edfc9d61c139e80b8903c4adb600d05",
+            "integrated_blob": "38a9c3bb0edfc9d61c139e80b8903c4adb600d05",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart",
+            "source_blob": "3c4761844c0ace6ace0bbfb7a62ab69c1f144b17",
+            "integrated_blob": "3c4761844c0ace6ace0bbfb7a62ab69c1f144b17",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart",
+            "source_blob": "5c1f7431ad9b473b3df0ae8cecc2121cce943604",
+            "integrated_blob": "5c1f7431ad9b473b3df0ae8cecc2121cce943604",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart",
+            "source_blob": "41c44d85c8e57778f391662914b676548efa657e",
+            "integrated_blob": "41c44d85c8e57778f391662914b676548efa657e",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart",
+            "source_blob": "3ef5578de1ffdb2b73429d9356a8e50d9ca3b0f8",
+            "integrated_blob": "3ef5578de1ffdb2b73429d9356a8e50d9ca3b0f8",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart",
+            "source_blob": "a62224edb71e62ddb00caed6ea6be3b22d7c62c5",
+            "integrated_blob": "a62224edb71e62ddb00caed6ea6be3b22d7c62c5",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart",
+            "source_blob": "65d0f798c21561ea4c031ff521b332a6d7294d78",
+            "integrated_blob": "65d0f798c21561ea4c031ff521b332a6d7294d78",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart",
+            "source_blob": "72c3e2103ad6c801c0938a912bb6438d22a68624",
+            "integrated_blob": "72c3e2103ad6c801c0938a912bb6438d22a68624",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart",
+            "source_blob": "9d9aa1c0174393be82ba265341aad15efaa8b9ec",
+            "integrated_blob": "9d9aa1c0174393be82ba265341aad15efaa8b9ec",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart",
+            "source_blob": "b8184cfc67639b140c8899ed161ab892159db029",
+            "integrated_blob": "b8184cfc67639b140c8899ed161ab892159db029",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/proofing/german_morphology.dart",
+            "source_blob": "7ce803bb3653956f14ea8258a83ce6975adf4259",
+            "integrated_blob": "7ce803bb3653956f14ea8258a83ce6975adf4259",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+            "source_blob": "2cb50ace04184349e0a0af19d9f6c84ce53b8466",
+            "integrated_blob": "2cb50ace04184349e0a0af19d9f6c84ce53b8466",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+            "source_blob": "74001eb5253ce42f58a31e2b0eb0fbe4777b4d05",
+            "integrated_blob": "74001eb5253ce42f58a31e2b0eb0fbe4777b4d05",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/third_party/proofing/MORPHOLOGY.md",
+            "source_blob": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "integrated_blob": "2d5f4ea6e7a0425dd92b8ba9cd475ef8ef64a385",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE",
+            "source_blob": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+            "integrated_blob": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE",
+            "source_blob": "c153af4006e223a00071957bdde4ad6c36685581",
+            "integrated_blob": "c153af4006e223a00071957bdde4ad6c36685581",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/third_party/proofing/morphology_manifest.json",
+            "source_blob": "e5b7a07d0ee5d47a71db450407467b37030034b0",
+            "integrated_blob": "e5b7a07d0ee5d47a71db450407467b37030034b0",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "packages/quds_office_engine/tool/proofing/generate_german_morphology.py",
+            "source_blob": "11f80a861997eb2d9a74aeeaa7484a51efacba81",
+            "integrated_blob": "11f80a861997eb2d9a74aeeaa7484a51efacba81",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_morphology_review_cases.json",
+            "source_blob": "49f31a3d27fde5f1d08462ae24cd37da400903d3",
+            "integrated_blob": "49f31a3d27fde5f1d08462ae24cd37da400903d3",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/validate_morphology_buckets.dart",
+            "source_blob": "6a54785ab518abea601fbf808c15bd3e0a725ed0",
+            "integrated_blob": "6a54785ab518abea601fbf808c15bd3e0a725ed0",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          }
+        ]
+      },
+      {
+        "name": "gector",
+        "source_commit": "2a30427893a9ddf009b5e6a74ae0d8f67a8d87d1",
+        "path_count": 21,
+        "entries": [
+          {
+            "path": "tools/proofing/german_model/README.md",
+            "source_blob": "d0f51fe45cd5ed46282a92e51e09ee86c7ac9b5d",
+            "integrated_blob": "d0f51fe45cd5ed46282a92e51e09ee86c7ac9b5d",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": ".github/workflows/german-gector-qualification.yml",
+            "source_blob": "807e4b3f181160ca5125561480622283db54c6b5",
+            "integrated_blob": "807e4b3f181160ca5125561480622283db54c6b5",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/roadmaps/german-gector-proofing.md",
+            "source_blob": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "integrated_blob": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/README.md",
+            "source_blob": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "integrated_blob": "14f6108346cfe6286c51206d2b535157f03ed6dc",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/cases.json",
+            "source_blob": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "integrated_blob": "98429d07d31b97157da6b4cd7f8c4b1dcbfa7120",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-hosted-baseline/evidence.json",
+            "source_blob": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "integrated_blob": "cef8f292f0b55ca6657538d41a81445643d030ff",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/README.md",
+            "source_blob": "173299a8a376f7086843ab49831cce4e646761cc",
+            "integrated_blob": "173299a8a376f7086843ab49831cce4e646761cc",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/cases.json",
+            "source_blob": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "integrated_blob": "0360712445b6e689e4db4dc61312db8b6edaf191",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-hosted-optimized/evidence.json",
+            "source_blob": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "integrated_blob": "2b41d8467d724a3ac162c6e0a32edb5821b74be4",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-local-optimization/README.md",
+            "source_blob": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "integrated_blob": "a08230745d5ea1fd12efadd6ab45c593a4e40a8e",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-local-optimization/evidence.json",
+            "source_blob": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "integrated_blob": "786fb1025f10ea99ec88c0faf8be5cf9ba64e4a8",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-local-smoke/README.md",
+            "source_blob": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "integrated_blob": "0c0ed1e10d09fe79070d45e17eb5c82a2e47cc24",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "docs/validation/german-gector/2026-11-17-local-smoke/baseline.json",
+            "source_blob": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "integrated_blob": "1c453823f65bffb8fc9529ea3453ec2523ca208d",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/REFERENCE_FIXTURES.md",
+            "source_blob": "30e47c38467f4ce09acf75f86e55e56bd3cad739",
+            "integrated_blob": "30e47c38467f4ce09acf75f86e55e56bd3cad739",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/export_reference.py",
+            "source_blob": "1e09ea18a921f35f0f26124fb729616120908674",
+            "integrated_blob": "1e09ea18a921f35f0f26124fb729616120908674",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/quantize_int4.py",
+            "source_blob": "5cec5d8efc9667144703223ffebc151eb0434892",
+            "integrated_blob": "5cec5d8efc9667144703223ffebc151eb0434892",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/requirements-qualification.txt",
+            "source_blob": "ed0e992562c51b67e6d45958ad9ab0846099996c",
+            "integrated_blob": "ed0e992562c51b67e6d45958ad9ab0846099996c",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/run_stage.py",
+            "source_blob": "a11dba1062c93dfd7628c9542f65f325e475c224",
+            "integrated_blob": "a11dba1062c93dfd7628c9542f65f325e475c224",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/summarize_qualification.py",
+            "source_blob": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "integrated_blob": "04cbe7286bed6f8b86cf3778f2d924aef95610ad",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/test_export_reference.py",
+            "source_blob": "023325e7c52ab2ce34f00b0ae864e6755a07b590",
+            "integrated_blob": "023325e7c52ab2ce34f00b0ae864e6755a07b590",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          },
+          {
+            "path": "tools/proofing/german_model/test_qualification.py",
+            "source_blob": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "integrated_blob": "d70bce55bcac961d2ea7c4a599c4f42b80b68212",
+            "source_mode": "100644",
+            "integrated_mode": "100644",
+            "incoming_report_matches_actual_source": true,
+            "integrated_equals_source": true
+          }
+        ]
+      }
+    ],
+    "office_copied_source": [
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "source_blob": "b0a1c2689ca2c37c0787c03a4fb1b8bffce72ec8",
+        "integrated_blob": "b0a1c2689ca2c37c0787c03a4fb1b8bffce72ec8",
+        "source_mode": "100644",
+        "integrated_mode": "100644",
+        "equal": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_note_numbering.dart",
+        "source_blob": "d776e10b7a445f0f1c919f36bdd9a6ec6f5d9b45",
+        "integrated_blob": "d776e10b7a445f0f1c919f36bdd9a6ec6f5d9b45",
+        "source_mode": "100644",
+        "integrated_mode": "100644",
+        "equal": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "source_blob": "cb1cac925ef4e9f328953baa486b48a3d7935060",
+        "integrated_blob": "cb1cac925ef4e9f328953baa486b48a3d7935060",
+        "source_mode": "100644",
+        "integrated_mode": "100644",
+        "equal": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "source_blob": "03974e9752325a979e25bb4512b4d6c95d1284d9",
+        "integrated_blob": "03974e9752325a979e25bb4512b4d6c95d1284d9",
+        "source_mode": "100644",
+        "integrated_mode": "100644",
+        "equal": true
+      }
+    ],
+    "incoming_host_zotero": {
+      "commit": "fad903782ee45031e26c57cc8a65ccf476b1724d",
+      "mirrored_exact_blob_mode": 46,
+      "canonical_example_only": 4,
+      "unexplained_differences": 0
+    },
+    "unicode_notice": {
+      "license_blob": "f6fe7b9e1bcceae1ec0a98676181384f3b1d3d91",
+      "notice_blob": "c153af4006e223a00071957bdde4ad6c36685581",
+      "notice_contains_exact_complete_license": true,
+      "host_runtime_registration_required": true,
+      "required_host_paths": [
+        "pubspec.yaml",
+        "lib/services/office_proofing_licenses.dart",
+        "test/office_proofing_licenses_test.dart"
+      ],
+      "recommended_asset": "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE",
+      "existing_six_notices_must_remain_unchanged": true
+    }
+  },
+  "runtime_tests_executed": 0,
+  "github_actions_or_ci_status_endpoints_queried": false,
+  "source_preservation_blockers": [],
+  "remaining": "Host runtime license asset/registry/test extension must be included by the vendor integration; runtime tests remain unavailable in current environment.",
+  "checkpoint_parent": "da3f469a1ad85e36a699743e427f7fb0bcd94486",
+  "checkpoint_parent_non_docs_root_entries_equal_reviewed_source": true,
+  "checkpoint_parent_tree": "3e3cbb61ca4f19abef6f1f4c2554ea8987f36520"
+}

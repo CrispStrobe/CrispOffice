@@ -1,6 +1,5 @@
 {
   "base": "8106752eb410a6c2f66ff03c3fa983123760058d",
-  "integrated_commit": "cc345de46d0c34049b972a308dd8ea8a9ab43c34",
   "completed_utc": "2026-11-17T14:04:21.092854+00:00",
   "references": 232,
   "distinct_commits": 155,
@@ -18,5 +17,9 @@
     "677aa93701b9f234b9adf6e800ba1bc828ad3642 Integrate captured GECToR tooling and qualification evidence [skip ci]",
     "3a53b33183765b22335be63c01fafce02a8dbfb7 Integrate captured morphology qualification and license evidence [skip ci]",
     "ede1b80f67b0b24fa589a50cc19036f49a1d4fb5 Integrate latest main and ODT comment export [skip ci]"
-  ]
+  ],
+  "local_merge_result": "cc345de46d0c34049b972a308dd8ea8a9ab43c34",
+  "published_integration_commit": "fc44377279ced4589e637360e5f67501012e022c",
+  "published_tree": "e23de97912e8d60357d51464ad64fc2d93154c10",
+  "publication_method": "GitHub Git Data API tree verified against local merge result, with the previous branch head and incoming tips as parents; normal expected-head ref update."
 }
