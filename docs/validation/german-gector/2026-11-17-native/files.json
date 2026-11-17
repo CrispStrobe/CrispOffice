@@ -1,0 +1,232 @@
+{
+  "files": [
+    {
+      "compression": "none",
+      "file": "CrispEmbed-LICENSE",
+      "sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+      "size_bytes": 4739,
+      "source": "worktrees/CrispEmbed/LICENSE",
+      "uncompressed_sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+      "uncompressed_size_bytes": 4739
+    },
+    {
+      "compression": "none",
+      "file": "README.md",
+      "sha256": "8175fb15527fa05e50cdd35afdfe9a8aca0d676478f16028105674bcde665426",
+      "size_bytes": 13949,
+      "source": "derived from the complete archived reports and observed source checkpoints",
+      "uncompressed_sha256": "8175fb15527fa05e50cdd35afdfe9a8aca0d676478f16028105674bcde665426",
+      "uncompressed_size_bytes": 13949
+    },
+    {
+      "compression": "none",
+      "file": "artifacts.json",
+      "sha256": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+      "size_bytes": 3428,
+      "source": "worktrees/quds_office_suite/tools/proofing/german_model/artifacts.json",
+      "uncompressed_sha256": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+      "uncompressed_size_bytes": 3428
+    },
+    {
+      "compression": "none",
+      "file": "cases.json",
+      "sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "size_bytes": 3088,
+      "source": "worktrees/quds_office_suite/tools/proofing/german_model/cases.json",
+      "uncompressed_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "uncompressed_size_bytes": 3088
+    },
+    {
+      "compression": "none",
+      "file": "evidence.json",
+      "sha256": "e6f52da184b6e51bf23ac3ce9721c304d8fd53362a5d55bbe419834e274873dd",
+      "size_bytes": 26811,
+      "source": "derived from the complete archived reports and observed source checkpoints",
+      "uncompressed_sha256": "e6f52da184b6e51bf23ac3ce9721c304d8fd53362a5d55bbe419834e274873dd",
+      "uncompressed_size_bytes": 26811
+    },
+    {
+      "compression": "none",
+      "file": "failure-f32-gate-lifetime.json",
+      "sha256": "307b641532bf9626e5b9047b9e8fbc5826c7ec75cfb3c1b59ff3d66fa17a67fe",
+      "size_bytes": 33688,
+      "source": "assets/native-f32-v1/qualification.json",
+      "uncompressed_sha256": "307b641532bf9626e5b9047b9e8fbc5826c7ec75cfb3c1b59ff3d66fa17a67fe",
+      "uncompressed_size_bytes": 33688
+    },
+    {
+      "compression": "none",
+      "file": "failure-f32-source-drift.json",
+      "sha256": "a7e3a15708c51ab301dd40c851a4a3de1db7ebc00f76ad5193c7f1fec219562a",
+      "size_bytes": 410,
+      "source": "assets/native-f32-v2/qualification.json",
+      "uncompressed_sha256": "a7e3a15708c51ab301dd40c851a4a3de1db7ebc00f76ad5193c7f1fec219562a",
+      "uncompressed_size_bytes": 410
+    },
+    {
+      "compression": "gzip; empty filename; mtime=0; level=9",
+      "file": "gector-de-f32.gguf.manifest.json.gz",
+      "sha256": "ce279f5839bb1f234e0240479545de48998aafa164ad3003981f6523e6b2cea3",
+      "size_bytes": 16713,
+      "source": "assets/gector-de-f32.gguf.manifest.json",
+      "uncompressed_sha256": "c17318bdb1ada8fc2b1c456948bab44c746b06c8287c445099826ad3573abde7",
+      "uncompressed_size_bytes": 132371
+    },
+    {
+      "compression": "none",
+      "file": "gector-de-mixed-q4_k.gguf.manifest.json",
+      "sha256": "db4ec2b79cdc3fb56c201f19fee58ad681f90182922c3725f77061e0e9efc630",
+      "size_bytes": 49612,
+      "source": "assets/gector-de-mixed-q4_k.gguf.manifest.json",
+      "uncompressed_sha256": "db4ec2b79cdc3fb56c201f19fee58ad681f90182922c3725f77061e0e9efc630",
+      "uncompressed_size_bytes": 49612
+    },
+    {
+      "compression": "none",
+      "file": "host-observation.json",
+      "sha256": "cd0437d33775914cc4af0551878c360670f229325efd6df7e0d41690bd701181",
+      "size_bytes": 404,
+      "source": "assets/native-host.json",
+      "uncompressed_sha256": "cd0437d33775914cc4af0551878c360670f229325efd6df7e0d41690bd701181",
+      "uncompressed_size_bytes": 404
+    },
+    {
+      "compression": "none",
+      "file": "local-tests.json",
+      "sha256": "a9d0743f414dc0987afdaf88e6c6a8e5c7dad46d35606acd870ceb2a9484e001",
+      "size_bytes": 1615,
+      "source": "observed local pytest invocation; recorded after completion",
+      "uncompressed_sha256": "a9d0743f414dc0987afdaf88e6c6a8e5c7dad46d35606acd870ceb2a9484e001",
+      "uncompressed_size_bytes": 1615
+    },
+    {
+      "compression": "none",
+      "file": "native-THIRD_PARTY_NOTICES",
+      "sha256": "bb34de085625026bc7f0be3279172b81cfb0a1ea2de0dba45711bd2aa3b0741a",
+      "size_bytes": 3729,
+      "source": "worktrees/CrispEmbed/tools/gector/THIRD_PARTY_NOTICES",
+      "uncompressed_sha256": "bb34de085625026bc7f0be3279172b81cfb0a1ea2de0dba45711bd2aa3b0741a",
+      "uncompressed_size_bytes": 3729
+    },
+    {
+      "compression": "none",
+      "file": "native-build-and-licenses.json",
+      "sha256": "b27cf614ff09b6049b63c34e990d0bfd81252b396b4f770693d8d36ed65fc4e1",
+      "size_bytes": 22078,
+      "source": "assets/gector-native-build.json",
+      "uncompressed_sha256": "b27cf614ff09b6049b63c34e990d0bfd81252b396b4f770693d8d36ed65fc4e1",
+      "uncompressed_size_bytes": 22078
+    },
+    {
+      "compression": "none",
+      "file": "native-build-v1.json",
+      "sha256": "2b805778c1ea9178af47709d714ec877fb228f847af44ab9fc36b85af09e031e",
+      "size_bytes": 29775,
+      "source": "assets/native-build-v1.json",
+      "uncompressed_sha256": "2b805778c1ea9178af47709d714ec877fb228f847af44ab9fc36b85af09e031e",
+      "uncompressed_size_bytes": 29775
+    },
+    {
+      "compression": "none",
+      "file": "native-build-v2.json",
+      "sha256": "48996f283c24dbbf57590cf0314f4ec51d7e4076f4e14b9f99172e36f542dddf",
+      "size_bytes": 29775,
+      "source": "assets/native-build-v2.json",
+      "uncompressed_sha256": "48996f283c24dbbf57590cf0314f4ec51d7e4076f4e14b9f99172e36f542dddf",
+      "uncompressed_size_bytes": 29775
+    },
+    {
+      "compression": "none",
+      "file": "native-driver-smoke.json",
+      "sha256": "08faac1f4f5a9336afda319c020eee4c7bc599839eae94d323fa398936f209e4",
+      "size_bytes": 317,
+      "source": "assets/native-smoke/out.json",
+      "uncompressed_sha256": "08faac1f4f5a9336afda319c020eee4c7bc599839eae94d323fa398936f209e4",
+      "uncompressed_size_bytes": 317
+    },
+    {
+      "compression": "none",
+      "file": "native-initial-smoke.json",
+      "sha256": "825b85c6d991e51104822934101b4f685540614c769ecbb5897128cb7f0fc675",
+      "size_bytes": 388,
+      "source": "assets/native-initial-smoke.json",
+      "uncompressed_sha256": "825b85c6d991e51104822934101b4f685540614c769ecbb5897128cb7f0fc675",
+      "uncompressed_size_bytes": 388
+    },
+    {
+      "compression": "none",
+      "file": "proofbird-LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358,
+      "source": "assets/proofbird/LICENSE",
+      "uncompressed_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "uncompressed_size_bytes": 11358
+    },
+    {
+      "compression": "none",
+      "file": "proofbird-NOTICE",
+      "sha256": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3",
+      "size_bytes": 444,
+      "source": "assets/proofbird/NOTICE",
+      "uncompressed_sha256": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3",
+      "uncompressed_size_bytes": 444
+    },
+    {
+      "compression": "gzip; empty filename; mtime=0; level=9",
+      "file": "qualification-f32-policy-v1.json.gz",
+      "sha256": "f70849e50bb6f5c325c6b4acef62321578c2e4d485a7fcc3f29f4591731e866d",
+      "size_bytes": 57461,
+      "source": "assets/native-f32-v3/qualification.json",
+      "uncompressed_sha256": "08a399114625c673361207fca9e2d4417b4b7a6bc449a5bcbe2863a0d9593118",
+      "uncompressed_size_bytes": 460070
+    },
+    {
+      "compression": "gzip; empty filename; mtime=0; level=9",
+      "file": "qualification-f32-policy-v2.json.gz",
+      "sha256": "bb0236c0119bc28bac790f610bc7c9f9737055b9e1dddb8e26e23e7b92e1412c",
+      "size_bytes": 58010,
+      "source": "assets/native-f32-policy-v2/qualification.json",
+      "uncompressed_sha256": "2399aad732032397c24ed92a4d25d80b8fcf68b1ae9d69feb9423afc3e711c49",
+      "uncompressed_size_bytes": 461335
+    },
+    {
+      "compression": "gzip; empty filename; mtime=0; level=9",
+      "file": "qualification-mixed-q4_k-policy-v1.json.gz",
+      "sha256": "5ea890e4db28e612343886a434a03a34e3524f86db84cec5ae23f4965812174f",
+      "size_bytes": 93736,
+      "source": "assets/native-mixed-q4_k-v1/qualification.json",
+      "uncompressed_sha256": "75e81f435f20a7d3fe0e46e7b31fc462ee6f1f5d29a7f5340d19cc056cb9c030",
+      "uncompressed_size_bytes": 733897
+    },
+    {
+      "compression": "gzip; empty filename; mtime=0; level=9",
+      "file": "qualification-mixed-q4_k-policy-v2.json.gz",
+      "sha256": "1e11276c6a437336717225032731ed310c6f128561e422710357e980a2355c50",
+      "size_bytes": 94270,
+      "source": "assets/native-mixed-q4_k-policy-v2/qualification.json",
+      "uncompressed_sha256": "a103c5b8da8e8d44669ee7f1cc92d92f55710665bd3a33d65f12e18e54ccfb35",
+      "uncompressed_size_bytes": 735236
+    },
+    {
+      "compression": "gzip; empty filename; mtime=0; level=9",
+      "file": "reference-f32.json.gz",
+      "sha256": "0da3f3818b1998c95cba63c1111a3b6092350ab58d76c3047af8a6c79c51975d",
+      "size_bytes": 23746,
+      "source": "assets/reference-f32/reference.json",
+      "uncompressed_sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8",
+      "uncompressed_size_bytes": 256295
+    },
+    {
+      "compression": "gzip; empty filename; mtime=0; level=9",
+      "file": "source-onnx-census.json.gz",
+      "sha256": "3f914e62510f529662bb7b68410eb3fe66baa0b4ae7456f028d1c3fded603021",
+      "size_bytes": 15270,
+      "source": "assets/reference-f32/onnx-census.json",
+      "uncompressed_sha256": "71893dc62e7a6c45093cf2796608d3b7417f14fa40ceb2b136a7f38a8c791839",
+      "uncompressed_size_bytes": 460692
+    }
+  ],
+  "purpose": "Exact-byte archive of complete local reports and source/build/model manifests; no weights or raw tensor buffers.",
+  "recorded_at_utc": "2026-11-17T14:26:04.493142+00:00",
+  "schema": "quds.gector.native-evidence-files.v1"
+}

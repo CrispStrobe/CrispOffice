@@ -1,0 +1,16 @@
+name: quds_proofing_gector
+description: Optional verified local German GECToR proofing for Quds Office.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.12.0
+dependencies:
+  quds_office_engine:
+    path: ../quds_office_engine
+  characters: ^1.4.0
+  crypto: ^3.0.6
+  ffi: ^2.1.4
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0

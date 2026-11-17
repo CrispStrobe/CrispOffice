@@ -1,0 +1,40 @@
+{
+  "remote": "upstream",
+  "url": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+  "started_utc": "2026-11-17T14:03:00.761035+00:00",
+  "completed_utc": "2026-11-17T14:03:11.888740+00:00",
+  "references": [
+    {
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ref": "refs/heads/ci/flutter-workspace"
+    },
+    {
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ref": "refs/heads/cursor/class-certificates-2db8"
+    },
+    {
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h"
+    },
+    {
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ref": "refs/heads/main"
+    },
+    {
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "ref": "refs/pull/1/head"
+    },
+    {
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ref": "refs/pull/5/head"
+    },
+    {
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ref": "refs/pull/6/head"
+    },
+    {
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ref": "refs/pull/7/head"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "case": "verb-du",
+  "library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+  "heads": {
+    "logits_labels": {
+      "max_abs": 9.5367431640625e-06,
+      "cosine": 0.9999999999999563,
+      "argmax_equal": true
+    },
+    "logits_d": {
+      "max_abs": 2.384185791015625e-06,
+      "cosine": 0.9999999999999798,
+      "argmax_equal": true
+    }
+  }
+}

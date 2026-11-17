@@ -1,0 +1,811 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-local-smoke-baseline",
+  "baseline_id": "2026-11-17-local-smoke-before-runtime-optimization",
+  "application_qualified": false,
+  "shipping_backend_selected": false,
+  "scope": {
+    "selected_case_ids": [
+      "verb-du",
+      "clean-swiss-name"
+    ],
+    "selected_case_count": 2,
+    "frozen_panel_case_count": 30,
+    "all_30_cases_executed": false,
+    "first_pass_wordpiece_counts": [
+      7,
+      10
+    ],
+    "saved_passes_per_variant": 4,
+    "warmup_iterations": 1,
+    "measured_iterations": 3,
+    "dart_complete_correction_implemented_or_measured": false,
+    "native_ort_python_control_measured": true,
+    "rust_native_backend_measured": false,
+    "crispembed_ggml_backend_measured": false,
+    "q4_k_measured": false
+  },
+  "host_and_controls": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "cpu_count": 9,
+    "cpu_model": "not recorded in this diagnostic",
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "nice_increment": 10,
+    "per_stage_cpu_seconds_limit": 90,
+    "per_stage_wall_seconds_limit": 180,
+    "per_stage_rss_stop_bytes": 3221225472,
+    "ort_intra_op_threads": 2,
+    "ort_inter_op_threads": 1,
+    "ort_execution_mode": "sequential",
+    "dart_gemm_workers": 2,
+    "thread_budget_note": "CPU affinity restricts execution to two logical CPUs; worker count is not the total process-thread count."
+  },
+  "source_identity": {
+    "quds_commit": "6bd03365ba3b146586148658b0e03998b36bdc9d",
+    "onnx_runtime_dart_commit": "0b49ca47fa056e6fc122ffe0192a9abb05627622",
+    "quds_source_url": "https://github.com/CrispStrobe/quds_office_suite/tree/6bd03365ba3b146586148658b0e03998b36bdc9d",
+    "onnx_runtime_dart_source_url": "https://github.com/CrispStrobe/onnx_runtime_dart/tree/0b49ca47fa056e6fc122ffe0192a9abb05627622",
+    "quds_roadmap_commit": "4cceff38040d423c4cfc08a0039b0379c6b35bbf",
+    "onnx_runtime_dart_roadmap_commit": "3ac10dd64c655657186ba89e673cb183d2250682",
+    "conditional_crispembed_roadmap_commit": "85e973fba7c1be3f8bf028bb43de82ce0537174f",
+    "conditional_fastembed_roadmap_commit": "99d21fbc830e3dbaaafff3d60a0864097b1b795b",
+    "onnx_artifact_sha256": {
+      "lib/src/wordpiece_tokenizer.dart": "afe21b2d7ff6ee604a580bf887d44602d9a01093e3d2f5c599fca52822b1d689",
+      "tool/gector_benchmark.dart": "16bbc53313e60ecfc4288208a718bf03b7838b007922680cbdafedbc11f2751a",
+      "pubspec.yaml": "f18af5414027e95bf3cfca2df23812242eed832719e22a1cc7d9f08715fe80df",
+      "pubspec.lock": "c0509a7d97a68e018f71d86a5759e09aaff4b6fd7038d69edca9c16bc71dc87f",
+      "build/gector_benchmark": "85860b03fcf0d4b3067653a357343b6300342b2bc7bf20576a2dfbb0b58be452"
+    },
+    "quds_tool_sha256": {
+      "tools/proofing/german_model/export_reference.py": "72db08102013c6999e6664299beaf40c6339e73d80ea1f4a1709db06a1772f7c",
+      "tools/proofing/german_model/evaluate.py": "4ef9f05add47c308155ed107051e2aea686a31ecac0918c6de03b6f6ea48eb35",
+      "tools/proofing/german_model/quantize_int4.py": "e2739095ab37e66bd0cac8b734eadec48b1fc1bc39bf86bd81fce6113cbbb0e8"
+    },
+    "model_manifest_sha256": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+    "frozen_cases_file_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+    "original_source_json_sha256": {
+      "provenance.json": "d5970dfdf8281d948c47a5bcb4d7b19da22a134ca0ec256bec38ea84b735c393",
+      "dart-f32.json": "8d98f0a494c9c8b9f60268bd772abd029c0675dcd1f5402974af5fec04ad7d5e",
+      "dart-int4.json": "3becf4d34a639fa9c2e17627461492ca701ec10bf86228615e5e429b0d6288e7",
+      "reference-f32/reference.json": "7f9a595ed6a705ae526cb964ae974ab4af746ff828e6746953487cf2ea0bbdc2",
+      "reference-int4/reference.json": "6d7c2e29bdc44dceaf1c75a76d7dc105c566945aacdbcdaff569c46e19f52db5",
+      "candidate/candidate.json": "42876db3772e5181a123c51c6349fc1d829194fa22d3af57c19f6e1adcf7b891",
+      "reference-f32.status.json": "81e81e6a361abae87d5d8bf7a8897d7c3fd584091e572218ad5a2ffaceba554b",
+      "quantize-int4.status.json": "38b806fae405149cdd0032cd1e6b40c1fe32f28d00baf3ac9a249867dee88a73",
+      "reference-int4.status.json": "a368c23ea28ec54d59ef5e7131b7f5695dbf479da3e803cac824af4317b54c1b",
+      "dart-f32.status.json": "a5b15ededf6934fb44bcc69a3baec99e49f8394d1f5109d3dfa2f01ddddfaf12",
+      "dart-int4.status.json": "ba8949acd442a304156b9d43ba4f5e32bcceccbff5dfbcfc835ce0f8776a81ff"
+    },
+    "integrity_checks": "Model/fixture/candidate/source links and selected code bytes were verified against the pinned git objects; this document generation did not load or execute the model."
+  },
+  "model_bundle": {
+    "repository": "proofbird/gector-bert-de",
+    "upstream_tag": "v2.1.0",
+    "revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+    "source_url": "https://huggingface.co/proofbird/gector-bert-de/tree/8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+    "input_sha256": {
+      "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "NOTICE": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3",
+      "README.md": "e2e5120e6c25299f962120463936427056fd9b468c714a1bf785f555edabf00f",
+      "quickstart.py": "f5ce68cc466b5891fc3f13280dc9db3a55bf9016505c2b2d84eb1d2cb07c2b40",
+      "gector-meta.json": "acb7edf298f6ac4ba8b83c628ad512404eadb6c43120c1878d4f3356ebd8b5a5",
+      "config.json": "c870008059c0f354e1ebc30c816ae5f55fa14a77ffa7da5271310ccf5e24e170",
+      "gector-guards.json": "57c4824e541d323e9cff4c543bd80cfd93c333d3be64cce83297bf5b8a44627a",
+      "language-rules.json": "901b350a9c751fc95d51eb5ee3ba7b7f0d11b61c6cc17e67bce2996e17bc5815",
+      "tokenizer_config.json": "4e5738ad97f034b944ce8b7b8c3165f7a6333b524b7b77044f7e9e9b963f4dea",
+      "model.onnx": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "tokenizer.json": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "vocab.txt": "bf186f7fb9cb667d811c08b45ce64d1e8e262277bb053f05d1aef3e9f13039a3",
+      "verb-form-vocab.txt": "7582e7c2f480d7e49ac18677195cfff4ad1d0c350b0448f1271aacf290205b68"
+    },
+    "decoder": {
+      "keep_label_id": 0,
+      "incorrect_label_id": 1,
+      "keep_confidence": 0.0,
+      "min_error_prob": 0.0
+    },
+    "f32": {
+      "file": "model.onnx",
+      "variant": "float32",
+      "sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "size_bytes": 452972247,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+    },
+    "int4": {
+      "file": "model.int4.onnx",
+      "sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "size_bytes": 158365857,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "candidate_manifest_sha256": "42876db3772e5181a123c51c6349fc1d829194fa22d3af57c19f6e1adcf7b891",
+      "recipe": {
+        "format": "ONNX MatMulNBits",
+        "algorithm": "ORT DEFAULT round-to-nearest",
+        "bits": 4,
+        "block_size": 128,
+        "symmetric": true,
+        "accuracy_level": 0,
+        "quantized_ops": [
+          "MatMul"
+        ],
+        "excluded_heads": [
+          {
+            "output": "logits_labels",
+            "node": "/m/labels_head/MatMul",
+            "op_type": "MatMul",
+            "weight": "onnx::MatMul_1682",
+            "shape": [
+              768,
+              5000
+            ],
+            "dtype": "FLOAT",
+            "tensor_proto_sha256": "1a9af2bc338483bc606686818dc64e6e5ce169df8424047d79a72db51ef9f301"
+          },
+          {
+            "output": "logits_d",
+            "node": "/m/detect_head/MatMul",
+            "op_type": "MatMul",
+            "weight": "onnx::MatMul_1683",
+            "shape": [
+              768,
+              2
+            ],
+            "dtype": "FLOAT",
+            "tensor_proto_sha256": "8cf60803d117a0dd49a7b19c8cb5d26b1d17014aa4db70bdda5484241fcb0db8"
+          }
+        ],
+        "non_matmul_policy": "Original precision; embeddings, bias and norms unchanged"
+      },
+      "quantized_node_count": 72,
+      "converter_versions": {
+        "onnx": "1.19.1",
+        "onnxruntime": "1.23.2",
+        "numpy": "2.3.5"
+      },
+      "conversion_integrity_passed": true
+    },
+    "int4_size_fraction_of_f32": 0.3496149224347513,
+    "format_note": "This candidate is ONNX MatMulNBits INT4, not ggml/GGUF Q4_K."
+  },
+  "licenses": [
+    {
+      "component": "Quds evaluation code",
+      "license": "MIT",
+      "source": "https://github.com/CrispStrobe/quds_office_suite/blob/6bd03365ba3b146586148658b0e03998b36bdc9d/LICENSE"
+    },
+    {
+      "component": "onnx_runtime_dart",
+      "license": "MIT",
+      "source": "https://github.com/CrispStrobe/onnx_runtime_dart/blob/0b49ca47fa056e6fc122ffe0192a9abb05627622/LICENSE"
+    },
+    {
+      "component": "Proofbird frozen model and reference runner",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/proofbird/gector-bert-de/blob/8e3b50beef7d775cedb7b876009e88bcf2e8d6af/LICENSE",
+      "notice": "https://huggingface.co/proofbird/gector-bert-de/blob/8e3b50beef7d775cedb7b876009e88bcf2e8d6af/NOTICE"
+    }
+  ],
+  "native_ort_controls": {
+    "f32": {
+      "timestamp_utc": "2026-11-17T09:25:27.070339+00:00",
+      "setup_seconds": 4.110683902996243,
+      "setup_peak_process_rss_bytes": 633778176,
+      "peak_process_rss_bytes": 633778176,
+      "warmups": 1,
+      "repeats": 3,
+      "runtime": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_count": 9,
+        "packages": {
+          "onnxruntime": "1.23.2",
+          "tokenizers": "0.22.1",
+          "huggingface-hub": "0.36.0",
+          "numpy": "2.3.5"
+        },
+        "ort_session": {
+          "providers": [
+            "CPUExecutionProvider"
+          ],
+          "intra_op_num_threads": 2,
+          "inter_op_num_threads": 1,
+          "execution_mode": "ExecutionMode.ORT_SEQUENTIAL",
+          "graph_optimization_level": "GraphOptimizationLevel.ORT_ENABLE_ALL",
+          "thread_count_note": "Zero requests ONNX Runtime's automatic thread selection."
+        }
+      },
+      "cases": [
+        {
+          "id": "verb-du",
+          "actual_correction_passes": 2,
+          "first_pass_token_count": 7,
+          "first_pass_benchmark": {
+            "samples_seconds": [
+              0.026475980994291604,
+              0.025047902992810123,
+              0.028467698008171283
+            ],
+            "median_seconds": 0.026475980994291604,
+            "p95_seconds": 0.028467698008171283,
+            "maximum_seconds": 0.028467698008171283
+          },
+          "complete_correction_benchmark": {
+            "samples_seconds": [
+              0.05465552800160367,
+              0.05462286699912511,
+              0.056980330002261326
+            ],
+            "median_seconds": 0.05465552800160367,
+            "p95_seconds": 0.056980330002261326,
+            "maximum_seconds": 0.056980330002261326
+          },
+          "observed_actual_pass_inference_seconds": [
+            0.04621579700324219,
+            0.025352915006806143
+          ]
+        },
+        {
+          "id": "clean-swiss-name",
+          "actual_correction_passes": 2,
+          "first_pass_token_count": 10,
+          "first_pass_benchmark": {
+            "samples_seconds": [
+              0.030843694010400213,
+              0.02982683699519839,
+              0.030293080999399535
+            ],
+            "median_seconds": 0.030293080999399535,
+            "p95_seconds": 0.030843694010400213,
+            "maximum_seconds": 0.030843694010400213
+          },
+          "complete_correction_benchmark": {
+            "samples_seconds": [
+              0.05867344400030561,
+              0.058714472004794516,
+              0.05877505600801669
+            ],
+            "median_seconds": 0.058714472004794516,
+            "p95_seconds": 0.05877505600801669,
+            "maximum_seconds": 0.05877505600801669
+          },
+          "observed_actual_pass_inference_seconds": [
+            0.03127298899926245,
+            0.03209405099914875
+          ]
+        }
+      ]
+    },
+    "int4": {
+      "timestamp_utc": "2026-11-17T09:32:16.951504+00:00",
+      "setup_seconds": 2.2681293079949683,
+      "setup_peak_process_rss_bytes": 336809984,
+      "peak_process_rss_bytes": 336809984,
+      "warmups": 1,
+      "repeats": 3,
+      "runtime": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_count": 9,
+        "packages": {
+          "onnxruntime": "1.23.2",
+          "tokenizers": "0.22.1",
+          "huggingface-hub": "0.36.0",
+          "numpy": "2.3.5"
+        },
+        "ort_session": {
+          "providers": [
+            "CPUExecutionProvider"
+          ],
+          "intra_op_num_threads": 2,
+          "inter_op_num_threads": 1,
+          "execution_mode": "ExecutionMode.ORT_SEQUENTIAL",
+          "graph_optimization_level": "GraphOptimizationLevel.ORT_ENABLE_ALL",
+          "thread_count_note": "Zero requests ONNX Runtime's automatic thread selection."
+        }
+      },
+      "cases": [
+        {
+          "id": "verb-du",
+          "actual_correction_passes": 2,
+          "first_pass_token_count": 7,
+          "first_pass_benchmark": {
+            "samples_seconds": [
+              0.041107965997071005,
+              0.045721709000645205,
+              0.04480785499617923
+            ],
+            "median_seconds": 0.04480785499617923,
+            "p95_seconds": 0.045721709000645205,
+            "maximum_seconds": 0.045721709000645205
+          },
+          "complete_correction_benchmark": {
+            "samples_seconds": [
+              0.08527084199886303,
+              0.08463483800005633,
+              0.08466857200255617
+            ],
+            "median_seconds": 0.08466857200255617,
+            "p95_seconds": 0.08527084199886303,
+            "maximum_seconds": 0.08527084199886303
+          },
+          "observed_actual_pass_inference_seconds": [
+            0.045465097995474935,
+            0.04225977600435726
+          ]
+        },
+        {
+          "id": "clean-swiss-name",
+          "actual_correction_passes": 2,
+          "first_pass_token_count": 10,
+          "first_pass_benchmark": {
+            "samples_seconds": [
+              0.04552075300307479,
+              0.045350501997745596,
+              0.04682487799436785
+            ],
+            "median_seconds": 0.04552075300307479,
+            "p95_seconds": 0.04682487799436785,
+            "maximum_seconds": 0.04682487799436785
+          },
+          "complete_correction_benchmark": {
+            "samples_seconds": [
+              0.08975238600396551,
+              0.12488062799093314,
+              0.09780998800124507
+            ],
+            "median_seconds": 0.09780998800124507,
+            "p95_seconds": 0.12488062799093314,
+            "maximum_seconds": 0.12488062799093314
+          },
+          "observed_actual_pass_inference_seconds": [
+            0.04571770199981984,
+            0.04398450099688489
+          ]
+        }
+      ]
+    }
+  },
+  "dart_aot_results": {
+    "f32": {
+      "executed_at_utc": "2026-11-17T09:27:19.980473Z",
+      "model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "model_variant": "float32",
+      "tokenizer_sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "fixture_sha256": "7f9a595ed6a705ae526cb964ae974ab4af746ff828e6746953487cf2ea0bbdc2",
+      "passed": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "complete": true,
+      "expected_cases": 2,
+      "cases_timed": 2,
+      "expected_passes": 4,
+      "passes_validated": 4,
+      "workers": 2,
+      "dart_version": "3.14.0 (stable) (Wed Nov 4 16:28:39 2026 -0800) on \"linux_x64\"",
+      "graph_load_seconds": 7.536774,
+      "pool_setup_seconds": 3.804018,
+      "cold_first_inference_seconds": 1.989053,
+      "rss_before_load_bytes": 20873216,
+      "rss_after_load_bytes": 1015500800,
+      "rss_after_pool_bytes": 1362354176,
+      "inference_peak_rss_bytes": 1523953664,
+      "post_validation_peak_rss_bytes": 1569767424,
+      "timings": [
+        {
+          "id": "verb-du",
+          "pass": 1,
+          "token_count": 7,
+          "warmup_iterations": 1,
+          "measured_iterations": 3,
+          "samples_seconds": [
+            2.748769,
+            1.582776,
+            1.782981
+          ],
+          "minimum_seconds": 1.582776,
+          "median_seconds": 1.782981,
+          "p95_seconds": 2.748769,
+          "maximum_seconds": 2.748769
+        },
+        {
+          "id": "clean-swiss-name",
+          "pass": 1,
+          "token_count": 10,
+          "warmup_iterations": 1,
+          "measured_iterations": 3,
+          "samples_seconds": [
+            2.388293,
+            2.016402,
+            3.333677
+          ],
+          "minimum_seconds": 2.016402,
+          "median_seconds": 2.388293,
+          "p95_seconds": 3.333677,
+          "maximum_seconds": 3.333677
+        }
+      ],
+      "numeric_thresholds": {
+        "minimum_cosine": 0.999999,
+        "absolute_floor": 0.001,
+        "relative_to_max_magnitude": 0.00025,
+        "selected_probability_absolute": 0.0001
+      },
+      "diagnostic_profile": {
+        "id": "verb-du",
+        "pass": 1,
+        "wall_seconds": 1.435696,
+        "operator_total_seconds": 1.429651,
+        "operators": [
+          {
+            "op": "MatMul",
+            "calls": 98,
+            "seconds": 1.248362
+          },
+          {
+            "op": "Add",
+            "calls": 113,
+            "seconds": 0.079641
+          },
+          {
+            "op": "_FusedGelu",
+            "calls": 12,
+            "seconds": 0.063491
+          },
+          {
+            "op": "Transpose",
+            "calls": 48,
+            "seconds": 0.01884
+          },
+          {
+            "op": "LayerNormalization",
+            "calls": 25,
+            "seconds": 0.013182
+          }
+        ],
+        "omitted_smaller_operators": true
+      },
+      "timing_scope": "Exact first-pass inference only; tokenizer, hashes, reference buffers and decoding excluded. Graph load follows hash verification, so filesystem caches may already be warm.",
+      "qualification_scope": "Float32 output logits and selected tags on saved inputs against ORT for the identical model file; not an independently implemented complete correction/guard loop.",
+      "thread_scope": "workers controls the Dart GEMM isolate pool, not total process threads. Operators without pool support stay on the caller isolate, including MatMulNBits; it is not equivalent to ORT intra-op thread scheduling.",
+      "validation_summary": {
+        "every_saved_pass_passed": true,
+        "raw_tag_mismatches": 0,
+        "thresholded_tag_mismatches": 0,
+        "max_label_probability_error": 3.02473273872117e-07,
+        "max_incorrect_probability_error": 5.4766378543291694e-08,
+        "heads": {
+          "logits_labels": {
+            "max_absolute_error": 4.00543212890625e-05,
+            "minimum_cosine": 0.9999999999997968,
+            "all_within_recorded_tolerances": true
+          },
+          "logits_d": {
+            "max_absolute_error": 1.049041748046875e-05,
+            "minimum_cosine": 0.9999999999996585,
+            "all_within_recorded_tolerances": true
+          }
+        }
+      }
+    },
+    "int4": {
+      "executed_at_utc": "2026-11-17T09:34:45.387123Z",
+      "model_sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "model_variant": "matmulnbits-int4",
+      "tokenizer_sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "fixture_sha256": "6d7c2e29bdc44dceaf1c75a76d7dc105c566945aacdbcdaff569c46e19f52db5",
+      "passed": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "complete": true,
+      "expected_cases": 2,
+      "cases_timed": 2,
+      "expected_passes": 4,
+      "passes_validated": 4,
+      "workers": 2,
+      "dart_version": "3.14.0 (stable) (Wed Nov 4 16:28:39 2026 -0800) on \"linux_x64\"",
+      "graph_load_seconds": 1.920356,
+      "pool_setup_seconds": 0.096215,
+      "cold_first_inference_seconds": 2.287918,
+      "rss_before_load_bytes": 19509248,
+      "rss_after_load_bytes": 448843776,
+      "rss_after_pool_bytes": 364896256,
+      "inference_peak_rss_bytes": 488251392,
+      "post_validation_peak_rss_bytes": 488251392,
+      "timings": [
+        {
+          "id": "verb-du",
+          "pass": 1,
+          "token_count": 7,
+          "warmup_iterations": 1,
+          "measured_iterations": 3,
+          "samples_seconds": [
+            2.066489,
+            1.896172,
+            1.857285
+          ],
+          "minimum_seconds": 1.857285,
+          "median_seconds": 1.896172,
+          "p95_seconds": 2.066489,
+          "maximum_seconds": 2.066489
+        },
+        {
+          "id": "clean-swiss-name",
+          "pass": 1,
+          "token_count": 10,
+          "warmup_iterations": 1,
+          "measured_iterations": 3,
+          "samples_seconds": [
+            2.435666,
+            2.146931,
+            1.962191
+          ],
+          "minimum_seconds": 1.962191,
+          "median_seconds": 2.146931,
+          "p95_seconds": 2.435666,
+          "maximum_seconds": 2.435666
+        }
+      ],
+      "numeric_thresholds": {
+        "minimum_cosine": 0.999999,
+        "absolute_floor": 0.001,
+        "relative_to_max_magnitude": 0.00025,
+        "selected_probability_absolute": 0.0001
+      },
+      "diagnostic_profile": {
+        "id": "verb-du",
+        "pass": 1,
+        "wall_seconds": 2.029402,
+        "operator_total_seconds": 2.024952,
+        "operators": [
+          {
+            "op": "MatMulNBits",
+            "calls": 72,
+            "seconds": 1.964629
+          },
+          {
+            "op": "Add",
+            "calls": 113,
+            "seconds": 0.01951
+          },
+          {
+            "op": "MatMul",
+            "calls": 26,
+            "seconds": 0.014306
+          },
+          {
+            "op": "_FusedGelu",
+            "calls": 12,
+            "seconds": 0.01121
+          },
+          {
+            "op": "LayerNormalization",
+            "calls": 25,
+            "seconds": 0.004636
+          }
+        ],
+        "omitted_smaller_operators": true
+      },
+      "timing_scope": "Exact first-pass inference only; tokenizer, hashes, reference buffers and decoding excluded. Graph load follows hash verification, so filesystem caches may already be warm.",
+      "qualification_scope": "Float32 output logits and selected tags on saved inputs against ORT for the identical model file; not an independently implemented complete correction/guard loop.",
+      "thread_scope": "workers controls the Dart GEMM isolate pool, not total process threads. Operators without pool support stay on the caller isolate, including MatMulNBits; it is not equivalent to ORT intra-op thread scheduling.",
+      "validation_summary": {
+        "every_saved_pass_passed": true,
+        "raw_tag_mismatches": 0,
+        "thresholded_tag_mismatches": 0,
+        "max_label_probability_error": 2.165480661675545e-06,
+        "max_incorrect_probability_error": 6.619568315713309e-08,
+        "heads": {
+          "logits_labels": {
+            "max_absolute_error": 2.288818359375e-05,
+            "minimum_cosine": 0.9999999999997885,
+            "all_within_recorded_tolerances": true
+          },
+          "logits_d": {
+            "max_absolute_error": 9.059906005859375e-06,
+            "minimum_cosine": 0.9999999999997654,
+            "all_within_recorded_tolerances": true
+          }
+        }
+      }
+    }
+  },
+  "quantization_task_comparison": {
+    "complete_for_selected_two_cases": true,
+    "representative_accuracy_claim": false,
+    "candidate_preserves_baseline_fix_count": 1,
+    "candidate_preserves_baseline_false_edit_count": 1,
+    "new_selected_case_text_or_span_differences": 0,
+    "cases": [
+      {
+        "id": "verb-du",
+        "kind": "error",
+        "input": "Du geht heute nach Hause.",
+        "expected": "Du gehst heute nach Hause.",
+        "f32_corrected": "Du gehst heute nach Hause.",
+        "int4_corrected": "Du gehst heute nach Hause.",
+        "f32_suggestions_utf16": [
+          {
+            "start": 3,
+            "end": 7,
+            "original": "geht",
+            "replacement": "gehst"
+          }
+        ],
+        "int4_suggestions_utf16": [
+          {
+            "start": 3,
+            "end": 7,
+            "original": "geht",
+            "replacement": "gehst"
+          }
+        ],
+        "f32_equals_int4_text_and_spans": true,
+        "expected_behavior_satisfied": true,
+        "all_saved_inputs_equal_between_models": true,
+        "all_selected_tag_ids_equal_between_models": true,
+        "all_thresholded_tag_ids_equal_between_models": true
+      },
+      {
+        "id": "clean-swiss-name",
+        "kind": "clean",
+        "input": "Grüezi, ich heisse André.",
+        "locale": "de-CH",
+        "f32_corrected": "Grüezi, ich heiße André.",
+        "int4_corrected": "Grüezi, ich heiße André.",
+        "f32_suggestions_utf16": [
+          {
+            "start": 12,
+            "end": 18,
+            "original": "heisse",
+            "replacement": "heiße"
+          }
+        ],
+        "int4_suggestions_utf16": [
+          {
+            "start": 12,
+            "end": 18,
+            "original": "heisse",
+            "replacement": "heiße"
+          }
+        ],
+        "f32_equals_int4_text_and_spans": true,
+        "expected_behavior_satisfied": false,
+        "all_saved_inputs_equal_between_models": true,
+        "all_selected_tag_ids_equal_between_models": true,
+        "all_thresholded_tag_ids_equal_between_models": true
+      }
+    ]
+  },
+  "baseline_budget_observations": {
+    "source": "canonical Quds scoped roadmap before this measurement",
+    "provisional_complete_checker_warm_p95_seconds": 0.5,
+    "provisional_peak_process_rss_bytes": 805306368,
+    "preferred_model_pack_bytes": 167772160,
+    "dart_f32_first_forward_already_exceeds_complete_latency_budget": true,
+    "dart_int4_first_forward_already_exceeds_complete_latency_budget": true,
+    "dart_f32_inference_peak_exceeds_memory_budget": true,
+    "dart_int4_inference_peak_exceeds_memory_budget": false,
+    "complete_checker_budget_qualified": false
+  },
+  "stage_results": {
+    "reference-f32": {
+      "kind": "bounded-local-smoke",
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "nice_increment": 10,
+      "cpu_seconds_limit": 90,
+      "wall_seconds_limit": 180,
+      "rss_stop_bytes": 3221225472,
+      "status": "passed",
+      "returncode": 0,
+      "stop_reason": null,
+      "elapsed_seconds": 159.55316119099734,
+      "observed_peak_rss_bytes": 626483200
+    },
+    "quantize-int4": {
+      "kind": "bounded-local-smoke",
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "nice_increment": 10,
+      "cpu_seconds_limit": 90,
+      "wall_seconds_limit": 180,
+      "rss_stop_bytes": 3221225472,
+      "status": "passed",
+      "returncode": 0,
+      "stop_reason": null,
+      "elapsed_seconds": 20.67635111400159,
+      "observed_peak_rss_bytes": 962469888
+    },
+    "reference-int4": {
+      "kind": "bounded-local-smoke",
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "nice_increment": 10,
+      "cpu_seconds_limit": 90,
+      "wall_seconds_limit": 180,
+      "rss_stop_bytes": 3221225472,
+      "status": "passed",
+      "returncode": 0,
+      "stop_reason": null,
+      "elapsed_seconds": 6.232287548002205,
+      "observed_peak_rss_bytes": 320589824
+    },
+    "dart-f32": {
+      "kind": "bounded-local-smoke",
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "nice_increment": 10,
+      "cpu_seconds_limit": 90,
+      "wall_seconds_limit": 180,
+      "rss_stop_bytes": 3221225472,
+      "status": "passed",
+      "returncode": 0,
+      "stop_reason": null,
+      "elapsed_seconds": 66.3979377749929,
+      "observed_peak_rss_bytes": 1564110848
+    },
+    "dart-int4": {
+      "kind": "bounded-local-smoke",
+      "cpu_affinity": [
+        0,
+        1
+      ],
+      "nice_increment": 10,
+      "cpu_seconds_limit": 90,
+      "wall_seconds_limit": 180,
+      "rss_stop_bytes": 3221225472,
+      "status": "passed",
+      "returncode": 0,
+      "stop_reason": null,
+      "elapsed_seconds": 37.19171084499976,
+      "observed_peak_rss_bytes": 474324992
+    }
+  },
+  "hosted_qualification": {
+    "run_id": 44053903485,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485",
+    "head_sha": "6bd03365ba3b146586148658b0e03998b36bdc9d",
+    "run_attempt": 1,
+    "status_at_capture": "queued",
+    "conclusion_at_capture": null,
+    "checked_at_utc": "2026-11-17T09:39:12Z",
+    "all_30_case_evidence_reviewed": false
+  },
+  "limits": [
+    "Two selected synthetic cases do not estimate German accuracy or false-positive rates.",
+    "Both models retain the incorrect de-CH heisse-to-heiße edit; numerical parity preserves this error.",
+    "Native complete correction is the unguarded upstream Python runner, not a qualified application provider.",
+    "Dart timing covers a first forward pass; all four saved passes were numerically checked, but an independent Dart correction/guard loop was not measured.",
+    "The three-sample nearest-rank p95 equals the maximum; this is a noisy local diagnostic, not a stable latency distribution.",
+    "Reported process RSS includes runtime overhead and allocations; it is not model-weight memory alone.",
+    "Model hashing precedes loading and warms file caches; graph load is not cold disk I/O.",
+    "Native INT4 was slower than F32 on these inputs despite the smaller artifact.",
+    "No Rust, ggml, Q4_K, mobile, or browser backend was measured.",
+    "Hosted full-panel execution was still queued at the recorded check; this baseline must not be presented as that job passing."
+  ],
+  "followup_policy": "Preserve this baseline. Add optimization results as a separate dated evidence record with its own code/binary hashes and identical-input comparison; do not overwrite or merge timing samples.",
+  "lightweight_validation": {
+    "command": "python -m unittest discover -s tools/proofing/german_model -p 'test_*.py'",
+    "environment": "Pinned local Python qualification environment",
+    "test_count": 14,
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 2.006,
+    "includes_actual_tiny_onnx_conversion_test": true,
+    "evidence_note": "Separate lightweight validation rerun reported in the implementation session; these tests do not execute the frozen German checkpoint or measure its quality."
+  }
+}

@@ -1,0 +1,428 @@
+{
+  "status": "passed",
+  "qualification": "Exact-correction and clean-control checks assessed separately from the harness operational status.",
+  "runs": {
+    "frozen-corpus": {
+      "summary": {
+        "sentences": 256,
+        "requests_recorded": 1280,
+        "errors": 81,
+        "exact_errors": 69,
+        "expanded_errors": 73,
+        "exact_expanded_errors": 68,
+        "challenge_errors": 8,
+        "exact_challenge_errors": 1,
+        "valid_controls": 175,
+        "flagged_controls": 0,
+        "operational_failures": 0,
+        "protection_failures": 0,
+        "ignore_failures": 0,
+        "recheck_failures": 0
+      },
+      "variants": {
+        "base": {
+          "requests": 256,
+          "exact_errors": 69,
+          "errors": 81,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "code": {
+          "requests": 256,
+          "exact_errors": 0,
+          "errors": 0,
+          "controls": 0,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "locale-alias": {
+          "requests": 256,
+          "exact_errors": 69,
+          "errors": 81,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "soft-hyphen": {
+          "requests": 256,
+          "exact_errors": 69,
+          "errors": 81,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "source-offset": {
+          "requests": 256,
+          "exact_errors": 69,
+          "errors": 81,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        }
+      },
+      "vm_node_identical": true,
+      "mismatches": [
+        {
+          "id": "error-003",
+          "kind": "error",
+          "area": "weak-singular",
+          "scope": "expanded",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Wir sprechen mit dem Mensch.",
+          "expected": "Wir sprechen mit dem Menschen.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Wir sprechen mit dem Mensch.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-029",
+          "kind": "error",
+          "area": "new-noun-article",
+          "scope": "expanded",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Wir stehen bei den Computer.",
+          "expected": "Wir stehen bei dem Computer.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": false,
+          "applied": "Wir stehen bei den Computern.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": [
+            {
+              "rule": "de.grammar.dative-plural",
+              "original": "Computer",
+              "start": 19,
+              "end": 27,
+              "replacements": [
+                "Computern"
+              ]
+            }
+          ],
+          "ignore_clean": true
+        },
+        {
+          "id": "error-036",
+          "kind": "error",
+          "area": "new-noun-article",
+          "scope": "expanded",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Wir stehen bei jenes Gebäude.",
+          "expected": "Wir stehen bei jenem Gebäude.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Wir stehen bei jenes Gebäude.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-040",
+          "kind": "error",
+          "area": "new-noun-accusative",
+          "scope": "expanded",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Das ist für diesem Schlüssel.",
+          "expected": "Das ist für diesen Schlüssel.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Das ist für diesem Schlüssel.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-073",
+          "kind": "error",
+          "area": "swiss-morphology",
+          "scope": "expanded",
+          "variant": "base",
+          "language": "de-CH",
+          "text": "Wir sprechen mit dem Strassenpolizist.",
+          "expected": "Wir sprechen mit dem Strassenpolizisten.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Wir sprechen mit dem Strassenpolizist.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-074",
+          "kind": "error",
+          "area": "broader-grammar-challenge",
+          "scope": "challenge",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Wir helfen der Kunde.",
+          "expected": "Wir helfen dem Kunden.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Wir helfen der Kunde.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-075",
+          "kind": "error",
+          "area": "broader-grammar-challenge",
+          "scope": "challenge",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Die Studenten arbeitet heute.",
+          "expected": "Die Studenten arbeiten heute.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Die Studenten arbeitet heute.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-076",
+          "kind": "error",
+          "area": "broader-grammar-challenge",
+          "scope": "challenge",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Das ist das Auto der Student.",
+          "expected": "Das ist das Auto des Studenten.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Das ist das Auto der Student.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-077",
+          "kind": "error",
+          "area": "broader-grammar-challenge",
+          "scope": "challenge",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Ich sehe der neue Kunde.",
+          "expected": "Ich sehe den neuen Kunden.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Ich sehe der neue Kunde.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-078",
+          "kind": "error",
+          "area": "broader-grammar-challenge",
+          "scope": "challenge",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Er ist stolz auf dem Ergebnis.",
+          "expected": "Er ist stolz auf das Ergebnis.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Er ist stolz auf dem Ergebnis.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-080",
+          "kind": "error",
+          "area": "broader-grammar-challenge",
+          "scope": "challenge",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Sie wartet auf dem neuen Bus.",
+          "expected": "Sie wartet auf den neuen Bus.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Sie wartet auf dem neuen Bus.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        },
+        {
+          "id": "error-081",
+          "kind": "error",
+          "area": "broader-grammar-challenge",
+          "scope": "challenge",
+          "variant": "base",
+          "language": "de-DE",
+          "text": "Das ist wegen des schlimmen Fehler.",
+          "expected": "Das ist wegen des schlimmen Fehlers.",
+          "start_offset": 0,
+          "complete": true,
+          "statuses": [
+            "success"
+          ],
+          "messages": [
+            null
+          ],
+          "clean": true,
+          "applied": "Das ist wegen des schlimmen Fehler.",
+          "can_apply_nonoverlapping": true,
+          "exact": false,
+          "findings": []
+        }
+      ]
+    },
+    "independent-review": {
+      "summary": {
+        "sentences": 84,
+        "requests_recorded": 420,
+        "errors": 24,
+        "exact_errors": 24,
+        "expanded_errors": 0,
+        "exact_expanded_errors": 0,
+        "challenge_errors": 0,
+        "exact_challenge_errors": 0,
+        "valid_controls": 60,
+        "flagged_controls": 0,
+        "operational_failures": 0,
+        "protection_failures": 0,
+        "ignore_failures": 0,
+        "recheck_failures": 0
+      },
+      "variants": {
+        "base": {
+          "requests": 84,
+          "exact_errors": 24,
+          "errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "code": {
+          "requests": 84,
+          "exact_errors": 0,
+          "errors": 0,
+          "controls": 0,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "locale-alias": {
+          "requests": 84,
+          "exact_errors": 24,
+          "errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "soft-hyphen": {
+          "requests": 84,
+          "exact_errors": 24,
+          "errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        },
+        "source-offset": {
+          "requests": 84,
+          "exact_errors": 24,
+          "errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_flags": 0,
+          "incomplete": 0
+        }
+      },
+      "vm_node_identical": true,
+      "mismatches": []
+    }
+  }
+}

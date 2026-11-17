@@ -1,0 +1,15 @@
+{
+  "cases": [],
+  "complete": false,
+  "error": "ValueError: Native source changed after build sealing: tools/gector/CMakeLists.txt",
+  "long_probes": [],
+  "passed": false,
+  "peak_process_rss_bytes": 34889728,
+  "precision": "f32",
+  "repeats": 3,
+  "schema": "quds.gector.native-qualification.v1",
+  "threads": 2,
+  "timestamp_utc": "2026-11-17T14:14:56.771948+00:00",
+  "validation": [],
+  "warmups": 1
+}

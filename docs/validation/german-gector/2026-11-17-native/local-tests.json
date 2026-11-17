@@ -1,0 +1,30 @@
+{
+  "actions_used": false,
+  "command": "python -m pytest -q tools/proofing/german_model/test_native_qualification.py",
+  "elapsed_seconds": 0.33,
+  "exit_code": 0,
+  "focused_negative_controls": [
+    "missing, duplicate, extra or noninteger required probe lengths",
+    "missing/extra/misshaped long heads and invalid or threshold-equal cosine values block final acceptance",
+    "F32 control with a different GGUF filename/hash/size is not the declared quantized parent",
+    "changed or absent imported policy helper and old protocol cannot pass baseline admission",
+    "policy source drift blocks final acceptance"
+  ],
+  "limits": [
+    "No model payload or network is required by these focused qualifier tests.",
+    "The native contract and converter results were separately observed before this focused policy test invocation."
+  ],
+  "other_validation_evidence": {
+    "converter_tests": "CrispEmbed tests/test_gector_onnx_converter.py: 46 tests passed during converter implementation; not rerun for this policy-only change",
+    "native_contract_checks": "native-build-and-licenses.json: validation; 50 checks, no failures"
+  },
+  "passed_subtests": 136,
+  "passed_tests": 38,
+  "qualification_policy_version": 2,
+  "qualifier_sha256": "3839ed4bbd72bd1577c3e5b4ba975c80d846c2aabb7e47c22fdda4aec1fa4ea1",
+  "recorded_at_utc": "2026-11-17T14:26:04.492810+00:00",
+  "schema": "quds.gector.native-local-tests.v1",
+  "summary": "38 passed, 136 subtests passed in 0.33s",
+  "test_source_sha256": "c741990b20a98b114febcf187e6e40bf84a1ebe4ef7ac26677cd4515311b1a57",
+  "working_directory": "quds_office_suite"
+}

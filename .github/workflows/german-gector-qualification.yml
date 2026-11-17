@@ -1,0 +1,283 @@
+name: German GECToR qualification
+
+on:
+  push:
+    branches: [feat/german-gector-proofing]
+    paths:
+      - .github/workflows/german-gector-qualification.yml
+      - tools/proofing/german_model/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: gector-${{ github.event_name == 'workflow_dispatch' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      ONNX_RUNTIME_DART_SHA: b10258682d459847b63e012eaaba58a528e93956
+      CRISPEMBED_ROADMAP_SHA: 04b19ad76485ab3a12d6c30d27c6424ef50a9adc
+      FASTEMBED_ROADMAP_SHA: 75a98204a58ab3fc7414e279b1f0a08b02513d13
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      NUMEXPR_NUM_THREADS: '2'
+      TOKENIZERS_PARALLELISM: 'false'
+      PYTHONUNBUFFERED: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Prepare bounded evidence directory
+        run: |
+          export GECTOR_ROOT="$RUNNER_TEMP/gector-qualification"
+          echo "GECTOR_ROOT=$GECTOR_ROOT" >> "$GITHUB_ENV"
+          mkdir -p "$GECTOR_ROOT/reports"
+          python3 - <<'PY'
+          import os, pathlib, re, time
+          root = pathlib.Path(os.environ["GECTOR_ROOT"])
+          # Leave five minutes of the job budget for setup variance and uploads.
+          (root / "deadline.txt").write_text(str(time.time() + 35 * 60))
+          if not re.fullmatch(r"[0-9a-f]{40}", os.environ["ONNX_RUNTIME_DART_SHA"]):
+              raise SystemExit("An immutable reviewed ONNX implementation SHA is required")
+          PY
+
+      - uses: actions/checkout@v4
+        with:
+          repository: CrispStrobe/onnx_runtime_dart
+          ref: ${{ env.ONNX_RUNTIME_DART_SHA }}
+          path: onnx_runtime_dart
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: '3.14.0'
+
+      - name: Install exact Python oracle and converter
+        id: python_deps
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name python-dependencies --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 300 --deadline-file "$GECTOR_ROOT/deadline.txt" -- \
+            python -m pip install -r tools/proofing/german_model/requirements-qualification.txt
+
+      - name: Record source and host provenance
+        if: always()
+        run: |
+          python - <<'PY'
+          import hashlib, importlib.metadata, json, os, pathlib, platform, subprocess, sys
+          root = pathlib.Path(os.environ["GECTOR_ROOT"])
+          def command(args):
+              value = subprocess.run(args, capture_output=True, text=True)
+              return {"returncode": value.returncode, "stdout": value.stdout, "stderr": value.stderr}
+          def sha(path):
+              return hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+          packages = {}
+          for name in ("onnxruntime", "onnx", "tokenizers", "huggingface-hub", "numpy"):
+              try:
+                  packages[name] = importlib.metadata.version(name)
+              except importlib.metadata.PackageNotFoundError:
+                  packages[name] = None
+          declared = os.environ["ONNX_RUNTIME_DART_SHA"]
+          actual = command(["git", "-C", "onnx_runtime_dart", "rev-parse", "HEAD"])
+          result = {
+              "schema_version": 1, "quds_commit": os.environ["GITHUB_SHA"],
+              "onnx_runtime_dart_declared_commit": declared,
+              "onnx_runtime_dart_actual_commit": actual,
+              "conditional_backend_roadmaps": {
+                  "CrispEmbed": os.environ["CRISPEMBED_ROADMAP_SHA"],
+                  "fastembed-rs": os.environ["FASTEMBED_ROADMAP_SHA"],
+                  "native_backends_executed": False},
+              "workflow_run_id": os.environ["GITHUB_RUN_ID"],
+              "workflow_run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "workflow": os.environ["GITHUB_WORKFLOW"],
+              "runner_os": os.environ["RUNNER_OS"], "runner_arch": os.environ["RUNNER_ARCH"],
+              "platform": platform.platform(), "cpu_count": os.cpu_count(),
+              "cpu": command(["lscpu", "--json"]),
+              "memory": pathlib.Path("/proc/meminfo").read_text(),
+              "python": sys.version, "packages": packages,
+              "dart": command(["dart", "--version"]),
+              "declared_dart_experiments": {"dart-f32": [], "dart-int4": ["narrowDirectGemm"]},
+              "declared_threads": {"ort_intra": 2, "ort_inter": 1, "dart_workers": 2,
+                                   "note": "Dart uses two GEMM workers plus its caller; this is not an identical ORT thread schedule."},
+              "timing": {"warmups": 1, "repeats": 3, "overall_budget_seconds": 2100,
+                         "maximum_dart_arm_seconds": 720},
+              "file_sha256": {p: sha(p) for p in (
+                  ".github/workflows/german-gector-qualification.yml",
+                  "tools/proofing/german_model/artifacts.json",
+                  "tools/proofing/german_model/cases.json",
+                  "tools/proofing/german_model/requirements.txt",
+                  "tools/proofing/german_model/requirements-qualification.txt",
+                  "tools/proofing/german_model/export_reference.py",
+                  "tools/proofing/german_model/quantize_int4.py",
+                  "tools/proofing/german_model/run_stage.py",
+                  "tools/proofing/german_model/summarize_qualification.py")},
+          }
+          (root / "reports" / "provenance.json").write_text(json.dumps(result, indent=2) + "\n")
+          if actual["returncode"] != 0 or actual["stdout"].strip() != declared:
+              raise SystemExit("ONNX source checkout does not match its immutable pin")
+          PY
+
+      - name: Run small exporter and quantizer controls
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name python-tests --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 120 --deadline-file "$GECTOR_ROOT/deadline.txt" -- \
+            python -m unittest discover -s tools/proofing/german_model -p 'test_*.py'
+
+      - name: Resolve Dart benchmark dependencies
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name dart-dependencies --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 120 --deadline-file "$GECTOR_ROOT/deadline.txt" \
+            --cwd onnx_runtime_dart -- dart pub get
+
+      - name: Compile exact-input Dart benchmark to AOT
+        if: always()
+        continue-on-error: true
+        run: |
+          mkdir -p onnx_runtime_dart/build
+          python tools/proofing/german_model/run_stage.py \
+            --name dart-compile --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 180 --deadline-file "$GECTOR_ROOT/deadline.txt" \
+            --cwd onnx_runtime_dart -- \
+            dart compile exe tool/gector_benchmark.dart -o build/gector_benchmark
+
+      - name: Export original ORT reference and architecture
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name reference-f32 --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 420 --deadline-file "$GECTOR_ROOT/deadline.txt" -- \
+            python tools/proofing/german_model/export_reference.py \
+              --model-dir "$GECTOR_ROOT/model" --download \
+              --output-dir "$GECTOR_ROOT/reference-f32" \
+              --warmups 1 --repeats 3 --threads 2 --onnx-census \
+              --source-revision "$GITHUB_SHA"
+
+      - name: Create declared INT4 candidate with protected heads
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name quantize-int4 --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 300 --deadline-file "$GECTOR_ROOT/deadline.txt" -- \
+            python tools/proofing/german_model/quantize_int4.py \
+              --model-dir "$GECTOR_ROOT/model" --output-dir "$GECTOR_ROOT/candidate" \
+              --source-revision "$GITHUB_SHA"
+
+      - name: Export candidate ORT reference and full correction outcomes
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name reference-int4 --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 240 --deadline-file "$GECTOR_ROOT/deadline.txt" -- \
+            python tools/proofing/german_model/export_reference.py \
+              --model-dir "$GECTOR_ROOT/model" \
+              --inference-model "$GECTOR_ROOT/candidate/model.int4.onnx" \
+              --candidate-manifest "$GECTOR_ROOT/candidate/candidate.json" \
+              --output-dir "$GECTOR_ROOT/reference-int4" \
+              --warmups 1 --repeats 3 --threads 2 \
+              --source-revision "$GITHUB_SHA"
+
+      - name: Measure original model in Dart AOT
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name dart-f32 --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 720 --deadline-file "$GECTOR_ROOT/deadline.txt" -- \
+            onnx_runtime_dart/build/gector_benchmark \
+              --model "$GECTOR_ROOT/model/model.onnx" \
+              --tokenizer "$GECTOR_ROOT/model/tokenizer.json" \
+              --fixtures "$GECTOR_ROOT/reference-f32/reference.json" \
+              --report "$GECTOR_ROOT/reports/dart-f32.json" \
+              --warmup 1 --iterations 3 --workers 2 --narrow-direct false
+
+      - name: Measure INT4 model in Dart AOT
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/proofing/german_model/run_stage.py \
+            --name dart-int4 --report-dir "$GECTOR_ROOT/reports" \
+            --timeout-seconds 720 --deadline-file "$GECTOR_ROOT/deadline.txt" -- \
+            onnx_runtime_dart/build/gector_benchmark \
+              --model "$GECTOR_ROOT/candidate/model.int4.onnx" \
+              --tokenizer "$GECTOR_ROOT/model/tokenizer.json" \
+              --fixtures "$GECTOR_ROOT/reference-int4/reference.json" \
+              --report "$GECTOR_ROOT/reports/dart-int4.json" \
+              --warmup 1 --iterations 3 --workers 2 --narrow-direct true
+
+      - name: Preserve Dart dependency and executable identity
+        if: always()
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib
+          report = {}
+          for name in ("pubspec.yaml", "pubspec.lock", "tool/gector_benchmark.dart", "build/gector_benchmark"):
+              path = pathlib.Path("onnx_runtime_dart") / name
+              if path.is_file():
+                  report[name] = {"sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                                  "size_bytes": path.stat().st_size}
+          root = pathlib.Path(os.environ["GECTOR_ROOT"])
+          (root / "reports" / "dart-artifact-identity.json").write_text(json.dumps(report, indent=2) + "\n")
+          lock = pathlib.Path("onnx_runtime_dart/pubspec.lock")
+          if lock.is_file():
+              (root / "reports" / "dart-pubspec.lock").write_bytes(lock.read_bytes())
+          PY
+
+      - name: Evaluate frozen-probe correction nonregression
+        if: always()
+        run: |
+          python tools/proofing/german_model/summarize_qualification.py \
+            --root "$GECTOR_ROOT" --cases tools/proofing/german_model/cases.json
+
+      - name: Retain reports, logs and raw reference tensors
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: german-gector-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.GECTOR_ROOT }}/reports/
+            ${{ env.GECTOR_ROOT }}/reference-f32/
+            ${{ env.GECTOR_ROOT }}/reference-int4/
+            ${{ env.GECTOR_ROOT }}/candidate/candidate.json
+            tools/proofing/german_model/artifacts.json
+            tools/proofing/german_model/cases.json
+            tools/proofing/german_model/vendor/LICENSE
+            tools/proofing/german_model/vendor/NOTICE
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Retain candidate bytes and licensing separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: german-gector-int4-candidate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.GECTOR_ROOT }}/candidate/model.int4.onnx
+            ${{ env.GECTOR_ROOT }}/candidate/candidate.json
+            tools/proofing/german_model/vendor/LICENSE
+            tools/proofing/german_model/vendor/NOTICE
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 30
