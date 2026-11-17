@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-11-17T06:15:30.616954+00:00",
+  "baseline": "74b6b39e7941ab351133023b4165cbd6101d2877",
+  "local_integration_head": "b04ac1e0383bf2f7857ad8121508ddbfcb32f787",
+  "integration_tree": "9d584bdbb0e7701c24dcdfbcf36d7a2f9c2a691a",
+  "references": 204,
+  "distinct_heads": 137,
+  "missing": [],
+  "decisions": [
+    "Main ODT and ODP writer implementations retained.",
+    "Proofing constructor conflict was field-order only: retained all priority, stopIfTrue and DXF fields.",
+    "Original ODT PR carried an older PNG fixture; retained corrected PNG from current main.",
+    "Equivalent vendor and exact PR heads merged without discarding implementation changes."
+  ],
+  "ci_policy": "No GitHub Actions/checks/statuses queried or awaited."
+}
