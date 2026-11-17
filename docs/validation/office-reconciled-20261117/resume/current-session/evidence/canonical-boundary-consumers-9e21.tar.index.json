@@ -1,0 +1,895 @@
+{
+  "archive": "canonical-boundary-consumers-9e21.tar.xz",
+  "bytes": 101472,
+  "sha256": "58a00b2af8297d6fbb2fe7e0f0f9da8249026c56f35f4d4ce4da96a0792ea405",
+  "classification": "Accepted exact-source boundary consumer results: four strict layouts plus one bounded control; final independent review pending",
+  "member_count": 177,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "boundary/fixtures/fixtures.json",
+      "bytes": 2762,
+      "sha256": "0cfbcefa1841e2fa524f3409dac3034d17b6ee8bdc5fcae2fe91f774923dd12d"
+    },
+    {
+      "path": "boundary/fixtures/later-continuous.direct.odt",
+      "bytes": 3066,
+      "sha256": "19872a1e34dd968720b430d8309aa92e3809387505446ec196f20efc949983e9"
+    },
+    {
+      "path": "boundary/fixtures/later-continuous.imported.odt",
+      "bytes": 3122,
+      "sha256": "89e60b9b69cd33ee1743d574dc8bcce16771d4a0a751bcfe8b6dd706df4fa68c"
+    },
+    {
+      "path": "boundary/fixtures/later-continuous.models.json",
+      "bytes": 2719,
+      "sha256": "2fff94e045fc48850aa13e59b8595b1e29c08695adf77ad6adeabde2e4175df8"
+    },
+    {
+      "path": "boundary/fixtures/later-continuous.source.docx",
+      "bytes": 5257,
+      "sha256": "4ebd01720c12e52ef8f8f06d464acc30bc6887c4f6e0d07b59cbc03a9ff9dec6"
+    },
+    {
+      "path": "boundary/fixtures/later-even-page.direct.odt",
+      "bytes": 3125,
+      "sha256": "157687799ecf26413c1d58749fbcb4c978b1a4e3585a2d0906bebd703878b471"
+    },
+    {
+      "path": "boundary/fixtures/later-even-page.imported.odt",
+      "bytes": 3181,
+      "sha256": "2ccc1f93f067b19f8600cfe68e787a8b06c1db3e01f9079b0f838992835ad130"
+    },
+    {
+      "path": "boundary/fixtures/later-even-page.models.json",
+      "bytes": 2655,
+      "sha256": "298f548b6a670a86d0fa88d32b792c3f548fbf690581d9031f924322ce32d65c"
+    },
+    {
+      "path": "boundary/fixtures/later-even-page.source.docx",
+      "bytes": 5252,
+      "sha256": "1a6017d2eba883c5a257e40be168479169f6478684cd0d5e1ef40b6ccc39d06d"
+    },
+    {
+      "path": "boundary/fixtures/later-next-page.direct.odt",
+      "bytes": 3080,
+      "sha256": "b6c6696dc2456945eb25152d1d1bf20827a4c48137b7c1b37b47719ad439b89c"
+    },
+    {
+      "path": "boundary/fixtures/later-next-page.imported.odt",
+      "bytes": 3136,
+      "sha256": "e226b8226bb54030f94a071a3198c82388a658ab25859e9c66f28cc3fafd9031"
+    },
+    {
+      "path": "boundary/fixtures/later-next-page.models.json",
+      "bytes": 2655,
+      "sha256": "d96a35a5daa2191f083a3d9bd0427db441d5bc45a54d3b1ee8dabf5d0a3b6066"
+    },
+    {
+      "path": "boundary/fixtures/later-next-page.source.docx",
+      "bytes": 5247,
+      "sha256": "ceb402807bd310bde1e1eb8494133e9dd45b2a1daa3d132d0085c9af7ddf1107"
+    },
+    {
+      "path": "boundary/fixtures/later-odd-page.direct.odt",
+      "bytes": 3122,
+      "sha256": "155f91157be12f0b4749edfa2683a10d3024e6c46d0fb86ed94e860715106a8d"
+    },
+    {
+      "path": "boundary/fixtures/later-odd-page.imported.odt",
+      "bytes": 3178,
+      "sha256": "91ee1414bcbeaf3ef3ed71a31d012d0627582b58707fb8dfcfe92542a561621e"
+    },
+    {
+      "path": "boundary/fixtures/later-odd-page.models.json",
+      "bytes": 2643,
+      "sha256": "ee53730693f6a1470f9b0c646fc7fc3e808177fd5da3de77657387d58e1c8e3f"
+    },
+    {
+      "path": "boundary/fixtures/later-odd-page.source.docx",
+      "bytes": 5251,
+      "sha256": "f3f92d5ac07e11a13d59a78e982e2538da2890ad55950a6786f22c88b065b710"
+    },
+    {
+      "path": "boundary/fixtures/paragraph-page-then-column.direct.odt",
+      "bytes": 3009,
+      "sha256": "e6a664639c8af189861b46a069c251904879a738de17e69cfbc06ae1fe7a841a"
+    },
+    {
+      "path": "boundary/fixtures/paragraph-page-then-column.imported.odt",
+      "bytes": 3065,
+      "sha256": "9667d58d11348c4e36d889efca2f91391465b920f6cc28134d9ca4053fd0cd0d"
+    },
+    {
+      "path": "boundary/fixtures/paragraph-page-then-column.models.json",
+      "bytes": 2479,
+      "sha256": "66dc02326581c88e628787e8f1496658535a85576f4abe57a72c8be05134ef54"
+    },
+    {
+      "path": "boundary/fixtures/paragraph-page-then-column.source.docx",
+      "bytes": 5253,
+      "sha256": "4de0f4040e5fbfb7559973da33d725fdbb2941fe2515fd08624de26a94f956af"
+    },
+    {
+      "path": "boundary/inputs-after.json",
+      "bytes": 74747,
+      "sha256": "e981ab9b8201163b93a530393d708e67a41ff905eb8dc55334e53e052f22bc08"
+    },
+    {
+      "path": "boundary/inputs-before.json",
+      "bytes": 74747,
+      "sha256": "e981ab9b8201163b93a530393d708e67a41ff905eb8dc55334e53e052f22bc08"
+    },
+    {
+      "path": "boundary/logs/bbox-later-continuous.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-continuous.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-continuous.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-continuous.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-continuous.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-continuous.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-even-page.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-even-page.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-even-page.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-even-page.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-even-page.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-even-page.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-next-page.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-next-page.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-next-page.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-next-page.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-next-page.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-next-page.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-odd-page.direct.stderr",
+      "bytes": 13,
+      "sha256": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9"
+    },
+    {
+      "path": "boundary/logs/bbox-later-odd-page.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-odd-page.imported.stderr",
+      "bytes": 13,
+      "sha256": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9"
+    },
+    {
+      "path": "boundary/logs/bbox-later-odd-page.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-later-odd-page.source.stderr",
+      "bytes": 13,
+      "sha256": "15ae36e2d6d6a5cf4cac33f37ef10a8d9ba13a72e8e51ca8d550ed38837f43e9"
+    },
+    {
+      "path": "boundary/logs/bbox-later-odd-page.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-paragraph-page-then-column.direct.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-paragraph-page-then-column.direct.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-paragraph-page-then-column.imported.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-paragraph-page-then-column.imported.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-paragraph-page-then-column.source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/bbox-paragraph-page-then-column.source.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/dart-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/dart-version.stdout",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "boundary/logs/fixtures.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/fixtures.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/pdftotext-version.stderr",
+      "bytes": 145,
+      "sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0"
+    },
+    {
+      "path": "boundary/logs/pdftotext-version.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/render-pdf.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/render-pdf.stdout",
+      "bytes": 4591,
+      "sha256": "de27f8d511018ab187847af15d0746369f6aa39fbab646351c233bd2665d142d"
+    },
+    {
+      "path": "boundary/logs/reopen-docx.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/reopen-docx.stdout",
+      "bytes": 2594,
+      "sha256": "65fc26041d4f44ed87808d3b83a748a86d823114bd1a9c9b6a19d58e3cc19861"
+    },
+    {
+      "path": "boundary/logs/soffice-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "boundary/logs/soffice-version.stdout",
+      "bytes": 73,
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89"
+    },
+    {
+      "path": "boundary/pdf/later-continuous.direct.bbox.xhtml",
+      "bytes": 876,
+      "sha256": "f41446a5bfcd090a2aef5c754de4d8813f1a3cad151a1253aa288163c5feada2"
+    },
+    {
+      "path": "boundary/pdf/later-continuous.direct.pdf",
+      "bytes": 12732,
+      "sha256": "08f2cff13b4c48c07b69d218c91e868f6c806f62d68b508cabfc954e1f4521e9"
+    },
+    {
+      "path": "boundary/pdf/later-continuous.imported.bbox.xhtml",
+      "bytes": 876,
+      "sha256": "f41446a5bfcd090a2aef5c754de4d8813f1a3cad151a1253aa288163c5feada2"
+    },
+    {
+      "path": "boundary/pdf/later-continuous.imported.pdf",
+      "bytes": 12732,
+      "sha256": "96437db57cb4307138d666dd19e6fd32d4b77ee5ddd7f397296df1f4801a7e61"
+    },
+    {
+      "path": "boundary/pdf/later-continuous.source.bbox.xhtml",
+      "bytes": 876,
+      "sha256": "f41446a5bfcd090a2aef5c754de4d8813f1a3cad151a1253aa288163c5feada2"
+    },
+    {
+      "path": "boundary/pdf/later-continuous.source.pdf",
+      "bytes": 12732,
+      "sha256": "315227c3273a8220edbae0f754146718e02e924bf4398c56a3afad7ca5979f1f"
+    },
+    {
+      "path": "boundary/pdf/later-even-page.direct.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "d028ab5124d5b5c63acfbd2d9909ca15954c16f0326137697434ab1bddddeb24"
+    },
+    {
+      "path": "boundary/pdf/later-even-page.direct.pdf",
+      "bytes": 12829,
+      "sha256": "b10d9b64de66b13b9d43cbb485ce18970c2c7b2324ec706e6aabd834a2dd6451"
+    },
+    {
+      "path": "boundary/pdf/later-even-page.imported.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "d028ab5124d5b5c63acfbd2d9909ca15954c16f0326137697434ab1bddddeb24"
+    },
+    {
+      "path": "boundary/pdf/later-even-page.imported.pdf",
+      "bytes": 12829,
+      "sha256": "a7746ace1c2e18c370197941f7309f268da670213a79a271486e490ec9571342"
+    },
+    {
+      "path": "boundary/pdf/later-even-page.source.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "d028ab5124d5b5c63acfbd2d9909ca15954c16f0326137697434ab1bddddeb24"
+    },
+    {
+      "path": "boundary/pdf/later-even-page.source.pdf",
+      "bytes": 12829,
+      "sha256": "c2ac1ba1ccea4c2667a090da59610fbedc26ba870792c836956907f39735bf81"
+    },
+    {
+      "path": "boundary/pdf/later-next-page.direct.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "5a6123eb646f73c61fa12376129a52b4833dfa137a9b70e6feb13e589279e808"
+    },
+    {
+      "path": "boundary/pdf/later-next-page.direct.pdf",
+      "bytes": 12953,
+      "sha256": "d35979a8fd905e74dd7902190a35acae2b795184227edd3b8bca22decf7c619a"
+    },
+    {
+      "path": "boundary/pdf/later-next-page.imported.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "5a6123eb646f73c61fa12376129a52b4833dfa137a9b70e6feb13e589279e808"
+    },
+    {
+      "path": "boundary/pdf/later-next-page.imported.pdf",
+      "bytes": 12953,
+      "sha256": "b4e53c180b14dd98f0a38d40c1538300f0bc2b7b28ce79b68fb65905dbb90721"
+    },
+    {
+      "path": "boundary/pdf/later-next-page.source.bbox.xhtml",
+      "bytes": 907,
+      "sha256": "5a6123eb646f73c61fa12376129a52b4833dfa137a9b70e6feb13e589279e808"
+    },
+    {
+      "path": "boundary/pdf/later-next-page.source.pdf",
+      "bytes": 12953,
+      "sha256": "7877acc94ea00890be4e5488c1206a763a31b3a8560901ce14d83afc49ba87ee"
+    },
+    {
+      "path": "boundary/pdf/later-odd-page.direct.bbox.xhtml",
+      "bytes": 961,
+      "sha256": "ff0abd9e77438b3f3f91512d3f81033b901d3080946e476fd4970a2a09088756"
+    },
+    {
+      "path": "boundary/pdf/later-odd-page.direct.pdf",
+      "bytes": 12977,
+      "sha256": "d16822f84c59dcbd60c8782d7c20d2875720e77bf3b312653af26d13d970cf61"
+    },
+    {
+      "path": "boundary/pdf/later-odd-page.imported.bbox.xhtml",
+      "bytes": 961,
+      "sha256": "ff0abd9e77438b3f3f91512d3f81033b901d3080946e476fd4970a2a09088756"
+    },
+    {
+      "path": "boundary/pdf/later-odd-page.imported.pdf",
+      "bytes": 12977,
+      "sha256": "30ad49f42ecec1f38b066a50621cd726f46f80faaecca6cc258a23f397028f69"
+    },
+    {
+      "path": "boundary/pdf/later-odd-page.source.bbox.xhtml",
+      "bytes": 961,
+      "sha256": "ff0abd9e77438b3f3f91512d3f81033b901d3080946e476fd4970a2a09088756"
+    },
+    {
+      "path": "boundary/pdf/later-odd-page.source.pdf",
+      "bytes": 12977,
+      "sha256": "1c703321ab63921dde34982f760e0e9eb62387c0312761dc1db97f4084f9d38d"
+    },
+    {
+      "path": "boundary/pdf/paragraph-page-then-column.direct.bbox.xhtml",
+      "bytes": 921,
+      "sha256": "3e4b7419658de957aee5cac36a9607b39656a923880777fd20d668f4d56a928d"
+    },
+    {
+      "path": "boundary/pdf/paragraph-page-then-column.direct.pdf",
+      "bytes": 13463,
+      "sha256": "018bd017d304b073998ed0750baf14210ce2e66b020ae95308835a4fecff9ebb"
+    },
+    {
+      "path": "boundary/pdf/paragraph-page-then-column.imported.bbox.xhtml",
+      "bytes": 921,
+      "sha256": "3e4b7419658de957aee5cac36a9607b39656a923880777fd20d668f4d56a928d"
+    },
+    {
+      "path": "boundary/pdf/paragraph-page-then-column.imported.pdf",
+      "bytes": 13463,
+      "sha256": "5bb5e489e817a9c875cb6cb019fd121a2f7b121c55a020458bff6e73ba6322c5"
+    },
+    {
+      "path": "boundary/pdf/paragraph-page-then-column.source.bbox.xhtml",
+      "bytes": 919,
+      "sha256": "1b13c0a35008709990aacfaa9c6a29363ca375ae15495d33039531df945e86d8"
+    },
+    {
+      "path": "boundary/pdf/paragraph-page-then-column.source.pdf",
+      "bytes": 13462,
+      "sha256": "f57614e7fe03c1295871be48270f066e3fbba8bde1edbebeb0259b0c0adeabe3"
+    },
+    {
+      "path": "boundary/profiles/docx/user/autotext/mytexts.bau",
+      "bytes": 557,
+      "sha256": "7eb002c35131ec0d3103ad2ab2df79b396eb76bf2493828e633b5690fc29a4a1"
+    },
+    {
+      "path": "boundary/profiles/docx/user/basic/Standard/Module1.xba",
+      "bytes": 1124,
+      "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+    },
+    {
+      "path": "boundary/profiles/docx/user/basic/Standard/dialog.xlb",
+      "bytes": 288,
+      "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+    },
+    {
+      "path": "boundary/profiles/docx/user/basic/Standard/script.xlb",
+      "bytes": 349,
+      "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+    },
+    {
+      "path": "boundary/profiles/docx/user/basic/dialog.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "boundary/profiles/docx/user/basic/script.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "boundary/profiles/docx/user/config/autotbl.fmt",
+      "bytes": 35313,
+      "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+    },
+    {
+      "path": "boundary/profiles/docx/user/database/biblio.odb",
+      "bytes": 2892,
+      "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+    },
+    {
+      "path": "boundary/profiles/docx/user/database/biblio/biblio.dbf",
+      "bytes": 75798,
+      "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+    },
+    {
+      "path": "boundary/profiles/docx/user/database/biblio/biblio.dbt",
+      "bytes": 46601,
+      "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+    },
+    {
+      "path": "boundary/profiles/docx/user/database/evolocal.odb",
+      "bytes": 3759,
+      "sha256": "c72f8fd2b0e8f2b90e967a4cc29ae2f6333901a25862d69a81fc47fe44a444df"
+    },
+    {
+      "path": "boundary/profiles/docx/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/docx/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/profiles/docx/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/docx/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/profiles/docx/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/docx/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/profiles/docx/user/gallery/sg30.sdv",
+      "bytes": 2048,
+      "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+    },
+    {
+      "path": "boundary/profiles/docx/user/gallery/sg30.thm",
+      "bytes": 565,
+      "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/ExtensionInfo.pack",
+      "bytes": 32,
+      "sha256": "8f94c7bcb2083a786f6e479c41c0b6b9edea5ef8d6c7afb767b1424ec2e1186f"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/autotext/mytexts.pack",
+      "bytes": 403,
+      "sha256": "002d52262669c997c29a5d9acf25889f34409a3681d02462152e734ed2c7e8a8"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/basic/Standard/Module1.pack",
+      "bytes": 644,
+      "sha256": "fe0861e0d877fa3649f03890b80a99adb2a0625e158c4dd1d932515d339bca5a"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/basic/Standard/dialog.pack",
+      "bytes": 220,
+      "sha256": "48f7e1fdd8661f0be6e676f55c9e0d0ccdfffbee9c67dd977d951129e45648fb"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/basic/Standard/script.pack",
+      "bytes": 241,
+      "sha256": "6961af566352be513bb45dbcc2b92151b0833b59cb65bee346919d31a69d788a"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/basic/dialog.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/basic/script.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/config/autotbl.pack",
+      "bytes": 1780,
+      "sha256": "1d3e419163e832bfba4c7f8424dd268cca313564ae87b1ede785b6488db6238a"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/database/biblio.pack",
+      "bytes": 2432,
+      "sha256": "093d969bcb085884376e2c69353852e5a57fe7614de2257097984dcc29043b2e"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/database/biblio/biblio.pack",
+      "bytes": 2147,
+      "sha256": "d0db6a1f5a456ffe7ec476e6dda13eef51628deafea9f80d23e6cdc366776d4e"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/database/evolocal.pack",
+      "bytes": 1203,
+      "sha256": "9555163d322df5d630457d72562431f39e384beedce6ab8329d99f06b590afbd"
+    },
+    {
+      "path": "boundary/profiles/docx/user/pack/registrymodifications.pack",
+      "bytes": 964,
+      "sha256": "0b4801300cc90702335c338af13383f50c5d546b36140ccc20cc0acbe7a19afb"
+    },
+    {
+      "path": "boundary/profiles/docx/user/registrymodifications.xcu",
+      "bytes": 8479,
+      "sha256": "62b4364f4a725342c8ac2d24ca99b991d0c7869fce36c055b784b4f6e6b60621"
+    },
+    {
+      "path": "boundary/profiles/docx/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/docx/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/autotext/mytexts.bau",
+      "bytes": 557,
+      "sha256": "7eb002c35131ec0d3103ad2ab2df79b396eb76bf2493828e633b5690fc29a4a1"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/basic/Standard/Module1.xba",
+      "bytes": 1124,
+      "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/basic/Standard/dialog.xlb",
+      "bytes": 288,
+      "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/basic/Standard/script.xlb",
+      "bytes": 349,
+      "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/basic/dialog.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/basic/script.xlc",
+      "bytes": 339,
+      "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/config/autotbl.fmt",
+      "bytes": 35313,
+      "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/database/biblio.odb",
+      "bytes": 2892,
+      "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/database/biblio/biblio.dbf",
+      "bytes": 75798,
+      "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/database/biblio/biblio.dbt",
+      "bytes": 46601,
+      "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/database/evolocal.odb",
+      "bytes": 3759,
+      "sha256": "c72f8fd2b0e8f2b90e967a4cc29ae2f6333901a25862d69a81fc47fe44a444df"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/gallery/sg30.sdv",
+      "bytes": 2048,
+      "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/gallery/sg30.thm",
+      "bytes": 565,
+      "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/ExtensionInfo.pack",
+      "bytes": 32,
+      "sha256": "8f94c7bcb2083a786f6e479c41c0b6b9edea5ef8d6c7afb767b1424ec2e1186f"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/autotext/mytexts.pack",
+      "bytes": 403,
+      "sha256": "002d52262669c997c29a5d9acf25889f34409a3681d02462152e734ed2c7e8a8"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/basic/Standard/Module1.pack",
+      "bytes": 644,
+      "sha256": "fe0861e0d877fa3649f03890b80a99adb2a0625e158c4dd1d932515d339bca5a"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/basic/Standard/dialog.pack",
+      "bytes": 220,
+      "sha256": "48f7e1fdd8661f0be6e676f55c9e0d0ccdfffbee9c67dd977d951129e45648fb"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/basic/Standard/script.pack",
+      "bytes": 241,
+      "sha256": "6961af566352be513bb45dbcc2b92151b0833b59cb65bee346919d31a69d788a"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/basic/dialog.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/basic/script.pack",
+      "bytes": 238,
+      "sha256": "9a896cbae1ca92f439535587209ff596b14177401358c935227fd1af1efff9ee"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/config/autotbl.pack",
+      "bytes": 1780,
+      "sha256": "1d3e419163e832bfba4c7f8424dd268cca313564ae87b1ede785b6488db6238a"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/database/biblio.pack",
+      "bytes": 2432,
+      "sha256": "093d969bcb085884376e2c69353852e5a57fe7614de2257097984dcc29043b2e"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/database/biblio/biblio.pack",
+      "bytes": 2147,
+      "sha256": "d0db6a1f5a456ffe7ec476e6dda13eef51628deafea9f80d23e6cdc366776d4e"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/database/evolocal.pack",
+      "bytes": 1203,
+      "sha256": "9555163d322df5d630457d72562431f39e384beedce6ab8329d99f06b590afbd"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/pack/registrymodifications.pack",
+      "bytes": 964,
+      "sha256": "0b4801300cc90702335c338af13383f50c5d546b36140ccc20cc0acbe7a19afb"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/registrymodifications.xcu",
+      "bytes": 8479,
+      "sha256": "62b4364f4a725342c8ac2d24ca99b991d0c7869fce36c055b784b4f6e6b60621"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+      "bytes": 135,
+      "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+    },
+    {
+      "path": "boundary/profiles/pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+      "bytes": 117,
+      "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+    },
+    {
+      "path": "boundary/receipt.json",
+      "bytes": 50848,
+      "sha256": "546098bca6479840788c3f8ec38e9139da6347bd9f7f4f0dcea0f2f76f02c460"
+    },
+    {
+      "path": "boundary/reopened/later-continuous.direct.docx",
+      "bytes": 5867,
+      "sha256": "25f2795a7305c9205f408d37d72c9762233aa06092189ad7e1fc0a2c4e7d0ffb"
+    },
+    {
+      "path": "boundary/reopened/later-continuous.imported.docx",
+      "bytes": 5920,
+      "sha256": "d35c99ec796711e85ceef08583d6f1d655a8ece441bd782e2a42bb53a3127dca"
+    },
+    {
+      "path": "boundary/reopened/later-even-page.direct.docx",
+      "bytes": 5881,
+      "sha256": "f0b32bea08052882a7c30556b1e978cc580095177c70c98bbb203903d011eeac"
+    },
+    {
+      "path": "boundary/reopened/later-even-page.imported.docx",
+      "bytes": 5934,
+      "sha256": "889266dfbe1daa588c795f8fafcc599f20cbea3327db37d1f5733e781984bfde"
+    },
+    {
+      "path": "boundary/reopened/later-next-page.direct.docx",
+      "bytes": 5875,
+      "sha256": "5f7012f98dd425e209225a64c32bb7e4a0d4cf2d77f2ffb5d58421b7b56f880a"
+    },
+    {
+      "path": "boundary/reopened/later-next-page.imported.docx",
+      "bytes": 5928,
+      "sha256": "fecf71801c11eb82e11fbb2dec7ab4395194eba83896619ae78bfeebf60d3cc3"
+    },
+    {
+      "path": "boundary/reopened/later-odd-page.direct.docx",
+      "bytes": 5880,
+      "sha256": "d1ba4b7e9b97eb55cef7b568cec48cb66b0160ce04208fd2385cea466a1d81a5"
+    },
+    {
+      "path": "boundary/reopened/later-odd-page.imported.docx",
+      "bytes": 5933,
+      "sha256": "02b4d26d4d2fe4e85a09a89c7b4b89d15e38e129e8e4391b030f6c1e76b685e6"
+    },
+    {
+      "path": "boundary/reopened/paragraph-page-then-column.direct.docx",
+      "bytes": 5842,
+      "sha256": "415986a4cebfc7ddc133df18406640f1c3429eec2301e5f2c1e307259d977e00"
+    },
+    {
+      "path": "boundary/reopened/paragraph-page-then-column.imported.docx",
+      "bytes": 5895,
+      "sha256": "0f328a4d483965007fbea2e107382aa1627826c6f14b8534791c71878687baac"
+    },
+    {
+      "path": "launch.log",
+      "bytes": 156,
+      "sha256": "ea7570c90e41d69761245ea3d76e8042c684ee9a1964234b61e2bfc67fd8306e"
+    },
+    {
+      "path": "make_boundary_fixtures.dart",
+      "bytes": 4838,
+      "sha256": "e6494ba40dacd16e2dd51dd25658fcfd28450cbb3c0e7d4712ee7be04f8ad5d9"
+    },
+    {
+      "path": "verify_boundary_consumers.py",
+      "bytes": 15548,
+      "sha256": "bb842e4a0a03b921ed59f8a2c48a781b3975b3b569f054d449fc4c8624cce84d"
+    }
+  ]
+}

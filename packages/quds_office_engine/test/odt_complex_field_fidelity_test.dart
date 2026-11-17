@@ -110,9 +110,10 @@ void main() {
               ],
             ),
           );
-          final paragraphs = _elements(_body(result.content), 'p')
-              .skip(sectionLeading ? 0 : 1)
-              .toList();
+          final paragraphs = _elements(
+            _body(result.content),
+            'p',
+          ).skip(sectionLeading ? 0 : 1).toList();
           // A section boundary retains its empty leading source fragment;
           // a later paragraph does not acquire one because a run is aliased.
           expect(paragraphs, hasLength(sectionLeading ? 2 : 1));
@@ -125,14 +126,18 @@ void main() {
             'style-name',
             namespaceUri: _textNs,
           );
-          final style = _elements(result.content, 'style', _styleNs).singleWhere(
-            (style) =>
-                style.getAttribute('name', namespaceUri: _styleNs) == styleName,
-          );
+          final style = _elements(result.content, 'style', _styleNs)
+              .singleWhere(
+                (style) =>
+                    style.getAttribute('name', namespaceUri: _styleNs) ==
+                    styleName,
+              );
           expect(
-            _elements(style, 'paragraph-properties', _styleNs)
-                .single
-                .getAttribute('break-before', namespaceUri: _foNs),
+            _elements(
+              style,
+              'paragraph-properties',
+              _styleNs,
+            ).single.getAttribute('break-before', namespaceUri: _foNs),
             'column',
           );
           expect(paragraph.inlines, orderedEquals(original));
