@@ -72,7 +72,7 @@ class SmlConditionalResolver {
         String? font;
         final cell = sheet.cellOrNull(ref) ?? SmlCell(ref: ref);
         for (final rule in _rules) {
-          if (!matches(rule, cell)) continue;
+          if (!rule.range.containsRef(ref) || !matches(rule, cell)) continue;
           if (rule.fillRgb.isNotEmpty) fill ??= rule.fillRgb;
           if (rule.fontRgb.isNotEmpty) font ??= rule.fontRgb;
           if (rule.stopIfTrue) break;
@@ -83,7 +83,6 @@ class SmlConditionalResolver {
   /// Evaluates the modeled rule kinds. Unsupported formulas and actual errors
   /// do not match. Formula references are relative to the range's top-left cell.
   bool matches(SmlConditionalRule rule, SmlCell cell) {
-    if (!rule.range.containsRef(cell.ref)) return false;
     Object? formula(String source) => _formulas.evaluate(
       source,
       sheet,
@@ -122,7 +121,7 @@ class SmlConditionalResolver {
         // The compact rule API also accepts an unquoted text literal. Keep
         // that existing form when it is not an evaluable name or expression.
         if (bound is FormulaErrorValue &&
-            RegExp(r'^[A-Za-z_][A-Za-z_ ]*$').hasMatch(rule.formula) &&
+            _isUnquotedText(rule.formula) &&
             _formulas.workbook.definedName(rule.formula, onSheet: sheet) ==
                 null) {
           bound = rule.formula;
@@ -201,11 +200,21 @@ class SmlConditionalResolver {
   static double? _number(Object? value) {
     final number = value is num
         ? value.toDouble()
+        : value is bool
+        ? (value ? 1.0 : 0.0)
         : value is String
         ? double.tryParse(value)
         : null;
     return number != null && number.isFinite ? number : null;
   }
+
+  // Legacy equal/notEqual text literals are language-independent. Text that
+  // contains formula syntax must be quoted; explicit references and declared
+  // names retain their formula meaning, including errors/unsupported results.
+  static bool _isUnquotedText(String source) =>
+      source.isNotEmpty &&
+      !RegExp(r'[\x00-\x1f=<>+*/^&():;,\[\]$!"-]').hasMatch(source) &&
+      !RegExp(r'^[A-Za-z]{1,3}[0-9]+$').hasMatch(source.trim());
 }
 
 class _ConditionalAggregate {
@@ -226,6 +235,8 @@ class _ConditionalFormulas {
   final _values = <(SmlWorksheet, int, int), Object?>{};
   static const _unsupported = FormulaErrorValue('#VALUE!', isUnsupported: true);
   static const _functions = {
+    'TRUE',
+    'FALSE',
     'AND',
     'OR',
     'XOR',

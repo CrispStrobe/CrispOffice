@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
@@ -107,6 +109,76 @@ void main() {
     expect(rule.matches(sheet.cellA1('B3'), sheet), isTrue);
   });
 
+  test('ODS retains an unstyled expression and does not invent a fill', () {
+    final book = SmlWorkbook();
+    book.firstSheet.conditionalFormats.add(_rule());
+    final reopened = OdsSheetReader.readBytes(OdsSheetWriter.writeBytes(book));
+    final rule = reopened.firstSheet.conditionalFormats.single;
+    expect(rule.kind, SmlConditionalKind.expression);
+    expect(rule.formula, 'TRUE');
+    expect(rule.fillRgb, isEmpty);
+    expect(rule.fontRgb, isEmpty);
+  });
+
+  for (final literal in ['تم', 'größer', 'gro\u0308ßer', '完成 ✓']) {
+    test('legacy equality accepts Unicode text: $literal', () {
+      final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
+      final cell = sheet.cellA1('A1')..value = literal;
+      final rule = SmlConditionalRule(
+        range: SmlRange.parse('A1'),
+        kind: SmlConditionalKind.equal,
+        formula: literal,
+      );
+      expect(rule.matches(cell, sheet), isTrue);
+      rule.kind = SmlConditionalKind.notEqual;
+      expect(rule.matches(cell, sheet), isFalse);
+    });
+  }
+
+  test('equality text with formula syntax must be quoted explicitly', () {
+    final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
+    final cell = sheet.cellA1('A1')..value = 'SUM(';
+    final rule = SmlConditionalRule(
+      range: SmlRange.parse('A1'),
+      kind: SmlConditionalKind.notEqual,
+      formula: 'SUM(',
+    );
+    expect(rule.matches(cell, sheet), isFalse);
+    rule.kind = SmlConditionalKind.equal;
+    rule.formula = '"SUM("';
+    expect(rule.matches(cell, sheet), isTrue);
+  });
+
+  test(
+    'unsupported defined-name formulas cannot bypass the formula subset',
+    () {
+      final book = SmlWorkbook(
+        formulaNames: [
+          SmlFormulaName(name: 'Huge', formula: 'SEQUENCE(1000000000)'),
+          SmlFormulaName(name: 'Dynamic', formula: 'INDIRECT("A1")'),
+        ],
+      );
+      for (final name in ['Huge', 'Dynamic']) {
+        expect(
+          _rule(
+            formula: name,
+          ).matches(SmlCell(ref: _a1), book.firstSheet, workbook: book),
+          isFalse,
+        );
+        final equality = SmlConditionalRule(
+          range: SmlRange.parse('A1'),
+          kind: SmlConditionalKind.notEqual,
+          formula: name,
+        );
+        expect(
+          equality.matches(SmlCell(ref: _a1), book.firstSheet, workbook: book),
+          isFalse,
+        );
+      }
+      expect(book.firstSheet.rows, isEmpty);
+    },
+  );
+
   test('numeric bounds can reference an absolute source cell', () {
     final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
     sheet.cellA1('A1').value = 8;
@@ -193,7 +265,7 @@ void main() {
     'read-only formulas use absent and uncached cells without changing them',
     () {
       final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
-      sheet.cellA1('B1').formula = 'C1+2';
+      sheet.cellA1('B1').formula = 'SUM(C1,2)';
       final rule = _rule(formula: 'AND(B1=2,ISBLANK(Z99))');
       final before = sheet.allCells.map((cell) => cell.ref.a1).toList();
       expect(rule.matches(SmlCell(ref: _a1), sheet), isTrue);
@@ -274,6 +346,110 @@ void main() {
     expect(book.firstSheet.rows, isEmpty);
   });
 
+  for (final formula in [
+    'AND(1/0,TRUE)',
+    'OR(1/0,FALSE)',
+    'XOR(1/0,FALSE)',
+    'NOT(NOT(1/0))',
+  ]) {
+    test('Boolean error predicate cannot stop valid lower rules: $formula', () {
+      final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
+      sheet.conditionalFormats.addAll([
+        _rule(priority: 1, formula: formula, stop: true, fill: 'FF0000'),
+        _rule(priority: 2, fill: '00FF00'),
+      ]);
+      expect(
+        SmlConditionalResolver(sheet: sheet).resolve(_a1).fillRgb,
+        '00FF00',
+      );
+    });
+  }
+
+  test(
+    'explicit error handling and Boolean constant calls remain supported',
+    () {
+      final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
+      for (final formula in [
+        'AND(TRUE(),NOT(FALSE()))',
+        'ISERROR(1/0)',
+        'IFERROR(1/0,TRUE)',
+        'AND(ISERROR(1/0),TRUE)',
+      ]) {
+        expect(
+          _rule(formula: formula).matches(SmlCell(ref: _a1), sheet),
+          isTrue,
+          reason: formula,
+        );
+      }
+    },
+  );
+
+  for (final function in ['AND', 'OR', 'XOR']) {
+    test('$function evaluates each Boolean range value', () {
+      final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
+      sheet.cellA1('B1').value = false;
+      sheet.cellA1('B2').value = false;
+      final rule = _rule(formula: '$function(B1:B2)');
+      expect(rule.matches(SmlCell(ref: _a1), sheet), isFalse);
+      sheet.cellA1('B1').value = true;
+      expect(rule.matches(SmlCell(ref: _a1), sheet), function != 'AND');
+      sheet.cellA1('B2').value = true;
+      expect(rule.matches(SmlCell(ref: _a1), sheet), function != 'XOR');
+      sheet.cellA1('B2')
+        ..type = SmlCellType.error
+        ..value = '#DIV/0!';
+      expect(rule.matches(SmlCell(ref: _a1), sheet), isFalse);
+    });
+  }
+
+  test('NOT declines a range instead of coercing its container to true', () {
+    final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
+    sheet.cellA1('B1').value = false;
+    sheet.cellA1('B2').value = false;
+    expect(
+      _rule(formula: 'NOT(B1:B2)').matches(SmlCell(ref: _a1), sheet),
+      isFalse,
+    );
+    expect(
+      _rule(formula: 'TRUE(1)').matches(SmlCell(ref: _a1), sheet),
+      isFalse,
+    );
+    expect(
+      _rule(formula: 'IF(B1:B2,TRUE,FALSE)').matches(SmlCell(ref: _a1), sheet),
+      isFalse,
+    );
+  });
+
+  test(
+    'logical ranges ignore text and blanks instead of treating them as true',
+    () {
+      final sheet = SmlWorksheet(name: 'Data', sheetId: 1);
+      sheet.cellA1('B1').value = 'text';
+      sheet.cellA1('B2').value = true;
+      expect(
+        _rule(formula: 'AND(B1:B3)').matches(SmlCell(ref: _a1), sheet),
+        isTrue,
+      );
+      expect(
+        _rule(formula: 'XOR(B1:B3)').matches(SmlCell(ref: _a1), sheet),
+        isTrue,
+      );
+      for (final formula in [
+        'AND("arbitrary text")',
+        'AND()',
+        'AND(B1)',
+        'NOT("arbitrary text")',
+        'NOT(NOT("arbitrary text"))',
+      ]) {
+        expect(
+          _rule(formula: formula).matches(SmlCell(ref: _a1), sheet),
+          isFalse,
+          reason: formula,
+        );
+      }
+    },
+  );
+
   for (final kind in [
     SmlConditionalKind.duplicate,
     SmlConditionalKind.top,
@@ -313,10 +489,20 @@ void main() {
         kind: SmlConditionalKind.greaterThan,
         formula: '5',
         fillRgb: '123456',
-        fontRgb: 'ABCDEF',
+        priority: 1,
       ),
     );
-    final display = PdfFile.open(OfficePdfExport.workbook(book)).displayList(0);
+    sheet.conditionalFormats.insert(
+      0,
+      _rule(priority: 9, fill: 'FF0000', font: 'ABCDEF'),
+    );
+    final bytes = OfficePdfExport.workbook(book);
+    final output = Platform.environment['QUDS_CONDITIONAL_RENDER_OUTPUT'];
+    if (output != null && output.isNotEmpty) {
+      Directory(output).createSync(recursive: true);
+      File('$output/conditional-styles.pdf').writeAsBytesSync(bytes);
+    }
+    final display = PdfFile.open(bytes).displayList(0);
     expect(
       display.ops.whereType<PdfFillPath>().map((op) => op.color),
       contains(0xff123456),
