@@ -1,0 +1,208 @@
+{
+  "baselineHead": "04f66dbc01c33402fb719913d067a7e9fdaa8447",
+  "receipts": [
+    "office-columns-final-tests-before",
+    "office-tabs-before-contract",
+    "office-columns-tabs-final"
+  ],
+  "columnTestSourceIdentical": true,
+  "changedCommonInputs": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+  ],
+  "columnBefore": {
+    "test/odt_section_columns_test.dart": [
+      {
+        "name": "column properties use the ODF columns child and retain body text",
+        "result": "failure"
+      },
+      {
+        "name": "resolved single-column section -1 retains an ordinary body",
+        "result": "success"
+      },
+      {
+        "name": "resolved single-column section 0 retains an ordinary body",
+        "result": "success"
+      },
+      {
+        "name": "resolved single-column section 1 retains an ordinary body",
+        "result": "success"
+      },
+      {
+        "name": "empty multicolumn section keeps its page anchor inside its section",
+        "result": "failure"
+      },
+      {
+        "name": "table-first section stays inside columns without an extra anchor",
+        "result": "failure"
+      },
+      {
+        "name": "column styles distinguish count and normalized gap",
+        "result": "failure"
+      },
+      {
+        "name": "zero and negative zero gaps share a valid zero-length style",
+        "result": "failure"
+      },
+      {
+        "name": "invalid gap -1.0 is omitted without losing columns or text",
+        "result": "failure"
+      },
+      {
+        "name": "invalid gap -0.001 is omitted without losing columns or text",
+        "result": "failure"
+      },
+      {
+        "name": "invalid gap NaN is omitted without losing columns or text",
+        "result": "failure"
+      },
+      {
+        "name": "invalid gap Infinity is omitted without losing columns or text",
+        "result": "failure"
+      },
+      {
+        "name": "invalid gap -Infinity is omitted without losing columns or text",
+        "result": "failure"
+      },
+      {
+        "name": "invalid gap 1e+21 is omitted without losing columns or text",
+        "result": "failure"
+      }
+    ]
+  },
+  "tabBefore": {
+    "test/odt_tab_stop_fidelity_test.dart": [
+      {
+        "name": "ordinary paragraphs retain different tab stop positions",
+        "result": "success"
+      },
+      {
+        "name": "tabbed and plain paragraphs stay independent: plainFirst=false",
+        "result": "success"
+      },
+      {
+        "name": "tabbed and plain paragraphs stay independent: plainFirst=true",
+        "result": "success"
+      },
+      {
+        "name": "tab alignment and leader stay with their owning paragraph",
+        "result": "success"
+      },
+      {
+        "name": "equivalent serialized tab stops share a style without changing the model",
+        "result": "failure"
+      },
+      {
+        "name": "tabbed paragraph styles still distinguish shading and border colors",
+        "result": "success"
+      },
+      {
+        "name": "unrepresentable stops cannot inherit valid stops or create malformed lengths",
+        "result": "success"
+      },
+      {
+        "name": "different authored tab sequences retain every stop in order",
+        "result": "success"
+      }
+    ]
+  },
+  "after": {
+    "test/odt_section_columns_test.dart": [
+      {
+        "name": "column properties use the ODF columns child and retain body text",
+        "result": "success"
+      },
+      {
+        "name": "resolved single-column section -1 retains an ordinary body",
+        "result": "success"
+      },
+      {
+        "name": "resolved single-column section 0 retains an ordinary body",
+        "result": "success"
+      },
+      {
+        "name": "resolved single-column section 1 retains an ordinary body",
+        "result": "success"
+      },
+      {
+        "name": "empty multicolumn section keeps its page anchor inside its section",
+        "result": "success"
+      },
+      {
+        "name": "table-first section stays inside columns without an extra anchor",
+        "result": "success"
+      },
+      {
+        "name": "column styles distinguish count and normalized gap",
+        "result": "success"
+      },
+      {
+        "name": "zero and negative zero gaps share a valid zero-length style",
+        "result": "success"
+      },
+      {
+        "name": "invalid gap -1.0 is omitted without losing columns or text",
+        "result": "success"
+      },
+      {
+        "name": "invalid gap -0.001 is omitted without losing columns or text",
+        "result": "success"
+      },
+      {
+        "name": "invalid gap NaN is omitted without losing columns or text",
+        "result": "success"
+      },
+      {
+        "name": "invalid gap Infinity is omitted without losing columns or text",
+        "result": "success"
+      },
+      {
+        "name": "invalid gap -Infinity is omitted without losing columns or text",
+        "result": "success"
+      },
+      {
+        "name": "invalid gap 1e+21 is omitted without losing columns or text",
+        "result": "success"
+      }
+    ],
+    "test/odt_tab_stop_fidelity_test.dart": [
+      {
+        "name": "ordinary paragraphs retain different tab stop positions",
+        "result": "success"
+      },
+      {
+        "name": "tabbed and plain paragraphs stay independent: plainFirst=false",
+        "result": "success"
+      },
+      {
+        "name": "tabbed and plain paragraphs stay independent: plainFirst=true",
+        "result": "success"
+      },
+      {
+        "name": "tab alignment and leader stay with their owning paragraph",
+        "result": "success"
+      },
+      {
+        "name": "equivalent serialized tab stops share a style without changing the model",
+        "result": "success"
+      },
+      {
+        "name": "tabbed paragraph styles still distinguish shading and border colors",
+        "result": "success"
+      },
+      {
+        "name": "unrepresentable stops cannot inherit valid stops or create malformed lengths",
+        "result": "success"
+      },
+      {
+        "name": "different authored tab sequences retain every stop in order",
+        "result": "success"
+      }
+    ]
+  },
+  "notes": [
+    "The columns before/after run uses the identical final14-test source.",
+    "Tab rounding regression intentionally corrects a stale test assumption; distinct leader coverage remains in both table/tab cohorts.",
+    "Initial setup and test-authoring attempts are retained separately and are not the accepted regression proof."
+  ],
+  "allAcceptedReceiptsPassed": true
+}

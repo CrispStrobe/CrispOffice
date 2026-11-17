@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "kind": "fresh-recovery-proofing-verification",
+  "source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "scope": "Fresh engine proofing, real native package tests, compiled functional comparisons on both unchanged model panels, and full existing morphology corpus runs on VM/Node. Source-specific evidence is preserved; later Office-only integration requires explicit continuity attribution.",
+  "tests": [
+    {
+      "label": "engine-proofing-vm",
+      "source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "counts": {
+        "success": 699
+      },
+      "source_input_count": 340,
+      "source_unchanged": true,
+      "receipt": "engine-proofing-vm.json",
+      "receipt_sha256": "cb122a77b53d5b46296cf0a7c49f575c369573b81e9ed08dc3242520441f806e"
+    },
+    {
+      "label": "engine-proofing-node-accepted",
+      "source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "counts": {
+        "success": 699
+      },
+      "source_input_count": 340,
+      "source_unchanged": true,
+      "receipt": "engine-proofing-node-accepted.json",
+      "receipt_sha256": "dfc0ea29eb65c890bed2798a57421c564016b3d7f611c0bd33c0d3341dca9134"
+    },
+    {
+      "label": "gector-native-tests",
+      "source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "counts": {
+        "success": 194
+      },
+      "source_input_count": 398,
+      "source_unchanged": true,
+      "receipt": "gector-native-tests.json",
+      "receipt_sha256": "2d2e0798b7dcf3dc6e5ad01f5fc121ae8bceaff34c6564e89fdc277ff4ebc371"
+    }
+  ],
+  "native_fixture": {
+    "test_name": "real native dual heads own their output and reject use after dispose",
+    "result": "success",
+    "skipped": false,
+    "experiment_gate": "CRISPEMBED_GECTOR=1",
+    "asset_pins_recorded_in": "gector-native-tests.json command"
+  },
+  "initial_node_attempt": "proofing-node-failure-resolution.json",
+  "compiled_quality": "incremental-quality-comparison.json",
+  "quality_summary": {
+    "frozen": {
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "counts": {
+        "writing_only": {
+          "exact_errors": 8,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 9,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 6,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 11,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "model_added_exact_ids": [
+        "verb-ihr",
+        "das-relative"
+      ],
+      "model_lost_exact_ids": []
+    },
+    "prospective": {
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "counts": {
+        "writing_only": {
+          "exact_errors": 14,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 16,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 12,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 22,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "model_added_exact_ids": [
+        "prospective-verb-ihr-lesen-error",
+        "prospective-verb-ihr-koennen-error",
+        "prospective-dass-hoffen-error",
+        "prospective-dass-freuen-error",
+        "prospective-relative-subject-error",
+        "prospective-relative-object-error"
+      ],
+      "model_lost_exact_ids": []
+    }
+  },
+  "morphology": "morphology-comparison.json",
+  "morphology_summary": {
+    "core": {
+      "sentences": 256,
+      "requests_recorded": 1280,
+      "errors": 81,
+      "exact_errors": 71,
+      "expanded_errors": 73,
+      "exact_expanded_errors": 68,
+      "challenge_errors": 8,
+      "exact_challenge_errors": 3,
+      "valid_controls": 175,
+      "flagged_controls": 0,
+      "operational_failures": 0,
+      "protection_failures": 0,
+      "ignore_failures": 0,
+      "recheck_failures": 0
+    },
+    "review": {
+      "sentences": 84,
+      "requests_recorded": 420,
+      "errors": 24,
+      "exact_errors": 24,
+      "expanded_errors": 0,
+      "exact_expanded_errors": 0,
+      "challenge_errors": 0,
+      "exact_challenge_errors": 0,
+      "valid_controls": 60,
+      "flagged_controls": 0,
+      "operational_failures": 0,
+      "protection_failures": 0,
+      "ignore_failures": 0,
+      "recheck_failures": 0
+    }
+  },
+  "morphology_records_compared_per_runtime": 1700,
+  "morphology_changed_records_per_runtime": 3,
+  "limits": [
+    "Cohorts and runtimes overlap; counts are not additive unique coverage.",
+    "The model panels are existing synthetic development regression inputs, not new prospective or population accuracy evidence.",
+    "The model output is unchanged; observed gains come from incoming deterministic subject agreement and irregular participle priority.",
+    "The model panel runs occurred during concurrent tests; no new latency or memory budget claim is made.",
+    "The noun-subject morphology improvement retains a miss on the emoji-prefixed source-offset variant; protected code remains unchanged."
+  ],
+  "passed": true
+}

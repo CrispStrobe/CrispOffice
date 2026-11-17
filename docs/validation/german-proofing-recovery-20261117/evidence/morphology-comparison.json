@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "kind": "complete-recovery-morphology-outcome-comparison",
+  "scope": "Every field of all existing core/review morphology outcome records, compared separately on VM and Node. Original corpus declarations, expected answers, variants, runner and harness unchanged. Rebuildable compiled JS, source map and dependency file are identified but excluded from copied evidence.",
+  "records_compared_per_runtime": 1700,
+  "changed_records_per_runtime": 3,
+  "panels": {
+    "core": {
+      "source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "historical_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "corpus_sha256": "9d719cf91899a8dec4bc131daaefc56651a02e02345f1f976b12140e57b06db1",
+      "runtimes": {
+        "vm": {
+          "records_compared": 1280,
+          "changed_records": 3,
+          "changes": [
+            {
+              "id": "error-075",
+              "variant": "base",
+              "kind": "error",
+              "text": "Die Studenten arbeitet heute.",
+              "expected": "Die Studenten arbeiten heute.",
+              "before_applied": "Die Studenten arbeitet heute.",
+              "after_applied": "Die Studenten arbeiten heute.",
+              "before_exact": false,
+              "after_exact": true,
+              "before_findings": [],
+              "after_findings": [
+                {
+                  "rule": "de.grammar.noun-verb",
+                  "original": "arbeitet",
+                  "start": 14,
+                  "end": 22,
+                  "replacements": [
+                    "arbeiten"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "error-075",
+              "variant": "soft-hyphen",
+              "kind": "error",
+              "text": "Di­e Studenten arbeitet heute.",
+              "expected": "Die Studenten arbeiten heute.",
+              "before_applied": "Di­e Studenten arbeitet heute.",
+              "after_applied": "Di­e Studenten arbeiten heute.",
+              "before_exact": false,
+              "after_exact": true,
+              "before_findings": [],
+              "after_findings": [
+                {
+                  "rule": "de.grammar.noun-verb",
+                  "original": "arbeitet",
+                  "start": 34,
+                  "end": 42,
+                  "replacements": [
+                    "arbeiten"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "error-075",
+              "variant": "locale-alias",
+              "kind": "error",
+              "text": "Die Studenten arbeitet heute.",
+              "expected": "Die Studenten arbeiten heute.",
+              "before_applied": "Die Studenten arbeitet heute.",
+              "after_applied": "Die Studenten arbeiten heute.",
+              "before_exact": false,
+              "after_exact": true,
+              "before_findings": [],
+              "after_findings": [
+                {
+                  "rule": "de.grammar.noun-verb",
+                  "original": "arbeitet",
+                  "start": 25,
+                  "end": 33,
+                  "replacements": [
+                    "arbeiten"
+                  ]
+                }
+              ]
+            }
+          ],
+          "summary": {
+            "sentences": 256,
+            "requests_recorded": 1280,
+            "errors": 81,
+            "exact_errors": 71,
+            "expanded_errors": 73,
+            "exact_expanded_errors": 68,
+            "challenge_errors": 8,
+            "exact_challenge_errors": 3,
+            "valid_controls": 175,
+            "flagged_controls": 0,
+            "operational_failures": 0,
+            "protection_failures": 0,
+            "ignore_failures": 0,
+            "recheck_failures": 0
+          }
+        },
+        "node": {
+          "records_compared": 1280,
+          "changed_records": 3,
+          "changes": [
+            {
+              "id": "error-075",
+              "variant": "base",
+              "kind": "error",
+              "text": "Die Studenten arbeitet heute.",
+              "expected": "Die Studenten arbeiten heute.",
+              "before_applied": "Die Studenten arbeitet heute.",
+              "after_applied": "Die Studenten arbeiten heute.",
+              "before_exact": false,
+              "after_exact": true,
+              "before_findings": [],
+              "after_findings": [
+                {
+                  "rule": "de.grammar.noun-verb",
+                  "original": "arbeitet",
+                  "start": 14,
+                  "end": 22,
+                  "replacements": [
+                    "arbeiten"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "error-075",
+              "variant": "soft-hyphen",
+              "kind": "error",
+              "text": "Di­e Studenten arbeitet heute.",
+              "expected": "Die Studenten arbeiten heute.",
+              "before_applied": "Di­e Studenten arbeitet heute.",
+              "after_applied": "Di­e Studenten arbeiten heute.",
+              "before_exact": false,
+              "after_exact": true,
+              "before_findings": [],
+              "after_findings": [
+                {
+                  "rule": "de.grammar.noun-verb",
+                  "original": "arbeitet",
+                  "start": 34,
+                  "end": 42,
+                  "replacements": [
+                    "arbeiten"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "error-075",
+              "variant": "locale-alias",
+              "kind": "error",
+              "text": "Die Studenten arbeitet heute.",
+              "expected": "Die Studenten arbeiten heute.",
+              "before_applied": "Die Studenten arbeitet heute.",
+              "after_applied": "Die Studenten arbeiten heute.",
+              "before_exact": false,
+              "after_exact": true,
+              "before_findings": [],
+              "after_findings": [
+                {
+                  "rule": "de.grammar.noun-verb",
+                  "original": "arbeitet",
+                  "start": 25,
+                  "end": 33,
+                  "replacements": [
+                    "arbeiten"
+                  ]
+                }
+              ]
+            }
+          ],
+          "summary": {
+            "sentences": 256,
+            "requests_recorded": 1280,
+            "errors": 81,
+            "exact_errors": 71,
+            "expanded_errors": 73,
+            "exact_expanded_errors": 68,
+            "challenge_errors": 8,
+            "exact_challenge_errors": 3,
+            "valid_controls": 175,
+            "flagged_controls": 0,
+            "operational_failures": 0,
+            "protection_failures": 0,
+            "ignore_failures": 0,
+            "recheck_failures": 0
+          }
+        }
+      },
+      "vm_node_identical": true,
+      "retained": [
+        {
+          "path": "morphology-core-receipt.json.gz",
+          "uncompressed_bytes": 10936,
+          "uncompressed_sha256": "cf3a86fb51ba92a638a4c92d169a5fff72e4b5f37ee96bf34b86e828551b506c",
+          "compressed_sha256": "68073629c91983162b0cfefdd49904dcefc5365a9814c24d8609fc6c7659fdce"
+        },
+        {
+          "path": "morphology-core-vm-results.json.gz",
+          "uncompressed_bytes": 783559,
+          "uncompressed_sha256": "e77081d30f10994f204f07cb9a4463304db7e4aab26821eeb2eb0934177c3b5f",
+          "compressed_sha256": "e0351149f7be839a63dfbbb83cb2f872d17ad33193ceacd8f69af7f6188b1b9c"
+        },
+        {
+          "path": "morphology-core-node-results.json.gz",
+          "uncompressed_bytes": 783559,
+          "uncompressed_sha256": "e77081d30f10994f204f07cb9a4463304db7e4aab26821eeb2eb0934177c3b5f",
+          "compressed_sha256": "e0351149f7be839a63dfbbb83cb2f872d17ad33193ceacd8f69af7f6188b1b9c"
+        },
+        {
+          "path": "morphology-core-compile-js.log.gz",
+          "uncompressed_bytes": 114,
+          "uncompressed_sha256": "8e1ace3f5767d81f5f1567f6bcf31922e3587d69e03993378888f9d8b30c8019",
+          "compressed_sha256": "7a6bb4e3ca510561d9bd158d4d4b97fac2e6028ff8de38488037ac48b82be927"
+        },
+        {
+          "path": "morphology-core-package-config.json.gz",
+          "uncompressed_bytes": 26437,
+          "uncompressed_sha256": "1846b465ad7e0e8021106af0dc4d484c8bc619171ad9617ec6806b86531c9979",
+          "compressed_sha256": "34f84c75812ac559b2c8723b041dd86e68674a90691824f5cdec5bf512e8ec69"
+        }
+      ],
+      "rebuildable_artifacts_not_copied": [
+        {
+          "filename": "morphology-probe.js",
+          "bytes": 5297034,
+          "sha256": "a9cb468c43a7468033c7b614b5587b512897eca0f2b3f4e3d2076e09062dd0b6"
+        },
+        {
+          "filename": "morphology-probe.js.deps",
+          "bytes": 18055,
+          "sha256": "228e77b36342be97488d889b184d0c0f67ac23cf5e1563f631a46df59f155e3a"
+        },
+        {
+          "filename": "morphology-probe.js.map",
+          "bytes": 217977,
+          "sha256": "44c0b7378e036c551389e4c38aefadf5f768d0fc22581cf984ba0df03b80232a"
+        }
+      ]
+    },
+    "review": {
+      "source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "historical_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "corpus_sha256": "1e9a0064620ff10faed3ea81570b160cd9047f6c29b8d10957d6ecae17ba77bf",
+      "runtimes": {
+        "vm": {
+          "records_compared": 420,
+          "changed_records": 0,
+          "changes": [],
+          "summary": {
+            "sentences": 84,
+            "requests_recorded": 420,
+            "errors": 24,
+            "exact_errors": 24,
+            "expanded_errors": 0,
+            "exact_expanded_errors": 0,
+            "challenge_errors": 0,
+            "exact_challenge_errors": 0,
+            "valid_controls": 60,
+            "flagged_controls": 0,
+            "operational_failures": 0,
+            "protection_failures": 0,
+            "ignore_failures": 0,
+            "recheck_failures": 0
+          }
+        },
+        "node": {
+          "records_compared": 420,
+          "changed_records": 0,
+          "changes": [],
+          "summary": {
+            "sentences": 84,
+            "requests_recorded": 420,
+            "errors": 24,
+            "exact_errors": 24,
+            "expanded_errors": 0,
+            "exact_expanded_errors": 0,
+            "challenge_errors": 0,
+            "exact_challenge_errors": 0,
+            "valid_controls": 60,
+            "flagged_controls": 0,
+            "operational_failures": 0,
+            "protection_failures": 0,
+            "ignore_failures": 0,
+            "recheck_failures": 0
+          }
+        }
+      },
+      "vm_node_identical": true,
+      "retained": [
+        {
+          "path": "morphology-review-receipt.json.gz",
+          "uncompressed_bytes": 10936,
+          "uncompressed_sha256": "48e3d8df805979bfc7ef3026731cdf2afb6367623f56c925ed8b164f9bcde03d",
+          "compressed_sha256": "a6af60536a71294b103f65ef8c48a3fe8393a4d367a72913cb88c368157a0441"
+        },
+        {
+          "path": "morphology-review-vm-results.json.gz",
+          "uncompressed_bytes": 265401,
+          "uncompressed_sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4",
+          "compressed_sha256": "38557e25772c563ed29faa9bf7bb1e3a8e82f0c37decd3f61e602248e41bec3b"
+        },
+        {
+          "path": "morphology-review-node-results.json.gz",
+          "uncompressed_bytes": 265401,
+          "uncompressed_sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4",
+          "compressed_sha256": "38557e25772c563ed29faa9bf7bb1e3a8e82f0c37decd3f61e602248e41bec3b"
+        },
+        {
+          "path": "morphology-review-compile-js.log.gz",
+          "uncompressed_bytes": 114,
+          "uncompressed_sha256": "a471336741ac46405e776fe9b074f88ca0e348952300825c50f580919d0bf091",
+          "compressed_sha256": "f481cac539a545cc1caac72fb1df20e628d41cf31445268a2ec68e7aa5bc9e7d"
+        },
+        {
+          "path": "morphology-review-package-config.json.gz",
+          "uncompressed_bytes": 26437,
+          "uncompressed_sha256": "1846b465ad7e0e8021106af0dc4d484c8bc619171ad9617ec6806b86531c9979",
+          "compressed_sha256": "34f84c75812ac559b2c8723b041dd86e68674a90691824f5cdec5bf512e8ec69"
+        }
+      ],
+      "rebuildable_artifacts_not_copied": [
+        {
+          "filename": "morphology-probe.js",
+          "bytes": 5267855,
+          "sha256": "56edc16d6580a0daa17598ea0da3beaed37f6cdafe658b5a62718420e7fec46c"
+        },
+        {
+          "filename": "morphology-probe.js.deps",
+          "bytes": 18057,
+          "sha256": "8558dab2f87eecb1ba10c8e08e5e25c4d204faec78126e9a7b2f169ab71f07d7"
+        },
+        {
+          "filename": "morphology-probe.js.map",
+          "bytes": 217977,
+          "sha256": "290fb7ac09d32b6ea311f516d1fe8744bc0bb1f6cffc4ff1a5f7a0451689265c"
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "passed": true
+}

@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-fresh-quality-peer-audit",
+  "recorded_at_utc": "2026-11-17T18:24:42.492693+00:00",
+  "accepted_proofing_source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "historical_source": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+  "passed": true,
+  "discrepancies": [],
+  "audited_summary": "incremental-quality-comparison.json",
+  "method": {
+    "repository_root": "/workspace/scratch/c41432b95719/quds_office_suite",
+    "independent_reconstruction": "Inline Python reconstructed all 424 lane outcomes from raw provider results across 106 cases, checking UTF-16 spans and original text, first replacements, stable ordering, insertion-inclusive overlap handling, projected findings, corrected text, and exact/flag/change flags; compared each case with retained historical results.",
+    "audit_script": null,
+    "audit_script_note": "The independent audit used inline commands; no standalone peer-audit script existed to preserve. The separately retained tools/audit_recovery_quality.py produced the comparison being audited.",
+    "historical_results": [
+      "docs/validation/german-proofing-next-20261117/integrated-quality/frozen.json.gz",
+      "docs/validation/german-proofing-next-20261117/integrated-quality/prospective.json.gz"
+    ],
+    "execution_scope": "Read-only reconstruction and hashing; no new build, test run, branch refresh, or source edit. This record persists the completed audit without repeating expensive asset/dependency hashing."
+  },
+  "panels": {
+    "frozen": {
+      "rows": 30,
+      "corpus_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "regional_controls": 2,
+      "exact_errors_by_lane": {
+        "writing_only": 8,
+        "deterministic": 9,
+        "model_only": 6,
+        "combined": 11
+      },
+      "all_lanes_clean_flagged": 0,
+      "all_lanes_clean_changed": 0,
+      "model_added_exact_ids": [
+        "verb-ihr",
+        "das-relative"
+      ],
+      "model_lost_deterministic_exact_ids": [],
+      "lost_exact_ids_since_prior": {
+        "writing_only": [],
+        "deterministic": [],
+        "model_only": [],
+        "combined": []
+      }
+    },
+    "prospective": {
+      "rows": 76,
+      "corpus_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "regional_controls": 4,
+      "exact_errors_by_lane": {
+        "writing_only": 14,
+        "deterministic": 16,
+        "model_only": 12,
+        "combined": 22
+      },
+      "all_lanes_clean_flagged": 0,
+      "all_lanes_clean_changed": 0,
+      "model_added_exact_ids": [
+        "prospective-verb-ihr-lesen-error",
+        "prospective-verb-ihr-koennen-error",
+        "prospective-dass-hoffen-error",
+        "prospective-dass-freuen-error",
+        "prospective-relative-subject-error",
+        "prospective-relative-object-error"
+      ],
+      "model_lost_deterministic_exact_ids": [],
+      "lost_exact_ids_since_prior": {
+        "writing_only": [],
+        "deterministic": [],
+        "model_only": [],
+        "combined": []
+      }
+    }
+  },
+  "comparison_findings": {
+    "case_count": 106,
+    "lane_outcome_count": 424,
+    "supported_clean_controls": 50,
+    "supported_clean_controls_flagged_or_changed_any_lane": 0,
+    "regional_controls": 6,
+    "regional_model_unsupported_statuses_correct": true,
+    "regional_controls_excluded_from_de_DE_denominators": true,
+    "model_only_semantically_unchanged_cases": 106,
+    "declarations_gold_and_corpus_hashes_unchanged": true,
+    "changed_case_count": 4,
+    "changed_cases": [
+      {
+        "id": "verb-plural",
+        "changed_lanes": [
+          "writing_only",
+          "deterministic",
+          "combined"
+        ],
+        "before": "Die Kinder spielt im Garten.",
+        "after": "Die Kinder spielen im Garten."
+      },
+      {
+        "id": "participle",
+        "changed_lanes": [
+          "deterministic",
+          "combined"
+        ],
+        "before": "Er hat das Buch genest.",
+        "after": "Er hat das Buch gelesen."
+      },
+      {
+        "id": "prospective-participle-schreiben-error",
+        "changed_lanes": [
+          "deterministic",
+          "combined"
+        ],
+        "before": "Sie hat den Brief beschreibt.",
+        "after": "Sie hat den Brief geschrieben."
+      },
+      {
+        "id": "prospective-participle-finden-error",
+        "changed_lanes": [
+          "deterministic",
+          "combined"
+        ],
+        "before": "Wir haben den Fehler befindet.",
+        "after": "Wir haben den Fehler gefunden."
+      }
+    ],
+    "lost_prior_exact_corrections_any_lane": 0
+  },
+  "pin_scope_verified": {
+    "retained_result_files": {
+      "build": {
+        "path": "incremental-quality-build-receipt.json.gz",
+        "uncompressed_bytes": 67445,
+        "uncompressed_sha256": "b96a77afbc5ad2c4a7a2db87becc32ea40b5cb34dc6dcd8ecab05fc645b44646",
+        "compressed_sha256": "fb0c791af99caae8de265a74e43052f505de2d305dc5c8e66cfc916d9ae1211b"
+      },
+      "frozen": {
+        "path": "incremental-quality-frozen-result.json.gz",
+        "uncompressed_bytes": 222890,
+        "uncompressed_sha256": "be51c16580bbcfc9de6c33ec0600e1211fe7dd91ad71320822135a980ef66a17",
+        "compressed_sha256": "6dc87c01b7fb5aeae05b567838ed161dca1021aa92303fb4b368550f86c25f40"
+      },
+      "prospective": {
+        "path": "incremental-quality-prospective-result.json.gz",
+        "uncompressed_bytes": 543511,
+        "uncompressed_sha256": "a121cb26436847676690a067d9cb50d9fe5c56f0957c91a4b2ac545bb25da5de",
+        "compressed_sha256": "1472cd42da397a8dc8e26d3d17f17698f4196b950b2d0bc40bb186bbb8766da9"
+      }
+    },
+    "build_source_files": 68,
+    "build_tracked_source_files_bound_to_accepted_commit": 66,
+    "build_workspace_inputs": {
+      ".dart_tool/package_config.json": "0475199c8346363a05e130c2f535c9aa5205199180638652e3fb58de8edaa7b4",
+      "pubspec.lock": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b"
+    },
+    "build_sources_dependencies_and_sdk_stable_before_after": true,
+    "build_exit_code": 0,
+    "logger_input_count_per_build_and_run": 383,
+    "logger_inputs_bound_to_accepted_commit": 382,
+    "logger_remaining_input": "pubspec.lock",
+    "logger_inputs_stable_before_after": true,
+    "logger_wrapper_and_compressed_uncompressed_stdout_stderr_pins_verified": true,
+    "sdk_files_hashed": 10,
+    "dependency_library_maps_reconstructed": 110,
+    "dependency_dart_files": 4766,
+    "workspace_dependency_maps_reconstructed_from_accepted_git_source": 11,
+    "external_dependency_maps_reconstructed_from_installed_files": 99,
+    "dependency_map_method": "Sorted compact JSON of library-relative paths to SHA-256. Workspace library contents were reconstructed from Git at the accepted proofing source because later Office writer changes were already present in the working tree.",
+    "bundle_files_hashed": 13,
+    "artifact": {
+      "path": "/workspace/scratch/c41432b95719/recovery-quality/quality.aot",
+      "bytes": 8299528,
+      "sha256": "2f483f6ae0bbef7dd1509aa84ba1b072a4900b004a4a737096b3163cdb740b18"
+    },
+    "dartaotruntime": {
+      "bytes": 5710176,
+      "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72"
+    },
+    "dart_compiler": {
+      "bytes": 4835712,
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "gguf_model": {
+      "bytes": 82756896,
+      "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b"
+    },
+    "native_library": {
+      "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604"
+    },
+    "both_runs_share_pinned_artifact_runtime_and_assets": true,
+    "both_runs_product_mode": true,
+    "both_runs_live_native_provider": true
+  },
+  "qualifications": [
+    "The build receipt displays sanitized compiler stdout, Generated: <staged-output> followed by a newline. Its stdout_sha256 7a2b30ffea3da38c5a6a1067c93c60c7fe9b98042dba8e5e7555b6f6cf83e04c refers to the original pre-sanitization bytes. Builder source confirms hashing precedes path replacement; that original-stdout digest cannot be independently recomputed from the sanitized displayed line. Artifact and retained-file pins were independently verified.",
+    "These are unchanged synthetic development regression panels, including the historically named prospective panel; they are not a new prospective evaluation or a representative German-language accuracy estimate.",
+    "Runs overlapped unrelated local validation. Their timings are not performance measurements.",
+    "The accepted build and result attribution remains 8d6403021f797a05e9c9fc49052c3d19d3766844. Later Office-only integration requires a separate source-continuity record; this audit does not claim a new quality run at the final integration commit."
+  ]
+}
