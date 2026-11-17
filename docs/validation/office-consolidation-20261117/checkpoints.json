@@ -1,0 +1,104 @@
+{
+  "branch": "codex/office-consolidation-20261117",
+  "qualified_source": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+  "method": "Connected GitHub Git-data writes; exact tree checks; non-force expected-head updates; remote readback",
+  "scope": "Published checkpoints before this ledger version; its own containing commit is available from Git history.",
+  "checkpoints": [
+    {
+      "sha": "34d6be099906e5bde0af51330a8b1dcca26e728a",
+      "tree": "bf8c7d790bdcac34e025a0b991994aa3cfaf7e29",
+      "parents": [
+        "93c832f53982a9f5956f19ae0cb9418f55fac8c0"
+      ],
+      "message": "Record fixed incoming Office consolidation snapshot [skip ci]"
+    },
+    {
+      "sha": "9b225836312136c2498d59a2b43fedd3b0934848",
+      "tree": "dda23dca3a4f9d72484454622f3db5c66c0f2160",
+      "parents": [
+        "34d6be099906e5bde0af51330a8b1dcca26e728a",
+        "388bd7451067794b58276d174fe05470aa9994ed"
+      ],
+      "message": "Integrate captured main with ODT table and tab export and German syntax work [skip ci]"
+    },
+    {
+      "sha": "894b33cd2101e76bc7d18b5b2659668f940c808c",
+      "tree": "c5873a9f9ee827634cb15238cf7bf5bf650ff110",
+      "parents": [
+        "9b225836312136c2498d59a2b43fedd3b0934848",
+        "7a9702c3b74e0e905c76fcf467d608bbb852d004"
+      ],
+      "message": "Reconcile parallel Office qualification without losing recovery repairs [skip ci]"
+    },
+    {
+      "sha": "a768e42ae2aa7c9fede77cccdec9e5c90ad91087",
+      "tree": "16eda9335bed59fc049d804c0d673c573d14ef90",
+      "parents": [
+        "894b33cd2101e76bc7d18b5b2659668f940c808c",
+        "8b19ead89800f81ed9743ffbaf3279ac88fdd06d"
+      ],
+      "message": "Integrate optional AOT proofing and Studio analysis with recovered Office behavior [skip ci]"
+    },
+    {
+      "sha": "e27526c74bcf69d77a02a803fac26ef78e820a19",
+      "tree": "40096dd464063e4a01424ab84c0333f253161c1f",
+      "parents": [
+        "a768e42ae2aa7c9fede77cccdec9e5c90ad91087",
+        "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e"
+      ],
+      "message": "Preserve completed German morphology qualification and combined quality evidence [skip ci]"
+    },
+    {
+      "sha": "c1e49dfe45fcf31e2ba30f3a87fad52410176a32",
+      "tree": "4096c62391c25ec222a937481219f9f5617ceab1",
+      "parents": [
+        "e27526c74bcf69d77a02a803fac26ef78e820a19",
+        "c98c75eae50ddabfa8eb9aa918ed1af9754b7923"
+      ],
+      "message": "Retain completed GECToR native and long-input qualification evidence [skip ci]"
+    },
+    {
+      "sha": "c175f71839c857f1bb3e8a8c23c504f08075c268",
+      "tree": "680bd87de10268b7291ef58302b6dede60b5b78c",
+      "parents": [
+        "c1e49dfe45fcf31e2ba30f3a87fad52410176a32",
+        "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+        "4391669c881cbcba372c742d2300c24cdc465a2f",
+        "156cc755df74dcbafec0ebd882945349c40a5005"
+      ],
+      "message": "Complete all-ref integration and retain equivalent original and vendor histories [skip ci]"
+    },
+    {
+      "sha": "78a92cfd15487eb36f92aa0fa2053da2b6ccbff1",
+      "tree": "ff3952af469c695510e014ebb4659f21d15f92a3",
+      "parents": [
+        "c175f71839c857f1bb3e8a8c23c504f08075c268"
+      ],
+      "message": "Save integration audit and reproducible local qualification setup [skip ci]"
+    },
+    {
+      "sha": "4e79249d69e5b78b6e7696a1e4ab8c0a6287f4cf",
+      "tree": "6c06a421b36fa5c80678de16035906d521bf5836",
+      "parents": [
+        "78a92cfd15487eb36f92aa0fa2053da2b6ccbff1"
+      ],
+      "message": "Bound German predicate scanning and execute only verified evaluator source [skip ci]"
+    },
+    {
+      "sha": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+      "tree": "afd7a513dfa91472f58c27ead4d8be3f4b75c262",
+      "parents": [
+        "4e79249d69e5b78b6e7696a1e4ab8c0a6287f4cf"
+      ],
+      "message": "Preserve ODT tab styles, minimum row heights and valid cell decorations [skip ci]"
+    },
+    {
+      "sha": "84283211709fba069564c181476f577c34bd2d64",
+      "tree": "323b689e2c1d41d7f409d995173129b039c7f8c3",
+      "parents": [
+        "f5021f1c364baf010049fda2dd4bf7f414deda79"
+      ],
+      "message": "Publish full local qualification and independent Office consumer evidence [skip ci]"
+    }
+  ]
+}

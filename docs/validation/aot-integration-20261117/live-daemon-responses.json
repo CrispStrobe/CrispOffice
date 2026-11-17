@@ -1,0 +1,2941 @@
+{
+  "endpoint": "https://aot.ru/synan-daemon/",
+  "method": "GET",
+  "server_revision": "unknown",
+  "synthetic_text_only": true,
+  "responses": [
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "Ich geht."
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "Ich",
+                "homonyms": [
+                  "SIE"
+                ]
+              },
+              {
+                "str": "geht",
+                "homonyms": [
+                  "GEHEN"
+                ]
+              },
+              {
+                "str": ".",
+                "homonyms": [
+                  "."
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "PRO nom,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER plu,2,prae,non,; sin,3,prae,non,; plu,imp,non,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": " "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 2,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "morph",
+        "langua": "German",
+        "query": "Ich",
+        "withparadigms": "1"
+      },
+      "response": [
+        {
+          "found": true,
+          "commonGrammems": "",
+          "wordForm": "SIE",
+          "morphInfo": "PRO nom,sin,1,alg,per",
+          "paradigm": [
+            {
+              "pos": "PRO per",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "MEINER",
+                      "grm": "gen,sin,1,alg"
+                    },
+                    {
+                      "f": "SIE",
+                      "grm": "nom,sin,fem,3"
+                    },
+                    {
+                      "f": "IHRER",
+                      "grm": "gen,sin,fem,3"
+                    },
+                    {
+                      "f": "IHR",
+                      "grm": "dat,sin,fem,3"
+                    },
+                    {
+                      "f": "SIE",
+                      "grm": "akk,sin,fem,3"
+                    },
+                    {
+                      "f": "ES",
+                      "grm": "nom,sin,neu,3"
+                    },
+                    {
+                      "f": "SEINER",
+                      "grm": "gen,sin,neu,3"
+                    },
+                    {
+                      "f": "IHM",
+                      "grm": "dat,sin,neu,3"
+                    },
+                    {
+                      "f": "ES",
+                      "grm": "akk,sin,neu,3"
+                    },
+                    {
+                      "f": "ICH",
+                      "grm": "nom,sin,1,alg"
+                    },
+                    {
+                      "f": "IHN",
+                      "grm": "akk,sin,mas,3"
+                    },
+                    {
+                      "f": "UNSER",
+                      "grm": "gen,sin,1,alg"
+                    },
+                    {
+                      "f": "MIR",
+                      "grm": "dat,sin,1,alg"
+                    },
+                    {
+                      "f": "MICH",
+                      "grm": "akk,sin,1,alg"
+                    },
+                    {
+                      "f": "WIR",
+                      "grm": "nom,plu,1,alg"
+                    },
+                    {
+                      "f": "UNS",
+                      "grm": "dat,plu,1,alg"
+                    },
+                    {
+                      "f": "UNS",
+                      "grm": "akk,plu,1,alg"
+                    },
+                    {
+                      "f": "SIE",
+                      "grm": "nom,plu,3,alg"
+                    },
+                    {
+                      "f": "IHNEN",
+                      "grm": "dat,plu,3,alg"
+                    },
+                    {
+                      "f": "SIE",
+                      "grm": "akk,plu,3,alg"
+                    },
+                    {
+                      "f": "IHR",
+                      "grm": "nom,plu,2,alg"
+                    },
+                    {
+                      "f": "DU",
+                      "grm": "nom,sin,2,alg"
+                    },
+                    {
+                      "f": "DIR",
+                      "grm": "dat,sin,2,alg"
+                    },
+                    {
+                      "f": "IHNEN",
+                      "grm": "dat,sin,2,alg"
+                    },
+                    {
+                      "f": "DEINER",
+                      "grm": "gen,sin,2,alg"
+                    },
+                    {
+                      "f": "EUER",
+                      "grm": "gen,sin,2,alg"
+                    },
+                    {
+                      "f": "IHRER",
+                      "grm": "gen,sin,2,alg"
+                    },
+                    {
+                      "f": "SIE",
+                      "grm": "akk,sin,2,alg"
+                    },
+                    {
+                      "f": "DICH",
+                      "grm": "akk,sin,2,alg"
+                    },
+                    {
+                      "f": "IHRER",
+                      "grm": "gen,plu,2,alg"
+                    },
+                    {
+                      "f": "SIE",
+                      "grm": "nom,sin,2,alg"
+                    },
+                    {
+                      "f": "EUCH",
+                      "grm": "dat,plu,2,alg"
+                    },
+                    {
+                      "f": "IHNEN",
+                      "grm": "dat,plu,2,alg"
+                    },
+                    {
+                      "f": "SIE",
+                      "grm": "akk,plu,2,alg"
+                    },
+                    {
+                      "f": "EUCH",
+                      "grm": "akk,plu,2,alg"
+                    },
+                    {
+                      "f": "IHNEN",
+                      "grm": "akk,plu,2,alg"
+                    },
+                    {
+                      "f": "ER",
+                      "grm": "nom,sin,mas,3"
+                    },
+                    {
+                      "f": "SEINER",
+                      "grm": "gen,sin,mas,3"
+                    },
+                    {
+                      "f": "IHM",
+                      "grm": "dat,sin,mas,3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "action": "morph",
+        "langua": "German",
+        "query": "geht",
+        "withparadigms": "1"
+      },
+      "response": [
+        {
+          "found": true,
+          "commonGrammems": "imper,intra",
+          "wordForm": "GEHEN",
+          "morphInfo": "VER sin,plu,3,2,prae,imp,non",
+          "paradigm": [
+            {
+              "pos": "VER non",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "GEHE",
+                      "grm": "sin,imp"
+                    },
+                    {
+                      "f": "GEHEN",
+                      "grm": "inf"
+                    },
+                    {
+                      "f": "GEHEND",
+                      "grm": "pa1"
+                    },
+                    {
+                      "f": "GEHE",
+                      "grm": "sin,1,prae"
+                    },
+                    {
+                      "f": "GEHEN",
+                      "grm": "plu,1,prae"
+                    },
+                    {
+                      "f": "GEHST",
+                      "grm": "sin,2,prae"
+                    },
+                    {
+                      "f": "GEHT",
+                      "grm": "plu,2,prae"
+                    },
+                    {
+                      "f": "GEHT",
+                      "grm": "sin,3,prae"
+                    },
+                    {
+                      "f": "GEHEN",
+                      "grm": "plu,3,prae"
+                    },
+                    {
+                      "f": "GEH",
+                      "grm": "sin,imp"
+                    },
+                    {
+                      "f": "GEHT",
+                      "grm": "plu,imp"
+                    },
+                    {
+                      "f": "GEHE",
+                      "grm": "sin,1,kj1"
+                    },
+                    {
+                      "f": "GEHEN",
+                      "grm": "plu,1,kj1"
+                    },
+                    {
+                      "f": "GEHEST",
+                      "grm": "sin,2,kj1"
+                    },
+                    {
+                      "f": "GEHET",
+                      "grm": "plu,2,kj1"
+                    },
+                    {
+                      "f": "GINGT",
+                      "grm": "plu,2,prt"
+                    },
+                    {
+                      "f": "GINGEN",
+                      "grm": "plu,3,prt"
+                    },
+                    {
+                      "f": "GING",
+                      "grm": "sin,3,prt"
+                    },
+                    {
+                      "f": "GEHE",
+                      "grm": "sin,3,kj1"
+                    },
+                    {
+                      "f": "GINGST",
+                      "grm": "sin,2,prt"
+                    },
+                    {
+                      "f": "GINGEN",
+                      "grm": "plu,1,prt"
+                    },
+                    {
+                      "f": "GING",
+                      "grm": "sin,1,prt"
+                    },
+                    {
+                      "f": "GINGEN",
+                      "grm": "plu,3,kj2"
+                    },
+                    {
+                      "f": "GINGET",
+                      "grm": "plu,2,kj2"
+                    },
+                    {
+                      "f": "GEHEN",
+                      "grm": "plu,3,kj1"
+                    },
+                    {
+                      "f": "GINGE",
+                      "grm": "sin,1,kj2"
+                    },
+                    {
+                      "f": "GINGEN",
+                      "grm": "plu,1,kj2"
+                    },
+                    {
+                      "f": "GINGEST",
+                      "grm": "sin,2,kj2"
+                    },
+                    {
+                      "f": "GINGE",
+                      "grm": "sin,3,kj2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "pos": "PA2 gru",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "GEGANGENER",
+                      "grm": "gen,sin,fem,sol"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "akk,plu,sol"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,plu,sol"
+                    },
+                    {
+                      "f": "GEGANGENER",
+                      "grm": "gen,plu,sol"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "nom,plu,sol"
+                    },
+                    {
+                      "f": "GEGANGENES",
+                      "grm": "akk,sin,neu,sol"
+                    },
+                    {
+                      "f": "GEGANGENEM",
+                      "grm": "dat,sin,neu,sol"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,neu,sol"
+                    },
+                    {
+                      "f": "GEGANGENES",
+                      "grm": "nom,sin,neu,sol"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "akk,sin,fem,sol"
+                    },
+                    {
+                      "f": "GEGANGENER",
+                      "grm": "dat,sin,fem,sol"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "akk,sin,fem,def"
+                    },
+                    {
+                      "f": "GEGANGENER",
+                      "grm": "nom,sin,mas,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "akk,plu,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,plu,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,plu,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "nom,plu,def"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "akk,sin,neu,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,sin,neu,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,neu,def"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "nom,sin,neu,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,mas,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,sin,fem,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,fem,def"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "nom,sin,fem,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "akk,sin,mas,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,sin,mas,def"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,mas,def"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "nom,sin,mas,def"
+                    },
+                    {
+                      "f": "GEGANGEN",
+                      "grm": "prd"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,sin,neu,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "akk,sin,mas,sol"
+                    },
+                    {
+                      "f": "GEGANGENEM",
+                      "grm": "dat,sin,mas,sol"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,mas,sol"
+                    },
+                    {
+                      "f": "GEGANGENER",
+                      "grm": "nom,sin,mas,sol"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "akk,plu,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,plu,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,plu,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "nom,plu,ind"
+                    },
+                    {
+                      "f": "GEGANGENES",
+                      "grm": "akk,sin,neu,ind"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "nom,sin,fem,sol"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,neu,ind"
+                    },
+                    {
+                      "f": "GEGANGENES",
+                      "grm": "nom,sin,neu,ind"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "akk,sin,fem,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,sin,fem,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "gen,sin,fem,ind"
+                    },
+                    {
+                      "f": "GEGANGENE",
+                      "grm": "nom,sin,fem,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "akk,sin,mas,ind"
+                    },
+                    {
+                      "f": "GEGANGENEN",
+                      "grm": "dat,sin,mas,ind"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "Ich gehe."
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "Ich",
+                "homonyms": [
+                  "SIE"
+                ]
+              },
+              {
+                "str": "gehe",
+                "homonyms": [
+                  "GEHEN"
+                ]
+              },
+              {
+                "str": ".",
+                "homonyms": [
+                  "."
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "PRO nom,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER sin,1,prae,non,; sin,imp,non,; sin,1,kj1,non,; sin,3,kj1,non,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": " "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 2,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  },
+                  {
+                    "start": 0,
+                    "last": 1,
+                    "isGroup": false,
+                    "isSubj": true,
+                    "descr": "sp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "mit den Hund"
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "mit",
+                "homonyms": [
+                  "MIT"
+                ]
+              },
+              {
+                "str": "den",
+                "homonyms": [
+                  "DER"
+                ]
+              },
+              {
+                "str": "Hund",
+                "homonyms": [
+                  "HUND"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ART akk,sin,mas,def,; dat,plu,mas,def,; dat,plu,fem,def,; dat,plu,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB akk,sin,mas,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 2,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": " "
+                  },
+                  {
+                    "start": 1,
+                    "last": 2,
+                    "isGroup": true,
+                    "isSubj": false,
+                    "descr": "modif_np"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "morph",
+        "langua": "German",
+        "query": "den",
+        "withparadigms": "1"
+      },
+      "response": [
+        {
+          "found": true,
+          "commonGrammems": "",
+          "wordForm": "DER",
+          "morphInfo": "PRO akk,sin,mas,dem",
+          "paradigm": [
+            {
+              "pos": "PRO dem",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "DER",
+                      "grm": "nom,sin,mas"
+                    },
+                    {
+                      "f": "DESSEN",
+                      "grm": "gen,sin,mas"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,mas"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "akk,sin,mas"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,alg"
+                    },
+                    {
+                      "f": "DEREN",
+                      "grm": "gen,plu,alg"
+                    },
+                    {
+                      "f": "DENEN",
+                      "grm": "dat,plu,alg"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,alg"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,sin,fem"
+                    },
+                    {
+                      "f": "DEREN",
+                      "grm": "gen,sin,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "dat,sin,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,sin,fem"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "nom,sin,neu"
+                    },
+                    {
+                      "f": "DESSEN",
+                      "grm": "gen,sin,neu"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,neu"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "akk,sin,neu"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        },
+        {
+          "found": true,
+          "commonGrammems": "",
+          "wordForm": "DER",
+          "morphInfo": "ART akk,dat,sin,plu,neu,mas,fem,def",
+          "paradigm": [
+            {
+              "pos": "ART def",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,neu"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "dat,plu,neu"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,plu,neu"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,neu"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "akk,sin,neu"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,neu"
+                    },
+                    {
+                      "f": "DES",
+                      "grm": "gen,sin,neu"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "nom,sin,neu"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,fem"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "dat,plu,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,plu,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "nom,sin,mas"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,sin,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "dat,sin,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,sin,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,sin,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,mas"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "dat,plu,mas"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,plu,mas"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,mas"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "akk,sin,mas"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,mas"
+                    },
+                    {
+                      "f": "DES",
+                      "grm": "gen,sin,mas"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "action": "morph",
+        "langua": "German",
+        "query": "Hund",
+        "withparadigms": "1"
+      },
+      "response": [
+        {
+          "found": true,
+          "commonGrammems": "",
+          "wordForm": "HUND",
+          "morphInfo": "SUB akk,dat,nom,sin,mas",
+          "paradigm": [
+            {
+              "pos": "SUB mas",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "HUND",
+                      "grm": "nom,sin"
+                    },
+                    {
+                      "f": "HUNDES",
+                      "grm": "gen,sin"
+                    },
+                    {
+                      "f": "HUND",
+                      "grm": "dat,sin"
+                    },
+                    {
+                      "f": "HUNDE",
+                      "grm": "dat,sin"
+                    },
+                    {
+                      "f": "HUND",
+                      "grm": "akk,sin"
+                    },
+                    {
+                      "f": "HUNDE",
+                      "grm": "nom,plu"
+                    },
+                    {
+                      "f": "HUNDE",
+                      "grm": "gen,plu"
+                    },
+                    {
+                      "f": "HUNDEN",
+                      "grm": "dat,plu"
+                    },
+                    {
+                      "f": "HUNDE",
+                      "grm": "akk,plu"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "mit dem Hund"
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "mit",
+                "homonyms": [
+                  "MIT"
+                ]
+              },
+              {
+                "str": "dem",
+                "homonyms": [
+                  "DER"
+                ]
+              },
+              {
+                "str": "Hund",
+                "homonyms": [
+                  "HUND"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ART dat,sin,mas,def,; dat,sin,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB dat,sin,mas,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 2,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": " "
+                  },
+                  {
+                    "start": 0,
+                    "last": 2,
+                    "isGroup": true,
+                    "isSubj": false,
+                    "descr": "pp"
+                  },
+                  {
+                    "start": 1,
+                    "last": 2,
+                    "isGroup": true,
+                    "isSubj": false,
+                    "descr": "modif_np"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "Der kleines Hund schläft."
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "Der",
+                "homonyms": [
+                  "DER"
+                ]
+              },
+              {
+                "str": "kleines",
+                "homonyms": [
+                  "KLEIN"
+                ]
+              },
+              {
+                "str": "Hund",
+                "homonyms": [
+                  "HUND"
+                ]
+              },
+              {
+                "str": "schläft",
+                "homonyms": [
+                  "SCHLAFEN"
+                ]
+              },
+              {
+                "str": ".",
+                "homonyms": [
+                  "."
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "ART nom,sin,mas,def,; gen,plu,mas,def,; gen,sin,fem,def,; dat,sin,fem,def,; gen,plu,fem,def,; gen,plu,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ADJ nom,sin,neu,ind,gru,; akk,sin,neu,ind,gru,; nom,sin,neu,sol,gru,; akk,sin,neu,sol,gru,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,sin,mas,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER sin,3,prae,non,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": " "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 4,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  },
+                  {
+                    "start": 2,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": true,
+                    "descr": "sp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "morph",
+        "langua": "German",
+        "query": "Der",
+        "withparadigms": "1"
+      },
+      "response": [
+        {
+          "found": true,
+          "commonGrammems": "",
+          "wordForm": "DER",
+          "morphInfo": "ART dat,gen,nom,sin,plu,neu,mas,fem,def",
+          "paradigm": [
+            {
+              "pos": "ART def",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,neu"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "dat,plu,neu"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,plu,neu"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,neu"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "akk,sin,neu"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,neu"
+                    },
+                    {
+                      "f": "DES",
+                      "grm": "gen,sin,neu"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "nom,sin,neu"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,fem"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "dat,plu,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,plu,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "nom,sin,mas"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,sin,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "dat,sin,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,sin,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,sin,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,mas"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "dat,plu,mas"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "gen,plu,mas"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,mas"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "akk,sin,mas"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,mas"
+                    },
+                    {
+                      "f": "DES",
+                      "grm": "gen,sin,mas"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        },
+        {
+          "found": true,
+          "commonGrammems": "",
+          "wordForm": "DER",
+          "morphInfo": "PRO dat,nom,sin,mas,fem,dem",
+          "paradigm": [
+            {
+              "pos": "PRO dem",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "DER",
+                      "grm": "nom,sin,mas"
+                    },
+                    {
+                      "f": "DESSEN",
+                      "grm": "gen,sin,mas"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,mas"
+                    },
+                    {
+                      "f": "DEN",
+                      "grm": "akk,sin,mas"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,plu,alg"
+                    },
+                    {
+                      "f": "DEREN",
+                      "grm": "gen,plu,alg"
+                    },
+                    {
+                      "f": "DENEN",
+                      "grm": "dat,plu,alg"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,plu,alg"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "nom,sin,fem"
+                    },
+                    {
+                      "f": "DEREN",
+                      "grm": "gen,sin,fem"
+                    },
+                    {
+                      "f": "DER",
+                      "grm": "dat,sin,fem"
+                    },
+                    {
+                      "f": "DIE",
+                      "grm": "akk,sin,fem"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "nom,sin,neu"
+                    },
+                    {
+                      "f": "DESSEN",
+                      "grm": "gen,sin,neu"
+                    },
+                    {
+                      "f": "DEM",
+                      "grm": "dat,sin,neu"
+                    },
+                    {
+                      "f": "DAS",
+                      "grm": "akk,sin,neu"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "action": "morph",
+        "langua": "German",
+        "query": "kleines",
+        "withparadigms": "1"
+      },
+      "response": [
+        {
+          "found": true,
+          "commonGrammems": "",
+          "wordForm": "KLEIN",
+          "morphInfo": "ADJ akk,nom,sin,neu,ind,sol,gru",
+          "paradigm": [
+            {
+              "pos": "ADJ",
+              "formsGroups": [
+                {
+                  "grm": "",
+                  "forms": [
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,sin,mas,def,sup"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,neu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINEREM",
+                      "grm": "dat,sin,neu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERES",
+                      "grm": "akk,sin,neu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "nom,plu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERER",
+                      "grm": "gen,plu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,plu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "akk,plu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "nom,sin,mas,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,mas,def,sup"
+                    },
+                    {
+                      "f": "KLEINERES",
+                      "grm": "nom,sin,neu,sol,kom"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "akk,sin,mas,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "nom,sin,fem,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,fem,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,sin,fem,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "akk,sin,fem,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "nom,sin,neu,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,neu,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,sin,neu,def,sup"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "akk,plu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "akk,sin,fem,ind,kom"
+                    },
+                    {
+                      "f": "KLEINERES",
+                      "grm": "nom,sin,neu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,neu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,sin,neu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINERES",
+                      "grm": "akk,sin,neu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "nom,plu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,plu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,plu,ind,kom"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "akk,sin,neu,def,sup"
+                    },
+                    {
+                      "f": "KLEINERER",
+                      "grm": "nom,sin,mas,sol,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,mas,sol,kom"
+                    },
+                    {
+                      "f": "KLEINEREM",
+                      "grm": "dat,sin,mas,sol,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "akk,sin,mas,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "nom,sin,fem,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERER",
+                      "grm": "gen,sin,fem,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERER",
+                      "grm": "dat,sin,fem,sol,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "akk,sin,fem,sol,kom"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "akk,sin,fem,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,plu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "akk,plu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTER",
+                      "grm": "nom,sin,mas,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,mas,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEM",
+                      "grm": "dat,sin,mas,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "akk,sin,mas,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "nom,sin,fem,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTER",
+                      "grm": "gen,sin,fem,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTER",
+                      "grm": "dat,sin,fem,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,plu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTES",
+                      "grm": "nom,sin,neu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,neu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEM",
+                      "grm": "dat,sin,neu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTES",
+                      "grm": "akk,sin,neu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "nom,plu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTER",
+                      "grm": "gen,plu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,plu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "akk,plu,sol,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "nom,sin,fem,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "nom,plu,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,plu,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,plu,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "akk,plu,def,sup"
+                    },
+                    {
+                      "f": "KLEINSTER",
+                      "grm": "nom,sin,mas,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,mas,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,sin,mas,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "akk,sin,mas,ind,sup"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,sin,fem,ind,kom"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,fem,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,sin,fem,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTE",
+                      "grm": "akk,sin,fem,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTES",
+                      "grm": "nom,sin,neu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "gen,sin,neu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "dat,sin,neu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTES",
+                      "grm": "akk,sin,neu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "nom,plu,ind,sup"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,neu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINER",
+                      "grm": "nom,sin,mas,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,mas,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,sin,mas,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "akk,sin,mas,ind,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "nom,sin,fem,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,fem,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,sin,fem,ind,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "akk,sin,fem,ind,gru"
+                    },
+                    {
+                      "f": "KLEINES",
+                      "grm": "nom,sin,neu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "akk,plu,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,sin,neu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINES",
+                      "grm": "akk,sin,neu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "nom,plu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,plu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,plu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "akk,plu,ind,gru"
+                    },
+                    {
+                      "f": "KLEINER",
+                      "grm": "nom,sin,mas,sol,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,mas,sol,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,sin,fem,def,gru"
+                    },
+                    {
+                      "f": "KLEINER",
+                      "grm": "kom,prd"
+                    },
+                    {
+                      "f": "KLEINSTEN",
+                      "grm": "sup,prd"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "nom,sin,mas,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,mas,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,sin,mas,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "akk,sin,mas,def,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "nom,sin,fem,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,fem,def,gru"
+                    },
+                    {
+                      "f": "KLEINEM",
+                      "grm": "dat,sin,mas,sol,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "akk,sin,fem,def,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "nom,sin,neu,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,neu,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,sin,neu,def,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "akk,sin,neu,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "nom,plu,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,plu,def,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,plu,def,gru"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,plu,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,fem,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,sin,fem,def,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "akk,sin,fem,def,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "nom,sin,neu,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,neu,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,sin,neu,def,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "akk,sin,neu,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "nom,plu,def,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "nom,sin,fem,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,plu,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "akk,plu,def,kom"
+                    },
+                    {
+                      "f": "KLEINERER",
+                      "grm": "nom,sin,mas,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,mas,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,sin,mas,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "akk,sin,mas,ind,kom"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "nom,sin,fem,ind,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,fem,ind,kom"
+                    },
+                    {
+                      "f": "KLEINES",
+                      "grm": "akk,sin,neu,sol,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "akk,sin,mas,sol,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "nom,sin,fem,sol,gru"
+                    },
+                    {
+                      "f": "KLEINER",
+                      "grm": "gen,sin,fem,sol,gru"
+                    },
+                    {
+                      "f": "KLEINER",
+                      "grm": "dat,sin,fem,sol,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "akk,sin,fem,sol,gru"
+                    },
+                    {
+                      "f": "KLEINES",
+                      "grm": "nom,sin,neu,sol,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "gen,sin,neu,sol,gru"
+                    },
+                    {
+                      "f": "KLEINEM",
+                      "grm": "dat,sin,neu,sol,gru"
+                    },
+                    {
+                      "f": "KLEIN",
+                      "grm": "gru,prd"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "nom,plu,sol,gru"
+                    },
+                    {
+                      "f": "KLEINER",
+                      "grm": "gen,plu,sol,gru"
+                    },
+                    {
+                      "f": "KLEINEN",
+                      "grm": "dat,plu,sol,gru"
+                    },
+                    {
+                      "f": "KLEINE",
+                      "grm": "akk,plu,sol,gru"
+                    },
+                    {
+                      "f": "KLEINERE",
+                      "grm": "nom,sin,mas,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "gen,sin,mas,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "dat,sin,mas,def,kom"
+                    },
+                    {
+                      "f": "KLEINEREN",
+                      "grm": "akk,sin,mas,def,kom"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "wordWeight": 0,
+          "homonymWeight": 0
+        }
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "Der kleine Hund schläft."
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "Der",
+                "homonyms": [
+                  "DER"
+                ]
+              },
+              {
+                "str": "kleine",
+                "homonyms": [
+                  "KLEIN"
+                ]
+              },
+              {
+                "str": "Hund",
+                "homonyms": [
+                  "HUND"
+                ]
+              },
+              {
+                "str": "schläft",
+                "homonyms": [
+                  "SCHLAFEN"
+                ]
+              },
+              {
+                "str": ".",
+                "homonyms": [
+                  "."
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "ART nom,sin,mas,def,; gen,plu,mas,def,; gen,sin,fem,def,; dat,sin,fem,def,; gen,plu,fem,def,; gen,plu,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ADJ nom,sin,mas,def,gru,; nom,sin,fem,def,gru,; akk,sin,fem,def,gru,; nom,sin,neu,def,gru,; akk,sin,neu,def,gru,; nom,sin,fem,ind,gru,; akk,sin,fem,ind,gru,; nom,sin,fem,sol,gru,; akk,sin,fem,sol,gru,; nom,plu,sol,gru,; akk,plu,sol,gru,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,sin,mas,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER sin,3,prae,non,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": " "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 4,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  },
+                  {
+                    "start": 0,
+                    "last": 2,
+                    "isGroup": true,
+                    "isSubj": false,
+                    "descr": "modif_np"
+                  },
+                  {
+                    "start": 1,
+                    "last": 2,
+                    "isGroup": true,
+                    "isSubj": false,
+                    "descr": "weak_np"
+                  },
+                  {
+                    "start": 2,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": true,
+                    "descr": "sp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "Es kommen Gäste."
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "Es",
+                "homonyms": [
+                  "SIE"
+                ]
+              },
+              {
+                "str": "kommen",
+                "homonyms": [
+                  "KOMMEN"
+                ]
+              },
+              {
+                "str": "Gäste",
+                "homonyms": [
+                  "GAST"
+                ]
+              },
+              {
+                "str": ".",
+                "homonyms": [
+                  "."
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "PRO nom,sin,neu,3,per,; akk,sin,neu,3,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER inf,non,; plu,1,prae,non,; plu,3,prae,non,; plu,1,kj1,non,; plu,3,kj1,non,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,plu,mas,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": " "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  },
+                  {
+                    "start": 2,
+                    "last": 1,
+                    "isGroup": false,
+                    "isSubj": true,
+                    "descr": "sp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "Es sind viele Menschen hier."
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "Es",
+                "homonyms": [
+                  "SIE"
+                ]
+              },
+              {
+                "str": "sind",
+                "homonyms": [
+                  "SEIN"
+                ]
+              },
+              {
+                "str": "viele",
+                "homonyms": [
+                  "VIELER"
+                ]
+              },
+              {
+                "str": "Menschen",
+                "homonyms": [
+                  "MENSCH"
+                ]
+              },
+              {
+                "str": "hier",
+                "homonyms": [
+                  "HIER"
+                ]
+              },
+              {
+                "str": ".",
+                "homonyms": [
+                  "."
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "PRO nom,sin,neu,3,per,; akk,sin,neu,3,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER plu,1,prae,aux,; plu,3,prae,aux,; plu,1,prae,non,; plu,3,prae,non,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PROBEG nom,sin,fem,ind,; akk,sin,fem,ind,; nom,plu,ind,; akk,plu,ind,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,plu,mas,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ADV lok,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": " "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 5,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  },
+                  {
+                    "start": 3,
+                    "last": 1,
+                    "isGroup": false,
+                    "isSubj": true,
+                    "descr": "sp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "Du gehe nach Hause."
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "Du",
+                "homonyms": [
+                  "SIE"
+                ]
+              },
+              {
+                "str": "gehe",
+                "homonyms": [
+                  "GEHEN"
+                ]
+              },
+              {
+                "str": "nach",
+                "homonyms": [
+                  "NACH"
+                ]
+              },
+              {
+                "str": "Hause",
+                "homonyms": [
+                  "HAUS"
+                ]
+              },
+              {
+                "str": ".",
+                "homonyms": [
+                  "."
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "PRO nom,sin,2,alg,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER sin,1,prae,non,; sin,imp,non,; sin,1,kj1,non,; sin,3,kj1,non,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB dat,sin,neu,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": " "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 4,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  },
+                  {
+                    "start": 2,
+                    "last": 3,
+                    "isGroup": true,
+                    "isSubj": false,
+                    "descr": "pp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "um mir zu helfen"
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "um",
+                "homonyms": [
+                  "UM",
+                  "UM",
+                  "UM"
+                ]
+              },
+              {
+                "str": "mir",
+                "homonyms": [
+                  "SIE",
+                  "SICH"
+                ]
+              },
+              {
+                "str": "zu",
+                "homonyms": [
+                  "ZU",
+                  "ZU"
+                ]
+              },
+              {
+                "str": "zu-helfen",
+                "homonyms": [
+                  "HELFEN"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "ADV mod,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRO dat,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "ADV mod,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRO dat,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "ADV mod,tmp,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "PRO dat,sin,1,alg,ref,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "ADV mod,tmp,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "PRO dat,sin,1,alg,ref,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 1,
+                    "grm": "PRP akk,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRO dat,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 1,
+                    "grm": "PRP akk,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRO dat,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 1,
+                    "grm": "PRP akk,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "PRO dat,sin,1,alg,ref,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 1,
+                    "grm": "PRP akk,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "PRO dat,sin,1,alg,ref,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 2,
+                    "grm": "KON inf,; pri,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRO dat,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 2,
+                    "grm": "KON inf,; pri,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRO dat,sin,1,alg,per,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 2,
+                    "grm": "KON inf,; pri,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "PRO dat,sin,1,alg,ref,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 2,
+                    "grm": "KON inf,; pri,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "PRO dat,sin,1,alg,ref,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 3,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "request": {
+        "action": "syntax",
+        "langua": "German",
+        "query": "ohne dem Hund zu helfen"
+      },
+      "response": [
+        [
+          {
+            "words": [
+              {
+                "str": "ohne",
+                "homonyms": [
+                  "OHNE",
+                  "OHNE"
+                ]
+              },
+              {
+                "str": "dem",
+                "homonyms": [
+                  "DER"
+                ]
+              },
+              {
+                "str": "Hund",
+                "homonyms": [
+                  "HUND"
+                ]
+              },
+              {
+                "str": "zu",
+                "homonyms": [
+                  "ZU",
+                  "ZU"
+                ]
+              },
+              {
+                "str": "zu-helfen",
+                "homonyms": [
+                  "HELFEN"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "KON inf,; unt,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ART dat,sin,mas,def,; dat,sin,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,sin,mas,; dat,sin,mas,; akk,sin,mas,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 4,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 0,
+                    "grm": "KON inf,; unt,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ART dat,sin,mas,def,; dat,sin,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,sin,mas,; dat,sin,mas,; akk,sin,mas,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 4,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 1,
+                    "grm": "PRP akk,mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ART dat,sin,mas,def,; dat,sin,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,sin,mas,; dat,sin,mas,; akk,sin,mas,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "PRP dat,mod,lok,tmp,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 4,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              },
+              {
+                "units": [
+                  {
+                    "homNo": 1,
+                    "grm": "PRP akk,mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "ART dat,sin,mas,def,; dat,sin,neu,def,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "SUB nom,sin,mas,; dat,sin,mas,; akk,sin,mas,; "
+                  },
+                  {
+                    "homNo": 1,
+                    "grm": "ADV mod,; "
+                  },
+                  {
+                    "homNo": 0,
+                    "grm": "VER eiz,non,; "
+                  }
+                ],
+                "groups": [
+                  {
+                    "start": 0,
+                    "last": 4,
+                    "isGroup": false,
+                    "isSubj": false,
+                    "descr": "verbsatz"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

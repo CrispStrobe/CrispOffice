@@ -1,0 +1,6 @@
+export CRISPEMBED_GECTOR=1
+export GECTOR_TEST_LIBRARY=/home/agent/.codex/skills/remote-skills/.quds-gector-work/assets/native-development-pack-v1/native/9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604/libcrispembed-gector.so
+export GECTOR_TEST_LIBRARY_SHA256=9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604
+export GECTOR_TEST_MODEL=/home/agent/.codex/skills/remote-skills/.quds-gector-work/assets/native-development-pack-v1/model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/gector-de-mixed-q4_k.gguf
+export GECTOR_TEST_MODEL_SHA256=549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b
+export PYTHONDONTWRITEBYTECODE=1

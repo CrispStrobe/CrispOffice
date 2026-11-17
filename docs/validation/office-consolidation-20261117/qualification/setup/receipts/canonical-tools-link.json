@@ -1,0 +1,11 @@
+{
+  "created_utc": "2026-11-17T17:39:08.964692+00:00",
+  "source_head_at_setup": "c83870b68bd8af134bc92bcc54b02d9afcd9b712",
+  "script_sha256": "b8c65b6d14caea97bf387b6fc13675e5d73faf0183a1aff8cec39df7c0dc1eeb",
+  "prior_setup_receipt_sha256": "90194fb4a21b9bfde9511b510cadaa398d362aa521b8d403478ca3bb07885f01",
+  "link": "/workspace/scratch/2a07827fdeed/validation_setup/quds/tools",
+  "source": "/workspace/scratch/2a07827fdeed/quds_office_suite/tools",
+  "reason": "GECToR incremental_quality_test.dart imports ../../../tools and locates both frozen corpora under tools/proofing/german_model.",
+  "production_files_modified": false,
+  "tests_run": false
+}

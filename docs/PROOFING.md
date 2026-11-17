@@ -28,7 +28,60 @@ records actual spaCy syntax inference and separately pinned Proofbird v2.1/v2.2
 comparisons. The syntax planner is evaluation-only; v2.2 is not promoted merely
 because its version is newer. Models and Python environments remain outside Git.
 
-## German proofing continuation — 17 November 2026
+## Optional AOT analysis and grammar — 17 November 2026
+
+The [AOT package](../packages/quds_proofing_aot/README.md) adds an independent
+HTTP/JSON integration with a separately installed AOT/RML SynanDaemon. It exposes
+German/Russian syntax analysis, German/Russian/English word morphology, and
+three conservative de-DE diagnostic families: personal-pronoun/verb agreement,
+selected fixed-preposition case, and article/adjective/noun agreement.
+
+The Studio example enables **Review → AOT analysis** and manual AOT proofing
+only when `QUDS_AOT_ENDPOINT` is configured. Text is submitted on explicit analysis
+or document-check actions. Existing deterministic and Harper proofing continue;
+custom hosts can compose AOT with the optional GECToR manual provider.
+
+AOT parse structures are analysis, not errors. Suggestions require positive,
+recognized morphology and concrete compatible paradigm forms. Missing groups,
+unknown words and ambiguous valid readings cannot justify a correction. Exact
+UTF-16/grapheme mapping, protected text, ignored rules and vocabulary safeguards
+apply. Unsupported locales, incomplete coverage and operational failures remain
+visible. Grammar support is de-DE; other analysis languages do not gain a grammar
+provider. No native engine or dictionaries are redistributed.
+
+The [local integration report](validation/aot-integration-20261117/README.md)
+records incoming-branch reconciliation and fixture-based validation. These tests
+do not establish live-daemon accuracy or general grammar coverage.
+
+## Combined quality and spelling continuation — 17 November 2026
+
+The [follow-up report](validation/german-proofing-next-20261117/README.md)
+measures the optional model together with the default spelling and writing
+providers, using the editor's shared `mergeOfficeProofingReports` policy.
+Real compiled inference yields **9/18** exact combined corrections on the
+original de-DE panel versus **7/18** deterministic, and **20/32** on a newly
+authored synthetic panel versus **14/32** deterministic. No deterministic exact
+correction is lost and none of the **10 + 40** supported clean controls is
+flagged or changed. Model-only counts are **6/18** and **12/32**.
+
+The new panel was frozen remotely before its first inference. Its initial
+observations exposed spelling false positives after a colon/opening quotation
+mark and for `Hof` and `Grüezi`. The bounded repairs preserve direct-speech
+capitalization and add only `Hof`, `Grüezi` and `grüezi` to the finite first-party
+supplement; pinned upstream dictionary shards are unchanged. Measurements after
+these repairs are development regressions, not a fresh prospective evaluation
+or an estimate of representative German accuracy. Full initial outputs and
+exact before/after comparisons remain available.
+
+The actual editor displays reviewable suggestions. The evaluation's
+first-replacement projection is a declared scoring convention, not automatic
+editing. Regional model controls remain explicitly unsupported while the
+deterministic checker retains its existing locale coverage. The report also
+retains source-specific validation of the incoming opt-in segmentation and
+Office export changes. PR #114 follows PR #105, which was merged externally
+during this continuation; no CI queue is used as a gate.
+
+## Earlier German proofing continuation — 17 November 2026
 
 The [morphology continuation report](validation/german-proofing-continuation-20261117/README.md)
 records the integration of the newer optional GECToR provider and native

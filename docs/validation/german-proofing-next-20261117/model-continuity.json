@@ -1,0 +1,108 @@
+{
+  "audited_at": "2026-11-17T16:07:49.194671+00:00",
+  "original_source_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+  "accepted_source_commit": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+  "status": "passed",
+  "issues": [],
+  "product_source_diff": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart",
+    "packages/quds_office_engine/test/odt_section_continuation_test.dart"
+  ],
+  "retained_gector_cohorts": {
+    "gector": {
+      "original_source_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "receipt_sha256": "67ae76a03cd26bb47e2fc73e3535fb845be2ffbbe173c121f010a39ce1923eed",
+      "source_input_count": 466,
+      "full_old_map_identical": false,
+      "full_map_exceptions": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchanged_model_related_inputs": 98,
+      "model_related_differences": [],
+      "runtime_inputs": 5043,
+      "runtime_drift": [],
+      "freshly_rerun": false,
+      "status": "passed_under_documented_source_scope",
+      "tests": {
+        "passed": 194,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "gector_analysis": {
+      "original_source_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "receipt_sha256": "98c93ed8e06faf4a908712122e5dfeb3cfd7f96bd9a752d1d05c0926c22ff41b",
+      "source_input_count": 466,
+      "full_old_map_identical": false,
+      "full_map_exceptions": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchanged_model_related_inputs": 98,
+      "model_related_differences": [],
+      "runtime_inputs": 5020,
+      "runtime_drift": [],
+      "freshly_rerun": false,
+      "status": "passed_under_documented_source_scope"
+    }
+  },
+  "retained_native_quality_reports": {
+    "build.json.gz": {
+      "compressed_sha256": "f08bd4d91426653bf4f1a0213024e51b5c1557f40410a2f3bbf41089f937e45c",
+      "raw_sha256": "a2630e5950f74bad980197470f19ef4857f68f219dbea106dbf1f24f6084c9bf",
+      "selected_input_records": 68,
+      "unique_named_inputs": 68,
+      "tracked_matching_inputs": 66,
+      "declared_input_aliases": {},
+      "workspace_inputs": {
+        ".dart_tool/package_config.json": "c57ab7a699f6aacc6cd6d95e9ea546507af509ecd76f37cec6765d4caf1f9a2f",
+        "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+      },
+      "current_or_committed_differences": [],
+      "original_measurement_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "new_inference_run": false
+    },
+    "frozen.json.gz": {
+      "compressed_sha256": "2943ddf59d51c53661979dcaaacf3c74cef16e0f4dd88ee1bf6cc32b84b7cc0e",
+      "raw_sha256": "2c20dd3315cf6c7a072e412e6bb78047ac8fc3cac4f1a33a2c9218fbbb6bfae1",
+      "selected_input_records": 69,
+      "unique_named_inputs": 69,
+      "tracked_matching_inputs": 67,
+      "declared_input_aliases": {
+        "declared-corpus": {
+          "path": "tools/proofing/german_model/cases.json",
+          "sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9"
+        }
+      },
+      "workspace_inputs": {
+        ".dart_tool/package_config.json": "c57ab7a699f6aacc6cd6d95e9ea546507af509ecd76f37cec6765d4caf1f9a2f",
+        "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+      },
+      "current_or_committed_differences": [],
+      "original_measurement_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "new_inference_run": false
+    },
+    "prospective.json.gz": {
+      "compressed_sha256": "5209d92be07af972b5aff5cf0bf067be6cd0a6237831794030987dec06f458c4",
+      "raw_sha256": "0517152e2d7c217aaab22b34f0c59186d1a1ba49c25e87f8b46822de81bdcccc",
+      "selected_input_records": 69,
+      "unique_named_inputs": 69,
+      "tracked_matching_inputs": 67,
+      "declared_input_aliases": {
+        "declared-corpus": {
+          "path": "tools/proofing/german_model/prospective_cases_20261117.json",
+          "sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42"
+        }
+      },
+      "workspace_inputs": {
+        ".dart_tool/package_config.json": "c57ab7a699f6aacc6cd6d95e9ea546507af509ecd76f37cec6765d4caf1f9a2f",
+        "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+      },
+      "current_or_committed_differences": [],
+      "original_measurement_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "new_inference_run": false
+    }
+  },
+  "native_quality_unique_selected_inputs": 70,
+  "interpretation": "The 121f GECToR194 execution remains identified by its original run. Its full conservative map changes only in the unrelated ODT writer, covered by fresh accepted ODF validation and full engine analysis. All declared provider/proofing/quality sources and runtime/native inputs are unchanged. The native incremental quality build/run reports have 68 shared build inputs plus the two declared corpus files (70 unique named inputs across both runs), all identical at 6971819; no old receipt is relabeled as a new inference run."
+}

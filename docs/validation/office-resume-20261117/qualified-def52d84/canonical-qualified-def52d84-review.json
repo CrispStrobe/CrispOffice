@@ -1,0 +1,66 @@
+{
+  "accepted": true,
+  "all_raw_and_compressed_log_hashes_readback_verified": true,
+  "cohorts": {
+    "editor-integration": {
+      "excluded_private_pdf_successes": [],
+      "qualified_successes": 396,
+      "raw_successes": 396,
+      "skipped": 0
+    },
+    "editor-zotero": {
+      "excluded_private_pdf_successes": [],
+      "qualified_successes": 186,
+      "raw_successes": 186,
+      "skipped": 0
+    },
+    "engine-integration": {
+      "excluded_private_pdf_successes": [
+        "TrueType subsets without cmap get ToUnicode cmap for the host",
+        "JPEG with DCT SMask attaches softMaskJpeg for the host"
+      ],
+      "qualified_successes": 2086,
+      "raw_successes": 2088,
+      "skipped": 0
+    },
+    "engine-zotero": {
+      "excluded_private_pdf_successes": [],
+      "qualified_successes": 390,
+      "raw_successes": 390,
+      "skipped": 0
+    },
+    "gector-contract": {
+      "excluded_private_pdf_successes": [],
+      "qualified_successes": 193,
+      "raw_successes": 193,
+      "skipped": 1
+    },
+    "harper-contract": {
+      "excluded_private_pdf_successes": [],
+      "qualified_successes": 29,
+      "raw_successes": 29,
+      "skipped": 0
+    }
+  },
+  "independent_reviewer_script_sha256": "06c7d2b2ab7771d557f96afced7de69d2c0181846e25dd09256a4c1077ff7fb7",
+  "input_integrity": {
+    "dependencies": true,
+    "harness": true,
+    "runtime": true,
+    "source": true,
+    "system": true,
+    "workspace": true
+  },
+  "python_skipped_cases": [
+    {
+      "reason": "Install qualification requirements for the tiny converter control",
+      "test": "test_qualification.TinyConverterTests.test_real_quantizer_preserves_both_head_matrices"
+    }
+  ],
+  "python_substantive_successes": 107,
+  "receipt_sha256": "a3c8df8a1440c867d11ddf53de790cef22b5fec82175be2c0f6e70a6fd361be0",
+  "source_commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+  "source_tree": "2c85776b996e04c8e6e3350c956b01eb730aba24",
+  "substantive_success_total": 3280,
+  "unique_test_files": 179
+}

@@ -5,6 +5,27 @@ Starting remote checkpoint: `d2e50c3a298679fed873d045a4b2d07663b37246` on
 incremental remote checkpoints, and local validation without waiting for
 GitHub Actions. No Actions job is dispatched, polled or awaited by this work.
 
+## Current outcome and continuation point
+
+Implementation: `d092d50a844b5cfcc31bb6c39220704b4ff11cf5`. Later checkpoints
+add validation documentation only. All 130 captured branch tips and 108 fetched
+PR heads are integrated. The branch snapshot is 17 November 2026 at 16:32:37 CET;
+the all-PR fetch completed at 16:33:10 CET. This bounds the incoming claim.
+
+- Opt-in complete-sentence segmentation extends measured whole-request coverage
+  to 1,276 logical tokens while preserving source offsets and atomic failure.
+- All six previously guarded model fixes and ten supported clean controls remain.
+- The first prospective synthetic panel measures 19/32 combined exact fixes
+  versus 14/32 deterministic, with no additional model changes on 40 clean rows.
+- All 924 distinct regression/tooling tests and three strict analysis suites pass.
+- Long-input latency remains open: 636/1,276-token p95 is 2.18/3.80 seconds;
+  target64 does not improve the measured 256-token latency. The feature remains
+  an explicit host opt-in for manual/F7 checks.
+
+Start with `final-validation.json`, `native-results.json` and
+`quality-results.json` for the complete evidence index and current results.
+The chronological integration and failed attempts below remain intact.
+
 ## Incoming integration
 
 `incoming-snapshot.json` records the GitHub branch and recent PR inventory;
@@ -98,7 +119,7 @@ changing source partition semantics or relaxing the model limit.
 
 `pre-review-aot-build.json` preserves the successful source-sealed build of
 `fa3b67675d7f0f567fc88551fe6e4b87deea5065` before this review fix. No inference
-result is attributed to that earlier binary. Final native runs will rebuild the
+result is attributed to that earlier binary. The final native measurements below rebuild the
 reviewed integrated source using fresh output and receipt paths.
 
 ## Second incoming snapshot
@@ -114,8 +135,8 @@ policy for deterministic/manual report merging, a prospectively frozen 76-case
 synthetic German challenge and a separate incremental-quality runner. The merge
 retains this branch's segmentation options and native-runner controls, combines
 the historical roadmap descriptions, and preserves the incoming tooling and
-corpus unchanged. New report-merge, quality-tool and manual/F7 tests will run
-against the final combined source.
+corpus unchanged. The final report-merge, quality-tool and manual/F7 cohorts below run
+against the combined source.
 
 Office fidelity `28fb08e61682913184e2a3c089bd5290a665c78e` supplies the newer
 section activation, odd/even entry masters, continuous-page-style comparison,
@@ -143,8 +164,7 @@ Dart tests must not be read as completed desktop-consumer validation.
 The reconciled Office merge passes all 208 tests in its ten-file ODT cohort
 and strict analysis of the writer and both section suites. The updated Python
 build, comparator and pack tooling passes all 51 tests. Logs retain the initial
-merge expectation failures; the final full-source validation is recorded below
-when complete.
+merge expectation failures; the final full-source validation is recorded below.
 
 Merged PR #108 through main `4af75017a9b7df726c1f80741809f5bccdb70f4c`.
 Its six-line text-shape hyperlink implementation combines cleanly with the
@@ -176,7 +196,7 @@ retained failed attempt and compressed source-bound logs/receipts.
 
 The two `pre-frame-fix-*-build.json` receipts describe successful builds with
 stable source, dependency and SDK seals. Neither resulting binary was used for
-inference. Native measurements will rebuild the corrected source into fresh
+inference. The final native measurements below rebuild the corrected source into fresh
 paths; these successful earlier builds do not qualify the later fix.
 
 ## Frame extraction integration repair
@@ -206,8 +226,8 @@ additionally sealed by the AOT build receipts.
 ## Final integrated source and local regressions
 
 Implementation source: `d092d50a844b5cfcc31bb6c39220704b4ff11cf5`.
-All nine final suites have identical before/after maps for 1,312 tracked inputs
-and resolved package configuration, with this same start/end commit. The
+All nine final suites have identical before/after maps for 1,311 tracked files
+plus the resolved package configuration, with this same start/end commit. The
 retained summary and compressed receipts/logs cover:
 
 | Cohort | Passed |
@@ -234,3 +254,134 @@ respectively, plus all 109 resolved package libraries and the SDK. Runtime
 receipts below must match their source maps and compiled/runtime pins; a build
 alone is not an inference result. `pack-verification.json` verifies all 23 files
 and the unchanged 86,356,331-byte development pack.
+
+## Native segmentation results
+
+Both modes ran serially through the same fresh compiled provider runner after
+all test/compiler activity finished. The native receipts match the build's
+selected source map and actual AOT/runtime pins. Both strict frozen comparators
+pass. All 30 frozen case statuses, corrected strings and findings exactly match
+the previous continuation: 6/18 exact fixes, 10/10 supported clean cases unchanged,
+and two Swiss controls explicitly unsupported. The original eight controls and
+all six additional segmentation controls pass.
+
+| Measurement | Single sequence | Sentence segments, target 64 |
+| --- | ---: | ---: |
+| Short-check median | 21.269 ms | 24.761 ms |
+| Short-check p95 | 74.229 ms | 73.321 ms |
+| Peak process RSS | 342.50 MiB | 294.55 MiB |
+| Verified startup | 3.354 s | 3.235 s |
+| 126-token structural p95 | 369.684 ms | 416.366 ms |
+| 256-token structural p95 | 607.917 ms | 724.617 ms |
+| 636-token structural p95 | Outside single-sequence capacity | 2,179.809 ms |
+| 1,276-token structural p95 | Outside single-sequence capacity | 3,804.643 ms |
+
+The two new long probes use 11/22 segments and 646/1,297 actual initial model
+tokens, respectively, including per-segment specials and normalization. Their
+logical original-source counts are 636/1,276, and every original UTF-16 code
+unit is covered. The known late `geht` correction after a long prefix and emoji
+lands exactly at document offsets 2543–2547; protected code remains unchanged.
+Late oversized content, request-token, segment-count and source-length limits
+fail the whole request without partial findings.
+
+These measurements demonstrate bounded coverage beyond 512 tokens, **not a
+long-input speedup**. The 256-token probe is slower in this run with target64,
+and all longer probes exceed 500 ms. Short-check and memory budgets pass.
+Segmentation remains a host opt-in; its sentence heuristic and within-call
+native cancellation limits remain. The long texts are repeated clean sentences,
+not a representative paragraph-quality evaluation. Each structural timing has
+three measured samples after a warmup; this is one local-host observation.
+`native-results.json` provides the compact index and source checks. Complete
+receipts and logs are compressed with byte hashes retained in that index.
+
+## First prospective incremental-quality measurement
+
+The separate quality runner was built from the same final implementation and
+run once per case in default single-sequence mode. Its selected-source maps,
+actual AOT/runtime pins and corpus hashes match the fresh quality build. The
+76-row corpus is byte-identical to its earlier remote freeze `60c550b4`; neither
+inputs nor rules were changed after inspecting these outputs. Both the original
+30-row and prospective 76-row runs complete with every expected status contract
+and stable before/after source maps.
+
+Results below use only de-DE quality rows; the four prospective regional
+controls are separate and the model returns unsupported for all of them.
+
+| Lane | Exact fixes / 32 prospective errors | Changed clean / 40 | Flagged clean / 40 |
+| --- | ---: | ---: | ---: |
+| Writing rules only | 14 | 0 | 0 |
+| Deterministic spelling + writing | 14 | 1 | 1 |
+| Guarded model only | 12 | 0 | 0 |
+| Combined, production manual/F7 merge | 19 | 1 | 1 |
+
+The model adds five exact combined fixes, loses no deterministic exact fixes,
+and adds no changed or flagged clean cases in this panel. Six model proposals
+are accepted and six overlap proposals are suppressed. A sixth model-only exact
+fix becomes a nonexact combined projection because spelling independently
+changes `im Hof` to `im Hofe`. The same existing spelling suggestion changes its
+already-correct clean counterpart. `Hofe` is a grammatical dative alternative;
+this is still an unnecessary suggestion on correct input and an exact-target
+mismatch, not proof that the resulting sentence is ungrammatical.
+
+On the original panel, deterministic checking fixes 7/18 and the combined
+projection fixes 9/18, adding `verb-ihr` and `das-relative` without losing a
+deterministic fix. The model-only result remains 6/18. Existing deterministic
+clean changes include lowercasing `Das` after a German opening quotation mark;
+the regional Swiss-name case remains separate from de-DE scoring. These are
+retained findings for follow-up, not silently removed from the corpus.
+
+The projection uses the first replacement in provider/result order and never
+chooses alternatives from the expected answer. It is not automatic correction
+behavior. The panel is authored, synthetic and deliberately selected; it does
+not establish general precision/recall, training-data exclusion, regional model
+support, long-paragraph quality or default-provider readiness. `quality-results.json`
+indexes all locale-separated counts, changed-clean examples and source checks;
+complete findings, alternatives, accepted/suppressed proposals and per-case
+statuses remain in the compressed raw receipts. No performance conclusion is
+drawn from this one-check-per-case quality runner.
+
+## Independent final audits
+
+The independent native evidence audit passes 438 checks of actual source,
+resolved dependencies, SDK/compiler/runtime and model/pack pins, independent
+WordPiece counts, UTF-16 edits and complete source partitions, saved timings and
+frozen outcomes. Its peer regression/ancestry audit independently reconstructs
+the 924-test count and confirms every captured branch and PR head as an ancestor.
+
+A separate quality audit passes 2,167 artifact/row checks, reconstructing all
+four projections from actual findings, production merge decisions and the
+locale-separated metrics. Both audits are read-only: they do not rerun inference
+or add to the unit-test count. The reports and their audit scripts are retained.
+They distinguish retained first/warmup outcomes from producer-reported repeat
+stability and planned source partitions from native execution traces.
+
+The quality audit also decodes the pinned finite lexicon: `Hof` and `Grüezi` are
+absent, while `Hofe` and `Grütze` are present. This explains the unnecessary
+spelling proposals without attributing them to GECToR. The quote case follows
+`_isSentenceInitial`, which skips across the colon and opening quote until it
+reaches the preceding word, disabling titlecase lookup of dictionary `das`.
+Other nonexact first-choice projections expose spelling ranking that lacks
+sentence syntax and an adjective-rule case that leaves the wrong accusative
+article in place. These diagnoses are preserved for general fixes, not corpus
+rewriting. In the relative-subject error, the model's `dass` to `das` edit is
+accepted; a separate `Hof` suggestion causes the nonexact combined result.
+
+## Next work, with the current evidence preserved
+
+1. Profile native long-request cost and evaluate performance changes against the
+   existing whole-request timings, memory, cancellation and exact-source checks.
+   Smaller segments currently provide bounded coverage, not improved throughput.
+2. Address general spelling/dictionary coverage, direct-quotation sentence
+   starts, participle suggestion ranking and accusative article/adjective context. Current examples include `Hof`, `Grüezi` and capitalized `Das` after
+   `sagte: „`. Preserve these first observed outputs; a later implementation run
+   on this panel is a regression measurement, not another prospective result.
+3. Evaluate a separately declared broader sentence/paragraph sample, including
+   model additions after deterministic precedence and clean text suggestions.
+4. Complete intended-device responsiveness, platform/distribution qualification
+   and final-source Office consumer validation. Existing consumer failure
+   archives are historical evidence, not a successful qualification of this tree.
+
+No hosted CI job was dispatched, polled or awaited. Every checkpoint was saved
+on the existing feature branch and fetched back with tree and parent equality
+verified. Reproduction/audit scripts retained here record the exact local
+commands and host paths; regenerate resolved package paths on another machine.

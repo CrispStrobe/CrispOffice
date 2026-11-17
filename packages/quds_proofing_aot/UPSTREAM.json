@@ -1,0 +1,19 @@
+{
+  "purpose": "Independently authored HTTP/JSON interoperability; no engine or dictionary redistribution",
+  "repository": "https://github.com/sokirko74/aot",
+  "revision": "0d591d972c7bb2729f4764d3bc32611ea6fd142a",
+  "nlp_base_repository": "https://github.com/sokirko74/nlp_base",
+  "nlp_base_revision": "244b3d1f9a09e4a81e75ea83c3b55b209c663503",
+  "upstream_license_file": "https://github.com/sokirko74/aot/blob/0d591d972c7bb2729f4764d3bc32611ea6fd142a/copying",
+  "inspected_sources": [
+    "Source/www/SynanDaemon/SynanDmn.cpp",
+    "Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp",
+    "Source/common/http_server.cpp",
+    "Source/synan/GerSynanLib/GerSubject.cpp",
+    "Dicts/GerSynan/src/prepositions.grm",
+    "Source/nlp_base/lemmatizer_base_lib/MorphanHolder.cpp",
+    "Source/nlp_base/lemmatizer_base_lib/AncodePattern.cpp",
+    "Source/nlp_base/agramtab/GerGramTab.cpp"
+  ],
+  "test_fixture_provenance": "Source-authored finite examples matching the HTTP serializers, plus two pinned upstream canonical morphology test records; see test/fixtures provenance."
+}

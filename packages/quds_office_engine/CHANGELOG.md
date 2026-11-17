@@ -4,6 +4,8 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep ODT paragraph shading and border colors independent when paragraph
+  styles are cached, while reusing styles with equivalent serialized colors.
 - Preserve the first capital in explicit direct quotations after a colon and
   opening quote. Keep subsequent-word casing and real misspelling checks.
 - Accept the missing finite `Hof` lemma and `Grüezi`/`grüezi` greeting through
