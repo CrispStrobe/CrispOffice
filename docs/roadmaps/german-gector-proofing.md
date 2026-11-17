@@ -91,8 +91,12 @@ Swiss controls are explicitly unsupported. This small synthetic panel does not
 establish general German accuracy. de-AT/de-CH, representative held-out quality,
 benefit beyond deterministic rules, intended-device responsiveness and the
 exact distribution/license closure remain open. Inputs beyond the model's
-512-token context fail explicitly; long-paragraph segmentation is not yet
-implemented.
+512-token context fail explicitly in the original single-sequence mode.
+The [long-input continuation](../validation/german-gector/2026-11-17-long-input/README.md)
+adds opt-in bounded sentence segmentation for the manual provider, preserving
+whole-request failure reporting and original UTF-16 offsets. Its conservative
+boundary policy, native measurements and remaining quality limits are recorded
+separately from the frozen single-sequence results.
 
 The continuation also supplies a source/dependency/SDK-bound AOT builder and an
 [offline local development pack](../../tools/proofing/german_model/NATIVE_PACK.md).

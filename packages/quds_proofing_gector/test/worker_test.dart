@@ -94,6 +94,7 @@ final class _WorkerProbe {
     TestBundle fixtures, {
     int maximumPending = 1,
     int maximumTextCodeUnits = 32768,
+    GectorSegmentationOptions? segmentation,
     bool exitOnRelease = false,
   }) async {
     final probe = _WorkerProbe();
@@ -113,6 +114,7 @@ final class _WorkerProbe {
         maximumPendingRequests: maximumPending,
         options: GectorDecodeOptions(
           maximumTextCodeUnits: maximumTextCodeUnits,
+          segmentation: segmentation,
         ),
         startupTimeout: const Duration(seconds: 5),
       );
@@ -360,6 +362,73 @@ void main() {
     last.release.send(null);
     expect((await latest).corrected, 'Das ist besser!');
   });
+
+  test(
+    'superseding a segmented request stops its remaining sentences and preserves other keys',
+    () async {
+      final segmentation = GectorSegmentationOptions(targetTokens: 5);
+      const oldText = 'Das ist gut. Das ist lang. Das ist fertig.';
+      expect(
+        GectorSegmenter(
+          configuration: fixtures.bundle.configuration,
+          tokenizer: fixtures.bundle.tokenizer,
+          options: segmentation,
+        ).plan(oldText),
+        hasLength(3),
+      );
+      final probe = await _WorkerProbe.start(
+        fixtures,
+        maximumPending: 2,
+        segmentation: segmentation,
+      );
+      addTearDown(probe.dispose);
+      final cancelled = expectLater(
+        probe.transport.check(
+          GectorCheckRequest(text: oldText, key: 'editing'),
+        ),
+        throwsA(isA<GectorCancelledException>()),
+      );
+      final firstSentence = await probe.nextForward();
+      expect(firstSentence.call, 1);
+      expect(
+        firstSentence.inputIds,
+        fixtures.bundle.tokenizer.encode(['Das', 'ist', 'gut']).inputIds,
+      );
+      final independent = probe.transport.check(
+        GectorCheckRequest(text: 'Das ist kurz?', key: 'independent'),
+      );
+      independent.ignore();
+      final replacement = probe.transport.check(
+        GectorCheckRequest(text: 'Das ist besser!', key: 'editing'),
+      );
+      replacement.ignore();
+      await cancelled;
+      firstSentence.release.send(null);
+
+      final otherKey = await probe.nextForward();
+      expect(otherKey.call, 2);
+      expect(
+        otherKey.inputIds,
+        fixtures.bundle.tokenizer.encode(['Das', 'ist', 'kurz']).inputIds,
+      );
+      otherKey.release.send(null);
+      expect((await independent).corrected, 'Das ist kurz?');
+
+      final fresh = await probe.nextForward();
+      expect(fresh.call, 3);
+      expect(
+        fresh.inputIds,
+        fixtures.bundle.tokenizer.encode(['Das', 'ist', 'besser']).inputIds,
+      );
+      fresh.release.send(null);
+      final result = await replacement;
+      expect(result.complete, isTrue);
+      expect(result.corrected, 'Das ist besser!');
+      expect(result.segmentCount, 1);
+      await probe.transport.dispose();
+      expect(await probe.next(), isA<_BackendClosed>());
+    },
+  );
 
   test('disposal fails a waiting replacement without forwarding it', () async {
     final probe = await _WorkerProbe.start(fixtures);

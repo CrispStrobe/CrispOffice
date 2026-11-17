@@ -62,3 +62,27 @@ and package configuration were unchanged throughout each run.
 The expanded ODT cohort is broader than the previous 148-test cohort; it is not
 an arithmetic continuation of that historical test count. No visual desktop
 word-processor export or intended-device qualification is claimed.
+
+## Opt-in sentence segmentation implementation
+
+The guarded decoder now accepts `GectorDecodeOptions(segmentation:
+GectorSegmentationOptions())`. Default single-sequence behavior and the frozen
+reference path remain unchanged. The planner preserves complete original-source
+slices, prefers 64-token sentence groups, admits an intact sentence up to 512
+and rejects over-limit/ambiguous text explicitly. Default request limits are
+32 segments, 4,096 initial model tokens and 20,480 actual forward tokens over all
+passes, alongside the existing source ceiling and whole-request deadline.
+
+Later segments cannot acquire original-start insertions or case-differing
+adjacent-duplicate privileges. Each segment's edits are rebased directly, with
+no fresh paragraph diff. Cycles, pass limits, backend failure and cancellation
+cannot publish an earlier segment's partial suggestions. Global protected,
+personal and grapheme checks remain in the provider.
+
+The first implementation checkpoint passes 174 package tests, including the
+real pinned native fixture, and whole-package strict analysis. This includes
+51 planner tests, 15 new decoder tests, and 5 new worker/provider regressions.
+`implementation-tests.json` binds the observed result to its post-run source
+map and retained logs. The runner also passes 7 CLI admission controls and the
+existing 45 Python tooling tests. These unit/control results precede the fresh
+complete native AOT measurements and do not claim long-paragraph model quality.

@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add opt-in bounded sentence segmentation for long manual German checks.
+  Preflight the complete source, retain original UTF-16 edits, and publish only
+  after every segment converges. Preserve request-wide deadlines, cancellation,
+  protected text and original-start guards; bound actual forward tokens as
+  corrections expand. The default single-sequence/reference path is unchanged.
 - Accept same-number person forms authenticated by the verb table, so a plural
   `sind` label also agrees with `wir`. Preserve the conservative singular/plural,
   coordination, and sentence-boundary restrictions.

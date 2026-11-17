@@ -1,0 +1,57 @@
+{
+  "source_file": "tools/proofing/german_model/run_gector_dart.dart",
+  "source_sha256": "cdb5f8332bd57183b922d989ad269797f07d2057217f4cf0dc62b113d2f46672",
+  "tests": [
+    {
+      "name": "default",
+      "passed": true,
+      "elapsed_seconds": 7.73922,
+      "process_exit": 1,
+      "log_sha256": "762b5cf41c31bcb9539b7e355d5b8923b0056c41279283758a66569d5e57a867"
+    },
+    {
+      "name": "segmented64",
+      "passed": true,
+      "elapsed_seconds": 7.821888,
+      "process_exit": 1,
+      "log_sha256": "762b5cf41c31bcb9539b7e355d5b8923b0056c41279283758a66569d5e57a867"
+    },
+    {
+      "name": "nonnumeric",
+      "passed": true,
+      "elapsed_seconds": 7.989828,
+      "process_exit": 255,
+      "log_sha256": "5825ca6c2613ca8b6a78e8ea15856924e855a647689734fa557710ba306178c2"
+    },
+    {
+      "name": "below_bound",
+      "passed": true,
+      "elapsed_seconds": 7.961445,
+      "process_exit": 255,
+      "log_sha256": "5825ca6c2613ca8b6a78e8ea15856924e855a647689734fa557710ba306178c2"
+    },
+    {
+      "name": "above_bound",
+      "passed": true,
+      "elapsed_seconds": 7.64543,
+      "process_exit": 255,
+      "log_sha256": "5825ca6c2613ca8b6a78e8ea15856924e855a647689734fa557710ba306178c2"
+    },
+    {
+      "name": "duplicate",
+      "passed": true,
+      "elapsed_seconds": 7.449671,
+      "process_exit": 255,
+      "log_sha256": "8fda313d5f80db4b122706330bb55d9d212977143408e16c4d317092c3bd52ce"
+    },
+    {
+      "name": "unknown",
+      "passed": true,
+      "elapsed_seconds": 7.519733,
+      "process_exit": 255,
+      "log_sha256": "0c12d9041a7f9b2c22bdc77d7c69dd1d36bc6484328cb61483abd7d9f56505af"
+    }
+  ],
+  "passed": true,
+  "scope": "Command-line parsing and explicit admission-failure receipts; no model or native inference."
+}

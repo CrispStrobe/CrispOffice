@@ -81,11 +81,38 @@ runtime/entrypoint hashes with the complete-check receipt. They must agree.
 Retain the original build, provider and comparison reports together, including
 failures and all timing samples.
 
+## Compare opt-in segmented paragraphs
+
+Run the same compiled program again with a fresh output path and the additional
+argument `--segment-target-tokens 64`. Keep the first single-sequence report;
+the runner never overwrites it. The receipt records the complete decoding
+configuration, including the default 32-segment / 4,096-initial-token limits
+and the 20,480-token bound across actual native forwards.
+
+Both modes retain the original 30 cases, eight controls and three structural
+probes. Segmented mode also measures two complete paragraphs beyond 512 logical
+tokens and checks late corrections, UTF-16 offsets, protected code and whole
+request rejection at each admission bound. It records the exact source
+partition and separates logical original-source tokens from actual segment
+input totals; per-segment terminal normalization and CLS/SEP tokens differ.
+
+The original `operational_passed` field covers the historical cohort. Require
+`segmentation_operational_passed` and `all_requested_checks_passed` as well for
+an opted-in run; its process exit code requires both cohorts. The strict
+comparator still authenticates the unchanged frozen panel and original v1
+baseline. It does not evaluate the added long-paragraph controls, so retain
+their full provider receipt alongside the comparison.
+
+Planning, all segment forwards, guards and provider validation remain inside
+each timed complete check. Timing does not measure only one native forward.
+These repeated-sentence probes establish bounded execution and source coverage,
+not representative long-paragraph German quality or an interactive-device SLA.
+
 ## Interpretation
 
 The 30-case panel is synthetic and small. A successful comparison establishes
 nonregression on that panel, not broad German precision/recall or intended-device
 qualification. The <=64-token provisional p95 budget does not apply to the
 longer structural probes. The application remains an explicit manual de-DE
-provider; other locales, long-paragraph segmentation, representative quality and
-platform/distribution acceptance are separate work.
+provider. Segmentation is a separate host opt-in; representative long-paragraph
+quality, other locales and platform/distribution acceptance remain open.

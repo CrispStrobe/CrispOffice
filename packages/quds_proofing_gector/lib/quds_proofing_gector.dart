@@ -8,6 +8,7 @@ export 'src/decoder.dart';
 export 'src/guards.dart';
 export 'src/lexicon.dart';
 export 'src/provider.dart';
+export 'src/segmentation.dart';
 export 'src/source_text.dart';
 export 'src/tokenizer.dart';
 export 'src/transport.dart';
