@@ -1,0 +1,106 @@
+{
+  "status": "passed",
+  "reviewed_utc": "2026-11-17T09:28:50.072646+00:00",
+  "source_commit": "b2dc226e2ed82cda8f1bada18fb0a1e17347b5fc",
+  "source_tree": "642436fb32d73cb73706a4dd1c1fce32d0f2fb8b",
+  "base_qualified_source_commit": "f510060e35d580cbc361985a123927705c92ddc4",
+  "receipt_sha256": "4ce70c3367e37575271be81e4f46e65e3f1fcf84bc9e4af74fe1e0013e560212",
+  "source_audit_sha256": "92aa09664bb227e1cf85dee0b31180a136b372b5cd0db27756916db9b3c77d51",
+  "commands": [
+    {
+      "name": "locked-offline-resolution",
+      "exit_code": 0,
+      "stdout_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "strict-analysis",
+      "exit_code": 0,
+      "stdout_sha256": "69809e19c239e731d8181011ed00a0922c661d745f58e1d3b68c13dbc6f55939",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "format",
+      "exit_code": 0,
+      "stdout_sha256": "a40ad12fb00da204aef8022501e6a7f27cfb35fadc57fc68e24d4ab38915567c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "odt-note-regressions",
+      "exit_code": 0,
+      "stdout_sha256": "eaaab85b7a2ad5ba74737e5570d0bd135fdeedc9b79b52f8edd00de9fe6bb230",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed_tests": 114,
+      "skipped_tests": 0,
+      "suite_count": 8,
+      "exact_suite_identities": true,
+      "terminal_success": true
+    },
+    {
+      "name": "note-boundary-probes",
+      "exit_code": 0,
+      "stdout_sha256": "3b38cf9c987c005cc60fdfc2185663f2865fd8aeb0c2f7e5fe6b09aa57d07112",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed_tests": 2,
+      "skipped_tests": 0,
+      "suite_count": 1,
+      "exact_suite_identities": true,
+      "terminal_success": true
+    }
+  ],
+  "required_command_count": 4,
+  "setup_command_count": 1,
+  "test_cohorts": {
+    "odt-note-regressions": 114,
+    "note-boundary-probes": 2
+  },
+  "accepted_stage_passes": 116,
+  "previous_qualification_counts_not_added": true,
+  "no_private_pdf_exclusions_in_this_scoped_stage": true,
+  "input_maps": {
+    "source": {
+      "before_sha256": "b6c6f234c3f86d18b9750a25a2c9562b7d48969996d93228e701de873dd6f5ef",
+      "after_sha256": "b6c6f234c3f86d18b9750a25a2c9562b7d48969996d93228e701de873dd6f5ef",
+      "semantically_equal": true
+    },
+    "dependencies": {
+      "before_sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6",
+      "after_sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6",
+      "semantically_equal": true
+    },
+    "runtime": {
+      "before_sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be",
+      "after_sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be",
+      "semantically_equal": true
+    },
+    "workspace": {
+      "before_sha256": "12a20885f9312d83ba05171409740d169743f5493e3874c7ae1a93c57185f37b",
+      "after_sha256": "12a20885f9312d83ba05171409740d169743f5493e3874c7ae1a93c57185f37b",
+      "semantically_equal": true
+    },
+    "system": {
+      "before_sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0",
+      "after_sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0",
+      "semantically_equal": true
+    },
+    "harness": {
+      "before_sha256": "328c90182225d1a70830982a402d7734c2cb2109cb996493c51b479695d5bad9",
+      "after_sha256": "328c90182225d1a70830982a402d7734c2cb2109cb996493c51b479695d5bad9",
+      "semantically_equal": true
+    }
+  },
+  "source_binding": {
+    "verified_input_count": 3335,
+    "all_recorded_bytes_and_modes_match_immutable_commit": true,
+    "untracked_execution_inputs": []
+  },
+  "unchanged_previous_source_input_count": 3332,
+  "dependency_input_count": 5099,
+  "runtime_dependencies_system_equal_to_full_and_final_odf_stages": true,
+  "locked_package_graph_count": 108,
+  "analyzer_config_restored": true,
+  "all_50_original_zotero_blobs_and_modes_preserved": true,
+  "review_script_sha256": "05746bcc2c0f9b413150e8c8a318bc3fd8b2ac9faed61e2cd94e2bf242a12a0c",
+  "review_helper_sha256": "2bbef41da1d762e7aa288ee14808ecfbddd4d4ca653ceea997b17618e918fd8f",
+  "blocking_discrepancies": []
+}

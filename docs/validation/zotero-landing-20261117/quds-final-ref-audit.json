@@ -1,0 +1,1998 @@
+{
+  "head": "f510060e35d580cbc361985a123927705c92ddc4",
+  "tree": "15f19ae4c6b97760755fa25061af29312f98f348",
+  "reviewed_at": "2026-11-17T09:00:37.825777+00:00",
+  "criterion": "commit ancestry or exact complete Git tree equality with an ancestor",
+  "snapshot_files": [
+    "quds-final-frozen-refs.json",
+    "quds-upstream-frozen-refs.json"
+  ],
+  "counts": {
+    "ancestor": 214,
+    "exact_tree": 6,
+    "outstanding": 0
+  },
+  "refs": [
+    {
+      "ref": "refs/remotes/origin/codex/german-morphology-20261117",
+      "commit": "be465bfba548006cc5fd5c3798cd166cdbcc5c63",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "6fb271b7872d3f35ba2fa12bb07e223ea2d04ab9",
+      "status": "ancestor",
+      "integrated_commit": "be465bfba548006cc5fd5c3798cd166cdbcc5c63",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-fidelity-20261117",
+      "commit": "e3ab8e902f7e9aab4dac04079146c91e0ec80b3b",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "22a64f73bcc38add9eb0545401308e1ff32fd0dd",
+      "status": "ancestor",
+      "integrated_commit": "e3ab8e902f7e9aab4dac04079146c91e0ec80b3b",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116",
+      "commit": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "ac75be938bb648221b417093514675660979b9db",
+      "status": "ancestor",
+      "integrated_commit": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+      "commit": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "59b9864634e7e8be794263feafb8f712395cfb8f",
+      "status": "ancestor",
+      "integrated_commit": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261116",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "5b5930bb3a6534c4be849fc57c86bf202c189edd",
+      "status": "ancestor",
+      "integrated_commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261117",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b80a757f70609821cdcff70b9e265e7c249508df",
+      "status": "ancestor",
+      "integrated_commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-hyphenation-20261116",
+      "commit": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "1034bcc35f167afad8c410e813e4b3045a30eb82",
+      "status": "ancestor",
+      "integrated_commit": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-german-quality-20261116",
+      "commit": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "6bab5ed49dbe63d42682e5df4672545158faa292",
+      "status": "ancestor",
+      "integrated_commit": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-harper-source-20261116",
+      "commit": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0ab7e869cfc40892facabc612f5249fd90e56e70",
+      "status": "ancestor",
+      "integrated_commit": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-integration-ods-20261116",
+      "commit": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7574aa05506e693812d6c6e282846b344a470ca6",
+      "status": "ancestor",
+      "integrated_commit": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-recovery-office-20261116",
+      "commit": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "f0e47bfd8f0be406ba6aa69886e76371faa86b03",
+      "status": "ancestor",
+      "integrated_commit": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-sharing-office-20261116",
+      "commit": "4235e690602195cc504438a6b937972c71f1ad39",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "bb5f1912fe2ff2b5cfb3d9c7091a184ba54de0ae",
+      "status": "ancestor",
+      "integrated_commit": "4235e690602195cc504438a6b937972c71f1ad39",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0e477840dfcca87bd18f133255c7fda66a2efb29",
+      "status": "ancestor",
+      "integrated_commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116-continuation",
+      "commit": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0ab2f48d6851507b0034ea3d6dee1cd97d4aae05",
+      "status": "ancestor",
+      "integrated_commit": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-capabilities-20261116",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e015d526d2850c0d504ce93e3ad1386576445888",
+      "status": "ancestor",
+      "integrated_commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-optimization-20261116",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "335beb5ad1a14c2ae31073ffbd4e824c057f995a",
+      "status": "ancestor",
+      "integrated_commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-recovery-20261116",
+      "commit": "d52f0786916e69a1673705abe5158769be2c92b6",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "8519dc650b881b8db1d46c110bfb8303184d8b65",
+      "status": "ancestor",
+      "integrated_commit": "d52f0786916e69a1673705abe5158769be2c92b6",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261115",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "67934023d4877aa2ae0eade87d61346e4923df2d",
+      "status": "ancestor",
+      "integrated_commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261116",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "c284db83156f1fcae84013cbe58494e3b340a08e",
+      "status": "ancestor",
+      "integrated_commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/conditional-top-bottom",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "ec2accb182b81fe0e47f623127ff297ad6b709e5",
+      "status": "ancestor",
+      "integrated_commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/current-office-capabilities",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b",
+      "status": "ancestor",
+      "integrated_commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filter-operators",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e10a90811572ef880f4edea40ba8a5413bd0c51d",
+      "status": "ancestor",
+      "integrated_commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filters-closed",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "08e54aba5a5507ac9a72c662286475e28776c5fe",
+      "status": "ancestor",
+      "integrated_commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-closed",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0aecfb03465f11d481b1213d75d90897f8bab2f6",
+      "status": "ancestor",
+      "integrated_commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-complete",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2a7326ccf552612bbb0930bfb254a25778172625",
+      "status": "ancestor",
+      "integrated_commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odp-presentation-writer",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7e6b13247511beef21982d7a13f2abeb23f40bb2",
+      "status": "ancestor",
+      "integrated_commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-filter-predicates",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7",
+      "status": "ancestor",
+      "integrated_commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-header-footer",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "6a0a7e1d7c25ae5eddbf4cb47b2ccf2cfa9a20cf",
+      "status": "ancestor",
+      "integrated_commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-row-groups",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81",
+      "status": "ancestor",
+      "integrated_commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-writer-images",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0148ed340fbbea40133513d233f6e1473534acd1",
+      "status": "ancestor",
+      "integrated_commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-frame-size",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "f2eed4632061f8d07909c74aaa03c629f0dd94ad",
+      "status": "ancestor",
+      "integrated_commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-image-registry",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad",
+      "status": "ancestor",
+      "integrated_commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-odp-rows",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "18052eb73eee300d2d936b876cd01eb703a7cac4",
+      "status": "ancestor",
+      "integrated_commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/page-setup-fix",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b8179ebab83523c68fa1e7c272599153072be7a1",
+      "status": "ancestor",
+      "integrated_commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/readme-remaining-gaps",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "56cc9fb26ec42ce335f7cea0698a34435696fc92",
+      "status": "ancestor",
+      "integrated_commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/remaining-gaps",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "989695b4b987f949dd25db3c736ad14333e5bd73",
+      "status": "ancestor",
+      "integrated_commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/sheet-page-setup",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "f52716dda53a36543feaaa1e0ea058418353ee0c",
+      "status": "ancestor",
+      "integrated_commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-complete",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a930be6db42985c0c388ce6e736aca265a822b25",
+      "status": "ancestor",
+      "integrated_commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-operators",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2325cfb59277605fc0cd809527f119d1172bf10e",
+      "status": "ancestor",
+      "integrated_commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-affix",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "921c5b374484c7169c56e824e4fc2217c8086e17",
+      "status": "ancestor",
+      "integrated_commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-between",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d",
+      "status": "ancestor",
+      "integrated_commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-dxf",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7",
+      "status": "ancestor",
+      "integrated_commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-dxf-styles",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "c8fb98b5cc4426c7de728693d89a76657424c4ed",
+      "status": "ancestor",
+      "integrated_commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-operators",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c",
+      "status": "ancestor",
+      "integrated_commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-text",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5",
+      "status": "ancestor",
+      "integrated_commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-top-bottom",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07",
+      "status": "ancestor",
+      "integrated_commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-presentation-writer",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7efa86280e462f061451b718ee752e7184c81f4e",
+      "status": "ancestor",
+      "integrated_commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-transitions",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "status": "exact_tree",
+      "integrated_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-conditional",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "47d4ae8a5d5924172d69091459b200a3a989296c",
+      "status": "ancestor",
+      "integrated_commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-custom-validation",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0957a03aadc731ee4a109cfe95df303c1b36cff8",
+      "status": "ancestor",
+      "integrated_commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-geometry",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e3d93711873c40ff4d9a1b9a662af305ab0009c2",
+      "status": "ancestor",
+      "integrated_commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-style",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0087fe5e3a0575dca344191eaf447419ad41fe39",
+      "status": "ancestor",
+      "integrated_commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-conditions",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+      "status": "ancestor",
+      "integrated_commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-operators",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d8b0a6668b9cf411424c4d359a99fdf7efb4326c",
+      "status": "ancestor",
+      "integrated_commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-predicates",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "259cfb041bd534757db93c3faf5993eb376801e4",
+      "status": "ancestor",
+      "integrated_commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-header-footer",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "30f8f0208db17be2e5aac4f1ed4d39b609ef7b6e",
+      "status": "ancestor",
+      "integrated_commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-hyperlinks",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf",
+      "status": "ancestor",
+      "integrated_commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-images",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "381a562fb1a23de5ff40fac2ef660775316b0377",
+      "status": "ancestor",
+      "integrated_commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-metadata",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b0e59ad79558d2a2e2c881f63b9a228b9ce01ded",
+      "status": "ancestor",
+      "integrated_commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-named-expressions",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d8910f974d17b84a40749d4455ba00b51b021efc",
+      "status": "ancestor",
+      "integrated_commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-outline",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3",
+      "status": "ancestor",
+      "integrated_commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-row-groups",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+      "status": "ancestor",
+      "integrated_commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-tab-color",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7a9dd3fe551e78ec8105e890b902f54a92621eef",
+      "status": "ancestor",
+      "integrated_commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-messages",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d4e1ba7ede98162ba3523cd4cfd1275860ffc09a",
+      "status": "ancestor",
+      "integrated_commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-operators",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05",
+      "status": "ancestor",
+      "integrated_commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validations",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5",
+      "status": "ancestor",
+      "integrated_commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a4044407fcbd316387591bfba1f6792c74b2fa79",
+      "status": "ancestor",
+      "integrated_commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-conditional",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0af18a79c99c15749bd3fde16d00b71f5c843c34",
+      "status": "ancestor",
+      "integrated_commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-images",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "73f6f45d25a2b2625f4a8db36b41000922fd8ff0",
+      "status": "ancestor",
+      "integrated_commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-metadata",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0e238f72cbff29f30eb842c7dafb809bb4be6342",
+      "status": "ancestor",
+      "integrated_commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-document-writer",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e22b0c537916f33fb7d2aa16510a2d6f84e0a2a4",
+      "status": "ancestor",
+      "integrated_commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-lists",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e6195fe83ce5b5282fbad913fc4a96c02e6f5d36",
+      "status": "ancestor",
+      "integrated_commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-ordered-lists",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "status": "exact_tree",
+      "integrated_commit": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-sheets",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a13b612fdd31c9bc54d5f8bb05c92867e92d541d",
+      "status": "ancestor",
+      "integrated_commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-state",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "12e60e035e47cc518eb84e7b93e60307ef70e232",
+      "status": "ancestor",
+      "integrated_commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-page-setup",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "ec7ff95582480891b99b27e917263b4d9b2731b9",
+      "status": "ancestor",
+      "integrated_commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-global-validations-20261116",
+      "commit": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d72eec848353e3631d54050ad03f54a496143188",
+      "status": "ancestor",
+      "integrated_commit": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-writer-page-layout",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8",
+      "status": "ancestor",
+      "integrated_commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-multi-section-control",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "86cf81f36f4691ca0b8bbcd8ca6a738ace48852e",
+      "status": "ancestor",
+      "integrated_commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-trailing-section-break",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0d8ef0934a0e6d97e83fec522a7ff12f7084b590",
+      "status": "ancestor",
+      "integrated_commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/fix/utf16-custom-xml",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "90f37d731c8675d9ea8a1fb983430b5858e751d8",
+      "status": "ancestor",
+      "integrated_commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/fix/word-dialog-focus-rendering-20261116",
+      "commit": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "86b89cb679275e3b1a3d18be27b7847f8e4d7e0d",
+      "status": "ancestor",
+      "integrated_commit": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "status": "ancestor",
+      "integrated_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/conditional-dxf-styles",
+      "commit": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "24f22dd4258575458a7bbd5e0c8441f45f624bf5",
+      "status": "ancestor",
+      "integrated_commit": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/conditional-top-bottom",
+      "commit": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "5ab860dcfc694fa0e6355d05b4a067f347f75422",
+      "status": "ancestor",
+      "integrated_commit": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-presentation-writer",
+      "commit": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "f09279c212a84e19b2a9adf4664eb3b82da5a3b5",
+      "status": "ancestor",
+      "integrated_commit": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-transitions",
+      "commit": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "status": "exact_tree",
+      "integrated_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-custom-validation",
+      "commit": "90acedb9835cb5bdef30606301e74482f5977448",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e85136a6635ec2891dc6c5d3fd115239ae4169fa",
+      "status": "ancestor",
+      "integrated_commit": "90acedb9835cb5bdef30606301e74482f5977448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions",
+      "commit": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "12543395e4f423ac6327fdff709a89bfa9a01169",
+      "status": "ancestor",
+      "integrated_commit": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions-correct",
+      "commit": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "1f2119192dd82eb633ce9445d64da8e41608b200",
+      "status": "ancestor",
+      "integrated_commit": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-operators",
+      "commit": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "31424eca483b0c4d824d0e747a40fb5a80dfd59b",
+      "status": "ancestor",
+      "integrated_commit": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-predicates",
+      "commit": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "4859ede5b27c50ef6ce29d930acb697ab0d0e23b",
+      "status": "ancestor",
+      "integrated_commit": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-header-footer",
+      "commit": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "c535f799067c3aa39967dcb237c112858682587d",
+      "status": "ancestor",
+      "integrated_commit": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+      "commit": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e7eef908f33db35306b2392568225edf972d4101",
+      "status": "ancestor",
+      "integrated_commit": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks-current",
+      "commit": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf",
+      "status": "ancestor",
+      "integrated_commit": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata",
+      "commit": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "4f5254a7affa6d995d242ca2113741d9a1840295",
+      "status": "ancestor",
+      "integrated_commit": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata-zotero",
+      "commit": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "895589d7e739e9cb767ba29b06b6081ec4844b24",
+      "status": "ancestor",
+      "integrated_commit": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-named-expressions",
+      "commit": "388a1c76339507d493bab577424affd80732446c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "11d5128ef69d54444b32f4b03950bef9cce88704",
+      "status": "ancestor",
+      "integrated_commit": "388a1c76339507d493bab577424affd80732446c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-outline",
+      "commit": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3",
+      "status": "ancestor",
+      "integrated_commit": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-row-groups",
+      "commit": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "9cfcbbbc904b9baa2ca5c51ddbb5cc421f9a3b59",
+      "status": "ancestor",
+      "integrated_commit": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-tab-color",
+      "commit": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "6851ef330f860001eb42180c55017871f4903d1e",
+      "status": "ancestor",
+      "integrated_commit": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation",
+      "commit": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a9c3545ddd663c762007135f1158a49c856c30a2",
+      "status": "ancestor",
+      "integrated_commit": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-current",
+      "commit": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05",
+      "status": "ancestor",
+      "integrated_commit": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-messages",
+      "commit": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3293160964ae09df8dd823f936652ab2f6344e2b",
+      "status": "ancestor",
+      "integrated_commit": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer",
+      "commit": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e302f8dbce9eccd9fd961eca1f1710f1ddebbfc8",
+      "status": "ancestor",
+      "integrated_commit": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-conditional",
+      "commit": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "cdfef83462863ee94f9ac35eee355174a0bd79b7",
+      "status": "ancestor",
+      "integrated_commit": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-images",
+      "commit": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d23a4b43fdc5f9a1aba32ad93b5014a045c169e7",
+      "status": "ancestor",
+      "integrated_commit": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-metadata",
+      "commit": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "1cecbb244c7da3ebf57618708f4d0fb71c5d1274",
+      "status": "ancestor",
+      "integrated_commit": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-page-layout",
+      "commit": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8",
+      "status": "ancestor",
+      "integrated_commit": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-document-writer",
+      "commit": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "244066e1ffc2bb7fe0153463658ca1964587a0d3",
+      "status": "ancestor",
+      "integrated_commit": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-lists",
+      "commit": "94532021b720e3035022a2fed08ec88f48340892",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "92a9411a00bea00bd2b7b24b3ef5fb04a99282f6",
+      "status": "ancestor",
+      "integrated_commit": "94532021b720e3035022a2fed08ec88f48340892",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists",
+      "commit": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "bd2325c6871aa315fff0c3c0dbc48d35b4da7124",
+      "status": "ancestor",
+      "integrated_commit": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists2",
+      "commit": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "status": "exact_tree",
+      "integrated_commit": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/sheet-page-setup",
+      "commit": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "1a1fb472163d7002bbd181a98ba810097239b821",
+      "status": "ancestor",
+      "integrated_commit": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/1",
+      "commit": "54f0f8de01416640560519aa9d732f668f603709",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "34c7c02e822c0ee41b8474eed624ec0e01b6ba60",
+      "status": "ancestor",
+      "integrated_commit": "54f0f8de01416640560519aa9d732f668f603709",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/10",
+      "commit": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "902774ae80bd0556383a69d6cdf4269b62b04d2d",
+      "status": "ancestor",
+      "integrated_commit": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/11",
+      "commit": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "f9ebe172477713316c14e4d20ba4011b4c86649b",
+      "status": "ancestor",
+      "integrated_commit": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/12",
+      "commit": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2bb4ad9245296a465d051b1df772adf691337861",
+      "status": "ancestor",
+      "integrated_commit": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/13",
+      "commit": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "05eb58450f92a220e48653cbf4b73649ab62671b",
+      "status": "ancestor",
+      "integrated_commit": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/14",
+      "commit": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b4e096deeae4643ec1b38db694b4249e09816856",
+      "status": "ancestor",
+      "integrated_commit": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/15",
+      "commit": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "1a85e750d3d24f301815bd8265c7658b6b2e6594",
+      "status": "ancestor",
+      "integrated_commit": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/16",
+      "commit": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "baecacf3481bef2a3aaa78df4faa66b5dd681d1a",
+      "status": "ancestor",
+      "integrated_commit": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/17",
+      "commit": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "9f0ad060c750c3b7ba056deb5dd515a9487f8da3",
+      "status": "ancestor",
+      "integrated_commit": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/18",
+      "commit": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "956eaffadf7826bb5384b976a09eabfadc7bde5a",
+      "status": "ancestor",
+      "integrated_commit": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/19",
+      "commit": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2b6a1379d6eba8b36fb7b1e29ca323217d296e21",
+      "status": "ancestor",
+      "integrated_commit": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/2",
+      "commit": "08b09485588d2b6270f594a07c983689c087587d",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "ca9dd7b26e29bd9df59f729d73e309a2db85e56e",
+      "status": "ancestor",
+      "integrated_commit": "08b09485588d2b6270f594a07c983689c087587d",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/20",
+      "commit": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "57dfb2d3df9dca94e975fde96fba5f5376905b91",
+      "status": "ancestor",
+      "integrated_commit": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/21",
+      "commit": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3d0c9420b677d1178fc3723d07d54cf939667029",
+      "status": "ancestor",
+      "integrated_commit": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/22",
+      "commit": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "473f1d712f7b054e8081c9de9aed64fe387781c4",
+      "status": "ancestor",
+      "integrated_commit": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/23",
+      "commit": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "923d89cf421b5ce0788c4964b77f04ffae076d7f",
+      "status": "ancestor",
+      "integrated_commit": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/24",
+      "commit": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e2bde6fa07d8e1ac73a580b3711b25df6683766e",
+      "status": "ancestor",
+      "integrated_commit": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/25",
+      "commit": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d56ecc62ebc121a2db80b34c1d38c4a3e403b30a",
+      "status": "ancestor",
+      "integrated_commit": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/26",
+      "commit": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "55eddb5e42269cff5360f9db8da6f8e0366cd7f4",
+      "status": "ancestor",
+      "integrated_commit": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/27",
+      "commit": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "057775d666ae2fcfa1fc901588b71ac3f6fb4927",
+      "status": "ancestor",
+      "integrated_commit": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/28",
+      "commit": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "19fa322fba0b5b8f6765b810e23840377c212c68",
+      "status": "ancestor",
+      "integrated_commit": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/29",
+      "commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "381a562fb1a23de5ff40fac2ef660775316b0377",
+      "status": "ancestor",
+      "integrated_commit": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/3",
+      "commit": "e550723b0f2a7cd849970f58820d260c36857502",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "50d0f9ec79ddfd2e75957e9a58b74846fd790b39",
+      "status": "ancestor",
+      "integrated_commit": "e550723b0f2a7cd849970f58820d260c36857502",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/30",
+      "commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0087fe5e3a0575dca344191eaf447419ad41fe39",
+      "status": "ancestor",
+      "integrated_commit": "49b447324159595c59e64d8425b54a09f79ec736",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/31",
+      "commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e3d93711873c40ff4d9a1b9a662af305ab0009c2",
+      "status": "ancestor",
+      "integrated_commit": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/32",
+      "commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "12e60e035e47cc518eb84e7b93e60307ef70e232",
+      "status": "ancestor",
+      "integrated_commit": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/33",
+      "commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a13b612fdd31c9bc54d5f8bb05c92867e92d541d",
+      "status": "ancestor",
+      "integrated_commit": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/34",
+      "commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "90f37d731c8675d9ea8a1fb983430b5858e751d8",
+      "status": "ancestor",
+      "integrated_commit": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/35",
+      "commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "47d4ae8a5d5924172d69091459b200a3a989296c",
+      "status": "ancestor",
+      "integrated_commit": "e59751246a200e7477657d0e4835bf77b153422c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/36",
+      "commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "6740bfb3162cb8e90f1c7c406bfbd9baa3b6c27c",
+      "status": "ancestor",
+      "integrated_commit": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/37",
+      "commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "9a26fc43ff926106c600f0d1ccecc7ed98d7fdc7",
+      "status": "ancestor",
+      "integrated_commit": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/38",
+      "commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "12d41ea32488adcc2da3d73eea7ffcd8ead9c0d5",
+      "status": "ancestor",
+      "integrated_commit": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/39",
+      "commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "444a367d256d5631a82bc566d1a0a3d99a37c6f5",
+      "status": "ancestor",
+      "integrated_commit": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/4",
+      "commit": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "fba9bf26ea35dbe4d14c0a7faee17a9a490b0255",
+      "status": "ancestor",
+      "integrated_commit": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/40",
+      "commit": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "8eb627e7d5f626963bc2179049e7436e9e5111a3",
+      "status": "ancestor",
+      "integrated_commit": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/41",
+      "commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "1efc6bcb3f5321ed9a8841bd6c40e24ca4097b1d",
+      "status": "ancestor",
+      "integrated_commit": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/42",
+      "commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0d8ef0934a0e6d97e83fec522a7ff12f7084b590",
+      "status": "ancestor",
+      "integrated_commit": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/43",
+      "commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "921c5b374484c7169c56e824e4fc2217c8086e17",
+      "status": "ancestor",
+      "integrated_commit": "20681b8658392212c128f51b4c91f0b638942448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/44",
+      "commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "86cf81f36f4691ca0b8bbcd8ca6a738ace48852e",
+      "status": "ancestor",
+      "integrated_commit": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/45",
+      "commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "989695b4b987f949dd25db3c736ad14333e5bd73",
+      "status": "ancestor",
+      "integrated_commit": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/46",
+      "commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "56cc9fb26ec42ce335f7cea0698a34435696fc92",
+      "status": "ancestor",
+      "integrated_commit": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/47",
+      "commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "67934023d4877aa2ae0eade87d61346e4923df2d",
+      "status": "ancestor",
+      "integrated_commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/48",
+      "commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b0e59ad79558d2a2e2c881f63b9a228b9ce01ded",
+      "status": "ancestor",
+      "integrated_commit": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/49",
+      "commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0aecfb03465f11d481b1213d75d90897f8bab2f6",
+      "status": "ancestor",
+      "integrated_commit": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/5",
+      "commit": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "8a311f7ba5672ef5f8598193f4a607f13febbcdc",
+      "status": "ancestor",
+      "integrated_commit": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/50",
+      "commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "c284db83156f1fcae84013cbe58494e3b340a08e",
+      "status": "ancestor",
+      "integrated_commit": "428679a33381f943a8ae63117d4207f01dd15462",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/51",
+      "commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7ac8d51dd8b6f627fd4d06aa676fe6712db37a05",
+      "status": "ancestor",
+      "integrated_commit": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/52",
+      "commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2325cfb59277605fc0cd809527f119d1172bf10e",
+      "status": "ancestor",
+      "integrated_commit": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/53",
+      "commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0957a03aadc731ee4a109cfe95df303c1b36cff8",
+      "status": "ancestor",
+      "integrated_commit": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/54",
+      "commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d4e1ba7ede98162ba3523cd4cfd1275860ffc09a",
+      "status": "ancestor",
+      "integrated_commit": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/55",
+      "commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a930be6db42985c0c388ce6e736aca265a822b25",
+      "status": "ancestor",
+      "integrated_commit": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/56",
+      "commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "335beb5ad1a14c2ae31073ffbd4e824c057f995a",
+      "status": "ancestor",
+      "integrated_commit": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/57",
+      "commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7a9dd3fe551e78ec8105e890b902f54a92621eef",
+      "status": "ancestor",
+      "integrated_commit": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/58",
+      "commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d8910f974d17b84a40749d4455ba00b51b021efc",
+      "status": "ancestor",
+      "integrated_commit": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/59",
+      "commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "91a4926e888cf4107f480e802b38da53653b3cbf",
+      "status": "ancestor",
+      "integrated_commit": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/6",
+      "commit": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7c9f1038eb534248353c392cd99b63a8d8796238",
+      "status": "ancestor",
+      "integrated_commit": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/60",
+      "commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "496a4a3ba8e4125d82cd1c4e40ac7a8bae6ca8a3",
+      "status": "ancestor",
+      "integrated_commit": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/61",
+      "commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2a7326ccf552612bbb0930bfb254a25778172625",
+      "status": "ancestor",
+      "integrated_commit": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/62",
+      "commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "259cfb041bd534757db93c3faf5993eb376801e4",
+      "status": "ancestor",
+      "integrated_commit": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/63",
+      "commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e015d526d2850c0d504ce93e3ad1386576445888",
+      "status": "ancestor",
+      "integrated_commit": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/64",
+      "commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "08e54aba5a5507ac9a72c662286475e28776c5fe",
+      "status": "ancestor",
+      "integrated_commit": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/65",
+      "commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d8b0a6668b9cf411424c4d359a99fdf7efb4326c",
+      "status": "ancestor",
+      "integrated_commit": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/66",
+      "commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e10a90811572ef880f4edea40ba8a5413bd0c51d",
+      "status": "ancestor",
+      "integrated_commit": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/67",
+      "commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a4044407fcbd316387591bfba1f6792c74b2fa79",
+      "status": "ancestor",
+      "integrated_commit": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/68",
+      "commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0e238f72cbff29f30eb842c7dafb809bb4be6342",
+      "status": "ancestor",
+      "integrated_commit": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/69",
+      "commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0af18a79c99c15749bd3fde16d00b71f5c843c34",
+      "status": "ancestor",
+      "integrated_commit": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/7",
+      "commit": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b23b64cf5625e877c0928eac21f9bca57779da97",
+      "status": "ancestor",
+      "integrated_commit": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/70",
+      "commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "73f6f45d25a2b2625f4a8db36b41000922fd8ff0",
+      "status": "ancestor",
+      "integrated_commit": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/71",
+      "commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0148ed340fbbea40133513d233f6e1473534acd1",
+      "status": "ancestor",
+      "integrated_commit": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/72",
+      "commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0e477840dfcca87bd18f133255c7fda66a2efb29",
+      "status": "ancestor",
+      "integrated_commit": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/73",
+      "commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "57f9f5c73fc8e62b71453757af5077bf6ca6faf8",
+      "status": "ancestor",
+      "integrated_commit": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/74",
+      "commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "4198ad1a72de1191627649e8e8e9f4cbcf3de91b",
+      "status": "ancestor",
+      "integrated_commit": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/75",
+      "commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2c19a9ac31a1ae9fc09d9d4b3c0c3597ff2ec0ad",
+      "status": "ancestor",
+      "integrated_commit": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/76",
+      "commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "0865ac1261a947f0e155b94ccbbf456ea0927e2b",
+      "status": "ancestor",
+      "integrated_commit": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/77",
+      "commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e1d06cdac806e08de55a2dc2b25524a5675fd7e7",
+      "status": "ancestor",
+      "integrated_commit": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/78",
+      "commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "2aff5805c917fe9e9f09d2db17cf5415f5b82ec1",
+      "status": "ancestor",
+      "integrated_commit": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/79",
+      "commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "a62926d617f73b0996abf20e29dc0a9f90a7bc81",
+      "status": "ancestor",
+      "integrated_commit": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/8",
+      "commit": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "d7a3554accf3397047429b0a1c6b0645f2eab224",
+      "status": "ancestor",
+      "integrated_commit": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/80",
+      "commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "ec7ff95582480891b99b27e917263b4d9b2731b9",
+      "status": "ancestor",
+      "integrated_commit": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/81",
+      "commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "f52716dda53a36543feaaa1e0ea058418353ee0c",
+      "status": "ancestor",
+      "integrated_commit": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/82",
+      "commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b8179ebab83523c68fa1e7c272599153072be7a1",
+      "status": "ancestor",
+      "integrated_commit": "4497c737623c1339d2422487d53941c20472bac9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/83",
+      "commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "30f8f0208db17be2e5aac4f1ed4d39b609ef7b6e",
+      "status": "ancestor",
+      "integrated_commit": "331be9688e2de1feb52635490b534042dea10c27",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/84",
+      "commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "6a0a7e1d7c25ae5eddbf4cb47b2ccf2cfa9a20cf",
+      "status": "ancestor",
+      "integrated_commit": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/85",
+      "commit": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b63017c9d648f5acde283293401f18fc31772e95",
+      "status": "ancestor",
+      "integrated_commit": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/86",
+      "commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e825b75c82492dd8eba70a42fc35b3c437aa5a07",
+      "status": "ancestor",
+      "integrated_commit": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/87",
+      "commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "5b5930bb3a6534c4be849fc57c86bf202c189edd",
+      "status": "ancestor",
+      "integrated_commit": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/88",
+      "commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "ec2accb182b81fe0e47f623127ff297ad6b709e5",
+      "status": "ancestor",
+      "integrated_commit": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/89",
+      "commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "c8fb98b5cc4426c7de728693d89a76657424c4ed",
+      "status": "ancestor",
+      "integrated_commit": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/9",
+      "commit": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "01962d58598ee4e726eb2cc25b71cd91ad3f47d3",
+      "status": "ancestor",
+      "integrated_commit": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/90",
+      "commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "f2eed4632061f8d07909c74aaa03c629f0dd94ad",
+      "status": "ancestor",
+      "integrated_commit": "6da74faa9160275df9c10a864c758033c92f114d",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/91",
+      "commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "b80a757f70609821cdcff70b9e265e7c249508df",
+      "status": "ancestor",
+      "integrated_commit": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/92",
+      "commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e22b0c537916f33fb7d2aa16510a2d6f84e0a2a4",
+      "status": "ancestor",
+      "integrated_commit": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/93",
+      "commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7efa86280e462f061451b718ee752e7184c81f4e",
+      "status": "ancestor",
+      "integrated_commit": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/94",
+      "commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "7e6b13247511beef21982d7a13f2abeb23f40bb2",
+      "status": "ancestor",
+      "integrated_commit": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/95",
+      "commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "e6195fe83ce5b5282fbad913fc4a96c02e6f5d36",
+      "status": "ancestor",
+      "integrated_commit": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/96",
+      "commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "18052eb73eee300d2d936b876cd01eb703a7cac4",
+      "status": "ancestor",
+      "integrated_commit": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/97",
+      "commit": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "925077de6538dc20d131984e8888c633077611af",
+      "status": "exact_tree",
+      "integrated_commit": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/remotes/pr/98",
+      "commit": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "repository": "CrispStrobe/quds_office_suite",
+      "tree": "3fc5bd33d3dd6525e4edb67ab02f40ad4cf3e16f",
+      "status": "exact_tree",
+      "integrated_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "captured_at": "2026-11-17T08:51:44.061227+00:00"
+    },
+    {
+      "ref": "refs/heads/ci/flutter-workspace",
+      "commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "d74a5c2f04e5ed32770ddd8e376380f4beea687c",
+      "status": "ancestor",
+      "integrated_commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    },
+    {
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "status": "ancestor",
+      "integrated_commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    },
+    {
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "9caff26f6b91e2637e63a35b9623e7f0c61d6752",
+      "status": "ancestor",
+      "integrated_commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    },
+    {
+      "ref": "refs/heads/main",
+      "commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "654e2e1b29777cd3358fe8a719336d1579fadfcb",
+      "status": "ancestor",
+      "integrated_commit": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    },
+    {
+      "ref": "refs/pull/1/head",
+      "commit": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "30b84eff3a593dba15c6d803b6282a81f026bed0",
+      "status": "ancestor",
+      "integrated_commit": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    },
+    {
+      "ref": "refs/pull/5/head",
+      "commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "9caff26f6b91e2637e63a35b9623e7f0c61d6752",
+      "status": "ancestor",
+      "integrated_commit": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    },
+    {
+      "ref": "refs/pull/6/head",
+      "commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "d74a5c2f04e5ed32770ddd8e376380f4beea687c",
+      "status": "ancestor",
+      "integrated_commit": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    },
+    {
+      "ref": "refs/pull/7/head",
+      "commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "tree": "807b3ec74140aed5c7e291a2647e19f49fb352bd",
+      "status": "ancestor",
+      "integrated_commit": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "captured_at": "2026-11-17T08:19:03.256727+00:00"
+    }
+  ],
+  "passed": true
+}

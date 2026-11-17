@@ -1,0 +1,176 @@
+{
+  "created_utc": "2026-11-17T08:38:33.875940+00:00",
+  "archive": "suite-path-attempt-2.tar.xz",
+  "bytes": 464564,
+  "sha256": "b26aeb9ad805d430a6ae63d2869f505cb5d6dbfc24a4c514dd09a539b4c16038",
+  "format": "tar.xz",
+  "member_count": 33,
+  "verified_readback": true,
+  "members": [
+    {
+      "path": "canonical-validation/run-2-to-run-3.patch",
+      "bytes": 3088,
+      "sha256": "a7d83ce955844ad9fae782b9776d97876aefab20d9e131451e0519100c681cf6"
+    },
+    {
+      "path": "canonical-validation/run-2/analysis-package-config.json",
+      "bytes": 23262,
+      "sha256": "6bb44c620795cecd1a74222818d71ee70d6fcaa54c236caf59326f774c0dce37"
+    },
+    {
+      "path": "canonical-validation/run-2/dependencies-after.json",
+      "bytes": 964143,
+      "sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6"
+    },
+    {
+      "path": "canonical-validation/run-2/dependencies-before.json",
+      "bytes": 964143,
+      "sha256": "964eaf8ca405ec6cdbede27e206e91d2c07520411f0bd4d78d30283a9dc893a6"
+    },
+    {
+      "path": "canonical-validation/run-2/editor-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "canonical-validation/run-2/editor-strict-analysis/stdout.gz",
+      "bytes": 291,
+      "sha256": "4763fee103385a1d0acc35b885e946bbf52e08bf6ff32bd22e499da134ab66e2"
+    },
+    {
+      "path": "canonical-validation/run-2/engine-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "canonical-validation/run-2/engine-strict-analysis/stdout.gz",
+      "bytes": 722,
+      "sha256": "3dc7240025c04d6f9d53c152e833885fe0aad63228019fb39eaf9f884e6edd9c"
+    },
+    {
+      "path": "canonical-validation/run-2/engine-zotero/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "canonical-validation/run-2/engine-zotero/stdout.gz",
+      "bytes": 18421,
+      "sha256": "a4a2caa0253dd07da34b1e8d07750a24a9fa551ac9f24c02961812e4e8d8385d"
+    },
+    {
+      "path": "canonical-validation/run-2/engine-zotero/test-summary.json",
+      "bytes": 67180,
+      "sha256": "84c3b201a471e86188558b8631188fd67fdf813aca964c8758d5c57281536a01"
+    },
+    {
+      "path": "canonical-validation/run-2/fixture-audit.json",
+      "bytes": 11840,
+      "sha256": "4495f75b16185f9195f15365d705e6b094b22ba77e90a3583f71990b7185e154"
+    },
+    {
+      "path": "canonical-validation/run-2/format/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "canonical-validation/run-2/format/stdout.gz",
+      "bytes": 68,
+      "sha256": "bb29f30c6fe762ee43ace6a46878307fea116369c10b342bb0af7da0df181145"
+    },
+    {
+      "path": "canonical-validation/run-2/harness-after.json",
+      "bytes": 1075,
+      "sha256": "f1628651a728382ae19bf3c8fea40420aa481eb342e12a1e95020fd3ad260de8"
+    },
+    {
+      "path": "canonical-validation/run-2/harness-before.json",
+      "bytes": 1075,
+      "sha256": "f1628651a728382ae19bf3c8fea40420aa481eb342e12a1e95020fd3ad260de8"
+    },
+    {
+      "path": "canonical-validation/run-2/harper-strict-analysis/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "canonical-validation/run-2/harper-strict-analysis/stdout.gz",
+      "bytes": 154,
+      "sha256": "39a9969d98e5b1af60609e0f191a2ef3fc76ec4dbcee10b0e730e2d1dcb6f325"
+    },
+    {
+      "path": "canonical-validation/run-2/plan.json",
+      "bytes": 29595,
+      "sha256": "37f22c4b6c7db2abae83eda3f2411960404cbc0d5c321f00492280eb49b4faef"
+    },
+    {
+      "path": "canonical-validation/run-2/receipt.json",
+      "bytes": 106828,
+      "sha256": "91cf1f6ff716d0baf1a8324959724e1994f465f8c1a966efb27ba1dd7b609035"
+    },
+    {
+      "path": "canonical-validation/run-2/run-used.py",
+      "bytes": 29698,
+      "sha256": "4b30b07dd5d7be958e8621b454551ac661132cf03a1335d5f62e4e89a8b5b430"
+    },
+    {
+      "path": "canonical-validation/run-2/run.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "canonical-validation/run-2/runner-error.json",
+      "bytes": 640,
+      "sha256": "4c2f6e662ff0179689eb832b154e5ba4721b1e9d546f8c36b6a7544466ac14af"
+    },
+    {
+      "path": "canonical-validation/run-2/runtime-after.json",
+      "bytes": 2287,
+      "sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be"
+    },
+    {
+      "path": "canonical-validation/run-2/runtime-before.json",
+      "bytes": 2287,
+      "sha256": "b8cc7493201ca4b8f2cbcf9ceeb11fc1ad6bb18f2000b5006ea5e6b4525b11be"
+    },
+    {
+      "path": "canonical-validation/run-2/source-after.json",
+      "bytes": 883302,
+      "sha256": "c109e8f7680419dd5bfdae379f5de3a6dd9fc4080a9013d88e0a94669c1af43a"
+    },
+    {
+      "path": "canonical-validation/run-2/source-before.json",
+      "bytes": 883302,
+      "sha256": "c109e8f7680419dd5bfdae379f5de3a6dd9fc4080a9013d88e0a94669c1af43a"
+    },
+    {
+      "path": "canonical-validation/run-2/system-after.json",
+      "bytes": 710,
+      "sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0"
+    },
+    {
+      "path": "canonical-validation/run-2/system-before.json",
+      "bytes": 710,
+      "sha256": "52ca24bc963f9115f210afb8d6f742b39609375fe30ddecde8a6ec31dbb88de0"
+    },
+    {
+      "path": "canonical-validation/run-2/workspace-after.json",
+      "bytes": 1985,
+      "sha256": "7e0490b982ca10b873288e81ffa68674e727315fa63f8aa829871d4a841ea11f"
+    },
+    {
+      "path": "canonical-validation/run-2/workspace-before.json",
+      "bytes": 1985,
+      "sha256": "7e0490b982ca10b873288e81ffa68674e727315fa63f8aa829871d4a841ea11f"
+    },
+    {
+      "path": "canonical-validation/suite-path-correction.json",
+      "bytes": 1397,
+      "sha256": "e98a8c1414c55d796a30e1bd7169fb2fdeb13d4fe20a20d5c654f1f8dac63d45"
+    },
+    {
+      "path": "integration-resume/independent-static-review.json",
+      "bytes": 9051,
+      "sha256": "eb97be62e82e146826b2a36fbc65711e38ca4fc4ed74b0943caafddef708b48d"
+    }
+  ]
+}

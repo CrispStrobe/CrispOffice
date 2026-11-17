@@ -29,6 +29,8 @@ XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(
 ).root!.firstChild('body')!.firstChild('text')!;
 
 void main() {
+  commentTests();
+  footnoteTests();
   test('writes modeled Word text, runs, tables and pictures as ODT', () {
     final document = WmlDocument(
       properties: OfficeDocumentProperties(title: 'Writer smoke'),
@@ -215,5 +217,76 @@ void main() {
     ).root!.firstChild('master-styles')!.firstChild('master-page')!;
     expect(_odfText(master.firstChild('header')!), ' Head\tA  B ');
     expect(_odfText(master.firstChild('footer')!), 'Foot\nLine 2 ');
+  });
+}
+
+void footnoteTests() {
+  test('writes footnote references and bodies', () {
+    final document = WmlDocument(
+      footnotes: [
+        WmlNote(
+          id: 1,
+          endnote: false,
+          paragraphs: [
+            WmlParagraph(inlines: [WmlRun(text: 'Footnote text')]),
+          ],
+        ),
+      ],
+      sections: [
+        WmlSection(
+          blocks: [
+            WmlParagraph(
+              inlines: [
+                WmlRun(text: 'Body'),
+                WmlRun(noteRefId: 1),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final content = package.getPart('/content.xml')!.readText();
+    expect(content, contains('<text:note'));
+    expect(content, contains('text:note-class="footnote"'));
+    expect(content, contains('<text:note-citation>1</text:note-citation>'));
+    expect(content, contains('Footnote text'));
+  });
+}
+
+void commentTests() {
+  test('writes ODT comments', () {
+    final document = WmlDocument(
+      comments: [
+        WmlComment(
+          id: 1,
+          author: 'Reviewer',
+          dateIso: '2026-11-17T00:00:00Z',
+          paragraphs: [
+            WmlParagraph(inlines: [WmlRun(text: 'Comment text')]),
+          ],
+        ),
+      ],
+      sections: [
+        WmlSection(
+          blocks: [
+            WmlParagraph(
+              inlines: [
+                WmlRun(text: 'Annotated', commentIds: [1]),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final content = package.getPart('/content.xml')!.readText();
+    expect(content, contains('<office:annotation'));
+    expect(content, contains('<dc:creator>Reviewer</dc:creator>'));
+    expect(content, contains('Comment text'));
   });
 }
