@@ -24,7 +24,8 @@ The conflict decisions and exact revisions are saved in `incoming/`.
 ## Implementation
 
 The [export guide](../../odf-export-fidelity.md) defines the mappings and limits.
-This continuation adds 40 list and 26 section regression cases:
+This continuation adds 89 regression cases: 40 lists, 26 sections, five RTL
+paragraph mappings, and 18 anchored text-box extraction/search cases:
 
 - Repeated authored levels retain sibling relationships; mixed marker kinds,
   supported decimal starts/restarts, default child resets, and continuation
@@ -41,6 +42,9 @@ This continuation adds 40 list and 26 section regression cases:
   continuous sections add no paragraph. Changed page styles use a page-boundary
   fallback. First/alternating headers and inherited native stories remain outside
   the bounded writer.
+- Physical paragraph indents retain their authored sides in RTL output.
+  Anchored text-box paragraphs remain extractable and searchable, preserving
+  surrounding inline text and suppressing hidden stories without duplication.
 
 No new font or model binaries are committed. Incoming work adds the optional
 GECToR workspace/package manifests; the existing dependency lock remains exact.
@@ -77,11 +81,11 @@ final-source equivalence for the proofing files is assessed independently.
 
 This implementation checkpoint preserves the completed source and preceding
 evidence before final local qualification. `run_qualification.py` executes the
-17-file VM and six-file Node ODF cohorts against an exact published commit,
+18-file VM and ten-file Node ODF cohorts against an exact published commit,
 with unchanged source/runtime/lock checks and raw-event coverage verification.
 The final receipts and accepted results are added in the next evidence checkpoint.
 
-`consumer/make_fixtures.dart` and `consumer/verify_consumers.py` define 23
+`consumer/make_fixtures.dart` and `consumer/verify_consumers.py` define 24
 independent consumer fixtures. The saved incoming-writer controls validated
 80 XML parts but failed 19 of 20 semantic fixtures, demonstrating that schema
 success alone missed the section and list defects. Original controls, checker
@@ -92,6 +96,13 @@ and Poppler output, exact page sizes/text placement, list marker/indentation
 checks, parity, and the empty-continuous comparison. PDF conversion explicitly
 sets `IsSkipEmptyPages=false` so automatic parity blanks remain measurable.
 Source, runtime, dependency, and font inputs are bound before and after.
+
+The first final attempt found an anchored-frame extraction regression and a
+pre-existing RTL indent reversal. Both failed receipts and the independent
+ordinary-ODT, DOCX, and one-variable ODT margin controls remain archived. The
+fixes retain the original extraction expectation and physical-geometry oracle;
+the final cohorts rerun from the corrected published source. General frame
+fill, outline, and text insets remain outside this section-placement check.
 
 These are scoped regression and consumer checks. They do not requalify every
 previous test cohort or claim complete Office round trips or universal shaping.

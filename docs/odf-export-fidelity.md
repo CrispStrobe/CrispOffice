@@ -27,6 +27,12 @@ their paragraph alignment, before/after spacing, line spacing, and explicit
 direction. Explicit zero margins override the generated default style.
 `left` and `right` retain physical alignment independently of RTL/LTR direction;
 explicit writing direction is not automatically recalculated by the consumer.
+Horizontal indents also retain their physical sides. For explicit RTL
+paragraphs, the model's right indent becomes `fo:margin-left` and its left
+indent becomes `fo:margin-right`, matching ODF's direction-dependent paragraph
+margins. LTR and unspecified direction keep the ordinary mapping. The
+[ODF 1.4 paragraph-tab-position note](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html#attribute-text_relative-tab-stop-position)
+makes that RTL margin interpretation explicit; generated files remain ODF 1.3.
 Hanging indentation retains precedence over first-line indentation.
 
 Nonfinite values and exponent-form values that cannot be serialized as ODF
@@ -89,6 +95,20 @@ First-page/alternating header selection, inherited `linkToPrevious` resolution,
 columns, line numbering, and unmodeled native section settings remain outside
 this export. The writer exports the normal stories already present in each
 section; it does not reconstruct missing stories from native relationships.
+General frame fill, outline, and text-inset fidelity remains limited: frame
+emission can retain consumer defaults. The section qualification checks frame
+page activation, page-relative coordinates, and size, not those style details.
+
+Generic text extraction and bounded search retain paragraphs inside anchored
+text boxes, including nested boxes and explicit whitespace. The anchor's own
+inline text remains contiguous and is followed by its text-box stories in
+source order. Empty anchor wrappers add no synthetic blank paragraph; authored
+empty paragraphs inside boxes remain distinct. Namespace identity, annotation
+and covered-cell suppression, and the cumulative text-expansion budget still
+apply. This is document traversal order, not visual reading-order inference.
+Tables nested inside paragraph-anchored text boxes contribute their visible
+cell paragraphs rather than a separate structured table entry; ordinary
+document tables and frames inside table cells keep their existing handling.
 
 ## Header and footer stories
 

@@ -104,7 +104,12 @@ void main(List<String> arguments) {
     });
   }
 
-  void secondSection(String name, List<WmlBlock> blocks, List<String> words) {
+  void secondSection(
+    String name,
+    List<WmlBlock> blocks,
+    List<String> words, {
+    Map<String, Object?> extra = const {},
+  }) {
     save(
       name,
       WmlDocument(
@@ -130,6 +135,7 @@ void main(List<String> arguments) {
         'SecondFoot': 2,
         for (final word in words) word: 2,
       },
+      extra: extra,
     );
   }
 
@@ -178,6 +184,14 @@ void main(List<String> arguments) {
       p('VisualTail'),
     ],
     ['VisualTail'],
+    extra: {
+      'red_picture': {
+        'page': 2,
+        'left_pt': 36,
+        'width_pt': 40,
+        'height_pt': 20,
+      },
+    },
   );
   secondSection(
     'section-frame',
@@ -192,6 +206,12 @@ void main(List<String> arguments) {
       p('FrameTail'),
     ],
     ['FrameFirst', 'FrameTail'],
+    extra: {
+      'reopened_frame': {
+        'word': 'FrameFirst',
+        'geometry_pt': [60, 100, 180, 40],
+      },
+    },
   );
   save(
     'section-empty',
@@ -365,6 +385,60 @@ void main(List<String> arguments) {
         'words': ['HeadingFirst', 'HeadingSecond'],
         'points': 540,
       },
+    },
+  );
+  save(
+    'paragraph-rtl-indent',
+    WmlDocument(
+      sections: [
+        section([
+          p(
+            'RightFirst\nRightSecond',
+            properties: WmlParagraphProps(
+              rightToLeft: true,
+              justification: WmlJustification.right,
+              lineSpacingRule: WmlLineSpacingRule.exact,
+              lineSpacing: 18,
+              spacingBefore: 6,
+              spacingAfter: 5,
+              indent: const WmlIndent(left: 30, right: 24),
+            ),
+          ),
+          p(
+            'LeftFirst\nLeftSecond',
+            properties: WmlParagraphProps(
+              rightToLeft: true,
+              justification: WmlJustification.left,
+              lineSpacingRule: WmlLineSpacingRule.exact,
+              lineSpacing: 18,
+              spacingBefore: 6,
+              spacingAfter: 5,
+              indent: const WmlIndent(left: 30, right: 24),
+            ),
+          ),
+        ], size: _secondSize),
+      ],
+    ),
+    pages: [
+      [600, 400],
+    ],
+    words: {'RightFirst': 1, 'RightSecond': 1, 'LeftFirst': 1, 'LeftSecond': 1},
+    order: ['RightFirst', 'RightSecond', 'LeftFirst', 'LeftSecond'],
+    extra: {
+      'line_step': {
+        'words': ['RightFirst', 'RightSecond'],
+        'points': 18,
+      },
+      'right_edge': {
+        'words': ['RightFirst', 'RightSecond'],
+        'points': 540,
+      },
+      'left_edge': {
+        'words': ['LeftFirst', 'LeftSecond'],
+        'points': 66,
+      },
+      'scope':
+          'Ordinary RTL paragraphs preserve physical 30 pt left and 24 pt right indents, independently of section activation.',
     },
   );
   for (final kind in [
