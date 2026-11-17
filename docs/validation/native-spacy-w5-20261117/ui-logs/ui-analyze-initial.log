@@ -1,0 +1,8 @@
+Analyzing studio_linguistic_analysis.dart, studio_spacy_config.dart, studio_spacy_config_native.dart, studio_spacy_config_unsupported.dart...
+
+   info - packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart:127:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart:139:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - packages/quds_office_editor/example/lib/studio_linguistic_analysis.dart:313:72 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - packages/quds_office_editor/example/lib/studio_spacy_config_native.dart:4:8 - The import of 'package:quds_proofing_spacy/quds_proofing_spacy.dart' is unnecessary because all of the used elements are also provided by the import of 'package:quds_proofing_spacy/quds_proofing_spacy_native.dart'. Try removing the import directive. - unnecessary_import
+
+4 issues found.

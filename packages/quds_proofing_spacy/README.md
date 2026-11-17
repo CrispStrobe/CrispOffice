@@ -68,10 +68,29 @@ slot and context until it returns; disposal joins safe cleanup. The saved native
 binary is unchanged, and this package supplies no new native cancellation shim.
 Do not describe caller cancellation as a measured compute-interruption budget.
 
+## Manual Studio view
+
+The example host exposes **Review → German analysis → Analyze text**. Opening
+the dialog does not initialize a worker. The explicit analysis action uses a
+selection within one body/table paragraph, or the current paragraph when the
+caret is collapsed. It shows token, lemma, POS/tag, morphology and dependency
+annotations and can select a current token in the original document. It does
+not edit text or add grammar findings.
+
+Before starting the Linux host, explicitly configure `CRISPEMBED_SPACY=1`,
+`QUDS_SPACY_BUNDLE`, `QUDS_SPACY_LIBRARY` and
+`QUDS_SPACY_LIBRARY_SHA256` with the verified immutable installation described
+above. A missing/disabled installation remains visibly unavailable. Header,
+footer, comment, frame and generated TOC text, multi-paragraph selections,
+mixed locales and non-de-DE units are outside this view. Edits, language,
+document or configuration changes invalidate visible results. Cancellation,
+closing and retry after a failed worker preserve native resource ownership.
+
 ## Local validation
 
-Run the model-free package suite with `dart test` from this package after the
-workspace dependencies are installed. It checks source mapping, malformed
+After resolving the workspace dependencies, run the model-free package suite
+from the repository root with
+`flutter test --no-pub packages/quds_proofing_spacy/test`. It checks source mapping, malformed
 UTF-16, source reconstruction, sentence/dependency invariants, immutable results,
 snapshot identity, explicit failures and worker lifecycle controls.
 
@@ -80,7 +99,7 @@ absent; it does not skip model checks within a green unit suite:
 
 ```sh
 CRISPEMBED_SPACY=1 dart run packages/quds_proofing_spacy/tool/replay_development.dart \
-  --library "$QUDS_SPACY_LIBRARY" --library-sha "$QUDS_SPACY_LIBRARY_SHA" \
+  --library "$QUDS_SPACY_LIBRARY" --library-sha "$QUDS_SPACY_LIBRARY_SHA256" \
   --bundle "$QUDS_SPACY_BUNDLE" --quds-root . --report "$QUDS_SPACY_REPORT"
 ```
 

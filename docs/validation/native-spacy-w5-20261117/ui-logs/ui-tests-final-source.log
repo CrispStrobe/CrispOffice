@@ -1,0 +1,24 @@
+00:00 +0: loading $WORKSPACE/quds-spacy/packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart
+00:00 +0: snapshot and navigation add the nonzero origin once
+00:00 +1: body table paragraphs preserve their flattened source mapping
+00:00 +2: cross-paragraph and split-Unicode selections are refused exactly
+00:00 +3: mixed-language text is refused but a German subrange is supported
+00:00 +4: silent source replacement, language and configuration invalidate identity
+00:00 +5: comment and header editing never use the body caret as a substitute
+00:00 +6: manual start shows annotations and navigates without editing
+00:01 +7: cancel completes the view and discards a late successful reply
+00:01 +8: text changes clear results and cancel pending requests
+00:01 +9: locale changes clear results and cancel pending requests
+00:01 +10: document changes clear results and cancel pending requests
+00:01 +11: configuration replacement disposes the old worker once
+00:01 +12: closing while loading disposes a late worker and never analyzes
+00:01 +13: cancel during loading permits a later explicit retry safely
+00:02 +14: startup failures stay actionable and never show empty success
+00:02 +15: operational failure and mismatched snapshot cannot publish tokens
+00:02 +16: unsupported locale is rejected before loading the worker
+00:02 +17: editing after success removes all token navigation immediately
+00:02 +18: closing an active request disposes once and absorbs late failure
+00:02 +19: cancelled startup failure allows one fresh explicit retry
+00:02 +20: unavailable worker is replaced only on the next explicit action
+00:02 +21: frame and generated TOC paragraphs cannot masquerade as body text
+00:02 +22: All tests passed!
