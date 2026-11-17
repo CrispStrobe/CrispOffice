@@ -1,0 +1,100 @@
+{
+  "status": "reviewed retention parents; will be attached with reconciled Office source checkpoint",
+  "principle": "No previous source or evidence is erased: original commits remain as parents. Deliberate AOT removal and later reviewed fixes remain active. Existing historical reports keep their source and dates.",
+  "maximal_parents": [
+    {
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "refs": [
+        "refs/remotes/origin/codex/office-qualified-resume-20261117"
+      ],
+      "decision": "Retain unique final-integration evidence and three recovered Office suites. Recover bounded fields, malformed bookmark-name reservation and generated-field/column ordering in reconciled writer. Newer German context/source, first/even headers and explicit AOT removal take precedence; earlier alternate docs remain accessible in this parent history."
+    },
+    {
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "refs": [
+        "refs/remotes/origin/feat/odf-story-fidelity",
+        "refs/remotes/pull/132"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "refs": [
+        "refs/remotes/origin/codex/office-fidelity-improvements-20261117-e1978379",
+        "refs/remotes/pull/128"
+      ],
+      "decision": "Retain closed unmerged PR128 history and unique qualification evidence. PR132 explicitly carries its story/header/bookmark improvements; retain both previously absent column/schema and tab/style suites. Reconciled writer preserves newer columns, caches, bounded fields and first/even headers."
+    },
+    {
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "refs": [
+        "refs/remotes/origin/fix/odt-inline-fields",
+        "refs/remotes/pull/130"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "refs": [
+        "refs/remotes/origin/feat/odt-toc",
+        "refs/remotes/pull/127"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "refs": [
+        "refs/remotes/origin/feat/odp-preset-shapes",
+        "refs/remotes/pull/126"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "refs": [
+        "refs/remotes/origin/integrate/codex-office-continuation-20261117",
+        "refs/remotes/pull/125"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "refs": [
+        "refs/remotes/origin/feat/odt-fields",
+        "refs/remotes/pull/124"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "refs": [
+        "refs/remotes/origin/integrate/aot-then-remove-20261117",
+        "refs/remotes/pull/129"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "refs": [
+        "refs/remotes/origin/feat/odt-first-even-headers",
+        "refs/remotes/pull/133"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "refs": [
+        "refs/remotes/origin/docs/native-spacy-handoff-20261117",
+        "refs/remotes/pull/131"
+      ],
+      "decision": "Exact whole-tree equality with the corresponding already integrated main squash commit verified in equivalence-audit.json. Preserve original feature/PR ancestry without replacing the newer integrated tree."
+    },
+    {
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "refs": [
+        "refs/remotes/origin/vendor/odp-preset-shapes"
+      ],
+      "decision": "Vendor production patch is identical to landed PR126. Extra Q1/Q2 test assertions already exist in the landed feature base and remain beside the ellipse assertion. Whole combined patch differs only because those assertions were already present."
+    }
+  ]
+}

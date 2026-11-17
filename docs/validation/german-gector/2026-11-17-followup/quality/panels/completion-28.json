@@ -1,0 +1,150 @@
+[
+  {
+    "id": "completion-0-error",
+    "kind": "error",
+    "input": "Ihr hat wenig Geld.",
+    "expected": "Ihr habt wenig Geld."
+  },
+  {
+    "id": "completion-0-valid",
+    "kind": "clean",
+    "input": "Ihr habt wenig Geld."
+  },
+  {
+    "id": "completion-1-error",
+    "kind": "error",
+    "input": "Ihr haben genug Arbeit.",
+    "expected": "Ihr habt genug Arbeit."
+  },
+  {
+    "id": "completion-1-valid",
+    "kind": "clean",
+    "input": "Ihr habt genug Arbeit."
+  },
+  {
+    "id": "completion-2-error",
+    "kind": "error",
+    "input": "Ihr hast Hunger.",
+    "expected": "Ihr habt Hunger."
+  },
+  {
+    "id": "completion-2-valid",
+    "kind": "clean",
+    "input": "Ihr habt Hunger."
+  },
+  {
+    "id": "completion-3-error",
+    "kind": "error",
+    "input": "Ihr hat keine Angst.",
+    "expected": "Ihr habt keine Angst."
+  },
+  {
+    "id": "completion-3-valid",
+    "kind": "clean",
+    "input": "Ihr habt keine Angst."
+  },
+  {
+    "id": "completion-4-error",
+    "kind": "error",
+    "input": "Das Auto, dass du kennst, ist alt.",
+    "expected": "Das Auto, das du kennst, ist alt."
+  },
+  {
+    "id": "completion-4-valid",
+    "kind": "clean",
+    "input": "Das Auto, das du kennst, ist alt."
+  },
+  {
+    "id": "completion-5-error",
+    "kind": "error",
+    "input": "Das Dokument, dass wir lesen, ist wichtig.",
+    "expected": "Das Dokument, das wir lesen, ist wichtig."
+  },
+  {
+    "id": "completion-5-valid",
+    "kind": "clean",
+    "input": "Das Dokument, das wir lesen, ist wichtig."
+  },
+  {
+    "id": "completion-6-error",
+    "kind": "error",
+    "input": "Das Foto, dass ich sehe, ist schön.",
+    "expected": "Das Foto, das ich sehe, ist schön."
+  },
+  {
+    "id": "completion-6-valid",
+    "kind": "clean",
+    "input": "Das Foto, das ich sehe, ist schön."
+  },
+  {
+    "id": "completion-7-error",
+    "kind": "error",
+    "input": "Das Gerät, dass er kauft, ist teuer.",
+    "expected": "Das Gerät, das er kauft, ist teuer."
+  },
+  {
+    "id": "completion-7-valid",
+    "kind": "clean",
+    "input": "Das Gerät, das er kauft, ist teuer."
+  },
+  {
+    "id": "completion-control-0",
+    "kind": "clean",
+    "input": "Ihr hat der Lehrer Angst gemacht."
+  },
+  {
+    "id": "completion-control-1",
+    "kind": "clean",
+    "input": "Ihr hat viel Zeit geholfen."
+  },
+  {
+    "id": "completion-control-2",
+    "kind": "clean",
+    "input": "Ihr hat Geld gefehlt."
+  },
+  {
+    "id": "completion-control-3",
+    "kind": "clean",
+    "input": "Ihr gebt Geld aus."
+  },
+  {
+    "id": "completion-control-4",
+    "kind": "clean",
+    "input": "Ihr habt viel Zeit."
+  },
+  {
+    "id": "completion-control-5",
+    "kind": "clean",
+    "input": "Ihr seid müde."
+  },
+  {
+    "id": "completion-control-6",
+    "kind": "clean",
+    "input": "Das Problem, dass ich lese, ist bekannt."
+  },
+  {
+    "id": "completion-control-7",
+    "kind": "clean",
+    "input": "Das Wissen, dass wir kommen, hilft."
+  },
+  {
+    "id": "completion-control-8",
+    "kind": "clean",
+    "input": "Die Tatsache, dass ich lese, ist bekannt."
+  },
+  {
+    "id": "completion-control-9",
+    "kind": "clean",
+    "input": "Das Buch, das ich lese, ist gut."
+  },
+  {
+    "id": "completion-control-10",
+    "kind": "clean",
+    "input": "Das Buch, dass ich heute lese, ist gut."
+  },
+  {
+    "id": "completion-control-11",
+    "kind": "clean",
+    "input": "Das Buch mit dem Titel dass liegt hier."
+  }
+]

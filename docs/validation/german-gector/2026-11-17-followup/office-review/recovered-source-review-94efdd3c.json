@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "title": "Independent read-only review of recovered Office header and frame changes",
+  "reviewed_commit": "94efdd3ca7abade65fc3e9e6231e9a9a891c0fdc",
+  "reviewed_blobs": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "2d53d45d564e8eeaef66fc03cc2b0820efe752da",
+    "packages/quds_office_engine/test/odt_header_variant_order_test.dart": "0a44c34570039c775500615bcd5a3c71bc8ac7af",
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": "35000d56868465c48413c6afb2e8b0767e637d3d",
+    "packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart": "990b05eeda9ae851be49c2f69a65295fd497a4e2"
+  },
+  "method": "Read exact GitHub source and test blobs, inspect control flow and existing regression contracts. No local runtime or root PTY was used by this reviewer.",
+  "recovered_repairs_review": {
+    "header_sequence": "The repaired helper emits default header, optional left header, optional first header, then the analogous footer group. Empty defaults precede nonempty variants; paragraph/visual paths still use independent withStory scope and shared media. Four tests assert exact child order and retained text across populated and empty default cases.",
+    "frame_anchor": "Every WmlFrame now uses the existing one-point, zero-margin paragraph anchor and page-relative graphic style. The existing sectionStart argument is preserved, consumed only when present; later anchors do not select a new master. Physical x/y/width/height and independent frame-story processing remain unchanged. Existing leading-frame and added later-frame tests cover both paths, including frame bookmark names and source identity.",
+    "conclusion": "No new defect identified in these two recovered repairs by static review. Fresh tests/schema/consumer validation remain separate requirements."
+  },
+  "additional_finding": {
+    "title": "Continuous first/even header/footer comment-only changes can incorrectly reuse the previous master",
+    "affected_base": "94efdd3ca7abade65fc3e9e6231e9a9a891c0fdc",
+    "source": "_storyKey removes annotation bodies from emitted XML, then records authored commentIds only from section.header and section.footer.",
+    "mechanism": "When consecutive continuous sections have the same first/even header/footer text and formatting but different commentIds, normalized visible XML is identical and the extra reference key omits the differing variant. The second section can omit its mp1 selection even though it owns a distinct annotation.",
+    "existing_contract": "odt_section_fidelity_test.dart already requires distinct masters for different default-header comment references and reuse for repeated references.",
+    "status": "Concrete source-derived defect candidate. Four focused regressions and a minimal writer candidate prepared for root to execute fail-before and pass-after; this reviewer does not claim execution.",
+    "test_path": "packages/quds_office_engine/test/odt_header_variant_comment_fidelity_test.dart",
+    "test_blob": "d9ce175cbfb15125e794c8195ee0bc9b7cb412c4",
+    "test_cases": 4,
+    "control_scope": "Each firstHeader, firstFooter, evenHeader and evenFooter test checks both equal and distinct comment references, annotation counts and unchanged source IDs.",
+    "candidate_writer_blob": "5d733188f3a9a7fb6377e12470c8febe11bd73b7",
+    "candidate_change": "Expand the authored-reference groups to header, evenHeader, firstHeader, footer, evenFooter, firstFooter, matching emitted paragraph stories. Existing default groups, per-paragraph/per-run scope and annotation stripping remain unchanged.",
+    "expected_broad_case_count_if_tests_retained": 703,
+    "expected_broad_file_count_if_tests_retained": 51
+  },
+  "limits": [
+    "Static review is not fresh execution.",
+    "Recovered consumer observations are not substituted for lost raw files.",
+    "No native final quality or performance conclusion is implied.",
+    "No repository refs or source branch files were changed by this reviewer."
+  ]
+}

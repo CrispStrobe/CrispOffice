@@ -1,0 +1,3075 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_at_utc": "2026-11-17T19:20:37Z",
+  "scope": "Current branch list and all pull requests, all nonempty pages; current main recent commits. No Actions requested, dispatched, polled or awaited.",
+  "baseline_ref": "088705198d38811fde869707bc9711e20524d5f0",
+  "baseline_file": "docs/validation/german-gector/2026-11-17-resume/latest-incoming-snapshot.json",
+  "baseline_captured_at_utc": "2026-11-17 18:04:37 UTC",
+  "pages": {
+    "branches": [
+      100,
+      62
+    ],
+    "pull_requests": [
+      100,
+      32
+    ]
+  },
+  "branch_count": 162,
+  "pull_request_count": 132,
+  "branches_unique": true,
+  "pr_numbers_unique": true,
+  "branches": [
+    {
+      "name": "codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "protected": false
+    },
+    {
+      "name": "codex/aot-proofing-analysis-20261117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "protected": false
+    },
+    {
+      "name": "codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "protected": false
+    },
+    {
+      "name": "codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "protected": false
+    },
+    {
+      "name": "codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "protected": false
+    },
+    {
+      "name": "codex/office-continuation-20261117",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "protected": false
+    },
+    {
+      "name": "codex/office-fidelity-20261117",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "protected": false
+    },
+    {
+      "name": "codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "protected": false
+    },
+    {
+      "name": "codex/office-qualified-resume-20261117",
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "protected": false
+    },
+    {
+      "name": "codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "protected": false
+    },
+    {
+      "name": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "protected": false
+    },
+    {
+      "name": "codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "protected": false
+    },
+    {
+      "name": "codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "protected": false
+    },
+    {
+      "name": "codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "protected": false
+    },
+    {
+      "name": "codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "protected": false
+    },
+    {
+      "name": "codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "protected": false
+    },
+    {
+      "name": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "protected": false
+    },
+    {
+      "name": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "protected": false
+    },
+    {
+      "name": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "protected": false
+    },
+    {
+      "name": "codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "protected": false
+    },
+    {
+      "name": "codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "protected": false
+    },
+    {
+      "name": "docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "protected": false
+    },
+    {
+      "name": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "protected": false
+    },
+    {
+      "name": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "protected": false
+    },
+    {
+      "name": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "protected": false
+    },
+    {
+      "name": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "protected": false
+    },
+    {
+      "name": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "protected": false
+    },
+    {
+      "name": "docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "protected": false
+    },
+    {
+      "name": "docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "protected": false
+    },
+    {
+      "name": "docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "protected": false
+    },
+    {
+      "name": "docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "protected": false
+    },
+    {
+      "name": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "protected": false
+    },
+    {
+      "name": "docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "protected": false
+    },
+    {
+      "name": "docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "protected": false
+    },
+    {
+      "name": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "protected": false
+    },
+    {
+      "name": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "protected": false
+    },
+    {
+      "name": "docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "protected": false
+    },
+    {
+      "name": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "protected": false
+    },
+    {
+      "name": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "protected": false
+    },
+    {
+      "name": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "protected": false
+    },
+    {
+      "name": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "protected": false
+    },
+    {
+      "name": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "protected": false
+    },
+    {
+      "name": "feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "protected": false
+    },
+    {
+      "name": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "protected": false
+    },
+    {
+      "name": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "protected": false
+    },
+    {
+      "name": "feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "protected": false
+    },
+    {
+      "name": "feat/german-context-20261117",
+      "sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "protected": false
+    },
+    {
+      "name": "feat/german-gector-proofing",
+      "sha": "088705198d38811fde869707bc9711e20524d5f0",
+      "protected": false
+    },
+    {
+      "name": "feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "protected": false
+    },
+    {
+      "name": "feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "protected": false
+    },
+    {
+      "name": "feat/odp-chart-data",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "protected": false
+    },
+    {
+      "name": "feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "protected": false
+    },
+    {
+      "name": "feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "protected": false
+    },
+    {
+      "name": "feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "protected": false
+    },
+    {
+      "name": "feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-columns",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-page-fields",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-paragraph-breaks",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-paragraph-shading",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-tab-stops",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-table-borders",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "protected": false
+    },
+    {
+      "name": "feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "protected": false
+    },
+    {
+      "name": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "protected": false
+    },
+    {
+      "name": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "protected": false
+    },
+    {
+      "name": "feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "protected": false
+    },
+    {
+      "name": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "protected": false
+    },
+    {
+      "name": "fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "protected": false
+    },
+    {
+      "name": "fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "protected": false
+    },
+    {
+      "name": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "protected": false
+    },
+    {
+      "name": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "protected": false
+    },
+    {
+      "name": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "protected": false
+    },
+    {
+      "name": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "protected": false
+    },
+    {
+      "name": "integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "protected": false
+    },
+    {
+      "name": "integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "protected": false
+    },
+    {
+      "name": "main",
+      "sha": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "protected": false
+    },
+    {
+      "name": "vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "protected": false
+    },
+    {
+      "name": "vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "protected": false
+    },
+    {
+      "name": "vendor/odf-metadata",
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "protected": false
+    },
+    {
+      "name": "vendor/odp-chart-data",
+      "sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "protected": false
+    },
+    {
+      "name": "vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "protected": false
+    },
+    {
+      "name": "vendor/odp-preset-shapes",
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "protected": false
+    },
+    {
+      "name": "vendor/odp-shape-links",
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "protected": false
+    },
+    {
+      "name": "vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "protected": false
+    },
+    {
+      "name": "vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-columns",
+      "sha": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-fields",
+      "sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-page-fields",
+      "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-paragraph-breaks",
+      "sha": "b990f9041cce78e3768c2ee0190413bf26962431",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-paragraph-shading",
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-tab-stops",
+      "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "protected": false
+    },
+    {
+      "name": "vendor/odt-table-borders",
+      "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "protected": false
+    },
+    {
+      "name": "vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "protected": false
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 128,
+      "title": "Fix visible ODF extraction and ODT story fidelity",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:17:14Z",
+      "merged_at": null,
+      "head_sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "head_ref": "codex/office-fidelity-improvements-20261117-e1978379",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/128"
+    },
+    {
+      "number": 132,
+      "title": "Preserve ODF stories, header media and bookmark ranges",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:17:06Z",
+      "merged_at": "2026-11-17T19:17:06Z",
+      "head_sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "head_ref": "feat/odf-story-fidelity",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "merge_commit_sha": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/132"
+    },
+    {
+      "number": 131,
+      "title": "Document native spaCy/CrispEmbed implementation handoff",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:15:25Z",
+      "merged_at": "2026-11-17T19:15:25Z",
+      "head_sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "head_ref": "docs/native-spacy-handoff-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "merge_commit_sha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/131"
+    },
+    {
+      "number": 114,
+      "title": "Complete German proofing qualification and repair Office integration [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:15:08Z",
+      "merged_at": null,
+      "head_sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "head_ref": "codex/german-morphology-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "merge_commit_sha": "25cb4c2848557d5f43fb0d030391361df5bafb15",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/114"
+    },
+    {
+      "number": 116,
+      "title": "Qualify Office continuation and repair paragraph decoration caching [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:15:04Z",
+      "merged_at": null,
+      "head_sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "head_ref": "codex/office-qualified-resume-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/116"
+    },
+    {
+      "number": 117,
+      "title": "Add optional AOT grammar checking and linguistic analysis [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:15:01Z",
+      "merged_at": null,
+      "head_sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "head_ref": "codex/aot-proofing-analysis-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/117"
+    },
+    {
+      "number": 120,
+      "title": "Run AOT locally without SynanDaemon and improve analysis workflow [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:14:58Z",
+      "merged_at": null,
+      "head_sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "head_ref": "codex/aot-daemon-free-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+      "merge_commit_sha": "29772094616b589d04647e2400eb13744eb0d3e3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/120"
+    },
+    {
+      "number": 123,
+      "title": "Consolidate Office and proofing continuations with local qualification [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:14:55Z",
+      "merged_at": null,
+      "head_sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "head_ref": "codex/office-consolidation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/123"
+    },
+    {
+      "number": 130,
+      "title": "Preserve inline ODT PAGE and NUMPAGES fields",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:11:35Z",
+      "merged_at": "2026-11-17T19:11:34Z",
+      "head_sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "head_ref": "fix/odt-inline-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "merge_commit_sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/130"
+    },
+    {
+      "number": 129,
+      "title": "Merge remaining proofing branches and remove AOT/RML",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:09:24Z",
+      "merged_at": "2026-11-17T19:09:23Z",
+      "head_sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "head_ref": "integrate/aot-then-remove-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "merge_commit_sha": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/129"
+    },
+    {
+      "number": 127,
+      "title": "Write cached ODT table-of-contents entries",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:59:52Z",
+      "merged_at": "2026-11-17T18:59:52Z",
+      "head_sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "head_ref": "feat/odt-toc",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "merge_commit_sha": "162288351af0ad43bb4d869fd2d814eaaa30a930",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/127"
+    },
+    {
+      "number": 126,
+      "title": "Export ODP ellipse and rounded-rectangle shapes",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:38:01Z",
+      "merged_at": "2026-11-17T18:38:00Z",
+      "head_sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "head_ref": "feat/odp-preset-shapes",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "merge_commit_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/126"
+    },
+    {
+      "number": 113,
+      "title": "Reconcile Office, proofing and Zotero continuation [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:26:04Z",
+      "merged_at": null,
+      "head_sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "head_ref": "codex/office-continuation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/113"
+    },
+    {
+      "number": 125,
+      "title": "Merge Office continuation without AOT",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:25:42Z",
+      "merged_at": "2026-11-17T18:25:42Z",
+      "head_sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "head_ref": "integrate/codex-office-continuation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "93cb0773f82b3d41a75bc50705074efcb9d4df78",
+      "merge_commit_sha": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/125"
+    },
+    {
+      "number": 124,
+      "title": "Write ODT field results",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:17:59Z",
+      "merged_at": "2026-11-17T18:17:58Z",
+      "head_sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "head_ref": "feat/odt-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "9626152fced037379a79ef4fec458645e0d8c2ff",
+      "merge_commit_sha": "93cb0773f82b3d41a75bc50705074efcb9d4df78",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/124"
+    },
+    {
+      "number": 111,
+      "title": "Archive local qualification for merged ODF lists and sections",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:12:57Z",
+      "merged_at": "2026-11-17T18:12:57Z",
+      "head_sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "head_ref": "codex/office-fidelity-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "9941c80d09145310efd752b1558356c7bfb97f02",
+      "merge_commit_sha": "9626152fced037379a79ef4fec458645e0d8c2ff",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/111"
+    },
+    {
+      "number": 122,
+      "title": "Write ODT column breaks and keep-together",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:00:25Z",
+      "merged_at": "2026-11-17T18:00:25Z",
+      "head_sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "head_ref": "feat/odt-paragraph-breaks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+      "merge_commit_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/122"
+    },
+    {
+      "number": 121,
+      "title": "Preserve ODP chart data as tables",
+      "state": "closed",
+      "updated_at": "2026-11-17T17:54:19Z",
+      "merged_at": "2026-11-17T17:54:19Z",
+      "head_sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "head_ref": "feat/odp-chart-data",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+      "merge_commit_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/121"
+    },
+    {
+      "number": 119,
+      "title": "Write multi-column ODT sections",
+      "state": "closed",
+      "updated_at": "2026-11-17T17:42:54Z",
+      "merged_at": "2026-11-17T17:42:54Z",
+      "head_sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "head_ref": "feat/odt-columns",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "388bd7451067794b58276d174fe05470aa9994ed",
+      "merge_commit_sha": "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/119"
+    },
+    {
+      "number": 118,
+      "title": "Write ODT paragraph tab stops",
+      "state": "closed",
+      "updated_at": "2026-11-17T17:26:19Z",
+      "merged_at": "2026-11-17T17:26:19Z",
+      "head_sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "head_ref": "feat/odt-tab-stops",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "merge_commit_sha": "cc9b467f69401ca3d689b56e7306e3cebd01df68",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/118"
+    },
+    {
+      "number": 115,
+      "title": "Write ODT table borders and row heights",
+      "state": "closed",
+      "updated_at": "2026-11-17T16:11:55Z",
+      "merged_at": "2026-11-17T16:11:54Z",
+      "head_sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "head_ref": "feat/odt-table-borders",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "merge_commit_sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/115"
+    },
+    {
+      "number": 112,
+      "title": "Write ODT paragraph shading and borders",
+      "state": "closed",
+      "updated_at": "2026-11-17T15:52:04Z",
+      "merged_at": "2026-11-17T15:52:04Z",
+      "head_sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "head_ref": "feat/odt-paragraph-shading",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "9941c80d09145310efd752b1558356c7bfb97f02",
+      "merge_commit_sha": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/112"
+    },
+    {
+      "number": 101,
+      "title": "Preserve ODF lists, sections, text stories and slide geometry",
+      "state": "closed",
+      "updated_at": "2026-11-17T15:48:20Z",
+      "merged_at": "2026-11-17T15:43:05Z",
+      "head_sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "head_ref": "codex/office-fidelity-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "2277634a33b77405f045321ee3ea9ae432066f9a",
+      "merge_commit_sha": "9545fbb500c1fa531201d53a47606d47efa3ac7d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/101"
+    },
+    {
+      "number": 110,
+      "title": "Write ODT page-number fields",
+      "state": "closed",
+      "updated_at": "2026-11-17T15:45:06Z",
+      "merged_at": "2026-11-17T15:45:06Z",
+      "head_sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "head_ref": "feat/odt-page-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "eaebdac8332ec365617152a7aec1fbfe2641532c",
+      "merge_commit_sha": "9941c80d09145310efd752b1558356c7bfb97f02",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/110"
+    },
+    {
+      "number": 105,
+      "title": "Broaden offline German grammar with morphology and optional GECToR",
+      "state": "closed",
+      "updated_at": "2026-11-17T15:44:29Z",
+      "merged_at": "2026-11-17T15:44:28Z",
+      "head_sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "head_ref": "codex/german-morphology-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "merge_commit_sha": "eaebdac8332ec365617152a7aec1fbfe2641532c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/105"
+    },
+    {
+      "number": 109,
+      "title": "Export document metadata in ODT and ODP",
+      "state": "closed",
+      "updated_at": "2026-11-17T15:37:09Z",
+      "merged_at": "2026-11-17T15:37:09Z",
+      "head_sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "head_ref": "feat/odf-metadata",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4af75017a9b7df726c1f80741809f5bccdb70f4c",
+      "merge_commit_sha": "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/109"
+    },
+    {
+      "number": 108,
+      "title": "Write ODP text-shape hyperlinks",
+      "state": "closed",
+      "updated_at": "2026-11-17T15:21:10Z",
+      "merged_at": "2026-11-17T15:21:10Z",
+      "head_sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "head_ref": "feat/odp-shape-links",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "merge_commit_sha": "4af75017a9b7df726c1f80741809f5bccdb70f4c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/108"
+    },
+    {
+      "number": 107,
+      "title": "Write ODT bookmarks and linked ranges",
+      "state": "closed",
+      "updated_at": "2026-11-17T14:52:11Z",
+      "merged_at": "2026-11-17T14:52:11Z",
+      "head_sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "head_ref": "feat/odt-links-bookmarks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "2277634a33b77405f045321ee3ea9ae432066f9a",
+      "merge_commit_sha": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/107"
+    },
+    {
+      "number": 106,
+      "title": "Write nested ODT list levels",
+      "state": "closed",
+      "updated_at": "2026-11-17T14:40:23Z",
+      "merged_at": "2026-11-17T14:40:22Z",
+      "head_sha": "7686ec52876288e6799023fd686af79228236826",
+      "head_ref": "feat/odt-nested-lists",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+      "merge_commit_sha": "2277634a33b77405f045321ee3ea9ae432066f9a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/106"
+    },
+    {
+      "number": 104,
+      "title": "Write ODT section layouts and page breaks",
+      "state": "closed",
+      "updated_at": "2026-11-17T14:18:03Z",
+      "merged_at": "2026-11-17T14:18:03Z",
+      "head_sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "head_ref": "feat/odt-sections2",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "3458c8977cef969a86a07b39734c761ba62e4b40",
+      "merge_commit_sha": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/104"
+    },
+    {
+      "number": 103,
+      "title": "Write ODT comments",
+      "state": "closed",
+      "updated_at": "2026-11-17T13:47:00Z",
+      "merged_at": "2026-11-17T13:47:00Z",
+      "head_sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "head_ref": "feat/odt-comments",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "518fb28b1cff7aeefad446cbf41c2832673c4d33",
+      "merge_commit_sha": "3458c8977cef969a86a07b39734c761ba62e4b40",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/103"
+    },
+    {
+      "number": 102,
+      "title": "Land combined Zotero and ODF source with fresh local qualification [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T09:42:21Z",
+      "merged_at": "2026-11-17T09:35:15Z",
+      "head_sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+      "merge_commit_sha": "518fb28b1cff7aeefad446cbf41c2832673c4d33",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/102"
+    },
+    {
+      "number": 85,
+      "title": "Complete Zotero recovery, incoming sync and local qualification [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T09:36:10Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+      "merge_commit_sha": "0e6951703827257ed6f12844e3e12b3f209f5174",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/85"
+    },
+    {
+      "number": 100,
+      "title": "Write ODT footnotes and endnotes",
+      "state": "closed",
+      "updated_at": "2026-11-17T09:02:36Z",
+      "merged_at": "2026-11-17T09:02:35Z",
+      "head_sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "head_ref": "feat/odt-footnotes",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "b0d6c58b45a7e2cf4d161270b0e8223f05e0d470",
+      "merge_commit_sha": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/100"
+    },
+    {
+      "number": 99,
+      "title": "Record ODP transitions",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:53:52Z",
+      "merged_at": "2026-11-17T08:53:52Z",
+      "head_sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "head_ref": "docs/odp-transitions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "merge_commit_sha": "b0d6c58b45a7e2cf4d161270b0e8223f05e0d470",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/99"
+    },
+    {
+      "number": 98,
+      "title": "Write ODP slide transitions",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:48:42Z",
+      "merged_at": "2026-11-17T08:48:42Z",
+      "head_sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "head_ref": "feat/odp-transitions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "merge_commit_sha": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/98"
+    },
+    {
+      "number": 97,
+      "title": "Write ordered ODT list groups",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:36:14Z",
+      "merged_at": "2026-11-17T08:36:14Z",
+      "head_sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "head_ref": "feat/odt-ordered-lists",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "ee72594686c17e508740e1b446c87593da9ffbda",
+      "merge_commit_sha": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/97"
+    },
+    {
+      "number": 96,
+      "title": "Correct ODT and ODP writer rows",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:27:34Z",
+      "merged_at": "2026-11-17T08:27:34Z",
+      "head_sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "head_ref": "docs/odt-odp-rows",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "f4e6edc8d639e887d09fde07ac9886df03139169",
+      "merge_commit_sha": "ee72594686c17e508740e1b446c87593da9ffbda",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/96"
+    },
+    {
+      "number": 95,
+      "title": "Write ODT list groups",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:24:48Z",
+      "merged_at": "2026-11-17T08:24:48Z",
+      "head_sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "head_ref": "feat/odt-lists",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "8a778f1884b15065ef74f4c20f828d34b2374e06",
+      "merge_commit_sha": "f4e6edc8d639e887d09fde07ac9886df03139169",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/95"
+    },
+    {
+      "number": 91,
+      "title": "Expand German grammar and strengthen English/German proofing",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "head_ref": "codex/proofing-en-de-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+      "merge_commit_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/91"
+    },
+    {
+      "number": 87,
+      "title": "Improve English/German hyphenation, spelling and grammar without GPL components",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "head_ref": "codex/proofing-en-de-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "merge_commit_sha": "ad3c6edce16fd0e02ad43e0d4e176b22d334f21d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/87"
+    },
+    {
+      "number": 72,
+      "title": "Improve text rendering, worksheet conditional formats and ODF fidelity",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "head_ref": "codex/text-rendering-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+      "merge_commit_sha": "000b47625ffa15aa1ed28f840b2acda33cc4f42b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/72"
+    },
+    {
+      "number": 94,
+      "title": "Record the bounded ODP writer",
+      "state": "closed",
+      "updated_at": "2026-11-17T06:17:07Z",
+      "merged_at": "2026-11-17T06:17:05Z",
+      "head_sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "head_ref": "docs/odp-presentation-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5c38679bab0819c8726444a98d4fbf6ab8437b40",
+      "merge_commit_sha": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/94"
+    },
+    {
+      "number": 93,
+      "title": "Add a bounded ODP presentation writer",
+      "state": "closed",
+      "updated_at": "2026-11-17T06:11:15Z",
+      "merged_at": "2026-11-17T06:11:15Z",
+      "head_sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "head_ref": "feat/odp-presentation-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e",
+      "merge_commit_sha": "5c38679bab0819c8726444a98d4fbf6ab8437b40",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/93"
+    },
+    {
+      "number": 92,
+      "title": "Add a bounded ODT document writer",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:41:09Z",
+      "merged_at": "2026-11-16T23:41:09Z",
+      "head_sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "head_ref": "feat/odt-document-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+      "merge_commit_sha": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/92"
+    },
+    {
+      "number": 90,
+      "title": "Record ODT frame dimensions",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:32:48Z",
+      "merged_at": "2026-11-16T23:32:48Z",
+      "head_sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "head_ref": "docs/odt-frame-size",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "50b3694ecd3d23436325e42e11be08e9ccc5fef8",
+      "merge_commit_sha": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/90"
+    },
+    {
+      "number": 89,
+      "title": "Retain conditional-format dxf styles",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:17:46Z",
+      "merged_at": "2026-11-16T23:17:46Z",
+      "head_sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "head_ref": "feat/conditional-dxf-styles",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "8e405a09e7b6a017c95ffc6bd32b49ab613a7a3f",
+      "merge_commit_sha": "281b5d4cd705c1f32d98a741233ebb836d1ef20a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/89"
+    },
+    {
+      "number": 88,
+      "title": "Record ranked and average conditional rules",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:15:43Z",
+      "merged_at": "2026-11-16T23:15:43Z",
+      "head_sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "head_ref": "docs/conditional-top-bottom",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "merge_commit_sha": "8e405a09e7b6a017c95ffc6bd32b49ab613a7a3f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/88"
+    },
+    {
+      "number": 86,
+      "title": "Import and export top, bottom and average conditional rules",
+      "state": "closed",
+      "updated_at": "2026-11-16T20:11:30Z",
+      "merged_at": "2026-11-16T20:11:30Z",
+      "head_sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "head_ref": "feat/conditional-top-bottom",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "63194d8e482892f284eaccb95ce48a8a8132376d",
+      "merge_commit_sha": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/86"
+    },
+    {
+      "number": 84,
+      "title": "Record ODS header and footer round-trips",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:59:59Z",
+      "merged_at": "2026-11-16T19:59:59Z",
+      "head_sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "head_ref": "docs/ods-header-footer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "merge_commit_sha": "63194d8e482892f284eaccb95ce48a8a8132376d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/84"
+    },
+    {
+      "number": 83,
+      "title": "Round-trip ODS header and footer sections",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:57:58Z",
+      "merged_at": "2026-11-16T19:57:58Z",
+      "head_sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "head_ref": "feat/ods-header-footer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "merge_commit_sha": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/83"
+    },
+    {
+      "number": 82,
+      "title": "Finish the ODS page-setup note",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:50:02Z",
+      "merged_at": "2026-11-16T19:50:02Z",
+      "head_sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "head_ref": "docs/page-setup-fix",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa",
+      "merge_commit_sha": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/82"
+    },
+    {
+      "number": 81,
+      "title": "Record worksheet page setup",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:49:42Z",
+      "merged_at": "2026-11-16T19:49:42Z",
+      "head_sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "head_ref": "docs/sheet-page-setup",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "36db2a6cbc0f028dd15b558914045f995aeae949",
+      "merge_commit_sha": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/81"
+    },
+    {
+      "number": 80,
+      "title": "Model and round-trip worksheet page setup",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:47:41Z",
+      "merged_at": "2026-11-16T19:47:41Z",
+      "head_sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "head_ref": "feat/sheet-page-setup",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "merge_commit_sha": "36db2a6cbc0f028dd15b558914045f995aeae949",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/80"
+    },
+    {
+      "number": 79,
+      "title": "Record ODS row groups",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:25:30Z",
+      "merged_at": "2026-11-16T19:25:30Z",
+      "head_sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "head_ref": "docs/ods-row-groups",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "merge_commit_sha": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/79"
+    },
+    {
+      "number": 78,
+      "title": "Write ODS row outline groups and off-extent geometry",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:23:13Z",
+      "merged_at": "2026-11-16T19:23:12Z",
+      "head_sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "head_ref": "feat/ods-row-groups",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "merge_commit_sha": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/78"
+    },
+    {
+      "number": 77,
+      "title": "Record ODS filter predicates",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:21:01Z",
+      "merged_at": "2026-11-16T19:21:01Z",
+      "head_sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "head_ref": "docs/ods-filter-predicates",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "merge_commit_sha": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/77"
+    },
+    {
+      "number": 76,
+      "title": "Write ODS autofilter predicates",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:17:10Z",
+      "merged_at": "2026-11-16T19:17:09Z",
+      "head_sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "head_ref": "feat/ods-filter-conditions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "merge_commit_sha": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/76"
+    },
+    {
+      "number": 75,
+      "title": "Record the host ODT picture registry",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:15:03Z",
+      "merged_at": "2026-11-16T19:15:03Z",
+      "head_sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "head_ref": "docs/odt-image-registry",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "merge_commit_sha": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/75"
+    },
+    {
+      "number": 74,
+      "title": "Describe the current Office and ODF capabilities",
+      "state": "closed",
+      "updated_at": "2026-11-16T18:52:45Z",
+      "merged_at": "2026-11-16T18:52:45Z",
+      "head_sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "head_ref": "docs/current-office-capabilities",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "aee79048dc74d2fe413ae0e57cca9189c7202a0f",
+      "merge_commit_sha": "ba79d47028d70b4124ced59cb9d34583ff0a9514",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/74"
+    },
+    {
+      "number": 63,
+      "title": "Improve Zotero source identity, dialog scaling, and session backoff",
+      "state": "closed",
+      "updated_at": "2026-11-16T18:48:29Z",
+      "merged_at": "2026-11-16T18:48:29Z",
+      "head_sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "head_ref": "codex/zotero-capabilities-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "merge_commit_sha": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/63"
+    },
+    {
+      "number": 73,
+      "title": "Define the ODS writer default page layout",
+      "state": "closed",
+      "updated_at": "2026-11-16T18:30:45Z",
+      "merged_at": "2026-11-16T18:30:45Z",
+      "head_sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "head_ref": "fix/ods-writer-page-layout",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "ed5facb4bd503667749ed3d13378da6a1b34738b",
+      "merge_commit_sha": "c108be5f5033af9c0d07123e1650a16a361dd3e0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/73"
+    },
+    {
+      "number": 71,
+      "title": "Record ODS writer picture support",
+      "state": "closed",
+      "updated_at": "2026-11-16T15:58:08Z",
+      "merged_at": "2026-11-16T15:58:08Z",
+      "head_sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "head_ref": "docs/ods-writer-images",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "8ddbb76580fc914f1bb60b8cda76ee7f71caacdf",
+      "merge_commit_sha": "ed5facb4bd503667749ed3d13378da6a1b34738b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/71"
+    },
+    {
+      "number": 70,
+      "title": "Write worksheet pictures into ODS packages",
+      "state": "closed",
+      "updated_at": "2026-11-16T15:55:20Z",
+      "merged_at": "2026-11-16T15:55:20Z",
+      "head_sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "head_ref": "feat/ods-writer-images",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "b6d13f6546e1f240b2d4c5940fbf66bcf9ca53f2",
+      "merge_commit_sha": "8ddbb76580fc914f1bb60b8cda76ee7f71caacdf",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/70"
+    },
+    {
+      "number": 69,
+      "title": "Write ODS conditional formats and validations",
+      "state": "closed",
+      "updated_at": "2026-11-16T15:49:13Z",
+      "merged_at": "2026-11-16T15:49:13Z",
+      "head_sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "head_ref": "feat/ods-writer-conditional",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "91f82b8007e4555b855d807a9d9785914e73b650",
+      "merge_commit_sha": "b6d13f6546e1f240b2d4c5940fbf66bcf9ca53f2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/69"
+    },
+    {
+      "number": 68,
+      "title": "Extend the ODS writer to metadata and number formats",
+      "state": "closed",
+      "updated_at": "2026-11-16T15:16:47Z",
+      "merged_at": "2026-11-16T15:16:47Z",
+      "head_sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "head_ref": "feat/ods-writer-metadata",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "3398d53198263d3b76189fabb25b9d53ddf934db",
+      "merge_commit_sha": "a042466eaf8cc83db2b7b6a5123d67a1b58f9304",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/68"
+    },
+    {
+      "number": 67,
+      "title": "Add a bounded ODS workbook writer",
+      "state": "closed",
+      "updated_at": "2026-11-16T15:11:42Z",
+      "merged_at": "2026-11-16T15:11:41Z",
+      "head_sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "head_ref": "feat/ods-writer",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "ea88b25f0242ecb0145fea96bf2f8471dba93cad",
+      "merge_commit_sha": "3398d53198263d3b76189fabb25b9d53ddf934db",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/67"
+    },
+    {
+      "number": 66,
+      "title": "Record ODS filter operator progress",
+      "state": "closed",
+      "updated_at": "2026-11-16T14:16:19Z",
+      "merged_at": "2026-11-16T14:16:19Z",
+      "head_sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "head_ref": "docs/filter-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5d89092e779d2cbf776f21f2f7682f7416c0d25f",
+      "merge_commit_sha": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/66"
+    },
+    {
+      "number": 65,
+      "title": "Support ODS filter comparison operators",
+      "state": "closed",
+      "updated_at": "2026-11-16T14:13:30Z",
+      "merged_at": "2026-11-16T14:13:30Z",
+      "head_sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "head_ref": "feat/ods-filter-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "merge_commit_sha": "5d89092e779d2cbf776f21f2f7682f7416c0d25f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/65"
+    },
+    {
+      "number": 64,
+      "title": "Close ODS metadata and validation backlog",
+      "state": "closed",
+      "updated_at": "2026-11-16T13:52:50Z",
+      "merged_at": "2026-11-16T13:52:49Z",
+      "head_sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "head_ref": "docs/filters-closed",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+      "merge_commit_sha": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/64"
+    },
+    {
+      "number": 62,
+      "title": "Preserve ODS filter predicates",
+      "state": "closed",
+      "updated_at": "2026-11-16T13:37:18Z",
+      "merged_at": "2026-11-16T13:37:17Z",
+      "head_sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "head_ref": "feat/ods-filter-predicates",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "3624a9702054f6f64f7132b374bbcf827bfcf232",
+      "merge_commit_sha": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/62"
+    },
+    {
+      "number": 61,
+      "title": "Record ODS metadata and hyperlink progress",
+      "state": "closed",
+      "updated_at": "2026-11-16T13:35:44Z",
+      "merged_at": "2026-11-16T13:35:44Z",
+      "head_sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "head_ref": "docs/metadata-complete",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "0969b2203a6758116bf42b53d7348898cc79d7ea",
+      "merge_commit_sha": "3624a9702054f6f64f7132b374bbcf827bfcf232",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/61"
+    },
+    {
+      "number": 60,
+      "title": "Preserve ODS outline groups",
+      "state": "closed",
+      "updated_at": "2026-11-16T13:32:41Z",
+      "merged_at": "2026-11-16T13:32:40Z",
+      "head_sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "head_ref": "feat/ods-outline",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "merge_commit_sha": "0969b2203a6758116bf42b53d7348898cc79d7ea",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/60"
+    },
+    {
+      "number": 59,
+      "title": "Preserve ODS cell hyperlinks",
+      "state": "closed",
+      "updated_at": "2026-11-16T13:26:38Z",
+      "merged_at": "2026-11-16T13:26:38Z",
+      "head_sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "head_ref": "feat/ods-hyperlinks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "merge_commit_sha": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/59"
+    },
+    {
+      "number": 56,
+      "title": "Optimize Zotero metadata refresh and native citation scaling",
+      "state": "closed",
+      "updated_at": "2026-11-16T11:33:19Z",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "head_sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "head_ref": "codex/zotero-optimization-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884",
+      "merge_commit_sha": "53f35a30de0f354967aca7ce0dfdb0bd2c6d1d3f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/56"
+    },
+    {
+      "number": 50,
+      "title": "Improve Zotero catalog insertion, rich citations and note numbering [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-16T11:33:19Z",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "head_sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "head_ref": "codex/zotero-support-20261116",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "dc5f93b673e6087cccc6d66b33dfbfd099668f77",
+      "merge_commit_sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/50"
+    },
+    {
+      "number": 58,
+      "title": "Import ODS named expressions",
+      "state": "closed",
+      "updated_at": "2026-11-16T10:37:36Z",
+      "merged_at": "2026-11-16T10:37:36Z",
+      "head_sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "head_ref": "feat/ods-named-expressions",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "91d574acefb45f326a82b9e416719213050068cc",
+      "merge_commit_sha": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/58"
+    },
+    {
+      "number": 57,
+      "title": "Preserve ODS worksheet tab colours",
+      "state": "closed",
+      "updated_at": "2026-11-16T10:30:10Z",
+      "merged_at": "2026-11-16T10:30:10Z",
+      "head_sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "head_ref": "feat/ods-tab-color",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6c2e3d173b8ed3a84b26792105a061bd9dd57c35",
+      "merge_commit_sha": "91d574acefb45f326a82b9e416719213050068cc",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/57"
+    },
+    {
+      "number": 55,
+      "title": "Close the modeled ODS validation backlog",
+      "state": "closed",
+      "updated_at": "2026-11-16T09:17:36Z",
+      "merged_at": "2026-11-16T09:17:36Z",
+      "head_sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "head_ref": "docs/validation-complete",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "73eee5d925998e94643be4f3988cc46e1f559e63",
+      "merge_commit_sha": "6c2e3d173b8ed3a84b26792105a061bd9dd57c35",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/55"
+    },
+    {
+      "number": 54,
+      "title": "Import ODS validation prompts and error styles",
+      "state": "closed",
+      "updated_at": "2026-11-16T09:10:51Z",
+      "merged_at": "2026-11-16T09:10:51Z",
+      "head_sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "head_ref": "feat/ods-validation-messages",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "adffad55e28479bcae20a87a95fb4e96e25cd96c",
+      "merge_commit_sha": "73eee5d925998e94643be4f3988cc46e1f559e63",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/54"
+    },
+    {
+      "number": 53,
+      "title": "Import ODS custom formula validations",
+      "state": "closed",
+      "updated_at": "2026-11-16T09:04:41Z",
+      "merged_at": "2026-11-16T09:04:41Z",
+      "head_sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "head_ref": "feat/ods-custom-validation",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "bd130094b4d1bc666aa9b166e6ed7fb1b447aeb3",
+      "merge_commit_sha": "adffad55e28479bcae20a87a95fb4e96e25cd96c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/53"
+    },
+    {
+      "number": 52,
+      "title": "Record numeric validation progress",
+      "state": "closed",
+      "updated_at": "2026-11-16T08:41:03Z",
+      "merged_at": "2026-11-16T08:41:03Z",
+      "head_sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "head_ref": "docs/validation-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "d9508c94cccc8e638ca6ae5badfcb2ef50e71259",
+      "merge_commit_sha": "bd130094b4d1bc666aa9b166e6ed7fb1b447aeb3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/52"
+    },
+    {
+      "number": 51,
+      "title": "Import ODS numeric, date and length validations",
+      "state": "closed",
+      "updated_at": "2026-11-16T08:32:58Z",
+      "merged_at": "2026-11-16T08:32:57Z",
+      "head_sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "head_ref": "feat/ods-validation-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "dc5f93b673e6087cccc6d66b33dfbfd099668f77",
+      "merge_commit_sha": "d9508c94cccc8e638ca6ae5badfcb2ef50e71259",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/51"
+    },
+    {
+      "number": 49,
+      "title": "Record ODS metadata and validation progress",
+      "state": "closed",
+      "updated_at": "2026-11-15T23:08:16Z",
+      "merged_at": "2026-11-15T23:08:16Z",
+      "head_sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "head_ref": "docs/metadata-closed",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "80be2b337a80af47b9e50de5758e31ffbd6ac99d",
+      "merge_commit_sha": "7259c27bb69b3b3f97fd50e52e2d70fffe7d721f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/49"
+    },
+    {
+      "number": 48,
+      "title": "Import ODS workbook metadata",
+      "state": "closed",
+      "updated_at": "2026-11-15T23:02:26Z",
+      "merged_at": "2026-11-15T23:02:25Z",
+      "head_sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "head_ref": "feat/ods-metadata",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "dbad8f1ca289eda1c4677c282e845df01ec754f6",
+      "merge_commit_sha": "d0975da6eadd10e706b5bcf158bd663e4072a226",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/48"
+    },
+    {
+      "number": 47,
+      "title": "Add native Zotero citation tools and document-wide style refresh",
+      "state": "closed",
+      "updated_at": "2026-11-15T22:52:54Z",
+      "merged_at": "2026-11-15T22:52:54Z",
+      "head_sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "head_ref": "codex/zotero-support-20261115",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "68d5bd8a34e881dcd4c6077493fcde55bbfb0064",
+      "merge_commit_sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/47"
+    },
+    {
+      "number": 46,
+      "title": "Link the remaining office-format backlog",
+      "state": "closed",
+      "updated_at": "2026-11-15T22:24:09Z",
+      "merged_at": "2026-11-15T22:24:09Z",
+      "head_sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "head_ref": "docs/readme-remaining-gaps",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "d5db3b28384c317809f9926b1fec1653741380ae",
+      "merge_commit_sha": "b4b00a883348ad9864a4433fe4edbfad4958523a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/46"
+    },
+    {
+      "number": 45,
+      "title": "Document remaining Office engine work and update changelogs",
+      "state": "closed",
+      "updated_at": "2026-11-15T22:22:35Z",
+      "merged_at": "2026-11-15T22:22:34Z",
+      "head_sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "head_ref": "docs/remaining-gaps",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "33d36cd0e111fbfdd152c49d54532286fe8e8d2d",
+      "merge_commit_sha": "d5db3b28384c317809f9926b1fec1653741380ae",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/45"
+    },
+    {
+      "number": 44,
+      "title": "Split content controls across multiple document sections",
+      "state": "closed",
+      "updated_at": "2026-11-15T22:18:55Z",
+      "merged_at": "2026-11-15T22:18:54Z",
+      "head_sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "head_ref": "fix/sdt-multi-section-control",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "7f005ef2592d2c1691762c6f0a3826302fedbdbc",
+      "merge_commit_sha": "33d36cd0e111fbfdd152c49d54532286fe8e8d2d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/44"
+    },
+    {
+      "number": 40,
+      "title": "Add Zotero online and desktop libraries with DOCX citation fields",
+      "state": "closed",
+      "updated_at": "2026-11-15T22:12:58Z",
+      "merged_at": "2026-11-15T22:12:58Z",
+      "head_sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "head_ref": "codex/zotero-support-20261115",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "merge_commit_sha": "3304f42ee17b52659a82d5714dcc730184050960",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/40"
+    },
+    {
+      "number": 43,
+      "title": "Support begins-with and ends-with conditions",
+      "state": "closed",
+      "updated_at": "2026-11-15T22:05:48Z",
+      "merged_at": "2026-11-15T22:05:48Z",
+      "head_sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "head_ref": "feat/conditional-affix",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "merge_commit_sha": "b01455fa415f9411411d06c7c2ab66947630af1a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/43"
+    },
+    {
+      "number": 42,
+      "title": "Lift a trailing section break out of a body content control",
+      "state": "closed",
+      "updated_at": "2026-11-15T20:24:56Z",
+      "merged_at": "2026-11-15T20:24:56Z",
+      "head_sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "head_ref": "fix/sdt-trailing-section-break",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "42b7f1e767454a962ef3a21342eac335bbf925db",
+      "merge_commit_sha": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/42"
+    },
+    {
+      "number": 41,
+      "title": "Support between conditional rules",
+      "state": "closed",
+      "updated_at": "2026-11-15T20:23:41Z",
+      "merged_at": "2026-11-15T20:23:40Z",
+      "head_sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "head_ref": "feat/conditional-between",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "c210315bee537776b556ae9885e907483b6df7bd",
+      "merge_commit_sha": "42b7f1e767454a962ef3a21342eac335bbf925db",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/41"
+    },
+    {
+      "number": 39,
+      "title": "Import ODS list validations",
+      "state": "closed",
+      "updated_at": "2026-11-15T19:18:35Z",
+      "merged_at": "2026-11-15T19:18:34Z",
+      "head_sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "head_ref": "feat/ods-validations",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "9f1efe0758f5e67f10cec05883cc587a3b08b14c",
+      "merge_commit_sha": "c210315bee537776b556ae9885e907483b6df7bd",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/39"
+    },
+    {
+      "number": 38,
+      "title": "Import ODS contains-text and duplicate rules",
+      "state": "closed",
+      "updated_at": "2026-11-15T19:13:56Z",
+      "merged_at": "2026-11-15T19:13:56Z",
+      "head_sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "head_ref": "feat/conditional-text",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "85f5109c8067133bc30942d71b0be6ea9d9bf68c",
+      "merge_commit_sha": "9f1efe0758f5e67f10cec05883cc587a3b08b14c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/38"
+    },
+    {
+      "number": 37,
+      "title": "Emit conditional dxf styles for generated rules",
+      "state": "closed",
+      "updated_at": "2026-11-15T19:10:36Z",
+      "merged_at": "2026-11-15T19:10:36Z",
+      "head_sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "head_ref": "feat/conditional-dxf",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+      "merge_commit_sha": "85f5109c8067133bc30942d71b0be6ea9d9bf68c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/37"
+    },
+    {
+      "number": 36,
+      "title": "Support the full numeric conditional comparators",
+      "state": "closed",
+      "updated_at": "2026-11-15T19:01:57Z",
+      "merged_at": "2026-11-15T19:01:57Z",
+      "head_sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "head_ref": "feat/conditional-operators",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "1d7fee380def59d5a766cab106e519952d5c3292",
+      "merge_commit_sha": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/36"
+    },
+    {
+      "number": 35,
+      "title": "Import ODS conditional formats and paint matches",
+      "state": "closed",
+      "updated_at": "2026-11-15T18:57:27Z",
+      "merged_at": "2026-11-15T18:57:27Z",
+      "head_sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "head_ref": "feat/ods-conditional",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "7b3b0bbba3a8530678d77325bbec1091f6aae9c9",
+      "merge_commit_sha": "1d7fee380def59d5a766cab106e519952d5c3292",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/35"
+    },
+    {
+      "number": 34,
+      "title": "Accept UTF-16 custom XML while probing bibliography ownership",
+      "state": "closed",
+      "updated_at": "2026-11-15T18:49:26Z",
+      "merged_at": "2026-11-15T18:49:26Z",
+      "head_sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "head_ref": "fix/utf16-custom-xml",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa",
+      "merge_commit_sha": "7b3b0bbba3a8530678d77325bbec1091f6aae9c9",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/34"
+    },
+    {
+      "number": 33,
+      "title": "Preserve hidden ODS worksheets",
+      "state": "closed",
+      "updated_at": "2026-11-15T18:39:22Z",
+      "merged_at": "2026-11-15T18:39:22Z",
+      "head_sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "head_ref": "feat/sheet-hidden-sheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "49769a21ba26cf2866ee26c66938d3ce8d5ad3d9",
+      "merge_commit_sha": "3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/33"
+    },
+    {
+      "number": 32,
+      "title": "Preserve hidden ODS rows and columns",
+      "state": "closed",
+      "updated_at": "2026-11-15T16:51:32Z",
+      "merged_at": "2026-11-15T16:51:32Z",
+      "head_sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "head_ref": "feat/sheet-hidden-state",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "2f47132206a88c6dd0f724a665fb6b7158cf3a57",
+      "merge_commit_sha": "a6c9d7efc3b986baac52d1237deb5f50a162db3a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/32"
+    },
+    {
+      "number": 31,
+      "title": "Honor nameless ODS default styles and geometry",
+      "state": "closed",
+      "updated_at": "2026-11-15T16:45:53Z",
+      "merged_at": "2026-11-15T16:45:53Z",
+      "head_sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "head_ref": "feat/ods-default-geometry",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "39761edb40a140fc488b3bdb0ddc36dbee557a93",
+      "merge_commit_sha": "2f47132206a88c6dd0f724a665fb6b7158cf3a57",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/31"
+    },
+    {
+      "number": 30,
+      "title": "Apply ODS document default cell styles",
+      "state": "closed",
+      "updated_at": "2026-11-15T16:25:32Z",
+      "merged_at": "2026-11-15T16:25:32Z",
+      "head_sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "head_ref": "feat/ods-default-style",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5532d598499eceac0a75098fda3d54bfd9515ed0",
+      "merge_commit_sha": "39761edb40a140fc488b3bdb0ddc36dbee557a93",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/30"
+    },
+    {
+      "number": 28,
+      "title": "Prove edited XLSM/XLTX saves preserve package type",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:45Z",
+      "merged_at": "2026-11-15T14:17:35Z",
+      "head_sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "head_ref": "test/xlsm-preservation",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6d7c696e2ae9095b395fba9f3bc22ec1c1139ed6",
+      "merge_commit_sha": "93b138d48fe12e1a49c9587e228b792c4e49f6f5",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/28"
+    },
+    {
+      "number": 25,
+      "title": "Accept OOXML step vocabulary, keep all Word underline styles, continue formatting after a split",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "head_sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "head_ref": "fix/word-steps-vocabulary",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "f90bc0e20e3fa8e4af72a06e8d941faa3677db6d",
+      "merge_commit_sha": "25240781e0fdac36bc9d1bf75d6d3e4bc6c3c279",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/25"
+    },
+    {
+      "number": 22,
+      "title": "Keep inline pictures inside their line of text",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "merged_at": "2026-11-15T07:11:20Z",
+      "head_sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "head_ref": "fix/word-inline-pictures",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "eae58542dffd73cf30e97cc60a59a5474656d676",
+      "merge_commit_sha": "62af42d0f241bfd78559124cbf78c5143faa50be",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/22"
+    },
+    {
+      "number": 21,
+      "title": "Apply headings the way Word does; shade theme colours in HSL",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "merged_at": "2026-11-15T06:24:52Z",
+      "head_sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "head_ref": "fix/word-heading-like-word",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "29ae021647d36a98153ca05d26525e1c4baffab1",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/21"
+    },
+    {
+      "number": 20,
+      "title": "Keep shapes without text free of empty text boxes on save",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:44Z",
+      "merged_at": "2026-11-15T06:24:51Z",
+      "head_sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "head_ref": "fix/word-shape-no-textbox",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "61f30f303727a285d1cb87bfdd4e3fa9521fc906",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/20"
+    },
+    {
+      "number": 27,
+      "title": "Fix the reviewed Word golden checks on Linux",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "merged_at": "2026-11-15T12:23:53Z",
+      "head_sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "head_ref": "fix/linux-goldens",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "efa6d911fb5c670ff551f480884c3e7d44a9188c",
+      "merge_commit_sha": "6d7c696e2ae9095b395fba9f3bc22ec1c1139ed6",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/27"
+    },
+    {
+      "number": 26,
+      "title": "Declare archive for the ODS fixture builder",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "merged_at": "2026-11-15T11:41:44Z",
+      "head_sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "head_ref": "fix/odf-legacy-spreadsheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "89574c359034582e0db1a9ba88a3308b6b36e045",
+      "merge_commit_sha": "56ed6c8876d0a8cc8bad1f1d890325237f6cd32d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/26"
+    },
+    {
+      "number": 19,
+      "title": "Word-like text selection in the Word editor",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "head_sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "head_ref": "feat/word-like-selection",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "4f7d0e0064cb430cc14e3daca663cffade777938",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/19"
+    },
+    {
+      "number": 18,
+      "title": "Preserve cell drafts during worksheet and find navigation",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:59:43Z",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "head_sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "head_ref": "codex/office-recovery-20261115",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "5099d3063046d53815a64ee6c06f5e6a75aeda29",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/18"
+    },
+    {
+      "number": 29,
+      "title": "Carry ODS pictures into worksheet drawings",
+      "state": "closed",
+      "updated_at": "2026-11-15T14:12:12Z",
+      "merged_at": "2026-11-15T14:12:12Z",
+      "head_sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "head_ref": "feat/ods-images",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "df533bebc6b1a96341a79e9c1a03fc5a90985a28",
+      "merge_commit_sha": "04f7a8aa696e9e1cc622e325fba1353910d09243",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/29"
+    },
+    {
+      "number": 24,
+      "title": "Finish ODS fidelity: geometry and date formats",
+      "state": "closed",
+      "updated_at": "2026-11-15T11:30:45Z",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "head_sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "head_ref": "fix/odf-legacy-spreadsheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "f90bc0e20e3fa8e4af72a06e8d941faa3677db6d",
+      "merge_commit_sha": "13a30542462353a74803af87a1ace7f0103d9ffb",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/24"
+    },
+    {
+      "number": 23,
+      "title": "Read OpenDocument spreadsheets into the workbook model",
+      "state": "closed",
+      "updated_at": "2026-11-15T08:57:54Z",
+      "merged_at": "2026-11-15T08:57:53Z",
+      "head_sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "head_ref": "fix/odf-legacy-spreadsheets",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "59c7c071cb26171abcf9041fcacc0a7570de8593",
+      "merge_commit_sha": "793c64ac4fc2e896706aa65c13eaa70bd27f7267",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/23"
+    },
+    {
+      "number": 16,
+      "title": "Import legacy .xls workbooks and harden spreadsheet saves",
+      "state": "closed",
+      "updated_at": "2026-11-15T08:51:16Z",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "head_sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "head_ref": "fix/excel-legacy-import",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "865d93fe9183af60abfaac222e3586b7c5dd6097",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/16"
+    },
+    {
+      "number": 15,
+      "title": "Make tracked-change import and save linear instead of quadratic",
+      "state": "closed",
+      "updated_at": "2026-11-15T06:20:56Z",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "head_sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "head_ref": "fix/word-revision-quadratic",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "59860a37c83fd5dedf71d8dac0f4f2f88bed5f40",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/15"
+    },
+    {
+      "number": 17,
+      "title": "Keep unmodelable header/footer parts verbatim instead of refusing documents",
+      "state": "closed",
+      "updated_at": "2026-11-15T06:20:55Z",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "head_sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "head_ref": "fix/word-header-controls",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "af0b1bd2b8613681ab59aa2c42b4858e30531338",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/17"
+    },
+    {
+      "number": 14,
+      "title": "Keep complex fields as spans instead of wrapping whole paragraphs",
+      "state": "closed",
+      "updated_at": "2026-11-15T06:20:55Z",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "head_sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "head_ref": "fix/word-field-loss",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "5133ce0343cb7c9456f852a4e760c771294ae6de",
+      "merge_commit_sha": "79b4b5b033aa1f9e4204404f07074c0f5e44fe28",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/14"
+    },
+    {
+      "number": 13,
+      "title": "Preserve legacy VML content (w:pict) instead of dropping it on import",
+      "state": "closed",
+      "updated_at": "2026-11-15T06:20:55Z",
+      "merged_at": "2026-11-14T22:11:16Z",
+      "head_sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "head_ref": "fix/word-preserve-vml-pict",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "b99995a089fde9396dd3553f6bfbcf38ce911bf1",
+      "merge_commit_sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/13"
+    },
+    {
+      "number": 12,
+      "title": "test(office): preserve combined sorting and worksheet history regression",
+      "state": "closed",
+      "updated_at": "2026-11-14T22:37:41Z",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "head_sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "head_ref": "integration/crispcloud-storage-reconcile-20261114",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "c1678ade3b5b9fd13088e94d752fd17fd14eb3e8",
+      "merge_commit_sha": "ed41dd8e9e1ad6f129ab6bade6063bc8d37f8024",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/12"
+    },
+    {
+      "number": 10,
+      "title": "Stop text boxes anchored in one paragraph from nesting exponentially",
+      "state": "closed",
+      "updated_at": "2026-11-14T22:37:41Z",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "head_sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "head_ref": "fix/word-textbox-nesting",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+      "merge_commit_sha": "02398e26ba0e2a93a9153be6ba777bd9c16d324c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/10"
+    },
+    {
+      "number": 9,
+      "title": "Keep symbol-font characters (w:sym) through import and save",
+      "state": "closed",
+      "updated_at": "2026-11-14T22:37:41Z",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "head_sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "head_ref": "fix/word-sym-chars",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+      "merge_commit_sha": "8085366ec916af6ad97015b4ef47fdc1fc340262",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/9"
+    },
+    {
+      "number": 11,
+      "title": "Reuse identical media payloads instead of storing a copy on every save",
+      "state": "closed",
+      "updated_at": "2026-11-14T22:37:40Z",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "head_sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "head_ref": "fix/word-media-dedupe",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "c1678ade3b5b9fd13088e94d752fd17fd14eb3e8",
+      "merge_commit_sha": "7416d759956618ea1e6267a5c43392c1c8952659",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/11"
+    },
+    {
+      "number": 8,
+      "title": "Import real-world Word packages the importer used to refuse (17.3% → 3.3%)",
+      "state": "closed",
+      "updated_at": "2026-11-14T22:37:40Z",
+      "merged_at": "2026-11-14T20:19:59Z",
+      "head_sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "head_ref": "fix/word-block-bookmarks",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4bdb70c9d86fd1ee09ed99d3114b178e965cfa01",
+      "merge_commit_sha": "8abb9a92b9e14105f5af749cbc3ca864ead3ba06",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/8"
+    },
+    {
+      "number": 7,
+      "title": "Resolve Office fonts consistently across layout and PDF export",
+      "state": "closed",
+      "updated_at": "2026-11-13T21:24:42Z",
+      "merged_at": "2026-11-13T21:16:46Z",
+      "head_sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "head_ref": "feature/document-fonts-20261113",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "475033efcdc979256ae0e62bd9fa0828b28ee1a6",
+      "merge_commit_sha": "c7e7fe4c1e636974da0f997260763f50d4261062",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/7"
+    },
+    {
+      "number": 6,
+      "title": "Pin canonical parser d14f03f and record complete workspace validation",
+      "state": "closed",
+      "updated_at": "2026-11-13T00:08:18Z",
+      "merged_at": "2026-11-12T20:58:32Z",
+      "head_sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "head_ref": "feature/legacy-doc-fidelity-continuation-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "e3b81f56e95e9ebc9f1802fb31fc8d8aa756bb08",
+      "merge_commit_sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/6"
+    },
+    {
+      "number": 4,
+      "title": "Update vendored legacy DOC parser fidelity checkpoint",
+      "state": "closed",
+      "updated_at": "2026-11-12T20:12:31Z",
+      "merged_at": "2026-11-12T18:25:32Z",
+      "head_sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "head_ref": "feature/legacy-doc-fidelity-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "e2b00bae0600e7e384ca633a7364e8dcd2e95c58",
+      "merge_commit_sha": "9a0a0268aa57f0d61b4112e101968e29a3a5f077",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/4"
+    },
+    {
+      "number": 5,
+      "title": "Continue legacy DOC fidelity integration from current main",
+      "state": "closed",
+      "updated_at": "2026-11-12T20:10:12Z",
+      "merged_at": "2026-11-12T20:10:12Z",
+      "head_sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "head_ref": "feature/legacy-doc-fidelity-continuation-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "74960237cea7c560f3db7ee96ca37641c4438567",
+      "merge_commit_sha": "f6c693aa85b440418f217e950a613063eb8e1c09",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/5"
+    },
+    {
+      "number": 2,
+      "title": "Preserve spreadsheet font metrics and add Word grid and tab controls",
+      "state": "closed",
+      "updated_at": "2026-11-12T18:16:24Z",
+      "merged_at": "2026-11-12T15:25:55Z",
+      "head_sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "head_ref": "feature/office-fidelity-followup-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "merge_commit_sha": "27747074c30e88d7955fef0bb841a390af01da33",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/2"
+    },
+    {
+      "number": 3,
+      "title": "Expand shared Office fidelity and recover interrupted workflows",
+      "state": "closed",
+      "updated_at": "2026-11-12T18:16:22Z",
+      "merged_at": null,
+      "head_sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "head_ref": "feature/office-fidelity-expansion-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "feature/office-fidelity-followup-20261112",
+      "base_sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "merge_commit_sha": "177e080c91842b24bf704baa5d1025337cc249c0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/3"
+    },
+    {
+      "number": 1,
+      "title": "Preserve worksheet cache types and add bounded legacy Word conversion",
+      "state": "closed",
+      "updated_at": "2026-11-12T15:28:23Z",
+      "merged_at": "2026-11-12T11:37:16Z",
+      "head_sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "head_ref": "feature/office-fidelity-gap-closure-20261112",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "50f16f8707cb7a6d8d72378174bb84b0b13bd1cf",
+      "merge_commit_sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/1"
+    }
+  ],
+  "changed_or_added_branches": [
+    {
+      "name": "codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "protected": false,
+      "previous_sha": "9297f077d68256042afd520d55d72f5997e746b3"
+    },
+    {
+      "name": "codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "protected": false,
+      "previous_sha": "04f66dbc01c33402fb719913d067a7e9fdaa8447"
+    },
+    {
+      "name": "codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "protected": false,
+      "previous_sha": "84283211709fba069564c181476f577c34bd2d64"
+    },
+    {
+      "name": "codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "codex/office-qualified-resume-20261117",
+      "sha": "07926acb46f0d451491046066a35dd6c1227b5a1",
+      "protected": false,
+      "previous_sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c"
+    },
+    {
+      "name": "docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "feat/german-context-20261117",
+      "sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "feat/german-gector-proofing",
+      "sha": "088705198d38811fde869707bc9711e20524d5f0",
+      "protected": false,
+      "previous_sha": "72f41442596023e936c371f35bc75cc664770a85"
+    },
+    {
+      "name": "feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "main",
+      "sha": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "protected": false,
+      "previous_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62"
+    },
+    {
+      "name": "vendor/odp-preset-shapes",
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "protected": false,
+      "previous_sha": null
+    },
+    {
+      "name": "vendor/odt-fields",
+      "sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+      "protected": false,
+      "previous_sha": null
+    }
+  ],
+  "removed_branches": [],
+  "new_prs": [
+    {
+      "number": 128,
+      "title": "Fix visible ODF extraction and ODT story fidelity",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:17:14Z",
+      "merged_at": null,
+      "head_sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "head_ref": "codex/office-fidelity-improvements-20261117-e1978379",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/128"
+    },
+    {
+      "number": 132,
+      "title": "Preserve ODF stories, header media and bookmark ranges",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:17:06Z",
+      "merged_at": "2026-11-17T19:17:06Z",
+      "head_sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "head_ref": "feat/odf-story-fidelity",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "merge_commit_sha": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/132"
+    },
+    {
+      "number": 131,
+      "title": "Document native spaCy/CrispEmbed implementation handoff",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:15:25Z",
+      "merged_at": "2026-11-17T19:15:25Z",
+      "head_sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "head_ref": "docs/native-spacy-handoff-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "merge_commit_sha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/131"
+    },
+    {
+      "number": 123,
+      "title": "Consolidate Office and proofing continuations with local qualification [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:14:55Z",
+      "merged_at": null,
+      "head_sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "head_ref": "codex/office-consolidation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/123"
+    },
+    {
+      "number": 130,
+      "title": "Preserve inline ODT PAGE and NUMPAGES fields",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:11:35Z",
+      "merged_at": "2026-11-17T19:11:34Z",
+      "head_sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "head_ref": "fix/odt-inline-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "merge_commit_sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/130"
+    },
+    {
+      "number": 129,
+      "title": "Merge remaining proofing branches and remove AOT/RML",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:09:24Z",
+      "merged_at": "2026-11-17T19:09:23Z",
+      "head_sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "head_ref": "integrate/aot-then-remove-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "merge_commit_sha": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/129"
+    },
+    {
+      "number": 127,
+      "title": "Write cached ODT table-of-contents entries",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:59:52Z",
+      "merged_at": "2026-11-17T18:59:52Z",
+      "head_sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "head_ref": "feat/odt-toc",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "merge_commit_sha": "162288351af0ad43bb4d869fd2d814eaaa30a930",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/127"
+    },
+    {
+      "number": 126,
+      "title": "Export ODP ellipse and rounded-rectangle shapes",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:38:01Z",
+      "merged_at": "2026-11-17T18:38:00Z",
+      "head_sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "head_ref": "feat/odp-preset-shapes",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "merge_commit_sha": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/126"
+    },
+    {
+      "number": 125,
+      "title": "Merge Office continuation without AOT",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:25:42Z",
+      "merged_at": "2026-11-17T18:25:42Z",
+      "head_sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "head_ref": "integrate/codex-office-continuation-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "93cb0773f82b3d41a75bc50705074efcb9d4df78",
+      "merge_commit_sha": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/125"
+    },
+    {
+      "number": 124,
+      "title": "Write ODT field results",
+      "state": "closed",
+      "updated_at": "2026-11-17T18:17:59Z",
+      "merged_at": "2026-11-17T18:17:58Z",
+      "head_sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "head_ref": "feat/odt-fields",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "9626152fced037379a79ef4fec458645e0d8c2ff",
+      "merge_commit_sha": "93cb0773f82b3d41a75bc50705074efcb9d4df78",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/124"
+    }
+  ],
+  "changed_existing_prs": [
+    {
+      "number": 114,
+      "title": "Complete German proofing qualification and repair Office integration [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:15:08Z",
+      "merged_at": null,
+      "head_sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "head_ref": "codex/german-morphology-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "merge_commit_sha": "25cb4c2848557d5f43fb0d030391361df5bafb15",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/114",
+      "previous_head_sha": "04f66dbc01c33402fb719913d067a7e9fdaa8447"
+    },
+    {
+      "number": 116,
+      "title": "Qualify Office continuation and repair paragraph decoration caching [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:15:04Z",
+      "merged_at": null,
+      "head_sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "head_ref": "codex/office-qualified-resume-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+      "merge_commit_sha": null,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/116",
+      "previous_head_sha": "ec5ecbff742580c0e7d1136507b953e8cc877e4c"
+    },
+    {
+      "number": 120,
+      "title": "Run AOT locally without SynanDaemon and improve analysis workflow [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T19:14:58Z",
+      "merged_at": null,
+      "head_sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "head_ref": "codex/aot-daemon-free-20261117",
+      "head_repository": "CrispStrobe/quds_office_suite",
+      "base_ref": "main",
+      "base_sha": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+      "merge_commit_sha": "29772094616b589d04647e2400eb13744eb0d3e3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/120",
+      "previous_head_sha": "9297f077d68256042afd520d55d72f5997e746b3"
+    }
+  ],
+  "main_recent_commits": [
+    {
+      "sha": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "subject": "Preserve ODF stories, header media and bookmark ranges [skip ci] (#132)",
+      "committed_at": "2026-11-17T19:17:06Z",
+      "parents": [
+        "3ee7e5eeefdec0570246d4f0995e29995d5343e0"
+      ]
+    },
+    {
+      "sha": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "subject": "Document native spaCy/CrispEmbed implementation handoff (#131)",
+      "committed_at": "2026-11-17T19:15:24Z",
+      "parents": [
+        "aa9591d496d66a549d4e0c67aee73eada0d9d46f"
+      ]
+    },
+    {
+      "sha": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "subject": "fix(word): preserve inline ODT PAGE and NUMPAGES fields (#130)",
+      "committed_at": "2026-11-17T19:11:34Z",
+      "parents": [
+        "6061aa72e2e59ba23085451c04286184aa23b9e0"
+      ]
+    },
+    {
+      "sha": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "subject": "Merge remaining proofing branches and remove AOT/RML (#129)",
+      "committed_at": "2026-11-17T19:09:23Z",
+      "parents": [
+        "97f6553c3fdca35be0270a66d6eaeb286c884fef"
+      ]
+    },
+    {
+      "sha": "97f6553c3fdca35be0270a66d6eaeb286c884fef",
+      "subject": "Retain qualified upstream TOC export and unchanged proofing boundary [skip ci]",
+      "committed_at": "2026-11-17T19:03:06Z",
+      "parents": [
+        "3b451f9284c9b31db8d7f1819cb9af8c68586dbb"
+      ]
+    },
+    {
+      "sha": "3b451f9284c9b31db8d7f1819cb9af8c68586dbb",
+      "subject": "Merge remote-tracking branch 'origin/main' into feat/german-context-20261117",
+      "committed_at": "2026-11-17T19:01:50Z",
+      "parents": [
+        "0402fd01736065aeb28a2b72ef523e11c114db1b",
+        "162288351af0ad43bb4d869fd2d814eaaa30a930"
+      ]
+    },
+    {
+      "sha": "0402fd01736065aeb28a2b72ef523e11c114db1b",
+      "subject": "Retain final independent proofing, native inference and consumer qualification [skip ci]",
+      "committed_at": "2026-11-17T19:01:33Z",
+      "parents": [
+        "8ce23da119d4cbffcc5f92cc720a5efb262c2bec"
+      ]
+    },
+    {
+      "sha": "162288351af0ad43bb4d869fd2d814eaaa30a930",
+      "subject": "feat(word): write cached ODT table-of-contents entries (#127)",
+      "committed_at": "2026-11-17T18:59:51Z",
+      "parents": [
+        "4c9d60cdc329d83fe0d5c7cb69daabb093973dff"
+      ]
+    },
+    {
+      "sha": "8ce23da119d4cbffcc5f92cc720a5efb262c2bec",
+      "subject": "Preserve nominal Wissen and document independent no-daemon proofing boundary [skip ci]",
+      "committed_at": "2026-11-17T18:57:01Z",
+      "parents": [
+        "2e9159517ac315fe791d613eea9ea85353767379"
+      ]
+    },
+    {
+      "sha": "2e9159517ac315fe791d613eea9ea85353767379",
+      "subject": "Merge remote-tracking branch 'origin/main' into feat/german-context-20261117",
+      "committed_at": "2026-11-17T18:53:00Z",
+      "parents": [
+        "6f24110253efd2d61d9c709ae1cc2f6bdf002f55",
+        "4c9d60cdc329d83fe0d5c7cb69daabb093973dff"
+      ]
+    }
+  ],
+  "integration_notes": [
+    "Main PR #129 explicitly removes AOT/RML integration after bringing in prior branch work. Preserve deletion intent; ancestry-only retention of old AOT tips must not restore obsolete source.",
+    "PR #123 office consolidation and PR #128 ODF fidelity improvements are closed without merge. Inspect their distinct changes and equivalence before integrating.",
+    "PR #132 supersedes part of ODF fidelity work with story/header media/bookmark range changes.",
+    "Snapshot is bounded; later arrivals require another refresh, not an unqualified all-current claim."
+  ]
+}

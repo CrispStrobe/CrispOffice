@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "kind": "thread-sweep-independent-audit-controls",
+  "observed_utc": "2026-11-17T20:23:05.283935+00:00",
+  "harness_sha256": "ffe5c3df5354ed2a2ca05f81fb1aed48c1c78aeadcf6ca3eb841945e6bcf25ae",
+  "comparator_sha256": "cd337c5521f9b8ce35c6b4b5e114f2068f17d5cb7b78415d81d71a8a76780802",
+  "source_archive_sha256": "0bbb9304b441313da2be0149a9facb7d6bba324b488fd3e8db415a911495bbb6",
+  "retained_receipt_sha256": "8cb827cff38804037326a00870ae9c3cb08346dc60a9fbf31cdb1d567b323659",
+  "retained_receipt_audit": {
+    "short_sample_count": 87,
+    "short_aggregate_reconstructed": true,
+    "engineering_budget_flags_reconstructed": true,
+    "complete_source_decoder_records_audited": 142,
+    "additional_control_decoder_counters_audited_without_planning_records": 5,
+    "work_counters_reconstructed": true,
+    "actual_initial_passes_cover_all_admitted_planned_segments": true,
+    "timed_output_stability_remains_producer_claim": true
+  },
+  "controls": [
+    {
+      "name": "unaltered retained segmented evidence passes",
+      "passed": true
+    },
+    {
+      "name": "unchanged historical two-thread comparator admits segmented schema",
+      "passed": true
+    },
+    {
+      "name": "only three named timing fields are excluded",
+      "passed": true
+    },
+    {
+      "name": "reject changed aggregate p95",
+      "passed": true
+    },
+    {
+      "name": "reject aggregate samples not present in input rows",
+      "passed": true
+    },
+    {
+      "name": "reject inconsistent engineering budget",
+      "passed": true
+    },
+    {
+      "name": "reject invented actual forward count",
+      "passed": true
+    },
+    {
+      "name": "reject absent final source segment despite self-consistent counters",
+      "passed": true
+    },
+    {
+      "name": "reject changed first-pass tokens despite self-consistent counters",
+      "passed": true
+    },
+    {
+      "name": "reject actual pass outside original source plan",
+      "passed": true
+    },
+    {
+      "name": "reject a source partition gap",
+      "passed": true
+    },
+    {
+      "name": "reject unexpected reuse in uncached sweep",
+      "passed": true
+    },
+    {
+      "name": "reject invented initial-input diversity",
+      "passed": true
+    },
+    {
+      "name": "reject first-result and first-sample diagnostic disagreement",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison excludes only measured time differences",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison retains corrected",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison retains status",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison retains source_coverage_complete",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison retains actual worker observations",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison retains all timed-sample decoder work",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison retains every planned source span",
+      "passed": true
+    },
+    {
+      "name": "semantic comparison retains linguistic finding replacements",
+      "passed": true
+    },
+    {
+      "name": "all retained cohorts participate",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "native_inference_or_compilation_executed": false,
+  "qualification_scope": "Controls of evidence reconstruction only. Current-source linguistic results remain unmeasured until the actual native sweep."
+}
