@@ -1,6 +1,8 @@
 {
   "branch": "codex/office-consolidation-20261117",
+  "qualified_source": "f5021f1c364baf010049fda2dd4bf7f414deda79",
   "method": "Connected GitHub Git-data writes; exact tree checks; non-force expected-head updates; remote readback",
+  "scope": "Published checkpoints before this ledger version; its own containing commit is available from Git history.",
   "checkpoints": [
     {
       "sha": "34d6be099906e5bde0af51330a8b1dcca26e728a",
@@ -65,6 +67,30 @@
         "156cc755df74dcbafec0ebd882945349c40a5005"
       ],
       "message": "Complete all-ref integration and retain equivalent original and vendor histories [skip ci]"
+    },
+    {
+      "sha": "78a92cfd15487eb36f92aa0fa2053da2b6ccbff1",
+      "tree": "ff3952af469c695510e014ebb4659f21d15f92a3",
+      "parents": [
+        "c175f71839c857f1bb3e8a8c23c504f08075c268"
+      ],
+      "message": "Save integration audit and reproducible local qualification setup [skip ci]"
+    },
+    {
+      "sha": "4e79249d69e5b78b6e7696a1e4ab8c0a6287f4cf",
+      "tree": "6c06a421b36fa5c80678de16035906d521bf5836",
+      "parents": [
+        "78a92cfd15487eb36f92aa0fa2053da2b6ccbff1"
+      ],
+      "message": "Bound German predicate scanning and execute only verified evaluator source [skip ci]"
+    },
+    {
+      "sha": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+      "tree": "afd7a513dfa91472f58c27ead4d8be3f4b75c262",
+      "parents": [
+        "4e79249d69e5b78b6e7696a1e4ab8c0a6287f4cf"
+      ],
+      "message": "Preserve ODT tab styles, minimum row heights and valid cell decorations [skip ci]"
     }
   ]
 }

@@ -1,0 +1,897 @@
+{
+  "reviewed_at_utc": "2026-11-17T17:54:35.741873+00:00",
+  "source_commit": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+  "source_tree": "afd7a513dfa91472f58c27ead4d8be3f4b75c262",
+  "reviewer_scope": "Independent review of the other agent's proofing repair and integration preservation. This reviewer authored the Office writer repair, which is intentionally excluded from this independent implementation verdict. Root separately reviewed the writer.",
+  "verdict": "No concrete defects found in the reviewed changes.",
+  "findings": [],
+  "pending_items": [],
+  "predicate_review": {
+    "baseline_regex_exactly_matches_published_probe": true,
+    "final_scanner_exactly_matches_published_probe": true,
+    "language_reasoning": [
+      "The scanner uses precisely the original four horizontal whitespace code points and preserves CR/LF only in the final suffix.",
+      "One optional terminal period is removed after trailing whitespace, so internal newline and repeated-period rejection remains unchanged.",
+      "Finite adverbs and optional final preposition/capitalized-noun phrase match the old vocabulary. The unusual zero-width separator between a final adverb and preposition is intentionally retained.",
+      "The explicit Hause alternative is already covered by the original and new uppercase-letter noun class. Unicode letter/mark semantics remain identical.",
+      "Cursor and end positions move monotonically. Preposition alternatives are a fixed-size set; the final noun regex has one anchored, nonoverlapping character repetition.",
+      "Only the predicate gate and its invocation change; finding construction, offsets and other grammar rules remain intact."
+    ],
+    "existing_differential_probe_cases": 228692,
+    "existing_differential_probe_mismatches": 0,
+    "inherited_noun_test_source_preserved_as_prefix": true,
+    "independently_recounted_development_vm_cases": 66,
+    "independently_recounted_development_node_cases": 66,
+    "exact_development_names_and_outcomes_equal": true,
+    "new_test_execution_performed_by_this_review": false,
+    "limits": "Finite gate language and changed implementation reviewed; no general German accuracy or full-editor latency conclusion."
+  },
+  "candidate_evaluator_review": {
+    "admission_order_preserved": true,
+    "exact_admitted_source_bytes_compiled": true,
+    "reported_runner_digest_bound_to_admitted_bytes": true,
+    "module_name_file_spec_metadata_retained": true,
+    "control_cases_reviewed": [
+      "ordinary reviewed-source execution",
+      "timestamp-valid foreign pyc",
+      "unchecked-hash foreign pyc",
+      "source replacement during native import",
+      "existing model/source modification rejection",
+      "existing duplicate/path/missing-notice rejection"
+    ],
+    "existing_python_admission_controls": 9,
+    "test_double_scope": "Positive controls deliberately replace only onnxruntime with a local fake; they exercise source admission and execution, not model inference.",
+    "limits": "The repair guarantees the quickstart bytes admitted by this evaluator are the bytes executed. This review does not qualify model accuracy, ONNX behavior or native dependency trust."
+  },
+  "integration": {
+    "snapshot_refs": 268,
+    "distinct_heads": 179,
+    "snapshot_and_audit_reference_sets_identical": true,
+    "all_heads_ancestors_of_reviewed_freeze": true,
+    "ancestry": [
+      {
+        "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+        "is_ancestor": true
+      },
+      {
+        "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+        "is_ancestor": true
+      },
+      {
+        "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+        "is_ancestor": true
+      },
+      {
+        "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+        "is_ancestor": true
+      },
+      {
+        "sha": "08b09485588d2b6270f594a07c983689c087587d",
+        "is_ancestor": true
+      },
+      {
+        "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+        "is_ancestor": true
+      },
+      {
+        "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+        "is_ancestor": true
+      },
+      {
+        "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+        "is_ancestor": true
+      },
+      {
+        "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+        "is_ancestor": true
+      },
+      {
+        "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+        "is_ancestor": true
+      },
+      {
+        "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+        "is_ancestor": true
+      },
+      {
+        "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+        "is_ancestor": true
+      },
+      {
+        "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+        "is_ancestor": true
+      },
+      {
+        "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+        "is_ancestor": true
+      },
+      {
+        "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+        "is_ancestor": true
+      },
+      {
+        "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+        "is_ancestor": true
+      },
+      {
+        "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+        "is_ancestor": true
+      },
+      {
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "is_ancestor": true
+      },
+      {
+        "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+        "is_ancestor": true
+      },
+      {
+        "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+        "is_ancestor": true
+      },
+      {
+        "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+        "is_ancestor": true
+      },
+      {
+        "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+        "is_ancestor": true
+      },
+      {
+        "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+        "is_ancestor": true
+      },
+      {
+        "sha": "20681b8658392212c128f51b4c91f0b638942448",
+        "is_ancestor": true
+      },
+      {
+        "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+        "is_ancestor": true
+      },
+      {
+        "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+        "is_ancestor": true
+      },
+      {
+        "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+        "is_ancestor": true
+      },
+      {
+        "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+        "is_ancestor": true
+      },
+      {
+        "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+        "is_ancestor": true
+      },
+      {
+        "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+        "is_ancestor": true
+      },
+      {
+        "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+        "is_ancestor": true
+      },
+      {
+        "sha": "331be9688e2de1feb52635490b534042dea10c27",
+        "is_ancestor": true
+      },
+      {
+        "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+        "is_ancestor": true
+      },
+      {
+        "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+        "is_ancestor": true
+      },
+      {
+        "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+        "is_ancestor": true
+      },
+      {
+        "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+        "is_ancestor": true
+      },
+      {
+        "sha": "388a1c76339507d493bab577424affd80732446c",
+        "is_ancestor": true
+      },
+      {
+        "sha": "388bd7451067794b58276d174fe05470aa9994ed",
+        "is_ancestor": true
+      },
+      {
+        "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+        "is_ancestor": true
+      },
+      {
+        "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+        "is_ancestor": true
+      },
+      {
+        "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+        "is_ancestor": true
+      },
+      {
+        "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+        "is_ancestor": true
+      },
+      {
+        "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4497c737623c1339d2422487d53941c20472bac9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+        "is_ancestor": true
+      },
+      {
+        "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+        "is_ancestor": true
+      },
+      {
+        "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "is_ancestor": true
+      },
+      {
+        "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+        "is_ancestor": true
+      },
+      {
+        "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+        "is_ancestor": true
+      },
+      {
+        "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+        "is_ancestor": true
+      },
+      {
+        "sha": "54f0f8de01416640560519aa9d732f668f603709",
+        "is_ancestor": true
+      },
+      {
+        "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+        "is_ancestor": true
+      },
+      {
+        "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+        "is_ancestor": true
+      },
+      {
+        "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+        "is_ancestor": true
+      },
+      {
+        "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+        "is_ancestor": true
+      },
+      {
+        "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+        "is_ancestor": true
+      },
+      {
+        "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+        "is_ancestor": true
+      },
+      {
+        "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+        "is_ancestor": true
+      },
+      {
+        "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+        "is_ancestor": true
+      },
+      {
+        "sha": "7686ec52876288e6799023fd686af79228236826",
+        "is_ancestor": true
+      },
+      {
+        "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+        "is_ancestor": true
+      },
+      {
+        "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+        "is_ancestor": true
+      },
+      {
+        "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+        "is_ancestor": true
+      },
+      {
+        "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+        "is_ancestor": true
+      },
+      {
+        "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+        "is_ancestor": true
+      },
+      {
+        "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+        "is_ancestor": true
+      },
+      {
+        "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+        "is_ancestor": true
+      },
+      {
+        "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+        "is_ancestor": true
+      },
+      {
+        "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+        "is_ancestor": true
+      },
+      {
+        "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+        "is_ancestor": true
+      },
+      {
+        "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+        "is_ancestor": true
+      },
+      {
+        "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+        "is_ancestor": true
+      },
+      {
+        "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+        "is_ancestor": true
+      },
+      {
+        "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+        "is_ancestor": true
+      },
+      {
+        "sha": "94532021b720e3035022a2fed08ec88f48340892",
+        "is_ancestor": true
+      },
+      {
+        "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+        "is_ancestor": true
+      },
+      {
+        "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+        "is_ancestor": true
+      },
+      {
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "is_ancestor": true
+      },
+      {
+        "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+        "is_ancestor": true
+      },
+      {
+        "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+        "is_ancestor": true
+      },
+      {
+        "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+        "is_ancestor": true
+      },
+      {
+        "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+        "is_ancestor": true
+      },
+      {
+        "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+        "is_ancestor": true
+      },
+      {
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "is_ancestor": true
+      },
+      {
+        "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+        "is_ancestor": true
+      },
+      {
+        "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+        "is_ancestor": true
+      },
+      {
+        "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+        "is_ancestor": true
+      },
+      {
+        "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+        "is_ancestor": true
+      },
+      {
+        "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+        "is_ancestor": true
+      },
+      {
+        "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+        "is_ancestor": true
+      },
+      {
+        "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+        "is_ancestor": true
+      },
+      {
+        "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+        "is_ancestor": true
+      },
+      {
+        "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+        "is_ancestor": true
+      },
+      {
+        "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+        "is_ancestor": true
+      },
+      {
+        "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+        "is_ancestor": true
+      },
+      {
+        "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+        "is_ancestor": true
+      },
+      {
+        "sha": "c98c75eae50ddabfa8eb9aa918ed1af9754b7923",
+        "is_ancestor": true
+      },
+      {
+        "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+        "is_ancestor": true
+      },
+      {
+        "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+        "is_ancestor": true
+      },
+      {
+        "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+        "is_ancestor": true
+      },
+      {
+        "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+        "is_ancestor": true
+      },
+      {
+        "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+        "is_ancestor": true
+      },
+      {
+        "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+        "is_ancestor": true
+      },
+      {
+        "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+        "is_ancestor": true
+      },
+      {
+        "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+        "is_ancestor": true
+      },
+      {
+        "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+        "is_ancestor": true
+      },
+      {
+        "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+        "is_ancestor": true
+      },
+      {
+        "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+        "is_ancestor": true
+      },
+      {
+        "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+        "is_ancestor": true
+      },
+      {
+        "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+        "is_ancestor": true
+      },
+      {
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "is_ancestor": true
+      },
+      {
+        "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+        "is_ancestor": true
+      },
+      {
+        "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+        "is_ancestor": true
+      },
+      {
+        "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+        "is_ancestor": true
+      },
+      {
+        "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+        "is_ancestor": true
+      },
+      {
+        "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+        "is_ancestor": true
+      },
+      {
+        "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+        "is_ancestor": true
+      }
+    ],
+    "preservation_checks": [
+      {
+        "donor": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+        "prefix": "docs/validation/office-recovery-20261117",
+        "entries": 67,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+        "prefix": "packages/quds_proofing_aot",
+        "entries": 20,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "c98c75eae50ddabfa8eb9aa918ed1af9754b7923",
+        "prefix": "packages/quds_proofing_gector",
+        "entries": 40,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+        "prefix": "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+        "entries": 1,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+        "prefix": "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+        "entries": 1,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+        "prefix": "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+        "entries": 1,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+        "prefix": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+        "entries": 1,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+        "prefix": "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+        "entries": 1,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+        "prefix": "docs/validation/office-resume-20261117",
+        "entries": 47,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+        "prefix": "docs/validation/aot-integration-20261117",
+        "entries": 16,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e",
+        "prefix": "docs/validation/german-proofing-next-20261117",
+        "entries": 37,
+        "exact_modes_types_blobs_equal": true
+      },
+      {
+        "donor": "c98c75eae50ddabfa8eb9aa918ed1af9754b7923",
+        "prefix": "docs/validation/german-gector",
+        "entries": 155,
+        "exact_modes_types_blobs_equal": true
+      }
+    ],
+    "exact_preserved_entries": 387,
+    "parallel_decoration_suite_exact_under_new_name": true,
+    "feature_patch_equivalence_recomputed": [
+      {
+        "commit": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+        "recomputed_patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+        "recorded_patch_id_matches": true
+      },
+      {
+        "commit": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+        "recomputed_patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+        "recorded_patch_id_matches": true
+      },
+      {
+        "commit": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+        "recomputed_patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+        "recorded_patch_id_matches": true
+      },
+      {
+        "commit": "4391669c881cbcba372c742d2300c24cdc465a2f",
+        "recomputed_patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+        "recorded_patch_id_matches": true
+      },
+      {
+        "commit": "156cc755df74dcbafec0ebd882945349c40a5005",
+        "recomputed_patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+        "recorded_patch_id_matches": true
+      },
+      {
+        "commit": "cc9b467f69401ca3d689b56e7306e3cebd01df68",
+        "recomputed_patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+        "recorded_patch_id_matches": true
+      }
+    ]
+  },
+  "reviewed_proofing_source_sha256": {
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "1d352a64827758d76acd0a4ebeb9f0930d6adf01e0158520a70ed8c3f02fdaca",
+    "packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart": "8279325bdf0f22d4614730a3baae14050537a3295215a82a9fdac2322dec216e",
+    "tools/proofing/german_model/evaluate_candidate.py": "7fae7ca4cb3768259f6d5cbfed94d5eb36f3f6c63d4848141348c5adbdba2668",
+    "tools/proofing/german_model/test_candidate_admission.py": "497529e4f44d695ba43851983ced8dc2e46d0542f4ba5deaf944d8bf99269d1a"
+  },
+  "evidence_reviewed": [
+    "/workspace/scratch/2a07827fdeed/quds_office_suite/docs/validation/office-consolidation-20261117/proofing-repair.md",
+    "/workspace/scratch/2a07827fdeed/quds_office_suite/docs/validation/office-consolidation-20261117/integration.md",
+    "/workspace/scratch/2a07827fdeed/quds_office_suite/docs/validation/office-consolidation-20261117/incoming-snapshot.json",
+    "/workspace/scratch/2a07827fdeed/quds_office_suite/docs/validation/office-consolidation-20261117/integration-audit.json",
+    "/workspace/scratch/2a07827fdeed/quds_office_suite/docs/validation/office-consolidation-20261117/vendor-patch-equivalence.json",
+    "/workspace/scratch/2a07827fdeed/validation_setup/proofing-development/predicate_parity_probe.dart",
+    "/workspace/scratch/2a07827fdeed/validation_setup/proofing-development/summary.json",
+    "/workspace/scratch/2a07827fdeed/validation_setup/proofing-development/candidate-green.log"
+  ],
+  "full_qualification_and_consumer_status": "Running independently under root/runtime agent at review time; no final runtime acceptance claim from this code review.",
+  "repository_source_modified": false,
+  "github_ci_endpoint_use": false
+}
