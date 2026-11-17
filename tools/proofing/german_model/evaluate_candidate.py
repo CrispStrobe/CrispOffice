@@ -42,12 +42,23 @@ def main():
     names = [a["file"] for a in artifacts]
     if len(set(names)) != len(names) or not {"model.onnx", "quickstart.py", "LICENSE", "NOTICE"} <= set(names):
         raise ValueError("Incomplete or duplicate artifact manifest")
+    runner_source = None
+    runner_sha256 = None
     for a in artifacts:
         name = a["file"]
         if Path(name).name != name or name in {".", ".."}:
             raise ValueError("Unsafe artifact path")
         p = args.model_dir / name
-        if p.is_symlink() or p.stat().st_size != a["size"] or digest(p) != a["sha256"]:
+        if p.is_symlink() or p.stat().st_size != a["size"]:
+            raise ValueError(f"Changed reviewed artifact: {name}")
+        if name == "quickstart.py":
+            # Retain the bytes actually admitted, before native imports or
+            # publisher code can change files. Never execute an unverified pyc.
+            runner_source = p.read_bytes()
+            runner_sha256 = hashlib.sha256(runner_source).hexdigest()
+            if len(runner_source) != a["size"] or runner_sha256 != a["sha256"]:
+                raise ValueError(f"Changed reviewed artifact: {name}")
+        elif digest(p) != a["sha256"]:
             raise ValueError(f"Changed reviewed artifact: {name}")
     # Keep the publisher decoder unchanged; only bound native CPU resources.
     import onnxruntime as ort
@@ -67,7 +78,7 @@ def main():
     runner = args.model_dir / "quickstart.py"
     spec = importlib.util.spec_from_file_location("pinned_publisher_reference", runner)
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    exec(compile(runner_source, str(runner), "exec", dont_inherit=True), module.__dict__)
     begin = time.perf_counter()
     model = module.Gector(model=str(args.model_dir.resolve()))
     startup = time.perf_counter() - begin
@@ -91,7 +102,7 @@ def main():
               "timestamp_utc": datetime.now(timezone.utc).isoformat(),
               "application_enabled": False, "evaluator_sha256": digest(Path(__file__)),
               "manifest_sha256": digest(args.manifest),
-              "artifacts": artifacts, "runner_sha256": digest(runner),
+              "artifacts": artifacts, "runner_sha256": runner_sha256,
               "runtime": {"python": sys.version, "platform": platform.platform(),
                           "onnxruntime": ort.__version__, "cpu_threads": 2},
               "startup_seconds": startup,

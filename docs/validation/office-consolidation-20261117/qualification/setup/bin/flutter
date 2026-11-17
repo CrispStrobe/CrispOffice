@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /workspace/scratch/2a07827fdeed/validation_setup/flutter-sdk/bin/cache/dart-sdk/bin/dart /workspace/scratch/2a07827fdeed/validation_setup/flutter-sdk/bin/cache/flutter_tools.snapshot "$@"

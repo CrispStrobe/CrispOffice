@@ -1,0 +1,56 @@
+{
+  "kind": "odt-tab-stop-style-cache-repair",
+  "baseline_commit": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+  "baseline": {
+    "path": "odt-validation-corrected-runtime/odt-tests-receipt.json",
+    "sha256": "1ec831ff347005c8e1c3cc7fb1699fa078e8e8d012c8b68558c8855b1af3bb10",
+    "head_before": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "head_after": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "exit_code": 0,
+    "source_stable": true,
+    "passed_tests": 341,
+    "skipped_tests": 0,
+    "failed_tests": 0
+  },
+  "failure_before_production_fix": {
+    "path": "odt-tab-regression-before-fix/odt-tests-receipt.json",
+    "sha256": "4e582f07a378ca160c44a3851d235df40396ca7db6e0392dcab1cac69d5b6aab",
+    "head_before": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "head_after": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "exit_code": 1,
+    "source_stable": true,
+    "passed_tests": 1,
+    "skipped_tests": 0,
+    "failed_tests": 7
+  },
+  "fixed_regressions": {
+    "path": "odt-tab-regression-after-fix/odt-tests-receipt.json",
+    "sha256": "763dc5ad1707d9fe3f3b497f191aa3d4792ddb01d5763a9f1f326296f6f2acf3",
+    "head_before": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "head_after": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "exit_code": 0,
+    "source_stable": true,
+    "passed_tests": 8,
+    "skipped_tests": 0,
+    "failed_tests": 0
+  },
+  "fixed_strict_analysis": {
+    "path": "odt-tab-regression-after-fix/odt-analysis-receipt.json",
+    "sha256": "bc538d943fef04600dbe2b1bf90071165fc9e4218dc9bb1fddda2a753c5c124e",
+    "head_before": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "head_after": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+    "exit_code": 0,
+    "source_stable": true,
+    "no_issues_found": true
+  },
+  "tests_unchanged_between_failed_and_fixed_runs": true,
+  "changed_files": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "2d9e4f2150fc4875149338ad4d9087ce7aab3b4a53588f03013045800c380976",
+    "packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart": "c1825cfe5665cb71224481732c6957668b97f6b3a05acd419cc13d7c4c512fb3"
+  },
+  "notes": [
+    "Runtime missing-/tmp failure is retained in odt-validation and occurred before any real ODT test.",
+    "Both independent paragraph-decoration suites are retained unchanged under distinct test names.",
+    "No GitHub Actions operations were used."
+  ]
+}
