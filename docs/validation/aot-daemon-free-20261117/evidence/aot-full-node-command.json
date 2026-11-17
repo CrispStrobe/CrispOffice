@@ -1,0 +1,14 @@
+{
+  "files": [
+    "packages/quds_proofing_aot/test/client_cache_test.dart",
+    "packages/quds_proofing_aot/test/client_test.dart",
+    "packages/quds_proofing_aot/test/german_rules_test.dart",
+    "packages/quds_proofing_aot/test/models_test.dart",
+    "packages/quds_proofing_aot/test/native_source_mapping_test.dart",
+    "packages/quds_proofing_aot/test/process_transport_platform_test.dart",
+    "packages/quds_proofing_aot/test/provider_test.dart",
+    "packages/quds_proofing_aot/test/transport_test.dart",
+    "packages/quds_proofing_aot/test/upstream_morphology_test.dart"
+  ],
+  "native_process_tests_excluded": "These require dart:io and actual subprocesses; they run on VM."
+}

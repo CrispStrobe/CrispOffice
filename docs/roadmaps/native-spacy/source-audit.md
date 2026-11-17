@@ -15,6 +15,14 @@ SynanDaemon/AOT work is historical; do not assume that its package or example
 integration exists in the current tree. The ordinary Dart proofing rules and
 the retained German syntax experiment are the current starting points.
 
+The publication refresh reconciled later main
+`aa9591d496d66a549d4e0c67aee73eada0d9d46f`, including PR #129's
+[independent context rules](../../validation/german-context-20261117/README.md)
+and PR #130's ODT field repair. The model/port audit pins below are unchanged;
+the newer ordinary Dart checker is the grammar baseline for any new comparison.
+Historical AOT evidence directories retained by that merge are not an enabled
+AOT package or application dependency.
+
 ## Conclusions for the next implementer
 
 - **A Python-free application is feasible.** All three projects below contain

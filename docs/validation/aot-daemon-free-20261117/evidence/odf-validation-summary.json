@@ -1,0 +1,76 @@
+{
+  "odt-tab-cache-setup-failure": {
+    "results": {
+      "error": 1
+    },
+    "skips": 0,
+    "suites": 1,
+    "complete": true,
+    "success": false,
+    "log": "odt-tab-cache-setup-failure.jsonl.gz"
+  },
+  "odt-tab-cache-before": {
+    "results": {
+      "failure": 5
+    },
+    "skips": 0,
+    "suites": 1,
+    "complete": true,
+    "success": false,
+    "log": "odt-tab-cache-before.jsonl.gz"
+  },
+  "odt-tab-cache-after": {
+    "results": {
+      "success": 5
+    },
+    "skips": 0,
+    "suites": 1,
+    "complete": true,
+    "success": true,
+    "log": "odt-tab-cache-after.jsonl.gz"
+  },
+  "odf-tests": {
+    "results": {
+      "success": 424
+    },
+    "skips": 0,
+    "suites": 24,
+    "complete": true,
+    "success": true,
+    "log": "odf-tests.jsonl.gz"
+  },
+  "odt-tab-cache-final": {
+    "results": {
+      "success": 5
+    },
+    "skips": 0,
+    "suites": 1,
+    "complete": true,
+    "success": true,
+    "log": "odt-tab-cache-final.jsonl.gz"
+  },
+  "analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "lib/src/word/serial/odt_document_writer.dart",
+      "test/odt_tab_style_cache_test.dart"
+    ],
+    "output": "Analyzing odt_document_writer.dart, odt_tab_style_cache_test.dart...\nNo issues found!\n",
+    "passed": true
+  },
+  "source": {
+    "integration_commit": "3b003fc34924a78eb377a09cb351bb9035ab0670",
+    "sha256": {
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "6568deecd32cf8f2a26ad250bbe87bc96b12dec56b12dc5a3e79488465fbc4e3",
+      "packages/quds_office_engine/test/odt_tab_style_cache_test.dart": "5f9c526a0f76c05753dcbd8bdae5580f422d351583d117c544f9de8ed1922861"
+    }
+  },
+  "notes": [
+    "Initial loader attempt failed before running tests because /tmp is absent; a writable scratch TMPDIR resolved it.",
+    "Before-fix regression run intentionally failed all five new tests.",
+    "The broad ODF cohort includes the same five focused tests; repeat focused results must not be added to its total.",
+    "The final focused rerun follows an explicit generic argument in one assertion to satisfy strict analysis; writer source is unchanged from the passing broad run.",
+    "No GitHub Actions/check/status endpoints used or awaited."
+  ]
+}

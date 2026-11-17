@@ -132,7 +132,7 @@ Future<void> _run(
     modelService = OfficeProofingService(providers: [provider]);
     final spelling = GermanSpellingProvider(vocabulary: vocabulary);
     deterministicService = OfficeProofingService(
-      providers: [spelling, GermanWritingRulesProvider()],
+      providers: [GermanWritingRulesProvider(), spelling],
     );
     await spelling.warmUp();
     startup.stop();

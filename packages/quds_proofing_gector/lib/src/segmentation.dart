@@ -5,6 +5,28 @@ import 'bundle.dart';
 import 'source_text.dart';
 import 'tokenizer.dart';
 
+/// Explicit request-local reuse of identical deterministic model predictions.
+///
+/// Only selected raw tags are retained, never logits, guarded edits or complete
+/// segment results. Reaching either cache limit simply stops retaining new
+/// entries; it does not reject text or change the decoding policy.
+final class GectorInferenceReuseOptions {
+  GectorInferenceReuseOptions({
+    this.maximumCachedInputs = 32,
+    this.maximumCachedTokens = 2048,
+  }) {
+    if (maximumCachedInputs < 1 ||
+        maximumCachedInputs > 128 ||
+        maximumCachedTokens < 2 ||
+        maximumCachedTokens > 4096) {
+      throw ArgumentError('Invalid bounded GECToR inference-reuse options.');
+    }
+  }
+
+  final int maximumCachedInputs;
+  final int maximumCachedTokens;
+}
+
 /// Opt-in planning limits for complete, sentence-aware source slices.
 ///
 /// [targetTokens] is a preferred size, including CLS/SEP. A sentence with no
@@ -17,6 +39,7 @@ final class GectorSegmentationOptions {
     this.targetTokens = 64,
     this.maximumSegments = 32,
     this.maximumTotalTokens = 4096,
+    this.inferenceReuse,
   }) {
     if (targetTokens < 2 ||
         targetTokens > 512 ||
@@ -31,6 +54,10 @@ final class GectorSegmentationOptions {
   final int targetTokens;
   final int maximumSegments;
   final int maximumTotalTokens;
+
+  /// Null preserves independent forwards, including stateful backend behavior.
+  /// Enabling reuse requires [GectorDeterministicBackend] and guarded decoding.
+  final GectorInferenceReuseOptions? inferenceReuse;
 }
 
 /// An exact slice of the original source, with original UTF-16 coordinates.

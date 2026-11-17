@@ -1,0 +1,63 @@
+{
+  "reviewedAt": "2026-11-17T17:57:32.549063+00:00",
+  "base": "42083c9906a2889271f5ef0e10afce358c8dae7b",
+  "incoming": [
+    "f5021f1c364baf010049fda2dd4bf7f414deda79",
+    "60a116d2df566793720bfb4f76d7f6523529bcb2",
+    "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+    "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+    "1f417ad7a61dfb69034704a67f85243eff89830a",
+    "f82b80c163ef03b80504f39104647f50946825e7"
+  ],
+  "mode": "read-only static review; no tests run and no repository files modified",
+  "columnsEquivalentPatch": {
+    "commits": [
+      "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+      "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "1f417ad7a61dfb69034704a67f85243eff89830a"
+    ],
+    "sha256": "ef67b756ec5ccb579f3d82b1c7e4f4012ffd6160e264ad240c3834fd0a7d941b",
+    "stablePatchId": "9427f757e7ef16549fcacb2ab4d9ffd578c0510b"
+  },
+  "findings": [
+    {
+      "severity": "defect",
+      "source": "924f09bab",
+      "detail": "Column count and gap are emitted directly on style:section-properties, contrary to ODF1.3 sections17.11 and17.12: these attributes belong to a child style:columns element. Existing upstream test checks substrings only.",
+      "sourceUrl": "https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.pdf"
+    },
+    {
+      "severity": "defect",
+      "source": "924f09bab",
+      "detail": "Multi-column text:section is closed before fallback anchor for empty sections. Keep the empty-section anchor inside its wrapper."
+    },
+    {
+      "severity": "defect",
+      "source": "924f09bab",
+      "detail": "Gap uses toStringAsFixed without finite/plain-decimal validation. Reuse normalized length validation and omit invalid or negative gaps."
+    },
+    {
+      "severity": "integration",
+      "source": "f5021f1c,60a116d2",
+      "detail": "Different tests added at same odt_table_tab_fidelity_test.dart path. Preserve both variants or combine coverage; 60a has a unique invalid column-width check."
+    },
+    {
+      "severity": "integration",
+      "source": "f82b80c1",
+      "detail": "odt_tab_stop_fidelity_test.dart expects rounded hyphen/underscore tabs to share style. Newer exports distinguish leader-text, so use same-leader rounded controls and retain distinct-leader checks."
+    }
+  ],
+  "writerResolution": [
+    "Keep f502 normalized XML tab cache and explicit leader type/text.",
+    "Keep 60a finite positive nullable columnStyle guard.",
+    "Keep min-row-height semantics, finite/nonnegative row dimensions, valid color normalization, independent border flags.",
+    "Normalize border flags to booleans for cache identity if combining implementations.",
+    "Preserve existing page-field, empty-body, decoration, section, annotation, and story behavior while adding columns."
+  ],
+  "validationSuggestion": [
+    "All ODT writer tests including sections, page fields, decorations, table merges and all tab/table variants",
+    "ODF frame/text-box extraction tests",
+    "Portable Node XML/export tests",
+    "New semantic XML column nesting, empty-section anchor, and invalid-gap tests"
+  ]
+}

@@ -171,6 +171,16 @@ using GGML operations.
 
 ## Gate 3: bounded grammar behavior
 
+The publication refresh includes PR #129's
+[independent context qualification](../../validation/german-context-20261117/README.md).
+Its ordinary Dart checker is the baseline for new comparisons. Reuse the
+context, holdout and completion cases already in `tools/proofing/german_model/`
+with their recorded provenance; they are existing development/evaluation cases,
+not newly unseen holdouts. Preserve current deterministic corrections and
+protection behavior. Report incremental model benefit explicitly rather than
+comparing against a superseded default. Analysis parity alone does not justify
+enabling model grammar with no demonstrated gain or new false positives.
+
 Run the native annotations through the same independently testable guarded
 Dart planner. Retain analysis-only comparison so a rule guard cannot hide
 parser divergence. Match the chosen reference behavior on the frozen

@@ -136,6 +136,15 @@ abstract interface class GectorBackend {
   Future<void> dispose();
 }
 
+/// A backend whose output depends only on the supplied model inputs and its
+/// fixed opened model/profile. It must not mutate the input or depend on call
+/// order, request identity, random state or mutable hidden state.
+///
+/// This explicit capability permits an opted-in guarded decoder to reuse a
+/// validated prediction within one request. Stateful/test/replay backends
+/// should implement [GectorBackend] only; their forwards are never skipped.
+abstract interface class GectorDeterministicBackend implements GectorBackend {}
+
 final class GectorUnavailableException implements Exception {
   const GectorUnavailableException(this.message);
   final String message;

@@ -1,0 +1,19 @@
+{
+  "capturedRefCount": 266,
+  "unintegratedRefs": [],
+  "decisions": [
+    "Retain full ancestry of all seven maximal captured tips.",
+    "Keep existing AOT/noun-agreement documentation once despite source order differences.",
+    "Preserve readOdfParagraphTexts compatibility alias.",
+    "Use normalized emitted tab XML with distinct leader characters.",
+    "Use nullable validated table column widths, minimum row heights and normalized cell-border flags.",
+    "Preserve both independently developed tab/table qualification files under distinct names.",
+    "Retain the union of paragraph decoration controls.",
+    "Retain all historical qualification evidence and its original source attributions."
+  ],
+  "knownNewWork": [
+    "Repair incoming section-column XML structure and invalid-gap behavior.",
+    "Update a stale rounded-tab equivalence control to compare the same leader.",
+    "Clarify captured AOT native-source-mapping limitations."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "files": [
+    {
+      "file": "duplicate-roles/duplicate-roles-analysis.log.gz",
+      "bytes": 75,
+      "sha256": "b39aa689827b602240477db8368c910b0ae3921627f1066b16027cf6c6f38bae"
+    },
+    {
+      "file": "duplicate-roles/duplicate-roles-before.log.gz",
+      "bytes": 12754,
+      "sha256": "7868d80f322bf2261466aef521ffbdce4dd0fd39c53aa67275b9d9f45165a0b1"
+    },
+    {
+      "file": "duplicate-roles/duplicate-roles-implementation-report.json.gz",
+      "bytes": 3091,
+      "sha256": "5a22d583b62630122c4f14d37f345588a36bb273285872fbdc383d59588b030b"
+    },
+    {
+      "file": "duplicate-roles/duplicate-roles-regressions.log.gz",
+      "bytes": 9425,
+      "sha256": "758b3b44857b0d478d2517dcd0a72ebc780e7ac0a48371845afacb9670592050"
+    },
+    {
+      "file": "reviews/core-reuse-independent-review.json.gz",
+      "bytes": 1383,
+      "sha256": "8d8b5dbcb7b0a26cf9380015e0642e009beee53429be8322e12150be09923e7d"
+    },
+    {
+      "file": "reviews/participle-independent-review.json.gz",
+      "bytes": 4071,
+      "sha256": "9d91b66b2cb1fa13e45b76bea2231bf9217f3bb5f8f6c52ee36fed3d840b11bd"
+    },
+    {
+      "file": "inference-reuse/reuse-local-report.json.gz",
+      "bytes": 5135,
+      "sha256": "dfabc1764325af57b652f4aacc187f9c54f9827c4ebaa56c1053fc820db67853"
+    },
+    {
+      "file": "inference-reuse/reuse-final-analysis.log.gz",
+      "bytes": 73,
+      "sha256": "f8844b3d27c0e13e3fd75591dcca39aa2674e3bfcf4853e944059ca4b713d60e"
+    },
+    {
+      "file": "inference-reuse/reuse-final-core57.log.gz",
+      "bytes": 5154,
+      "sha256": "5716ead192621889a3bdcc6d5fdb870a2a137d2ea18d2d963f2a351c21234d75"
+    },
+    {
+      "file": "inference-reuse/reuse-final-runner4.log.gz",
+      "bytes": 411,
+      "sha256": "daf2b413d5d2154407557856ed2e9e4c6656720a386a076473898e7dc9e372d7"
+    },
+    {
+      "file": "inference-reuse/reuse-final-source-map.json.gz",
+      "bytes": 48294,
+      "sha256": "10cb89559d05e8825937cd51b11ed72332020b9787fee427ce7e29dd4826208a"
+    }
+  ],
+  "reason": "Preserve separate grammatical roles in repeated pronouns/articles, as demonstrated by the retained real-native clean36 result.",
+  "scope": "First-party conservative guard only; pinned publisher JSON and reference decoding remain unchanged. Original-start case-differing two-word exception remains. Later model results are development regressions on the same frozen corpus."
+}

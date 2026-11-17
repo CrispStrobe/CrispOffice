@@ -1,0 +1,18 @@
+{
+  "historical_runner_source": "docs/validation/office-recovery-20261117/qualification/harness/run_qualification.py",
+  "recovery_plan_archive_sha256": "5f7e3b60530bc8070684f6aa1bd23957a3e1d86629c8ca6f30097e2ab29411a2",
+  "recovery_plan_member_sha256": "720a1eac56eb28ecbcb0a705542df6613e9f0396c42af488a49a19f3bb024966",
+  "adaptations": [
+    "Retain exact prior180 test selection and all dynamic ODF/changed engine tests.",
+    "Add complete AOT VM/Node suites and two Studio Flutter suites with explicitly configured loopback endpoint.",
+    "Add strict AOT and Studio analysis.",
+    "Bind pinned native fixture files before/after; require real fixture environment and reject a native skip when present.",
+    "Bind installed optional ONNX converter dependencies before/after."
+  ],
+  "product_tests_run": false,
+  "root_review_additions": {
+    "python_controls": "test_candidate_admission",
+    "node_repetition": "test/proofing/german_noun_agreement_test.dart",
+    "reason": "Cover new captured-main evaluator admission and noun-agreement regressions on the final source."
+  }
+}

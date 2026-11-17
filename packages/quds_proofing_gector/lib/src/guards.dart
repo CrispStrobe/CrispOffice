@@ -97,6 +97,37 @@ final class GectorGermanGuards {
 
   void beginRequest() => _known.clear();
 
+  // First-party conservative policy, separate from the pinned publisher JSON.
+  // Adjacency alone cannot distinguish subject/object or nested complements
+  // ("wenn sie sie sehen", "zeigt mir mir bekannte Orte"), predicative identity
+  // ("dass ich ich bleibe"), or demonstrative/relative pronouns plus articles
+  // ("ob das das Buch ist"). Retain these finite homographs without a role
+  // parser, even when a particular repetition might be an accidental typo.
+  static const Set<String> _ambiguousDuplicateRoles = <String>{
+    'ich',
+    'du',
+    'er',
+    'sie',
+    'es',
+    'wir',
+    'ihr',
+    'mich',
+    'dich',
+    'ihn',
+    'mir',
+    'dir',
+    'ihm',
+    'uns',
+    'euch',
+    'ihnen',
+    'sich',
+    'das',
+    'die',
+    'der',
+    'den',
+    'dem',
+  };
+
   Future<bool> _isKnown(String word) async {
     final normalized = normalizeGermanWord(word);
     if (_known.containsKey(normalized)) return _known[normalized]!;
@@ -146,6 +177,17 @@ final class GectorGermanGuards {
           if (rule['keepCaseDiffering'] == true &&
               (first > 0 || !isSourceStart) &&
               word != other) {
+            return word;
+          }
+          // Preserve the existing original-start case-differing pair
+          // exception. A longer run has no equivalent proof of redundancy:
+          // "ihr ihr ihr Buch gebt" can contain three separate roles.
+          final initialCasePair =
+              first == 0 &&
+              isSourceStart &&
+              word != other &&
+              (words.length < 3 || gectorLower(words[2]) != lower);
+          if (_ambiguousDuplicateRoles.contains(lower) && !initialCasePair) {
             return word;
           }
           final preceding = first > 0 ? gectorLower(words[first - 1]) : '';

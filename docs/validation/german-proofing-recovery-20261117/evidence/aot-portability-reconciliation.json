@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "kind": "aot-fixture-portability-reconciliation",
+  "recordedAt": "2026-11-17T18:13:36.219229+00:00",
+  "baseSource": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "capturedAotSource": "0b4c0107f6b7651bd77e95670e4f2f4f8b58e038",
+  "fix": {
+    "path": "packages/quds_proofing_aot/test/native_source_mapping_test.dart",
+    "reason": "The original invalid-offset fixture used 0.0, whose integral numeric representation cannot be distinguished from 0 on the JavaScript target. The invalid fixture now uses genuinely fractional 0.5 and explains the runtime distinction. Decoder behavior is unchanged.",
+    "oldGitBlob": "3aea7d382648df31141fd9615d1eb18dd5b9ad10",
+    "newGitBlob": "55f80587d22084097fce7ce1c3b853612461c965",
+    "oldSha256": "8d1be0b706507c7eb8ef7d9eaee17c55766ea5bc634c0a307bb5ae50db9af900",
+    "newSha256": "52e4567af68534dba958bfd6336c4ba5562e43e33944ea3ba649390b793d6250"
+  },
+  "inputContinuity": {
+    "inputsCompared": 351,
+    "differences": [
+      "packages/quds_proofing_aot/test/native_source_mapping_test.dart"
+    ],
+    "allOtherInputsUnchanged": true,
+    "withinRunInputsUnchanged": true
+  },
+  "runs": [
+    {
+      "label": "aot-package-vm",
+      "receipt": "aot-package-vm.json",
+      "head": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "passed": true,
+      "exitCode": 0,
+      "sourceInputCount": 351,
+      "substantiveTestCounts": {
+        "success": 153
+      },
+      "outputHashesVerified": true,
+      "suiteCount": 10,
+      "suites": [
+        "test/client_cache_test.dart",
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/native_source_mapping_test.dart",
+        "test/process_transport_platform_test.dart",
+        "test/process_transport_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "allStartedTestsCompleted": true,
+      "failedTests": [],
+      "skippedTests": []
+    },
+    {
+      "label": "aot-package-node",
+      "receipt": "aot-package-node.json",
+      "head": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "passed": false,
+      "exitCode": 1,
+      "sourceInputCount": 351,
+      "substantiveTestCounts": {
+        "success": 128,
+        "failure": 1
+      },
+      "outputHashesVerified": true,
+      "suiteCount": 9,
+      "suites": [
+        "test/client_cache_test.dart",
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/native_source_mapping_test.dart",
+        "test/process_transport_platform_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "allStartedTestsCompleted": true,
+      "failedTests": [
+        {
+          "name": "invalid native source evidence 6 is rejected",
+          "testID": 104
+        }
+      ],
+      "skippedTests": []
+    },
+    {
+      "label": "aot-mapping-vm-portable-fix",
+      "receipt": "aot-mapping-vm-portable-fix.json",
+      "head": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "passed": true,
+      "exitCode": 0,
+      "sourceInputCount": 351,
+      "substantiveTestCounts": {
+        "success": 15
+      },
+      "outputHashesVerified": true,
+      "suiteCount": 1,
+      "suites": [
+        "test/native_source_mapping_test.dart"
+      ],
+      "allStartedTestsCompleted": true,
+      "failedTests": [],
+      "skippedTests": []
+    },
+    {
+      "label": "aot-package-node-portable-fix",
+      "receipt": "aot-package-node-portable-fix.json",
+      "head": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "passed": true,
+      "exitCode": 0,
+      "sourceInputCount": 351,
+      "substantiveTestCounts": {
+        "success": 129
+      },
+      "outputHashesVerified": true,
+      "suiteCount": 9,
+      "suites": [
+        "test/client_cache_test.dart",
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/native_source_mapping_test.dart",
+        "test/process_transport_platform_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "allStartedTestsCompleted": true,
+      "failedTests": [],
+      "skippedTests": []
+    },
+    {
+      "label": "aot-package-analysis",
+      "receipt": "aot-package-analysis.json",
+      "head": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "passed": true,
+      "exitCode": 0,
+      "sourceInputCount": 351,
+      "substantiveTestCounts": {},
+      "outputHashesVerified": true
+    }
+  ],
+  "interpretation": [
+    "The complete VM suite passed 153 cases on the original fixture source.",
+    "The original portable Node run had 128 passes and one failure; its raw evidence is retained.",
+    "After the test-only correction, all 15 mapping tests passed on VM and all 129 portable package tests passed on Node.",
+    "Strict package/CLI analysis passed before the test-only numeric/comment correction; no product source changed.",
+    "VM and Node cohorts overlap and must not be added together. Node excludes the VM-only process fixture suite and adds explicit unavailable-platform controls.",
+    "No native AOT binary, dictionaries, live normalized-token mapping or general language quality is qualified by these fixture tests."
+  ]
+}

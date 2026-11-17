@@ -1,0 +1,215 @@
+{
+  "source_commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+  "source_tree": "2c85776b996e04c8e6e3350c956b01eb730aba24",
+  "started_utc": "2026-11-17T16:35:05.187986+00:00",
+  "finished_utc": "2026-11-17T16:38:11.783111+00:00",
+  "status": "passed",
+  "raw_runner_success_total": 3282,
+  "substantive_success_total": 3280,
+  "tests_by_cohort": {
+    "editor-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 396
+      },
+      "raw_success_count": 396,
+      "substantive_success_count": 396
+    },
+    "editor-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 186
+      },
+      "raw_success_count": 186,
+      "substantive_success_count": 186
+    },
+    "engine-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [
+        {
+          "matched_case_name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "suite_id": 724,
+          "test_id": 760
+        },
+        {
+          "matched_case_name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "suite_id": 724,
+          "test_id": 764
+        }
+      ],
+      "raw_runner_outcomes": {
+        "success": 2088
+      },
+      "raw_success_count": 2088,
+      "substantive_success_count": 2086
+    },
+    "engine-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 390
+      },
+      "raw_success_count": 390,
+      "substantive_success_count": 390
+    },
+    "gector-contract": {
+      "allowed_skipped_cases": [
+        {
+          "name": "real native dual heads own their output and reject use after dispose",
+          "outcome": "skipped",
+          "reason": "Four explicitly pinned native model/library fixture variables are not provided. No real native acceptance claimed.",
+          "suite_id": 76,
+          "test_id": 94
+        }
+      ],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "skipped": 1,
+        "success": 193
+      },
+      "raw_success_count": 193,
+      "substantive_success_count": 193
+    },
+    "harper-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 29
+      },
+      "raw_success_count": 29,
+      "substantive_success_count": 29
+    }
+  },
+  "input_integrity": {
+    "dependencies_unchanged": true,
+    "harness_unchanged": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "system_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "analysis_config_restored": true,
+  "source_matches_frozen_commit": true,
+  "working_head_after": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+  "runner_sha256": "d5b52d06f778704d17aad737651c4b63548c6f1b5ad931cb7651d25314d6579a",
+  "plan_sha256": "ec91d5934ad38a762c56904ccc5e0ebd3dad5ce90981c70a2d22d1889767f9ff",
+  "unique_test_files": 179,
+  "python_substantive_passes": 107,
+  "python_skipped_cases": [
+    {
+      "reason": "Install qualification requirements for the tiny converter control",
+      "test": "test_qualification.TinyConverterTests.test_real_quantizer_preserves_both_head_matrices"
+    }
+  ],
+  "python_source_syntax_check": {
+    "counted_as_product_test": false,
+    "imported_or_executed": false,
+    "parsed": true,
+    "path": "/workspace/scratch/18384bc07dad/quds/tools/proofing/german_model/onnx_probe_backend.py",
+    "sha256": "3611821a06f130a3ad3496a61040da9450339c8a59a934f0e6c4187f67eb5faa"
+  },
+  "all_commands": [
+    {
+      "name": "engine-strict-analysis",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "editor-strict-analysis",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "harper-strict-analysis",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "gector-strict-analysis",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "incoming-onnx-tool-strict-analysis",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "format",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "python-controls",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "engine-zotero",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "editor-zotero",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "engine-integration",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "editor-integration",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "harper-contract",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "name": "gector-contract",
+      "status": "passed",
+      "exit_code": 0
+    }
+  ],
+  "artifact_archive": "canonical-qualified-def52d84.tar.xz",
+  "artifact_archive_sha256": "a58a73166a36d36223e7cc215dd6b32caa27e5e6d268fe1b91d0b2323f6f9a5b",
+  "artifact_index": "canonical-qualified-def52d84-index.json",
+  "prior_archive_references": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "available_at_commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+      "path": "docs/validation/office-continuation-20261117/resumption/qualification-preflight-b32dee6f.tar.xz",
+      "bytes": 483904,
+      "sha256": "38b96302069d2ea970d0002a761d114eee7df4776ac540ca550278b6840895ec",
+      "preserved_in_repository": true
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "available_at_commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+      "path": "docs/validation/office-resume-20261117/canonical-controls-evidence.tar.xz",
+      "bytes": 373648,
+      "sha256": "f2051224efcb61032961a97dd943b0bb5f6d9b46647af4b8d1e1c6c92c673618",
+      "preserved_in_repository": true
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "available_at_commit": "def52d84f3c3c5ce22c44d2620ecfa08d77780a7",
+      "path": "docs/validation/office-resume-20261117/cache-control-evidence.tar.xz",
+      "bytes": 350876,
+      "sha256": "dfd729676f2f926e2a8a85a3a116c61fa15659011e9613cc60dd3764c1dad3ad",
+      "preserved_in_repository": true
+    }
+  ]
+}

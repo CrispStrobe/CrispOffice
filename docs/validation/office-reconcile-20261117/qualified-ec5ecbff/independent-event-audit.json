@@ -1,0 +1,99 @@
+{
+  "source_commit": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+  "source_tree": "147b6903c88d72fc8844513f6fe357fac6d608c0",
+  "runner_receipt_sha256": "ac2745d52b3d6fab2440b00621abaca3d7cb7ba67efa1163fd054bdfb8003df0",
+  "source_files_rechecked": 3482,
+  "selected_test_files": 189,
+  "historical_files_retained": 179,
+  "fresh_dart_flutter_substantive_passes": 3494,
+  "fresh_python_passes": 113,
+  "cohorts": {
+    "engine-zotero": {
+      "executed_files": 19,
+      "started_ids": 409,
+      "completed_ids": 409,
+      "raw_passes": 390,
+      "substantive_passes": 390,
+      "excluded_private_cases": [],
+      "skips": 0,
+      "failures": 0,
+      "stdout_sha256": "3f97e2152aea43ab9779efdab4ed202d37e7bcf35efdacc20e48c3f3d17ab601"
+    },
+    "editor-zotero": {
+      "executed_files": 13,
+      "started_ids": 199,
+      "completed_ids": 199,
+      "raw_passes": 186,
+      "substantive_passes": 186,
+      "excluded_private_cases": [],
+      "skips": 0,
+      "failures": 0,
+      "stdout_sha256": "8add968620302b0662a65690b63ee60ad372319cb168ceef6b2110a5aeda8e62"
+    },
+    "engine-integration": {
+      "executed_files": 99,
+      "started_ids": 2287,
+      "completed_ids": 2287,
+      "raw_passes": 2188,
+      "substantive_passes": 2186,
+      "excluded_private_cases": [
+        "TrueType subsets without cmap get ToUnicode cmap for the host",
+        "JPEG with DCT SMask attaches softMaskJpeg for the host"
+      ],
+      "skips": 0,
+      "failures": 0,
+      "stdout_sha256": "a68d9ee6128f6bd77fcbf300702dd7c404169cf6be488573616dd1b69e2a09aa"
+    },
+    "editor-integration": {
+      "executed_files": 38,
+      "started_ids": 472,
+      "completed_ids": 472,
+      "raw_passes": 410,
+      "substantive_passes": 410,
+      "excluded_private_cases": [],
+      "skips": 0,
+      "failures": 0,
+      "stdout_sha256": "a6ccba3df4fb406620fb3a3011955f1582f97a9f638deb31a17fa40540662e3a"
+    },
+    "harper-contract": {
+      "executed_files": 3,
+      "started_ids": 32,
+      "completed_ids": 32,
+      "raw_passes": 29,
+      "substantive_passes": 29,
+      "excluded_private_cases": [],
+      "skips": 0,
+      "failures": 0,
+      "stdout_sha256": "fc346cd0eeac6cd389e386bf40f43ac95fa8882f28b6cde89c998c5d6df5b27c"
+    },
+    "gector-contract": {
+      "executed_files": 11,
+      "started_ids": 223,
+      "completed_ids": 223,
+      "raw_passes": 194,
+      "substantive_passes": 194,
+      "excluded_private_cases": [],
+      "skips": 0,
+      "failures": 0,
+      "stdout_sha256": "311d835a2578db2556c6c7e0394d1d1a99de7a90ec6f7158ba31be7fc92b24a5"
+    },
+    "aot-contract": {
+      "executed_files": 6,
+      "started_ids": 105,
+      "completed_ids": 105,
+      "raw_passes": 99,
+      "substantive_passes": 99,
+      "excluded_private_cases": [],
+      "skips": 0,
+      "failures": 0,
+      "stdout_sha256": "d8cf6e78b8dd7a97617c6e04f04c6beaa6d6e36e48ab1b0280958cfb41e36f31"
+    }
+  },
+  "analysis_scopes": 7,
+  "format_targets": 100,
+  "real_native_gector_case_passed": true,
+  "tiny_onnx_quantizer_case_passed": true,
+  "historical_pass_counts_added": false,
+  "errors": [],
+  "passed": true
+}

@@ -211,11 +211,57 @@ edits against the whole source, its protected ranges and personal vocabulary.
 
 Any segment failure, non-convergence, deadline or cancellation prevents partial
 suggestions from being published. `GectorDecodedText.segmentCount` records the
-planned count. Its flat `passes` list contains forwards across all segments,
-each with a request-relative `sourceStart`; it is no longer a paragraph-wide
-iteration count. `forwardTokens` is the sum of tokens actually forwarded in the
-retained passes. Cancellation continues between native forwards; an active
-native call cannot be interrupted mid-call.
+planned count. Its flat `passes` list contains decoding passes across all
+segments, each with a request-relative `sourceStart`; it is no longer a
+paragraph-wide iteration count. `forwardTokens` and `forwardCount` record
+actual backend forwards in the retained passes. Cancellation continues between
+native forwards; an active native call cannot be interrupted mid-call.
+
+### Optional reuse within a request
+
+Repeated boilerplate can produce identical model inputs in different segments.
+Hosts may explicitly opt in to request-local prediction reuse:
+
+```dart
+final options = GectorDecodeOptions(
+  segmentation: GectorSegmentationOptions(
+    inferenceReuse: GectorInferenceReuseOptions(
+      maximumCachedInputs: 32,
+      maximumCachedTokens: 2048,
+    ),
+  ),
+);
+```
+
+Reuse is off by default and requires the backend's explicit
+`GectorDeterministicBackend` capability. The native adapter implements that
+contract for its fixed opened model and profile. Stateful, scripted and replay
+backends remain supported with reuse disabled; enabling reuse for an ordinary
+`GectorBackend` is rejected at decoder construction. Reference mode remains
+unaffected and continues to reject segmentation.
+
+The cache exists only for one complete `correct` call. It retains immutable
+selected raw tags after validation, keyed by exact source words and the
+prepared IDs, mask and alignment. It retains no logits, source offsets,
+guarded edits or complete segment results. Guards, personal-word decisions,
+source projection and the provider's global filtering run independently for
+each occurrence, so a later segment cannot inherit original-start privileges.
+Words that happen to share an unknown-token ID do not share a cache entry.
+
+The default cache retains at most 32 inputs and 2,048 tokens. Hard option limits
+are 128 inputs and 4,096 tokens. Reaching either limit stops retaining new
+entries and continues ordinary inference. Every original segment still counts
+towards initial admission budgets, and every decode pass still checks its
+hard sequence limit, yields for cancellation and applies convergence limits.
+The whole request remains atomic on failure or cancellation. Only actual
+backend calls consume the actual-forward token budget.
+
+`GectorPass.reusedInference` identifies passes using cached raw tags; their
+`inferenceMicroseconds` is zero. `reusedPassCount` counts those passes and
+`decodedTokens` includes all logical decoding passes, while `forwardCount` and
+`forwardTokens` exclude reuse. No cache survives between separate requests or
+timed samples. This optimization targets repeated inputs; its existence alone
+does not establish a latency improvement on unique prose.
 
 ## Guard policy and its limits
 
@@ -332,6 +378,17 @@ The full real-worker/provider path is exercised by the repository's separate
 `tools/proofing/german_model/run_gector_dart.dart` tool. These checks run locally
 without waiting for GitHub Actions.
 
+For a paired reuse measurement, run the same compiled runner with
+`--segment-target-tokens 64 --reuse-identical-inputs false` and then
+`--segment-target-tokens 64 --reuse-identical-inputs true`, keeping every other
+input identical. The runner records actual worker passes, their source starts,
+prediction-input fingerprints, native-forward counts and reuse counts for each
+timed sample. Complete-check timing still includes the real worker, provider and
+Office service; evidence serialization follows timing. The repeated-sentence
+probes are accompanied by separate varied, unique-input paragraph controls.
+Their operational coverage and stability are checked; their full findings are
+retained for language review and paired comparison rather than assumed correct.
+
 When compiling that tool to an executable outside the checkout, pass
 `--source-root /path/to/quds_office_suite` so its input hashes refer to the
 reviewed source. The report records the actual executable path and SHA-256
@@ -345,3 +402,13 @@ decoder and source alignment, original metadata fixtures, and source assets
 retain their Apache-2.0 provenance in `NOTICE` and `third_party/`. Native model
 installation must retain the model's license and notice. Dependency and native
 runtime notices remain the host distributor's responsibility.
+
+## Ambiguous repeated grammatical roles
+
+The guarded Dart path conservatively retains adjacent repeated personal
+pronouns and demonstrative/article homographs: `Wenn sie sie sehen, winken sie.`
+can use the two `sie` tokens for different roles. This first-party safeguard
+also preserves ambiguous triples and runs again for every reused prediction.
+It may leave an accidental repetition uncorrected. The existing original-start
+case-differing two-token exception remains; later segments do not acquire it.
+The pinned publisher JSON and unguarded reference path are unchanged.

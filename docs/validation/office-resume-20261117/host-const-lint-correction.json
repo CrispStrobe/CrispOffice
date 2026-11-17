@@ -1,0 +1,19 @@
+{
+  "after_sha256": "2754aef31a7b6be004e74a3862bb8452e21a2073fb28a97c110b2d963e923660",
+  "before_sha256": "e4b91087325c4478c38e9791dffe60917d8288ec0c9405ca8630b2aa3680377f",
+  "exact_keyword_only_replacement_verified": true,
+  "failed_host_attempt": "final-qualification-001",
+  "failed_host_receipt_sha256": "bbf3f3fab520483c1b28ea317e22e11683418b0e98a1865fda0ed3139dcf3f80",
+  "failed_lint_log": "host-const-lint-failure.log",
+  "failed_lint_log_sha256": "44e2013f8c42063320da35256f68605da7b3966c13b7a4b1fff3bd4e24edbc84",
+  "host_attempt_source": "fe2a1d026c7e4725723b88ba1b6bbadb010d74e8",
+  "other_failed_host_checks": "Two supplemental note probes contained assumptions contradicted by both old and current canonical note tests; the host probe owner is adapting them with originals retained. Generator-owned German data was incorrectly sent through formatting; the host harness is adopting exact-manifest hash-verified exclusions. These are separate from this production token change.",
+  "patch": "host-const-lint-correction.patch",
+  "prior_evidence": "All completed 4c49 qualification receipts, paired controls and independent reviews retain their exact original source attribution.",
+  "production_path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+  "qualification_status": "No new test runs claimed here. Full canonical selection will rerun after publication, and host qualification will use the corresponding synchronized source.",
+  "rationale": "The host enables prefer_const_constructors under fatal infos. _OdtListMarker is private, its bullet constructor is already const, and all five fields are final. This call uses a literal bullet and can be constant. Marker value/formatting behavior and every test remain unchanged. No lint is suppressed.",
+  "recorded_at_utc": "2026-11-17T16:33:08.505324+00:00",
+  "source_before": "4c49b0435bc6611221bc49b58b15e735059467ff",
+  "source_delta": "One const keyword added to the existing empty-label fallback bullet marker constructor call."
+}

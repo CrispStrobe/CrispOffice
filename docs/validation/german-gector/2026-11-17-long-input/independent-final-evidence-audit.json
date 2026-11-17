@@ -1,0 +1,2727 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-independent-final-evidence-audit",
+  "timestamp_utc": "2026-11-17T16:05:21.395827+00:00",
+  "implementation_commit": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+  "observed_head": "ec6818593c9a96c54fd55f5619d1cab61ada882f",
+  "method": "Read actual source, SDK, dependency, native pack and AOT files; independently recompute SHA-256 pins, WordPiece counts, UTF-16 source edits, partitions, statistics and retained outcomes. No inference, compiler, tests or GitHub Actions invoked.",
+  "passed": true,
+  "checks_passed": 438,
+  "checks_total": 438,
+  "failures": [],
+  "receipt_files": {
+    "guarded-provider-v3-build.json": {
+      "file": "guarded-provider-v3-build.json",
+      "bytes": 65668,
+      "sha256": "8fdaae2c5245cad84e7d72927101e43fdc03b2d8d6029d277651cf45e002e485"
+    },
+    "guarded-provider-v3.aot": {
+      "file": "guarded-provider-v3.aot",
+      "bytes": 3518240,
+      "sha256": "2ac3870a9e0e2ceab40000c8aae82c256f212ce5843dd03dfd5c1ad35d0741bd"
+    },
+    "provider-single-v3.json": {
+      "file": "provider-single-v3.json",
+      "bytes": 80366,
+      "sha256": "ffda6c2850e18dfa500683e40ef54851b5c3719cf82563704a6d0aad671c9bd5"
+    },
+    "provider-segmented-v3.json": {
+      "file": "provider-segmented-v3.json",
+      "bytes": 341758,
+      "sha256": "1bc06a1dfa42cf405da814cbb28fe03aa286a88a518d6c5f4db55dd372682c46"
+    },
+    "provider-single-v3-comparison.json": {
+      "file": "provider-single-v3-comparison.json",
+      "bytes": 5905,
+      "sha256": "1602f9cd3781fb9b0d10be159c580741f410b78da2ce3f4f2ba58491bfaa4da2"
+    },
+    "provider-segmented-v3-comparison.json": {
+      "file": "provider-segmented-v3-comparison.json",
+      "bytes": 5905,
+      "sha256": "d6cccb4ad09dcccd4539312ecc724bb7a060a01122b6e2dcb35abce68b0184e3"
+    },
+    "provider-aot-v3.json": {
+      "file": "provider-aot-v3.json",
+      "bytes": 70261,
+      "sha256": "81a0a1383bc27e76263c92125c09d8d28311b6df18f043b15cc182d18e8c09b3"
+    },
+    "provider-aot-v1.json": {
+      "file": "provider-aot-v1.json",
+      "bytes": 69889,
+      "sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc"
+    },
+    "reference.json": {
+      "file": "reference.json",
+      "bytes": 256295,
+      "sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8"
+    },
+    "pack.json": {
+      "file": "pack.json",
+      "bytes": 9315,
+      "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+    }
+  },
+  "source_file_count": 63,
+  "dependency_package_count": 109,
+  "dependency_dart_file_count": 4756,
+  "sdk_file_count": 10,
+  "source_files": {
+    "packages/quds_office_engine/lib/src/opc/zip/crc32.dart": "d207f2653d8b00bbf412a6bc8b2e76a01f64ecfbb67aa06defa9ac7b0326c47f",
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_reader.dart": "271637e64400f6c0bb04a5aa76d3bfd26e940040256cc1c3d0588385a8f7f00f",
+    "packages/quds_office_engine/lib/src/opc/zip/zip_writer.dart": "cde0651a022ba618b496e4093dea989acb27960d13abfe6fc354e34b3bfc7803",
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart": "2def2223516731f632e5ab4a37f94377142d0644a5df5f50964fefaa92b2d193",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart": "cd79dee10538a3fa7ec47246e35dd45a3535720202c7e146e66f844523fd51bc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart": "39c3bf9d907cdccdbfb0cc64c06ad76f2c0272790b4747626325d43f7497e7f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart": "5af756aff60cbc4a77425f1a1e5d48d712231b9892aa1d646af46b4e6c034a59",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart": "ec59197668f522895e525879f1acf1cd9d52c27740dda4d17293e95b28208bcf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart": "6cace804210b0f52008da94ededb29692cc5a39041976aa4e999d17dfedfe2f4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart": "cd70267d1d9580aa6b9a46e56b006ac961e614f0c6103d8850aa9b091b0b8627",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart": "afc12eeb4b6772d262451802f12758c955607ed6239adca1ef63c0e335f62e9f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart": "773e74ed12d9891f1fc1b83c0cd4dcd33675c745edccee35e3fa42ea2004a839",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart": "bc34d24db3703a5f4bc7fdb73e5f91f269316db17ad0f375e656cf838d0713d2",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart": "4ee5929fca1b20454093614cf3fc9f733c6a246dbb24e7d2865f56aa7829762e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart": "5800bdb1c6f699fb2d7080e4d3c5327734724ba0212465aba019c3c37eba9b50",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart": "06f35af0a008762feea1b0529867f5f60a4b11c4fa6365734b534a4672d6d829",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart": "104de822d57601b57eb0626ed49b33f5ad71c5923459121de94a447c17a7e991",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart": "8e6dc9e9e3c174af9719f3ec8f1814972dec97f9a6e41d481b54ff29650d0c72",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart": "fbfc005247f5dd9bcb50347e2f32707e6b46233e6465ceff85cb3962dd8d9cde",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart": "356f006c4a82ecfc09387ff2f1fe921fbd13abe55773eb640dfcb91a426374d9",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "bd796b422d9dd6b95414bfb6a0695e3c1a83205b4235da803b9de86cf2157535",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "406ebbb33e00d547bf9dbeaaa603de56f8517fbd81109284e00358052fcf40ef",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+    "packages/quds_proofing_gector/lib/src/backend.dart": "b8dac86a9e4ab1a9c824ccd346f1896a5a2f4ea9d79aaa1bbd9e51eb2641dad3",
+    "packages/quds_proofing_gector/lib/src/bundle.dart": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+    "packages/quds_proofing_gector/lib/src/decoder.dart": "674bd409d579c6a58c60d6b5c6bef2b04824a554b685389d9fe5cdc7508e2096",
+    "packages/quds_proofing_gector/lib/src/guards.dart": "6c9684c05e8f925df5d8d66cf1c4f5fa7bd772abd7658648ec950ec0803408e1",
+    "packages/quds_proofing_gector/lib/src/lexicon.dart": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+    "packages/quds_proofing_gector/lib/src/native_backend.dart": "9d25812acd0efb0e8d583392092d4ef803d5b164a7b832e6aa2adb9b9f95d6c7",
+    "packages/quds_proofing_gector/lib/src/provider.dart": "67cf9c2b7ec95f16cfa56bdac3caffc07267298bec830ac083d0817b0f5f0f56",
+    "packages/quds_proofing_gector/lib/src/segmentation.dart": "2dd791265fa98c35fe55cb9256ac8de2276729d37711aec690a186e3c594677f",
+    "packages/quds_proofing_gector/lib/src/source_text.dart": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+    "packages/quds_proofing_gector/lib/src/tokenizer.dart": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+    "packages/quds_proofing_gector/lib/src/transport.dart": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+    "packages/quds_proofing_gector/lib/src/unicode_case.dart": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+    "packages/quds_proofing_gector/lib/src/worker_native.dart": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231",
+    "packages/quds_proofing_gector/lib/src/worker_unsupported.dart": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+    "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+    "pubspec.lock": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+    "pubspec.yaml": "c7b68a447435871322327239d2886ff194423c65d97a39916b37cb18ca20f9a1",
+    "tools/proofing/german_model/artifacts.json": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+    "tools/proofing/german_model/cases.json": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+    "tools/proofing/german_model/run_gector_dart.dart": "cdb5f8332bd57183b922d989ad269797f07d2057217f4cf0dc62b113d2f46672"
+  },
+  "run_summaries": {
+    "single": {
+      "cases": 30,
+      "error_cases": 18,
+      "exact_error_corrections": [
+        "verb-du",
+        "verb-er",
+        "verb-wir",
+        "verb-ihr",
+        "dass-conjunction",
+        "das-relative"
+      ],
+      "supported_clean": 10,
+      "unchanged_clean": 10,
+      "unsupported": 2,
+      "operational_controls": 8,
+      "control_passes": 8,
+      "short_timing": {
+        "median_ms": 21.269,
+        "p95_ms": 74.229,
+        "maximum_ms": 145.124
+      },
+      "short_samples": 87,
+      "setup_ms": 3353.771,
+      "peak_process_rss_bytes": 359137280,
+      "peak_process_rss_mib": 342.5,
+      "structural_probes": [
+        {
+          "id": "repeated-sentences-up-to-64",
+          "tokens_first_pass": 61,
+          "initial_model_tokens_total": 61,
+          "initial_segment_count": 1,
+          "source_code_units": 239,
+          "timing": {
+            "samples_ms": [
+              138.789,
+              139.216,
+              145.124
+            ],
+            "median_ms": 139.216,
+            "p95_ms": 145.124,
+            "maximum_ms": 145.124
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-128",
+          "tokens_first_pass": 126,
+          "initial_model_tokens_total": 126,
+          "initial_segment_count": 1,
+          "source_code_units": 499,
+          "timing": {
+            "samples_ms": [
+              365.089,
+              369.684,
+              318.835
+            ],
+            "median_ms": 365.089,
+            "p95_ms": 369.684,
+            "maximum_ms": 369.684
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-256",
+          "tokens_first_pass": 256,
+          "initial_model_tokens_total": 256,
+          "initial_segment_count": 1,
+          "source_code_units": 1019,
+          "timing": {
+            "samples_ms": [
+              607.917,
+              580.926,
+              578.784
+            ],
+            "median_ms": 580.926,
+            "p95_ms": 607.917,
+            "maximum_ms": 607.917
+          }
+        }
+      ]
+    },
+    "segmented": {
+      "cases": 30,
+      "error_cases": 18,
+      "exact_error_corrections": [
+        "verb-du",
+        "verb-er",
+        "verb-wir",
+        "verb-ihr",
+        "dass-conjunction",
+        "das-relative"
+      ],
+      "supported_clean": 10,
+      "unchanged_clean": 10,
+      "unsupported": 2,
+      "operational_controls": 8,
+      "control_passes": 8,
+      "short_timing": {
+        "median_ms": 24.761,
+        "p95_ms": 73.321,
+        "maximum_ms": 175.152
+      },
+      "short_samples": 87,
+      "setup_ms": 3234.616,
+      "peak_process_rss_bytes": 308862976,
+      "peak_process_rss_mib": 294.5546875,
+      "structural_probes": [
+        {
+          "id": "repeated-sentences-up-to-64",
+          "tokens_first_pass": 61,
+          "initial_model_tokens_total": 61,
+          "initial_segment_count": 1,
+          "source_code_units": 239,
+          "timing": {
+            "samples_ms": [
+              175.152,
+              159.234,
+              166.084
+            ],
+            "median_ms": 166.084,
+            "p95_ms": 175.152,
+            "maximum_ms": 175.152
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-128",
+          "tokens_first_pass": 126,
+          "initial_model_tokens_total": 128,
+          "initial_segment_count": 3,
+          "source_code_units": 499,
+          "timing": {
+            "samples_ms": [
+              347.908,
+              416.366,
+              354.325
+            ],
+            "median_ms": 354.325,
+            "p95_ms": 416.366,
+            "maximum_ms": 416.366
+          }
+        },
+        {
+          "id": "repeated-sentences-up-to-256",
+          "tokens_first_pass": 256,
+          "initial_model_tokens_total": 260,
+          "initial_segment_count": 5,
+          "source_code_units": 1019,
+          "timing": {
+            "samples_ms": [
+              636.731,
+              724.617,
+              627.607
+            ],
+            "median_ms": 636.731,
+            "p95_ms": 724.617,
+            "maximum_ms": 724.617
+          }
+        },
+        {
+          "id": "segmented-repeated-sentences-up-to-640",
+          "tokens_first_pass": 636,
+          "initial_model_tokens_total": 646,
+          "initial_segment_count": 11,
+          "source_code_units": 2539,
+          "timing": {
+            "samples_ms": [
+              1797.719,
+              1798.481,
+              2179.809
+            ],
+            "median_ms": 1798.481,
+            "p95_ms": 2179.809,
+            "maximum_ms": 2179.809
+          }
+        },
+        {
+          "id": "segmented-repeated-sentences-up-to-1280",
+          "tokens_first_pass": 1276,
+          "initial_model_tokens_total": 1297,
+          "initial_segment_count": 22,
+          "source_code_units": 5099,
+          "timing": {
+            "samples_ms": [
+              3570.035,
+              3741.892,
+              3804.643
+            ],
+            "median_ms": 3741.892,
+            "p95_ms": 3804.643,
+            "maximum_ms": 3804.643
+          }
+        }
+      ]
+    }
+  },
+  "regression_ancestry_audit": {
+    "path": "/workspace/scratch/c4115a2a85e2/incoming-audit/final-regression-ancestry-audit.json",
+    "file": "final-regression-ancestry-audit.json",
+    "bytes": 16377,
+    "sha256": "d9730ff8719b0ed2708f7a52ac6acec2fc25e64c11106b4df4726fe318bc5f19",
+    "auditor": "/root/incoming_audit",
+    "source_map_files": 1312,
+    "final_regressions": 873,
+    "distinct_tests_including_preserved_tooling": 924,
+    "captured_branches": 130,
+    "captured_pr_heads": 108,
+    "all_checks_passed": true
+  },
+  "segmentation_controls": [
+    {
+      "id": "segmented-late-correction-utf16-offset",
+      "status": "success",
+      "passed": true,
+      "planning_admitted": true,
+      "findings": [
+        {
+          "start": 2543,
+          "end": 2547,
+          "original": "geht",
+          "replacement": "gehst",
+          "rule_id": "gector.de.grammar"
+        }
+      ]
+    },
+    {
+      "id": "segmented-protected-code",
+      "status": "success",
+      "passed": true,
+      "planning_admitted": true,
+      "findings": []
+    },
+    {
+      "id": "segmented-late-capacity-fails-whole-request",
+      "status": "failed",
+      "passed": true,
+      "planning_admitted": false,
+      "planning_rejection": "GECToR input exceeds 512 wordpieces; no text was truncated.",
+      "findings": []
+    },
+    {
+      "id": "segmented-total-token-cap-fails-whole-request",
+      "status": "failed",
+      "passed": true,
+      "planning_admitted": false,
+      "planning_rejection": "GECToR segmented input exceeds 4096 initial wordpieces; no text was truncated.",
+      "findings": []
+    },
+    {
+      "id": "segmented-segment-cap-fails-whole-request",
+      "status": "failed",
+      "passed": true,
+      "planning_admitted": false,
+      "planning_rejection": "GECToR input exceeds 32 complete segments; no text was truncated.",
+      "findings": []
+    },
+    {
+      "id": "segmented-text-cap-fails-whole-request",
+      "status": "failed",
+      "passed": true,
+      "planning_admitted": false,
+      "planning_rejection": "GECToR text exceeds 32768 UTF-16 units.",
+      "findings": []
+    }
+  ],
+  "checks": [
+    {
+      "check": "HEAD differs from implementation only in validation documentation",
+      "passed": true,
+      "detail": [
+        "docs/validation/german-gector/2026-11-17-long-input/README.md",
+        "docs/validation/german-gector/2026-11-17-long-input/final-analysis.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-analysis.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-editor.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-editor.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-gector.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-gector.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-gector_analysis.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-gector_analysis.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-german.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-german.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-odp.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-odp.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-odt.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-odt.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-regression-summary.json",
+        "docs/validation/german-gector/2026-11-17-long-input/final-report_merge.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-report_merge.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-tool_analysis.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/final-tool_analysis.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/frozen-30-quality.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/frozen-30-quality.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/incremental-quality-build.json",
+        "docs/validation/german-gector/2026-11-17-long-input/native-results.json",
+        "docs/validation/german-gector/2026-11-17-long-input/pack-verification.json",
+        "docs/validation/german-gector/2026-11-17-long-input/prospective-76-quality.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/prospective-76-quality.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/provider-build.json",
+        "docs/validation/german-gector/2026-11-17-long-input/provider-segmented-comparison.json",
+        "docs/validation/german-gector/2026-11-17-long-input/provider-segmented.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/provider-segmented.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/provider-single-comparison.json",
+        "docs/validation/german-gector/2026-11-17-long-input/provider-single.json.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/provider-single.log.gz",
+        "docs/validation/german-gector/2026-11-17-long-input/quality-results.json",
+        "docs/validation/german-gector/2026-11-17-long-input/run_local_regressions.py",
+        "docs/validation/german-gector/2026-11-17-long-input/tooling-source-recheck.json"
+      ]
+    },
+    {
+      "check": "build completed successfully",
+      "passed": true
+    },
+    {
+      "check": "build source maps stable",
+      "passed": true
+    },
+    {
+      "check": "build dependency maps stable",
+      "passed": true
+    },
+    {
+      "check": "build SDK maps stable",
+      "passed": true
+    },
+    {
+      "check": "all expected source files and actual hashes equal build source map",
+      "passed": true,
+      "detail": {
+        "file_count": 63,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "source-map files equal implementation or preserved resolved lock",
+      "passed": true,
+      "detail": {
+        "mismatches": [],
+        "untracked_resolved_inputs": [
+          "pubspec.lock"
+        ]
+      }
+    },
+    {
+      "check": "source entrypoint pin equals actual",
+      "passed": true
+    },
+    {
+      "check": "all SDK inputs match actual files",
+      "passed": true,
+      "detail": {
+        "count": 10,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "compiler pin matches actual Dart executable",
+      "passed": true
+    },
+    {
+      "check": "compiled AOT and runtime pins match actual",
+      "passed": true,
+      "detail": {
+        "executable": {
+          "file": "dartaotruntime",
+          "bytes": 5710176,
+          "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72"
+        },
+        "entrypoint": {
+          "file": "guarded-provider-v3.aot",
+          "bytes": 3518240,
+          "sha256": "2ac3870a9e0e2ceab40000c8aae82c256f212ce5843dd03dfd5c1ad35d0741bd"
+        }
+      }
+    },
+    {
+      "check": "all resolved package library hashes equal build dependency map",
+      "passed": true,
+      "detail": {
+        "package_count": 109,
+        "dart_file_count": 4756,
+        "mismatches": [],
+        "package_config_matches": true
+      }
+    },
+    {
+      "check": "preserved provider-build receipt is exact",
+      "passed": true
+    },
+    {
+      "check": "all native development pack payload files match manifest",
+      "passed": true,
+      "detail": {
+        "payload_count": 22,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "pack contains exactly manifest and declared payload",
+      "passed": true
+    },
+    {
+      "check": "pack size accounting matches actual",
+      "passed": true,
+      "detail": {
+        "file_count": 23,
+        "manifest_bytes": 9315,
+        "payload_bytes": 86347016,
+        "total_bytes": 86356331
+      }
+    },
+    {
+      "check": "saved pack verification refers to actual manifest and library",
+      "passed": true
+    },
+    {
+      "check": "actual dynamic system dependencies match pack recorded pins",
+      "passed": true,
+      "detail": [
+        {
+          "soname": "libstdc++.so.6",
+          "actual_path": "/lib/x86_64-linux-gnu/libstdc++.so.6",
+          "matches": true
+        },
+        {
+          "soname": "libm.so.6",
+          "actual_path": "/lib/x86_64-linux-gnu/libm.so.6",
+          "matches": true
+        },
+        {
+          "soname": "libgcc_s.so.1",
+          "actual_path": "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+          "matches": true
+        },
+        {
+          "soname": "libc.so.6",
+          "actual_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "matches": true
+        },
+        {
+          "soname": "ld-linux-x86-64.so.2",
+          "actual_path": "/lib64/ld-linux-x86-64.so.2",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "check": "single: source maps match actual build inputs",
+      "passed": true
+    },
+    {
+      "check": "single: runtime pins match actual built program",
+      "passed": true
+    },
+    {
+      "check": "single: product runtime and repeats",
+      "passed": true
+    },
+    {
+      "check": "single: reference and frozen corpus hashes",
+      "passed": true
+    },
+    {
+      "check": "single: native and model pins match actual",
+      "passed": true
+    },
+    {
+      "check": "single: all runtime bundle assets match actual",
+      "passed": true,
+      "detail": {
+        "count": 13,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "single: runtime bundle asset set is complete",
+      "passed": true
+    },
+    {
+      "check": "single: complete requested checks passed",
+      "passed": true
+    },
+    {
+      "check": "single: cases retains all prior IDs",
+      "passed": true
+    },
+    {
+      "check": "single: controls retains all prior IDs",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes retains all prior IDs",
+      "passed": true
+    },
+    {
+      "check": "single: all frozen outcomes match prior continuation",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "single: cases/verb-du valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-du independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "single: cases/verb-du timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-du warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-du retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-plural valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-plural independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 28
+      }
+    },
+    {
+      "check": "single: cases/verb-plural timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-plural warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-plural retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-er valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-er independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 28
+      }
+    },
+    {
+      "check": "single: cases/verb-er timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-er warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-er retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-wir valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-wir independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 5,
+        "initial_model_tokens": 5,
+        "segments": 1,
+        "source_code_units": 18
+      }
+    },
+    {
+      "check": "single: cases/verb-wir timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-wir warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-wir retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-ihr valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-ihr independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 18
+      }
+    },
+    {
+      "check": "single: cases/verb-ihr timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-ihr warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-ihr retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/agreement-das valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/agreement-das independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 21
+      }
+    },
+    {
+      "check": "single: cases/agreement-das timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/agreement-das warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/agreement-das retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/adjective-neuter valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/adjective-neuter independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "single: cases/adjective-neuter timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/adjective-neuter warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/adjective-neuter retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/accusative-article valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/accusative-article independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "single: cases/accusative-article timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/accusative-article warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/accusative-article retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-help valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-help independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 18
+      }
+    },
+    {
+      "check": "single: cases/dative-help timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-help warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-help retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-mit valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-mit independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 24
+      }
+    },
+    {
+      "check": "single: cases/dative-mit timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-mit warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dative-mit retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dass-conjunction valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dass-conjunction independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 8,
+        "initial_model_tokens": 8,
+        "segments": 1,
+        "source_code_units": 24
+      }
+    },
+    {
+      "check": "single: cases/dass-conjunction timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dass-conjunction warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/dass-conjunction retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/das-relative valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/das-relative independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 12,
+        "initial_model_tokens": 12,
+        "segments": 1,
+        "source_code_units": 33
+      }
+    },
+    {
+      "check": "single: cases/das-relative timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/das-relative warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/das-relative retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-subclause valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-subclause independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 11,
+        "initial_model_tokens": 11,
+        "segments": 1,
+        "source_code_units": 37
+      }
+    },
+    {
+      "check": "single: cases/word-order-subclause timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-subclause warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-subclause retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-adverb valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-adverb independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "single: cases/word-order-adverb timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-adverb warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/word-order-adverb retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/participle valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/participle independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 8,
+        "initial_model_tokens": 8,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "single: cases/participle timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/participle warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/participle retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/article-gender valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/article-gender independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "single: cases/article-gender timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/article-gender warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/article-gender retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-flowers valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-flowers independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 21
+      }
+    },
+    {
+      "check": "single: cases/verb-flowers timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-flowers warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/verb-flowers retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/comparison valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/comparison independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "single: cases/comparison timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/comparison warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/comparison retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-simple valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-simple independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "single: cases/clean-simple timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-simple warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-simple retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-repeated-das valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-repeated-das independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 17
+      }
+    },
+    {
+      "check": "single: cases/clean-repeated-das timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-repeated-das warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-repeated-das retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-three-das valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-three-das independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 11,
+        "initial_model_tokens": 11,
+        "segments": 1,
+        "source_code_units": 41
+      }
+    },
+    {
+      "check": "single: cases/clean-three-das timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-three-das warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-three-das retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-tag-question valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-tag-question independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 19
+      }
+    },
+    {
+      "check": "single: cases/clean-tag-question timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-tag-question warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-tag-question retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-imperative valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-imperative independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "single: cases/clean-imperative timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-imperative warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-imperative retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-subclause valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-subclause independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 12,
+        "initial_model_tokens": 12,
+        "segments": 1,
+        "source_code_units": 45
+      }
+    },
+    {
+      "check": "single: cases/clean-subclause timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-subclause warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-subclause retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-sharp-s valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-sharp-s independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 9,
+        "initial_model_tokens": 9,
+        "segments": 1,
+        "source_code_units": 31
+      }
+    },
+    {
+      "check": "single: cases/clean-sharp-s timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-sharp-s warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-sharp-s retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 22
+      }
+    },
+    {
+      "check": "single: cases/clean-swiss timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss-name valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss-name independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 10,
+        "initial_model_tokens": 10,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "single: cases/clean-swiss-name timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss-name warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-swiss-name retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-name valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-name independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 8,
+        "initial_model_tokens": 8,
+        "segments": 1,
+        "source_code_units": 27
+      }
+    },
+    {
+      "check": "single: cases/clean-name timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-name warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-name retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-quotes valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-quotes independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 10,
+        "initial_model_tokens": 10,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "single: cases/clean-quotes timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-quotes warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-quotes retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-date valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-date independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 11,
+        "initial_model_tokens": 11,
+        "segments": 1,
+        "source_code_units": 37
+      }
+    },
+    {
+      "check": "single: cases/clean-date timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-date warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: cases/clean-date retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: controls/unsupported-de-AT valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: controls/unsupported-de-CH valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: controls/ignored-rule valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: controls/personal-vocabulary valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: controls/personal-vocabulary-removed valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: controls/protected-code valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: controls/emoji-source-offset valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: controls/capacity-fails-explicitly valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-64 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-64 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 61,
+        "initial_model_tokens": 61,
+        "segments": 1,
+        "source_code_units": 239
+      }
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-64 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-64 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-64 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-128 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-128 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 126,
+        "initial_model_tokens": 126,
+        "segments": 1,
+        "source_code_units": 499
+      }
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-128 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-128 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-128 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-256 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-256 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 256,
+        "initial_model_tokens": 256,
+        "segments": 1,
+        "source_code_units": 1019
+      }
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-256 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-256 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "single: long_complete_check_probes/repeated-sentences-up-to-256 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "single: all cases agree with immutable corpus and explicit locale policy",
+      "passed": true
+    },
+    {
+      "check": "single: short-input aggregation recomputes exactly",
+      "passed": true,
+      "detail": {
+        "count": 87,
+        "median_ms": 21.269,
+        "p95_ms": 74.229,
+        "maximum_ms": 145.124
+      }
+    },
+    {
+      "check": "single: engineering flags match their actual scope",
+      "passed": true
+    },
+    {
+      "check": "single: strict comparison is passed and candidate hash matches",
+      "passed": true
+    },
+    {
+      "check": "single: strict comparison hashes actual historical baseline and corpus",
+      "passed": true
+    },
+    {
+      "check": "single: historical correction improvement recomputes",
+      "passed": true
+    },
+    {
+      "check": "segmented: source maps match actual build inputs",
+      "passed": true
+    },
+    {
+      "check": "segmented: runtime pins match actual built program",
+      "passed": true
+    },
+    {
+      "check": "segmented: product runtime and repeats",
+      "passed": true
+    },
+    {
+      "check": "segmented: reference and frozen corpus hashes",
+      "passed": true
+    },
+    {
+      "check": "segmented: native and model pins match actual",
+      "passed": true
+    },
+    {
+      "check": "segmented: all runtime bundle assets match actual",
+      "passed": true,
+      "detail": {
+        "count": 13,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "segmented: runtime bundle asset set is complete",
+      "passed": true
+    },
+    {
+      "check": "segmented: complete requested checks passed",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases retains all prior IDs",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls retains all prior IDs",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes retains all prior IDs",
+      "passed": true
+    },
+    {
+      "check": "segmented: all frozen outcomes match prior continuation",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "segmented: cases/verb-du valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-du independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "segmented: cases/verb-du timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-du warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-du retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-plural valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-plural independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 28
+      }
+    },
+    {
+      "check": "segmented: cases/verb-plural timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-plural warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-plural retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-er valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-er independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 28
+      }
+    },
+    {
+      "check": "segmented: cases/verb-er timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-er warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-er retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-wir valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-wir independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 5,
+        "initial_model_tokens": 5,
+        "segments": 1,
+        "source_code_units": 18
+      }
+    },
+    {
+      "check": "segmented: cases/verb-wir timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-wir warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-wir retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-ihr valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-ihr independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 18
+      }
+    },
+    {
+      "check": "segmented: cases/verb-ihr timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-ihr warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-ihr retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/agreement-das valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/agreement-das independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 21
+      }
+    },
+    {
+      "check": "segmented: cases/agreement-das timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/agreement-das warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/agreement-das retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/adjective-neuter valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/adjective-neuter independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "segmented: cases/adjective-neuter timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/adjective-neuter warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/adjective-neuter retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/accusative-article valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/accusative-article independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "segmented: cases/accusative-article timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/accusative-article warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/accusative-article retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-help valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-help independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 18
+      }
+    },
+    {
+      "check": "segmented: cases/dative-help timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-help warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-help retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-mit valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-mit independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 24
+      }
+    },
+    {
+      "check": "segmented: cases/dative-mit timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-mit warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dative-mit retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dass-conjunction valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dass-conjunction independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 8,
+        "initial_model_tokens": 8,
+        "segments": 1,
+        "source_code_units": 24
+      }
+    },
+    {
+      "check": "segmented: cases/dass-conjunction timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dass-conjunction warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/dass-conjunction retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/das-relative valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/das-relative independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 12,
+        "initial_model_tokens": 12,
+        "segments": 1,
+        "source_code_units": 33
+      }
+    },
+    {
+      "check": "segmented: cases/das-relative timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/das-relative warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/das-relative retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-subclause valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-subclause independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 11,
+        "initial_model_tokens": 11,
+        "segments": 1,
+        "source_code_units": 37
+      }
+    },
+    {
+      "check": "segmented: cases/word-order-subclause timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-subclause warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-subclause retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-adverb valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-adverb independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "segmented: cases/word-order-adverb timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-adverb warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/word-order-adverb retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/participle valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/participle independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 8,
+        "initial_model_tokens": 8,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "segmented: cases/participle timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/participle warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/participle retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/article-gender valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/article-gender independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "segmented: cases/article-gender timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/article-gender warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/article-gender retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-flowers valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-flowers independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 21
+      }
+    },
+    {
+      "check": "segmented: cases/verb-flowers timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-flowers warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/verb-flowers retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/comparison valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/comparison independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "segmented: cases/comparison timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/comparison warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/comparison retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-simple valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-simple independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "segmented: cases/clean-simple timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-simple warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-simple retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-repeated-das valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-repeated-das independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 17
+      }
+    },
+    {
+      "check": "segmented: cases/clean-repeated-das timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-repeated-das warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-repeated-das retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-three-das valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-three-das independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 11,
+        "initial_model_tokens": 11,
+        "segments": 1,
+        "source_code_units": 41
+      }
+    },
+    {
+      "check": "segmented: cases/clean-three-das timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-three-das warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-three-das retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-tag-question valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-tag-question independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 19
+      }
+    },
+    {
+      "check": "segmented: cases/clean-tag-question timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-tag-question warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-tag-question retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-imperative valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-imperative independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 7,
+        "initial_model_tokens": 7,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "segmented: cases/clean-imperative timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-imperative warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-imperative retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-subclause valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-subclause independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 12,
+        "initial_model_tokens": 12,
+        "segments": 1,
+        "source_code_units": 45
+      }
+    },
+    {
+      "check": "segmented: cases/clean-subclause timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-subclause warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-subclause retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-sharp-s valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-sharp-s independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 9,
+        "initial_model_tokens": 9,
+        "segments": 1,
+        "source_code_units": 31
+      }
+    },
+    {
+      "check": "segmented: cases/clean-sharp-s timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-sharp-s warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-sharp-s retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 6,
+        "initial_model_tokens": 6,
+        "segments": 1,
+        "source_code_units": 22
+      }
+    },
+    {
+      "check": "segmented: cases/clean-swiss timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss-name valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss-name independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 10,
+        "initial_model_tokens": 10,
+        "segments": 1,
+        "source_code_units": 25
+      }
+    },
+    {
+      "check": "segmented: cases/clean-swiss-name timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss-name warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-swiss-name retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-name valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-name independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 8,
+        "initial_model_tokens": 8,
+        "segments": 1,
+        "source_code_units": 27
+      }
+    },
+    {
+      "check": "segmented: cases/clean-name timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-name warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-name retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-quotes valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-quotes independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 10,
+        "initial_model_tokens": 10,
+        "segments": 1,
+        "source_code_units": 23
+      }
+    },
+    {
+      "check": "segmented: cases/clean-quotes timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-quotes warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-quotes retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-date valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-date independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 11,
+        "initial_model_tokens": 11,
+        "segments": 1,
+        "source_code_units": 37
+      }
+    },
+    {
+      "check": "segmented: cases/clean-date timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-date warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: cases/clean-date retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/unsupported-de-AT valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/unsupported-de-CH valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/ignored-rule valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/personal-vocabulary valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/personal-vocabulary-removed valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/protected-code valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/emoji-source-offset valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: controls/capacity-fails-explicitly valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-64 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-64 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 61,
+        "initial_model_tokens": 61,
+        "segments": 1,
+        "source_code_units": 239
+      }
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-64 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-64 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-64 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-128 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-128 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 126,
+        "initial_model_tokens": 128,
+        "segments": 3,
+        "source_code_units": 499
+      }
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-128 boundaries preserve sentences/protected code and own each edit once",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-128 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-128 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-128 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-256 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-256 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 256,
+        "initial_model_tokens": 260,
+        "segments": 5,
+        "source_code_units": 1019
+      }
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-256 boundaries preserve sentences/protected code and own each edit once",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-256 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-256 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: long_complete_check_probes/repeated-sentences-up-to-256 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-640 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-640 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 636,
+        "initial_model_tokens": 646,
+        "segments": 11,
+        "source_code_units": 2539
+      }
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-640 boundaries preserve sentences/protected code and own each edit once",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-640 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-640 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-640 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-1280 valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-1280 independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 1276,
+        "initial_model_tokens": 1297,
+        "segments": 22,
+        "source_code_units": 5099
+      }
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-1280 boundaries preserve sentences/protected code and own each edit once",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-1280 timing recomputation",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-1280 warmup valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmented_long_complete_check_probes/segmented-repeated-sentences-up-to-1280 retained warmup outcome matches first timed outcome",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-late-correction-utf16-offset valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-late-correction-utf16-offset independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 608,
+        "initial_model_tokens": 618,
+        "segments": 11,
+        "source_code_units": 2428
+      }
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-late-correction-utf16-offset boundaries preserve sentences/protected code and own each edit once",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-protected-code valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-protected-code independently counted tokens and exact UTF-16 partition",
+      "passed": true,
+      "detail": {
+        "logical_tokens": 615,
+        "initial_model_tokens": 625,
+        "segments": 11,
+        "source_code_units": 2450
+      }
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-protected-code boundaries preserve sentences/protected code and own each edit once",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-late-capacity-fails-whole-request valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-total-token-cap-fails-whole-request valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-segment-cap-fails-whole-request valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: segmentation_controls/segmented-text-cap-fails-whole-request valid UTF-16 source-bound findings and corrected reconstruction",
+      "passed": true
+    },
+    {
+      "check": "segmented: all cases agree with immutable corpus and explicit locale policy",
+      "passed": true
+    },
+    {
+      "check": "segmented: short-input aggregation recomputes exactly",
+      "passed": true,
+      "detail": {
+        "count": 87,
+        "median_ms": 24.761,
+        "p95_ms": 73.321,
+        "maximum_ms": 175.152
+      }
+    },
+    {
+      "check": "segmented: engineering flags match their actual scope",
+      "passed": true
+    },
+    {
+      "check": "segmented: strict comparison is passed and candidate hash matches",
+      "passed": true
+    },
+    {
+      "check": "segmented: strict comparison hashes actual historical baseline and corpus",
+      "passed": true
+    },
+    {
+      "check": "segmented: historical correction improvement recomputes",
+      "passed": true
+    },
+    {
+      "check": "all six named segmentation controls are present",
+      "passed": true
+    },
+    {
+      "check": "segmented-late-correction-utf16-offset status, expectation, atomic publication and admission evidence",
+      "passed": true
+    },
+    {
+      "check": "segmented-protected-code status, expectation, atomic publication and admission evidence",
+      "passed": true
+    },
+    {
+      "check": "segmented-late-capacity-fails-whole-request status, expectation, atomic publication and admission evidence",
+      "passed": true
+    },
+    {
+      "check": "segmented-total-token-cap-fails-whole-request status, expectation, atomic publication and admission evidence",
+      "passed": true
+    },
+    {
+      "check": "segmented-segment-cap-fails-whole-request status, expectation, atomic publication and admission evidence",
+      "passed": true
+    },
+    {
+      "check": "segmented-text-cap-fails-whole-request status, expectation, atomic publication and admission evidence",
+      "passed": true
+    },
+    {
+      "check": "late correction has independently calculated absolute UTF-16 coordinates",
+      "passed": true,
+      "detail": {
+        "start": 2543,
+        "end": 2547,
+        "local_utf16": 2406
+      }
+    },
+    {
+      "check": "late oversized sentence independently exceeds hard sequence cap",
+      "passed": true
+    },
+    {
+      "check": "total-token control fits individual sequences but exceeds aggregate cap",
+      "passed": true,
+      "detail": {
+        "sentences": 16,
+        "tokens_each": [
+          258
+        ],
+        "sum": 4128
+      }
+    },
+    {
+      "check": "segment-cap control requires 33 target-sized groups within other initial bounds",
+      "passed": true,
+      "detail": {
+        "sentences": 396,
+        "groups_at_12_sentences": 33,
+        "initial_tokens": 2013
+      }
+    },
+    {
+      "check": "text-cap control is exactly one UTF-16 unit over limit",
+      "passed": true
+    },
+    {
+      "check": "short segmented path preserves single-sequence partitions",
+      "passed": true
+    },
+    {
+      "check": "independent regression/ancestry audit reports no discrepancy",
+      "passed": true
+    }
+  ],
+  "limits": [
+    "All frozen outcomes are compared with the previous continuation 6/18 result; strict historical comparison files use an older 5/18 baseline.",
+    "The second and third timed outcomes are not stored individually. Their durations are retained, but exact repeated outcome stability is producer-reported; the warmup and first timed outcomes are independently checked.",
+    "Three samples per structural probe make nearest-rank p95 the maximum sample. These are local engineering observations, not target-device or representative quality qualification.",
+    "The 500 ms flag applies only to the declared <=64 logical-token short aggregate. The 256-token and extended 636/1276-token segmented probes do not meet that budget; no long-text speedup is established.",
+    "Saved initial_segments are an independently generated preflight plan, not a native execution trace. Complete success/atomic-result behavior is supported by source review, native controls and separately retained tests.",
+    "64 tokens is a soft grouping target. Intact unsplittable sentences may reach the hard 512-token sequence limit; limits are 32 segments, 4096 initial tokens, 32768 UTF-16 units, 5 passes per segment and 20480 total forwarded tokens.",
+    "Cancellation is checked between native calls; a running native FFI forward is not interruptible. Full native forward token counts and per-segment latency samples are not emitted by this runner.",
+    "Regression counts and captured ancestry are audited separately by incoming_audit and are not implied by the native receipt itself."
+  ]
+}

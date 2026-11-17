@@ -1,0 +1,151 @@
+{
+  "text": "Ich gehe nach Hause.",
+  "language": "German",
+  "fullyAligned": true,
+  "sentences": [
+    [
+      {
+        "words": [
+          {
+            "text": "Ich",
+            "lemmas": [
+              "SIE"
+            ],
+            "start": 0,
+            "end": 3
+          },
+          {
+            "text": "gehe",
+            "lemmas": [
+              "GEHEN"
+            ],
+            "start": 4,
+            "end": 8
+          },
+          {
+            "text": "nach",
+            "lemmas": [
+              "NACH"
+            ],
+            "start": 9,
+            "end": 13
+          },
+          {
+            "text": "Hause",
+            "lemmas": [
+              "HAUS"
+            ],
+            "start": 14,
+            "end": 19
+          },
+          {
+            "text": ".",
+            "lemmas": [
+              "."
+            ],
+            "start": 19,
+            "end": 20
+          }
+        ],
+        "variants": [
+          {
+            "units": [
+              {
+                "homonymIndex": 0,
+                "grammar": "PRO nom,sin,1,alg,per,; ",
+                "alternatives": [
+                  [
+                    "nom",
+                    "sin",
+                    "1",
+                    "alg",
+                    "per"
+                  ]
+                ]
+              },
+              {
+                "homonymIndex": 0,
+                "grammar": "VER sin,1,prae,non,; sin,imp,non,; sin,1,kj1,non,; sin,3,kj1,non,; ",
+                "alternatives": [
+                  [
+                    "sin",
+                    "1",
+                    "prae",
+                    "non"
+                  ],
+                  [
+                    "sin",
+                    "imp",
+                    "non"
+                  ],
+                  [
+                    "sin",
+                    "1",
+                    "kj1",
+                    "non"
+                  ],
+                  [
+                    "sin",
+                    "3",
+                    "kj1",
+                    "non"
+                  ]
+                ]
+              },
+              {
+                "homonymIndex": 0,
+                "grammar": "PRP dat,lok,tmp,; ",
+                "alternatives": [
+                  [
+                    "dat",
+                    "lok",
+                    "tmp"
+                  ]
+                ]
+              },
+              {
+                "homonymIndex": 0,
+                "grammar": "SUB dat,sin,neu,; ",
+                "alternatives": [
+                  [
+                    "dat",
+                    "sin",
+                    "neu"
+                  ]
+                ]
+              },
+              {
+                "homonymIndex": 0,
+                "grammar": " ",
+                "alternatives": []
+              }
+            ],
+            "groups": [
+              {
+                "start": 0,
+                "last": 4,
+                "isGroup": false,
+                "isSubject": false,
+                "description": "verbsatz"
+              },
+              {
+                "start": 0,
+                "last": 1,
+                "isGroup": false,
+                "isSubject": true,
+                "description": "sp"
+              },
+              {
+                "start": 2,
+                "last": 3,
+                "isGroup": true,
+                "isSubject": false,
+                "description": "pp"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "acceptedProductSource": "898c4c07f421d86a8cea460b13fd3e136088b553",
+  "rawIncomingBaseline": "024ff173edfce136cd7788484a58233468a68387",
+  "gates": [
+    {
+      "label": "delivery-field-final-vm",
+      "receipt": "evidence/delivery-field-final-vm.json",
+      "receiptSha256": "2e0c082d67c03a1fd13254a22681ea694af68dc2a96a059fb27a70bf5cd559c2",
+      "testedHead": "898c4c07f421d86a8cea460b13fd3e136088b553",
+      "substantiveTestCounts": {
+        "success": 113
+      },
+      "sourceInputCount": 328,
+      "exitCode": 0,
+      "sourceInputsStableDuringRun": true,
+      "allInputsMatchDeliverySourceOrPreservedLock": true
+    },
+    {
+      "label": "delivery-field-final-node",
+      "receipt": "evidence/delivery-field-final-node.json",
+      "receiptSha256": "f66041d4d5f7d0b38bc3dc3d46b164a03de92aba0254de95d7e2d3170c4230f0",
+      "testedHead": "898c4c07f421d86a8cea460b13fd3e136088b553",
+      "substantiveTestCounts": {
+        "success": 88
+      },
+      "sourceInputCount": 326,
+      "exitCode": 0,
+      "sourceInputsStableDuringRun": true,
+      "allInputsMatchDeliverySourceOrPreservedLock": true
+    },
+    {
+      "label": "delivery-field-final-analysis",
+      "receipt": "evidence/delivery-field-final-analysis.json",
+      "receiptSha256": "eb40f93599b2eb7eb4e022092a8ca75326dbf39b0bd3a4759a76e59dd9e28f89",
+      "testedHead": "898c4c07f421d86a8cea460b13fd3e136088b553",
+      "substantiveTestCounts": {},
+      "sourceInputCount": 324,
+      "exitCode": 0,
+      "sourceInputsStableDuringRun": true,
+      "allInputsMatchDeliverySourceOrPreservedLock": true
+    }
+  ],
+  "allAcceptedGatesPassed": true,
+  "cohortsOverlap": true,
+  "originalQualification": "../verification.json",
+  "originalArchiveSha256Unchanged": "176fe525b22833eb238f493275059c999ddf9bbb286ccb6af3538316b5f33f9f"
+}

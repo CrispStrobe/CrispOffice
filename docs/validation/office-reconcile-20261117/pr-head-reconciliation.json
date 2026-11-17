@@ -1,0 +1,21 @@
+{
+  "repository": "quds_office_suite",
+  "compared_heads": {
+    "HEAD": "b9bfe664a4efe4128a47792a1ea2cce16c7dd2c8"
+  },
+  "captured_at": "2026-11-17T17:46:38.042408+00:00",
+  "nonancestor_pr_heads": [
+    {
+      "ref": "refs/remotes/pull/115",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "equivalent_ancestor_tree_commit": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "subject": "feat(word): write ODT table borders and row heights"
+    },
+    {
+      "ref": "refs/remotes/pull/118",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "equivalent_ancestor_tree_commit": "cc9b467f69401ca3d689b56e7306e3cebd01df68",
+      "subject": "feat(word): write ODT paragraph tab stops"
+    }
+  ]
+}

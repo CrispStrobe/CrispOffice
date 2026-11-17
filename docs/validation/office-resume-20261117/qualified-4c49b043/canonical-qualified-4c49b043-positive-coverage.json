@@ -1,0 +1,315 @@
+{
+  "accepted": true,
+  "source_commit": "4c49b0435bc6611221bc49b58b15e735059467ff",
+  "final_engine_stdout_sha256": "663c3d315697d06d47a97e241774d81f54feb67c3fcf4f47ec0745f082ce450c",
+  "controls": [
+    {
+      "control": "annotation",
+      "final_suite": "test/odf_annotation_extraction_test.dart",
+      "matched_successful_cases": [
+        "ODS writer comments stay in the package without becoming cell text",
+        "ODT writer comments retain their body and do not enter body search",
+        "annotation recognition uses namespace identity and keeps foreign text",
+        "annotation-only documents do not fall back to comment metadata",
+        "annotations still count toward the package byte budget",
+        "empty annotations do not consume following paragraphs or tables",
+        "hidden annotation text is neither expanded nor charged to output",
+        "inline annotation omission preserves authored spaces and CDATA",
+        "namespace-less fallback excludes only ODF annotations",
+        "ods annotations do not create body paragraphs or table text",
+        "odt annotations do not create body paragraphs or table text"
+      ],
+      "matched_case_count": 11,
+      "source_input": {
+        "git_blob": "0d02410663ad0e8da77c585a5ebb02e6f527ac31",
+        "git_mode": "100644",
+        "sha256": "001dfae2628fae3267a145c3f2de4f6cbe6a8fc9d7473c50aa08d5391a587ba4"
+      },
+      "original_positive_log_sha256": "6e9bed900c8dd460ca895a3b594569ed685671aab4cb2f1293b8f5733a0997c2"
+    },
+    {
+      "control": "comment-note",
+      "final_suite": "test/odt_note_fidelity_test.dart",
+      "matched_successful_cases": [
+        "endnote references in comments cannot consume visible note bodies",
+        "footnote references in comments cannot consume visible note bodies"
+      ],
+      "matched_case_count": 2,
+      "source_input": {
+        "git_blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+        "git_mode": "100644",
+        "sha256": "075bc0b0087c54abaa2d1cecca84e3d78859e82eb693e88f4cbbd46f9a4120a3"
+      },
+      "original_positive_log_sha256": "135d61e5d87cc783a0c701520dc838a8c1fe845e4d111dc3ac53556dcdcca5d8"
+    },
+    {
+      "control": "paragraph-decoration",
+      "final_suite": "test/odt_paragraph_decoration_test.dart",
+      "matched_successful_cases": [
+        "paragraph border colors stay independent",
+        "paragraph shading colors stay independent"
+      ],
+      "matched_case_count": 2,
+      "source_input": {
+        "git_blob": "4cfa1f9a9c3b81543c2b7b6f736cb0bac1ced287",
+        "git_mode": "100644",
+        "sha256": "a2bcc405446666e3cdfa0cb0a34b658d90766668131c2aaee5ba7cd32c145db0"
+      },
+      "original_positive_log_sha256": "69e0d35e5b6ddac8c530f1f69b6401cbf65da8fe16c9ff886f517b7f9efb16a0"
+    }
+  ],
+  "new_and_preserved_suites": [
+    {
+      "path": "test/odf_frame_extraction_test.dart",
+      "substantive_successes": 12,
+      "source_input": {
+        "git_blob": "968e66f569c2496965081b507746fc1509425e3a",
+        "git_mode": "100644",
+        "sha256": "e6272ae9fb6caf0526b736bc8b55e8c78cde78d1e9b53b83502a0353990cf65f"
+      },
+      "case_names": [
+        "section-owning frame keeps each authored paragraph without an extra anchor",
+        "mixed inline text stays together before separate nested frame stories",
+        "frame tables keep cell structure and do not become body paragraphs",
+        "linked table-only frame has no synthetic paragraph: empty=false",
+        "linked table-only frame has no synthetic paragraph: empty=true",
+        "linked frame metadata and page-break wrappers cannot spend text budget",
+        "hidden inline stories cannot expose frames or spend the text budget",
+        "drawing namespace aliases work while foreign inline frames stay hidden",
+        "authored blanks survive while empty text-box anchors add no paragraph",
+        "visible textbox space count -1 retains expansion validation",
+        "visible textbox space count 1000000000 retains expansion validation",
+        "frame paragraphs share the cumulative UTF-8 and separator budget"
+      ]
+    },
+    {
+      "path": "test/odt_section_integration_test.dart",
+      "substantive_successes": 14,
+      "source_input": {
+        "git_blob": "7d7987fdf469076c0ace2853262df135c4157e49",
+        "git_mode": "100644",
+        "sha256": "54718ea8aafc2f86f1ddb01927158b0a533f5aacfc2ef60abf4ad0531313cf0e"
+      },
+      "case_names": [
+        "section style applies only to the first list item: ordered=false",
+        "nested section list applies its page boundary once: ordered=false",
+        "section style applies only to the first list item: ordered=true",
+        "nested section list applies its page boundary once: ordered=true",
+        "a leading table activates its section without an extra body paragraph",
+        "a leading frame activates its section without an extra body paragraph",
+        "a leading control activates its section without an extra body paragraph",
+        "an empty noncontinuous section retains an explicit boundary",
+        "an explicitly empty document has default master geometry without mutation",
+        "continuous section does not assign a page-breaking master: table=false",
+        "continuous section does not assign a page-breaking master: table=true",
+        "section paragraph keeps direct formatting and a defined common parent",
+        "section masters and comment stories preserve visible notes: endnote=false",
+        "section masters and comment stories preserve visible notes: endnote=true"
+      ]
+    },
+    {
+      "path": "test/proofing/german_lexical_gap_test.dart",
+      "substantive_successes": 6,
+      "source_input": {
+        "git_blob": "3aa5fb7ae5f80b57c93aeefa998825b741b06e33",
+        "git_mode": "100644",
+        "sha256": "0e39ead3bc256935f88a247955f6d1124bee52e796ed8fea4458d8bbcf2b6b82"
+      },
+      "case_names": [
+        "courtyard lemma remains valid beside its recorded inflections",
+        "Swiss greeting is not replaced with an unrelated noun",
+        "known finite nouns retain lowercase and typo checks",
+        "source normalization retains decomposed accents and soft hyphens",
+        "valid alternative dative and explicit joined words stay accepted",
+        "Swiss sharp-s policy still applies beside the new greeting"
+      ]
+    },
+    {
+      "path": "test/proofing/german_spelling_quotes_test.dart",
+      "substantive_successes": 18,
+      "source_input": {
+        "git_blob": "7cec924068e0e056e54b8a899a5771eb1bece500",
+        "git_mode": "100644",
+        "sha256": "a55ae5a77e644014d185658672ef504301fb20a914c68773a86e16f399c2e50b"
+      },
+      "case_names": [
+        "direct German quotation retains initial determiner",
+        "German low single direct quotation keeps its first capital",
+        "German guillemets direct quotation keeps its first capital",
+        "German single guillemets direct quotation keeps its first capital",
+        "Swiss guillemets direct quotation keeps its first capital",
+        "Swiss single guillemets direct quotation keeps its first capital",
+        "curly double direct quotation keeps its first capital",
+        "curly single direct quotation keeps its first capital",
+        "ASCII double direct quotation keeps its first capital",
+        "ASCII single direct quotation keeps its first capital",
+        "horizontal spacing around an opening quotation is allowed",
+        "quote context preserves emoji offsets and soft hyphen tokens",
+        "only the first word receives the quotation allowance",
+        "lowercase nouns still require their lexical capital",
+        "real first-word errors remain flagged with capitalized suggestions",
+        "suggestion caches distinguish ordinary and quoted contexts",
+        "ordinary adverb capitals stay contextual within the same check",
+        "existing beginning and sentence-terminal recognition is unchanged"
+      ]
+    },
+    {
+      "path": "test/odt_section_fidelity_test.dart",
+      "substantive_successes": 26,
+      "source_input": {
+        "git_blob": "3e401505a984f5a51bad43a8c74e74939394274d",
+        "git_mode": "100644",
+        "sha256": "4f2b34c4230b9dd96658d662d77df00f7ec7df7d8e64ff44704e19a4a2731031"
+      },
+      "case_names": [
+        "a first list item selects the section while its siblings do not",
+        "table-only sections activate the table without inserting a paragraph",
+        "nested controls and empty wrappers preserve a leading list activation",
+        "nested controls pass section activation to a leading table",
+        "ignored blocks do not consume the next visible section anchor",
+        "a first picture is anchored inside the section paragraph",
+        "a visual fallback stays in one paragraph carrying its section",
+        "a first frame anchors on the current page with physical page coordinates",
+        "empty sections keep their own boundary and do not steal the next one",
+        "an empty document has a usable default master without changing the model",
+        "section headings retain resolved spacing, direction and indents directly",
+        "continuous equal page styles do not select a new master or add a break",
+        "continuous equal normal header and footer content can reuse a master",
+        "continuous changed geometry still selects the authored page style",
+        "continuous changed header keeps a distinct section master",
+        "authored paragraph page breaks survive a continuous section",
+        "WmlSectionBreakKind.oddPage selects a parity entry master that returns to normal pages",
+        "WmlSectionBreakKind.evenPage selects a parity entry master that returns to normal pages",
+        "a first section does not inject a page break from its boundary kind",
+        "explicit numbering removal remains an ordinary section paragraph",
+        "parity masters repeat visible headers but emit each comment only once",
+        "empty unchanged continuous sections add no paragraph or vertical gap",
+        "equal header image bytes do not turn a continuous section into a new page",
+        "repeated header comments do not force a continuous section break",
+        "different authored header comment references retain distinct masters",
+        "header and footer list stories restart independently and compare equally"
+      ]
+    },
+    {
+      "path": "test/odt_section_continuation_test.dart",
+      "substantive_successes": 14,
+      "source_input": {
+        "git_blob": "1d570eba65ac057e6f4df9d0a49f5478dc86c156",
+        "git_mode": "100644",
+        "sha256": "15d3de17408a221da9511e16c3fbd6cff220b5b742a723e20127d3eae5a16b8e"
+      },
+      "case_names": [
+        "section style applies only to the first list item: ordered=false",
+        "nested section list applies its page boundary once: ordered=false",
+        "section style applies only to the first list item: ordered=true",
+        "nested section list applies its page boundary once: ordered=true",
+        "section activation stays with a leading table and leaves later content alone",
+        "section activation stays with a leading frame and leaves later content alone",
+        "section activation stays with a leading control and leaves later content alone",
+        "an empty noncontinuous section retains an explicit boundary",
+        "an explicitly empty document has default master geometry without mutation",
+        "continuous section does not assign a page-breaking master: table=false",
+        "continuous section does not assign a page-breaking master: table=true",
+        "section paragraph keeps direct formatting and a defined common parent",
+        "section masters and comment stories preserve visible notes: endnote=false",
+        "section masters and comment stories preserve visible notes: endnote=true"
+      ]
+    },
+    {
+      "path": "test/odt_paragraph_decoration_test.dart",
+      "substantive_successes": 2,
+      "source_input": {
+        "git_blob": "4cfa1f9a9c3b81543c2b7b6f736cb0bac1ced287",
+        "git_mode": "100644",
+        "sha256": "a2bcc405446666e3cdfa0cb0a34b658d90766668131c2aaee5ba7cd32c145db0"
+      },
+      "case_names": [
+        "paragraph border colors stay independent",
+        "paragraph shading colors stay independent"
+      ]
+    },
+    {
+      "path": "test/odt_document_writer_test.dart",
+      "substantive_successes": 12,
+      "source_input": {
+        "git_blob": "b2b126742be13c094eab56d047f894a837b8f47c",
+        "git_mode": "100644",
+        "sha256": "2e64f54aa30590930ace7958bc204f452e8590893aadc3f2d90f34766052481b"
+      },
+      "case_names": [
+        "writes paragraph shading and borders",
+        "writes header page-number fields",
+        "writes ODT bookmarks and hyperlinks",
+        "writes nested ODT list levels",
+        "writes section page layouts and breaks",
+        "writes ODT comments",
+        "writes footnote references and bodies",
+        "writes modeled Word text, runs, tables and pictures as ODT",
+        "table lists retain paragraph layout and use standard number styles",
+        "empty documents keep the list catalog within ODF core attributes",
+        "exports Zotero cached results without hidden field instructions",
+        "preserves whitespace in body runs and basic headers and footers"
+      ]
+    }
+  ],
+  "control_test_identity": {
+    "final_source": "4c49b0435bc6611221bc49b58b15e735059467ff",
+    "files": [
+      {
+        "path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+        "original_ref": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa",
+        "original_blob": "5cef911963aaf0b0361997ec3a422cb210230fcf",
+        "final_blob": "0d02410663ad0e8da77c585a5ebb02e6f527ac31",
+        "original_sha256": "21b83b42eb3779048dac8f657005ba436e2bda6aff2884e8e7bcfbafe7594f35",
+        "final_sha256": "001dfae2628fae3267a145c3f2de4f6cbe6a8fc9d7473c50aa08d5391a587ba4",
+        "byte_exact": false,
+        "review": "Only the unchanged 4096-x hidden annotation fixture expression is extracted into a local variable in the package-byte-budget case. Exact full-file transformation verified. No assertions or other test bodies differ."
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "original_ref": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa",
+        "original_blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+        "final_blob": "bcd825253162c15d7f9582ad6bcc642ae6368ff7",
+        "original_sha256": "075bc0b0087c54abaa2d1cecca84e3d78859e82eb693e88f4cbbd46f9a4120a3",
+        "final_sha256": "075bc0b0087c54abaa2d1cecca84e3d78859e82eb693e88f4cbbd46f9a4120a3",
+        "byte_exact": true,
+        "review": "Byte-exact control test file."
+      },
+      {
+        "path": "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+        "original_ref": "cc394ee2b8468d543ecd0b3ff1bc7f8ac10fd270",
+        "original_blob": "4cfa1f9a9c3b81543c2b7b6f736cb0bac1ced287",
+        "final_blob": "4cfa1f9a9c3b81543c2b7b6f736cb0bac1ced287",
+        "original_sha256": "a2bcc405446666e3cdfa0cb0a34b658d90766668131c2aaee5ba7cd32c145db0",
+        "final_sha256": "a2bcc405446666e3cdfa0cb0a34b658d90766668131c2aaee5ba7cd32c145db0",
+        "byte_exact": true,
+        "review": "Byte-exact control test file."
+      }
+    ],
+    "test_execution_performed": false,
+    "method": "Read-only immutable git-object comparison; final execution is handled by the broad qualified run."
+  },
+  "table_test_identity": {
+    "source_file": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+    "final_source": "4c49b0435bc6611221bc49b58b15e735059467ff",
+    "incoming_source": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+    "previous_published_source": "cc394ee2b8468d543ecd0b3ff1bc7f8ac10fd270",
+    "incoming_base": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+    "final_test_blob": "b2b126742be13c094eab56d047f894a837b8f47c",
+    "incoming_test_blob": "b2b126742be13c094eab56d047f894a837b8f47c",
+    "prior_and_incoming_base_blob": "0d6cd00b71e2e07f4255a209ec74eb4281729f6e",
+    "whole_test_file_equal": true,
+    "incoming_table_test_patch_applied_exactly": true,
+    "identical_patch_sha256": "8e9e1905352c35b37903f8028833428998e986a8cb019a15fdfe0534bcb3552b",
+    "added_lines": [
+      "                  height: 24,",
+      "                      borderTop: true,",
+      "                      borderLeft: true,",
+      "    expect(content, contains('fo:border-top=\"0.5pt solid #000000\"'));",
+      "    expect(content, contains('style:row-height=\"24.00pt\"'));"
+    ],
+    "source_or_test_mutations_performed": false
+  },
+  "test_execution_performed": false,
+  "method": "Independent completed-log recount and exact recorded source-input comparison. No new tests were run."
+}

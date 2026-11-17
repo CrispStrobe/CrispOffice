@@ -43,6 +43,13 @@ The documentation baseline is `main` at `16228835`. That line excludes AOT under
 the integration scope of [PR #125](https://github.com/CrispStrobe/quds_office_suite/pull/125).
 Do not reintroduce it by merging an old implementation branch as a shortcut.
 
+The final documentation refresh also reconciled main at
+`aa9591d496d66a549d4e0c67aee73eada0d9d46f`, including
+[PR #129](https://github.com/CrispStrobe/quds_office_suite/pull/129), which retains
+independent context rules and excludes the AOT/RML runtime. Historical AOT
+evidence files may be present without the corresponding runtime/package being
+an application dependency. The provenance findings below remain historical.
+
 The earlier working prototype remains useful historical evidence:
 
 - [PR #120](https://github.com/CrispStrobe/quds_office_suite/pull/120).

@@ -1,0 +1,30 @@
+{
+  "audit_script_sha256": "d83bded25839717c61dd22187a6f3511be7e90029ccaa654ccf7d18b3363da8a",
+  "checked_utc": "2026-11-17T18:03:59.012550+00:00",
+  "checks": 2527,
+  "consumer": {
+    "archive": "/workspace/scratch/2a07827fdeed/consumer-packaged-f5021f1c/consumer-f5021f1c.tar.xz",
+    "bytes": 937068,
+    "members": 384,
+    "raw_audit_sha256": "bc32f97add305e9ce06fedfd407a5187aa80c776b9e5b070d1e7ab19af26dfcf",
+    "raw_files_bound_to_audited_run": 371,
+    "sha256": "3c5c324e79581d0eb8fff4b0c829e54947f7c60281e288e6368476c6608319fd"
+  },
+  "failures": [],
+  "passed": true,
+  "qualification": {
+    "all_raw_files_included": true,
+    "archive": "/workspace/scratch/2a07827fdeed/quds_office_suite/docs/validation/office-consolidation-20261117/qualification/qualification-f5021f1c.tar.xz",
+    "bytes": 975320,
+    "members": 124,
+    "plan_only_and_executed_plan_identical": true,
+    "raw_audit_sha256": "13c520009b18b1a882a7c337508f516604b568932183f9c65d2a30a77504c5ef",
+    "raw_files_bound_to_audited_run": 106,
+    "run_used_and_archived_harness_identical": true,
+    "sha256": "560eef7a14ebc90b011ff41a711fa5036487631461ecbecdfd41d51d251f3efc"
+  },
+  "schema": "independent-evidence-archive-audit-v1",
+  "scope": "All member names, types, sizes, and SHA256 values were independently verified. Raw run members were byte-compared with the independently audited run directories. No archive producer or qualification code was imported.",
+  "source_commit": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+  "total_verified_members": 508
+}

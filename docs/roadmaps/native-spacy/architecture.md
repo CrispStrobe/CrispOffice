@@ -7,6 +7,12 @@ Quds `main` at `162288351af0ad43bb4d869fd2d814eaaa30a930`. Read the
 [validation plan](validation.md) and
 [licensing and distribution review](licensing-and-distribution.md) together.
 
+Publication reconciled later Quds main through
+`aa9591d496d66a549d4e0c67aee73eada0d9d46f`. Its additional
+[independent context rules](../../validation/german-context-20261117/README.md)
+are the current baseline to preserve and compare against. This does not change
+the proposed native pipeline boundary or imply that those rules use spaCy.
+
 ## Intended result
 
 Implement the inference subset of the pinned German `de_core_news_sm` 3.8.0
@@ -263,6 +269,10 @@ rejected by limits must remain visible.
 Start grammar scope with the bounded noun-subject/finite-verb agreement
 experiment already documented in
 [the syntax report](../../validation/german-syntax-20261117/README.md).
+Use it as a native-reference/rule integration starting point; preserve the
+newer deterministic context rules and demonstrate any additional coverage
+before activating a model grammar provider. Analysis can ship independently
+if a grammar extension has not earned its own qualification.
 Corroborate noun number with the existing morphology, retain all competing
 readings and abstain on unresolved/unknown readings. The valid singular
 `Die Leiter steht ...` is a required regression case. Preserve coordination,

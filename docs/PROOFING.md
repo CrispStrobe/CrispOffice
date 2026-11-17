@@ -4,7 +4,7 @@ Roadmap accepted and implementation resumed: 16 November 2026. Original
 baseline: `bad2d9d30fd94db8de92a4f4bf83a55b0692b884`.
 
 The CrispStrobe fork implements offline German spelling, automatic German and
-US/UK English hyphenation, seventeen German writing-rule categories, and a
+US/UK English hyphenation, twenty-one German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
 web assets. Mobile system spelling has an adapter with protocol tests. The
@@ -29,6 +29,15 @@ This does not retroactively approve an artifact or change the existing Harper
 packaging checks. The selected new architecture starts with MIT model/code
 inputs and an explicitly inventoried native dependency set.
 
+## Context rules without AOT/RML — 17 November 2026
+
+The [independent context qualification](validation/german-context-20261117/README.md)
+records bounded verb case, copula number, word order and participle checks,
+review/undo behavior, and the actual default 18/18 original-panel result.
+AOT.ru/RML stays on its feature branches. No analyzer daemon, pipe, model or
+spaCy runtime is added to the application. Broader panels and retained misses
+are reported separately from the small original panel.
+
 ## Noun agreement and syntax/model evaluation — 17 November 2026
 
 Simple, unambiguous noun subjects now participate in the existing pure-Dart
@@ -46,7 +55,35 @@ records actual spaCy syntax inference and separately pinned Proofbird v2.1/v2.2
 comparisons. The syntax planner is evaluation-only; v2.2 is not promoted merely
 because its version is newer. Models and Python environments remain outside Git.
 
-## German proofing continuation — 17 November 2026
+## Combined quality and spelling continuation — 17 November 2026
+
+The [follow-up report](validation/german-proofing-next-20261117/README.md)
+measures the optional model together with the default spelling and writing
+providers, using the editor's shared `mergeOfficeProofingReports` policy.
+Real compiled inference yields **9/18** exact combined corrections on the
+original de-DE panel versus **7/18** deterministic, and **20/32** on a newly
+authored synthetic panel versus **14/32** deterministic. No deterministic exact
+correction is lost and none of the **10 + 40** supported clean controls is
+flagged or changed. Model-only counts are **6/18** and **12/32**.
+
+The new panel was frozen remotely before its first inference. Its initial
+observations exposed spelling false positives after a colon/opening quotation
+mark and for `Hof` and `Grüezi`. The bounded repairs preserve direct-speech
+capitalization and add only `Hof`, `Grüezi` and `grüezi` to the finite first-party
+supplement; pinned upstream dictionary shards are unchanged. Measurements after
+these repairs are development regressions, not a fresh prospective evaluation
+or an estimate of representative German accuracy. Full initial outputs and
+exact before/after comparisons remain available.
+
+The actual editor displays reviewable suggestions. The evaluation's
+first-replacement projection is a declared scoring convention, not automatic
+editing. Regional model controls remain explicitly unsupported while the
+deterministic checker retains its existing locale coverage. The report also
+retains source-specific validation of the incoming opt-in segmentation and
+Office export changes. PR #114 follows PR #105, which was merged externally
+during this continuation; no CI queue is used as a gate.
+
+## Earlier German proofing continuation — 17 November 2026
 
 The [morphology continuation report](validation/german-proofing-continuation-20261117/README.md)
 records the integration of the newer optional GECToR provider and native
@@ -610,7 +647,7 @@ authorized by this roadmap.
 ## Using Word proofing
 
 `WordEditorController.proofing` owns a lazy `WordProofingSession`. Its built-in
-providers are German spelling and the seventeen German writing-rule categories. Background
+providers are German spelling and the twenty-one German writing-rule categories. Background
 checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced

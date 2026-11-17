@@ -52,6 +52,12 @@ when these documents were written. CrispEmbed main inspected for research was
 `3a27b6c665b191cb230be367db5c52d81dd3e2ac`. The standalone GECToR precedent
 is a different feature pin, `853a1ce6089e5d5486e37307f37051ad6a928745`.
 
+Before publication the handoff also reconciled Quds main through
+`aa9591d496d66a549d4e0c67aee73eada0d9d46f` (PRs #129 and #130). Preserve its
+new context rules and Office repairs. Read the
+[context qualification](../../validation/german-context-20261117/README.md)
+alongside the earlier syntax experiment before choosing a grammar extension.
+
 **Actions:**
 
 1. Read repository instructions, inspect tracked/untracked changes, and create
@@ -243,6 +249,15 @@ verified. Web imports remain safe with an explicit unavailable native backend.
 Push before proceeding to new grammar claims.
 
 ## W6 — Add conservative corrections on top of analysis
+
+First establish the **current** deterministic baseline, including
+`german_context_grammar.dart`, literal-range protection, and the incoming context
+fixtures. Compare the combined provider against that baseline, not only the
+older spaCy prototype or pre-extension scores. Reuse existing rule/data APIs.
+Do not enable duplicate or lower-quality model suggestions merely because
+native inference now works. If no bounded grammar benefit is demonstrated,
+deliver qualified analysis and retain grammar as disabled/experimental with
+the measured result documented.
 
 Start with independently authored noun/subject-verb agreement. Reuse the
 existing licensed German morphology and reviewed verb facts through an

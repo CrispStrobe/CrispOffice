@@ -1,5 +1,12 @@
 # German grammar model qualification
 
+For the current **in-process native** QA run, see
+[the context qualification](../../../docs/validation/german-context-20261117/README.md).
+`native_ort_probe.c` links the official ONNX Runtime 1.23.2 C API;
+`evaluate_native_quality.dart` loads it directly in the Quds worker and verifies
+model, shim and runtime hashes. It registers no application backend. The older
+process-based evaluators below remain historical research tools only.
+
 For a local F32 diagnostic run through the actual Quds worker, tokenizer,
 decoder, guards and deterministic-first report merge, create an isolated Python
 environment with `requirements.txt` and supply the complete pinned, verified
@@ -64,6 +71,14 @@ and [guarded JIT/AOT evidence](../../../docs/validation/german-gector/2026-11-17
 keep numerical equivalence, final corrections, operational coverage and
 performance observations separate. Continue local checks without waiting for
 GitHub Actions; the earlier workflow remains reproducible historical evidence.
+
+The [incremental quality runner](INCREMENTAL_QUALITY.md) compares default
+deterministic proofing, the actual guarded native model and their combination
+under the same merge policy used by the editor. Its [separately frozen synthetic
+panel](PROSPECTIVE_CASES.md), first-replacement scoring contract, atomic output
+checkpoints and AOT source binding are distinct from the original unguarded
+reference below. Initial and repaired outputs are retained in the
+[continuation evidence](../../../docs/validation/german-proofing-next-20261117/README.md).
 
 ## Original unguarded evaluation reproduction
 

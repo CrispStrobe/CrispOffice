@@ -70,9 +70,13 @@ mobile qualification.
 
 ## Repository state at handoff
 
-The documentation branch is `docs/native-spacy-handoff-20261117`, based on
-Quds `main` at **`162288351af0ad43bb4d869fd2d814eaaa30a930`**. Fork/upstream
-branch and PR-head refs were refreshed before writing this handoff. These are
+The documentation branch is `docs/native-spacy-handoff-20261117`. Its initial
+base was Quds `main` at **`162288351af0ad43bb4d869fd2d814eaaa30a930`**; publication
+then reconciled newer main **`aa9591d496d66a549d4e0c67aee73eada0d9d46f`**, including
+[PR #129](https://github.com/CrispStrobe/quds_office_suite/pull/129) and
+[PR #130](https://github.com/CrispStrobe/quds_office_suite/pull/130). The two
+documentation conflicts retained both incoming content and the handoff links.
+Fork/upstream branch and PR-head refs were refreshed before writing. These are
 read-only research/documentation changes; this handoff does not claim to merge
 every unmerged branch or to requalify application code.
 
@@ -93,6 +97,7 @@ or dictionaries is not part of the recommended spaCy implementation.
 | Existing work | Where to start | What it proves |
 | --- | --- | --- |
 | Pure Dart spelling, morphology, and grammar | [Proofing roadmap](../../PROOFING.md), `packages/quds_office_engine/lib/src/proofing/` | Existing application behavior and reusable licensed linguistic resources |
+| Newer independent German context rules | [Context qualification](../../validation/german-context-20261117/README.md), `german_context_grammar.dart` and `german_literal_ranges.dart` under the engine's proofing directory | The current deterministic baseline is broader than the earlier spaCy experiment; preserve it and measure any incremental model benefit |
 | Native GECToR adapter | [Package README](../../../packages/quds_proofing_gector/README.md) | Existing native-worker/FFI and manual-provider integration patterns |
 | spaCy syntax experiment | [Retained report](../../validation/german-syntax-20261117/README.md) | Actual Python-side German inference and bounded correction experiments; not native runtime qualification |
 | Reproduction tools and model pin | [Syntax evaluation](../../../tools/proofing/german_model/SYNTAX_EVALUATION.md), [model manifest](../../../tools/proofing/german_model/syntax-model.json) | Existing reproducible reference inputs and exact wheel identity |
@@ -160,6 +165,12 @@ starting with noun/subject-verb agreement corroborated by existing Quds
 morphology. Follow with fixed-preposition and noun-phrase agreement only when
 replacement generation and ambiguity guards are qualified. Do not fabricate
 AOT-style full paradigms or alternative parse forests from one spaCy prediction.
+
+The incoming context-rule work is the current grammar baseline. Compare against
+it and reuse its licensed facts and guards; do not recreate already implemented
+rules or replace them simply to exercise a neural backend. Native analysis is a
+useful independent deliverable. A model-based grammar provider needs evidence
+of incremental benefit and acceptable false positives before activation.
 
 The first implementation is complete only when the selected native model runs
 without Python or a daemon, produces qualified analysis, integrates safely with

@@ -1,0 +1,85 @@
+{
+  "started_at_utc": "2026-11-17T18:09:03.381801+00:00",
+  "completed_at_utc": "2026-11-17T18:09:23.027477+00:00",
+  "head_at_start": "cee14164116306fc8769ab637cf4fc3745a0f98b",
+  "command": [
+    "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/5dea2c973ce5/quds_office_suite/.dart_tool/pub/bin/test/test.dart-3.13.7.snapshot",
+    "test",
+    "--concurrency=2",
+    "--reporter=json"
+  ],
+  "working_directory": "/workspace/scratch/5dea2c973ce5/quds_office_suite/packages/quds_proofing_gector",
+  "environment": {
+    "TMPDIR": "/workspace/scratch/5dea2c973ce5/final-proofing-tmp",
+    "PUB_CACHE": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/pub-cache",
+    "FLUTTER_ROOT": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk"
+  },
+  "native_fixture_variables_configured": {
+    "GECTOR_TEST_LIBRARY": false,
+    "GECTOR_TEST_MODEL": false,
+    "GECTOR_TEST_MODEL_SHA256": false,
+    "GECTOR_TEST_LIBRARY_SHA256": false
+  },
+  "exit_code": 0,
+  "success": true,
+  "passed": 212,
+  "failed": 0,
+  "skipped": 1,
+  "skipped_tests": [
+    "real native dual heads own their output and reject use after dispose"
+  ],
+  "failed_tests": [],
+  "source_hashes_before": {
+    "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+    "packages/quds_proofing_gector/lib/src/backend.dart": "7494c3037495d3aa0b4b0f53062b9fa816af2d6c0f2334667d333045c86e29d6",
+    "packages/quds_proofing_gector/lib/src/bundle.dart": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+    "packages/quds_proofing_gector/lib/src/decoder.dart": "224c7be711870cadc5fff97404f2b334b868f8fb11dba0e28657e5450e37c1c2",
+    "packages/quds_proofing_gector/lib/src/guards.dart": "6c9684c05e8f925df5d8d66cf1c4f5fa7bd772abd7658648ec950ec0803408e1",
+    "packages/quds_proofing_gector/lib/src/lexicon.dart": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+    "packages/quds_proofing_gector/lib/src/native_backend.dart": "d629caf4acf43745761cdcb133f57826edffa73e15e6220247abdfea3aab5a34",
+    "packages/quds_proofing_gector/lib/src/provider.dart": "67cf9c2b7ec95f16cfa56bdac3caffc07267298bec830ac083d0817b0f5f0f56",
+    "packages/quds_proofing_gector/lib/src/segmentation.dart": "d49374de21128ebf729b6409b177f198716ade167eca08883662d7484709e8c8",
+    "packages/quds_proofing_gector/lib/src/source_text.dart": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+    "packages/quds_proofing_gector/lib/src/tokenizer.dart": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+    "packages/quds_proofing_gector/lib/src/transport.dart": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+    "packages/quds_proofing_gector/lib/src/unicode_case.dart": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+    "packages/quds_proofing_gector/lib/src/worker_native.dart": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231",
+    "packages/quds_proofing_gector/lib/src/worker_unsupported.dart": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+    "packages/quds_proofing_gector/test/bundle_test.dart": "60d9c15b9d89a94c56cf8b294e0fa5e9b5ad0c52d91a5ff148147a9a40f27260",
+    "packages/quds_proofing_gector/test/decoder_test.dart": "764468da8e7a357c6c82390160338abaffcc296eadf930d129f6a30b605753f9",
+    "packages/quds_proofing_gector/test/fixtures/README.md": "af9eda5028508a907dc2def10d594359988099d8efaacd1cf622e7c99fc987c9",
+    "packages/quds_proofing_gector/test/fixtures/decoder_oracle.json": "9cca0da3a8e8cfa72ab1ffaad493656707dbb65c753309f305acf0284fc1eaeb",
+    "packages/quds_proofing_gector/test/fixtures/proofbird_metadata.json.gz": "4c27a1ae1c0738f731dbdb39dcfe258a31687ff84466be5a93dbaecab2e59e81",
+    "packages/quds_proofing_gector/test/fixtures/tokenizer_oracle.json": "5d0840d89866f74f32af2a5bc3879e8c2b6582186f09f6deebbe8035b69f36ed",
+    "packages/quds_proofing_gector/test/guards_test.dart": "1a8dbf825700cc95fedbf1a5c11f601de633c5f939c742613e74633e519b834f",
+    "packages/quds_proofing_gector/test/incremental_quality_test.dart": "a669991e422dea398b68d5cbe19205cdf7892863b398e1725383d4a505683639",
+    "packages/quds_proofing_gector/test/inference_reuse_test.dart": "9c950ab42dc4dcd587fb2ae98adefff9a6b60ca01d96b75c2e97069f81ba2640",
+    "packages/quds_proofing_gector/test/native_backend_test.dart": "806d0981a202348dd7548acc31cf7edc434c1c5fd5bf035333774b3b3638badc",
+    "packages/quds_proofing_gector/test/provider_test.dart": "6e1e49eabbc67f28ff24c33f123b2e8ebe94a7fed23e1c0e347129cf51f5f6aa",
+    "packages/quds_proofing_gector/test/segmentation_test.dart": "c03bd9fb810cbe43113e128a5a98f33a16fc03c5278e5772faf8e94d9050d63b",
+    "packages/quds_proofing_gector/test/segmented_decoder_test.dart": "02ba053740e7f1fc987ba9289f2a4ced4c194d831384fa6656140e80e8d79997",
+    "packages/quds_proofing_gector/test/source_text_test.dart": "3377c81f477e1d56555d7d15b23382f828dddd18cdf2a8bc92d4b9962a314f98",
+    "packages/quds_proofing_gector/test/support.dart": "b37e7edc87283d3e76798f76f0fd101d9023ee6e4cdadde115430e75b43d1bf3",
+    "packages/quds_proofing_gector/test/tokenizer_test.dart": "ff712ce0e7cc922fa9b0df4435281cdda48f34ce9008e3d7f4251a92b3e31580",
+    "packages/quds_proofing_gector/test/worker_test.dart": "5db100db13fc6674b068f28a5ba9ad819fec276da21744d18d3d3244a1411cc0",
+    "tools/proofing/german_model/incremental_quality.dart": "5843e82b170d00e5e50a243c88bbbce458eb664181701f7480eb4c310a9e7f4d"
+  },
+  "sources_unchanged_during_run": true,
+  "logs": [
+    {
+      "file": "final-proofing-gector-vm.jsonl.gz",
+      "sha256": "fd6b2beab5960784ed2cc177e02d85725beaebf28c67f13604840ff66288c342"
+    },
+    {
+      "file": "final-proofing-gector-vm.stderr.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    }
+  ],
+  "notes": [
+    "Run from package directory because the existing test fixtures use relative paths.",
+    "Supersedes the GECToR part of the root-directory combined attempt; no implementation changes were needed.",
+    "Hidden loader/setup/teardown events excluded. The optional real native model probe is explicitly reported and not counted as passed."
+  ]
+}

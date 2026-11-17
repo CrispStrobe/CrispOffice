@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-final-proofing-source-continuity-review",
+  "recorded_at_utc": "2026-11-17T18:24:42.492693+00:00",
+  "accepted_proofing_source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "reviewed_final_source": "7002d750e20e44392c6c9ba1a92d910fd87fe593",
+  "base_is_ancestor_of_final": true,
+  "passed": true,
+  "discrepancies": [],
+  "method": "Read-only Git diff, complete changed-path enumeration, unchanged subtree/blob identity checks, and exact byte comparison of the sole AOT test-fixture change. No tests, builds, fetches, or Git mutations.",
+  "changed_path_count": 9,
+  "changed_paths": [
+    {
+      "status": "A",
+      "path": "docs/validation/german-proofing-recovery-20261117/closing-main-observation.json"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/CHANGELOG.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/odp_chart_fallback_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/odt_paragraph_break_style_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_proofing_aot/test/native_source_mapping_test.dart"
+    }
+  ],
+  "changed_product_source_count": 2,
+  "changed_product_source": [
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+      "before_blob": "183d17aaccd4a39de069d0860754a80937cc6c67",
+      "after_blob": "336bf2b907deb1aa226ec8e75c7bd9ca646393dc",
+      "reviewed_change": "Chart fallback data becomes a Label/Value table and uses the existing rotation-preserving table path; images and explicit tables retain precedence."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "before_blob": "f4b482c15258bbd2ca586530c5978a64f73a6979",
+      "after_blob": "69a096d531aed4c5bc96a86c6399333e7b6dcd2e",
+      "reviewed_change": "Paragraph-style identity includes columnBreakBefore and keepTogether; emitted ODT styles preserve column breaks and keep-together, with page breaks taking precedence."
+    }
+  ],
+  "unchanged_proofing_aot_editor_implementation": true,
+  "unchanged_scopes": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing",
+      "git_object": "248fb7c7387b71267d615287d42476964e264a78",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_proofing_gector",
+      "git_object": "4e0e6cf829e74db69a477c45b52ff4d07e670f9f",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_proofing_harper",
+      "git_object": "3ee0cee5f338e872b09cfe66cdf6a949804db33e",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_proofing_aot/lib",
+      "git_object": "58ac98170ae7cb02434989ff616789feb6e9c251",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_proofing_aot/native",
+      "git_object": "e7ffa97a8274f5048e183741b41efa98ee629c65",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_proofing_aot/tool",
+      "git_object": "c1f54ea123f670092ae676d74f0f42b94e9db586",
+      "unchanged": true
+    },
+    {
+      "path": "packages/quds_office_editor",
+      "git_object": "4b2a2b6a56924483c60205b76e8ce685e40671b8",
+      "unchanged": true
+    },
+    {
+      "path": "apps/quds_report_studio",
+      "git_object": "e337080af459e7f1cb15e880513b5db58be3d88a",
+      "unchanged": true
+    },
+    {
+      "path": "tools/proofing",
+      "git_object": "7115353a2ca94b7cc2e85505c8b3ebecf82d8cc6",
+      "unchanged": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_object": "cc830498a08150d7ae8d37929762be0d633fe28b",
+      "unchanged": true
+    },
+    {
+      "path": "analysis_options.yaml",
+      "git_object": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "unchanged": true
+    }
+  ],
+  "aot_test_fixture": {
+    "path": "packages/quds_proofing_aot/test/native_source_mapping_test.dart",
+    "before_blob": "3aea7d382648df31141fd9615d1eb18dd5b9ad10",
+    "after_blob": "55f80587d22084097fce7ce1c3b853612461c965",
+    "before_sha256": "8d1be0b706507c7eb8ef7d9eaee17c55766ea5bc634c0a307bb5ae50db9af900",
+    "after_sha256": "52e4567af68534dba958bfd6336c4ba5562e43e33944ea3ba649390b793d6250",
+    "exact_only_change": "sourceStart 0.0 becomes 0.5, with a two-line comment explaining VM/JavaScript integral-number representation. The fractional invalid-offset fixture is portable; no decoder or other product behavior changed.",
+    "exact_replacement_verified": true,
+    "test_evidence": "aot-portability-reconciliation.json"
+  },
+  "other_changes": {
+    "office_test_files": 4,
+    "engine_changelog_files": 1,
+    "closing_main_observation_files": 1
+  },
+  "qualifications": [
+    "This review establishes proofing-source continuity, not a new final-commit test run. Quality and native build results remain attributed to accepted proofing source 8d6403021f797a05e9c9fc49052c3d19d3766844.",
+    "The two Office writer changes are outside the unchanged proofing implementation scopes and require their separately retained Office validation. The complete engine library tree therefore differs between these commits."
+  ]
+}

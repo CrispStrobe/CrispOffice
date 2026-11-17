@@ -1,0 +1,86 @@
+{
+  "qualified_baseline": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+  "cutoff": {
+    "main": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+    "aot": "9297f077d68256042afd520d55d72f5997e746b3",
+    "morphology": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+    "gector": "2f12488c1687aaa5c2e1529adebcbfd803cbaba7"
+  },
+  "scope": "Targeted read-only source/merge/coverage audit; no tests or native builds run and no source mutation.",
+  "aot": {
+    "semantics": [
+      "Default AotClient and CLI use an owned lazy local process; explicit AotClient.http retains service compatibility with no automatic HTTP fallback.",
+      "Bounded JSON-lines process protocol with queue, deadline, output and diagnostic limits; disposal terminates its own worker.",
+      "Bounded LRU successful morphology cache and concurrent lookup coalescing; exact word/language/paradigm keys; syntax and failures are not retained.",
+      "Exact native UTF-16 source spans are validated independently from normalized analyzer strings, including verified zu helfen mapping.",
+      "Studio privately reuses one analyzer per dialog and resets it on cancel, stale text, language change, failure and close.",
+      "Pinned native C++ worker and explicit build/CLI qualification tools; two exact build-copy upstream repairs suppress input.lem and fix owned group-description strings."
+    ],
+    "new_tests": [
+      "client_cache_test.dart",
+      "native_source_mapping_test.dart",
+      "process_transport_platform_test.dart",
+      "process_transport_test.dart"
+    ],
+    "native_sources": [
+      "packages/quds_proofing_aot/native/CMakeLists.txt",
+      "packages/quds_proofing_aot/native/worker.cpp"
+    ],
+    "new_python_tools": [
+      "build_native.py",
+      "smoke_native.py",
+      "qualify_cli.py"
+    ],
+    "upstream_aot_revision": "0d591d972c7bb2729f4764d3bc32611ea6fd142a",
+    "upstream_nlp_base_revision": "244b3d1f9a09e4a81e75ea83c3b55b209c663503",
+    "new_dart_dependency_requirements": false,
+    "fresh_native_runtime_available": false,
+    "coverage_limit": "Process tests launch a controlled Dart child-worker fixture; they do not qualify the real native AOT engine or other OS/browser branches."
+  },
+  "morphology": {
+    "semantics": [
+      "Replaces overlapping predicate-tail regex repetitions with a bounded scanner, retaining prior admission semantics and adding long-whitespace/adversarial controls.",
+      "Ranks verified finite irregular participles first only in narrowly admitted perfect-tense contexts; contextual cache keys and protected ranges/offsets remain guarded.",
+      "Candidate evaluator executes the exact bytes authenticated before native imports, ignoring unreviewed pyc and later source mutation."
+    ],
+    "advance_from_04f": "8d6403021 changes ODT column structure/tests and documentation only; proofing/AOT implementation is unchanged from04f.",
+    "new_engine_tests": [
+      "german_participle_suggestions_test.dart"
+    ],
+    "expanded_existing_tests": [
+      "german_noun_agreement_test.dart",
+      "test_candidate_admission.py"
+    ]
+  },
+  "gector": {
+    "semantics": [
+      "Opt-in segmented request-local raw-tag reuse requires explicit deterministic-backend capability; native backend declares it; default path remains unreused.",
+      "Cache includes exact words and prepared input arrays, is bounded and discarded between requests, and retains no offsets/personal-word decisions. Guards/source projection and cancellation rerun on hits; budget accounting distinguishes actual forwards from decoded work.",
+      "Conservatively preserves repeated pronoun/article homographs and ambiguous triples, while retaining the original-start case-differing pair exception.",
+      "Adds finite noun spellings Schuppen/Schuppens/Lernen/Lernens without broadly accepting lower-case or malformed variants."
+    ],
+    "new_tests": [
+      "duplicate_role_guards_test.dart",
+      "inference_reuse_test.dart",
+      "runner_inputs_test.dart"
+    ],
+    "new_engine_tests": [
+      "german_nominal_word_forms_test.dart"
+    ],
+    "atomic_generated_data": [
+      "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+      "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+      "packages/quds_office_engine/third_party/proofing/manifest.json"
+    ]
+  },
+  "merge_hazards": [
+    "Do not replace qualified Office writer with any entire incoming tree. Several heads carry older parallel writer changes.",
+    "Retain final9297 AOT package/Studio/native implementation over the partially captured0b4c precursor contained in morphology.",
+    "Merge morphology grammar/candidate-admission changes with GECToR spelling/nominal-data changes; neither incoming head is a complete replacement for all newer proofing behavior.",
+    "Preserve the three generated spelling-data inputs atomically and verify their manifest.",
+    "Retain all existing189 selected suites and append new files, including changed Studio example/test/widget_test.dart.",
+    "Existing Dart process-transport platform test registers unsupported-platform branches conditionally; a Linux run cannot claim web/mobile coverage."
+  ],
+  "tests_executed": false,
+  "ci_endpoints_used": false
+}
