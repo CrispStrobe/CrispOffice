@@ -5,7 +5,19 @@
 final class GermanLiteralTextRanges {
   GermanLiteralTextRanges(String text) {
     for (final match in _mentions.allMatches(text)) {
-      _ranges.add((match.end - match.group(1)!.length, match.end));
+      final prefix = text.substring(
+        match.start > 80 ? match.start - 80 : 0,
+        match.start,
+      );
+      final suffix = text.substring(
+        match.end,
+        match.end + 80 < text.length ? match.end + 80 : text.length,
+      );
+      if (match.group(1)!.isNotEmpty ||
+          _declaration.hasMatch(suffix) ||
+          _objectMention.hasMatch(prefix)) {
+        _ranges.add((match.end - match.group(2)!.length, match.end));
+      }
     }
     final quotation = _exampleQuotation.firstMatch(text);
     if (quotation != null &&
@@ -49,7 +61,15 @@ final class GermanLiteralTextRanges {
   };
   final List<(int, int)> _ranges = [];
   static final _mentions = RegExp(
-    r'''(?<![\p{L}\p{M}])(?:Wort|Ausdruck|Begriff|Titel|Zeichenfolge|Token)[ \t]+[„‚»›«‹“‘"']?([\p{L}\p{M}]{1,128})(?![\p{L}\p{M}])''',
+    r'''(?<![\p{L}\p{M}])(?:Wort|Ausdruck|Begriff|Titel|Zeichenfolge|Token)[ \t]+([„‚»›«‹“‘"']?)([\p{L}\p{M}]{1,128})(?![\p{L}\p{M}])''',
+    unicode: true,
+  );
+  static final _declaration = RegExp(
+    r'^[ \t]+(?:ist|sind|war|waren|bleibt|bleiben|wird|werden|steht|stehen|heißt|heißen|bedeutet|enthält|genannt)(?![\p{L}\p{M}])',
+    unicode: true,
+  );
+  static final _objectMention = RegExp(
+    r'(?<![\p{L}\p{M}])(?:habe|hast|hat|haben|habt)[ \t]+(?:das|ein|dieses|jenes|den|einen)[ \t]+$',
     unicode: true,
   );
   static final _exampleQuotation = RegExp(

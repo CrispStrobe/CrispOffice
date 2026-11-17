@@ -86,4 +86,9 @@ void main() {
       );
     }
   });
+  test('an ordinary verb following Wort remains eligible for spelling', () {
+    const source = 'Das Wort fehlht hier.';
+    final start = source.indexOf('fehlht');
+    expect(GermanLiteralTextRanges(source).overlaps(start, start + 6), isFalse);
+  });
 }
