@@ -1,5 +1,6 @@
 {
-  "scope": "Verified first-parent remote checkpoints through the implementation preceding this evidence save. Each was fetched and its tree and ordered parents checked. Later final documentation checkpoints are visible in branch history.",
+  "scope": "Verified remote first-parent checkpoints through the evidence save preceding this final documentation commit. The final documentation save itself follows in branch history. Each save was fetched and its tree and ordered parents verified.",
+  "count_before_final_documentation_save": 26,
   "checkpoints": [
     {
       "sha": "7df1f56824db306085a638f1f7debbae5efc754c",
@@ -184,6 +185,46 @@
         "06120cb042b3f26d3f345e922032c9d72f4f5bc2"
       ],
       "subject": "Bound German accusative object case to complete reviewed verb frames [skip ci]"
+    },
+    {
+      "sha": "899a6ce563b31c9161e988202a8793cf784f7a5d",
+      "tree": "df7c54b8755a994670f3722533c63b435467cc57",
+      "parents": [
+        "800db3f205cef9d17d1f5d7f28de596fad507e1b"
+      ],
+      "subject": "Preserve fixed incoming snapshot, ancestry, and qualification drivers [skip ci]"
+    },
+    {
+      "sha": "a28135ec6490ead351a1d17189634953e865f902",
+      "tree": "18e21885a6ff9fb737804bb77423787c0751f43d",
+      "parents": [
+        "899a6ce563b31c9161e988202a8793cf784f7a5d"
+      ],
+      "subject": "Preserve ODT break styles and schema-valid section columns [skip ci]"
+    },
+    {
+      "sha": "143bad2f69976c331ac98ea7b4adbaec430af916",
+      "tree": "1db02ce28b73674c1dca6d141c1ace7853b84c59",
+      "parents": [
+        "a28135ec6490ead351a1d17189634953e865f902"
+      ],
+      "subject": "Preserve reviewed repairs and seal the final local validation plan [skip ci]"
+    },
+    {
+      "sha": "ce417b5ee0f43f6317f49ae68d1bdcb793c35156",
+      "tree": "bd8776529f460c192c9a1ab9da2243e2d915035f",
+      "parents": [
+        "143bad2f69976c331ac98ea7b4adbaec430af916"
+      ],
+      "subject": "Save final 1968-test local gate and independent source audit [skip ci]"
+    },
+    {
+      "sha": "91959bb5e405bc5a44f278c9a79c75b1b53fd243",
+      "tree": "c016ef4092c994a914186cdb8cbc2959b0bd3f0f",
+      "parents": [
+        "ce417b5ee0f43f6317f49ae68d1bdcb793c35156"
+      ],
+      "subject": "Save serial native reuse measurements and final quality panels [skip ci]"
     }
   ]
 }
