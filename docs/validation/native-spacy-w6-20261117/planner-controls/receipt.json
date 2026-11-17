@@ -1,0 +1,97 @@
+{
+  "schema": "quds.spacy.w6.planner_synthetic_controls.v1",
+  "created_utc": "2026-11-17T22:12:55.683713+00:00",
+  "status": "passed",
+  "base_commit": "ec4aeefe1be6ce1868ee7eebf004c07b25d4108a",
+  "scope": "Pure Dart shared-fact and synthetic-analysis planner controls; no native inference or linguistic qualification in these runs.",
+  "commands": [
+    {
+      "command": "flutter test --no-pub packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart packages/quds_proofing_spacy/test/grammar_planner_test.dart --reporter expanded",
+      "exit_code": 0,
+      "passed": 24,
+      "failed": 0,
+      "log": "tests.log"
+    },
+    {
+      "command": "dart analyze packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart packages/quds_proofing_spacy/lib/src/grammar_planner.dart packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+      "exit_code": 0,
+      "issues": 0,
+      "log": "analysis.log"
+    }
+  ],
+  "source_and_test_files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+      "sha256": "292a896d981cb5049f110d4e2b798d6224c10d672a10f53896b5d1b50bb1b565",
+      "bytes": 39362
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart",
+      "sha256": "4370c5c7d848e123f4059765e19e3c8e284480fe66203e17f2b9d9cc2e9d02b1",
+      "bytes": 8104
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart",
+      "sha256": "278ad4e7ac7321ec79a4f7921fa9f747289cf105f0b870ec59b790735a47cc2f",
+      "bytes": 3644
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+      "sha256": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314",
+      "bytes": 20136
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+      "sha256": "56bf58c3d8d0f0abd5cb56fd2fcdea93d7ef1652a47ad3cca3bb11b0d9ab6352",
+      "bytes": 18897
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "sha256": "2dc05a989969644e71d5f2a52e1dc7d99685b3b9b2dc950d05f92d5e56ae40b9",
+      "bytes": 58514
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart",
+      "sha256": "a3c0ba12d84a68ff69612344d5eef194ab8589797825d22f6106291cb540b761",
+      "bytes": 12047
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_morphology.dart",
+      "sha256": "b87a9873de8ad8b7ee9f3881971739c2a112098fa3491f43560302b055224183",
+      "bytes": 11115
+    }
+  ],
+  "logs": [
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/planner-controls/tests.log",
+      "sha256": "e16c8c7a3837a82ee429fe1722a161f25f4a0be5c5ef6cd23e40df6b5908f182",
+      "bytes": 3543
+    },
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/planner-controls/analysis.log",
+      "sha256": "8ae6fa83366614dda182a3845779709b332c7b962fba5ed371c2887eabb0e78e",
+      "bytes": 141
+    },
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/planner-controls/pre-partitive-tests.log",
+      "sha256": "3e60649b07b45d58e51b797bae55dc47cccd84bf2a69d0177fad5e4cb75a0ce4",
+      "bytes": 3427
+    }
+  ],
+  "deterministic_provider_change": "Exactly one new part directive. Existing implementation and reviewed tables match the base source byte for byte after removing that directive.",
+  "development_history": [
+    "A pre-test formatter attempt rejected unescaped dollar punctuation tags in new synthetic tests; raw Dart strings fixed that syntax before the first successful tests. It was not a native or linguistic run.",
+    "First 19 focused controls passed. Independent source review then identified quote context crossing sentence boundaries; whole-request quote protection and explicit multiple-sentence abstention were added with regression tests.",
+    "All 23 controls in the retained pre-partitive run passed. Independent grammar review identified semantic number alternatives in productive partitives; von/vom phrases and quantity heads now abstain. The final run has 24 passing controls."
+  ],
+  "no_qualification_panel_read": true,
+  "no_native_acceptance_read_or_run": true,
+  "no_native_inference_run": true,
+  "no_github_actions_queried_or_waited": true,
+  "activation": "None; planner performs no inference or provider registration.",
+  "guard_rationale_primary_sources": [
+    "https://grammis.ids-mannheim.de/fragen/3150",
+    "https://www.duden.de/rechtschreibung/Haufen",
+    "https://www.germ.univie.ac.at/schrodt/grammatik/uebersicht_zweifelsfaelle.htm"
+  ]
+}

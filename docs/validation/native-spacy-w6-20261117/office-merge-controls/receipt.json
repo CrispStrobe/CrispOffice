@@ -1,0 +1,143 @@
+{
+  "ci_queried_or_waited": false,
+  "commands": [
+    {
+      "argv": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart",
+        "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "repository root",
+      "elapsed_seconds": 1.0857886359999611,
+      "exit_code": 1,
+      "label": "engine",
+      "log": "engine.log",
+      "log_sha256": "6ec255cd53720dd4f3199c15b4eb967c9f98362a6fcd8aa1a4151b7879d2fc7a",
+      "passed_tests": null,
+      "timed_out": false
+    },
+    {
+      "argv": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "repository root",
+      "elapsed_seconds": 0.3822604629995112,
+      "exit_code": 1,
+      "label": "studio",
+      "log": "studio.log",
+      "log_sha256": "6ec255cd53720dd4f3199c15b4eb967c9f98362a6fcd8aa1a4151b7879d2fc7a",
+      "passed_tests": null,
+      "timed_out": false
+    }
+  ],
+  "implicit_pub": false,
+  "runner_sha256": "b22a2f84d1ea1d6b9102a40e1dd4756a604b2b69d50ff0a396cabeecef5f3384",
+  "runtime_receipt_sha256": "aec65c3cc094bbef6fae713019b88f9e5f2d7cde54e15f04219a48d01ec19f29",
+  "schema": "quds.spacy.w6.office_merge_controls.v1",
+  "scope": "Focused local tests for ten Office source/test files newly reconciled before W6. Unrelated grammar work may continue; these ten paths must stay exact throughout.",
+  "source_after": {
+    "packages/quds_office_editor/example/test/widget_test.dart": {
+      "bytes": 1567,
+      "sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": {
+      "bytes": 25994,
+      "sha256": "912871c60fc8a315b0a2962a34886344b5b8532fb3f42c3fb7797119eea1423d"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart": {
+      "bytes": 16655,
+      "sha256": "fe67eb1108c7f8ab2d2903824fea59082f0014c574410a1b8aaf220023093190"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": {
+      "bytes": 49717,
+      "sha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef"
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": {
+      "bytes": 90328,
+      "sha256": "2491e0928ac68afbc52cf4dc588ccd402c77556a8534e926b8265d1db937eb27"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "bytes": 94973,
+      "sha256": "24000befe75c5358c2bd06656a4154a35d93d7803d2424218fa6ad2d23c75be3"
+    },
+    "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart": {
+      "bytes": 21410,
+      "sha256": "55ccd9ec902baf049c62e5f803247b4448cc85117f30aaeea7284f4e32a4b0de"
+    },
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": {
+      "bytes": 30577,
+      "sha256": "23f0237a257fc97883a54e0c5dc04d804d9c7de8d6752467f9ae0c25a67a3d2f"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart": {
+      "bytes": 31870,
+      "sha256": "c9caee70e4b65e7854014b5ae3c1a8e39ce5032eab441256893eeccb1e2b0e69"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": {
+      "bytes": 28697,
+      "sha256": "459c973cccc52c83251e32157c6e4d815fc80e185576f8c3d3ad4d30c5ae2122"
+    }
+  },
+  "source_before": {
+    "packages/quds_office_editor/example/test/widget_test.dart": {
+      "bytes": 1567,
+      "sha256": "37b8f1f8373932e3242324191d1ad77ac168452199fb75c5b7345fbf8ec7cb72"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart": {
+      "bytes": 25994,
+      "sha256": "912871c60fc8a315b0a2962a34886344b5b8532fb3f42c3fb7797119eea1423d"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart": {
+      "bytes": 16655,
+      "sha256": "fe67eb1108c7f8ab2d2903824fea59082f0014c574410a1b8aaf220023093190"
+    },
+    "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart": {
+      "bytes": 49717,
+      "sha256": "d82636f4adc11a975540aea49d71114ccbc8be67585d96759651838b64e83aef"
+    },
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": {
+      "bytes": 90328,
+      "sha256": "2491e0928ac68afbc52cf4dc588ccd402c77556a8534e926b8265d1db937eb27"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "bytes": 94973,
+      "sha256": "24000befe75c5358c2bd06656a4154a35d93d7803d2424218fa6ad2d23c75be3"
+    },
+    "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart": {
+      "bytes": 21410,
+      "sha256": "55ccd9ec902baf049c62e5f803247b4448cc85117f30aaeea7284f4e32a4b0de"
+    },
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart": {
+      "bytes": 30577,
+      "sha256": "23f0237a257fc97883a54e0c5dc04d804d9c7de8d6752467f9ae0c25a67a3d2f"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart": {
+      "bytes": 31870,
+      "sha256": "c9caee70e4b65e7854014b5ae3c1a8e39ce5032eab441256893eeccb1e2b0e69"
+    },
+    "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart": {
+      "bytes": 28697,
+      "sha256": "459c973cccc52c83251e32157c6e4d815fc80e185576f8c3d3ad4d30c5ae2122"
+    }
+  },
+  "source_commit": "ec4aeefe1be6ce1868ee7eebf004c07b25d4108a",
+  "source_matches_merge_before": true,
+  "source_tree": "586035a32d59d3b255d3c30c20203e559e0b5522",
+  "source_unchanged": true,
+  "status": "failed",
+  "workspace_lock_after_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_lock_before_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_lock_unchanged": true
+}

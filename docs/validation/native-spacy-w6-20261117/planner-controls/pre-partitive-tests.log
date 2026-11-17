@@ -1,0 +1,25 @@
+00:00 +0: loading <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart
+00:00 +0: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart: reviewed verb API uses the existing closed paradigms
+00:00 +1: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart: all compatible Leiter readings survive the model boundary
+00:00 +2: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: a quotation blocks its middle sentence even without local quote tokens
+00:00 +3: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart: licensed noun facts reject unknown and unresolved readings
+00:00 +4: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart: licensed noun facts reject unknown and unresolved readings
+00:00 +5: <QUDS>/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart: licensed noun facts reject unknown and unresolved readings
+00:00 +6: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +7: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +8: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: PP subject modifier proposes one reviewed edit at original origin
+00:00 +9: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: adverbial inversion uses the licensed singular target
+00:00 +10: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: quantity heads do not force lexical singular onto semantic agreement
+00:00 +11: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: valid source is preserved and correctly rechecked
+00:00 +12: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: all noun alternatives veto a false Leiter correction
+00:00 +13: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: model-selected number cannot override licensed subject number
+00:00 +14: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: unknown and personal words cause explicit abstention
+00:00 +15: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: provider and existing noun-verb ignore IDs suppress the actual proposal
+00:00 +16: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: wrong lemma, mood, person and root shape never generate forms
+00:00 +17: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: fronted object or extra nominal phrase cannot become a false subject
+00:00 +18: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: coordination, pronouns, names and unknown PP nouns are excluded
+00:00 +19: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: source identity and exact accepted native identity are mandatory
+00:00 +20: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: regional and historical locales remain unsupported
+00:00 +21: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: analysis failure remains an operational failure, not no grammar errors
+00:00 +22: <QUDS>/packages/quds_proofing_spacy/test/grammar_planner_test.dart: the host merge keeps deterministic findings at a duplicate span
+00:00 +23: All tests passed!

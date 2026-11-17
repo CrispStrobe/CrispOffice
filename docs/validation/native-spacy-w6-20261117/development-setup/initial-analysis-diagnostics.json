@@ -1,0 +1,17 @@
+{
+  "scope": "Development compiler/analyzer setup; no native execution or qualification scoring.",
+  "initial_issues": 13,
+  "errors": [
+    "untyped nested JSON access (avoid_dynamic_calls)",
+    "missing characters extension import in evaluator",
+    "derived invalid int assignment from unresolved extension"
+  ],
+  "warnings": [
+    "raw Map type arguments"
+  ],
+  "info": [
+    "constructor initializing formal"
+  ],
+  "resolution": "Use typed maps, shared source-grapheme API, and pinned Dart private named initializing formal; subsequent analyzer log is clean.",
+  "native_executions_before_fix": 0
+}

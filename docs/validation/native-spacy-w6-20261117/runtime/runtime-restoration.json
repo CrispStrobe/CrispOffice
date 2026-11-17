@@ -1,0 +1,200 @@
+{
+  "all_dependencies_match_frozen": true,
+  "bundle": {
+    "LICENSE": {
+      "sha256": "3933c176979b68bc6d0bcc902c7d6c130f1d127f476f17ba5cdba8d99cfd0012",
+      "size_bytes": 1056
+    },
+    "LICENSES_SOURCES": {
+      "sha256": "0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869",
+      "size_bytes": 13470
+    },
+    "manifest.json": {
+      "sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+      "size_bytes": 23762
+    },
+    "model.gguf": {
+      "sha256": "fae2e6ab8d6c611d7a9dddd4b3259a871a1d2f95cacc8259f49c1e4ff31ff6cd",
+      "size_bytes": 7383104
+    },
+    "resources.json": {
+      "sha256": "b42496cc373ada57a67ed2f4c2c25f8d22f80c08db5841a7cdb91c8a6e18562a",
+      "size_bytes": 1404948
+    }
+  },
+  "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "ci_queried_or_waited": false,
+  "context_probe": {
+    "all_bundle_files_verified": true,
+    "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+    "context_capabilities": 15,
+    "context_created_and_freed": true,
+    "inference_executed": false
+  },
+  "converter_source_sha256": {
+    "convert-spacy-to-gguf.py": "ab719cb5145a94797f14c2350f7e0da0431c5bb087581d4dc52b3d00859eeed5",
+    "spacy_bundle.py": "142171d33f06dfc67322e2ca813bf433953112e78222b81ed826103063ce4fb6"
+  },
+  "flutter": {
+    "actual_runtime": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterRoot": "VALIDATION_RUNTIME/flutter",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "bootstrap_source_sha256": "1a40dcce1e40cadb985561f4f2d2349ed1469fddfbc4a7a48ef7841543bc9311",
+    "official_archive_bytes": 1581444364,
+    "official_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "official_archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "offline_flutter_tools_resolution_passed": true,
+    "offline_workspace_resolution_passed": true,
+    "resolved_workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "verified_pub_archives": 162
+  },
+  "host": {
+    "libc": [
+      "glibc",
+      "2.41"
+    ],
+    "machine": "x86_64",
+    "system": "Linux"
+  },
+  "installed_files_verified": 15,
+  "logs": [
+    {
+      "path": "reference-install.log",
+      "sha256": "effc04147b0e55c1cee581441b9e0f3ed4034fb93b231aad4f9dd778ff72c77c",
+      "size_bytes": 12343
+    },
+    {
+      "path": "conversion.log",
+      "sha256": "c65f19db7bf69a1031e2f925535d8664f59d8de5a0db91ba7d1f3e2911f1978c",
+      "size_bytes": 169
+    },
+    {
+      "path": "model-wheel-download.json",
+      "sha256": "f29ef4a7601a50415896f7d5fc165443e8df498c24fe5881e36ec647fee6f4e6",
+      "size_bytes": 278
+    },
+    {
+      "path": "native-context-probe.json",
+      "sha256": "da85a053f61b22328eebf8417d81cb246b29cee7c6e8e3e9ad12bc2436d6d78c",
+      "size_bytes": 234
+    },
+    {
+      "path": "native-context-probe-first.json",
+      "sha256": "7cf095773fc0cd455413fceb7a7d813ab22ec9fadf6ae0530fd11e2bb640e9df",
+      "size_bytes": 371
+    },
+    {
+      "path": "flutter-bootstrap.log",
+      "sha256": "32f92c44c4815e959990ab306a42d48bbd45edb2332f92dba9cd132f7165ff18",
+      "size_bytes": 11912
+    },
+    {
+      "path": "flutter-bootstrap-receipt.json",
+      "sha256": "96068aa7972fb72fedb13605a1c7cf5ff5375c7aadcf43211c7c426d6cd0a898",
+      "size_bytes": 2944
+    },
+    {
+      "path": "flutter-pub-cache-receipt.json",
+      "sha256": "fd81e4f0262b209e53cbf90ac93f8e8a43319bcc583ffbd4d92531db53a3dc9e",
+      "size_bytes": 69042
+    },
+    {
+      "path": "flutter-flutter-version.log",
+      "sha256": "26e099727f767adda8fed1a74850b34aa80c0df6e9daab6e95a0f65a7bb6c672",
+      "size_bytes": 607
+    },
+    {
+      "path": "flutter-flutter-tools-offline.log",
+      "sha256": "ff04b8052c5b45489ed1718b7a82fa7017574ffd86025ec2140883e5e8142b20",
+      "size_bytes": 1126
+    },
+    {
+      "path": "flutter-workspace-offline.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "size_bytes": 68
+    },
+    {
+      "path": "flutter-install-receipt.json.gz",
+      "sha256": "00bd23553adb6489ece2f8208352f5f3bf44d1665e45f1d3bdfd90cb8c6dfaa5",
+      "size_bytes": 46785,
+      "uncompressed_sha256": "b0488262cbe3aca5045f9ed39637ed7eb20a1bebaf28d9cbd4857acba1e3d697"
+    }
+  ],
+  "model_wheel": {
+    "bytes": 14639490,
+    "elapsed_seconds": 6.2205588817596436,
+    "sha256": "fec69fec52b1780f2d269d5af7582a5e28028738bd3190532459aeb473bfa3e7",
+    "url": "https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.8.0/de_core_news_sm-3.8.0-py3-none-any.whl"
+  },
+  "native_acceptance_rerun": false,
+  "native_archive_sha256": "b0cd3ae4d47af442d32a6d2382143c36f8b019470cff7c509f97e4682b67489b",
+  "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "native_load_succeeded": true,
+  "native_rebuilt": false,
+  "python": "3.12.14",
+  "reference_install_options": [
+    "--require-hashes",
+    "--only-binary=:all:"
+  ],
+  "reference_lock_sha256": "e1bd56aef4aba0c45135fb2b51961c0d94c3be99a785be71a46c698cd22cc98a",
+  "retained_setup_error": "Initial ad-hoc native context probe did not unpack NativeAPI.open()'s (context,error) tuple, causing ctypes.ArgumentError. Corrected probe explicitly frees context; no runtime or model change and no inference.",
+  "runtime_dependencies": [
+    {
+      "bytes": 711216,
+      "matches_frozen": true,
+      "resolved_filename": "libpcre2-8.so.0.14.0",
+      "sha256": "92e9b4167f9bbc237ca8f5526d82ee99ec9f8dbd0270ef1dd0ab24e2217f48e3",
+      "soname": "libpcre2-8.so.0"
+    },
+    {
+      "bytes": 2497768,
+      "matches_frozen": true,
+      "resolved_filename": "libstdc++.so.6.0.33",
+      "sha256": "972bb2a18b71140dab0240f8a1f68ab3fb1d56bcd4c4f824a91b70888faf5a00",
+      "soname": "libstdc++.so.6"
+    },
+    {
+      "bytes": 977112,
+      "matches_frozen": true,
+      "resolved_filename": "libm.so.6",
+      "sha256": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3",
+      "soname": "libm.so.6"
+    },
+    {
+      "bytes": 182856,
+      "matches_frozen": true,
+      "resolved_filename": "libgcc_s.so.1",
+      "sha256": "30c61ab012a4241bed033725a09b61f5fdd3bb7df95ee852d0b096520524c7af",
+      "soname": "libgcc_s.so.1"
+    },
+    {
+      "bytes": 1995216,
+      "matches_frozen": true,
+      "resolved_filename": "libc.so.6",
+      "sha256": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92",
+      "soname": "libc.so.6"
+    },
+    {
+      "bytes": 225672,
+      "matches_frozen": true,
+      "resolved_filename": "ld-linux-x86-64.so.2",
+      "sha256": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307",
+      "soname": "ld-linux-x86-64.so.2"
+    }
+  ],
+  "schema": "quds.spacy.w6.runtime_restoration.v1",
+  "scope": "Restore exact W5 native/model/SDK bytes for local W6 grammar qualification. No native rebuild or acceptance rerun; one native context created and freed, without inference.",
+  "status": "passed"
+}
