@@ -352,7 +352,7 @@ replay independently matches all 30 original cases and 40 passes. These are
 different checks: unguarded replay parity is not guarded product quality.
 
 The retained JIT run has a 93.618 ms warm p95 up to 64 WordPieces and an
-819,101,696-byte process peak, exceeding the 768 MiB memory budget. The fresh
+819,101,696-byte process peak, exceeding the 768 MiB memory budget. The morphology continuation
 compiled-provider run has a 58.877 ms pooled warm p95 through 64 WordPieces and
 a 404,336,640-byte (385.61 MiB) process peak, passing those provisional budgets
 on its Linux host. Its 256-token structural probe has an 803.379 ms p95. Keep

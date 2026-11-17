@@ -1,0 +1,214 @@
+{
+  "actions_dispatched_polled_or_awaited": false,
+  "odt_cohort_note": "Previous nine ODT tests, new authored-list fidelity test, and ODF covered-cell/export-text fidelity tests: 12 files total. Expanded cohort count is not directly comparable to prior nine-file 148 total.",
+  "review": {
+    "examined": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "packages/quds_office_engine/test/odt_list_fidelity_test.dart",
+      "packages/quds_office_engine/test/odt_section_fidelity_test.dart"
+    ],
+    "limits": [
+      "No desktop word-processor visual export was run.",
+      "Number formatting and numbering continuation remain bounded by the existing basic L1/L2 style writer."
+    ],
+    "observations": [
+      "The authored-level stack strictly increases after clamping levels to 0..8, bounding recursion to nine levels and preserving sibling order across skipped levels.",
+      "Per-sibling ordered/bullet grouping is scoped to each recursive level and closes exactly the list it opened.",
+      "The first-paragraph flag is shared by the complete list traversal, so section style is applied once across nested and mixed list groups.",
+      "Section style still derives from original first-paragraph properties, and the outer first-block flag does not leak a section boundary into table or nested stories.",
+      "Changed numbering identity and suppressed numbering still terminate list grouping.",
+      "No source-document mutation or newly introduced conflict regression found by source inspection and the retained regression cohort."
+    ],
+    "passed": true
+  },
+  "schema_version": 1,
+  "source_commit": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+  "suites": {
+    "analysis": {
+      "all_tests_passed_marker": false,
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "lib/src/proofing/german_spelling.dart",
+        "lib/src/word/serial/odt_document_writer.dart",
+        "test/odt_list_fidelity_test.dart",
+        "test/odt_section_fidelity_test.dart"
+      ],
+      "completed_utc": "2026-11-17T15:19:48.765934+00:00",
+      "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "duration_seconds": 5.467015,
+      "exit_code": 0,
+      "log": {
+        "bytes": 138,
+        "file": "analysis.log",
+        "sha256": "b36b46e0be86ed45acac79e2e4839f1684ffeb0cf1c7885582dea3bd3238acd4"
+      },
+      "no_issues_found_marker": true,
+      "passed_count": null,
+      "receipt": {
+        "bytes": 121976,
+        "file": "analysis.json.gz",
+        "sha256": "29118452263809decf7bee3d65a1681d711ea1bda45342a77af8718d0553a846",
+        "uncompressed_sha256": "a4e56947260dc3c5b0dc52b17a4a69b411a331e73b1cbd03df22de284a63cfa1"
+      },
+      "retained_log": {
+        "bytes": 113,
+        "file": "analysis.log.gz",
+        "redaction": null,
+        "sha256": "b105c0930bbd159291b68261be589238b180a58ed9f6671cf805b7ec51edec95",
+        "uncompressed_sha256": "b36b46e0be86ed45acac79e2e4839f1684ffeb0cf1c7885582dea3bd3238acd4"
+      },
+      "schema_version": 1,
+      "source_commit_at_end": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_commit_at_start": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_stable": true,
+      "started_utc": "2026-11-17T15:19:43.149359+00:00",
+      "suite": "analysis",
+      "workdir": "packages/quds_office_engine"
+    },
+    "editor": {
+      "all_tests_passed_marker": true,
+      "command": [
+        "dart",
+        "flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "packages/quds_office_editor/test/word_manual_proofing_test.dart",
+        "packages/quds_office_editor/test/word_proofing_correction_test.dart",
+        "packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+        "packages/quds_office_editor/test/word_proofing_session_test.dart"
+      ],
+      "completed_utc": "2026-11-17T15:20:06.915719+00:00",
+      "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "duration_seconds": 23.414282,
+      "exit_code": 0,
+      "flutter_tools_snapshot_sha256": "1113a2db82af78a770879667feb60298c3a1df610ceba86fa82eb8bf3d601ed7",
+      "log": {
+        "bytes": 21891,
+        "file": "editor.log",
+        "sha256": "624664446bd0048825d8db7ba57c63f1c7b624030d999558caeebd2575df595d"
+      },
+      "no_issues_found_marker": false,
+      "passed_count": 97,
+      "receipt": {
+        "bytes": 121988,
+        "file": "editor.json.gz",
+        "sha256": "26ef6cec44c866816f66d3cce761e1ecbb5dbb09bd1ac920d93dcb93055d4be8",
+        "uncompressed_sha256": "f780d7d5c30f8c136d36852e4974fa1e5dc9def17e6a13ba667b21439aaf91eb"
+      },
+      "retained_log": {
+        "bytes": 1543,
+        "file": "editor.log.gz",
+        "redaction": "Only exact repository absolute prefix removed",
+        "sha256": "49ccbdc369296e888636d1030e04b5f0ed764052a375075ca2e8b9c900261a6d",
+        "uncompressed_sha256": "2e14841e1098410d167060c70a6827d18e0d74cc980daed604db18d31e619d46"
+      },
+      "schema_version": 1,
+      "source_commit_at_end": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_commit_at_start": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_stable": true,
+      "started_utc": "2026-11-17T15:19:43.149376+00:00",
+      "suite": "editor",
+      "workdir": "."
+    },
+    "german": {
+      "all_tests_passed_marker": true,
+      "command": [
+        "dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "test/proofing/german_genitive_noun_test.dart",
+        "test/proofing/german_morphology_grammar_test.dart",
+        "test/proofing/german_agreement_context_test.dart"
+      ],
+      "completed_utc": "2026-11-17T15:19:47.870380+00:00",
+      "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "duration_seconds": 4.60186,
+      "exit_code": 0,
+      "log": {
+        "bytes": 32156,
+        "file": "german.log",
+        "sha256": "39f24237761310e5cfef5c9f5557a6352ec781c3a1ca033415d8cf3e9ccad1c1"
+      },
+      "no_issues_found_marker": false,
+      "passed_count": 268,
+      "receipt": {
+        "bytes": 121939,
+        "file": "german.json.gz",
+        "sha256": "994aa65212f7b3b28cfcc1054a165ab798eca7d0a5a3779348f83d1caba5c0ea",
+        "uncompressed_sha256": "74f60ad630b1d8a2d888d81f539e102118e689ebcdbd1216d9084d073b1812eb"
+      },
+      "retained_log": {
+        "bytes": 2346,
+        "file": "german.log.gz",
+        "redaction": null,
+        "sha256": "15b9e0f68d6b826b8afc7e4ff54fc6bf289f9148e5947b0c2460ad31254e8d89",
+        "uncompressed_sha256": "39f24237761310e5cfef5c9f5557a6352ec781c3a1ca033415d8cf3e9ccad1c1"
+      },
+      "schema_version": 1,
+      "source_commit_at_end": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_commit_at_start": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_stable": true,
+      "started_utc": "2026-11-17T15:19:43.149349+00:00",
+      "suite": "german",
+      "workdir": "packages/quds_office_engine"
+    },
+    "odt": {
+      "all_tests_passed_marker": true,
+      "command": [
+        "dart",
+        "test",
+        "--reporter",
+        "expanded",
+        "test/odf_annotation_extraction_test.dart",
+        "test/odf_covered_cell_extraction_test.dart",
+        "test/odf_export_text_fidelity_test.dart",
+        "test/odt_comment_fidelity_test.dart",
+        "test/odt_document_writer_test.dart",
+        "test/odt_header_footer_fidelity_test.dart",
+        "test/odt_list_fidelity_test.dart",
+        "test/odt_note_fidelity_test.dart",
+        "test/odt_paragraph_properties_test.dart",
+        "test/odt_section_fidelity_test.dart",
+        "test/odt_structure_fidelity_test.dart",
+        "test/odt_table_merge_test.dart"
+      ],
+      "completed_utc": "2026-11-17T15:19:49.458299+00:00",
+      "dart_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "duration_seconds": 6.194332,
+      "exit_code": 0,
+      "log": {
+        "bytes": 21542,
+        "file": "odt.log",
+        "sha256": "2c6ea82b5e8b1c3c842d43ab1181647d67fd24cb9d65214e105b8523ad06ad18"
+      },
+      "no_issues_found_marker": false,
+      "passed_count": 191,
+      "receipt": {
+        "bytes": 122008,
+        "file": "odt.json.gz",
+        "sha256": "2bf56f94a2472845af352b34f1190da499368d441c05feff2d85d837d81975b1",
+        "uncompressed_sha256": "bb30e9bab0b2bf77c19a986e9c32425ece88c40d91c4b90794d9398dc4fa67d8"
+      },
+      "retained_log": {
+        "bytes": 3470,
+        "file": "odt.log.gz",
+        "redaction": null,
+        "sha256": "ca378adbe5673a340c572013fe101e271f4854a7da2e39ad668ed13b4162df15",
+        "uncompressed_sha256": "2c6ea82b5e8b1c3c842d43ab1181647d67fd24cb9d65214e105b8523ad06ad18"
+      },
+      "schema_version": 1,
+      "source_commit_at_end": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_commit_at_start": "145a0c04fa79a04fd903d196b2d6559b7e195b93",
+      "source_stable": true,
+      "started_utc": "2026-11-17T15:19:43.149370+00:00",
+      "suite": "odt",
+      "workdir": "packages/quds_office_engine"
+    }
+  }
+}

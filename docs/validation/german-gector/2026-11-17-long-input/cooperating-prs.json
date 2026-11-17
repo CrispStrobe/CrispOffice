@@ -1,0 +1,246 @@
+{
+  "CrispEmbed": [
+    {
+      "number": 235,
+      "title": "Fix worksheet cleanup, ruled-photo perspective, and binary PDF export",
+      "state": "open",
+      "updated_at": "2026-11-15T13:23:27Z",
+      "merged_at": null,
+      "head": {
+        "ref": "fix/worksheet-cleanup-20261115",
+        "sha": "0eca8e35d5d675d6fef106a6316db38355c6841a",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "b34a132c6c204b71f5c58ba8bc1705b8769edb9b"
+      },
+      "merge_commit_sha": "c1b9de7e2027d9b21ed032d95fa090b190409f82"
+    },
+    {
+      "number": 234,
+      "title": "Add a gated full-Q6 physical LightOn4B profile",
+      "state": "closed",
+      "updated_at": "2026-11-13T09:02:03Z",
+      "merged_at": "2026-11-13T09:02:02Z",
+      "head": {
+        "ref": "review/full-q6-20261113",
+        "sha": "bc7451ed886acc01a0fc1b39356ab27a89058a26",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "2a4fbd6347fbfa1c4372c67eb2ac079f180092a1"
+      },
+      "merge_commit_sha": "1d9a9f2cfc0bc7260142e92d1f4078caa321140c"
+    },
+    {
+      "number": 233,
+      "title": "Align CI selection tests with current cancellation policy",
+      "state": "closed",
+      "updated_at": "2026-11-13T08:42:07Z",
+      "merged_at": "2026-11-13T08:42:06Z",
+      "head": {
+        "ref": "fix/ci-selection-pr232-20261113",
+        "sha": "8894a7d9a0e9eb17290baa3e4aca930849be3a21",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "d317fc3b1b89b46d6325d3d888fc126cc5f8229d"
+      },
+      "merge_commit_sha": "2a4fbd6347fbfa1c4372c67eb2ac079f180092a1"
+    },
+    {
+      "number": 232,
+      "title": "Resolve all model registry tree pages",
+      "state": "closed",
+      "updated_at": "2026-11-13T07:58:55Z",
+      "merged_at": "2026-11-13T07:58:55Z",
+      "head": {
+        "ref": "fix/model-hash-pagination-20261113",
+        "sha": "0e75aadcc1beee1cf48cae67c5ac6b258fce3fc6",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "0aee3d733cd79c1a36b41fd481f42579953552b3"
+      },
+      "merge_commit_sha": "d317fc3b1b89b46d6325d3d888fc126cc5f8229d"
+    },
+    {
+      "number": 231,
+      "title": "Preserve gated LightOn4B source-aligned parity evidence",
+      "state": "closed",
+      "updated_at": "2026-11-13T07:17:20Z",
+      "merged_at": "2026-11-13T07:17:19Z",
+      "head": {
+        "ref": "fix/lighton4b-ios-validation-guard-20261113",
+        "sha": "6fa52aa1a525939e44d33b6dd29a3e17c4ef7b98",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "35a19d9869a39ef90399ada6bec48d31f2bdbb69"
+      },
+      "merge_commit_sha": "ebbe3ee70174bb8fba386cbc14b7041a6860f946"
+    },
+    {
+      "number": 230,
+      "title": "Preserve Windows consumer checkout bytes",
+      "state": "closed",
+      "updated_at": "2026-11-12T22:09:05Z",
+      "merged_at": "2026-11-12T22:09:04Z",
+      "head": {
+        "ref": "fix/windows-consumer-source-bytes",
+        "sha": "87f5f92dcc05f9b9cba61f509301aefe4d5b9ad9",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "a3d1c3951f29526fe57ddb46ec2b4064c9397253"
+      },
+      "merge_commit_sha": "2ba68b6f69d02a251bc54a1894fc60390c9915cf"
+    },
+    {
+      "number": 229,
+      "title": "Qualify existing packaged desktop runtime candidates",
+      "state": "closed",
+      "updated_at": "2026-11-12T21:21:35Z",
+      "merged_at": "2026-11-12T21:21:34Z",
+      "head": {
+        "ref": "fix/desktop-packaged-consumer",
+        "sha": "d0ea80c05792d329829bad360c3bf09b9e5a52a2",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "2437e886bd1dbed9c95b48142883d541bb90c21d"
+      },
+      "merge_commit_sha": "6d47f6937468dfd3a30f4654f939a637b1189883"
+    },
+    {
+      "number": 228,
+      "title": "Prepare source-bound desktop runtime candidates",
+      "state": "closed",
+      "updated_at": "2026-11-12T21:10:51Z",
+      "merged_at": "2026-11-12T21:10:50Z",
+      "head": {
+        "ref": "fix/desktop-runtime-candidate",
+        "sha": "841179b848f8d3aa15e44dd2d5aea65070c82f71",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "54567c9b8b553097282359f5c7abc38e36624276"
+      },
+      "merge_commit_sha": "548597d787e79a23488f595b58ff38b45cabf217"
+    },
+    {
+      "number": 227,
+      "title": "Preserve OCR failure outcomes and complete native result records",
+      "state": "closed",
+      "updated_at": "2026-11-12T20:03:16Z",
+      "merged_at": "2026-11-12T20:03:16Z",
+      "head": {
+        "ref": "review/combined-ocr-runtime-20261112",
+        "sha": "63b394c22dfeb4a423276df0d9f3708e46063c3b",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "97592ff9943f0ac98f0831195cdcb864de322bcc"
+      },
+      "merge_commit_sha": "2d2ab3275022e095f4a8f580e276bb2e3aa3f59c"
+    },
+    {
+      "number": 226,
+      "title": "Record verified beta review status",
+      "state": "closed",
+      "updated_at": "2026-11-12T14:47:19Z",
+      "merged_at": "2026-11-12T14:47:18Z",
+      "head": {
+        "ref": "docs/store-verification-20261112",
+        "sha": "e002e05aa28230940939af1caf8d6e95f6209080",
+        "repo": "CrispStrobe/CrispEmbed"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "e5a473b36da193b582cb4edb2c135038201da78e"
+      },
+      "merge_commit_sha": "02c90f350f2d027da40bf38894a02db6ebcd915b"
+    }
+  ],
+  "onnx_runtime_dart": [
+    {
+      "number": 3,
+      "title": "Input hardening: github actions, model loading",
+      "state": "open",
+      "updated_at": "2026-10-10T20:55:03Z",
+      "merged_at": null,
+      "head": {
+        "ref": "af0bl",
+        "sha": "e0b47fb5b8bd6984b7d23e1910d27e20681731b1",
+        "repo": "AF0BL/onnx_runtime_dart"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "7bdf47d815a6516da69d29c671240d10e68723ff"
+      },
+      "merge_commit_sha": "fdd234db7f073fb86b8b37c2a5a88c3e73fdd093"
+    },
+    {
+      "number": 2,
+      "title": "Fix the reader-contract escape and the lint keeping CI red",
+      "state": "closed",
+      "updated_at": "2026-09-18T20:13:07Z",
+      "merged_at": "2026-09-18T20:13:07Z",
+      "head": {
+        "ref": "fix/reader-contract-escapes",
+        "sha": "0cc404df38f8c75e2f19b0a7c444938c8cf94ebe",
+        "repo": "CrispStrobe/onnx_runtime_dart"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "ecb254a38c530d0547659b339c78ba24c1bdc32f"
+      },
+      "merge_commit_sha": "7bdf47d815a6516da69d29c671240d10e68723ff"
+    },
+    {
+      "number": 1,
+      "title": "perf: 2.8x on Spotify Basic Pitch (1509 ms -> 498 ms per 2 s window)",
+      "state": "closed",
+      "updated_at": "2026-09-18T19:38:22Z",
+      "merged_at": "2026-09-18T19:38:21Z",
+      "head": {
+        "ref": "perf/basic-pitch-conv",
+        "sha": "820ed8ff49822aaa2ff43bd02175dc417ea1a1cb",
+        "repo": "CrispStrobe/onnx_runtime_dart"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "d9afbe2b694ab1fa26c959ab918b7bc8a9ed06a2"
+      },
+      "merge_commit_sha": "ecb254a38c530d0547659b339c78ba24c1bdc32f"
+    }
+  ],
+  "fastembed-rs": [
+    {
+      "number": 1,
+      "title": "feat: add SnowflakeArcticEmbedLV2, PixieRuneV1 variants, JinaEmbeddingsV5Nano, Qwen3Embedding0_6BUint8",
+      "state": "open",
+      "updated_at": "2026-04-28T18:11:13Z",
+      "merged_at": null,
+      "head": {
+        "ref": "feat/new-model-entries",
+        "sha": "9a462f7c789cf5e6e145514612a7d41c9459d7ac",
+        "repo": "CrispStrobe/fastembed-rs"
+      },
+      "base": {
+        "ref": "main",
+        "sha": "b397165691344c3ccac89d99b1da5ec5341ff0a8"
+      },
+      "merge_commit_sha": null
+    }
+  ]
+}
