@@ -1,0 +1,139 @@
+{
+  "started_at_utc": "2026-11-17T06:44:40.647384+00:00",
+  "script_sha256": "250d19ba748e3a7d93d004a7ffcfb7443811ea0082b4646284cfce652783e6d9",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow_version": "13.0.0",
+  "dpi": 144,
+  "scope": "Known worksheet fixture: independently visible conditional fill and font colors",
+  "not_claimed": "Editor/PDF rendering parity, complete conditional-format support or universal font fidelity",
+  "github_actions_used": false,
+  "tools": {
+    "pdfinfo": {
+      "launcher": "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo",
+      "launcher_sha256": "fee70ade670fb025343aca2b5c3a2aacacb8ed9edce1b716b233b5de924b6bf5",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/poppler/bin/pdfinfo",
+      "executable_sha256": "a8bc75b4e494ab07e6af5ab59c460cd5b8f3bccb4dfcab8b44cc96b539293786",
+      "version": "pdfinfo version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC"
+    },
+    "pdftoppm": {
+      "launcher": "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "launcher_sha256": "de772e88ab9977ccde25def9b403bf42675d75f5dd82b19fbd7d8123ad183159",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/poppler/bin/pdftoppm",
+      "executable_sha256": "ad485c5e3a136d1bbc8e0a9baea8ded35895409b6884e250994666f9668aacc8",
+      "version": "pdftoppm version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC"
+    },
+    "pdftotext": {
+      "launcher": "/usr/bin/pdftotext",
+      "launcher_sha256": "7fe3559cac3ba61dd93650a1ba90499b9fc488184ef8d0f2f1305ddf52c0378b",
+      "executable": "/usr/bin/pdftotext",
+      "executable_sha256": "7fe3559cac3ba61dd93650a1ba90499b9fc488184ef8d0f2f1305ddf52c0378b",
+      "version": "pdftotext version 25.03.0\nCopyright 2005-2025 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_file": "pdfinfo-version.stdout.log",
+      "stderr_file": "pdfinfo-version.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "56221b4464aa8299b97e80d0fc7efcdb23d7a4146aa304611ec9e5c9c7984001"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_file": "pdftoppm-version.stdout.log",
+      "stderr_file": "pdftoppm-version.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9b3b47703da9f8e397c209c07869aa7d92c2c25a63b48f42425934902df3c286"
+    },
+    {
+      "argv": [
+        "/usr/bin/pdftotext",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_file": "pdftotext-version.stdout.log",
+      "stderr_file": "pdftotext-version.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0f2ff359cb556fedcd7be481e9a06c6f25d46789094b702bd84ab4cf09ce49b0"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo",
+        "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/conditional-render/conditional-styles.pdf"
+      ],
+      "exit_code": 0,
+      "stdout_file": "pdfinfo.stdout.log",
+      "stderr_file": "pdfinfo.stderr.log",
+      "stdout_sha256": "4e1a88c5bb96faf27e189033644c9a9967849fdda33f219c4521e077e91cdd52",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+        "-r",
+        "144",
+        "-singlefile",
+        "-png",
+        "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/conditional-render/conditional-styles.pdf",
+        "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/conditional-render/conditional-styles-poppler"
+      ],
+      "exit_code": 0,
+      "stdout_file": "pdftoppm.stdout.log",
+      "stderr_file": "pdftoppm.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/bin/pdftotext",
+        "-raw",
+        "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/conditional-render/conditional-styles.pdf",
+        "-"
+      ],
+      "exit_code": 0,
+      "stdout_file": "pdftotext.stdout.log",
+      "stderr_file": "pdftotext.stderr.log",
+      "stdout_sha256": "0f876c1813a120d7c34595e504f31a6eb697ce438dc0f4e8a347d320d7fce347",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "status": "passed",
+  "fixture_test_sha256": "682493a3bdb6c444c855c492c58936d74c7dc69afd64a5b49c27b3c95c58e23e",
+  "input_pdf_sha256": "15a02fcc627cf872c4fa753f95237034c356075a58ee78d6762730d3985185cf",
+  "pages": 1,
+  "page_points": [
+    595.28,
+    841.89
+  ],
+  "expected_raster_dimensions": [
+    1191,
+    1684
+  ],
+  "actual_raster_dimensions": [
+    1191,
+    1684
+  ],
+  "nonwhite_pixels": 9555,
+  "exact_color_pixels": {
+    "123456": 2541,
+    "ABCDEF": 9
+  },
+  "overridden_red_pixels": 0,
+  "raw_extracted_text": "Sheet1 - 1 / 1\nA\n1 8\n\f",
+  "expected_cell_value": "8",
+  "cell_value_present": true,
+  "pdf_unchanged": true,
+  "raster_file": "conditional-styles-poppler.png",
+  "raster_sha256": "d7b7b0b6f781f444feea9e5edfffe8a3b2c515f891022a59bddc0efafc6935a0",
+  "raw_text_file": "conditional-styles-poppler-raw.txt",
+  "raw_text_sha256": "0f876c1813a120d7c34595e504f31a6eb697ce438dc0f4e8a347d320d7fce347",
+  "finished_at_utc": "2026-11-17T06:44:41.928387+00:00"
+}

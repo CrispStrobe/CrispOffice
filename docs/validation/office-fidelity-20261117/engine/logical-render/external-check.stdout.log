@@ -1,0 +1,1 @@
+{"passed": true, "fixtures": [{"name": "word-logical-source", "different_pixels": 0, "external_text_matches_source_exactly": false}, {"name": "worksheet-logical-source", "different_pixels": 0, "external_text_matches_source_exactly": false}, {"name": "rotated-slide-logical-source", "different_pixels": 0, "external_text_matches_source_exactly": false}]}

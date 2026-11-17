@@ -1,6 +1,6 @@
 # Text rendering strategy and license review
 
-Reviewed and implemented: **16 November 2026**. Original integration baseline:
+Reviewed and implemented: **16–17 November 2026**. Original integration baseline:
 `bfb24bf57d5efd52f00ab7079b4ac8968259a478`.
 The backend/license review below was refreshed against pinned upstream sources
 on the same date; it does not add or enable a native backend.
@@ -138,10 +138,47 @@ These changes preserve logical text within the tested source spans and wrapped
 single-paragraph paths. They do not establish a shared shaping pipeline,
 universal paragraph/newline reconstruction, or complete PDF marked-content
 conformance. Selection boxes cover whole replacement spans, not independently
-positioned source characters. Type3/image-only replacement content and full
-PDFDocEncoding remain separate reader work. The report distinguishes exact
+positioned source characters. At that checkpoint, Type3/image-only replacement content and full
+PDFDocEncoding remained separate reader work. The report distinguishes exact
 Quds extraction from external text-extractor behavior and records independent
 PDF raster comparisons.
+
+### Further 17 November continuation: text decoding and worksheet colors
+
+The [office fidelity continuation](validation/office-fidelity-20261117/README.md)
+adds one shared PDF text-string decoder for COS metadata and inline or named
+`ActualText`. It handles PDFDocEncoding accents/typography and BOM-marked
+UTF-16BE/PDF 2.0 UTF-8 consistently, with documented malformed-input recovery.
+Font character codes still use the separate font decoder; this change does not
+alter painted glyphs or replacement-span selection bounds. See the
+[text-string policy](pdf-text-string-decoding.md) for exact compatibility choices.
+
+Worksheet grid and PDF output now share the
+[conditional color resolver](conditional-format-rendering.md). It respects
+authored precedence, independent fill/font contributions and stopping rules;
+supported expressions use a read-only bounded formula context. Sparse rank,
+percentage, average and duplicate rules scan stored cells. Numeric guards reject
+unrepresentable calculations and extreme rounding precision before they can
+control loops or become misleading Boolean matches. The resolver uses existing
+formula caches and evaluates uncached formulas; it is not a new full-workbook
+recalculation engine.
+
+Native conditional color edits create or reuse differential-style copies while
+preserving unrelated original properties. Saving a derived conditional-state
+checkpoint no longer invalidates worksheet rename undo; authored model edits and
+native reference/metadata edits still have stale-operation checks. Native
+bold/border and other unmodeled differential properties are preserved, without
+claiming new rendering support for them.
+
+The incoming ODT/ODP writers also use a shared explicit-whitespace encoder, and
+ODF extraction/search now decode those elements with bounded expansion. The ODT
+path keeps visible cached field results, suppresses hidden field instructions,
+and emits valid inline fallback and indentation structure. These are bounded
+new-document writers, not lossless native ODF editors.
+
+These changes add no dependency manifests, font binaries or native shaping
+backend. Exact editor/headless font identity, selected glyph positions and
+source-cluster parity still require the shared shaping pipeline described below.
 
 ## State of the art: components with different responsibilities
 
