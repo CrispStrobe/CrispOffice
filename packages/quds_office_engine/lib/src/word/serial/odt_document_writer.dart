@@ -271,6 +271,7 @@ abstract final class OdtDocumentWriter {
   }
 
   static void _writeTable(XmlWriter w, WmlTable table, _OdtLayout layout) {
+    final cells = _OdtTableCells(table);
     w.writeStartElement('table', prefix: 'table');
     w.writeAttribute('table:name', 'Table${layout.tableCount++}');
     w.writeAttribute('table:style-name', layout.tableStyle());
@@ -279,12 +280,37 @@ abstract final class OdtDocumentWriter {
       w.writeAttribute('table:style-name', layout.columnStyle(width));
       w.writeEndElement();
     }
-    for (final row in table.rows) {
+    final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
+    if (inferredColumns > BigInt.zero) {
+      w.writeEmptyElement(
+        'table-column',
+        prefix: 'table',
+        attributes: inferredColumns == BigInt.one
+            ? null
+            : {'table:number-columns-repeated': '$inferredColumns'},
+      );
+    }
+    for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+      final row = table.rows[rowIndex];
       w.writeStartElement('table-row', prefix: 'table');
-      for (final cell in row.cells) {
-        w.writeStartElement('table-cell', prefix: 'table');
-        if (cell.gridSpan > 1) {
-          w.writeAttribute('table:number-columns-spanned', '${cell.gridSpan}');
+      _writeOmittedCells(w, row.gridBefore);
+      for (var index = 0; index < row.cells.length; index++) {
+        final cell = row.cells[index];
+        final placement = cells.rows[rowIndex][index];
+        w.writeStartElement(
+          placement.covered ? 'covered-table-cell' : 'table-cell',
+          prefix: 'table',
+        );
+        if (!placement.covered) {
+          if (placement.columns > 1) {
+            w.writeAttribute(
+              'table:number-columns-spanned',
+              '${placement.columns}',
+            );
+          }
+          if (placement.rows > 1) {
+            w.writeAttribute('table:number-rows-spanned', '${placement.rows}');
+          }
         }
         if (cell.fillColor case final fill?) {
           w.writeAttribute('table:style-name', layout.cellStyle(fill));
@@ -295,12 +321,30 @@ abstract final class OdtDocumentWriter {
           _writeBlocks(w, cell.blocks, layout);
         }
         w.writeEndElement();
-        for (var span = 1; span < cell.gridSpan; span++) {
-          w.writeEmptyElement('covered-table-cell', prefix: 'table');
-        }
+        _writeCoveredCells(w, placement.columns - 1);
       }
+      _writeOmittedCells(w, row.gridAfter);
       w.writeEndElement();
     }
+    w.writeEndElement();
+  }
+
+  static void _writeCoveredCells(XmlWriter w, int count) {
+    if (count <= 0) return;
+    w.writeEmptyElement(
+      'covered-table-cell',
+      prefix: 'table',
+      attributes: count == 1
+          ? null
+          : {'table:number-columns-repeated': '$count'},
+    );
+  }
+
+  static void _writeOmittedCells(XmlWriter w, int count) {
+    if (count <= 0) return;
+    w.writeStartElement('table-cell', prefix: 'table');
+    if (count > 1) w.writeAttribute('table:number-columns-repeated', '$count');
+    _writePlainParagraph(w, '');
     w.writeEndElement();
   }
 
@@ -405,6 +449,65 @@ abstract final class OdtDocumentWriter {
       : path.endsWith('.jpg')
       ? 'image/jpeg'
       : 'application/octet-stream';
+}
+
+/// Infers vertical ownership only for exactly aligned, consecutive cells.
+///
+/// Like WordTable's logical addressing, a continuation must have the same
+/// logical start and column span as its predecessor. An orphan or mismatched
+/// continuation stays visible as an ordinary cell, rather than hiding its
+/// content under an unrelated anchor. Invalid row metadata breaks all chains
+/// through that row. Known row omissions retain their logical positions.
+///
+/// Storage and iteration are proportional to physical cells, not authored
+/// column spans. BigInt offsets prevent cumulative span overflow on VM and web.
+class _OdtTableCells {
+  _OdtTableCells(WmlTable table) {
+    var previous = <(BigInt, int), _OdtTableCell>{};
+    for (final row in table.rows) {
+      final placements = <_OdtTableCell>[];
+      rows.add(placements);
+      final valid =
+          row.gridBefore >= 0 &&
+          row.gridAfter >= 0 &&
+          row.cells.every((cell) => cell.gridSpan > 0);
+      final current = <(BigInt, int), _OdtTableCell>{};
+      var column = BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0);
+      for (final cell in row.cells) {
+        final span = cell.gridSpan > 0 ? cell.gridSpan : 1;
+        final placement = _OdtTableCell(span);
+        placements.add(placement);
+        final key = (column, span);
+        if (valid) {
+          if (cell.vMerge == WmlVMerge.restart) {
+            current[key] = placement;
+          } else if (cell.vMerge == WmlVMerge.cont) {
+            final anchor = previous[key];
+            if (anchor != null) {
+              placement.covered = true;
+              anchor.rows++;
+              current[key] = anchor;
+            }
+          }
+        }
+        column += BigInt.from(span);
+      }
+      column += BigInt.from(row.gridAfter > 0 ? row.gridAfter : 0);
+      if (column > columnCount) columnCount = column;
+      previous = current;
+    }
+  }
+
+  final rows = <List<_OdtTableCell>>[];
+  BigInt columnCount = BigInt.one;
+}
+
+class _OdtTableCell {
+  _OdtTableCell(this.columns);
+
+  final int columns;
+  int rows = 1;
+  bool covered = false;
 }
 
 class _OdtLayout {
@@ -555,7 +658,7 @@ class _OdtLayout {
     final name = 'Tab${tableCount + 1}';
     _styleBuffers.add(
       '<style:style style:name="$name" style:family="table">'
-      '<style:table-properties style:width="100%" table:align="margins"/></style:style>',
+      '<style:table-properties style:rel-width="100%" table:align="margins"/></style:style>',
     );
     return name;
   }
