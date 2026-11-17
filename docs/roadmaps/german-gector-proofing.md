@@ -75,10 +75,10 @@ quality qualification. Evaluate a newer model release as a separate experiment.
   Verify the existing manifest, execute the unmodified reference decoding loop,
   and capture exact input IDs/masks, word alignment, both output tensors,
   chosen tags/confidences and final corrected text with source hashes.
-- [ ] Add a Dart AOT benchmark consuming the captured inputs and both named
+- [x] Add a Dart AOT benchmark consuming the captured inputs and both named
   outputs. Fail on missing outputs, unsupported operators, incorrect shape,
   non-finite values or unacceptable numerical/decision differences.
-- [ ] Add a reusable pretokenized WordPiece API with source-word alignment and
+- [x] Add a reusable pretokenized WordPiece API with source-word alignment and
   tests for cased German, punctuation, special tokens and truncation.
 - [ ] Execute the same-host native ORT control and Dart candidate, with declared
   thread budgets, cold load, first inference, warm median/p95, iteration counts,
@@ -178,6 +178,21 @@ preserves the original evaluator, vendored runner, cases and recorded results.
 It captures actual iterative passes and separately measures native ORT forward
 and complete-correction timing for both an original and verified derived model.
 
-Hosted model execution, Dart runtime qualification and quantized task quality
-remain pending. Record exact implementation commits/runs and retain failures
-as the work progresses. No application provider or target platform is qualified.
+The reference exporter is pushed at Quds
+`6f1bc7fac478118fb46c06918f285a670b4c6b1f`. The Dart API, benchmark and tests are
+pushed at `onnx_runtime_dart@0b49ca47fa056e6fc122ffe0192a9abb05627622`.
+Twenty-two targeted Dart tests, full-repository analysis with fatal infos and
+AOT compilation pass under Dart 3.14.0.
+
+The feature-scoped `German GECToR qualification` workflow pins that Dart source
+and runs the original ORT control, a separate block-128 symmetric MatMulNBits
+INT4 candidate with unchanged output heads, and both Dart arms on one hosted
+CPU. It retains source/model hashes, actual tensor inventories, raw references,
+timings, memory, failures and complete correction differences. The original
+and candidate native references remain separate. Q4_K is still the conditional
+ggml deployment candidate, not a label for this ONNX experiment.
+
+Hosted execution and quantized task quality remain pending until the actual
+workflow completes and its evidence is reviewed. Record that run without
+replacing initial failures. No application provider or target platform is
+qualified by implementation, lightweight tests or a queued workflow.
