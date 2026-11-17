@@ -142,3 +142,8 @@ freeze; subsequent canonical commits only add this documentation and receipts.
 See [the evidence index](evidence/index.json) for uncompressed and gzip hashes
 and `final-summary.json.gz` for the machine-readable totals. Older failures are
 retained alongside final results; they are not counted as successful checks.
+
+The late upstream cached-TOC export (`16228835`, integration `3b451f92`) was
+also retained. Its 508 ODT/ODF/ODP regressions and engine analysis pass. All
+proofing implementation paths remain byte-identical to the inference-qualified
+freeze; the separate source-boundary receipt records this comparison.
