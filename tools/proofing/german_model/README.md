@@ -1,4 +1,4 @@
-# German model evaluation, kept separate from application proofing
+# German grammar model qualification
 
 The feature work for an optional provider is scoped in the
 [German GECToR roadmap](../../../docs/roadmaps/german-gector-proofing.md).
@@ -28,7 +28,23 @@ the Apache GECToR tagging scheme. Its model card describes synthetic training
 sentences derived from German Wikipedia and Tatoeba; that training-data
 provenance is distinct from the publisher's Apache license for model artifacts.
 
-## Reproduction
+## Current guarded native provider
+
+The [optional Quds provider](../../../packages/quds_proofing_gector/README.md)
+is implemented separately from the original unguarded evaluator described
+below. It supports explicit manual de-DE checks through the verified native
+mixed Q4_K lane. Its [local build/run/comparison guide](LOCAL_PROVIDER.md)
+records complete-check execution and guarded nonregression; the
+[development pack guide](NATIVE_PACK.md) assembles the exact model, sidecars,
+library and notices without downloading or activating them.
+
+The [retained native evidence](../../../docs/validation/german-gector/2026-11-17-native/README.md)
+and [guarded JIT/AOT evidence](../../../docs/validation/german-gector/2026-11-17-native-dart/README.md)
+keep numerical equivalence, final corrections, operational coverage and
+performance observations separate. Continue local checks without waiting for
+GitHub Actions; the earlier workflow remains reproducible historical evidence.
+
+## Original unguarded evaluation reproduction
 
 Use a separate virtual environment. These Python dependencies belong only to
 the evaluation tool; they are not shipped in the Office application.
@@ -67,10 +83,10 @@ guards. The model card's published app scores therefore do not describe this
 runner. The guard data is pinned for inspection, but it is not silently
 reimplemented or credited to these results.
 
-Deterministic, reviewable German rules remain the application default. Any
-future model provider needs its own guarded implementation, review of changed
-valid text, region handling, longer-document and Unicode offset checks, and
-source-bound acceptance evidence.
+Deterministic, reviewable German rules remain the application default. The
+subsequent optional provider supplies its own conservative guards and retained
+Unicode/offset/operational evidence. Broader quality, regional policies and
+long-document support remain separate from the historical unguarded probe.
 
 ## Primary sources
 
