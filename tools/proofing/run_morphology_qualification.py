@@ -37,10 +37,11 @@ def main():
     p.add_argument('--node',default='node')
     p.add_argument('--base-only',action='store_true')
     p.add_argument('--vm-only',action='store_true')
+    p.add_argument('--corpus',type=Path,default=HERE.with_name('german_morphology_cases.json'))
     args=p.parse_args()
     target=args.target.resolve(); out=args.output.resolve();out.mkdir(parents=True,exist_ok=True)
     runner=HERE.with_name('qualify_german_morphology.dart')
-    corpus=HERE.with_name('german_morphology_cases.json')
+    corpus=args.corpus.resolve()
     definition=json.dumps(json.loads(corpus.read_text()),ensure_ascii=False,separators=(',',':'))
     original_config=REPO/'.dart_tool/package_config.json'
     config=json.loads(original_config.read_text())

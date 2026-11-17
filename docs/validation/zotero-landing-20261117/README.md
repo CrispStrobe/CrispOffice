@@ -37,3 +37,23 @@ No final test count or merge completion is claimed by this interim checkpoint.
 All checks are local. No GitHub Actions, workflow, CI-status, wait or rerun
 endpoint is used. Test source checkouts remain frozen while this evidence is
 published from a separate worktree.
+
+## Completed broad qualification
+
+The fresh full canonical run at `837d06edbde08a2465e99cbbb15927ee4c87d8ac`
+passed all nine required commands with **2,576 substantive test passes** across
+144 disjoint test files. Two private-PDF fixture early returns are excluded
+from the 2,578 raw successful events. All 576 Zotero tests passed. Independent
+review verified terminal counts, raw log hashes, source blobs/modes, stable
+inputs and analyzer restoration.
+
+See [the full-run report](canonical-full-run.md),
+[receipt](canonical-receipt.json), [independent review](independent-full-review.json),
+and [complete evidence](canonical-evidence.tar.xz), indexed by
+[canonical-index.json](canonical-index.json). Earlier attempts remain separate.
+
+A later fixed incoming snapshot is integrated at
+`f510060e35d580cbc361985a123927705c92ddc4`. All 220 captured Quds refs are
+accounted for by ancestry or exact whole-tree equivalence. Its additional ODF
+writer/extraction changes are undergoing a separate bounded qualification; the
+full-run count above remains attributed only to its original immutable source.
