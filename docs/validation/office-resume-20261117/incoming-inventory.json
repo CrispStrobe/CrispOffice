@@ -1,0 +1,1471 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "capture_cutoff": "2026-11-17T15:37:41.347405+00:00",
+  "scope": "Bounded remote-ref snapshot. Captured branch, pull-request head and tag refs in one ls-remote read per repository. No workflow, check or status API queried. Branch advances after this snapshot are outside this qualification source.",
+  "observations": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "url": "https://github.com/CrispStrobe/quds_office_suite.git",
+      "started_at": "2026-11-17T15:37:31.447396+00:00",
+      "finished_at": "2026-11-17T15:37:37.657594+00:00",
+      "sha256": "bd58b75df64a7f84838ef8e96ac6b004bc28d19d84cf46877bf702fd1c9cc427",
+      "count": 262
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "url": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+      "started_at": "2026-11-17T15:37:37.659679+00:00",
+      "finished_at": "2026-11-17T15:37:41.347405+00:00",
+      "sha256": "3d5a57caa42f4a0af2bc4c77d1a1052dbc6c95fa1ca44def3cfe39d6a99180be",
+      "count": 27
+    }
+  ],
+  "references": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/german-morphology-20261117",
+      "sha": "7808a8711c91d721e8bb2b7034349008be80895b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/office-continuation-20261117",
+      "sha": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/office-fidelity-20261117",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/german-gector-proofing",
+      "sha": "8801031a5c031ad5872f0e41ec182576ae8d4872"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/main",
+      "sha": "379d3c8e5e46afb806f9ac181bc814288c9c8893"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odf-metadata",
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odp-shape-links",
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/1/head",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/10/head",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/100/head",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/101/head",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/102/head",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/103/head",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/104/head",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/105/head",
+      "sha": "7808a8711c91d721e8bb2b7034349008be80895b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/106/head",
+      "sha": "7686ec52876288e6799023fd686af79228236826"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/107/head",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/108/head",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/109/head",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/11/head",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/12/head",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/13/head",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/14/head",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/15/head",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/16/head",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/17/head",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/18/head",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/19/head",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/2/head",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/20/head",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/21/head",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/22/head",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/23/head",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/24/head",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/25/head",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/26/head",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/27/head",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/28/head",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/29/head",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/3/head",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/30/head",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/31/head",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/32/head",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/33/head",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/34/head",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/35/head",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/36/head",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/37/head",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/38/head",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/39/head",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/4/head",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/40/head",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/41/head",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/42/head",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/43/head",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/44/head",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/45/head",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/46/head",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/47/head",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/48/head",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/49/head",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/5/head",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/50/head",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/51/head",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/52/head",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/53/head",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/54/head",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/55/head",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/56/head",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/57/head",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/58/head",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/59/head",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/6/head",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/60/head",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/61/head",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/62/head",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/63/head",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/64/head",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/65/head",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/66/head",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/67/head",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/68/head",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/69/head",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/7/head",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/70/head",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/71/head",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/72/head",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/73/head",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/74/head",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/75/head",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/76/head",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/77/head",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/78/head",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/79/head",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/8/head",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/80/head",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/81/head",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/82/head",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/83/head",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/84/head",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/85/head",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/86/head",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/87/head",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/88/head",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/89/head",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/9/head",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/90/head",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/91/head",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/92/head",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/93/head",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/94/head",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/95/head",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/96/head",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/97/head",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/98/head",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/99/head",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/crispcloud-build28-office",
+      "sha": "b629a97afb8559c1b0ca98bd36eae22cf923e561"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/crispcloud-build28-office^{}",
+      "sha": "216e5ba38110349d6a002a5a58e0ae27825c8bef"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/editor-v0.5.1",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/engine-v0.5.3",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0",
+      "sha": "2f3e1373779a102d68629d09baba83bff80a33ac"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "sha": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/studio-v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.1.0",
+      "sha": "ffab8a719349a3184f1461b61d55411c51949ba2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.1.0^{}",
+      "sha": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.2.0",
+      "sha": "ec2c7dce10a0fc8b155985259152b0b0c9696c90"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v0.5.0",
+      "sha": "1f0ed0e94fe6e46d94e9d811627c476974080003"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.0.0",
+      "sha": "1d8b21b840ebf664768d490ee098225344887c4a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.0.0^{}",
+      "sha": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.3.0",
+      "sha": "2188d055fde9d4647bf5995eb96161e3e4cbd365"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/tags/v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/1/head",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/5/head",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/6/head",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/pull/7/head",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/editor-v0.5.1",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/engine-v0.5.3",
+      "sha": "6ac50c12f99ced6456897dec390111797cfe2157"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0",
+      "sha": "2f3e1373779a102d68629d09baba83bff80a33ac"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.0.0^{}",
+      "sha": "509e0cfa621775b4bbdb9bf456e8dbe218351226"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/studio-v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.1.0",
+      "sha": "ffab8a719349a3184f1461b61d55411c51949ba2"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.1.0^{}",
+      "sha": "23969a9ec23cb37fc3aa5276a46612d8873e518f"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.2.0",
+      "sha": "ec2c7dce10a0fc8b155985259152b0b0c9696c90"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v0.5.0",
+      "sha": "1f0ed0e94fe6e46d94e9d811627c476974080003"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.0.0",
+      "sha": "1d8b21b840ebf664768d490ee098225344887c4a"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.0.0^{}",
+      "sha": "d101a3308fb046f96e7db6054a1b2b60f1724289"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.1.0",
+      "sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.2.0",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.3.0",
+      "sha": "2188d055fde9d4647bf5995eb96161e3e4cbd365"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.4.0",
+      "sha": "3eaa2a1f8e9f473b7a65ac4a54199d12ec1b61a3"
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "ref": "refs/tags/v1.5.0",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ]
+}
