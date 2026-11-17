@@ -86,3 +86,17 @@ real pinned native fixture, and whole-package strict analysis. This includes
 map and retained logs. The runner also passes 7 CLI admission controls and the
 existing 45 Python tooling tests. These unit/control results precede the fresh
 complete native AOT measurements and do not claim long-paragraph model quality.
+
+## Bounded planner review fix
+
+Review found repeated full copies of an unmatched-delimiter stack while scanning
+possible sentence boundaries. The planner now checks closing depth in place.
+A new 30,999-unit adversarial input with 16,000 unmatched openers and 3,000
+sentence-like terminators is rejected intact at the hard token limit. All 52
+planner tests and focused analysis pass. This bounds delimiter scanning without
+changing source partition semantics or relaxing the model limit.
+
+`pre-review-aot-build.json` preserves the successful source-sealed build of
+`fa3b67675d7f0f567fc88551fe6e4b87deea5065` before this review fix. No inference
+result is attributed to that earlier binary. Final native runs will rebuild the
+reviewed integrated source using fresh output and receipt paths.

@@ -210,18 +210,22 @@ final class GectorSegmenter {
       if (punctuation == '.' && !_periodCanEnd(text, i)) continue;
 
       var closingEnd = punctuationEnd;
-      final remaining = List<String>.of(closingStack);
+      // Inspect the existing stack by depth instead of copying it for every
+      // terminator. Deep unmatched delimiters followed by many short sentences
+      // must not turn bounded source planning into quadratic allocation/work.
+      var remainingDepth = closingStack.length;
       var mismatched = false;
       while (closingEnd < text.length &&
           _closingDelimiters.contains(text[closingEnd])) {
-        if (remaining.isEmpty || remaining.last != text[closingEnd]) {
+        if (remainingDepth == 0 ||
+            closingStack[remainingDepth - 1] != text[closingEnd]) {
           mismatched = true;
           break;
         }
-        remaining.removeLast();
+        remainingDepth--;
         closingEnd++;
       }
-      if (mismatched || remaining.isNotEmpty) continue;
+      if (mismatched || remainingDepth != 0) continue;
       var gapEnd = closingEnd;
       while (gapEnd < text.length && _whitespace.hasMatch(text[gapEnd])) {
         gapEnd++;

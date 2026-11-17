@@ -282,6 +282,25 @@ void main() {
     }
   });
 
+  test('deep unmatched delimiters fail capacity without partial sentences', () {
+    // This fits the source ceiling. Copying the 16,000-entry delimiter stack
+    // for each of 3,000 terminators would allocate 48 million references before
+    // reaching the intended hard-token rejection. No timing assertion is used:
+    // the worker's deadline still covers planning on the caller's actual device.
+    final text = '${'(' * 16000}${List<String>.filled(3000, 'Gut.').join(' ')}';
+    expect(text.length, lessThanOrEqualTo(32768));
+    expect(
+      () => segmenter().plan(text),
+      throwsA(
+        isA<GectorCapacityException>().having(
+          (error) => error.message,
+          'message',
+          contains('exceeds 512 wordpieces'),
+        ),
+      ),
+    );
+  });
+
   test('question and exclamation runs retain their source punctuation', () {
     const text = 'Ist das gut?! Ja, das ist gut!! Danach geht es gut?  ';
     final plan = segmenter(targetTokens: 2).plan(text);
