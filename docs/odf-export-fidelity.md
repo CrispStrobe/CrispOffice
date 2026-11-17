@@ -75,8 +75,8 @@ grid. A consumer may impose its own table-size limits.
 
 ## Word sections
 
-Each section retains its modeled page size, page margins, and normal header
-and footer through an ODF master page. A section starts on its first exported
+Each section retains its modeled page size, page margins, and explicit header
+and footer stories through an ODF master page. A section starts on its first exported
 paragraph or list item, or directly on its first table. Empty content controls
 and unsupported blocks do not consume that boundary. Pictures and frames can
 carry the section on a paragraph anchor; frame positions remain relative to
@@ -92,17 +92,31 @@ section. Consumers may insert a blank page to satisfy parity; PDF conversion
 must retain automatically inserted empty pages to measure physical page order.
 
 Continuous sections reuse the active master when the emitted page geometry
-and modeled normal stories are equivalent. Picture comparison uses the exact
+and serialized header/footer stories are equivalent. Picture comparison uses the exact
 image bytes, and comment comparison uses authored reference positions rather
 than global annotation-emission state. An empty equivalent continuous section
-adds no output paragraph. A changed page size, margin, or normal story uses a
+adds no output paragraph. A changed page size, margin, or serialized story uses a
 new master and therefore starts a new page: this is an explicit fallback for
 page-style changes that cannot apply midway through an ODF page.
 
-First-page/alternating header selection, inherited `linkToPrevious` resolution,
-columns, line numbering, and unmodeled native section settings remain outside
-this export. The writer exports the normal stories already present in each
-section; it does not reconstruct missing stories from native relationships.
+Sections with more than one resolved column export inside a `text:section`.
+Its section style contains an ODF `style:columns` child with the modeled count
+and supported gap. Zero gaps remain explicit; negative, nonfinite and
+unrepresentable gaps are omitted without changing the source model. Authored
+empty sections retain their page anchor inside the column wrapper.
+
+Paragraph column-break and keep-together settings retain separate automatic
+styles. Explicit page and section breaks take precedence over column breaks.
+An inline hard column break splits the exported paragraph at that boundary
+while retaining its text, run formatting, links and bookmark endpoints; it does
+not modify the authored paragraph. The [recovery qualification](validation/german-proofing-recovery-20261117/README.md)
+and [later field/column reconciliation](validation/proofing-office-followup-20261117/README.md)
+retain the source-specific regression results.
+
+Inherited `linkToPrevious` resolution, line numbering and unmodeled native
+section settings remain outside this export. The writer serializes the stories
+already present in each section and does not reconstruct missing stories from
+native relationships. First/even story selection is bounded as described below.
 General frame fill, outline, and text-inset fidelity remains limited: frame
 emission can retain consumer defaults. The section qualification checks frame
 page activation, page-relative coordinates, and size, not those style details.
@@ -123,10 +137,18 @@ and block separators remain outside the decoder's content budget.
 
 ## Header and footer stories
 
-Each section's normal header/footer paragraphs use the same inline writer as
-body text. This retains explicit line breaks, whitespace, run formatting,
-hyperlinks, inline pictures/fallback text, and visible cached field results.
-Hidden field instructions remain omitted.
+Normal header/footer stories and explicitly populated first/even variants use
+the same block and inline writers as body text. First variants export as
+`style:header-first` / `style:footer-first`; even variants export as
+`style:header-left` / `style:footer-left`. Paragraphs and visuals retain their
+supported formatting and content, including explicit line breaks, whitespace,
+hyperlinks, pictures/fallback text and visible cached field results. Hidden
+field instructions remain omitted.
+
+Variant emission follows the presence of story content. It does not reconstruct
+Word's `differentFirstPage`, `differentOddEven` or `linkToPrevious` selection
+and inheritance semantics. If variants exist without a normal story, the writer
+emits an empty normal header/footer element.
 
 Master-page automatic styles are collected in `styles.xml`; body automatic
 styles remain in `content.xml`. The two style registries are separate, while
@@ -134,10 +156,11 @@ picture names and bytes share one package registry. This permits the same
 automatic-style name to have the appropriate local definition without media
 name collisions. Image links include required `xlink:type="simple"`.
 
-Header and footer lists use independent numbering scopes. Field instructions
-and editable field metadata are not retained by this new-document export.
+Every story has independent list counters, bookmark ranges and field-depth
+state. Original Word instructions and arbitrary editable field metadata are not
+retained; bounded PAGE/NUMPAGES conversions are described below.
 
-## Page-number fields
+## Page and page-count fields
 
 Simple paragraph PAGE fields use one live ODF page number. They retain the
 first run's formatting, the model's supported ` | title` suffix, and suffix
@@ -146,12 +169,41 @@ comment ownership pass through the inline writer. Empty PAGE paragraphs do
 not require inserting a run into the source model.
 
 A nonempty explicit field instruction takes precedence over the compatibility
-flag. Other field instructions retain their cached text. Paragraphs containing
+flag. Paragraph conversion accepts only PAGE, optionally followed by
+`\* MERGEFORMAT`, ignoring case and surrounding whitespace. Unsupported
+formatting switches, arguments and other field instructions retain their cached
+text, run formatting and links. Paragraphs containing
 complex-field boundaries or atomic inline fields, note references or pictures
 also retain their existing cached inline content. General native fields and
 arbitrary Word field switches remain outside this mapping. In note stories,
 the first PAGE paragraph consumes its own reference spacing, even when its
 numeric cache is empty.
+
+Complete, simple inline PAGE and NUMPAGES packets can export as native ODF
+`text:page-number` and `text:page-count` elements. Conversion requires a balanced,
+unnested field contained in one paragraph, supported unlocked metadata and
+exactly one ordinary cached run. Instruction fragments are joined before
+recognition; the optional `\* MERGEFORMAT` switch is supported. The native
+element contains the cached display once and retains its run style, hyperlink
+and attached-comment handling.
+
+Unsupported instructions or switches, locked or malformed metadata, missing
+separators, nested packets, atomic results, multiple result runs and other mixed
+inline content use ordinary cached serialization. Incomplete fields cannot
+hide later text. A field spanning paragraphs prevents native conversion of
+nested packets, while independent stories own their field-depth state. The
+[published field amendment](validation/german-proofing-recovery-20261117/delivery-main/README.md)
+and [later reconciliation](validation/proofing-office-followup-20261117/README.md)
+preserve the original qualification. The [field continuation](validation/odt-field-continuation-20261117/README.md)
+records the subsequent paragraph-instruction and DOCX-import safeguards.
+
+DOCX import preserves field boundaries and caches when a whole-paragraph
+field has a missing, duplicate or misordered separator, locked or unsupported
+metadata, or formatted instruction runs. Unsupported PAGE formatting switches
+also retain their boundary packet before numeric-cache normalization. Complete
+plain PAGE and PAGE with `\* MERGEFORMAT` retain the existing live paragraph
+model; ordinary complete DATE fields, TOC handling and Zotero handling keep
+their established representations.
 
 ## Footnotes and endnotes
 

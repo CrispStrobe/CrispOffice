@@ -6,6 +6,16 @@ fresh implementation agent. It records decisions, inspected source, existing
 experiments, work packages, and acceptance criteria without requiring access to
 the preceding conversation.
 
+**Implementation continuation, 17 November 2026:** the original status above
+describes the research handoff. The later native CPU/F32 implementation is saved
+at [CrispEmbed `51c2ac328`](https://github.com/CrispStrobe/CrispEmbed/commit/51c2ac328ef40b00f18eb9b03130fb67c3f11313).
+Its installed Linux raw-text path passes the complete 16-case development
+comparison, with native tokenization and linguistic decoding. The eight-case
+acceptance freeze/run and W5 application integration remain pending at this
+continuation checkpoint. Read the [current implementation receipt](../../validation/native-spacy-20261117/README.md)
+before choosing the next work package. Historical evidence below remains
+source-bound.
+
 ## Start here
 
 Build an optional, offline German linguistic-analysis backend for Quds using

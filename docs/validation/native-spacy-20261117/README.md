@@ -133,7 +133,7 @@ The spaCy lane owns its new ABI and analysis types. Existing deterministic
 German context rules continue to define the grammar comparison baseline.
 Frozen fixture bytes and the eight acceptance inputs remain unchanged.
 
-## Next implementation boundary
+## Historical next boundary after W3
 
 1. **W2 lexical processing:** implement German tokenization, normalization,
    exact string/feature IDs and original UTF-8/scalar/UTF-16 spans from the
@@ -153,3 +153,63 @@ Keep the eight frozen acceptance inputs unused while tuning. The numerical
 checkpoint leaves `CRISPEMBED_SPACY` default off and changes no Quds provider,
 app pin, model alias or release default. Local validation and incremental
 remote checkpoints remain required; no GitHub Actions query or wait is a gate.
+
+## Recovered W2–W4 native candidate
+
+The next session's integrated native work survived its interrupted handoff at
+[CrispEmbed `51c2ac328ef40b00f18eb9b03130fb67c3f11313`](https://github.com/CrispStrobe/CrispEmbed/commit/51c2ac328ef40b00f18eb9b03130fb67c3f11313).
+The [retained native evidence](https://github.com/CrispStrobe/CrispEmbed/blob/51c2ac328ef40b00f18eb9b03130fb67c3f11313/docs/validation/native-spacy-20261117/README.md)
+records complete original-UTF-8 analysis: 16 development cases, 113 tokens,
+22 sentences, 244 native parser transitions, 339 classifier choices and 1,201
+numerical stages / 1,406,553 F32 values under the original tolerance. The native
+analyzer receives no reference tokens, parser states or masks. All annotations
+and original byte/scalar/UTF-16 spans match. Its separate lexical panel covers
+4,658 inputs; 21 real-model API control groups and four native CTests pass.
+These are the saved development results, not new unique documents or grammar
+accuracy claims.
+
+The recovered code includes the tokenizer, parser state transitions and
+deprojection, edit-tree lemmatizer, final attributes, and an additive owned-text
+C ABI. PCRE2 10.46 is a new native dependency. The original five-file model
+bundle and this repository's development fixtures are unchanged. Complete
+analysis is available only on a resource-aware admitted context; the existing
+numeric API and default-off gate remain unchanged.
+
+Before further work, current Quds main
+`2c47165d01d01cc883135a434ac9f6591ce6e770` was reconciled by a clean merge.
+Its three commits since `d6010059644b34accd6f188e0e2a4863ab63e318` add sheet
+data bars and cached DOCX/ODT page fields, with 45 changed paths and no overlap
+with the spaCy reference/roadmap/validation lane. Incoming source and evidence
+are preserved; no application requalification is claimed by this merge.
+
+The next gate freezes the installed native candidate and saves its protocol
+remotely, then exports and saves the unchanged original eight-case acceptance
+reference **before** native acceptance execution. Failures must be retained
+without tuning on that split. W5 then owns the optional Dart worker and
+explicit analysis UI. Grammar benefit, mobile/platform packaging and release
+qualification remain separate work. No existing provider or application pin
+is activated by this recovered checkpoint.
+
+## Original acceptance reference saved before native execution
+
+The native candidate was independently rebuilt and revalidated on the unchanged
+development panel. Its frozen protocol and rebuild evidence were published at
+[CrispEmbed `8fac62023e257ccf431e3daee25e6b2f15f182c8`](https://github.com/CrispStrobe/CrispEmbed/commit/8fac62023e257ccf431e3daee25e6b2f15f182c8)
+and the remote head, tree and protocol bytes were verified before exporting
+acceptance. The candidate source remains `51c2ac328`; the protocol SHA-256 is
+`78c17652ebce834d853209927bf24493eb1b362de99a0115a55b5202fcef2d92`.
+
+The unchanged original exporter now captures the full eight-case acceptance
+split in [fixtures/acceptance](../../../tools/proofing/spacy/fixtures/acceptance).
+Its verifier confirms 98 tokens, 201 parser transitions and 851 numerical stages.
+Manifest SHA-256:
+`1b60f2e99ebacfe0a5795548482d6210f6a1e2c9b0543cf7d7192eebee2c8b25`.
+[The publication receipt](acceptance-reference.json) inventories every file and
+records the unchanged oracle/input/environment identities and incoming-source
+merge. The reference includes full annotations, F32 arrays, decisions, model
+notices and environment lock, rather than a summary-only substitute.
+
+This is original-reference evidence. Native acceptance has **not** run at this
+checkpoint. Save and verify this complete tree remotely, then invoke the frozen
+native gate once with this reference commit and manifest hash. Keep every
+failure and do not tune source, goldens or numerical budgets on these cases.

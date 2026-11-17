@@ -1,0 +1,6 @@
+tree 3080e51ec487a97c08696d119dbef97a442a2e67
+parent e3a38789359adaa33b2da1345c952fa1c2d8aebb
+author Codex <codex@openai.com> 1794944992 +0100
+committer Codex <codex@openai.com> 1794944992 +0100
+
+fix(word): preserve cached page fields through import and ODT export [skip ci]

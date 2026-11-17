@@ -1,0 +1,14 @@
+name: quds_validation_runtime
+publish_to: none
+environment:
+  sdk: ^3.12.0
+workspace:
+  - packages/legacy_doc_parser
+  - packages/quds_office_engine
+dev_dependencies:
+  test: 1.31.1
+  test_api: 0.7.12
+  test_core: 0.6.18
+  analyzer: 13.3.0
+  _fe_analyzer_shared: 103.0.0
+  package_config: 2.2.0

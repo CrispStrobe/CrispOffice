@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "label": "recovered-analysis",
+  "head": "5afff4b86523250c93d949eb6c010e49d9fabd82",
+  "startedAt": "2026-11-17T20:08:19.945432+00:00",
+  "finishedAt": "2026-11-17T20:08:24.351706+00:00",
+  "durationSeconds": 4.352934521000066,
+  "cwd": "packages/quds_office_engine",
+  "command": [
+    "/workspace/scratch/8762e41974dc/runtime-recovery/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "lib/src/word/serial/odt_document_writer.dart",
+    "lib/src/word/serial/word_deserializer.dart",
+    "test/odt_page_field_fidelity_test.dart",
+    "test/odt_imported_field_fidelity_test.dart"
+  ],
+  "exitCode": 0,
+  "expectedExitCode": 0,
+  "sourceScopes": [
+    "packages/quds_office_engine/lib",
+    "packages/legacy_doc_parser/lib",
+    "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+    "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml"
+  ],
+  "sourceInputCount": 392,
+  "changedInputs": [],
+  "inputManifest": "recovered-analysis.inputs.json.gz",
+  "inputManifestSha256": "f5fe34bdda8c852e55cb0fb9429482710e5479b9ffd8fc273eaeae8cbaae3877",
+  "packageConfigSha256": "7c4b428b1e1829fd448efe9c67d81be488b494b085ded663bf94fdbdbfec0713",
+  "dartExecutableSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "substantiveTestCounts": {},
+  "terminalEvents": [],
+  "testErrors": [],
+  "outputs": {
+    "stdout": {
+      "path": "recovered-analysis.stdout.gz",
+      "uncompressedBytes": 153,
+      "uncompressedSha256": "2b474364cc687628bd9560f7abbaef6a1994953d59253dc209aa41e509c638c1",
+      "compressedSha256": "275ff899163bfae98f3fef1d6b719a14b482ca66112e56b6477ffca978e4977f"
+    },
+    "stderr": {
+      "path": "recovered-analysis.stderr.gz",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressedSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  },
+  "passed": true,
+  "harnessSha256": "d9a3d42f56662c096f7dab4c8385bc931ebe8481118977fbc3be2ebf412de057",
+  "packageConfigBeforeSha256": "7c4b428b1e1829fd448efe9c67d81be488b494b085ded663bf94fdbdbfec0713",
+  "packageConfigStable": true
+}
