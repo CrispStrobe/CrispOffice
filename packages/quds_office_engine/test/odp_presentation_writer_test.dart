@@ -43,6 +43,7 @@ void main() {
               textColor: '000000',
               fontSizePt: 28,
               textAlign: PmlTextAlign.center,
+              hyperlinkUrl: 'https://example.com/deck',
             ),
             PmlShape(
               id: 3,
@@ -92,6 +93,7 @@ void main() {
     expect(content, contains('Pictures/image1.png'));
     expect(content, contains('xlink:type="simple"'));
     expect(content, contains('Speaker note'));
+    expect(content, contains('<text:a xlink:href="https://example.com/deck">'));
     final pageProperties = _pageProperties(XmlDocument.parse(content), 0);
     expect(
       pageProperties.getAttribute('type', namespaceUri: _smilNs),

@@ -145,3 +145,11 @@ and strict analysis of the writer and both section suites. The updated Python
 build, comparator and pack tooling passes all 51 tests. Logs retain the initial
 merge expectation failures; the final full-source validation is recorded below
 when complete.
+
+Merged PR #108 through main `4af75017a9b7df726c1f80741809f5bccdb70f4c`.
+Its six-line text-shape hyperlink implementation combines cleanly with the
+existing ODP transform logic. The test conflict retains the newer SMIL
+transition assertions and adds the incoming hyperlink assertion; it does not
+restore the superseded transition attributes. The first octopus merge attempt
+was rejected by Git because of this test conflict and left no partial merge;
+the normal main merge was then resolved explicitly.
