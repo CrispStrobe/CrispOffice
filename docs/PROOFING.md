@@ -28,8 +28,8 @@ parity and quality checks, and target-device/distribution evidence. The native
 spaCy backend is not yet implemented. Existing Python syntax experiments remain
 evaluation evidence with their original limits.
 
-Main's current Office integration excludes AOT; the handoff pins the earlier AOT
-branch as historical source. It also preserves the user's later clarification
+Main's current Office integration excludes AOT; the handoff retains the earlier
+AOT branch only as historical source. The package and dependencies were removed. It also preserves the user's later clarification
 that LGPL can be acceptable when provenance and commercial/App Store obligations
 are satisfied. See [licensing and distribution](roadmaps/native-spacy/licensing-and-distribution.md).
 This does not retroactively approve an artifact or change the existing Harper
@@ -41,8 +41,8 @@ inputs and an explicitly inventoried native dependency set.
 The [independent context qualification](validation/german-context-20261117/README.md)
 records bounded verb case, copula number, word order and participle checks,
 review/undo behavior, and the actual default 18/18 original-panel result.
-AOT.ru/RML stays on its feature branches. No analyzer daemon, pipe, model or
-spaCy runtime is added to the application. Broader panels and retained misses
+AOT.ru/RML was reconciled for history and then removed. No analyzer daemon,
+pipe, model, AOT package or spaCy runtime is added to the application. Broader panels and retained misses
 are reported separately from the small original panel.
 
 ## Noun agreement and syntax/model evaluation — 17 November 2026
