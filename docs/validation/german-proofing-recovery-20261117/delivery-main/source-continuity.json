@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "acceptedDeliverySource": "898c4c07f421d86a8cea460b13fd3e136088b553",
+  "observedMain": "13e7172977d671190ba8c3cf964deec4d7473090",
+  "rawIncomingBaseline": "024ff173edfce136cd7788484a58233468a68387",
+  "priorOfficeSource": "7002d750e20e44392c6c9ba1a92d910fd87fe593",
+  "freshProofingSource": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "changedPathsSincePriorOfficeQualification": [
+    "docs/validation/german-proofing-recovery-20261117/README.md",
+    "docs/validation/german-proofing-recovery-20261117/delivery-main/incoming-long-input-README.md",
+    "docs/validation/german-proofing-recovery-20261117/delivery-main/incoming-office-resume-README.md",
+    "docs/validation/german-proofing-recovery-20261117/delivery-main/integration.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence-index.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence.tar.xz",
+    "docs/validation/german-proofing-recovery-20261117/evidence/aot-portability-reconciliation.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/final-proofing-continuity-peer-review.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/incremental-quality-comparison.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/late-office-final-summary.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/late-office-regression-comparison.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/morphology-comparison.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/office-final-summary.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/office-regression-comparison.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/proofing-audit-scripts.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/proofing-node-failure-resolution.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/proofing-verification.json",
+    "docs/validation/german-proofing-recovery-20261117/evidence/quality-peer-audit.json",
+    "docs/validation/german-proofing-recovery-20261117/source-continuity.json",
+    "docs/validation/german-proofing-recovery-20261117/verification.json",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart",
+    "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart"
+  ],
+  "changedProductImplementations": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+  ],
+  "unchangedScopes": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing",
+      "testedObject": "248fb7c7387b71267d615287d42476964e264a78",
+      "deliveryObject": "248fb7c7387b71267d615287d42476964e264a78"
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing",
+      "testedObject": "b293146ac1a4dd9a0f18b06b05fecdc177a6d157",
+      "deliveryObject": "b293146ac1a4dd9a0f18b06b05fecdc177a6d157"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/opc/zip",
+      "testedObject": "166e434df2656d463420ea49942a72bdd04e8d82",
+      "deliveryObject": "166e434df2656d463420ea49942a72bdd04e8d82"
+    },
+    {
+      "path": "packages/quds_proofing_gector",
+      "testedObject": "4e0e6cf829e74db69a477c45b52ff4d07e670f9f",
+      "deliveryObject": "4e0e6cf829e74db69a477c45b52ff4d07e670f9f"
+    },
+    {
+      "path": "packages/quds_proofing_harper",
+      "testedObject": "3ee0cee5f338e872b09cfe66cdf6a949804db33e",
+      "deliveryObject": "3ee0cee5f338e872b09cfe66cdf6a949804db33e"
+    },
+    {
+      "path": "packages/quds_proofing_aot/lib",
+      "testedObject": "58ac98170ae7cb02434989ff616789feb6e9c251",
+      "deliveryObject": "58ac98170ae7cb02434989ff616789feb6e9c251"
+    },
+    {
+      "path": "packages/quds_proofing_aot/native",
+      "testedObject": "e7ffa97a8274f5048e183741b41efa98ee629c65",
+      "deliveryObject": "e7ffa97a8274f5048e183741b41efa98ee629c65"
+    },
+    {
+      "path": "packages/quds_proofing_aot/tool",
+      "testedObject": "c1f54ea123f670092ae676d74f0f42b94e9db586",
+      "deliveryObject": "c1f54ea123f670092ae676d74f0f42b94e9db586"
+    },
+    {
+      "path": "packages/quds_office_editor",
+      "testedObject": "4b2a2b6a56924483c60205b76e8ce685e40671b8",
+      "deliveryObject": "4b2a2b6a56924483c60205b76e8ce685e40671b8"
+    },
+    {
+      "path": "tools",
+      "testedObject": "6544a7ade72b201016bf5e49f8a1a0c011ed8d24",
+      "deliveryObject": "6544a7ade72b201016bf5e49f8a1a0c011ed8d24"
+    },
+    {
+      "path": "apps/quds_report_studio",
+      "testedObject": "e337080af459e7f1cb15e880513b5db58be3d88a",
+      "deliveryObject": "e337080af459e7f1cb15e880513b5db58be3d88a"
+    },
+    {
+      "path": "pubspec.yaml",
+      "testedObject": "cc830498a08150d7ae8d37929762be0d633fe28b",
+      "deliveryObject": "cc830498a08150d7ae8d37929762be0d633fe28b"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "testedObject": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "deliveryObject": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+    },
+    {
+      "path": ".fvmrc",
+      "testedObject": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "deliveryObject": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+    },
+    {
+      "path": "packages/quds_office_engine/pubspec.yaml",
+      "testedObject": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+      "deliveryObject": "b8df6a55e457b42e258a3cc7724df1be087464fb"
+    },
+    {
+      "path": "packages/quds_proofing_aot/pubspec.yaml",
+      "testedObject": "469799121d605e0ffecbedb10b9e24b127c61728",
+      "deliveryObject": "469799121d605e0ffecbedb10b9e24b127c61728"
+    }
+  ],
+  "capturedSnapshotAndObservedMainAreAncestors": true,
+  "originalEvidenceArchiveUnchanged": true,
+  "passed": true
+}

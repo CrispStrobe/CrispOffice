@@ -1,0 +1,13 @@
+{
+  "failed_source": "60a116d2df566793720bfb4f76d7f6523529bcb2",
+  "initial_result": {
+    "fixtures_passed": 28,
+    "fixtures_total": 29,
+    "schema_parts_passed": 116,
+    "schema_parts_total": 116
+  },
+  "failure": "New invalid-property oracle required physical w:right; LibreOffice reopened DOCX represents the correct right edge with logical w:end in this LTR table.",
+  "correction": "Accept w:right or w:end only after verifying that the table is not bidi; also assert exact single, half-point, black border. No product behavior or historical consumer expectation was changed.",
+  "attempt1_exact_harness_reconstructed_and_matched_to_recorded_hashes": true,
+  "final_source_change": "ec5ecbff differs from60a only by one removed blank line in a test file."
+}

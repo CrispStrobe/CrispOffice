@@ -83,6 +83,7 @@ void main() {
             ),
           );
       addTearDown(backend.dispose);
+      expect(backend, isA<GectorDeterministicBackend>());
       expect(backend.identity.artifactSha256, modelHash);
       final input = GectorPreparedInput(
         inputIds: [3, 4],

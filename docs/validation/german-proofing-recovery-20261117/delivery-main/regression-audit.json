@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "acceptedProductSource": "898c4c07f421d86a8cea460b13fd3e136088b553",
+  "verifiedCommandReceipts": {
+    "delivery-field-after-corrected": {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "receiptPassed": true,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_document_writer_test.dart": {
+          "success": 16
+        }
+      },
+      "counts": {
+        "success": 38
+      },
+      "sourceInputCount": 324,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-after-final": {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "receiptPassed": true,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_document_writer_test.dart": {
+          "success": 16
+        }
+      },
+      "counts": {
+        "success": 38
+      },
+      "sourceInputCount": 324,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-after": {
+      "exitCode": 1,
+      "expectedExitCode": 0,
+      "receiptPassed": false,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "failure": 5,
+          "success": 17
+        },
+        "odt_document_writer_test.dart": {
+          "success": 16
+        }
+      },
+      "counts": {
+        "failure": 5,
+        "success": 33
+      },
+      "sourceInputCount": 324,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-before-corrected": {
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "receiptPassed": true,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "failure": 20,
+          "error": 1,
+          "success": 1
+        }
+      },
+      "counts": {
+        "failure": 20,
+        "error": 1,
+        "success": 1
+      },
+      "sourceInputCount": 323,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-before-final": {
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "receiptPassed": true,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "failure": 20,
+          "error": 1,
+          "success": 1
+        }
+      },
+      "counts": {
+        "failure": 20,
+        "error": 1,
+        "success": 1
+      },
+      "sourceInputCount": 323,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-before": {
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "receiptPassed": true,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "failure": 20,
+          "error": 1,
+          "success": 1
+        }
+      },
+      "counts": {
+        "failure": 20,
+        "error": 1,
+        "success": 1
+      },
+      "sourceInputCount": 323,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-final-analysis": {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "receiptPassed": true,
+      "testsByFile": {},
+      "counts": {},
+      "sourceInputCount": 324,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-final-node": {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "receiptPassed": true,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_page_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_section_fidelity_test.dart": {
+          "success": 26
+        },
+        "odt_paragraph_properties_test.dart": {
+          "success": 18
+        }
+      },
+      "counts": {
+        "success": 88
+      },
+      "sourceInputCount": 326,
+      "logsAndSourceManifestVerified": true
+    },
+    "delivery-field-final-vm": {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "receiptPassed": true,
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_document_writer_test.dart": {
+          "success": 16
+        },
+        "odt_page_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_paragraph_properties_test.dart": {
+          "success": 18
+        },
+        "odt_section_fidelity_test.dart": {
+          "success": 26
+        },
+        "odt_header_footer_fidelity_test.dart": {
+          "success": 9
+        }
+      },
+      "counts": {
+        "success": 113
+      },
+      "sourceInputCount": 328,
+      "logsAndSourceManifestVerified": true
+    }
+  },
+  "pairedRegression": {
+    "commonInputs": 323,
+    "changedCommonInputs": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    ],
+    "testSourceIdenticalAcrossBeforeAfterVmAndNode": true,
+    "newTestSha256": "128182bc61e84f3b6e95ce1d717103372f54fff132647efe1a7dec7d970ce2fe",
+    "baselineWriterMatchesRawMergedCommit": true,
+    "repairedWriterMatchesAcceptedProductCommit": true
+  },
+  "passed": true
+}

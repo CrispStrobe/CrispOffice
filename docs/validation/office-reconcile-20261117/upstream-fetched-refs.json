@@ -1,0 +1,47 @@
+{
+  "captured_at": "2026-11-17T17:46:11.481894+00:00",
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "combined_source": "b9bfe664a4efe4128a47792a1ea2cce16c7dd2c8",
+  "refs": [
+    {
+      "ref": "refs/remotes/upstream-pull/1",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "ancestor_of_integrated": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pull/5",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_integrated": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pull/6",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_integrated": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pull/7",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_integrated": true
+    },
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_integrated": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_integrated": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_integrated": true
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor_of_integrated": true
+    }
+  ]
+}

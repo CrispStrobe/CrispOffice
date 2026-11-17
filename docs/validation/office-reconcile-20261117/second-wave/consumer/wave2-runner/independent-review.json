@@ -1,0 +1,40 @@
+{
+  "review_scope": "Second-wave consumer harness extension, read-only review; no consumer execution by this reviewer",
+  "prior_accepted_fixture_manifest_exact": true,
+  "prior_fixture_count": 29,
+  "historical_26_retained": true,
+  "prior_check_fixture_ast_unchanged": true,
+  "check_current_file_unchanged": true,
+  "check_recovery_file_unchanged": true,
+  "new_fixture_count": 2,
+  "geometry_derivation": {
+    "page_width_pt": 400,
+    "left_margin_pt": 36,
+    "right_margin_pt": 36,
+    "column_count": 2,
+    "column_gap_pt": 24,
+    "derived_column_width_pt": 152,
+    "derived_right_column_start_pt": 212
+  },
+  "findings": [],
+  "limits": [
+    "Keep-together is independently reopened DOCX property preservation, not multiline pagination acceptance.",
+    "Column placement is one simple explicit-break section; not exhaustive column pagination."
+  ],
+  "harness_sha256": {
+    "check_current_fixtures.py": "7eaf1c839872ba70e431321357117e22118efee3996ea3065439b97233f51ebc",
+    "check_recovery_fixtures.py": "27bd7ef3dcca7f6c44f7cbe6a778a527924700e83199df56cc9ae0d6ce087a49",
+    "check_second_wave.py": "df8cffe09f7266239641b9f98dbd288807580eb62f3ff2fd91bd0650fbd799f9",
+    "make_fixtures.dart": "5fb1474faa52a9949a78f06b0b260be55f406c0b5307ef2fd45b671bdd7659c9",
+    "verify_consumers.py": "98fb37bc6fd34c4fefcc9f14942ba6b21e3de19aaf96b24ab73aa27a6b0295f6",
+    "historical-fixtures-29.json": "723040dd773fad4cf0ef0de375b117ffedeac6b79ea1e40444edb4028d88f61b",
+    "historical-fixtures-26.json": "19bf753029ae5bf2549b451ee518b1d960478b2f6d6dc9af0f566037e4659845"
+  },
+  "prior_accepted_fixture_manifest_sha256": "723040dd773fad4cf0ef0de375b117ffedeac6b79ea1e40444edb4028d88f61b",
+  "historical_29_baseline_sha256": "723040dd773fad4cf0ef0de375b117ffedeac6b79ea1e40444edb4028d88f61b",
+  "reference_checker_sha256": {
+    "verify_consumers.py": "aa684901682f610b549143a0015eb2e9fe20a4145e3f641e4f87f0b95348309d",
+    "check_current_fixtures.py": "7eaf1c839872ba70e431321357117e22118efee3996ea3065439b97233f51ebc",
+    "check_recovery_fixtures.py": "27bd7ef3dcca7f6c44f7cbe6a778a527924700e83199df56cc9ae0d6ce087a49"
+  }
+}

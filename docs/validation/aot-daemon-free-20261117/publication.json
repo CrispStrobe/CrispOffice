@@ -1,0 +1,35 @@
+{
+  "notes": "The GitHub connector assigns commit metadata. These staged local heads and published heads have exactly identical Git trees; incoming histories are retained as parents. Source hashes in the evidence bind the final follow-up independently of commit metadata.",
+  "checkpoints": [
+    {
+      "local_head": "3b003fc34924a78eb377a09cb351bb9035ab0670",
+      "published_head": "48634dce36568ba7ea40da3c5a96774e9af3e6e8",
+      "tree": "dd5fcb46337a61b1bd96c5ba1c975c701db7d4af"
+    },
+    {
+      "local_head": "e0127cba1b73467137067882febf0e452faa7fe6",
+      "published_head": "42083c9906a2889271f5ef0e10afce358c8dae7b",
+      "tree": "c36dce23b0f727b905deca8e6d3a4e92cd2c8214"
+    },
+    {
+      "local_head": "44291c2321539e09e9998a6f07900ff4c3ee429e",
+      "published_head": "0b4c0107f6b7651bd77e95670e4f2f4f8b58e038",
+      "tree": "85edaa6dc6c4c3285794b52d96b091c5d14123c1"
+    },
+    {
+      "local_head": "96f8866bc34f15945508cf15bdccd3b3944d1115",
+      "published_head": "9297f077d68256042afd520d55d72f5997e746b3",
+      "tree": "f2c765003df008bb8e656db1f8773e9da1110c03"
+    },
+    {
+      "local_head": "cee14164116306fc8769ab637cf4fc3745a0f98b",
+      "published_head": "940148b02020d5db8e991e863a026aba139a1b13",
+      "tree": "88242a725411b9ea28b6da344bf968bfc7548e1c"
+    },
+    {
+      "local_head": "dd04e0efbd03456b2c578e9844584a959f625eb5",
+      "published_head": "8971528952072bd4f55b6fd79fad3d1b735efba6",
+      "tree": "94237554a0029e6c9d24c4d4eda9f30a7c52eee5"
+    }
+  ]
+}

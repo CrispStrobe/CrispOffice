@@ -1,0 +1,372 @@
+{
+  "kind": "independent-recovered-evidence-audit",
+  "published_commit": "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e",
+  "accepted_historical_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+  "scope": "Checks published archive integrity, parses retained test logs, reconstructs UTF-16 diagnostic projections and quality counts, compares all three quality stages, and recalculates retained timing statistics. Does not run product code or qualify future integrated source.",
+  "archive": {
+    "sha256": "522b7953d220312c904163de490d7e323de65493d0ce91e6273a55f5d272de29",
+    "bytes": 5218688,
+    "members": 343,
+    "uncompressed_bytes": 33934014
+  },
+  "historical_test_counts": [
+    {
+      "name": "Engine proofing, VM",
+      "source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "passed": 602,
+      "skipped": 0,
+      "failed": 0,
+      "unfinished": 0,
+      "error_count": 0,
+      "done_success": true
+    },
+    {
+      "name": "Engine proofing, compiled JavaScript/Node",
+      "source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "passed": 602,
+      "skipped": 0,
+      "failed": 0,
+      "unfinished": 0,
+      "error_count": 0,
+      "done_success": true
+    },
+    {
+      "name": "Flutter proofing/correction/hyphenation",
+      "source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "passed": 176,
+      "skipped": 0,
+      "failed": 0,
+      "unfinished": 0,
+      "error_count": 0,
+      "done_success": true
+    },
+    {
+      "name": "GECToR, including real native fixture",
+      "source": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "passed": 194,
+      "skipped": 0,
+      "failed": 0,
+      "unfinished": 0,
+      "error_count": 0,
+      "done_success": true
+    },
+    {
+      "name": "Office preservation, VM",
+      "source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "passed": 380,
+      "skipped": 0,
+      "failed": 0,
+      "unfinished": 0,
+      "error_count": 0,
+      "done_success": true
+    },
+    {
+      "name": "Portable Office and separately selected shading regression, Node",
+      "source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "passed": 307,
+      "skipped": 0,
+      "failed": 0,
+      "unfinished": 0,
+      "error_count": 0,
+      "done_success": true
+    },
+    {
+      "name": "Python qualification controls",
+      "source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "passed": 107,
+      "skipped": 1,
+      "failed": 0,
+      "done_success": true
+    }
+  ],
+  "panels": {
+    "baseline/frozen": {
+      "case_count": 30,
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "lanes": {
+        "writing_only": {
+          "exact_errors": 7,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 7,
+          "clean_flagged": 1,
+          "clean_changed": 1
+        },
+        "model_only": {
+          "exact_errors": 6,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 9,
+          "clean_flagged": 1,
+          "clean_changed": 1
+        }
+      },
+      "added_exact_ids": [
+        "verb-ihr",
+        "das-relative"
+      ],
+      "lost_exact_ids": [],
+      "accepted_model_findings": 2,
+      "suppressed_model_findings": 4
+    },
+    "baseline/prospective": {
+      "case_count": 76,
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "lanes": {
+        "writing_only": {
+          "exact_errors": 14,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 14,
+          "clean_flagged": 1,
+          "clean_changed": 1
+        },
+        "model_only": {
+          "exact_errors": 12,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 19,
+          "clean_flagged": 1,
+          "clean_changed": 1
+        }
+      },
+      "added_exact_ids": [
+        "prospective-verb-ihr-lesen-error",
+        "prospective-verb-ihr-koennen-error",
+        "prospective-dass-hoffen-error",
+        "prospective-dass-freuen-error",
+        "prospective-relative-object-error"
+      ],
+      "lost_exact_ids": [],
+      "accepted_model_findings": 6,
+      "suppressed_model_findings": 6
+    },
+    "after-spelling/frozen": {
+      "case_count": 30,
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "lanes": {
+        "writing_only": {
+          "exact_errors": 7,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 7,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 6,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 9,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "added_exact_ids": [
+        "verb-ihr",
+        "das-relative"
+      ],
+      "lost_exact_ids": [],
+      "accepted_model_findings": 2,
+      "suppressed_model_findings": 4
+    },
+    "after-spelling/prospective": {
+      "case_count": 76,
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "lanes": {
+        "writing_only": {
+          "exact_errors": 14,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 14,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 12,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 20,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "added_exact_ids": [
+        "prospective-verb-ihr-lesen-error",
+        "prospective-verb-ihr-koennen-error",
+        "prospective-dass-hoffen-error",
+        "prospective-dass-freuen-error",
+        "prospective-relative-subject-error",
+        "prospective-relative-object-error"
+      ],
+      "lost_exact_ids": [],
+      "accepted_model_findings": 6,
+      "suppressed_model_findings": 6
+    },
+    "integrated-quality/frozen": {
+      "case_count": 30,
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "lanes": {
+        "writing_only": {
+          "exact_errors": 7,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 7,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 6,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 9,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "added_exact_ids": [
+        "verb-ihr",
+        "das-relative"
+      ],
+      "lost_exact_ids": [],
+      "accepted_model_findings": 2,
+      "suppressed_model_findings": 4
+    },
+    "integrated-quality/prospective": {
+      "case_count": 76,
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "lanes": {
+        "writing_only": {
+          "exact_errors": 14,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 14,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 12,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 20,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "added_exact_ids": [
+        "prospective-verb-ihr-lesen-error",
+        "prospective-verb-ihr-koennen-error",
+        "prospective-dass-hoffen-error",
+        "prospective-dass-freuen-error",
+        "prospective-relative-subject-error",
+        "prospective-relative-object-error"
+      ],
+      "lost_exact_ids": [],
+      "accepted_model_findings": 6,
+      "suppressed_model_findings": 6
+    }
+  },
+  "comparisons": {
+    "baseline -> after-spelling": {
+      "case_rows": 106,
+      "lane_outcomes": 424,
+      "changes": [
+        {
+          "panel": "frozen",
+          "case_id": "clean-swiss-name",
+          "changed_lanes": [
+            "deterministic",
+            "combined"
+          ]
+        },
+        {
+          "panel": "frozen",
+          "case_id": "clean-quotes",
+          "changed_lanes": [
+            "deterministic",
+            "combined"
+          ]
+        },
+        {
+          "panel": "prospective",
+          "case_id": "prospective-relative-subject-error",
+          "changed_lanes": [
+            "deterministic",
+            "combined"
+          ]
+        },
+        {
+          "panel": "prospective",
+          "case_id": "prospective-relative-subject-clean",
+          "changed_lanes": [
+            "deterministic",
+            "combined"
+          ]
+        }
+      ]
+    },
+    "after-spelling -> integrated-quality": {
+      "case_rows": 106,
+      "lane_outcomes": 424,
+      "changes": []
+    }
+  },
+  "native": {
+    "sample_count": 87,
+    "median_ms": 22.886,
+    "p95_ms": 62.875,
+    "peak_rss_mib": 359.6875,
+    "operational_controls": 8,
+    "segmented_controls": 6
+  },
+  "publication_delta_paths": [
+    "docs/PROOFING.md",
+    "docs/roadmaps/german-gector-proofing.md",
+    "docs/validation/german-proofing-next-20261117/README.md",
+    "docs/validation/german-proofing-next-20261117/accepted-integration.json",
+    "docs/validation/german-proofing-next-20261117/evidence-index.json",
+    "docs/validation/german-proofing-next-20261117/evidence.tar.xz",
+    "docs/validation/german-proofing-next-20261117/lexicon-generation.json",
+    "docs/validation/german-proofing-next-20261117/model-continuity.json",
+    "docs/validation/german-proofing-next-20261117/proofing-continuity.json",
+    "docs/validation/german-proofing-next-20261117/provider-audit.json",
+    "docs/validation/german-proofing-next-20261117/provider-build.json.gz",
+    "docs/validation/german-proofing-next-20261117/provider-run.json.gz",
+    "docs/validation/german-proofing-next-20261117/provider-segmented.json.gz",
+    "docs/validation/german-proofing-next-20261117/source-binding.json",
+    "docs/validation/german-proofing-next-20261117/verification.json",
+    "tools/proofing/german_model/README.md"
+  ],
+  "issues": [],
+  "passed": true
+}

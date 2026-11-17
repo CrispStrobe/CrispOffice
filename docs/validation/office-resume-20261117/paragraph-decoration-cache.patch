@@ -1,0 +1,33 @@
+diff --git a/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart b/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart
+index 0ae9e13..5d79ab3 100644
+--- a/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart
++++ b/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart
+@@ -1434,8 +1434,11 @@ class _OdtLayout {
+     _OdtSectionStart? sectionStart,
+     bool emptyAnchor = false,
+   }) {
++    final fill = props.shadingFill?.toLowerCase() ?? '';
++    final border = props.borderColor?.toLowerCase() ?? '';
++    final decorations = jsonEncode([fill, border]);
+     final key =
+-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor';
++        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$decorations';
+     return _paragraphStyles.putIfAbsent(key, () {
+       final name = sectionStart == null
+           ? 'P${_paragraphStyles.length + 1}'
+@@ -1525,11 +1528,11 @@ class _OdtLayout {
+             buffer.write(' fo:text-indent="${points}pt"');
+           }
+         }
+-        if (props.shadingFill case final fill? when fill.isNotEmpty) {
+-          buffer.write(' fo:background-color="#${fill.toLowerCase()}"');
++        if (fill.isNotEmpty) {
++          buffer.write(' fo:background-color="#$fill"');
+         }
+-        if (props.borderColor case final border? when border.isNotEmpty) {
+-          buffer.write(' fo:border="0.5pt solid #${border.toLowerCase()}"');
++        if (border.isNotEmpty) {
++          buffer.write(' fo:border="0.5pt solid #$border"');
+         }
+         buffer.write('/>');
+         if (emptyAnchor) {

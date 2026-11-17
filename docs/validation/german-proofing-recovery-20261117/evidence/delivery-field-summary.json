@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "024ff173edfce136cd7788484a58233468a68387",
+  "finalProductCommit": "898c4c07f421d86a8cea460b13fd3e136088b553",
+  "productScope": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+  ],
+  "behavior": [
+    "Convert complete, unnested, unlocked inline PAGE and NUMPAGES packets with one non-atomic cached run; assemble fragmented instructions before recognition.",
+    "Preserve the cached display exactly once inside its native field with the run style and hyperlink.",
+    "Retain ordinary cached runs for unsupported commands or switches, locked or malformed metadata, nested or cross-paragraph packets, and atomic or multiple styled results.",
+    "A story-scoped admission depth prevents nested conversion without suppressing text; independent stories reset the guard.",
+    "Malformed boundary XML including invalid numeric entity syntax and out-of-range codepoints falls back to the cache."
+  ],
+  "pairedRegression": {
+    "beforeReceipt": "delivery-field-before-final.json",
+    "afterReceipt": "delivery-field-after-final.json",
+    "newTestFile": "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+    "sameNewTestSource": true,
+    "newTestSha256": "128182bc61e84f3b6e95ce1d717103372f54fff132647efe1a7dec7d970ce2fe",
+    "commonInputCount": 323,
+    "changedCommonInputs": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    ],
+    "beforeTestsByFile": {
+      "odt_inline_field_fidelity_test.dart": {
+        "failure": 20,
+        "error": 1,
+        "success": 1
+      }
+    },
+    "afterTestsByFile": {
+      "odt_document_writer_test.dart": {
+        "success": 16
+      },
+      "odt_inline_field_fidelity_test.dart": {
+        "success": 22
+      }
+    },
+    "beforeFailureDistinction": "20 assertion failures, one missing-element exception for the unrecognized split instruction, and one passing unsupported REF control.",
+    "beforeExpectedExit": 1,
+    "afterExpectedExit": 0
+  },
+  "incomingAssertionCorrection": {
+    "file": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+    "reason": "The upstream empty-element and absent-cache regexes encoded a serialization shape that discarded the visible result.",
+    "replacement": "Parsed XML requires exactly one page-number and one page-count, each containing its cached display, with no duplicate cached text outside the native fields."
+  },
+  "finalQualification": {
+    "vm": {
+      "receipt": "delivery-field-final-vm.json",
+      "head": "898c4c07f421d86a8cea460b13fd3e136088b553",
+      "sourceInputCount": 328,
+      "unchangedInputs": true,
+      "substantiveTestCounts": {
+        "success": 113
+      },
+      "testsByFile": {
+        "odt_document_writer_test.dart": {
+          "success": 16
+        },
+        "odt_header_footer_fidelity_test.dart": {
+          "success": 9
+        },
+        "odt_inline_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_page_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_paragraph_properties_test.dart": {
+          "success": 18
+        },
+        "odt_section_fidelity_test.dart": {
+          "success": 26
+        }
+      },
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter=json",
+        "--concurrency=2",
+        "test/odt_inline_field_fidelity_test.dart",
+        "test/odt_document_writer_test.dart",
+        "test/odt_page_field_fidelity_test.dart",
+        "test/odt_paragraph_properties_test.dart",
+        "test/odt_section_fidelity_test.dart",
+        "test/odt_header_footer_fidelity_test.dart"
+      ],
+      "passed": true
+    },
+    "node": {
+      "receipt": "delivery-field-final-node.json",
+      "head": "898c4c07f421d86a8cea460b13fd3e136088b553",
+      "sourceInputCount": 326,
+      "unchangedInputs": true,
+      "substantiveTestCounts": {
+        "success": 88
+      },
+      "testsByFile": {
+        "odt_inline_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_page_field_fidelity_test.dart": {
+          "success": 22
+        },
+        "odt_paragraph_properties_test.dart": {
+          "success": 18
+        },
+        "odt_section_fidelity_test.dart": {
+          "success": 26
+        }
+      },
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--reporter=json",
+        "--concurrency=2",
+        "--platform",
+        "node",
+        "test/odt_inline_field_fidelity_test.dart",
+        "test/odt_page_field_fidelity_test.dart",
+        "test/odt_paragraph_properties_test.dart",
+        "test/odt_section_fidelity_test.dart"
+      ],
+      "passed": true
+    },
+    "analysis": {
+      "receipt": "delivery-field-final-analysis.json",
+      "head": "898c4c07f421d86a8cea460b13fd3e136088b553",
+      "sourceInputCount": 324,
+      "unchangedInputs": true,
+      "substantiveTestCounts": {},
+      "testsByFile": {},
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "lib/src/word/serial/odt_document_writer.dart",
+        "test/odt_inline_field_fidelity_test.dart",
+        "test/odt_document_writer_test.dart"
+      ],
+      "passed": true
+    }
+  },
+  "retainedEarlierAttempts": [
+    {
+      "receipt": "delivery-field-before.json",
+      "counts": {
+        "failure": 20,
+        "error": 1,
+        "success": 1
+      },
+      "status": "Initial baseline run retained; superseded by the final identical-source comparison."
+    },
+    {
+      "receipt": "delivery-field-after.json",
+      "counts": {
+        "failure": 5,
+        "success": 33
+      },
+      "status": "Five test-helper assertion failures because XmlElement.text omits ODF text:s spaces; 33 passed. The helper was corrected rather than changing valid whitespace export."
+    },
+    {
+      "receipt": "delivery-field-before-corrected.json",
+      "counts": {
+        "failure": 20,
+        "error": 1,
+        "success": 1
+      },
+      "status": "Corrected-helper baseline retained; superseded by final malformed-codepoint coverage."
+    },
+    {
+      "receipt": "delivery-field-after-corrected.json",
+      "counts": {
+        "success": 38
+      },
+      "status": "All 38 passed before adding the confirmed RangeError fallback and two malformed entity values to the same test case."
+    }
+  ],
+  "reportingNotes": [
+    "Counts across regression, VM and Node runs overlap and must not be added as unique tests.",
+    "The Node cohort excludes odt_document_writer_test.dart and odt_header_footer_fidelity_test.dart because they import dart:io.",
+    "The final 22 new regressions are identical in the negative, positive, final VM and final Node inputs.",
+    "Strict changed-file analysis covers the writer and both changed test files; it reports no issues.",
+    "Earlier broad Office and proofing evidence remains separately sealed; this amendment qualifies only the final bounded field integration."
+  ]
+}

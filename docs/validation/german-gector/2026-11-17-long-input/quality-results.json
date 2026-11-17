@@ -1,0 +1,574 @@
+{
+  "schema_version": 1,
+  "kind": "quds-first-prospective-incremental-quality-results",
+  "implementation_commit": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+  "build_receipt": "incremental-quality-build.json",
+  "actual_aot_sha256": "81a76a0cfb1a0fc8b369f6a49851f0276a5eb4567830289dddce8e18372c02e0",
+  "provider_mode": "default single-sequence, no segmentation",
+  "prospective_freeze_commit": "60c550b4d02e4433d15c3f4fc2e67e744ed95dda",
+  "prospective_corpus_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+  "corpus_unchanged_since_freeze": true,
+  "runs": {
+    "frozen-30": {
+      "receipt": {
+        "file": "frozen-30-quality.json.gz",
+        "uncompressed_bytes": 224405,
+        "uncompressed_sha256": "17069ba73d3bef8a2a179d19417dbe7d9d2dc43f9ee5edc49214348faca2c666"
+      },
+      "completed": true,
+      "operational_passed": true,
+      "source_binding": {
+        "source_map_matches_build": true,
+        "runtime_pins_match_build": true,
+        "actual_sources_match": true,
+        "before_after_maps_equal": true,
+        "corpus_pin_matches": true
+      },
+      "cases_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "by_language": {
+        "de-DE": {
+          "case_count": 28,
+          "error_count": 18,
+          "clean_count": 10,
+          "lanes": {
+            "writing_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 28,
+              "completed_error_count": 18,
+              "completed_clean_count": 10,
+              "exact_error_count": 7,
+              "changed_nonexact_error_count": 1,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 10,
+              "unflagged_clean_count": 10,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "changed_clean_ids": [
+                "clean-quotes"
+              ],
+              "flagged_clean_ids": [
+                "clean-quotes"
+              ],
+              "unsupported_only_ids": [],
+              "completed_count": 28,
+              "completed_error_count": 18,
+              "completed_clean_count": 10,
+              "exact_error_count": 7,
+              "changed_nonexact_error_count": 2,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 9,
+              "unflagged_clean_count": 9,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 28,
+              "completed_error_count": 18,
+              "completed_clean_count": 10,
+              "exact_error_count": 6,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 10,
+              "unflagged_clean_count": 10,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "changed_clean_ids": [
+                "clean-quotes"
+              ],
+              "flagged_clean_ids": [
+                "clean-quotes"
+              ],
+              "unsupported_only_ids": [],
+              "completed_count": 28,
+              "completed_error_count": 18,
+              "completed_clean_count": 10,
+              "exact_error_count": 9,
+              "changed_nonexact_error_count": 2,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 9,
+              "unflagged_clean_count": 9,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [
+              "verb-ihr",
+              "das-relative"
+            ],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [
+              "verb-ihr",
+              "das-relative"
+            ],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 2,
+            "suppressed_model_finding_count": 4
+          },
+          "operational_passed": true
+        },
+        "de-CH": {
+          "case_count": 2,
+          "error_count": 0,
+          "clean_count": 2,
+          "lanes": {
+            "writing_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "changed_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "flagged_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 1,
+              "unflagged_clean_count": 1,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [
+                "clean-swiss",
+                "clean-swiss-name"
+              ],
+              "completed_count": 0,
+              "completed_error_count": 0,
+              "completed_clean_count": 0,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 0,
+              "unflagged_clean_count": 0,
+              "unsupported_only_count": 2,
+              "incomplete_count": 2,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "changed_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "flagged_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 1,
+              "unflagged_clean_count": 1,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 0,
+            "suppressed_model_finding_count": 0
+          },
+          "operational_passed": true
+        }
+      },
+      "changed_clean_details": [
+        {
+          "id": "clean-swiss-name",
+          "locale": "de-CH",
+          "input": "Grüezi, ich heisse André.",
+          "projections": {
+            "writing_only": "Grüezi, ich heisse André.",
+            "deterministic": "Grütze, ich heisse André.",
+            "model_only": null,
+            "combined": "Grütze, ich heisse André."
+          },
+          "origin": "Existing deterministic/spelling projection; no added model edit."
+        },
+        {
+          "id": "clean-quotes",
+          "locale": "de-DE",
+          "input": "Er sagte: „Das stimmt.“",
+          "projections": {
+            "writing_only": "Er sagte: „Das stimmt.“",
+            "deterministic": "Er sagte: „das stimmt.“",
+            "model_only": "Er sagte: „Das stimmt.“",
+            "combined": "Er sagte: „das stimmt.“"
+          },
+          "origin": "Existing deterministic/spelling projection; no added model edit."
+        }
+      ]
+    },
+    "prospective-76": {
+      "receipt": {
+        "file": "prospective-76-quality.json.gz",
+        "uncompressed_bytes": 549300,
+        "uncompressed_sha256": "8f669181fe7346ec39164724c00087bd751b76522b13ef8bae6b7f09d3f5f695"
+      },
+      "completed": true,
+      "operational_passed": true,
+      "source_binding": {
+        "source_map_matches_build": true,
+        "runtime_pins_match_build": true,
+        "actual_sources_match": true,
+        "before_after_maps_equal": true,
+        "corpus_pin_matches": true
+      },
+      "cases_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "by_language": {
+        "de-DE": {
+          "case_count": 72,
+          "error_count": 32,
+          "clean_count": 40,
+          "lanes": {
+            "writing_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 72,
+              "completed_error_count": 32,
+              "completed_clean_count": 40,
+              "exact_error_count": 14,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 40,
+              "unflagged_clean_count": 40,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "changed_clean_ids": [
+                "prospective-relative-subject-clean"
+              ],
+              "flagged_clean_ids": [
+                "prospective-relative-subject-clean"
+              ],
+              "unsupported_only_ids": [],
+              "completed_count": 72,
+              "completed_error_count": 32,
+              "completed_clean_count": 40,
+              "exact_error_count": 14,
+              "changed_nonexact_error_count": 3,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 39,
+              "unflagged_clean_count": 39,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 72,
+              "completed_error_count": 32,
+              "completed_clean_count": 40,
+              "exact_error_count": 12,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 40,
+              "unflagged_clean_count": 40,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "changed_clean_ids": [
+                "prospective-relative-subject-clean"
+              ],
+              "flagged_clean_ids": [
+                "prospective-relative-subject-clean"
+              ],
+              "unsupported_only_ids": [],
+              "completed_count": 72,
+              "completed_error_count": 32,
+              "completed_clean_count": 40,
+              "exact_error_count": 19,
+              "changed_nonexact_error_count": 3,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 39,
+              "unflagged_clean_count": 39,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [
+              "prospective-verb-ihr-lesen-error",
+              "prospective-verb-ihr-koennen-error",
+              "prospective-dass-hoffen-error",
+              "prospective-dass-freuen-error",
+              "prospective-relative-object-error"
+            ],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [
+              "prospective-verb-ihr-lesen-error",
+              "prospective-verb-ihr-koennen-error",
+              "prospective-dass-hoffen-error",
+              "prospective-dass-freuen-error",
+              "prospective-relative-subject-error",
+              "prospective-relative-object-error"
+            ],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 6,
+            "suppressed_model_finding_count": 6
+          },
+          "operational_passed": true
+        },
+        "de-AT": {
+          "case_count": 2,
+          "error_count": 0,
+          "clean_count": 2,
+          "lanes": {
+            "writing_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [
+                "prospective-locale-at-marillen",
+                "prospective-locale-at-perfect-auxiliary"
+              ],
+              "completed_count": 0,
+              "completed_error_count": 0,
+              "completed_clean_count": 0,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 0,
+              "unflagged_clean_count": 0,
+              "unsupported_only_count": 2,
+              "incomplete_count": 2,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 0,
+            "suppressed_model_finding_count": 0
+          },
+          "operational_passed": true
+        },
+        "de-CH": {
+          "case_count": 2,
+          "error_count": 0,
+          "clean_count": 2,
+          "lanes": {
+            "writing_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [
+                "prospective-locale-ch-strasse",
+                "prospective-locale-ch-weiss"
+              ],
+              "completed_count": 0,
+              "completed_error_count": 0,
+              "completed_clean_count": 0,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 0,
+              "unflagged_clean_count": 0,
+              "unsupported_only_count": 2,
+              "incomplete_count": 2,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 0,
+            "suppressed_model_finding_count": 0
+          },
+          "operational_passed": true
+        }
+      },
+      "changed_clean_details": [
+        {
+          "id": "prospective-relative-subject-clean",
+          "locale": "de-DE",
+          "input": "Das Fahrrad, das im Hof steht, gehört mir.",
+          "projections": {
+            "writing_only": "Das Fahrrad, das im Hof steht, gehört mir.",
+            "deterministic": "Das Fahrrad, das im Hofe steht, gehört mir.",
+            "model_only": "Das Fahrrad, das im Hof steht, gehört mir.",
+            "combined": "Das Fahrrad, das im Hofe steht, gehört mir."
+          },
+          "origin": "Existing deterministic/spelling projection; no added model edit."
+        }
+      ]
+    }
+  },
+  "interpretation": "First outputs for the frozen authored prospective panel; no rules or corpus changed in response. One first-replacement projection per original request, using actual production deterministic-first merging. Synthetic exact-target scores do not estimate representative German accuracy, and grammatical alternatives may miss exact targets. Timing fields in raw receipts are observations, not benchmarks."
+}

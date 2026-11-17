@@ -1,0 +1,18 @@
+{
+  "cwd": "packages/quds_office_engine",
+  "command": [
+    "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "lib/src/word/serial/odt_document_writer.dart",
+    "lib/src/slide/serial/odp_presentation_writer.dart",
+    "test/odt_document_writer_test.dart",
+    "test/odp_presentation_writer_test.dart",
+    "test/odt_tab_style_cache_test.dart",
+    "test/odt_paragraph_decoration_test.dart",
+    "test/odt_paragraph_decoration_fidelity_test.dart",
+    "test/odt_tab_stop_fidelity_test.dart",
+    "test/odt_table_tab_fidelity_test.dart",
+    "test/odt_table_tab_resume_test.dart"
+  ],
+  "returncode": 0
+}

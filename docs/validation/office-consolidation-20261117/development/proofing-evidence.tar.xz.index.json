@@ -1,0 +1,140 @@
+{
+  "archive": "proofing-evidence.tar.xz",
+  "archive_bytes": 25360,
+  "archive_sha256": "cf459a0f0941e6146d0b00808b0e01412adfbf0deb5ff2e6801455abcfe937b5",
+  "member_count": 26,
+  "uncompressed_bytes": 252519,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "proofing-development/README.md",
+      "bytes": 1613,
+      "sha256": "98f284c52fc9c8d8f07f792963d9160ae886c15ef83e83b2a446edc459b7a1a0"
+    },
+    {
+      "path": "proofing-development/analysis.log",
+      "bytes": 29099,
+      "sha256": "ac9ea90add28b70dd9cf996ec430817c628c2e157bf2af981bdad8dbd0c1a624"
+    },
+    {
+      "path": "proofing-development/baseline-source/packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "bytes": 45290,
+      "sha256": "ab44aae00a5687bd3033a8adfbfd44eb6773c14089cab15bc656db3660360f91"
+    },
+    {
+      "path": "proofing-development/baseline-source/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+      "bytes": 5844,
+      "sha256": "b68545b0a02b207f69bc66841d007def7a2cded3ff90c538ef46437d89e1284f"
+    },
+    {
+      "path": "proofing-development/baseline-source/tools/proofing/german_model/evaluate_candidate.py",
+      "bytes": 4900,
+      "sha256": "793f69ad89083648a712ef821f304050a14d9d24edce405d81b0ae0973dba2f6"
+    },
+    {
+      "path": "proofing-development/baseline-source/tools/proofing/german_model/test_candidate_admission.py",
+      "bytes": 2546,
+      "sha256": "661b9daace502e95a3f0a7386a38fed70fdfcf712020acbc2ba758652040d861"
+    },
+    {
+      "path": "proofing-development/baseline-source.json",
+      "bytes": 878,
+      "sha256": "fe1985f45c656ee6541828dfe66d3826dfbffb496d39e75000ee619ace4cef94"
+    },
+    {
+      "path": "proofing-development/baseline_predicate_probe.dart",
+      "bytes": 1046,
+      "sha256": "a32b45cb8d8bd74c224842cff181a85ac88cd4d4dd8ec469a0408b890404dd89"
+    },
+    {
+      "path": "proofing-development/candidate-baseline.json",
+      "bytes": 428,
+      "sha256": "52ee5dc6f3893b5eab2bf71ed87de61b8b4bd4d7228dd8949d53f8f3711750e4"
+    },
+    {
+      "path": "proofing-development/candidate-baseline.log",
+      "bytes": 3636,
+      "sha256": "18fe4c375660fa85c0e812e6c88041c7728774c54db53edf61fe4edc65bc2b74"
+    },
+    {
+      "path": "proofing-development/candidate-green.log",
+      "bytes": 1121,
+      "sha256": "a8c2831e77e56e46318883247ff46628ee5545c1a4cf9f919679d35f76e16926"
+    },
+    {
+      "path": "proofing-development/case-identities.json",
+      "bytes": 13307,
+      "sha256": "2eec9e7dbd2cccace58a98b91ede284ae1f6ec302875c414dc94aa1b5a453604"
+    },
+    {
+      "path": "proofing-development/evidence-index.json",
+      "bytes": 3746,
+      "sha256": "9bda95ac3938bf08ce24a0644f2a7fd64c37e34f47dc7ba5fdde3513199d6f34"
+    },
+    {
+      "path": "proofing-development/format-3.12.log",
+      "bytes": 47,
+      "sha256": "496e595f1c6c48775fe87dc8f716b26746dc64a8405f3168ac13bf5d14248b1a"
+    },
+    {
+      "path": "proofing-development/noun-node.jsonl",
+      "bytes": 30001,
+      "sha256": "e90c539ec9c2ec8aba0916c326b84830fda2cf3f47aaf4f46775669a3b5ee751"
+    },
+    {
+      "path": "proofing-development/noun-node.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proofing-development/noun-vm.jsonl",
+      "bytes": 29652,
+      "sha256": "6674072ab2e5e7841796b8362431a778c40ad1011baa402fe1b7287383499d6e"
+    },
+    {
+      "path": "proofing-development/noun-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proofing-development/predicate-baseline.json",
+      "bytes": 1264,
+      "sha256": "9c46facd4dc56c695b7a00a9237bf8a01cd72d263f3d6c9e00c450033c50617c"
+    },
+    {
+      "path": "proofing-development/predicate-parity-vm.json",
+      "bytes": 875,
+      "sha256": "0f724a6fd597a2ff1d1371e50fd56de9847769a7257b284a819a6ab12a30ae55"
+    },
+    {
+      "path": "proofing-development/predicate_parity_probe.dart",
+      "bytes": 5787,
+      "sha256": "1e964e2a1dd931cb4210f0627b6f52939f9b0920730e6eee19ae32c4bb3c7f3c"
+    },
+    {
+      "path": "proofing-development/repaired-source/packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "bytes": 47156,
+      "sha256": "1d352a64827758d76acd0a4ebeb9f0930d6adf01e0158520a70ed8c3f02fdaca"
+    },
+    {
+      "path": "proofing-development/repaired-source/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+      "bytes": 9582,
+      "sha256": "8279325bdf0f22d4614730a3baae14050537a3295215a82a9fdac2322dec216e"
+    },
+    {
+      "path": "proofing-development/repaired-source/tools/proofing/german_model/evaluate_candidate.py",
+      "bytes": 5536,
+      "sha256": "7fae7ca4cb3768259f6d5cbfed94d5eb36f3f6c63d4848141348c5adbdba2668"
+    },
+    {
+      "path": "proofing-development/repaired-source/tools/proofing/german_model/test_candidate_admission.py",
+      "bytes": 6502,
+      "sha256": "497529e4f44d695ba43851983ced8dc2e46d0542f4ba5deaf944d8bf99269d1a"
+    },
+    {
+      "path": "proofing-development/summary.json",
+      "bytes": 2663,
+      "sha256": "0be0f4bbdc6104369dbd5da67caf43c8fedd5d97d6c9725c4caaf4ab4c8b88fb"
+    }
+  ]
+}

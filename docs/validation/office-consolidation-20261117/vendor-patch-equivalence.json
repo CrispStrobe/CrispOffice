@@ -1,0 +1,32 @@
+[
+  {
+    "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+    "patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+    "stat": "b54ef7d2 feat(word): write ODT table borders and row heights\n .../lib/src/word/serial/odt_document_writer.dart   | 58 +++++++++++++++++++---\n .../test/odt_document_writer_test.dart             |  5 ++\n 2 files changed, 57 insertions(+), 6 deletions(-)\n"
+  },
+  {
+    "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+    "patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+    "stat": "17c6b2a8 feat(word): write ODT table borders and row heights\n .../lib/src/word/serial/odt_document_writer.dart   | 58 +++++++++++++++++++---\n .../test/odt_document_writer_test.dart             |  5 ++\n 2 files changed, 57 insertions(+), 6 deletions(-)\n"
+  },
+  {
+    "sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+    "patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+    "stat": "2eb080e7 feat(word): write ODT table borders and row heights (#115)\n .../lib/src/word/serial/odt_document_writer.dart   | 58 +++++++++++++++++++---\n .../test/odt_document_writer_test.dart             |  5 ++\n 2 files changed, 57 insertions(+), 6 deletions(-)\n"
+  },
+  {
+    "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+    "patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+    "stat": "4391669c feat(word): write ODT paragraph tab stops\n .../lib/src/word/serial/odt_document_writer.dart   | 34 +++++++++++++++++++-\n .../test/odt_document_writer_test.dart             | 36 ++++++++++++++++++++++\n 2 files changed, 69 insertions(+), 1 deletion(-)\n"
+  },
+  {
+    "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+    "patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+    "stat": "156cc755 feat(word): write ODT paragraph tab stops\n .../lib/src/word/serial/odt_document_writer.dart   | 34 +++++++++++++++++++-\n .../test/odt_document_writer_test.dart             | 36 ++++++++++++++++++++++\n 2 files changed, 69 insertions(+), 1 deletion(-)\n"
+  },
+  {
+    "sha": "cc9b467f69401ca3d689b56e7306e3cebd01df68",
+    "patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+    "stat": "cc9b467f feat(word): write ODT paragraph tab stops (#118)\n .../lib/src/word/serial/odt_document_writer.dart   | 34 +++++++++++++++++++-\n .../test/odt_document_writer_test.dart             | 36 ++++++++++++++++++++++\n 2 files changed, 69 insertions(+), 1 deletion(-)\n"
+  }
+]

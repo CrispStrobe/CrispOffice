@@ -1,0 +1,6 @@
+{
+  "passed": 15,
+  "failed": 0,
+  "skipped": 0,
+  "notes": "Re-runs source-span tests on the final fractional-offset fixture used by Node; included in the AOT full suite, not additional unique tests."
+}

@@ -1,0 +1,195 @@
+{
+  "archive": "writer-controls.tar.xz",
+  "bytes": 67424,
+  "sha256": "be671437536f7138cbf979df479b24185995ff8d4735f55ee9fd1c171cfc5387",
+  "members": 37,
+  "entries": [
+    {
+      "path": "README.md",
+      "bytes": 3566,
+      "sha256": "07a84e6e4aebc2f13bcc9a4551a1c306054e3a6256e25d81a42e8a660a3af717"
+    },
+    {
+      "path": "feature-patch-equivalence.json",
+      "bytes": 1530,
+      "sha256": "5f4fdf355a60a74cf7029b62721c701d5f96bae5e272598ae92f07440139b8fe"
+    },
+    {
+      "path": "final-analysis-0.txt",
+      "bytes": 55,
+      "sha256": "3fdc9fb9e8119736f52bf60a42b8b86c3f7fb2c6dc42ebf7e0c6b597c0fe0b07"
+    },
+    {
+      "path": "final-analysis-1.txt",
+      "bytes": 68,
+      "sha256": "dbfa88c1f8a88bee4cd382a1e8301241bc2b97fcf640b416898038d17b15fc4b"
+    },
+    {
+      "path": "final-columns-content.xml",
+      "bytes": 1567,
+      "sha256": "d62c56480c9028ecfd24ad54532fd2a522c99d5806be2f1cb69e765bc61870a2"
+    },
+    {
+      "path": "final-columns-schema.json",
+      "bytes": 1096,
+      "sha256": "ffc9574b335a9508442c1a3ac72b0200b432c601b9fc7c641dd2fe80c843854b"
+    },
+    {
+      "path": "final-columns.odt",
+      "bytes": 2930,
+      "sha256": "d40f9a1b9183ac01a9174136528b3d649063215b69b28932b69bb48581edf57a"
+    },
+    {
+      "path": "final-columns.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-columns.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-focused-receipt.json",
+      "bytes": 335342,
+      "sha256": "4bd3138f4f5d229f37fc2c654f04903fa3ac318a49d69e2a678b316630b9beff"
+    },
+    {
+      "path": "final-focused.jsonl",
+      "bytes": 251007,
+      "sha256": "9d878c6287a1a52ead0c3dae7d9f9deebb4e303e10d4545d2def67501a5de732"
+    },
+    {
+      "path": "final-focused.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-format.txt",
+      "bytes": 47,
+      "sha256": "11a57d97889bc161aad83f19055424c45a757ed0654809f75c0ad99f31bb11b7"
+    },
+    {
+      "path": "final-source-binding.json",
+      "bytes": 1895,
+      "sha256": "aa6328cf31b3d56981a78f1bf776d3971ffd1a7c4c89c54bb3a261082cf7622a"
+    },
+    {
+      "path": "final-static.json",
+      "bytes": 1754,
+      "sha256": "c9f30202a5989d3c5b25ffe761cba92e5e8ece37be8f84410b1ed01f5044320c"
+    },
+    {
+      "path": "final-whitespace.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "incoming-columns-content.xml",
+      "bytes": 1525,
+      "sha256": "ab1bf22ea1beb0669f5044e3ae87ac40d35494dd80c49c68f20c92deab2d466c"
+    },
+    {
+      "path": "incoming-columns-schema.json",
+      "bytes": 1847,
+      "sha256": "d40d2246b81a6619348e77442dc0c8de2daffdd276a1259178bb81e37e2dca60"
+    },
+    {
+      "path": "incoming-columns.odt",
+      "bytes": 2918,
+      "sha256": "259e63c62953a064d3d84d2533caa27b9b6de930e0f4eb219256008bb4fb0660"
+    },
+    {
+      "path": "incoming-columns.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "incoming-columns.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "incoming-main-receipt.json",
+      "bytes": 137758,
+      "sha256": "dda5090dbe86b371fc26e68e4287a1362aff0ae14bcc253bc51e84cb91ea6046"
+    },
+    {
+      "path": "incoming-main-source-binding.json",
+      "bytes": 93131,
+      "sha256": "35b979879c654756998460ff07e4ef96bdf7c2fb1fb5c50ed9258eae28e481a3"
+    },
+    {
+      "path": "incoming-main.jsonl",
+      "bytes": 5733,
+      "sha256": "7816642c070cfd1ae3923283ffbd0a1ec0e66bbd0a90814589643cf2cadb1c15"
+    },
+    {
+      "path": "incoming-main.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "incoming-package-config.json",
+      "bytes": 26346,
+      "sha256": "8c8530f28443f7e4f05837ea3c65df9b4c42abfb95f50413a2fcd1b566fcb3a2"
+    },
+    {
+      "path": "index.json",
+      "bytes": 5724,
+      "sha256": "e7be946ba2b7895795a11154a845696227778616fbda545c3f4153afad82bb47"
+    },
+    {
+      "path": "make_column_control.dart",
+      "bytes": 431,
+      "sha256": "e12e29f1bd1363ad4fe98145c2e85108649b60b4ef45946c08f7df1fe88c9874"
+    },
+    {
+      "path": "merged-before-receipt.json",
+      "bytes": 125400,
+      "sha256": "b424fd73815b74f78b8b02e3d0f91ed6e1ceb85d69776e5f4b1af3e7ce16e6db"
+    },
+    {
+      "path": "merged-before.jsonl",
+      "bytes": 5092,
+      "sha256": "93389714361c5a9014b893c98380f113dbcbd66a44f18122441b7bafd3cd0181"
+    },
+    {
+      "path": "merged-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "odt_columns_breaks_fidelity_test.dart",
+      "bytes": 6982,
+      "sha256": "fb1501458751e464056cd6a98c5788672be463918f102243875cc27aba3af506"
+    },
+    {
+      "path": "office-source-audit.json",
+      "bytes": 3716,
+      "sha256": "7ceb3c5e20db3d2d5daeef32541892fe36315e1f7be3641064ade09ee00481ce"
+    },
+    {
+      "path": "qualify_static.py",
+      "bytes": 1714,
+      "sha256": "4fa101e4e4cb68caecc3a6d9f6dd8b66a7d48c7f7414d084bc294ba4e738ed51"
+    },
+    {
+      "path": "run_controls.py",
+      "bytes": 2831,
+      "sha256": "a30be2f5a7747f50c8ac7ebf808d5fac0d7677fe7f16dcddac227ced4a868254"
+    },
+    {
+      "path": "run_focused.py",
+      "bytes": 4261,
+      "sha256": "79bb1f7ba76678ffa54c98f380026a84bb1669030c812d60e6fb466205baefe0"
+    },
+    {
+      "path": "verify_columns_schema.py",
+      "bytes": 2438,
+      "sha256": "22c6bb53ae69cfea7074931b4ccdd9dbe0d15d55da71d430f6fbc198e7639450"
+    }
+  ],
+  "all_members_read_back_and_verified": true,
+  "qualified_writer_source": "4a4101c11d471adf525849b38dea0a52b9c0b394"
+}

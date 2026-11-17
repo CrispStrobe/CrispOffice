@@ -1,0 +1,16 @@
+{
+  "files": [
+    {
+      "file": "reuse-analysis.log.gz",
+      "bytes": 51,
+      "sha256": "ad0d1e61cda40a5d466b9e193d475072d588da77d9ac5c791707a1beba8d3d6f"
+    },
+    {
+      "file": "reuse-regressions.log.gz",
+      "bytes": 5308,
+      "sha256": "7fd71a5cba9a0021e8e66383da7b1b0cf8234969445c676226dbc163d5b603c9"
+    }
+  ],
+  "scope": "Core decoder development checkpoint only. The19 new controls and57 focused VM tests pass; strict analysis passes. A fixture first used lowercase synthetic sentence starts and was corrected to exercise the existing conservative planner. Runner telemetry and actual native performance measurements follow separately.",
+  "defaults": "Disabled unless inferenceReuse is explicitly configured; GectorDeterministicBackend capability required. Cache is per request and stores selected raw tags only."
+}
