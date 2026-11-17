@@ -74,7 +74,13 @@ void main() {
     final styles = package.getPart('/styles.xml')!.readText();
     expect(content, contains('<text:h'));
     expect(content, contains('Quarterly review'));
-    expect(content, contains('Plain '));
+    expect(
+      OfficeTextExtractor.extract(
+        OdtDocumentWriter.writeBytes(document),
+        name: 'smoke.odt',
+      ).paragraphs,
+      contains('Plain bold tail'),
+    );
     expect(content, contains('bold'));
     expect(content, contains('fo:font-weight="bold"'));
     expect(content, contains('<table:table'));
