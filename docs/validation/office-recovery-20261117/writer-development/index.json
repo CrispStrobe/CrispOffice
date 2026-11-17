@@ -1,0 +1,77 @@
+{
+  "purpose": "Focused writer repair development logs. Failed broad run is preserved; final frozen qualification is separate.",
+  "files": [
+    {
+      "source_name": "development-summary.json",
+      "archive": "development-summary.json.gz",
+      "size": 2119,
+      "sha256": "7075206f8dad4372cdf1c34bd83bff5e6e14b69b1c6f565fdad688ddb141330d"
+    },
+    {
+      "source_name": "final-node.jsonl",
+      "archive": "final-node.jsonl.gz",
+      "size": 20531,
+      "sha256": "7fcdf96535ffa00d5fa67416f594b84fe800875c72ee5250118c2610f3ade803"
+    },
+    {
+      "source_name": "final-node.stderr",
+      "archive": "final-node.stderr.gz",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_name": "final-vm.jsonl",
+      "archive": "final-vm.jsonl.gz",
+      "size": 84509,
+      "sha256": "0df3ae5c16c6f43ba1f3efa26e71bda280c1283d4ac4941c57cffaa25fd8c339"
+    },
+    {
+      "source_name": "final-vm.stderr",
+      "archive": "final-vm.stderr.gz",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_name": "first-fixed-vm.jsonl",
+      "archive": "first-fixed-vm.jsonl.gz",
+      "size": 18934,
+      "sha256": "80325382d80d0485c81a0bdce3e6f9becc669054269d047bc7625b1980dc3422"
+    },
+    {
+      "source_name": "first-fixed-vm.stderr",
+      "archive": "first-fixed-vm.stderr.gz",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_name": "focused-vm.jsonl",
+      "archive": "focused-vm.jsonl.gz",
+      "size": 19833,
+      "sha256": "c833368fe122bb8148db5e57b36ee118a8e111963056208258369086782d24e7"
+    },
+    {
+      "source_name": "focused-vm.stderr",
+      "archive": "focused-vm.stderr.gz",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_name": "format.txt",
+      "archive": "format.txt.gz",
+      "size": 826,
+      "sha256": "41c63208f5724989f92f8ea97d4091a6082f071b28ae6181a2021af5339f85ad"
+    },
+    {
+      "source_name": "scoped-analysis-fixed.txt",
+      "archive": "scoped-analysis-fixed.txt.gz",
+      "size": 126,
+      "sha256": "1343905b01c7299c35cc4d84b28c48bbfc840662e85ae2eb8c26675e0fda6d9a"
+    },
+    {
+      "source_name": "scoped-analysis.txt",
+      "archive": "scoped-analysis.txt.gz",
+      "size": 372,
+      "sha256": "55242916d48460dc3c8c5c89dfe21aee1fc58ee2b44da4ff1789553e1bc25969"
+    }
+  ]
+}

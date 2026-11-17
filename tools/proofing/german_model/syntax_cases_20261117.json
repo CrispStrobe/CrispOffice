@@ -1,0 +1,450 @@
+[
+  {
+    "id": "plural-children",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Die Kinder spielt im Garten.",
+    "expected": "Die Kinder spielen im Garten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "plural-dogs",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Die Hunde läuft nach Hause.",
+    "expected": "Die Hunde laufen nach Hause.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "plural-teachers",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Die Lehrer arbeitet heute.",
+    "expected": "Die Lehrer arbeiten heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "plural-friends",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Meine Freunde kommt morgen.",
+    "expected": "Meine Freunde kommen morgen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "plural-books",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Diese Bücher liegt auf dem Tisch.",
+    "expected": "Diese Bücher liegen auf dem Tisch.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "plural-guests",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Die Gäste wartet draußen.",
+    "expected": "Die Gäste warten draußen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "singular-child",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Das Kind spielen im Garten.",
+    "expected": "Das Kind spielt im Garten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "singular-woman",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Die Frau arbeiten heute.",
+    "expected": "Die Frau arbeitet heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "singular-man",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Der Mann haben Zeit.",
+    "expected": "Der Mann hat Zeit.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "singular-dog",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Der Hund laufen nach Hause.",
+    "expected": "Der Hund läuft nach Hause.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "singular-book",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Das Buch liegen auf dem Tisch.",
+    "expected": "Das Buch liegt auf dem Tisch.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "singular-friend",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Mein Freund kommen morgen.",
+    "expected": "Mein Freund kommt morgen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "adjective-plural",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Die kleinen Kinder spielt im Garten.",
+    "expected": "Die kleinen Kinder spielen im Garten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "adverb-plural",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Heute spielt die Kinder im Garten.",
+    "expected": "Heute spielen die Kinder im Garten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "subordinate-number",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Ich glaube, dass die Kinder spielt.",
+    "expected": "Ich glaube, dass die Kinder spielen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "question-number",
+    "kind": "error",
+    "area": "agreement",
+    "input": "Spielt die Kinder im Garten?",
+    "expected": "Spielen die Kinder im Garten?",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clause-order-1",
+    "kind": "error",
+    "area": "broader-syntax",
+    "input": "Ich weiß, dass er kommt morgen.",
+    "expected": "Ich weiß, dass er morgen kommt.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clause-order-2",
+    "kind": "error",
+    "area": "broader-syntax",
+    "input": "Weil sie hat keine Zeit, bleibt sie zu Hause.",
+    "expected": "Weil sie keine Zeit hat, bleibt sie zu Hause.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "participle-1",
+    "kind": "error",
+    "area": "broader-syntax",
+    "input": "Sie hat das Buch gelest.",
+    "expected": "Sie hat das Buch gelesen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "participle-2",
+    "kind": "error",
+    "area": "broader-syntax",
+    "input": "Er ist nach Hause gegangt.",
+    "expected": "Er ist nach Hause gegangen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-01",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Kinder spielen im Garten.",
+    "expected": "Die Kinder spielen im Garten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-02",
+    "kind": "clean",
+    "area": "control",
+    "input": "Das Kind spielt im Garten.",
+    "expected": "Das Kind spielt im Garten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-03",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Frau arbeitet heute.",
+    "expected": "Die Frau arbeitet heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-04",
+    "kind": "clean",
+    "area": "control",
+    "input": "Der Mann hat Zeit.",
+    "expected": "Der Mann hat Zeit.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-05",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Hunde laufen nach Hause.",
+    "expected": "Die Hunde laufen nach Hause.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-06",
+    "kind": "clean",
+    "area": "control",
+    "input": "Diese Bücher liegen auf dem Tisch.",
+    "expected": "Diese Bücher liegen auf dem Tisch.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-07",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Kinder sieht er jeden Tag.",
+    "expected": "Die Kinder sieht er jeden Tag.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-08",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Hunde liebt meine Schwester.",
+    "expected": "Die Hunde liebt meine Schwester.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-09",
+    "kind": "clean",
+    "area": "control",
+    "input": "Den Mann sehen die Kinder.",
+    "expected": "Den Mann sehen die Kinder.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-10",
+    "kind": "clean",
+    "area": "control",
+    "input": "Das Buch lesen meine Freunde.",
+    "expected": "Das Buch lesen meine Freunde.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-11",
+    "kind": "clean",
+    "area": "control",
+    "input": "Der Mann und die Frau arbeiten heute.",
+    "expected": "Der Mann und die Frau arbeiten heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-12",
+    "kind": "clean",
+    "area": "control",
+    "input": "Das Kind und der Hund spielen draußen.",
+    "expected": "Das Kind und der Hund spielen draußen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-13",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Mutter mit den Kindern kommt morgen.",
+    "expected": "Die Mutter mit den Kindern kommt morgen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-14",
+    "kind": "clean",
+    "area": "control",
+    "input": "Der Lehrer der Kinder arbeitet heute.",
+    "expected": "Der Lehrer der Kinder arbeitet heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-15",
+    "kind": "clean",
+    "area": "control",
+    "input": "Ich glaube, dass die Kinder spielen.",
+    "expected": "Ich glaube, dass die Kinder spielen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-16",
+    "kind": "clean",
+    "area": "control",
+    "input": "Heute spielen die Kinder im Garten.",
+    "expected": "Heute spielen die Kinder im Garten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-17",
+    "kind": "clean",
+    "area": "control",
+    "input": "Spielen die Kinder im Garten?",
+    "expected": "Spielen die Kinder im Garten?",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-18",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Kinder, die er kennt, spielen draußen.",
+    "expected": "Die Kinder, die er kennt, spielen draußen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-19",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Frau, deren Kinder spielen, arbeitet heute.",
+    "expected": "Die Frau, deren Kinder spielen, arbeitet heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-20",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Leiter steht im Schuppen.",
+    "expected": "Die Leiter steht im Schuppen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-21",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Leiter arbeiten im Büro.",
+    "expected": "Die Leiter arbeiten im Büro.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-22",
+    "kind": "clean",
+    "area": "control",
+    "input": "Das Mädchen ist müde.",
+    "expected": "Das Mädchen ist müde.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-23",
+    "kind": "clean",
+    "area": "control",
+    "input": "Der Band liegt im Regal.",
+    "expected": "Der Band liegt im Regal.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-24",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Band spielt heute Abend.",
+    "expected": "Die Band spielt heute Abend.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-25",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Eltern des Kindes haben Zeit.",
+    "expected": "Die Eltern des Kindes haben Zeit.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-26",
+    "kind": "clean",
+    "area": "control",
+    "input": "Ich mag das Lernen.",
+    "expected": "Ich mag das Lernen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-27",
+    "kind": "clean",
+    "area": "control",
+    "input": "Das Lernen macht Freude.",
+    "expected": "Das Lernen macht Freude.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-28",
+    "kind": "clean",
+    "area": "control",
+    "input": "Man nehme zwei Eier.",
+    "expected": "Man nehme zwei Eier.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-29",
+    "kind": "clean",
+    "area": "control",
+    "input": "Sie arbeitet heute.",
+    "expected": "Sie arbeitet heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-30",
+    "kind": "clean",
+    "area": "control",
+    "input": "Sie arbeiten heute.",
+    "expected": "Sie arbeiten heute.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-31",
+    "kind": "clean",
+    "area": "control",
+    "input": "Ich heisse Anna.",
+    "expected": "Ich heisse Anna.",
+    "locale": "de-CH"
+  },
+  {
+    "id": "clean-32",
+    "kind": "clean",
+    "area": "control",
+    "input": "Die Strassen sind sauber.",
+    "expected": "Die Strassen sind sauber.",
+    "locale": "de-CH"
+  },
+  {
+    "id": "clean-33",
+    "kind": "clean",
+    "area": "control",
+    "input": "Wir fahren nach Köln.",
+    "expected": "Wir fahren nach Köln.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-34",
+    "kind": "clean",
+    "area": "control",
+    "input": "Das ist das Haus, das wir suchen.",
+    "expected": "Das ist das Haus, das wir suchen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-35",
+    "kind": "clean",
+    "area": "control",
+    "input": "Ich freue mich, dass du kommst.",
+    "expected": "Ich freue mich, dass du kommst.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "clean-36",
+    "kind": "clean",
+    "area": "control",
+    "input": "Wenn sie sie sehen, winken sie.",
+    "expected": "Wenn sie sie sehen, winken sie.",
+    "locale": "de-DE"
+  }
+]

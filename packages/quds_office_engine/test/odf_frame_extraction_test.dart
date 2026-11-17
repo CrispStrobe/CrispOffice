@@ -131,6 +131,75 @@ void main() {
     },
   );
 
+  for (final empty in [false, true]) {
+    test(
+      'linked table-only frame has no synthetic paragraph: empty=$empty',
+      () async {
+        final table = empty
+            ? '<table:table/>'
+            : '<table:table><table:table-row><table:table-cell>'
+                  '<text:p>Cell</text:p></table:table-cell>'
+                  '</table:table-row></table:table>';
+        final xml = _document(
+          '<text:p>Before</text:p><text:p><draw:a>${_frame(table)}</draw:a>'
+          '</text:p><text:p>After</text:p>',
+        );
+        final bytes = _archive(xml);
+        final result = OfficeTextExtractor.extract(
+          bytes,
+          name: 'linked-table.odt',
+        );
+        expect(result.paragraphs, ['Before', 'After']);
+        expect(result.tables, [
+          if (empty)
+            <List<String>>[]
+          else
+            [
+              ['Cell'],
+            ],
+        ]);
+        final expected = empty ? 'Before\nAfter' : 'Before\nCell\nAfter';
+        expect(
+          await officeSearchText(bytes, 'linked-table.odt', 65536),
+          expected,
+        );
+        final budget = OdfTextBudget(utf8.encode(expected).length);
+        expect(readOdfText(XmlDocument.parse(xml).root!, budget), expected);
+        expect(budget.remaining, 0);
+        expect(
+          utf8.decode(ZipReader.fromBytes(bytes).read('content.xml')),
+          xml,
+        );
+      },
+    );
+  }
+
+  test(
+    'linked frame metadata and page-break wrappers cannot spend text budget',
+    () async {
+      final hidden = _frame(
+        '<text:p><text:s text:c="999999999999999999999999"/>Hidden</text:p>',
+      );
+      final xml = _document(
+        '<text:p>A<draw:a><draw:frame><draw:image>$hidden</draw:image>'
+        '</draw:frame></draw:a><text:soft-page-break>$hidden</text:soft-page-break>'
+        '<draw:a>${_frame('<text:p>B</text:p>')}</draw:a></text:p>',
+      );
+      final bytes = _archive(xml);
+      expect(
+        OfficeTextExtractor.extract(
+          bytes,
+          name: 'linked-hidden.odt',
+        ).paragraphs,
+        ['A', 'B'],
+      );
+      expect(await officeSearchText(bytes, 'linked-hidden.odt', 65536), 'A\nB');
+      final budget = OdfTextBudget(3);
+      expect(readOdfText(XmlDocument.parse(xml).root!, budget), 'A\nB');
+      expect(budget.remaining, 0);
+    },
+  );
+
   test(
     'hidden inline stories cannot expose frames or spend the text budget',
     () async {
@@ -184,7 +253,7 @@ void main() {
   );
 
   test(
-    'ordinary blanks empty frames and explicit whitespace remain distinct',
+    'authored blanks survive while empty text-box anchors add no paragraph',
     () async {
       final bytes = _archive(
         _document(
@@ -197,15 +266,11 @@ void main() {
       expect(OfficeTextExtractor.extract(bytes, name: 'blank.odt').paragraphs, [
         '',
         '',
-        '',
         ' \t',
         'X',
         '',
       ]);
-      expect(
-        await officeSearchText(bytes, 'blank.odt', 65536),
-        '\n\n\n \t\nX\n',
-      );
+      expect(await officeSearchText(bytes, 'blank.odt', 65536), '\n\n \t\nX\n');
     },
   );
 

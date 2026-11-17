@@ -30,19 +30,21 @@ Uint8List _archive(String xml) {
 Future<void> _expectBody(
   String body,
   List<String> expected, {
-  List<List<List<String>>>? expectedTables,
-  String? expectedText,
+  List<String>? expectedParagraphs,
+  List<List<List<String>>> expectedTables = const [],
 }) async {
   final xml = _document(body);
   final bytes = _archive(xml);
   final extracted = OfficeTextExtractor.extract(bytes, name: 'native.odt');
-  expect(extracted.paragraphs, expected);
-  if (expectedTables != null) expect(extracted.tables, expectedTables);
-  final fullText = expectedText ?? expected.join('\n');
-  expect(await officeSearchText(bytes, 'native.odt', 65536), fullText);
+  expect(extracted.paragraphs, expectedParagraphs ?? expected);
+  expect(extracted.tables, expectedTables);
+  expect(
+    await officeSearchText(bytes, 'native.odt', 65536),
+    expected.join('\n'),
+  );
   final root = XmlDocument.parse(xml).root!;
   final before = XmlDocument(root: root).toXmlString();
-  expect(readOdfText(root, OdfTextBudget()), fullText);
+  expect(readOdfText(root, OdfTextBudget()), expected.join('\n'));
   expect(XmlDocument(root: root).toXmlString(), before);
   expect(utf8.decode(ZipReader.fromBytes(bytes).read('content.xml')), xml);
 }
@@ -200,13 +202,15 @@ void main() {
       '</table:table-cell><table:covered-table-cell><text:p>$hidden</text:p>'
       '</table:covered-table-cell></table:table-row></table:table>')}'
       '</text:p>',
-      ['AB'],
+      ['AB', 'Visible'],
+      // Structured extraction retains the frame's table; text/search keep the
+      // same visible paragraph sequence as the original regression.
+      expectedParagraphs: ['AB'],
       expectedTables: [
         [
-          ["Visible"],
+          ['Visible'],
         ],
       ],
-      expectedText: 'AB\nVisible',
     );
   });
 
@@ -226,13 +230,13 @@ void main() {
   );
 
   test(
-    'empty and annotation-only text boxes retain blank anchors without hidden text',
+    'empty and annotation-only text boxes do not trigger raw fallback',
     () async {
       await _expectBody(
         '<text:p>${_frame('')}</text:p>'
         '<text:p>${_frame('<office:annotation><text:p>Hidden</text:p>'
         '</office:annotation>')}</text:p>',
-        ['', ''],
+        [],
       );
     },
   );

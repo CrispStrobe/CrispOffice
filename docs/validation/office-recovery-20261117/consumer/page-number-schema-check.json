@@ -1,0 +1,7 @@
+{
+  "official_schema_sha256": "40bad03efdbb02825230d357da0aa6ac679934c5bf56c6281752c0c24d58e4e6",
+  "minimal_page_number_without_attributes_valid": true,
+  "schema_errors": "",
+  "minimal_xml": "<office:document-content xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" xmlns:text=\"urn:oasis:names:tc:opendocument:xmlns:text:1.0\" office:version=\"1.3\"><office:body><office:text><text:p><text:page-number/></text:p></office:text></office:body></office:document-content>",
+  "attribute_rules": "text:page-adjust, text:select-page, text:fixed and the number-format group are optional in text-page-number-attlist."
+}

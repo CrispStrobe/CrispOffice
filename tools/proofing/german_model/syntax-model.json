@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.8.0/de_core_news_sm-3.8.0-py3-none-any.whl",
+  "file": "de_core_news_sm-3.8.0-py3-none-any.whl",
+  "sha256": "fec69fec52b1780f2d269d5af7582a5e28028738bd3190532459aeb473bfa3e7",
+  "size": 14639490,
+  "model": "de_core_news_sm",
+  "version": "3.8.0",
+  "runtime_spacy": "3.8.18",
+  "license": "MIT",
+  "app_enabled": false,
+  "scope": "Evaluation only. Preserve LICENSES_SOURCES; TIGER licensed commercially by publisher, no corpus redistribution."
+}

@@ -1,0 +1,42 @@
+{
+  "source_sha256": "55b457fac8e322146853f45bbda59046a55496a3e3deb32d3a88feb908eca243",
+  "upstream_metadata_unchanged": true,
+  "changed_generated_files": [
+    "lib/src/proofing/data/german_common_00.dart"
+  ],
+  "unchanged_generated_files": [
+    "lib/src/proofing/data/german_lexicon_data.dart",
+    "lib/src/proofing/data/german_standard_00.dart",
+    "lib/src/proofing/data/german_standard_01.dart",
+    "lib/src/proofing/data/german_standard_02.dart",
+    "lib/src/proofing/data/german_standard_03.dart",
+    "lib/src/proofing/data/german_standard_04.dart",
+    "lib/src/proofing/data/german_standard_05.dart",
+    "lib/src/proofing/data/german_standard_06.dart",
+    "lib/src/proofing/data/german_standard_07.dart",
+    "lib/src/proofing/data/german_standard_08.dart",
+    "lib/src/proofing/data/german_standard_09.dart",
+    "lib/src/proofing/data/german_standard_10.dart",
+    "lib/src/proofing/data/german_standard_11.dart",
+    "lib/src/proofing/data/german_standard_12.dart",
+    "lib/src/proofing/data/german_standard_13.dart",
+    "lib/src/proofing/data/german_swiss_00.dart"
+  ],
+  "standard_forms_added": [
+    "Gr\u00fcezi",
+    "Hof",
+    "gr\u00fcezi"
+  ],
+  "standard_forms_removed": [],
+  "swiss_additions_unchanged": true,
+  "previous_count": 444130,
+  "new_count": 444133,
+  "supplement_sha256": "96c723a6ffe638423d47e2dbe36ab1c8b89728d7d518b44ea5a721d5be8856c1",
+  "generated_manifest_sha256": "439e0c1e2892746d3986c1065d33a592edd371a2a1f9c85fd5bb8c3a0c2393cf",
+  "decoded_additions_verified": [
+    "Gr\u00fcezi",
+    "Hof",
+    "gr\u00fcezi"
+  ],
+  "decoded_removals_verified": []
+}

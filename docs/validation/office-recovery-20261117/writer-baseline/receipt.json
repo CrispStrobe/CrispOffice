@@ -1,0 +1,39 @@
+{
+  "scope": "Focused development regression baseline, captured before writer fixes; not final qualification.",
+  "production_source": "f29373cf29048a6a6b133e2e75628d58c4b2b23f",
+  "test_sources": {
+    "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart": {
+      "sha256": "d3d11ea9ec8ef8749f269d35de1e7511d619dd8d6f40032c18e18ed8b563f33e",
+      "git_blob": "211bc2679be57c5e5b9e4d553eeff0b70f115b29"
+    },
+    "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart": {
+      "sha256": "93794ef6b7a11f05fa4f309216a55eb4ad915b764d8fb5c8866097c61987cfe2",
+      "git_blob": "4f989ca8444683497a4371707ea8f12244583e2e"
+    }
+  },
+  "case_outcomes": {
+    "failure": 31,
+    "success": 5,
+    "error": 4
+  },
+  "substantive_cases": 40,
+  "terminal_events": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 2188
+    }
+  ],
+  "logs": [
+    {
+      "path": "baseline-vm.jsonl.gz",
+      "uncompressed_size": 30021,
+      "uncompressed_sha256": "2b56d961604689158071f19af6cdf1f50ac59e7536d42c6a7e7e90fee8e0e792"
+    },
+    {
+      "path": "baseline-vm.stderr.gz",
+      "uncompressed_size": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
