@@ -1,0 +1,32 @@
+[
+  {
+    "file": "odt-tab-regression-before-fix-odt-tests-receipt.json.gz",
+    "sha256": "4e582f07a378ca160c44a3851d235df40396ca7db6e0392dcab1cac69d5b6aab",
+    "bytes": 116755
+  },
+  {
+    "file": "odt-tab-regression-before-fix-odt-tests.jsonl.gz",
+    "sha256": "566b25e19bf424e3488bb8005ac08a3d94a76c7a953d6c052e7b48eda365298d",
+    "bytes": 6132
+  },
+  {
+    "file": "odt-tab-regression-after-fix-odt-tests-receipt.json.gz",
+    "sha256": "763dc5ad1707d9fe3f3b497f191aa3d4792ddb01d5763a9f1f326296f6f2acf3",
+    "bytes": 116753
+  },
+  {
+    "file": "odt-tab-regression-after-fix-odt-analysis.log.gz",
+    "sha256": "69763bce4d7a83d863553fa7786915036b20739454606f16f420b663ffe99f3d",
+    "bytes": 88
+  },
+  {
+    "file": "odt-tab-regression-after-fix-odt-tests.jsonl.gz",
+    "sha256": "e83b0b10a589299bfe73f03cc6626086ed3d407146c60a973f20a1eead40d836",
+    "bytes": 4261
+  },
+  {
+    "file": "odt-tab-regression-after-fix-odt-analysis-receipt.json.gz",
+    "sha256": "bc538d943fef04600dbe2b1bf90071165fc9e4218dc9bb1fddda2a753c5c124e",
+    "bytes": 116666
+  }
+]

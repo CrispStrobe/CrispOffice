@@ -1,0 +1,23 @@
+{
+  "recorded_at_utc": "2026-11-17T18:08:02.574449+00:00",
+  "head_at_start": "cee14164116306fc8769ab637cf4fc3745a0f98b",
+  "command": [
+    "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "packages/quds_office_engine/lib/src/proofing",
+    "packages/quds_office_engine/test/proofing",
+    "packages/quds_proofing_gector/lib",
+    "packages/quds_proofing_gector/test"
+  ],
+  "exit_code": 0,
+  "clean": true,
+  "log": {
+    "file": "final-proofing-analysis.log.gz",
+    "sha256": "61fec305953bb43fedac0eaf45e01b81fab36a1e1f6a2291caf22ff7224577e9"
+  },
+  "office_contract_unchanged_from_eaac7081": true,
+  "office_contract_sha256": "406ebbb33e00d547bf9dbeaaa603de56f8517fbd81109284e00358052fcf40ef",
+  "aot_source_test_delta_from_eaac7081": [],
+  "aot_vm_repeat_required": false,
+  "aot_repeat_decision": "No repeat needed if shared engine contract and AOT source/tests are unchanged; existing final AOT qualification remains applicable."
+}

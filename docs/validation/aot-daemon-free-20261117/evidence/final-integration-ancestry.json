@@ -1,0 +1,1443 @@
+{
+  "checked_head": "0f422cecd3cd12ffb27b6f33818fe4198b593c68",
+  "pre_incoming_head": "eaac708110674d615347f1855eab71b7e1cf4972",
+  "snapshot": "incoming-final.json",
+  "snapshot_sha256": "aaad1d0c570becd54a779e18d278d00296207614918c660667073ddebb86ebf1",
+  "captured_ref_count": 277,
+  "included_ref_count": 277,
+  "missing_ref_count": 0,
+  "verification_command": [
+    "git",
+    "merge-base",
+    "--is-ancestor",
+    "<captured exact sha>",
+    "0f422cecd3cd12ffb27b6f33818fe4198b593c68"
+  ],
+  "maximal_original_heads": [
+    "52e548bdf0a4e215385b85ab5a6f46a63c918306",
+    "60a116d2df566793720bfb4f76d7f6523529bcb2",
+    "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+    "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+    "f5021f1c364baf010049fda2dd4bf7f414deda79",
+    "d4b6e5b47db1c3d8c9e85521e97a3034896ccd76",
+    "edd023c3505942cd2433bfa6c815a7d009432a3c",
+    "66273aa2f743ed33f20944a6e1251c1a396af0eb"
+  ],
+  "refs": [
+    {
+      "ref": "refs/remotes/origin-pr/1",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/10",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/100",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/101",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/102",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/103",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/104",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/105",
+      "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/106",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/107",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/108",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/109",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/11",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/110",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/111",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/112",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/113",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/114",
+      "sha": "52e548bdf0a4e215385b85ab5a6f46a63c918306",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/115",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/116",
+      "sha": "60a116d2df566793720bfb4f76d7f6523529bcb2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/118",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/119",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/12",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/120",
+      "sha": "0b4c0107f6b7651bd77e95670e4f2f4f8b58e038",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/121",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/13",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/14",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/15",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/16",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/17",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/18",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/19",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/2",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/20",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/21",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/22",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/23",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/24",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/25",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/26",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/27",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/28",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/29",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/3",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/30",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/31",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/32",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/33",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/34",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/35",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/36",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/37",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/38",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/39",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/4",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/40",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/41",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/42",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/43",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/44",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/45",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/46",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/47",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/48",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/49",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/5",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/50",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/51",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/52",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/53",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/54",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/55",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/56",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/57",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/58",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/59",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/6",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/60",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/61",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/62",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/63",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/64",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/65",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/66",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/67",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/68",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/69",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/7",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/70",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/71",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/72",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/73",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/74",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/75",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/76",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/77",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/78",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/79",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/8",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/80",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/81",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/82",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/83",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/84",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/85",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/86",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/87",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/88",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/89",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/9",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/90",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/91",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/92",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/93",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/94",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/95",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/96",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/97",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/98",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin-pr/99",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/aot-daemon-free-20261117",
+      "sha": "0b4c0107f6b7651bd77e95670e4f2f4f8b58e038",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/aot-proofing-analysis-20261117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/german-morphology-20261117",
+      "sha": "52e548bdf0a4e215385b85ab5a6f46a63c918306",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-consolidation-20261117",
+      "sha": "f5021f1c364baf010049fda2dd4bf7f414deda79",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-continuation-20261117",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-fidelity-20261117",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-qualified-resume-20261117",
+      "sha": "60a116d2df566793720bfb4f76d7f6523529bcb2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/german-gector-proofing",
+      "sha": "d4b6e5b47db1c3d8c9e85521e97a3034896ccd76",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-chart-data",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-columns",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-page-fields",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-paragraph-shading",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-tab-stops",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-table-borders",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "sha": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odf-metadata",
+      "sha": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-chart-data",
+      "sha": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-shape-links",
+      "sha": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-columns",
+      "sha": "1f417ad7a61dfb69034704a67f85243eff89830a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-page-fields",
+      "sha": "5dbe3f5b81d20f9c263b4f2d9ba9c01c9216b1e3",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-paragraph-shading",
+      "sha": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-tab-stops",
+      "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-table-borders",
+      "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/1",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/5",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/6",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/7",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true
+    }
+  ],
+  "changed_package_and_tool_paths": [
+    "M\tpackages/quds_office_engine/CHANGELOG.md",
+    "M\tpackages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+    "M\tpackages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+    "M\tpackages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+    "M\tpackages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "M\tpackages/quds_office_engine/test/odp_presentation_writer_test.dart",
+    "M\tpackages/quds_office_engine/test/odt_document_writer_test.dart",
+    "A\tpackages/quds_office_engine/test/odt_paragraph_decoration_fidelity_test.dart",
+    "M\tpackages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+    "A\tpackages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+    "A\tpackages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+    "A\tpackages/quds_office_engine/test/odt_table_tab_resume_test.dart",
+    "M\tpackages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+    "A\tpackages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+    "M\tpackages/quds_proofing_gector/README.md",
+    "M\tpackages/quds_proofing_gector/lib/src/backend.dart",
+    "M\tpackages/quds_proofing_gector/lib/src/decoder.dart",
+    "M\tpackages/quds_proofing_gector/lib/src/native_backend.dart",
+    "M\tpackages/quds_proofing_gector/lib/src/segmentation.dart",
+    "A\tpackages/quds_proofing_gector/test/inference_reuse_test.dart",
+    "M\tpackages/quds_proofing_gector/test/native_backend_test.dart",
+    "M\ttools/proofing/german_model/evaluate_candidate.py",
+    "M\ttools/proofing/german_model/test_candidate_admission.py"
+  ],
+  "notes": [
+    "No fetch performed while reconciling the immutable final snapshot.",
+    "All eight maximal original heads were merged sequentially; equivalent patches occur once in the working tree.",
+    "No GitHub Actions/check/status endpoints queried or awaited."
+  ]
+}

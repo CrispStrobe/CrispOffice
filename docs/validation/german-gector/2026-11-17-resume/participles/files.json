@@ -1,0 +1,37 @@
+[
+  {
+    "file": "participle-implementation-report.json.gz",
+    "bytes": 3542,
+    "sha256": "b8b27cf7125b6421b1d3366459e4ed4fb54a355e3ba58272635caab4f2f59d54"
+  },
+  {
+    "file": "participle-after-first.log.gz",
+    "bytes": 1879,
+    "sha256": "1c108db67884765a84f01b93dc948803c2f82e2029694f9ba2edbf75fb83a60e"
+  },
+  {
+    "file": "participle-spelling-regressions.log.gz",
+    "bytes": 153,
+    "sha256": "dca14a87f5cb93df09e22e90933fde3fc9d1cba04212f34e68edc2c19e7fab07"
+  },
+  {
+    "file": "participle-spelling-regressions-sdk.log.gz",
+    "bytes": 15822,
+    "sha256": "6693334a20b60849ee2aea51c4f8fb7bc04066fa49d6f9b963253d04f910fbb7"
+  },
+  {
+    "file": "participle-before.log.gz",
+    "bytes": 14893,
+    "sha256": "6dd42d98036a4737d230e305424b827ab7c0331e7bf2ee0701521539b0e0527e"
+  },
+  {
+    "file": "participle-analysis.log.gz",
+    "bytes": 92,
+    "sha256": "19e8374d6f71ad0f40cf109dce70e467fcc3503415920497a401b65bca9f16de"
+  },
+  {
+    "file": "participle-node.log.gz",
+    "bytes": 2139,
+    "sha256": "4fe70e67224693d4f60ca9c836d7f7811e3c07a2c8eeb81709338b24af4dfc69"
+  }
+]

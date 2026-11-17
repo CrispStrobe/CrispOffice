@@ -1,0 +1,66 @@
+{
+  "table_borders": {
+    "entries": [
+      {
+        "sha": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+        "patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+        "diff_sha256": "db64a897722b61e85721265cd389a4516c996d685d49032831668dfa410acbce",
+        "files": [
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        ]
+      },
+      {
+        "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+        "patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+        "diff_sha256": "db64a897722b61e85721265cd389a4516c996d685d49032831668dfa410acbce",
+        "files": [
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        ]
+      },
+      {
+        "sha": "17c6b2a808e39b1a74cb4afb2c3dc7f2c06de70c",
+        "patch_id": "e8a640279cafcc696f5d70c666a9b73856472131",
+        "diff_sha256": "db64a897722b61e85721265cd389a4516c996d685d49032831668dfa410acbce",
+        "files": [
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        ]
+      }
+    ],
+    "identical_patch_ids": true
+  },
+  "tab_stops": {
+    "entries": [
+      {
+        "sha": "cc9b467f69401ca3d689b56e7306e3cebd01df68",
+        "patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+        "diff_sha256": "e8dc39e71a955507268e98ac2b0983d104345b8a9e6a4754c77518ed5b837d8a",
+        "files": [
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        ]
+      },
+      {
+        "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+        "patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+        "diff_sha256": "e8dc39e71a955507268e98ac2b0983d104345b8a9e6a4754c77518ed5b837d8a",
+        "files": [
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        ]
+      },
+      {
+        "sha": "156cc755df74dcbafec0ebd882945349c40a5005",
+        "patch_id": "89a1ae323d0f658150583d6e9635782d719b39ee",
+        "diff_sha256": "e8dc39e71a955507268e98ac2b0983d104345b8a9e6a4754c77518ed5b837d8a",
+        "files": [
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        ]
+      }
+    ],
+    "identical_patch_ids": true
+  }
+}

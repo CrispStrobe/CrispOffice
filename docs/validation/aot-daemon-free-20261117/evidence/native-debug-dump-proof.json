@@ -1,0 +1,59 @@
+{
+  "purpose": "Prove the third generated-source patch removes both document dumps even when _DEBUG is defined",
+  "passed": true,
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "negativeControl": "Unmodified pinned source compiled with identical flags retains both filenames and the SaveToFile call",
+  "patchedResult": "Neither filename nor a SaveToFile call is present in the patched _DEBUG object",
+  "translationUnits": [
+    {
+      "label": "upstream",
+      "sourceSha256": "47c471d0b852ab5fd5d496eaf3b92446aabb438e3c223b053cdd85d28a47d76f",
+      "objectSha256": "8099685add9c423d8e0668ae129998e738434329a24be41a881d4a74cc659a83",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-D_DEBUG",
+        "-O0",
+        "-I/workspace/scratch/5dea2c973ce5/aot-upstream-research/Source",
+        "-I/workspace/scratch/5dea2c973ce5/aot-upstream-research/Source/nlp_base/contrib/plog",
+        "-I/workspace/scratch/5dea2c973ce5/aot-upstream-research/Source/synan/SynanLib",
+        "-I/workspace/scratch/5dea2c973ce5/flex-2.6.4/src",
+        "-c",
+        "/workspace/scratch/5dea2c973ce5/aot-upstream-research/Source/synan/SynanLib/SyntaxHolder.cpp",
+        "-o",
+        "/workspace/scratch/5dea2c973ce5/quds_office_suite/.dart_tool/quds_aot_native/debug-proof/SyntaxHolder-upstream.o"
+      ],
+      "exitCode": 0,
+      "diagnosticFilenamesPresent": {
+        "before.lem": true,
+        "after.lem": true
+      },
+      "SaveToFileSymbolPresent": true
+    },
+    {
+      "label": "patched",
+      "sourceSha256": "e2f0fca669125f5cf64db64397edab29729153461f9c8516438bade64c66c516",
+      "objectSha256": "25ee50776159e6835b9f5c40be80f56cbfd148c724576f706f6bbb5e25b4dd6e",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-D_DEBUG",
+        "-O0",
+        "-I/workspace/scratch/5dea2c973ce5/aot-upstream-research/Source",
+        "-I/workspace/scratch/5dea2c973ce5/aot-upstream-research/Source/nlp_base/contrib/plog",
+        "-I/workspace/scratch/5dea2c973ce5/aot-upstream-research/Source/synan/SynanLib",
+        "-I/workspace/scratch/5dea2c973ce5/flex-2.6.4/src",
+        "-c",
+        "/workspace/scratch/5dea2c973ce5/quds_office_suite/.dart_tool/quds_aot_native/build/patched/SyntaxHolder.cpp",
+        "-o",
+        "/workspace/scratch/5dea2c973ce5/quds_office_suite/.dart_tool/quds_aot_native/debug-proof/SyntaxHolder-patched.o"
+      ],
+      "exitCode": 0,
+      "diagnosticFilenamesPresent": {
+        "before.lem": false,
+        "after.lem": false
+      },
+      "SaveToFileSymbolPresent": false
+    }
+  ]
+}

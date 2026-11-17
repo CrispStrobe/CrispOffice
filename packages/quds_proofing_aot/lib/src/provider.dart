@@ -187,6 +187,12 @@ final class AotProofingProvider extends OfficeProofingProvider {
       throw const FormatException('AOT did not analyze a lexical clause.');
     }
     final protected = OfficeProofingTextRanges(request.text);
+    // A normalized or merged native token is inspectable, but its grammatical
+    // reading cannot justify changing a different original source surface.
+    final normalizedRanges = <({int start, int end})>[
+      for (final word in analysis.tokens)
+        if (word.isNormalized) (start: word.start!, end: word.end!),
+    ];
     final personalRanges = <({int start, int end})>[
       for (final match in _words.allMatches(request.text))
         if (personal.contains(normalizeGermanWord(match.group(0)!)))
@@ -196,6 +202,7 @@ final class AotProofingProvider extends OfficeProofingProvider {
         !boundaries.contains(start) ||
         !boundaries.contains(end) ||
         protected.overlaps(start, end) ||
+        normalizedRanges.any((span) => span.start < end && start < span.end) ||
         personalRanges.any((span) => span.start < end && start < span.end);
 
     final cache = <String, Future<AotMorphology>>{};

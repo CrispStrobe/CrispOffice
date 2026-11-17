@@ -1026,7 +1026,9 @@ abstract final class OdtDocumentWriter {
     );
     for (final width in table.grid) {
       w.writeStartElement('table-column', prefix: 'table');
-      w.writeAttribute('table:style-name', layout.columnStyle(width));
+      if (layout.columnStyle(width) case final style?) {
+        w.writeAttribute('table:style-name', style);
+      }
       w.writeEndElement();
     }
     final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
@@ -1829,13 +1831,16 @@ class _OdtLayout {
     return name;
   }
 
-  String columnStyle(double width) {
-    final key = width.toStringAsFixed(2);
+  String? columnStyle(double width) {
+    final key = _paragraphDecimal(width);
+    // Column widths are positive ODF lengths. Invalid model values must not
+    // introduce NaN, infinity, exponent notation or a zero-width grid column.
+    if (width <= 0 || key == null || key == '0.00') return null;
     return _columnStyles.putIfAbsent(key, () {
       final name = 'Co${_columnStyles.length + 1}';
       _styleBuffers.add(
         '<style:style style:name="$name" style:family="table-column">'
-        '<style:table-column-properties style:column-width="${width.toStringAsFixed(2)}pt"/>'
+        '<style:table-column-properties style:column-width="${key}pt"/>'
         '</style:style>',
       );
       return name;
@@ -1947,8 +1952,9 @@ class _OdtLayout {
       final name = 'Sect${_sectionColumnStyles.length + 1}';
       _styleBuffers.add(
         '<style:style style:name="$name" style:family="section">'
-        '<style:section-properties fo:column-count="$columns" '
-        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/></style:style>',
+        '<style:section-properties><style:columns fo:column-count="$columns" '
+        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/>'
+        '</style:section-properties></style:style>',
       );
       return name;
     });
@@ -2010,15 +2016,14 @@ class _OdtLayout {
 
   String? cellStyle(WmlTableCell cell) {
     final fill = _odfColor(cell.fillColor);
-    if (fill == null &&
-        cell.borderTop != true &&
-        cell.borderBottom != true &&
-        cell.borderLeft != true &&
-        cell.borderRight != true) {
-      return null;
-    }
-    final key =
-        '$fill|${cell.borderTop}|${cell.borderBottom}|${cell.borderLeft}|${cell.borderRight}';
+    final borders = [
+      cell.borderTop == true,
+      cell.borderBottom == true,
+      cell.borderLeft == true,
+      cell.borderRight == true,
+    ];
+    if (fill == null && !borders.any((enabled) => enabled)) return null;
+    final key = jsonEncode([fill, ...borders]);
     return _cellStyles.putIfAbsent(key, () {
       final name = 'Ce${_cellStyles.length + 1}';
       final buffer = StringBuffer(
