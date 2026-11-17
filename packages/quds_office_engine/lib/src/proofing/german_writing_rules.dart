@@ -1,7 +1,7 @@
 import 'package:characters/characters.dart';
 
-import 'german_morphology.dart';
 import 'german_literal_ranges.dart';
+import 'german_morphology.dart';
 import 'german_spelling.dart' show normalizeGermanWord;
 import 'office_proofing.dart';
 import 'proofing_text_ranges.dart';
