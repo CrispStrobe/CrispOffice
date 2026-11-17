@@ -1,0 +1,28 @@
+{
+  "reference_count": 227,
+  "distinct_head_count": 153,
+  "union_ref_revision_pairs": 234,
+  "union_distinct_commits": 160,
+  "all_observed_heads_are_ancestors": true,
+  "merge_conflicts": [],
+  "remote_integration_parents": [
+    "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+    "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+    "946942a1e30332892aaf19a068ca5a29470d682a",
+    "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+    "f6c9be054b016192673ba82e608ae0ae987b5308",
+    "6bd03365ba3b146586148658b0e03998b36bdc9d",
+    "d95701cffb7bd6ca9085d073c2297373932f374e",
+    "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0"
+  ],
+  "integration_base": "ec80a13421260badf92ab31bc399aca801b4d2e0",
+  "decisions": [
+    "Capture newly observed main and all advertised branch/PR heads after draft PR creation revealed newer writers.",
+    "Retain incoming ODT notes and ODP transitions, plus lazy German morphology, its provenance/licenses, canonical Zotero evidence and GECToR qualification tooling.",
+    "All actual ort merges completed without textual conflicts. Existing ODF fixes remain present.",
+    "Prior ec80 qualification passed all selected cohorts but is retained as pre-refresh controls; expanded qualification will run from the next saved source.",
+    "Review incoming notes/transitions against official ODF schema and consumer behavior before final qualification.",
+    "Do not query, await or run GitHub Actions workflows."
+  ],
+  "github_actions_queried_or_awaited": false
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "status": "incoming_source_integrated_without_runtime_qualification",
+  "first_parent": "4a8728cc034f89b29598fc782a7f88693179ab47",
+  "incoming_parent": "8106752eb410a6c2f66ff03c3fa983123760058d",
+  "retained_main": "3458c8977cef969a86a07b39734c761ba62e4b40",
+  "retained_proofing_heads": [
+    "286bdeb73e4ee0e88f1b4a2e6ecf462c78082c86",
+    "2a30427893a9ddf009b5e6a74ae0d8f67a8d87d1"
+  ],
+  "method": "Three-way Git blob/mode comparison. Twenty remaining office-only paths are copied by original blob SHA and mode. Forty-six office paths already equal the integrated morphology/GECToR content. Four office paths equal the verified older GECToR common ancestor and retain the newer branch versions. Two ODT paths are reconciled by adding the exact current-main comment blocks to the incoming office versions.",
+  "copied_paths": [
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f85b620eda0ba6b39700506c9119831adde08c98"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0a1c2689ca2c37c0787c03a4fb1b8bffce72ec8"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_note_numbering.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d776e10b7a445f0f1c919f36bdd9a6ec6f5d9b45"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb1cac925ef4e9f328953baa486b48a3d7935060"
+    },
+    {
+      "path": "docs/odf-export-fidelity.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d0160d1a1b08e0bcad9d0d5cb3bd37888d962ad"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/merges.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f1d781f8aff4b1516798fd4d009b2446fad4894"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/origin-observation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61a5338d577b4e72c8b0d83f6b96cfd6cdd3c147"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/origin-refs.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70b5d213d5d64d583a798f4df8878f598dfdd51d"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/resolution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4bd170fdf522ebbae59c4f6c9adf011ccf2f1593"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/snapshot.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c1a660a1c4582356fa067c5a5d10f2957b64d40"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/upstream-observation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88ce9492fcc95d737a5ff4171f3e6c16d8d526bf"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/final-refresh/upstream-refs.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37fe987db91c27a3d43b35c9c93797051b34278b"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/make_fixtures.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9caa4a9e5bbac3d873a04d16b88791761f345fe0"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/refresh/merges.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae6a60aa79d36c3bfda01dfa35419e9eca197a08"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/refresh/origin-refs.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9192a8d4a5ef1e3d3b23314255fe7a389a4a6e6e"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/refresh/resolution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "177b3567cb27c6eac40a3c8f6c08ea66574e8f06"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/refresh/snapshot.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6ff9182af504a06734f96b00579d859915da22d"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/refresh/upstream-refs.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37fe987db91c27a3d43b35c9c93797051b34278b"
+    },
+    {
+      "path": "docs/validation/office-fidelity-continuation-20261117/validate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc746c9cbf404718e4e3441459d23054241d34d8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03974e9752325a979e25bb4512b4d6c95d1284d9"
+    }
+  ],
+  "already_identical_paths": [
+    "LICENSE",
+    "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+    "packages/quds_office_engine/LICENSE",
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+    "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+    "packages/quds_office_engine/third_party/proofing/manifest.json",
+    "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+    "tools/proofing/german_model/README.md",
+    "tools/proofing/run_morphology_qualification.py",
+    "docs/validation/german-morphology-20261117/continuation-checkpoint.json",
+    "docs/validation/german-morphology-20261117/incoming-resume.json",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_morphology.dart",
+    "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+    "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+    "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE",
+    "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE",
+    "packages/quds_office_engine/third_party/proofing/morphology_manifest.json",
+    "packages/quds_office_engine/tool/proofing/generate_german_morphology.py",
+    "tools/proofing/german_model/REFERENCE_FIXTURES.md",
+    "tools/proofing/german_model/export_reference.py",
+    "tools/proofing/german_model/quantize_int4.py",
+    "tools/proofing/german_model/requirements-qualification.txt",
+    "tools/proofing/german_model/run_stage.py",
+    "tools/proofing/german_model/test_export_reference.py",
+    "tools/proofing/german_morphology_review_cases.json",
+    "tools/proofing/validate_morphology_buckets.dart"
+  ],
+  "newer_gector_paths": [
+    {
+      "path": ".github/workflows/german-gector-qualification.yml",
+      "office_equals_gector_common_ancestor": true,
+      "older": "b517d03f5a098c20929da12fa0bbe63a7bd66d1f",
+      "newer": "807e4b3f181160ca5125561480622283db54c6b5"
+    },
+    {
+      "path": "docs/roadmaps/german-gector-proofing.md",
+      "office_equals_gector_common_ancestor": true,
+      "older": "211486c0760e4d2e33cc7c830620a811921c056e",
+      "newer": "5b71bdc3436fa7d753e9443c0fcf4fb5ece2ae95"
+    },
+    {
+      "path": "tools/proofing/german_model/summarize_qualification.py",
+      "office_equals_gector_common_ancestor": true,
+      "older": "04614837c81b621de1e57ba7d1cd1460d344bdaa",
+      "newer": "04cbe7286bed6f8b86cf3778f2d924aef95610ad"
+    },
+    {
+      "path": "tools/proofing/german_model/test_qualification.py",
+      "office_equals_gector_common_ancestor": true,
+      "older": "f0bb6add0f15c142d025d148d57d5ddbe7763605",
+      "newer": "d70bce55bcac961d2ea7c4a599c4f42b80b68212"
+    }
+  ],
+  "conflicts_resolved": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "incoming_blob": "4aef29f817a7a7701251e9cc5b82e975e0ca4f51",
+      "main_blob": "0aaa4623f6923d4be54366826f3488c057ae397c",
+      "resolution": "Copy the 20-line comment emission loop before inline visual emission and the 11-line comment registry/lookup from current main into the incoming writer; retain incoming _OdtNotes and note export logic unchanged.",
+      "removal_inverse_equals_incoming": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "incoming_blob": "11cb887770b044b57697384b124553e4e75a9719",
+      "main_blob": "d91e77891e82437494670ac165d791e6808aa379",
+      "resolution": "Retain incoming tests, add exact current-main commentTests() invocation and function.",
+      "removal_inverse_equals_incoming": true
+    }
+  ],
+  "runtime_tests": "not executed",
+  "github_actions_or_ci_status_endpoints": "neither queried nor awaited"
+}
