@@ -88,7 +88,9 @@ final class AotGermanGrammar {
     }
 
     bool safe(List<AotToken> words) {
-      if (words.any((word) => word.start == null || word.end == null)) {
+      if (words.any(
+        (word) => word.start == null || word.end == null || word.isNormalized,
+      )) {
         return false;
       }
       for (var i = 1; i < words.length; i++) {
