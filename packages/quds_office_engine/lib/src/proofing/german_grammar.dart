@@ -15,6 +15,10 @@ const Set<String> _germanPhraseRuleIds = <String>{
   'de.grammar.subordinate-comma',
   'de.grammar.comparison',
   'de.grammar.noun-verb',
+  'de.grammar.verb-case',
+  'de.grammar.copula-agreement',
+  'de.grammar.word-order',
+  'de.grammar.participle',
 };
 
 final class _GermanGrammarIssue {
@@ -412,6 +416,7 @@ const Set<String> _grammarAdjectiveStems = <String>{
   'leis',
   'müd',
   // Common office/general modifiers, independently reviewed regular stems.
+  'best',
   'schlimm',
   'hell',
   'gültig',
@@ -613,6 +618,7 @@ Iterable<_GermanGrammarIssue> _germanGrammarIssues(
       .map(_GermanGrammarWord.new)
       .toList(growable: false);
   final Set<int> governedDeterminers = <int>{};
+  final verbContext = _grammarVerbContext(text, words, protected, boundaries);
   for (int i = 0; i + 1 < words.length; i++) {
     final _GermanGrammarWord preposition = words[i];
     final _GermanCase? grammaticalCase = _governedCases[preposition.lower];
@@ -693,8 +699,7 @@ Iterable<_GermanGrammarIssue> _germanGrammarIssues(
             boundaries,
             swiss,
             articleRuleId: 'de.grammar.verb-object-case',
-            articleMessage:
-                'Das direkte Objekt dieses Verbs steht hier normalerweise im Akkusativ.',
+            articleMessage: 'Das direkte Objekt dieses Verbs steht hier normalerweise im Akkusativ.',
           );
         }
         continue;
@@ -703,11 +708,14 @@ Iterable<_GermanGrammarIssue> _germanGrammarIssues(
         text,
         words,
         i,
-        null,
-        words[i].start,
+        verbContext?.articleIndex == i ? verbContext!.grammaticalCase : null,
+        verbContext?.articleIndex == i ? words.first.start : words[i].start,
         protected,
         boundaries,
         swiss,
+        articleRuleId: verbContext?.articleIndex == i
+            ? 'de.grammar.verb-case'
+            : 'de.grammar.preposition-case',
       );
     }
   }
@@ -715,6 +723,7 @@ Iterable<_GermanGrammarIssue> _germanGrammarIssues(
   yield* _grammarComparisonIssues(text, words, protected, boundaries);
   yield* _grammarInvertedAgreement(text, words, protected, boundaries);
   yield* _grammarSimpleNounAgreement(text, words, protected, boundaries, swiss);
+  yield* _grammarContextIssues(text, words, protected, boundaries, verbContext);
 }
 
 // Reviewed lexical uses with a direct accusative object. The present forms are
@@ -955,6 +964,12 @@ const _grammarPredicateAdverbs = <String>{
   'lange',
   'gut',
   'schlecht',
+  'schön',
+  'hungrig',
+  'glücklich',
+  'traurig',
+  'wach',
+  'krank',
 };
 const _grammarPredicatePrepositions = <String>{
   'im',
@@ -1152,8 +1167,7 @@ Iterable<_GermanGrammarIssue> _grammarNounPhrase(
   Set<int> boundaries,
   bool swiss, {
   String articleRuleId = 'de.grammar.preposition-case',
-  String articleMessage =
-      'Artikel, Nomen und Präposition verlangen hier normalerweise diese Form.',
+  String articleMessage = 'Artikel und Nomen verlangen in diesem eindeutigen Kasus normalerweise diese Form.',
 }) sync* {
   final _GermanGrammarWord article = words[index];
   final _GermanDeterminer determiner = _grammarDeterminerForms[article.lower]!;
@@ -1182,6 +1196,32 @@ Iterable<_GermanGrammarIssue> _grammarNounPhrase(
   }
   final List<_GermanNounReading> readings = _lookupGrammarNoun(noun.lower);
   if (readings.isEmpty) return;
+  if (governedCase == null &&
+      !determiner.definite &&
+      article.lower == determiner.stem &&
+      adjectives.isNotEmpty &&
+      readings.any(
+        (reading) => _GermanCase.values.any(
+          (grammaticalCase) =>
+              (reading.gender != _GermanGender.plural ||
+                  determiner.permitsPlural) &&
+              reading.accepts(noun.lower, grammaticalCase) &&
+              determiner.form(grammaticalCase, reading.gender) !=
+                  article.lower &&
+              adjectives.every(
+                (adjective) => _grammarAdjectiveForms[adjective.lower]!.any(
+                  (stem) => _germanFormsEquivalent(
+                    '$stem${_grammarAdjectiveEnding(determiner, grammaticalCase, reading.gender)}',
+                    adjective.lower,
+                  ),
+                ),
+              ),
+        ),
+      )) {
+    // The article can be wrong instead of the adjective. Without a governor,
+    // "ein roten Mantel" must not be turned into the nominative "ein roter".
+    return;
+  }
   // "des" and "eines" identify genitive without a clause parser or an
   // assumed preposition governor. "dieses", "jenes" and "der" also have
   // other cases, so their noun endings remain undecided. Use the full
@@ -1238,6 +1278,29 @@ Iterable<_GermanGrammarIssue> _grammarNounPhrase(
             determiner.form(analysis.$2, analysis.$1.gender) == article.lower,
       )
       .toList(growable: false);
+  bool agreesWithAdjectives(
+    (_GermanNounReading, _GermanCase) analysis,
+  ) => adjectives.every(
+    (adjective) => _grammarAdjectiveForms[adjective.lower]!.any(
+      (stem) => _germanFormsEquivalent(
+        '$stem${_grammarAdjectiveEnding(determiner, analysis.$2, analysis.$1.gender)}',
+        adjective.lower,
+      ),
+    ),
+  );
+  if (governedCase != null &&
+      adjectives.isNotEmpty &&
+      matchingArticles.isNotEmpty &&
+      !matchingArticles.any(agreesWithAdjectives) &&
+      analyses.any(
+        (analysis) =>
+            determiner.form(analysis.$2, analysis.$1.gender) != article.lower &&
+            agreesWithAdjectives(analysis),
+      )) {
+    // Competing lexical genders can support two repairs: der Tag (day) versus
+    // das Tag (metadata). Neither article nor adjective is a semantic oracle.
+    return;
+  }
   if (matchingArticles.isNotEmpty) analyses = matchingArticles;
   if (analyses.any(
     ((_GermanNounReading, _GermanCase) analysis) =>

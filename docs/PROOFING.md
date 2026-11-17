@@ -4,76 +4,39 @@ Roadmap accepted and implementation resumed: 16 November 2026. Original
 baseline: `bad2d9d30fd94db8de92a4f4bf83a55b0692b884`.
 
 The CrispStrobe fork implements offline German spelling, automatic German and
-US/UK English hyphenation, seventeen German writing-rule categories, and a
+US/UK English hyphenation, twenty-one German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
 web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
-## Bounded German continuation — 17 November 2026
+## Native spaCy implementation handoff — 17 November 2026
 
-The deterministic provider now checks a finite set of complete accusative
-verb-object frames. For example, `Sie hat ein roten Mantel.` offers `einen`,
-and `Ich sehe ein kleinen Hund.` offers `einen`, under the separate
-`de.grammar.verb-object-case` rule. It requires a matching personal pronoun and
-reviewed present-tense verb, one modeled noun phrase, and actual final
-punctuation. The entire context is limited to six words and 512 UTF-16 units;
-protected text and grapheme boundaries still veto unsafe findings. Inversion,
-coordination, auxiliary continuations, incomplete clauses and unresolved
-morphology remain outside this inference. Valid fronted-object readings such
-as `Sie sieht ein kleiner Hund.` are retained. Apparent object frames that fail
-this gate do not fall through to the old nominative adjective guess.
+The [native spaCy roadmap](roadmaps/native-spacy/README.md) preserves the source
+audit and scoped implementation plan for a Python-free, daemon-free German
+analysis backend in CrispEmbed. It specifies the `de_core_news_sm` 3.8.0 CNN,
+native tokenizer/parser/edit-tree work, an optional Dart integration, local
+parity and quality checks, and target-device/distribution evidence. The native
+spaCy backend is not yet implemented. Existing Python syntax experiments remain
+evaluation evidence with their original limits.
 
-Unknown, overregularized participles can prefer a verified irregular form in a
-bounded pronoun-plus-`haben` context, while known words and personal vocabulary
-keep their existing acceptance. This is suggestion ordering, not an automatic
-rewrite or a claim to recover intended meaning. The authored finite supplement
-also accepts `Lernen` and `Schuppen`; pinned upstream and Swiss word sets are
-unchanged. The noun-subject predicate gate uses a linear scanner rather than
-overlapping regular-expression repetitions.
+Main's current Office integration excludes AOT; the handoff pins the earlier AOT
+branch as historical source. It also preserves the user's later clarification
+that LGPL can be acceptable when provenance and commercial/App Store obligations
+are satisfied. See [licensing and distribution](roadmaps/native-spacy/licensing-and-distribution.md).
+This does not retroactively approve an artifact or change the existing Harper
+packaging checks. The selected new architecture starts with MIT model/code
+inputs and an explicitly inventoried native dependency set.
 
-The optional GECToR provider preserves repeated pronoun/article homographs
-whose grammatical roles can differ, including `Wenn sie sie sehen, winken sie.`
-Hosts can separately opt into bounded prediction reuse within one segmented
-request. Every occurrence reruns source guards and offset validation. Reuse is
-off by default; the package README describes its deterministic-backend contract
-and resource bounds. Repeated boilerplate and unique paragraphs are measured
-separately in the [continuation evidence](validation/german-gector/2026-11-17-resume/README.md).
+## Context rules without AOT/RML — 17 November 2026
 
-## Daemon-free AOT analysis and grammar — 17 November 2026
-
-The [AOT package](../packages/quds_proofing_aot/README.md) now defaults to a
-managed local worker calling the real AOT/RML libraries. No SynanDaemon, server,
-listening port, Qt build, or automatic network fallback is required. An explicit
-pinned build installs the engine and resources; HTTP remains optional.
-
-Studio always exposes **Review → AOT analysis**. It starts its private worker on
-an explicit action and reuses it for syntax and word-form requests. German and
-Russian support syntax; German, Russian and English support standalone Word
-forms. Cancel, close, language changes, document staleness and failures release
-the session. `QUDS_AOT_EXECUTABLE` or `QUDS_AOT_ENABLE=true` enables the manual
-provider in **Check document / F7**. Ordinary typing proofing is unchanged.
-
-The three de-DE grammar families remain conservative: personal-pronoun/verb
-agreement, selected fixed-preposition case, and article/adjective/noun agreement.
-Suggestions require recognized same-lemma paradigms and concrete compatible
-features. Parse structures themselves are not errors. Exact source mapping,
-protected text, personal/ignored vocabulary and rule ignores remain enforced.
-
-The native worker preserves verified original UTF-16 source spans alongside
-normalized analyzer surfaces. This fixes complete coverage for both previously
-failing `zu-helfen` examples without guessing a location. Normalized token
-contexts remain protected from corrections. A bounded client morphology cache
-avoids repeated lookups; syntax document text and failures are not cached.
-
-The [daemon-free validation report](validation/aot-daemon-free-20261117/README.md)
-records the incoming branch reconciliation, native build, source patches,
-production client/CLI smoke, VM/browser contract tests and Studio tests. Native
-Linux is exercised locally; macOS/Windows builds are not qualified by that run.
-Browsers/mobile report native-worker unavailability. Grammar remains de-DE;
-other analysis languages and regional German locales do not gain grammar rules.
-No finite fixture panel is presented as general grammar accuracy.
+The [independent context qualification](validation/german-context-20261117/README.md)
+records bounded verb case, copula number, word order and participle checks,
+review/undo behavior, and the actual default 18/18 original-panel result.
+AOT.ru/RML stays on its feature branches. No analyzer daemon, pipe, model or
+spaCy runtime is added to the application. Broader panels and retained misses
+are reported separately from the small original panel.
 
 ## Noun agreement and syntax/model evaluation — 17 November 2026
 
@@ -382,6 +345,13 @@ The experimental German model remains disabled and was not rerun.
 
 ## Scope and license policy
 
+The rules below record the existing proofing feature plan and its packaging
+qualifications. For the new native linguistic backend, the later user
+clarification and scoped decisions in the [native spaCy licensing record](roadmaps/native-spacy/licensing-and-distribution.md)
+apply: LGPL is conditionally acceptable, rather than categorically forbidden.
+Existing dependency allowlists and qualified artifacts keep their recorded
+scope; no additional component is approved merely by this clarification.
+
 - Keep `quds_office_engine` pure Dart and document surfaces custom RenderBox.
 - Ship offline German spelling, automatic German and US/UK English hyphenation,
   and independently authored German typography/style and narrowly scoped grammar
@@ -554,7 +524,6 @@ rule categories. It is not a general German grammar parser.
 | `de.grammar.seit-seid` | Grammar | `ihr seit` before listed predicates, or `seid` between a listed finite verb and a reviewed temporal expression; never a generic `seid + time` rewrite. |
 | `de.grammar.preposition-pronoun` | Grammar | Reviewed wrong pronoun cases after fixed-case prepositions, such as `mit mich → mit mir` and `für ihm → für ihn`; competing infinitive/additive/nominal contexts are excluded. |
 | `de.grammar.preposition-case` | Grammar | Article case/gender for reviewed nouns after fixed-case prepositions, such as `mit den Mann → mit dem Mann`. |
-| `de.grammar.verb-object-case` | Grammar | Accusative article forms in complete bounded pronoun/finite-verb/object clauses; ambiguous fronted subjects, incomplete frames and unresolved morphology abstain. |
 | `de.grammar.noun-verb` | Grammar | Unambiguous nominative noun subjects and reviewed finite verbs in bounded simple complete clauses; all lexical number alternatives retained, with ambiguity and unsupported-syntax abstention. |
 | `de.grammar.noun-case` | Grammar | Required noun endings in unambiguous determiner phrases, including weak nouns such as `mit dem Kunde → mit dem Kunden`; suggested forms must pass the modern spelling guard. |
 | `de.grammar.dative-plural` | Grammar | Missing dative plural `n` in reviewed forms, such as `mit den Kinder → mit den Kindern`; plural `n`/`s` forms and optional literary singular dative `e` are preserved. |
@@ -678,7 +647,7 @@ authorized by this roadmap.
 ## Using Word proofing
 
 `WordEditorController.proofing` owns a lazy `WordProofingSession`. Its built-in
-providers are German spelling and the seventeen German writing-rule categories. Background
+providers are German spelling and the twenty-one German writing-rule categories. Background
 checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced
@@ -1046,3 +1015,33 @@ an unqualified grammar-coverage claim on the evidence recorded here.
 - [Harper span convention](https://writewithharper.com/docs/harperjs/spans)
 - [Flutter platform spelling service](https://api.flutter.dev/flutter/services/DefaultSpellCheckService-class.html)
 - [German ONNX model card](https://huggingface.co/proofbird/gector-bert-de)
+
+## Bounded German continuation — 17 November 2026
+
+The deterministic provider now checks a finite set of complete accusative
+verb-object frames. For example, `Sie hat ein roten Mantel.` offers `einen`,
+and `Ich sehe ein kleinen Hund.` offers `einen`, under the separate
+`de.grammar.verb-object-case` rule. It requires a matching personal pronoun and
+reviewed present-tense verb, one modeled noun phrase, and actual final
+punctuation. The entire context is limited to six words and 512 UTF-16 units;
+protected text and grapheme boundaries still veto unsafe findings. Inversion,
+coordination, auxiliary continuations, incomplete clauses and unresolved
+morphology remain outside this inference. Valid fronted-object readings such
+as `Sie sieht ein kleiner Hund.` are retained. Apparent object frames that fail
+this gate do not fall through to the old nominative adjective guess.
+
+Unknown, overregularized participles can prefer a verified irregular form in a
+bounded pronoun-plus-`haben` context, while known words and personal vocabulary
+keep their existing acceptance. This is suggestion ordering, not an automatic
+rewrite or a claim to recover intended meaning. The authored finite supplement
+also accepts `Lernen` and `Schuppen`; pinned upstream and Swiss word sets are
+unchanged. The noun-subject predicate gate uses a linear scanner rather than
+overlapping regular-expression repetitions.
+
+The optional GECToR provider preserves repeated pronoun/article homographs
+whose grammatical roles can differ, including `Wenn sie sie sehen, winken sie.`
+Hosts can separately opt into bounded prediction reuse within one segmented
+request. Every occurrence reruns source guards and offset validation. Reuse is
+off by default; the package README describes its deterministic-backend contract
+and resource bounds. Repeated boilerplate and unique paragraphs are measured
+separately in the [continuation evidence](validation/german-gector/2026-11-17-resume/README.md).

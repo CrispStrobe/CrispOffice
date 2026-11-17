@@ -1,0 +1,24 @@
+{
+  "reason": "PR116 reported a conflict and PR238 was closed as superseded during qualification; actual main refs, not stale PR base_sha fields, were inspected.",
+  "canonical": {
+    "main": "13e7172977d671190ba8c3cf964deec4d7473090",
+    "new_commits": [
+      "13e7172977d671190ba8c3cf964deec4d7473090 Merge Office continuation without AOT (#125)",
+      "93cb0773f82b3d41a75bc50705074efcb9d4df78 feat(word): write ODT field results (#124)",
+      "9626152fced037379a79ef4fec458645e0d8c2ff Archive local qualification for merged ODF lists and sections (#111)"
+    ],
+    "novel_feature": "Generic inline PAGE/NUMPAGES/DATE/TIME/TITLE fields from PR124; other product deltas are prior continuation squash."
+  },
+  "host": {
+    "main": "fd0cc5de6de1ef9328bf44084ef38ace52765916",
+    "new_commits": [
+      "fd0cc5de6de1ef9328bf44084ef38ace52765916 Merge qualified Office resume and annotation preview fixes (#249)"
+    ],
+    "historical_pr": 238,
+    "superseding_pr": 249,
+    "superseding_pr_merged": true,
+    "superseding_merge": "fd0cc5de6de1ef9328bf44084ef38ace52765916"
+  },
+  "scope_policy": "Only observed blocking main integration and confirmed import/export defects are reconciled beyond the fixed second branch snapshot; no recurring broad ref or CI polling.",
+  "github_ci_queried_or_awaited": false
+}

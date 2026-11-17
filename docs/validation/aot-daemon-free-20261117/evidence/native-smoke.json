@@ -8,7 +8,7 @@
   "cases": 22,
   "passed": 22,
   "failed": 0,
-  "elapsedSeconds": 0.427,
+  "elapsedSeconds": 0.664,
   "realEngine": true,
   "syntheticTextOnly": true,
   "coverage": [

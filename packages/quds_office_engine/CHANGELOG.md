@@ -11,6 +11,9 @@ All notable changes to `quds_office_engine` are documented here.
   complete, bounded pronoun/verb/object clauses. Preserve valid fronted-object
   readings and suppress unsafe adjective-case guesses in incomplete frames.
 
+- Write ODT section columns with the required nested column properties, keep
+  empty-section page anchors inside their column section, and omit invalid
+  column gaps without changing the document model.
 - Accept the missing finite noun forms `Schuppen` and `Lernen` without
   lowercasing correct text; keep pinned upstream and Swiss dictionaries intact.
 

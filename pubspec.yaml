@@ -15,7 +15,6 @@ workspace:
   - packages/quds_office_engine
   - packages/quds_proofing_harper
   - packages/quds_proofing_gector
-  - packages/quds_proofing_aot
   - packages/quds_office_engine/example
   - packages/quds_reports
   - packages/quds_office_editor

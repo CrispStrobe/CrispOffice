@@ -1,0 +1,53 @@
+{
+  "odt_columns": {
+    "entries": [
+      {
+        "commit": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+        "patch_id": "9427f757e7ef16549fcacb2ab4d9ffd578c0510b"
+      },
+      {
+        "commit": "1f417ad7a61dfb69034704a67f85243eff89830a",
+        "patch_id": "9427f757e7ef16549fcacb2ab4d9ffd578c0510b"
+      },
+      {
+        "commit": "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+        "patch_id": "9427f757e7ef16549fcacb2ab4d9ffd578c0510b"
+      }
+    ],
+    "all_patch_ids_equal": true
+  },
+  "odp_chart_data": {
+    "entries": [
+      {
+        "commit": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+        "patch_id": "787466f600e90b171eb6976effdbe6ed88e0c07b"
+      },
+      {
+        "commit": "66273aa2f743ed33f20944a6e1251c1a396af0eb",
+        "patch_id": "787466f600e90b171eb6976effdbe6ed88e0c07b"
+      },
+      {
+        "commit": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+        "patch_id": "787466f600e90b171eb6976effdbe6ed88e0c07b"
+      }
+    ],
+    "all_patch_ids_equal": true
+  },
+  "odt_paragraph_breaks": {
+    "entries": [
+      {
+        "commit": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+        "patch_id": "bb39a433593ddba75588f7c7e7119a4b14054036"
+      },
+      {
+        "commit": "b990f9041cce78e3768c2ee0190413bf26962431",
+        "patch_id": "bb39a433593ddba75588f7c7e7119a4b14054036"
+      },
+      {
+        "commit": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+        "patch_id": "bb39a433593ddba75588f7c7e7119a4b14054036"
+      }
+    ],
+    "all_patch_ids_equal": true
+  }
+}

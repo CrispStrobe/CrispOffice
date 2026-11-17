@@ -1,0 +1,684 @@
+[
+  {
+    "id": "holdout-1-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Baum.",
+    "expected": "Er sieht einen roten Baum.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-1-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Baum.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-2-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Stuhl.",
+    "expected": "Er sieht einen roten Stuhl.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-2-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Stuhl.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-3-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Stein.",
+    "expected": "Er sieht einen roten Stein.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-3-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Stein.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-4-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Schlüssel.",
+    "expected": "Er sieht einen roten Schlüssel.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-4-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Schlüssel.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-5-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Zettel.",
+    "expected": "Er sieht einen roten Zettel.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-5-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Zettel.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-6-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Ordner.",
+    "expected": "Er sieht einen roten Ordner.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-6-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Ordner.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-7-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Bericht.",
+    "expected": "Er sieht einen roten Bericht.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-7-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Bericht.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-8-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Vertrag.",
+    "expected": "Er sieht einen roten Vertrag.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-8-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Vertrag.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-9-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Termin.",
+    "expected": "Er sieht einen roten Termin.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-9-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Termin.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-10-error",
+    "kind": "error",
+    "input": "Er sieht ein roten Monat.",
+    "expected": "Er sieht einen roten Monat.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-10-clean",
+    "kind": "clean",
+    "input": "Er sieht einen roten Monat.",
+    "category": "object-accusative"
+  },
+  {
+    "id": "holdout-11-error",
+    "kind": "error",
+    "input": "Ich helfe den Pferd.",
+    "expected": "Ich helfe dem Pferd.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-11-clean",
+    "kind": "clean",
+    "input": "Ich helfe dem Pferd.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-12-error",
+    "kind": "error",
+    "input": "Ich helfe den Huhn.",
+    "expected": "Ich helfe dem Huhn.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-12-clean",
+    "kind": "clean",
+    "input": "Ich helfe dem Huhn.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-13-error",
+    "kind": "error",
+    "input": "Ich helfe den Lamm.",
+    "expected": "Ich helfe dem Lamm.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-13-clean",
+    "kind": "clean",
+    "input": "Ich helfe dem Lamm.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-14-error",
+    "kind": "error",
+    "input": "Ich helfe den Schwein.",
+    "expected": "Ich helfe dem Schwein.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-14-clean",
+    "kind": "clean",
+    "input": "Ich helfe dem Schwein.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-15-error",
+    "kind": "error",
+    "input": "Ich helfe den Kalb.",
+    "expected": "Ich helfe dem Kalb.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-15-clean",
+    "kind": "clean",
+    "input": "Ich helfe dem Kalb.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-16-error",
+    "kind": "error",
+    "input": "Wir helfen die Nachbarin.",
+    "expected": "Wir helfen der Nachbarin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-16-clean",
+    "kind": "clean",
+    "input": "Wir helfen der Nachbarin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-17-error",
+    "kind": "error",
+    "input": "Wir helfen die Freundin.",
+    "expected": "Wir helfen der Freundin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-17-clean",
+    "kind": "clean",
+    "input": "Wir helfen der Freundin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-18-error",
+    "kind": "error",
+    "input": "Wir helfen die Ärztin.",
+    "expected": "Wir helfen der Ärztin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-18-clean",
+    "kind": "clean",
+    "input": "Wir helfen der Ärztin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-19-error",
+    "kind": "error",
+    "input": "Wir helfen die Bäuerin.",
+    "expected": "Wir helfen der Bäuerin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-19-clean",
+    "kind": "clean",
+    "input": "Wir helfen der Bäuerin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-20-error",
+    "kind": "error",
+    "input": "Wir helfen die Kundin.",
+    "expected": "Wir helfen der Kundin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-20-clean",
+    "kind": "clean",
+    "input": "Wir helfen der Kundin.",
+    "category": "verb-dative"
+  },
+  {
+    "id": "holdout-21-error",
+    "kind": "error",
+    "input": "Dies sind ein Fenster.",
+    "expected": "Dies ist ein Fenster.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-21-clean",
+    "kind": "clean",
+    "input": "Dies ist ein Fenster.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-22-error",
+    "kind": "error",
+    "input": "Dies sind ein Gerät.",
+    "expected": "Dies ist ein Gerät.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-22-clean",
+    "kind": "clean",
+    "input": "Dies ist ein Gerät.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-23-error",
+    "kind": "error",
+    "input": "Dies sind eine Datei.",
+    "expected": "Dies ist eine Datei.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-23-clean",
+    "kind": "clean",
+    "input": "Dies ist eine Datei.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-24-error",
+    "kind": "error",
+    "input": "Dies sind eine Rechnung.",
+    "expected": "Dies ist eine Rechnung.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-24-clean",
+    "kind": "clean",
+    "input": "Dies ist eine Rechnung.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-25-error",
+    "kind": "error",
+    "input": "Dies sind ein Formular.",
+    "expected": "Dies ist ein Formular.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-25-clean",
+    "kind": "clean",
+    "input": "Dies ist ein Formular.",
+    "category": "copula"
+  },
+  {
+    "id": "holdout-26-error",
+    "kind": "error",
+    "input": "Die Pferde ist hungrig.",
+    "expected": "Die Pferde sind hungrig.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-26-clean",
+    "kind": "clean",
+    "input": "Die Pferde sind hungrig.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-27-error",
+    "kind": "error",
+    "input": "Die Wolken ist schön.",
+    "expected": "Die Wolken sind schön.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-27-clean",
+    "kind": "clean",
+    "input": "Die Wolken sind schön.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-28-error",
+    "kind": "error",
+    "input": "Die Fenster ist sauber.",
+    "expected": "Die Fenster sind sauber.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-28-clean",
+    "kind": "clean",
+    "input": "Die Fenster sind sauber.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-29-error",
+    "kind": "error",
+    "input": "Die Hühner ist krank.",
+    "expected": "Die Hühner sind krank.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-29-clean",
+    "kind": "clean",
+    "input": "Die Hühner sind krank.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-30-error",
+    "kind": "error",
+    "input": "Die Schafe ist wach.",
+    "expected": "Die Schafe sind wach.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-30-clean",
+    "kind": "clean",
+    "input": "Die Schafe sind wach.",
+    "category": "noun-predicate"
+  },
+  {
+    "id": "holdout-31-error",
+    "kind": "error",
+    "input": "Jetzt ich höre Musik.",
+    "expected": "Jetzt höre ich Musik.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-31-clean",
+    "kind": "clean",
+    "input": "Jetzt höre ich Musik.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-32-error",
+    "kind": "error",
+    "input": "Trotzdem wir bleiben hier.",
+    "expected": "Trotzdem bleiben wir hier.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-32-clean",
+    "kind": "clean",
+    "input": "Trotzdem bleiben wir hier.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-33-error",
+    "kind": "error",
+    "input": "Dort du wohnst allein.",
+    "expected": "Dort wohnst du allein.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-33-clean",
+    "kind": "clean",
+    "input": "Dort wohnst du allein.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-34-error",
+    "kind": "error",
+    "input": "Danach er arbeitet hier.",
+    "expected": "Danach arbeitet er hier.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-34-clean",
+    "kind": "clean",
+    "input": "Danach arbeitet er hier.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-35-error",
+    "kind": "error",
+    "input": "Anschließend wir lesen ein Buch.",
+    "expected": "Anschließend lesen wir ein Buch.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-35-clean",
+    "kind": "clean",
+    "input": "Anschließend lesen wir ein Buch.",
+    "category": "verb-second"
+  },
+  {
+    "id": "holdout-36-error",
+    "kind": "error",
+    "input": "Obwohl du müde bist, du kommst morgen.",
+    "expected": "Obwohl du müde bist, kommst du morgen.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-36-clean",
+    "kind": "clean",
+    "input": "Obwohl du müde bist, kommst du morgen.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-37-error",
+    "kind": "error",
+    "input": "Wenn wir Zeit haben, wir kommen morgen.",
+    "expected": "Wenn wir Zeit haben, kommen wir morgen.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-37-clean",
+    "kind": "clean",
+    "input": "Wenn wir Zeit haben, kommen wir morgen.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-38-error",
+    "kind": "error",
+    "input": "Weil es schneit, wir bleiben hier.",
+    "expected": "Weil es schneit, bleiben wir hier.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-38-clean",
+    "kind": "clean",
+    "input": "Weil es schneit, bleiben wir hier.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-39-error",
+    "kind": "error",
+    "input": "Bevor ich gehe, ich lese den Brief.",
+    "expected": "Bevor ich gehe, lese ich den Brief.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-39-clean",
+    "kind": "clean",
+    "input": "Bevor ich gehe, lese ich den Brief.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-40-error",
+    "kind": "error",
+    "input": "Falls er kommt, wir warten hier.",
+    "expected": "Falls er kommt, warten wir hier.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-40-clean",
+    "kind": "clean",
+    "input": "Falls er kommt, warten wir hier.",
+    "category": "clause-fronting"
+  },
+  {
+    "id": "holdout-41-error",
+    "kind": "error",
+    "input": "Wir haben den Brief geschreibt.",
+    "expected": "Wir haben den Brief geschrieben.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-41-clean",
+    "kind": "clean",
+    "input": "Wir haben den Brief geschrieben.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-42-error",
+    "kind": "error",
+    "input": "Sie hat den Saft getrinkt.",
+    "expected": "Sie hat den Saft getrunken.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-42-clean",
+    "kind": "clean",
+    "input": "Sie hat den Saft getrunken.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-43-error",
+    "kind": "error",
+    "input": "Er ist nach Hause gegangt.",
+    "expected": "Er ist nach Hause gegangen.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-43-clean",
+    "kind": "clean",
+    "input": "Er ist nach Hause gegangen.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-44-error",
+    "kind": "error",
+    "input": "Wir haben die Person gefindet.",
+    "expected": "Wir haben die Person gefunden.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-44-clean",
+    "kind": "clean",
+    "input": "Wir haben die Person gefunden.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-45-error",
+    "kind": "error",
+    "input": "Er hat seine Freundin getrefft.",
+    "expected": "Er hat seine Freundin getroffen.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-45-clean",
+    "kind": "clean",
+    "input": "Er hat seine Freundin getroffen.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-46-error",
+    "kind": "error",
+    "input": "Sie hat nach Berlin geruft.",
+    "expected": "Sie hat nach Berlin gerufen.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-46-clean",
+    "kind": "clean",
+    "input": "Sie hat nach Berlin gerufen.",
+    "category": "participle"
+  },
+  {
+    "id": "holdout-negative-1",
+    "kind": "clean",
+    "input": "Die Kiefer steht hier.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-2",
+    "kind": "clean",
+    "input": "Die Kiefer stehen hier.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-3",
+    "kind": "clean",
+    "input": "Den Gästen hilft die Gastgeberin.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-4",
+    "kind": "clean",
+    "input": "Die Gäste sieht der Portier.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-5",
+    "kind": "clean",
+    "input": "Er gibt der Kundin ein Buch.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-6",
+    "kind": "clean",
+    "input": "Ich schenke dem Nachbarn eine Blume.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-7",
+    "kind": "clean",
+    "input": "Das sind ein Vater und zwei Kinder.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-8",
+    "kind": "clean",
+    "input": "Die Brücke ist schön.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-9",
+    "kind": "clean",
+    "input": "Das ist die Steuer.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-10",
+    "kind": "clean",
+    "input": "Man nehme zwei Eier.",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-11",
+    "kind": "clean",
+    "input": "`Ich helfe den Pferd.`",
+    "locale": "de-DE",
+    "category": "counterexample"
+  },
+  {
+    "id": "holdout-negative-12",
+    "kind": "clean",
+    "input": "Grüezi, ich heisse Anna.",
+    "locale": "de-CH",
+    "category": "counterexample"
+  }
+]

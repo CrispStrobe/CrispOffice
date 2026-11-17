@@ -5,6 +5,7 @@ import 'package:characters/characters.dart';
 
 import '../opc/zip/deflate_codec.dart';
 import 'data/german_lexicon_data.dart';
+import 'german_literal_ranges.dart';
 import 'office_proofing.dart';
 import 'proofing_text_ranges.dart';
 
@@ -322,6 +323,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     final OfficeProofingTextRanges protectedRanges = OfficeProofingTextRanges(
       request.text,
     );
+    final literals = GermanLiteralTextRanges(request.text);
     final Map<(String, bool, String?), List<String>> suggestions =
         <(String, bool, String?), List<String>>{};
     int examined = 0;
@@ -343,6 +345,7 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         continue;
       }
       if (protectedRanges.overlaps(token.start, token.end) ||
+          literals.overlaps(token.start, token.end) ||
           _isIdentifierFragment(request.text, token.start, token.end)) {
         continue;
       }
@@ -659,12 +662,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
         !_participleSpace.hasMatch(prefix.substring(words.last.end))) {
       return null;
     }
-    final String subject = normalizeGermanWord(
-      words[0].group(0)!,
-    ).toLowerCase();
-    final String auxiliary = normalizeGermanWord(
-      words[1].group(0)!,
-    ).toLowerCase();
+    final String subject = normalizeGermanWord(words[0].group(0)!)
+        .toLowerCase();
+    final String auxiliary = normalizeGermanWord(words[1].group(0)!)
+        .toLowerCase();
     if (!(_participleAuxiliaries[subject]?.contains(auxiliary) ?? false)) {
       return null;
     }
@@ -933,9 +934,10 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     String source,
     List<String> replacements,
   ) {
-    final List<String> separators = RegExp(
-      r'[-\u2010\u2011]',
-    ).allMatches(source).map((RegExpMatch match) => match.group(0)!).toList();
+    final List<String> separators = RegExp(r'[-\u2010\u2011]')
+        .allMatches(source)
+        .map((RegExpMatch match) => match.group(0)!)
+        .toList();
     if (separators.every((String separator) => separator == '-')) {
       return replacements;
     }

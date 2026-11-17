@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "started_utc": "2026-11-17T19:26:28.775221+00:00",
+  "command": [
+    "<dart>",
+    "<flutter-tool-snapshot>",
+    "pub",
+    "get",
+    "--offline",
+    "--enforce-lockfile"
+  ],
+  "lock_source": "docs/validation/german-gector/2026-11-17-long-input/resolved-pubspec.lock.gz",
+  "lock_sha256_before": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+  "manifest_sha256_before": {
+    "pubspec.yaml": "c7b68a447435871322327239d2886ff194423c65d97a39916b37cb18ca20f9a1",
+    "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+    "packages/quds_office_engine/pubspec.yaml": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+    "packages/quds_proofing_harper/pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+    "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+    "packages/quds_office_engine/example/pubspec.yaml": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c",
+    "packages/quds_reports/pubspec.yaml": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+    "packages/quds_office_editor/pubspec.yaml": "f3cbfae1226252ba650d206e9f58eb0792d0cec6e8518355f47a8a9fc970b03d",
+    "packages/quds_office_editor/example/pubspec.yaml": "599dc3259daaccc16f1c506979d863ed264aa5bfc2d9b5c6b8020fb3803e7c0e",
+    "apps/quds_report_studio/pubspec.yaml": "4a6624ee8d31222409dca9cea01daa28231ae477ac81369a2226540837a8179a"
+  },
+  "tests_or_model_inference_run": false,
+  "exit_code": 0,
+  "elapsed_seconds": 0.97,
+  "finished_utc": "2026-11-17T19:26:29.745749+00:00",
+  "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+  "lock_sha256_after": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+  "manifest_sha256_after": {
+    "pubspec.yaml": "c7b68a447435871322327239d2886ff194423c65d97a39916b37cb18ca20f9a1",
+    "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+    "packages/quds_office_engine/pubspec.yaml": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+    "packages/quds_proofing_harper/pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+    "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+    "packages/quds_office_engine/example/pubspec.yaml": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c",
+    "packages/quds_reports/pubspec.yaml": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+    "packages/quds_office_editor/pubspec.yaml": "f3cbfae1226252ba650d206e9f58eb0792d0cec6e8518355f47a8a9fc970b03d",
+    "packages/quds_office_editor/example/pubspec.yaml": "599dc3259daaccc16f1c506979d863ed264aa5bfc2d9b5c6b8020fb3803e7c0e",
+    "apps/quds_report_studio/pubspec.yaml": "4a6624ee8d31222409dca9cea01daa28231ae477ac81369a2226540837a8179a"
+  },
+  "manifests_unchanged": true,
+  "lock_unchanged": true,
+  "package_config_sha256": "4b642a7ecb2b229b35af9fc7aada4fd5d9c5c72d3e053a229d837d3b949b3654",
+  "resolved_package_count": 109,
+  "flutter_version": "3.47.8",
+  "workspace_package_count": 10,
+  "workspace_packages": [
+    {
+      "name": "quds_office_suite",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "legacy_doc_parser",
+      "rootUri": "../packages/legacy_doc_parser",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "quds_office_engine",
+      "rootUri": "../packages/quds_office_engine",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "quds_proofing_harper",
+      "rootUri": "../packages/quds_proofing_harper",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "quds_proofing_gector",
+      "rootUri": "../packages/quds_proofing_gector",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "quds_office_engine_example",
+      "rootUri": "../packages/quds_office_engine/example",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "quds_reports",
+      "rootUri": "../packages/quds_reports",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "quds_office_editor",
+      "rootUri": "../packages/quds_office_editor",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "quds_office_studio",
+      "rootUri": "../packages/quds_office_editor/example",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "quds_report_studio",
+      "rootUri": "../apps/quds_report_studio",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    }
+  ],
+  "passed": true
+}

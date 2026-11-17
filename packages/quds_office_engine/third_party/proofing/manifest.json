@@ -18,9 +18,9 @@
     "path": "tool/proofing/german_common_words.txt",
     "license": "MIT",
     "authorship": "Independently authored Quds Office basic-word supplement, 2026",
-    "sha256": "c8cd826a4d5a225e89fd09e1e0ed3020ef332b597c7fb37651917770aec701bf",
-    "forms": 1290,
-    "additional_forms": 210
+    "sha256": "c294a7a543c0178284dbc14486461130ddc1362465bd1f41139edb3179b14a57",
+    "forms": 1295,
+    "additional_forms": 214
   },
   "selection": {
     "standard": "Shared field 2, otherwise reformed field 4; excludes absent -N- placeholders.",
@@ -28,17 +28,17 @@
     "scope": "Finite word forms; no unrestricted compound decomposition or complete morphology. DE and AT share this source vocabulary. The old source snapshot has no claim to contemporary completeness."
   },
   "data": {
-    "standard_count": 444135,
+    "standard_count": 444139,
     "swiss_additions_count": 9451,
-    "standard_sha256": "19475eff7c0e5b370022d48925ed93f1ec687af335f4f11aaa755a2e3999ff51",
+    "standard_sha256": "70a93e30b3d10b6403c74e8457c8092bbb96c6876e05dd94ed24934bccc681e3",
     "swiss_additions_sha256": "47983d1ea48a7c3a0328b071b9d2beab1ffed7ac6f33b209dcc6f80afe4be760"
   },
   "encoding": {
     "format": "base64 raw DEFLATE of newline-separated UTF-8, <=4096 words/chunk",
-    "zlib_version": "1.3.2"
+    "zlib_version": "1.2.11"
   },
   "generated_files": {
-    "lib/src/proofing/data/german_common_00.dart": "ef9569388440e4d5aa24bb0990ad53441f076a3df1993fa0c0b52d4a6fa3faf4",
+    "lib/src/proofing/data/german_common_00.dart": "3a41eb74e53bd167105211b275de2af73d91077fb2c4441e1bbbb1daa880ebcd",
     "lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
     "lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
     "lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",

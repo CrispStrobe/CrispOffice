@@ -1,0 +1,38 @@
+{
+  "qualifiedSourceHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "vm": {
+    "receipt": "office-final-vm.json",
+    "testsPassed": 438,
+    "testFiles": 25,
+    "sourceInputs": 347
+  },
+  "node": {
+    "receipt": "office-final-node.json",
+    "testsPassed": 357,
+    "testFiles": 20,
+    "sourceInputs": 342
+  },
+  "analysis": {
+    "receipt": "office-final-analysis.json",
+    "passed": true,
+    "noIssuesFound": true
+  },
+  "allPortableOutcomesAgreeAfterNameNormalization": true,
+  "portableOutcomeCount": 357,
+  "platformTestNameAliases": {
+    "test/odt_section_columns_test.dart :: invalid gap -1 is omitted without losing columns or text": "test/odt_section_columns_test.dart :: invalid gap -1.0 is omitted without losing columns or text"
+  },
+  "nameAliasReason": "Dart VM formats the test-case double as -1.0; compiled JavaScript formats it as -1. Only this test label differs. Test input, source and result are unchanged.",
+  "missingPortableTests": [],
+  "differingPortableOutcomes": [],
+  "currentInputMismatches": {
+    "office-final-vm": [],
+    "office-final-node": []
+  },
+  "regressionComparison": "office-regression-comparison.json",
+  "notes": [
+    "VM and Node cohorts overlap; do not add their counts as unique tests.",
+    "Five dart:io test files are deliberately outside the Node cohort, not silently skipped.",
+    "Test durations were measured while other local checks ran and are not performance evidence."
+  ]
+}

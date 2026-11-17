@@ -13,7 +13,7 @@
   "rmlDirectory": "/workspace/scratch/5dea2c973ce5/quds_office_suite/.dart_tool/quds_aot_native/runtime",
   "executableSha256": "d20a7a707736c05fb0e2143aa517769f0136a459cfef9c113af5ecfd375a0d0f",
   "workerSourceSha256": "8d0647ce028c3d250381ddad2c0e33f787a1bb87d40ce2b6b50bd3ebd9a13c31",
-  "cmakeSourceSha256": "faf7c8eb4ed3089dba3808d50bcef31281d00d4620b2e0c4714d348f3fbdf119",
+  "cmakeSourceSha256": "79d26dc364ff8fd426b7bebf061d1ee2fae2b4503b741224a07eb0f2c51f66f3",
   "patches": [
     {
       "source": "Source/synan/SimpleGrammarLib/Parser.cpp",
@@ -24,6 +24,11 @@
       "source": "Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp",
       "change": "Copy temporary group description strings into RapidJSON-owned storage",
       "generatedSourceSha256": "52e1d9ffb589ad7ceca016e63e77da6735d698cf9b0191d9854d0d0f3100e176"
+    },
+    {
+      "source": "Source/synan/SynanLib/SyntaxHolder.cpp",
+      "change": "Remove _DEBUG before.lem and after.lem document diagnostic writes",
+      "generatedSourceSha256": "e2f0fca669125f5cf64db64397edab29729153461f9c8516438bade64c66c516"
     }
   ],
   "smoke": {
@@ -36,7 +41,7 @@
     "cases": 22,
     "passed": 22,
     "failed": 0,
-    "elapsedSeconds": 0.427,
+    "elapsedSeconds": 0.664,
     "realEngine": true,
     "syntheticTextOnly": true,
     "coverage": [

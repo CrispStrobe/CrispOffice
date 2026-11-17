@@ -66,6 +66,18 @@ void main() {
               ),
             ),
             PmlShape(
+              id: 6,
+              name: 'Oval',
+              preset: PmlShapePreset.ellipse,
+              transform: const PmlTransform(
+                x: 6400800,
+                y: 1600200,
+                cx: 914400,
+                cy: 914400,
+              ),
+              text: 'Oval',
+            ),
+            PmlShape(
               id: 4,
               name: 'Chart',
               transform: const PmlTransform(
@@ -122,6 +134,7 @@ void main() {
     expect(content, contains('<text:a xlink:href="https://example.com/deck">'));
     expect(content, contains('Q1'));
     expect(content, contains('Q2'));
+    expect(content, contains('<draw:ellipse'));
     final pageProperties = _pageProperties(XmlDocument.parse(content), 0);
     expect(
       pageProperties.getAttribute('type', namespaceUri: _smilNs),

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checks": 45158,
+  "failures": [],
+  "totals": {
+    "primary_files": 191,
+    "primary_raw_successes": 3543,
+    "private_pdf_success_exclusions": 2,
+    "primary_substantive_successes": 3541,
+    "node_repeated_files": 23,
+    "node_repeated_successes": 486,
+    "python_successes": 117,
+    "unexpected_skips": 0,
+    "explicit_dart_skips": 0,
+    "python_skips": 0,
+    "native_fixture_case_executed": true
+  }
+}

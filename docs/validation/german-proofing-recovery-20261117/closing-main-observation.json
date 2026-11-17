@@ -1,0 +1,24 @@
+{
+  "observedMain": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+  "initialMain": "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+  "observedVia": "GitHub main ref during final PR review",
+  "pr114HeadAtObservation": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "pr114ObservedMergeable": false,
+  "scope": "Final bounded main update after initial266-ref snapshot; no new all-ref completeness claim.",
+  "incomingCommits": [
+    "914d74f13d1ae75d9b45ea0e51873c31ff63ec62 feat(word): write ODT column breaks and keep-together (#122)",
+    "edd023c3505942cd2433bfa6c815a7d009432a3c feat(slide): preserve ODP chart data as tables (#121)"
+  ],
+  "changedPaths": [
+    "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart"
+  ],
+  "reviewFindings": [
+    "Column break and keep-together emitted attributes need matching paragraph style-cache identity.",
+    "Chart data converted to a table must use existing rotated-table handling when shape rotation is nonzero."
+  ],
+  "state": "Captured main integrated for bounded regression qualification; reviewed cache/rotation repairs follow.",
+  "testConflictResolution": "Retain both existing hyperlink assertion and incoming chart-label assertions."
+}

@@ -1,0 +1,17 @@
+{
+  "source_checkpoint": "ad09b5dac68d24cb344a86bbb44516193995779f",
+  "handwritten_documentation_whitespace_passed": true,
+  "only_exclusions": [
+    {
+      "path": "docs/validation/office-reconcile-20261117/second-wave/consumer/schemas/OpenDocument-v1.3-manifest-schema.rng",
+      "sha256": "8aee71f03484be112af972d622cc9031280c007b0a454ae8815e8e333c9bdd17",
+      "unchanged_official_schema_bytes": true
+    },
+    {
+      "path": "docs/validation/office-reconcile-20261117/second-wave/consumer/schemas/OpenDocument-v1.3-schema.rng",
+      "sha256": "40bad03efdbb02825230d357da0aa6ac679934c5bf56c6281752c0c24d58e4e6",
+      "unchanged_official_schema_bytes": true
+    }
+  ],
+  "reason": "Exact official schema copies retain original upstream whitespace and authenticated SHA256."
+}

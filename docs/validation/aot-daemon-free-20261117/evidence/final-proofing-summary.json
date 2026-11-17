@@ -1,0 +1,53 @@
+{
+  "recorded_at_utc": "2026-11-17T18:09:49.753609+00:00",
+  "validated_source_head": "cee14164116306fc8769ab637cf4fc3745a0f98b",
+  "baseline": "eaac7081",
+  "cohorts": [
+    {
+      "name": "Engine proofing \u2014 Dart VM",
+      "passed": 699,
+      "failed": 0,
+      "skipped": 0,
+      "summary": "final-proofing-vm-summary.json",
+      "note": "All engine cases completed successfully in the initial combined run; only the independent GECToR fixture-loading portion required a package-directory rerun."
+    },
+    {
+      "name": "GECToR \u2014 Dart VM",
+      "passed": 212,
+      "failed": 0,
+      "skipped": 1,
+      "summary": "final-proofing-gector-vm-summary.json"
+    },
+    {
+      "name": "Python admission and guarded-comparison controls",
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0,
+      "summary": "final-proofing-python-summary.json"
+    }
+  ],
+  "total_final_passed": 947,
+  "total_final_failed": 0,
+  "total_final_skipped": 1,
+  "optional_skips": [
+    "real native dual heads own their output and reject use after dispose"
+  ],
+  "static_analysis_clean": true,
+  "analysis_summary": "final-proofing-analysis-summary.json",
+  "all_sources_unchanged_during_test_runs": true,
+  "aot_source_tests_unchanged_from_baseline": true,
+  "office_proofing_contract_unchanged_from_baseline": true,
+  "aot_vm_repeated": false,
+  "aot_repeat_reason": "Neither the AOT source/tests nor the shared OfficeProofing contract changed; retained final AOT qualification remains applicable.",
+  "incoming_proofing_source_delta": [
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+    "packages/quds_proofing_gector/lib/src/backend.dart",
+    "packages/quds_proofing_gector/lib/src/decoder.dart",
+    "packages/quds_proofing_gector/lib/src/native_backend.dart",
+    "packages/quds_proofing_gector/lib/src/segmentation.dart",
+    "tools/proofing/german_model/evaluate_candidate.py"
+  ],
+  "harness_note": "Initial combined root-directory invocation caused ten GECToR fixture loader/setup errors because those tests use test/fixtures relative to the package directory. The complete GECToR suite passed from its package directory without code changes. Initial logs are retained and their partial GECToR passes are not added to final counts.",
+  "model_scope": "The real native GECToR dual-head probe was explicitly skipped: four pinned fixture variables were not configured. All other GECToR tests use checked-in metadata, deterministic/scripted backends and real worker-isolate/admission checks; no native model inference qualification is claimed."
+}
