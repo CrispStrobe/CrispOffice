@@ -1,0 +1,324 @@
+{
+  "schema": "quds.spacy.w6.final-source-integrity.v1",
+  "recorded_at": "2026-11-17T22:55:30.282924+00:00",
+  "source_candidate": "da18e29c20e2d42036cee911e85ff8bb22c328ae",
+  "current_source_files": 342,
+  "all_source_hashes_match_seal": true,
+  "package_configuration_matches_seal": true,
+  "runtime_matches_seal": true,
+  "native_library_sha256": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+  "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+  "historical_frozen_artifacts_checked": 61,
+  "all_historical_bytes_unchanged": true,
+  "historical_files": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/LICENSE",
+      "sha256": "3933c176979b68bc6d0bcc902c7d6c130f1d127f476f17ba5cdba8d99cfd0012"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/LICENSES_SOURCES",
+      "sha256": "0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/addresses/case.json",
+      "sha256": "aa5bdecd613c4252948e26e5bf914b87820ed86b3d4a8f25a28a980e0b580cec"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/addresses/traces.f32",
+      "sha256": "c9449211da1e9f50616ac4e3ad4022a8af18c8f34e6cc0f46d585b5ee2d71e2b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/agreement/case.json",
+      "sha256": "235c3a45dc4789b3b73498a31de3642149cb56516253342b4aa2ad20ace1015e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/agreement/traces.f32",
+      "sha256": "bc818261dfee311313995ea292e717a41bf1c33eac918bcd8e48f5aad1dcda89"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/ambiguity/case.json",
+      "sha256": "c844f5846d7783e63cbb958792c3fe137966a2d4a1d527618ac9ce42b63142fe"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/ambiguity/traces.f32",
+      "sha256": "abd35b4a732d4cdec3e3c77f36c5628c2119b8e47108057f1b1ba001d8047d30"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/empty/case.json",
+      "sha256": "b9f3f2f6da3a303456c2241c68049453d5e483e180fded761f4dc6e3247fa61c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/empty/traces.f32",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/hyphens/case.json",
+      "sha256": "7b944ddff7ab4f80904c0b802bbbceeee76dec5e4cbe45048d9aee44f44b8394"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/hyphens/traces.f32",
+      "sha256": "e5aa2078527c0ecf278e5d2a985b45d578067457600a2da8bda848255401fcfb"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/lexical/case.json",
+      "sha256": "0bc8c591241dc4b945e642affb11f84a98a805c8d9c00338ea56e962702a4fe7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/lexical/traces.f32",
+      "sha256": "3cf0f0f33ef0d5b456978b1bf9bff451ca2ba1403ad0e5dfac320fd5986c80d2"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/long-token/case.json",
+      "sha256": "199b2257e25c17d65d30056f725fedc3383753943a07148500a9b8760439909f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/long-token/traces.f32",
+      "sha256": "380a8be955f9d8f5b03f4374393828b319e6bb69c0290980f48fd4863fc6f0c1"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/manifest.json",
+      "sha256": "9a3bb6bae6114adcf579840834ddcb64dea4e0aaa8361718dc7a551d663c8f7c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/nul/case.json",
+      "sha256": "88e32f0768a057de36dc575906016aa3d98d9d278fb2dae6e273cce7ed32d897"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/nul/traces.f32",
+      "sha256": "8b14650c638508aaf5896738dfcf100c06f950c673c432d61ac649bd9dae629f"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/punctuation/case.json",
+      "sha256": "afea144e0f68dc531c233eb0d42cb02bb28f73d01f9c95999b55c5977962d5a8"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/punctuation/traces.f32",
+      "sha256": "297ff8ea5e285b8f5e25dc1a9aa6eb72cc650ebb5277527a9339bc581ad70185"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/repeated/case.json",
+      "sha256": "90104d5e0bfcb78fc138a50b9c67af5a6a74d0e5d4cf1c7ef5bd2975b3df6493"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/repeated/traces.f32",
+      "sha256": "1ebd4ecc55a8fd44e8fa77272534c54a211a1f1f158ea9044f7061fad291fbed"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/requirements-reference.txt",
+      "sha256": "e1bd56aef4aba0c45135fb2b51961c0d94c3be99a785be71a46c698cd22cc98a"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/scripts/case.json",
+      "sha256": "9b7f352834e2b3551997bbbded610535002347d451e1d59750d89f581ad9cc4e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/scripts/traces.f32",
+      "sha256": "bd5c5ea5b6d03db33b442afbfd12ef3905955e77f0b83eedd215828ea2b891ed"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/sentences/case.json",
+      "sha256": "17d708e712fedb385faff4aed1640b142fa3b109763ecaf8992f1511f75055ee"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/sentences/traces.f32",
+      "sha256": "58d7d2b1d6c0787c9f2aa0ca9705d24c0b37bdafe3cbfc5f00b910e6f0836ecc"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/single/case.json",
+      "sha256": "b307413e1c93531ef83b74f43c13358555eb1300df55648256b2212ac106c909"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/single/traces.f32",
+      "sha256": "e5dfdd9a0d23b9e46e51a1b1761864722626831be8057555195c2b04b4206f2e"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/syntax/case.json",
+      "sha256": "8284a5b742411e3391a4f37bb755f183e285aa53de054cb5fb58c02662f317a3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/syntax/traces.f32",
+      "sha256": "dcdbd2c6cfc519a969f8d40849c55c9d6e1bce76da3b0c4ae5ae1bf600e50134"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/unicode/case.json",
+      "sha256": "61408e3808c1caba40a82e62221b98243293ea59f0facf99e88c2e75d54ec218"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/unicode/traces.f32",
+      "sha256": "1e09263c568c68cf1d035bc78de6004cf0a5e8a1b5670e282f18c2ef103105ff"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/whitespace/case.json",
+      "sha256": "be272d2f7c5cfdb6d79c5ddabd005d72c5da082467259cb3a7cbaca1fe5c4d01"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/development/whitespace/traces.f32",
+      "sha256": "e3bd88e6ea97357c374d85d5ace794a96cd3aa5eb00951137a6d829a9c27b869"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/LICENSE",
+      "sha256": "3933c176979b68bc6d0bcc902c7d6c130f1d127f476f17ba5cdba8d99cfd0012"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/LICENSES_SOURCES",
+      "sha256": "0c3ab78745569d848b7c83a486183bce42b9643561084d6d6f67eb0229c79869"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-ambiguity/case.json",
+      "sha256": "9faef7d16e49f69d0002202d0440122e2ff7c7eb3ab2474bcff0e608e6eaca16"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-ambiguity/traces.f32",
+      "sha256": "3e2b22ff243996babc17d9fe0d59deceaed33a7340f1f16ff981d9535ac07878"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-boundaries/case.json",
+      "sha256": "a9aa596121905c3c625f0bfda0af6c0f64affe98d4c992a9b5343517ceceb233"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-boundaries/traces.f32",
+      "sha256": "76973bad3a6168826afc883f1a175530d10eaeeb90d1037eeb70d7c6bb25cda3"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-negation/case.json",
+      "sha256": "efdab7289007def1dd9980b2ca547efd82eadca8c4104c525f4b69e57f6c442c"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-negation/traces.f32",
+      "sha256": "fb43652862b3832a7dda8c7c2b9407a52a93729c5a9a0deb9484add5839ed772"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-parenthesis/case.json",
+      "sha256": "e020f9388c60f2dc8acd98c1951ce9081d56ec89adb3ca0a6b4df029e69ccbf9"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-parenthesis/traces.f32",
+      "sha256": "b0e19e2d4f08405e376bfeafcad7dda4e9194ddcb32d0e555791bf46d319813d"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-quotes/case.json",
+      "sha256": "551c8db4a54b27ede25385fa98e448a7aabcfc2cda9602e9941fa7f3796069e7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-quotes/traces.f32",
+      "sha256": "caf1e3ee1d1643e2071dc13b0ec8eb0f0927e947928a1ab09a15e427e542cc87"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-relative/case.json",
+      "sha256": "6ae3a7ad3acff3b499ed15337fe50150242526ac3baef922108fd67c4134a807"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-relative/traces.f32",
+      "sha256": "c6eb3ff40c80bc93cc89c7eb37d0f8b4ec19274bce4bc0d86e7a0263e405ee99"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-spaces/case.json",
+      "sha256": "02c317fc78d83aa15513c80cb74e410f26664da00d29184017fbf7192369b6a7"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-spaces/traces.f32",
+      "sha256": "7c8e256f506021f6726c8ed3cee93d49cc19804234dd616ba5ec528d6367b31b"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-unicode/case.json",
+      "sha256": "2718ced57d6c325c935ec607194d938146b45feb38c0a4db6e8ca22dbeb2cb63"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/holdout-unicode/traces.f32",
+      "sha256": "55d80156a41a5aa691eb74b031a05935dc1d1472efc2ad2aa6b29c357ffd1267"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/manifest.json",
+      "sha256": "1b60f2e99ebacfe0a5795548482d6210f6a1e2c9b0543cf7d7192eebee2c8b25"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "path": "tools/proofing/spacy/fixtures/acceptance/requirements-reference.txt",
+      "sha256": "e1bd56aef4aba0c45135fb2b51961c0d94c3be99a785be71a46c698cd22cc98a"
+    },
+    {
+      "repository": "CrispStrobe/CrispEmbed",
+      "path": "docs/validation/native-spacy-20261117/acceptance-candidate-linux-x86_64.tar.gz",
+      "sha256": "b0cd3ae4d47af442d32a6d2382143c36f8b019470cff7c509f97e4682b67489b"
+    },
+    {
+      "repository": "CrispStrobe/CrispEmbed",
+      "path": "docs/validation/native-spacy-20261117/acceptance-first.json.gz",
+      "sha256": "967593d587acf51557a4c27fb1cc813d3c348b91af2413a3a6453e83b5819caa"
+    },
+    {
+      "repository": "CrispStrobe/CrispEmbed",
+      "path": "docs/validation/native-spacy-20261117/acceptance-protocol.json",
+      "sha256": "78c17652ebce834d853209927bf24493eb1b362de99a0115a55b5202fcef2d92"
+    },
+    {
+      "repository": "CrispStrobe/CrispEmbed",
+      "path": "docs/validation/native-spacy-20261117/acceptance-publication-order.json",
+      "sha256": "49ae4cb77b3ba894495bffc4e27c72ae203cdeac4e17cf61e31761265048aca3"
+    },
+    {
+      "repository": "CrispStrobe/CrispEmbed",
+      "path": "docs/validation/native-spacy-20261117/bundle-manifest.json",
+      "sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e"
+    }
+  ],
+  "method": "Read-only hashes after first qualification; no second execution of either consumed panel.",
+  "qualification_executions": 1,
+  "native_acceptance_executions": 0,
+  "github_actions_queries_waits_reruns": 0
+}

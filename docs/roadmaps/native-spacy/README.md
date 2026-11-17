@@ -18,8 +18,14 @@ The [W5 continuation](../../validation/native-spacy-w5-20261117/README.md)
 qualifies the optional Dart analysis package, persistent worker and manual
 Studio view on Linux x86-64/AVX2 with the same frozen binary. Local package/UI,
 actual-native widget and existing proofing checks pass after the latest-main
-merge. Use that current receipt for completed checks and remaining work.
-Grammar benefit, mobile qualification and distribution remain separate gates.
+merge. The [W6 continuation](../../validation/native-spacy-w6-20261117/README.md)
+now completes bounded manual grammar benefit against main `6245a695`: the
+first sealed 86-case panel has 22/30 exact error corrections versus 5/30 for
+current deterministic rules, no native findings on 42 valid and ten guard
+controls, four explicit unsupported locales and ten passing actual-native editor
+controls. Grammar stays default off and requires explicit manual host integration.
+This finite authored panel does not establish general German grammar quality.
+Continue at W7 packaging/device qualification and release/distribution gates.
 The historical roadmap below retains its original source/evidence boundaries.
 
 ## Start here
