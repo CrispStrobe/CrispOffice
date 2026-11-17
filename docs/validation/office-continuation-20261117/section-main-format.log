@@ -1,0 +1,33 @@
+Section-main formatter evidence; source e042841fa062e18af1a3d184b846a58f0875dccc
+Working directory: /workspace/scratch/f6cd2da02657/section-main-review
+SDK: /workspace/scratch/f6cd2da02657/flutter-sdk/bin/cache/dart-sdk/bin/dart
+
+$ dart --version
+Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on "linux_x64"
+
+$ dart format --language-version=3.12 odt_document_writer.dart odt_document_writer_test.dart odf_annotation_extraction_test.dart odt_note_fidelity_test.dart odt_section_fidelity_test.dart
+Formatted odt_document_writer.dart
+Formatted odt_document_writer_test.dart
+Formatted odf_annotation_extraction_test.dart
+Formatted odt_note_fidelity_test.dart
+Formatted odt_section_fidelity_test.dart
+Formatted 5 files (5 changed) in 0.17 seconds.
+Exit: 0
+
+After independent review corrected the new frame test's expected top-level XML element:
+$ dart format --language-version=3.12 odt_section_fidelity_test.dart
+Formatted 1 file (0 changed) in 0.01 seconds.
+Exit: 0
+
+Rejected verification attempt: misspelled annotation filename. Exit 0 is not accepted as full-scope qualification.
+$ dart format --language-version=3.12 --output=none --set-exit-if-changed odt_document_writer.dart odt_document_writer_test.dart oddf_annotation_extraction_test.dart odt_note_fidelity_test.dart odt_section_fidelity_test.dart
+No file or directory found at "oddf_annotation_extraction_test.dart".
+Formatted 4 files (0 changed) in 0.12 seconds.
+Exit: 0
+
+Accepted final exact-file verification:
+$ dart format --language-version=3.12 --output=none --set-exit-if-changed odt_document_writer.dart odt_document_writer_test.dart odf_annotation_extraction_test.dart odt_note_fidelity_test.dart odt_section_fidelity_test.dart
+Formatted 5 files (0 changed) in 0.16 seconds.
+Exit: 0
+
+This formatter evidence does not constitute test execution or analysis. Root runtime qualification is recorded separately.
