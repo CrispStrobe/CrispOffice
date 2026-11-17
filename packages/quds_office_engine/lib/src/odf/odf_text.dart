@@ -139,18 +139,35 @@ Iterable<XmlElement> odfParagraphs(XmlElement element) sync* {
 
 /// Finds embedded text boxes without entering hidden or foreign inline stories.
 ///
-/// Each text box is returned once. Its own nested frames are handled when the
-/// caller visits its paragraph blocks, rather than duplicating their text here.
+/// Each text box is returned once. Linked drawing wrappers expose their direct
+/// frames, but image metadata and hidden inline stories do not expose text boxes.
+/// Nested frames are handled when the caller visits each box's paragraph blocks.
 Iterable<XmlElement> odfTextBoxes(XmlElement element) sync* {
   if (element.namespaceUri == odfDrawingNamespace) {
-    if (element.localName == 'text-box') {
-      yield element;
-      return;
+    if (element.localName == 'frame') {
+      for (final child in element.childElements) {
+        if (child.namespaceUri == odfDrawingNamespace &&
+            child.localName == 'text-box') {
+          yield child;
+        }
+      }
+    } else if (element.localName == 'a') {
+      for (final child in element.childElements) {
+        if (child.namespaceUri == odfDrawingNamespace &&
+            child.localName == 'frame') {
+          yield* odfTextBoxes(child);
+        }
+      }
     }
-    if (element.localName != 'frame') return;
-  } else if (element.namespaceUri == odfTextNamespace) {
-    if (element.localName == 'note' || element.localName == 'ruby-text') return;
-    if (element.localName == 'ruby') {
+    return;
+  }
+  if (element.namespaceUri != odfTextNamespace) return;
+  switch (element.localName) {
+    case 'note':
+    case 'ruby-text':
+    case 'soft-page-break':
+      return;
+    case 'ruby':
       for (final child in element.childElements) {
         if (child.namespaceUri == odfTextNamespace &&
             child.localName == 'ruby-base') {
@@ -158,33 +175,29 @@ Iterable<XmlElement> odfTextBoxes(XmlElement element) sync* {
         }
       }
       return;
-    }
-  } else {
-    return;
   }
   for (final child in element.childElements) {
     yield* odfTextBoxes(child);
   }
 }
 
-/// Decodes each visible paragraph, including separately anchored frame stories.
+/// Decodes visible paragraphs, including separately anchored text-box stories.
 ///
-/// A paragraph's own inline text precedes its embedded text boxes. An empty
-/// frame anchor is omitted only when a text box supplies visible paragraph
-/// blocks; ordinary blank paragraphs and empty frames remain distinct.
-Iterable<String> readOdfParagraphTexts(
+/// An anchor's own inline text precedes its text boxes. A paragraph containing
+/// only text boxes adds no synthetic blank, even for an empty or table-only box.
+/// Ordinary authored empty paragraphs and explicit whitespace remain distinct.
+Iterable<String> readOdfParagraphs(
   XmlElement element,
   OdfTextBudget budget,
 ) sync* {
   for (final paragraph in odfParagraphs(element)) {
     final boxes = odfTextBoxes(paragraph).toList();
     final ownText = readOdfParagraphText(paragraph, budget);
-    if (ownText.isNotEmpty ||
-        !boxes.any((box) => odfParagraphs(box).isNotEmpty)) {
+    if (ownText.isNotEmpty || boxes.isEmpty) {
       yield ownText;
     }
     for (final box in boxes) {
-      yield* readOdfParagraphTexts(box, budget);
+      yield* readOdfParagraphs(box, budget);
     }
   }
 }
@@ -193,7 +206,7 @@ Iterable<String> readOdfParagraphTexts(
 String readOdfText(XmlElement element, OdfTextBudget budget) {
   final result = StringBuffer();
   var first = true;
-  for (final paragraph in readOdfParagraphTexts(element, budget)) {
+  for (final paragraph in readOdfParagraphs(element, budget)) {
     if (!first) {
       budget.consume(1);
       result.write('\n');

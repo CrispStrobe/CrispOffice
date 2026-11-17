@@ -1,0 +1,242 @@
+{
+  "started_at_utc": "2026-11-17T15:39:07.977012+00:00",
+  "source_commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "passed": false,
+  "github_actions_queried_or_awaited": false,
+  "scope": "Independent raw-event reconstruction, exact source/runtime hashes, incoming ancestry and evidence archive reconstruction.",
+  "auditor_sha256": "d1aaf2daae8924a59fcbc3a15cd4a76d054f54da6f1c2b5b98c2990aed607d84",
+  "source_tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547",
+  "checkout_head": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "final_cohorts": [
+    {
+      "cohort": "odt-vm",
+      "receipt": "docs/validation/office-fidelity-lists-sections-20261117/qualification/odt-vm/receipt.json",
+      "receipt_sha256": "e07ff27d45494331c24d10756d93c7214f4561a9862072a3d2490e5ed335e869",
+      "test_file_count": 18,
+      "outcomes": {
+        "success": 353
+      },
+      "batches": [
+        {
+          "name": "test-1",
+          "tests": [
+            "odt_document_writer_test.dart",
+            "odt_structure_fidelity_test.dart",
+            "odt_table_merge_test.dart"
+          ],
+          "outcomes": {
+            "success": 39
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-2",
+          "tests": [
+            "odt_paragraph_properties_test.dart",
+            "odt_header_footer_fidelity_test.dart",
+            "odt_note_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 53
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-3",
+          "tests": [
+            "odt_comment_fidelity_test.dart",
+            "odt_list_fidelity_test.dart",
+            "odt_section_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 101
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-4",
+          "tests": [
+            "odf_export_text_fidelity_test.dart",
+            "odp_transform_fidelity_test.dart",
+            "odp_table_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 58
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-5",
+          "tests": [
+            "odp_presentation_writer_test.dart",
+            "odf_annotation_extraction_test.dart",
+            "odf_covered_cell_extraction_test.dart"
+          ],
+          "outcomes": {
+            "success": 35
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-6",
+          "tests": [
+            "office_search_fidelity_test.dart",
+            "word_note_numbering_test.dart",
+            "odf_text_box_extraction_test.dart"
+          ],
+          "outcomes": {
+            "success": 67
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        }
+      ],
+      "versions": {
+        "flutter": "3.47.8",
+        "dart": "3.13.7",
+        "node": "v24.22.1",
+        "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+        "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8"
+      },
+      "source_inputs": 1670,
+      "runtime_inputs": 8606,
+      "import_closure_files": 887
+    },
+    {
+      "cohort": "odt-node",
+      "receipt": "docs/validation/office-fidelity-lists-sections-20261117/qualification/odt-node/receipt.json",
+      "receipt_sha256": "0c79b5d2dfc113fe06f0a878779496006767223c051fbba6f7ee0eae408dc7ff",
+      "test_file_count": 10,
+      "outcomes": {
+        "success": 236
+      },
+      "batches": [
+        {
+          "name": "test-1",
+          "tests": [
+            "odt_list_fidelity_test.dart",
+            "odt_section_fidelity_test.dart",
+            "odt_note_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 92
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-2",
+          "tests": [
+            "odt_comment_fidelity_test.dart",
+            "odp_transform_fidelity_test.dart",
+            "odt_paragraph_properties_test.dart"
+          ],
+          "outcomes": {
+            "success": 76
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-3",
+          "tests": [
+            "odf_text_box_extraction_test.dart",
+            "odf_annotation_extraction_test.dart",
+            "odf_covered_cell_extraction_test.dart"
+          ],
+          "outcomes": {
+            "success": 41
+          },
+          "hidden_successful_completions": 3,
+          "runner_success": true
+        },
+        {
+          "name": "test-4",
+          "tests": [
+            "office_search_fidelity_test.dart"
+          ],
+          "outcomes": {
+            "success": 27
+          },
+          "hidden_successful_completions": 1,
+          "runner_success": true
+        }
+      ],
+      "versions": {
+        "flutter": "3.47.8",
+        "dart": "3.13.7",
+        "node": "v24.22.1",
+        "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+        "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8"
+      },
+      "source_inputs": 1670,
+      "runtime_inputs": 8606,
+      "import_closure_files": 879
+    }
+  ],
+  "final_execution_outcomes": {
+    "success": 589
+  },
+  "final_file_executions": 28,
+  "node_repeats_selected_vm_cases": true,
+  "unique_final_source_inputs": 1670,
+  "unique_final_runtime_inputs": 8606,
+  "incoming_ancestry": {
+    "named_references": 240,
+    "captured_reference_revision_pairs": 241,
+    "captured_distinct_heads": 162,
+    "all_captured_heads_are_ancestors": true,
+    "prior_checkpoint_is_ancestor": true,
+    "finite_cutoff": "All exact revisions in api-inventory.json and git-fetch-inventory.json; later arrivals are outside this snapshot."
+  },
+  "consumer": {
+    "receipt": "/workspace/scratch/167d435dbecc/consumer-final-cf60/receipt.json",
+    "receipt_sha256": "c7c087a97ad7ee974437718d2681164528d534241dfa7e6e95a7b5220d45f734",
+    "summary": {
+      "fixtures": 24,
+      "passed": 24,
+      "failed": 0,
+      "schema_parts_passed": 96,
+      "schema_parts_total": 96
+    },
+    "input_counts": {
+      "source": 392,
+      "runtime": 10420
+    },
+    "output_hashes_verified": 305,
+    "fixture_names": [
+      "section-list",
+      "section-control-list",
+      "section-table",
+      "section-control-table",
+      "section-visual",
+      "section-frame",
+      "section-empty",
+      "section-continuous",
+      "section-continuous-empty",
+      "section-continuous-image-header",
+      "section-continuous-comment-header",
+      "section-continuous-new-size",
+      "section-heading-layout",
+      "paragraph-rtl-indent",
+      "section-oddPage-after-1",
+      "section-oddPage-after-2",
+      "section-evenPage-after-1",
+      "section-evenPage-after-2",
+      "list-skipped-levels",
+      "list-nonzero-start",
+      "list-mixed-markers",
+      "list-restart-continuation",
+      "list-literal-labels",
+      "list-native-start-override"
+    ],
+    "scope": "Independent inventory, receipt and artifact hash review; semantic assertions remain in the source-bound consumer checker."
+  },
+  "error": "AssertionError('Unindexed archive member: extraction-correction/README.md')",
+  "finished_at_utc": "2026-11-17T15:39:14.598942+00:00"
+}

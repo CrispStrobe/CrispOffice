@@ -1,0 +1,132 @@
+{
+  "bounded_observed_inputs": [
+    {
+      "commit": "f29373cf29048a6a6b133e2e75628d58c4b2b23f",
+      "observation": "Shared-branch expected-head lease check",
+      "parent": "cf954a70ccee6b218a8a5fce2f901b9cb91df060",
+      "tree": "40525a3f266691b4c4e7f5cc840f6105b3aa3783"
+    },
+    {
+      "commit": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "observation": "Destination main in isolated draft PR #116 creation response",
+      "parent": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "tree": "98c0543324b5e6f8e69f4c3af0b282e5c035034b"
+    }
+  ],
+  "concurrent_production_delta": [
+    "Structured table extraction in paragraph-anchored ODF frames, with linked-frame traversal, explicit whitespace and authored empty paragraphs retained; notes, annotations, covered cells and ruby annotations excluded under the shared text budget.",
+    "Explicit zero-section ODT documents retain default style geometry while emitting an empty body.",
+    "German spelling recognizes first-capital direct quotations after colon/opening quote.",
+    "The first-party compressed German supplement adds exactly Grüezi, Hof and grüezi; no forms removed."
+  ],
+  "conflicts": {
+    "packages/quds_office_engine/CHANGELOG.md": "Only textual merge conflict. Both original sets of Unreleased entries are retained.",
+    "packages/quds_office_engine/test/odt_section_continuation_test.dart": "One semantic overlap: replace only the explicit zero-section synthetic-anchor assertions with an empty-body assertion. Default master/page geometry and no-model-mutation assertions remain. All14 cases remain executable; pre-merge original and exact patch retained."
+  },
+  "exact_concurrent_source_and_test_paths": [
+    "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+    "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+    "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+    "packages/quds_office_engine/third_party/proofing/manifest.json",
+    "packages/quds_office_engine/third_party/proofing/morphology_manifest.json",
+    "packages/quds_office_engine/tool/proofing/german_common_words.txt",
+    "packages/quds_office_engine/test/odf_frame_extraction_test.dart",
+    "packages/quds_office_engine/test/odf_text_box_extraction_test.dart",
+    "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+    "packages/quds_office_engine/test/odt_section_integration_test.dart",
+    "packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+    "tools/proofing/german_model/INCREMENTAL_QUALITY.md"
+  ],
+  "formatter": {
+    "generated_data_excluded": "Generator-owned common shard remains byte-exact with its updated lexical manifest.",
+    "language_version": "3.12",
+    "pre_table_merge_paths_checked": 12,
+    "pre_table_merge_result": "Zero formatting changes; same resolved analysis graph."
+  },
+  "incoming_evidence": {
+    "all_incoming_docs_outside_continuation_report_byte_exact": true,
+    "scope": "Incoming recovery, consumer, proofing and native/model qualification evidence remains attributed to its own recorded sources and environments. It is preserved for review and is not counted as qualification of this merged candidate.",
+    "source_commit": "f29373cf29048a6a6b133e2e75628d58c4b2b23f"
+  },
+  "isolated_branch": "codex/office-qualified-resume-20261117",
+  "merge_parents": [
+    "cc394ee2b8468d543ecd0b3ff1bc7f8ac10fd270",
+    "f29373cf29048a6a6b133e2e75628d58c4b2b23f",
+    "2eb080e708257c36b54d3ade18b9e012ebc73ed3"
+  ],
+  "morphology_provenance": {
+    "added_forms": [
+      "Grüezi",
+      "Hof",
+      "grüezi"
+    ],
+    "current_common_shard_sha256": "68b4d849635c1f6587f7e58e4c3bcb2fc03ad9c72c10265fa0bf122fec846bfa",
+    "manifest_unchanged": true,
+    "meaning": "The morphology manifest continues to identify its historical generation inputs; its generated output hashes remain unchanged. The lexical manifest identifies the newly generated supplement. No full Unicode-source regeneration is claimed.",
+    "original_common_shard_input_sha256": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f",
+    "regeneration_performed": false,
+    "removed_forms": [],
+    "supplement_forms_after": 208,
+    "supplement_forms_before": 205
+  },
+  "observed_main_delta": {
+    "behavior": "ODT table cell top/bottom/left/right borders and explicit row-height styles. Border flags participate in cell-style identity; row-height identity matches the emitted two-decimal point value.",
+    "integration": "Exact full two-file patch from parent7cf applied cleanly with three-way index merge; destination main included as an explicit third parent.",
+    "patch": "observed-main-table-export.patch",
+    "paths": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "packages/quds_office_engine/test/odt_document_writer_test.dart"
+    ],
+    "source_commit": "2eb080e708257c36b54d3ade18b9e012ebc73ed3"
+  },
+  "odt_writer_resolution": {
+    "decision": "Retain our normalized JSON decoration key, incoming explicit-empty-document guard and exact table-style delta. No unrelated writer behavior is changed.",
+    "diff_from_concurrent": "concurrent-writer-combination.patch",
+    "incoming_original": "incoming/concurrent-odt-writer-f293.dart",
+    "prior_corrected_writer": "cache-control-evidence.tar.xz/cache-control/positive-writer.dart"
+  },
+  "preserved_tests": {
+    "cache_regression_unchanged": true,
+    "expected_broad_unique_test_files": 179,
+    "four_added_files": [
+      "odf_frame_extraction_test.dart",
+      "odt_section_integration_test.dart",
+      "proofing/german_lexical_gap_test.dart",
+      "proofing/german_spelling_quotes_test.dart"
+    ],
+    "incoming_table_writer_test_exact": true,
+    "section_suites": [
+      "odt_section_fidelity_test.dart",
+      "odt_section_continuation_test.dart",
+      "odt_section_integration_test.dart"
+    ]
+  },
+  "prior_control_archives": [
+    {
+      "archive": "cache-control-evidence.tar.xz",
+      "archive_bytes_unchanged_from_previous_published": true,
+      "archive_root": "cache-control",
+      "bytes": 350876,
+      "sha256": "dfd729676f2f926e2a8a85a3a116c61fa15659011e9613cc60dd3764c1dad3ad"
+    },
+    {
+      "archive": "canonical-controls-evidence.tar.xz",
+      "archive_bytes_unchanged_from_previous_published": true,
+      "archive_root": "canonical-controls-evidence",
+      "bytes": 373648,
+      "sha256": "f2051224efcb61032961a97dd943b0bb5f6d9b46647af4b8d1e1c6c92c673618"
+    }
+  ],
+  "published_start": {
+    "commit": "cc394ee2b8468d543ecd0b3ff1bc7f8ac10fd270",
+    "equivalent_local_checkpoint": "e013c43dd5c81bda37e686c9716101af264a525b",
+    "tree": "b9edb91cb5128d01c063700ef834e838abedf64e"
+  },
+  "qualification_status": "Fresh broad immutable-source qualification pending publication. Historical controls and reports are preserved with original source attribution.",
+  "reason": "Expected-head publication refused to overwrite concurrently advanced shared continuation. The already-created identical-tree commit was isolated on a separate branch, then both exact observed source tips were incorporated before qualification.",
+  "recorded_at_utc": "2026-11-17T16:21:25.650182+00:00",
+  "refresh_policy": "Only the isolated branch and the exact observed destination-main object were fetched. No shared continuation refresh, branch/PR inventory refresh or CI endpoint was used. The later incidental shared-head identifier was not fetched."
+}

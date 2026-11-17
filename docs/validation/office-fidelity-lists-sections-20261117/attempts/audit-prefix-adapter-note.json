@@ -1,0 +1,44 @@
+{
+  "classification": "Rejected auditor-format attempt; excluded from product qualification counts.",
+  "failed_receipt": "audit-prefix-adapter-failed.json",
+  "failed_receipt_sha256": "a036204105a3e9705f12a758faf84a6d11b032ab04ea276dbbf77890db0f4ad1",
+  "preservation": "Byte-for-byte copy of the original failed audit receipt.",
+  "failure": "AssertionError('Unindexed archive member: extraction-correction/README.md')",
+  "cause": "The extraction-correction archive index explicitly declares prefix: extraction-correction. The initial independent checker recognized only archive_prefix.",
+  "checker_correction": {
+    "file": "../check_review.py",
+    "before": "prefix = index.get('archive_prefix', '')",
+    "after": [
+      "prefix = index.get('archive_prefix', index.get('prefix', ''))",
+      "if prefix:",
+      "    prefix = prefix.rstrip('/') + '/'"
+    ],
+    "behavior": "Accept either explicitly declared prefix field, normalize its trailing separator, and retain the same exact-member, traversal, duplicate, byte-count and hash checks. No prefix is inferred."
+  },
+  "failed_checker_sha256": "d1aaf2daae8924a59fcbc3a15cd4a76d054f54da6f1c2b5b98c2990aed607d84",
+  "passing_checker_sha256": "841c00058eee6c0e27d1877a3cfd443a8c12df39c557045ef1bbc550a5ac84a9",
+  "source_commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "source_tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547",
+  "unchanged_inputs": {
+    "final_cohort_receipts_and_reconstructed_results_identical": true,
+    "final_source_and_runtime_input_counts_identical": true,
+    "consumer_receipt_inventory_and_hash_results_identical": true,
+    "incoming_ancestry_results_identical": true,
+    "product_source_tests_and_qualification_harness_changed": false,
+    "archived_evidence_or_indexes_changed": false,
+    "scope": "Only the independent checker adapter changed between the two audit runs; report prose was outside the qualified source/evidence scope."
+  },
+  "accepted_rerun": {
+    "receipt": "audit-before-scope-gates-passed.json",
+    "receipt_sha256": "89d415172516dc98369574dbbb0bea86b4a882a82861f15ef5116909fcc9d74b",
+    "passed": true,
+    "final_execution_outcomes": {
+      "success": 589
+    },
+    "final_file_executions": 28,
+    "archive_restored_file_count": 1109,
+    "scope_note": "This first passing audit preceded the added prior-evidence-tree and selected-proofing-file equality gates. The expanded final audit is ../independent-review.json."
+  },
+  "product_tests_or_conversions_repeated_for_this_correction": false,
+  "github_actions_queried_or_awaited": false
+}

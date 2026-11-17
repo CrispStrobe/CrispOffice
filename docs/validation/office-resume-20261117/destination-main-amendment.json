@@ -1,0 +1,92 @@
+{
+  "annotation_note_control": {
+    "archive": "canonical-controls-evidence.tar.xz",
+    "archive_bytes": 373648,
+    "archive_members": 38,
+    "archive_sha256": "f2051224efcb61032961a97dd943b0bb5f6d9b46647af4b8d1e1c6c92c673618",
+    "negative_annotation_content_limit_exceptions": 1,
+    "negative_annotation_matcher_failures": 6,
+    "negative_annotation_passes": 4,
+    "negative_note_matcher_failures": 2,
+    "positive_annotation_passes": 11,
+    "positive_note_passes": 2,
+    "readback_verified": true,
+    "skips_or_load_failures": 0,
+    "wrapper_outcome": "Original overstrict wrapper summary remains accepted:false. Separate log verification accepts only the specific hidden-annotation output-limit exception as the seventh intended old-source behavior failure; no rerun or test relaxation."
+  },
+  "conflicts": {
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart": {
+      "identical_to_previous_published": true,
+      "resolution": "Retained the prior published file byte-exact. One existing hyperlink assertion remains before namespace-aware SMIL transition assertions; the incoming second copy of the same hyperlink assertion is omitted. No unique assertion is lost."
+    }
+  },
+  "destination_main_tree": "c5f87a7eddaadd1d3242750f6faaebd868bc488c",
+  "evaluation_only_tools": [
+    "tools/proofing/german_model/README.md",
+    "tools/proofing/german_model/evaluate_guarded_onnx.dart",
+    "tools/proofing/german_model/onnx_probe_backend.py"
+  ],
+  "evaluation_tool_limit": "Imported diagnostic ONNX helpers and existing evidence retain original attribution. No native FFI, model quality, deployment or shipping precision acceptance is claimed by this merge.",
+  "exact_observed_destination_main": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+  "formatter": {
+    "files": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+      "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "packages/quds_office_engine/test/odp_presentation_writer_test.dart"
+    ],
+    "language_version": "3.12",
+    "result": "Four files checked with the same resolved analysis graph; zero formatting changes."
+  },
+  "merge_parents": [
+    "104b239c971ef3b2d62495a27ad04b519398a1fc",
+    "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad"
+  ],
+  "paired_cache_control": {
+    "archive": "cache-control-evidence.tar.xz",
+    "archive_bytes": 350876,
+    "archive_members": 43,
+    "archive_sha256": "dfd729676f2f926e2a8a85a3a116c61fa15659011e9613cc60dd3764c1dad3ad",
+    "corrected_passes": 2,
+    "external_dependency_files": 5099,
+    "incoming_matcher_failures": 2,
+    "load_failures": 0,
+    "negative_writer_blob": "0ae9e139edda8ef737ce92a80a936dd823bc6d1f",
+    "positive_writer_blob": "5d79ab316f64c256a8c7a500423f29e9a23c575b",
+    "readback_verified": true,
+    "runtime_and_dependencies_unchanged": true,
+    "setup_attempts": "Two explicitly excluded setup attempts are preserved: wrong SDK/cache paths, then missing scratch TMPDIR. Neither counts as old-source evidence.",
+    "skips": 0,
+    "source_inputs_per_variant": 399,
+    "source_variants_differ_only_in": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "test_blob": "4cfa1f9a9c3b81543c2b7b6f736cb0bac1ced287",
+    "test_sha256": "a2bcc405446666e3cdfa0cb0a34b658d90766668131c2aaee5ba7cd32c145db0"
+  },
+  "previous_published_tip": "104b239c971ef3b2d62495a27ad04b519398a1fc",
+  "previous_tree": "29a06a46c92bc11f9730bb5ff583044c02c4b95e",
+  "production_delta": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": [
+      "Incoming whole-paragraph PAGE field emission, including header fields.",
+      "Incoming paragraph shading and border XML serialization.",
+      "New cache-key correction includes the normalized fill/border strings actually serialized, using a JSON tuple to avoid delimiter ambiguity."
+    ]
+  },
+  "recorded_at_utc": "2026-11-17T16:07:32.687950+00:00",
+  "scope": "One bounded amendment for the exact destination main observed while opening draft PR #113; no remote-ref refresh beyond this one previously observed SHA.",
+  "source_preservation": "The incoming ODT writer was byte-exact before the cache correction. paragraph-decoration-cache.patch records the only change from that incoming writer. All original frozen-ref reconciliation remains in the first-parent ancestry; the observed destination main is a direct additional parent.",
+  "tests": {
+    "assertions": "Every paragraph retains its own shading/border color and no unintended other decoration; absent colors stay absent; equivalent case-normalized colors and null/empty absence reuse styles; text and model property values are unchanged.",
+    "incoming": [
+      "ODT header page-number field",
+      "ODT single paragraph shading and border serialization"
+    ],
+    "neutral_leading_paragraph": "Checked separately and excluded from the color/reuse oracle so section activation is independent.",
+    "new_cases": [
+      "paragraph border colors stay independent",
+      "paragraph shading colors stay independent"
+    ],
+    "new_file": "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart"
+  },
+  "unchanged_library_paths_except_writer": true,
+  "validation_status": "Only the specified paired controls and formatter are completed for the amendment. Broad combined-source qualification is pending the remotely published immutable checkpoint."
+}

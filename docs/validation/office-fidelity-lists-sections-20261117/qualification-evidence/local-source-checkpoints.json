@@ -1,0 +1,22 @@
+{
+  "bundle": "local-source-checkpoints.bundle",
+  "sha256": "e971ede3b12c66195b7772c10decebf9ebd74fa9059b76db847fd8df4a33e774",
+  "bytes": 7063,
+  "header": "# v2 git bundle\n-097475fbda96aa4a6497d92f28d10f1aa5f640b4 Integrate all captured ODT and proofing histories before fidelity continuation [skip ci]\n-4fdac35c8da50e9c62ffab4a86dd2397c21186b4 Freeze list and section source with reconstructible incoming qualification [skip ci]\n-ee6d4804229028c308d0829dfffc515d2a95f2cb Save ODT section activation, page parity and bounded list numbering [skip ci]\n56dc162bf9a1003189e36e1f2a4678620c824546 refs/validation/office-fidelity-lists-sections/incoming-correction\nfa9821a7c9634a97aec6a8cf4d2617a926838934 refs/validation/office-fidelity-lists-sections/extraction-correction\n59b8d494fcc6a2bc1f527577f36b7aabc0b93b53 refs/validation/office-fidelity-lists-sections/consumer-prepublication",
+  "refs": {
+    "refs/validation/office-fidelity-lists-sections/incoming-correction": "56dc162bf9a1003189e36e1f2a4678620c824546",
+    "refs/validation/office-fidelity-lists-sections/extraction-correction": "fa9821a7c9634a97aec6a8cf4d2617a926838934",
+    "refs/validation/office-fidelity-lists-sections/consumer-prepublication": "59b8d494fcc6a2bc1f527577f36b7aabc0b93b53"
+  },
+  "prerequisites": [
+    "097475fbda96aa4a6497d92f28d10f1aa5f640b4",
+    "4fdac35c8da50e9c62ffab4a86dd2397c21186b4",
+    "ee6d4804229028c308d0829dfffc515d2a95f2cb"
+  ],
+  "all_prerequisites_in_published_source_ancestry": true,
+  "source": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "verified": true,
+  "verify_stdout": "The bundle contains these 3 refs:\n56dc162bf9a1003189e36e1f2a4678620c824546 refs/validation/office-fidelity-lists-sections/incoming-correction\nfa9821a7c9634a97aec6a8cf4d2617a926838934 refs/validation/office-fidelity-lists-sections/extraction-correction\n59b8d494fcc6a2bc1f527577f36b7aabc0b93b53 refs/validation/office-fidelity-lists-sections/consumer-prepublication\nThe bundle requires these 3 refs:\n097475fbda96aa4a6497d92f28d10f1aa5f640b4 \n4fdac35c8da50e9c62ffab4a86dd2397c21186b4 \nee6d4804229028c308d0829dfffc515d2a95f2cb \nThe bundle uses this hash algorithm: sha1\n",
+  "verify_stderr": "docs/validation/office-fidelity-lists-sections-20261117/qualification-evidence/local-source-checkpoints.bundle is okay\n",
+  "scope": "Exact local incoming-correction, extraction-correction, and pre-publication consumer commit objects, with prerequisites already in published source ancestry. Importing objects requires no workspace or branch switch."
+}

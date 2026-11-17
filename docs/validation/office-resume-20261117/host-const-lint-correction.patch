@@ -1,0 +1,7 @@
+diff --git a/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart b/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart
+index 8577c42b..a88758d2 100644
+--- a/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart
++++ b/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart
+@@ -1715 +1715 @@ class _OdtLayout {
+-        return _OdtListMarker.bullet('•');
++        return const _OdtListMarker.bullet('•');

@@ -1452,8 +1452,11 @@ class _OdtLayout {
     _OdtSectionStart? sectionStart,
     bool emptyAnchor = false,
   }) {
+    final fill = props.shadingFill?.toLowerCase() ?? '';
+    final border = props.borderColor?.toLowerCase() ?? '';
+    final decorations = jsonEncode([fill, border]);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$decorations';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'
@@ -1543,11 +1546,11 @@ class _OdtLayout {
             buffer.write(' fo:text-indent="${points}pt"');
           }
         }
-        if (props.shadingFill case final fill? when fill.isNotEmpty) {
-          buffer.write(' fo:background-color="#${fill.toLowerCase()}"');
+        if (fill.isNotEmpty) {
+          buffer.write(' fo:background-color="#$fill"');
         }
-        if (props.borderColor case final border? when border.isNotEmpty) {
-          buffer.write(' fo:border="0.5pt solid #${border.toLowerCase()}"');
+        if (border.isNotEmpty) {
+          buffer.write(' fo:border="0.5pt solid #$border"');
         }
         if (props.tabs.isEmpty) {
           buffer.write('/>');
@@ -1741,7 +1744,7 @@ class _OdtLayout {
         suffix = match[3];
         initial = BigInt.tryParse(match[2]!);
       } else if (label.isEmpty) {
-        return _OdtListMarker.bullet('•');
+        return const _OdtListMarker.bullet('•');
       } else {
         return _OdtListMarker.literal(label);
       }

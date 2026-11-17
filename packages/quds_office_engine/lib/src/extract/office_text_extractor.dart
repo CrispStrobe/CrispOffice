@@ -339,8 +339,7 @@ abstract final class OfficeTextExtractor {
       if (isOdfParagraph(element)) {
         final boxes = odfTextBoxes(element).toList();
         final ownText = readOdfParagraphText(element, budget);
-        if (ownText.isNotEmpty ||
-            !boxes.any((box) => odfParagraphs(box).isNotEmpty)) {
+        if (ownText.isNotEmpty || boxes.isEmpty) {
           paragraphs.add(ownText);
         }
         // Frames are separate stories. Keep their paragraphs distinct and
