@@ -38,3 +38,26 @@ on distinct long passages. The official pinned runtime and the exact historical
 native library/model are being restored from recorded sources and checksums.
 No historical binary trust pin will be weakened. GitHub Actions are neither
 polled nor awaited.
+
+## Frame repair and restored prerequisites
+
+The common-style repair now passes the original failed consumer control.
+All five scoped consumer fixtures, all 20 official-schema checks and all
+102 focused engine cases pass. The independent package comparison verifies
+that the identical frame graphic style only changes placement, restoring the
+DOCX bookmark with the exact authored box and unchanged surrounding text.
+The observed internal glyph-position difference is recorded explicitly in
+`office-consumer/README.md`, alongside raw before/after evidence.
+
+The official Flutter 3.47.8 / Dart 3.13.7 archive, all 162 hosted package/version
+pairs, the 23-file native development pack, the native library, both model
+precisions and the quantizer match their recorded hashes. The isolated graph
+resolves 109 packages with the original dependency lock unchanged. Runtime
+recovery receipts and failed infrastructure attempts are retained under
+`recovery/` without counting them as successful tests.
+
+The previously lost 377-row quality baseline has been reproduced on its exact
+590-file source snapshot and independently reconstructed. Its complete raw
+outputs are saved under `quality/`. The current merged-source comparison,
+broad VM/Node/example cohorts, retained consumers and serial thread timings
+remain the next gates for this source checkpoint.

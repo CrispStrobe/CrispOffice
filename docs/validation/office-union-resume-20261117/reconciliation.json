@@ -1,0 +1,27 @@
+{
+  "branch": "codex/office-union-resume-20261118",
+  "closed_prs": [
+    143,
+    144,
+    148
+  ],
+  "conflict_resolutions": {
+    "gector": "Retain common-parent writer and section regression; preserve all other incoming evidence and the whitespace-test relocation. Adapt added frame suite and retain no-unused-style case; add master-page-only coverage.",
+    "main": "Retain newer union test formatting, frame regression, and cumulative handoff. Product tree unchanged."
+  },
+  "gector_recovery": "205e913ec1525b5e5157a6f6d7ff84c883217e48",
+  "github_actions_queried_or_awaited": false,
+  "historical_results_counted": false,
+  "main": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+  "main_merge_remote": "1ba5559d6da1b25b80b620e1452a3101cce63a3d",
+  "merged_prs": [
+    145,
+    146,
+    147,
+    149
+  ],
+  "missing_final_evidence": "No completed 16c7b0fb qualification archive was saved in the previous remote branch; new runs required.",
+  "native_spacy_separate": "e7c67f29b34f1c1909e51aa25997fc774bb8ac80",
+  "product_libraries_unchanged_from_16c7b0fb": true,
+  "source_start": "16c7b0fb48c72527645678b76e25b5c5cb7b9c22"
+}
