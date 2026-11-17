@@ -502,7 +502,7 @@ abstract final class SmlAnalysis {
     if (stops.length < 2) return;
     final values = <double>[
       for (final ref in rule.range.cells)
-        if (sheet.cellOrNull(ref)?.asNumber case final number?) number,
+        ?sheet.cellOrNull(ref)?.asNumber,
     ];
     if (values.isEmpty) return;
     final sorted = [...values]..sort();
