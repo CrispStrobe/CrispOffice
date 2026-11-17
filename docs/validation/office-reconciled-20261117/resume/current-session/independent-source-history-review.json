@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-17T21:22:33.871989+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "candidate_commit": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+  "frozen_product_source": "9e21e4c08a0a7f04c165dedc316038038b2c47d4",
+  "main_commit": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+  "pr143_head": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+  "source_review": {
+    "conclusion": "No blocking issue found in the inspected later-column source change and reconciled tests. This is a source and history audit, not final runtime acceptance.",
+    "later_column_scope": "retainLeadingFragment now applies at every multi-column section start using the actual section index, while preserving existing paragraph field planning and source-order emission.",
+    "rejected_semantics": "The standalone paragraph pageBreakBefore disjunct is absent. Its native page precedence remains unchanged and has an explicit regression control.",
+    "coverage": "All four WmlSectionBreakKind values are covered both with and without explicit pageBreakBefore. Tests assert source inlines/properties remain unchanged and bookmark boundaries remain on their source fragment.",
+    "imported_docx_assertion": "The later-section fixture preserves the empty section-start fragment before both authored column boundaries. Header/master and page-number metadata stay on the first fragment.",
+    "negative_gap_assertion": "The restored regression now matches the unchanged conservative writer contract: a negative column gap is omitted without losing text or column count.",
+    "grammar_rule_id": "The one-line editor expectation now names the bounded de.grammar.verb-object-case rule emitted for Sie hat ein roten Mantel. Exact correction, clean recheck, undo and redo assertions remain intact; production grammar was not weakened.",
+    "new_tests_or_source_changes_by_reviewer": false
+  },
+  "history": {
+    "branch_heads": 178,
+    "branch_ancestors": 154,
+    "pr_heads": 144,
+    "pr_ancestors": 123,
+    "main_and_pr143_are_ancestors": true,
+    "current_source_to_docs_only": true,
+    "open_prs": [
+      {
+        "number": 139,
+        "head": "4471324a612853946fd5c3b2e7077f570abbc10e",
+        "disposition": "Separately owned native spaCy/CrispEmbed reference work; captured and retained but not merged or activated."
+      },
+      {
+        "number": 143,
+        "head": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+        "disposition": "Fully included as ancestor of candidate; existing PR left untouched."
+      },
+      {
+        "number": 144,
+        "head": "e9889e07c983ac15ff002771cf78854d1bc0d572",
+        "disposition": "Current continuation candidate."
+      }
+    ],
+    "nonancestor_meaning": "Ancestry alone does not imply missing source. Nonancestor heads include squash-merged originals, superseded historical continuations and separately owned spaCy work. Original remote branches and all fetched PR heads remain preserved; no blanket merge was applied.",
+    "aot_rml": "Deliberate removal retained; package manifests contain no AOT/RML dependency. Historical AOT branches stay preserved without restoring their product state.",
+    "branch_count_note": "API pages and fetched origin refs contain 178 unique branch heads. The preceding historical handoff reported 177; this report records the current independently counted set.",
+    "all_checked_refs_sha256": "9943ddd5f11b88a8a4fcc29da95ef37f76e665241753cdcc61cee340af7a6e5b"
+  },
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "rerun": false
+  },
+  "acceptance": "Pending fresh final full/portable and consumer receipts plus input-integrity audit. Earlier interrupted outcomes remain unaccepted.",
+  "nonancestor_branches": [
+    {
+      "name": "codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "codex/gector-office-resume-20261117",
+      "sha": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "docs/aot-removal",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "docs/ods-dynamic-validation",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/german-gector-proofing",
+      "sha": "34c70ece1e9c14954398826f93c1bb6aa61007a8",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/native-spacy-reference-20261117",
+      "sha": "4471324a612853946fd5c3b2e7077f570abbc10e",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/odt-first-even-headers",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "ancestor_of_candidate": false
+    },
+    {
+      "name": "vendor/odp-preset-shapes",
+      "sha": "fbc8abbcdd4bf6df90be04fc953e4b490d20c599",
+      "ancestor_of_candidate": false
+    }
+  ],
+  "nonancestor_pull_request_heads": [
+    {
+      "ref": "refs/remotes/pull/114",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/120",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/124",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/125",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/126",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/127",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/128",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/129",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/130",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/131",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/132",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/133",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/134",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/135",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/136",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/137",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/138",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/139",
+      "sha": "4471324a612853946fd5c3b2e7077f570abbc10e",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/140",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/141",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ancestor_of_candidate": false
+    },
+    {
+      "ref": "refs/remotes/pull/142",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ancestor_of_candidate": false
+    }
+  ]
+}
