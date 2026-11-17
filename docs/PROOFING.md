@@ -11,6 +11,24 @@ web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
+## Native spaCy implementation handoff — 17 November 2026
+
+The [native spaCy roadmap](roadmaps/native-spacy/README.md) preserves the source
+audit and scoped implementation plan for a Python-free, daemon-free German
+analysis backend in CrispEmbed. It specifies the `de_core_news_sm` 3.8.0 CNN,
+native tokenizer/parser/edit-tree work, an optional Dart integration, local
+parity and quality checks, and target-device/distribution evidence. The native
+spaCy backend is not yet implemented. Existing Python syntax experiments remain
+evaluation evidence with their original limits.
+
+Main's current Office integration excludes AOT; the handoff pins the earlier AOT
+branch as historical source. It also preserves the user's later clarification
+that LGPL can be acceptable when provenance and commercial/App Store obligations
+are satisfied. See [licensing and distribution](roadmaps/native-spacy/licensing-and-distribution.md).
+This does not retroactively approve an artifact or change the existing Harper
+packaging checks. The selected new architecture starts with MIT model/code
+inputs and an explicitly inventoried native dependency set.
+
 ## Context rules without AOT/RML — 17 November 2026
 
 The [independent context qualification](validation/german-context-20261117/README.md)
@@ -326,6 +344,13 @@ packaging/license tests; no new real-library/Wasm execution is claimed.
 The experimental German model remains disabled and was not rerun.
 
 ## Scope and license policy
+
+The rules below record the existing proofing feature plan and its packaging
+qualifications. For the new native linguistic backend, the later user
+clarification and scoped decisions in the [native spaCy licensing record](roadmaps/native-spacy/licensing-and-distribution.md)
+apply: LGPL is conditionally acceptable, rather than categorically forbidden.
+Existing dependency allowlists and qualified artifacts keep their recorded
+scope; no additional component is approved merely by this clarification.
 
 - Keep `quds_office_engine` pure Dart and document surfaces custom RenderBox.
 - Ship offline German spelling, automatic German and US/UK English hyphenation,
