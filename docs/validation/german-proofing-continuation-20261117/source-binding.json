@@ -1,0 +1,67 @@
+{
+  "qualified_source": "65728d8da063b5e1cc9f8a76f2ff3d5a69b0753e",
+  "qualified_tree": "027d8ebd2a96544d78cc4c8435612a4fcb9c4653",
+  "input_manifest": "tested-inputs.json.gz",
+  "input_manifest_sha256": "46039ee4ecf38ad588b0879808b5d1a87a6d0cefe15d534c33274d68b3e2a13f",
+  "input_count": 2188,
+  "tracked_inputs_matched": 2187,
+  "workspace_inputs": [
+    {
+      "path": "pubspec.lock",
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+    }
+  ],
+  "workspace_lock_evidence": "workspace-pubspec.lock",
+  "all_tested_inputs_match": true,
+  "mismatches": [],
+  "combined_run_inputs_unchanged": true,
+  "continuity_from_reported_checkpoint": {
+    "source": "b63d76a2dbdd18d1a2fb3a46943632966368916c",
+    "groups": {
+      "odt_annotations_notes_layouts": {
+        "paths": [
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+          "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+          "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+          "packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+          "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+          "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        ],
+        "changed_paths": [],
+        "unchanged": true
+      },
+      "harper": {
+        "paths": [
+          "packages/quds_proofing_harper"
+        ],
+        "changed_paths": [],
+        "unchanged": true
+      },
+      "hyphenation": {
+        "paths": [
+          "packages/quds_office_engine/lib/src/bidi/english_gb_hyphenation_data.dart",
+          "packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart",
+          "packages/quds_office_engine/lib/src/bidi/english_us_hyphenation_data.dart",
+          "packages/quds_office_engine/lib/src/bidi/german_hyphenation_data.dart",
+          "packages/quds_office_engine/lib/src/bidi/german_hyphenator.dart",
+          "packages/quds_office_engine/lib/src/bidi/hyphenation_words.dart",
+          "packages/quds_office_engine/lib/src/bidi/office_hyphenator.dart"
+        ],
+        "changed_paths": [],
+        "unchanged": true
+      },
+      "lexical_data": {
+        "paths": [
+          "packages/quds_office_engine/lib/src/proofing/data",
+          "packages/quds_office_engine/third_party/proofing"
+        ],
+        "changed_paths": [],
+        "unchanged": true
+      }
+    }
+  },
+  "node_note": "558 full Node tests ran before two brace-only lint repairs in german_spelling.dart. The preserved formatting-followup receipt proves all other 825 selected inputs unchanged. Final corpus VM/Node and strict analysis used the repaired source. No full-suite Node rerun is claimed.",
+  "superseded_intermediate_binding": "final/deterministic-source-binding.json in local-evidence.tar.xz refers to c7c92bb and reports false for all_tracked_source_inputs_match. Its all-match explanatory prose is inaccurate for that intermediate checkpoint. This current explicit hash/blob comparison supersedes that statement without altering the original receipt.",
+  "github_actions_used": false
+}

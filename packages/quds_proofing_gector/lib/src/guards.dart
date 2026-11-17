@@ -234,18 +234,28 @@ final class GectorGermanGuards {
     String replacement,
     String label,
   ) {
+    final result = <String>{};
+    String? targetNumber;
     if (label.startsWith(r'$TRANSFORM_VERB_')) {
       final parts = label.substring(16).split('_');
       if (parts.length == 2 && RegExp(r'^P[123][SP]$').hasMatch(parts[1])) {
-        return <String>{parts[1].substring(1)};
+        result.add(parts[1].substring(1));
+        targetNumber = parts[1].substring(2);
       }
     }
-    final result = <String>{};
     final prefix = '${word}_';
     for (final entry in configuration.verbForms.entries) {
       if (entry.value != replacement || !entry.key.startsWith(prefix)) continue;
       final tag = entry.key.substring(entry.key.lastIndexOf('_') + 1);
-      if (RegExp(r'^P[123][SP]$').hasMatch(tag)) result.add(tag.substring(1));
+      if (RegExp(r'^P[123][SP]$').hasMatch(tag) &&
+          (targetNumber == null || tag.endsWith(targetNumber))) {
+        // The authenticated table can encode the same replacement for several
+        // persons: ist -> sind is both 1P and 3P. Match its surface form to the
+        // subject, even when the model chose the other same-number label.
+        // Do not expand a transform across singular/plural ambiguity (geht is
+        // both 3S and 2P); the existing conservative number policy stays intact.
+        result.add(tag.substring(1));
+      }
     }
     return result;
   }

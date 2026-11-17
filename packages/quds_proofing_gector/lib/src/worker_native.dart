@@ -15,7 +15,10 @@ Future<GectorTransport> startWorker({
   required int maximumPendingRequests,
   required Duration startupTimeout,
 }) async {
-  final transport = _NativeWorker(maximumPendingRequests);
+  final transport = _NativeWorker(
+    maximumPendingRequests,
+    options.maximumTextCodeUnits,
+  );
   // Isolate.spawn can fail before the readiness await is installed (for
   // example, an unsendable factory). Disposal must not leave an unhandled
   // readiness error in that path; the normal await still receives failures.
@@ -46,8 +49,9 @@ Future<GectorTransport> startWorker({
 }
 
 final class _NativeWorker implements GectorTransport {
-  _NativeWorker(this.maximumPendingRequests);
+  _NativeWorker(this.maximumPendingRequests, this.maximumTextCodeUnits);
   final int maximumPendingRequests;
+  final int maximumTextCodeUnits;
   final ReceivePort _replies = ReceivePort();
   final ReceivePort _errors = ReceivePort();
   final ReceivePort _exits = ReceivePort();
@@ -57,6 +61,12 @@ final class _NativeWorker implements GectorTransport {
       <int, Completer<GectorDecodedText>>{};
   final Map<String, int> _byKey = <String, int>{};
   final Map<int, String> _keys = <int, String>{};
+  // Completing a superseded caller does not acknowledge its worker message.
+  // Keep that remote slot until the worker replies, and coalesce replacements
+  // here so a busy native forward cannot accumulate full snapshots in its
+  // isolate mailbox. Both collections are bounded by maximumPendingRequests.
+  final Set<int> _inFlight = <int>{};
+  final Map<int, GectorCheckRequest> _waiting = <int, GectorCheckRequest>{};
   final List<StreamSubscription<Object?>> _subscriptions =
       <StreamSubscription<Object?>>[];
   Isolate? _isolate;
@@ -91,20 +101,23 @@ final class _NativeWorker implements GectorTransport {
       case _InitFailed():
         _fail(GectorUnavailableException(raw.message));
       case _Reply():
+        final releasedSlot = _inFlight.remove(raw.id);
         final pending = _pending.remove(raw.id);
         final key = _keys.remove(raw.id);
         if (key != null && _byKey[key] == raw.id) _byKey.remove(key);
-        if (pending == null) return;
-        if (raw.result case final result?) {
-          pending.complete(result);
-        } else {
-          pending.completeError(switch (raw.errorKind) {
-            'cancelled' => const GectorCancelledException(),
-            'capacity' => GectorCapacityException(raw.errorMessage!),
-            'unavailable' => GectorUnavailableException(raw.errorMessage!),
-            _ => StateError(raw.errorMessage ?? 'GECToR inference failed.'),
-          });
+        if (pending != null) {
+          if (raw.result case final result?) {
+            pending.complete(result);
+          } else {
+            pending.completeError(switch (raw.errorKind) {
+              'cancelled' => const GectorCancelledException(),
+              'capacity' => GectorCapacityException(raw.errorMessage!),
+              'unavailable' => GectorUnavailableException(raw.errorMessage!),
+              _ => StateError(raw.errorMessage ?? 'GECToR inference failed.'),
+            });
+          }
         }
+        if (releasedSlot) _dispatch();
       case _Stopped():
         if (!_stopped.isCompleted) _stopped.complete();
       default:
@@ -121,9 +134,19 @@ final class _NativeWorker implements GectorTransport {
         const GectorUnavailableException('GECToR worker is not available.'),
       );
     }
+    if (request.text.length > maximumTextCodeUnits) {
+      return Future<GectorDecodedText>.error(
+        GectorCapacityException(
+          'GECToR text exceeds $maximumTextCodeUnits UTF-16 units.',
+        ),
+      );
+    }
     final previousId = _byKey[request.key];
     if (previousId != null) {
-      _commands!.send(_Cancel(previousId));
+      if (_inFlight.contains(previousId)) {
+        _commands!.send(_Cancel(previousId));
+      }
+      _waiting.remove(previousId);
       _pending
           .remove(previousId)
           ?.completeError(const GectorCancelledException());
@@ -142,8 +165,20 @@ final class _NativeWorker implements GectorTransport {
     _pending[id] = completer;
     _keys[id] = request.key;
     _byKey[request.key] = id;
-    _commands!.send(_Run(id, request));
+    _waiting[id] = request;
+    _dispatch();
     return completer.future;
+  }
+
+  void _dispatch() {
+    if (_disposed || _commands == null) return;
+    while (_inFlight.length < maximumPendingRequests && _waiting.isNotEmpty) {
+      // Map insertion order preserves other keys' place when a key is replaced.
+      final id = _waiting.keys.first;
+      final request = _waiting.remove(id)!;
+      _inFlight.add(id);
+      _commands!.send(_Run(id, request));
+    }
   }
 
   void _fail(Object error) {
@@ -154,6 +189,8 @@ final class _NativeWorker implements GectorTransport {
     _pending.clear();
     _keys.clear();
     _byKey.clear();
+    _waiting.clear();
+    _inFlight.clear();
     _disposed = true;
   }
 

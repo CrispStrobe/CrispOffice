@@ -37,6 +37,7 @@ dimensions, and owns the native context inside the worker isolate.
 ```dart
 import 'dart:io';
 
+import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_proofing_gector/quds_proofing_gector.dart';
 import 'package:quds_proofing_gector/quds_proofing_gector_native.dart';
 
@@ -45,6 +46,7 @@ Future<GectorProofingProvider> loadManualGerman({
   required GectorModelArtifact reviewedArtifact,
   required String libraryPath,
   required String librarySha256,
+  required OfficeProofingVocabulary vocabulary,
 }) async {
   final bundle = await GectorVerifiedBundle.load(
     read: (name) => File('$bundleDirectory/$name').openRead(),
@@ -59,6 +61,7 @@ Future<GectorProofingProvider> loadManualGerman({
       threads: 2,
     ),
     lexiconFactory: const GectorGermanLexiconFactory(),
+    vocabulary: vocabulary,
   );
 }
 ```
@@ -68,11 +71,21 @@ dictionary loading, and native context creation are startup work and occur
 outside the normal proofing request deadline. In the existing editor host:
 
 ```dart
+final readyGectorProvider = await loadManualGerman(
+  bundleDirectory: bundleDirectory,
+  reviewedArtifact: reviewedArtifact,
+  libraryPath: libraryPath,
+  librarySha256: librarySha256,
+  vocabulary: controller.proofing.vocabulary,
+);
 controller.proofing.configureManual(
   OfficeProofingService(providers: [readyGectorProvider]),
 );
 await controller.proofing.checkNow();
 ```
+
+Share the session's vocabulary object so its personal and ignored words also
+protect model suggestions and changes invalidate in-flight grammar results.
 
 The manual service runs on explicit checks, including F7. The editor's debounce
 path excludes manually configured providers. This package does not alter the
@@ -84,6 +97,11 @@ a read-only word query. Custom hosts can supply `GectorLexiconFactory`; it must
 create its lexicon inside the worker. `GectorWordSetLexiconFactory` supplies a
 closed, immutable word set when that is appropriate for a host. An empty word
 set deliberately blocks lexical replacements; it is not a permissive fallback.
+
+For the exact qualified Linux development build, the repository provides an
+[offline pack builder and verifier](../../tools/proofing/german_model/NATIVE_PACK.md).
+It supplies the verified paths and retains all model/native notices; it does
+not activate the provider or establish a release for other platforms.
 
 ## Backend contract and model identity
 
@@ -180,10 +198,15 @@ The implemented policy includes:
   unpublished built-ins' complete linguistic behavior or collapse pre-existing
   elision echoes.
 
-The first real native guarded run preserves 5/18 expected fixes on the frozen
-error panel, compared with 9/18 for the original unguarded decoder. It holds the
-noun-plural, `Wir ist`, demonstrative `Das sind`, and `Die Blumen ist` changes
-because this bounded policy cannot establish the needed person/subject evidence.
+The first real native guarded run preserved 5/18 expected fixes on the frozen
+error panel, compared with 9/18 for the original unguarded decoder. The
+[compiled continuation](../../docs/validation/german-gector/2026-11-17-continuation/README.md)
+now preserves **6/18**: authenticated same-number verb-person aliases allow
+`Wir ist zufrieden.` to become `Wir sind zufrieden.` even when the model selects
+the third-person-plural label for the shared surface form `sind`. All previous
+fixes remain. The verb-plural `Die Kinder spielt`, demonstrative `Das sind`, and
+`Die Blumen ist` changes remain held because the bounded policy cannot establish
+the needed subject evidence. Cross-number ambiguity is not relaxed.
 All ten supported de-DE clean controls remain unchanged; the two Swiss controls
 are explicitly unsupported. This is an experimental host opt-in, pending broader
 precision/recall and incremental-benefit evaluation.
@@ -197,7 +220,12 @@ broad false-positive rate or authorize automatic application of suggestions.
 The worker loads one backend and one lexicon, then serializes requests. The
 default queue admits at most three outstanding requests; the configurable limit
 is 1–8. A newer request for the same document/block/base-offset key supersedes
-the older snapshot. Cancellation is checked between passes, after forwards,
+the older snapshot. Superseding a caller retains the old remote slot until the
+worker acknowledges it; only the latest unsent snapshot for each key is kept
+locally. This bounds both unacknowledged requests and waiting snapshots even
+while synchronous inference blocks the worker's message loop. Over-limit text
+is rejected before it can cancel existing valid work or cross the isolate.
+Cancellation is checked between passes, after forwards,
 and while applying guards. Synchronous native inference cannot be interrupted
 mid-call, but its cancelled result is discarded before another pass.
 
@@ -251,6 +279,12 @@ gate. Without explicit native fixtures it is skipped, not claimed as passing.
 The full real-worker/provider path is exercised by the repository's separate
 `tools/proofing/german_model/run_gector_dart.dart` tool. These checks run locally
 without waiting for GitHub Actions.
+
+When compiling that tool to an executable outside the checkout, pass
+`--source-root /path/to/quds_office_suite` so its input hashes refer to the
+reviewed source. The report records the actual executable path and SHA-256
+alongside Dart product mode; retain the compilation command and input hashes
+with the measurement. Compiled measurements do not replace earlier JIT results.
 
 ## Licensing
 

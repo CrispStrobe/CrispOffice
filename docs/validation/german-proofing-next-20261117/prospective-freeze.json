@@ -1,0 +1,13 @@
+{
+  "panel": "tools/proofing/german_model/prospective_cases_20261117.json",
+  "sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+  "bytes": 15488,
+  "rows": 76,
+  "de_DE_errors": 32,
+  "de_DE_clean": 40,
+  "locale_controls": 4,
+  "pairs": 32,
+  "reviewed_at_utc": "2026-11-17T15:22:30.640343+00:00",
+  "review": "Independently reviewed all minimal corrections and controls before any provider execution; original panel inputs are distinct. No corpus output inspected.",
+  "interpretation": "Prospective synthetic development challenge, not representative held-out quality or training-set exclusion."
+}

@@ -1,0 +1,255 @@
+{
+  "files": [
+    {
+      "bytes": 3428,
+      "path": "evidence/artifacts.json",
+      "role": "evidence",
+      "sha256": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0"
+    },
+    {
+      "bytes": 49612,
+      "path": "evidence/gector-de-mixed-q4_k.gguf.manifest.json",
+      "role": "evidence",
+      "sha256": "db4ec2b79cdc3fb56c201f19fee58ad681f90182922c3725f77061e0e9efc630"
+    },
+    {
+      "bytes": 22078,
+      "path": "evidence/native-build-and-licenses.json",
+      "role": "evidence",
+      "sha256": "b27cf614ff09b6049b63c34e990d0bfd81252b396b4f770693d8d36ed65fc4e1"
+    },
+    {
+      "bytes": 29775,
+      "path": "evidence/native-build-v2.json",
+      "role": "evidence",
+      "sha256": "48996f283c24dbbf57590cf0314f4ec51d7e4076f4e14b9f99172e36f542dddf"
+    },
+    {
+      "bytes": 94270,
+      "path": "evidence/qualification-mixed-q4_k-policy-v2.json.gz",
+      "role": "evidence",
+      "sha256": "1e11276c6a437336717225032731ed310c6f128561e422710357e980a2355c50"
+    },
+    {
+      "bytes": 11358,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/LICENSE",
+      "role": "bundle",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "bytes": 444,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/NOTICE",
+      "role": "bundle",
+      "sha256": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3"
+    },
+    {
+      "bytes": 13590,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/README.md",
+      "role": "bundle",
+      "sha256": "e2e5120e6c25299f962120463936427056fd9b468c714a1bf785f555edabf00f"
+    },
+    {
+      "bytes": 176821,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/config.json",
+      "role": "bundle",
+      "sha256": "c870008059c0f354e1ebc30c816ae5f55fa14a77ffa7da5271310ccf5e24e170"
+    },
+    {
+      "bytes": 82756896,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/gector-de-mixed-q4_k.gguf",
+      "role": "model",
+      "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b"
+    },
+    {
+      "bytes": 6088,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/gector-guards.json",
+      "role": "bundle",
+      "sha256": "57c4824e541d323e9cff4c543bd80cfd93c333d3be64cce83297bf5b8a44627a"
+    },
+    {
+      "bytes": 930,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/gector-meta.json",
+      "role": "bundle",
+      "sha256": "acb7edf298f6ac4ba8b83c628ad512404eadb6c43120c1878d4f3356ebd8b5a5"
+    },
+    {
+      "bytes": 1155,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/language-rules.json",
+      "role": "bundle",
+      "sha256": "901b350a9c751fc95d51eb5ee3ba7b7f0d11b61c6cc17e67bce2996e17bc5815"
+    },
+    {
+      "bytes": 12746,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/quickstart.py",
+      "role": "bundle",
+      "sha256": "f5ce68cc466b5891fc3f13280dc9db3a55bf9016505c2b2d84eb1d2cb07c2b40"
+    },
+    {
+      "bytes": 729060,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/tokenizer.json",
+      "role": "bundle",
+      "sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087"
+    },
+    {
+      "bytes": 370,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/tokenizer_config.json",
+      "role": "bundle",
+      "sha256": "4e5738ad97f034b944ce8b7b8c3165f7a6333b524b7b77044f7e9e9b963f4dea"
+    },
+    {
+      "bytes": 121758,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/verb-form-vocab.txt",
+      "role": "bundle",
+      "sha256": "7582e7c2f480d7e49ac18677195cfff4ad1d0c350b0448f1271aacf290205b68"
+    },
+    {
+      "bytes": 239836,
+      "path": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/vocab.txt",
+      "role": "bundle",
+      "sha256": "bf186f7fb9cb667d811c08b45ce64d1e8e262277bb053f05d1aef3e9f13039a3"
+    },
+    {
+      "bytes": 2064104,
+      "path": "native/9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604/libcrispembed-gector.so",
+      "role": "native",
+      "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604"
+    },
+    {
+      "bytes": 4229,
+      "path": "native/include/gector.h",
+      "role": "native",
+      "sha256": "3794ff7e9b228df757f502679f42a4784b9a6d89ae32d7198ee79d621f8c4bda"
+    },
+    {
+      "bytes": 4739,
+      "path": "native/share/licenses/crispembed-gector/LICENSE",
+      "role": "native",
+      "sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e"
+    },
+    {
+      "bytes": 3729,
+      "path": "native/share/licenses/crispembed-gector/THIRD_PARTY_NOTICES",
+      "role": "native",
+      "sha256": "bb34de085625026bc7f0be3279172b81cfb0a1ea2de0dba45711bd2aa3b0741a"
+    }
+  ],
+  "limits": [
+    "No release, deployment, automatic download or native loading is performed.",
+    "System runtimes are not bundled; their recorded licenses are not shipping approval.",
+    "This exact Linux x86_64 binary requires the recorded ISA and compatible system ABI.",
+    "Keep model/library paths immutable for the entire process lifetime.",
+    "Read-only permissions prevent accidental writes, not owner-authorized modification."
+  ],
+  "locale": "de-DE",
+  "model": {
+    "directory": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "file": "gector-de-mixed-q4_k.gguf",
+    "precision": "mixed-q4_k",
+    "recipe": {
+      "encoder_matrices": "Q4_K",
+      "heads": "F16",
+      "name": "mixed-q4_k",
+      "overrides": [
+        "*=f32",
+        "enc.*.attn.*.weight=q4_k",
+        "enc.*.ffn.*.weight=q4_k",
+        "token_embd.weight=q8_0",
+        "position_embd.weight=f16",
+        "gector.*.weight=f16"
+      ],
+      "position_embeddings": "F16",
+      "token_embeddings": "Q8_0",
+      "type_embeddings_norms_biases": "F32"
+    },
+    "revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+    "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "size_bytes": 82756896,
+    "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+  },
+  "native": {
+    "abi": {
+      "attention_mask": "all-ones-unpadded",
+      "batch_size": 1,
+      "detection_width": 2,
+      "header": "native/include/gector.h",
+      "label_width": 5000,
+      "maximum_tokens": 512,
+      "provider_symbols": [
+        "crispembed_gector_create",
+        "crispembed_gector_forward",
+        "crispembed_gector_free"
+      ],
+      "vocabulary_size": 31102
+    },
+    "environment_gate": "CRISPEMBED_GECTOR=1",
+    "file": "libcrispembed-gector.so",
+    "path": "native/9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604/libcrispembed-gector.so",
+    "platform": "Linux x86_64",
+    "required_cpu_features": [
+      "sse4_2",
+      "avx",
+      "avx2",
+      "f16c",
+      "fma",
+      "bmi2"
+    ],
+    "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+    "size_bytes": 2064104,
+    "system_dependencies": [
+      {
+        "bundled_by_install": false,
+        "license_scope": "GPL-3.0-or-later WITH GCC-exception-3.1",
+        "resolved_basename": "libstdc++.so.6.0.33",
+        "sha256": "972bb2a18b71140dab0240f8a1f68ab3fb1d56bcd4c4f824a91b70888faf5a00",
+        "soname": "libstdc++.so.6"
+      },
+      {
+        "bundled_by_install": false,
+        "license_scope": "glibc LGPL-2.1-or-later plus component-specific notices",
+        "resolved_basename": "libm.so.6",
+        "sha256": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3",
+        "soname": "libm.so.6"
+      },
+      {
+        "bundled_by_install": false,
+        "license_scope": "GPL-3.0-or-later WITH GCC-exception-3.1",
+        "resolved_basename": "libgcc_s.so.1",
+        "sha256": "30c61ab012a4241bed033725a09b61f5fdd3bb7df95ee852d0b096520524c7af",
+        "soname": "libgcc_s.so.1"
+      },
+      {
+        "bundled_by_install": false,
+        "license_scope": "glibc LGPL-2.1-or-later plus component-specific notices",
+        "resolved_basename": "libc.so.6",
+        "sha256": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92",
+        "soname": "libc.so.6"
+      },
+      {
+        "bundled_by_install": false,
+        "license_scope": "glibc LGPL-2.1-or-later plus component-specific notices",
+        "resolved_basename": "ld-linux-x86-64.so.2",
+        "sha256": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307",
+        "soname": "ld-linux-x86-64.so.2"
+      }
+    ]
+  },
+  "qualification": {
+    "cases": 30,
+    "long_tokens": [
+      64,
+      128,
+      256
+    ],
+    "report": "evidence/qualification-mixed-q4_k-policy-v2.json.gz",
+    "saved_passes": 40,
+    "scope": "native numerical and frozen-case parity; not broad application quality"
+  },
+  "schema": "quds.gector.local-development-pack.v1",
+  "scope": "local-development-only",
+  "sizes": {
+    "file_count": 23,
+    "manifest_bytes": 9315,
+    "payload_bytes": 86347016,
+    "total_bytes": 86356331
+  }
+}

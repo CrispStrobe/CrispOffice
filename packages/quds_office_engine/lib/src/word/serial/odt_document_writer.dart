@@ -298,12 +298,13 @@ abstract final class OdtDocumentWriter {
     final roots = <_OdtListItem>[];
     final stack = <_OdtListItem>[];
     for (final paragraph in paragraphs) {
-      var level = paragraph.properties.ilvl.clamp(0, 8);
-      if (level > stack.length) level = stack.length;
-      while (stack.length > level) {
+      final item = _OdtListItem(paragraph);
+      // Compare authored levels, not their normalized output depth. Otherwise
+      // a skipped level such as 0,3,3 accidentally turns the second level-3
+      // paragraph into a grandchild. A missing ancestor needs no invented item.
+      while (stack.isNotEmpty && stack.last.level >= item.level) {
         stack.removeLast();
       }
-      final item = _OdtListItem(paragraph);
       if (stack.isEmpty) {
         roots.add(item);
       } else {
@@ -311,28 +312,27 @@ abstract final class OdtDocumentWriter {
       }
       stack.add(item);
     }
-    final ordered = paragraphs.any((paragraph) {
-      final label = paragraph.properties.listLabel?.trim() ?? '';
-      return label.isNotEmpty &&
-          !const <String>{'•', '◦', '▪', 'o'}.contains(label);
-    });
     var first = true;
     void writeItems(List<_OdtListItem> items) {
-      w.writeStartElement('list', prefix: 'text');
-      w.writeAttribute('text:style-name', layout.listStyle(ordered: ordered));
+      bool? previousOrdered;
       for (final item in items) {
+        if (previousOrdered != item.ordered) {
+          if (previousOrdered != null) w.writeEndElement();
+          w.writeStartElement('list', prefix: 'text');
+          w.writeAttribute(
+            'text:style-name',
+            layout.listStyle(ordered: item.ordered),
+          );
+          previousOrdered = item.ordered;
+        }
         w.writeStartElement('list-item', prefix: 'text');
-        _writeParagraph(
-          w,
-          item.paragraph,
-          layout,
-          styleOverride: first ? firstParagraphStyle : null,
-        );
+        final override = first ? firstParagraphStyle : null;
         first = false;
+        _writeParagraph(w, item.paragraph, layout, styleOverride: override);
         if (item.children.isNotEmpty) writeItems(item.children);
         w.writeEndElement();
       }
-      w.writeEndElement();
+      if (previousOrdered != null) w.writeEndElement();
     }
 
     writeItems(roots);
@@ -402,7 +402,15 @@ abstract final class OdtDocumentWriter {
     switch (inline) {
       case WmlRun():
         final style = layout.runStyle(inline.properties);
-        final href = inline.hyperlink?.url;
+        final href = switch (inline.hyperlink) {
+          final link? =>
+            link.url ??
+                link.file ??
+                (link.anchor == null || link.anchor!.isEmpty
+                    ? null
+                    : '#${link.anchor}'),
+          null => null,
+        };
         final commentLink =
             layout.inCommentBody && href != null && href.isNotEmpty;
         if (href != null && href.isNotEmpty) {
@@ -461,9 +469,16 @@ abstract final class OdtDocumentWriter {
         // surrounding result runs remain in the inline sequence, including
         // citations and bibliographies that span several paragraphs.
         break;
-      case WmlContentControlBoundary() ||
-          WmlNoteMarker() ||
-          WmlBookmarkBoundary():
+      case WmlBookmarkBoundary():
+        final name = inline.name;
+        if (name != null && name.isNotEmpty) {
+          w.writeEmptyElement(
+            inline.isStart ? 'bookmark-start' : 'bookmark-end',
+            prefix: 'text',
+            attributes: {'text:name': name},
+          );
+        }
+      case WmlContentControlBoundary() || WmlNoteMarker():
         break;
       case WmlObject():
       case WmlOpaqueInline():
@@ -1300,8 +1315,15 @@ class _OdtLayout {
 }
 
 class _OdtListItem {
-  _OdtListItem(this.paragraph);
+  _OdtListItem(this.paragraph) : level = paragraph.properties.ilvl.clamp(0, 8);
 
   final WmlParagraph paragraph;
+  final int level;
+  bool get ordered {
+    final label = paragraph.properties.listLabel?.trim() ?? '';
+    return label.isNotEmpty &&
+        !const <String>{'•', '◦', '▪', 'o'}.contains(label);
+  }
+
   final List<_OdtListItem> children = <_OdtListItem>[];
 }

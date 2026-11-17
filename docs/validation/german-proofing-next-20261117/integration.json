@@ -1,0 +1,1188 @@
+{
+  "source": "17f1483a02c1d9819ff4a1b3dcf2dbc512cdfb57",
+  "captured_refs": 235,
+  "all_ancestors": true,
+  "checks": [
+    {
+      "ref": "refs/remotes/origin/codex/german-morphology-20261117",
+      "sha": "f986fd031e4f984200c392e844ad83ae1ef5eb24",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-continuation-20261117",
+      "sha": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/office-fidelity-20261117",
+      "sha": "4ca30ec3ba9e2a1c2288d78bb83d2a3ce3678e0d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/german-gector-proofing",
+      "sha": "d2e50c3a298679fed873d045a4b2d07663b37246",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "sha": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/1",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/10",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/100",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/101",
+      "sha": "4ca30ec3ba9e2a1c2288d78bb83d2a3ce3678e0d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/102",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/103",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/104",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/105",
+      "sha": "f986fd031e4f984200c392e844ad83ae1ef5eb24",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/106",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/107",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/11",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/12",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/13",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/14",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/15",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/16",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/17",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/18",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/19",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/2",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/20",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/21",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/22",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/23",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/24",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/25",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/26",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/27",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/28",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/29",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/3",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/30",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/31",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/32",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/33",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/34",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/35",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/36",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/37",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/38",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/39",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/4",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/40",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/41",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/42",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/43",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/44",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/45",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/46",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/47",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/48",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/49",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/5",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/50",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/51",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/52",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/53",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/54",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/55",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/56",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/57",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/58",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/59",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/6",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/60",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/61",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/62",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/63",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/64",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/65",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/66",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/67",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/68",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/69",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/7",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/70",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/71",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/72",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/73",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/74",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/75",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/76",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/77",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/78",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/79",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/8",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/80",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/81",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/82",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/83",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/84",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/85",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/86",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/87",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/88",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/89",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/9",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/90",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/91",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/92",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/93",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/94",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/95",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/96",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/97",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/98",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "is_ancestor": true
+    },
+    {
+      "ref": "refs/remotes/pr/99",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "is_ancestor": true
+    }
+  ],
+  "conflict_decisions": [
+    "Retain both roadmap evidence series with historical source labels.",
+    "Combine authored ODT nesting and per-item marker kinds with the newer section style and bookmark implementation.",
+    "Keep the existing equivalent interpolation in the annotation test and import the section interpolation fixes.",
+    "Retain original genitive, queue admission, locale coverage, and brace-lint source changes."
+  ]
+}

@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Expose a read-only, language-scoped German dictionary query for optional
+  grammar guards, using the existing dictionary and owner vocabulary without
+  generating suggestions or accepting partial tokens.
+- Repair required noun endings after unambiguous genitive determiners, such as
+  `des Student` and `des schlimmen Fehler`, using the existing noun-case rule.
+  Retain ambiguous articles, valid alternatives, nominalized adjectives,
+  source/grapheme guards and modern-spelling corroboration.
+
 - Broaden offline German article, case and adjective checking with 67,492
   noun lemmas from pinned Unicode-3.0 Inflection data. Load lexical buckets
   lazily on Dart VM and web, preserve ambiguous and alternative readings, and
@@ -14,10 +22,6 @@ All notable changes to `quds_office_engine` are documented here.
   hyphenation behavior.
 - Keep note references inside exported ODT comments as labels, so annotations
   cannot consume or duplicate the note body belonging to a document reference.
-- Expose a read-only, language-scoped German dictionary query for optional
-  grammar guards, using the existing dictionary and owner vocabulary without
-  generating suggestions or accepting partial tokens.
-
 - Unify English/German protected-text ranges, including Unicode email/URI
   handling, bounded backtick pairing and German identifier/contraction guards.
   Preserve equivalent German language aliases across styled runs.

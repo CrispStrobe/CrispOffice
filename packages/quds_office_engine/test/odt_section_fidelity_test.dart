@@ -163,6 +163,79 @@ void main() {
         expect(document.sections.last.blocks.length, 2);
       },
     );
+    test(
+      'nested section list applies its page boundary once: ordered=$ordered',
+      () {
+        final entries = [
+          ('Parent', 0),
+          ('Child one', 1),
+          ('Grandchild', 2),
+          ('Child two', 1),
+          ('Sibling', 0),
+        ];
+        final paragraphs = [
+          for (final (text, level) in entries)
+            _paragraph(
+              text,
+              properties: WmlParagraphProps(
+                numId: 1,
+                ilvl: level,
+                listLabel: ordered ? '1.' : '•',
+              ),
+            ),
+        ];
+        final document = _twoSections(paragraphs);
+        final content = _part(_package(document), 'content.xml');
+        final list = _body(
+          content,
+        ).childrenNamed('list', namespaceUri: _textNs).single;
+        final roots = list
+            .childrenNamed('list-item', namespaceUri: _textNs)
+            .toList();
+        expect(roots, hasLength(2));
+        final children = roots.first
+            .firstChild('list', namespaceUri: _textNs)!
+            .childrenNamed('list-item', namespaceUri: _textNs)
+            .toList();
+        expect(children, hasLength(2));
+        expect(
+          children.first
+              .firstChild('list', namespaceUri: _textNs)!
+              .childrenNamed('list-item', namespaceUri: _textNs),
+          hasLength(1),
+        );
+        final written = _elements(list, 'p', _textNs).toList();
+        expect(written.map(_visibleText), entries.map((entry) => entry.$1));
+        expect(_attribute(written.first, 'style-name', _textNs), 'SB1');
+        for (final paragraph in written.skip(1)) {
+          final styleName = _attribute(paragraph, 'style-name', _textNs)!;
+          expect(styleName, isNot('SB1'));
+          expect(
+            _attribute(
+              _style(content, styleName),
+              'master-page-name',
+              _styleNs,
+            ),
+            isNull,
+          );
+        }
+        final sectionStyle = _style(content, 'SB1');
+        expect(_attribute(sectionStyle, 'master-page-name', _styleNs), 'mp1');
+        expect(
+          _attribute(
+            sectionStyle.firstChild('paragraph-properties')!,
+            'break-before',
+            _foNs,
+          ),
+          'page',
+        );
+        expect(
+          paragraphs.map((paragraph) => paragraph.properties.ilvl),
+          entries.map((entry) => entry.$2),
+        );
+        expect(document.sections.last.blocks, orderedEquals(paragraphs));
+      },
+    );
   }
 
   for (final kind in ['table', 'frame', 'control']) {

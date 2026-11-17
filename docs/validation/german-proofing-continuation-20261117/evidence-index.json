@@ -1,0 +1,753 @@
+{
+  "archive": "local-evidence.tar.xz",
+  "sha256": "0de04b1815ca584bc16bf0c69b52ed0887fc73932ab857986ab65c35b88475b5",
+  "bytes": 310028,
+  "file_count": 98,
+  "files": [
+    {
+      "path": "agent-editor/manual-coverage-regression.json",
+      "bytes": 621,
+      "sha256": "f72abb63abdd891183d1a64535a194f8467c19505d224cdedc911b2d0abaa102"
+    },
+    {
+      "path": "agent-editor/manual-proofing-after-local-temp.log",
+      "bytes": 986,
+      "sha256": "9a2ad3ba999c6218a2b59426c480bbe312d8116fd2e63b4d1d78d39597f5de3c"
+    },
+    {
+      "path": "agent-editor/manual-proofing-after-offline.log",
+      "bytes": 179,
+      "sha256": "6ec255cd53720dd4f3199c15b4eb967c9f98362a6fcd8aa1a4151b7879d2fc7a"
+    },
+    {
+      "path": "agent-editor/manual-proofing-after.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "agent-editor/manual-proofing-analysis.log",
+      "bytes": 423,
+      "sha256": "a9599e9192eda2527736dfe7f3aea89392e0ab7767bdf2438180940ae47a1552"
+    },
+    {
+      "path": "agent-editor/manual-proofing-before.log",
+      "bytes": 748,
+      "sha256": "4113831b54061b2c095d326cf4c44233c5dba0a983f2f4a4312f632f293c6b6e"
+    },
+    {
+      "path": "agent-editor/manual-proofing-dart-analysis.log",
+      "bytes": 81,
+      "sha256": "3d16d7cd295f8d88a96b63d0b186da1769fe2d941d07ce10aaf985db0675f3a6"
+    },
+    {
+      "path": "agent-grammar/analysis.log",
+      "bytes": 82,
+      "sha256": "9d83d66f4330f2a042e03355a77e4b983962d87351d5849ff1b5d3dbff3a236d"
+    },
+    {
+      "path": "agent-grammar/focused-vm-environment-failure.log",
+      "bytes": 2706,
+      "sha256": "e5938494d2acafd2f917100d64ed94d5cb9b7e2750ddd6b02840cb17d7b5167d"
+    },
+    {
+      "path": "agent-grammar/focused-vm-missing-adjective.log",
+      "bytes": 16543,
+      "sha256": "e42ab69da2d21d1c8fd0b7cad3f1ce6757f1300fd1e4ea145933a60c074d4a8a"
+    },
+    {
+      "path": "agent-grammar/focused-vm.log",
+      "bytes": 15134,
+      "sha256": "82bbcf497730f1f714c36208772ed740d66414d8f63e1f14da4c9c0c3c7371e4"
+    },
+    {
+      "path": "agent-grammar/genitive-after.log",
+      "bytes": 164,
+      "sha256": "ffef354c55945f031ea68808b9b23152a361982f31a8d69b85b4af6ee32d8f38"
+    },
+    {
+      "path": "agent-grammar/genitive-before-after.json",
+      "bytes": 561,
+      "sha256": "3e5dc3128db115a4514f59b570e5654d8c56947f6dea162d7858d3fb12af795d"
+    },
+    {
+      "path": "agent-grammar/genitive-before.log",
+      "bytes": 721,
+      "sha256": "1861e025c3f27ce8bb3d8bc88aa4d763ccd0788ec717d0d23cf68eb29e40a8cc"
+    },
+    {
+      "path": "agent-worker/analysis-wrapper-race.log",
+      "bytes": 123,
+      "sha256": "79470d43bad67bacadbe66305b7021c367807ef7431a8f0a24baa96aa42fe9b5"
+    },
+    {
+      "path": "agent-worker/analysis.log",
+      "bytes": 114,
+      "sha256": "487813ca27a200e01fee29319964ff267d7270c0a7d6ca7093d959b2069cc8b8"
+    },
+    {
+      "path": "agent-worker/before-limit-launcher-path-failure.log",
+      "bytes": 140,
+      "sha256": "29db67f1499cc6b0c3436e552eaf960db9d664228b6e693031c0ded44651dcef"
+    },
+    {
+      "path": "agent-worker/before-limit-regression.log",
+      "bytes": 923,
+      "sha256": "4244d4dda7e51b90360fe6164ae696f8004848133c9b63694faf7a377d86db5c"
+    },
+    {
+      "path": "agent-worker/final-analysis.log",
+      "bytes": 114,
+      "sha256": "487813ca27a200e01fee29319964ff267d7270c0a7d6ca7093d959b2069cc8b8"
+    },
+    {
+      "path": "agent-worker/final-tests.log",
+      "bytes": 1540,
+      "sha256": "1804b06b5b244f5314d743a3f69980bb7ff13f1e14a3996e9f290148704cde4b"
+    },
+    {
+      "path": "agent-worker/worker-tests-environment-failure.log",
+      "bytes": 2740,
+      "sha256": "01969264a957ffeac26ba48e63a5bc81f5314901bf241647c41b811211ec3ad7"
+    },
+    {
+      "path": "agent-worker/worker-tests-initial-fixture-failure.log",
+      "bytes": 1851,
+      "sha256": "e5d34e20e388758ec27b36e2d81632563da317e93ff30130e203496a0f116fcf"
+    },
+    {
+      "path": "agent-worker/worker-tests.log",
+      "bytes": 824,
+      "sha256": "2394051119eb921c2dcb08386d32ae88df77f9bf91ecdf7d424cb64a304090c8"
+    },
+    {
+      "path": "agent-worker/worker_native.before.dart",
+      "bytes": 11579,
+      "sha256": "4f1deea357d637929e5d972199cfdff6a0c29b980dad920fc328cf285143c1ef"
+    },
+    {
+      "path": "final/analysis/attempt-1-lint-failure-receipt.json",
+      "bytes": 118080,
+      "sha256": "a751848bfec550d29856ca26e520949a492e47d127706bcbcb7c54062a2ecff9"
+    },
+    {
+      "path": "final/analysis/attempt-1-lint-failure.log",
+      "bytes": 423,
+      "sha256": "ef42bcd137395df24bde08cd6375661d25c4f5fe584883ce81115e18a86356d7"
+    },
+    {
+      "path": "final/analysis/command-receipt.json",
+      "bytes": 118079,
+      "sha256": "dc8a29ea9c42f86b734c07852fa6b585637b27253fb7e378c5f43ae36a6388b9"
+    },
+    {
+      "path": "final/analysis/command.log",
+      "bytes": 46,
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    {
+      "path": "final/combined/compile-provider-aot.log",
+      "bytes": 75,
+      "sha256": "6d8f00cdbe91ae398749dac3b11a508cc652e6881e377ccfb3a5f4d925946b2d"
+    },
+    {
+      "path": "final/combined/editor-proofing-analysis.log",
+      "bytes": 71,
+      "sha256": "d2ea7cb585855cac4e877c5e3f6b0b52b17c868ad68ba5e78f1af760e5cd15bb"
+    },
+    {
+      "path": "final/combined/editor-proofing.log",
+      "bytes": 34820,
+      "sha256": "bfe4074f0773ca56f28f776b7062cd72c3ae2169fc288a66686165e7c701151d"
+    },
+    {
+      "path": "final/combined/engine-proofing-vm.log",
+      "bytes": 69830,
+      "sha256": "edcccf4d67ae8ce4c1ae96d758e5ef82df804435b5c5d687b8cfcb5fb6062755"
+    },
+    {
+      "path": "final/combined/gector-strict-analysis.log",
+      "bytes": 46,
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    {
+      "path": "final/combined/gector-with-real-native.log",
+      "bytes": 10634,
+      "sha256": "967340c084ac285a564cf27ae21c21e14575b13afa5a6d5f1983d2b6dae985f4"
+    },
+    {
+      "path": "final/combined/inputs-after.json.gz",
+      "bytes": 101192,
+      "sha256": "46039ee4ecf38ad588b0879808b5d1a87a6d0cefe15d534c33274d68b3e2a13f"
+    },
+    {
+      "path": "final/combined/inputs-before.json.gz",
+      "bytes": 101192,
+      "sha256": "46039ee4ecf38ad588b0879808b5d1a87a6d0cefe15d534c33274d68b3e2a13f"
+    },
+    {
+      "path": "final/combined/odf-search-ods.log",
+      "bytes": 29946,
+      "sha256": "ebf9b70eee0ea3f732f2cefa3f1a76c99891e2f043135b2fc1a75d0a5f70de97"
+    },
+    {
+      "path": "final/combined/qualification-python.log",
+      "bytes": 110,
+      "sha256": "b37aad8f25e137d3a332d8c3320242cfa55f671f18e7798bd91a0ce382e05e7a"
+    },
+    {
+      "path": "final/combined/receipt.json",
+      "bytes": 7703,
+      "sha256": "b806ed4d9671132a1054d588ef97e61964fb3fc3b0cd22ec7abfea17bdbd62a3"
+    },
+    {
+      "path": "final/combined/workspace-pubspec.lock",
+      "bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+    },
+    {
+      "path": "final/compare_corpus_outcomes.py",
+      "bytes": 4623,
+      "sha256": "91ada4fd049d27b9e9965e36b83b0e96cd670eb6e5fbd6eb03196226118bb916"
+    },
+    {
+      "path": "final/corpus/command-receipt.json",
+      "bytes": 118377,
+      "sha256": "384852031c25da994e7979b6a51f8ef6eef19b8fc341e0deb389fa8456929bda"
+    },
+    {
+      "path": "final/corpus/command.log",
+      "bytes": 991,
+      "sha256": "2544d3a0814b10923a2bf68ba8120e6789b2f34399b4149f05d66b7cac6783c3"
+    },
+    {
+      "path": "final/corpus/compile-js.log",
+      "bytes": 114,
+      "sha256": "63919fee08f4e2a63ebaeb1d910e7fc8e740e873cd39a005ae5c3e393500b1f4"
+    },
+    {
+      "path": "final/corpus/morphology-probe.js.deps",
+      "bytes": 17812,
+      "sha256": "c8da8c092cbe7466bbab7b29770f1a50f4d2f38c01daf053f23127f8cf83c780"
+    },
+    {
+      "path": "final/corpus/node-results.json",
+      "bytes": 782593,
+      "sha256": "005ab1f77cc5ff985ea6dc29da2daa668197b6fb3612dd9c8df37d088d5e4cb8"
+    },
+    {
+      "path": "final/corpus/package-config.json",
+      "bytes": 23574,
+      "sha256": "49c24b1751900471c96a6f3c1f9aa95c2d9a1bffbcfe4eb1403c8cedec543699"
+    },
+    {
+      "path": "final/corpus/receipt.json",
+      "bytes": 11027,
+      "sha256": "80b6eb13751893cf55ffb84c01d6e8291ed39e04742a70734a844f627c8ec69b"
+    },
+    {
+      "path": "final/corpus/vm-results.json",
+      "bytes": 782593,
+      "sha256": "005ab1f77cc5ff985ea6dc29da2daa668197b6fb3612dd9c8df37d088d5e4cb8"
+    },
+    {
+      "path": "final/corpus-outcome-comparison.json",
+      "bytes": 13988,
+      "sha256": "e05f115b9995012e06b01e4eca6315ccf3a4d13be84feb3b707062a8e9c629c3"
+    },
+    {
+      "path": "final/deterministic-source-binding.json",
+      "bytes": 1401,
+      "sha256": "14c0d6b9eb62e48bcafbb3d46b5a6d08fc8104635977a5ee2a9765c3557c3058"
+    },
+    {
+      "path": "final/engine-node/command-receipt.json",
+      "bytes": 118120,
+      "sha256": "9f669ed8b6f7fade9fd2939b4d8d3952e62f36d53c6f064cf37c012f6748db1d"
+    },
+    {
+      "path": "final/engine-node/command.log",
+      "bytes": 74250,
+      "sha256": "ae1b11a6646a6e89439bc7de62e662d95ee431bd1ad97cd64ea26a27f8212389"
+    },
+    {
+      "path": "final/engine-node/formatting-followup.json",
+      "bytes": 885,
+      "sha256": "b4ba15ff15152495d1ce900c341c7887f9cb8f53ea04635b93407ee3d069b9ba"
+    },
+    {
+      "path": "final/engine-proofing-vm.log",
+      "bytes": 67746,
+      "sha256": "f566df941a482ee78e92594d3ae2ae4cc85a5ad3b2f0fb1d5891e72e90fb5df7"
+    },
+    {
+      "path": "final/native-aot/command.log",
+      "bytes": 986,
+      "sha256": "4c203bee0b2995a9a4b7a4b60b123d845a148b6da1080ed8f4a44cfcf60a416f"
+    },
+    {
+      "path": "final/native-aot/provider-aot.json",
+      "bytes": 69832,
+      "sha256": "95d44518a0a8d21dbc42fcfa7362120d7351303b2cadf176a0342fb6c9908c44"
+    },
+    {
+      "path": "final/native-aot/run-receipt.json",
+      "bytes": 18610,
+      "sha256": "997d6db9da7d1b118dfdf11c6e5e68b479852db5b02ef6bac8cce1f70ce8c063"
+    },
+    {
+      "path": "final/pytest-install.log",
+      "bytes": 1243,
+      "sha256": "1f0880c972ec693fe591720e71fc63b682a9ef0c504bf5a1c111c89009d20e3f"
+    },
+    {
+      "path": "final/review-corpus/command-receipt.json",
+      "bytes": 118403,
+      "sha256": "d132b4533c666e5865b45a9a4e4fd41680d197b351fcfe7d6f275fe6d00b5250"
+    },
+    {
+      "path": "final/review-corpus/command.log",
+      "bytes": 981,
+      "sha256": "b3d3be577035ac8a5be9e06d0da8830b6543482f2635a91a063d4282508f0c5c"
+    },
+    {
+      "path": "final/review-corpus/compile-js.log",
+      "bytes": 114,
+      "sha256": "7519ac7b7781085d52991f9889d75e488159c8f7f5492a0383e0931bc9e5e87c"
+    },
+    {
+      "path": "final/review-corpus/morphology-probe.js.deps",
+      "bytes": 17819,
+      "sha256": "fa13ea0f7c3c0f6e8d1a6b92f9ae2ed1595de420b5dfe23f551e7458d8191c16"
+    },
+    {
+      "path": "final/review-corpus/node-results.json",
+      "bytes": 265401,
+      "sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4"
+    },
+    {
+      "path": "final/review-corpus/package-config.json",
+      "bytes": 23574,
+      "sha256": "49c24b1751900471c96a6f3c1f9aa95c2d9a1bffbcfe4eb1403c8cedec543699"
+    },
+    {
+      "path": "final/review-corpus/receipt.json",
+      "bytes": 11044,
+      "sha256": "3abaefe07173705ed20d035396a0c40e516d39b231af6bf4b005968ef7f6f182"
+    },
+    {
+      "path": "final/review-corpus/vm-results.json",
+      "bytes": 265401,
+      "sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4"
+    },
+    {
+      "path": "final/run_deterministic.py",
+      "bytes": 5002,
+      "sha256": "b05d51b00cd07df7f287bf30428ba6320f0200f4f25ec1f93f43c55677ebf11b"
+    },
+    {
+      "path": "native-setup/bundle-download.json",
+      "bytes": 4164,
+      "sha256": "51505d962c8905cf5fa9c024bd52d8aa61cc789d5b03eeb8c74176ec262d4d2c"
+    },
+    {
+      "path": "native-setup/bundle-download.log",
+      "bytes": 380,
+      "sha256": "8620b2f0db0eca37f3a29dbee35be91e66bb72b02a6b7426f0c488b9e808bd52"
+    },
+    {
+      "path": "native-setup/cmake-build.log",
+      "bytes": 3071,
+      "sha256": "5a35471e86eb269fa94e3c71f5a8fea6ae7332c3f57459e4d69a9a46fc92fd29"
+    },
+    {
+      "path": "native-setup/cmake-configure.log",
+      "bytes": 1261,
+      "sha256": "2f3877d42f1919175464ccf70b5d8bcddcb5628201665b5752c60270aed94b81"
+    },
+    {
+      "path": "native-setup/convert-f32.log",
+      "bytes": 256,
+      "sha256": "e725c77c171ed5c212c10f7a61641e46638d194366b3467e34410c769ccfbc97"
+    },
+    {
+      "path": "native-setup/file-inventory.json",
+      "bytes": 3694,
+      "sha256": "cabe3f28a91753bf09692f096232423dd3746608e1210574b8be7a31e71bff91"
+    },
+    {
+      "path": "native-setup/gector-de-f32.gguf.manifest.json.gz",
+      "bytes": 16713,
+      "sha256": "ce279f5839bb1f234e0240479545de48998aafa164ad3003981f6523e6b2cea3"
+    },
+    {
+      "path": "native-setup/gector-de-mixed-q4_k.gguf.manifest.json.gz",
+      "bytes": 10824,
+      "sha256": "7276bad1dd8184e2fe2fbcc33da2a3528a3d7051c57aa9e8c85ea003a4b224e1"
+    },
+    {
+      "path": "native-setup/host-before.json",
+      "bytes": 1803,
+      "sha256": "fd28aafe954ef21ec104894d6f2286a6e94c42bb8cc9797ad968974ad408eae5"
+    },
+    {
+      "path": "native-setup/linked-libraries.log",
+      "bytes": 374,
+      "sha256": "1745d4b02baa2970458cc46462599b2b64601cf56db1621bc25dbb1cf9c00e81"
+    },
+    {
+      "path": "native-setup/native-build.json",
+      "bytes": 29784,
+      "sha256": "8fc5d5297f6bb5c883c6bea80ba67b1e405881cc529d71c2f1b10214b874a334"
+    },
+    {
+      "path": "native-setup/native-contract.log",
+      "bytes": 913,
+      "sha256": "dc3d0ed0cbadf71162cd29d3f6812da0be15ad3ea5636c0960c68610f2931521"
+    },
+    {
+      "path": "native-setup/native-install.log",
+      "bytes": 455,
+      "sha256": "75ca288e385b0fa9db0c7475afbe65c012e6ad0e18d684a55fedb80cd0a3e074"
+    },
+    {
+      "path": "native-setup/native-quantizer.log",
+      "bytes": 18057,
+      "sha256": "e166042504d4fc7e0da0d8cc1f0a14057bfbe403e0446d819c15efc61f57b889"
+    },
+    {
+      "path": "native-setup/pip-install.log",
+      "bytes": 4172,
+      "sha256": "85a273746182e0ba2e4e95c158913410565847bb9bd806d5c4ab3ae081bf2a8d"
+    },
+    {
+      "path": "native-setup/prepare_bundle.py",
+      "bytes": 3225,
+      "sha256": "084d1bedb3b211928e050b508a7230bd12819887a68456b04193fc6aeea93f76"
+    },
+    {
+      "path": "native-setup/prepared-assets.json",
+      "bytes": 3786,
+      "sha256": "bbf370b2c9906697216d28e6f2df0d3078cbe96d59667dfd7ffd8886938e8e64"
+    },
+    {
+      "path": "native-setup/python-freeze.txt",
+      "bytes": 242,
+      "sha256": "4f80c39aa7a3dedf5a008f274b94d5ba0fdc5eff1acdbd62733aa9bc3be967e0"
+    },
+    {
+      "path": "native-setup/quantize-mixed.log",
+      "bytes": 257,
+      "sha256": "ed087c9ebf7ac4fccb6ae7ca9ada59a00887be323c2b314bd43545233fdff51c"
+    },
+    {
+      "path": "native-setup/reference-json.json",
+      "bytes": 355,
+      "sha256": "c636c0abc9f6ca8bc8d5b61c9d97a754856e2db1c46768acf5ff9fa87817d9cf"
+    },
+    {
+      "path": "native-setup/retained-source-continuity.json",
+      "bytes": 675,
+      "sha256": "5af367dd50cb10354c86171399eff633c579ad54b6a11704e4bf83444081a735"
+    },
+    {
+      "path": "native-setup/seal-build.log",
+      "bytes": 188,
+      "sha256": "a1fb6ef48985b5cae3ffde2964ca471be2ff1c72be719a2f655077bab1c1bef3"
+    },
+    {
+      "path": "native-setup/setup-attempts.json",
+      "bytes": 5141,
+      "sha256": "41db0810f195fad166b41e3cdbbe5a95b37e1bab16c16a7257b65d7d957ed169"
+    },
+    {
+      "path": "run_final.py",
+      "bytes": 7937,
+      "sha256": "58600fc6b864fdcac3d2a1d52ea8182de98b30b9dbc8ed943b098e957ecd8a02"
+    },
+    {
+      "path": "setup/bootstrap-receipt.json",
+      "bytes": 3228,
+      "sha256": "7c0d46d894e391b869738acf84b094a4ba8602bfddd9d0c88a5fb7fea3cd0dd2"
+    },
+    {
+      "path": "setup/flutter-install-receipt.json",
+      "bytes": 528445,
+      "sha256": "f61dc9c6324edeb8ad26acdb786af6faa81278961c5dc90df0d36d62dae89722"
+    },
+    {
+      "path": "setup/flutter-tools-offline.log",
+      "bytes": 1168,
+      "sha256": "1cb5cf5b8f944563f9b44293c33d91382de7ba4be480c3010cbcc15ddd8bc66b"
+    },
+    {
+      "path": "setup/flutter-version.log",
+      "bytes": 628,
+      "sha256": "1fcce123801bfacc92d5c1db91c02b1d6b68790c7dcce0448a2600a92ea438bf"
+    },
+    {
+      "path": "setup/pub-cache-receipt.json",
+      "bytes": 69150,
+      "sha256": "7d0b817b4db611b5a3c919d8aebb22021d7583ad89a1936acfbab179f29499c5"
+    },
+    {
+      "path": "setup/workspace-offline.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ],
+  "excluded_generated_files": [
+    {
+      "path": "agent-worker/before-package/.dart_tool/package_config.json",
+      "bytes": 23455,
+      "sha256": "16ecf8149b34401c6ba2b7d927746d3cefe24088bf0190b5590586fd46100f1a",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/.dart_tool/test/incremental_kernel.Ly9AZGFydD0zLjEy",
+      "bytes": 36268432,
+      "sha256": "3dc1dbcc9a08270d246d2abf1f390a84e2cf45469153ab2e18f2c41b0ec1ddca",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/CHANGELOG.md",
+      "bytes": 323,
+      "sha256": "e5c714bbc00c57f6fd9ad6b5b2acb5d0ec49309a8e6c089c7e83b17a188fac36",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/LICENSE",
+      "bytes": 1056,
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/NOTICE",
+      "bytes": 583,
+      "sha256": "f8c2d9095b928787e1909709f4a25873ee55e730dc120930e8a2b367963d25e8",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/README.md",
+      "bytes": 13674,
+      "sha256": "e7c5ef42b0de5a9f14c439dbf07c2cff07af0f4b182ef764e0faae05eb27d480",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/quds_proofing_gector.dart",
+      "bytes": 419,
+      "sha256": "1bea719acbd541ea07bb546030e7cb2f8c1c30a00e41a9363ad60907127fe77f",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/quds_proofing_gector_native.dart",
+      "bytes": 222,
+      "sha256": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/backend.dart",
+      "bytes": 5233,
+      "sha256": "b8dac86a9e4ab1a9c824ccd346f1896a5a2f4ea9d79aaa1bbd9e51eb2641dad3",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/bundle.dart",
+      "bytes": 9405,
+      "sha256": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/decoder.dart",
+      "bytes": 10719,
+      "sha256": "9a2053cb8ba37ff6a003d2c8100bc1b46d6cf09410ce25d7c3eef8f535e10c91",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/guards.dart",
+      "bytes": 15610,
+      "sha256": "79244938eb6ad4195167be4dff2df66257c9b31fe2ca8819ab2fe52837846191",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/lexicon.dart",
+      "bytes": 884,
+      "sha256": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/native_backend.dart",
+      "bytes": 10194,
+      "sha256": "9d25812acd0efb0e8d583392092d4ef803d5b164a7b832e6aa2adb9b9f95d6c7",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/provider.dart",
+      "bytes": 7409,
+      "sha256": "67cf9c2b7ec95f16cfa56bdac3caffc07267298bec830ac083d0817b0f5f0f56",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/source_text.dart",
+      "bytes": 10358,
+      "sha256": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/tokenizer.dart",
+      "bytes": 6878,
+      "sha256": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/transport.dart",
+      "bytes": 1534,
+      "sha256": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/unicode_case.dart",
+      "bytes": 3237,
+      "sha256": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/worker_native.dart",
+      "bytes": 11579,
+      "sha256": "4f1deea357d637929e5d972199cfdff6a0c29b980dad920fc328cf285143c1ef",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/lib/src/worker_unsupported.dart",
+      "bytes": 679,
+      "sha256": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/pubspec.yaml",
+      "bytes": 356,
+      "sha256": "1d6733795533cab7421471cc437cf1d50f4c0921eeac3091fb528e7564958ba9",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/bundle_test.dart",
+      "bytes": 2118,
+      "sha256": "60d9c15b9d89a94c56cf8b294e0fa5e9b5ad0c52d91a5ff148147a9a40f27260",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/decoder_test.dart",
+      "bytes": 6760,
+      "sha256": "a1d9dce82700bca081d936c4a993c18d74644fb6122bb8c230310b15ba1d0c29",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/fixtures/README.md",
+      "bytes": 1792,
+      "sha256": "af9eda5028508a907dc2def10d594359988099d8efaacd1cf622e7c99fc987c9",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/fixtures/decoder_oracle.json",
+      "bytes": 33402,
+      "sha256": "9cca0da3a8e8cfa72ab1ffaad493656707dbb65c753309f305acf0284fc1eaeb",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/fixtures/proofbird_metadata.json.gz",
+      "bytes": 523767,
+      "sha256": "4c27a1ae1c0738f731dbdb39dcfe258a31687ff84466be5a93dbaecab2e59e81",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/fixtures/tokenizer_oracle.json",
+      "bytes": 6859,
+      "sha256": "5d0840d89866f74f32af2a5bc3879e8c2b6582186f09f6deebbe8035b69f36ed",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/guards_test.dart",
+      "bytes": 6044,
+      "sha256": "37ff49f37f3ccae1563bcf2d6bfbd6f1764e3a1c326875b3dd17e0245eb37263",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/native_backend_test.dart",
+      "bytes": 3741,
+      "sha256": "a7f1f43453886a5c0e8a1d053bf4494e4885f85778861248206788a71fdab9c8",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/provider_test.dart",
+      "bytes": 6933,
+      "sha256": "bd1d6dda3c91630626d6cef4c8797a7c133fe12c187ab97d3dddaa0ed585353a",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/source_text_test.dart",
+      "bytes": 2476,
+      "sha256": "3377c81f477e1d56555d7d15b23382f828dddd18cdf2a8bc92d4b9962a314f98",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/support.dart",
+      "bytes": 3962,
+      "sha256": "b37e7edc87283d3e76798f76f0fd101d9023ee6e4cdadde115430e75b43d1bf3",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/tokenizer_test.dart",
+      "bytes": 972,
+      "sha256": "ff712ce0e7cc922fa9b0df4435281cdda48f34ce9008e3d7f4251a92b3e31580",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/test/worker_test.dart",
+      "bytes": 14125,
+      "sha256": "84ebfdf03e63ac9d60764e7c2f93a6be12b98270e9da6248928eb43d53c47317",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/third_party/PROOFBIRD_LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/third_party/PROOFBIRD_NOTICE",
+      "bytes": 444,
+      "sha256": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "agent-worker/before-package/tool/replay_reference.dart",
+      "bytes": 12454,
+      "sha256": "5b9c9b59abc864ebcbeb1278c272b7209d9e9a7860193354e8f833df29aaa3b6",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "final/corpus/morphology-probe.js",
+      "bytes": 5283912,
+      "sha256": "4c515ac894c62a08e07075b848495c8ee0c28430a4ff4663cca48ccd4adeebff",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "final/corpus/morphology-probe.js.map",
+      "bytes": 213611,
+      "sha256": "4e4124da1c6348891b2cd22db775dd9f895064a8d155f95e0f9a0eb90df144a6",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "final/review-corpus/morphology-probe.js",
+      "bytes": 5254733,
+      "sha256": "689c31e6def69dad68e4f7f21c2b081bd9c2a0706e193a66c78c2692e2f170da",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    },
+    {
+      "path": "final/review-corpus/morphology-probe.js.map",
+      "bytes": 213611,
+      "sha256": "03ed5bf25a3143e1aceec01d8c6aa7820c7e7ae8b708f14fa51557dfb1e8f75d",
+      "reason": "generated executable/cache or duplicate baseline checkout; source and reproduction commands retained"
+    }
+  ],
+  "note": "Preserves initial failures as well as successful runs. Model weights, native/executable binaries, SDK and dependency caches are not stored in Git. Their identities and reproduction commands are retained."
+}

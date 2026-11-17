@@ -42,6 +42,9 @@ void main() {
         'gehen',
         'war',
         'wäre',
+        'ist',
+        'sind',
+        'kann',
       ]),
     );
   });
@@ -202,6 +205,101 @@ void main() {
       throwsFormatException,
     );
   });
+
+  test(
+    'same-number verb forms use every pinned person of the replacement',
+    () async {
+      expect(
+        await apply(
+          <String>['Wir', 'ist', 'zufrieden'],
+          1,
+          r'$TRANSFORM_VERB_P3S_P3P',
+          'sind',
+        ),
+        'sind',
+      );
+      expect(
+        await apply(
+          <String>['Sie', 'ist', 'zufrieden'],
+          1,
+          r'$TRANSFORM_VERB_P3S_P1P',
+          'sind',
+        ),
+        'sind',
+      );
+      expect(
+        await apply(
+          <String>['Er', 'kannst', 'kommen'],
+          1,
+          r'$TRANSFORM_VERB_P2S_P1S',
+          'kann',
+        ),
+        'kann',
+      );
+      expect(
+        await apply(
+          <String>['Ich', 'kannst', 'kommen'],
+          1,
+          r'$TRANSFORM_VERB_P2S_P3S',
+          'kann',
+        ),
+        'kann',
+      );
+    },
+  );
+
+  test(
+    'same-number aliases preserve person, number and sentence limits',
+    () async {
+      for (final subject in <String>['Ich', 'Du']) {
+        expect(
+          await apply(
+            <String>[subject, 'ist', 'zufrieden'],
+            1,
+            r'$TRANSFORM_VERB_P3S_P3P',
+            'sind',
+          ),
+          'ist',
+        );
+      }
+      expect(
+        await apply(
+          <String>['Ihr', 'gehen'],
+          1,
+          r'$TRANSFORM_VERB_P1P_P3S',
+          'geht',
+        ),
+        'gehen',
+      );
+      expect(
+        await apply(
+          <String>['Er', 'gehen'],
+          1,
+          r'$TRANSFORM_VERB_P1P_P2P',
+          'geht',
+        ),
+        'gehen',
+      );
+      expect(
+        await apply(
+          <String>['Wir', 'warten', '.', 'Hier', 'ist', 'genug', 'Platz'],
+          4,
+          r'$TRANSFORM_VERB_P3S_P3P',
+          'sind',
+        ),
+        'ist',
+      );
+      expect(
+        await apply(
+          <String>['Er', 'und', 'sie', 'kannst', 'kommen'],
+          3,
+          r'$TRANSFORM_VERB_P2S_P1S',
+          'kann',
+        ),
+        'kannst',
+      );
+    },
+  );
 
   test(
     'nearby coordination cannot justify a singular verb-person change',

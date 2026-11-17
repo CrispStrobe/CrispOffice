@@ -46,7 +46,9 @@ Future<void> _run(
   File output,
   Map<String, Object?> partial,
 ) async {
-  final root = Directory.fromUri(Platform.script.resolve('../../../'));
+  final root = options['source-root'] == null
+      ? Directory.fromUri(Platform.script.resolve('../../../'))
+      : Directory(options['source-root']!).absolute;
   partial['stage'] = 'source-and-reference-admission';
   final sourcesBefore = await _sources(root);
   partial['source_files'] = sourcesBefore;
@@ -367,6 +369,9 @@ Future<void> _run(
         'This small panel is not target-device or representative quality qualification.',
     'runtime': {
       'dart': Platform.version,
+      'product_mode': const bool.fromEnvironment('dart.vm.product'),
+      'executable': await _filePin(File(Platform.resolvedExecutable)),
+      'entrypoint': await _filePin(File.fromUri(Platform.script)),
       'os': Platform.operatingSystem,
       'os_version': Platform.operatingSystemVersion,
       'processors': Platform.numberOfProcessors,
@@ -420,6 +425,12 @@ Future<void> _run(
 }
 
 Map<String, Object?> _map(Object? value) => value! as Map<String, Object?>;
+
+Future<Map<String, Object?>> _filePin(File file) async => {
+  'file': file.uri.pathSegments.last,
+  'bytes': file.lengthSync(),
+  'sha256': (await sha256.bind(file.openRead()).first).toString(),
+};
 
 Map<String, Object?> _timing(List<double> samples) {
   final sorted = samples.toList()..sort();
@@ -488,7 +499,8 @@ Map<String, String> _arguments(List<String> arguments) {
       );
     }
     final key = arguments[index].substring(2);
-    if (!required.contains(key) || result.containsKey(key)) {
+    if ((!required.contains(key) && key != 'source-root') ||
+        result.containsKey(key)) {
       throw ArgumentError('Unknown or duplicated option: $key');
     }
     result[key] = arguments[index + 1];
