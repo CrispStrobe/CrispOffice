@@ -94,7 +94,7 @@ void main() {
     final content = package.getPart('/content.xml')!.readText();
     final styles = package.getPart('/styles.xml')!.readText();
     expect(content, contains('<text:h'));
-    expect(content, contains('Quarterly review'));
+    expect(_odfText(_odtBody(package)), contains('Quarterly review'));
     expect(_odfText(_odtBody(package)), contains('Plain bold tail'));
     expect(content, contains('bold'));
     expect(content, contains('fo:font-weight="bold"'));
