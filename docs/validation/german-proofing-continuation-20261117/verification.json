@@ -1,0 +1,108 @@
+{
+  "source_commit": "65728d8da063b5e1cc9f8a76f2ff3d5a69b0753e",
+  "combined_receipt": "final/combined/receipt.json in local-evidence.tar.xz",
+  "commands": [
+    {
+      "name": "engine-proofing-vm",
+      "exit_code": 0,
+      "tests": {
+        "passed": 558,
+        "skipped": 0,
+        "failed": 0
+      },
+      "log_sha256": "edcccf4d67ae8ce4c1ae96d758e5ef82df804435b5c5d687b8cfcb5fb6062755"
+    },
+    {
+      "name": "gector-with-real-native",
+      "exit_code": 0,
+      "tests": {
+        "passed": 100,
+        "skipped": 0,
+        "failed": 0
+      },
+      "log_sha256": "967340c084ac285a564cf27ae21c21e14575b13afa5a6d5f1983d2b6dae985f4"
+    },
+    {
+      "name": "gector-strict-analysis",
+      "exit_code": 0,
+      "tests": null,
+      "log_sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    {
+      "name": "editor-proofing",
+      "exit_code": 0,
+      "tests": {
+        "passed": 176,
+        "skipped": 0,
+        "failed": 0
+      },
+      "log_sha256": "bfe4074f0773ca56f28f776b7062cd72c3ae2169fc288a66686165e7c701151d"
+    },
+    {
+      "name": "editor-proofing-analysis",
+      "exit_code": 0,
+      "tests": null,
+      "log_sha256": "d2ea7cb585855cac4e877c5e3f6b0b52b17c868ad68ba5e78f1af760e5cd15bb"
+    },
+    {
+      "name": "odf-search-ods",
+      "exit_code": 0,
+      "tests": {
+        "passed": 279,
+        "skipped": 0,
+        "failed": 0
+      },
+      "log_sha256": "ebf9b70eee0ea3f732f2cefa3f1a76c99891e2f043135b2fc1a75d0a5f70de97"
+    },
+    {
+      "name": "qualification-python",
+      "exit_code": 0,
+      "tests": null,
+      "log_sha256": "b37aad8f25e137d3a332d8c3320242cfa55f671f18e7798bd91a0ce382e05e7a"
+    },
+    {
+      "name": "compile-provider-aot",
+      "exit_code": 0,
+      "tests": null,
+      "log_sha256": "6d8f00cdbe91ae398749dac3b11a508cc652e6881e377ccfb3a5f4d925946b2d"
+    }
+  ],
+  "python_qualification": {
+    "passed": 56,
+    "skipped": 1,
+    "skip": "Tiny ONNX MatMulNBits conversion requires absent development-only onnxruntime."
+  },
+  "native_contract": {
+    "checks": 50,
+    "failed": 0
+  },
+  "node_full_proofing": {
+    "passed": 558,
+    "formatting_only_followup": true
+  },
+  "native_aot": {
+    "operational_passed": true,
+    "source_stable": true,
+    "source_files": 62,
+    "cases": 30,
+    "controls": 8,
+    "long_probes": 3,
+    "error_cases": 18,
+    "exact_error_corrections": 5,
+    "supported_clean_controls": 10,
+    "changed_supported_clean_controls": 0,
+    "unsupported_cases": 2,
+    "peak_process_rss_bytes": 404336640,
+    "warm_p95_ms_up_to_64": 58.877,
+    "warm_median_ms_up_to_64": 22.418,
+    "setup_ms": 3477.616,
+    "engineering_budgets": {
+      "p95_at_most_500_ms": true,
+      "peak_rss_at_most_768_mib": true,
+      "gguf_at_most_160_mib": true,
+      "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+    },
+    "report_sha256": "95d44518a0a8d21dbc42fcfa7362120d7351303b2cadf176a0342fb6c9908c44"
+  },
+  "github_actions_used": false
+}

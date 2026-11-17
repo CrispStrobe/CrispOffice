@@ -1,0 +1,449 @@
+{
+  "compared_at_utc": "2026-11-17T14:55:21.345371+00:00",
+  "historical_archive": "docs/validation/german-morphology-20261117/morphology-corpora.tar.gz",
+  "historical_archive_sha256": "ed9edba7c7c391eec6008d1fa2bfa2a9cb1c17e568fb8897f2b099f61c4b6a10",
+  "runs": {
+    "corpus": {
+      "historical_member": "morphology-final-frozen/vm-results.json",
+      "historical_member_sha256": "a1ab03b20071674b71ea39f4a108e207bbb18e1108cb3aad7738ff0a6cb067db",
+      "current_vm_sha256": "005ab1f77cc5ff985ea6dc29da2daa668197b6fb3612dd9c8df37d088d5e4cb8",
+      "current_node_sha256": "005ab1f77cc5ff985ea6dc29da2daa668197b6fb3612dd9c8df37d088d5e4cb8",
+      "historical_vm_node_equal": true,
+      "current_vm_node_equal": true,
+      "records_compared_per_runtime": 1280,
+      "before_summary": {
+        "sentences": 256,
+        "requests_recorded": 1280,
+        "errors": 81,
+        "exact_errors": 69,
+        "expanded_errors": 73,
+        "exact_expanded_errors": 68,
+        "challenge_errors": 8,
+        "exact_challenge_errors": 1,
+        "valid_controls": 175,
+        "flagged_controls": 0,
+        "operational_failures": 0,
+        "protection_failures": 0,
+        "ignore_failures": 0,
+        "recheck_failures": 0
+      },
+      "after_summary": {
+        "sentences": 256,
+        "requests_recorded": 1280,
+        "errors": 81,
+        "exact_errors": 70,
+        "expanded_errors": 73,
+        "exact_expanded_errors": 68,
+        "challenge_errors": 8,
+        "exact_challenge_errors": 2,
+        "valid_controls": 175,
+        "flagged_controls": 0,
+        "operational_failures": 0,
+        "protection_failures": 0,
+        "ignore_failures": 0,
+        "recheck_failures": 0
+      },
+      "changed_records_per_runtime": 4,
+      "changes": [
+        {
+          "id": "error-081",
+          "variant": "base",
+          "before": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "base",
+            "language": "de-DE",
+            "text": "Das ist wegen des schlimmen Fehler.",
+            "expected": "Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 0,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": true,
+            "applied": "Das ist wegen des schlimmen Fehler.",
+            "can_apply_nonoverlapping": true,
+            "exact": false,
+            "findings": []
+          },
+          "after": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "base",
+            "language": "de-DE",
+            "text": "Das ist wegen des schlimmen Fehler.",
+            "expected": "Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 0,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": false,
+            "applied": "Das ist wegen des schlimmen Fehlers.",
+            "can_apply_nonoverlapping": true,
+            "exact": true,
+            "findings": [
+              {
+                "rule": "de.grammar.noun-case",
+                "original": "Fehler",
+                "start": 28,
+                "end": 34,
+                "replacements": [
+                  "Fehlers"
+                ]
+              }
+            ],
+            "recheck_clean": true,
+            "recheck_statuses": [
+              "success"
+            ],
+            "ignore_clean": true
+          }
+        },
+        {
+          "id": "error-081",
+          "variant": "locale-alias",
+          "before": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "locale-alias",
+            "language": "de-Latn-AT-1996-u-co-phonebk",
+            "text": "Das ist wegen des schlimmen Fehler.",
+            "expected": "Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 11,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": true,
+            "applied": "Das ist wegen des schlimmen Fehler.",
+            "can_apply_nonoverlapping": true,
+            "exact": false,
+            "findings": []
+          },
+          "after": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "locale-alias",
+            "language": "de-Latn-AT-1996-u-co-phonebk",
+            "text": "Das ist wegen des schlimmen Fehler.",
+            "expected": "Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 11,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": false,
+            "applied": "Das ist wegen des schlimmen Fehlers.",
+            "can_apply_nonoverlapping": true,
+            "exact": true,
+            "findings": [
+              {
+                "rule": "de.grammar.noun-case",
+                "original": "Fehler",
+                "start": 39,
+                "end": 45,
+                "replacements": [
+                  "Fehlers"
+                ]
+              }
+            ],
+            "recheck_clean": true,
+            "recheck_statuses": [
+              "success"
+            ],
+            "ignore_clean": true
+          }
+        },
+        {
+          "id": "error-081",
+          "variant": "soft-hyphen",
+          "before": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "soft-hyphen",
+            "language": "de-DE",
+            "text": "Da­s ist wegen des schlimmen Fehler.",
+            "expected": "Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 19,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": true,
+            "applied": "Da­s ist wegen des schlimmen Fehler.",
+            "can_apply_nonoverlapping": true,
+            "exact": false,
+            "findings": []
+          },
+          "after": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "soft-hyphen",
+            "language": "de-DE",
+            "text": "Da­s ist wegen des schlimmen Fehler.",
+            "expected": "Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 19,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": false,
+            "applied": "Da­s ist wegen des schlimmen Fehlers.",
+            "can_apply_nonoverlapping": true,
+            "exact": true,
+            "findings": [
+              {
+                "rule": "de.grammar.noun-case",
+                "original": "Fehler",
+                "start": 48,
+                "end": 54,
+                "replacements": [
+                  "Fehlers"
+                ]
+              }
+            ],
+            "recheck_clean": true,
+            "recheck_statuses": [
+              "success"
+            ],
+            "ignore_clean": true
+          }
+        },
+        {
+          "id": "error-081",
+          "variant": "source-offset",
+          "before": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "source-offset",
+            "language": "de-DE",
+            "text": "👩🏽‍💻 Das ist wegen des schlimmen Fehler.",
+            "expected": "👩🏽‍💻 Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 37,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": true,
+            "applied": "👩🏽‍💻 Das ist wegen des schlimmen Fehler.",
+            "can_apply_nonoverlapping": true,
+            "exact": false,
+            "findings": []
+          },
+          "after": {
+            "id": "error-081",
+            "kind": "error",
+            "area": "broader-grammar-challenge",
+            "scope": "challenge",
+            "variant": "source-offset",
+            "language": "de-DE",
+            "text": "👩🏽‍💻 Das ist wegen des schlimmen Fehler.",
+            "expected": "👩🏽‍💻 Das ist wegen des schlimmen Fehlers.",
+            "start_offset": 37,
+            "complete": true,
+            "statuses": [
+              "success"
+            ],
+            "messages": [
+              null
+            ],
+            "clean": false,
+            "applied": "👩🏽‍💻 Das ist wegen des schlimmen Fehlers.",
+            "can_apply_nonoverlapping": true,
+            "exact": true,
+            "findings": [
+              {
+                "rule": "de.grammar.noun-case",
+                "original": "Fehler",
+                "start": 73,
+                "end": 79,
+                "replacements": [
+                  "Fehlers"
+                ]
+              }
+            ],
+            "recheck_clean": true,
+            "recheck_statuses": [
+              "success"
+            ],
+            "ignore_clean": true
+          }
+        }
+      ],
+      "variants": {
+        "base": {
+          "requests": 256,
+          "errors": 81,
+          "exact_errors": 70,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        },
+        "code": {
+          "requests": 256,
+          "errors": 0,
+          "exact_errors": 0,
+          "controls": 0,
+          "flagged_controls": 0,
+          "protected_requests": 256,
+          "flagged_protected_requests": 0
+        },
+        "locale-alias": {
+          "requests": 256,
+          "errors": 81,
+          "exact_errors": 70,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        },
+        "soft-hyphen": {
+          "requests": 256,
+          "errors": 81,
+          "exact_errors": 70,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        },
+        "source-offset": {
+          "requests": 256,
+          "errors": 81,
+          "exact_errors": 70,
+          "controls": 175,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        }
+      }
+    },
+    "review-corpus": {
+      "historical_member": "morphology-review-final-frozen/vm-results.json",
+      "historical_member_sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4",
+      "current_vm_sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4",
+      "current_node_sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4",
+      "historical_vm_node_equal": true,
+      "current_vm_node_equal": true,
+      "records_compared_per_runtime": 420,
+      "before_summary": {
+        "sentences": 84,
+        "requests_recorded": 420,
+        "errors": 24,
+        "exact_errors": 24,
+        "expanded_errors": 0,
+        "exact_expanded_errors": 0,
+        "challenge_errors": 0,
+        "exact_challenge_errors": 0,
+        "valid_controls": 60,
+        "flagged_controls": 0,
+        "operational_failures": 0,
+        "protection_failures": 0,
+        "ignore_failures": 0,
+        "recheck_failures": 0
+      },
+      "after_summary": {
+        "sentences": 84,
+        "requests_recorded": 420,
+        "errors": 24,
+        "exact_errors": 24,
+        "expanded_errors": 0,
+        "exact_expanded_errors": 0,
+        "challenge_errors": 0,
+        "exact_challenge_errors": 0,
+        "valid_controls": 60,
+        "flagged_controls": 0,
+        "operational_failures": 0,
+        "protection_failures": 0,
+        "ignore_failures": 0,
+        "recheck_failures": 0
+      },
+      "changed_records_per_runtime": 0,
+      "changes": [],
+      "variants": {
+        "base": {
+          "requests": 84,
+          "errors": 24,
+          "exact_errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        },
+        "code": {
+          "requests": 84,
+          "errors": 0,
+          "exact_errors": 0,
+          "controls": 0,
+          "flagged_controls": 0,
+          "protected_requests": 84,
+          "flagged_protected_requests": 0
+        },
+        "locale-alias": {
+          "requests": 84,
+          "errors": 24,
+          "exact_errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        },
+        "soft-hyphen": {
+          "requests": 84,
+          "errors": 24,
+          "exact_errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        },
+        "source-offset": {
+          "requests": 84,
+          "errors": 24,
+          "exact_errors": 24,
+          "controls": 60,
+          "flagged_controls": 0,
+          "protected_requests": 0,
+          "flagged_protected_requests": 0
+        }
+      }
+    }
+  },
+  "passed": true
+}
