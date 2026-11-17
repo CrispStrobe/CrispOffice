@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "kind": "cooperating-grammar-repository-incoming-audit",
+  "captured_at_utc": "2026-11-17T15:12:45.302910+00:00",
+  "baseline_inventory_captured_at_utc": "2026-11-17T14:39:47Z",
+  "repositories": {
+    "CrispEmbed": {
+      "branch_count": 243,
+      "changed_or_added_branches": [],
+      "removed_branches": [],
+      "local_head": "957ffa3bcf578daf6dda546d6f1af7c12607dc4a",
+      "remote_grammar_head": "957ffa3bcf578daf6dda546d6f1af7c12607dc4a",
+      "local_matches_remote_grammar_head": true,
+      "remote_main": "b34a132c6c204b71f5c58ba8bc1705b8769edb9b",
+      "main_is_ancestor_of_grammar_branch": true,
+      "local_status": [
+        "?? pytest-of-agent/"
+      ],
+      "integration_required_from_new_branch_tips": false,
+      "recent_pull_count_inspected": 10,
+      "newest_pull_updated_at": "2026-11-15T13:23:27Z",
+      "recent_pull_changes_from_baseline": [],
+      "open_pulls_in_recent_snapshot": [
+        235
+      ],
+      "grammar_commit_count_since_main": 10
+    },
+    "onnx_runtime_dart": {
+      "branch_count": 4,
+      "changed_or_added_branches": [],
+      "removed_branches": [],
+      "local_head": "0ae7e85ce6dffc7c65506ccad8fc63751cc87188",
+      "remote_grammar_head": "0ae7e85ce6dffc7c65506ccad8fc63751cc87188",
+      "local_matches_remote_grammar_head": true,
+      "remote_main": "7bdf47d815a6516da69d29c671240d10e68723ff",
+      "main_is_ancestor_of_grammar_branch": true,
+      "local_status": [],
+      "integration_required_from_new_branch_tips": false,
+      "recent_pull_count_inspected": 3,
+      "newest_pull_updated_at": "2026-10-10T20:55:03Z",
+      "recent_pull_changes_from_baseline": [],
+      "open_pulls_in_recent_snapshot": [
+        3
+      ],
+      "grammar_commit_count_since_main": 6
+    },
+    "fastembed-rs": {
+      "branch_count": 10,
+      "changed_or_added_branches": [],
+      "removed_branches": [],
+      "local_head": "ac7aec42c6c249a17b8138da09567bdb72b65e79",
+      "remote_grammar_head": "ac7aec42c6c249a17b8138da09567bdb72b65e79",
+      "local_matches_remote_grammar_head": true,
+      "remote_main": "b397165691344c3ccac89d99b1da5ec5341ff0a8",
+      "main_is_ancestor_of_grammar_branch": true,
+      "local_status": [],
+      "integration_required_from_new_branch_tips": false,
+      "recent_pull_count_inspected": 1,
+      "newest_pull_updated_at": "2026-04-28T18:11:13Z",
+      "recent_pull_changes_from_baseline": [],
+      "open_pulls_in_recent_snapshot": [
+        1
+      ],
+      "grammar_commit_count_since_main": 35
+    }
+  },
+  "github_actions_dispatched_polled_or_awaited": false,
+  "pulls_updated_since_2026_11_17_utc": [],
+  "pull_search": {
+    "query": "updated:>=2026-11-17",
+    "state": "all",
+    "repositories": [
+      "CrispStrobe/CrispEmbed",
+      "CrispStrobe/onnx_runtime_dart",
+      "CrispStrobe/fastembed-rs"
+    ],
+    "results": 0
+  },
+  "scope": "All remote branch tips and the recent pull-request metadata were compared to the preserved 2026-11-17T14:39:47Z snapshot. No test, build, model inference, GitHub Actions call, repository mutation or push was performed.",
+  "conclusion": "All 257 cooperating branch tips are unchanged. All three grammar worktrees match their remote grammar heads and include remote main. No cooperating-repository integration is required from this snapshot.",
+  "evidence_files": {
+    "cooperating-refs.json": {
+      "bytes": 33754,
+      "sha256": "1d054728754b56dcba138a757ad7854c735f75f28be27262190948b32d4830ba"
+    },
+    "cooperating-prs.json": {
+      "bytes": 7936,
+      "sha256": "4a72175250a80753cf019bdb951eadf39ab5b7c93a03ee1301de86e4dff79755"
+    }
+  },
+  "pull_comparison_fields": [
+    "state",
+    "updated_at",
+    "merged_at",
+    "head.ref",
+    "head.sha"
+  ],
+  "pull_comparison_notes": "The prior compact inventory did not retain merge_commit_sha; new listings retain it as additional metadata, not as a claimed change. Search returned no pull requests updated on or after 2026-11-17 UTC."
+}

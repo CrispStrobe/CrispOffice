@@ -1,0 +1,1040 @@
+{
+  "schema_version": 1,
+  "captured_at_utc": "2026-11-17T15:12:45.302910+00:00",
+  "branches": {
+    "CrispEmbed": [
+      {
+        "branch": "audit/encoder-precision-evidence-20261029",
+        "sha": "cae8bc668e8fef5f5f6510af70407bcfe2ee145d"
+      },
+      {
+        "branch": "audit/gemma-decision-first-q4k-20261029",
+        "sha": "6e327e902ebdd0feb531c3beae4b52902b7e781b"
+      },
+      {
+        "branch": "audit/gemma-live-snapshot-repair-20261029",
+        "sha": "0ee3fb67455ac89d95624f4d84d8c8ff162fb15a"
+      },
+      {
+        "branch": "audit/gemma-q4-kaggle-cpu-20261029",
+        "sha": "92ee94a77c95df33b272abfcbf4f365550c20a47"
+      },
+      {
+        "branch": "audit/inpainting-feasibility-20261025",
+        "sha": "f149fa547c733cc23182af6a44abf71d079869e1"
+      },
+      {
+        "branch": "audit/josev-final-pair-imatrix-20261029",
+        "sha": "208fbefe194b278ea67edb9bdd6981e23a26beb8"
+      },
+      {
+        "branch": "audit/josev-head-gpu-20261027",
+        "sha": "91f7e72107ea09038fbd1180512956d4743edffe"
+      },
+      {
+        "branch": "audit/josev-last-projection-precision-20261029",
+        "sha": "3cc96dbabcc75b7c7665164e70a26db93da653e7"
+      },
+      {
+        "branch": "audit/josev-wheel-metadata-20261026",
+        "sha": "1f3ee0402498a10e31ec36c94d6fa67b7a390fe6"
+      },
+      {
+        "branch": "audit/lighton4b-corrected-mixed-full-compare-20261105",
+        "sha": "01c557b08bd9826ddc65d67f70a0fe410db82c4e"
+      },
+      {
+        "branch": "audit/lighton4b-parity-continuation-20261112",
+        "sha": "b722f81e3d0b04300e4ac95ff41d266799b35461"
+      },
+      {
+        "branch": "audit/lighton4b-q6-policy-20261106",
+        "sha": "24d49218e409addc7509c604576b479877d03e70"
+      },
+      {
+        "branch": "audit/macos-desktop-drift-v1",
+        "sha": "4097b35b95a11f8801b66cbdf2b5709ac4ff04e4"
+      },
+      {
+        "branch": "audit/mineru-q4-scans-20261104",
+        "sha": "ce73e08ea24129c04d5fec7782ca07e2ba72e3e2"
+      },
+      {
+        "branch": "audit/moedern-first-row-cpu-disk-profile-20261029",
+        "sha": "024f3e7a58cc4ed8e219689d1bea387342dd9556"
+      },
+      {
+        "branch": "audit/moedern-first-row-stages-20261029",
+        "sha": "e7ff72f1a2fe1290f5d7b879d41e3fd5b6da26b8"
+      },
+      {
+        "branch": "audit/moedern-router-real-input-replay-20261029",
+        "sha": "81fa4e26f162a03680ecc404bc2937b4315a5c77"
+      },
+      {
+        "branch": "audit/moedern-router-topk-operator-20261029",
+        "sha": "c95f45e3cff433f56d2a474bf59cdcd4405e6d60"
+      },
+      {
+        "branch": "audit/moedern-sdpa-reproducibility-20261027",
+        "sha": "6fccd8635f8489d2eff2d47814a75cf77df6d584"
+      },
+      {
+        "branch": "audit/moedern-three-doc-attribution-20261029",
+        "sha": "b86e8130947b59e09dfe4dde0e2dae01957c443d"
+      },
+      {
+        "branch": "audit/moedern-three-doc-compare-only-v2-20261029",
+        "sha": "92f75550a0ce0f1486f6d7603164a6628aeb24a0"
+      },
+      {
+        "branch": "audit/ovis-ffn-20261025",
+        "sha": "469fc030dcca7ff157912f52f56255791d958df1"
+      },
+      {
+        "branch": "audit/ovisocr3-source-20261025",
+        "sha": "bafb4ea7cf41b596e3d350ee4e4c3a6d0b47e7fa"
+      },
+      {
+        "branch": "audit/ultrabert-first-q4-shard-20261029",
+        "sha": "c3d2fc051f6632e06d5e7ba69ac700a03a703e22"
+      },
+      {
+        "branch": "audit/ultrabert-q4-remaining-shards-20261029",
+        "sha": "ef7153156aba352bffdef60bd44d4155a51f2ddc"
+      },
+      {
+        "branch": "audit/ultrabert-q4k-sharded-20261029",
+        "sha": "37a65615eb525b57d9ced076235466a865f855da"
+      },
+      {
+        "branch": "audit/ultrabert-reviewed-q4-shard0-20261029",
+        "sha": "a5feac83e177d7e08cfa23384089f7584f0736a9"
+      },
+      {
+        "branch": "audit/ultrabert-scifact-native-v3-20261027",
+        "sha": "d993038e34905d9c3e28933c29c5e6bc3a8e1a43"
+      },
+      {
+        "branch": "audit/unlimited-retained-gha-fetch-20261029",
+        "sha": "1aaee225783828162883a6ae062446036cd2f043"
+      },
+      {
+        "branch": "audit/unlimited-retained-q4k-20261029",
+        "sha": "c406fc2821c3f54762bcfc2599dd2d43a1bbed90"
+      },
+      {
+        "branch": "audit/unlimited-reused-q4-first-panel-20261029",
+        "sha": "299eedb67ecdfda337d7b37e360c599dcd30ead7"
+      },
+      {
+        "branch": "audit/wasm-layer3-f32-reanalysis-20261029",
+        "sha": "bf4e237e0bfb6ed84192fe9d9bd768b782d1050a"
+      },
+      {
+        "branch": "audit/wasm-live-norm-operands-20261029",
+        "sha": "57745bbd985ce8ace1ea313619f15519f76cdfd7"
+      },
+      {
+        "branch": "audit/wasm-native-order-norm-risk-20261029",
+        "sha": "f78131c4616ece9f236ddab7695db6cd32a5521f"
+      },
+      {
+        "branch": "chore/clang-format-adopt",
+        "sha": "e58019e52113a871f7c2f03cf0598c699915bf6f"
+      },
+      {
+        "branch": "chore/preserve-ovis-evidence-20261026",
+        "sha": "c2b7dbc1b744e6c4290184c6385c413c00fa6dc5"
+      },
+      {
+        "branch": "claude/admiring-cerf-7248qk",
+        "sha": "1939df6dcc5cc8894a47f6bd96cc3c43d4d7b8e2"
+      },
+      {
+        "branch": "claude/eager-volta-rf2dk6",
+        "sha": "3f3cce01d03d1eb9bf435a7071f5ced38bd8060f"
+      },
+      {
+        "branch": "debug/granite-ggml-llm",
+        "sha": "62dc36f3426e952aee0af3715e81e492f837ee78"
+      },
+      {
+        "branch": "dispatch/successor-assets-v3-20261102",
+        "sha": "8079a971654df69f068bba18c4dd4d2bd85f4d79"
+      },
+      {
+        "branch": "docs/app-pin-01715",
+        "sha": "58472b611d915c3cacc452719df5fef7c907121e"
+      },
+      {
+        "branch": "docs/clarify-nov7-experimental",
+        "sha": "01bf743ea9e794fa48bb1e540352b713581d929a"
+      },
+      {
+        "branch": "docs/correct-gpu-account-20261106",
+        "sha": "8a589b02c1a5796cb2cfdc78e4c40c319727a233"
+      },
+      {
+        "branch": "docs/current-portfolio-20261112",
+        "sha": "2235884367a18d0904dcea15e5409d630fe3eafd"
+      },
+      {
+        "branch": "docs/current-state-20261106",
+        "sha": "f0ef9f2e39553e0cd903b6efab8ee657f37256e2"
+      },
+      {
+        "branch": "docs/integrated-checkpoint-20261106",
+        "sha": "57ef29f334903907b025e8591aae6b0b7235d1e2"
+      },
+      {
+        "branch": "docs/lighton4b-calibration-review-20261107",
+        "sha": "592b2e8c2c7c2584f4d01262d777095cd1003e35"
+      },
+      {
+        "branch": "docs/lighton4b-gdn-out-full-evidence-20261106",
+        "sha": "8790b0f345c0c2445c18f176ed3b38f97ba4d64c"
+      },
+      {
+        "branch": "docs/lighton4b-gdn-out-logo-evidence-20261106",
+        "sha": "3aed85c3421459deda7b71b942a0d13254a474c4"
+      },
+      {
+        "branch": "docs/lighton4b-gdn-projection-evidence-20261106",
+        "sha": "e12503cd2e7cf20ee4365c9c772a62004c524f7a"
+      },
+      {
+        "branch": "docs/lighton4b-graph-applicability-20261112",
+        "sha": "4a83bdfbedf356733a668cfada53902c5f3210c1"
+      },
+      {
+        "branch": "docs/lighton4b-mixer-partition-evidence-20261106",
+        "sha": "c2e8d8cdbe48477069b13063fe398d9523f594ac"
+      },
+      {
+        "branch": "docs/lighton4b-restoration-sensitivity-evidence-20261106",
+        "sha": "f131f4fecf6ee25246f11bdc4df22aa8d8f2050b"
+      },
+      {
+        "branch": "docs/lighton4b-upstream-blueprint-audit-20261106",
+        "sha": "8da5d35c65648c6f61a48a170d38d29a4ab984f3"
+      },
+      {
+        "branch": "docs/lighton4b-vision-generalization-evidence-20261106",
+        "sha": "8c682bf8d691b3432fdfb9be9a8d0f5044c05927"
+      },
+      {
+        "branch": "docs/moedern-full-scifact-rejections-20261029",
+        "sha": "34b4445f7f7962f0327101f519f8c7ba5c01ee35"
+      },
+      {
+        "branch": "docs/moedern-three-doc-compare-v2-result-20261029",
+        "sha": "0d9526de458ed81eb32383f2b87ff7ef19af2e0b"
+      },
+      {
+        "branch": "docs/ocr-rgb-form-result-20261029",
+        "sha": "1b56130e838e822179fa2a95f548b69c4a3cb586"
+      },
+      {
+        "branch": "docs/store-verification-20261112",
+        "sha": "e002e05aa28230940939af1caf8d6e95f6209080"
+      },
+      {
+        "branch": "docs/ultrabert-retained-freeze-result-20261029",
+        "sha": "e36597379aa5c8a43426309a4ebc7faf429686ea"
+      },
+      {
+        "branch": "docs/wasm-f32-risk-reanalysis-result-20261029",
+        "sha": "d3ded6835bb092ab1dfb83ebb13c7485bb6634ef"
+      },
+      {
+        "branch": "evidence/lighton4b-bf16-mixed-freegen-results-20261106",
+        "sha": "8e19dd8656f12863ba1f7880c8181fe3c748d810"
+      },
+      {
+        "branch": "evidence/lighton4b-composed-rms-results-20261105",
+        "sha": "9b0f6701ca77570ac6da492786009a30aec9312f"
+      },
+      {
+        "branch": "evidence/lighton4b-gated-rms-results-20261105",
+        "sha": "d8e42e57845e06457cc955b0105d0ec159679b19"
+      },
+      {
+        "branch": "evidence/lighton4b-gdn-out-q6-full-20261106",
+        "sha": "149a0aa5aecbcc62d97bc326d927ae1e4b62a129"
+      },
+      {
+        "branch": "evidence/lighton4b-gdn-out-q6-results-20261106",
+        "sha": "b957b67b7b6f7c0c6179f00f328abca67277aac2"
+      },
+      {
+        "branch": "evidence/lighton4b-imatrix-q4-calibration-20261106",
+        "sha": "194ceda21a024633eb137dfedd63f6e6b51f550f"
+      },
+      {
+        "branch": "evidence/lighton4b-imatrix-q4-final-20261106",
+        "sha": "ca92c75e3c5d96d4c582bed21fa58bd09eb89d36"
+      },
+      {
+        "branch": "evidence/lighton4b-layer0-norm-results-20261105",
+        "sha": "e981c5a66914e2f4889f858e449ab3dc7db3face"
+      },
+      {
+        "branch": "evidence/lighton4b-layer0-results-v2-20261105",
+        "sha": "9a66eb88adb9590cd33b862fbe1176df7d6b94a2"
+      },
+      {
+        "branch": "evidence/lighton4b-mean-order-results-20261105",
+        "sha": "4582e6a443cac3c750d27bb2b00ab69d28a86328"
+      },
+      {
+        "branch": "evidence/lighton4b-mixed-step33-results-20261106",
+        "sha": "5045ceb758dba3520e9cdea8d611c0e6880b3dbf"
+      },
+      {
+        "branch": "evidence/lighton4b-norm-source-results-20261105",
+        "sha": "71b49d19ac5b5981d323e84e067bab1ba99c2870"
+      },
+      {
+        "branch": "evidence/lighton4b-plain-q4-archive-20261106",
+        "sha": "d814af1f2cb66a3e56625392f408290f59bdc1dc"
+      },
+      {
+        "branch": "evidence/lighton4b-plain-q4-full-20261106",
+        "sha": "70598625de873e4be471fd95ed69b0bae43a964b"
+      },
+      {
+        "branch": "evidence/lighton4b-publisher-declared-revision-20261106",
+        "sha": "dad65992217c07c15835809257420e0186016311"
+      },
+      {
+        "branch": "evidence/lighton4b-q6-candidate-results-20261106",
+        "sha": "f68a6d9e7c843453679b9e4b244fc1ba729e8041"
+      },
+      {
+        "branch": "evidence/lighton4b-q6-logo-20261106",
+        "sha": "d34c2192a35e7c0e4b8361bc74a52e96b88c211f"
+      },
+      {
+        "branch": "evidence/lighton4b-qkv-dot-results-20261105",
+        "sha": "618e01772821261f0a57438620bf881661056565"
+      },
+      {
+        "branch": "feat/calib-ab-experiment",
+        "sha": "3a672519be17b155db2d5dba6c0544842ea26606"
+      },
+      {
+        "branch": "feat/embed-arctic-granite",
+        "sha": "4f870e862684c861572cf9af1a2f1dbdd591725a"
+      },
+      {
+        "branch": "feat/embed-f2llm",
+        "sha": "92ebf921e897f69b9834d4c81e91b101a47892ac"
+      },
+      {
+        "branch": "feat/full-q6-authored-quality-20261113",
+        "sha": "8de94b29b81240c2d23d3dac65c31f289a0c431f"
+      },
+      {
+        "branch": "feat/german-gector-proofing",
+        "sha": "957ffa3bcf578daf6dda546d6f1af7c12607dc4a"
+      },
+      {
+        "branch": "feat/gliner-imatrix",
+        "sha": "660d5722a50ac128cf77ad3468cb7323e2b1343e"
+      },
+      {
+        "branch": "feat/got-ocr-bf16-fix",
+        "sha": "692cf368b83a97395c174906ed430655715bed6f"
+      },
+      {
+        "branch": "feat/granite-split-residency",
+        "sha": "a3f0af20a5fcd9df0b14492966647cdd7c5812c6"
+      },
+      {
+        "branch": "feat/granite-vision-ocr-decode",
+        "sha": "6512157a04b1c24a727b8dcf4d932fb01fe5ffe8"
+      },
+      {
+        "branch": "feat/imatrix-ner",
+        "sha": "57440dc1bb0277580d6a77ad3e170316ffc30045"
+      },
+      {
+        "branch": "feat/imatrix-rerank",
+        "sha": "972b535a7195bab264f7410ce9aab33cb77f73af"
+      },
+      {
+        "branch": "feat/issue71-five-engines",
+        "sha": "8e84122506fbff1ea03d77e0c936fc6f814cb9c1"
+      },
+      {
+        "branch": "feat/issue71-five-engines-graphs",
+        "sha": "fd2f525570b51664c18be92391b3e89c8fcf511b"
+      },
+      {
+        "branch": "feat/issue71-lama-research",
+        "sha": "c3e17ec5b42daefb2f6d50c374057a91b30f9116"
+      },
+      {
+        "branch": "feat/issue71-latent-qual",
+        "sha": "4de54d0d9b6a3db211a6163a0d87e690bd53282e"
+      },
+      {
+        "branch": "feat/jina-ocr-v1",
+        "sha": "f9c00f1de90660b82419ca28a89b450bef737af6"
+      },
+      {
+        "branch": "feat/josev-answer-serializer-20261027",
+        "sha": "525956444afef1be2df19da3fb2842dde9b68b49"
+      },
+      {
+        "branch": "feat/josev-composed-text-20261027",
+        "sha": "ed23f1aeb5f448b80a89b567592986bffb951de9"
+      },
+      {
+        "branch": "feat/josev-head-artifact-20261027",
+        "sha": "5da7c64d1a95df0f9a829c62938fc8d7d64f77b7"
+      },
+      {
+        "branch": "feat/josev-hidden-backbone-20261027",
+        "sha": "ab9982779574b38ea9698667dd5dd3614208bee6"
+      },
+      {
+        "branch": "feat/josev-native-head-20261027",
+        "sha": "d8b99a9c8e3a5cf0f6699fc026d3396d26e03763"
+      },
+      {
+        "branch": "feat/josev-packed-converter-20261027",
+        "sha": "9772c89660f9eb4a0220ef46f5354493c2970c08"
+      },
+      {
+        "branch": "feat/josev-tokenizer-schema-20261027",
+        "sha": "65a6de450eede1358821a52dd0fe199c24286b16"
+      },
+      {
+        "branch": "feat/lfm2-sched-bucketing",
+        "sha": "05c0a3dbec91db0b3a519f9bf69dedb6bf641e45"
+      },
+      {
+        "branch": "feat/lfm2vl-multitile",
+        "sha": "866be3b48d09843b6a643543d980710630d53b69"
+      },
+      {
+        "branch": "feat/lighton4b-physical-full-q6-20261113",
+        "sha": "ec143881f7e1ccbc2a4c138dac0be95cf3ee6fd2"
+      },
+      {
+        "branch": "feat/moedern-native-1p5m-20261026",
+        "sha": "79e350a096db831543dca711fd6393e61d63fa79"
+      },
+      {
+        "branch": "feat/ocr-followups",
+        "sha": "0ce6ca651ae092cc80d828d10e9425d4dfce6887"
+      },
+      {
+        "branch": "feat/ocr-pdf-character-diagnostic",
+        "sha": "593f827b5e253f991efca5f86dd3696b8ea5380a"
+      },
+      {
+        "branch": "feat/ocr-pdf-reader-contiguous",
+        "sha": "2a0da548ac28380d6d0d1905471b2b12c7938939"
+      },
+      {
+        "branch": "feat/ocr-pdf-reader-reflection",
+        "sha": "9cc9e100a65c3c81a63565d14a068500796065f8"
+      },
+      {
+        "branch": "feat/ocr-pdf-reader-strategies",
+        "sha": "3048ee7e2e0fbe104b229a0a67350d83a3c12a66"
+      },
+      {
+        "branch": "feat/ocr-pipeline-followup-20260731",
+        "sha": "24bdc656ed370462cd26b4eb86a53d3396d4ffb4"
+      },
+      {
+        "branch": "feat/olmocr-lane",
+        "sha": "f0437d94aeab595d714c1672f9c6201cf8d862ab"
+      },
+      {
+        "branch": "feat/ovis-attention-f16-ffn-q4-20261025",
+        "sha": "27a37a658cd814aa67e61ec22e237bd8538dd2bf"
+      },
+      {
+        "branch": "feat/ovis-followups-20261025",
+        "sha": "8dc22bbabdec5985798a02e7519eab9e9ed6275e"
+      },
+      {
+        "branch": "feat/ovis-weight-cache-20261025",
+        "sha": "3ae8172ba6214dcb43499adc2a3922374fe2b7c4"
+      },
+      {
+        "branch": "feat/ovisocr2-frozen-runtime-review-20261025",
+        "sha": "6a93df4f06705a4547aa3de775c4fd7265b4eda9"
+      },
+      {
+        "branch": "feat/ovisocr3-public-diagnostic-20261025",
+        "sha": "0e76fc8081a96d7222e051cfa3a2aa7795bd7c79"
+      },
+      {
+        "branch": "feat/ovisocr3-publication-prep-20261025",
+        "sha": "e59990794e9a6295f04b8b1a7a18ffdf6ffb861b"
+      },
+      {
+        "branch": "feat/ovisocr3-source-closure-20261025",
+        "sha": "a9db06448b99564a3236db1e5498d22888861094"
+      },
+      {
+        "branch": "feat/ovisocr3-vllm-gpu-prep-20261025",
+        "sha": "5351b9c47c2e67994e7bc93c8dc6f14a9f1029e4"
+      },
+      {
+        "branch": "feat/parity-deepseek",
+        "sha": "19d14ea6eee6a4365dcb4be18aaa5a0f7ae8f8a2"
+      },
+      {
+        "branch": "feat/parity-qwenvl",
+        "sha": "1939c68175bbc7395e07b1e7c0eb5c26ee759eec"
+      },
+      {
+        "branch": "feat/posformer-port",
+        "sha": "efaf6fae07b67912b2bffed49f4e73bda1f6eefc"
+      },
+      {
+        "branch": "feature/bttr-handwritten-math",
+        "sha": "1e43e51c9e0b82b030f013264d6775f5b87ed6de"
+      },
+      {
+        "branch": "feature/flutter-platform-bundling",
+        "sha": "66792bdf14f1c75f2cf45869e2d8f4f9a37d8865"
+      },
+      {
+        "branch": "feature/ggml-graph-decoder",
+        "sha": "e1fb2f5c2a1397e30c717ac64e6b9eac77450fec"
+      },
+      {
+        "branch": "feature/hmer-handwritten-math",
+        "sha": "9351760e251a99b0f4674c54cf3326c472766b6a"
+      },
+      {
+        "branch": "feature/surya-ocr-25-kaggle-20261031",
+        "sha": "057164e46ca525be8d3eadfd943c0c324cbf66ca"
+      },
+      {
+        "branch": "feature/xiaomi-ocr-0-20261031",
+        "sha": "58ac5f27535122c4e61b82823a693e9bf00a5443"
+      },
+      {
+        "branch": "fix/ci-selection-pr232-20261113",
+        "sha": "8894a7d9a0e9eb17290baa3e4aca930849be3a21"
+      },
+      {
+        "branch": "fix/consumer-ocr-quality-check",
+        "sha": "edca4b3395c676f94db884651465a270b60da71d"
+      },
+      {
+        "branch": "fix/dat-tiled-blend-coverage-20261114",
+        "sha": "419a422802803bd24a4fceac30add49e1f95ea70"
+      },
+      {
+        "branch": "fix/desktop-packaged-consumer",
+        "sha": "d0ea80c05792d329829bad360c3bf09b9e5a52a2"
+      },
+      {
+        "branch": "fix/desktop-runtime-candidate",
+        "sha": "841179b848f8d3aa15e44dd2d5aea65070c82f71"
+      },
+      {
+        "branch": "fix/env-gate-lockstep-20261106",
+        "sha": "1150b1843788f9b87cccdf860aff2f3dcd6b0669"
+      },
+      {
+        "branch": "fix/full-q6-edge-20261113",
+        "sha": "08b1a6da88bb32f54dbd55d75483b3fc32251c6e"
+      },
+      {
+        "branch": "fix/imatrix-guard",
+        "sha": "64979792a08b7dcc93bacd68a3390806a61cf138"
+      },
+      {
+        "branch": "fix/issues-52-55-56",
+        "sha": "56f81bfa63d957a7f288630f171202375dc20d9f"
+      },
+      {
+        "branch": "fix/josev-owner-metadata-20261027",
+        "sha": "8e42b2b4413661d17ee948e22af7b0536a4de417"
+      },
+      {
+        "branch": "fix/josev-protected-source-header-20261029",
+        "sha": "bf00e4524e5d2d1f261ec20d666c3045138f65d4"
+      },
+      {
+        "branch": "fix/kernel-configuration-templates-20261112",
+        "sha": "80deb2c5bd558cd0d589caf87220aa913d06e6db"
+      },
+      {
+        "branch": "fix/lighton4b-ios-validation-guard-20261113",
+        "sha": "6fa52aa1a525939e44d33b6dd29a3e17c4ef7b98"
+      },
+      {
+        "branch": "fix/lightonocr-parity",
+        "sha": "917463bdd5ed6421402f58670644f565ea7a42b0"
+      },
+      {
+        "branch": "fix/minicpm-checkpoint-blob-fetch-20261029",
+        "sha": "2fde0c64bd6e637441beeb3d96cf47b0bc3a2cdc"
+      },
+      {
+        "branch": "fix/model-hash-pagination-20261113",
+        "sha": "0e75aadcc1beee1cf48cae67c5ac6b258fce3fc6"
+      },
+      {
+        "branch": "fix/moedern-actual-softmax-dispatch-20261029",
+        "sha": "f3364a57e29db6ecd58fa1fe2cb60a794d1f14b1"
+      },
+      {
+        "branch": "fix/moedern-first-row-packed-tokenizer-20261029",
+        "sha": "46bac4e1dc7ab81ba66a7d3b37794307f9958041"
+      },
+      {
+        "branch": "fix/morph-scratch-allocation-failure-20261114",
+        "sha": "8a6a4639ec20229d612e0cfe27a6ef31a78f911c"
+      },
+      {
+        "branch": "fix/native-table-parser-blank-input-20261114",
+        "sha": "fd18737316125a77345be68d94ed38452b3249eb"
+      },
+      {
+        "branch": "fix/native-table-parser-metadata-20261113",
+        "sha": "f233b3be52f3b884580329ca32c040b73e97776b"
+      },
+      {
+        "branch": "fix/native-table-parser-morph-allocation-20261114",
+        "sha": "30583195e3fc1d98fa049b35d1acb669a5aa3bd5"
+      },
+      {
+        "branch": "fix/ocr-render-result-ownership-20261113",
+        "sha": "6d45a6725ec5b5ec3b23faf7f0612a17fe850d0a"
+      },
+      {
+        "branch": "fix/ovisocr2-frozen-f16-quality",
+        "sha": "f96ba49d8e24fd529c2853b13187b1cf76cab040"
+      },
+      {
+        "branch": "fix/ovisocr2-gnu-time-resources-20261025",
+        "sha": "6f7c583397fb331f39c65b54dc253917028f4efa"
+      },
+      {
+        "branch": "fix/posformer-reference-forward",
+        "sha": "78493a31fc3043f3af4ab6fd2f197a32da6f07f0"
+      },
+      {
+        "branch": "fix/ppocrv6-det-issue164-20261106",
+        "sha": "97d8699310e2590205b877ea1ad64275c75bafa5"
+      },
+      {
+        "branch": "fix/pr218-consumer-metadata-20261112",
+        "sha": "7fd4e0598121fb4ecfa62e3605508389f557d92a"
+      },
+      {
+        "branch": "fix/python-cc-result-ownership-20261113",
+        "sha": "19dd173c73452a9a5f23003c296c8882ececdd63"
+      },
+      {
+        "branch": "fix/python-dat-buffer-lifetime-20261114",
+        "sha": "a4996aebec26f3359ad0113ce79207b99604d73f"
+      },
+      {
+        "branch": "fix/python-instructir-buffers-20261114",
+        "sha": "e0de0885df6c0176b00edb046fadecf1be5251d4"
+      },
+      {
+        "branch": "fix/python-pix2struct-rgb-safety-20261113",
+        "sha": "a16d1cfbcdf222211e42fc2b2b6740a2a9042369"
+      },
+      {
+        "branch": "fix/python-preproc-input-20261113",
+        "sha": "0031ccea61fe36fa49b8f599a0256d3bce134335"
+      },
+      {
+        "branch": "fix/python-restoration-wrappers-20261113",
+        "sha": "d497175c1e14e788d32a31b1c7bd48b0cb5eb56b"
+      },
+      {
+        "branch": "fix/python-restormer-adair-buffers-20261114",
+        "sha": "553461332f4271550112c0989829c643c995b473"
+      },
+      {
+        "branch": "fix/python-scan-cleanup-input-output-20261113",
+        "sha": "bba18cc30c4bb479e208db47f43dede547f195f3"
+      },
+      {
+        "branch": "fix/python-table-parser-buffer-safety-20261113",
+        "sha": "bed5ed99428fcb4827c9305cab679a4f3388cd0d"
+      },
+      {
+        "branch": "fix/python-version-sync-20261113",
+        "sha": "6ef1ac8066b0dbdb40b3837a527b7af6d612a263"
+      },
+      {
+        "branch": "fix/python-vision-raw-buffers-20261114",
+        "sha": "fdb6815475182657bea92f8b397d57d8a896ad1d"
+      },
+      {
+        "branch": "fix/qwen3vl-unimumer",
+        "sha": "16a3a4155c751fe6357393113e63838e73b0f915"
+      },
+      {
+        "branch": "fix/restoration-input-validation-20261113",
+        "sha": "45fa452ec13551a27618b51615189cbef2f9dc65"
+      },
+      {
+        "branch": "fix/rust-dat-buffer-safety-20261114",
+        "sha": "b34a132c6c204b71f5c58ba8bc1705b8769edb9b"
+      },
+      {
+        "branch": "fix/rust-grayscale-buffer-safety-20261113",
+        "sha": "4f610a0b4a7e53c63a083220f2bc436cd4f28ee9"
+      },
+      {
+        "branch": "fix/rust-pix2struct-rgba-input-20261113",
+        "sha": "f3de375577f465e21dfd3c1a6183dae943260037"
+      },
+      {
+        "branch": "fix/rust-scan-cleanup-buffer-safety-20261113",
+        "sha": "e1ced558caf6841a1bcb90972d1ff372064b16a4"
+      },
+      {
+        "branch": "fix/rust-table-parser-buffer-safety-20261113",
+        "sha": "3f4c911d66405aa4235f0726f9c5fc8fd83ce19e"
+      },
+      {
+        "branch": "fix/rust-vision-raw-buffers-20261114",
+        "sha": "5309789f0e4688baa3a734cbc9d30d2674464f62"
+      },
+      {
+        "branch": "fix/ultrabert-sharded-symbol-audit-20261029",
+        "sha": "08b0a5727aa25412a1181db4695efb01be578b24"
+      },
+      {
+        "branch": "fix/ultrabert-unicode-pretoken-20261027",
+        "sha": "01878e807560cc6f16fdebddfbe4ddd4940cbc43"
+      },
+      {
+        "branch": "fix/unlimited-ref-control-import-20261029",
+        "sha": "388c510a042be954fd69031e3bc55a1234309ef1"
+      },
+      {
+        "branch": "fix/wait-checks-newest-run-20261112",
+        "sha": "bf6f4c3c06176f8f19a4ba43c121f56c374dd960"
+      },
+      {
+        "branch": "fix/wasm-live-norm-component-inventory-20261102",
+        "sha": "67215ab25aa6332e32bac45690b9d2729f523af2"
+      },
+      {
+        "branch": "fix/wasm-live-norm-result-scope-20261029",
+        "sha": "ff3b8a0171d2cdb5cfcdd65701fadaa49a99d265"
+      },
+      {
+        "branch": "fix/wasm-native-order-norm-candidate-20261029",
+        "sha": "64eef68493deb240e81287e249f55def08d5753c"
+      },
+      {
+        "branch": "fix/wasm-native-order-norm-format-20261029",
+        "sha": "e7f3ab64dda2fdb42c8305637a258ce4b10bdef4"
+      },
+      {
+        "branch": "fix/windows-consumer-source-bytes",
+        "sha": "87f5f92dcc05f9b9cba61f509301aefe4d5b9ad9"
+      },
+      {
+        "branch": "fix/worksheet-cleanup-20261115",
+        "sha": "0eca8e35d5d675d6fef106a6316db38355c6841a"
+      },
+      {
+        "branch": "gpu-ocr-readiness",
+        "sha": "5ea7572f823990ec338d911f3e27f386744d76fc"
+      },
+      {
+        "branch": "imatrix-stable",
+        "sha": "d28fa99b12c5cfce5a047803c07d3fe5764833ad"
+      },
+      {
+        "branch": "kaggle-ccache-auto",
+        "sha": "e17fa0a377c3f38f670d2147cf4d3fb44e50e147"
+      },
+      {
+        "branch": "kaggle/crispsorter-pin-01719-consumer",
+        "sha": "2ee15cda00e3d0901cc73c6d844215595be8ef49"
+      },
+      {
+        "branch": "main",
+        "sha": "b34a132c6c204b71f5c58ba8bc1705b8769edb9b"
+      },
+      {
+        "branch": "maintenance/queue-cleanup-20261103",
+        "sha": "77cadc7e2e9f7d7863a13652c7a58fe1f1b7f46a"
+      },
+      {
+        "branch": "math-ocr-wip",
+        "sha": "b294972bc05b38a9399b32535412933c0cc8ad8b"
+      },
+      {
+        "branch": "ovis-gpu",
+        "sha": "1290a90ebf16e6c4903304aec3f30a904c5359b3"
+      },
+      {
+        "branch": "ovis-gpu-precision",
+        "sha": "26cd56a88165b098a5b3f5292b5b187178dfc167"
+      },
+      {
+        "branch": "ovis-gpu-quality",
+        "sha": "fc3a8af4ed767706f291007c185c4cd9ad21bbd8"
+      },
+      {
+        "branch": "ovis-graph-default",
+        "sha": "9e5b567baa727f122bf633b6809ffeddcbbb47da"
+      },
+      {
+        "branch": "ovis-graph-quality",
+        "sha": "19b8873f37e2df2996ec1ec197c2d43df571b9c2"
+      },
+      {
+        "branch": "ovis-graph-replay",
+        "sha": "417f328d02b466e971a3efef77ff026f67edc433"
+      },
+      {
+        "branch": "ovis-perf",
+        "sha": "e4ad803baccd2a1e1a3aa425118acf71377f48e1"
+      },
+      {
+        "branch": "perf/minicpm-ocr-bench-publish-20261028",
+        "sha": "f1f6daadd1bc0d03354abecd459f92fac3fa59fa"
+      },
+      {
+        "branch": "perf/q4k-josev-20261103",
+        "sha": "a3c7c507b2831c4a1f32838961e982b0b112eb84"
+      },
+      {
+        "branch": "regression-suite",
+        "sha": "3da79acb37a73c2dbacbcccdd4c002a50e2aac45"
+      },
+      {
+        "branch": "release/v0.17.16",
+        "sha": "d4632ac6db37bcd06486b9ea61fb7d9e702c68ee"
+      },
+      {
+        "branch": "release/v0.17.17",
+        "sha": "486df98647e84657e107692e9a0e813345ec99b9"
+      },
+      {
+        "branch": "release/v0.17.18",
+        "sha": "a06c9924a61ac9cf6002628bec39af38c3ada443"
+      },
+      {
+        "branch": "release/v0.17.19",
+        "sha": "17775160484f24978020da136e7e0eb1f19fa05f"
+      },
+      {
+        "branch": "repin-frozen-guards",
+        "sha": "9fd18a1b697cbc971d25935e90804f476ee185d7"
+      },
+      {
+        "branch": "review/combined-ocr-runtime-20261112",
+        "sha": "63b394c22dfeb4a423276df0d9f3708e46063c3b"
+      },
+      {
+        "branch": "review/full-q6-20261113",
+        "sha": "bc7451ed886acc01a0fc1b39356ab27a89058a26"
+      },
+      {
+        "branch": "review/ovisocr3-public-diagnostic-20261025",
+        "sha": "6a8897abedfef51628e6fce741ee7e9d0adf65be"
+      },
+      {
+        "branch": "test-skip-hygiene",
+        "sha": "017067b00d4138b00b2f1fa8e36cc3fb1898726b"
+      },
+      {
+        "branch": "test/josev-head-panel-20261027",
+        "sha": "5aadc1c067fe6d7fff5684062ca84da1eb30bef5"
+      },
+      {
+        "branch": "test/ovisocr2-current-f16-20261025",
+        "sha": "574df1994c953cb5e16540e3c5f2e30b17ebb112"
+      },
+      {
+        "branch": "test/ovisocr2-docs-state",
+        "sha": "ec56b99162b7ae6022887e7ab4d683b9f0d5bfa6"
+      },
+      {
+        "branch": "test/ovisocr2-f16-quality-docs",
+        "sha": "6411e858a20f21c232f5c60819f572304051a3f5"
+      },
+      {
+        "branch": "test/ovisocr2-final-core-replay-20261025",
+        "sha": "88d743d94bfb84e929174a58ecc1c1d57508f388"
+      },
+      {
+        "branch": "test/ovisocr2-final-f16-isolation-20261025",
+        "sha": "26dcb07f29b0f1bd4e7d1fa2cd762650ab340a51"
+      },
+      {
+        "branch": "test/ovisocr2-final-replay-isolation-20261025",
+        "sha": "26dcb07f29b0f1bd4e7d1fa2cd762650ab340a51"
+      },
+      {
+        "branch": "test/ovisocr2-l4-audit-20261112",
+        "sha": "35001e243e9be982b4e7b1ca1411451920824afd"
+      },
+      {
+        "branch": "test/ovisocr2-large-inputs-20261025",
+        "sha": "f2f0b7d0cba2ed4c2a0c4996a466bc3b117d8e64"
+      },
+      {
+        "branch": "test/ovisocr2-large-inputs-envfix-20261025",
+        "sha": "ac1bb9cb33f58fb0e7082cc4ba2ddb38793c48cb"
+      },
+      {
+        "branch": "test/ovisocr2-publication-registration",
+        "sha": "c4e55a0851a080ca86546018995d47631c0965f5"
+      },
+      {
+        "branch": "test/ovisocr2-published-consumer",
+        "sha": "c80967db9b101c2ece4bdf5cb387c3e01f078b1d"
+      },
+      {
+        "branch": "test/ovisocr2-q8-retry-docs",
+        "sha": "e21020e72984a44ce4f6e0b7a2fa6fccbedd2cac"
+      },
+      {
+        "branch": "test/ovisocr2-quant-publisher-raw-gate",
+        "sha": "e29704d39a221bf5a578be9b3e6c89833462b87d"
+      },
+      {
+        "branch": "test/ovisocr2-quant-raw-diagnostics",
+        "sha": "eca7aacfd05530e84614853619611154959459cc"
+      },
+      {
+        "branch": "test/ovisocr2-quant-short-control",
+        "sha": "5d3cc215a322f26d0f56f2df2efd2d7dd8f4e8cb"
+      },
+      {
+        "branch": "test/ovisocr2-shallow-control-fix",
+        "sha": "61da0515879a1e43b4ff543a3df8986c90f11ae6"
+      },
+      {
+        "branch": "test/ovisocr2-vision-local-ops",
+        "sha": "baccf1327986a69000df4c69268dcd4a5c392f43"
+      },
+      {
+        "branch": "test/ovisocr3-native14-20261025",
+        "sha": "574df1994c953cb5e16540e3c5f2e30b17ebb112"
+      },
+      {
+        "branch": "test/ovisocr3-native14-final-20261025",
+        "sha": "26dcb07f29b0f1bd4e7d1fa2cd762650ab340a51"
+      },
+      {
+        "branch": "test/ovisocr3-native14-generationfix-20261025",
+        "sha": "6e2d0a624e28aa4ce006e809339abef99a847b2f"
+      },
+      {
+        "branch": "test/ovisocr3-native14-metadatafix-20261025",
+        "sha": "484a6f777f24452e72ee4f23abd8aa08f54afed4"
+      },
+      {
+        "branch": "test/ovisocr3-original11-20261025",
+        "sha": "574df1994c953cb5e16540e3c5f2e30b17ebb112"
+      },
+      {
+        "branch": "test/ovisocr3-reference-20261025",
+        "sha": "f2f0b7d0cba2ed4c2a0c4996a466bc3b117d8e64"
+      },
+      {
+        "branch": "test/ovisocr3-reference-small-report-20261025",
+        "sha": "df974d85134521770dc42999713b8aba0b08b5c1"
+      },
+      {
+        "branch": "test/ovisocr3-reference-source-guard-20261025",
+        "sha": "2ce861682089e3390ba17b08ccba1e46a7eb598d"
+      },
+      {
+        "branch": "test/plain-pytest-current-20261112",
+        "sha": "bd283d71259265555d9ae5d25c1305283edb1f5b"
+      },
+      {
+        "branch": "test/pubdev-apple-consumer-20261031",
+        "sha": "1300b6fbf6cb5f66c3bf8b1faf0af06072f15829"
+      },
+      {
+        "branch": "test/ultrabert-scifact-tokenizer-diagnostic-20261026",
+        "sha": "c86fc007cb247708e99266f777cc2bc9cadb2266"
+      },
+      {
+        "branch": "tooling-fixes",
+        "sha": "f24a634661c7b8d0e04fe8c8e95718dd4ad5af02"
+      }
+    ],
+    "onnx_runtime_dart": [
+      {
+        "branch": "feat/german-gector-proofing",
+        "sha": "0ae7e85ce6dffc7c65506ccad8fc63751cc87188"
+      },
+      {
+        "branch": "fix/reader-contract-escapes",
+        "sha": "0cc404df38f8c75e2f19b0a7c444938c8cf94ebe"
+      },
+      {
+        "branch": "main",
+        "sha": "7bdf47d815a6516da69d29c671240d10e68723ff"
+      },
+      {
+        "branch": "perf/basic-pitch-conv",
+        "sha": "820ed8ff49822aaa2ff43bd02175dc417ea1a1cb"
+      }
+    ],
+    "fastembed-rs": [
+      {
+        "branch": "feat/clean-models",
+        "sha": "2613ee03b3c2faf28db5711eef5b4065e854e015"
+      },
+      {
+        "branch": "feat/cosine-parity-harness",
+        "sha": "97b0f24aacad91749da4065e555e665abcbd8b81"
+      },
+      {
+        "branch": "feat/decoder-engine",
+        "sha": "bf26bbc914f8e56e1f9260db1ddd440da8358cae"
+      },
+      {
+        "branch": "feat/german-gector-proofing",
+        "sha": "ac7aec42c6c249a17b8138da09567bdb72b65e79"
+      },
+      {
+        "branch": "feat/new-model-entries",
+        "sha": "9a462f7c789cf5e6e145514612a7d41c9459d7ac"
+      },
+      {
+        "branch": "feat/userdefined-api",
+        "sha": "8304ffeec7a43bd716ca682523db29a3bb0cff00"
+      },
+      {
+        "branch": "main",
+        "sha": "b397165691344c3ccac89d99b1da5ec5341ff0a8"
+      },
+      {
+        "branch": "main-snapshot-2026-05-03",
+        "sha": "b397165691344c3ccac89d99b1da5ec5341ff0a8"
+      },
+      {
+        "branch": "probe/ort-rc12",
+        "sha": "d1500cdf248fc5447fb723f38e7cf3ee21b30487"
+      },
+      {
+        "branch": "wip/validation",
+        "sha": "b5d0dc21742aca4a2f83169fb801aafa6bfe8c31"
+      }
+    ]
+  }
+}

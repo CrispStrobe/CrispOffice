@@ -265,8 +265,9 @@ class GermanSpellingProvider extends OfficeProofingProvider {
     String language = 'de-DE',
     bool sentenceInitial = false,
   }) async {
-    if (_disposed)
+    if (_disposed) {
       throw StateError('The German spelling provider is disposed.');
+    }
     if (!supportsLanguage(language)) return false;
     final normalized = normalizeGermanWord(word);
     final token = _tokens.firstMatch(normalized);
@@ -274,8 +275,9 @@ class GermanSpellingProvider extends OfficeProofingProvider {
       return false;
     }
     final lexicon = await (_sharedLexicon ??= _GermanLexicon.load());
-    if (_disposed)
+    if (_disposed) {
       throw StateError('The German spelling provider is disposed.');
+    }
     return lexicon.contains(
       normalized,
       swiss: normalizeProofingLanguage(language) == 'de-CH',

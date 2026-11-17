@@ -3,6 +3,7 @@
 Status: optional de-DE manual provider, native F32/mixed Q4_K qualification and bounded complete-check AOT measurement implemented; broader quality, device and distribution gates remain open.
 Date: 2026-11-17.
 Coordinated branch: `feat/german-gector-proofing`.
+Integrated continuation: `codex/german-morphology-20261117`, PR #105.
 
 ## Outcome and scope
 
@@ -171,13 +172,17 @@ before mobile/browser rollout, not after viewing results to make a run pass.
 - [x] Add packages/quds_proofing_gector with a backend-neutral decoder, verified
   model-bundle loading and a persistent worker. Reuse Harper transport patterns.
 - [x] Port word preparation, first-subword mapping, label/verb transformations,
-  bounded iterative edits and guard behavior with original-text UTF-16 mapping.
-- [x] Expose tested de-DE support and explicit unsupported de-AT/de-CH results.
-- [ ] Add qualified de-AT/de-CH policies and controls before advertising those locales.
+  bounded iterative edits and original-text UTF-16 mapping. Implement the
+  documented conservative Quds guard policy; do not claim parity with
+  unpublished Proofbird built-ins.
+- [x] Expose tested de-DE support first. Explicitly return unsupported for
+  de-AT/de-CH; their locale policy and quality qualification remain future work.
+- [ ] Qualify de-AT/de-CH policies before advertising those locales.
 - [x] Construct results around the original request object; forRequest receives
   request-relative offsets and adds startOffset exactly once.
-- [x] Reuse protected ranges; define personal-vocabulary and duplicate/conflict
-  handling. Expose a read-only existing lexicon interface only if guards need it.
+- [x] Reuse protected ranges, personal-vocabulary and duplicate/conflict
+  handling. Expose the existing German spelling vocabulary through a read-only
+  query required by the guards.
 - [x] Load outside the service request deadline; bound the queue, cancel obsolete
   work between passes, invalidate caches on configuration changes and report
   missing/failed/partial work honestly.
@@ -197,16 +202,15 @@ before mobile/browser rollout, not after viewing results to make a run pass.
 - [ ] Qualify intended desktop devices and broader held-out German quality.
 - [ ] Complete exact platform/distribution and model-pack acceptance.
 
-The following native/fallback design was selected before implementation; the
-completed source and measurements are linked above.
-
-CrispEmbed/ggml (selected and implemented): use a small native target with controlled
-BERT/GGUF/ggml CPU dependencies; the current full library is monolithic.
-Convert the exact fine-tuned encoder plus both GECToR heads;
-provide a default-off prepared-ID interface with an explicit unpadded/all-ones
-mask contract or fully implement masks. Use ggml matrix operations for the heads.
-Prove F32/F16 equivalence first, then Q4_K/mixed-precision decoded nonregression.
-Follow CrispEmbed PLAN ownership, environment-gate and hosted benchmark rules.
+CrispEmbed/ggml is implemented as a small CPU target with controlled
+BERT/GGUF/ggml dependencies. It converts the exact fine-tuned encoder and both
+GECToR heads and exposes a default-off prepared-ID interface for one unpadded
+sequence with an all-ones mask. Both heads use ggml matrix operations. The
+retained F32 control and mixed Q4_K candidate preserve frozen-panel decoded
+decisions; numerical limits and failed diagnostics remain recorded separately.
+Follow CrispEmbed PLAN ownership and its feature-specific local CPU permission.
+See [native qualification](../validation/german-gector/2026-11-17-native/README.md)
+for exact source, artifact, build, performance and license identities.
 
 Rust/native ONNX: use a dedicated prepared-input grammar/session abstraction
 with preserved word alignment, bounded thread counts and exact output selection.
@@ -308,7 +312,7 @@ quality, performance or packaging gates and the native ONNX license boundary
 can be satisfied. This selects the next engineering step, not an already
 qualified shipping backend.
 
-### Product quality and remaining work
+### Original reference quality
 
 Both models retain 9/18 exact expected error corrections and 1/12 changed
 clean controls on the frozen synthetic panel, including the incorrect de-CH
@@ -317,21 +321,52 @@ final text or suggestion spans on this panel. These counts do not estimate
 general German accuracy. Broader held-out evaluation and incremental value
 over existing deterministic rules remain required.
 
-The next code slice selected at the end of the earlier Dart qualification was
-the exact fine-tuned ONNX-to-GGUF conversion, both trained heads and prepared-ID
-native entry point, followed by F32 control parity and mixed Q4_K qualification.
-Those steps are now complete in the retained native evidence linked above. The CrispEmbed roadmap and PLAN
-record its observed architecture, required tensor transposes, Q/K rounding
-order, proposed small native dependency boundary and hosted-build gates.
-The Rust roadmap preserves the explicit API-24/native-runtime version check
-and outstanding FFI packaging work.
+### Completed native and application continuation
 
-The initial Dart-only qualification did not implement a GGUF backend or
-application provider. The subsequent native and M3 work above closes that
-implementation gap. Preserve the shared Dart tokenization/decoding/guards,
-protected ranges, UTF-16 source mapping, bounded workers and manual/F7
-integration. Longer inputs and complete checks have local receipts; broader
-quality, complete packaging and intended-device qualification remain open.
+The earlier Quds feature checkpoint `216d9a4ba11d87d27f861d84d26bf74ca1d4f298`
+adds the optional application provider after the native conversion and
+qualification commits. It is integrated with the morphology and ODT fixes in
+PR #105. The [provider README](../../packages/quds_proofing_gector/README.md)
+defines bundle/hash admission, all-ones prepared input, both output heads,
+conservative guards, source mapping, cancellation and availability contracts.
+No model or native binary is shipped by the Dart package.
+
+CrispEmbed's measured implementation is
+`853a1ce6089e5d5486e37307f37051ad6a928745`, with pinned ggml
+`3a27b6c665b191cb230be367db5c52d81dd3e2ac`. The mixed artifact is
+82,756,896 bytes. Its frozen-panel decoded behavior matches the F32 control,
+but its separate 0.002 absolute-error diagnostic does not pass. The native
+dependency report also retains the GNU/Linux system/runtime license boundary;
+top-level MIT/Apache notices alone do not approve distribution.
+
+The first [complete guarded Dart run](../validation/german-gector/2026-11-17-native-dart/README.md)
+fixes 5/18 error cases, preserves all ten supported clean controls and rejects
+the two Swiss controls as unsupported. The guards hold four reference fixes
+whose subject/person evidence is insufficient. The authenticated raw-logit
+replay independently matches all 30 original cases and 40 passes. These are
+different checks: unguarded replay parity is not guarded product quality.
+
+The retained JIT run has a 93.618 ms warm p95 up to 64 WordPieces and an
+819,101,696-byte process peak, exceeding the 768 MiB memory budget. The morphology continuation
+compiled-provider run has a 58.877 ms pooled warm p95 through 64 WordPieces and
+a 404,336,640-byte (385.61 MiB) process peak, passing those provisional budgets
+on its Linux host. Its 256-token structural probe has an 803.379 ms p95. Keep
+the complete sample distribution, host identity and earlier JIT observation;
+these separate runs are not a controlled attribution to one code change. The current
+[continuation report](../validation/german-proofing-continuation-20261117/README.md)
+records the combined-source validation and follow-up fixes without overwriting
+earlier evidence.
+
+Remaining work includes broader held-out precision/recall and incremental
+benefit over deterministic checks, intended-device measurements, approved
+native packaging and locale policy. Web model inference, automatic background
+model checking and default promotion remain unimplemented. The Rust roadmap
+retains the API-24/native-runtime version check and outstanding fallback
+packaging work. None of these results authorizes a release or main merge.
+
+The later compiled GECToR continuation in the Current implemented state
+section above preserves these earlier receipts and advances the guarded result
+to 6/18; the two reports describe distinct, explicitly pinned source states.
 
 ### Durable evidence
 

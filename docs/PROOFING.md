@@ -7,10 +7,58 @@ The CrispStrobe fork implements offline German spelling, automatic German and
 US/UK English hyphenation, sixteen German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
-web assets. Mobile system spelling has an adapter with protocol tests; the
-experimental German model remains a separate evaluation.
+web assets. Mobile system spelling has an adapter with protocol tests. The
+experimental German GECToR provider is available as a separately installed,
+verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
-## Current licensed morphology expansion — 17 November 2026
+## German proofing continuation — 17 November 2026
+
+The [morphology continuation report](validation/german-proofing-continuation-20261117/README.md)
+records the integration of the newer optional GECToR provider and native
+qualification into the morphology PR, together with fresh local checks.
+The existing ODT comment/note, annotation visibility, section-layout and
+page-break fixes remain in the combined source.
+
+The deterministic noun-case rule now also uses unambiguous genitive articles:
+`das Auto des Student → das Auto des Studenten` and
+`wegen des schlimmen Fehler → wegen des schlimmen Fehlers`. The article supplies
+the case; the checker does not assume a fixed case for `wegen`. Ambiguous
+determiners such as `dieses`, alternative valid forms, unknown words and
+nominalized adjectives retain the existing conservative safeguards. This
+extension uses the same Unicode morphology, spelling vocabulary and pure-Dart
+native/web implementation.
+
+`packages/quds_proofing_gector` supplies the separate optional de-DE tokenizer,
+guarded decoder, verified bundle admission and persistent native worker. Its
+host preloads a reviewed model and library, then registers the provider through
+`controller.proofing.configureManual(...)`. Explicit checks, including F7,
+include it; typing checks use the ordinary providers. Unsupported manual-model
+languages do not make an otherwise complete background check incomplete.
+
+This remains an experimental host opt-in. The earlier morphology report
+retains 5/18 guarded fixes. The [later compiled GECToR continuation](validation/german-gector/2026-11-17-continuation/README.md)
+recovers the authenticated same-number verb-person alias for `Wir ist` →
+`Wir sind`, giving 6/18 expected fixes while leaving all ten supported clean
+controls unchanged; de-AT and de-CH are explicitly unsupported. The unguarded reference
+fixes 9/18 and includes a known Swiss false correction. Neither finite panel
+establishes general accuracy. Model quality, target-device performance and the
+exact native distribution's dependency/license closure remain separate gates;
+see the [GECToR roadmap](roadmaps/german-gector-proofing.md).
+
+The morphology report's compiled-provider run meets the provisional engineering
+budgets on its measured Linux host: 58.877 ms pooled warm p95 for the bounded inputs through
+64 WordPieces and 385.61 MiB peak process memory. The 256-token structural probe
+takes 803.379 ms at p95. These complete-check timings include worker transport,
+all inference passes and guards; they do not qualify other devices or general
+sentence distributions. The full report retains the earlier JIT memory miss.
+
+The later GECToR continuation through the verified development pack records
+66.072 ms short-input p95, 343.80 MiB peak process memory and 816.225 ms p95
+for the 256-token structural probe. These are separate source-bound local
+observations, not a controlled speed comparison. Its validation and the earlier
+morphology measurements are both preserved.
+
+## Earlier licensed morphology expansion — 17 November 2026
 
 The [morphology continuation report](validation/german-morphology-20261117/README.md)
 records the integration of all 213 captured fork/upstream branch and PR
@@ -489,7 +537,7 @@ punctuation and lexical fragments adjoining joiners can therefore be omitted.
 This conservative range policy is not a claim that every such fragment has
 been checked.
 
-### German model evaluation
+### Optional German model and retained reference evaluation
 
 The `proofbird/gector-bert-de` v2.1.0 ONNX model was evaluated separately at
 immutable revision `8e3b50beef7d775cedb7b876009e88bcf2e8d6af`. Its original
@@ -504,9 +552,13 @@ estimate. The upstream reference runner omits the application's additional
 grammar and OS spelling guards, so published guarded-app scores do not
 describe this run. Original timings, outputs, versions and hashes remain in
 the [evaluation record](validation/proofing-20261116/german-model-evaluation.json);
-the recovery did not rerun the expensive evaluation or enable a model provider.
-See the [evaluation README](../tools/proofing/german_model/README.md) for a
-repeatable local entry point and the requirements for any future provider.
+that historical recovery did not rerun the expensive evaluation or enable a
+model provider. Later work implements the optional, explicitly loaded de-DE
+provider described above. Its conservative Quds guards are derived from the
+published policy and do not claim parity with unpublished Proofbird application
+built-ins. See the [provider README](../packages/quds_proofing_gector/README.md)
+for host integration and the [evaluation README](../tools/proofing/german_model/README.md)
+for reproducible reference tooling.
 
 Commercial Duden/LanguageTool services and LGPL policy exceptions remain
 outside this implementation. No account, purchase or document upload is

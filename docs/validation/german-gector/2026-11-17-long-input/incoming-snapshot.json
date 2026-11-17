@@ -1,0 +1,851 @@
+{
+  "captured_at": "2026-11-17T15:12:49.302Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "starting_head": "d2e50c3a298679fed873d045a4b2d07663b37246",
+  "branches": [
+    {
+      "name": "codex/german-morphology-20261117",
+      "sha": "f986fd031e4f984200c392e844ad83ae1ef5eb24"
+    },
+    {
+      "name": "codex/odf-annotation-visibility-20261117",
+      "sha": "0b229004ee928fa1c1206957dbfc0419307cf254"
+    },
+    {
+      "name": "codex/office-continuation-20261117",
+      "sha": "555eb728ce3ea872cb5ceb3e5fd2104b21f932aa"
+    },
+    {
+      "name": "codex/office-fidelity-20261117",
+      "sha": "4ca30ec3ba9e2a1c2288d78bb83d2a3ce3678e0d"
+    },
+    {
+      "name": "codex/proofing-20261116-resume",
+      "sha": "738f0b6a3f1f46f83585579291d0847613d780c5"
+    },
+    {
+      "name": "codex/proofing-20261116",
+      "sha": "c0403890fc00f38c0ee6e1d533f6fef549c6fc03"
+    },
+    {
+      "name": "codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2"
+    },
+    {
+      "name": "codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79"
+    },
+    {
+      "name": "codex/proofing-en-hyphenation-20261116",
+      "sha": "ffc672fec2df9919233b4ee5b0ba783ef1758f99"
+    },
+    {
+      "name": "codex/proofing-german-quality-20261116",
+      "sha": "a916bbf09169f6906a89bd2ca3e3c42120ead466"
+    },
+    {
+      "name": "codex/proofing-harper-source-20261116",
+      "sha": "65d5815e4866549fe7f03b145b626f2c4aaba8e0"
+    },
+    {
+      "name": "codex/terminal-integration-ods-20261116",
+      "sha": "4fadcc68d52d51e72e8d782765a0dd5086b982c6"
+    },
+    {
+      "name": "codex/terminal-recovery-office-20261116",
+      "sha": "be2c3a91b0dd5b4abb1b9a7baa8f5e10769bc87a"
+    },
+    {
+      "name": "codex/terminal-sharing-office-20261116",
+      "sha": "4235e690602195cc504438a6b937972c71f1ad39"
+    },
+    {
+      "name": "codex/text-rendering-20261116-continuation",
+      "sha": "aff69c221f24d2bf9bcab7001f976ac085b4e841"
+    },
+    {
+      "name": "codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59"
+    },
+    {
+      "name": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481"
+    },
+    {
+      "name": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159"
+    },
+    {
+      "name": "codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb"
+    },
+    {
+      "name": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a"
+    },
+    {
+      "name": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462"
+    },
+    {
+      "name": "docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e"
+    },
+    {
+      "name": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f"
+    },
+    {
+      "name": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc"
+    },
+    {
+      "name": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f"
+    },
+    {
+      "name": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797"
+    },
+    {
+      "name": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70"
+    },
+    {
+      "name": "docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6"
+    },
+    {
+      "name": "docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7"
+    },
+    {
+      "name": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1"
+    },
+    {
+      "name": "docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb"
+    },
+    {
+      "name": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5"
+    },
+    {
+      "name": "docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f"
+    },
+    {
+      "name": "docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d"
+    },
+    {
+      "name": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5"
+    },
+    {
+      "name": "docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff"
+    },
+    {
+      "name": "docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9"
+    },
+    {
+      "name": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630"
+    },
+    {
+      "name": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0"
+    },
+    {
+      "name": "docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f"
+    },
+    {
+      "name": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694"
+    },
+    {
+      "name": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7"
+    },
+    {
+      "name": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448"
+    },
+    {
+      "name": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1"
+    },
+    {
+      "name": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c"
+    },
+    {
+      "name": "feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6"
+    },
+    {
+      "name": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf"
+    },
+    {
+      "name": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da"
+    },
+    {
+      "name": "feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9"
+    },
+    {
+      "name": "feat/german-gector-proofing",
+      "sha": "d2e50c3a298679fed873d045a4b2d07663b37246"
+    },
+    {
+      "name": "feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9"
+    },
+    {
+      "name": "feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a"
+    },
+    {
+      "name": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c"
+    },
+    {
+      "name": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d"
+    },
+    {
+      "name": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9"
+    },
+    {
+      "name": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736"
+    },
+    {
+      "name": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87"
+    },
+    {
+      "name": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e"
+    },
+    {
+      "name": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95"
+    },
+    {
+      "name": "feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27"
+    },
+    {
+      "name": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553"
+    },
+    {
+      "name": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080"
+    },
+    {
+      "name": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea"
+    },
+    {
+      "name": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2"
+    },
+    {
+      "name": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667"
+    },
+    {
+      "name": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be"
+    },
+    {
+      "name": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b"
+    },
+    {
+      "name": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12"
+    },
+    {
+      "name": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4"
+    },
+    {
+      "name": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15"
+    },
+    {
+      "name": "feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c"
+    },
+    {
+      "name": "feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3"
+    },
+    {
+      "name": "feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26"
+    },
+    {
+      "name": "feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91"
+    },
+    {
+      "name": "feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01"
+    },
+    {
+      "name": "feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f"
+    },
+    {
+      "name": "feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a"
+    },
+    {
+      "name": "feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9"
+    },
+    {
+      "name": "feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20"
+    },
+    {
+      "name": "feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826"
+    },
+    {
+      "name": "feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3"
+    },
+    {
+      "name": "feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d"
+    },
+    {
+      "name": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18"
+    },
+    {
+      "name": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4"
+    },
+    {
+      "name": "feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5"
+    },
+    {
+      "name": "fix/ods-global-validations-20261116",
+      "sha": "e5e1e9af6beb0972a010d8208c1690a642809113"
+    },
+    {
+      "name": "fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976"
+    },
+    {
+      "name": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524"
+    },
+    {
+      "name": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75"
+    },
+    {
+      "name": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b"
+    },
+    {
+      "name": "fix/word-dialog-focus-rendering-20261116",
+      "sha": "094d6bacb9cb253e4d04443e9f3c4171e7433c8a"
+    },
+    {
+      "name": "main",
+      "sha": "67482c25a90631d54dd6dff6cda489687efb380f"
+    },
+    {
+      "name": "vendor/conditional-dxf-styles",
+      "sha": "76c7087c22da8ace85b9a71ca266a90f84faa3ae"
+    },
+    {
+      "name": "vendor/conditional-top-bottom",
+      "sha": "ea9d16edd489b3a4ccff7a25cc5277b686c4e263"
+    },
+    {
+      "name": "vendor/odp-presentation-writer",
+      "sha": "578846d395baa0c9dfd1f32a805125f331fda248"
+    },
+    {
+      "name": "vendor/odp-transitions",
+      "sha": "d061a578646493b71ad19f8fd8358f6cc509e8b8"
+    },
+    {
+      "name": "vendor/ods-custom-validation",
+      "sha": "90acedb9835cb5bdef30606301e74482f5977448"
+    },
+    {
+      "name": "vendor/ods-filter-conditions",
+      "sha": "928f85483ec1cb85e468ca9381585875137ba8d5"
+    },
+    {
+      "name": "vendor/ods-filter-conditions-correct",
+      "sha": "817982d580e990a5ca21d74c35135db4817e54b5"
+    },
+    {
+      "name": "vendor/ods-filter-operators",
+      "sha": "777bcb876a9c8cc170586d117fa41f8331ef84ad"
+    },
+    {
+      "name": "vendor/ods-filter-predicates",
+      "sha": "a53a37b0b5c1b55aff20d581f80f1b2027bf3ddb"
+    },
+    {
+      "name": "vendor/ods-header-footer",
+      "sha": "c6a7eff46bcfcb806ee7c43252636b06c088963c"
+    },
+    {
+      "name": "vendor/ods-hyperlinks",
+      "sha": "95debbcce02c1e24d6e8159cd1f524bbf68afeba"
+    },
+    {
+      "name": "vendor/ods-hyperlinks-current",
+      "sha": "be6aa3cf2fca1b775c2b1352881e2ca3f9134c13"
+    },
+    {
+      "name": "vendor/ods-metadata",
+      "sha": "18dc693fbf4e39fc6c38e3d655d1e5b35eeef273"
+    },
+    {
+      "name": "vendor/ods-metadata-zotero",
+      "sha": "4fbd1687d3c0ada22d460cf5cadb9586c4f62905"
+    },
+    {
+      "name": "vendor/ods-named-expressions",
+      "sha": "388a1c76339507d493bab577424affd80732446c"
+    },
+    {
+      "name": "vendor/ods-outline",
+      "sha": "33a0508a502f5809aa997928e8428bdec3e02503"
+    },
+    {
+      "name": "vendor/ods-row-groups",
+      "sha": "891ccc21cf91fb9f49fa0af98143468fbbd3eac7"
+    },
+    {
+      "name": "vendor/ods-tab-color",
+      "sha": "375390c3853ce26f43d6ac3f71c592acf3e094dc"
+    },
+    {
+      "name": "vendor/ods-validation",
+      "sha": "c7bb6d6f51885e4082882252f502bbf2de81d552"
+    },
+    {
+      "name": "vendor/ods-validation-current",
+      "sha": "4ffdf113803806ba5f8ade4a0846eee85dcfbe68"
+    },
+    {
+      "name": "vendor/ods-validation-messages",
+      "sha": "14fde4b1bd2539f0c6168be4569ac1adcc5105cd"
+    },
+    {
+      "name": "vendor/ods-writer",
+      "sha": "e14a55b50af4b6870ed1044284f74c36b5f194d9"
+    },
+    {
+      "name": "vendor/ods-writer-conditional",
+      "sha": "abdbc8b576f5327786c8a0f19bf91bef1250de12"
+    },
+    {
+      "name": "vendor/ods-writer-images",
+      "sha": "546368fe3aad7ccb65c72f897b6585513b0199f1"
+    },
+    {
+      "name": "vendor/ods-writer-metadata",
+      "sha": "1808f38493d1cf2fddc1761d146432ceaaea70aa"
+    },
+    {
+      "name": "vendor/ods-writer-page-layout",
+      "sha": "2aee95e6aa7021869a198cf19ebbb43a44d7910f"
+    },
+    {
+      "name": "vendor/odt-comments",
+      "sha": "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    },
+    {
+      "name": "vendor/odt-document-writer",
+      "sha": "5f019253d247073b715b7a7ae4a82763ceafd02f"
+    },
+    {
+      "name": "vendor/odt-footnotes",
+      "sha": "f6c9be054b016192673ba82e608ae0ae987b5308"
+    },
+    {
+      "name": "vendor/odt-links-bookmarks",
+      "sha": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18"
+    },
+    {
+      "name": "vendor/odt-lists",
+      "sha": "94532021b720e3035022a2fed08ec88f48340892"
+    },
+    {
+      "name": "vendor/odt-nested-lists",
+      "sha": "406798f7e47332f92438828dcfc6a2184d4361bb"
+    },
+    {
+      "name": "vendor/odt-ordered-lists",
+      "sha": "aa346a296e8b19bb937c345f7142c60720c3d6e4"
+    },
+    {
+      "name": "vendor/odt-ordered-lists2",
+      "sha": "0eb60d0fc706a4da54df07ae86df029c1caac074"
+    },
+    {
+      "name": "vendor/odt-sections",
+      "sha": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82"
+    },
+    {
+      "name": "vendor/sheet-page-setup",
+      "sha": "f938d7fc3cb9aa42ea8d30b1c2ab50ccca694699"
+    }
+  ],
+  "recent_prs": [
+    {
+      "number": 105,
+      "title": "Broaden offline German grammar with morphology and optional GECToR",
+      "state": "open",
+      "updated_at": "2026-11-17T15:09:12Z",
+      "merged_at": null,
+      "head_ref": "codex/german-morphology-20261117",
+      "head_sha": "f986fd031e4f984200c392e844ad83ae1ef5eb24",
+      "base_ref": "main",
+      "merge_commit_sha": "dbd98640a22f0e94ea463d72481aa96c755840b8"
+    },
+    {
+      "number": 101,
+      "title": "Preserve ODF tables, notes, comments and centered slide rotation",
+      "state": "open",
+      "updated_at": "2026-11-17T15:01:24Z",
+      "merged_at": null,
+      "head_ref": "codex/office-fidelity-20261117",
+      "head_sha": "4ca30ec3ba9e2a1c2288d78bb83d2a3ce3678e0d",
+      "base_ref": "main",
+      "merge_commit_sha": null
+    },
+    {
+      "number": 107,
+      "title": "Write ODT bookmarks and linked ranges",
+      "state": "closed",
+      "updated_at": "2026-11-17T14:52:11Z",
+      "merged_at": "2026-11-17T14:52:11Z",
+      "head_ref": "feat/odt-links-bookmarks",
+      "head_sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "base_ref": "main",
+      "merge_commit_sha": "67482c25a90631d54dd6dff6cda489687efb380f"
+    },
+    {
+      "number": 106,
+      "title": "Write nested ODT list levels",
+      "state": "closed",
+      "updated_at": "2026-11-17T14:40:23Z",
+      "merged_at": "2026-11-17T14:40:22Z",
+      "head_ref": "feat/odt-nested-lists",
+      "head_sha": "7686ec52876288e6799023fd686af79228236826",
+      "base_ref": "main",
+      "merge_commit_sha": "2277634a33b77405f045321ee3ea9ae432066f9a"
+    },
+    {
+      "number": 104,
+      "title": "Write ODT section layouts and page breaks",
+      "state": "closed",
+      "updated_at": "2026-11-17T14:18:03Z",
+      "merged_at": "2026-11-17T14:18:03Z",
+      "head_ref": "feat/odt-sections2",
+      "head_sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "base_ref": "main",
+      "merge_commit_sha": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b"
+    },
+    {
+      "number": 103,
+      "title": "Write ODT comments",
+      "state": "closed",
+      "updated_at": "2026-11-17T13:47:00Z",
+      "merged_at": "2026-11-17T13:47:00Z",
+      "head_ref": "feat/odt-comments",
+      "head_sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "base_ref": "main",
+      "merge_commit_sha": "3458c8977cef969a86a07b39734c761ba62e4b40"
+    },
+    {
+      "number": 102,
+      "title": "Land combined Zotero and ODF source with fresh local qualification [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T09:42:21Z",
+      "merged_at": "2026-11-17T09:35:15Z",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "base_ref": "main",
+      "merge_commit_sha": "518fb28b1cff7aeefad446cbf41c2832673c4d33"
+    },
+    {
+      "number": 85,
+      "title": "Complete Zotero recovery, incoming sync and local qualification [skip ci]",
+      "state": "closed",
+      "updated_at": "2026-11-17T09:36:10Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "base_ref": "main",
+      "merge_commit_sha": "0e6951703827257ed6f12844e3e12b3f209f5174"
+    },
+    {
+      "number": 100,
+      "title": "Write ODT footnotes and endnotes",
+      "state": "closed",
+      "updated_at": "2026-11-17T09:02:36Z",
+      "merged_at": "2026-11-17T09:02:35Z",
+      "head_ref": "feat/odt-footnotes",
+      "head_sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "base_ref": "main",
+      "merge_commit_sha": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13"
+    },
+    {
+      "number": 99,
+      "title": "Record ODP transitions",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:53:52Z",
+      "merged_at": "2026-11-17T08:53:52Z",
+      "head_ref": "docs/odp-transitions",
+      "head_sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "base_ref": "main",
+      "merge_commit_sha": "b0d6c58b45a7e2cf4d161270b0e8223f05e0d470"
+    },
+    {
+      "number": 98,
+      "title": "Write ODP slide transitions",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:48:42Z",
+      "merged_at": "2026-11-17T08:48:42Z",
+      "head_ref": "feat/odp-transitions",
+      "head_sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "base_ref": "main",
+      "merge_commit_sha": "dedac9cf14e2fca66363e282d7fe787ac9b71690"
+    },
+    {
+      "number": 97,
+      "title": "Write ordered ODT list groups",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:36:14Z",
+      "merged_at": "2026-11-17T08:36:14Z",
+      "head_ref": "feat/odt-ordered-lists",
+      "head_sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "base_ref": "main",
+      "merge_commit_sha": "69a1396eacae0ec5c79f5d0feba6431e641d9448"
+    },
+    {
+      "number": 96,
+      "title": "Correct ODT and ODP writer rows",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:27:34Z",
+      "merged_at": "2026-11-17T08:27:34Z",
+      "head_ref": "docs/odt-odp-rows",
+      "head_sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "base_ref": "main",
+      "merge_commit_sha": "ee72594686c17e508740e1b446c87593da9ffbda"
+    },
+    {
+      "number": 95,
+      "title": "Write ODT list groups",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:24:48Z",
+      "merged_at": "2026-11-17T08:24:48Z",
+      "head_ref": "feat/odt-lists",
+      "head_sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "base_ref": "main",
+      "merge_commit_sha": "f4e6edc8d639e887d09fde07ac9886df03139169"
+    },
+    {
+      "number": 91,
+      "title": "Expand German grammar and strengthen English/German proofing",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_ref": "codex/proofing-en-de-20261117",
+      "head_sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "base_ref": "main",
+      "merge_commit_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646"
+    },
+    {
+      "number": 87,
+      "title": "Improve English/German hyphenation, spelling and grammar without GPL components",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_ref": "codex/proofing-en-de-20261116",
+      "head_sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "base_ref": "main",
+      "merge_commit_sha": "ad3c6edce16fd0e02ad43e0d4e176b22d334f21d"
+    },
+    {
+      "number": 72,
+      "title": "Improve text rendering, worksheet conditional formats and ODF fidelity",
+      "state": "closed",
+      "updated_at": "2026-11-17T08:13:45Z",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "head_ref": "codex/text-rendering-20261116",
+      "head_sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "base_ref": "main",
+      "merge_commit_sha": "000b47625ffa15aa1ed28f840b2acda33cc4f42b"
+    },
+    {
+      "number": 94,
+      "title": "Record the bounded ODP writer",
+      "state": "closed",
+      "updated_at": "2026-11-17T06:17:07Z",
+      "merged_at": "2026-11-17T06:17:05Z",
+      "head_ref": "docs/odp-presentation-writer",
+      "head_sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "base_ref": "main",
+      "merge_commit_sha": "6860985f0a33e0fdff26c4e661a1faaf213b6a46"
+    },
+    {
+      "number": 93,
+      "title": "Add a bounded ODP presentation writer",
+      "state": "closed",
+      "updated_at": "2026-11-17T06:11:15Z",
+      "merged_at": "2026-11-17T06:11:15Z",
+      "head_ref": "feat/odp-presentation-writer",
+      "head_sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "base_ref": "main",
+      "merge_commit_sha": "5c38679bab0819c8726444a98d4fbf6ab8437b40"
+    },
+    {
+      "number": 92,
+      "title": "Add a bounded ODT document writer",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:41:09Z",
+      "merged_at": "2026-11-16T23:41:09Z",
+      "head_ref": "feat/odt-document-writer",
+      "head_sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "base_ref": "main",
+      "merge_commit_sha": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e"
+    },
+    {
+      "number": 90,
+      "title": "Record ODT frame dimensions",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:32:48Z",
+      "merged_at": "2026-11-16T23:32:48Z",
+      "head_ref": "docs/odt-frame-size",
+      "head_sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "base_ref": "main",
+      "merge_commit_sha": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49"
+    },
+    {
+      "number": 89,
+      "title": "Retain conditional-format dxf styles",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:17:46Z",
+      "merged_at": "2026-11-16T23:17:46Z",
+      "head_ref": "feat/conditional-dxf-styles",
+      "head_sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "base_ref": "main",
+      "merge_commit_sha": "281b5d4cd705c1f32d98a741233ebb836d1ef20a"
+    },
+    {
+      "number": 88,
+      "title": "Record ranked and average conditional rules",
+      "state": "closed",
+      "updated_at": "2026-11-16T23:15:43Z",
+      "merged_at": "2026-11-16T23:15:43Z",
+      "head_ref": "docs/conditional-top-bottom",
+      "head_sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "base_ref": "main",
+      "merge_commit_sha": "8e405a09e7b6a017c95ffc6bd32b49ab613a7a3f"
+    },
+    {
+      "number": 86,
+      "title": "Import and export top, bottom and average conditional rules",
+      "state": "closed",
+      "updated_at": "2026-11-16T20:11:30Z",
+      "merged_at": "2026-11-16T20:11:30Z",
+      "head_ref": "feat/conditional-top-bottom",
+      "head_sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "base_ref": "main",
+      "merge_commit_sha": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80"
+    },
+    {
+      "number": 84,
+      "title": "Record ODS header and footer round-trips",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:59:59Z",
+      "merged_at": "2026-11-16T19:59:59Z",
+      "head_ref": "docs/ods-header-footer",
+      "head_sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "base_ref": "main",
+      "merge_commit_sha": "63194d8e482892f284eaccb95ce48a8a8132376d"
+    },
+    {
+      "number": 83,
+      "title": "Round-trip ODS header and footer sections",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:57:58Z",
+      "merged_at": "2026-11-16T19:57:58Z",
+      "head_ref": "feat/ods-header-footer",
+      "head_sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "base_ref": "main",
+      "merge_commit_sha": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195"
+    },
+    {
+      "number": 82,
+      "title": "Finish the ODS page-setup note",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:50:02Z",
+      "merged_at": "2026-11-16T19:50:02Z",
+      "head_ref": "docs/page-setup-fix",
+      "head_sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "base_ref": "main",
+      "merge_commit_sha": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3"
+    },
+    {
+      "number": 81,
+      "title": "Record worksheet page setup",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:49:42Z",
+      "merged_at": "2026-11-16T19:49:42Z",
+      "head_ref": "docs/sheet-page-setup",
+      "head_sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "base_ref": "main",
+      "merge_commit_sha": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa"
+    },
+    {
+      "number": 80,
+      "title": "Model and round-trip worksheet page setup",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:47:41Z",
+      "merged_at": "2026-11-16T19:47:41Z",
+      "head_ref": "feat/sheet-page-setup",
+      "head_sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "base_ref": "main",
+      "merge_commit_sha": "36db2a6cbc0f028dd15b558914045f995aeae949"
+    },
+    {
+      "number": 79,
+      "title": "Record ODS row groups",
+      "state": "closed",
+      "updated_at": "2026-11-16T19:25:30Z",
+      "merged_at": "2026-11-16T19:25:30Z",
+      "head_ref": "docs/ods-row-groups",
+      "head_sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "base_ref": "main",
+      "merge_commit_sha": "be9eeec9ea3455018de26fff5874c558dbc66798"
+    }
+  ]
+}
