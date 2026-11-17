@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "qualification_accepted": false,
+  "source_policy": "Use the exact clean commit after this checkpoint as recorded by every runner. Keep source/tests/harness/HEAD fixed for all gates. Publish evidence through a separate checkout.",
+  "main_cutoff": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+  "pr144_cutoff": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+  "gector_cutoff": "faffbc419e07e73cbf24169b75844c2354413e5f",
+  "branch": "codex/office-union-qualification-20261117",
+  "pr_number": 148,
+  "gates": {
+    "canonical": {
+      "runner": "../office-reconciled-20261117/qualification/run_qualification.py",
+      "unique_files": 221,
+      "cohorts": {
+        "engine-zotero": 19,
+        "editor-zotero": 13,
+        "engine-integration": 135,
+        "editor-integration": 37,
+        "harper-contract": 3,
+        "gector-contract": 14
+      },
+      "strict_analysis_commands": 5,
+      "format_and_python_controls": true,
+      "private_fixture_exclusions": 2,
+      "allowed_skips": 0
+    },
+    "portable": {
+      "runner": "../office-reconciled-20261117/resume/run_portable.py",
+      "unique_files": 14,
+      "platform": "Node",
+      "allowed_skips": 0
+    },
+    "example_smoke": {
+      "tests": 2,
+      "separate_from_canonical": true
+    },
+    "retained_consumers": {
+      "fixtures": 40,
+      "schema_parts": 160,
+      "unchanged_harness": true
+    },
+    "boundary_consumers": {
+      "fixtures": 5,
+      "pdf_variants": 15,
+      "docx_reopens": 10,
+      "strict_layouts": 4,
+      "bounded_precedence_control": 1,
+      "external_exact_source_guard": true
+    },
+    "native_thread_sweep": {
+      "threads": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "serial": true,
+      "after_other_model_jobs": true,
+      "performance_flags_reported_separately": true
+    }
+  },
+  "new_repairs": {
+    "sheet": "14bd9c810691352e5b8c29005eb8d5af57bfa905",
+    "frame_local_source_commit": "877fe3bdaec0afd6ed82dff3aa10d728d6df759e"
+  },
+  "constraints": [
+    "No GitHub Actions/check/status query, wait or rerun",
+    "Never overwrite concurrent branch work or force-push",
+    "Retain AOT/RML product removal; native-thread qualification executable is isolated tooling",
+    "Historical outcomes remain historical",
+    "Independent archive readback and receipt review required before final acceptance"
+  ]
+}

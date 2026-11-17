@@ -1,0 +1,89 @@
+{
+  "status": "prepared_not_executed",
+  "source_commit": "TO_BE_SUPPLIED_BY_ROOT",
+  "source_root": "/workspace/scratch/3cddf06175f0/full-validation-workspace",
+  "canonical_repo": "/workspace/scratch/3cddf06175f0/quds_office_suite",
+  "dart": "/workspace/scratch/3cddf06175f0/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+  "native_pack": "/workspace/scratch/3cddf06175f0/native-qualification-runtime/native-development-pack",
+  "reference": "/workspace/scratch/3cddf06175f0/native-qualification-runtime/reference-f32.json",
+  "reference_sha256": "9d33a0be66e68284277bd3d9e0e0fe404936cf804e2e715a8999b7ece14155d8",
+  "thread_order": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "segment_target_tokens": 64,
+  "inference_reuse_enabled": false,
+  "cohorts": {
+    "cases": 30,
+    "controls": 8,
+    "long_complete_check_probes": 3,
+    "segmented_long_complete_check_probes": 2,
+    "varied_segmented_long_complete_check_probes": 2,
+    "segmentation_controls": 6
+  },
+  "hard_timeout_seconds_per_arm": 900,
+  "historical_measured_plus_warmup_seconds_two_thread_segmented_arm": 55.892837,
+  "rough_runtime_expectation": "5\u201312 minutes total plus AOT build on this host; estimated from historical arm, not a measured current result",
+  "commands": {
+    "audit_controls": [
+      "python3",
+      "/workspace/scratch/3cddf06175f0/quds_office_suite/docs/validation/german-gector/2026-11-17-followup/native-threads/check_thread_sweep_audit.py",
+      "--source-root",
+      "/workspace/scratch/3cddf06175f0/quds_office_suite",
+      "--output",
+      "<fresh-output>/audit-controls.json"
+    ],
+    "build_provider": [
+      "python3",
+      "/workspace/scratch/3cddf06175f0/quds_office_suite/tools/proofing/german_model/build_gector_aot.py",
+      "--source-root",
+      "/workspace/scratch/3cddf06175f0/full-validation-workspace",
+      "--dart",
+      "/workspace/scratch/3cddf06175f0/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--output",
+      "<fresh-output>/provider.aot",
+      "--receipt",
+      "<fresh-output>/provider-build.json"
+    ],
+    "sweep": [
+      "python3",
+      "/workspace/scratch/3cddf06175f0/quds_office_suite/docs/validation/german-gector/2026-11-17-followup/native-threads/run_native_thread_sweep.py",
+      "--source-root",
+      "/workspace/scratch/3cddf06175f0/full-validation-workspace",
+      "--dart",
+      "/workspace/scratch/3cddf06175f0/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--aot",
+      "<fresh-output>/provider.aot",
+      "--build-receipt",
+      "<fresh-output>/provider-build.json",
+      "--pack",
+      "/workspace/scratch/3cddf06175f0/native-qualification-runtime/native-development-pack",
+      "--reference",
+      "/workspace/scratch/3cddf06175f0/native-qualification-runtime/reference-f32.json",
+      "--output-dir",
+      "<fresh-output>/sweep"
+    ]
+  },
+  "external_guard": {
+    "path": "/workspace/scratch/3cddf06175f0/qualification-helpers/guard_frozen_run.py",
+    "sha256": "cae599fe98d717ff29e558b926b326589ff5c807f9ccdb87881cd003984dca63",
+    "checks": [
+      "Clean tracked/untracked Git checkout and exact HEAD before and after",
+      "Selected source bytes independently equal frozen Git blobs before and after",
+      "Workspace engine/parser/GECToR libraries resolve to the frozen repository",
+      "Full underlying consumer/Dart/dependency/font runtime maps before and after",
+      "Extra pinned native library/model/manifest/reference/AOT/build receipt inputs on native sweep"
+    ]
+  },
+  "limits": [
+    "Run only after root freezes source and all other shared-host test/compile/model jobs have finished.",
+    "The AOT is an existing qualification provider executable; it does not restore removed product AOT/RML integration.",
+    "Engineering latency/RSS/size budgets are reported separately: sweep pass means operational and semantic nonregression, not necessarily all performance budgets.",
+    "Distinct varied 640/1280 inputs are checked for complete UTF-16 source coverage and initial prepared-input diversity.",
+    "Source/runtime/fixture bytes remain unchanged; no oracle modifications are planned.",
+    "Timed output stability across all output values remains producer claim; per-sample decoder diagnostics and first results are retained and independently compared.",
+    "Local exploratory CPU-thread findings do not qualify intended devices or broad language quality."
+  ]
+}

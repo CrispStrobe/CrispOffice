@@ -21,3 +21,9 @@ The first new source checkpoint is `8ed0a60ba60650aebeac74a1b30c23232b200703`. C
 Current main advanced through PR #146 and PR #147 to `bb5556e8`; #147 lands the earlier #144 source. The merge retains every richer Office regression and changes no reconciled product bytes. The newest #144 and GECToR evidence checkpoints are retained as additional ancestry, with historical attribution unchanged.
 
 The spreadsheet repair now emits valid graphic conditional-format child order, reads color-scale colors by ordinal, preserves edits to imported graphic rules, and uses range-relative percent/interpolated-percentile thresholds. The focused six-file selection has 189 visible passes with no errors/skips and strict analysis passes; final regression bytes reproduce 14 failures on incoming product. These are development controls, not a substitute for the frozen-source qualification. The raw logs and their stated integrity limitations are archived.
+
+## Floating-frame repair and source freeze
+
+Floating frames now inherit from one common `QudsTextFrame` graphic style. This preserves bookmarks when LibreOffice converts ODT frames to DOCX without changing frame anchors or geometry. The final regression fails once on the old writer; all 39 section tests pass on VM and Node. Fresh independently converted fixtures retain frame bookmark text in both DOCX text-box alternatives and pass all eight before/after XML schema-part checks. The source and runtime maps for these focused controls are stable.
+
+The final frozen-source selection is 221 unique files across six disjoint cohorts, plus the unchanged 14-file portable selection, a separate two-test example smoke, 40 retained consumers, five boundary consumers and the pending serial native thread sweep. Its exact plan and limits are recorded in `qualification-plan.json`. The consumer wrapper adds independent clean-HEAD/Git-byte/runtime guards without changing the retained harness or oracle.
