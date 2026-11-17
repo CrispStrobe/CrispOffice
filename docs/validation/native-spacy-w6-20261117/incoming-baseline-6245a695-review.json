@@ -1,0 +1,81 @@
+{
+  "schema": "quds.spacy.w6.incoming-baseline-review.v1",
+  "reviewed_at": "2026-11-17T22:40:37.421416+00:00",
+  "range": {
+    "from": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+    "to": "6245a6956a76a38f925e1eb18851c0086730112d"
+  },
+  "qualification_panel_or_outputs_read": false,
+  "native_inference_or_acceptance_executed": false,
+  "product_edits": false,
+  "proofing_source_changes": {
+    "packages/quds_office_engine/lib/src/proofing/german_context_grammar.dart": {
+      "before_sha256": "a3c0ba12d84a68ff69612344d5eef194ab8589797825d22f6106291cb540b761",
+      "after_sha256": "9f3b6006ad8da9f5f0e6c5e76df6b135fd325604185f2ca3c97fdd2c4823f1d9"
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": {
+      "before_sha256": "2dc05a989969644e71d5f2a52e1dc7d99685b3b9b2dc950d05f92d5e56ae40b9",
+      "after_sha256": "ab3947b5c27f91084f40433d3a12784559fb67dcaa6ff0b929196844d2ba6897"
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_literal_ranges.dart": {
+      "before_sha256": "5585e4acf19165237e60eed7a20109d5ad74c03b9fbcd2b78b27cd00c8bb726a",
+      "after_sha256": "c975a512605f7c0b2d9251547492253319c80a37a9829e04de48ff2a4e271f23"
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": {
+      "before_sha256": "6bac6546836194f00a22a8afc4a763fdbaa7ef94e8e75a16efb36d6482684189",
+      "after_sha256": "636050b5c5ec111e64377387e5013bb207f16e3fc4f92fa7dcdb65b23540ddb9"
+    }
+  },
+  "summary": [
+    "Bounded copula-genitive and abstract prepositional-object contexts extend the ordinary provider.",
+    "Finite-pronoun agreement and possible-postverbal-subject vetoes protect existing verb/object contexts.",
+    "Governed phrases retain complete competing gender/case repairs as 2–8 alternatives instead of splicing independent word guesses.",
+    "Literal quotation protection expands to explicitly described citations.",
+    "Editor phrase corrections apply changed words separately to preserve individual styles and tracked history; native noun/verb findings keep their existing generic edit path."
+  ],
+  "scoring_review": {
+    "change_required": false,
+    "frozen_single_choice_exact_rule_preserved": true,
+    "multiple_choice_behavior": "W6 arm records every finding, applies only singleton replacements, sets all_choices_resolved=false for any multiple-choice finding, and cannot score that arm exact.",
+    "choice_order": "Incoming phrase alternatives are ordered by grammatical gender, explicitly not semantic confidence. Never adopt replacements.first or choose an alternative using expected output for W6.",
+    "interpretation": "Ambiguous baseline detections may improve review coverage without earning unique exact-correction credit. Report those findings as choices; do not describe their unresolved exact score as absence of baseline detection.",
+    "merge": "Full phrase findings retain primary precedence. Raw native valid/guard findings are counted independently even if suppressed during merging.",
+    "editor": "Pure string scoring is unaffected by per-word formatting application; editor controls remain a separate gate."
+  },
+  "private_dependency_review": {
+    "changed_definitions_used_by_GermanAgreementFacts": [],
+    "unchanged_dependencies": [
+      "GermanWritingRulesProvider._presentParadigms",
+      "_GermanPresentParadigm forms and subjunctive helpers",
+      "_lookupGrammarNoun",
+      "_grammarCouldBeNominalizedAdjective",
+      "_grammarDeterminerForms",
+      "_grammarAdjectiveForms",
+      "_grammarAdjectiveEnding",
+      "_grammarPredicateAdverbs",
+      "_grammarWordExpression",
+      "_germanFormsEquivalent",
+      "_sourceGraphemeBoundaries"
+    ],
+    "morphology_data_changes": [],
+    "spacy_package_changes": [],
+    "literal_ranges_note": "The one expanded quotation pattern is covered by the native planner existing whole-request quote veto."
+  },
+  "amended_protocol": {
+    "main_commit": "6245a6956a76a38f925e1eb18851c0086730112d",
+    "protocol_sha256": "099bbb7de42c0317a0e21c685aa707e1c0c17ba8a33f832c1b7ad38b18dbbf54",
+    "retained_initial_protocol_sha256": "5fa7ff99f43020fd6506ecf832fc264fa97834ce838733a8d395ba57e6c6978e",
+    "unchanged_sections": {
+      "qualification_panel": true,
+      "scoring": true,
+      "predeclared_gate": true,
+      "native": true
+    },
+    "top_level_hash_mismatches": [],
+    "git_closure_files_checked": 46,
+    "git_closure_mismatches": [],
+    "part_removal": "part 'german_agreement_facts.dart';\n"
+  },
+  "provenance_followup": "Incoming historical morphology completion/adjudication corpus metadata should be reconciled with any all-current-corpora overlap claim; implementation/review agents must not inspect W6 qualification content.",
+  "conclusion": "No scoring or native-planner change required. Use amended deterministic baseline pins and rerun package checks on the merged source before sealing."
+}

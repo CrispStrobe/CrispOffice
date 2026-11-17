@@ -1,0 +1,14 @@
+00:00 +0: loading QUDS_REPOSITORY/packages/quds_office_editor/example/test/studio_spacy_grammar_native_gate.dart
+00:00 +0: (setUpAll)
+00:00 +0: actual manual grammar maps a German segment after emoji and preserves correction history
+00:00 +1: native and existing noun agreement rule ignores suppress calls and restore
+00:01 +2: personal vocabulary invalidates an actual result and can be restored
+00:01 +3: harness-delayed actual reply cannot survive a document revision
+00:02 +4: harness-delayed actual reply cannot survive a vocabulary revision
+00:02 +5: actual findings remain reviewable but cannot edit locked content
+00:03 +6: a live paragraph field rejects an actual finding and excludes cached text
+00:03 +7: a live complex field rejects an actual finding and excludes cached text
+00:04 +8: typing and background checking never call the configured native worker
+00:05 +9: unsupported locales return explicit status without native inference
+00:05 +10: (tearDownAll)
+00:05 +10: All tests passed!
