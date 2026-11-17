@@ -179,6 +179,7 @@ void main() {
   for (final entry in <String, String>{
     'preposition-pronoun': 'Pronoun case after prepositions',
     'preposition-case': 'Article case after prepositions',
+    'noun-verb': 'Noun and verb agreement',
     'dative-plural': 'Dative plural endings',
     'adjective-ending': 'Adjective agreement',
     'das-dass': 'Das and dass usage',

@@ -114,4 +114,19 @@ void main() {
     expect(finding.start, 'Die Kin\u00adder '.length);
     expect(finding.replacements, ['spielen']);
   });
+  test(
+    'long rejected predicate stays bounded without partial findings',
+    () async {
+      final provider = GermanWritingRulesProvider();
+      addTearDown(provider.dispose);
+      final result = await provider.check(
+        request('Die Kinder spielt ${List.filled(4096, 'heute').join(' ')}?'),
+      );
+      expect(result.status, OfficeProofingStatus.success);
+      expect(
+        result.findings.where((finding) => finding.ruleId == rule),
+        isEmpty,
+      );
+    },
+  );
 }

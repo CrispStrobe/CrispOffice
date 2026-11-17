@@ -17,6 +17,7 @@ from pathlib import Path
 import platform
 import re
 import resource
+import sys
 import time
 
 
@@ -123,7 +124,7 @@ def main():
               "cases_sha256": sha256(args.cases), "planner_sha256": sha256(Path(__file__)),
               "noun_evidence_sha256": sha256(args.noun_evidence) if args.noun_evidence else None,
               "paradigms_sha256": sha256(source), "startup_seconds": startup,
-              "max_rss_bytes": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+              "max_rss_bytes": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * (1 if sys.platform == "darwin" else 1024),
               "summary": {"errors": len(errors), "exact_errors": sum(r["exact"] for r in errors),
                           "clean": len(clean), "clean_changed": sum(r["output"] != r["input"] for r in clean),
                           "unsupported": sum(not r["supported"] for r in rows)},
