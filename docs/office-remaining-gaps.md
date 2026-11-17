@@ -84,7 +84,8 @@ new XLSX copy; the host also exposes an explicit **Export as ODS** action.
 number formats, merges, geometry, hidden state, comments, links, names, print
 areas/titles, autofilter ranges and predicates, pictures, conditional formats,
 validations, row outline groups, authored page setup and header/footer
-sections). An ODT/ODP writer remains a separate project.
+sections). Bounded ODT and ODP writers emit new-document subsets; in-place ODF
+preservation remains separate.
 
 ### 8. ODP slide fidelity
 
