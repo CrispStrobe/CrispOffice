@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve the first capital in explicit direct quotations after a colon and
+  opening quote. Keep subsequent-word casing and real misspelling checks.
+- Accept the missing finite `Hof` lemma and `Grüezi`/`grüezi` greeting through
+  the existing first-party word supplement; retain all pinned upstream shards.
+- Share the editor's deterministic-first manual proofing report merge with
+  local quality evaluation, preserving statuses, snapshot identity and offsets.
 - Expose a read-only, language-scoped German dictionary query for optional
   grammar guards, using the existing dictionary and owner vocabulary without
   generating suggestions or accepting partial tokens.
