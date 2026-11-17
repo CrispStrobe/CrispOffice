@@ -4,6 +4,123 @@ import 'package:flutter/material.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_proofing_aot/quds_proofing_aot.dart';
 
+/// Explicit Studio settings. Opening analysis is always available and lazy;
+/// document-wide checks are enabled only by an application setting.
+final class StudioAotConfiguration {
+  StudioAotConfiguration._({
+    required this.executable,
+    required this.rmlDirectory,
+    required this.endpoint,
+    required this.useGet,
+    required this.manualEnabled,
+  });
+
+  factory StudioAotConfiguration.fromEnvironment() =>
+      StudioAotConfiguration.fromSettings(
+        executable: const String.fromEnvironment('QUDS_AOT_EXECUTABLE'),
+        rmlDirectory: const String.fromEnvironment('QUDS_AOT_RML'),
+        endpoint: const String.fromEnvironment('QUDS_AOT_ENDPOINT'),
+        useGet: const bool.fromEnvironment('QUDS_AOT_USE_GET'),
+        enableManual: const bool.fromEnvironment('QUDS_AOT_ENABLE'),
+      );
+
+  factory StudioAotConfiguration.fromSettings({
+    String executable = '',
+    String rmlDirectory = '',
+    String endpoint = '',
+    bool useGet = false,
+    bool enableManual = false,
+  }) {
+    final localExecutable = executable.trim();
+    final localResources = rmlDirectory.trim();
+    final service = endpoint.trim();
+    if (service.isNotEmpty &&
+        (localExecutable.isNotEmpty || localResources.isNotEmpty)) {
+      throw StateError(
+        'Choose either local AOT settings (QUDS_AOT_EXECUTABLE / QUDS_AOT_RML) '
+        'or QUDS_AOT_ENDPOINT, then restart Studio.',
+      );
+    }
+    if (localExecutable.contains('\u0000') ||
+        localResources.contains('\u0000')) {
+      throw StateError('The local AOT executable or resource path is invalid.');
+    }
+    Uri? uri;
+    if (service.isNotEmpty) {
+      uri = Uri.tryParse(service);
+      if (uri == null ||
+          (uri.scheme != 'http' && uri.scheme != 'https') ||
+          !uri.hasAuthority ||
+          uri.host.isEmpty ||
+          uri.userInfo.isNotEmpty ||
+          uri.hasQuery ||
+          uri.hasFragment) {
+        throw StateError(
+          'QUDS_AOT_ENDPOINT must be an HTTP(S) address without credentials, '
+          'a query or a fragment.',
+        );
+      }
+      final host = uri.host.toLowerCase();
+      final parts = host.split('.');
+      final loopback =
+          host == 'localhost' ||
+          host == '::1' ||
+          host == '[::1]' ||
+          (parts.length == 4 &&
+              parts.first == '127' &&
+              parts.every((part) {
+                final value = int.tryParse(part);
+                return value != null &&
+                    value >= 0 &&
+                    value <= 255 &&
+                    '$value' == part;
+              }));
+      if (!loopback) {
+        throw StateError(
+          'Studio accepts a local loopback AOT service address. '
+          'Use the local worker to keep analysis on this device.',
+        );
+      }
+    }
+    return StudioAotConfiguration._(
+      executable: localExecutable.isEmpty ? 'quds_aot_worker' : localExecutable,
+      rmlDirectory: localResources.isEmpty ? null : localResources,
+      endpoint: uri,
+      useGet: useGet,
+      manualEnabled:
+          enableManual ||
+          service.isNotEmpty ||
+          localExecutable.isNotEmpty ||
+          localResources.isNotEmpty,
+    );
+  }
+
+  final String executable;
+  final String? rmlDirectory;
+  final Uri? endpoint;
+  final bool useGet;
+  final bool manualEnabled;
+
+  bool get isLocal => endpoint == null;
+
+  AotAnalyzer createAnalyzer() {
+    if (endpoint case final Uri service) {
+      return AotClient(
+        transport: AotHttpTransport(
+          endpoint: service,
+          requestMethod: useGet ? AotRequestMethod.get : AotRequestMethod.post,
+          timeout: const Duration(seconds: 60),
+        ),
+      );
+    }
+    return AotClient.local(
+      executable: executable,
+      rmlDirectory: rmlDirectory,
+      timeout: const Duration(seconds: 60),
+    );
+  }
+}
+
 /// Exact text selected for a read-only analysis. It never uses the clipboard or
 /// rewrites the document, and rejects oversized input instead of truncating it.
 final class StudioAotTextSnapshot {
@@ -91,19 +208,24 @@ final class StudioAotTextSnapshot {
       revision == controller.contentRevision;
 }
 
-/// Each operation owns its analyzer, so Cancel and closing the dialog can stop
-/// its transport without interrupting the separately owned manual checker.
+enum _StudioAotMode { syntax, morphology }
+
+/// One private analyzer is reused for this dialog's explicit requests. Cancel,
+/// stale text, a language change, failure and Close reset its local resources
+/// without interrupting the separately owned manual checker.
 class StudioAotAnalysisDialog extends StatefulWidget {
   const StudioAotAnalysisDialog({
     required this.controller,
     required this.createAnalyzer,
     this.initialLanguage = AotLanguage.german,
+    this.isLocal = true,
     super.key,
   });
 
   final WordEditorController controller;
   final AotAnalyzer Function() createAnalyzer;
   final AotLanguage initialLanguage;
+  final bool isLocal;
 
   @override
   State<StudioAotAnalysisDialog> createState() =>
@@ -116,8 +238,9 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
   String? _error;
   AotAnalysis? _analysis;
   AotMorphology? _morphology;
-  AotAnalyzer? _pending;
+  AotAnalyzer? _analyzer;
   late AotLanguage _language;
+  late _StudioAotMode _mode;
   final Map<int, int> _variantIndexes = {};
   int? _selectedClause;
   int? _selectedWord;
@@ -128,9 +251,10 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
   @override
   void initState() {
     super.initState();
-    _language = widget.initialLanguage.supportsSyntax
-        ? widget.initialLanguage
-        : AotLanguage.german;
+    _language = widget.initialLanguage;
+    _mode = _language.supportsSyntax
+        ? _StudioAotMode.syntax
+        : _StudioAotMode.morphology;
     _capture();
     widget.controller.addListener(_documentChanged);
   }
@@ -162,10 +286,10 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
 
   void _stop() {
     _generation++;
-    final pending = _pending;
-    _pending = null;
+    final analyzer = _analyzer;
+    _analyzer = null;
     _busy = false;
-    if (pending != null) unawaited(_disposeAnalyzer(pending));
+    if (analyzer != null) unawaited(_disposeAnalyzer(analyzer));
   }
 
   static Future<void> _disposeAnalyzer(AotAnalyzer analyzer) async {
@@ -184,48 +308,112 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
     super.dispose();
   }
 
-  static String _message(Object error) =>
-      error is StateError ? error.message.toString() : error.toString();
+  static String _message(Object error) => error is StateError
+      ? error.message.toString()
+      : 'This selection could not be captured. Select the text again.';
+
+  String _operationMessage(Object error) {
+    if (error is AotException) {
+      return switch (error.code) {
+        AotErrorCode.unavailable =>
+          widget.isLocal
+              ? 'Local AOT is not ready. Install the AOT worker and language '
+                    'dictionaries, then try again. Setup: '
+                    'packages/quds_proofing_aot/README.md.'
+              : 'The configured AOT service is unavailable. Check its address '
+                    'and connection, then try again.',
+        AotErrorCode.timeout =>
+          'AOT took too long to respond. Try a shorter '
+              'passage or check the installation, then analyze again.',
+        AotErrorCode.unsupportedLanguage =>
+          'Syntax analysis supports German '
+              'and Russian. Use Word forms for English morphology.',
+        AotErrorCode.limit =>
+          'The analysis exceeds a processing limit. '
+              'Select a shorter passage or a single word and try again.',
+        AotErrorCode.disposed =>
+          'The analysis session was closed. '
+              'Choose Analyze to start a new session.',
+        AotErrorCode.http =>
+          'The configured AOT service could not complete '
+              'the request. Check the service and try again.',
+        AotErrorCode.malformedResponse =>
+          'AOT returned an unreadable result. '
+              'Check that the installed AOT worker or service is compatible.',
+      };
+    }
+    return 'AOT could not complete this analysis. Check the installation '
+        'and try again.';
+  }
+
+  String? get _morphologyWord {
+    final word = _source?.text.trim();
+    if (word == null ||
+        word.length > 256 ||
+        !RegExp(
+          r"^\p{L}[\p{L}\p{M}]*(?:[-’'][\p{L}\p{M}]+)*$",
+          unicode: true,
+        ).hasMatch(word)) {
+      return null;
+    }
+    return word;
+  }
 
   bool _current(int generation) =>
       mounted &&
       generation == _generation &&
       (_source?.isCurrent(widget.controller) ?? false);
 
-  Future<void> _analyze() async {
-    final source = _source;
-    if (_busy || _stale || source == null || source.text.trim().isEmpty) return;
+  Future<void> _run(
+    Future<void> Function(AotAnalyzer analyzer, int generation) operation,
+  ) async {
+    if (_busy || _stale || _source == null) return;
     final generation = ++_generation;
-    AotAnalyzer? analyzer;
     setState(() {
       _busy = true;
       _error = null;
-      _analysis = null;
       _morphology = null;
+    });
+    try {
+      final analyzer = _analyzer ??= widget.createAnalyzer();
+      await operation(analyzer, generation);
+    } on Object catch (error) {
+      if (_current(generation)) {
+        setState(() {
+          _stop();
+          _error = _operationMessage(error);
+        });
+      }
+    } finally {
+      if (mounted && generation == _generation) {
+        final stale = !(_source?.isCurrent(widget.controller) ?? false);
+        if (stale) _stop();
+        setState(() {
+          _busy = false;
+          _stale = stale;
+        });
+      }
+    }
+  }
+
+  Future<void> _analyze() async {
+    final source = _source;
+    if (_busy || _stale || source == null || source.text.trim().isEmpty) return;
+    if (_mode == _StudioAotMode.morphology) {
+      final word = _morphologyWord;
+      if (word != null) await _lookupWordMorphology(word);
+      return;
+    }
+    setState(() {
+      _analysis = null;
       _selectedClause = null;
       _selectedWord = null;
       _variantIndexes.clear();
     });
-    try {
-      analyzer = widget.createAnalyzer();
-      _pending = analyzer;
+    await _run((analyzer, generation) async {
       final result = await analyzer.analyze(source.text, language: _language);
-      if (!_current(generation)) return;
-      setState(() => _analysis = result);
-    } on Object catch (error) {
-      if (_current(generation)) setState(() => _error = _message(error));
-    } finally {
-      if (identical(_pending, analyzer)) {
-        _pending = null;
-        if (analyzer != null) await _disposeAnalyzer(analyzer);
-      }
-      if (mounted && generation == _generation) {
-        setState(() {
-          _busy = false;
-          _stale = !(_source?.isCurrent(widget.controller) ?? false);
-        });
-      }
-    }
+      if (_current(generation)) setState(() => _analysis = result);
+    });
   }
 
   List<({int sentence, int clauseIndex, AotClause clause})> get _clauses => [
@@ -254,38 +442,47 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
 
   Future<void> _lookupMorphology() async {
     final token = _selectedToken;
-    if (_busy || _stale || token == null) return;
-    final generation = ++_generation;
-    AotAnalyzer? analyzer;
-    setState(() {
-      _busy = true;
-      _error = null;
-      _morphology = null;
-    });
-    try {
-      analyzer = widget.createAnalyzer();
-      _pending = analyzer;
-      final result = await analyzer.morphology(
-        token.text,
-        language: _language,
-        withParadigms: true,
-      );
-      if (!_current(generation)) return;
-      setState(() => _morphology = result);
-    } on Object catch (error) {
-      if (_current(generation)) setState(() => _error = _message(error));
-    } finally {
-      if (identical(_pending, analyzer)) {
-        _pending = null;
-        if (analyzer != null) await _disposeAnalyzer(analyzer);
-      }
-      if (mounted && generation == _generation) {
-        setState(() {
-          _busy = false;
-          _stale = !(_source?.isCurrent(widget.controller) ?? false);
-        });
-      }
+    if (token != null && !RegExp(r'\s').hasMatch(token.text)) {
+      await _lookupWordMorphology(token.text);
     }
+  }
+
+  Future<void> _lookupWordMorphology(String word) =>
+      _run((analyzer, generation) async {
+        final result = await analyzer.morphology(
+          word,
+          language: _language,
+          withParadigms: true,
+        );
+        if (_current(generation)) setState(() => _morphology = result);
+      });
+
+  void _changeLanguage(AotLanguage language) {
+    if (_language == language) return;
+    setState(() {
+      _stop();
+      _language = language;
+      if (!language.supportsSyntax) _mode = _StudioAotMode.morphology;
+      _analysis = null;
+      _morphology = null;
+      _error = null;
+      _selectedClause = null;
+      _selectedWord = null;
+      _variantIndexes.clear();
+    });
+  }
+
+  void _changeMode(_StudioAotMode mode) {
+    if (_mode == mode) return;
+    setState(() {
+      _mode = mode;
+      _analysis = null;
+      _morphology = null;
+      _error = null;
+      _selectedClause = null;
+      _selectedWord = null;
+      _variantIndexes.clear();
+    });
   }
 
   @override
@@ -300,12 +497,20 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              widget.isLocal
+                  ? 'Local AOT · stays on this device'
+                  : 'Configured AOT service',
+              key: const ValueKey('aot-backend'),
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
             Wrap(
               spacing: 16,
               runSpacing: 8,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 DropdownButton<AotLanguage>(
+                  key: const ValueKey('aot-language'),
                   value: _language,
                   items: const [
                     DropdownMenuItem(
@@ -316,31 +521,47 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
                       value: AotLanguage.russian,
                       child: Text('Russian'),
                     ),
+                    DropdownMenuItem(
+                      value: AotLanguage.english,
+                      child: Text('English'),
+                    ),
+                  ],
+                  onChanged: (language) {
+                    if (language != null) _changeLanguage(language);
+                  },
+                ),
+                DropdownButton<_StudioAotMode>(
+                  key: const ValueKey('aot-mode'),
+                  value: _mode,
+                  items: [
+                    if (_language.supportsSyntax)
+                      const DropdownMenuItem(
+                        value: _StudioAotMode.syntax,
+                        child: Text('Syntax'),
+                      ),
+                    const DropdownMenuItem(
+                      value: _StudioAotMode.morphology,
+                      child: Text('Word forms'),
+                    ),
                   ],
                   onChanged: _busy
                       ? null
-                      : (language) {
-                          if (language == null) return;
-                          setState(() {
-                            _language = language;
-                            _analysis = null;
-                            _morphology = null;
-                            _error = null;
-                            _selectedClause = null;
-                            _selectedWord = null;
-                            _variantIndexes.clear();
-                          });
+                      : (mode) {
+                          if (mode != null) _changeMode(mode);
                         },
                 ),
                 if (source != null)
                   Text(
-                    '${source.scope} · ${source.text.length} UTF-16 characters',
+                    '${source.scope} · ${source.text.runes.length} characters',
                   ),
               ],
             ),
-            const Text(
-              'Inspect tokens, alternative readings and syntactic relations. '
-              'Analysis does not change the document.',
+            Text(
+              _mode == _StudioAotMode.syntax
+                  ? 'Inspect tokens, alternative readings and syntactic '
+                        'relations. Analysis does not change the document.'
+                  : 'Inspect the selected word’s dictionary readings and '
+                        'inflected forms. Analysis does not change the document.',
             ),
             Text(
               'Document proofing language: ${widget.controller.proofing.language}. '
@@ -348,6 +569,11 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
               'currently unsupported. The language above controls analysis only.',
             ),
             const SizedBox(height: 8),
+            if (_mode == _StudioAotMode.morphology && _morphologyWord == null)
+              const Text(
+                'Select one complete word in the document, then reload the text.',
+                key: ValueKey('aot-word-selection'),
+              ),
             if (_busy) const LinearProgressIndicator(),
             if (_stale)
               const Padding(
@@ -399,7 +625,21 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
                     for (var index = 0; index < clauses.length; index++)
                       _clauseCard(clauses[index], index),
                   ],
-                  if (_analysis == null && !_busy && _error == null)
+                  if (_morphology case final AotMorphology morphology
+                      when _mode == _StudioAotMode.morphology) ...[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Text('Word forms: ${morphology.word}'),
+                    ),
+                    if (morphology.readings.isEmpty)
+                      const Text('No morphological readings were returned.'),
+                    for (final reading in morphology.readings)
+                      _readingDetails(reading),
+                  ],
+                  if (_analysis == null &&
+                      _morphology == null &&
+                      !_busy &&
+                      _error == null)
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text('Choose Analyze to inspect this text.'),
@@ -427,13 +667,21 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
           )
         else
           FilledButton(
-            onPressed: _stale || source == null || source.text.trim().isEmpty
+            onPressed:
+                _stale ||
+                    source == null ||
+                    source.text.trim().isEmpty ||
+                    (_mode == _StudioAotMode.morphology &&
+                        _morphologyWord == null)
                 ? null
                 : _analyze,
             child: const Text('Analyze'),
           ),
         TextButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            _stop();
+            Navigator.of(context).pop();
+          },
           child: const Text('Close'),
         ),
       ],
@@ -584,6 +832,8 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
               'Token: ${token.text}',
               style: Theme.of(context).textTheme.titleMedium,
             ),
+            if (token.isNormalized)
+              SelectableText('Analyzed form: ${token.analysisText}'),
             SelectableText('Lemma alternatives: ${token.homonyms.join(' · ')}'),
             Text(
               token.isAligned
@@ -597,11 +847,17 @@ class _StudioAotAnalysisDialogState extends State<StudioAotAnalysisDialog> {
               onPressed:
                   _busy ||
                       _stale ||
+                      RegExp(r'\s').hasMatch(token.text) ||
                       !RegExp(r'\p{L}', unicode: true).hasMatch(token.text)
                   ? null
                   : _lookupMorphology,
               child: const Text('Look up morphology and forms'),
             ),
+            if (RegExp(r'\s').hasMatch(token.text))
+              const Text(
+                'This analyzed token spans more than one source word. '
+                'Select a single word in the document and use Word forms.',
+              ),
             if (_morphology case final AotMorphology morphology) ...[
               if (morphology.readings.isEmpty)
                 const Text('No morphological readings were returned.'),

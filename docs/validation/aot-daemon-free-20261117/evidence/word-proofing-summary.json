@@ -1,0 +1,77 @@
+{
+  "source": {
+    "base_commit": "0b4c0107f6b7651bd77e95670e4f2f4f8b58e038",
+    "test_sha256": {
+      "test/word_german_grammar_integration_test.dart": "c206c15c6af3aa2017b5f0c08a85f325188498ce2a5aba1a67ba212b9aa39310",
+      "test/word_manual_proofing_test.dart": "a5f09c786724dfbfd53a970e4f24121bbf28935d2b5394e5e0e729b28c1a4d7a",
+      "test/word_proofing_context_test.dart": "e5ef405d387001191ec46bf6a57a89494f3de5fa417d3e80b341bc47c318b8e4",
+      "test/word_proofing_correction_test.dart": "97ff02bafff82ad46be47643a341595fd579e7d5027a6586358f4f14fd044910",
+      "test/word_proofing_dialog_test.dart": "2cdbe02ad15f357dee098a37542d0a242f3840049f63a61e64818675868be1ad",
+      "test/word_proofing_geometry_test.dart": "1a2ab501e235ec8da226dfc725e2a85d9151f894935d10283acea83a879f4623",
+      "test/word_proofing_navigation_test.dart": "04bb1507322e70aabc4a4e1812fc6e0ec3a418d2d6d85d5349eb1b46f55a676e",
+      "test/word_proofing_session_test.dart": "837664a53fc12278cc511c39a1bfa2bfb31453c8b54e968327608eb5159e5f12"
+    }
+  },
+  "results": {
+    "success": 139
+  },
+  "skips": 0,
+  "complete": true,
+  "success": true,
+  "test_files": [
+    "test/word_german_grammar_integration_test.dart",
+    "test/word_manual_proofing_test.dart",
+    "test/word_proofing_context_test.dart",
+    "test/word_proofing_correction_test.dart",
+    "test/word_proofing_dialog_test.dart",
+    "test/word_proofing_geometry_test.dart",
+    "test/word_proofing_navigation_test.dart",
+    "test/word_proofing_session_test.dart"
+  ],
+  "elapsed_seconds": 27.969,
+  "log": "word-proofing.jsonl.gz",
+  "stderr": "word-proofing.stderr.gz",
+  "command": {
+    "cwd": "packages/quds_office_editor",
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--disable-dart-dev",
+      "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/flutter_tools.snapshot",
+      "--suppress-analytics",
+      "test",
+      "--no-pub",
+      "test/word_german_grammar_integration_test.dart",
+      "test/word_manual_proofing_test.dart",
+      "test/word_proofing_context_test.dart",
+      "test/word_proofing_correction_test.dart",
+      "test/word_proofing_dialog_test.dart",
+      "test/word_proofing_geometry_test.dart",
+      "test/word_proofing_navigation_test.dart",
+      "test/word_proofing_session_test.dart",
+      "--reporter",
+      "json"
+    ],
+    "test_files": [
+      "test/word_german_grammar_integration_test.dart",
+      "test/word_manual_proofing_test.dart",
+      "test/word_proofing_context_test.dart",
+      "test/word_proofing_correction_test.dart",
+      "test/word_proofing_dialog_test.dart",
+      "test/word_proofing_geometry_test.dart",
+      "test/word_proofing_navigation_test.dart",
+      "test/word_proofing_session_test.dart"
+    ]
+  },
+  "environment": {
+    "BOT": "true",
+    "CI": "true",
+    "TMPDIR": "<scratch>/odf-test-tmp",
+    "PUB_CACHE": "<resolved offline cache>",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "DART_SUPPRESS_ANALYTICS": "true"
+  },
+  "notes": [
+    "Local Flutter tests run through the cached Flutter tool snapshot with --no-pub. No GitHub Actions/check/status endpoints used or awaited.",
+    "These tests cover existing Word proofing UI/controller behavior and German grammar integration with controlled providers. Native worker behavior is separately validated."
+  ]
+}

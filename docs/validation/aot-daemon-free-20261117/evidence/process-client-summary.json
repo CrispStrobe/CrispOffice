@@ -67,5 +67,18 @@
       "path": "packages/quds_proofing_aot/test/fixtures/process_worker.dart",
       "sha256": "be4734215d6d4cb49bfbdf35618434519b93f5622a5ea9ef256a1bfae9be0f2b"
     }
-  ]
+  ],
+  "native_smoke": {
+    "passed": true,
+    "proofing_cases": 10,
+    "analysis_cases": 4,
+    "morphology_and_cache_cases": 3,
+    "duration_ms": 850,
+    "working_directory_outputs": [],
+    "script": "process_client_native_smoke.dart",
+    "result": "process-client-native-smoke.json",
+    "synthetic_text_only": true,
+    "result_sha256": "c9ddaaa409d907e5c67f7f8ebeffc0228d00a13a60dd8440daf43d68cd7477fc",
+    "script_sha256": "32d8117a951fa158e89a47963feb464b559dd34b0e83bc1463daf42a6fc19624"
+  }
 }

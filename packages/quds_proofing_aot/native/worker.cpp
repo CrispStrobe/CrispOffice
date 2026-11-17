@@ -1,14 +1,17 @@
 // Quds' local AOT worker. No HTTP listener, shell invocation or subprocesses.
 // The separately obtained AOT libraries retain their upstream LGPL notices.
+#include <algorithm>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
+#include <iterator>
 #include <map>
 #include <memory>
 #include <set>
 #include <string>
+#include <vector>
 
 #ifdef _WIN32
 #include <io.h>
@@ -30,6 +33,7 @@
 #endif
 
 #include "nlp_base/common/rapidjson.h"
+#include "nlp_base/agramtab/GerGramTab.h"
 #include "nlp_base/lemmatizer_base_lib/MorphanHolder.h"
 #include "synan/SynanLib/SyntaxHolder.h"
 #include "www/SynanDaemon/JVisualSynAnParamBuilder.h"
@@ -135,6 +139,148 @@ bool stringField(const rapidjson::Value& value, const char* name) {
   return value.HasMember(name) && value[name].IsString();
 }
 
+struct SourceBoundary {
+  size_t byte;
+  size_t utf16;
+  uint32_t scalar;
+};
+
+class NativeSyntaxHolder : public CSyntaxHolder {
+ public:
+  explicit NativeSyntaxHolder(MorphLanguageEnum language) : CSyntaxHolder(language) {}
+  void captureOriginalTokens(const std::string& source) {
+    m_Graphan.LoadStringToGraphan(source);
+    originals_ = m_Graphan.GetUnits();
+  }
+  const std::vector<CGraLine>& originalTokens() const { return originals_; }
+ private:
+  std::vector<CGraLine> originals_;
+};
+
+std::vector<SourceBoundary> sourceBoundaries(const std::string& source) {
+  std::vector<SourceBoundary> positions;
+  size_t units = 0;
+  for (size_t byte = 0; byte < source.size();) {
+    const auto lead = static_cast<unsigned char>(source[byte]);
+    size_t width = lead < 0x80 ? 1 : lead < 0xe0 ? 2 : lead < 0xf0 ? 3 : 4;
+    uint32_t scalar = lead & (width == 1 ? 0x7f : width == 2 ? 0x1f : width == 3 ? 0x0f : 0x07);
+    for (size_t j = 1; j < width; ++j) scalar = (scalar << 6) | (static_cast<unsigned char>(source[byte + j]) & 0x3f);
+    positions.push_back({byte, units, scalar});
+    units += width == 4 ? 2 : 1;
+    byte += width;
+  }
+  positions.push_back({source.size(), units, 0});
+  return positions;
+}
+
+bool whitespace(uint32_t scalar) {
+  return (scalar >= 9 && scalar <= 13) || scalar == 0x20 || scalar == 0x85 ||
+      scalar == 0xa0 || scalar == 0x1680 || (scalar >= 0x2000 && scalar <= 0x200a) ||
+      scalar == 0x2028 || scalar == 0x2029 || scalar == 0x202f || scalar == 0x205f ||
+      scalar == 0x3000 || scalar == 0xfeff;
+}
+
+bool onlyWhitespace(const std::vector<SourceBoundary>& boundaries, size_t first, size_t last) {
+  if (first > last || last >= boundaries.size()) return false;
+  for (size_t i = first; i < last; ++i) if (!whitespace(boundaries[i].scalar)) return false;
+  return true;
+}
+
+// Native words retain offsets into the graphan buffer. The pinned converter
+// emits exactly one CP1251/CP1252 byte per Unicode scalar (unknowns become a
+// placeholder), so map those offsets back to the untouched UTF-8/UTF-16 source.
+// Every token's original graphan surface and intervening source are verified.
+// This restores contiguous "zu helfen" only when both original graphan tokens
+// and the engine's explicit zu-infinitive reading prove the transformation.
+std::string addSourceSpans(NativeSyntaxHolder& syntax, const std::string& query,
+                          MorphLanguageEnum language, const std::string& raw) {
+  rapidjson::Document document;
+  document.Parse(raw.data(), raw.size());
+  if (document.HasParseError() || !document.IsArray() ||
+      document.Size() != syntax.m_Synan.m_vectorSents.size()) return raw;
+  const auto boundaries = sourceBoundaries(query);
+  if (convert_from_utf8(query.c_str(), language).size() + 1 != boundaries.size()) return raw;
+  const auto& graphan = syntax.originalTokens();
+  std::map<int, size_t> graphanAt;
+  for (size_t i = 0; i < graphan.size(); ++i) {
+    if (!graphan[i].IsSpace() && graphan[i].GetTokenLength() > 0) {
+      graphanAt.emplace(static_cast<int>(graphan[i].GetInputOffset()), i);
+    }
+  }
+  size_t cursor = 0;
+  bool aligned = true;
+  for (size_t sentenceNo = 0; aligned && sentenceNo < document.Size(); ++sentenceNo) {
+    const auto& sentence = *syntax.m_Synan.m_vectorSents[sentenceNo];
+    auto& clauses = document[static_cast<rapidjson::SizeType>(sentenceNo)];
+    std::vector<const CClause*> top;
+    for (auto clause = sentence.m_Clauses.rbegin(); clause != sentence.m_Clauses.rend(); ++clause) {
+      if (top.empty() || top.back()->m_iFirstWord == clause->m_iLastWord + 1) top.push_back(&*clause);
+    }
+    std::reverse(top.begin(), top.end());
+    if (!clauses.IsArray() || clauses.Size() != top.size()) break;
+    for (size_t clauseNo = 0; aligned && clauseNo < top.size(); ++clauseNo) {
+      const CClause& clause = *top[clauseNo];
+      auto& words = clauses[static_cast<rapidjson::SizeType>(clauseNo)]["words"];
+      if (!words.IsArray() || words.Size() != clause.m_iLastWord - clause.m_iFirstWord + 1) {
+        aligned = false;
+        break;
+      }
+      for (size_t index = 0; aligned && index < words.Size(); ++index) {
+        const auto& word = sentence.m_Words[clause.m_iFirstWord + index];
+        auto& jsonWord = words[static_cast<rapidjson::SizeType>(index)];
+        const auto original = graphanAt.find(word.m_GraphematicalUnitOffset);
+        if (original == graphanAt.end() || !jsonWord.IsObject() ||
+            !stringField(jsonWord, "str") || jsonWord["str"].GetString() != word.m_strWord) {
+          aligned = false;
+          break;
+        }
+        const auto& token = graphan[original->second];
+        size_t start = token.GetInputOffset();
+        const size_t end = start + token.GetTokenLength();
+        if (end >= boundaries.size() || start < cursor) { aligned = false; break; }
+        const std::string surface = token.GetTokenUtf8();
+        if (query.substr(boundaries[start].byte, boundaries[end].byte - boundaries[start].byte) != surface) {
+          aligned = false;
+          break;
+        }
+        if (word.m_strWord != surface) {
+          if (language != morphGerman || word.m_strWord != "zu-" + surface ||
+              word.GetHomonymByPOSandGrammem(gVER, gZuVerbForm) == -1 || original == graphanAt.begin()) {
+            aligned = false;
+            break;
+          }
+          const auto& prefix = graphan[std::prev(original)->second];
+          const size_t prefixStart = prefix.GetInputOffset();
+          const size_t prefixEnd = prefixStart + prefix.GetTokenLength();
+          if (prefix.GetTokenUpperUtf8() != "ZU" ||
+              !onlyWhitespace(boundaries, prefixEnd, start) ||
+              query.substr(boundaries[prefixStart].byte, boundaries[prefixEnd].byte - boundaries[prefixStart].byte) != prefix.GetTokenUtf8()) {
+            aligned = false;
+            break;
+          }
+          // The serializer can retain the separately marked "zu" word. In
+          // that case it already owns the prefix span; this word maps only to
+          // the original infinitive. Otherwise map the verified contiguous pair.
+          if (prefixStart >= cursor) start = prefixStart;
+          else if (prefixEnd != cursor) { aligned = false; break; }
+        }
+        if (!onlyWhitespace(boundaries, cursor, start)) { aligned = false; break; }
+        const std::string exact = query.substr(boundaries[start].byte, boundaries[end].byte - boundaries[start].byte);
+        jsonWord.AddMember("sourceStart", static_cast<uint64_t>(boundaries[start].utf16), document.GetAllocator());
+        jsonWord.AddMember("sourceEnd", static_cast<uint64_t>(boundaries[end].utf16), document.GetAllocator());
+        rapidjson::Value sourceText;
+        sourceText.SetString(exact.data(), exact.size(), document.GetAllocator());
+        jsonWord.AddMember("sourceText", sourceText, document.GetAllocator());
+        cursor = end;
+      }
+    }
+  }
+  rapidjson::StringBuffer buffer;
+  rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+  document.Accept(writer);
+  return buffer.GetString();
+}
+
 class Engine {
  public:
   std::string execute(const std::string& action, MorphLanguageEnum language,
@@ -146,14 +292,18 @@ class Engine {
     if (action == "morph") return GetMHolder(language).LemmatizeJson(query, paradigms);
     auto& syntax = syntax_[language];
     if (!syntax) {
-      syntax = std::make_unique<CSyntaxHolder>(language);
+      syntax = std::make_unique<NativeSyntaxHolder>(language);
       syntax->LoadSyntax();
     }
-    return BuildJson(syntax.get(), query);
+    // Upstream frees its graphan table while building morphology, so preserve
+    // a deterministic original-token snapshot before that stage runs.
+    syntax->captureOriginalTokens(query);
+    const std::string raw = BuildJson(syntax.get(), query);
+    return addSourceSpans(*syntax, query, language, raw);
   }
  private:
   std::set<MorphLanguageEnum> loaded_;
-  std::map<MorphLanguageEnum, std::unique_ptr<CSyntaxHolder>> syntax_;
+  std::map<MorphLanguageEnum, std::unique_ptr<NativeSyntaxHolder>> syntax_;
 };
 }  // namespace
 

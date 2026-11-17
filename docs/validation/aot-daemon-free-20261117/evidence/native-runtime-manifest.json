@@ -1,0 +1,67 @@
+{
+  "protocol": 1,
+  "aot": {
+    "repository": "https://github.com/sokirko74/aot.git",
+    "revision": "0d591d972c7bb2729f4764d3bc32611ea6fd142a"
+  },
+  "nlp_base": {
+    "repository": "https://github.com/sokirko74/nlp_base.git",
+    "revision": "244b3d1f9a09e4a81e75ea83c3b55b209c663503"
+  },
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "executable": "/workspace/scratch/5dea2c973ce5/quds_office_suite/.dart_tool/quds_aot_native/runtime/Bin/quds_aot_worker",
+  "rmlDirectory": "/workspace/scratch/5dea2c973ce5/quds_office_suite/.dart_tool/quds_aot_native/runtime",
+  "executableSha256": "d20a7a707736c05fb0e2143aa517769f0136a459cfef9c113af5ecfd375a0d0f",
+  "workerSourceSha256": "8d0647ce028c3d250381ddad2c0e33f787a1bb87d40ce2b6b50bd3ebd9a13c31",
+  "cmakeSourceSha256": "faf7c8eb4ed3089dba3808d50bcef31281d00d4620b2e0c4714d348f3fbdf119",
+  "patches": [
+    {
+      "source": "Source/synan/SimpleGrammarLib/Parser.cpp",
+      "change": "Remove unconditional input.lem document diagnostic write",
+      "generatedSourceSha256": "51f0e9f1394423d0395d1f62ae82cba0fe2ae97899ddab0b9f8b1ed164f6730d"
+    },
+    {
+      "source": "Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp",
+      "change": "Copy temporary group description strings into RapidJSON-owned storage",
+      "generatedSourceSha256": "52e1d9ffb589ad7ceca016e63e77da6735d698cf9b0191d9854d0d0f3100e176"
+    }
+  ],
+  "smoke": {
+    "worker": {
+      "worker": "quds_aot_worker",
+      "protocol": 1,
+      "aot": "0d591d972c7bb2729f4764d3bc32611ea6fd142a",
+      "nlp_base": "244b3d1f9a09e4a81e75ea83c3b55b209c663503"
+    },
+    "cases": 22,
+    "passed": 22,
+    "failed": 0,
+    "elapsedSeconds": 0.427,
+    "realEngine": true,
+    "syntheticTextOnly": true,
+    "coverage": [
+      "German syntax",
+      "German paradigm",
+      "Russian syntax",
+      "Russian paradigm",
+      "English paradigm",
+      "unsupported language",
+      "strict request types",
+      "UTF-16 text limits",
+      "JSON-line byte limit and recovery",
+      "NUL rejection",
+      "duplicate keys",
+      "missing runtime data",
+      "redacted errors",
+      "clean EOF",
+      "no document/log file writes",
+      "exact original UTF-16 source spans",
+      "normalized German infinitives",
+      "unsupported Unicode alignment abstention",
+      "owned syntax description strings"
+    ],
+    "limits": "Finite integration smoke; does not establish general grammar accuracy."
+  },
+  "runtimeNetwork": false,
+  "licenseNotice": "notices/QUDS-NATIVE-NOTICE.md"
+}
