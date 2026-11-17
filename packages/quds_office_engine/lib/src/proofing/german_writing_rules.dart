@@ -6,6 +6,7 @@ import 'office_proofing.dart';
 import 'proofing_text_ranges.dart';
 
 part 'german_grammar.dart';
+part 'german_context_grammar.dart';
 
 Set<int> _sourceGraphemeBoundaries(String text) {
   final Set<int> boundaries = <int>{0};
