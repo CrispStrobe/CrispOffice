@@ -4,6 +4,9 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Accept the missing finite noun forms `Schuppen` and `Lernen` without
+  lowercasing correct text; keep pinned upstream and Swiss dictionaries intact.
+
 - Prefer verified irregular participles for unknown overregularized spellings
   in bounded pronoun-and-haben contexts, keeping ordinary ranking elsewhere.
 
