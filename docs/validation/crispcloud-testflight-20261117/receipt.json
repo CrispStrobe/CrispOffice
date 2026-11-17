@@ -1,0 +1,30 @@
+{
+  "qualified_implementation": "000b47625ffa15aa1ed28f840b2acda33cc4f42b",
+  "captured_heads": {
+    "origin/main": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+    "origin/codex/proofing-en-de-20261117": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+    "origin/codex/proofing-en-de-20261116": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+    "origin/codex/text-rendering-20261116": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+    "origin/codex/zotero-recovery-20261116": "9f2dbd81c2289a2285521e1491a9c860c4b59646"
+  },
+  "validation": {
+    "broad_engine": "3081 passed, 1 skipped before late refresh",
+    "late_affected_engine": "601 passed",
+    "broad_editor": "1078 passed, 1 skipped, 16 golden failures",
+    "late_affected_editor": "67 passed",
+    "harper_adapter": "32 passed, 1 skipped; native backend acceptance not claimed",
+    "analysis": "engine/editor lib and test: no issues",
+    "goldens": "The identical 16 tests fail on unchanged main 6860985 on this Mac; retained as baseline failures, not changed or waived as passes."
+  },
+  "evidence_sha256": {
+    "engine-tests.log": "01a23367612df1fd06a3e3d2075c1022d79073970d5a41533054da2923d6a8f1",
+    "late-engine-tests-final.log": "25873f5c9bdfa45bbeda275c11c5c034157447d7a06293219c6f3477d94c3cd2",
+    "editor-tests.log": "4f3170768b667b8551d86346c18c72d7f03f7069b5135df65b7cf929bd71381d",
+    "editor-final-tests-corrected.log": "9cdf75be4a89e42223e7a9879d38dc3cda08b2a3efa80b42cbd910570e073504",
+    "engine-final-analyze.log": "95a28819c918db92d8f3f7dfadfc18f1248f79ab8313759391ad318fe94cf093",
+    "editor-source-analyze.log": "95a28819c918db92d8f3f7dfadfc18f1248f79ab8313759391ad318fe94cf093",
+    "harper-tests.log": "5192f413baddbf27097edda8157b41015b88db1b4b9416c75bb15279e7e7bc43",
+    "baseline-all-goldens.log": "d4896a4ba2fdf942bf141a24755005b03eaba2d7769d4d2a23a6a22d35cc16a1",
+    "golden-comparison.json": "dae24c3275153c94e4f791724560c2b7b06f71bcdbfd446ee2603336bacb9663"
+  }
+}
