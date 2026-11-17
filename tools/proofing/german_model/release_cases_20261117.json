@@ -1,0 +1,219 @@
+[
+  {
+    "id": "release-0-error",
+    "kind": "error",
+    "input": "Wir helfen die Freundin.",
+    "expected": "Wir helfen der Freundin.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-0-correct",
+    "kind": "clean",
+    "input": "Wir helfen der Freundin.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-1-error",
+    "kind": "error",
+    "input": "Wir helfen die Freundinnen.",
+    "expected": "Wir helfen den Freundinnen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-1-correct",
+    "kind": "clean",
+    "input": "Wir helfen den Freundinnen.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-2-error",
+    "kind": "error",
+    "input": "Wir stehen bei jenes Gebäude.",
+    "expected": "Wir stehen bei jenem Gebäude.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-2-correct",
+    "kind": "clean",
+    "input": "Wir stehen bei jenem Gebäude.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-3-error",
+    "kind": "error",
+    "input": "Wir stehen bei dieses Gebäude.",
+    "expected": "Wir stehen bei diesem Gebäude.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-3-correct",
+    "kind": "clean",
+    "input": "Wir stehen bei diesem Gebäude.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-4-error",
+    "kind": "error",
+    "input": "Wir sprechen mit jenes Fenster.",
+    "expected": "Wir sprechen mit jenem Fenster.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-4-correct",
+    "kind": "clean",
+    "input": "Wir sprechen mit jenem Fenster.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-5-error",
+    "kind": "error",
+    "input": "Wir sprechen mit dem Straßenpolizist.",
+    "expected": "Wir sprechen mit dem Straßenpolizisten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-5-correct",
+    "kind": "clean",
+    "input": "Wir sprechen mit dem Straßenpolizisten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-6-error",
+    "kind": "error",
+    "input": "Wir sehen den Straßenpolizist.",
+    "expected": "Wir sehen den Straßenpolizisten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-6-correct",
+    "kind": "clean",
+    "input": "Wir sehen den Straßenpolizisten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-7-error",
+    "kind": "error",
+    "input": "Wir helfen dem Straßenpolizist.",
+    "expected": "Wir helfen dem Straßenpolizisten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-7-correct",
+    "kind": "clean",
+    "input": "Wir helfen dem Straßenpolizisten.",
+    "locale": "de-DE"
+  },
+  {
+    "id": "release-8-error",
+    "kind": "error",
+    "input": "Wir sprechen mit dem Strassenpolizist.",
+    "expected": "Wir sprechen mit dem Strassenpolizisten.",
+    "locale": "de-CH"
+  },
+  {
+    "id": "release-8-correct",
+    "kind": "clean",
+    "input": "Wir sprechen mit dem Strassenpolizisten.",
+    "locale": "de-CH"
+  },
+  {
+    "id": "release-control-0",
+    "kind": "clean",
+    "input": "Wir helfen der Freundin."
+  },
+  {
+    "id": "release-control-1",
+    "kind": "clean",
+    "input": "Wir helfen den Freundinnen."
+  },
+  {
+    "id": "release-control-2",
+    "kind": "clean",
+    "input": "Wir sprechen mit dem Mensch."
+  },
+  {
+    "id": "release-control-3",
+    "kind": "clean",
+    "input": "Wir sprechen mit den Menschen."
+  },
+  {
+    "id": "release-control-4",
+    "kind": "clean",
+    "input": "Wir stehen bei den Computern."
+  },
+  {
+    "id": "release-control-5",
+    "kind": "clean",
+    "input": "Wir sprechen mit der Kunde."
+  },
+  {
+    "id": "release-control-6",
+    "kind": "clean",
+    "input": "Wir stehen bei diesem Gebäude."
+  },
+  {
+    "id": "release-control-7",
+    "kind": "clean",
+    "input": "Wir stehen bei diesen Gebäuden."
+  },
+  {
+    "id": "release-control-8",
+    "kind": "clean",
+    "input": "Wir sprechen mit diesem Leiter."
+  },
+  {
+    "id": "release-control-9",
+    "kind": "clean",
+    "input": "Wir sprechen mit dieser Leiter."
+  },
+  {
+    "id": "release-control-10",
+    "kind": "clean",
+    "input": "Der Straßenpolizist hilft."
+  },
+  {
+    "id": "release-control-11",
+    "kind": "clean",
+    "input": "Die Straßenpolizisten helfen."
+  },
+  {
+    "id": "release-control-12",
+    "kind": "clean",
+    "input": "Wir sprechen mit dem Straßenpolizisten."
+  },
+  {
+    "id": "release-control-13",
+    "kind": "clean",
+    "input": "Wir sehen den Straßenpolizisten."
+  },
+  {
+    "id": "release-control-14",
+    "kind": "clean",
+    "input": "Das Wort Straßenpolizist ist richtig."
+  },
+  {
+    "id": "release-control-15",
+    "kind": "clean",
+    "input": "Das ist dieses Gebäude."
+  },
+  {
+    "id": "release-control-16",
+    "kind": "clean",
+    "input": "Wir sehen dieses Gebäude."
+  },
+  {
+    "id": "release-control-17",
+    "kind": "clean",
+    "input": "Wir helfen der Frau."
+  },
+  {
+    "id": "release-control-18",
+    "kind": "clean",
+    "input": "Sie antwortet den Lehrern."
+  },
+  {
+    "id": "release-control-19",
+    "kind": "clean",
+    "input": "Das ist das Auto des Studenten."
+  }
+]
