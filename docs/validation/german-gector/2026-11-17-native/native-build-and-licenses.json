@@ -1,0 +1,772 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-11-17T14:15:03.542972+00:00",
+  "source_base": "85287df43a2a3951b49e4e6865c88231b3c1eeeb",
+  "source_revision_note": "Runtime sources match this commit; post-checkpoint packaging-only edits are separately hashed below.",
+  "ggml_revision": "3a27b6c665b191cb230be367db5c52d81dd3e2ac",
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "platform": "Linux x86_64",
+  "build_mode": {
+    "GGML_NATIVE": false,
+    "CRISPEMBED_NATIVE": false,
+    "GGML_LLAMAFILE": true,
+    "GGML_OPENMP": false,
+    "GGML_BACKEND_DL": false,
+    "other_gpu_or_blas_backends": false
+  },
+  "inference_library": {
+    "name": "libcrispembed-gector.so",
+    "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+    "bytes": 2064104
+  },
+  "compiled_translation_units": [
+    {
+      "path": "src/gector.cpp",
+      "sha256": "0e38c16578af870de9bf2649309230d65e47c482848c68181fa0d880b944c288",
+      "flags": [
+        "-DCRISPEMBED_GECTOR_BUILD",
+        "-DGGML_USE_CPU",
+        "-Dcrispembed_gector_EXPORTS",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-fno-fast-math"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "src/core/gguf_loader.cpp",
+      "sha256": "04b2c87b90f80fef04713c0572f3a7e823ba1c22e7c89ebc925a3d1ea56a6a8a",
+      "flags": [
+        "-DCRISPEMBED_GECTOR_BUILD",
+        "-DGGML_USE_CPU",
+        "-Dcrispembed_gector_EXPORTS",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-fno-fast-math"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "tools/gector/main.cpp",
+      "sha256": "2f82edf90ba65e725d9c0b12f701b4c5cdd93fb6b4629a545947a01b3257ada9",
+      "flags": [
+        "-O3",
+        "-DNDEBUG",
+        "-fPIE"
+      ],
+      "role": "development_executable"
+    },
+    {
+      "path": "tools/quantize.cpp",
+      "sha256": "12e1f1e958226a40628af46d80660b02d09cade63c40849cef0e4006aa762f47",
+      "flags": [
+        "-DGGML_USE_CPU",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIE"
+      ],
+      "role": "development_executable"
+    },
+    {
+      "path": "tests/test_gector.cpp",
+      "sha256": "dc81b6cb6374e71897713cb0b99e60c30f1b94fa98700af158547881c0035266",
+      "flags": [
+        "-DGGML_USE_CPU",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIE"
+      ],
+      "role": "development_executable"
+    },
+    {
+      "path": "ggml/src/ggml.c",
+      "sha256": "e6f2c92680bf5d2765ba5cfa1886a6cb2dd3ee32998bd786df00017813be934e",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml.cpp",
+      "sha256": "64e6b5c8d716ae8697e45481a7153540be01f721be2dc7e753aa47b36a69c753",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-alloc.c",
+      "sha256": "1274169634584af70c7492a63ed0c53dca63b759b6885f0d8839d7d4831b82c4",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-backend.cpp",
+      "sha256": "f3795438348aef30ddc8f72c41ffa47cc13828675df25b958d4a3e8145501203",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-backend-meta.cpp",
+      "sha256": "e1482bddfdac4fe22a99c8397bb0572f7d1b4c5ac16c9abccd395d6691a79ab9",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-opt.cpp",
+      "sha256": "e35fd27856e37f3611d3bc6f17ee963be51bfe92bec96fad0a9fa2c7ebbe9c46",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-threading.cpp",
+      "sha256": "13a18d885393722b7c9f42d4cf8575a4d41699926d656f78a867fa4fac9dad20",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-quants.c",
+      "sha256": "07143d7068936ae46b3c528b2f3d4bbb666e74d88992165716174d243573965d",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/gguf.cpp",
+      "sha256": "73108c5b716dd8340d7e2422456f461a68088f1b4241c8b2d09e7cd7450b9cfd",
+      "flags": [
+        "-DGGML_COMMIT=\\\"3a27b6c\\\"",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_VERSION=\\\"0.17.0\\\"",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-backend-dl.cpp",
+      "sha256": "acd76df8b83bcdef6807bc7b0520f57b379d61b4ff1027c04aa4d140d16ad07f",
+      "flags": [
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_USE_CPU",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-backend-reg.cpp",
+      "sha256": "c0a61f47e7af0359cfff41317ae8e68717960483d141983bba914733b1f68906",
+      "flags": [
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_USE_CPU",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/ggml-cpu.c",
+      "sha256": "9a85d2bf58f99e885106cac024d7585f079f16ba7df9a68ef0bb03d9bc860f14",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/ggml-cpu.cpp",
+      "sha256": "898063fa671f65e5cee7b9a6520e7fedf2125765015f5c16eb3675be2c79af7e",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/repack.cpp",
+      "sha256": "b3a1d6953fc61f2a4088337384166fb5102db617afe37a4b92f7cf07992a9f8a",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/hbm.cpp",
+      "sha256": "3c75b5aaf9b51d17060ecfb93cb5f8b22ce3974d7eff3d76dec2156d2f194b80",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/quants.c",
+      "sha256": "a61f1011e49d05b5f99d352b158d5b8e36cf008294bb0db309f72bdd7f1d4e35",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/traits.cpp",
+      "sha256": "a85bd3ff50c91cb67d14221988544664dfe5975db0811b330dc4a2f385239de4",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/amx/amx.cpp",
+      "sha256": "636d1e4b858a86ad6568100bbdb4bf9715d9dfb25d3831415d55e04e39acad86",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/amx/mmq.cpp",
+      "sha256": "0f95c80e0300eca3b3a3df07272042fee708425e19cd5f2c4cba7b253b26d226",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/binary-ops.cpp",
+      "sha256": "2df261aadce36a20f5e3bf6961d4ca27b8c2d461afc41488361ee6ad09c1730d",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/unary-ops.cpp",
+      "sha256": "e63b382766f1b8c5ded1577be9704e85cb4e9cd24584f3e1474911a40146df33",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/vec.cpp",
+      "sha256": "1fe783225503cca1b27e21c6b7b7b9d479cea2daf8d6e14ae854637a8657b7c4",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/ops.cpp",
+      "sha256": "60687e87a0fbf5a43ff5376e96c4bde5f4efcc281fcdba55382e36a552cb418e",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/llamafile/sgemm.cpp",
+      "sha256": "11b4860f7368015e69fbf4fe01f41756c72acb37b992d7dd549060811f6949b8",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/arch/x86/quants.c",
+      "sha256": "2909f2c8d2aca218244fa6a816061647f8073fb8d1b07759779cc40240be85a6",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    },
+    {
+      "path": "ggml/src/ggml-cpu/arch/x86/repack.cpp",
+      "sha256": "c69735f83caf854172cac78eed2cbc022ef81c077e5f6aca55a49d3404a02331",
+      "flags": [
+        "-DGGML_AVX",
+        "-DGGML_AVX2",
+        "-DGGML_BMI2",
+        "-DGGML_F16C",
+        "-DGGML_FMA",
+        "-DGGML_SCHED_MAX_COPIES=4",
+        "-DGGML_SSE42",
+        "-DGGML_USE_CPU_REPACK",
+        "-DGGML_USE_LLAMAFILE",
+        "-D_GNU_SOURCE",
+        "-D_XOPEN_SOURCE=600",
+        "-O3",
+        "-DNDEBUG",
+        "-fPIC",
+        "-msse4.2",
+        "-mf16c",
+        "-mfma",
+        "-mbmi2",
+        "-mavx",
+        "-mavx2"
+      ],
+      "role": "runtime_dependency"
+    }
+  ],
+  "dynamic_dependencies": [
+    {
+      "soname": "libstdc++.so.6",
+      "resolved_basename": "libstdc++.so.6.0.33",
+      "sha256": "972bb2a18b71140dab0240f8a1f68ab3fb1d56bcd4c4f824a91b70888faf5a00",
+      "license_scope": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "bundled_by_install": false
+    },
+    {
+      "soname": "libm.so.6",
+      "resolved_basename": "libm.so.6",
+      "sha256": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3",
+      "license_scope": "glibc LGPL-2.1-or-later plus component-specific notices",
+      "bundled_by_install": false
+    },
+    {
+      "soname": "libgcc_s.so.1",
+      "resolved_basename": "libgcc_s.so.1",
+      "sha256": "30c61ab012a4241bed033725a09b61f5fdd3bb7df95ee852d0b096520524c7af",
+      "license_scope": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "bundled_by_install": false
+    },
+    {
+      "soname": "libc.so.6",
+      "resolved_basename": "libc.so.6",
+      "sha256": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92",
+      "license_scope": "glibc LGPL-2.1-or-later plus component-specific notices",
+      "bundled_by_install": false
+    },
+    {
+      "soname": "ld-linux-x86-64.so.2",
+      "resolved_basename": "ld-linux-x86-64.so.2",
+      "sha256": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307",
+      "license_scope": "glibc LGPL-2.1-or-later plus component-specific notices",
+      "bundled_by_install": false
+    }
+  ],
+  "license_evidence": [
+    {
+      "component": "CrispEmbed",
+      "license": "MIT; root license also retains notices for unrelated sources",
+      "path": "LICENSE",
+      "sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e"
+    },
+    {
+      "component": "ggml",
+      "license": "MIT",
+      "path": "ggml/LICENSE",
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d"
+    },
+    {
+      "component": "llamafile SGEMM",
+      "license": "MIT, Copyright 2024 Mozilla Foundation",
+      "path": "ggml/src/ggml-cpu/llamafile/sgemm.cpp",
+      "notice_range": "initial source comment",
+      "sha256": "11b4860f7368015e69fbf4fe01f41756c72acb37b992d7dd549060811f6949b8"
+    },
+    {
+      "component": "system GCC libraries",
+      "license": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "local_notice_sha256": "20390f8a6f3b1e4d7cb45dd8652dabb259bbef688cbad839bcdb0b9ba7252f79",
+      "upstream": "https://gcc.gnu.org/onlinedocs/libstdc++/manual/license.html"
+    },
+    {
+      "component": "system GNU libc/libm/loader",
+      "license": "LGPL-2.1-or-later and component-specific notices",
+      "local_notice_sha256": "f5788886720a2605a946e81d571e6c8162b09f58d2e2ceb8d36e5768fccd850d",
+      "upstream": "https://www.gnu.org/software/libc/"
+    }
+  ],
+  "source_hashes": {
+    "src/gector.cpp": "0e38c16578af870de9bf2649309230d65e47c482848c68181fa0d880b944c288",
+    "src/gector.h": "3794ff7e9b228df757f502679f42a4784b9a6d89ae32d7198ee79d621f8c4bda",
+    "src/core/gguf_loader.cpp": "04b2c87b90f80fef04713c0572f3a7e823ba1c22e7c89ebc925a3d1ea56a6a8a",
+    "src/core/gguf_loader.h": "d191f61843db3aaf4a9a653c29debb70fbd8f1e2f2d47d63e85966e737a08936",
+    "src/core/env_gate.h": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+    "tools/gector/CMakeLists.txt": "dd0a8248534ab0fd6c781949af2c390f8c994114023c4c4391cb61926fe7ac9d",
+    "tools/gector/README.md": "b0247b7e2ba14016af274adfc96363ed30f3ae3708de0ea89c3707ba218a74a5",
+    "tools/gector/THIRD_PARTY_NOTICES": "bb34de085625026bc7f0be3279172b81cfb0a1ea2de0dba45711bd2aa3b0741a",
+    "LICENSE": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+    "ggml/LICENSE": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+    "ggml/src/ggml-cpu/llamafile/sgemm.cpp": "11b4860f7368015e69fbf4fe01f41756c72acb37b992d7dd549060811f6949b8"
+  },
+  "installed_files": [
+    {
+      "path": "include/gector.h",
+      "bytes": 4229,
+      "sha256": "3794ff7e9b228df757f502679f42a4784b9a6d89ae32d7198ee79d621f8c4bda"
+    },
+    {
+      "path": "lib/libcrispembed-gector.so",
+      "bytes": 2064104,
+      "sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604"
+    },
+    {
+      "path": "share/licenses/crispembed-gector/LICENSE",
+      "bytes": 4739,
+      "sha256": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e"
+    },
+    {
+      "path": "share/licenses/crispembed-gector/THIRD_PARTY_NOTICES",
+      "bytes": 3729,
+      "sha256": "bb34de085625026bc7f0be3279172b81cfb0a1ea2de0dba45711bd2aa3b0741a"
+    }
+  ],
+  "validation": {
+    "native_contract_checks": 50,
+    "native_contract_failures": 0,
+    "real_model_smoke_tokens": 3,
+    "real_model_smoke_trace_stages": 15,
+    "source_stable_since_contract_run": true,
+    "actions_used": false
+  },
+  "limits": [
+    "Runtime system libraries carry separate licenses; this is not an all-MIT binary claim.",
+    "Source/dependency closure is bounded to this Linux x86_64 build.",
+    "No model payload, system runtime or development-only ORT library is installed by the standalone target.",
+    "Models and their Apache-2.0 LICENSE/NOTICE are separate assets.",
+    "No release or broader-platform qualification follows from this receipt."
+  ]
+}

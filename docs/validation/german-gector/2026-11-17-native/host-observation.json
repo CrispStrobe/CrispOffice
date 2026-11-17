@@ -1,0 +1,13 @@
+{
+  "captured_at_utc": "2026-11-17T14:18:39.789917+00:00",
+  "scope": "Supplemental host observation after the paired native runs; not a run-time load sample",
+  "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+  "logical_cpu_count": 9,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "machine": "x86_64",
+  "load_average_at_observation": [
+    1.1279296875,
+    1.58984375,
+    1.1083984375
+  ]
+}
