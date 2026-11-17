@@ -171,7 +171,9 @@ final class AotClient implements AotAnalyzer {
       return await pending;
     } finally {
       if (identical(_morphologyInFlight[key], pending)) {
-        final Future<AotMorphology>? completed = _morphologyInFlight.remove(key);
+        final Future<AotMorphology>? completed = _morphologyInFlight.remove(
+          key,
+        );
         assert(identical(completed, pending));
       }
     }
