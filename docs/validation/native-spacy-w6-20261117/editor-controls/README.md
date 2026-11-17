@@ -39,3 +39,16 @@ development error and its corrected version; repeated runs and lifecycle
 variants are not additional independent grammar cases. Neither the separate
 grammar qualification panel nor the consumed native acceptance inputs were
 read by this gate task. No GitHub Actions endpoint was queried or awaited.
+
+## Recheck after newer German/editor main
+
+The subsequent merge of main `6245a6956a76a38f925e1eb18851c0086730112d`
+changes German phrase completion and editor correction formatting/history.
+The [latest-main attempt](latest-grammar-main.json) therefore reruns the same
+ten actual-native editor controls against the merged source. All **10 pass**,
+with all **422** captured source/manifest paths, the exact native library and
+the model manifest unchanged during execution. The gate itself is unchanged
+from the earlier final attempt; no native or planner tuning accompanies this
+run. The [separate latest-main summary](latest-main-summary.json) authenticates
+this receipt and the successful nine-test incoming icon-rendering suite.
+The older attempts and summaries remain intact.

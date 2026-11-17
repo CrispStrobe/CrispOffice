@@ -25,3 +25,14 @@ results; the successful ordinary suites do not hide the defect. The subsequent
 minimal repair and successful same-probe replays are recorded separately in
 [calendar-repair](../calendar-repair/README.md). No grammar qualification panel
 or native acceptance input was read, and no GitHub Actions endpoint was queried.
+
+## Later icon renderer recheck
+
+The later incoming main `6245a6956a76a38f925e1eb18851c0086730112d` also
+updates conditional-format icon placement and its text inset. After that merge,
+the editor's focused `sheet_conditional_rendering_test.dart` suite passes all
+**9 tests**. Its [separate receipt](latest-icon-controls.json) and
+[complete log](latest-icon-controls.log) retain the source identities and
+confirm that captured engine/editor source, the test and the lock remain
+unchanged during execution. This successful later run does not replace the
+original calendar failure receipt or its separate repair evidence.
