@@ -1,0 +1,30 @@
+# Development evidence archive — 17 November 2026
+
+This archive preserves development work for the Quds Office continuation. **None of its test counts, reviewer self-tests, timing observations, schema checks, or application checks belongs in the final qualification total.** The fixed source used for the separate final qualification is `07481e944799e282f15e6286192b926cff1165df`; final results are deliberately absent here.
+
+Historical filenames and JSON fields containing `accepted`, `final`, or `qualified` are preserved verbatim. They describe stages of development, not qualification of the final combined source. Counts below overlap across revisions and must not be added together.
+
+## Contents and provenance
+
+- `comment-validation/`: the 31-case negative control against integration `fc443772` (20 failures, 11 successes), its exact test source, the accepted 73-case VM and 34-case Node development logs, strict analysis/format output, and later 35-case VM/Node logs after linear date trimming. The 73-case run includes 34 comment cases plus existing related cases. `summary.json` binds the initial implementation to `42efaad6`; `linear-followup.json` records `9390c24f`.
+- Comment consumer evidence retains ten accepted ODT fixtures, ten reopened DOCX files, ten baseline ODT files, nine baseline DOCX files, forty accepted schema-part checks, and the comparison reports. The baseline note fixture failed to load, recorded in `baseline-libreoffice.log`. Ten positive DOCX helper checks and four rejected baseline controls are preserved. The omitted `final-fixtures` comment ODTs were byte-identical to the retained `accepted-fixtures`; `capture-provenance.json` records each verified alias.
+- `rotation-review/`: the 22-case negative control (3 successes, 17 failures, 2 errors), pinned baseline writer, driver and fifteen baseline ODP fixtures; accepted 51-case VM and 23-case Node development logs; and the complete reviewed consumer run with sixteen ODP/PDF/PNG sets, sixty-four schema-part checks, and command logs. The 51-case VM run includes the 23 rotation cases and existing related cases.
+- The historical 22-case rotation test source was **not separately snapshotted**. Its raw names/results and baseline writer are retained, but no exact historical test-file hash is claimed. The later 23-case test and reviewed production/generator/checker sources are snapshotted from `b38003a4`.
+- The reviewed rotation consumer report was written before its changes were committed: it reports HEAD `fc443772` and changed source files. Its recorded before/after source hashes match the later saved `b38003a4` files; this binding is verified by the packaging script. It is not a clean-HEAD final qualification receipt. An earlier failed consumer report and command logs explain the detected frame-growth issue and checker expectation adjustments. Redundant superseded rasters are omitted. The initial `old90` and `local-matrix90` probes retain their ODP, PDF and PNG evidence.
+- `review-temp/`: an independent source review binding eleven files to `07481e94`, the date-complexity probe source, and receipt-verifier self-test stdout/stderr. The baseline date timings were transcribed from observed tool output; no original baseline stdout was saved. The fixed probe stdout is retained in `comment-validation/linear-probe.log`. These are development observations, with no performance threshold asserted by regression tests.
+- `runtime/setup/` retains the 13-case engine and 12-case editor smoke logs referenced by the independent protocol review. The older 22-case rotation Node log is retained because that review references its exact hash. These smoke/protocol observations and the verifier's synthetic self-tests are excluded from product totals.
+- `source-snapshots/` contains immutable Git blobs for the baseline writers, comment revisions, reviewed rotation revision, and eleven independently reviewed final-source files. `validation-resume/schemas/` contains the exact two ODF schemas referenced by the consumer evidence.
+
+## Consumer limits retained by the evidence
+
+The comment changes preserve point annotations; they do not reconstruct source ranges or threads. Main visible-body references take precedence over auxiliary-story references. Missing or ambiguous comment definitions do not attach an arbitrary body. Nested comment references terminate, and note references inside comments retain marks without consuming the note body.
+
+In the measured LibreOffice conversion, visible main-body comments retain metadata, formatting, line breaks, simple hyperlink text/destination and list text. Pictures and tabs inside comments, and unique header/footer/note annotations, are omitted by that consumer even though the original ODF retains them and passes the checked schemas. Rotation evidence covers the selected fixtures and consumer, including grouped text-frame export for rotated tables; it is not universal office-application parity.
+
+## Reconstruction and integrity
+
+`development-evidence.index.json` gives the ordered parts, full archive SHA-256, and every member path, byte size and SHA-256. Join the numbered `.part-NNN` files in the listed order to reconstruct `development-evidence.tar.xz`. Each part is at most 90,000 bytes. The archive uses sorted members, mode 0644, zero UID/GID/mtime, empty owner names, and deterministic XZ compression. `build_pack.py` preserves the exact selection and verifies source/fixture bindings before packaging. Rebuilding it requires the original selected development files and Git objects.
+
+The packaging verification reconstructs the archive from parts, reads every tar member, verifies every member hash/size and canonical metadata, and rebuilds the archive to confirm identical bytes. Scratch profiles/caches and final qualification outputs are excluded. No GitHub Actions job, check, or commit-status query is part of this evidence.
+
+Some retained early NDJSON logs include a literal U+2028 in JSON string values. Parse records on literal LF (`\n`), not a general Unicode line-splitting operation.

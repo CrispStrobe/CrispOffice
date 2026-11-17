@@ -1,0 +1,37 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "5d2efb3832af41a0e3c5b9cfcd2b5758ba9d4caa952d688540854e51387c1d99",
+    "size": 6062
+  },
+  {
+    "path": "capture-provenance.json",
+    "sha256": "9381b04384457381502723769f76531b6b8d664f3c46fd26080355bfa2119711",
+    "size": 15820
+  },
+  {
+    "path": "build_pack.py",
+    "sha256": "3988cc896bf278e5048f175cc3c2b0ffa8f170aad5fb4e2705a3728b14014c9f",
+    "size": 21136
+  },
+  {
+    "path": "development-evidence.index.json",
+    "sha256": "513ef60e52e84c777238e4740e767d973f436b7b4fa611b1a4c3191d5a88fdfc",
+    "size": 60557
+  },
+  {
+    "path": "development-evidence.tar.xz.part-001",
+    "sha256": "fe2f52e0ad745f7a233271af07d0f4e5d1587a69eee122c17dbf7a22b0af600f",
+    "size": 90000
+  },
+  {
+    "path": "development-evidence.tar.xz.part-002",
+    "sha256": "5b0337eb7a53f81396a28dfd1225d3e06502cae17d2364004c60bca740fbe6ac",
+    "size": 90000
+  },
+  {
+    "path": "development-evidence.tar.xz.part-003",
+    "sha256": "769bae10f8edb214bf75ad63cda973da5205eb380c149428fd42b76329ff1425",
+    "size": 51184
+  }
+]

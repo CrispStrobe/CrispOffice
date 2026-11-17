@@ -1,0 +1,352 @@
+{
+  "classification": "development evidence only; excluded from final qualification totals",
+  "comment_control": {
+    "baseline": "fc44377279ced4589e637360e5f67501012e022c",
+    "cases": 31,
+    "exact_test_source": "comment-validation/final-control-test.dart"
+  },
+  "date_probe_provenance": "Transcribed from the actual exec_command/write_stdin tool output of the review probe; no separate original baseline stdout file was saved. These observations are development controls, not qualification results.",
+  "duplicate_fixture_aliases": [
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-covered.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-covered.odt",
+      "sha256": "bb462f582ca02b14d0b6c7e82f3c97125e5455cba9a1fa64264572f79462be5e"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-date-string.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-date-string.odt",
+      "sha256": "78c11dec2fc128df70f94c376ce3605094073c0bff93429846d3a0aafb51704a"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-empty.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-empty.odt",
+      "sha256": "ac180d2afec8a01103f79101cf89f7d71c3e133b05906ebe6dbe703cf96ae57a"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-frame-priority.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-frame-priority.odt",
+      "sha256": "b20cc6acf8a576761883390232f957ce921a50816f6254a009bf19dfdad99cc5"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-heading.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-heading.odt",
+      "sha256": "ae6324a49e1358031884636c4dccb51354d1f352cfb1f16a78c0edfac9fcbede"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-note-priority.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-note-priority.odt",
+      "sha256": "7a3db4c82df06447031382c89a9f2cb152b960ad7ad3e245fce6969ccb2e9d97"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-notes.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-notes.odt",
+      "sha256": "86213346ffade3601d7e0b493052f45685ea0928c8a18e8c883a0c602cdbbf35"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-recursive.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-recursive.odt",
+      "sha256": "1139eb88abf460920957d377dfbd61b03a9442186a86e81755527ddc20f7cf9b"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-rich.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-rich.odt",
+      "sha256": "c2ca3c65a42dff6b3f03ad698b8049e3e6d4b4dea5323ec8aa1258bec2ad9414"
+    },
+    {
+      "omitted_duplicate": "comment-validation/final-fixtures/word-comments-stories.odt",
+      "retained_as": "comment-validation/accepted-fixtures/word-comments-stories.odt",
+      "sha256": "d77ed585db52f9772bacc94e625f031446bb0957f321718c049f6cd2e0763004"
+    }
+  ],
+  "final_source_context": "07481e944799e282f15e6286192b926cff1165df",
+  "github_actions_used": false,
+  "omitted": [
+    "Final fixed-source qualification logs and consumer outputs are outside this development archive.",
+    "Scratch LibreOffice profiles, caches, runtime binaries and redundant exploratory attempts are excluded.",
+    "Superseded rotation consumer rasters and PDFs are excluded; its failed report and command streams are retained.",
+    "The intermediate passing 15-fixture rotation consumer attempt is redundant with the retained 16-fixture attempt.",
+    "Comment final-fixtures duplicates are omitted with verified aliases to accepted-fixtures."
+  ],
+  "rotation_consumer_source": {
+    "before_and_after_file_hashes_verified_against_later_saved_commit": "b38003a42b2ce2b9e217aa9a1744400ebe0acf5a",
+    "fixtures": 16,
+    "reported_head": "fc44377279ced4589e637360e5f67501012e022c",
+    "reported_sources_were_uncommitted": true,
+    "schema_parts": 64
+  },
+  "rotation_control": {
+    "baseline": "fc44377279ced4589e637360e5f67501012e022c",
+    "cases": 22,
+    "exact_historical_test_source_saved": false,
+    "limitation": "The 22-case baseline test source was not separately snapshotted. The baseline writer, driver, raw names and results are retained. The later 23-case source is bound to b38003a4 and must not be presented as the exact baseline test source."
+  },
+  "source_snapshots": {
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/docs/validation/office-fidelity-continuation-20261117/make_fixtures.dart": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "docs/validation/office-fidelity-continuation-20261117/make_fixtures.dart"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/docs/validation/office-fidelity-continuation-20261117/validate.py": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "docs/validation/office-fidelity-continuation-20261117/validate.py"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/docs/validation/office-fidelity-resume-20261117/generate_fixtures.py": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "docs/validation/office-fidelity-resume-20261117/generate_fixtures.py"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/docs/validation/office-fidelity-resume-20261117/verify_consumers.py": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "docs/validation/office-fidelity-resume-20261117/verify_consumers.py"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/docs/validation/office-fidelity-resume-20261117/verify_receipts.py": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "docs/validation/office-fidelity-resume-20261117/verify_receipts.py"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/packages/quds_office_engine/test/odp_transform_fidelity_test.dart": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "packages/quds_office_engine/test/odp_transform_fidelity_test.dart"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/packages/quds_office_engine/test/odt_comment_fidelity_test.dart": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "packages/quds_office_engine/test/odt_comment_fidelity_test.dart"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/packages/quds_office_engine/tool/fidelity/make_odp_rotation_fixtures.dart": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "packages/quds_office_engine/tool/fidelity/make_odp_rotation_fixtures.dart"
+    },
+    "source-snapshots/07481e944799e282f15e6286192b926cff1165df/packages/quds_office_engine/tool/fidelity/verify_odp_rotation.py": {
+      "commit": "07481e944799e282f15e6286192b926cff1165df",
+      "repository_path": "packages/quds_office_engine/tool/fidelity/verify_odp_rotation.py"
+    },
+    "source-snapshots/42efaad646c86391c7994efa714970ee433d5dea/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "commit": "42efaad646c86391c7994efa714970ee433d5dea",
+      "repository_path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    },
+    "source-snapshots/42efaad646c86391c7994efa714970ee433d5dea/packages/quds_office_engine/test/odt_comment_fidelity_test.dart": {
+      "commit": "42efaad646c86391c7994efa714970ee433d5dea",
+      "repository_path": "packages/quds_office_engine/test/odt_comment_fidelity_test.dart"
+    },
+    "source-snapshots/9390c24f850f9b975fa252b99c20112f0e8318f9/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "commit": "9390c24f850f9b975fa252b99c20112f0e8318f9",
+      "repository_path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    },
+    "source-snapshots/9390c24f850f9b975fa252b99c20112f0e8318f9/packages/quds_office_engine/test/odt_comment_fidelity_test.dart": {
+      "commit": "9390c24f850f9b975fa252b99c20112f0e8318f9",
+      "repository_path": "packages/quds_office_engine/test/odt_comment_fidelity_test.dart"
+    },
+    "source-snapshots/b38003a42b2ce2b9e217aa9a1744400ebe0acf5a/packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": {
+      "commit": "b38003a42b2ce2b9e217aa9a1744400ebe0acf5a",
+      "repository_path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart"
+    },
+    "source-snapshots/b38003a42b2ce2b9e217aa9a1744400ebe0acf5a/packages/quds_office_engine/test/odp_transform_fidelity_test.dart": {
+      "commit": "b38003a42b2ce2b9e217aa9a1744400ebe0acf5a",
+      "repository_path": "packages/quds_office_engine/test/odp_transform_fidelity_test.dart"
+    },
+    "source-snapshots/b38003a42b2ce2b9e217aa9a1744400ebe0acf5a/packages/quds_office_engine/tool/fidelity/make_odp_rotation_fixtures.dart": {
+      "commit": "b38003a42b2ce2b9e217aa9a1744400ebe0acf5a",
+      "repository_path": "packages/quds_office_engine/tool/fidelity/make_odp_rotation_fixtures.dart"
+    },
+    "source-snapshots/b38003a42b2ce2b9e217aa9a1744400ebe0acf5a/packages/quds_office_engine/tool/fidelity/verify_odp_rotation.py": {
+      "commit": "b38003a42b2ce2b9e217aa9a1744400ebe0acf5a",
+      "repository_path": "packages/quds_office_engine/tool/fidelity/verify_odp_rotation.py"
+    },
+    "source-snapshots/fc44377279ced4589e637360e5f67501012e022c/packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": {
+      "commit": "fc44377279ced4589e637360e5f67501012e022c",
+      "repository_path": "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart"
+    },
+    "source-snapshots/fc44377279ced4589e637360e5f67501012e022c/packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "commit": "fc44377279ced4589e637360e5f67501012e022c",
+      "repository_path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+    }
+  },
+  "test_runs": [
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "comment-validation/baseline-final.jsonl",
+      "sha256": "79818376b7eb92ab3f770738bd51bc55007085259c30ec48fb3c54f2b8f9902b",
+      "terminal": [
+        {
+          "success": false,
+          "time": 2816,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "failure": 20,
+        "success": 11
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "comment-validation/accepted-v2.jsonl",
+      "sha256": "03007d6cc3755e70ff4da8fe8936826c3b0e3b948bf16a7d1aa613d54a2ffe79",
+      "terminal": [
+        {
+          "success": true,
+          "time": 3382,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 73
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "comment-validation/node-v2.jsonl",
+      "sha256": "4f32b7a73ac41855dedb459040fcde7ad03e80be473fbfb1b661b009c5521a55",
+      "terminal": [
+        {
+          "success": true,
+          "time": 12888,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 34
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "comment-validation/linear-vm.jsonl",
+      "sha256": "952bc8ee6fa98c111a355f2cfcaf4ff370f8a0138e97ea92a8c43c24a3b819c8",
+      "terminal": [
+        {
+          "success": true,
+          "time": 2517,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 35
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "comment-validation/linear-node.jsonl",
+      "sha256": "1e7e0d13ad3a719f4886974df3ed6b0f588b4d2cb6513d43f369559f1c6b7353",
+      "terminal": [
+        {
+          "success": true,
+          "time": 13725,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 35
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "rotation-review/baseline-events.jsonl",
+      "sha256": "601cdb642c33e60177021bea6222086e51b6d9bb548f6645efc92822251485fe",
+      "terminal": [
+        {
+          "success": false,
+          "time": 2823,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "error": 2,
+        "failure": 17,
+        "success": 3
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "rotation-review/reviewed-vm-events.jsonl",
+      "sha256": "a9f30132201e16ccd26fc62c59001836a7b0c38fa4ae8dbd5f7ef692e6029a37",
+      "terminal": [
+        {
+          "success": true,
+          "time": 3307,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 51
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "rotation-review/reviewed-node-events.jsonl",
+      "sha256": "5a20242cb547cf3eb85e9ce92b10fc63775af962c66e9197d0027fa6786d448a",
+      "terminal": [
+        {
+          "success": true,
+          "time": 10751,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 23
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "rotation-review/qualified-node-events.jsonl",
+      "sha256": "6077ded0e8f35a5808635333fcde021cd1c5e56a32fedd6f09448bbc69d6979e",
+      "terminal": [
+        {
+          "success": true,
+          "time": 9536,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 22
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [],
+      "path": "runtime/setup/engine-smoke.jsonl",
+      "sha256": "c241da01da6e3ebd6388168f4796c098b82bd2c8d890040a999a1ab8dfd8d6c6",
+      "terminal": [
+        {
+          "success": true,
+          "time": 4703,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 13
+      }
+    },
+    {
+      "counts_are_final_qualification": false,
+      "non_json_preamble": [
+        "[1/7] Gradle Wrapper                                                6.4s"
+      ],
+      "path": "runtime/setup/editor-smoke.jsonl",
+      "sha256": "e974702c2a704a8da13bc352d1ab56547d4255ae2f5ccc824b528c4ba69372cc",
+      "terminal": [
+        {
+          "success": true,
+          "time": 13978,
+          "type": "done"
+        }
+      ],
+      "visible_test_outcomes": {
+        "success": 12
+      }
+    }
+  ]
+}
