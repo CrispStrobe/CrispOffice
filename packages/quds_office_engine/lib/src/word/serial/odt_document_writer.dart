@@ -547,7 +547,7 @@ abstract final class OdtDocumentWriter {
       case WmlContentControlBlock():
         _writeBlocks(w, block.blocks, layout, sectionStart: sectionStart);
       case WmlToc():
-        _writeToc(w, block, layout);
+        _writeToc(w, block, layout, sectionStart: sectionStart);
       case WmlOpaqueBlock():
         break;
     }
@@ -586,13 +586,27 @@ abstract final class OdtDocumentWriter {
     w.writeEndElement();
   }
 
-  static void _writeToc(XmlWriter w, WmlToc toc, _OdtLayout layout) {
+  static void _writeToc(
+    XmlWriter w,
+    WmlToc toc,
+    _OdtLayout layout, {
+    _OdtSectionStart? sectionStart,
+  }) {
+    // A TOC can be the first visible block in a section. Its first emitted
+    // paragraph owns the section layout; an empty TOC leaves it pending.
+    void writeParagraph(WmlParagraph paragraph) => _writeParagraph(
+      w,
+      paragraph,
+      layout,
+      sectionStart: sectionStart?.consumed == false ? sectionStart : null,
+    );
+
     if (toc.title.isNotEmpty) {
-      _writeParagraph(w, toc.titleParagraph, layout);
+      writeParagraph(toc.titleParagraph);
     }
     if (toc.itemParagraphs.isNotEmpty) {
       for (final paragraph in toc.itemParagraphs) {
-        _writeParagraph(w, paragraph, layout);
+        writeParagraph(paragraph);
       }
       return;
     }
@@ -601,13 +615,11 @@ abstract final class OdtDocumentWriter {
       final page = toc.showsPageNumberForLevel(entry.level)
           ? '\t${entry.pageNumber}'
           : '';
-      _writeParagraph(
-        w,
+      writeParagraph(
         WmlParagraph(
           properties: WmlParagraphProps(indent: WmlIndent(left: indent)),
           inlines: [WmlRun(text: '${entry.text}$page')],
         ),
-        layout,
       );
     }
   }

@@ -11,6 +11,13 @@ web assets. Mobile system spelling has an adapter with protocol tests. The
 experimental German GECToR provider is available as a separately installed,
 verified, manual-only de-DE option; no model is downloaded or enabled by default.
 
+## Reusing our integration without AOT/RML
+
+The [adapter reuse map](roadmaps/proofing-adapter-reuse.md) records the user's
+clarification: preserve our UI, lifecycle, source-mapping and review work while
+excluding the problematic upstream analyzer and data. The native spaCy backend
+remains separate work; its handoff owns the new model/runtime contracts.
+
 ## Native spaCy implementation handoff — 17 November 2026
 
 The [native spaCy roadmap](roadmaps/native-spacy/README.md) preserves the source
