@@ -1,0 +1,29 @@
+{
+  "source": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+  "previews": [
+    {
+      "name": "custom-tabs-independent-positions",
+      "sha256": "9a4ac88f8d5a0ac20cd2d8240229331a5ecab751d57d06239d23d6039d223b29",
+      "reviewed": true,
+      "observed": "Near and far values align at distinct tab stops without overlapping labels."
+    },
+    {
+      "name": "table-minimum-row-grows",
+      "sha256": "d64222c4c9b85740b2282ba267377bf35409c94ad60932c4896dfe3b3061219a",
+      "reviewed": true,
+      "observed": "Three authored lines fit inside an expanded shaded, bordered row and following text remains below it."
+    },
+    {
+      "name": "table-invalid-properties-preserve-content",
+      "sha256": "007863d6393f32627bd798dfb6d44be6f77a7980503af09c0c723ecfbfb4a4da",
+      "reviewed": true,
+      "observed": "All three cells remain visible with the authored right border and no malformed fills."
+    },
+    {
+      "name": "page-field-styled-footer",
+      "sha256": "60fa115971cf943bd08c67675875dd67a9a3e92a2883af81f7504a496c2e99d5",
+      "reviewed": true,
+      "observed": "Second-page footer shows actual page2 plus the full title, in bold blue text."
+    }
+  ]
+}

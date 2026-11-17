@@ -1,0 +1,50 @@
+{
+  "integrated_checkpoint": "b9bfe664a4efe4128a47792a1ea2cce16c7dd2c8",
+  "tree": "a7525df5d700a5388c012eb48624cbe5cd5607a6",
+  "parents": [
+    "48499356139f37df8fb4b04dbaad293a30d0a3e2",
+    "388bd7451067794b58276d174fe05470aa9994ed",
+    "34d6be099906e5bde0af51330a8b1dcca26e728a",
+    "e67c8090e0bc93eac6b4eb0195461d52e27b7d8e",
+    "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+    "c98c75eae50ddabfa8eb9aa918ed1af9754b7923"
+  ],
+  "starting_qualified_source": "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+  "exact_tree_publication": true,
+  "github_ci_queried_or_awaited": false,
+  "resolution_decisions": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "decision": "Combine current main tabs/table borders, qualified cache independence and const constructor, and newer six-hex decoration validation plus PAGE run/field semantics. Do not substitute an older whole-file writer."
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+      "decision": "Retain both qualified independent-color control cases and all incoming decoration fixtures in one suite."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+      "decision": "Keep the qualified constrained draw:frame/draw:a traversal, readOdfParagraphs name and anchor/hidden-story ownership semantics. Incoming AOT overlaps are earlier equivalent work, not an AOT behavior dependency."
+    },
+    {
+      "path": "packages/quds_office_engine/test/odf_text_box_extraction_test.dart",
+      "decision": "Keep stricter qualified structured-table, paragraph/whitespace, hidden-story and search assertions."
+    },
+    {
+      "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+      "decision": "Keep identical link assertion once in its qualified position."
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_section_continuation_test.dart",
+      "decision": "Resolve comment-only conflicts while preserving empty-document geometry and absence of invented body content."
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+      "decision": "Retain new noun-verb label and all three optional AOT diagnostic labels."
+    },
+    {
+      "path": "docs/PROOFING.md",
+      "decision": "Retain noun-agreement, combined quality, optional AOT and earlier evidence descriptions, each with original report attribution."
+    }
+  ],
+  "qualification_state": "Checkpoint of reconciled source; fresh writer regression fixes and combined-source qualification follow."
+}
