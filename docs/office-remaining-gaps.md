@@ -35,11 +35,22 @@ BIFF12 through the BIFF8 reader; the record formats are unrelated.
 
 Supported: numeric comparisons, between/not-between, contains-text,
 begins/ends-with, duplicate, top/bottom ranks, top/bottom percentages and
-above/below average, with generated dxf fill/font.
+above/below average. Native expression predicates and formula comparison bounds
+now evaluate within the supported conditional-formula subset. The grid and PDF
+export share fill/font color resolution with authored priority, independent
+property precedence and `stopIfTrue`. Sparse aggregate rules scan stored cells;
+blank painted cells can receive conditional colors. Edited and newly added XLSX
+conditional colors retain valid differential-style references, including native
+properties outside the modeled colors. See
+[conditional-format-rendering.md](conditional-format-rendering.md) for API,
+cache policy, formula limits and preservation scope.
 
-Not supported: expression rules, color scales, data bars, icon sets, date/time
-conditions, and arbitrary text predicates. These need new
-model kinds or native ODS rule preservation.
+Remaining: color scales, data bars, icon sets, additional native date/time and
+text-condition kinds, and formula functionality outside the supported subset.
+Unmodeled differential properties such as bold, borders and number formats can
+be preserved in XLSX but are not applied by the conditional color renderer.
+Complete native ODS rule preservation, including cross-format priority/stopping
+metadata parity, remains separate work.
 
 ### 3. ODS validations
 

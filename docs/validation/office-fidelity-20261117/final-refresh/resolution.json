@@ -1,0 +1,19 @@
+{
+  "pinned_main": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+  "pinned_proofing": "aadae32de7f32901f7f92bc6ef1962d077ad41b8",
+  "pinned_zotero": "bacce8e11c6ab5596d01532b074ebaf9a377db90",
+  "pinned_odp_documentation_pr": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+  "all_206_refs_ancestors": true,
+  "merge_decisions": [
+    "Proofing morphology, suggestions, locale support and source-context UI merged without source conflict.",
+    "Kept native conditional no-fill semantics and current DXF edit/persistence repairs instead of the superseded invented yellow fallback.",
+    "Combined incoming hidden field-boundary suppression and cached result tests with shared ODF whitespace encoding; removed duplicate private whitespace helper.",
+    "Retained inline visual fallback and hanging-indent XML repairs."
+  ],
+  "resolved_source_sha256": {
+    "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart": "5a8aa748b3b3e2caf5d8e3776e54fa18d2704cecbafcd0886a5e189fdf438854",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "18f6b71a123410877babec3dccf016548a1ca023b8a3058bc560c33698584e35",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart": "12ef7fc8b36978355dc754a0e6a0f5f028d800272d9b59f101259bc24c44d219"
+  },
+  "qualification": "Fresh local cohorts run after this captured integration; prior branch receipts retain their original attribution."
+}

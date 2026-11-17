@@ -1,0 +1,76 @@
+{
+  "started_at_utc": "2026-11-17T06:36:14.250732+00:00",
+  "script_sha256": "0d732d2caba1e3370b8bc7efec2cb9e25f11ffebcb59649371d71cab75766591",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "github_actions_used": false,
+  "scope": "ZIP structure, XML well-formedness, known text semantics and hanging indent",
+  "not_claimed": "ODF schema conformance, native-model roundtrip or visual rendering parity",
+  "fixtures": [
+    {
+      "file": "word-text.odt",
+      "sha256": "076236d7e18a7b0c669ef1444c0feca546bcb2fac38d9be9e5ce109500606c9f",
+      "bytes": 2359,
+      "mimetype": "application/vnd.oasis.opendocument.text",
+      "first_member_uncompressed_mimetype": true,
+      "xml_sha256": {
+        "content.xml": "261de65296134a7507fe497f6bdbbef1fee51bc324f7c2e799223456fe51211b",
+        "styles.xml": "ad9ae6c5822aabeff0392dd07a3e245c58896829dfe92cc23a9356f5c45b7c2e",
+        "meta.xml": "96575d3eaeb09bc87e51e66a1b03b28ca61866881737a52352e822abf0e3b0a4",
+        "META-INF/manifest.xml": "f541b3713ca8c1f6d37284330e170e039b80756a75ed723002bf3e4e1afb8030"
+      },
+      "xml_well_formed": true,
+      "paragraphs": [
+        "  A\tB  C\nD "
+      ],
+      "paragraph_text_matches": true,
+      "indent": null,
+      "input_unchanged": true
+    },
+    {
+      "file": "slide-text.odp",
+      "sha256": "803393d6eba87ee511f3a688742dbd577aa19a75fd7824d13f62d4d78b4d99fd",
+      "bytes": 2437,
+      "mimetype": "application/vnd.oasis.opendocument.presentation",
+      "first_member_uncompressed_mimetype": true,
+      "xml_sha256": {
+        "content.xml": "2d4ccf9cbf6fdaa2e660a8a95915ddd8364115fdd9ba34cd153aaa6ccfca799f",
+        "styles.xml": "192d259015628e6fe6a4945019d7bd347cabac51c223eadb8906d999e36ef52c",
+        "meta.xml": "3db8649be987fe421d4cec3187af6fa3e8a17a4853f4360c763509a047c5ad56",
+        "META-INF/manifest.xml": "56a3717437b5bfc41748c1dd4b4b77f6be989c719c33d34a1f6992a8d1ad93cb"
+      },
+      "xml_well_formed": true,
+      "paragraphs": [
+        " Head\tA  B ",
+        "",
+        "Tail ",
+        "  Cell\tend ",
+        "  Note\tend "
+      ],
+      "paragraph_text_matches": true,
+      "indent": null,
+      "input_unchanged": true
+    },
+    {
+      "file": "word-indents.odt",
+      "sha256": "fc5a96557d1279f97bb527b0f78f64b549228f47d732e1bda316f13aacdfb0e7",
+      "bytes": 2353,
+      "mimetype": "application/vnd.oasis.opendocument.text",
+      "first_member_uncompressed_mimetype": true,
+      "xml_sha256": {
+        "content.xml": "6132f3dd3642db4b84412090b0730775850ab841a0f33a73563ce9a244dda1e8",
+        "styles.xml": "ad9ae6c5822aabeff0392dd07a3e245c58896829dfe92cc23a9356f5c45b7c2e",
+        "meta.xml": "96575d3eaeb09bc87e51e66a1b03b28ca61866881737a52352e822abf0e3b0a4",
+        "META-INF/manifest.xml": "f541b3713ca8c1f6d37284330e170e039b80756a75ed723002bf3e4e1afb8030"
+      },
+      "xml_well_formed": true,
+      "paragraphs": [
+        "Body"
+      ],
+      "paragraph_text_matches": true,
+      "indent": "-18.00pt",
+      "input_unchanged": true
+    }
+  ],
+  "status": "passed",
+  "finished_at_utc": "2026-11-17T06:36:14.256029+00:00"
+}

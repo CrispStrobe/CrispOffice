@@ -1,0 +1,27 @@
+{
+  "scope": "Synthetic Unicode aliases of Liberation Sans Latin outlines; compares PDF-reopened and directly generated identical Unicode subsets. No original-font or cross-cmap bitmap parity or emoji/CJK coverage claim.",
+  "renderer": "Actual Flutter test engine, FontLoader, TextPainter and Canvas; font bytes reopened from exported Word PDFs.",
+  "source_code_points": [
+    "U+0041",
+    "U+1F600",
+    "U+20000",
+    "U+005A"
+  ],
+  "extracted_code_points": [
+    "U+0041",
+    "U+1F600",
+    "U+20000",
+    "U+005A"
+  ],
+  "reference_text": "ABCZ",
+  "font_size": 64.0,
+  "reference_width": 170.6875,
+  "subset_width": 170.6875,
+  "reference_ink_pixels": 2834,
+  "subset_ink_pixels": 2919,
+  "direct_subset_differing_pixels": 0,
+  "latin_reference_differing_pixels": 559,
+  "pdf_bytes": 7265,
+  "embedded_font_bytes": 7844,
+  "dart_runtime": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\""
+}
