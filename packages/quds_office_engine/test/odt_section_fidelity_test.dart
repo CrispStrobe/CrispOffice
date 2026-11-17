@@ -120,11 +120,12 @@ void main() {
         'leading TOC inherits section once: titled=$titled cached=$cached',
         () {
           final toc = generatedToc(title: titled ? 'Contents' : '');
-          if (cached)
+          if (cached) {
             toc.itemParagraphs = [
               _p('Cached introduction'),
               _p('Cached details'),
             ];
+          }
           final beforeTitle = toc.titleParagraph.properties;
           final document = _two([toc, _p('After contents')]);
           document.sections.last.pageSize = const WmlPageSize(

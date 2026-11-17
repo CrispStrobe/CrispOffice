@@ -386,4 +386,35 @@ void main() {
       expect(field.childElements, isEmpty);
     },
   );
+  test('field cache fallback retains an authored inline column break', () {
+    final output = _export(
+      _document([
+        _paragraph(
+          _field('PAGE', [
+            WmlRun(text: 'Before column'),
+            WmlBreak(WmlBreakType.column),
+            WmlRun(text: 'After column'),
+          ]),
+        ),
+      ]),
+    ).content;
+    expect(_nativeFields(output), isEmpty);
+    final paragraphs = _paragraphs(output);
+    expect(paragraphs.map((p) => p.text), ['Before column', 'After column']);
+    final styleName = paragraphs.last.getAttribute(
+      'style-name',
+      namespaceUri: _textNs,
+    );
+    final properties = output
+        .firstChild('automatic-styles')!
+        .childrenNamed('style')
+        .singleWhere(
+          (s) => s.getAttribute('name', namespaceUri: _styleNs) == styleName,
+        )
+        .firstChild('paragraph-properties')!;
+    expect(
+      properties.getAttribute('break-before', namespaceUri: _foNs),
+      'column',
+    );
+  });
 }
