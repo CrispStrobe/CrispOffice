@@ -1,0 +1,19 @@
+{
+  "previousSeal": "42e4a94dd72cb23dde752c4b4ea5f0693faa6d5e",
+  "observedMain": "13e7172977d671190ba8c3cf964deec4d7473090",
+  "reason": "Resolve final PR conflict caused by main landing prior Office continuation and #124 field handling after the sealed snapshot.",
+  "packageAndToolChanges": [
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart"
+  ],
+  "proofingAndModelInputsUnchanged": true,
+  "decisions": [
+    "Retain qualified column, gap, anchor, paragraph cache, tab, table and rotation repairs.",
+    "Retain complete irregular participle priority and quote rules.",
+    "Keep stronger paragraph decoration tests and frame-aware compatibility alias.",
+    "Preserve incoming historical report variants under delivery-main for reference.",
+    "Qualify and bound the new complex-field conversion before final delivery."
+  ],
+  "state": "Raw incoming field behavior saved before bounded repair and narrow qualification."
+}

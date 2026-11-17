@@ -122,6 +122,7 @@ void main() {
     expect(content, contains('<text:a xlink:href="https://example.com/deck">'));
     expect(content, contains('Q1'));
     expect(content, contains('Q2'));
+    expect(content, contains('<text:a xlink:href="https://example.com/deck">'));
     final pageProperties = _pageProperties(XmlDocument.parse(content), 0);
     expect(
       pageProperties.getAttribute('type', namespaceUri: _smilNs),
