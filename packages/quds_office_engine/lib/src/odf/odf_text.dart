@@ -12,7 +12,8 @@ const odfOfficeNamespace = 'urn:oasis:names:tc:opendocument:xmlns:office:1.0';
 /// Namespace for ODF table structure and covered cells.
 const odfTableNamespace = 'urn:oasis:names:tc:opendocument:xmlns:table:1.0';
 
-const _odfDrawNamespace = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
+/// Namespace for ODF drawing frames and their text boxes.
+const odfDrawingNamespace = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
 
 /// Writes authored text without ODF's literal XML whitespace collapse.
 ///
@@ -116,9 +117,17 @@ bool isOdfAnnotation(XmlElement element) =>
     element.namespaceUri == odfOfficeNamespace &&
     element.localName == 'annotation';
 
+/// Notes have their own story and are omitted from visible body extraction.
+bool isOdfNote(XmlElement element) =>
+    element.namespaceUri == odfTextNamespace && element.localName == 'note';
+
 /// Enumerates paragraph blocks without treating inline spans as word breaks.
 Iterable<XmlElement> odfParagraphs(XmlElement element) sync* {
-  if (isOdfCoveredCell(element) || isOdfAnnotation(element)) return;
+  if (isOdfCoveredCell(element) ||
+      isOdfAnnotation(element) ||
+      isOdfNote(element)) {
+    return;
+  }
   if (isOdfParagraph(element)) {
     yield element;
     return;
@@ -128,33 +137,70 @@ Iterable<XmlElement> odfParagraphs(XmlElement element) sync* {
   }
 }
 
-/// Decodes visible paragraphs, including text boxes anchored inside them.
+/// Finds embedded text boxes without entering hidden or foreign inline stories.
 ///
-/// An anchor's own inline text stays together, followed by its text-box stories
-/// in source order. A paragraph containing only text boxes adds no synthetic
-/// blank block; authored empty paragraphs inside the boxes remain distinct.
-/// Each paragraph is decoded once, without merging a frame's text into both
-/// the enclosing paragraph and its own blocks.
-Iterable<String> readOdfParagraphs(
+/// Each text box is returned once. Its own nested frames are handled when the
+/// caller visits its paragraph blocks, rather than duplicating their text here.
+Iterable<XmlElement> odfTextBoxes(XmlElement element) sync* {
+  if (element.namespaceUri == odfDrawingNamespace) {
+    if (element.localName == 'text-box') {
+      yield element;
+      return;
+    }
+    if (element.localName != 'frame' && element.localName != 'a') return;
+  } else if (element.namespaceUri == odfTextNamespace) {
+    if (element.localName == 'note' ||
+        element.localName == 'ruby-text' ||
+        element.localName == 'soft-page-break')
+      return;
+    if (element.localName == 'ruby') {
+      for (final child in element.childElements) {
+        if (child.namespaceUri == odfTextNamespace &&
+            child.localName == 'ruby-base') {
+          yield* odfTextBoxes(child);
+        }
+      }
+      return;
+    }
+  } else {
+    return;
+  }
+  for (final child in element.childElements) {
+    yield* odfTextBoxes(child);
+  }
+}
+
+/// Decodes each visible paragraph, including separately anchored frame stories.
+///
+/// A paragraph's own inline text precedes its embedded text boxes. An empty
+/// frame anchor is omitted only when a text box supplies visible paragraph
+/// blocks; ordinary blank paragraphs and empty frames remain distinct.
+Iterable<String> readOdfParagraphTexts(
   XmlElement element,
   OdfTextBudget budget,
 ) sync* {
   for (final paragraph in odfParagraphs(element)) {
-    final decoded = _readParagraph(paragraph, budget);
-    if (decoded.text.isNotEmpty || decoded.textBoxes.isEmpty) {
-      yield decoded.text;
+    final boxes = odfTextBoxes(paragraph).toList();
+    final ownText = readOdfParagraphText(paragraph, budget);
+    if (ownText.isNotEmpty ||
+        !boxes.any((box) => odfParagraphs(box).isNotEmpty)) {
+      yield ownText;
     }
-    for (final box in decoded.textBoxes) {
-      yield* readOdfParagraphs(box, budget);
+    for (final box in boxes) {
+      yield* readOdfParagraphTexts(box, budget);
     }
   }
 }
+
+/// Compatibility spelling retained for existing extraction callers.
+Iterable<String> readOdfParagraphs(XmlElement element, OdfTextBudget budget) =>
+    readOdfParagraphTexts(element, budget);
 
 /// Reads paragraphs in [element], retaining empty blocks and their separators.
 String readOdfText(XmlElement element, OdfTextBudget budget) {
   final result = StringBuffer();
   var first = true;
-  for (final paragraph in readOdfParagraphs(element, budget)) {
+  for (final paragraph in readOdfParagraphTexts(element, budget)) {
     if (!first) {
       budget.consume(1);
       result.write('\n');
@@ -165,12 +211,9 @@ String readOdfText(XmlElement element, OdfTextBudget budget) {
   return result.toString();
 }
 
-({String text, List<XmlElement> textBoxes}) _readParagraph(
-  XmlElement paragraph,
-  OdfTextBudget budget,
-) {
+/// Reads a paragraph's own inline text, excluding note and drawing stories.
+String readOdfParagraphText(XmlElement paragraph, OdfTextBudget budget) {
   final text = _ParagraphText(budget);
-  final textBoxes = <XmlElement>[];
   void visit(XmlNode node) {
     if (node is XmlText) {
       text.literal(node.text);
@@ -180,28 +223,7 @@ String readOdfText(XmlElement element, OdfTextBudget budget) {
       text.literal(node.text);
       return;
     }
-    if (node is! XmlElement) return;
-    if (node.namespaceUri == _odfDrawNamespace) {
-      if (node.localName == 'frame') {
-        for (final child in node.childElements) {
-          if (child.namespaceUri == _odfDrawNamespace &&
-              child.localName == 'text-box') {
-            textBoxes.add(child);
-          }
-        }
-      } else if (node.localName == 'a') {
-        // A linked drawing can wrap a frame, but image metadata and foreign
-        // drawing-like elements are not visible paragraph text.
-        for (final child in node.childElements) {
-          if (child.namespaceUri == _odfDrawNamespace &&
-              child.localName == 'frame') {
-            visit(child);
-          }
-        }
-      }
-      return;
-    }
-    if (node.namespaceUri != odfTextNamespace) return;
+    if (node is! XmlElement || node.namespaceUri != odfTextNamespace) return;
     switch (node.localName) {
       case 's':
         final raw = node.getAttribute('c', namespaceUri: odfTextNamespace);
@@ -243,7 +265,7 @@ String readOdfText(XmlElement element, OdfTextBudget budget) {
   }
 
   visit(paragraph);
-  return (text: text.toString(), textBoxes: textBoxes);
+  return text.toString();
 }
 
 bool _isWhitespace(int unit) =>

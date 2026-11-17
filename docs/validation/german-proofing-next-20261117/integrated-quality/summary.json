@@ -1,0 +1,331 @@
+{
+  "source_commit": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+  "interpretation": "Fresh real native default-decoder comparison after bounded opt-in segmentation integration; both panels are now development regression inputs. First-replacement projection is diagnostic, not automatic correction. Segmented operation is qualified separately.",
+  "panels": {
+    "frozen": {
+      "operational_passed": true,
+      "source_stable": true,
+      "corpus_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "de_DE": {
+        "error_count": 18,
+        "clean_count": 10,
+        "lanes": {
+          "writing_only": {
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 7,
+            "changed_nonexact_error_count": 1,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 10,
+            "unflagged_clean_count": 10,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "deterministic": {
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 7,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 10,
+            "unflagged_clean_count": 10,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "model_only": {
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 6,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 10,
+            "unflagged_clean_count": 10,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "combined": {
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 9,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 10,
+            "unflagged_clean_count": 10,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          }
+        },
+        "incremental": {
+          "comparable_ids": [
+            "verb-du",
+            "verb-plural",
+            "verb-er",
+            "verb-wir",
+            "verb-ihr",
+            "agreement-das",
+            "adjective-neuter",
+            "accusative-article",
+            "dative-help",
+            "dative-mit",
+            "dass-conjunction",
+            "das-relative",
+            "word-order-subclause",
+            "word-order-adverb",
+            "participle",
+            "article-gender",
+            "verb-flowers",
+            "comparison",
+            "clean-simple",
+            "clean-repeated-das",
+            "clean-three-das",
+            "clean-tag-question",
+            "clean-imperative",
+            "clean-subclause",
+            "clean-sharp-s",
+            "clean-name",
+            "clean-quotes",
+            "clean-date"
+          ],
+          "not_comparable_ids": [],
+          "added_exact_error_ids": [
+            "verb-ihr",
+            "das-relative"
+          ],
+          "lost_exact_error_ids": [],
+          "model_unique_exact_error_ids": [
+            "verb-ihr",
+            "das-relative"
+          ],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": [],
+          "model_changed_clean_ids": [],
+          "accepted_model_finding_count": 2,
+          "suppressed_model_finding_count": 4
+        }
+      },
+      "locale_controls": {
+        "de-CH": {
+          "case_count": 2,
+          "model_unsupported_count": 2,
+          "deterministic_clean_flags": 0
+        }
+      }
+    },
+    "prospective": {
+      "operational_passed": true,
+      "source_stable": true,
+      "corpus_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "de_DE": {
+        "error_count": 32,
+        "clean_count": 40,
+        "lanes": {
+          "writing_only": {
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 14,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 40,
+            "unflagged_clean_count": 40,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "deterministic": {
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 14,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 40,
+            "unflagged_clean_count": 40,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "model_only": {
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 12,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 40,
+            "unflagged_clean_count": 40,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "combined": {
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 20,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 40,
+            "unflagged_clean_count": 40,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          }
+        },
+        "incremental": {
+          "comparable_ids": [
+            "prospective-verb-ich-wohnen-error",
+            "prospective-verb-ich-wohnen-clean",
+            "prospective-verb-du-trinken-error",
+            "prospective-verb-du-trinken-clean",
+            "prospective-verb-er-arbeiten-error",
+            "prospective-verb-er-arbeiten-clean",
+            "prospective-verb-wir-warten-error",
+            "prospective-verb-wir-warten-clean",
+            "prospective-verb-ihr-lesen-error",
+            "prospective-verb-ihr-lesen-clean",
+            "prospective-verb-du-sein-error",
+            "prospective-verb-du-sein-clean",
+            "prospective-verb-ich-haben-error",
+            "prospective-verb-ich-haben-clean",
+            "prospective-verb-ihr-koennen-error",
+            "prospective-verb-ihr-koennen-clean",
+            "prospective-adjective-definite-feminine-error",
+            "prospective-adjective-definite-feminine-clean",
+            "prospective-adjective-indefinite-neuter-error",
+            "prospective-adjective-indefinite-neuter-clean",
+            "prospective-adjective-indefinite-masculine-error",
+            "prospective-adjective-indefinite-masculine-clean",
+            "prospective-adjective-dative-feminine-error",
+            "prospective-adjective-dative-feminine-clean",
+            "prospective-article-mit-dative-error",
+            "prospective-article-mit-dative-clean",
+            "prospective-article-weather-gender-error",
+            "prospective-article-weather-gender-clean",
+            "prospective-article-ohne-accusative-error",
+            "prospective-article-ohne-accusative-clean",
+            "prospective-adjective-accusative-masculine-error",
+            "prospective-adjective-accusative-masculine-clean",
+            "prospective-dative-plural-kinder-error",
+            "prospective-dative-plural-kinder-clean",
+            "prospective-dative-plural-schueler-error",
+            "prospective-dative-plural-schueler-clean",
+            "prospective-weak-accusative-student-error",
+            "prospective-weak-accusative-student-clean",
+            "prospective-weak-dative-praktikant-error",
+            "prospective-weak-dative-praktikant-clean",
+            "prospective-genitive-haus-error",
+            "prospective-genitive-haus-clean",
+            "prospective-genitive-name-error",
+            "prospective-genitive-name-clean",
+            "prospective-dass-hoffen-error",
+            "prospective-dass-hoffen-clean",
+            "prospective-dass-freuen-error",
+            "prospective-dass-freuen-clean",
+            "prospective-relative-subject-error",
+            "prospective-relative-subject-clean",
+            "prospective-relative-object-error",
+            "prospective-relative-object-clean",
+            "prospective-order-main-clause-error",
+            "prospective-order-main-clause-clean",
+            "prospective-order-dass-clause-error",
+            "prospective-order-dass-clause-clean",
+            "prospective-comparison-missing-comparative-error",
+            "prospective-comparison-missing-comparative-clean",
+            "prospective-comparison-double-inflection-error",
+            "prospective-comparison-double-inflection-clean",
+            "prospective-participle-schreiben-error",
+            "prospective-participle-schreiben-clean",
+            "prospective-participle-finden-error",
+            "prospective-participle-finden-clean",
+            "prospective-clean-demonstrative-plural",
+            "prospective-clean-sie-singular",
+            "prospective-clean-ihr-dative",
+            "prospective-clean-leiter-ladder",
+            "prospective-clean-leiter-leaders",
+            "prospective-clean-dative-s-plural",
+            "prospective-clean-dass-demonstrative-article",
+            "prospective-clean-relative-article"
+          ],
+          "not_comparable_ids": [],
+          "added_exact_error_ids": [
+            "prospective-verb-ihr-lesen-error",
+            "prospective-verb-ihr-koennen-error",
+            "prospective-dass-hoffen-error",
+            "prospective-dass-freuen-error",
+            "prospective-relative-subject-error",
+            "prospective-relative-object-error"
+          ],
+          "lost_exact_error_ids": [],
+          "model_unique_exact_error_ids": [
+            "prospective-verb-ihr-lesen-error",
+            "prospective-verb-ihr-koennen-error",
+            "prospective-dass-hoffen-error",
+            "prospective-dass-freuen-error",
+            "prospective-relative-subject-error",
+            "prospective-relative-object-error"
+          ],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": [],
+          "model_changed_clean_ids": [],
+          "accepted_model_finding_count": 6,
+          "suppressed_model_finding_count": 6
+        }
+      },
+      "locale_controls": {
+        "de-AT": {
+          "case_count": 2,
+          "model_unsupported_count": 2,
+          "deterministic_clean_flags": 0
+        },
+        "de-CH": {
+          "case_count": 2,
+          "model_unsupported_count": 2,
+          "deterministic_clean_flags": 0
+        }
+      }
+    }
+  },
+  "files": {
+    "frozen.json": {
+      "sha256": "2c20dd3315cf6c7a072e412e6bb78047ac8fc3cac4f1a33a2c9218fbbb6bfae1",
+      "bytes": 218235,
+      "archive": "frozen.json.gz",
+      "archive_sha256": "2943ddf59d51c53661979dcaaacf3c74cef16e0f4dd88ee1bf6cc32b84b7cc0e"
+    },
+    "prospective.json": {
+      "sha256": "0517152e2d7c217aaab22b34f0c59186d1a1ba49c25e87f8b46822de81bdcccc",
+      "bytes": 543497,
+      "archive": "prospective.json.gz",
+      "archive_sha256": "5209d92be07af972b5aff5cf0bf067be6cd0a6237831794030987dec06f458c4"
+    },
+    "build.json": {
+      "sha256": "a2630e5950f74bad980197470f19ef4857f68f219dbea106dbf1f24f6084c9bf",
+      "bytes": 67053,
+      "archive": "build.json.gz",
+      "archive_sha256": "f08bd4d91426653bf4f1a0213024e51b5c1557f40410a2f3bbf41089f937e45c"
+    },
+    "audit_integrated.json": {
+      "sha256": "3e5206b83045fa89180340d3e8eb3c6d70724a38a61862a994db5e42269b3bfe",
+      "bytes": 199402,
+      "archive": "audit_integrated.json.gz",
+      "archive_sha256": "5e42f1b7bc4d2b47099e83e5e15117ccc3e7a0eff08d682ba885ab5940fd1ac5"
+    }
+  }
+}

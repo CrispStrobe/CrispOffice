@@ -58,3 +58,39 @@ observations, not a new latency benchmark or a target-device qualification.
 The optional model remains manual de-DE-only, with native distribution,
 regional model support, representative quality and long-text coverage as
 separate acceptance work.
+
+## Reproduce a compiled comparison
+
+From the repository root, using fresh paths for the build and each run:
+
+```sh
+python3 tools/proofing/german_model/build_gector_aot.py \
+  --target incremental-quality \
+  --dart /path/to/dart-sdk/bin/dart \
+  --source-root /path/to/quds_office_suite \
+  --output /path/to/results/quality.aot \
+  --receipt /path/to/results/quality-build.json
+
+CRISPEMBED_GECTOR=1 /path/to/dart-sdk/bin/dartaotruntime \
+  /path/to/results/quality.aot \
+  --source-root /path/to/quds_office_suite \
+  --cases /path/to/quds_office_suite/tools/proofing/german_model/cases.json \
+  --bundle-dir /path/to/pack/model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b \
+  --model /path/to/pack/model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b/gector-de-mixed-q4_k.gguf \
+  --model-sha256 549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b \
+  --library /path/to/pack/native/9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604/libcrispembed-gector.so \
+  --library-sha256 9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604 \
+  --output /path/to/results/frozen-quality.json
+```
+
+Repeat the last command with `prospective_cases_20261117.json` and a different
+output file for the second panel. Compare the build's `source_files` with the
+run's map after removing `declared-corpus`; executable and entrypoint hashes
+must also match. The corpus hash and its normalized declarations are preserved
+separately in each run. Status-contract and source-stability failure make the
+command fail while retaining its partial receipt.
+
+The first runs at `7808a871` and the spelling repairs informed by them are
+retained in the [continuation evidence](../../../docs/validation/german-proofing-next-20261117/README.md).
+Measurements after those repairs use the same immutable corpus and are
+development regression results; they are not a new prospective sample.

@@ -1,0 +1,41 @@
+{
+  "library": "<verified-pack>/native/9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604/libcrispembed-gector.so",
+  "library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+  "manifest": "<verified-pack>/pack.json",
+  "manifest_sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841",
+  "model": {
+    "directory": "model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "file": "gector-de-mixed-q4_k.gguf",
+    "precision": "mixed-q4_k",
+    "recipe": {
+      "encoder_matrices": "Q4_K",
+      "heads": "F16",
+      "name": "mixed-q4_k",
+      "overrides": [
+        "*=f32",
+        "enc.*.attn.*.weight=q4_k",
+        "enc.*.ffn.*.weight=q4_k",
+        "token_embd.weight=q8_0",
+        "position_embd.weight=f16",
+        "gector.*.weight=f16"
+      ],
+      "position_embeddings": "F16",
+      "token_embeddings": "Q8_0",
+      "type_embeddings_norms_biases": "F32"
+    },
+    "revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+    "sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "size_bytes": 82756896,
+    "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+  },
+  "model_directory": "<verified-pack>/model/549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+  "pack": "<verified-pack>",
+  "scope": "local-development-only",
+  "sizes": {
+    "file_count": 23,
+    "manifest_bytes": 9315,
+    "payload_bytes": 86347016,
+    "total_bytes": 86356331
+  },
+  "verified": true
+}

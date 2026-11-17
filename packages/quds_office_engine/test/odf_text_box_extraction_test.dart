@@ -202,32 +202,26 @@ void main() {
     );
   });
 
-  test(
-    'inline notes and ruby annotations do not leak their anchored stories',
-    () async {
-      final hidden = _frame('<text:p>Hidden</text:p>');
-      await _expectBody(
-        '<text:p>A<text:note><text:note-citation>1</text:note-citation>'
-        '<text:note-body><text:p>$hidden</text:p></text:note-body></text:note>B'
-        '<text:ruby><text:ruby-base>R${_frame('<text:p>Ruby base box</text:p>')}'
-        '</text:ruby-base><text:ruby-text>$hidden</text:ruby-text></text:ruby>C'
-        '<text:soft-page-break>$hidden</text:soft-page-break></text:p>',
-        ['ABRC', 'Ruby base box'],
-      );
-    },
-  );
+  test('inline notes and ruby annotations do not leak their anchored stories', () async {
+    final hidden = _frame('<text:p>Hidden</text:p>');
+    await _expectBody(
+      '<text:p>A<text:note><text:note-citation>1</text:note-citation>'
+      '<text:note-body><text:p>$hidden</text:p></text:note-body></text:note>B'
+      '<text:ruby><text:ruby-base>R${_frame('<text:p>Ruby base box</text:p>')}'
+      '</text:ruby-base><text:ruby-text>$hidden</text:ruby-text></text:ruby>C'
+      '<text:soft-page-break>$hidden</text:soft-page-break></text:p>',
+      ['ABRC', 'Ruby base box'],
+    );
+  });
 
-  test(
-    'empty and annotation-only text boxes do not trigger raw fallback',
-    () async {
-      await _expectBody(
-        '<text:p>${_frame('')}</text:p>'
-        '<text:p>${_frame('<office:annotation><text:p>Hidden</text:p>'
-        '</office:annotation>')}</text:p>',
-        [],
-      );
-    },
-  );
+  test('empty and annotation-only text boxes retain blank anchors without hidden text', () async {
+    await _expectBody(
+      '<text:p>${_frame('')}</text:p>'
+      '<text:p>${_frame('<office:annotation><text:p>Hidden</text:p>'
+      '</office:annotation>')}</text:p>',
+      ['', ''],
+    );
+  });
 
   test(
     'text-box whitespace and separators share the cumulative UTF-8 budget',

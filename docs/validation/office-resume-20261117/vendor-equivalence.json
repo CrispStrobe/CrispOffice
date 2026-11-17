@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "vendor": "3a5cacc12c23e577903dcb6d9eba085da6e205a9",
+  "represented_main": "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+  "source_paths": 4356,
+  "comparison_scope": "Every blob, mode and path outside docs/validation; exact dictionaries equal. No source path exclusion beyond recorded evidence prefix.",
+  "source_tree_manifest_sha256": "98af52a3f98f5d63e038b8bd20b1e74e9aac17e914911eea01d104847761f545",
+  "all_tree_differences": [
+    {
+      "path": "docs/validation/zotero-landing-20261117/README.md",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e40ae18b89f8796155b6c27305ece3ffd5a489e9"
+      },
+      "vendor": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6d865bb2a808ca02ae6fdd9b7d6d9b317ad5f445"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/checkpoint-history.md",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c3e836a109d09d42f35287c70612b9ad2f43f501"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/final-canonical-independent-review.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "38dfbfc921da81094c8921b09a781cfe415aac61"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/final-canonical-static-review.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f95f6124a5d90dcabf3928e0d340b1ef448c3fb4"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/note-amendment.md",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "20c8b23b13c697e72df9f8dc24ce1e6ab3ba1dd9"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/note-evidence.tar.xz",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e13062098a0790cb7227ecae9c44d8060dd73d14"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/note-independent-review.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9c3c2c15a528e5796260af49820b0eb8e365379f"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/note-index.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c36d717c3fbf57bb18dd136b21cf1b35461bfa43"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/note-receipt-summary.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "89ec5f7f773ab049a29b1df92c96a1667d5a5ce2"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/note-source-independent-review.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9438a082b79c4fd439cf44cc0227abf2e939414e"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odf-amendment-receipt-summary.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "abd0eee678cb0e32bbbde2998a24e53fddcf7d4a"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odf-amendment.md",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f9f3b4a7491d19da75a89508adaa8342e085da1b"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odf-evidence.tar.xz",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "34db49c200cd1d9ecc366e4d5b2efc6f35b603f7"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odf-index.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "880a9aee283bb2d79e17e5bfd04516afc4b90f4a"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odt-amendment-independent-review.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e19d5f1069b8babd32b7d1c81628d89cb5999510"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odt-list-amendment-receipt-summary.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9ba50b8b3a269b1c43ee4ca7a443a5c99aa6c292"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odt-list-amendment.md",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9e9fb057dd49498fdaec986ca34ba7364624409a"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odt-list-evidence.tar.xz",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2512a6b731669935999d59556916a7483c25526c"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/odt-list-index.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ff0f5daca013affb1813b4557168f16ac9ddf0ee"
+      },
+      "vendor": null
+    },
+    {
+      "path": "docs/validation/zotero-landing-20261117/quds-final-ref-audit.json",
+      "main": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1eb067779a555e32f748b1fcc6229c8b9ed10ba6"
+      },
+      "vendor": null
+    }
+  ],
+  "resolution": "Retain the complete current validation evidence. Vendor lacks 19 later evidence files and has an older README; archive that exact README and include vendor as a merge parent. Its ODP-link ancestor is included through vendor ancestry.",
+  "archived_readme": {
+    "path": "docs/validation/office-resume-20261117/incoming/vendor-zotero-landing-README.md",
+    "git_blob": "6d865bb2a808ca02ae6fdd9b7d6d9b317ad5f445",
+    "sha256": "70dbbb1c6f2a34bd2a19730f26a086c434b0c02fcf1d67e6b08bee7990cba1fb"
+  }
+}

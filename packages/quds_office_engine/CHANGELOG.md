@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve the first capital in explicit direct quotations after a colon and
+  opening quote. Keep subsequent-word casing and real misspelling checks.
+- Accept the missing finite `Hof` lemma and `Grüezi`/`grüezi` greeting through
+  the existing first-party word supplement; retain all pinned upstream shards.
+- Share the editor's deterministic-first manual proofing report merge with
+  local quality evaluation, preserving statuses, snapshot identity and offsets.
+- Extract text from paragraph-anchored ODT frames without losing whitespace,
+  paragraph boundaries or table structure. Keep annotation, note and covered-cell
+  stories out of body/search text and apply the shared text-expansion budget.
 - Keep physical paragraph indents when exporting RTL paragraphs and headings
   to ODT's direction-dependent margin properties.
 - Extract paragraph-anchored ODF text boxes in generic extraction and search,
