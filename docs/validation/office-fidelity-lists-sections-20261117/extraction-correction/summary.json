@@ -1,0 +1,61 @@
+{
+  "source_commit": "fa9821a7c9634a97aec6a8cf4d2617a926838934",
+  "source_tree": "21fff22105252d1228112f76fa9e4e09d41a2258",
+  "source_parent": "4fdac35c8da50e9c62ffab4a86dd2397c21186b4",
+  "new_regression_cases": 18,
+  "cohorts": {
+    "vm": {
+      "passed": 113,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "test_file_count": 6,
+      "by_test_file": {
+        "test/odf_text_box_extraction_test.dart": 18,
+        "test/odf_export_text_fidelity_test.dart": 19,
+        "test/odf_annotation_extraction_test.dart": 11,
+        "test/odf_covered_cell_extraction_test.dart": 12,
+        "test/office_search_fidelity_test.dart": 27,
+        "test/odt_note_fidelity_test.dart": 26
+      },
+      "source_inputs": 1670,
+      "runtime_inputs": 8606,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true
+    },
+    "node": {
+      "passed": 41,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "test_file_count": 3,
+      "by_test_file": {
+        "test/odf_text_box_extraction_test.dart": 18,
+        "test/odf_annotation_extraction_test.dart": 11,
+        "test/odf_covered_cell_extraction_test.dart": 12
+      },
+      "source_inputs": 1670,
+      "runtime_inputs": 8606,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true
+    }
+  },
+  "github_actions": "Not queried or awaited.",
+  "qualification_scope": "Correction-specific pre-final validation. Root will requalify the eventual published source after other pending product corrections.",
+  "limitations": [
+    "Anchor inline text is emitted as one paragraph, followed by text-box paragraphs in their source order; no visual-position ordering is inferred.",
+    "Node repeats three VM files and does not add unique test cases.",
+    "The VM receipt was finalized after a driver bookkeeping KeyError; its completed test events and original after-runtime manifest are retained unchanged.",
+    "An initial development command lacked TMPDIR and failed to load its first suite; no assertion ran and it is excluded from accepted totals."
+  ],
+  "accepted_test_executions": 154,
+  "original_failing_assertion": {
+    "file": "packages/quds_office_engine/test/odf_export_text_fidelity_test.dart",
+    "unchanged_from_4fd": true,
+    "sha256": "54e0bc87498a71e4c8fadc88c0912e93658a016245ecedb18fe3fd88fa4ed20a",
+    "test": "ODT exports preserved whitespace in headers footers and frame text",
+    "result": "Pass in 19-case VM file; the test and assertion were not edited."
+  }
+}

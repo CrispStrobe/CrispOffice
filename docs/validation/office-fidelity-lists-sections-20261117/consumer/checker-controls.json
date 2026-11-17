@@ -1,0 +1,68 @@
+{
+  "scope": "Checker positive and negative controls using preserved59b8 artifacts; not additional final consumer fixtures.",
+  "checker_sha256": "ebae3759eb662b17f1a766ec68058d8c6eecf9b661c93910053dc76aa748805d",
+  "source_artifact_hashes": {
+    "rasters/section-visual.png": "a2b9c4ca47147819b8ea3da38251eb5002b640c3a26f1fb2debd3c1bd957c47d",
+    "converted/section-frame.docx": "9a5ed171fb0461f9000a3eab3c8bb3ce1670fd8fb3df5d50563e6e6981594504",
+    "converted/section-frame.bbox.xhtml": "15bc15c66b1359b1e22a2d75ae8741df6b0efe6fa62aa3d3c13496eda34ea2da",
+    "converted/section-frame.txt": "dc00595660447dda99d31092f22a745e35817f57dd5c8b46d421c3d70fd2dbaa"
+  },
+  "cases": [
+    {
+      "name": "authored_red_picture",
+      "passed": true,
+      "result": {
+        "page": 2,
+        "red_pixels": 1484,
+        "bounds_pt": [
+          36.0,
+          49.5,
+          75.75,
+          70.5
+        ],
+        "tolerance_pt": 1,
+        "checked": {
+          "left_pt": 36.0,
+          "width_pt": 39.75,
+          "height_pt": 21.0
+        }
+      }
+    },
+    {
+      "name": "reject_wrong_picture_page",
+      "passed": true,
+      "rejected_with": "section-visual: picture raster is on wrong page"
+    },
+    {
+      "name": "reject_wrong_picture_size",
+      "passed": true,
+      "rejected_with": "section-visual: picture width_pt is 39.75, expected 80"
+    },
+    {
+      "name": "reject_missing_picture",
+      "passed": true,
+      "rejected_with": "section-visual: authored red picture is absent"
+    },
+    {
+      "name": "authored_frame_geometry",
+      "passed": true,
+      "result": [
+        60.0,
+        100.0,
+        180.0,
+        40.0
+      ]
+    },
+    {
+      "name": "reject_wrong_frame_position",
+      "passed": true,
+      "rejected_with": "section-frame: reopened frame geometry [60.0, 100.0, 180.0, 40.0], expected [70, 100, 180, 40]"
+    },
+    {
+      "name": "reject_missing_frame_anchor",
+      "passed": true,
+      "rejected_with": "section-frame: ambiguous reopened text-frame anchor"
+    }
+  ],
+  "passed": true
+}
