@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_engine.dart';
-import 'package:quds_office_engine/src/pdf/file/cos/pdf_cos.dart';
 import 'package:test/test.dart';
 
 void main() {
