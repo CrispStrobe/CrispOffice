@@ -178,3 +178,27 @@ The two `pre-frame-fix-*-build.json` receipts describe successful builds with
 stable source, dependency and SDK seals. Neither resulting binary was used for
 inference. Native measurements will rebuild the corrected source into fresh
 paths; these successful earlier builds do not qualify the later fix.
+
+## Frame extraction integration repair
+
+The shared ODF decoder now discovers each owned text box once and retains frame
+paragraphs separately from the enclosing paragraph's own inline text. The
+extractor preserves frame-contained tables as tables; frames within a consumed
+cell remain part of that cell's text. Empty frame anchors disappear only when
+visible paragraph blocks replace them. Ordinary blank and explicit-whitespace
+paragraphs remain, and annotation/note/covered-cell/ruby annotation stories stay
+excluded. Bounded search uses the same cumulative UTF-8 budget and now excludes
+note-only stories in its fallback as well.
+
+The original failing whitespace assertion and the ODT writer are unchanged.
+Nine new cases cover the newly exercised traversal, table, hidden-story and
+budget paths. The focused 51 tests and all 259 ODT/ODF tests pass; strict analysis
+is clean. A separate read-only review found no remaining correctness defect.
+`odf-frame-resolution.json` records the commands, source and log hashes and
+review. Initial failure evidence remains available above.
+
+`resolved-inputs.json` indexes byte-exact compressed copies of the resolved
+lockfile and package configuration used here. Restore the lock to reproduce
+package choices, but regenerate the configuration on another host because its
+paths describe this workspace. SDK and every resolved package library are
+additionally sealed by the AOT build receipts.

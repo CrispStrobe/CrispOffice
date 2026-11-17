@@ -4,6 +4,9 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extract text from paragraph-anchored ODT frames without losing whitespace,
+  paragraph boundaries or table structure. Keep annotation, note and covered-cell
+  stories out of body/search text and apply the shared text-expansion budget.
 - Keep physical paragraph indents when exporting RTL paragraphs and headings
   to ODT's direction-dependent margin properties.
 - Preserve ODT section page styles when the first content is a list, nested
