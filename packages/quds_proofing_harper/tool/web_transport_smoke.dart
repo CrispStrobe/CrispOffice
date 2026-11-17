@@ -69,6 +69,19 @@ Future<void> main() async {
           projectedArticle.replacements.contains('a'),
       'real Wasm correction retains original soft-hyphen source span',
     );
+    const protectedText = '😀 `This is a\u00adn test.` This is an test.';
+    final protectedResult = await provider.check(request(text: protectedText));
+    final proseArticles = protectedResult.findings
+        .where((finding) => finding.ruleId == 'harper.AnA')
+        .toList();
+    verify(
+      protectedResult.status == OfficeProofingStatus.success &&
+          proseArticles.length == 1 &&
+          proseArticles.single.originalText == 'an' &&
+          proseArticles.single.start == 7 + protectedText.lastIndexOf('an') &&
+          proseArticles.single.replacements.contains('a'),
+      'real Wasm leaves code untouched and checks following English prose',
+    );
     final results = await Future.wait([
       provider.check(request(ignored: {'harper.AnA'})),
       provider.check(request(language: 'en-GB')),

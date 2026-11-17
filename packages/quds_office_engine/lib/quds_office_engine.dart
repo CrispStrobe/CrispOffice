@@ -66,6 +66,7 @@ export 'src/pdf/pdf_stream.dart';
 export 'src/proofing/german_spelling.dart';
 export 'src/proofing/german_writing_rules.dart';
 export 'src/proofing/office_proofing.dart';
+export 'src/proofing/proofing_text_ranges.dart';
 export 'src/sheet/formula/dep_graph.dart';
 export 'src/sheet/formula/formula_ast.dart';
 export 'src/sheet/formula/formula_eval.dart';

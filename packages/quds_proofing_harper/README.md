@@ -50,6 +50,12 @@ including emoji, segment origins and controls inside words. Other punctuation
 and no-break controls remain literal. A finding that would split a grapheme in
 either representation is omitted; invalid offsets still fail the result.
 This follows the conservative source-boundary policy used by German proofing.
+Findings overlapping HTTP(S) links, email addresses or closed matching-backtick
+spans are omitted using the shared source-range policy. Following prose remains
+checkable; unmatched delimiters do not hide the remaining text. The scanner
+preserves decomposed email letters, internal URL apostrophes and surrounding
+prose punctuation. This protects reviewable corrections without masking or
+rewriting the checker input.
 
 Supply the Word session's `OfficeProofingVocabulary` to share personal and
 ignored words with standalone English checks. Membership remains language-scoped

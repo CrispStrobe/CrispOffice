@@ -78,6 +78,7 @@ final class HarperProofingProvider extends OfficeProofingProvider {
     final vocabularyRevision = vocabulary.revision;
     try {
       final source = HarperSourceText(request.text);
+      final protected = OfficeProofingTextRanges(request.text);
       final raw = await _transport
           .check(
             jsonEncode({
@@ -156,6 +157,7 @@ final class HarperProofingProvider extends OfficeProofingProvider {
         };
         final range = source.sourceRange(start, end);
         if (range == null) continue;
+        if (protected.overlaps(range.start, range.end)) continue;
         if (category == OfficeProofingCategory.spelling &&
             vocabulary.contains(
               request.text.substring(range.start, range.end),

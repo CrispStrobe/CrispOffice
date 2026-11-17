@@ -1,0 +1,7 @@
+test_changed_runtime_or_notices_fail_before_host_writes (__main__.HostPackagingTest.test_changed_runtime_or_notices_fail_before_host_writes) ... ok
+test_only_audited_runtime_and_notices_are_installed (__main__.HostPackagingTest.test_only_audited_runtime_and_notices_are_installed) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.007s
+
+OK

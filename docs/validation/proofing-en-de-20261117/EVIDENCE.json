@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "qualified_source_commit": "b9ac68fbbb33c7731a3241e4065f6dfb71e36a57",
+  "file_count": 91,
+  "total_bytes": 1424413,
+  "scope": "Every retained file in this report directory except EVIDENCE.json itself. Runtime logs are unmodified; historical paths and failures are intentionally preserved.",
+  "files": {
+    "README.md": {
+      "bytes": 15940,
+      "sha256": "2832da09ff7cc9e57988278193296d8b9fcf7eb7c527bcde4bfa6e868252c3b4"
+    },
+    "attempts/harper-prebuild/license-audit.log": {
+      "bytes": 284,
+      "sha256": "194f34b511ac43dcb032c18e381a50a4111c3b80e258d5cf5270eb24893f0b45"
+    },
+    "attempts/harper-prebuild/licenses/manifest.json": {
+      "bytes": 201415,
+      "sha256": "b63e7e67fa307683b9582756fe876d0724797bc2cc5f1dab388000b5d84c1b21"
+    },
+    "attempts/harper-prebuild/native-build.log": {
+      "bytes": 62,
+      "sha256": "d1235ea4563620b53ef5bdd2da5f595fec9d54f9efb48376378c20547dd95e57"
+    },
+    "attempts/harper-prebuild/receipt.json": {
+      "bytes": 2248,
+      "sha256": "c48ecb4bf01640a4fab059c14246a256583aa04c06c10a7cec5e6915fe679fc1"
+    },
+    "attempts/harper-prebuild/rust-tests.log": {
+      "bytes": 7704,
+      "sha256": "bac502adc4effc096224cb0fe2e231eb41746e2c852626e9d26bb65dc46a43ee"
+    },
+    "attempts/harper-prebuild/wasm-build.log": {
+      "bytes": 6155,
+      "sha256": "0a846ac51c19794e657f854c175010bc2c6e61dcc844b28088337276ac6ceb1c"
+    },
+    "attempts/harper-stale-smoke-count/build-receipt.json": {
+      "bytes": 4966,
+      "sha256": "9954438cdf2d51e209f8020e8b02218f64478eb0f58c18d7422081021939e7cd"
+    },
+    "attempts/harper-stale-smoke-count/build.log": {
+      "bytes": 1157,
+      "sha256": "4169f5c75bfddbd57ebf7cf2d57b57cf820fbba73a752134ccf60f62d5da56aa"
+    },
+    "attempts/harper-stale-smoke-count/compile-web-transport.log": {
+      "bytes": 112,
+      "sha256": "a3e8b2a6234a0705d4986ead02838346b3dce4d12c9acea43886ee21ccfb717f"
+    },
+    "attempts/harper-stale-smoke-count/dart-analyze.log": {
+      "bytes": 51,
+      "sha256": "50c363f7897d8b7e14d7d46e0a0bb20afeecb46731bfa724c5a1f30a2badd71e"
+    },
+    "attempts/harper-stale-smoke-count/dart-javascript-tests.log": {
+      "bytes": 3962,
+      "sha256": "47714345322433e4a73a892f76a4c49544a8a4333a42ed493a38a6c8066d12ae"
+    },
+    "attempts/harper-stale-smoke-count/dart-native-tests.log": {
+      "bytes": 3460,
+      "sha256": "d81f6714cb63feb6d311696bf482304213d8ff955689098ea81173e82b983c33"
+    },
+    "attempts/harper-stale-smoke-count/host-packaging.log": {
+      "bytes": 386,
+      "sha256": "199983da68d32333804801109aaa4661fb069f3d99e40efc3e10f830bfdc11bc"
+    },
+    "attempts/harper-stale-smoke-count/license-policy.log": {
+      "bytes": 448,
+      "sha256": "7aa793a0866a9c4ebd8c07adeb1b9c18637729c0502dcdc1e1d2994315de08bb"
+    },
+    "attempts/harper-stale-smoke-count/receipt.json": {
+      "bytes": 13056,
+      "sha256": "016b3262a9a2cd8e60ef9fbf34d609799ada37e154a38ca751df425bf1085501"
+    },
+    "attempts/harper-stale-smoke-count/rust-tests.log": {
+      "bytes": 711,
+      "sha256": "a63f8401d61deebe8a23db20f907d7fb48a1e5c50acfb9f4f63c1d7a2c0efdaf"
+    },
+    "attempts/harper-stale-smoke-count/verify.log": {
+      "bytes": 540,
+      "sha256": "8bdf40c9e21c0df688b02758125845f6ebbaa8631b6d80ded4b4cbef8996eba9"
+    },
+    "attempts/harper-stale-smoke-count/wasm-worker.log": {
+      "bytes": 272,
+      "sha256": "93f227b659fceea90ffbc3dfe6a375c98730a215fd8b4e8684c0bf5ef536081c"
+    },
+    "attempts/harper-stale-smoke-count/web-transport.log": {
+      "bytes": 1128,
+      "sha256": "01bff9821889c98eec2c15c107780edb5735d87565ef934813763f370d0d24b6"
+    },
+    "browser/attempts/01-default-temp-directory/browser.log": {
+      "bytes": 265,
+      "sha256": "0e71218bb9880c77450662752aefb42df4d27c51975b859cb1cfa6b6dacb440f"
+    },
+    "browser/attempts/01-default-temp-directory/receipt.json": {
+      "bytes": 97317,
+      "sha256": "c64b7c48fab2f0a05af0255148d625bdff9843ba2f9373d674a42102e24bf282"
+    },
+    "browser/browser.log": {
+      "bytes": 4434,
+      "sha256": "cb3f2e2affef36cd8a07e7dc4a63dd7d4c1b42825f613e18ce6c972374951a9c"
+    },
+    "browser/receipt.json": {
+      "bytes": 105913,
+      "sha256": "fa7253c5a217618d39881d943d9d05d16cf06e3150689d5b80ac25490a391507"
+    },
+    "checkpoints/editor-dialog-checkpoint.log": {
+      "bytes": 1820,
+      "sha256": "20634acf246318afc1e0a5fdef53a7b23416b871a58d4fcca8a3c38314d778ec"
+    },
+    "checkpoints/engine-analyze-checkpoint.log": {
+      "bytes": 205,
+      "sha256": "9fd5cafdf6e2754b269ece5a8e0cdda02c5e25987c48483f5f4a611e28cc2758"
+    },
+    "checkpoints/engine-analyze-direct.log": {
+      "bytes": 46,
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    "checkpoints/harper-contract-checkpoint.log": {
+      "bytes": 3018,
+      "sha256": "ce10135be93e06a2a358a103694f90d8b9f7f6125223e89793463931a8ae2022"
+    },
+    "checkpoints/hyphenation-reviewed.log": {
+      "bytes": 4679,
+      "sha256": "ef644bf167e3456412ed23912a8c8d88e72d0a7e18b4add41a584c281f6fc5d6"
+    },
+    "checkpoints/late-merge-checkpoint.log": {
+      "bytes": 213,
+      "sha256": "795667097cfdf9285fee2cc9b8fd3ed4fb568d289b775364d3e65c5822111421"
+    },
+    "flutter-release.json": {
+      "bytes": 354,
+      "sha256": "0512d2f3e1ecc398936a6dcd0d9b57f89c7cf6221efa5c103b95490c77eab9dd"
+    },
+    "hyphenation-checkpoint.log": {
+      "bytes": 3610,
+      "sha256": "788de014fb0f8155f24f9ab284d21b558189e1a10d87a4395e6fc9230612e8ac"
+    },
+    "hyphenation-initial-failed.log": {
+      "bytes": 5251,
+      "sha256": "d121f6064e69caf311f018e7d212f8c7b5bdc26976f1605674a30e316f6f6447"
+    },
+    "independent-review.json": {
+      "bytes": 3787,
+      "sha256": "6fc7df223bc4239812cd6e4658e554e0fca166427b90d25f82a88491f0bd1a33"
+    },
+    "integration/dart-version.log": {
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    "integration/editor-analyze.log": {
+      "bytes": 46,
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    "integration/editor-ime-reattachment.log": {
+      "bytes": 220,
+      "sha256": "df146cd2938a1fa4579dd66d42f24d309298759bc43fbe8950711d6c37aef8cc"
+    },
+    "integration/editor-tests.log": {
+      "bytes": 59175,
+      "sha256": "d6ccaffe4d00fbada737012c8f0d97c23082d8a71d0d3e7d4c31dd52d231dbd6"
+    },
+    "integration/engine-analyze.log": {
+      "bytes": 46,
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    "integration/engine-hyphenation/english-hyphenation-generator.log": {
+      "bytes": 889,
+      "sha256": "284a836c6c4073d488aad22b83ca834c06d1cb9c8e7d1a2c8a0404525e280440"
+    },
+    "integration/engine-hyphenation/hyphenation-analysis.log": {
+      "bytes": 1199,
+      "sha256": "dd28ced2f6c01a6294dd0d11bc7101e0acff6c87ae0cea594f6d6817ac785681"
+    },
+    "integration/engine-hyphenation/hyphenation-generator.log": {
+      "bytes": 201,
+      "sha256": "31b22f23e621121c3bd9dcb44b64f5a7778358bc291f3869f0e2f07c42f74e6b"
+    },
+    "integration/engine-hyphenation/hyphenation-javascript-tests.log": {
+      "bytes": 3734,
+      "sha256": "9c6d61f7ffa2375b92131172ecc042f3821fa3efb5e366760f3ba3735d49a3ef"
+    },
+    "integration/engine-hyphenation/hyphenation-tests.log": {
+      "bytes": 32534,
+      "sha256": "7b494b7f07fdd1c2ccbc1ca80dc378180e3fdd0a798ec4b44b9f0b9db47df147"
+    },
+    "integration/engine-hyphenation/hyphenation-validation.json": {
+      "bytes": 11584,
+      "sha256": "2f10be64ec0641866a99ad1d411654823bfe37e6ff689c1236e4564aad59bca3"
+    },
+    "integration/engine-hyphenation.log": {
+      "bytes": 6098,
+      "sha256": "308df0676b8cb783e28d392ad5bb577b3495316918271f68106167b353f7605f"
+    },
+    "integration/example-analyze.log": {
+      "bytes": 46,
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    "integration/example-web-build.log": {
+      "bytes": 718,
+      "sha256": "98c6d138f5dae2e66ebf2562945cafdef3bfcd40efb9283de9d3729bbe35a94a"
+    },
+    "integration/flutter-version.log": {
+      "bytes": 631,
+      "sha256": "5f182203ee48fc3078965e3762b436f2d1c7a53e9c8d19bf305a0520f0f71c5b"
+    },
+    "integration/german/analyze.log": {
+      "bytes": 71,
+      "sha256": "b1815c7fe8a919e9cb2c49f704c11b0021b874efc7096e550f8e15a049383e75"
+    },
+    "integration/german/compile-javascript.log": {
+      "bytes": 113,
+      "sha256": "dd735cae28a5c28bd4b3322347f1be787b45dea69961448fea1a2e4536752431"
+    },
+    "integration/german/dart-version.log": {
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    "integration/german/dictionary-reproducibility.log": {
+      "bytes": 116,
+      "sha256": "4059ad7a68351285a140fc9c0aaa5c62a4bc7189d29e1a6e9f1f3a868b84f132"
+    },
+    "integration/german/javascript-smoke.log": {
+      "bytes": 440,
+      "sha256": "70d54cd1123232e6237c73391fa8bd6617592b4c9409c0c1d1b2e0161c4385a0"
+    },
+    "integration/german/javascript-tests.log": {
+      "bytes": 12137,
+      "sha256": "5e294524282e44f742f15261bcb97b14eb6fc6fe885afd8014a6e10916c38917"
+    },
+    "integration/german/node-version.log": {
+      "bytes": 9,
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    "integration/german/receipt.json": {
+      "bytes": 10184,
+      "sha256": "81d7188effa4b3cc4e77a55a42d62345edb46b5241e5ead559ff19ddd70ea463"
+    },
+    "integration/german/tests.log": {
+      "bytes": 11143,
+      "sha256": "f0ff1d3ff1c92daf6c8e56ab85277f1a04d1320be8c502e575358b686e4e5ad5"
+    },
+    "integration/german-proofing.log": {
+      "bytes": 285,
+      "sha256": "76ad7327883bdb9cea5e40df76dd9321891fe03cf7b87c78401fd37a4fc2261f"
+    },
+    "integration/harper/build-receipt.json": {
+      "bytes": 4966,
+      "sha256": "07c50c6d97aab6fb6203c24e38d57f78ab3c427663612cd54abed5d47c43e90a"
+    },
+    "integration/harper/build.log": {
+      "bytes": 1157,
+      "sha256": "1b8530df75c00f78b01a9a07af585520c46929ae569c7db0759c063c840aba18"
+    },
+    "integration/harper/compile-web-transport.log": {
+      "bytes": 112,
+      "sha256": "2b23f777d8f69e7e6a4009df833bec81a77a26da5937ea4fdaa8a6f62714cc06"
+    },
+    "integration/harper/dart-analyze.log": {
+      "bytes": 51,
+      "sha256": "50c363f7897d8b7e14d7d46e0a0bb20afeecb46731bfa724c5a1f30a2badd71e"
+    },
+    "integration/harper/dart-javascript-tests.log": {
+      "bytes": 3963,
+      "sha256": "d10c9cb4eb4cfbf37a1cbc572f598789f8cc46f913ef2aa0f88c8e41281122ac"
+    },
+    "integration/harper/dart-native-tests.log": {
+      "bytes": 3468,
+      "sha256": "accfec70c7cbde3bfee4e2074fd62702f9e2ba2b8ae69f0b4018cac2e1908e0e"
+    },
+    "integration/harper/host-packaging.log": {
+      "bytes": 386,
+      "sha256": "12d548e510fc530685e5a9efab08b651bf3f42c0afe61323828f27d71c42e782"
+    },
+    "integration/harper/license-policy.log": {
+      "bytes": 448,
+      "sha256": "7aa793a0866a9c4ebd8c07adeb1b9c18637729c0502dcdc1e1d2994315de08bb"
+    },
+    "integration/harper/receipt.json": {
+      "bytes": 13052,
+      "sha256": "621c9a08e781a0498ed6a98efd70308a4ab508423e4cabb686621fca5813a8d1"
+    },
+    "integration/harper/rust-tests.log": {
+      "bytes": 711,
+      "sha256": "8f5656e92c966ef901554aa1b42ac74195bcedf16c54b81daed8c6f93e0c15b4"
+    },
+    "integration/harper/verify.log": {
+      "bytes": 544,
+      "sha256": "64a2635b0427e6b619b4f23d4a26db25aff131e24024dda606fe58e6936923fe"
+    },
+    "integration/harper/wasm-worker.log": {
+      "bytes": 272,
+      "sha256": "93f227b659fceea90ffbc3dfe6a375c98730a215fd8b4e8684c0bf5ef536081c"
+    },
+    "integration/harper/web-transport.log": {
+      "bytes": 872,
+      "sha256": "b7d59af54ea5cd26e996bd5b75af28b8c2fd3529dbbfb79fa88903403adc19f9"
+    },
+    "integration/harper-analyze.log": {
+      "bytes": 46,
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65"
+    },
+    "integration/harper-contract-tests.log": {
+      "bytes": 3031,
+      "sha256": "6dfdc157e2c898468e922ff003daa6908830f0a20c17884bd75930dcca1a6cb8"
+    },
+    "integration/harper-source-reference.log": {
+      "bytes": 1265,
+      "sha256": "8d9b29c95cdc3353aae6efe0eb8c0e942eaba8050d84049a19df262549ee5dba"
+    },
+    "integration/incoming-engine-tests.log": {
+      "bytes": 42584,
+      "sha256": "15d541bd8bbb7ef2b804095f28a92695d70253d27962655b71bcb0bda7d0cfe9"
+    },
+    "integration/node-version.log": {
+      "bytes": 9,
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    "integration/pubspec.lock": {
+      "bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+    },
+    "integration/receipt.json": {
+      "bytes": 20116,
+      "sha256": "d658d4d5cc8b0bf950a02f3d26a65e59224595cd9ac35b849bac507ad19678c9"
+    },
+    "integration/source-sha256.after.json.gz": {
+      "bytes": 96182,
+      "sha256": "8688085dbf22a2f0104ed745753b427cd0a4375a0b5ff394659f639be5875348"
+    },
+    "integration/source-sha256.before.json.gz": {
+      "bytes": 96182,
+      "sha256": "8688085dbf22a2f0104ed745753b427cd0a4375a0b5ff394659f639be5875348"
+    },
+    "integration/web-bundle-sha256.json.gz": {
+      "bytes": 6085,
+      "sha256": "49439c696ceab420c60c7620429ddd04a1310380c9ec3faf34ff83789b7ae3d0"
+    },
+    "license-continuity-review.json": {
+      "bytes": 49064,
+      "sha256": "0b370da5f8ab663bc4c4c63fa488dd3b3e4684591c5148a52e3d118542fbbe23"
+    },
+    "post-qualification-source-equivalence.json": {
+      "bytes": 8189,
+      "sha256": "db607a51891c427d89c0025a3757711faefea5d66e2dde5665a2b15430e3f5be"
+    },
+    "pub-cache-receipt.json": {
+      "bytes": 47222,
+      "sha256": "40f006f727802121a5a1713fd60f86df3d0c84bb12dbb846bcbe0f5c8f24c5cb"
+    },
+    "reconciliation-late.json": {
+      "bytes": 211682,
+      "sha256": "37051708ceacbc784d83750ee5f13b0d6ad44418a09486d6baa565ad1fb1df1c"
+    },
+    "reconciliation.json": {
+      "bytes": 134433,
+      "sha256": "14d421e7acdb4c58b889df806a51c2f79d255fa590990862e8d92dde132e69cc"
+    },
+    "review/conditional_merge_review.dart": {
+      "bytes": 1187,
+      "sha256": "d2849b6d267ceedc126a148345745217770577c3e92927829c66c55776764d3a"
+    },
+    "review/german_review_fixed.dart": {
+      "bytes": 1953,
+      "sha256": "a6c9e7c8fd270f7a299e77b2e21ef9b7fdf55752817a7e16f72aa2cab04599c5"
+    },
+    "review/german_review_probe.dart": {
+      "bytes": 1866,
+      "sha256": "1bf1b2407b76dea072da1d85f0a83f493e8ab3de4be752c7de0d9f8b4fce61e5"
+    },
+    "runtime-setup-receipt.json": {
+      "bytes": 3877,
+      "sha256": "b369016381b7dc2b59857c7344e07e3599e4e6fb86eb43f243d72e40495aff1b"
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-16T23:37:33.656532+00:00",
+  "scope": "Shared proofing contract, shipped German data, rules and terminology; no editor/native Harper/browser claims.",
+  "javascript_execution": "Compiled Dart JavaScript executed in Node; not browser or Worker integration.",
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/opc/zip/deflate_codec.dart": "9fa29fdfaf787ab69a4b205ec58584c146be05484c25047a51d41328f64c7989",
+    "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart": "8617711b9765cd8efcb9af4686aaf982eeeb7bab2d29db8e6f8ca7889f5362ab",
+    "packages/quds_office_engine/lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": "554eba69a5558a3e234eb1c07db1bca1125d17403a3cadcb2951c39270f856d3",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": "9425e9817ded89627b93cc3f86661ad55986efac02efa012d13e75c5eb82471b",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": "69ff9e7f58e113756efa35204ba4951d9737c8024117dacbe183fab0797882bf",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": "5f8b2d1fc67396074c015f1441faf618f0de995b9f1d017770dd52b9e673019f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": "e07eb4f404778a644d069c9766abc95b2a0c5d8687d217cb0bcd7fbb859d8f2e",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": "bd80b1c0429bc75631a9df417257d22648bb9897cf8a8a3fd1fcced8992973e7",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": "8309c190e75c545129b33fc99d01e157bdca58a7174f02c723456c5924dbf332",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": "53fe9be61e8f377a0cf5f0d7c867a3a80538c22b92c1ee9a2090f9dbdb9ef59f",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": "e4da39622bdfd6a03d18d51913e7af1feb6f1ef03f411aae33ec32d1af271cbc",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": "feb85cdb0915a3e5fb55fa689964f7231414d8b9a1935b0cfc64ae3ce3d491a1",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": "12092f7a9c07be0fdd664a95cb9e0316be9f8a456c6382aef36965775add1642",
+    "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
+    "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6",
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "1841cf303a49f5eeda9b41c9014f65ce0671b5275e430cd1bcaa73ac4b3dd8a2",
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "c57fad2a000f963322215cb5d2e727e4a68b4841fc633e1fa79ab4de0a372855",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "0ee4b795c444b4e8699f85c17f0c1ded538428de61edbc3bf9264d3ca565bcdf",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+    "packages/quds_office_engine/pubspec.yaml": "049a5c838d0d1b8c482f984c27b66c5235411d93b5d06ff1c254dca4c6274408",
+    "packages/quds_office_engine/test/proofing/german_spelling_test.dart": "c89fda4bdc7910872d0b933d3d872167fc805203a4fd54d3f0a0cb9830307e63",
+    "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart": "9212c9cb0a84da8f8c4ae56e397c6160e38d430026f14bf8b7ab41e28fb8b32d",
+    "packages/quds_office_engine/test/proofing/office_proofing_test.dart": "f06d9a02895b767caf3873bef2f43b3eaea07d95fc81d558a5ac78edafe66940",
+    "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart": "5f9d170e1e6158a702470605f0f5f345ea5199ad0d75550ab34b21d7f502460b",
+    "packages/quds_office_engine/third_party/proofing/QUDS_WORDS_LICENSE": "0ca439fa407bd063bb2f16a5ce43a9200ebaafcccb3fe6f8f8ed11d6498ea0b9",
+    "packages/quds_office_engine/third_party/proofing/README.md": "e40592711e01ae667b2c7715a19c42f4a6d8d59adb650148805c366470db0545",
+    "packages/quds_office_engine/third_party/proofing/WORTLISTE_LICENSE": "3dc8ca573654facf18b8046dad2fae36b8d0acb254ccea888c283c60c7b62c99",
+    "packages/quds_office_engine/third_party/proofing/manifest.json": "0569aca8785d12f5fd743e4323230cf017601b21b86f55c8f25f47349d9ef514",
+    "packages/quds_office_engine/tool/proofing/generate_english_hyphenation.py": "3453787ccba66a9abeb233bda885af69f1dfad03de16b72c44a989b292bfcee0",
+    "packages/quds_office_engine/tool/proofing/generate_german_lexicon.py": "b79a86ec963c9dd91cf2ab861d851204029f89db4c7c69dbf48a8fb9c29707b9",
+    "packages/quds_office_engine/tool/proofing/generate_hyphenation.py": "7af1b115946d7019fb4d989b13c67d105307e5ed0d4809fe521d94bd41724eb1",
+    "packages/quds_office_engine/tool/proofing/german_common_words.txt": "0c9a0116ff47f9a071410be3d4edc1a1ecb63f798f35cef778f8dd6c1d2f36ed",
+    "packages/quds_office_engine/tool/proofing/german_js_smoke.dart": "7386c3fd6798a83d39f786a011717328d0f8ba930bc44acb7cfa1f814146c552",
+    "packages/quds_office_engine/tool/proofing/validate_hyphenation.py": "18784a0b2b0ac7d8be3b794f063e1cc4c234876464cd46a1897a2938c0bdb774",
+    "packages/quds_office_engine/tool/proofing/verify_german.py": "0516ddcf208924d2c0ff3455e626b0ee69b61fd58db24c112072b560a1f854a6",
+    "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+  },
+  "commands": [
+    {
+      "label": "dart-version",
+      "command": [
+        "/workspace/scratch/65e4ff9d3bff/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 0.002,
+      "log": "dart-version.log",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "label": "node-version",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--version"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 0.006,
+      "log": "node-version.log",
+      "log_sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    {
+      "label": "analyze",
+      "command": [
+        "/workspace/scratch/65e4ff9d3bff/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/src/proofing",
+        "test/proofing",
+        "tool/proofing/german_js_smoke.dart"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 0.598,
+      "log": "analyze.log",
+      "log_sha256": "b1815c7fe8a919e9cb2c49f704c11b0021b874efc7096e550f8e15a049383e75"
+    },
+    {
+      "label": "tests",
+      "command": [
+        "/workspace/scratch/65e4ff9d3bff/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "test/proofing",
+        "--reporter",
+        "expanded"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 4.097,
+      "log": "tests.log",
+      "log_sha256": "f0ff1d3ff1c92daf6c8e56ab85277f1a04d1320be8c502e575358b686e4e5ad5"
+    },
+    {
+      "label": "javascript-tests",
+      "command": [
+        "/workspace/scratch/65e4ff9d3bff/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--platform",
+        "node",
+        "test/proofing",
+        "--reporter",
+        "expanded"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 12.98,
+      "log": "javascript-tests.log",
+      "log_sha256": "5e294524282e44f742f15261bcb97b14eb6fc6fe885afd8014a6e10916c38917"
+    },
+    {
+      "label": "dictionary-reproducibility",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "tool/proofing/generate_german_lexicon.py",
+        "--check",
+        "--download"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 12.365,
+      "log": "dictionary-reproducibility.log",
+      "log_sha256": "4059ad7a68351285a140fc9c0aaa5c62a4bc7189d29e1a6e9f1f3a868b84f132"
+    },
+    {
+      "label": "compile-javascript",
+      "command": [
+        "/workspace/scratch/65e4ff9d3bff/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O2",
+        "tool/proofing/german_js_smoke.dart",
+        "-o",
+        "/workspace/scratch/65e4ff9d3bff/cache/tmp/quds-german-proofing-y0eefflb/german-proofing.js"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 2.854,
+      "log": "compile-javascript.log",
+      "log_sha256": "dd735cae28a5c28bd4b3322347f1be787b45dea69961448fea1a2e4536752431"
+    },
+    {
+      "label": "javascript-smoke",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self=globalThis; require(process.argv[1]);",
+        "/workspace/scratch/65e4ff9d3bff/cache/tmp/quds-german-proofing-y0eefflb/german-proofing.js"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "exit_code": 0,
+      "duration_seconds": 2.412,
+      "log": "javascript-smoke.log",
+      "log_sha256": "70d54cd1123232e6237c73391fa8bd6617592b4c9409c0c1d1b2e0161c4385a0"
+    }
+  ],
+  "compiled_javascript_sha256": "fbde665e10dbffb267e39e45fe1f730e53e646bc7b3be6877950e5f43829214c",
+  "inputs_unchanged_during_validation": true,
+  "passed": true,
+  "finished_at_utc": "2026-11-16T23:38:08.987482+00:00"
+}

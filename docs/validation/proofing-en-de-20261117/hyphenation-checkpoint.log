@@ -1,0 +1,30 @@
+00:00 +0: loading test/english_hyphenation_test.dart
+00:00 +0: test/english_hyphenation_test.dart: licensed English patterns American and British patterns preserve distinct break choices
+00:00 +1: test/english_hyphenation_test.dart: licensed English patterns only explicitly supported dialects receive automatic candidates
+00:00 +2: test/english_hyphenation_test.dart: licensed English patterns US upstream exceptions override patterns including no-break entries
+00:00 +3: test/english_hyphenation_test.dart: licensed English patterns British upstream exceptions remain unchanged
+00:00 +4: test/english_hyphenation_test.dart: licensed English patterns English minimum fragments are two before and three after
+00:00 +5: test/english_hyphenation_test.dart: licensed English patterns casing does not change positions or expose mutable cache storage
+00:00 +6: test/english_hyphenation_test.dart: licensed English patterns manual hyphens and non-ASCII words are not partially normalized
+00:00 +7: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +8: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +9: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +10: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +11: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +12: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +13: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +14: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +15: test/german_hyphenation_context_test.dart: canonical German language aliases stay homogeneous across runs
+00:00 +16: test/english_hyphenation_test.dart: English and German shared layout dispatch English selected hyphens own no authored units
+00:00 +17: test/english_hyphenation_test.dart: English and German shared layout dispatch English selected hyphens own no authored units
+00:00 +18: test/english_hyphenation_test.dart: English and German shared layout dispatch English selected hyphens own no authored units
+00:00 +19: test/german_hyphenation_context_test.dart: surrounding prose, quotes and explicit compounds remain hyphenatable
+00:00 +20: test/english_hyphenation_test.dart: English and German shared layout dispatch Word layout dispatches English defaults and paragraph suppression
+00:00 +21: test/english_hyphenation_test.dart: English and German shared layout dispatch Word layout dispatches English defaults and paragraph suppression
+00:00 +22: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +23: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +24: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +25: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +26: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +27: test/german_hyphenation_context_test.dart: Word layout protects German URLs without changing authored text
+00:00 +28: All tests passed!
