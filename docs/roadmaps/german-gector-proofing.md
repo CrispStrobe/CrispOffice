@@ -1,6 +1,6 @@
 # German grammar proofing: scoped implementation roadmap
 
-Status: feature work authorized; inference and quantized model qualification pending.
+Status: initial runtime code and two-case baseline measured; hosted and application qualification pending.
 Date: 2026-11-17.
 Coordinated branch: `feat/german-gector-proofing`.
 
@@ -196,3 +196,33 @@ Hosted execution and quantized task quality remain pending until the actual
 workflow completes and its evidence is reviewed. Record that run without
 replacing initial failures. No application provider or target platform is
 qualified by implementation, lightweight tests or a queued workflow.
+
+
+## Local runtime checkpoint: baseline retained
+
+The [2026-11-17 bounded local diagnostic](../validation/german-gector/2026-11-17-local-smoke/README.md)
+and its machine-readable report preserve source/model/binary hashes, every
+timing sample, parity metrics, CPU limits and known failures. This executes
+only two selected sentences (7 and 10 wordpieces), not the complete 30-case
+qualification panel. The hosted run
+[44053903485](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485)
+was still queued when the evidence was captured.
+
+Both original and ONNX INT4 models passed Dart/native parity on all four
+saved passes, including token alignment and exact selected tags. Baseline
+Dart forward medians were 1.78/2.39 seconds for F32 and 1.90/2.15 seconds for
+INT4. The INT4 artifact is 158,365,857 bytes and Dart inference-phase peak RSS
+was 488,251,392 bytes, versus 1,523,953,664 bytes for F32. Matrix operations
+dominate both profiles. The complete Dart checker is not implemented or timed.
+
+The native ONNX INT4 control completed the unguarded two-pass corrections in
+85/98 ms median on the same capped host. This makes a native backend a credible
+fallback; it does not measure a Rust bridge or ggml. Both model variants retain
+the known Swiss heisse -> heiße false edit. The full frozen probe and broader
+German task-quality gates remain open.
+
+The first measured optimization hypothesis is bounded 32-column dequantization
+and multiplication tiles for MatMulNBits. Preserve this baseline, compare the
+changed kernel with the identical candidate bytes and reference fixtures, and
+record the result separately before selecting a backend. Q4_K remains the
+preferred conditional ggml target and has not been executed.
