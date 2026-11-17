@@ -1,0 +1,181 @@
+{
+  "recorded_at": "2026-11-17T08:27:34.764770+00:00",
+  "status": "source_and_setup_saved_validation_in_progress",
+  "source_commits": {
+    "quds": "837d06edbde08a2465e99cbbb15927ee4c87d8ac",
+    "crispcloud": "96c514eb98f7ba596a385c8f60496bc6c5994307"
+  },
+  "captured_refs": {
+    "quds_fork": 198,
+    "quds_upstream": 8,
+    "crispcloud": 290
+  },
+  "prior_unpublished_run_counts_reused": false,
+  "fresh_canonical_test_passes_claimed": 0,
+  "archive": "source-setup-checkpoint.tar.gz",
+  "archive_sha256": "0de3f05a5f108964d1df8fe458ac575e593487d9b3dac54eb257d4b13980beb5",
+  "archive_bytes": 81942,
+  "members": [
+    {
+      "path": "canonical-validation/fixture-preflight.json",
+      "bytes": 11840,
+      "sha256": "8e3583b04cdf458ba9d90a0f23c1e1d0b0cb5d228d8f56902b4dd09c5e45ecce"
+    },
+    {
+      "path": "canonical-validation/plan/plan.json",
+      "bytes": 17619,
+      "sha256": "dea5275c4787502b1a46bb151e30b1de28a22c75990ca467922d4e495c630080"
+    },
+    {
+      "path": "canonical-validation/run_qualification.py",
+      "bytes": 28728,
+      "sha256": "69e3f523952116a292d931e833c6d3aae37078900c0b9a9c166e5fbd18fcee9d"
+    },
+    {
+      "path": "host-audit/baseline/preservation.json",
+      "bytes": 12488,
+      "sha256": "4844c4975f8f7537f508a26bd0561dd773354b99893519b71096a0b752dda124"
+    },
+    {
+      "path": "host-audit/baseline/preservation.log",
+      "bytes": 241,
+      "sha256": "68f707fed2684ad716507220c7c696e1090d0e5e1d650e631be480bcff17eed6"
+    },
+    {
+      "path": "host-audit/baseline/python-sync-verifier-tests.log",
+      "bytes": 4998,
+      "sha256": "d24eb1f9aecd7eb1199c2f171dcb6e632def73ad033b07a31968e7c47d17a080"
+    },
+    {
+      "path": "host-audit/baseline/receipt.json",
+      "bytes": 2396,
+      "sha256": "b34a6382155fa248d83b24254896fcf82086c78b57ca2e348a5bc451062fa0e6"
+    },
+    {
+      "path": "host-audit/baseline/vendor-tracked.log",
+      "bytes": 203,
+      "sha256": "ce997488a7b4387f2b87dce927ee82ec822db0e2315492c00c1c79a939c209f1"
+    },
+    {
+      "path": "host-audit/run-baseline.py",
+      "bytes": 3413,
+      "sha256": "5b09a34bb44bd5e393db49d811e8a9998a19430e4b6af5a056465c6e4a95eff9"
+    },
+    {
+      "path": "host-audit/run-host-qualification.py",
+      "bytes": 28660,
+      "sha256": "4049d732d10f42d8f3254b90d2943f41c99618a4fc820b68050ce70d989b8fed"
+    },
+    {
+      "path": "integration-resume/audit-ref-inclusion.py",
+      "bytes": 2621,
+      "sha256": "198e18e2027ea7597eddfbc43982575a2b10ec6efe332cf614febb9567382c3b"
+    },
+    {
+      "path": "integration-resume/crispcloud-frozen-refs.json",
+      "bytes": 33796,
+      "sha256": "fb0c0cae2f5766102f531a6d8883dfed555897270a57a73ebdc2f3916bc89c2c"
+    },
+    {
+      "path": "integration-resume/host-ref-audit.json",
+      "bytes": 109609,
+      "sha256": "ee9b0f5c19a27f191ead6991e4b6f86cdf841f3fa5d85dc77320777e53df9ade"
+    },
+    {
+      "path": "integration-resume/host-sync-applied.json",
+      "bytes": 949,
+      "sha256": "24cd1022168e023d5f7fb56655a86af7b3866f648df400641ee1c81613d216ec"
+    },
+    {
+      "path": "integration-resume/host-sync-preview.json",
+      "bytes": 950,
+      "sha256": "428c582f899f26f62197270d02815f05ebeea4660d208e96f0953e1e1bbb8293"
+    },
+    {
+      "path": "integration-resume/host-sync-tracked-verify.log",
+      "bytes": 203,
+      "sha256": "8bfb3e9e71027ddb4174211687ae8472c16d1b01adda34a114abc12fcfc2c938"
+    },
+    {
+      "path": "integration-resume/host-sync-verify.log",
+      "bytes": 203,
+      "sha256": "8bfb3e9e71027ddb4174211687ae8472c16d1b01adda34a114abc12fcfc2c938"
+    },
+    {
+      "path": "integration-resume/prepare-publication.py",
+      "bytes": 2676,
+      "sha256": "b0cebd67eef83abb6cd1795d2b408613112e66ea993d1bdb814fb347d8819400"
+    },
+    {
+      "path": "integration-resume/quds-frozen-refs.json",
+      "bytes": 24214,
+      "sha256": "6f687b43ea82882ac13feae9f28278d09285253e806b06dfb5555117e02e09b0"
+    },
+    {
+      "path": "integration-resume/quds-ref-audit.json",
+      "bytes": 80469,
+      "sha256": "fabc1809e2a137f679c845be09d3261bfb13040a4fea25af5013cc9e20378e2b"
+    },
+    {
+      "path": "integration-resume/quds-upstream-frozen-refs.json",
+      "bytes": 1040,
+      "sha256": "fea0172d373755c7dd4bf2e6c90bdffb205383b9eed8acd876e3ce444884d304"
+    },
+    {
+      "path": "integration-resume/source-preservation.json",
+      "bytes": 16222,
+      "sha256": "094cccd39e4da955ff89a5c09b7826ca6ac212f4be6ad3ddad62966d71da3240"
+    },
+    {
+      "path": "runtime/harper-workspace-resolution.json",
+      "bytes": 1918,
+      "sha256": "e5a7a910ad8c9cbf9aabc4b5d2831f7aaec94d758906cffb4cf390cdbb37ce95"
+    },
+    {
+      "path": "runtime/harper-workspace-setup.json",
+      "bytes": 17478,
+      "sha256": "639c71a59ac970c0eefc0d7afee5245bcf2799cb2b3031e85aa8c92d3ed0c7e6"
+    },
+    {
+      "path": "runtime/logs/canonical-workspace-pub-get.log",
+      "bytes": 738,
+      "sha256": "bd8ef48203b95cfbbcb388654104b8497f51b3b3caa5beb2c169d153d4bcd16e"
+    },
+    {
+      "path": "runtime/logs/flutter-tools-compile.log",
+      "bytes": 3063,
+      "sha256": "efbbc5bcb98265d3ebf39756ea0ecb5513d3abec4e1fd1e582ff353625fef4e4"
+    },
+    {
+      "path": "runtime/logs/flutter-tools-locked-get.log",
+      "bytes": 2125,
+      "sha256": "5acb2dad1b892bdf488c73ed4d412d441b57a84de620eede53f1676a84f143db"
+    },
+    {
+      "path": "runtime/runtime-download.json",
+      "bytes": 1398,
+      "sha256": "cab42b32af94862af10f01f463f88abe3f8e95653cc52ce6124e1aaae141c261"
+    },
+    {
+      "path": "validation-runtime/bootstrap-current.py",
+      "bytes": 5589,
+      "sha256": "c382c33152a5d694f365d8640e4a1445ac23364e915277c0ade5649c7dc3c42d"
+    },
+    {
+      "path": "validation-runtime/prepare-canonical-workspace.py",
+      "bytes": 2568,
+      "sha256": "c0c54fdf00280aee1885a6489cd066c86382162e2a83dfaa000736a8204cf7a7"
+    },
+    {
+      "path": "validation-runtime/record-runtime-setup.py",
+      "bytes": 2012,
+      "sha256": "c463a5526aae6476d5f43903f64ee5a52a942a638dc46e171ce0a4454b5c13f1"
+    },
+    {
+      "path": "validation-runtime/resolve-canonical-workspace.py",
+      "bytes": 2881,
+      "sha256": "49b901a24c3cc388ddb52bf3323f737d26e67936be55b21b7bd293a2487effb7"
+    }
+  ],
+  "github_actions_queried_or_awaited": false
+}
