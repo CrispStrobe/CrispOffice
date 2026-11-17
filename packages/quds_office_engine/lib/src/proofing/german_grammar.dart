@@ -699,7 +699,8 @@ Iterable<_GermanGrammarIssue> _germanGrammarIssues(
             boundaries,
             swiss,
             articleRuleId: 'de.grammar.verb-object-case',
-            articleMessage: 'Das direkte Objekt dieses Verbs steht hier normalerweise im Akkusativ.',
+            articleMessage:
+                'Das direkte Objekt dieses Verbs steht hier normalerweise im Akkusativ.',
           );
         }
         continue;
@@ -716,6 +717,8 @@ Iterable<_GermanGrammarIssue> _germanGrammarIssues(
         articleRuleId: verbContext?.articleIndex == i
             ? 'de.grammar.verb-case'
             : 'de.grammar.preposition-case',
+        articleMessage:
+            'Artikel und Nomen verlangen in diesem eindeutigen Kasus normalerweise diese Form.',
       );
     }
   }
@@ -1167,7 +1170,8 @@ Iterable<_GermanGrammarIssue> _grammarNounPhrase(
   Set<int> boundaries,
   bool swiss, {
   String articleRuleId = 'de.grammar.preposition-case',
-  String articleMessage = 'Artikel und Nomen verlangen in diesem eindeutigen Kasus normalerweise diese Form.',
+  String articleMessage =
+      'Artikel, Nomen und Präposition verlangen hier normalerweise diese Form.',
 }) sync* {
   final _GermanGrammarWord article = words[index];
   final _GermanDeterminer determiner = _grammarDeterminerForms[article.lower]!;

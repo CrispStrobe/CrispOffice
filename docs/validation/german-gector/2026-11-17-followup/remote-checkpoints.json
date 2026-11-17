@@ -1,0 +1,26 @@
+[
+  {
+    "sha": "bf8a902aef16dfe3d3110fe8997486b2e284b221",
+    "tree": "874bce759eb606542b99dcd06708e182b210c6ae",
+    "parents": [
+      "088705198d38811fde869707bc9711e20524d5f0",
+      "081af8a55338c713ba8b350f2519f2021d9caee3"
+    ],
+    "verified_utc": "2026-11-17T19:30:11.727341+00:00",
+    "message": "Merge current Office and German context work; retain AOT removal [skip ci]",
+    "method": "GitHub Git data API; expected head, non-force; fetched and verified",
+    "local_commit_alias": "72c2cf3c3e9ea169931f376427ae72e9d2d0aa8b"
+  },
+  {
+    "sha": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+    "tree": "8e13d623fc387f6855a527f78bd4abba2ed3ee13",
+    "parents": [
+      "bf8a902aef16dfe3d3110fe8997486b2e284b221",
+      "fdec8c24fde94fbffee212a7541b0cb236f682e4"
+    ],
+    "verified_utc": "2026-11-17T19:32:14.759750+00:00",
+    "message": "Integrate first and even ODT header variants from PR133 [skip ci]",
+    "method": "GitHub Git data API; expected head, non-force; fetched and verified",
+    "local_commit_alias": "28dabf1015f394f9413224e3625a7addd13ecab3"
+  }
+]
