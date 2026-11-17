@@ -29,6 +29,7 @@ XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(
 ).root!.firstChild('body')!.firstChild('text')!;
 
 void main() {
+  paragraphShadingTests();
   pageFieldTests();
   linkTests();
   nestedListTests();
@@ -82,8 +83,11 @@ void main() {
               grid: [120, 180],
               rows: [
                 WmlTableRow(
+                  height: 24,
                   cells: [
                     WmlTableCell(
+                      borderTop: true,
+                      borderLeft: true,
                       blocks: [
                         WmlParagraph(inlines: [WmlRun(text: 'A')]),
                       ],
@@ -138,6 +142,8 @@ void main() {
     expect(content, contains('First numbered'));
     expect(content, contains('text:style-name="L2"'));
     expect(content, contains('<table:table'));
+    expect(content, contains('fo:border-top="0.5pt solid #000000"'));
+    expect(content, contains('style:row-height="24.00pt"'));
     expect(content, contains('Pictures/image1.png'));
     expect(styles, contains('fo:page-width'));
     expect(styles, contains('style:num-format="1"'));
@@ -527,5 +533,31 @@ void pageFieldTests() {
     );
     final styles = package.getPart('/styles.xml')!.readText();
     expect(styles, contains('<text:page-number/>'));
+  });
+}
+
+void paragraphShadingTests() {
+  test('writes paragraph shading and borders', () {
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          blocks: [
+            WmlParagraph(
+              properties: WmlParagraphProps(
+                shadingFill: 'FFFF00',
+                borderColor: 'FF0000',
+              ),
+              inlines: [WmlRun(text: 'Shaded')],
+            ),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final content = package.getPart('/content.xml')!.readText();
+    expect(content, contains('fo:background-color="#ffff00"'));
+    expect(content, contains('fo:border="0.5pt solid #ff0000"'));
   });
 }
