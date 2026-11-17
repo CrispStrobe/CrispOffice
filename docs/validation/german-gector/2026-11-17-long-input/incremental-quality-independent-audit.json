@@ -1,0 +1,1249 @@
+{
+  "schema_version": 1,
+  "kind": "independent-incremental-quality-artifact-row-audit",
+  "timestamp_utc": "2026-11-17T16:07:39.386924+00:00",
+  "passed": true,
+  "checks": 2167,
+  "failures": [],
+  "scope": "Read-only artifact hashing, UTF-16 edit reconstruction, merge/status/summary recomputation and source diagnosis. No Dart or native inference executed.",
+  "audited_head": "ec6818593c9a96c54fd55f5619d1cab61ada882f",
+  "frozen_source_revision": "d092d50a844b5cfcc31bb6c39220704b4ff11cf5",
+  "source_binding": {
+    "selected_source_count": 68,
+    "tracked_selected_source_count_matching_frozen_revision": 66,
+    "generated_source_inputs_bound_by_actual_file_hash": [
+      ".dart_tool/package_config.json",
+      "pubspec.lock"
+    ],
+    "run_declared_corpus_excluded_for_build_map_comparison": true,
+    "build_receipt": {
+      "file": "incremental-quality-build.json",
+      "bytes": 67065,
+      "sha256": "5c35127e92555a07878e8f23e5004ef75405c10cff1fdf07054367d60074e9b5"
+    },
+    "build_and_both_run_maps_match_actual": true
+  },
+  "actual_runtime": {
+    "executable": {
+      "file": "dartaotruntime",
+      "bytes": 5710176,
+      "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72"
+    },
+    "entrypoint": {
+      "file": "incremental-quality.aot",
+      "bytes": 8278768,
+      "sha256": "81a76a0cfb1a0fc8b369f6a49851f0276a5eb4567830289dddce8e18372c02e0"
+    }
+  },
+  "dependency_binding": {
+    "package_count": 109,
+    "dart_file_count": 4756,
+    "before_after_and_actual_match": true
+  },
+  "sdk_binding": {
+    "pin_count": 10,
+    "before_after_and_actual_match": true
+  },
+  "pack_binding": {
+    "verified": true,
+    "manifest_sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841",
+    "sizes": {
+      "file_count": 23,
+      "manifest_bytes": 9315,
+      "payload_bytes": 86347016,
+      "total_bytes": 86356331
+    },
+    "model_sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "native_library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604"
+  },
+  "corpus_binding": {
+    "prospective_freeze": {
+      "revision": "60c550b4",
+      "sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "byte_identical": true
+    }
+  },
+  "runs": {
+    "frozen-30-quality.json": {
+      "receipt": {
+        "file": "frozen-30-quality.json",
+        "bytes": 224405,
+        "sha256": "17069ba73d3bef8a2a179d19417dbe7d9d2dc43f9ee5edc49214348faca2c666"
+      },
+      "corpus": {
+        "file": "cases.json",
+        "bytes": 3088,
+        "sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9"
+      },
+      "case_count": 30,
+      "lane_projection_count": 120,
+      "de_DE": {
+        "case_count": 28,
+        "error_count": 18,
+        "clean_count": 10,
+        "lanes": {
+          "writing_only": {
+            "exact_error_ids": [
+              "verb-du",
+              "verb-er",
+              "verb-wir",
+              "adjective-neuter",
+              "dative-mit",
+              "dass-conjunction",
+              "comparison"
+            ],
+            "changed_nonexact_error_ids": [
+              "accusative-article"
+            ],
+            "changed_clean_ids": [],
+            "flagged_clean_ids": [],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 7,
+            "changed_nonexact_error_count": 1,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 10,
+            "unflagged_clean_count": 10,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "deterministic": {
+            "exact_error_ids": [
+              "verb-du",
+              "verb-er",
+              "verb-wir",
+              "adjective-neuter",
+              "dative-mit",
+              "dass-conjunction",
+              "comparison"
+            ],
+            "changed_nonexact_error_ids": [
+              "accusative-article",
+              "participle"
+            ],
+            "changed_clean_ids": [
+              "clean-quotes"
+            ],
+            "flagged_clean_ids": [
+              "clean-quotes"
+            ],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 7,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 1,
+            "flagged_clean_count": 1,
+            "unchanged_clean_count": 9,
+            "unflagged_clean_count": 9,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "model_only": {
+            "exact_error_ids": [
+              "verb-du",
+              "verb-er",
+              "verb-wir",
+              "verb-ihr",
+              "dass-conjunction",
+              "das-relative"
+            ],
+            "changed_nonexact_error_ids": [],
+            "changed_clean_ids": [],
+            "flagged_clean_ids": [],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 6,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 10,
+            "unflagged_clean_count": 10,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "combined": {
+            "exact_error_ids": [
+              "verb-du",
+              "verb-er",
+              "verb-wir",
+              "verb-ihr",
+              "adjective-neuter",
+              "dative-mit",
+              "dass-conjunction",
+              "das-relative",
+              "comparison"
+            ],
+            "changed_nonexact_error_ids": [
+              "accusative-article",
+              "participle"
+            ],
+            "changed_clean_ids": [
+              "clean-quotes"
+            ],
+            "flagged_clean_ids": [
+              "clean-quotes"
+            ],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 28,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "exact_error_count": 9,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 1,
+            "flagged_clean_count": 1,
+            "unchanged_clean_count": 9,
+            "unflagged_clean_count": 9,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          }
+        },
+        "incremental": {
+          "added_exact_error_ids": [
+            "verb-ihr",
+            "das-relative"
+          ],
+          "lost_exact_error_ids": [],
+          "model_unique_exact_error_ids": [
+            "verb-ihr",
+            "das-relative"
+          ],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": [],
+          "model_changed_clean_ids": [],
+          "accepted_model_finding_count": 2,
+          "suppressed_model_finding_count": 4
+        },
+        "comparable_count": 28,
+        "not_comparable_ids": [],
+        "operational_passed": true
+      },
+      "regional_cohorts": {
+        "de-CH": {
+          "case_count": 2,
+          "error_count": 0,
+          "clean_count": 2,
+          "lanes": {
+            "writing_only": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "flagged_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 1,
+              "unflagged_clean_count": 1,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [
+                "clean-swiss",
+                "clean-swiss-name"
+              ],
+              "operational_failure_ids": [],
+              "completed_count": 0,
+              "completed_error_count": 0,
+              "completed_clean_count": 0,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 0,
+              "unflagged_clean_count": 0,
+              "unsupported_only_count": 2,
+              "incomplete_count": 2,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "flagged_clean_ids": [
+                "clean-swiss-name"
+              ],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 1,
+              "flagged_clean_count": 1,
+              "unchanged_clean_count": 1,
+              "unflagged_clean_count": 1,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 0,
+            "suppressed_model_finding_count": 0
+          },
+          "comparable_count": 0,
+          "not_comparable_ids": [
+            "clean-swiss",
+            "clean-swiss-name"
+          ],
+          "operational_passed": true
+        }
+      },
+      "model_precedence_rows": [
+        {
+          "id": "verb-du",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "verb-er",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "verb-wir",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "verb-ihr",
+          "accepted": 1,
+          "suppressed": 0
+        },
+        {
+          "id": "dass-conjunction",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "das-relative",
+          "accepted": 1,
+          "suppressed": 0
+        }
+      ],
+      "changed_nonexact_examples": [
+        {
+          "id": "accusative-article",
+          "kind": "error",
+          "language": "de-DE",
+          "input": "Sie hat ein roten Mantel.",
+          "expected": "Sie hat einen roten Mantel.",
+          "outputs": {
+            "writing_only": "Sie hat ein roter Mantel.",
+            "deterministic": "Sie hat ein roter Mantel.",
+            "model_only": "Sie hat ein roten Mantel.",
+            "combined": "Sie hat ein roter Mantel."
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-writing",
+              "rule_id": "de.grammar.adjective-ending",
+              "category": "grammar",
+              "start": 49,
+              "end": 54,
+              "original": "roten",
+              "replacements": [
+                "roter"
+              ],
+              "message": "Die Adjektivendung muss hier zu Artikel, Kasus und Nomen passen.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [],
+          "suppressed_model": []
+        },
+        {
+          "id": "participle",
+          "kind": "error",
+          "language": "de-DE",
+          "input": "Er hat das Buch gelest.",
+          "expected": "Er hat das Buch gelesen.",
+          "outputs": {
+            "writing_only": "Er hat das Buch gelest.",
+            "deterministic": "Er hat das Buch genest.",
+            "model_only": "Er hat das Buch gelest.",
+            "combined": "Er hat das Buch genest."
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-spelling",
+              "rule_id": "de.spelling.unknown",
+              "category": "spelling",
+              "start": 53,
+              "end": 59,
+              "original": "gelest",
+              "replacements": [
+                "genest",
+                "gellst",
+                "gelost",
+                "gelöst",
+                "geleast"
+              ],
+              "message": "Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [],
+          "suppressed_model": []
+        },
+        {
+          "id": "clean-swiss-name",
+          "kind": "clean",
+          "language": "de-CH",
+          "input": "Grüezi, ich heisse André.",
+          "expected": "Grüezi, ich heisse André.",
+          "outputs": {
+            "writing_only": "Grüezi, ich heisse André.",
+            "deterministic": "Grütze, ich heisse André.",
+            "model_only": null,
+            "combined": "Grütze, ich heisse André."
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-spelling",
+              "rule_id": "de.spelling.unknown",
+              "category": "spelling",
+              "start": 37,
+              "end": 43,
+              "original": "Grüezi",
+              "replacements": [
+                "Grütze"
+              ],
+              "message": "Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [],
+          "suppressed_model": []
+        },
+        {
+          "id": "clean-quotes",
+          "kind": "clean",
+          "language": "de-DE",
+          "input": "Er sagte: „Das stimmt.“",
+          "expected": "Er sagte: „Das stimmt.“",
+          "outputs": {
+            "writing_only": "Er sagte: „Das stimmt.“",
+            "deterministic": "Er sagte: „das stimmt.“",
+            "model_only": "Er sagte: „Das stimmt.“",
+            "combined": "Er sagte: „das stimmt.“"
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-spelling",
+              "rule_id": "de.spelling.unknown",
+              "category": "spelling",
+              "start": 48,
+              "end": 51,
+              "original": "Das",
+              "replacements": [
+                "das",
+                "da",
+                "las",
+                "was",
+                "des"
+              ],
+              "message": "Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [],
+          "suppressed_model": []
+        }
+      ]
+    },
+    "prospective-76-quality.json": {
+      "receipt": {
+        "file": "prospective-76-quality.json",
+        "bytes": 549300,
+        "sha256": "8f669181fe7346ec39164724c00087bd751b76522b13ef8bae6b7f09d3f5f695"
+      },
+      "corpus": {
+        "file": "prospective_cases_20261117.json",
+        "bytes": 15488,
+        "sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42"
+      },
+      "case_count": 76,
+      "lane_projection_count": 304,
+      "de_DE": {
+        "case_count": 72,
+        "error_count": 32,
+        "clean_count": 40,
+        "lanes": {
+          "writing_only": {
+            "exact_error_ids": [
+              "prospective-verb-ich-wohnen-error",
+              "prospective-verb-du-trinken-error",
+              "prospective-verb-er-arbeiten-error",
+              "prospective-verb-wir-warten-error",
+              "prospective-verb-du-sein-error",
+              "prospective-verb-ich-haben-error",
+              "prospective-adjective-definite-feminine-error",
+              "prospective-adjective-indefinite-masculine-error",
+              "prospective-adjective-dative-feminine-error",
+              "prospective-article-mit-dative-error",
+              "prospective-article-ohne-accusative-error",
+              "prospective-adjective-accusative-masculine-error",
+              "prospective-dative-plural-kinder-error",
+              "prospective-genitive-haus-error"
+            ],
+            "changed_nonexact_error_ids": [],
+            "changed_clean_ids": [],
+            "flagged_clean_ids": [],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 14,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 40,
+            "unflagged_clean_count": 40,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "deterministic": {
+            "exact_error_ids": [
+              "prospective-verb-ich-wohnen-error",
+              "prospective-verb-du-trinken-error",
+              "prospective-verb-er-arbeiten-error",
+              "prospective-verb-wir-warten-error",
+              "prospective-verb-du-sein-error",
+              "prospective-verb-ich-haben-error",
+              "prospective-adjective-definite-feminine-error",
+              "prospective-adjective-indefinite-masculine-error",
+              "prospective-adjective-dative-feminine-error",
+              "prospective-article-mit-dative-error",
+              "prospective-article-ohne-accusative-error",
+              "prospective-adjective-accusative-masculine-error",
+              "prospective-dative-plural-kinder-error",
+              "prospective-genitive-haus-error"
+            ],
+            "changed_nonexact_error_ids": [
+              "prospective-relative-subject-error",
+              "prospective-participle-schreiben-error",
+              "prospective-participle-finden-error"
+            ],
+            "changed_clean_ids": [
+              "prospective-relative-subject-clean"
+            ],
+            "flagged_clean_ids": [
+              "prospective-relative-subject-clean"
+            ],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 14,
+            "changed_nonexact_error_count": 3,
+            "changed_clean_count": 1,
+            "flagged_clean_count": 1,
+            "unchanged_clean_count": 39,
+            "unflagged_clean_count": 39,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "model_only": {
+            "exact_error_ids": [
+              "prospective-verb-ich-wohnen-error",
+              "prospective-verb-du-trinken-error",
+              "prospective-verb-er-arbeiten-error",
+              "prospective-verb-wir-warten-error",
+              "prospective-verb-ihr-lesen-error",
+              "prospective-verb-du-sein-error",
+              "prospective-verb-ich-haben-error",
+              "prospective-verb-ihr-koennen-error",
+              "prospective-dass-hoffen-error",
+              "prospective-dass-freuen-error",
+              "prospective-relative-subject-error",
+              "prospective-relative-object-error"
+            ],
+            "changed_nonexact_error_ids": [],
+            "changed_clean_ids": [],
+            "flagged_clean_ids": [],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 12,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "unchanged_clean_count": 40,
+            "unflagged_clean_count": 40,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          },
+          "combined": {
+            "exact_error_ids": [
+              "prospective-verb-ich-wohnen-error",
+              "prospective-verb-du-trinken-error",
+              "prospective-verb-er-arbeiten-error",
+              "prospective-verb-wir-warten-error",
+              "prospective-verb-ihr-lesen-error",
+              "prospective-verb-du-sein-error",
+              "prospective-verb-ich-haben-error",
+              "prospective-verb-ihr-koennen-error",
+              "prospective-adjective-definite-feminine-error",
+              "prospective-adjective-indefinite-masculine-error",
+              "prospective-adjective-dative-feminine-error",
+              "prospective-article-mit-dative-error",
+              "prospective-article-ohne-accusative-error",
+              "prospective-adjective-accusative-masculine-error",
+              "prospective-dative-plural-kinder-error",
+              "prospective-genitive-haus-error",
+              "prospective-dass-hoffen-error",
+              "prospective-dass-freuen-error",
+              "prospective-relative-object-error"
+            ],
+            "changed_nonexact_error_ids": [
+              "prospective-relative-subject-error",
+              "prospective-participle-schreiben-error",
+              "prospective-participle-finden-error"
+            ],
+            "changed_clean_ids": [
+              "prospective-relative-subject-clean"
+            ],
+            "flagged_clean_ids": [
+              "prospective-relative-subject-clean"
+            ],
+            "unsupported_only_ids": [],
+            "operational_failure_ids": [],
+            "completed_count": 72,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "exact_error_count": 19,
+            "changed_nonexact_error_count": 3,
+            "changed_clean_count": 1,
+            "flagged_clean_count": 1,
+            "unchanged_clean_count": 39,
+            "unflagged_clean_count": 39,
+            "unsupported_only_count": 0,
+            "incomplete_count": 0,
+            "operational_failure_count": 0
+          }
+        },
+        "incremental": {
+          "added_exact_error_ids": [
+            "prospective-verb-ihr-lesen-error",
+            "prospective-verb-ihr-koennen-error",
+            "prospective-dass-hoffen-error",
+            "prospective-dass-freuen-error",
+            "prospective-relative-object-error"
+          ],
+          "lost_exact_error_ids": [],
+          "model_unique_exact_error_ids": [
+            "prospective-verb-ihr-lesen-error",
+            "prospective-verb-ihr-koennen-error",
+            "prospective-dass-hoffen-error",
+            "prospective-dass-freuen-error",
+            "prospective-relative-subject-error",
+            "prospective-relative-object-error"
+          ],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": [],
+          "model_changed_clean_ids": [],
+          "accepted_model_finding_count": 6,
+          "suppressed_model_finding_count": 6
+        },
+        "comparable_count": 72,
+        "not_comparable_ids": [],
+        "operational_passed": true
+      },
+      "regional_cohorts": {
+        "de-AT": {
+          "case_count": 2,
+          "error_count": 0,
+          "clean_count": 2,
+          "lanes": {
+            "writing_only": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [
+                "prospective-locale-at-marillen",
+                "prospective-locale-at-perfect-auxiliary"
+              ],
+              "operational_failure_ids": [],
+              "completed_count": 0,
+              "completed_error_count": 0,
+              "completed_clean_count": 0,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 0,
+              "unflagged_clean_count": 0,
+              "unsupported_only_count": 2,
+              "incomplete_count": 2,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 0,
+            "suppressed_model_finding_count": 0
+          },
+          "comparable_count": 0,
+          "not_comparable_ids": [
+            "prospective-locale-at-marillen",
+            "prospective-locale-at-perfect-auxiliary"
+          ],
+          "operational_passed": true
+        },
+        "de-CH": {
+          "case_count": 2,
+          "error_count": 0,
+          "clean_count": 2,
+          "lanes": {
+            "writing_only": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "deterministic": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            },
+            "model_only": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [
+                "prospective-locale-ch-strasse",
+                "prospective-locale-ch-weiss"
+              ],
+              "operational_failure_ids": [],
+              "completed_count": 0,
+              "completed_error_count": 0,
+              "completed_clean_count": 0,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 0,
+              "unflagged_clean_count": 0,
+              "unsupported_only_count": 2,
+              "incomplete_count": 2,
+              "operational_failure_count": 0
+            },
+            "combined": {
+              "exact_error_ids": [],
+              "changed_nonexact_error_ids": [],
+              "changed_clean_ids": [],
+              "flagged_clean_ids": [],
+              "unsupported_only_ids": [],
+              "operational_failure_ids": [],
+              "completed_count": 2,
+              "completed_error_count": 0,
+              "completed_clean_count": 2,
+              "exact_error_count": 0,
+              "changed_nonexact_error_count": 0,
+              "changed_clean_count": 0,
+              "flagged_clean_count": 0,
+              "unchanged_clean_count": 2,
+              "unflagged_clean_count": 2,
+              "unsupported_only_count": 0,
+              "incomplete_count": 0,
+              "operational_failure_count": 0
+            }
+          },
+          "incremental": {
+            "added_exact_error_ids": [],
+            "lost_exact_error_ids": [],
+            "model_unique_exact_error_ids": [],
+            "new_changed_clean_ids": [],
+            "new_flagged_clean_ids": [],
+            "model_changed_clean_ids": [],
+            "accepted_model_finding_count": 0,
+            "suppressed_model_finding_count": 0
+          },
+          "comparable_count": 0,
+          "not_comparable_ids": [
+            "prospective-locale-ch-strasse",
+            "prospective-locale-ch-weiss"
+          ],
+          "operational_passed": true
+        }
+      },
+      "model_precedence_rows": [
+        {
+          "id": "prospective-verb-ich-wohnen-error",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "prospective-verb-du-trinken-error",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "prospective-verb-er-arbeiten-error",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "prospective-verb-wir-warten-error",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "prospective-verb-ihr-lesen-error",
+          "accepted": 1,
+          "suppressed": 0
+        },
+        {
+          "id": "prospective-verb-du-sein-error",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "prospective-verb-ich-haben-error",
+          "accepted": 0,
+          "suppressed": 1
+        },
+        {
+          "id": "prospective-verb-ihr-koennen-error",
+          "accepted": 1,
+          "suppressed": 0
+        },
+        {
+          "id": "prospective-dass-hoffen-error",
+          "accepted": 1,
+          "suppressed": 0
+        },
+        {
+          "id": "prospective-dass-freuen-error",
+          "accepted": 1,
+          "suppressed": 0
+        },
+        {
+          "id": "prospective-relative-subject-error",
+          "accepted": 1,
+          "suppressed": 0
+        },
+        {
+          "id": "prospective-relative-object-error",
+          "accepted": 1,
+          "suppressed": 0
+        }
+      ],
+      "changed_nonexact_examples": [
+        {
+          "id": "prospective-relative-subject-error",
+          "kind": "error",
+          "language": "de-DE",
+          "input": "Das Fahrrad, dass im Hof steht, gehört mir.",
+          "expected": "Das Fahrrad, das im Hof steht, gehört mir.",
+          "outputs": {
+            "writing_only": "Das Fahrrad, dass im Hof steht, gehört mir.",
+            "deterministic": "Das Fahrrad, dass im Hofe steht, gehört mir.",
+            "model_only": "Das Fahrrad, das im Hof steht, gehört mir.",
+            "combined": "Das Fahrrad, das im Hofe steht, gehört mir."
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-spelling",
+              "rule_id": "de.spelling.unknown",
+              "category": "spelling",
+              "start": 58,
+              "end": 61,
+              "original": "Hof",
+              "replacements": [
+                "Hofe",
+                "Hofs"
+              ],
+              "message": "Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.",
+              "replacement_index": 0
+            },
+            {
+              "provider_id": "gector-de",
+              "rule_id": "gector.de.grammar",
+              "category": "grammar",
+              "start": 50,
+              "end": 54,
+              "original": "dass",
+              "replacements": [
+                "das"
+              ],
+              "message": "Mögliche Grammatik- oder Wortformkorrektur.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [
+            {
+              "provider_id": "gector-de",
+              "rule_id": "gector.de.grammar",
+              "category": "grammar",
+              "start": 50,
+              "end": 54,
+              "original": "dass",
+              "replacements": [
+                "das"
+              ],
+              "message": "Mögliche Grammatik- oder Wortformkorrektur."
+            }
+          ],
+          "suppressed_model": []
+        },
+        {
+          "id": "prospective-relative-subject-clean",
+          "kind": "clean",
+          "language": "de-DE",
+          "input": "Das Fahrrad, das im Hof steht, gehört mir.",
+          "expected": "Das Fahrrad, das im Hof steht, gehört mir.",
+          "outputs": {
+            "writing_only": "Das Fahrrad, das im Hof steht, gehört mir.",
+            "deterministic": "Das Fahrrad, das im Hofe steht, gehört mir.",
+            "model_only": "Das Fahrrad, das im Hof steht, gehört mir.",
+            "combined": "Das Fahrrad, das im Hofe steht, gehört mir."
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-spelling",
+              "rule_id": "de.spelling.unknown",
+              "category": "spelling",
+              "start": 57,
+              "end": 60,
+              "original": "Hof",
+              "replacements": [
+                "Hofe",
+                "Hofs"
+              ],
+              "message": "Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [],
+          "suppressed_model": []
+        },
+        {
+          "id": "prospective-participle-schreiben-error",
+          "kind": "error",
+          "language": "de-DE",
+          "input": "Sie hat den Brief geschreibt.",
+          "expected": "Sie hat den Brief geschrieben.",
+          "outputs": {
+            "writing_only": "Sie hat den Brief geschreibt.",
+            "deterministic": "Sie hat den Brief beschreibt.",
+            "model_only": "Sie hat den Brief geschreibt.",
+            "combined": "Sie hat den Brief beschreibt."
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-spelling",
+              "rule_id": "de.spelling.unknown",
+              "category": "spelling",
+              "start": 55,
+              "end": 65,
+              "original": "geschreibt",
+              "replacements": [
+                "beschreibt",
+                "abschreibt",
+                "anschreibt",
+                "beschreibe",
+                "beschriebt"
+              ],
+              "message": "Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [],
+          "suppressed_model": []
+        },
+        {
+          "id": "prospective-participle-finden-error",
+          "kind": "error",
+          "language": "de-DE",
+          "input": "Wir haben den Fehler gefindet.",
+          "expected": "Wir haben den Fehler gefunden.",
+          "outputs": {
+            "writing_only": "Wir haben den Fehler gefindet.",
+            "deterministic": "Wir haben den Fehler befindet.",
+            "model_only": "Wir haben den Fehler gefindet.",
+            "combined": "Wir haben den Fehler befindet."
+          },
+          "combined_edits": [
+            {
+              "provider_id": "german-spelling",
+              "rule_id": "de.spelling.unknown",
+              "category": "spelling",
+              "start": 58,
+              "end": 66,
+              "original": "gefindet",
+              "replacements": [
+                "befindet",
+                "Gebinden",
+                "Gefieder",
+                "Gefilden",
+                "Gesindel"
+              ],
+              "message": "Dieses Wort ist nicht im deutschen Wörterverzeichnis enthalten.",
+              "replacement_index": 0
+            }
+          ],
+          "accepted_model": [],
+          "suppressed_model": []
+        }
+      ]
+    }
+  },
+  "lexicon_diagnosis": {
+    "decoded_counts": {
+      "standard": 443925,
+      "common": 205,
+      "swiss": 9451
+    },
+    "membership": {
+      "Hof": {
+        "standard": false,
+        "swiss_additions": false
+      },
+      "Hofe": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "Hofs": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "Das": {
+        "standard": false,
+        "swiss_additions": false
+      },
+      "das": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "Grüezi": {
+        "standard": false,
+        "swiss_additions": false
+      },
+      "Grütze": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "André": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "gelest": {
+        "standard": false,
+        "swiss_additions": false
+      },
+      "gelesen": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "genest": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "geschreibt": {
+        "standard": false,
+        "swiss_additions": false
+      },
+      "geschrieben": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "beschreibt": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "gefindet": {
+        "standard": false,
+        "swiss_additions": false
+      },
+      "gefunden": {
+        "standard": true,
+        "swiss_additions": false
+      },
+      "befindet": {
+        "standard": true,
+        "swiss_additions": false
+      }
+    },
+    "provider_source": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+    "generator_source": "packages/quds_office_engine/tool/proofing/generate_german_lexicon.py"
+  },
+  "interpretation": [
+    "Prospective de-DE exact corrections: writing 14/32, deterministic 14/32, model 12/32, combined 19/32; five added exact fixes, zero lost exact fixes, zero additional changed or flagged clean cases.",
+    "The model relative-subject dass-to-das edit is accepted, not suppressed. A disjoint spelling Hof-to-Hofe proposal makes its combined output nonexact.",
+    "Hofe is a grammatical dative alternative; flagging the already valid Hof as an unknown word remains a detection false positive and an unnecessary clean-input change. Exact-match scoring deliberately does not award this alternative.",
+    "Frozen quoted Das is incorrectly flagged by spelling: _isSentenceInitial only treats . ! ? and newline as boundaries, then reaches the preceding word across the colon and opening quote; titlecase fallback is therefore disabled.",
+    "The frozen de-CH clean-swiss-name row changes the greeting Gruezi (Grüezi) to Grütze; the proper name André is unchanged. This regional control is excluded from de-DE quality counts, and the model reports unsupported.",
+    "Other changed-nonexact rows reveal spelling candidate ordering that is not syntactically aware (gelest/genest, geschreibt/beschreibt, gefindet/befindet) and a writing-rule adjective change that retains the wrong accusative article.",
+    "The quality runs use one native request per input with no warmup and default single-sequence decoding. Their timings are diagnostic, not a latency benchmark.",
+    "Both panels are authored synthetic examples. The 76-case corpus was frozen before these measured outputs, but is now an observed regression panel; no representative accuracy or training-disjointness claim follows."
+  ],
+  "audit_script": {
+    "file": "audit_incremental_quality.py",
+    "bytes": 24295,
+    "sha256": "52d7a6b1171ad3326c52ad2168d88b22e6b7fd3f3a37d9acd9da3f689a0a35ef"
+  }
+}
