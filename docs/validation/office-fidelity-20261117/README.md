@@ -276,13 +276,20 @@ verifies command and log hashes, matches before/after/current/committed source
 inputs, checks runtime/lock identity, reconstructs incoming inventories, checks
 all captured ancestry, and compares the exact advertised remote head and Git
 tree. It binds fixture files and external verification receipts to committed
-bytes. It does not rerun tests or access GitHub Actions.
+bytes, recomputes saved raster results and ODF semantics, and checks recorded
+external command exits and log hashes. It does not rerun tests or access GitHub
+Actions.
 
-The final qualification receipt is saved as `source-qualification.json` after
-the evidence checkpoint is published. A subsequent documentation-only commit
-can carry that receipt without changing tested inputs; the same auditor is then
-run again against the final published head. Independent review details are
-retained in `independent-final-review.json`.
+**The audit passed against published evidence checkpoint
+`27c0a928a53cda7dcaa89e483fec23fd1c50e75d`**, tree
+`f1e49bd6eb2c7f4548b1bd6cd7999d14e0ca298c`, at 06:51:41 UTC
+(07:51:41 Europe/Berlin). The complete
+[source qualification receipt](source-qualification.json) preserves that
+checkpoint's result. The following documentation-only commit carries this
+receipt without changing tested inputs; the same auditor is run again against
+the final published head. The separate
+[independent review](independent-final-review.json) also passed, reconstructing
+all test lifecycles and 688 unique recorded inputs with no blocking findings.
 
 With the recorded runtime and dependencies available, run from the repository
 root into a new output directory to preserve these receipts:
