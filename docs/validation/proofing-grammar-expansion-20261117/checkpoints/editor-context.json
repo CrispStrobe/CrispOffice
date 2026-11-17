@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-11-17T06:20:16.065159+00:00",
+  "command": "flutter test --no-pub --reporter expanded test/word_proofing_context_test.dart",
+  "working_directory": "packages/quds_office_editor",
+  "result": "passed",
+  "tests": 5,
+  "scope": "Focused review-context behavior using deterministic provider. Final integration will rerun against committed full sources.",
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart": "fabaa7d91d0c3432c8c8c57cb3ce4d02ee20e6169b60bc1ccb3abc3b0702efa5",
+    "packages/quds_office_editor/test/word_proofing_context_test.dart": "e5ef405d387001191ec46bf6a57a89494f3de5fa417d3e80b341bc47c318b8e4"
+  },
+  "log": "editor-context.log",
+  "log_sha256": "7108625cf28eb85c872a6d455c76dff2a21dec4a833d9341c6cbd8ccbb4e7450"
+}
