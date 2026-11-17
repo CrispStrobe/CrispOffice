@@ -1,0 +1,46 @@
+00:00 +0: loading test/harper_provider_test.dart
+00:00 +0: loading test/harper_source_text_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 17,235,042 input bytes (14,072,803 characters source) to 1,274,095 characters JavaScript in 16.6 seconds
+
+00:00 +0: test/harper_source_text_test.dart: soft hyphens do not split checked words or shift source findings
+00:00 +1: test/harper_source_text_test.dart: word ranges own internal controls without swallowing adjacent ones
+00:00 +2: test/harper_source_text_test.dart: empty input and control-only text have explicit insertion ownership
+00:00 +2: loading test/harper_source_contract_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 19,953,364 input bytes (16,791,125 characters source) to 1,376,101 characters JavaScript in 17.2 seconds
+
+00:00 +3: test/harper_source_text_test.dart: punctuation, no-break controls and authored line endings stay literal
+00:00 +4: test/harper_source_text_test.dart: never exposes partial source or projected graphemes
+00:00 +5: test/harper_source_text_test.dart: rejects negative, reversed and out-of-bounds backend ranges
+00:00 +6: test/harper_source_text_test.dart: many findings keep exact positions after supplementary characters
+00:00 +7: test/harper_source_contract_test.dart: English code findings do not hide ordinary prose corrections
+00:00 +8: test/harper_source_contract_test.dart: protected English spans use original source after soft hyphens
+00:00 +9: test/harper_source_contract_test.dart: unmatched backticks and punctuation following links remain checkable
+00:00 +10: test/harper_source_contract_test.dart: code protection never conceals malformed backend ranges
+00:00 +10: loading test/harper_provider_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 19,949,325 input bytes (16,787,086 characters source) to 1,348,975 characters JavaScript in 17.5 seconds
+
+00:00 +11: test/harper_source_contract_test.dart: backend sees complete English words and findings retain Word offsets
+00:00 +12: test/harper_source_contract_test.dart: zero-length corrections beside controls keep source insertion points
+00:00 +13: test/harper_source_contract_test.dart: partial accent findings cannot discard unrelated grammar findings
+00:00 +14: test/harper_source_contract_test.dart: source projection does not turn malformed backend ranges into success
+00:00 +15: test/harper_source_contract_test.dart: shared vocabulary suppresses only spelling in its own dialect
+00:00 +16: test/harper_provider_test.dart: rejects zero and negative timeouts before using a transport
+00:00 +17: test/harper_source_contract_test.dart: an in-flight vocabulary change requires a fresh English check
+00:00 +18: test/harper_provider_test.dart: converts scalar offsets after emoji and preserves segment identity
+00:00 +19: test/harper_source_contract_test.dart: all supported English dialects and ignored rules survive projection
+00:00 +20: test/harper_provider_test.dart: unsupported language never invokes English backend
+00:00 +21: test/harper_source_contract_test.dart: original source size remains bounded before projecting controls
+00:01 +22: test/harper_provider_test.dart: Latin and Unicode locale aliases dispatch the correct English dialect
+00:01 +23: test/harper_provider_test.dart: unknown dialects, variants and scripts never become American English
+00:01 +24: test/harper_provider_test.dart: unavailable backend differs from a successful clean result
+00:01 +25: test/harper_provider_test.dart: rejects invalid offset, format and category instead of clean success
+00:01 +26: test/harper_provider_test.dart: timeout disposes worker and future checks are unavailable
+00:01 +27: test/harper_provider_test.dart: disposal rejects an already in-flight result
+00:01 +28: test/harper_provider_test.dart: timeout result survives throwing and stuck disposal
+00:01 +29: All tests passed!

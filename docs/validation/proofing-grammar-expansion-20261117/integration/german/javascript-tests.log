@@ -1,0 +1,466 @@
+00:00 +0: loading test/proofing/german_grammar_test.dart
+00:00 +0: loading test/proofing/office_proofing_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,321,658 input bytes (5,159,419 characters source) to 1,336,393 characters JavaScript in 9.56 seconds
+
+00:00 +0: loading test/proofing/german_grammar_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,402,998 input bytes (5,240,759 characters source) to 1,470,811 characters JavaScript in 10.2 seconds
+
+00:00 +0: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +1: test/proofing/office_proofing_test.dart: unsupported locale stays distinct from successful empty output
+00:00 +2: test/proofing/office_proofing_test.dart: optional unsupported provider does not invalidate an applicable success
+00:00 +3: test/proofing/office_proofing_test.dart: throwing provider is a failed result and never clean
+00:00 +4: test/proofing/office_proofing_test.dart: non-BMP scalars map to original UTF16 positions and enforce bounds
+00:00 +5: test/proofing/office_proofing_test.dart: language segments produce absolute source-bound offsets exactly once
+00:00 +6: test/proofing/office_proofing_test.dart: rejects range splitting surrogate pair
+00:00 +7: test/proofing/office_proofing_test.dart: rejects range splitting combining character
+00:00 +8: test/proofing/office_proofing_test.dart: rejects range splitting ZWJ sequence
+00:00 +9: test/proofing/office_proofing_test.dart: zero-length insertion at a grapheme boundary is valid
+00:00 +10: test/proofing/office_proofing_test.dart: invalid source text and stale identity fail validation
+00:00 +11: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +11: loading test/proofing/german_writing_rules_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,426,881 input bytes (5,264,642 characters source) to 1,561,059 characters JavaScript in 11.1 seconds
+
+00:00 +12: test/proofing/office_proofing_test.dart: rule opt-out filters findings without changing provider availability
+00:00 +13: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +14: test/proofing/office_proofing_test.dart: deadline disposes stalled backend and prevents reusing it
+00:00 +15: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie wohnt bei ihn.
+00:00 +16: test/proofing/office_proofing_test.dart: disposed service stays unavailable and duplicate provider ids rejected
+00:00 +17: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt zu wir.
+00:00 +18: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie spricht nach ich.
+00:00 +19: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist für mir.
+00:00 +20: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist für ihm.
+00:01 +21: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir kommen ohne dir.
+00:01 +22: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das spricht gegen er.
+00:01 +23: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:01 +24: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:01 +25: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Es geht durch ihnen.
+00:01 +26: test/proofing/german_writing_rules_test.dart: spacing checks return precise reviewable replacements
+00:01 +27: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich rede mit den Mann.
+00:01 +28: test/proofing/german_writing_rules_test.dart: only conservative repeated conjunctions are flagged
+00:01 +29: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt mit der Kind.
+00:01 +30: test/proofing/german_writing_rules_test.dart: selected pronoun-verb disagreement is grammar, not a broad parser claim
+00:01 +31: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit einem Frau.
+00:01 +32: test/proofing/german_writing_rules_test.dart: lowercase ich and du receive missing sein agreement corrections
+00:01 +33: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir reden von diese Frage.
+00:01 +34: test/proofing/german_writing_rules_test.dart: nominal Ich and Du remain outside the limited agreement rule
+00:01 +35: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das steht bei das Haus.
+00:01 +36: test/proofing/german_writing_rules_test.dart: comparison pronouns are not mistaken for the following subject
+00:01 +37: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme aus die Stadt.
+00:01 +38: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme aus die Stadt.
+00:01 +39: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:01 +40: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie fragt nach einen Termin.
+00:01 +41: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:01 +42: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:01 +43: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir warten seit eine Woche.
+00:01 +44: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:01 +45: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt gegenüber das Büro.
+00:01 +46: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:01 +47: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist für dem Kind.
+00:01 +48: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:01 +49: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:01 +50: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie geht durch der Stadt.
+00:01 +51: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:01 +52: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt ohne dem Buch.
+00:01 +53: test/proofing/german_writing_rules_test.dart: lexical verb corrections retain regional and uppercase behavior
+00:01 +54: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das spricht gegen diesem Plan.
+00:01 +55: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:01 +56: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Es geht um einer Frage.
+00:01 +57: test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:01 +58: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von euer Kind.
+00:01 +59: test/proofing/german_writing_rules_test.dart: seit-seid remains opt-out, protected and source-grapheme safe
+00:02 +60: test/proofing/german_writing_rules_test.dart: seit-seid remains opt-out, protected and source-grapheme safe
+00:02 +61: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:02 +62: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection retains exact original UTF-16 ranges
+00:02 +63: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie liest aus den Bücher.
+00:02 +64: test/proofing/german_writing_rules_test.dart: soft-hyphen projection preserves phrase and insertion ownership
+00:02 +65: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das steht bei den Häuser.
+00:02 +66: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection preserves adjacent controls and valid text
+00:02 +67: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir reden von den Fehler.
+00:02 +68: test/proofing/german_writing_rules_test.dart: projected findings never replace part of a joined or accented grapheme
+00:02 +69: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt zu den Termine.
+00:02 +70: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:02 +71: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er wartet seit diesen Tage.
+00:02 +72: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:02 +73: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ein gute Buch liegt hier.
+00:02 +74: test/proofing/german_writing_rules_test.dart: declined determiners and fused prepositions preserve nominal pronouns
+00:02 +75: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Eine gutes Frau kommt.
+00:02 +76: test/proofing/german_writing_rules_test.dart: word-internal apostrophes do not close enclosing single quotes
+00:02 +77: test/proofing/german_writing_rules_test.dart: word-internal apostrophes do not close enclosing single quotes
+00:02 +78: test/proofing/german_writing_rules_test.dart: word-internal apostrophes do not close enclosing single quotes
+00:02 +79: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die guter Frau kommt.
+00:02 +80: test/proofing/german_writing_rules_test.dart: decorated punctuation preserves ordinary paragraph findings
+00:02 +81: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die gute Kinder kommen.
+00:02 +82: test/proofing/german_writing_rules_test.dart: unsafe grammar and spacing matches leave ordinary corrections available
+00:02 +83: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich sehe einen gute Mann.
+00:02 +84: test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:02 +85: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit einem gutem Buch.
+00:03 +86: test/proofing/german_writing_rules_test.dart: unmatched delimiters and quotes remain advisory with no guessed correction
+00:03 +87: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt mit einer gute Frau.
+00:03 +88: test/proofing/german_writing_rules_test.dart: URLs, inline code and rule opt-outs remain untouched
+00:03 +89: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt aus dem schöne Haus.
+00:03 +90: test/proofing/german_writing_rules_test.dart: matching multi-backtick spans protect grammar and punctuation
+00:03 +91: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist für das neuen Büro.
+00:03 +92: test/proofing/german_writing_rules_test.dart: protected tokens cannot supply a subject for following prose
+00:03 +93: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme ohne einen guter Plan.
+00:03 +94: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme ohne einen guter Plan.
+00:03 +95: test/proofing/german_writing_rules_test.dart: unmatched punctuation after a URL still has exact source ranges
+00:03 +96: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Unser gute Kind kommt.
+00:03 +97: test/proofing/german_writing_rules_test.dart: language and disposed availability are explicit
+00:03 +98: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Euer gute Kind kommt.
+00:03 +99: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:03 +100: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Diese guter Datei ist hier.
+00:03 +101: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich denke, das du kommst.
+00:03 +102: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir glauben, das er hier ist.
+00:03 +103: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er weiß, das wir Zeit haben.
+00:03 +104: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie hofft, das ich das Buch lese.
+00:03 +105: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich glaube dass du kommst.
+00:03 +106: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir wissen dass sie heute kommen.
+00:03 +107: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er meint, sie ist größer wie ich.
+00:03 +108: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist besser wie vorher.
+00:03 +109: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie ist jünger wie er.
+00:03 +110: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er ist so groß als ich.
+00:03 +111: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie ist genauso gut als er.
+00:03 +112: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die Datei ist ebenso wichtig als der Bericht.
+00:03 +113: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Die Datei ist wichtiger wie der Bericht.
+00:04 +114: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich komme mit dir. Sie kommt mit ihm. Wir sprechen mit ihnen.
+00:04 +115: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für mich. Sie kommt ohne ihn. Wir sind gegen euch.
+00:04 +116: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Bei mir ist alles gut. Nach dir bin ich dran.
+00:04 +117: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Für ihr Kind ist das wichtig. Das ist für ihre Kinder.
+00:04 +118: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie spricht mit Ihr und Sie in einer Sprachübung.
+00:04 +119: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für das Ich. Wir sprechen vom Du.
+00:04 +120: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit ich hier bin, ist alles gut.
+00:04 +121: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit mich der Mann kennt, ist alles gut.
+00:04 +122: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit er die Frau kennt, ist alles gut.
+00:04 +123: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne mir zu helfen geht er.
+00:04 +124: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne ihm helfen zu können bleibt er.
+00:04 +125: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt, ohne dem Kind zu helfen.
+00:04 +126: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt, ohne der Frau bekannt zu sein.
+00:04 +127: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne ihm böse zu sein kommt sie.
+00:04 +128: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne mir weh zu tun kommt sie.
+00:04 +129: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne dem Kind weh zu tun kommt sie.
+00:04 +130: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir kommen, um ihm zu helfen.
+00:04 +131: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt, um dem Kind zu helfen.
+00:04 +132: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Um ihm nahe zu sein kommt sie.
+00:04 +133: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Um mir einen Gefallen zu tun kommt sie.
+00:05 +134: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er bittet um seiner Kinder willen.
+00:05 +135: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie bittet um ihrer kleinen Kinder willen.
+00:05 +136: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist mit ein schönes Buch.
+00:05 +137: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Datei ist mit die wichtigste Datei.
+00:05 +138: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er wollte mit den Mann begleiten.
+00:05 +139: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie wollte mit ihn begleiten.
+00:05 +140: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wegen dem Kind kommt sie. Trotz dem Fehler bleibt sie.
+00:05 +141: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wegen des Kindes kommt sie. Trotz des Fehlers bleibt sie.
+00:05 +142: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Außer ich kommt niemand. Alle außer mir kommen.
+00:05 +143: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen in die Stadt. Wir sind in der Stadt.
+00:05 +144: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen auf den Weg. Wir stehen auf dem Weg.
+00:05 +145: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen an das Haus. Wir stehen an dem Haus.
+00:05 +146: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt bis nächsten Dienstag. Wir können bis zu zehn Leute aufnehmen.
+00:05 +147: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er geht den Weg entlang. Entlang des Weges stehen Häuser.
+00:05 +148: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das steht bei dem Mann. Sie kommt mit einem Mann.
+00:05 +149: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für das Kind. Er kommt ohne einen Mann.
+00:05 +150: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das steht bei den Kindern, den Büchern und den Fehlern.
+00:05 +151: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit den Frauen. Sie kommt mit den Autos.
+00:06 +152: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt mit den Büros. Wir reden von den Regeln.
+00:06 +153: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für den Ordner. Das ist für die Ordner.
+00:06 +154: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem Fehler. Er kommt mit den Fehlern.
+00:06 +155: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Von diesem Tage an bleibt sie.
+00:06 +156: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Nach dem Jahre 1990 kommt sie.
+00:06 +157: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Aus dem Texte liest sie.
+00:06 +158: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Mit dem Tage kommt sie.
+00:06 +159: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für dem Qudsbrand.
+00:06 +160: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem Mensch. Sie redet mit einem Student.
+00:06 +161: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit den Bänder. Sie redet mit der Leiter.
+00:06 +161: loading test/proofing/german_suggestion_quality_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 17,277,358 input bytes (14,115,119 characters source) to 3,237,135 characters JavaScript in 16.6 seconds
+
+00:06 +162: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein gutes Buch liegt neben einem guten Buch.
+00:06 +163: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Eine gute Frau kommt mit einer guten Frau.
+00:06 +164: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein guter Mann kommt mit einem guten Mann.
+00:06 +165: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das gute Kind kommt. Die guten Kinder kommen.
+00:06 +166: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der gute Mann kommt. Die gute Frau kommt.
+00:06 +167: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Diese gute Datei kommt mit diesen guten Dateien.
+00:06 +168: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem neuen, guten Buch.
+00:06 +169: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein besseres Buch. Wir lesen die besseren Bücher.
+00:06 +170: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:06 +171: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:06 +172: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:06 +173: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +174: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +175: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +176: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +177: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +178: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +179: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +180: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +181: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +182: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +183: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +184: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +185: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +186: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +187: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +188: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +189: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +190: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:07 +191: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +192: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +193: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +194: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +195: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +196: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +197: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +198: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +199: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +200: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +201: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +202: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +203: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +204: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +205: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +206: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +207: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +208: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +209: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +210: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +211: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:08 +212: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +213: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +214: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +214: loading test/proofing/german_agreement_context_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 8,398,711 input bytes (5,236,472 characters source) to 1,465,458 characters JavaScript in 8.17 seconds
+
+00:09 +215: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +216: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +217: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +218: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +219: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +220: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +221: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +222: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +223: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +224: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:09 +225: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +226: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +227: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +228: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +229: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +230: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +231: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +232: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +233: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +234: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +235: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +236: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +237: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +238: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +239: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +240: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +241: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +242: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +243: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +244: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +245: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +246: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:10 +247: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +248: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +249: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +250: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +251: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +252: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +253: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +254: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +255: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +256: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +257: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +258: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +259: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +260: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +261: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +262: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +263: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +264: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +265: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +266: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:11 +267: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +268: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +269: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +270: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +271: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +272: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +273: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +274: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +275: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +276: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +277: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:12 +278: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Kann wir lesen?
+00:12 +279: test/proofing/german_suggestion_quality_test.dart: changed first letter plus an internal error is not prefix-gated
+00:12 +280: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich weiß, dass er gehst.
+00:12 +281: test/proofing/german_suggestion_quality_test.dart: ranking retains direct corrections before more distant alternatives
+00:12 +282: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wenn ich hilfst, komme ich.
+00:12 +283: test/proofing/german_suggestion_quality_test.dart: two-edit corrections preserve original ranges, emoji and source casing
+00:12 +284: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich weiß, dass er gehen.
+00:12 +285: test/proofing/german_suggestion_quality_test.dart: Swiss two-edit suggestions never reintroduce dictionary sharp-s
+00:12 +286: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er ist hier. Man hat Zeit. Er kommt später.
+00:12 +287: test/proofing/german_suggestion_quality_test.dart: mixed-case personal corrections preserve exact user spelling and locale
+00:12 +288: test/proofing/german_suggestion_quality_test.dart: mixed-case personal corrections preserve exact user spelling and locale
+00:12 +289: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Du hilfst ihr. Ich helfe ihr. Wir helfen ihr.
+00:12 +290: test/proofing/german_suggestion_quality_test.dart: ignored text never becomes a spelling correction candidate
+00:12 +291: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Du trägst das. Ich trage das. Wir tragen das.
+00:12 +292: test/proofing/german_suggestion_quality_test.dart: personal phrases and controls are not offered as single-word corrections
+00:12 +293: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er habe Zeit, sagte er.
+00:12 +294: test/proofing/german_suggestion_quality_test.dart: personal corrections also repair an explicit compound component
+00:12 +295: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er gehe nach Hause, sagte sie.
+00:12 +296: test/proofing/german_suggestion_quality_test.dart: bounded fallback obeys candidate and result caps and skips long tokens
+00:12 +297: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Man nehme das Buch und lese es.
+00:12 +298: test/proofing/german_suggestion_quality_test.dart: repeated prose uses stable suggestions while protected text stays intact
+00:12 +299: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er komme heute, sagte sie.
+00:12 +300: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er komme heute, sagte sie.
+00:12 +301: test/proofing/german_suggestion_quality_test.dart: disposal during suggestion work rejects partial findings
+00:13 +302: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er werde kommen, sagte sie.
+00:13 +303: test/proofing/german_suggestion_quality_test.dart: vocabulary changes during suggestion work reject partial findings
+00:13 +304: test/proofing/german_suggestion_quality_test.dart: vocabulary changes during suggestion work reject partial findings
+00:13 +305: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er bringe das Buch, sagte sie.
+00:13 +306: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er stehe dort und warte.
+00:13 +307: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Habe er Zeit, frage sie.
+00:13 +308: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gehe er nach Hause, sagte sie.
+00:13 +309: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Man sei vorsichtig. Er sei vorsichtig.
+00:13 +310: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Habe du Geduld!
+00:13 +311: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gehe du nach Hause!
+00:13 +312: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Lerne du zuerst!
+00:13 +313: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Warte du hier!
+00:13 +314: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Werde du glücklich!
+00:13 +315: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sei du ruhig!
+00:13 +316: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Nimm du das Buch!
+00:13 +317: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gib du das Buch!
+00:13 +318: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Bleib du hier!
+00:13 +319: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Gehen wir! Bleiben wir hier!
+00:13 +320: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Haben du und ich Zeit?
+00:13 +321: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Können er und ich kommen?
+00:13 +322: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sind du, ich und Peter hier?
+00:13 +323: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Haben du oder ich gewonnen?
+00:14 +324: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Kommen du sowie ich heute?
+00:14 +325: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich sagte Du und meinte Ich.
+00:14 +326: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wir haben du gesagt.
+00:14 +327: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Der Er ist ein Ausdruck. Das Man ist ein Begriff.
+00:14 +328: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Das Er haben wir gelesen. Das Man haben wir besprochen.
+00:14 +329: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sein wahres Ich hat Grenzen. Ein gutes Du ist wichtig.
+00:14 +330: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Die Macht ich im Text benenne.
+00:14 +331: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er Essen kocht, bleibt er.
+00:14 +332: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er Lesen lernt, bleibt er.
+00:15 +333: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er eine Frage hat, bleibt er.
+00:15 +334: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil du Frage und Antwort kennst, bleibst du.
+00:15 +335: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU FRAGE UND ANTWORT KENNST, BLEIBST DU.
+00:15 +336: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU GLAUBE HAST, BLEIBST DU.
+00:15 +337: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU SUCHE UND FRAGE KENNST, BLEIBST DU.
+00:15 +338: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched IHR MACHT Freude. Ihr macht Freude.
+00:15 +339: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ihr schreiben wir. Ihr helfen wir. Ihr tragen wir das nach.
+00:15 +340: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ihr hilft man. Ihr schreibt man.
+00:15 +341: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wie er haben wir Zeit. Anders als man haben wir Zeit.
+00:15 +342: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er und ich haben Zeit. Peter und er haben Zeit.
+00:15 +343: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Nicht nur sie, sondern auch er haben Zeit.
+00:15 +344: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er hätte Zeit. Er könnte kommen. Man müsste gehen.
+00:15 +345: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wie geht es dir? Was hat er gesagt? Warum haben wir Zeit?
+00:15 +346: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Kann ich gehen? Will er lesen? Muss man gehen?
+00:15 +347: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Muss er arbeiten? Kann ich helfen?
+00:15 +348: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Könnte ich gehen? Würde ich gehen? Möchte ich helfen?
+00:15 +349: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sollte ich warten? Dürfte ich kommen? Wollte ich bleiben?
+00:15 +350: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Könnten wir gehen? Würden wir helfen? Möchte er arbeiten?
+00:15 +351: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Auf Man leben viele Menschen.
+00:15 +352: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Für Man haben wir eine Datei.
+00:15 +353: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich weiß, dass er gehen kann.
+00:15 +354: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wenn ich helfen kann, komme ich.
+00:16 +355: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Du sagst, dass du kommen willst.
+00:16 +356: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich frage, ob er arbeiten wird.
+00:16 +357: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wir kommen, weil ich arbeiten muss.
+00:16 +358: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er sagt, dass wir helfen können.
+00:16 +359: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich bleibe, wenn ich lesen darf.
+00:16 +360: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er weiß, dass er gehen wird.
+00:16 +361: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass ich kommen sollte.
+00:16 +362: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass du bleiben könntest.
+00:16 +363: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er arbeiten möchte.
+00:16 +364: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich komme, weil ich helfen werde.
+00:16 +365: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich komme, weil ich arbeiten gehe.
+00:16 +366: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er helfen würde.
+00:16 +367: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass ich gehen müsse.
+00:16 +368: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er warten wolle.
+00:16 +369: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass er gehen dürfe.
+00:16 +370: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sie sagt, dass ich bleiben solle.
+00:16 +371: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er heißt Martin. Man heißt ihn willkommen.
+00:16 +372: test/proofing/german_agreement_context_test.dart: inverted findings retain original ranges through soft hyphens
+00:16 +373: test/proofing/german_agreement_context_test.dart: inverted grammar cannot be inferred from protected or joined tokens
+00:18 +374: loading test/proofing/proofing_locale_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 17,272,238 input bytes (14,109,999 characters source) to 3,626,574 characters JavaScript in 15.2 seconds
+
+00:19 +374: test/proofing/proofing_locale_test.dart: proofing aliases retain region and modern orthography
+00:19 +375: test/proofing/proofing_locale_test.dart: hyphenators use the same aliases without adding dialect promises
+00:19 +376: test/proofing/proofing_locale_test.dart: equivalent locale tags across styled runs retain word candidates
+00:19 +377: test/proofing/proofing_locale_test.dart: historical orthography, other scripts and invalid tags remain unsupported
+00:19 +378: test/proofing/proofing_locale_test.dart: vocabulary aliases share their region without losing snapshot terms
+00:19 +379: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:23 +379: loading test/proofing/german_spelling_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 10,293,178 input bytes (7,130,939 characters source) to 3,310,640 characters JavaScript in 9.85 seconds
+
+00:24 +379: loading test/proofing/proofing_text_ranges_test.dart
+Hint: When run on the command-line, the compiled output might require a preamble file located in:
+  <sdk>/lib/_internal/js_runtime/lib/preambles.
+Compiled 17,269,973 input bytes (14,107,734 characters source) to 1,179,388 characters JavaScript in 14.9 seconds
+
+00:24 +380: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:24 +381: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:24 +382: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:24 +383: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:24 +384: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:24 +385: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:26 +386: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:29 +387: test/proofing/german_spelling_test.dart: transposed letters receive a useful bounded suggestion
+00:29 +388: test/proofing/german_spelling_test.dart: offsets preserve emoji and decomposed source characters
+00:29 +389: test/proofing/german_spelling_test.dart: explicit soft hyphens do not split logical spelling tokens
+00:29 +390: test/proofing/german_spelling_test.dart: standalone soft hyphens and combining marks are not words
+00:29 +391: test/proofing/german_spelling_test.dart: ignored nonwords retain subsequent spelling source offsets
+00:29 +392: test/proofing/german_spelling_test.dart: joiner-adjacent spelling fragments do not fail the paragraph
+00:30 +393: test/proofing/german_spelling_test.dart: all-capitals sharp-s words are valid in German and Swiss forms
+00:30 +394: test/proofing/german_spelling_test.dart: obsolete source variants are excluded from modern spelling
+00:30 +395: test/proofing/german_spelling_test.dart: Swiss spellings are locale-scoped and sharp-s receives ss suggestion
+00:30 +396: test/proofing/german_spelling_test.dart: Austrian source forms and canonical locale tags are supported
+00:30 +397: test/proofing/german_spelling_test.dart: Swiss capital sharp-s offers the matching SS replacement
+00:30 +398: test/proofing/german_spelling_test.dart: unsupported languages and disposed backend are explicit
+00:30 +399: test/proofing/german_spelling_test.dart: noun casing remains meaningful; all-capitals remain accepted
+00:30 +400: test/proofing/german_spelling_test.dart: explicit compounds keep German noun case significant
+00:30 +401: test/proofing/german_spelling_test.dart: explicit compound suggestions preserve other nouns and hyphen styles
+00:30 +402: test/proofing/german_spelling_test.dart: explicit compound repair honors the ordinary candidate budget
+00:30 +403: test/proofing/german_spelling_test.dart: compound suggestions keep per-occurrence separators and Swiss forms
+00:30 +404: test/proofing/german_spelling_test.dart: known explicit compounds and URL/email tokens avoid spurious findings
+00:30 +405: test/proofing/german_spelling_test.dart: URL schemes and www prefixes are protected without case folding text
+00:30 +406: test/proofing/german_spelling_test.dart: matching backtick spans protect code without hiding following prose
+00:30 +407: test/proofing/german_spelling_test.dart: unmatched backtick delimiters do not suppress the remaining paragraph
+00:30 +408: test/proofing/german_spelling_test.dart: personal words and ignores stay owned, reversible and language-scoped
+00:30 +409: test/proofing/german_spelling_test.dart: vocabulary snapshots round-trip with revision notification
+00:30 +410: test/proofing/german_spelling_test.dart: vocabulary parser rejects corrupt or mismatched data
+00:30 +411: test/proofing/german_spelling_test.dart: suggestions and long unknown tokens remain bounded
+00:30 +412: test/proofing/german_spelling_test.dart: combined keyboard transliterations offer dictionary-backed words
+00:30 +413: test/proofing/german_spelling_test.dart: combined orthography respects Swiss spelling and source capitals
+00:30 +414: test/proofing/german_spelling_test.dart: orthographic suggestions share the configured search and result caps
+00:31 +415: test/proofing/german_spelling_test.dart: suggestion cache preserves sentence-initial adjective capitals
+00:31 +416: test/proofing/german_spelling_test.dart: personal words compose explicit compounds in their declared locale
+00:32 +417: test/proofing/german_spelling_test.dart: compound correction preserves personal components and source ranges
+00:32 +418: test/proofing/german_spelling_test.dart: ignored tokens do not turn into declared compound vocabulary
+00:32 +419: test/proofing/german_spelling_test.dart: a vocabulary edit invalidates an in-flight compound check
+00:32 +420: test/proofing/german_spelling_test.dart: identifier fragments are protected while separate prose is checked
+00:32 +421: test/proofing/german_spelling_test.dart: Unicode email and delimited URLs preserve following spelling checks
+00:32 +422: test/proofing/german_spelling_test.dart: vocabulary restore merges aliases and canonicalizes like live edits
+00:32 +423: test/proofing/german_spelling_test.dart: vocabulary restore rejects empty normalized words and empty languages
+00:32 +424: All tests passed!

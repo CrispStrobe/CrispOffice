@@ -1,0 +1,236 @@
+[
+  {
+    "text": "Sie spricht mit mich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich fahre ohne ihm.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er wartet auf dich und für mir.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir fahren mit den Auto.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie geht mit dem Frau.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er wartet für dem Mann.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir spielen mit den Kinder.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er arbeitet mit den Dokumente.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie schaut nach den Fehler.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ein gute Buch liegt hier.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Mit dem gute Buch ist alles klar.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Eine schön Frau kommt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube, das er kommt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du weißt, das wir kommen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er glaubt, das sie lernen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir hoffen dass er kommt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich glaube dass er kommt.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du weißt dass wir kommen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Der Zug ist schneller wie das Auto.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Sie ist genauso groß als ich.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Das Haus ist größer wie das Büro.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Die Datei ist ebenso wichtig als der Bericht.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er gehen nach Hause.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Man gehst nach Hause.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er könnt heute kommen.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Man sind hier.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Er haben Zeit.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ist du hier?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Hast wir Zeit?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Kommen du morgen?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Arbeitet ich hier?",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich wartet heute.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du wohnt hier.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich schreibst heute.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Wir trinkt Wasser.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du schläft lange.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich hilfst gern.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Ich heißen Lukas.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  },
+  {
+    "text": "Du weiß heute alles.",
+    "status": "success",
+    "message": null,
+    "findings": []
+  }
+]

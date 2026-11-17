@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "scope": "Component evidence inventory; excludes this self-referential inventory file. Not a replacement for final integration acceptance.",
+  "frozen_source_commit": "3a2ada5a04395fd2fa01c7878f4df9f1b9215558",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 10940,
+      "sha256": "cfb48a70aff1a95ba3661da00ab1b8b1ecea7384a59c74e9682042e917664c7b"
+    },
+    {
+      "path": "attempts/direct-node-entry-no-output.json",
+      "bytes": 655,
+      "sha256": "7288681d42d33ac614f66f3d86f5303a9a80c29f087e39ca31c107dc5ee13704"
+    },
+    {
+      "path": "benchmark-node-after.json",
+      "bytes": 6811,
+      "sha256": "f3e6f914774baa30eb9b7cbabf59c4342c9ca1f0a91d8d786199e1a9e66910cf"
+    },
+    {
+      "path": "benchmark-node-before.json",
+      "bytes": 6810,
+      "sha256": "9ce1527651e33adae6d4ae083e03fd7fddcd0a0e299ce08de7ac21174dc6516e"
+    },
+    {
+      "path": "benchmark-vm-after.json",
+      "bytes": 6847,
+      "sha256": "deab281c4032063c2657ea315f376280372fc249f68cc833f8ff8c1cf5c58938"
+    },
+    {
+      "path": "benchmark-vm-before.json",
+      "bytes": 6844,
+      "sha256": "a848ab03f6d41e6c0b4ddeb53a1172af9e2816e6c3ba59a5af3f9ca76897aec1"
+    },
+    {
+      "path": "benchmark.dart",
+      "bytes": 4099,
+      "sha256": "e694956129a51a636574138e370d822ce5389e5d2f6982d5a715b9ee239cb5b2"
+    },
+    {
+      "path": "compiled-snapshots.json",
+      "bytes": 1571,
+      "sha256": "d2bfbbf5f2c63def4e506dbb453d8e2753317c153a50e491886f802dd34f3dbd"
+    },
+    {
+      "path": "logs/analyze-final.log.gz",
+      "bytes": 107,
+      "sha256": "762358f9b868bc08120138879e273bd0e76efa8ae02fb75e534271e425a40556",
+      "uncompressed_bytes": 110,
+      "uncompressed_sha256": "2552fb47a5fe9cf8907b0b14aba59ceaae0f8b4e68a5266ea670ddde4c7562ff"
+    },
+    {
+      "path": "logs/analyze.log.gz",
+      "bytes": 146,
+      "sha256": "72eca686320838e53c97a62e83aae261774e26824e5670743c804c924ff7aef6",
+      "uncompressed_bytes": 213,
+      "uncompressed_sha256": "7aa66319c9a9489b0244ced3f70005f0198ada3cee6cc0b2f1cea9f453e571f3"
+    },
+    {
+      "path": "logs/benchmark-after-compile.log.gz",
+      "bytes": 120,
+      "sha256": "9bee3a26f437776f555c93fe4bedb15bb9380c3e4d6cdd53e8013beaafe91c78",
+      "uncompressed_bytes": 113,
+      "uncompressed_sha256": "e3c62323220c38e46e9e0c8980f33b6651f9f74a55901ff8ead3f14390b16965"
+    },
+    {
+      "path": "logs/benchmark-compile.log.gz",
+      "bytes": 120,
+      "sha256": "8b163b9d8125c9cca904d4c11adbddde5844e5d6da602ef454beb2872c880581",
+      "uncompressed_bytes": 113,
+      "uncompressed_sha256": "3a45792656515b001834380ba4183689d5e626036e67482d497dfe3f9872581f"
+    },
+    {
+      "path": "logs/final-node.log.gz",
+      "bytes": 1493,
+      "sha256": "8d14e7a5afbbadf656875e5b786593f83c354e37c106af1aee4388c00c23064d",
+      "uncompressed_bytes": 15534,
+      "uncompressed_sha256": "d27c57860f4087caeddd4330618152eb3d4e2ed530d2a27af2b47b99143f06fa"
+    },
+    {
+      "path": "logs/final-vm.log.gz",
+      "bytes": 471,
+      "sha256": "84aed9ceb61d0949efc5a8fe8fdadaafdef026f5978fcc79edd49d40448122fe",
+      "uncompressed_bytes": 10286,
+      "uncompressed_sha256": "061059a98a54a2089b425df9f852f937e3364d4a50db1eed65e17b0bfbf6f34c"
+    },
+    {
+      "path": "logs/harper-provider-vm.log.gz",
+      "bytes": 452,
+      "sha256": "a4eefff8632701195700b038a88291fcd104e4187fc5eaf0c2156d6b5ff7d075",
+      "uncompressed_bytes": 808,
+      "uncompressed_sha256": "8c0d7ea75ef90003a85fde3e05725600c045cf771eb68f9a5f3ec6b29dd2a12e"
+    },
+    {
+      "path": "logs/quality-final-node.log.gz",
+      "bytes": 766,
+      "sha256": "dc2f278f3640e3dc334dcd36ed3882da1e10ab6e614e41a9dc9cf9b3a376c843",
+      "uncompressed_bytes": 1449,
+      "uncompressed_sha256": "85ffabf84183208ecf8e577eb94b248fedd0ddadd0abae7a4ba56d15c600f542"
+    },
+    {
+      "path": "logs/quality-final-vm.log.gz",
+      "bytes": 602,
+      "sha256": "ccc06677f579f8a1a31638621b35257d3519d215707e599caa4d1a074a95d627",
+      "uncompressed_bytes": 1188,
+      "uncompressed_sha256": "69afd900f96449e4b5e00e76a9db84eeb8a28eeea0b71a6f1748e48a64388ad6"
+    },
+    {
+      "path": "logs/targeted-node.log.gz",
+      "bytes": 1696,
+      "sha256": "99ad973bf8eb89e0d30596d827dc66b357bb4d9010c479451cfd541750de06a8",
+      "uncompressed_bytes": 14913,
+      "uncompressed_sha256": "cf9bf848009c7a08fd8ae5d722424767d364fbdfb43c89e068ab55d804fdb470"
+    },
+    {
+      "path": "logs/targeted-vm.log.gz",
+      "bytes": 1551,
+      "sha256": "d897643ab1c684faf2b73f6424b1ded177c705ceca2c272ed737c4ceb88bd27f",
+      "uncompressed_bytes": 11453,
+      "uncompressed_sha256": "69d7ee436117b444e32691865ee1b64c8990f601a4b2aee1d1278fcb59182421"
+    },
+    {
+      "path": "review/README.md",
+      "bytes": 3335,
+      "sha256": "5de8686f6dba96d52c3045f8b3566ff84f50a99acd751f088649fd4c29624d17"
+    },
+    {
+      "path": "review/exploratory-spelling-probe.dart",
+      "bytes": 1040,
+      "sha256": "7dc75fed2c521db8ca723702338ed93999b64fb6e56d3d86c2b16a6771c11fbf"
+    },
+    {
+      "path": "review/grammar-review-final.jsonl",
+      "bytes": 1249,
+      "sha256": "2f7549b7d15b7bf8330312fa9a9b9daec1e08be4507923f512c4a7b8dd20c5ac"
+    },
+    {
+      "path": "review/grammar-review-fixed.jsonl",
+      "bytes": 1319,
+      "sha256": "a7a8408fccb2f6fdcfd56086be276bbe7c70b52c3d2cfc05dd887cb4d175ab23"
+    },
+    {
+      "path": "review/grammar-review.dart",
+      "bytes": 1170,
+      "sha256": "e05150a861462fe1f3942d3c70b0973e10e851c5471bb949910c0ab5f679b60b"
+    },
+    {
+      "path": "review/grammar-review.jsonl",
+      "bytes": 1720,
+      "sha256": "437bcf375c9375ddf0e26f813b444b8fd8bff05b479a38615c5da4167e617006"
+    },
+    {
+      "path": "runtime-versions.log",
+      "bytes": 91,
+      "sha256": "f178b12c263ea5407ca8a6f189fc4eb4e1e7c39f32ae7375151b71a3dbb6662c"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 2542,
+      "sha256": "f6590e2fc3c58b0b6dc43bfd93ae75ddf8c62e50364a3ece12b37db30e6dc1d9"
+    }
+  ]
+}

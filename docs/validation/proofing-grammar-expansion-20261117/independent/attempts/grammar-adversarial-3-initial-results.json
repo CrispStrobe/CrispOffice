@@ -1,0 +1,112 @@
+[
+  {
+    "text": "Von diesem Tage an blieb er zuhause.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "diesem",
+        "start": 4,
+        "end": 10,
+        "replacements": [
+          "diesen"
+        ]
+      },
+      {
+        "rule": "de.grammar.dative-plural",
+        "text": "Tage",
+        "start": 11,
+        "end": 15,
+        "replacements": [
+          "Tagen"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Nach dem Jahre 1990 änderte sich vieles.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "dem",
+        "start": 5,
+        "end": 8,
+        "replacements": [
+          "den"
+        ]
+      },
+      {
+        "rule": "de.grammar.dative-plural",
+        "text": "Jahre",
+        "start": 9,
+        "end": 14,
+        "replacements": [
+          "Jahren"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Aus dem Texte geht es hervor.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "dem",
+        "start": 4,
+        "end": 7,
+        "replacements": [
+          "den"
+        ]
+      },
+      {
+        "rule": "de.grammar.dative-plural",
+        "text": "Texte",
+        "start": 8,
+        "end": 13,
+        "replacements": [
+          "Texten"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Mit dem Tage beginnt ein neues Leben.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "dem",
+        "start": 4,
+        "end": 7,
+        "replacements": [
+          "den"
+        ]
+      },
+      {
+        "rule": "de.grammar.dative-plural",
+        "text": "Tage",
+        "start": 8,
+        "end": 12,
+        "replacements": [
+          "Tagen"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ohne mir angesichts der mehrfachen Schwierigkeiten und der vielen unvorhersehbaren technischen Hindernisse in diesem besonders anspruchsvollen und langwierigen Projekt aus früheren Jahren helfen zu können, geht sie.",
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "mir",
+        "start": 5,
+        "end": 8,
+        "replacements": [
+          "mich"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Um dem Kind nach diesem sehr langen und anstrengenden Tag voller ungewöhnlicher und überraschender Ereignisse im kleinen Haus am Rande der Stadt schließlich doch noch zu helfen, bleibt sie.",
+    "findings": []
+  }
+]

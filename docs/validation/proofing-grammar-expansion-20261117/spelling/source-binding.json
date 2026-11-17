@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "frozen_source_commit": "3a2ada5a04395fd2fa01c7878f4df9f1b9215558",
+  "scope": "Confirms these delivered source and test files match the frozen commit at evidence packaging time. Earlier development logs and benchmarks are not retroactively bound to this commit.",
+  "files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "sha256": "feccdacba30cf1d12b5ab5ee796b9c5aa747699241b8524e6f9e640f3646678f",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "sha256": "64c38adeebc59e1b0a0145433db08ce5a12206bdfb849c573f925f016178890d",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart",
+      "sha256": "3255a47de0b6b1d72bda5d2d22c6189509ce8d2ccf379b7ec775b04c3ca43cf6",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/bidi/german_hyphenator.dart",
+      "sha256": "a1b64b3afe443e80489192c5ba0aa47a748ffa07a272ca34878992fd7cf349e0",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+      "sha256": "a99e291868668d7f3181bea7f19272839f47cd8357a4b5433068ba7ee0a56ef5",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/proofing_locale_test.dart",
+      "sha256": "188b017807d4ad28af3b872a062faa07e333e816002610a7913fd139531e676c",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_proofing_harper/test/harper_provider_test.dart",
+      "sha256": "81a837d2a052240802f4f862b51dfd56223c0e7a7898b65ca716ae0e820c8458",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "sha256": "aac167c18943c338eaf657abf2654de51837e792b7de99f705aa359a600bc9bb",
+      "matches_frozen_commit": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+      "sha256": "1dd1165f9145af9a02dae29c6dbe98025c52be97df1f48b8c3368ef07b199dc1",
+      "matches_frozen_commit": true
+    }
+  ],
+  "historical_benchmark_binding": "Hashes and provenance for the original generated JavaScript are in compiled-snapshots.json; generated bundles are not included. The after timing probe preceded only the final personal phrase/length guard and contains no personal vocabulary."
+}

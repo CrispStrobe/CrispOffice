@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "positive_sentences": 39,
+  "negative_sentences": 213,
+  "positive_variants": 195,
+  "correction_rechecks": 117,
+  "requests": 525,
+  "failures": [],
+  "scope": "First-party independent behavioral cases; variants and rechecks are not separate language examples."
+}

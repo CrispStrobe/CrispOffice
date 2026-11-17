@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "official_flutter_release": {
+    "hash": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "channel": "stable",
+    "version": "3.47.8",
+    "dart_sdk_version": "3.13.7",
+    "dart_sdk_arch": "x64",
+    "release_date": "2026-10-23T19:02:25.384067Z",
+    "archive": "stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+  },
+  "flutter_archive_sha256_verified": true,
+  "actual_flutter": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter"
+  },
+  "rustup_init_sha256": "b1c8cb14e30889e7e2999e6b69e62d9e9b9ffc0f4df8180564d306d9680e6c55",
+  "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)\nbinary: rustc\ncommit-hash: 0ef1bc386059596dada8fb65b50425aab2ea637a\ncommit-date: 2026-11-09\nhost: x86_64-unknown-linux-gnu\nrelease: 1.100.0\nLLVM version: 23.1.5",
+  "rust_targets": [
+    "wasm32-unknown-unknown",
+    "x86_64-unknown-linux-gnu"
+  ],
+  "wasm_bindgen": "wasm-bindgen 0.2.130",
+  "wasm_bindgen_archive_sha256": "9687f3bb551b9f66f37ed32a40d7913a00f7962db653054e56857bc306c3227f",
+  "node": "v24.22.1",
+  "pub_cache_receipt_sha256": "65187db6f6a662b5874bc015fa7703d17e5b47d7e078934d7f650e77f63d06ce",
+  "pub_archives_verified": 162,
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_lock_matches_preserved_copy": true,
+  "workspace_package_config_sha256": "ca3698df70fe328cfeea7941d06f40d84fcef9436e7205bb51badf2d7e28038f",
+  "activation_script": "/workspace/scratch/d0298adcd22a/validation_license/activate.sh",
+  "logs": {
+    "flutter-tools-pub-get.log": "12380084965a2858f3108eb851175f94479668511a58ecfb21c55ac3afdbcc5e",
+    "workspace-pub-get.log": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+    "rust-setup.log": "cd3e5cb87dd19d4190b2d3d54357ac3277606b06a8b2cb98ae4eb5b858638d37"
+  },
+  "environment": {
+    "PUB_CACHE": "/workspace/scratch/d0298adcd22a/validation_license/cache/pub",
+    "CARGO_HOME": "/workspace/scratch/d0298adcd22a/validation_license/cache/cargo",
+    "RUSTUP_HOME": "/workspace/scratch/d0298adcd22a/validation_license/toolchains/rustup",
+    "XDG_CONFIG_HOME": "/workspace/scratch/d0298adcd22a/validation_license/cache/config",
+    "XDG_CACHE_HOME": "/workspace/scratch/d0298adcd22a/validation_license/cache/xdg",
+    "TMPDIR": "/workspace/scratch/d0298adcd22a/validation_license/cache/tmp"
+  },
+  "notes": [
+    "Initial offline SDK pub resolution rejected hashes with trailing newlines; exact 64-character files restored, original failure retained in flutter-tools-pub-get-first-attempt.log.",
+    "No dependency constraints or source files modified for setup.",
+    "No GitHub Actions queried, triggered, rerun or waited on."
+  ],
+  "flutter_tools_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "flutter_tools_lock_matches_prior": true
+}

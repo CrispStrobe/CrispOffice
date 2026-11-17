@@ -1,0 +1,626 @@
+[
+  {
+    "text": "Sie spricht mit mich.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "mich",
+        "start": 16,
+        "end": 20,
+        "replacements": [
+          "mir"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich fahre ohne ihm.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "ihm",
+        "start": 15,
+        "end": 18,
+        "replacements": [
+          "ihn"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er wartet auf dich und für mir.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-pronoun",
+        "text": "mir",
+        "start": 27,
+        "end": 30,
+        "replacements": [
+          "mich"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Wir fahren mit den Auto.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "den",
+        "start": 15,
+        "end": 18,
+        "replacements": [
+          "dem"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Sie geht mit dem Frau.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "dem",
+        "start": 13,
+        "end": 16,
+        "replacements": [
+          "der"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er wartet für dem Mann.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.preposition-case",
+        "text": "dem",
+        "start": 14,
+        "end": 17,
+        "replacements": [
+          "den"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Wir spielen mit den Kinder.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.dative-plural",
+        "text": "Kinder",
+        "start": 20,
+        "end": 26,
+        "replacements": [
+          "Kindern"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er arbeitet mit den Dokumente.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.dative-plural",
+        "text": "Dokumente",
+        "start": 20,
+        "end": 29,
+        "replacements": [
+          "Dokumenten"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Sie schaut nach den Fehler.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.dative-plural",
+        "text": "Fehler",
+        "start": 20,
+        "end": 26,
+        "replacements": [
+          "Fehlern"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ein gute Buch liegt hier.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "gute",
+        "start": 4,
+        "end": 8,
+        "replacements": [
+          "gutes"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Mit dem gute Buch ist alles klar.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "gute",
+        "start": 8,
+        "end": 12,
+        "replacements": [
+          "guten"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Eine schön Frau kommt.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "schön",
+        "start": 5,
+        "end": 10,
+        "replacements": [
+          "schöne"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich glaube, das er kommt.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.das-dass",
+        "text": "das",
+        "start": 12,
+        "end": 15,
+        "replacements": [
+          "dass"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Du weißt, das wir kommen.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.das-dass",
+        "text": "das",
+        "start": 10,
+        "end": 13,
+        "replacements": [
+          "dass"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er glaubt, das sie lernen.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.das-dass",
+        "text": "das",
+        "start": 11,
+        "end": 14,
+        "replacements": [
+          "dass"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Wir hoffen dass er kommt.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.subordinate-comma",
+        "text": "",
+        "start": 10,
+        "end": 10,
+        "replacements": [
+          ","
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich glaube dass er kommt.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.subordinate-comma",
+        "text": "",
+        "start": 10,
+        "end": 10,
+        "replacements": [
+          ","
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Du weißt dass wir kommen.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.subordinate-comma",
+        "text": "",
+        "start": 8,
+        "end": 8,
+        "replacements": [
+          ","
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Der Zug ist schneller wie das Auto.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 22,
+        "end": 25,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Sie ist genauso groß als ich.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "als",
+        "start": 21,
+        "end": 24,
+        "replacements": [
+          "wie"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Das Haus ist größer wie das Büro.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 20,
+        "end": 23,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Die Datei ist ebenso wichtig als der Bericht.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "als",
+        "start": 29,
+        "end": 32,
+        "replacements": [
+          "wie"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er gehen nach Hause.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "gehen",
+        "start": 3,
+        "end": 8,
+        "replacements": [
+          "geht"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Man gehst nach Hause.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "gehst",
+        "start": 4,
+        "end": 9,
+        "replacements": [
+          "geht"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er könnt heute kommen.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "könnt",
+        "start": 3,
+        "end": 8,
+        "replacements": [
+          "kann"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Man sind hier.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "sind",
+        "start": 4,
+        "end": 8,
+        "replacements": [
+          "ist"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er haben Zeit.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "haben",
+        "start": 3,
+        "end": 8,
+        "replacements": [
+          "hat"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ist du hier?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "Ist",
+        "start": 0,
+        "end": 3,
+        "replacements": [
+          "Bist"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Hast wir Zeit?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "Hast",
+        "start": 0,
+        "end": 4,
+        "replacements": [
+          "Haben"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Kommen du morgen?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "Kommen",
+        "start": 0,
+        "end": 6,
+        "replacements": [
+          "Kommst"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Arbeitet ich hier?",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "Arbeitet",
+        "start": 0,
+        "end": 8,
+        "replacements": [
+          "Arbeite"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich wartet heute.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "wartet",
+        "start": 4,
+        "end": 10,
+        "replacements": [
+          "warte"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Du wohnt hier.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "wohnt",
+        "start": 3,
+        "end": 8,
+        "replacements": [
+          "wohnst"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich schreibst heute.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "schreibst",
+        "start": 4,
+        "end": 13,
+        "replacements": [
+          "schreibe"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Wir trinkt Wasser.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "trinkt",
+        "start": 4,
+        "end": 10,
+        "replacements": [
+          "trinken"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Du schläft lange.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "schläft",
+        "start": 3,
+        "end": 10,
+        "replacements": [
+          "schläfst"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich hilfst gern.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "hilfst",
+        "start": 4,
+        "end": 10,
+        "replacements": [
+          "helfe"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich heißen Lukas.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "heißen",
+        "start": 4,
+        "end": 10,
+        "replacements": [
+          "heiße"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Du weiß heute alles.",
+    "status": "success",
+    "message": null,
+    "findings": [
+      {
+        "rule": "de.grammar.pronoun-verb",
+        "text": "weiß",
+        "start": 3,
+        "end": 7,
+        "replacements": [
+          "weißt"
+        ]
+      }
+    ]
+  }
+]

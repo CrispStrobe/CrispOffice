@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "positive_sentences": 39,
+  "negative_sentences": 203,
+  "positive_variants": 195,
+  "correction_rechecks": 114,
+  "requests": 512,
+  "failures": [
+    {
+      "stage": "base",
+      "text": "Ich helfst gern.",
+      "detail": {
+        "expectedRule": "de.grammar.pronoun-verb",
+        "actualRules": []
+      }
+    },
+    {
+      "stage": "offset",
+      "text": "🙂 Ich helfst gern.",
+      "detail": {
+        "expectedRule": "de.grammar.pronoun-verb",
+        "actualRules": []
+      }
+    },
+    {
+      "stage": "soft-hyphen",
+      "text": "🙂 Ich h­elfst gern.",
+      "detail": {
+        "expectedRule": "de.grammar.pronoun-verb",
+        "actualRules": []
+      }
+    }
+  ],
+  "scope": "First-party independent behavioral cases; variants and rechecks are not separate language examples."
+}
+Unhandled exception:
+Bad state: Independent grammar review failed
+#0      main (file:///workspace/scratch/d0298adcd22a/validation_license/grammar_review_suite.dart:80:28)
+<asynchronous suspension>
