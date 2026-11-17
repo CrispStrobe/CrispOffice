@@ -196,6 +196,34 @@ void main() {
     );
   }
 
+  test(
+    'invalid colors cannot corrupt XML when their style is emitted first',
+    () {
+      for (final color in ['bad"color', '12<456', '123456\n']) {
+        final content = _export(
+          WmlDocument(
+            sections: [
+              WmlSection(
+                blocks: [
+                  _paragraph('invalid first', fill: color, border: color),
+                  _paragraph('valid next', fill: 'ABCDEF', border: '123456'),
+                ],
+              ),
+            ],
+          ),
+        ).content;
+        final paragraphs = _body(content).childElements.toList();
+        _expectDecoration(content, paragraphs.first);
+        _expectDecoration(
+          content,
+          paragraphs.last,
+          fill: '#abcdef',
+          border: '0.5pt solid #123456',
+        );
+      }
+    },
+  );
+
   test('header and footer paragraph decorations retain their own styles', () {
     final result = _export(
       WmlDocument(

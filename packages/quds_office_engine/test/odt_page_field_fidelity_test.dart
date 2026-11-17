@@ -31,8 +31,9 @@ XmlElement _body(XmlElement root) => root
 String _visible(XmlNode node) {
   if (node is XmlText) return node.text;
   if (node is! XmlElement) return '';
-  if (node.namespaceUri == _officeNs && node.localName == 'annotation')
+  if (node.namespaceUri == _officeNs && node.localName == 'annotation') {
     return '';
+  }
   if (node.namespaceUri == _textNs) {
     if (node.localName == 'page-number') return '{PAGE}';
     if (node.localName == 's') {
@@ -74,6 +75,7 @@ void main() {
             fontSizeHalfPoints: 30,
           );
           final paragraph = _page(cache, runProperties: props);
+          final originalRun = paragraph.inlines.single;
           final result = _export(
             WmlDocument(
               sections: [
@@ -116,10 +118,7 @@ void main() {
             '15.0pt',
           );
           expect(paragraph.text, cache);
-          expect(
-            identical(paragraph.inlines.single, paragraph.inlines.first),
-            isTrue,
-          );
+          expect(identical(paragraph.inlines.single, originalRun), isTrue);
           expect(
             identical((paragraph.inlines.single as WmlRun).properties, props),
             isTrue,
@@ -144,6 +143,34 @@ void main() {
     expect(_visible(_body(content)), '{PAGE}');
     expect(paragraph.inlines, isEmpty);
   });
+
+  test(
+    'an empty bookmarked PAGE paragraph keeps the field inside its range',
+    () {
+      final paragraph = WmlParagraph(
+        properties: WmlParagraphProps(pageNumberField: true),
+        inlines: [
+          WmlBookmarkBoundary(id: '2', isStart: true, name: 'EmptyPage'),
+          WmlBookmarkBoundary(id: '2', isStart: false, name: 'EmptyPage'),
+        ],
+      );
+      final content = _export(
+        WmlDocument(
+          sections: [
+            WmlSection(blocks: [paragraph]),
+          ],
+        ),
+      ).content;
+      expect(
+        _body(
+          content,
+        ).childElements.single.childElements.map((e) => e.localName),
+        ['bookmark-start', 'page-number', 'bookmark-end'],
+      );
+      expect(_visible(_body(content)), '{PAGE}');
+      expect(paragraph.inlines.whereType<WmlRun>(), isEmpty);
+    },
+  );
 
   test('split cached number and title retain the suffix run formatting', () {
     final first = WmlRun(text: '1', properties: WmlRunProps(bold: true));

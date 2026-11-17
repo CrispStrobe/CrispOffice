@@ -30,5 +30,13 @@
     "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
     "incoming_head": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
     "decision": "The two conflict hunks relocate one identical hyperlink assertion around unchanged transition assertions. Keep the assertion at the current formatted position once; preserve all nonconflicting content."
+  },
+  "duplicate_empty_document_contract": {
+    "path": "packages/quds_office_engine/test/odt_section_continuation_test.dart",
+    "test": "an explicitly empty document has default master geometry without mutation",
+    "observed_failure": "The preserved duplicate suite called .single on an empty body after the captured morphology empty-document guard; 173 other cases in the focused cohort passed.",
+    "decision": "Assert an empty body for WmlDocument(sections: []), matching the incoming guard and odt_section_fidelity_test. Preserve all existing default master count/name, page-layout binding, exact page width/height and unchanged-model assertions. The separate empty noncontinuous-section boundary test remains unchanged.",
+    "production_changed_to_address_this_duplicate_assertion": false,
+    "failed_log": "writer-fixes/final-vm.jsonl (archived with development evidence)"
   }
 }

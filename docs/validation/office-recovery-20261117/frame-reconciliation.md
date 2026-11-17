@@ -19,8 +19,12 @@ Historical evidence and the original source fixtures remain in their commits.
   explicit `text:s`/tab whitespace and image-only paragraph anchors remain.
 - Annotation, note, covered-cell and ruby annotation stories stay hidden.
   `text:soft-page-break` and image metadata cannot expose nested frames.
-  Namespace identity is required. The cumulative UTF-8 budget and paragraph
-  separator charges remain enforced before expanded whitespace allocation.
+  Frame and inline-story traversal require namespace identity. The inherited
+  top-level streaming table dispatcher is outside that namespace claim.
+  The cumulative UTF-8 budget is checked before expanded whitespace allocation.
+  Search and `readOdfText` also charge paragraph separators. Generic structured
+  extraction charges decoded content and cell separators; later `plainString`
+  wrappers and block separators remain outside its budget.
 
 The empty-anchor rule follows the already qualified fidelity contract. An empty
 text box has no visible text paragraph of its own, so introducing an extra blank
