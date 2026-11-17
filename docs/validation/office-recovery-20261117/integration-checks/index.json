@@ -1,0 +1,41 @@
+{
+  "purpose": "Development checks during semantic merge; fresh frozen-source qualification follows.",
+  "files": [
+    {
+      "source_name": "analyze-final.log",
+      "archive": "analyze-final.log.gz",
+      "size": 57560,
+      "sha256": "7b421448f4bfa67360e95a12783a86f07ab95ad1867db9c83fd7f01487e7649e"
+    },
+    {
+      "source_name": "analyze-packages.log",
+      "archive": "analyze-packages.log.gz",
+      "size": 164,
+      "sha256": "c76254ac566786f2aa9efb94f3e97b2e3e2bd37efb2120fa8b87f239b5f88cdf"
+    },
+    {
+      "source_name": "focused-final.jsonl",
+      "archive": "focused-final.jsonl.gz",
+      "size": 48237,
+      "sha256": "dd7bce9fc8d611fdaa29ee15ce08ad1e1a88c118d855d447a72a094660bd1490"
+    },
+    {
+      "source_name": "focused-final.stderr",
+      "archive": "focused-final.stderr.gz",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_name": "focused-initial.jsonl",
+      "archive": "focused-initial.jsonl.gz",
+      "size": 13322,
+      "sha256": "26b0bd6385840610d51e8121161341592068f23868abc681ff071e7b4ea8c1d0"
+    },
+    {
+      "source_name": "focused-initial.stderr",
+      "archive": "focused-initial.stderr.gz",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

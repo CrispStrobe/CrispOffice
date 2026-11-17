@@ -1,0 +1,34 @@
+{
+  "observed_at": "2026-11-17T16:06:19.744604+00:00",
+  "main": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+  "shading_heads": [
+    {
+      "source": "feature",
+      "head": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "whole_tree_equals_main": true,
+      "differing_paths": [],
+      "decision": "Preserve current German quality reports and tooling README. Bring original shading history through a regular three-way merge. No production or test path differs from captured main."
+    },
+    {
+      "source": "vendor",
+      "head": "22ce45e70591a6be561a5abee1807455e3df52be",
+      "whole_tree_equals_main": false,
+      "differing_paths": [
+        "docs/validation/german-options-20261117/README.md",
+        "docs/validation/german-options-20261117/evidence-index.json",
+        "docs/validation/german-options-20261117/evidence.tar.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/build.json.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/frozen.json.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/prospective.json.gz",
+        "docs/validation/german-proofing-next-20261117/baseline/summary.json",
+        "tools/proofing/german_model/README.md"
+      ],
+      "decision": "Preserve current German quality reports and tooling README. Bring original shading history through a regular three-way merge. No production or test path differs from captured main."
+    }
+  ],
+  "odp_conflict": {
+    "path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+    "incoming_head": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+    "decision": "The two conflict hunks relocate one identical hyperlink assertion around unchanged transition assertions. Keep the assertion at the current formatted position once; preserve all nonconflicting content."
+  }
+}

@@ -178,3 +178,59 @@ The two `pre-frame-fix-*-build.json` receipts describe successful builds with
 stable source, dependency and SDK seals. Neither resulting binary was used for
 inference. Native measurements will rebuild the corrected source into fresh
 paths; these successful earlier builds do not qualify the later fix.
+
+## Frame extraction integration repair
+
+The shared ODF decoder now discovers each owned text box once and retains frame
+paragraphs separately from the enclosing paragraph's own inline text. The
+extractor preserves frame-contained tables as tables; frames within a consumed
+cell remain part of that cell's text. Empty frame anchors disappear only when
+visible paragraph blocks replace them. Ordinary blank and explicit-whitespace
+paragraphs remain, and annotation/note/covered-cell/ruby annotation stories stay
+excluded. Bounded search uses the same cumulative UTF-8 budget and now excludes
+note-only stories in its fallback as well.
+
+The original failing whitespace assertion and the ODT writer are unchanged.
+Nine new cases cover the newly exercised traversal, table, hidden-story and
+budget paths. The focused 51 tests and all 259 ODT/ODF tests pass; strict analysis
+is clean. A separate read-only review found no remaining correctness defect.
+`odf-frame-resolution.json` records the commands, source and log hashes and
+review. Initial failure evidence remains available above.
+
+`resolved-inputs.json` indexes byte-exact compressed copies of the resolved
+lockfile and package configuration used here. Restore the lock to reproduce
+package choices, but regenerate the configuration on another host because its
+paths describe this workspace. SDK and every resolved package library are
+additionally sealed by the AOT build receipts.
+
+## Final integrated source and local regressions
+
+Implementation source: `d092d50a844b5cfcc31bb6c39220704b4ff11cf5`.
+All nine final suites have identical before/after maps for 1,312 tracked inputs
+and resolved package configuration, with this same start/end commit. The
+retained summary and compressed receipts/logs cover:
+
+| Cohort | Passed |
+| --- | ---: |
+| GECToR package, including the pinned real native fixture | 194 |
+| Deterministic German grammar | 268 |
+| Shared deterministic/manual report merge | 20 |
+| Editor proofing and manual/F7 | 97 |
+| ODT/ODF including frame extraction | 259 |
+| ODP hyperlinks, transforms and transitions | 35 |
+| Python build, pack and strict comparison tooling | 51 |
+| Total distinct tests | 924 |
+
+There are no skipped tests in the six final Dart/Flutter cohorts. Three strict
+analysis suites also pass. The 51 Python tests were executed at `8801031a`;
+`tooling-source-recheck.json` verifies that every recorded tooling, corpus and
+baseline input remains byte-identical at the final implementation. They are not
+claimed as a second test execution. The original summary names raw files in its
+run directory; saved copies here use the `final-` prefix and gzip compression.
+
+`provider-build.json` and `incremental-quality-build.json` are fresh successful
+AOT builds after the frame repair. They seal 63 and 68 selected source files,
+respectively, plus all 109 resolved package libraries and the SDK. Runtime
+receipts below must match their source maps and compiled/runtime pins; a build
+alone is not an inference result. `pack-verification.json` verifies all 23 files
+and the unchanged 86,356,331-byte development pack.
