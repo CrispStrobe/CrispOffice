@@ -1,0 +1,87 @@
+{
+  "schema": "quds.spacy.w6.provider_synthetic_controls.v1",
+  "created_utc": "2026-11-17T22:18:31.872766+00:00",
+  "status": "passed",
+  "base_commit": "8eb3c03aaaeb6c676f44195e89deaef1535d541e",
+  "scope": "Controlled synthetic transport and actual Dart planner/provider lifecycle tests. No native inference or linguistic evaluation.",
+  "commands": [
+    {
+      "command": "flutter test --no-pub packages/quds_proofing_spacy/test/grammar_provider_test.dart --reporter expanded",
+      "exit_code": 0,
+      "passed": 16,
+      "failed": 0,
+      "log": "tests.log"
+    },
+    {
+      "command": "dart analyze packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+      "exit_code": 0,
+      "issues": 0,
+      "log": "analysis.log"
+    }
+  ],
+  "source_hash_timing": "After the final focused run; full before/after candidate qualification is recorded separately by the root runner.",
+  "source_and_test_files": [
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+      "sha256": "ce9d55318ac35befa9d16688b0c1c8abc27fd5b8d66a90646598e1f07af03915",
+      "bytes": 21128
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_provider.dart",
+      "sha256": "892f2a06a7964834dd9c4752f7250ca25da72b5c6fb698b5f266bcb5542eddc3",
+      "bytes": 6885
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+      "sha256": "898ff9f67a4acc20e825968f422c9fd1ae1def654ce63ef2942ba0e0cf317314",
+      "bytes": 20136
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy_grammar.dart",
+      "sha256": "7fda24553f7af314f7e0d3af862c1460c73c0cd8726b4b86021da1044238fa9d",
+      "bytes": 273
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart",
+      "sha256": "4370c5c7d848e123f4059765e19e3c8e284480fe66203e17f2b9d9cc2e9d02b1",
+      "bytes": 8104
+    }
+  ],
+  "logs": [
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/provider-controls/first-tests.log",
+      "sha256": "9224cab5b3f27ce93dc1c2ec868122dd802a8603c4d73861513accf20ab5d2fe",
+      "bytes": 1326
+    },
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/provider-controls/tests.log",
+      "sha256": "9224cab5b3f27ce93dc1c2ec868122dd802a8603c4d73861513accf20ab5d2fe",
+      "bytes": 1326
+    },
+    {
+      "path": "docs/validation/native-spacy-w6-20261117/provider-controls/analysis.log",
+      "sha256": "56476d396c27b8ac20175f3c26ea0dcc75eaee96c03fc92d7935a49b6c6e8a35",
+      "bytes": 57
+    }
+  ],
+  "controls": [
+    "default disabled check and disabled load; zero analysis calls/backend opens",
+    "unsupported locales and both stable ignore IDs; zero inference",
+    "exact source identity, nonzero origin and retained request object",
+    "personal and ignored vocabulary captured before inference",
+    "vocabulary changes during inference and the real asynchronous lexical planner",
+    "document, block, revision, text, origin, generation, configuration and locale reply ownership",
+    "reply/transport runtime agreement and exact grammar-qualified native identity",
+    "overlapping requests and obsolete cancel(A) after newer B; no successor invalidation",
+    "current cancellation rejects a deliberately late successful reply",
+    "ignored successor cancels old work; independent blocks retain independent ownership",
+    "disposal invalidates work, rejects new admission and joins one transport close future",
+    "failed, timeout, cancelled, stale, capacity, unavailable and unsupported analysis outcomes",
+    "transport exceptions remain explicit failed/unavailable outcomes"
+  ],
+  "development_history": "Initial 16 tests passed. Exact locale authentication on operational replies was then added to the existing snapshot test; the final 16 tests also passed. No production source changes were needed.",
+  "no_qualification_panel_read": true,
+  "no_native_acceptance_read_or_run": true,
+  "no_native_inference_run": true,
+  "no_github_actions_queried_or_waited": true
+}

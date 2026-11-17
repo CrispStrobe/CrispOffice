@@ -1,0 +1,12 @@
+{
+  "command": [
+    "dart",
+    "test",
+    "test/grammar_evaluation_harness_test.dart",
+    "-r",
+    "expanded"
+  ],
+  "result": "Interrupted after silent startup; no test output was produced. Use the resolved test runner directly to avoid pub startup work.",
+  "exit_code": 130,
+  "native_execution": false
+}

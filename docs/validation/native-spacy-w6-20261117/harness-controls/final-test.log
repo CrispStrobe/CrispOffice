@@ -1,0 +1,11 @@
+00:00 +0: loading test/grammar_evaluation_harness_test.dart
+00:00 +0: existing receipt rejects admission before reading missing assets
+00:00 +1: checkpoint replacement preserves last complete report on pending collision
+00:00 +2: baseline closure permits additive API but rejects lexical data and ZIP drift
+00:00 +3: consumed synthetic seal blocks a new receipt before native entry
+00:00 +4: exact scorer maps nonzero UTF-16 origin after an emoji
+00:00 +5: multiple choices and overlapping proposals cannot score exact
+00:00 +6: partial graphemes and wrong original text fail source mapping
+00:00 +7: unsupported and failed arms are never exact clean successes
+00:00 +8: summary counts raw native false positives despite merge suppression
+00:00 +9: All tests passed!

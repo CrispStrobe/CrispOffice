@@ -1,0 +1,31 @@
+{
+  "analysis": {
+    "issues": 0,
+    "path": "analysis-final.log",
+    "sha256": "7e7cf4354ed8ab0b9ea4991e93d0be269bb1d2fafc2c06c2ad0cfb69daa0d263"
+  },
+  "changed_between_runs": [
+    "packages/quds_office_editor/example/test/studio_spacy_grammar_native_gate.dart"
+  ],
+  "ci_queried_or_waited": false,
+  "controls": 10,
+  "delayed_reply_controls": "Two tests delay actual native replies solely to exercise document/vocabulary revision rejection.",
+  "final_receipt": {
+    "path": "final.json",
+    "sha256": "495abd0db453e701ee67ac3a296697509ccfcbb995aadbc07f664a557e549f9b"
+  },
+  "first_receipt": {
+    "path": "first.json",
+    "sha256": "086fd5f6d64970135c78c0cf20d5826b627ca283cd5846eeda9cbebe033ff3c7"
+  },
+  "gate_sha256": "9ed4e1cb628f348ed0e73cfb8738aa35b55f50e67bd7ac4472d18ab5dfb2bf75",
+  "native_acceptance_rerun": false,
+  "native_output_mocked": false,
+  "qualification_panel_read": false,
+  "reason_for_second_run": "Strengthen only gate assertions: every supported manual report and every actual native reply must succeed, so an operational failure cannot masquerade as a clean corrected recheck.",
+  "schema": "quds.spacy.w6.real_editor_controls_summary.v1",
+  "source_files_hashed": 422,
+  "sources_and_runtime_unchanged_during_each_run": true,
+  "status": "passed",
+  "unique_linguistic_input_note": "Controls reuse one authored development error and its corrected version. Repeated runs and lifecycle variants are not independent grammar qualification examples."
+}
