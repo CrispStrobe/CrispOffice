@@ -1,0 +1,83 @@
+{
+  "revision": "bfd30ed1668c675d2593c2b361adc6e67d278f7b",
+  "files": [
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/LICENSE",
+      "file": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size": 11358
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/NOTICE",
+      "file": "NOTICE",
+      "sha256": "458b8cdda1e7a297f55d201402611ec8b99d922c4ae000fd4d82c88277e78ac6",
+      "size": 712
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/README.md",
+      "file": "README.md",
+      "sha256": "dafde44bb266a05260081b2bf13a342fe666e72a15d2283abce701dba77f2ac3",
+      "size": 16031
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/config.json",
+      "file": "config.json",
+      "sha256": "b958f924ec84f6a3776cf5136fc85f7bab3341b5d3762b635819a55606de8d92",
+      "size": 179032
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/gector-guards.json",
+      "file": "gector-guards.json",
+      "sha256": "b9869a508d23b442412b70f1f26664edb179a967d33d1e6204c62a04d4d88c40",
+      "size": 6452
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/gector-meta.json",
+      "file": "gector-meta.json",
+      "sha256": "4b5d14b456e60134d105fc579cd557f811ff6dad2a8fa3084cf94c43b6971af3",
+      "size": 1186
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/language-rules.json",
+      "file": "language-rules.json",
+      "sha256": "901b350a9c751fc95d51eb5ee3ba7b7f0d11b61c6cc17e67bce2996e17bc5815",
+      "size": 1155
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/model.onnx",
+      "file": "model.onnx",
+      "sha256": "03dcb6ba128f42dc8b65c4b3b93f6e27297dd5aedb606789aa164202fbd76dd0",
+      "size": 452972247
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/quickstart.py",
+      "file": "quickstart.py",
+      "sha256": "46567be8fb60472ce8bfc0a27e95f0d1158f603bd72c96ff35a2bd3c49ac5203",
+      "size": 14151
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/tokenizer.json",
+      "file": "tokenizer.json",
+      "sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "size": 729060
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/tokenizer_config.json",
+      "file": "tokenizer_config.json",
+      "sha256": "d50873edfa649e9950fbfb196da01d0b2b4470a25e2ac711cf5c7022761b0a04",
+      "size": 386
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/verb-form-vocab.txt",
+      "file": "verb-form-vocab.txt",
+      "sha256": "47f4b236d0c6069f9d4cbfc420644d17acf0c0ce7a2932e060d17ed5760d0a9e",
+      "size": 127132
+    },
+    {
+      "url": "https://huggingface.co/proofbird/gector-bert-de/resolve/bfd30ed1668c675d2593c2b361adc6e67d278f7b/vocab.txt",
+      "file": "vocab.txt",
+      "sha256": "89459fc7381c5fbb05771189afbd2e6e2354b23e0cfcd2e10c28ef3f31ef0dab",
+      "size": 270938
+    }
+  ]
+}
