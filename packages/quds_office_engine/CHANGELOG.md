@@ -4,6 +4,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve cached ODT field text and its style/link while converting complete,
+  simple PAGE/NUMPAGES fields. Retain visible caches for unsupported or malformed
+  fields, and keep incomplete fields from consuming later paragraphs or stories.
+
 - Keep ODT column breaks and keep-together settings independent in cached
   paragraph styles, while retaining page-break priority.
 - Preserve rotated ODP chart data through the existing table fallback frames,
