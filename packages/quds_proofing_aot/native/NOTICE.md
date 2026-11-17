@@ -29,8 +29,11 @@ A second generated-copy patch changes `add_string("descr", m_strDescr)` to
 `add_string_copy` in `JVisualSynAnParamBuilder.cpp`. The upstream serializer's
 temporary per-clause groups die before the complete JSON is written; copying
 their descriptions prevents dangling string references and corrupt labels.
-Both exact replacements are checked against the pinned sources and their
-generated source hashes are recorded in the manifest.
+A third generated-copy patch removes the `_DEBUG`-conditional `before.lem` and
+`after.lem` dumps from `Source/synan/SynanLib/SyntaxHolder.cpp`, so alternate debug
+builds do not write document text either. All exact replacements are checked
+against the pinned sources and their generated source hashes are recorded in
+the manifest.
 
 If distributing a built worker or runtime, comply with the applicable upstream
 licenses, including source and relinking obligations for linked LGPL code.

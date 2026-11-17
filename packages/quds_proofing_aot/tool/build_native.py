@@ -113,6 +113,10 @@ def assemble(source: Path, build: Path, install: Path) -> dict[str, object]:
                 "source": "Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp",
                 "change": "Copy temporary group description strings into RapidJSON-owned storage",
                 "generatedSourceSha256": sha256(build / "patched/JVisualSynAnParamBuilder.cpp"),
+            }, {
+                "source": "Source/synan/SynanLib/SyntaxHolder.cpp",
+                "change": "Remove _DEBUG before.lem and after.lem document diagnostic writes",
+                "generatedSourceSha256": sha256(build / "patched/SyntaxHolder.cpp"),
             }],
             "smoke": json.loads(smoke.stdout),
             "runtimeNetwork": False,

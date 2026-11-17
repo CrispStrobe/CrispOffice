@@ -61,7 +61,17 @@ abstract final class OdtDocumentWriter {
       final body = XmlWriter();
       final section = layout.sections[index];
       final start = layout.sectionStarts[index];
+      final columns = section.columnCount;
+      if (columns > 1) {
+        body.writeStartElement('section', prefix: 'text');
+        body.writeAttribute('text:name', 'Section$index');
+        body.writeAttribute(
+          'text:style-name',
+          layout.sectionColumnsStyle(columns, section.columnSpace),
+        );
+      }
       _writeBlocks(body, section.blocks, layout, sectionStart: start);
+      if (columns > 1) body.writeEndElement();
       // Empty and entirely unmodeled sections still own a page boundary. The
       // small empty anchor cannot consume a later section's first paragraph.
       if (!start.consumed) {
@@ -967,7 +977,9 @@ abstract final class OdtDocumentWriter {
     );
     for (final width in table.grid) {
       w.writeStartElement('table-column', prefix: 'table');
-      w.writeAttribute('table:style-name', layout.columnStyle(width));
+      if (layout.columnStyle(width) case final style?) {
+        w.writeAttribute('table:style-name', style);
+      }
       w.writeEndElement();
     }
     final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
@@ -988,8 +1000,8 @@ abstract final class OdtDocumentWriter {
     for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
       final row = table.rows[rowIndex];
       w.writeStartElement('table-row', prefix: 'table');
-      if (row.height case final height?) {
-        w.writeAttribute('table:style-name', layout.rowStyle(height));
+      if (layout.rowStyle(row.height) case final style?) {
+        w.writeAttribute('table:style-name', style);
       }
       _writeOmittedCells(
         w,
@@ -1013,19 +1025,8 @@ abstract final class OdtDocumentWriter {
             w.writeAttribute('table:number-rows-spanned', '${placement.rows}');
           }
         }
-        if (cell.fillColor case final fill? when fill.isNotEmpty) {
-          w.writeAttribute(
-            'table:style-name',
-            layout.cellStyle(fill, cell: cell),
-          );
-        } else if (cell.borderTop == true ||
-            cell.borderBottom == true ||
-            cell.borderLeft == true ||
-            cell.borderRight == true) {
-          w.writeAttribute(
-            'table:style-name',
-            layout.cellStyle('', cell: cell),
-          );
+        if (layout.cellStyle(cell) case final style?) {
+          w.writeAttribute('table:style-name', style);
         }
         final notesAllowed = layout.noteBodiesAllowed;
         final commentsAllowed = layout.commentsAllowed;
@@ -1534,19 +1535,11 @@ class _OdtLayout {
     _OdtSectionStart? sectionStart,
     bool emptyAnchor = false,
   }) {
-    final shading = _paragraphColor(props.shadingFill);
-    final border = _paragraphColor(props.borderColor);
-    // Tab stops belong to the paragraph style. Include their ordered values,
-    // using the same position precision as the emitted XML, so neighboring
-    // paragraphs cannot inherit the first paragraph's tab configuration.
-    final tabs = jsonEncode([
-      for (final tab in props.tabs)
-        [
-          _paragraphDecimal(tab.position),
-          tab.alignment.index,
-          tab.leader.index,
-        ],
-    ]);
+    final shading = _odfColor(props.shadingFill);
+    final border = _odfColor(props.borderColor);
+    // Use exactly the emitted tabs for both identity and deferred style output.
+    // Invalid positions are omitted and positions share the XML's precision.
+    final tabs = _tabStops(props.tabs);
     final key =
         '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabs';
     return _paragraphStyles.putIfAbsent(key, () {
@@ -1644,38 +1637,10 @@ class _OdtLayout {
         if (border != null) {
           buffer.write(' fo:border="0.5pt solid #$border"');
         }
-        if (props.tabs.isEmpty) {
+        if (tabs.isEmpty) {
           buffer.write('/>');
         } else {
-          buffer.write('><style:tab-stops>');
-          for (final tab in props.tabs) {
-            if (_paragraphDecimal(tab.position) case final position?) {
-              final type = switch (tab.alignment) {
-                WmlTabAlignment.center => 'center',
-                WmlTabAlignment.right => 'right',
-                WmlTabAlignment.decimal => 'char',
-                WmlTabAlignment.left => 'left',
-              };
-              buffer.write(
-                '<style:tab-stop style:position="${position}pt" '
-                'style:type="$type"',
-              );
-              if (tab.alignment == WmlTabAlignment.decimal) {
-                buffer.write(' style:char="."');
-              }
-              final leader = switch (tab.leader) {
-                WmlTabLeader.dot => 'dotted',
-                WmlTabLeader.hyphen => 'solid',
-                WmlTabLeader.underscore => 'solid',
-                WmlTabLeader.none => null,
-              };
-              if (leader != null) {
-                buffer.write(' style:leader-style="$leader"');
-              }
-              buffer.write('/>');
-            }
-          }
-          buffer.write('</style:tab-stops></style:paragraph-properties>');
+          buffer.write('>$tabs</style:paragraph-properties>');
         }
         if (emptyAnchor) {
           buffer.write('<style:text-properties fo:font-size="1pt"/>');
@@ -1695,7 +1660,44 @@ class _OdtLayout {
     });
   }
 
-  static String? _paragraphColor(String? value) {
+  static String _tabStops(List<WmlTabStop> tabs) {
+    final buffer = StringBuffer();
+    for (final tab in tabs) {
+      final position = _paragraphDecimal(tab.position);
+      if (position == null) continue;
+      final type = switch (tab.alignment) {
+        WmlTabAlignment.center => 'center',
+        WmlTabAlignment.right => 'right',
+        WmlTabAlignment.decimal => 'char',
+        WmlTabAlignment.left => 'left',
+      };
+      buffer.write(
+        '<style:tab-stop style:position="${position}pt" style:type="$type"',
+      );
+      if (tab.alignment == WmlTabAlignment.decimal) {
+        buffer.write(' style:char="."');
+      }
+      final leader = switch (tab.leader) {
+        WmlTabLeader.dot => '.',
+        WmlTabLeader.hyphen => '-',
+        WmlTabLeader.underscore => '_',
+        WmlTabLeader.none => null,
+      };
+      if (leader != null) {
+        // ODF leader text preserves the model's character; hyphen and underscore
+        // must not both degrade to the same solid leader line.
+        final lineStyle = tab.leader == WmlTabLeader.dot ? 'dotted' : 'solid';
+        buffer.write(
+          ' style:leader-type="single" style:leader-style="$lineStyle" '
+          'style:leader-text="$leader"',
+        );
+      }
+      buffer.write('/>');
+    }
+    return buffer.isEmpty ? '' : '<style:tab-stops>$buffer</style:tab-stops>';
+  }
+
+  static String? _odfColor(String? value) {
     // The model contract is exactly six RRGGBB digits. Omit invalid imported
     // values before both style deduplication and XML attribute construction.
     if (value == null ||
@@ -1760,13 +1762,16 @@ class _OdtLayout {
     return name;
   }
 
-  String columnStyle(double width) {
-    final key = width.toStringAsFixed(2);
+  String? columnStyle(double width) {
+    final key = _paragraphDecimal(width);
+    // Column widths are positive ODF lengths. Invalid model values must not
+    // introduce NaN, infinity, exponent notation or a zero-width grid column.
+    if (width <= 0 || key == null || key == '0.00') return null;
     return _columnStyles.putIfAbsent(key, () {
       final name = 'Co${_columnStyles.length + 1}';
       _styleBuffers.add(
         '<style:style style:name="$name" style:family="table-column">'
-        '<style:table-column-properties style:column-width="${width.toStringAsFixed(2)}pt"/>'
+        '<style:table-column-properties style:column-width="${key}pt"/>'
         '</style:style>',
       );
       return name;
@@ -1872,6 +1877,21 @@ class _OdtLayout {
     return _OdtListMarker.number(prefix, suffix, value);
   }
 
+  String sectionColumnsStyle(int columns, double gap) {
+    final key = '$columns|${gap.toStringAsFixed(2)}';
+    return _sectionColumnStyles.putIfAbsent(key, () {
+      final name = 'Sect${_sectionColumnStyles.length + 1}';
+      _styleBuffers.add(
+        '<style:style style:name="$name" style:family="section">'
+        '<style:section-properties fo:column-count="$columns" '
+        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/></style:style>',
+      );
+      return name;
+    });
+  }
+
+  final Map<String, String> _sectionColumnStyles = <String, String>{};
+
   String listStyle(_OdtListMarker marker) {
     if (marker.bullet == '•') return 'L1';
     if (marker.format == '1' && marker.prefix.isEmpty && marker.suffix == '.') {
@@ -1924,28 +1944,35 @@ class _OdtLayout {
     );
   }
 
-  String cellStyle(String fill, {WmlTableCell? cell}) {
-    final key =
-        '$fill|${cell?.borderTop}|${cell?.borderBottom}|${cell?.borderLeft}|${cell?.borderRight}';
+  String? cellStyle(WmlTableCell cell) {
+    final fill = _odfColor(cell.fillColor);
+    final borders = [
+      cell.borderTop == true,
+      cell.borderBottom == true,
+      cell.borderLeft == true,
+      cell.borderRight == true,
+    ];
+    if (fill == null && !borders.any((enabled) => enabled)) return null;
+    final key = jsonEncode([fill, ...borders]);
     return _cellStyles.putIfAbsent(key, () {
       final name = 'Ce${_cellStyles.length + 1}';
       final buffer = StringBuffer(
         '<style:style style:name="$name" style:family="table-cell">'
         '<style:table-cell-properties',
       );
-      if (fill.isNotEmpty) {
-        buffer.write(' fo:background-color="#${fill.toLowerCase()}"');
+      if (fill != null) {
+        buffer.write(' fo:background-color="#$fill"');
       }
-      if (cell?.borderTop == true) {
+      if (cell.borderTop == true) {
         buffer.write(' fo:border-top="0.5pt solid #000000"');
       }
-      if (cell?.borderBottom == true) {
+      if (cell.borderBottom == true) {
         buffer.write(' fo:border-bottom="0.5pt solid #000000"');
       }
-      if (cell?.borderLeft == true) {
+      if (cell.borderLeft == true) {
         buffer.write(' fo:border-left="0.5pt solid #000000"');
       }
-      if (cell?.borderRight == true) {
+      if (cell.borderRight == true) {
         buffer.write(' fo:border-right="0.5pt solid #000000"');
       }
       buffer.write('/></style:style>');
@@ -1954,13 +1981,18 @@ class _OdtLayout {
     });
   }
 
-  String rowStyle(double height) {
-    final key = height.toStringAsFixed(2);
+  String? rowStyle(double? height) {
+    if (height == null || height < 0) return null;
+    // The shared model and DOCX serializer treat height as a minimum. ODF's
+    // fixed row-height would constrain taller content. Canonicalize negative
+    // zero and omit nonfinite/exponent values before creating a style.
+    final key = _paragraphDecimal(height == 0 ? 0 : height);
+    if (key == null) return null;
     return _rowStyles.putIfAbsent(key, () {
       final name = 'Ro${_rowStyles.length + 1}';
       _styleBuffers.add(
         '<style:style style:name="$name" style:family="table-row">'
-        '<style:table-row-properties style:row-height="${key}pt"/>'
+        '<style:table-row-properties style:min-row-height="${key}pt"/>'
         '</style:style>',
       );
       return name;

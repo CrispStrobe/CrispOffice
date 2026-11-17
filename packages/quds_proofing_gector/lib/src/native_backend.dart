@@ -243,7 +243,7 @@ final class _Bindings {
   late final NativeFinalizer finalizer;
 }
 
-final class _NativeBackend implements GectorBackend, Finalizable {
+final class _NativeBackend implements GectorDeterministicBackend, Finalizable {
   _NativeBackend(this._bindings, this._context, this.identity) {
     _bindings.finalizer.attach(this, _context, detach: this);
   }

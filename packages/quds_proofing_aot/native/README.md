@@ -67,7 +67,7 @@ python3 packages/quds_proofing_aot/tool/smoke_native.py \
 ```
 
 The JSON `manifest.json` records exact source revisions, executable and build
-source hashes, both upstream patches, and real-engine smoke results. `smoke.json`
+source hashes, all three upstream patches, and real-engine smoke results. `smoke.json`
 contains the same finite test evidence separately. These checks establish local
 operation and bounded protocol behavior; they do not measure general grammar
 accuracy or performance on every platform.
@@ -123,6 +123,9 @@ copy of `Parser.cpp`; the original pinned checkout remains unchanged. The
 native smoke checks that analysis creates no working-directory files. A second
 exact build-copy patch makes syntax group descriptions own their JSON strings,
 preventing dangling references when temporary per-clause groups are destroyed.
+A third patch removes the `_DEBUG`-conditional `before.lem` and `after.lem`
+document dumps from a generated copy of `SyntaxHolder.cpp`. This preserves the
+no-document-file-write behavior in alternate debug configurations as well.
 
 The separately built engine and language data retain their upstream licenses.
 Read [NOTICE.md](NOTICE.md) before redistributing a runtime. The repository stores

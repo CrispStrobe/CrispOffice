@@ -97,6 +97,27 @@ target_sources(SimpleGrammarLib PRIVATE "${CMAKE_BINARY_DIR}/patched/Parser.cpp"
 target_include_directories(SimpleGrammarLib PRIVATE
   "${QUDS_AOT_SOURCE}/Source/synan/SimpleGrammarLib")
 
+# Keep the same privacy guarantee in builds that define _DEBUG, including
+# alternate direct CMake configurations. These dumps are not needed by analysis.
+file(READ "${QUDS_AOT_SOURCE}/Source/synan/SynanLib/SyntaxHolder.cpp" syntax_holder_text)
+foreach(phase before after)
+  string(REGEX MATCHALL "m_LemText\\.SaveToFile\\(\"${phase}\\.lem\"\\)" debug_writes "${syntax_holder_text}")
+  list(LENGTH debug_writes debug_count)
+  if(NOT debug_count EQUAL 1)
+    message(FATAL_ERROR "The pinned syntax diagnostic changed; review the no-debug-file-write patch")
+  endif()
+  string(REPLACE "m_LemText.SaveToFile(\"${phase}.lem\");"
+    "/* Quds: document diagnostics remain disabled in debug builds. */"
+    syntax_holder_text "${syntax_holder_text}")
+endforeach()
+write_changed_source("${CMAKE_BINARY_DIR}/patched/SyntaxHolder.cpp" "${syntax_holder_text}")
+get_target_property(syntax_sources SynanLib SOURCES)
+list(REMOVE_ITEM syntax_sources SyntaxHolder.cpp)
+set_property(TARGET SynanLib PROPERTY SOURCES "${syntax_sources}")
+target_sources(SynanLib PRIVATE "${CMAKE_BINARY_DIR}/patched/SyntaxHolder.cpp")
+target_include_directories(SynanLib PRIVATE
+  "${QUDS_AOT_SOURCE}/Source/synan/SynanLib")
+
 add_subdirectory("${QUDS_AOT_SOURCE}/Dicts" upstream/Dicts)
 add_subdirectory("${QUDS_AOT_SOURCE}/Thes" upstream/Thes)
 

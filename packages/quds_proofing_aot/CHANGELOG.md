@@ -15,8 +15,9 @@
 - Preserve exact native source spans and distinguish original token `text` from
   normalized `analysisText`, including verified German `zu-helfen` readings.
   Abstain from grammar rules whose context contains normalized tokens.
-- Remove upstream's unconditional `input.lem` diagnostic and fix dangling syntax
-  group-description strings in exact, manifest-recorded generated build copies.
+- Remove upstream's `input.lem` diagnostic and debug-only `before.lem`/`after.lem`
+  dumps, and fix dangling syntax group-description strings in exact,
+  manifest-recorded generated build copies.
 - Keep Studio analysis visible before setup; reuse a private dialog client, add
   standalone Word forms for English/German/Russian, and retain stale-document
   and cancellation isolation from manual grammar checks.

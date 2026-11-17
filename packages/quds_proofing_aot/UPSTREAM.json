@@ -35,6 +35,11 @@
       "source": "Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp",
       "change": "Replace o.add_string(\"descr\", m_strDescr) with add_string_copy",
       "reason": "Temporary per-clause group strings must outlive serialization through allocator-owned copies"
+    },
+    {
+      "source": "Source/synan/SynanLib/SyntaxHolder.cpp",
+      "change": "Remove both _DEBUG-conditional m_LemText.SaveToFile calls for before.lem and after.lem",
+      "reason": "Alternate debug configurations must not write document text to the host working directory"
     }
   ],
   "build_patch_policy": "Exact replacements are validated against pinned source; generated copies are compiled without editing tracked upstream files. Source and binary hashes are recorded in runtime manifest.json.",

@@ -256,9 +256,10 @@ failure rather than truncating text or returning partial success.
 | Missing/disposed analyzer or unavailable runtime | `unavailable` |
 | Malformed data, incomplete alignment, timeout, exceeded bound or stale configuration | `failed` |
 
-The headless build makes two exact, recorded changes in generated copies of
-pinned upstream sources: it removes an unconditional `input.lem` document dump
-and copies temporary group-description strings into owned JSON storage. Native
+The headless build makes three exact, recorded changes in generated copies of
+pinned upstream sources: it removes the unconditional `input.lem` document dump,
+removes `_DEBUG`-conditional `before.lem`/`after.lem` dumps, and copies temporary
+group-description strings into owned JSON storage. Native
 smokes verify no working-directory files and stable descriptions across clauses.
 The pinned source checkout itself remains unchanged. See the runtime manifest
 and [native notices](native/NOTICE.md) for the patch/source hashes and licenses.
