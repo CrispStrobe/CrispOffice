@@ -23,3 +23,5 @@ Checkpoint publication uses GitHub Git Data objects and non-forced expected-SHA 
 ## Active frozen run
 
 Draft PR #150 preserves every checkpoint. The first candidate `3d487008` was rejected by its focused compile check: an added regression attempted to place a body-only WmlFrame into a header/footer visual list. That unsupported test construction is removed; both incoming body/no-unused-style cases remain. No product API or product logic changes. The final source will be re-frozen and all gates rerun. The completed 33-consumer run on the rejected candidate is retained only as historical evidence.
+
+The corrected frozen source is `5c66e629758cacda91d67fa216fe24bfa664bf35`. Both focused frame cases pass before the full run. The canonical222, portable17, example2 and consumer gates now run against that clean commit. The inherited focused five-fixture Office consumer (including FrameMark) also receives a fresh guarded run. Flutter recovery and all rejected/corrected development controls are saved with member-level hash indexes.

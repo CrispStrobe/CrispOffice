@@ -7,6 +7,7 @@
     "Historical outcomes remain historical",
     "Independent archive readback and receipt review required before final acceptance"
   ],
+  "frozen_source_commit": "5c66e629758cacda91d67fa216fe24bfa664bf35",
   "gates": {
     "boundary_consumers": {
       "bounded_precedence_control": 1,
@@ -37,6 +38,12 @@
       "separate_from_canonical": true,
       "tests": 2
     },
+    "focused_frame_consumers": {
+      "external_exact_source_guard": true,
+      "fixtures": 5,
+      "purpose": "Retain incoming independent LibreOffice FrameMark conversion coverage",
+      "runner": "../gector-office-resume-20261117/office-consumer/run_consumers.py"
+    },
     "independent_review": {
       "all_receipts_bound_to_one_source": true,
       "full_archive_member_readback": true,
@@ -46,7 +53,8 @@
         "example_smoke",
         "retained_consumers",
         "boundary_consumers",
-        "native_thread_sweep"
+        "native_thread_sweep",
+        "focused_frame_consumers"
       ]
     },
     "native_thread_sweep": {
