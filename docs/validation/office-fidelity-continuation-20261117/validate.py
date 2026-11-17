@@ -167,6 +167,10 @@ def inputs(cohort, tests):
     config = REPO / '.dart_tool/package_config.json'
     package_map = configured_packages(config)
     paths = {Path(__file__).resolve(), config, REPO / 'pubspec.lock', LOCK_REFERENCE}
+    # Engine PDF/font cases also read editor font fixtures directly, without a
+    # package import. Bind these for every cohort as in the prior qualification.
+    paths.update(tree_files(REPO / 'packages/quds_office_editor/fonts'))
+    paths.update(tree_files(REPO / 'packages/quds_office_editor/example/fonts'))
     packages = ['quds_office_engine', 'legacy_doc_parser']
     if cohort == 'editor':
         packages += ['quds_office_editor', 'quds_reports']
@@ -251,6 +255,12 @@ def runtime_identity(manifest_path, flutter='flutter', include_node=False):
     members = ['bin/cache/dart-sdk/bin/dart',
                'bin/cache/artifacts/engine/linux-x64/flutter_tester']
     paths = set()
+    tool_snapshot = os.environ.get('QUDS_FLUTTER_TOOL_SNAPSHOT')
+    if tool_snapshot:
+        snapshot = Path(tool_snapshot).resolve()
+        if not snapshot.is_file():
+            raise FileNotFoundError('Configured Flutter tool snapshot: ' + tool_snapshot)
+        paths.add(snapshot)
     # Bind the actual SDK, engine artifacts, compiler snapshots and Flutter
     # tool source used by the verified offline launcher. Generated test kernels
     # and build caches are outputs, not source inputs.
@@ -284,6 +294,7 @@ def runtime_identity(manifest_path, flutter='flutter', include_node=False):
             'environment': {key: os.environ.get(key) for key in
                             ('FLUTTER_ROOT', 'PUB_CACHE', 'CI',
                              'DART_SUPPRESS_ANALYTICS', 'FLUTTER_SUPPRESS_ANALYTICS',
+                             'QUDS_FLUTTER_TOOL_SNAPSHOT',
                              'NODE_OPTIONS', 'NODE_PATH')}}
 
 def version_identity(output, flutter, include_node=False):
@@ -297,7 +308,9 @@ def version_identity(output, flutter, include_node=False):
         if not executable:
             raise RuntimeError('Executable not found: ' + command[0])
         command[0] = str(Path(executable).absolute())
-        result = subprocess.run(command, cwd=REPO, capture_output=True, timeout=60)
+        # An authentic source-based Flutter CLI can spend over a minute in JIT
+        # startup. This preflight is separate from the test timeout and count.
+        result = subprocess.run(command, cwd=REPO, capture_output=True, timeout=180)
         (output / f'{name}-version.stdout').write_bytes(result.stdout)
         (output / f'{name}-version.stderr').write_bytes(result.stderr)
         versions[name] = {'command': command, 'exit_code': result.returncode,
