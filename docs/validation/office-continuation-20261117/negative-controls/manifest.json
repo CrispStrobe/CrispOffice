@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "collected_at_utc": "2026-11-16T23:43:03.152406+00:00",
+  "baseline_commit": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+  "purpose": "Preserve existing failing regression evidence without rerunning tests",
+  "negative_control_tests_rerun_during_collection": false,
+  "github_actions_used": false,
+  "counts_policy": "Each run is reported separately; do not add these overlapping historical results to final passing cohorts.",
+  "gzip": {
+    "mtime": 0,
+    "filename": "",
+    "compression_level": 9
+  },
+  "runs": [
+    {
+      "id": "pdf",
+      "log": "pdf/pdf-baseline.jsonl.gz",
+      "baseline_commit": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+      "test_variant": "Exact historical ac295d4b-era snapshots; final logical-export control helper subsequently changed",
+      "production_binding_scope": "294 production and manifest blobs checked against baseline, plus 298 before/after input hashes",
+      "summary": {
+        "real_tests": 33,
+        "success": 3,
+        "failure": 30,
+        "error": 0,
+        "skipped": 0,
+        "assertion_failure_events": 30,
+        "non_assertion_error_events": 0,
+        "hidden_test_results_excluded": 2,
+        "per_suite": {
+          "test/pdf_actual_text_scope_test.dart": {
+            "success": 3,
+            "failure": 13,
+            "error": 0,
+            "skipped": 0
+          },
+          "test/pdf_logical_text_export_test.dart": {
+            "success": 0,
+            "failure": 17,
+            "error": 0,
+            "skipped": 0
+          }
+        },
+        "terminal": {
+          "success": false,
+          "type": "done",
+          "time": 1972
+        }
+      }
+    },
+    {
+      "id": "cmap",
+      "log": "cmap/baseline.jsonl.gz",
+      "baseline_commit": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+      "test_variant": "Earlier 45-probe snapshot; not the final expanded 55-test file",
+      "production_binding_scope": "Recorded sfnt_parser.dart hash matches baseline; no full-workspace baseline map was retained",
+      "summary": {
+        "real_tests": 45,
+        "success": 4,
+        "failure": 41,
+        "error": 0,
+        "skipped": 0,
+        "assertion_failure_events": 41,
+        "non_assertion_error_events": 0,
+        "hidden_test_results_excluded": 1,
+        "per_suite": {
+          "test/sfnt_cmap_validation_test.dart": {
+            "success": 4,
+            "failure": 41,
+            "error": 0,
+            "skipped": 0
+          }
+        },
+        "terminal": {
+          "success": false,
+          "type": "done",
+          "time": 3038
+        }
+      }
+    },
+    {
+      "id": "sheet",
+      "log": "sheet/baseline.stdout.jsonl.gz",
+      "baseline_commit": "becfa07c1be62429a8bcf78910aa1ffb46248b1a",
+      "test_variant": "Original 28-test snapshot; not the subsequently expanded test file",
+      "production_binding_scope": "Three recorded production source hashes and the exact original test snapshot",
+      "summary": {
+        "real_tests": 28,
+        "success": 11,
+        "failure": 17,
+        "error": 0,
+        "skipped": 0,
+        "assertion_failure_events": 17,
+        "non_assertion_error_events": 0,
+        "hidden_test_results_excluded": 1,
+        "per_suite": {
+          "test/sheet_conditional_fidelity_test.dart": {
+            "success": 11,
+            "failure": 17,
+            "error": 0,
+            "skipped": 0
+          }
+        },
+        "terminal": {
+          "success": false,
+          "type": "done",
+          "time": 5531
+        }
+      }
+    }
+  ],
+  "collection_checks": {
+    "pdf_recorded_inputs_rechecked": 298,
+    "pdf_recorded_inputs_still_match": true,
+    "pdf_recorded_production_blob_count": 294,
+    "pdf_recorded_production_blobs_match_baseline": true,
+    "pdf_test_copies_equal_current": {
+      "pdf_actual_text_scope_test.dart": true,
+      "pdf_logical_text_export_test.dart": false
+    },
+    "pdf_test_versions": {
+      "pdf_actual_text_scope_test.dart": {
+        "historical_snapshot_sha256": "43e74d364fcdbd0784e1f52a68b44a6f15ef696674fe02c3b81e92ee14683a69",
+        "current_at_collection_sha256": "43e74d364fcdbd0784e1f52a68b44a6f15ef696674fe02c3b81e92ee14683a69",
+        "equal_at_collection": true
+      },
+      "pdf_logical_text_export_test.dart": {
+        "historical_snapshot_sha256": "db3d8c1a15494c73a214477097a667a4fd08611248642468e7f10096c6f95c78",
+        "current_at_collection_sha256": "30e15e5f6ff1f3b2b1c6729db728fbc12c55475a6f27674dd72ab7ed1ee7097d",
+        "equal_at_collection": false
+      }
+    },
+    "cmap_parser_hash_matches_isolated_baseline": true,
+    "sheet_recorded_source_and_exact_test_hashes_match": true,
+    "english_generator_exit_code": 0,
+    "english_generator_inputs_unchanged": true
+  },
+  "artifacts": [
+    {
+      "stored_path": "README.md",
+      "original_path": "created in evidence bundle: README.md",
+      "origin": "collection documentation or verification script",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 5444,
+      "original_sha256": "e8bf8cd7a6e85a9f38a7b8b16c6940187e8a82d9a7f7fcf067c4a4a66ad30965",
+      "stored_bytes": 5444,
+      "stored_sha256": "e8bf8cd7a6e85a9f38a7b8b16c6940187e8a82d9a7f7fcf067c4a4a66ad30965"
+    },
+    {
+      "stored_path": "cmap/baseline-inputs.sha256.gz",
+      "original_path": "/workspace/scratch/f423a275b479/cmap-validation/baseline-inputs.sha256",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 199,
+      "original_sha256": "5b18bae371a3354b1ab0608ef0577f58b16e198806978314f362adbf17350f82",
+      "stored_bytes": 164,
+      "stored_sha256": "74e2992b6002faa52fd3b7596c5f2076a97d022728f813dffcc1b52ed183936d"
+    },
+    {
+      "stored_path": "cmap/baseline-test.dart",
+      "original_path": "/workspace/scratch/f423a275b479/cmap-validation/baseline-test.dart",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 12335,
+      "original_sha256": "a6610e10d9004192f87271aeff996f0d6e952a18e7647ff7305e0ab04766c271",
+      "stored_bytes": 12335,
+      "stored_sha256": "a6610e10d9004192f87271aeff996f0d6e952a18e7647ff7305e0ab04766c271"
+    },
+    {
+      "stored_path": "cmap/baseline.jsonl.gz",
+      "original_path": "/workspace/scratch/f423a275b479/cmap-validation/baseline.jsonl",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 41173,
+      "original_sha256": "7d79759baa4f964e30484428c247dcf773fc7d93b5fb67f492702495a30972a4",
+      "stored_bytes": 3231,
+      "stored_sha256": "800e2d004b622ecea0ba5f4f3a2d1f4783261d83bd50c6791a28b63490571460"
+    },
+    {
+      "stored_path": "cmap/invocation.json",
+      "original_path": "created in evidence bundle: cmap/invocation.json",
+      "origin": "collection documentation or verification script",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 1624,
+      "original_sha256": "07ebffda2c24b6b7688da7ba42d77fa8498a8d5975089d4c4fb5a76c3593d68e",
+      "stored_bytes": 1624,
+      "stored_sha256": "07ebffda2c24b6b7688da7ba42d77fa8498a8d5975089d4c4fb5a76c3593d68e"
+    },
+    {
+      "stored_path": "english-generator/check.stderr.log.gz",
+      "original_path": "captured stderr from command in receipt.json",
+      "origin": "fresh read-only generator check",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_bytes": 20,
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "stored_path": "english-generator/check.stdout.json.gz",
+      "original_path": "captured stdout from command in receipt.json",
+      "origin": "fresh read-only generator check",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 889,
+      "original_sha256": "284a836c6c4073d488aad22b83ca834c06d1cb9c8e7d1a2c8a0404525e280440",
+      "stored_bytes": 468,
+      "stored_sha256": "6d30dd49ffe6fac84215f587841c95978c7327bb81e2399af99ff917e6c7a7e0"
+    },
+    {
+      "stored_path": "english-generator/generate_english_hyphenation-used.py",
+      "original_path": "/workspace/scratch/f423a275b479/quds_office_suite/packages/quds_office_engine/tool/proofing/generate_english_hyphenation.py",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 5374,
+      "original_sha256": "3453787ccba66a9abeb233bda885af69f1dfad03de16b72c44a989b292bfcee0",
+      "stored_bytes": 5374,
+      "stored_sha256": "3453787ccba66a9abeb233bda885af69f1dfad03de16b72c44a989b292bfcee0"
+    },
+    {
+      "stored_path": "english-generator/inputs.json.gz",
+      "original_path": "collected input hashes before and after --check",
+      "origin": "fresh read-only input binding",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 2382,
+      "original_sha256": "a3ffc2f8d362a4dce6456b44bdc8daed44af0a342c6c6fe6b0854ff2f5e132b8",
+      "stored_bytes": 581,
+      "stored_sha256": "9f41fe3fed32b3fd416e7862b8271f0107d29396c51c31bcd422fcfbe95fb025"
+    },
+    {
+      "stored_path": "english-generator/receipt.json",
+      "original_path": "generated read-only command receipt",
+      "origin": "fresh read-only generator check",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 725,
+      "original_sha256": "dd6967ef6d4abe1a9ec3bb3162f8faf08a74838ab245654b7e07027183de08e4",
+      "stored_bytes": 725,
+      "stored_sha256": "dd6967ef6d4abe1a9ec3bb3162f8faf08a74838ab245654b7e07027183de08e4"
+    },
+    {
+      "stored_path": "package_evidence.py",
+      "original_path": "created in evidence bundle: package_evidence.py",
+      "origin": "collection documentation or verification script",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 13675,
+      "original_sha256": "ddebbf169390b0191c52312bdc23c462100edcabeaf438377a6b38c0e65ef66b",
+      "stored_bytes": 13675,
+      "stored_sha256": "ddebbf169390b0191c52312bdc23c462100edcabeaf438377a6b38c0e65ef66b"
+    },
+    {
+      "stored_path": "pdf/baseline-package_config.json.gz",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline-source/packages/quds_office_engine/.dart_tool/package_config.json",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 23500,
+      "original_sha256": "b27425c81a8a02914ae5c23b28ead3520d4b85e3baf04093b0221a60279a451c",
+      "stored_bytes": 1900,
+      "stored_sha256": "dde1c69a82a12d9352c0b0c6f4fb95b5c69d197d8f1835f1c00f1b1c82f25f85"
+    },
+    {
+      "stored_path": "pdf/pdf-baseline-inputs.json.gz",
+      "original_path": "/workspace/scratch/f423a275b479/negative-controls/pdf-baseline-inputs.json",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 41307,
+      "original_sha256": "b263d83093f8349e11780d653f13a9ae908700e5332d4db7ed102e54ded778bc",
+      "stored_bytes": 14630,
+      "stored_sha256": "0bb9d624e86fde0f5cdd79a31a62e9018f7eaeb725fc525bc4945a2e4517c9bf"
+    },
+    {
+      "stored_path": "pdf/pdf-baseline-receipt.json",
+      "original_path": "/workspace/scratch/f423a275b479/negative-controls/pdf-baseline-receipt.json",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 1357,
+      "original_sha256": "d0eb6b65b2824a34feddf6c4f62fa28bac119e1c89e24e40637dd19614400e81",
+      "stored_bytes": 1357,
+      "stored_sha256": "d0eb6b65b2824a34feddf6c4f62fa28bac119e1c89e24e40637dd19614400e81"
+    },
+    {
+      "stored_path": "pdf/pdf-baseline-source-binding.json.gz",
+      "original_path": "/workspace/scratch/f423a275b479/negative-controls/pdf-baseline-source-binding.json",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 75687,
+      "original_sha256": "98169acefbee3474655cee586be4f00db0565003a955c335575e2cbebc05c844",
+      "stored_bytes": 11918,
+      "stored_sha256": "8cb4d5591a29828902cea8c00d55076182fe17fcc1b300079d508e0158f9f0d2"
+    },
+    {
+      "stored_path": "pdf/pdf-baseline.jsonl.gz",
+      "original_path": "/workspace/scratch/f423a275b479/negative-controls/pdf-baseline.jsonl",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 27694,
+      "original_sha256": "8f057a0b582ec531ace2fcca4cecca91b13b124a3a65940cfbc28082cb9fcc24",
+      "stored_bytes": 3527,
+      "stored_sha256": "33da84b15296670a0c4c1b9d60d49dcbc38b0006ba7b449b0e33152c1a771732"
+    },
+    {
+      "stored_path": "pdf/run_pdf_baseline.py",
+      "original_path": "/workspace/scratch/f423a275b479/negative-controls/run_pdf_baseline.py",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 2876,
+      "original_sha256": "fa9e63df4a6399fab11dc5ee76d13974693139d258d5aea3ca3c6a5bfa8c1ca5",
+      "stored_bytes": 2876,
+      "stored_sha256": "fa9e63df4a6399fab11dc5ee76d13974693139d258d5aea3ca3c6a5bfa8c1ca5"
+    },
+    {
+      "stored_path": "pdf/test_sources/pdf_actual_text_scope_test.dart",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline-source/packages/quds_office_engine/test/pdf_actual_text_scope_test.dart",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 8577,
+      "original_sha256": "43e74d364fcdbd0784e1f52a68b44a6f15ef696674fe02c3b81e92ee14683a69",
+      "stored_bytes": 8577,
+      "stored_sha256": "43e74d364fcdbd0784e1f52a68b44a6f15ef696674fe02c3b81e92ee14683a69"
+    },
+    {
+      "stored_path": "pdf/test_sources/pdf_logical_text_export_test.dart",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline-source/packages/quds_office_engine/test/pdf_logical_text_export_test.dart",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 11524,
+      "original_sha256": "db3d8c1a15494c73a214477097a667a4fd08611248642468e7f10096c6f95c78",
+      "stored_bytes": 11524,
+      "stored_sha256": "db3d8c1a15494c73a214477097a667a4fd08611248642468e7f10096c6f95c78"
+    },
+    {
+      "stored_path": "pdf/test_sources/support/pdf_alias_fixture.dart",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline-source/packages/quds_office_engine/test/support/pdf_alias_fixture.dart",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 1384,
+      "original_sha256": "e34d9dc829231299e4ff3185b1725899d0164d2c13407478f596918a83a99ce6",
+      "stored_bytes": 1384,
+      "stored_sha256": "e34d9dc829231299e4ff3185b1725899d0164d2c13407478f596918a83a99ce6"
+    },
+    {
+      "stored_path": "sheet/baseline-regression-used.dart",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline-regression-used.dart",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 9265,
+      "original_sha256": "434a147258840f1faeeb68a8dbca562cba63cbc20037d94d95475a99f8fc8af7",
+      "stored_bytes": 9265,
+      "stored_sha256": "434a147258840f1faeeb68a8dbca562cba63cbc20037d94d95475a99f8fc8af7"
+    },
+    {
+      "stored_path": "sheet/baseline.receipt.json",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline.receipt.json",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 8210,
+      "original_sha256": "7b04e0854fe46c7602dbeba927fda8150f9f3fdf262cbcc7a65d4b04faa6b488",
+      "stored_bytes": 8210,
+      "stored_sha256": "7b04e0854fe46c7602dbeba927fda8150f9f3fdf262cbcc7a65d4b04faa6b488"
+    },
+    {
+      "stored_path": "sheet/baseline.stderr.log.gz",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline.stderr.log",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_bytes": 20,
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "stored_path": "sheet/baseline.stdout.jsonl.gz",
+      "original_path": "/workspace/scratch/f423a275b479/sheet-work/baseline.stdout.jsonl",
+      "origin": "byte-for-byte existing evidence",
+      "compression": "gzip",
+      "gzip_mtime": 0,
+      "original_bytes": 20912,
+      "original_sha256": "ab24130bf220ebd96b4622b2bfc40d0f22df6d715b99a1393fc83ac887b40cf9",
+      "stored_bytes": 1978,
+      "stored_sha256": "ad289f223cf0c8d607ded085c6fff9060d2b03ba92b9c6f51e7ac24380544535"
+    },
+    {
+      "stored_path": "verify.py",
+      "original_path": "created in evidence bundle: verify.py",
+      "origin": "collection documentation or verification script",
+      "compression": "none",
+      "gzip_mtime": null,
+      "original_bytes": 5458,
+      "original_sha256": "b659c15d5114bc2aaa2724be44a8d72b441d20eb27d6abbcba8b32da57fd1278",
+      "stored_bytes": 5458,
+      "stored_sha256": "b659c15d5114bc2aaa2724be44a8d72b441d20eb27d6abbcba8b32da57fd1278"
+    }
+  ]
+}

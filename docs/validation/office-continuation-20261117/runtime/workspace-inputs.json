@@ -1,0 +1,9 @@
+{
+  "captured_at_utc": "2026-11-16T23:24:44.591058+00:00",
+  "description": "Fresh pre-qualification workspace input capture; not retroactively attributed to runtime setup.",
+  "sha256": {
+    "pubspec.lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    ".dart_tool/package_config.json": "2f56ec782f0444d7ff9fe45bed9424dd6dbe6b6eb2f3c3a2c3eb4a1ce4085625",
+    "docs/validation/office-continuation-20261117/runtime/runtime-receipt.json": "85d87c20ae7042c96df06d966393ab0b5287007a202bec4c1b97942d0420c1c3"
+  }
+}

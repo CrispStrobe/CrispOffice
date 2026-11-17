@@ -306,10 +306,12 @@ PmlPresentation _deck(String text, {int rotation = 0, int width = 6000000}) =>
 
 void _expectUnchangedPainting(PdfFile file, {String? fixture}) {
   final expected = _paintedText(file);
+  expect(expected, isNotEmpty);
   final originalText = PdfExtract.documentText(file);
+  final strippedContents = <Uint8List>[];
   for (var page = 0; page < file.pageCount; page++) {
     final dict = file.pageRec(page).dict;
-    final bytes = file.store.streamBytes(dict['Contents'])!;
+    final bytes = PdfPageIo.pageContent(file.store, dict);
     final plain = latin1
         .decode(bytes)
         .replaceAll(
@@ -318,21 +320,39 @@ void _expectUnchangedPainting(PdfFile file, {String? fixture}) {
         )
         .replaceAll(RegExp(r'\bEMC\s*'), '');
     final raw = Uint8List.fromList(latin1.encode(plain));
-    dict['Contents'] = PdfCosStream(
-      PdfCosDict({'Length': PdfCosInt(raw.length)}),
-      raw,
-    );
-    file.pageRec(page)
-      ..pendingContent = raw
-      ..dirty = true;
+    strippedContents.add(raw);
+    file.pageRec(page).pendingContent = raw;
   }
-  expect(_paintedText(file), expected);
+  // Grafting writes each replacement as an indirect content stream and keeps
+  // its page resources. An inline PdfCosStream in /Contents is not valid PDF;
+  // incremental annotation saving does not allocate existing-page streams.
+  final controlBytes = file.extractPages([
+    for (var page = 0; page < file.pageCount; page++) page,
+  ]);
+  final control = PdfFile.open(controlBytes);
+  expect(control.pageCount, file.pageCount);
+  for (var page = 0; page < file.pageCount; page++) {
+    final originalPage = file.pageAt(page);
+    final controlPage = control.pageAt(page);
+    expect(
+      (controlPage.width, controlPage.height, controlPage.rotate),
+      (originalPage.width, originalPage.height, originalPage.rotate),
+    );
+    final contents = control.pageDict(page)['Contents'];
+    expect(contents, isA<PdfCosRef>());
+    expect(control.store.deref(contents), isA<PdfCosStream>());
+    expect(
+      control.store.streamBytes(contents),
+      orderedEquals(strippedContents[page]),
+    );
+  }
+  expect(_paintedText(control), expected);
   if (_renderOutput.isNotEmpty && fixture != null) {
     Directory(_renderOutput).createSync(recursive: true);
     File('$_renderOutput/$fixture.pdf').writeAsBytesSync(file.originalBytes);
-    File('$_renderOutput/$fixture-paint-control.pdf').writeAsBytesSync(
-      PdfIncrementalSave.write(originalBytes: file.originalBytes, file: file),
-    );
+    File(
+      '$_renderOutput/$fixture-paint-control.pdf',
+    ).writeAsBytesSync(controlBytes);
     File('$_renderOutput/$fixture-source.txt').writeAsStringSync(originalText);
   }
 }

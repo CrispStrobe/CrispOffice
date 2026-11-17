@@ -1,0 +1,105 @@
+{
+  "started_at_utc": "2026-11-16T23:11:30.170602+00:00",
+  "status": "ready",
+  "commands": [
+    {
+      "label": "engine-version",
+      "argv": [
+        "/workspace/scratch/f423a275b479/toolchain/flutter-source/bin/internal/update_engine_version.sh"
+      ],
+      "cwd": "/workspace/scratch/f423a275b479/toolchain/flutter-source",
+      "exit_code": 0,
+      "started_at_utc": "2026-11-16T23:11:34.390349+00:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "dart-version",
+      "argv": [
+        "/workspace/scratch/f423a275b479/toolchain/flutter-source/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/f423a275b479/quds_office_suite",
+      "exit_code": 0,
+      "started_at_utc": "2026-11-16T23:11:34.428449+00:00",
+      "log_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "label": "flutter-tools-offline",
+      "argv": [
+        "/workspace/scratch/f423a275b479/toolchain/flutter-source/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "--suppress-analytics",
+        "--directory",
+        "/workspace/scratch/f423a275b479/toolchain/flutter-source/packages/flutter_tools",
+        "get",
+        "--offline"
+      ],
+      "cwd": "/workspace/scratch/f423a275b479/quds_office_suite",
+      "exit_code": 0,
+      "started_at_utc": "2026-11-16T23:11:44.473633+00:00",
+      "log_sha256": "db9dbd2841af03176c503b7ab9429051f5d6a7a95562532ddb1c04f69c026117"
+    },
+    {
+      "label": "flutter-version",
+      "argv": [
+        "/workspace/scratch/f423a275b479/toolchain/bin/flutter",
+        "--version",
+        "--machine"
+      ],
+      "cwd": "/workspace/scratch/f423a275b479/quds_office_suite",
+      "exit_code": 0,
+      "started_at_utc": "2026-11-16T23:11:45.247537+00:00",
+      "log_sha256": "c89b6a4411083145ae8f468232cbb4cb414b0ec18e9bc04db6ab2ad33dfc2ce9"
+    },
+    {
+      "label": "workspace-offline",
+      "argv": [
+        "/workspace/scratch/f423a275b479/toolchain/flutter-source/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "--suppress-analytics",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/f423a275b479/quds_office_suite",
+      "exit_code": 0,
+      "started_at_utc": "2026-11-16T23:12:17.721730+00:00",
+      "log_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ],
+  "github_actions_used": false,
+  "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+  "dart_selected_members": 529,
+  "dart_selected_receipt_sha256": "07d3df0a33318fc90c31fab61a6086041583a22808e3aa301b481b262311c3ce",
+  "common_receipt_sha256": "618c546e1825b9513df6651cc793eb76fe33f847f8dc85f7b7c9e2380cffb6e4",
+  "engine_receipt_sha256": "42436023c71e72eb007c1c40bf563015ff352999e1ac1d76a9536912a9a3594e",
+  "cache_stamp_note": "Records the actual verified official engine artifacts installed above; SDK identity is unmodified.",
+  "pub_receipt_sha256": "9e0cbc7fd50642b0a4c105e09f207241a92e29db462fd3c359579d5532768c30",
+  "actual_runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/f423a275b479/toolchain/flutter-source"
+  },
+  "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+  "workspace_package_count": 108,
+  "sdk_tracked_changes": [],
+  "executables_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "launcher_sha256": {
+    "dart": "d4178ae9a5aa82d1eaf159a855e2495b30a5f04fc73cf78f5bb1328b54e6c2b5",
+    "flutter": "71e65881080ff99280d73958abb2622a10f916eba7a7aec36d6349a7c37232c8"
+  },
+  "finished_at_utc": "2026-11-16T23:12:18.368666+00:00"
+}

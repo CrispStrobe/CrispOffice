@@ -1,0 +1,18 @@
+{
+  "scope": "Preserved pre-control-repair engine run; excluded from final aggregate and raster claims. Its 654 test assertions/analysis/format passed on the recorded source, but its independent rendering control was malformed.",
+  "old_source_head": "ac295d4b3f247aee53b13b4b3f7e4fffc9d66600",
+  "old_test_sha256": "db3d8c1a15494c73a214477097a667a4fd08611248642468e7f10096c6f95c78",
+  "repaired_test_sha256": "30e15e5f6ff1f3b2b1c6729db728fbc12c55475a6f27674dd72ab7ed1ee7097d",
+  "old_control_sha256": "781c91001b1e97c3370b573cba4e77a41c9952a684d5026a9428f7f8d3c8d7fb",
+  "pdfinfo_observation": {
+    "command": [
+      "pdfinfo",
+      "docs/validation/office-continuation-20261117/attempts/pre-control-fixture-repair-engine/logical-render/word-logical-source-paint-control.pdf"
+    ],
+    "exit_code": 0,
+    "stdout": "Title:           Quds Office\nAuthor:          \nProducer:        Quds Office Engine\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       0 x 0 pts\nPage rot:        0\nFile size:       17063 bytes\nOptimized:       no\nPDF version:     1.7\n",
+    "stderr": "Syntax Error: Page contents object (page 1) is wrong type (stream)\nSyntax Error: Failed to create page (page 1)\nSyntax Error: Page contents object (page 1) is wrong type (stream)\nSyntax Error: Failed to create page (page 1)\nSyntax Error: Page contents object (page 1) is wrong type (stream)\nSyntax Error: Failed to create page (page 1)\nSyntax Error: Page contents object (page 1) is wrong type (stream)\nSyntax Error: Failed to create page (page 1)\n"
+  },
+  "cause": "A direct content stream was incorrectly embedded in a page dictionary by a test-only helper. Its old image-comparison path lacked a dimension check and could compare only a 1x1 overlap. No product fix was required.",
+  "repair": "Use supported page extraction with pendingContent, reopen the control, verify indirect stream and exact bytes/page geometry/nonempty painted operations; reject diagnostics, dimension mismatch and empty rasters before independent pixel comparison."
+}

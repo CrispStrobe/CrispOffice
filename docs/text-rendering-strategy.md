@@ -107,6 +107,42 @@ runtime; it does not identify Flutter 3.47.8's exact cause or establish general
 full-font/subset raster equality. Shared positioned-glyph shaping and exact
 editor/headless parity remain separate future work.
 
+### 17 November continuation: logical PDF text and bounded font maps
+
+The [office continuation report](validation/office-continuation-20261117/README.md)
+records the next integration and local qualification. PDF drawing still uses
+the existing selected font, shaped code points and positioned glyphs. When
+those differ from the authored text, a separate `ActualText` span now carries
+the logical source. Word spans compose explicit glyph-owned source ranges,
+synthetic presentations and generated labels without borrowing visible text
+from sparse gaps. Worksheet and slide spans use the breaker's logical source
+ranges; omitted wrap separators remain available for copy and search.
+
+The reader shares one replacement owner through nested marked content and
+accumulates its selectable box across the covered text showings. Generic
+replacement metadata no longer changes rotated painting. The explicit
+`PdfCanvas.showMarkedLine` watermark helper retains its existing Quds logical
+painting policy through a separate `QudsLogicalLine` hint. Other readers keep
+using the same content-stream glyphs and may apply their own extraction order
+and whitespace conventions.
+
+The cmap parser now checks declared subtable boundaries, group/segment order,
+Unicode ranges and glyph limits before accepting a mapping. Format 12 remains
+compact instead of allocating one map entry per scalar during parsing.
+Supported Unicode tables take precedence over legacy mappings; among legacy
+tables the deterministic fallback order is Windows Symbol, Macintosh, then
+other supported encodings. This fallback order is an application policy.
+Malformed tables fail with `SfntException`; no native dependency is added.
+
+These changes preserve logical text within the tested source spans and wrapped
+single-paragraph paths. They do not establish a shared shaping pipeline,
+universal paragraph/newline reconstruction, or complete PDF marked-content
+conformance. Selection boxes cover whole replacement spans, not independently
+positioned source characters. Type3/image-only replacement content and full
+PDFDocEncoding remain separate reader work. The report distinguishes exact
+Quds extraction from external text-extractor behavior and records independent
+PDF raster comparisons.
+
 ## State of the art: components with different responsibilities
 
 A modern stack separates Unicode segmentation/bidi, font matching, OpenType

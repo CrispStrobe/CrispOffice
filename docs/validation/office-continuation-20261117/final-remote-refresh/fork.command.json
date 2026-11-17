@@ -1,0 +1,15 @@
+{
+  "name": "fork",
+  "command": [
+    "git",
+    "ls-remote",
+    "https://github.com/CrispStrobe/quds_office_suite.git",
+    "refs/heads/*",
+    "refs/pull/*/head"
+  ],
+  "started_at_utc": "2026-11-16T23:28:22.486687+00:00",
+  "finished_at_utc": "2026-11-16T23:28:30.054029+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "0c1f32f604ad66248a355829b478b33b7956884a4418ac5392c14be8000f357a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

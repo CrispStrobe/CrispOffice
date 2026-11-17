@@ -41,6 +41,66 @@ void main() {
       });
     }
 
+    test('rank-only edit retains native DXF metadata through two saves', () {
+      final sourcePackage = _native(
+        '<cfRule type="top10" rank="3" priority="7" '
+        'stopIfTrue="true" dxfId="1"/>',
+      ).package!;
+      final styles = XmlDocument.parse(SmlStyleSheet().toXml());
+      styles.root!.addChild(
+        XmlDocument.parse(
+          '<dxfs xmlns="$_sheetNamespace" count="2">'
+          '<dxf><fill><patternFill patternType="solid">'
+          '<fgColor rgb="FF445566"/></patternFill></fill></dxf>'
+          '<dxf><font><b/><color rgb="FF8A2BE2"/></font>'
+          '<fill><patternFill patternType="solid">'
+          '<fgColor rgb="FF12AB34"/></patternFill></fill>'
+          '<border><bottom style="thin"><color rgb="FF112233"/>'
+          '</bottom></border></dxf></dxfs>',
+        ).root!,
+      );
+      final nativeStyles = styles.toXmlString();
+      sourcePackage
+          .createPart('/xl/styles.xml', OfficeContentTypes.sheetStyles)
+          .writeText(nativeStyles);
+      sourcePackage
+          .relationshipsFor('/xl/workbook.xml')
+          .add(type: RelationshipTypes.styles, target: 'styles.xml');
+
+      var book = SheetDeserializer().read(sourcePackage);
+      final original = book.sheets[1].conditionalFormats.single;
+      expect(original.kind, SmlConditionalKind.top);
+      expect(original.rank, 3);
+      expect(original.priority, 7);
+      expect(original.stopIfTrue, isTrue);
+      expect(original.dxfId, 1);
+      expect(original.fillRgb, '12AB34');
+      expect(original.fontRgb, '8A2BE2');
+      original.rank = 1;
+
+      for (var cycle = 0; cycle < 2; cycle++) {
+        final bytes = SheetSerializer().writeBytes(book, recalculate: false);
+        final package = OpcPackage.openBytes(bytes);
+        final nativeRule = _nativeRule(package);
+        expect(nativeRule.getAttribute('rank'), '1');
+        expect(nativeRule.getAttribute('priority'), '7');
+        expect(nativeRule.getAttribute('stopIfTrue'), '1');
+        expect(nativeRule.getAttribute('dxfId'), '1');
+        // Keep native DXF properties outside the modeled colors, along with
+        // both original entries and their indices, when regenerating a rule.
+        expect(package.getPart('/xl/styles.xml')!.readText(), nativeStyles);
+        book = SheetDeserializer().read(package);
+        final reopened = book.sheets[1].conditionalFormats.single;
+        expect(reopened.kind, SmlConditionalKind.top);
+        expect(reopened.rank, 1);
+        expect(reopened.priority, 7);
+        expect(reopened.stopIfTrue, isTrue);
+        expect(reopened.dxfId, 1);
+        expect(reopened.fillRgb, '12AB34');
+        expect(reopened.fontRgb, '8A2BE2');
+      }
+    });
+
     for (final operator in ['between', 'notBetween']) {
       test('upper-bound-only $operator edit survives isolate save', () async {
         final book = _native(
