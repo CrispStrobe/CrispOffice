@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "file": "runtime-verification.json.gz",
+      "bytes": 2056,
+      "sha256": "197c7ea933c364cfb44cbb0bbd30c4dbf8b0eaf74f8f119efbee99fed8cce4eb",
+      "uncompressed_bytes": 4520,
+      "uncompressed_sha256": "024228c00a0fad5d4a39666eb49b15ee8b38aaf0f47017d8c69aab66eb6e5dbc"
+    },
+    {
+      "file": "workspace-resolution.json.gz",
+      "bytes": 1236,
+      "sha256": "134902c6a856c0678abe72233508fd74f05d38ed2fbb8260051d8a9deb43024c",
+      "uncompressed_bytes": 4943,
+      "uncompressed_sha256": "8f33d211c6bb8c4d45499b3132ee3f747931c1431ed7be4535e43b90464c27e9"
+    },
+    {
+      "file": "focused-analyze.log.gz",
+      "bytes": 87,
+      "sha256": "bc41277fbb8f2f1d306c6fe8a6f5ac432818faee09e5fe80cb8b9e8c4b844d03",
+      "uncompressed_bytes": 76,
+      "uncompressed_sha256": "7a2f81d04a41c7bda4a12e365f12ca19855af46bde5287db1e10dabcec2e09a4"
+    },
+    {
+      "file": "focused-focused-test-results.json.gz",
+      "bytes": 1483,
+      "sha256": "8e360b7da7a121d236fcfbd35a794b7726fa79859bc45e57b5786e535e910ef6",
+      "uncompressed_bytes": 4251,
+      "uncompressed_sha256": "4a9216ea34090787e47fdc02363214966c391f1f7d2627a703b1c38726ff641f"
+    },
+    {
+      "file": "gector-analysis-command.json.gz",
+      "bytes": 6448,
+      "sha256": "79d55b5443805815867833de1626c3f8a305ee7a36f11040befca55c24dd4f7a",
+      "uncompressed_bytes": 32714,
+      "uncompressed_sha256": "41b9fe4e89b1917b9c5baf170ebcffa42169869242f26cdcaf377d7843d3154d"
+    },
+    {
+      "file": "gector-analysis.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "gector-analysis.stdout.gz",
+      "bytes": 83,
+      "sha256": "0b13397e0b68c377655ff9d122c8e23827c7a1d1e6a73e5fd4f5a6073323c142",
+      "uncompressed_bytes": 65,
+      "uncompressed_sha256": "ae861ef946b14070012ce9410b478fa3fd4974be028fe9b6b0702119f3cf3915"
+    },
+    {
+      "file": "gector-full-command.json.gz",
+      "bytes": 6741,
+      "sha256": "16bcaaedf33aea72c9be4d132e6f7b1970f2811c6278f2724e034b5bca6ef3d4",
+      "uncompressed_bytes": 33336,
+      "uncompressed_sha256": "779f035845492a92ac773c6562f637bc452f0ad213617f57deb705c1beb773ee"
+    },
+    {
+      "file": "gector-full.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "gector-full.stdout.gz",
+      "bytes": 11600,
+      "sha256": "e16c2130a6584cf397478ee8c0a9db223a01c20c25690d687a38e1f1efdff1fa",
+      "uncompressed_bytes": 126106,
+      "uncompressed_sha256": "22a614cdcde78b1bcedfa680809be29e02cfb449ea60846f7884ba4fd7131e22"
+    },
+    {
+      "file": "python-results.json.gz",
+      "bytes": 3307,
+      "sha256": "6daef951716aa83da0d09ae2cb99c0eb9381a654274fa0a01eb3ae8268bd3349",
+      "uncompressed_bytes": 25606,
+      "uncompressed_sha256": "8db56186c25681f3fee8da75ef8fe3ac339658ae973683d39232fbe756e0cbc5"
+    },
+    {
+      "file": "python-tooling-command.json.gz",
+      "bytes": 6532,
+      "sha256": "29874ada0eb9c8b3ab804c04055ee4dda682bc7c021c345bbe3637b2ece0bbe0",
+      "uncompressed_bytes": 32767,
+      "uncompressed_sha256": "e0e540f8a014994da92966a9572c610acaf9fe0c0ff4b761138654648bc421fe"
+    },
+    {
+      "file": "python-tooling.stderr.gz",
+      "bytes": 3675,
+      "sha256": "908a346424d527fe2bd382ff61014fef0edd007e39e460f71063370a52796a44",
+      "uncompressed_bytes": 19937,
+      "uncompressed_sha256": "c039ea84b92ac5a8f2f483fc7ca7993c6f3678c8c1b765e89a9a3eae65e9ab86"
+    },
+    {
+      "file": "python-tooling.stdout.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "focused-native-backend-config.jsonl.gz",
+      "bytes": 538,
+      "sha256": "40a2ddf963cd72cc504ecb8c85968f7dbc8089bd0c6e2474d756ca799b524e9c",
+      "uncompressed_bytes": 1593,
+      "uncompressed_sha256": "e8986ac7caa7971d5fe8dcdcb2fe61a84cb2e83ac38e4b67c6857512f1c392ab"
+    },
+    {
+      "file": "focused-native-backend-config.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "focused-runner-inputs-package-cwd.jsonl.gz",
+      "bytes": 873,
+      "sha256": "86f34584ccd7b20126409da85a02da950074816a19330d8c4fe77bceebe3b69a",
+      "uncompressed_bytes": 4809,
+      "uncompressed_sha256": "fbad8baf4286760256c07cb5e32d1d9eb56c404c117bd44b1615ef0eddd28ed1"
+    },
+    {
+      "file": "focused-runner-inputs-package-cwd.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "focused-runner-inputs.jsonl.gz",
+      "bytes": 680,
+      "sha256": "9d67dd76cdca4079b82136a6c6b25b2655ce7efc7e07588643a0d862ac195c04",
+      "uncompressed_bytes": 1879,
+      "uncompressed_sha256": "fcec4ae9549d3dd27d62a93d92715fb82bb3505dc4756feb81fe25a9a601bce3"
+    },
+    {
+      "file": "focused-runner-inputs.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "gector-test-identities.json.gz",
+      "bytes": 5299,
+      "sha256": "ff69d50c7e6ae54090a4bcc6632246c2ee88c9e30e2db8d56b08605b25ed80b2",
+      "uncompressed_bytes": 52798,
+      "uncompressed_sha256": "98fc3ba7ba6ffd3f21a3e40c81b3b0487c18a4bf581a93fff182097a41ed7d09"
+    }
+  ]
+}

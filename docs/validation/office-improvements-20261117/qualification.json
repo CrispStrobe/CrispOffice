@@ -1,0 +1,996 @@
+{
+  "analysis_config_restored": true,
+  "analysis_config_unchanged_during_run": true,
+  "baseline": "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+  "commands": [
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=4",
+        "--reporter=json",
+        "test/odf_annotation_extraction_test.dart",
+        "test/odf_covered_cell_extraction_test.dart",
+        "test/odf_export_text_fidelity_test.dart",
+        "test/odf_frame_extraction_test.dart",
+        "test/odf_revision_extraction_test.dart",
+        "test/odf_text_box_extraction_test.dart",
+        "test/odp_presentation_writer_test.dart",
+        "test/odp_table_fidelity_test.dart",
+        "test/odp_transform_fidelity_test.dart",
+        "test/ods_sheet_reader_test.dart",
+        "test/ods_sheet_writer_test.dart",
+        "test/ods_text_story_import_test.dart",
+        "test/odt_bookmark_range_fidelity_test.dart",
+        "test/odt_columns_schema_fidelity_test.dart",
+        "test/odt_comment_fidelity_test.dart",
+        "test/odt_document_writer_test.dart",
+        "test/odt_header_footer_fidelity_test.dart",
+        "test/odt_list_fidelity_test.dart",
+        "test/odt_note_fidelity_test.dart",
+        "test/odt_page_field_fidelity_test.dart",
+        "test/odt_paragraph_decoration_test.dart",
+        "test/odt_paragraph_properties_test.dart",
+        "test/odt_section_continuation_test.dart",
+        "test/odt_section_fidelity_test.dart",
+        "test/odt_section_integration_test.dart",
+        "test/odt_story_visual_fidelity_test.dart",
+        "test/odt_structure_fidelity_test.dart",
+        "test/odt_tab_style_fidelity_test.dart",
+        "test/odt_table_merge_test.dart",
+        "test/odt_table_tab_fidelity_test.dart",
+        "test/office_isolate_open_test.dart",
+        "test/office_isolate_save_test.dart",
+        "test/office_search_fidelity_test.dart",
+        "test/story_media_fidelity_test.dart",
+        "test/word_bookmark_copy_test.dart",
+        "test/word_bookmark_fidelity_test.dart",
+        "test/word_section_clone_fidelity_test.dart",
+        "test/proofing/german_agreement_context_test.dart",
+        "test/proofing/german_genitive_noun_test.dart",
+        "test/proofing/german_grammar_test.dart",
+        "test/proofing/german_lexical_gap_test.dart",
+        "test/proofing/german_lexicon_query_test.dart",
+        "test/proofing/german_morphology_grammar_test.dart",
+        "test/proofing/german_morphology_loading_test.dart",
+        "test/proofing/german_noun_agreement_test.dart",
+        "test/proofing/german_spelling_quotes_test.dart",
+        "test/proofing/german_spelling_test.dart",
+        "test/proofing/german_suggestion_quality_test.dart",
+        "test/proofing/german_writing_rules_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/proofing_locale_test.dart",
+        "test/proofing/proofing_report_merge_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:34:11.249866+00:00",
+      "name": "engine-tests",
+      "passed": true,
+      "selected_files": [
+        "test/odf_annotation_extraction_test.dart",
+        "test/odf_covered_cell_extraction_test.dart",
+        "test/odf_export_text_fidelity_test.dart",
+        "test/odf_frame_extraction_test.dart",
+        "test/odf_revision_extraction_test.dart",
+        "test/odf_text_box_extraction_test.dart",
+        "test/odp_presentation_writer_test.dart",
+        "test/odp_table_fidelity_test.dart",
+        "test/odp_transform_fidelity_test.dart",
+        "test/ods_sheet_reader_test.dart",
+        "test/ods_sheet_writer_test.dart",
+        "test/ods_text_story_import_test.dart",
+        "test/odt_bookmark_range_fidelity_test.dart",
+        "test/odt_columns_schema_fidelity_test.dart",
+        "test/odt_comment_fidelity_test.dart",
+        "test/odt_document_writer_test.dart",
+        "test/odt_header_footer_fidelity_test.dart",
+        "test/odt_list_fidelity_test.dart",
+        "test/odt_note_fidelity_test.dart",
+        "test/odt_page_field_fidelity_test.dart",
+        "test/odt_paragraph_decoration_test.dart",
+        "test/odt_paragraph_properties_test.dart",
+        "test/odt_section_continuation_test.dart",
+        "test/odt_section_fidelity_test.dart",
+        "test/odt_section_integration_test.dart",
+        "test/odt_story_visual_fidelity_test.dart",
+        "test/odt_structure_fidelity_test.dart",
+        "test/odt_tab_style_fidelity_test.dart",
+        "test/odt_table_merge_test.dart",
+        "test/odt_table_tab_fidelity_test.dart",
+        "test/office_isolate_open_test.dart",
+        "test/office_isolate_save_test.dart",
+        "test/office_search_fidelity_test.dart",
+        "test/story_media_fidelity_test.dart",
+        "test/word_bookmark_copy_test.dart",
+        "test/word_bookmark_fidelity_test.dart",
+        "test/word_section_clone_fidelity_test.dart",
+        "test/proofing/german_agreement_context_test.dart",
+        "test/proofing/german_genitive_noun_test.dart",
+        "test/proofing/german_grammar_test.dart",
+        "test/proofing/german_lexical_gap_test.dart",
+        "test/proofing/german_lexicon_query_test.dart",
+        "test/proofing/german_morphology_grammar_test.dart",
+        "test/proofing/german_morphology_loading_test.dart",
+        "test/proofing/german_noun_agreement_test.dart",
+        "test/proofing/german_spelling_quotes_test.dart",
+        "test/proofing/german_spelling_test.dart",
+        "test/proofing/german_suggestion_quality_test.dart",
+        "test/proofing/german_writing_rules_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/proofing_locale_test.dart",
+        "test/proofing/proofing_report_merge_test.dart",
+        "test/proofing/proofing_text_ranges_test.dart"
+      ],
+      "started_utc": "2026-11-17T18:33:27.695471+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "9bb38f2351ed760a96b370421c80f9acb2562222a038b5dc99df9dc1fe3956b8",
+      "test_routing": [
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odf_annotation_extraction_test.dart",
+          "selected": "test/odf_annotation_extraction_test.dart",
+          "sha256": "001dfae2628fae3267a145c3f2de4f6cbe6a8fc9d7473c50aa08d5391a587ba4",
+          "source_path": "packages/quds_office_engine/test/odf_annotation_extraction_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart",
+          "selected": "test/odf_covered_cell_extraction_test.dart",
+          "sha256": "0e78ddcc5e89bded0205bc562ea9a164fecbc19422c4e6f307249f5390977ab4",
+          "source_path": "packages/quds_office_engine/test/odf_covered_cell_extraction_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odf_export_text_fidelity_test.dart",
+          "selected": "test/odf_export_text_fidelity_test.dart",
+          "sha256": "54e0bc87498a71e4c8fadc88c0912e93658a016245ecedb18fe3fd88fa4ed20a",
+          "source_path": "packages/quds_office_engine/test/odf_export_text_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odf_frame_extraction_test.dart",
+          "selected": "test/odf_frame_extraction_test.dart",
+          "sha256": "e6272ae9fb6caf0526b736bc8b55e8c78cde78d1e9b53b83502a0353990cf65f",
+          "source_path": "packages/quds_office_engine/test/odf_frame_extraction_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odf_revision_extraction_test.dart",
+          "selected": "test/odf_revision_extraction_test.dart",
+          "sha256": "77a4dc443918572d107dc99198c6ae66d29ad9ca6d00934e1d6ac47fbae025e2",
+          "source_path": "packages/quds_office_engine/test/odf_revision_extraction_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odf_text_box_extraction_test.dart",
+          "selected": "test/odf_text_box_extraction_test.dart",
+          "sha256": "e9958812a57a0f02fbeff7aba148b71b2c7f4986430875ab714bab3c4802fd4f",
+          "source_path": "packages/quds_office_engine/test/odf_text_box_extraction_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+          "selected": "test/odp_presentation_writer_test.dart",
+          "sha256": "82cc552a8542ca48f1c8d721932d425feaf4494564e90549f623370f1ea40699",
+          "source_path": "packages/quds_office_engine/test/odp_presentation_writer_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odp_table_fidelity_test.dart",
+          "selected": "test/odp_table_fidelity_test.dart",
+          "sha256": "536a409a787cbd8cf3f00b9fc17c4c68ea01d8133bbbbdba7a51a8280838ab44",
+          "source_path": "packages/quds_office_engine/test/odp_table_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odp_transform_fidelity_test.dart",
+          "selected": "test/odp_transform_fidelity_test.dart",
+          "sha256": "edb1380dab91e645e3b16049ccd32135938f32333f67c7510e88bd28be1feac9",
+          "source_path": "packages/quds_office_engine/test/odp_transform_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/ods_sheet_reader_test.dart",
+          "selected": "test/ods_sheet_reader_test.dart",
+          "sha256": "b144caa8ed39fc8d3915aa665a98ca7c528443b95697535b6f15e1a035912d8d",
+          "source_path": "packages/quds_office_engine/test/ods_sheet_reader_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+          "selected": "test/ods_sheet_writer_test.dart",
+          "sha256": "440c3b922f6972ef885e2d4c25e506de8a388d4a8127fd1f6a7d586f3b422a8d",
+          "source_path": "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/ods_text_story_import_test.dart",
+          "selected": "test/ods_text_story_import_test.dart",
+          "sha256": "f69904ce4cbbcfc00c93635ab0f2bb7290dd77345efc5906494ece08f680b4f4",
+          "source_path": "packages/quds_office_engine/test/ods_text_story_import_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+          "selected": "test/odt_bookmark_range_fidelity_test.dart",
+          "sha256": "db4561321db44fdd0f0793995157fed2e1c9d7d190f1cafdbdd0d431bcdeaec9",
+          "source_path": "packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_columns_schema_fidelity_test.dart",
+          "selected": "test/odt_columns_schema_fidelity_test.dart",
+          "sha256": "90abd442b68a12a5f64036688d61aa7f48b71eb88646592f9d1c57f8f93296f2",
+          "source_path": "packages/quds_office_engine/test/odt_columns_schema_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_comment_fidelity_test.dart",
+          "selected": "test/odt_comment_fidelity_test.dart",
+          "sha256": "eac3262001e49a6c1dd3a24fc5afc410bfe1735a9cc7f46cf0cb8660d16237e5",
+          "source_path": "packages/quds_office_engine/test/odt_comment_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_document_writer_test.dart",
+          "selected": "test/odt_document_writer_test.dart",
+          "sha256": "70ae4f0dc443ff9a50013395aefc6fe9b6c1b8fc6cd658903ab22bc1b7d38f77",
+          "source_path": "packages/quds_office_engine/test/odt_document_writer_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart",
+          "selected": "test/odt_header_footer_fidelity_test.dart",
+          "sha256": "8f100a802a59a84718916bfe8935069de265944d7ff934b72b59676e351e69fb",
+          "source_path": "packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_list_fidelity_test.dart",
+          "selected": "test/odt_list_fidelity_test.dart",
+          "sha256": "792df747aab84c62c3a754beb155c7013c0456907c609c22264174460397292f",
+          "source_path": "packages/quds_office_engine/test/odt_list_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+          "selected": "test/odt_note_fidelity_test.dart",
+          "sha256": "075bc0b0087c54abaa2d1cecca84e3d78859e82eb693e88f4cbbd46f9a4120a3",
+          "source_path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "selected": "test/odt_page_field_fidelity_test.dart",
+          "sha256": "8b4bf232c3b9dde5aa717de12bb7e942097f6fa2136c9c905df81a19daaccbb9",
+          "source_path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+          "selected": "test/odt_paragraph_decoration_test.dart",
+          "sha256": "cc1f99243af3e761808494e390c2794140a2ae948f607fce1cf079b46486e327",
+          "source_path": "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_paragraph_properties_test.dart",
+          "selected": "test/odt_paragraph_properties_test.dart",
+          "sha256": "35b492937fc7d931111e184a0ab2d0e54463e99134af557816bb33d5e6458cce",
+          "source_path": "packages/quds_office_engine/test/odt_paragraph_properties_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_section_continuation_test.dart",
+          "selected": "test/odt_section_continuation_test.dart",
+          "sha256": "a15a1ce5acd81f6f2ec5d754b528c9ce022b53b6f01eebf571eb3484b12722c8",
+          "source_path": "packages/quds_office_engine/test/odt_section_continuation_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+          "selected": "test/odt_section_fidelity_test.dart",
+          "sha256": "4f2b34c4230b9dd96658d662d77df00f7ec7df7d8e64ff44704e19a4a2731031",
+          "source_path": "packages/quds_office_engine/test/odt_section_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_section_integration_test.dart",
+          "selected": "test/odt_section_integration_test.dart",
+          "sha256": "54718ea8aafc2f86f1ddb01927158b0a533f5aacfc2ef60abf4ad0531313cf0e",
+          "source_path": "packages/quds_office_engine/test/odt_section_integration_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_story_visual_fidelity_test.dart",
+          "selected": "test/odt_story_visual_fidelity_test.dart",
+          "sha256": "e79f4f43075941b345e7956c60afa3ca64c1bf25e2fcf1ba06999ba6310d65ea",
+          "source_path": "packages/quds_office_engine/test/odt_story_visual_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_structure_fidelity_test.dart",
+          "selected": "test/odt_structure_fidelity_test.dart",
+          "sha256": "e9e18ed3059276fb13a37fd2e907467ff747b6faaa5503355193fcbd8a16c7e2",
+          "source_path": "packages/quds_office_engine/test/odt_structure_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_tab_style_fidelity_test.dart",
+          "selected": "test/odt_tab_style_fidelity_test.dart",
+          "sha256": "b089913a11c24f909961161b2d4787d46335cb3a29a21c5a8750baa7e751d13b",
+          "source_path": "packages/quds_office_engine/test/odt_tab_style_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_table_merge_test.dart",
+          "selected": "test/odt_table_merge_test.dart",
+          "sha256": "f7f3d09eadd2bb03cdee33e7d9399325731e9a2374993cfbe7dac10374fc4c62",
+          "source_path": "packages/quds_office_engine/test/odt_table_merge_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+          "selected": "test/odt_table_tab_fidelity_test.dart",
+          "sha256": "6250ae71be0f2ea8d4154ffdb8eb9aca1f3b0d3b7f6f5fbad4cf8964c7708ece",
+          "source_path": "packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/office_isolate_open_test.dart",
+          "selected": "test/office_isolate_open_test.dart",
+          "sha256": "add2c9ad84021c783f1cff3ecaaf9084e648c4a5bddf5a6efba8ef5124aba817",
+          "source_path": "packages/quds_office_engine/test/office_isolate_open_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/office_isolate_save_test.dart",
+          "selected": "test/office_isolate_save_test.dart",
+          "sha256": "d01f8ec25a3c3f32d34abdcbe4c9e6d242cf9b2d7b6e20da6c2de776d58056b7",
+          "source_path": "packages/quds_office_engine/test/office_isolate_save_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/office_search_fidelity_test.dart",
+          "selected": "test/office_search_fidelity_test.dart",
+          "sha256": "6be46e563260611bc7a7e0d204ca33715a0f2000a3f9e1f643ebb20db7187bfa",
+          "source_path": "packages/quds_office_engine/test/office_search_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/story_media_fidelity_test.dart",
+          "selected": "test/story_media_fidelity_test.dart",
+          "sha256": "1c5678453daf0275e31a1c226be5d8f46f1a36eea8af740b705cb60c1164779f",
+          "source_path": "packages/quds_office_engine/test/story_media_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/word_bookmark_copy_test.dart",
+          "selected": "test/word_bookmark_copy_test.dart",
+          "sha256": "98b2bae0dd946849c8adc2fa5631c2c325664530dc91d521b1a44048b0642f20",
+          "source_path": "packages/quds_office_engine/test/word_bookmark_copy_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+          "selected": "test/word_bookmark_fidelity_test.dart",
+          "sha256": "ad38f1dc9d927203fc74cb2fc4c78351e212e14ce398b6a36deba1d0220d7889",
+          "source_path": "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/word_section_clone_fidelity_test.dart",
+          "selected": "test/word_section_clone_fidelity_test.dart",
+          "sha256": "668b97851a93b6889675398bf48493bfcd130bb90a6e53bfac17320d052c307e",
+          "source_path": "packages/quds_office_engine/test/word_section_clone_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart",
+          "selected": "test/proofing/german_agreement_context_test.dart",
+          "sha256": "35dcb37e8bff79aa6efa333048ac0af865724d8034abfeff5289364341a9f431",
+          "source_path": "packages/quds_office_engine/test/proofing/german_agreement_context_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart",
+          "selected": "test/proofing/german_genitive_noun_test.dart",
+          "sha256": "8ab750a22463c6a65e3b85e031bc156aea916a15bb1a1f1ef85ddbfefe1a7ac6",
+          "source_path": "packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+          "selected": "test/proofing/german_grammar_test.dart",
+          "sha256": "882f6ada273a2afd72fa623b24412966756b82d65461a9a596fec21691d23be0",
+          "source_path": "packages/quds_office_engine/test/proofing/german_grammar_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart",
+          "selected": "test/proofing/german_lexical_gap_test.dart",
+          "sha256": "0e39ead3bc256935f88a247955f6d1124bee52e796ed8fea4458d8bbcf2b6b82",
+          "source_path": "packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart",
+          "selected": "test/proofing/german_lexicon_query_test.dart",
+          "sha256": "9787110806f0a4d630f29011941f8df90a59b2b3cd7d32a9133baf3254b10df8",
+          "source_path": "packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+          "selected": "test/proofing/german_morphology_grammar_test.dart",
+          "sha256": "dcfc751b158ec6365b70fe4b09f4d221ce39254a52eaca9af2afa7911c9a78b7",
+          "source_path": "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+          "selected": "test/proofing/german_morphology_loading_test.dart",
+          "sha256": "aefd8df2d50b50733ef7382535238a50e98cd4febe8ac7122ba940c96f74392d",
+          "source_path": "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+          "selected": "test/proofing/german_noun_agreement_test.dart",
+          "sha256": "b68545b0a02b207f69bc66841d007def7a2cded3ff90c538ef46437d89e1284f",
+          "source_path": "packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+          "selected": "test/proofing/german_spelling_quotes_test.dart",
+          "sha256": "a55ae5a77e644014d185658672ef504301fb20a914c68773a86e16f399c2e50b",
+          "source_path": "packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+          "selected": "test/proofing/german_spelling_test.dart",
+          "sha256": "061b1544a3e15961c3fcefbc1812968fd1da722271e9f7a8b4232e9f45e9f9e2",
+          "source_path": "packages/quds_office_engine/test/proofing/german_spelling_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+          "selected": "test/proofing/german_suggestion_quality_test.dart",
+          "sha256": "a99e291868668d7f3181bea7f19272839f47cd8357a4b5433068ba7ee0a56ef5",
+          "source_path": "packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+          "selected": "test/proofing/german_writing_rules_test.dart",
+          "sha256": "9212c9cb0a84da8f8c4ae56e397c6160e38d430026f14bf8b7ab41e28fb8b32d",
+          "source_path": "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+          "selected": "test/proofing/office_proofing_test.dart",
+          "sha256": "f06d9a02895b767caf3873bef2f43b3eaea07d95fc81d558a5ac78edafe66940",
+          "source_path": "packages/quds_office_engine/test/proofing/office_proofing_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_locale_test.dart",
+          "selected": "test/proofing/proofing_locale_test.dart",
+          "sha256": "188b017807d4ad28af3b872a062faa07e333e816002610a7913fd139531e676c",
+          "source_path": "packages/quds_office_engine/test/proofing/proofing_locale_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart",
+          "selected": "test/proofing/proofing_report_merge_test.dart",
+          "sha256": "dcfe6b74b08a307bcce538b5f4fe3911d63a30aeaa15a0a5fa9bbc69b0158c05",
+          "source_path": "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart",
+          "selected": "test/proofing/proofing_text_ranges_test.dart",
+          "sha256": "5f9d170e1e6158a702470605f0f5f345ea5199ad0d75550ab34b21d7f502460b",
+          "source_path": "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart"
+        }
+      ],
+      "tests": {
+        "complete": true,
+        "failed": 0,
+        "passed": 1271,
+        "skipped": 0
+      }
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/word_bookmark_fidelity_test.dart",
+        "test/word_bookmark_copy_test.dart",
+        "test/word_bookmark_history_test.dart",
+        "test/word_generated_bookmark_paste_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_notes_editing_test.dart",
+        "test/word_german_grammar_integration_test.dart",
+        "test/word_manual_proofing_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_dialog_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:34:31.699491+00:00",
+      "name": "editor-tests",
+      "passed": true,
+      "selected_files": [
+        "test/word_bookmark_fidelity_test.dart",
+        "test/word_bookmark_copy_test.dart",
+        "test/word_bookmark_history_test.dart",
+        "test/word_generated_bookmark_paste_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_notes_editing_test.dart",
+        "test/word_german_grammar_integration_test.dart",
+        "test/word_manual_proofing_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_dialog_test.dart"
+      ],
+      "started_utc": "2026-11-17T18:34:11.269370+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "860082c803ac373c893f0e97faef9df2708e4e3e8f917658804368608fd5ef27",
+      "test_routing": [
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_bookmark_fidelity_test.dart",
+          "selected": "test/word_bookmark_fidelity_test.dart",
+          "sha256": "1f878044b31f5573f488bf2b28a9f1a27f4aaafb1201df564e1d716064eaa794",
+          "source_path": "packages/quds_office_editor/test/word_bookmark_fidelity_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_bookmark_copy_test.dart",
+          "selected": "test/word_bookmark_copy_test.dart",
+          "sha256": "e473d96ea7c4d8c15d314486648b7ce91a83cb986327be54ebd55c4fd220ce86",
+          "source_path": "packages/quds_office_editor/test/word_bookmark_copy_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_bookmark_history_test.dart",
+          "selected": "test/word_bookmark_history_test.dart",
+          "sha256": "f2e1694df4d787d4177d89a27e0753b68bd79f909c47eb8c318a21966b28b639",
+          "source_path": "packages/quds_office_editor/test/word_bookmark_history_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_generated_bookmark_paste_test.dart",
+          "selected": "test/word_generated_bookmark_paste_test.dart",
+          "sha256": "569aa5646657ff427d11facc5c0f19925e1945992069bfadc940ba90b6d19a3f",
+          "source_path": "packages/quds_office_editor/test/word_generated_bookmark_paste_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+          "selected": "test/word_note_numbering_test.dart",
+          "sha256": "e6219eec357284406dabd1ea47955463179e18fe17b1e8aa5ebcf185fa624bdd",
+          "source_path": "packages/quds_office_editor/test/word_note_numbering_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+          "selected": "test/word_notes_editing_test.dart",
+          "sha256": "5a4dd0fa0e2a6ca5af7af288cbe3ca54821570089a218a3829246353570a7619",
+          "source_path": "packages/quds_office_editor/test/word_notes_editing_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+          "selected": "test/word_german_grammar_integration_test.dart",
+          "sha256": "c206c15c6af3aa2017b5f0c08a85f325188498ce2a5aba1a67ba212b9aa39310",
+          "source_path": "packages/quds_office_editor/test/word_german_grammar_integration_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+          "selected": "test/word_manual_proofing_test.dart",
+          "sha256": "a5f09c786724dfbfd53a970e4f24121bbf28935d2b5394e5e0e729b28c1a4d7a",
+          "source_path": "packages/quds_office_editor/test/word_manual_proofing_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+          "selected": "test/word_proofing_session_test.dart",
+          "sha256": "837664a53fc12278cc511c39a1bfa2bfb31453c8b54e968327608eb5159e5f12",
+          "source_path": "packages/quds_office_editor/test/word_proofing_session_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_proofing_correction_test.dart",
+          "selected": "test/word_proofing_correction_test.dart",
+          "sha256": "97ff02bafff82ad46be47643a341595fd579e7d5027a6586358f4f14fd044910",
+          "source_path": "packages/quds_office_editor/test/word_proofing_correction_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+          "selected": "test/word_proofing_dialog_test.dart",
+          "sha256": "2cdbe02ad15f357dee098a37542d0a242f3840049f63a61e64818675868be1ad",
+          "source_path": "packages/quds_office_editor/test/word_proofing_dialog_test.dart"
+        }
+      ],
+      "tests": {
+        "complete": true,
+        "failed": 0,
+        "passed": 160,
+        "skipped": 0
+      }
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:35:00.362596+00:00",
+      "name": "aot-vm-tests",
+      "passed": true,
+      "selected_files": [
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "started_utc": "2026-11-17T18:34:31.703829+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "39d550558b6ac6a5fa3310a0c33b40bb7860de038d6345410aa3bde3da365102",
+      "test_routing": [
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/client_test.dart",
+          "selected": "test/client_test.dart",
+          "sha256": "7784a3a531897751000b4a6b155ada56a6fb86dfe78054591abf011b9f067117",
+          "source_path": "packages/quds_proofing_aot/test/client_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/german_rules_test.dart",
+          "selected": "test/german_rules_test.dart",
+          "sha256": "c246ba8a781da6ae585489dd6bf124c6a5f9caaa5f6825b5b50d268be476e8f7",
+          "source_path": "packages/quds_proofing_aot/test/german_rules_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/models_test.dart",
+          "selected": "test/models_test.dart",
+          "sha256": "5967d82d1255aa515e4f239d5774b60f275c7b1ee862b65373ee858177451842",
+          "source_path": "packages/quds_proofing_aot/test/models_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/provider_test.dart",
+          "selected": "test/provider_test.dart",
+          "sha256": "8254697965788d14019a0c0b47871f5af242815e17fcdd33995f50e9793d96e5",
+          "source_path": "packages/quds_proofing_aot/test/provider_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/transport_test.dart",
+          "selected": "test/transport_test.dart",
+          "sha256": "6241301fa081868a4b8d98f8b80a0570a228daea71ee2febc91a8fe87dc352b2",
+          "source_path": "packages/quds_proofing_aot/test/transport_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/upstream_morphology_test.dart",
+          "selected": "test/upstream_morphology_test.dart",
+          "sha256": "7a4457fd21b9985c12c4355e949c15bf5ee5a9faa8b496d7bca9ea0607b0ba31",
+          "source_path": "packages/quds_proofing_aot/test/upstream_morphology_test.dart"
+        }
+      ],
+      "tests": {
+        "complete": true,
+        "failed": 0,
+        "passed": 99,
+        "skipped": 0
+      }
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "test",
+        "--platform=node",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:35:50.355961+00:00",
+      "name": "aot-node-tests",
+      "passed": true,
+      "repeat_of": "aot-vm-tests",
+      "selected_files": [
+        "test/client_test.dart",
+        "test/german_rules_test.dart",
+        "test/models_test.dart",
+        "test/provider_test.dart",
+        "test/transport_test.dart",
+        "test/upstream_morphology_test.dart"
+      ],
+      "started_utc": "2026-11-17T18:35:00.368285+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b26e0703cfba2236c0435b2e8dd061a51332649f2661acb1ceb057629d5ffc88",
+      "test_routing": [
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/client_test.dart",
+          "selected": "test/client_test.dart",
+          "sha256": "7784a3a531897751000b4a6b155ada56a6fb86dfe78054591abf011b9f067117",
+          "source_path": "packages/quds_proofing_aot/test/client_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/german_rules_test.dart",
+          "selected": "test/german_rules_test.dart",
+          "sha256": "c246ba8a781da6ae585489dd6bf124c6a5f9caaa5f6825b5b50d268be476e8f7",
+          "source_path": "packages/quds_proofing_aot/test/german_rules_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/models_test.dart",
+          "selected": "test/models_test.dart",
+          "sha256": "5967d82d1255aa515e4f239d5774b60f275c7b1ee862b65373ee858177451842",
+          "source_path": "packages/quds_proofing_aot/test/models_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/provider_test.dart",
+          "selected": "test/provider_test.dart",
+          "sha256": "8254697965788d14019a0c0b47871f5af242815e17fcdd33995f50e9793d96e5",
+          "source_path": "packages/quds_proofing_aot/test/provider_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/transport_test.dart",
+          "selected": "test/transport_test.dart",
+          "sha256": "6241301fa081868a4b8d98f8b80a0570a228daea71ee2febc91a8fe87dc352b2",
+          "source_path": "packages/quds_proofing_aot/test/transport_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_proofing_aot/test/upstream_morphology_test.dart",
+          "selected": "test/upstream_morphology_test.dart",
+          "sha256": "7a4457fd21b9985c12c4355e949c15bf5ee5a9faa8b496d7bca9ea0607b0ba31",
+          "source_path": "packages/quds_proofing_aot/test/upstream_morphology_test.dart"
+        }
+      ],
+      "tests": {
+        "complete": true,
+        "failed": 0,
+        "passed": 99,
+        "skipped": 0
+      }
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--concurrency=2",
+        "--reporter=json",
+        "--dart-define=QUDS_AOT_ENDPOINT=http://127.0.0.1:17018/",
+        "test/studio_aot_test.dart",
+        "test/widget_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:01.187265+00:00",
+      "name": "studio-tests",
+      "passed": true,
+      "selected_files": [
+        "test/studio_aot_test.dart",
+        "test/widget_test.dart"
+      ],
+      "started_utc": "2026-11-17T18:35:50.359925+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "15fa73d4f250f7787d7663e827793035a99349a01be00693d7fb47f2afc5db29",
+      "test_routing": [
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/example/test/studio_aot_test.dart",
+          "selected": "test/studio_aot_test.dart",
+          "sha256": "4e5446e4f5a970dc05d82805d2c0982b87030fab5bfa6787eafa2df18294ea48",
+          "source_path": "packages/quds_office_editor/example/test/studio_aot_test.dart"
+        },
+        {
+          "resolved": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/example/test/widget_test.dart",
+          "selected": "test/widget_test.dart",
+          "sha256": "04c0b8215a0f9ed95f2ec922fa6ed58abfeae6c50be6ce1319392404a5cb44c9",
+          "source_path": "packages/quds_office_editor/example/test/widget_test.dart"
+        }
+      ],
+      "tests": {
+        "complete": true,
+        "failed": 0,
+        "passed": 13,
+        "skipped": 0
+      }
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+        "-c",
+        "import hashlib, importlib.util, json, pathlib, sys, unittest\nmodule_path = pathlib.Path(sys.argv[1]).resolve(strict=True)\ndestination = pathlib.Path(sys.argv[2])\nexpected = int(sys.argv[3])\nsource_hash = hashlib.sha256(module_path.read_bytes()).hexdigest()\nsys.path.insert(0, str(module_path.parent))\nspec = importlib.util.spec_from_file_location(\"test_candidate_admission\", module_path)\nmodule = importlib.util.module_from_spec(spec)\nsys.modules[spec.name] = module\nspec.loader.exec_module(module)\nassert pathlib.Path(module.__file__).resolve() == module_path\nsuite = unittest.defaultTestLoader.loadTestsFromModule(module)\ndef ids(suite):\n    for item in suite:\n        if isinstance(item, unittest.TestSuite):\n            yield from ids(item)\n        else:\n            yield item.id()\nidentities = list(ids(suite))\nassert len(identities) == len(set(identities)) == expected\nresult = unittest.TextTestRunner(verbosity=2).run(suite)\nafter_hash = hashlib.sha256(module_path.read_bytes()).hexdigest()\npassed = result.wasSuccessful() and not result.skipped and result.testsRun == expected and source_hash == after_hash\ndestination.write_text(json.dumps({\"passed\": passed, \"source\": str(module_path), \"sha256\": source_hash, \"sha256_after\": after_hash, \"case_ids\": identities, \"tests_run\": result.testsRun, \"expected_count\": expected, \"failures\": len(result.failures), \"errors\": len(result.errors), \"skips\": len(result.skipped)}, indent=2) + \"\\n\")\nsys.exit(0 if passed else 1)\n",
+        "/workspace/scratch/7ce65890233c/quds_office_suite/tools/proofing/german_model/test_candidate_admission.py",
+        "/workspace/scratch/7ce65890233c/qualified-canonical-7fd2030f-r2/candidate-python-controls-result.json",
+        "5"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/tools/proofing/german_model",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:01.405271+00:00",
+      "name": "candidate-python-controls",
+      "passed": true,
+      "python_controls": {
+        "case_ids": [
+          "test_candidate_admission.CandidateAdmissionTest.test_duplicate_artifact",
+          "test_candidate_admission.CandidateAdmissionTest.test_missing_notice",
+          "test_candidate_admission.CandidateAdmissionTest.test_modified_model",
+          "test_candidate_admission.CandidateAdmissionTest.test_modified_publisher_code_with_same_size",
+          "test_candidate_admission.CandidateAdmissionTest.test_path_escape"
+        ],
+        "errors": 0,
+        "expected_count": 5,
+        "failures": 0,
+        "passed": true,
+        "sha256": "661b9daace502e95a3f0a7386a38fed70fdfcf712020acbc2ba758652040d861",
+        "sha256_after": "661b9daace502e95a3f0a7386a38fed70fdfcf712020acbc2ba758652040d861",
+        "skips": 0,
+        "source": "/workspace/scratch/7ce65890233c/quds_office_suite/tools/proofing/german_model/test_candidate_admission.py",
+        "tests_run": 5
+      },
+      "started_utc": "2026-11-17T18:36:01.189229+00:00",
+      "stderr_sha256": "1e867cf81dd1a3f5745d9ddd4ed6d453a0d0024fa287c7ba7bf2f1795745c9c3",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:15.345805+00:00",
+      "name": "engine-analysis",
+      "passed": true,
+      "started_utc": "2026-11-17T18:36:01.407375+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_proofing_aot"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:16.279697+00:00",
+      "name": "aot-analysis",
+      "passed": true,
+      "started_utc": "2026-11-17T18:36:15.357655+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "2d590d4cfc42d52e3701d146c379a13fa04b5cebe7f8ef7f075b0b6e775723eb"
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/src/embed/word_proofing_dialog.dart",
+        "test/word_bookmark_fidelity_test.dart",
+        "test/word_bookmark_copy_test.dart",
+        "test/word_bookmark_history_test.dart",
+        "test/word_generated_bookmark_paste_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/word_notes_editing_test.dart",
+        "test/word_german_grammar_integration_test.dart",
+        "test/word_manual_proofing_test.dart",
+        "test/word_proofing_session_test.dart",
+        "test/word_proofing_correction_test.dart",
+        "test/word_proofing_dialog_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:27.441613+00:00",
+      "name": "editor-proofing-analysis",
+      "passed": true,
+      "started_utc": "2026-11-17T18:36:16.280777+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d1b7525ac0daf9601100ff2e9bba1f92fc37b1721d13c1306ca942d82fff7bb4"
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/studio_aot.dart",
+        "lib/suite_workspace.dart",
+        "test/studio_aot_test.dart",
+        "test/widget_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:36.863351+00:00",
+      "name": "studio-analysis",
+      "passed": true,
+      "started_utc": "2026-11-17T18:36:27.444072+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "fd7b3b7de8a7a3809fde83b05a02c400d2b28f5d1f8fe1d0cad311ed7d7f47df"
+    },
+    {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/.quds-gector-work/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--language-version=3.12",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/lib/studio_aot.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_aot_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_proofing_dialog.dart",
+        "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+        "packages/quds_office_engine/lib/src/extract/office_search_text.dart",
+        "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart",
+        "packages/quds_office_engine/lib/src/odf/odf_text.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odf_revision_extraction_test.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "packages/quds_office_engine/test/ods_text_story_import_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_columns_schema_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+        "packages/quds_office_engine/test/odt_section_continuation_test.dart",
+        "packages/quds_office_engine/test/odt_story_visual_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_style_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+        "packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+        "packages/quds_proofing_aot/lib/quds_proofing_aot.dart",
+        "packages/quds_proofing_aot/lib/src/client.dart",
+        "packages/quds_proofing_aot/lib/src/german_rules.dart",
+        "packages/quds_proofing_aot/lib/src/models.dart",
+        "packages/quds_proofing_aot/lib/src/provider.dart",
+        "packages/quds_proofing_aot/lib/src/transport.dart",
+        "packages/quds_proofing_aot/test/aot_fixture_data.dart",
+        "packages/quds_proofing_aot/test/client_test.dart",
+        "packages/quds_proofing_aot/test/fixtures/upstream_german_morphology.dart",
+        "packages/quds_proofing_aot/test/german_rules_test.dart",
+        "packages/quds_proofing_aot/test/grammar_support.dart",
+        "packages/quds_proofing_aot/test/models_test.dart",
+        "packages/quds_proofing_aot/test/provider_test.dart",
+        "packages/quds_proofing_aot/test/transport_test.dart",
+        "packages/quds_proofing_aot/test/upstream_morphology_test.dart",
+        "packages/quds_proofing_aot/tool/aot.dart"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:37.437719+00:00",
+      "name": "changed-dart-format",
+      "passed": true,
+      "started_utc": "2026-11-17T18:36:36.871176+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "ecff5a667f8f1f7c06a73466d507074914fb81095fa42db7d535a0c2c58b53b5"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "7a9702c3b74e0e905c76fcf467d608bbb852d004",
+        "HEAD",
+        "--",
+        ".",
+        ":(exclude,literal)docs/validation/office-reconcile-20261117/consumer/schemas/OpenDocument-v1.3-manifest-schema.rng",
+        ":(exclude,literal)docs/validation/office-reconcile-20261117/consumer/schemas/OpenDocument-v1.3-schema.rng"
+      ],
+      "cwd": "/workspace/scratch/7ce65890233c/quds_office_suite",
+      "exit_code": 0,
+      "finished_utc": "2026-11-17T18:36:37.520264+00:00",
+      "name": "whitespace",
+      "passed": true,
+      "started_utc": "2026-11-17T18:36:37.455382+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "finished_utc": "2026-11-17T18:36:39.343629+00:00",
+  "inputs_unchanged": true,
+  "kind": "canonical",
+  "node_runtime": {
+    "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+    "version": "v24.22.1"
+  },
+  "python_runtime": {
+    "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+    "version": "Python 3.12.14"
+  },
+  "scope": "Local source-specific Office, proofing, AOT and Studio unit/widget qualification; no full application/export-dialog, live interoperability, native/model or Wasm acceptance.",
+  "source_commit": "7fd2030fd39a2b0bbdb1b1e778840c332ae6bbc3",
+  "source_head_unchanged": true,
+  "source_tree": "a2be1d4f1a871f68bc9986f0e2032ad3484d5212",
+  "started_utc": "2026-11-17T18:33:27.662927+00:00",
+  "status": "passed",
+  "whitespace_exceptions": {
+    "docs/validation/office-reconcile-20261117/consumer/schemas/OpenDocument-v1.3-manifest-schema.rng": {
+      "bytes": 7826,
+      "git_blob": "3ff6d39b628da5815936417657bd78b6a2d75256",
+      "sha256": "8aee71f03484be112af972d622cc9031280c007b0a454ae8815e8e333c9bdd17",
+      "source_ref": "f9cc1c003892944881bab3699ba6b76620dc2f07",
+      "working_tree_materialized": false
+    },
+    "docs/validation/office-reconcile-20261117/consumer/schemas/OpenDocument-v1.3-schema.rng": {
+      "bytes": 596938,
+      "git_blob": "dc77c4fc57af7ef42f1af0d772e11f45faba489e",
+      "sha256": "40bad03efdbb02825230d357da0aa6ac679934c5bf56c6281752c0c24d58e4e6",
+      "source_ref": "f9cc1c003892944881bab3699ba6b76620dc2f07",
+      "working_tree_materialized": false
+    }
+  }
+}

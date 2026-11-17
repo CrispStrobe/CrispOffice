@@ -1,0 +1,19 @@
+{
+  "status": "Baseline AOT built and replay prepared; final build and all current native inference await root coordination.",
+  "baseline_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+  "baseline_program_sha256": "3b6ff99fbb1f72c6339983f827c66f409de91b6340c7f3d6a6615c32c26bc7f7",
+  "baseline_program_bytes": 8358216,
+  "baseline_source_tracked_bytes": 17401670,
+  "baseline_tracked_files": 590,
+  "resolved_packages": 109,
+  "workspace_roots": 10,
+  "native_inference_run": false,
+  "frozen_case_count": 377,
+  "current_working_paths": {
+    "baseline_source": "/workspace/scratch/8a4017da88e9/quality-replay/baseline-source",
+    "baseline_build": "/workspace/scratch/8a4017da88e9/quality-replay/build-baseline",
+    "panels": "/workspace/scratch/8a4017da88e9/quality-replay/panels/panels.json",
+    "future_baseline_results": "/workspace/scratch/8a4017da88e9/quality-replay/results-baseline",
+    "future_final_results": "/workspace/scratch/8a4017da88e9/quality-replay/results-final"
+  }
+}

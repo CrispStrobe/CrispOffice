@@ -1,0 +1,424 @@
+{
+  "kind": "quds-final-development-quality-comparison",
+  "baseline_implementation_commit": "43d43061ac33e2e3b336a79fb4b07b036bc617a8",
+  "final_implementation_commit": "143bad2f69976c331ac98ea7b4adbaec430af916",
+  "archive": "final-quality-evidence.tar.xz",
+  "index": "final-quality-evidence.index.json",
+  "panels": {
+    "original-30": {
+      "total_rows": 30,
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "operational_passed": true,
+      "source_stable": true,
+      "lanes": {
+        "writing_only": {
+          "before": {
+            "exact_error_count": 8,
+            "changed_nonexact_error_count": 1,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 9,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "accusative-article"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before": {
+            "exact_error_count": 8,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 10,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "accusative-article",
+            "participle"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before": {
+            "exact_error_count": 6,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 6,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        },
+        "combined": {
+          "before": {
+            "exact_error_count": 10,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 12,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 18,
+            "completed_clean_count": 10,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "accusative-article",
+            "participle"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        }
+      },
+      "regional_controls": [
+        {
+          "id": "clean-swiss",
+          "language": "de-CH",
+          "model_statuses": [
+            "unsupported"
+          ]
+        },
+        {
+          "id": "clean-swiss-name",
+          "language": "de-CH",
+          "model_statuses": [
+            "unsupported"
+          ]
+        }
+      ],
+      "remaining_nonexact_combined_projections": []
+    },
+    "development-76": {
+      "total_rows": 76,
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "operational_passed": true,
+      "source_stable": true,
+      "lanes": {
+        "writing_only": {
+          "before": {
+            "exact_error_count": 14,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 15,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "prospective-weak-accusative-student-error"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before": {
+            "exact_error_count": 14,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 17,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "prospective-participle-finden-error",
+            "prospective-participle-schreiben-error",
+            "prospective-weak-accusative-student-error"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before": {
+            "exact_error_count": 12,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 12,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        },
+        "combined": {
+          "before": {
+            "exact_error_count": 20,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 23,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 32,
+            "completed_clean_count": 40,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "prospective-participle-finden-error",
+            "prospective-participle-schreiben-error",
+            "prospective-weak-accusative-student-error"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        }
+      },
+      "regional_controls": [
+        {
+          "id": "prospective-locale-at-marillen",
+          "language": "de-AT",
+          "model_statuses": [
+            "unsupported"
+          ]
+        },
+        {
+          "id": "prospective-locale-at-perfect-auxiliary",
+          "language": "de-AT",
+          "model_statuses": [
+            "unsupported"
+          ]
+        },
+        {
+          "id": "prospective-locale-ch-strasse",
+          "language": "de-CH",
+          "model_statuses": [
+            "unsupported"
+          ]
+        },
+        {
+          "id": "prospective-locale-ch-weiss",
+          "language": "de-CH",
+          "model_statuses": [
+            "unsupported"
+          ]
+        }
+      ],
+      "remaining_nonexact_combined_projections": []
+    },
+    "syntax-56": {
+      "total_rows": 56,
+      "de_DE_errors": 20,
+      "de_DE_clean": 34,
+      "operational_passed": true,
+      "source_stable": true,
+      "lanes": {
+        "writing_only": {
+          "before": {
+            "exact_error_count": 10,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 10,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before": {
+            "exact_error_count": 10,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 3,
+            "flagged_clean_count": 3,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 11,
+            "changed_nonexact_error_count": 1,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "participle-1"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": [
+            "clean-20",
+            "clean-26",
+            "clean-27"
+          ]
+        },
+        "model_only": {
+          "before": {
+            "exact_error_count": 5,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 1,
+            "flagged_clean_count": 1,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 5,
+            "changed_nonexact_error_count": 0,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": [
+            "clean-36"
+          ]
+        },
+        "combined": {
+          "before": {
+            "exact_error_count": 13,
+            "changed_nonexact_error_count": 2,
+            "changed_clean_count": 4,
+            "flagged_clean_count": 4,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "after": {
+            "exact_error_count": 14,
+            "changed_nonexact_error_count": 1,
+            "changed_clean_count": 0,
+            "flagged_clean_count": 0,
+            "completed_error_count": 20,
+            "completed_clean_count": 34,
+            "unsupported_only_count": 0
+          },
+          "added_exact_error_ids": [
+            "participle-1"
+          ],
+          "lost_exact_error_ids": [],
+          "removed_flagged_clean_ids": [
+            "clean-20",
+            "clean-26",
+            "clean-27",
+            "clean-36"
+          ]
+        }
+      },
+      "regional_controls": [
+        {
+          "id": "clean-31",
+          "language": "de-CH",
+          "model_statuses": [
+            "unsupported"
+          ]
+        },
+        {
+          "id": "clean-32",
+          "language": "de-CH",
+          "model_statuses": [
+            "unsupported"
+          ]
+        }
+      ],
+      "remaining_nonexact_combined_projections": [
+        {
+          "id": "participle-2",
+          "input": "Er ist nach Hause gegangt.",
+          "expected": "Er ist nach Hause gegangen.",
+          "actual": "Er ist nach Hause gebangt."
+        }
+      ]
+    }
+  },
+  "interpretation": [
+    "These reused synthetic regression panels do not estimate representative German accuracy.",
+    "First-listed-replacement projection is a measurement convention; the application presents suggestions for review.",
+    "All existing exact fixes are retained in every lane; regional rows are reported separately.",
+    "The model remains unsupported for de-AT/de-CH.",
+    "The syntax panel uses the separately saved metadata-only adapter; inputs, gold strings, locales and row order are unchanged."
+  ]
+}

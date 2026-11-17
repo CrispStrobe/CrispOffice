@@ -1,0 +1,337 @@
+{
+  "scope": "Bounded dictionary-verified sein participle preference in German spelling, plus repaired preposition-message merge regression. No dictionary or model asset change.",
+  "baseline_integration_commit": "28dabf1015f394f9413224e3625a7addd13ecab3",
+  "source_sha256_captured_after_runs": {
+    "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "9e51dd774237e6a22232ad88f905cc32314f75ee3ffeb263fee7cdbade93f82c",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "3f9909cbbe27f038216db609ff1a21a843737d146521538b34cf6b3579f59a5d",
+    "packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart": "b99efef2eb3fe3a82531f89226a752bbf9dee569d88b672789d504e8e6f64cfc"
+  },
+  "fail_before_implementation_file_sha256": "7ce1c36d56484997762d0f5201fa3f3d0498a141d2c387be194f1533fd16ac28",
+  "reviewed_pairs": {
+    "gegangt": "gegangen",
+    "gekommt": "gekommen",
+    "gebleibt": "geblieben",
+    "gefahrt": "gefahren",
+    "gefliegt": "geflogen",
+    "gelauft": "gelaufen",
+    "gesteigt": "gestiegen",
+    "gespringt": "gesprungen",
+    "gestirbt": "gestorben"
+  },
+  "bounds": {
+    "prefix_utf16": 192,
+    "intervening_words": 8,
+    "trailing_whitespace_utf16": 64,
+    "requires": "Matching pronoun plus present/past sein and a reviewed form at the local clause edge. Existing protected, literal, grapheme, known-word, case, ignored-word, personal-vocabulary and candidate-budget handling is preserved."
+  },
+  "merge_repair": "Restore existing preposition-specific default message; pass incoming generic message explicitly to verb/copula contexts. Both rule identities and behavior retained.",
+  "cohorts": [
+    {
+      "label": "integrated-focused",
+      "command": [
+        "dart",
+        "test",
+        "test/proofing/german_participle_suggestions_test.dart",
+        "test/proofing/german_context_test.dart",
+        "test/proofing/german_context_completion_test.dart",
+        "test/proofing/german_verb_object_case_test.dart",
+        "test/proofing/german_nominal_word_forms_test.dart",
+        "--reporter",
+        "json"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "passed": 246,
+      "failed": 1,
+      "skipped": 0,
+      "runner_completion": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 3782
+        }
+      ],
+      "failures": [
+        {
+          "name": "preposition rules keep their identifiers and messages",
+          "error": "Expected: contains 'Präposition'\n  Actual: 'Artikel und Nomen verlangen in diesem eindeutigen Kasus normalerweise diese Form.'\n   Which: does not contain 'Präposition'\n"
+        }
+      ]
+    },
+    {
+      "label": "integrated-focused-fixed",
+      "command": [
+        "dart",
+        "test",
+        "test/proofing/german_participle_suggestions_test.dart",
+        "test/proofing/german_context_test.dart",
+        "test/proofing/german_context_completion_test.dart",
+        "test/proofing/german_verb_object_case_test.dart",
+        "test/proofing/german_nominal_word_forms_test.dart",
+        "--reporter",
+        "json"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "passed": 247,
+      "failed": 0,
+      "skipped": 0,
+      "runner_completion": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 3789
+        }
+      ],
+      "failures": []
+    },
+    {
+      "label": "sein-fail-before",
+      "command": [
+        "dart",
+        "test",
+        "test/proofing/german_participle_suggestions_test.dart",
+        "--reporter",
+        "json"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "passed": 34,
+      "failed": 15,
+      "skipped": 0,
+      "runner_completion": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 2858
+        }
+      ],
+      "failures": [
+        {
+          "name": "reviewed sein participles prefers the licensed form for gegangt",
+          "error": "Expected: 'gegangen'\n  Actual: 'gebangt'\n   Which: is different.\n          Expected: gegangen\n            Actual: gebangt\n                      ^\n           Differ at offset 2\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gekommt",
+          "error": "Expected: 'gekommen'\n  Actual: 'bekommt'\n   Which: is different.\n          Expected: gekommen\n            Actual: bekommt\n                    ^\n           Differ at offset 0\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gebleibt",
+          "error": "Expected: 'geblieben'\n  Actual: 'dableibt'\n   Which: is different.\n          Expected: geblieben\n            Actual: dableibt\n                    ^\n           Differ at offset 0\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gefahrt",
+          "error": "Expected: 'gefahren'\n  Actual: 'befahrt'\n   Which: is different.\n          Expected: gefahren\n            Actual: befahrt\n                    ^\n           Differ at offset 0\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gefliegt",
+          "error": "Expected: 'geflogen'\n  Actual: 'gefliest'\n   Which: is different.\n          Expected: geflogen\n            Actual: gefliest\n                        ^\n           Differ at offset 4\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gelauft",
+          "error": "Expected: 'gelaufen'\n  Actual: 'belauft'\n   Which: is different.\n          Expected: gelaufen\n            Actual: belauft\n                    ^\n           Differ at offset 0\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gesteigt",
+          "error": "Expected: 'gestiegen'\n  Actual: 'besteigt'\n   Which: is different.\n          Expected: gestiegen\n            Actual: besteigt\n                    ^\n           Differ at offset 0\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gespringt",
+          "error": "Expected: 'gesprungen'\n  Actual: 'gesprengt'\n   Which: is different.\n          Expected: gesprungen\n            Actual: gesprengt\n                         ^\n           Differ at offset 5\n"
+        },
+        {
+          "name": "reviewed sein participles prefers the licensed form for gestirbt",
+          "error": "Expected: 'gestorben'\n  Actual: 'gestiebt'\n   Which: is different.\n          Expected: gestorben\n            Actual: gestiebt\n                        ^\n           Differ at offset 4\n"
+        },
+        {
+          "name": "reviewed sein participles requires an agreeing present or past finite sein",
+          "error": "Expected: 'gegangen'\n  Actual: 'gebangt'\n   Which: is different.\n          Expected: gegangen\n            Actual: gebangt\n                      ^\n           Differ at offset 2\nIch bin\n"
+        },
+        {
+          "name": "reviewed sein participles separates preferred and ordinary cache entries in either order",
+          "error": "Expected: 'gegangen'\n  Actual: 'gebangt'\n   Which: is different.\n          Expected: gegangen\n            Actual: gebangt\n                      ^\n           Differ at offset 2\n"
+        },
+        {
+          "name": "reviewed sein participles keeps source offsets, normalization and case",
+          "error": "Expected: 'gegangen'\n  Actual: 'gebangt'\n   Which: is different.\n          Expected: gegangen\n            Actual: gebangt\n                      ^\n           Differ at offset 2\n"
+        },
+        {
+          "name": "reviewed sein participles supports regional dictionaries and direct speech",
+          "error": "Expected: 'gegangen'\n  Actual: 'gebangt'\n   Which: is different.\n          Expected: gegangen\n            Actual: gebangt\n                      ^\n           Differ at offset 2\n"
+        },
+        {
+          "name": "reviewed sein participles respects personal words and the existing suggestion budget",
+          "error": "Expected: 'gegangen'\n  Actual: 'gebangt'\n   Which: is different.\n          Expected: gegangen\n            Actual: gebangt\n                      ^\n           Differ at offset 2\n"
+        },
+        {
+          "name": "reviewed sein participles agrees with the incoming grammar provider on the retained failure",
+          "error": "Expected: true\n  Actual: <false>\n"
+        }
+      ]
+    },
+    {
+      "label": "sein-focused-after",
+      "command": [
+        "dart",
+        "test",
+        "test/proofing/german_participle_suggestions_test.dart",
+        "test/proofing/german_context_test.dart",
+        "test/proofing/german_context_completion_test.dart",
+        "test/proofing/german_verb_object_case_test.dart",
+        "test/proofing/german_nominal_word_forms_test.dart",
+        "--reporter",
+        "json"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "passed": 265,
+      "failed": 0,
+      "skipped": 0,
+      "runner_completion": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 3949
+        }
+      ],
+      "failures": []
+    },
+    {
+      "label": "german-full-after",
+      "command": [
+        "dart",
+        "test",
+        "test/proofing",
+        "--reporter",
+        "json"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "passed": 945,
+      "failed": 0,
+      "skipped": 0,
+      "runner_completion": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 10466
+        }
+      ],
+      "failures": []
+    },
+    {
+      "label": "sein-node-after",
+      "command": [
+        "dart",
+        "test",
+        "--platform",
+        "node",
+        "test/proofing/german_participle_suggestions_test.dart",
+        "--reporter",
+        "json"
+      ],
+      "working_directory": "packages/quds_office_engine",
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0,
+      "runner_completion": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 13247
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "strict_analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "lib/src/proofing",
+      "test/proofing"
+    ],
+    "working_directory": "packages/quds_office_engine",
+    "exit_code": 0,
+    "log": "german-strict-analysis.txt.gz"
+  },
+  "counting": "945 distinct final VM tests in test/proofing. Focused runs overlap that total. The 49 Node tests repeat VM test coverage and are not added to the distinct count. Fail-before failures are preserved development evidence, not final failures.",
+  "limitations": "Finite authored regression cases; representative German accuracy is not measured here. The original/syntax native quality panels are a separate qualification. No timing inference drawn from test durations.",
+  "github_actions": "No workflows dispatched, polled, or awaited.",
+  "evidence": {
+    "german-full-after.jsonl.gz": {
+      "bytes": 32661,
+      "sha256": "34d651bf40e9d88974f0c2361976fa218362c8a6ef9159e4cb351c40f4296b3e",
+      "uncompressed_bytes": 446330,
+      "uncompressed_sha256": "2cea6c180d3ddc7e3d15acb22388f16d752e57090800ac8ff1e4c0bd3b1a3737"
+    },
+    "german-full-after.stderr.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "german-strict-analysis.txt.gz": {
+      "bytes": 60,
+      "sha256": "c669fe81af727d4f57d1cce42139b003d1f1628c07fa392626241c5dd4182c10",
+      "uncompressed_bytes": 49,
+      "uncompressed_sha256": "f3bdc770c62b4396b0e3a6ec1a6dab7eaecad18331ec6b78ba8478104344a5ad"
+    },
+    "integrated-focused-fixed.jsonl.gz": {
+      "bytes": 7563,
+      "sha256": "fa8f34d16a8faeeb0a627bd43110512f40403dc75ddac12436b3fb48b4551901",
+      "uncompressed_bytes": 111721,
+      "uncompressed_sha256": "1327507b017c837e70279b6c78f519834a8d2c4c3448c43630619ba854afc854"
+    },
+    "integrated-focused-fixed.stderr.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "integrated-focused.jsonl.gz": {
+      "bytes": 7741,
+      "sha256": "36ae425b45af34a002cd1033b3f356ed50f476b9e907263ca7d6794157568437",
+      "uncompressed_bytes": 112109,
+      "uncompressed_sha256": "d8436c658e46712be761db009c4c87b5f95e200c49c008faeaee3a257461badc"
+    },
+    "integrated-focused.stderr.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sein-fail-before.jsonl.gz": {
+      "bytes": 2617,
+      "sha256": "55d390ede5b926c4d94902fdb7b58c79a3cd8f07df9cd08f0fb4ee337c9ddfaf",
+      "uncompressed_bytes": 29236,
+      "uncompressed_sha256": "7cbb5c9be0c44a39fbaa803e740e9443a9f510055014b3d5467b11bf4db5aedc"
+    },
+    "sein-fail-before.stderr.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sein-focused-after.jsonl.gz": {
+      "bytes": 8248,
+      "sha256": "f0460dc2b93361c3f0962fee79a878c9a83140746bf03cbf8f6956d2c18d23e1",
+      "uncompressed_bytes": 120575,
+      "uncompressed_sha256": "559cbc2d21cff469fa433c12d5b823d5908f53d753080a477ce5b8533f325a39"
+    },
+    "sein-focused-after.stderr.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sein-node-after.jsonl.gz": {
+      "bytes": 2376,
+      "sha256": "2bc9e517d57b639657a517e01dd50eaf0feaedc8d120e5b7872d5ef5aed621c9",
+      "uncompressed_bytes": 23582,
+      "uncompressed_sha256": "e0bd447477e94eff4d979d0f9945efaab474498a19f0334d477b05c50ace562f"
+    },
+    "sein-node-after.stderr.gz": {
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

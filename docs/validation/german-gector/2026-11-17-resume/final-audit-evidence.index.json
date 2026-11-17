@@ -1,0 +1,72 @@
+{
+  "archive": "final-audit-evidence.tar.xz",
+  "bytes": 75888,
+  "sha256": "71818f09da1a37c83ef34e4897b52f7a9d70877eeb2c1e1fcf4713a71eb759c8",
+  "files": [
+    {
+      "path": "final-audit-artifacts.json",
+      "bytes": 2445,
+      "sha256": "b66cb8031c8baffe29731234a003ca4f559ab4381e9c8f85a390ecc8386a6686"
+    },
+    {
+      "path": "runtime-recovery/final_evidence_audit.py",
+      "bytes": 27556,
+      "sha256": "d74227f40620e5801120574056ec1a654aff846830e4eebc9a4af61ff55c675e"
+    },
+    {
+      "path": "runtime-recovery/final_native_audit.py",
+      "bytes": 25214,
+      "sha256": "f11325bd12ab26f352bbbfa6184f0c2b8319be44aeaf4d1e0c301f128735f21b"
+    },
+    {
+      "path": "runtime-recovery/final_quality_audit.py",
+      "bytes": 29446,
+      "sha256": "f4a94148a250c0da13b3de3655846254c0408968f7fbee44e62ca8a8723aab4e"
+    },
+    {
+      "path": "runtime-recovery/final_execution_audit.py",
+      "bytes": 13082,
+      "sha256": "d50e7692639b519645abd46924b7a371c91c7a01276d6bdc95294a8187ccbc76"
+    },
+    {
+      "path": "runtime-recovery/FINAL_EVIDENCE_AUDIT.md",
+      "bytes": 5409,
+      "sha256": "a75d78934b1505207a12678222e4b816da0ffe19c13c1556fc5afe20d5c30e09"
+    },
+    {
+      "path": "runtime-recovery/FINAL_QUALITY_AUDIT_HELPER.md",
+      "bytes": 4066,
+      "sha256": "f75ca71e31fcce85d5e8ab5ae11ea5d52e52660c811aa549ed3caf3f02238bcf"
+    },
+    {
+      "path": "runtime-recovery/final-native-helper-saved-input-reconstruction.json",
+      "bytes": 374,
+      "sha256": "e83fa555456bc202de970a11437e9e199c1c8b9361f0a8b4c6be7206454677de"
+    },
+    {
+      "path": "runtime-recovery/final-quality-helper-baseline-reconstruction.json",
+      "bytes": 1170,
+      "sha256": "610765c7a3f9ed83b584c1951cffce5a06eb88d5c20b338819b3574ebcabbdcc"
+    },
+    {
+      "path": "validation/final/independent-evidence-audit.json",
+      "bytes": 2510923,
+      "sha256": "ce4596c3a16d2acf27325727771979bd47f0b8f98407d04929ba7968ca0ffd94"
+    },
+    {
+      "path": "validation/final/independent-serial-validation-audit.json",
+      "bytes": 36923,
+      "sha256": "0647cf7d333a4bb5ae6da10d1f6e54266f99bfd6bee78076cc754207fab8bb7f"
+    },
+    {
+      "path": "runtime-recovery/final-native-outcome-summary.json",
+      "bytes": 40650,
+      "sha256": "3ece7f602a95eb8fadc5e840a16c3c4c3d9401b9e875154d82115868ff63d7b5"
+    },
+    {
+      "path": "runtime-recovery/final-quality-outcome-summary.json",
+      "bytes": 124923,
+      "sha256": "6a9036e52df38711c8681308a22d7b30559487332327c2d49ee335c310729f0a"
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "title": "Recovered baseline quality observations after workspace loss",
+  "recovery_status": "Reconstructed from retained conversation and tool outputs; original local raw evidence was lost before its remote checkpoint.",
+  "evidence_level": "Historical observations, not replacement raw reports and not a newly executed audit.",
+  "raw_evidence_available": false,
+  "independently_reexecuted_after_recovery": false,
+  "repository": "CrispStrobe/quds_office_suite",
+  "baseline_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+  "observed_before_loss": {
+    "baseline_panels_completed": 6,
+    "case_rows": 377,
+    "native_operational_failure_count": 0,
+    "native_threads": 2,
+    "checks_per_case": 1,
+    "serial_invocations_verified": true,
+    "independent_baseline_audit_completed": true,
+    "checked": "Frozen corpus, source/AOT bindings, UTF-16 finding ranges, first-offer projections, skipped overlaps, provider statuses, deterministic/model merge, summary counts, raw-result/log/invocation hashes, serial invocation ordering.",
+    "interpretation": "Reused synthetic regression panels; all durations were diagnostic only because other functional document work could run concurrently."
+  },
+  "panels": [
+    {
+      "name": "original-30",
+      "cases": 30,
+      "errors": 18,
+      "clean": 12,
+      "lanes": {
+        "writing_only": {
+          "exact_error_count": 18,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 18,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 6,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "combined": {
+          "exact_error_count": 18,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        }
+      }
+    },
+    {
+      "name": "development-76",
+      "cases": 76,
+      "errors": 32,
+      "clean": 44,
+      "lanes": {
+        "writing_only": {
+          "exact_error_count": 17,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 17,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 12,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "combined": {
+          "exact_error_count": 23,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        }
+      }
+    },
+    {
+      "name": "syntax-56",
+      "cases": 56,
+      "errors": 20,
+      "clean": 36,
+      "lanes": {
+        "writing_only": {
+          "exact_error_count": 12,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 12,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 5,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "combined": {
+          "exact_error_count": 15,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        }
+      }
+    },
+    {
+      "name": "context-83",
+      "cases": 83,
+      "errors": 23,
+      "clean": 60,
+      "lanes": {
+        "writing_only": {
+          "exact_error_count": 21,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 21,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 2,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "combined": {
+          "exact_error_count": 21,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        }
+      }
+    },
+    {
+      "name": "completion-28",
+      "cases": 28,
+      "errors": 8,
+      "clean": 20,
+      "lanes": {
+        "writing_only": {
+          "exact_error_count": 8,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 8,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 8,
+          "changed_clean_count": 3,
+          "flagged_clean_count": 3,
+          "operational_failure_count": 0
+        },
+        "combined": {
+          "exact_error_count": 8,
+          "changed_clean_count": 3,
+          "flagged_clean_count": 3,
+          "operational_failure_count": 0
+        }
+      }
+    },
+    {
+      "name": "holdout-104",
+      "cases": 104,
+      "errors": 46,
+      "clean": 58,
+      "lanes": {
+        "writing_only": {
+          "exact_error_count": 45,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "deterministic": {
+          "exact_error_count": 45,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "model_only": {
+          "exact_error_count": 0,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        },
+        "combined": {
+          "exact_error_count": 45,
+          "changed_clean_count": 0,
+          "flagged_clean_count": 0,
+          "operational_failure_count": 0
+        }
+      }
+    }
+  ],
+  "recorded_declared_clean_changes": [
+    {
+      "panel": "completion-28",
+      "id": "completion-control-1",
+      "input": "Ihr hat viel Zeit geholfen.",
+      "expected": "Ihr hat viel Zeit geholfen.",
+      "model_and_combined": "Ihr habt viel Zeit geholfen."
+    },
+    {
+      "panel": "completion-28",
+      "id": "completion-control-2",
+      "input": "Ihr hat Geld gefehlt.",
+      "expected": "Ihr hat Geld gefehlt.",
+      "model_and_combined": "Ihr habt Geld gefehlt."
+    },
+    {
+      "panel": "completion-28",
+      "id": "completion-control-10",
+      "input": "Das Buch, dass ich heute lese, ist gut.",
+      "expected": "Das Buch, dass ich heute lese, ist gut.",
+      "model_and_combined": "Das Buch, das ich heute lese, ist gut."
+    }
+  ],
+  "gold_caveat": "All frozen gold and labels were unchanged. completion-control-10 is declared clean although its relative clause uses dass where das is expected. Its counted change must not automatically be interpreted as a language mistake by the provider.",
+  "auditor_metadata_observation": {
+    "initial_failure": "The independent auditor retained pair_id:null in declared metadata, whereas QualityCase.toJson omits null optional metadata.",
+    "affected_panel": "development-76",
+    "affected_rows": 12,
+    "production_contract": "tools/proofing/german_model/incremental_quality.dart: parseQualityCases accepts null pair_id; QualityCase.toJson serializes pair_id only when nonnull.",
+    "exact_before": "**{k:raw[k]for k in ('category','pair_id')if k in raw}",
+    "exact_after": "**{k:raw[k]for k in ('category','pair_id')if k in raw and raw[k]is not None}",
+    "observed_control_result_before_loss": "All six panels / 377 rows then passed independent reconstruction; a deliberate changed nonnull pair_id was still rejected.",
+    "changed_corpus": false,
+    "changed_provider_results": false,
+    "retained_remotely_before_fix_blob": "ea315ab807710879080ac46c8aedca69f4f6ec03",
+    "recovered_corrected_blob": "74cb405814f33d752283ff8493439d29d0d0a827",
+    "correction_source_commit": "50b5569a8a9b4e5d47fe777c4588759c99fddd03"
+  },
+  "recorded_asset_identities": {
+    "model_sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "native_library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+    "dartaotruntime_sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72",
+    "baseline_aot_bytes": 8358216,
+    "baseline_aot_sha256": "3b6ff99fbb1f72c6339983f827c66f409de91b6340c7f3d6a6615c32c26bc7f7",
+    "baseline_build_receipt_sha256": "08dffa1f1f9eae9568a0123323f3908aa39f51598e0bd434696dfb9ef23ea16a",
+    "intermediate_final_aot_bytes": 8358192,
+    "intermediate_final_aot_sha256": "bb62be587aea2eadd96dc43afc6330257d6227f049abf07d54df7bbd80510462",
+    "intermediate_final_build_receipt_sha256": "6a1e3d46a79f934084b89b530b7d2794f073ccec54fa4ef25badf9c7fe155aeb",
+    "availability": "These are identities recorded before workspace loss; this recovery record does not claim the binaries or exact native assets are presently available."
+  },
+  "lost_raw_artifacts": {
+    "archive_name": "baseline-replay-evidence.tar.xz",
+    "reported_bytes": 70428,
+    "reported_sha256": "f219d533d4a6777afb260a61f106ec25f234425a10ccb716cfa43725a334dc9b",
+    "reported_member_count": 26,
+    "current_availability": "Lost; not uploaded with this recovery. Hash and size are retained observations, not a readback verification of a present archive.",
+    "contents_described_before_loss": [
+      "Six full provider reports",
+      "Six per-panel logs",
+      "Six invocation receipts",
+      "Overall baseline stdout",
+      "Baseline independent audit",
+      "Failed-before metadata-auditor code/assertion/observations and nonnull control"
+    ],
+    "other_lost_outputs": [
+      "Local baseline-results.json",
+      "Local baseline-audit.json",
+      "Locally rebuilt preparation-index.json and final intermediate-status documentation"
+    ],
+    "last_panel_observation": {
+      "name": "holdout-104",
+      "exit_code": 0,
+      "started_at_utc": "2026-11-17T19:54:48.248354+00:00",
+      "finished_at_utc": "2026-11-17T19:54:56.987127+00:00",
+      "output_sha256": "63b179b23a960d28ea39594845ef1c45ec905050f937b1c6b0d5eb3c498d2c3e",
+      "log_sha256": "e2254f28bbee3098f7cd13122078e70a0218533a1890369787792fd7f762c703"
+    }
+  },
+  "unfinished": {
+    "final_native_replay_started": false,
+    "final_baseline_comparison_completed": false,
+    "native_performance_sweep_started": false,
+    "reason": "Root stopped final replay when document consumers found header ordering and frame-anchor defects. The unused intermediate final build's conservative dependency seal was invalidated by Office repairs; replacement build-final-2 had not been produced before workspace loss.",
+    "next_step": "Recover exact assets and rerun if possible. Do not substitute native binaries, invent final results, or infer a passed baseline-vs-final comparison from this baseline summary."
+  },
+  "ci_policy": "No GitHub Actions was started, polled, or awaited for this replay."
+}

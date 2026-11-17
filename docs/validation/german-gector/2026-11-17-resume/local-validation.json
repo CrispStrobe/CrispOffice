@@ -1,0 +1,108 @@
+{
+  "kind": "quds-final-local-validation-summary",
+  "implementation_commit": "143bad2f69976c331ac98ea7b4adbaec430af916",
+  "cohorts": {
+    "gector": {
+      "passed": 247,
+      "failed": 0,
+      "skipped": 0,
+      "files": 14,
+      "supplemental_runtime": false
+    },
+    "german": {
+      "passed": 752,
+      "failed": 0,
+      "skipped": 0,
+      "files": 15,
+      "supplemental_runtime": false
+    },
+    "shared-report": {
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "files": 4,
+      "supplemental_runtime": false
+    },
+    "odt-odf": {
+      "passed": 438,
+      "failed": 0,
+      "skipped": 0,
+      "files": 25,
+      "supplemental_runtime": false
+    },
+    "odp": {
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "files": 3,
+      "supplemental_runtime": false
+    },
+    "editor": {
+      "passed": 139,
+      "failed": 0,
+      "skipped": 0,
+      "files": 8,
+      "supplemental_runtime": false
+    },
+    "aot": {
+      "passed": 153,
+      "failed": 0,
+      "skipped": 0,
+      "files": 10,
+      "supplemental_runtime": false
+    },
+    "tooling": {
+      "passed": 117,
+      "failed": 0,
+      "skipped": 0,
+      "files": 7,
+      "supplemental_runtime": false
+    },
+    "studio": {
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "files": 2,
+      "supplemental_runtime": false
+    },
+    "german-web": {
+      "passed": 196,
+      "failed": 0,
+      "skipped": 0,
+      "files": 4,
+      "supplemental_runtime": true
+    }
+  },
+  "distinct_tests": 1968,
+  "supplemental_node_tests": 196,
+  "analysis": {
+    "analysis-engine": {
+      "passed": true,
+      "selected_files": 55
+    },
+    "analysis-gector": {
+      "passed": true,
+      "selected_files": 33
+    },
+    "analysis-aot": {
+      "passed": true,
+      "selected_files": 20
+    },
+    "analysis-editor": {
+      "passed": true,
+      "selected_files": 84
+    },
+    "analysis-studio": {
+      "passed": true,
+      "selected_files": 4
+    }
+  },
+  "all_passed": true,
+  "all_sources_dependencies_runtimes_stable": true,
+  "resolved_package_libraries": 110,
+  "workspace_package_roots": 11,
+  "archive": "final-local-evidence.tar.xz",
+  "index": "final-local-evidence.index.json",
+  "independent_audit": "audit/final-local-receipt-audit.json",
+  "native_fixture_executed": true
+}

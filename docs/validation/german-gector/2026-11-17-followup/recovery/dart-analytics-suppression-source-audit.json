@@ -1,0 +1,70 @@
+{
+  "schema": "quds.dart-analytics-suppression-source-audit.v1",
+  "observed_at_utc": "2026-11-17T20:25:45.077Z",
+  "verification": "Read-only audit of exact SDK and bundled package source; no Dart invocation executed by this audit.",
+  "trigger": "A runtime recovery attempt using dart --disable-analytics was rejected after an incidental analytics opt-out network attempt. Do not retry that operation.",
+  "dart_version": "3.13.7",
+  "sdk_tag_object": "998417e76793b761928c166f628a6ccc75c3f498",
+  "sdk_commit": "416e33b0ffaef062a60ec966bb8c82ed2b83f128",
+  "bundled_tools_commit": "7fec8be9af0cd0367d03dbec29b66b3f46565720",
+  "bundled_pub_commit": "ec276d10a7fa0f6c6ec005340fb9ad29f3b012d0",
+  "conclusions": [
+    "Set DASH__SUPPRESS_ANALYTICS=true before any Dart invocation; this is the exact DashEnvVar.suppressAnalytics name.",
+    "Use the top-level --suppress-analytics option on Dart CLI commands; it suppresses the current invocation without changing stored consent.",
+    "CI=true provides an additional implicit suppression path, but explicit environment and CLI suppression do not depend on bot detection.",
+    "Do not invoke --disable-analytics or --enable-analytics; those consent-changing branches call setTelemetry.",
+    "Dartdev resolves suppression before creating analytics and propagates DASH__SUPPRESS_ANALYTICS to subtools.",
+    "The suppressed branch returns NoOpAnalytics before construction of the real Analytics object, avoiding its GAClient initialization.",
+    "NoOpAnalytics has telemetryEnabled=false, shouldShowMessage=false, send returns null, and close/setTelemetry have empty async bodies.",
+    "DART_SUPPRESS_ANALYTICS and FLUTTER_SUPPRESS_ANALYTICS are not the suppression variable read by this Dartdev source; do not rely on them.",
+    "Do not inject --suppress-analytics into direct VM script/snapshot invocations. The exact native launcher identifies existing script paths before Dartdev option parsing and forwards original arguments directly to dartvm; the Dartdev-only flag is invalid there.",
+    "Keep DASH__SUPPRESS_ANALYTICS=true in the environment for both command forms. Add --suppress-analytics only for Dartdev subcommands; direct VM invocations retain their original argument list."
+  ],
+  "commands": {
+    "environment": "export DASH__SUPPRESS_ANALYTICS=true CI=true",
+    "dependency_resolution": "\"$DART_SDK/bin/dart\" --suppress-analytics pub get",
+    "tests": "\"$DART_SDK/bin/dart\" --suppress-analytics test",
+    "analysis": "\"$DART_SDK/bin/dart\" --suppress-analytics analyze",
+    "direct_script": "\"$DART_SDK/bin/dart\" --packages=<actual-package-config> <existing-script.dart> <script-arguments>",
+    "wrapper_policy": "Export DASH__SUPPRESS_ANALYTICS=true and CI=true universally. Add --suppress-analytics for known Dartdev subcommands. Pass direct script/snapshot/VM arguments unchanged."
+  },
+  "sources": [
+    {
+      "url": "https://github.com/dart-lang/sdk/blob/416e33b0ffaef062a60ec966bb8c82ed2b83f128/pkg/dartdev/lib/dartdev.dart",
+      "evidence": "runCommand resolves suppression at lines185–194, propagates it at218–231, creates analytics at242–244, and consent-changing branches call setTelemetry at257–273."
+    },
+    {
+      "url": "https://github.com/dart-lang/sdk/blob/416e33b0ffaef062a60ec966bb8c82ed2b83f128/pkg/dartdev/lib/src/unified_analytics.dart",
+      "evidence": "createUnifiedAnalytics returns NoOpAnalytics immediately when disableAnalytics is true; isBot tests CI but other env conditions can override bot detection."
+    },
+    {
+      "url": "https://github.com/dart-lang/sdk/blob/416e33b0ffaef062a60ec966bb8c82ed2b83f128/pkg/dartdev/lib/src/utils.dart",
+      "evidence": "Global --suppress-analytics option describes per-run suppression without changing analytics configuration."
+    },
+    {
+      "url": "https://github.com/dart-lang/sdk/blob/416e33b0ffaef062a60ec966bb8c82ed2b83f128/DEPS",
+      "evidence": "Pins bundled tools and pub commits."
+    },
+    {
+      "url": "https://github.com/dart-lang/tools/blob/7fec8be9af0cd0367d03dbec29b66b3f46565720/pkgs/unified_analytics/lib/src/enums.dart",
+      "evidence": "DashEnvVar.suppressAnalytics has exact name DASH__SUPPRESS_ANALYTICS."
+    },
+    {
+      "url": "https://github.com/dart-lang/tools/blob/7fec8be9af0cd0367d03dbec29b66b3f46565720/pkgs/unified_analytics/lib/src/analytics.dart",
+      "evidence": "NoOpAnalytics has no analytics network client and inert event/close/consent methods."
+    },
+    {
+      "url": "https://github.com/dart-lang/tools/blob/7fec8be9af0cd0367d03dbec29b66b3f46565720/pkgs/unified_analytics/lib/src/utils.dart",
+      "evidence": "areAnalyticsSuppressed reads DASH__SUPPRESS_ANALYTICS, and getEnvironment propagates it."
+    },
+    {
+      "url": "https://github.com/dart-lang/sdk/blob/416e33b0ffaef062a60ec966bb8c82ed2b83f128/runtime/bin/dartdev_options.cc",
+      "evidence": "PotentialDartdevCommand recognizes existing files/URIs; ParseDartDevArguments156–175 selects direct VM before Dartdev suppression flag handling at204–206."
+    },
+    {
+      "url": "https://github.com/dart-lang/sdk/blob/416e33b0ffaef062a60ec966bb8c82ed2b83f128/runtime/bin/dartdev.cc",
+      "evidence": "At1103–1108 skip_dartdev invokes the JIT VM with the original command line arguments."
+    }
+  ],
+  "limitation": "This source audit establishes the suppression path for Dartdev and the bundled unified_analytics package. It is not a runtime network trace or a claim that requested Pub downloads make no network requests."
+}

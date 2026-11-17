@@ -1,0 +1,86 @@
+[
+  {
+    "file": "office-columns/after-source-map.json.gz",
+    "uncompressed_file": "after-source-map.json",
+    "bytes": 48712,
+    "sha256": "dbd0c2d809b6f28330d5b1528d1a63c5566faead1a968698233fc73e41716539"
+  },
+  {
+    "file": "office-columns/analysis-command.json.gz",
+    "uncompressed_file": "analysis-command.json",
+    "bytes": 962,
+    "sha256": "f3a7a618ed8cc17cc165b83fa2811931e13e2f9d0703beb75c50f9d554f740f6"
+  },
+  {
+    "file": "office-columns/analysis.log.gz",
+    "uncompressed_file": "analysis.log",
+    "bytes": 49,
+    "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+  },
+  {
+    "file": "office-columns/analysis.stderr.gz",
+    "uncompressed_file": "analysis.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "office-columns/before-command.json.gz",
+    "uncompressed_file": "before-command.json",
+    "bytes": 3119,
+    "sha256": "409ad3bda3c22b01b88462608d069740bec44267b5af22ee0e92d866e4deb1ca"
+  },
+  {
+    "file": "office-columns/before-normalized-command.json.gz",
+    "uncompressed_file": "before-normalized-command.json",
+    "bytes": 2841,
+    "sha256": "5e49d5e86b345539b58a0c0c8307038fa14b05488bcbef180da0a966780d29ef"
+  },
+  {
+    "file": "office-columns/before-normalized.jsonl.gz",
+    "uncompressed_file": "before-normalized.jsonl",
+    "bytes": 13913,
+    "sha256": "88a58a583bfa55c22ba03926ba00724cb0f1ae13106fa18fbc336c268ba0f866"
+  },
+  {
+    "file": "office-columns/before-normalized.stderr.gz",
+    "uncompressed_file": "before-normalized.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "office-columns/before.jsonl.gz",
+    "uncompressed_file": "before.jsonl",
+    "bytes": 13730,
+    "sha256": "5f6ef87da5395e605a6b5cc699b3ca437470b03c1eb0571beead2dcd8a9975b3"
+  },
+  {
+    "file": "office-columns/before.stderr.gz",
+    "uncompressed_file": "before.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "office-columns/focused-command.json.gz",
+    "uncompressed_file": "focused-command.json",
+    "bytes": 2206,
+    "sha256": "6a1a4cdca94e07c52c6bdbae331c0ab35655f0e0285c4f4cd28724adbb539e70"
+  },
+  {
+    "file": "office-columns/focused.log.gz",
+    "uncompressed_file": "focused.log",
+    "bytes": 212614,
+    "sha256": "dcb935837bc2d01b0e121c742127d744a628323f9b376cdce667e78bd060e32b"
+  },
+  {
+    "file": "office-columns/focused.stderr.gz",
+    "uncompressed_file": "focused.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "office-columns/report.json.gz",
+    "uncompressed_file": "report.json",
+    "bytes": 14694,
+    "sha256": "23d88f07546e678c336640b8cc18ac4c55334943839380f8978ce61f2a8d2338"
+  }
+]

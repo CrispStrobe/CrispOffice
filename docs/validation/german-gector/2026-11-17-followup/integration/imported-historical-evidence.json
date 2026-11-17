@@ -1,0 +1,134 @@
+[
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control-index.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control.tar.xz",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/column-bookmark-publication-map.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__german-gector__2026-11-17-long-input__README.md.incoming-main-13",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__office-resume-20261117__README.md.incoming-main-13",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/README.md",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence-index.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence.tar.xz",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-leading-inline-column-break.png",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-midparagraph-inline-column-break.png",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/final-receipt.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/independent-harness-review.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/consumer/visual-review.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control-index.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control.tar.xz",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-README.md",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.index.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.tar.xz",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/generic-field-independent-review.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-README.md",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls-index.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls.tar.xz",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit-index.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit.tar.xz",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-reconcile-20261117/final-integration/merge-resolution.json",
+    "from": "07926acb46f0d451491046066a35dd6c1227b5a1"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/README.md",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/evidence-index.json",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/evidence.tar.xz",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/independent-review.json",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/qualification.json",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/run_validation.py",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/source-equivalence.json",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  },
+  {
+    "path": "docs/validation/office-improvements-20261117/verify_delivery.py",
+    "from": "814f165cb24a5b719dde65495f64d85f86563328"
+  }
+]
