@@ -1,0 +1,426 @@
+00:00 +0: loading test/proofing/german_grammar_test.dart
+00:00 +0: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +1: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +2: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +3: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +4: test/proofing/office_proofing_test.dart: missing provider is unavailable, never a clean check
+00:00 +5: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +6: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +7: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +8: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +9: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +10: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +11: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +12: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +13: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +14: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +15: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +16: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +17: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +18: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +19: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +20: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +21: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +22: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +23: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +24: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +25: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +26: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +27: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +28: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +29: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +30: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +31: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +32: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +33: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +34: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +35: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +36: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +37: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +38: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +39: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +40: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +41: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +42: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +43: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +44: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +45: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +46: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +47: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +48: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +49: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +50: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +51: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +52: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +53: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +54: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +55: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +56: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +57: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +58: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +59: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +60: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +61: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +62: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +63: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +64: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +65: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +66: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +67: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +68: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +69: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +70: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +71: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +72: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +73: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +74: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +75: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +76: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +77: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +78: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +79: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +80: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +81: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +82: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +83: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +84: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +85: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +86: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +87: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +88: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +89: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +90: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +91: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +92: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +93: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +94: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +95: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +96: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +97: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +98: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +99: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +100: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +101: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +102: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +103: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +104: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +105: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +106: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +107: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +108: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +109: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +110: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +111: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +112: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +113: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +114: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +115: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +116: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +117: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +118: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +119: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +120: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +121: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +122: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +123: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +124: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +125: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +126: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +127: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +128: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +129: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +130: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +131: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +132: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +133: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +134: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +135: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +136: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +137: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +138: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +139: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +140: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +141: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +142: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +143: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +144: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +145: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +146: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +147: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +148: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +149: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +150: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +151: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +152: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +153: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +154: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +155: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +156: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +157: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +158: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +159: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +160: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +161: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +162: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +163: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +164: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +165: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +166: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +167: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +168: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +169: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +170: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +171: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +172: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +173: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +174: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +175: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +176: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +177: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +178: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +179: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +180: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +181: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +182: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +183: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +184: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +185: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +186: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +187: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +188: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +189: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +190: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +191: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +192: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +193: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +194: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +195: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +196: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +197: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +198: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +199: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +200: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +201: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +202: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +203: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +204: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +205: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +206: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +207: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +208: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +209: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +210: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +211: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +212: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +213: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +214: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +215: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +216: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +217: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +218: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +219: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +220: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +221: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +222: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +223: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +224: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +225: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +226: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +227: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +228: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +229: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +230: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +231: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +232: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +233: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +234: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +235: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +236: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +237: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +238: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +239: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +240: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +241: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +242: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +243: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +244: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +245: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +246: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +247: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +248: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +249: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +250: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +251: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:00 +252: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +253: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +254: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +255: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +256: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +257: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +258: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +259: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +260: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +261: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +262: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +263: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +264: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +265: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +266: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +267: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +268: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +269: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +270: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +271: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +272: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +273: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +274: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +275: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +276: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +277: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +278: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +279: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +280: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +281: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +282: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +283: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +284: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +285: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +286: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +287: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +288: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +289: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +290: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +291: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +292: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +293: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +294: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +295: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +296: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +297: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +298: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +299: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +300: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +301: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +302: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +303: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +304: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +305: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +306: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +307: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +308: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +309: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +310: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +311: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +312: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +313: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +314: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +315: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +316: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +317: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +318: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +319: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +320: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +321: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +322: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +323: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +324: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +325: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +326: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +327: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +328: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +329: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +330: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +331: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +332: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +333: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +334: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +335: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +336: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +337: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +338: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +339: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +340: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +341: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +342: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +343: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +344: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +345: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +346: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +347: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +348: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +349: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +350: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +351: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +352: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +353: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +354: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +355: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +356: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +357: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +358: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +359: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +360: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +361: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +362: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +363: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +364: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +365: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +366: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +367: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +368: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +369: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +370: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:01 +371: test/proofing/german_suggestion_quality_test.dart: two independent mistakes receive dictionary-backed corrections
+00:02 +372: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +373: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +374: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +375: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +376: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +377: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +378: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +379: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +380: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +381: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +382: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +383: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +384: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:02 +385: test/proofing/proofing_locale_test.dart: modern German aliases run spelling and preserve Swiss sharp-s policy
+00:04 +386: test/proofing/german_spelling_test.dart: real shipped dictionary accepts ordinary modern German
+00:04 +387: test/proofing/german_spelling_test.dart: transposed letters receive a useful bounded suggestion
+00:04 +388: test/proofing/german_spelling_test.dart: offsets preserve emoji and decomposed source characters
+00:04 +389: test/proofing/german_spelling_test.dart: explicit soft hyphens do not split logical spelling tokens
+00:04 +390: test/proofing/german_spelling_test.dart: standalone soft hyphens and combining marks are not words
+00:04 +391: test/proofing/german_spelling_test.dart: ignored nonwords retain subsequent spelling source offsets
+00:04 +392: test/proofing/german_spelling_test.dart: joiner-adjacent spelling fragments do not fail the paragraph
+00:04 +393: test/proofing/german_spelling_test.dart: all-capitals sharp-s words are valid in German and Swiss forms
+00:04 +394: test/proofing/german_spelling_test.dart: obsolete source variants are excluded from modern spelling
+00:04 +395: test/proofing/german_spelling_test.dart: Swiss spellings are locale-scoped and sharp-s receives ss suggestion
+00:04 +396: test/proofing/german_spelling_test.dart: Austrian source forms and canonical locale tags are supported
+00:04 +397: test/proofing/german_spelling_test.dart: Swiss capital sharp-s offers the matching SS replacement
+00:04 +398: test/proofing/german_spelling_test.dart: unsupported languages and disposed backend are explicit
+00:04 +399: test/proofing/german_spelling_test.dart: noun casing remains meaningful; all-capitals remain accepted
+00:04 +400: test/proofing/german_spelling_test.dart: explicit compounds keep German noun case significant
+00:04 +401: test/proofing/german_spelling_test.dart: explicit compound suggestions preserve other nouns and hyphen styles
+00:04 +402: test/proofing/german_spelling_test.dart: explicit compound repair honors the ordinary candidate budget
+00:04 +403: test/proofing/german_spelling_test.dart: compound suggestions keep per-occurrence separators and Swiss forms
+00:04 +404: test/proofing/german_spelling_test.dart: known explicit compounds and URL/email tokens avoid spurious findings
+00:04 +405: test/proofing/german_spelling_test.dart: URL schemes and www prefixes are protected without case folding text
+00:04 +406: test/proofing/german_spelling_test.dart: matching backtick spans protect code without hiding following prose
+00:04 +407: test/proofing/german_spelling_test.dart: unmatched backtick delimiters do not suppress the remaining paragraph
+00:04 +408: test/proofing/german_spelling_test.dart: personal words and ignores stay owned, reversible and language-scoped
+00:04 +409: test/proofing/german_spelling_test.dart: vocabulary snapshots round-trip with revision notification
+00:04 +410: test/proofing/german_spelling_test.dart: vocabulary parser rejects corrupt or mismatched data
+00:04 +411: test/proofing/german_spelling_test.dart: suggestions and long unknown tokens remain bounded
+00:04 +412: test/proofing/german_spelling_test.dart: combined keyboard transliterations offer dictionary-backed words
+00:04 +413: test/proofing/german_spelling_test.dart: combined orthography respects Swiss spelling and source capitals
+00:04 +414: test/proofing/german_spelling_test.dart: orthographic suggestions share the configured search and result caps
+00:04 +415: test/proofing/german_spelling_test.dart: suggestion cache preserves sentence-initial adjective capitals
+00:04 +416: test/proofing/german_spelling_test.dart: personal words compose explicit compounds in their declared locale
+00:04 +417: test/proofing/german_spelling_test.dart: compound correction preserves personal components and source ranges
+00:04 +418: test/proofing/german_spelling_test.dart: ignored tokens do not turn into declared compound vocabulary
+00:04 +419: test/proofing/german_spelling_test.dart: a vocabulary edit invalidates an in-flight compound check
+00:04 +420: test/proofing/german_spelling_test.dart: identifier fragments are protected while separate prose is checked
+00:04 +421: test/proofing/german_spelling_test.dart: Unicode email and delimited URLs preserve following spelling checks
+00:04 +422: test/proofing/german_spelling_test.dart: vocabulary restore merges aliases and canonicalizes like live edits
+00:04 +423: test/proofing/german_spelling_test.dart: vocabulary restore rejects empty normalized words and empty languages
+00:05 +424: All tests passed!

@@ -1,0 +1,39 @@
+00:00 +0: loading test/proofing/german_writing_rules_test.dart
+00:00 +0: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +1: spacing checks return precise reviewable replacements
+00:00 +2: only conservative repeated conjunctions are flagged
+00:00 +3: selected pronoun-verb disagreement is grammar, not a broad parser claim
+00:00 +4: lowercase ich and du receive missing sein agreement corrections
+00:00 +5: nominal Ich and Du remain outside the limited agreement rule
+00:00 +6: comparison pronouns are not mistaken for the following subject
+00:00 +7: agreement suggestions preserve all-capital verb casing
+00:00 +8: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +9: valid German constructions remain outside finite agreement findings
+00:00 +10: finite agreement handles horizontal spaces, regions and capitals
+00:00 +11: finite agreement preserves exclusions and narrow ihr checks
+00:00 +12: common lexical verbs receive finite agreement corrections
+00:00 +13: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +14: lexical verb corrections retain regional and uppercase behavior
+00:00 +15: seit and seid are distinguished only in reviewed contexts
+00:00 +16: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +17: seit-seid remains opt-out, protected and source-grapheme safe
+00:00 +18: soft-hyphen grammar projection retains exact original UTF-16 ranges
+00:00 +19: soft-hyphen projection preserves phrase and insertion ownership
+00:00 +20: soft-hyphen grammar projection preserves adjacent controls and valid text
+00:00 +21: projected findings never replace part of a joined or accented grapheme
+00:00 +22: grammar does not infer subjects or verbs from joined identifiers
+00:00 +23: capitalized nominal verb objects do not become agreement corrections
+00:00 +24: declined determiners and fused prepositions preserve nominal pronouns
+00:00 +25: word-internal apostrophes do not close enclosing single quotes
+00:00 +26: decorated punctuation preserves ordinary paragraph findings
+00:00 +27: unsafe grammar and spacing matches leave ordinary corrections available
+00:00 +28: terminology substring rules do not replace partial graphemes
+00:00 +29: unmatched delimiters and quotes remain advisory with no guessed correction
+00:00 +30: URLs, inline code and rule opt-outs remain untouched
+00:00 +31: matching multi-backtick spans protect grammar and punctuation
+00:00 +32: protected tokens cannot supply a subject for following prose
+00:00 +33: URL protection preserves enclosing brackets and typographic quotes
+00:00 +34: unmatched punctuation after a URL still has exact source ranges
+00:00 +35: language and disposed availability are explicit
+00:00 +36: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:00 +37: All tests passed!

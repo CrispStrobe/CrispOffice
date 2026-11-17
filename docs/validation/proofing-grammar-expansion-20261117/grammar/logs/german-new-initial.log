@@ -1,0 +1,162 @@
+00:00 +0: loading test/proofing/german_grammar_test.dart
+00:00 +0: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +1: first-party phrase and clause corrections Das kommt von dich.
+00:00 +2: first-party phrase and clause corrections Sie wohnt bei ihn.
+00:00 +3: first-party phrase and clause corrections Er kommt zu wir.
+00:00 +4: first-party phrase and clause corrections Sie spricht nach ich.
+00:00 +5: first-party phrase and clause corrections Das ist für mir.
+00:00 +6: first-party phrase and clause corrections Das ist für ihm.
+00:00 +7: first-party phrase and clause corrections Wir kommen ohne dir.
+00:00 +8: first-party phrase and clause corrections Das spricht gegen er.
+00:00 +9: first-party phrase and clause corrections Es geht um wir.
+00:00 +10: first-party phrase and clause corrections Es geht durch ihnen.
+00:00 +11: first-party phrase and clause corrections Ich rede mit den Mann.
+00:00 +12: first-party phrase and clause corrections Sie kommt mit der Kind.
+00:00 +13: first-party phrase and clause corrections Er kommt mit einem Frau.
+00:00 +14: first-party phrase and clause corrections Wir reden von diese Frage.
+00:00 +15: first-party phrase and clause corrections Das steht bei das Haus.
+00:00 +16: first-party phrase and clause corrections Ich komme aus die Stadt.
+00:00 +17: first-party phrase and clause corrections Sie fragt nach einen Termin.
+00:00 +18: first-party phrase and clause corrections Er kommt zu seine Schule.
+00:00 +19: first-party phrase and clause corrections Wir warten seit eine Woche.
+00:00 +20: first-party phrase and clause corrections Sie kommt gegenüber das Büro.
+00:00 +21: first-party phrase and clause corrections Das ist für dem Kind.
+00:00 +22: first-party phrase and clause corrections Das ist für einem Frau.
+00:00 +23: first-party phrase and clause corrections Sie geht durch der Stadt.
+00:00 +24: first-party phrase and clause corrections Er kommt ohne dem Buch.
+00:00 +25: first-party phrase and clause corrections Das spricht gegen diesem Plan.
+00:00 +26: first-party phrase and clause corrections Es geht um einer Frage.
+00:00 +27: first-party phrase and clause corrections Das kommt von euer Kind.
+00:00 +28: first-party phrase and clause corrections Das ist für unserem Kind.
+00:00 +29: first-party phrase and clause corrections Er kommt mit den Kinder.
+00:00 +30: first-party phrase and clause corrections Sie liest aus den Bücher.
+00:00 +31: first-party phrase and clause corrections Das steht bei den Häuser.
+00:00 +32: first-party phrase and clause corrections Wir reden von den Fehler.
+00:00 +33: first-party phrase and clause corrections Sie kommt zu den Termine.
+00:00 +34: first-party phrase and clause corrections Er wartet seit diesen Tage.
+00:00 +35: first-party phrase and clause corrections Ein gute Buch liegt hier.
+00:00 +36: first-party phrase and clause corrections Eine gutes Frau kommt.
+00:00 +37: first-party phrase and clause corrections Das guten Kind kommt.
+00:00 +38: first-party phrase and clause corrections Der gutes Mann kommt.
+00:00 +39: first-party phrase and clause corrections Die guter Frau kommt.
+00:00 +40: first-party phrase and clause corrections Die gute Kinder kommen.
+00:00 +41: first-party phrase and clause corrections Ich sehe einen gute Mann.
+00:00 +42: first-party phrase and clause corrections Ich komme mit einem gutem Buch.
+00:00 +43: first-party phrase and clause corrections Sie kommt mit einer gute Frau.
+00:00 +44: first-party phrase and clause corrections Er kommt aus dem schöne Haus.
+00:00 +45: first-party phrase and clause corrections Das ist für das neuen Büro.
+00:00 +46: first-party phrase and clause corrections Ich komme ohne einen guter Plan.
+00:00 +47: first-party phrase and clause corrections Unser gute Kind kommt.
+00:00 +48: first-party phrase and clause corrections Euer gute Kind kommt.
+00:00 +49: first-party phrase and clause corrections Diese guter Datei ist hier.
+00:00 +50: first-party phrase and clause corrections Ich denke, das du kommst.
+00:00 +51: first-party phrase and clause corrections Wir glauben, das er hier ist.
+00:00 +52: first-party phrase and clause corrections Er weiß, das wir Zeit haben.
+00:00 +53: first-party phrase and clause corrections Sie hofft, das ich das Buch lese.
+00:00 +54: first-party phrase and clause corrections Ich glaube dass du kommst.
+00:00 +55: first-party phrase and clause corrections Wir wissen dass sie heute kommen.
+00:00 +56: first-party phrase and clause corrections Er meint, sie ist größer wie ich.
+00:00 +57: first-party phrase and clause corrections Das ist besser wie vorher.
+00:00 +58: first-party phrase and clause corrections Sie ist jünger wie er.
+00:00 +59: first-party phrase and clause corrections Er ist so groß als ich.
+00:00 +60: first-party phrase and clause corrections Sie ist genauso gut als er.
+00:00 +61: valid and unresolved structures remain untouched Ich komme mit dir. Sie kommt mit ihm. Wir sprechen mit ihnen.
+00:00 +62: valid and unresolved structures remain untouched Das ist für mich. Sie kommt ohne ihn. Wir sind gegen euch.
+00:00 +63: valid and unresolved structures remain untouched Bei mir ist alles gut. Nach dir bin ich dran.
+00:00 +64: valid and unresolved structures remain untouched Für ihr Kind ist das wichtig. Das ist für ihre Kinder.
+00:00 +65: valid and unresolved structures remain untouched Sie spricht mit Ihr und Sie in einer Sprachübung.
+00:00 +66: valid and unresolved structures remain untouched Das ist für das Ich. Wir sprechen vom Du.
+00:00 +67: valid and unresolved structures remain untouched Seit ich hier bin, ist alles gut.
+00:00 +68: valid and unresolved structures remain untouched Seit mich der Mann kennt, ist alles gut.
+00:00 +69: valid and unresolved structures remain untouched Seit er die Frau kennt, ist alles gut.
+00:00 +70: valid and unresolved structures remain untouched Ohne mir zu helfen geht er.
+00:00 +71: valid and unresolved structures remain untouched Ohne ihm helfen zu können bleibt er.
+00:00 +72: valid and unresolved structures remain untouched Sie kommt, ohne dem Kind zu helfen.
+00:00 +73: valid and unresolved structures remain untouched Er kommt, ohne der Frau bekannt zu sein.
+00:00 +74: valid and unresolved structures remain untouched Wir kommen, um ihm zu helfen.
+00:00 +75: valid and unresolved structures remain untouched Sie kommt, um dem Kind zu helfen.
+00:00 +76: valid and unresolved structures remain untouched Er bittet um seiner Kinder willen.
+00:01 +77: valid and unresolved structures remain untouched Sie bittet um ihrer kleinen Kinder willen.
+00:01 +78: valid and unresolved structures remain untouched Das ist mit ein schönes Buch.
+00:01 +79: valid and unresolved structures remain untouched Die Datei ist mit die wichtigste Datei.
+00:01 +80: valid and unresolved structures remain untouched Er wollte mit den Mann begleiten.
+00:01 +81: valid and unresolved structures remain untouched Sie wollte mit ihn begleiten.
+00:01 +82: valid and unresolved structures remain untouched Wegen dem Kind kommt sie. Trotz dem Fehler bleibt sie.
+00:01 +83: valid and unresolved structures remain untouched Wegen des Kindes kommt sie. Trotz des Fehlers bleibt sie.
+00:01 +84: valid and unresolved structures remain untouched Außer ich kommt niemand. Alle außer mir kommen.
+00:01 +84 -1: valid and unresolved structures remain untouched Außer ich kommt niemand. Alle außer mir kommen. [E]
+  Expected: empty
+    Actual: [Instance of 'OfficeProofingFinding']
+  
+  package:matcher                               expect
+  test/proofing/german_grammar_test.dart 196:9  main.<fn>.<fn>
+  
+00:01 +84 -1: valid and unresolved structures remain untouched Wir gehen in die Stadt. Wir sind in der Stadt.
+00:01 +85 -1: valid and unresolved structures remain untouched Wir gehen auf den Weg. Wir stehen auf dem Weg.
+00:01 +86 -1: valid and unresolved structures remain untouched Wir gehen an das Haus. Wir stehen an dem Haus.
+00:01 +87 -1: valid and unresolved structures remain untouched Er kommt bis nächsten Dienstag. Wir können bis zu zehn Leute aufnehmen.
+00:01 +88 -1: valid and unresolved structures remain untouched Er geht den Weg entlang. Entlang des Weges stehen Häuser.
+00:01 +89 -1: valid and unresolved structures remain untouched Das steht bei dem Mann. Sie kommt mit einem Mann.
+00:01 +90 -1: valid and unresolved structures remain untouched Das ist für das Kind. Er kommt ohne einen Mann.
+00:01 +91 -1: valid and unresolved structures remain untouched Das steht bei den Kindern, den Büchern und den Fehlern.
+00:01 +92 -1: valid and unresolved structures remain untouched Er kommt mit den Frauen. Sie kommt mit den Autos.
+00:01 +93 -1: valid and unresolved structures remain untouched Sie kommt mit den Büros. Wir reden von den Regeln.
+00:01 +94 -1: valid and unresolved structures remain untouched Das ist für den Ordner. Das ist für die Ordner.
+00:01 +95 -1: valid and unresolved structures remain untouched Er kommt mit einem Fehler. Er kommt mit den Fehlern.
+00:01 +96 -1: valid and unresolved structures remain untouched Das ist für dem Qudsbrand.
+00:01 +97 -1: valid and unresolved structures remain untouched Er kommt mit einem Mensch. Sie redet mit einem Student.
+00:01 +98 -1: valid and unresolved structures remain untouched Er kommt mit den Bänder. Sie redet mit der Leiter.
+00:01 +99 -1: valid and unresolved structures remain untouched Ein gutes Buch liegt neben einem guten Buch.
+00:01 +100 -1: valid and unresolved structures remain untouched Eine gute Frau kommt mit einer guten Frau.
+00:01 +101 -1: valid and unresolved structures remain untouched Ein guter Mann kommt mit einem guten Mann.
+00:01 +102 -1: valid and unresolved structures remain untouched Das gute Kind kommt. Die guten Kinder kommen.
+00:01 +103 -1: valid and unresolved structures remain untouched Der gute Mann kommt. Die gute Frau kommt.
+00:01 +104 -1: valid and unresolved structures remain untouched Diese gute Datei kommt mit diesen guten Dateien.
+00:01 +105 -1: valid and unresolved structures remain untouched Er kommt mit einem neuen, guten Buch.
+00:01 +106 -1: valid and unresolved structures remain untouched Das ist ein besseres Buch. Wir lesen die besseren Bücher.
+00:01 +107 -1: valid and unresolved structures remain untouched Das ist ein größeres Haus. Wir kommen mit dem größeren Auto.
+00:01 +108 -1: valid and unresolved structures remain untouched Ein kleiner Mann kommt. Ein kleines Kind kommt.
+00:01 +109 -1: valid and unresolved structures remain untouched Das ist ein gut lesbares Buch.
+00:01 +110 -1: valid and unresolved structures remain untouched Die automatisch geänderte Datei ist hier.
+00:01 +111 -1: valid and unresolved structures remain untouched Der öffentlich geprüfte Bericht ist hier.
+00:01 +112 -1: valid and unresolved structures remain untouched Die endgültig geschlossene Tür ist hier.
+00:01 +113 -1: valid and unresolved structures remain untouched Eine leicht beschädigte Tür ist hier.
+00:01 +114 -1: valid and unresolved structures remain untouched Ein vollständig geänderter Text ist hier.
+00:01 +115 -1: valid and unresolved structures remain untouched Ein einfach schönes Haus ist hier.
+00:01 +116 -1: valid and unresolved structures remain untouched Ein besonders gutes Buch liegt hier.
+00:01 +117 -1: valid and unresolved structures remain untouched Die Kinder spielen schön. Der Mann ist freundlich.
+00:01 +118 -1: valid and unresolved structures remain untouched Ich denke, dass du kommst.
+00:01 +119 -1: valid and unresolved structures remain untouched Ich denke das. Du kommst.
+00:01 +120 -1: valid and unresolved structures remain untouched Ich sage das, was ich denke.
+00:01 +121 -1: valid and unresolved structures remain untouched Das Buch, das ich lese, ist gut.
+00:01 +122 -1: valid and unresolved structures remain untouched Ich sehe das Buch, das du liest.
+00:01 +123 -1: valid and unresolved structures remain untouched Ich hoffe, das reicht.
+00:01 +124 -1: valid and unresolved structures remain untouched Ich glaube das gerne.
+00:01 +125 -1: valid and unresolved structures remain untouched Ich denke, das ich.
+00:01 +126 -1: valid and unresolved structures remain untouched Ich denke, das ich Wort für Wort.
+00:01 +127 -1: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:01 +128 -1: valid and unresolved structures remain untouched Er ist größer als ich. Sie ist genauso groß wie er.
+00:01 +129 -1: valid and unresolved structures remain untouched Er ist kleiner, wie ich gestern bemerkt habe.
+00:01 +130 -1: valid and unresolved structures remain untouched Die Lage war früher wie heute schwierig.
+00:01 +131 -1: valid and unresolved structures remain untouched Er war früher wie ein Bruder für mich.
+00:01 +132 -1: valid and unresolved structures remain untouched Sie sah später wie ihre Mutter aus.
+00:01 +133 -1: valid and unresolved structures remain untouched Ich komme später wie vereinbart.
+00:01 +134 -1: valid and unresolved structures remain untouched Er ist schneller wie auch zuverlässiger geworden.
+00:01 +135 -1: valid and unresolved structures remain untouched Sie ist schneller wie beispielsweise das Auto.
+00:01 +136 -1: valid and unresolved structures remain untouched Er arbeitet so schnell als möglich.
+00:01 +137 -1: valid and unresolved structures remain untouched Er ist so groß als ob er gewachsen wäre.
+00:01 +138 -1: valid and unresolved structures remain untouched Er ist so groß als wenn er gewachsen wäre.
+00:01 +139 -1: valid and unresolved structures remain untouched Er war so klein als er geboren wurde.
+00:01 +140 -1: valid and unresolved structures remain untouched Er war so klein als er kam.
+00:01 +141 -1: valid and unresolved structures remain untouched Der Besser ist ein Name. Besser wie früher ist ein Titel.
+00:01 +142 -1: every new rule has a stable independently ignorable identity
+00:01 +143 -1: phrase corrections preserve Unicode source and regional aliases
+00:01 +144 -1: subordinate correction and insertion retain soft hyphen ownership
+00:01 +145 -1: protected context cannot govern or supply phrase corrections
+00:01 +146 -1: Some tests failed.
+
+Failing tests:
+  test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Außer ich kommt niemand. Alle außer mir kommen.
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.

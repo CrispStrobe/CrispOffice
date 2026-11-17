@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "started_at_utc": "2026-11-17T06:35:15.198076+00:00",
+  "finished_at_utc": "2026-11-17T06:35:29.577675+00:00",
+  "baseline_commit": "62563c61f02ee44504776d9e7d26557f9bae490a",
+  "candidate_commit": "3a2ada5a04395fd2fa01c7878f4df9f1b9215558",
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "1dd1165f9145af9a02dae29c6dbe98025c52be97df1f48b8c3368ef07b199dc1",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "aac167c18943c338eaf657abf2654de51837e792b7de99f705aa359a600bc9bb",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "64c38adeebc59e1b0a0145433db08ce5a12206bdfb849c573f925f016178890d",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+  },
+  "source_sha256_after": {
+    "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart": "1dd1165f9145af9a02dae29c6dbe98025c52be97df1f48b8c3368ef07b199dc1",
+    "packages/quds_office_engine/lib/src/proofing/german_grammar.dart": "aac167c18943c338eaf657abf2654de51837e792b7de99f705aa359a600bc9bb",
+    "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "64c38adeebc59e1b0a0145433db08ce5a12206bdfb849c573f925f016178890d",
+    "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17"
+  },
+  "source_unchanged": true,
+  "corpus_sha256": {
+    "positive-cases.json": "0b9baddda9f6ec2364c6500e81cd101c97a61452297fe80f0959fb8802644ef0",
+    "positive-text.json": "4799f2c68bf834910c4aea17b3689806522529a0150fde14d32e542040aeb920",
+    "negative-text.json": "a761136dba9ffcee3b7b574067e73aa6ae44370738fbeeb7930f6defd07b8aa6"
+  },
+  "runtime_sha256": {
+    "dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "node": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+    "workspace_lock": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+  },
+  "comparison": {
+    "baseline": {
+      "positive_sentences": 39,
+      "positive_detected": 0,
+      "positive_exact_corrections": 0,
+      "negative_sentences": 213,
+      "negative_with_findings": 4,
+      "all_provider_statuses_success": true,
+      "missed_or_nonexact_cases": [
+        "Sie spricht mit mich.",
+        "Ich fahre ohne ihm.",
+        "Er wartet auf dich und für mir.",
+        "Wir fahren mit den Auto.",
+        "Sie geht mit dem Frau.",
+        "Er wartet für dem Mann.",
+        "Wir spielen mit den Kinder.",
+        "Er arbeitet mit den Dokumente.",
+        "Sie schaut nach den Fehler.",
+        "Ein gute Buch liegt hier.",
+        "Mit dem gute Buch ist alles klar.",
+        "Eine schön Frau kommt.",
+        "Ich glaube, das er kommt.",
+        "Du weißt, das wir kommen.",
+        "Er glaubt, das sie lernen.",
+        "Wir hoffen dass er kommt.",
+        "Ich glaube dass er kommt.",
+        "Du weißt dass wir kommen.",
+        "Der Zug ist schneller wie das Auto.",
+        "Sie ist genauso groß als ich.",
+        "Das Haus ist größer wie das Büro.",
+        "Die Datei ist ebenso wichtig als der Bericht.",
+        "Er gehen nach Hause.",
+        "Man gehst nach Hause.",
+        "Er könnt heute kommen.",
+        "Man sind hier.",
+        "Er haben Zeit.",
+        "Ist du hier?",
+        "Hast wir Zeit?",
+        "Kommen du morgen?",
+        "Arbeitet ich hier?",
+        "Ich wartet heute.",
+        "Du wohnt hier.",
+        "Ich schreibst heute.",
+        "Wir trinkt Wasser.",
+        "Du schläft lange.",
+        "Ich hilfst gern.",
+        "Ich heißen Lukas.",
+        "Du weiß heute alles."
+      ],
+      "negative_findings": [
+        {
+          "text": "Kann ich gehen?",
+          "status": "success",
+          "message": null,
+          "findings": [
+            {
+              "rule": "de.grammar.pronoun-verb",
+              "text": "gehen",
+              "start": 9,
+              "end": 14,
+              "replacements": [
+                "gehe"
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Könnte ich gehen?",
+          "status": "success",
+          "message": null,
+          "findings": [
+            {
+              "rule": "de.grammar.pronoun-verb",
+              "text": "gehen",
+              "start": 11,
+              "end": 16,
+              "replacements": [
+                "gehe"
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Würde ich gehen?",
+          "status": "success",
+          "message": null,
+          "findings": [
+            {
+              "rule": "de.grammar.pronoun-verb",
+              "text": "gehen",
+              "start": 10,
+              "end": 15,
+              "replacements": [
+                "gehe"
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Dürfte ich kommen?",
+          "status": "success",
+          "message": null,
+          "findings": [
+            {
+              "rule": "de.grammar.pronoun-verb",
+              "text": "kommen",
+              "start": 11,
+              "end": 17,
+              "replacements": [
+                "komme"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "candidate": {
+      "positive_sentences": 39,
+      "positive_detected": 39,
+      "positive_exact_corrections": 39,
+      "negative_sentences": 213,
+      "negative_with_findings": 0,
+      "all_provider_statuses_success": true,
+      "missed_or_nonexact_cases": [],
+      "negative_findings": []
+    }
+  },
+  "vm_variants": {
+    "status": "passed",
+    "positive_sentences": 39,
+    "negative_sentences": 213,
+    "positive_variants": 195,
+    "correction_rechecks": 117,
+    "requests": 525,
+    "failures": [],
+    "scope": "First-party independent behavioral cases; variants and rechecks are not separate language examples."
+  },
+  "node_variants": {
+    "status": "passed",
+    "positive_sentences": 39,
+    "negative_sentences": 213,
+    "positive_variants": 195,
+    "correction_rechecks": 117,
+    "requests": 525,
+    "failures": [],
+    "scope": "First-party independent behavioral cases; variants and rechecks are not separate language examples."
+  },
+  "commands": [
+    {
+      "name": "prepare-baseline",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/prepare_baseline.py",
+        "--repository",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite",
+        "--output",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/baseline"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.15689789099269547,
+      "stdout_sha256": "0143635d364c253d0ec667f4c2fe7a524f8d892a8330ab98328a8afff365e204",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "baseline-positive",
+      "command": [
+        "/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/baseline/baseline-package-config.json",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/grammar_probe.dart",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/positive-text.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.0968228959973203,
+      "stdout_sha256": "80f45fdc675c3aa4c7aee2979c8151e53a02887e7572d80eed0b9d54d783104a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "baseline-negative",
+      "command": [
+        "/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/baseline/baseline-package-config.json",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/grammar_probe.dart",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/negative-text.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.0396269769989885,
+      "stdout_sha256": "e2ef525cbd302ef01a31b8b22539cfde4ed696f1640835c196786d6deeba5494",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "candidate-positive",
+      "command": [
+        "/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/d0298adcd22a/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/grammar_probe.dart",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/positive-text.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.8444857740105363,
+      "stdout_sha256": "f2e357cbaeca9601d104e50c3b561052cee42b10a1a6cdeb6abd59c36b42f3d8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "candidate-negative",
+      "command": [
+        "/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/d0298adcd22a/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/grammar_probe.dart",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/negative-text.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.0733550360018853,
+      "stdout_sha256": "39d884ecfe7fea272782112d9fb11ac2482195b4a534ead82edad11243de838d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-variant-suite",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/build_grammar_review_suite.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.06435318099102005,
+      "stdout_sha256": "4378fe1abf5bf96fa00c4e97b8bf3725bbdfbc5e9d0c0fd21597e17f8fc1d360",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "candidate-vm-variants",
+      "command": [
+        "/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/d0298adcd22a/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/grammar_review_suite.dart"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.958034741008305,
+      "stdout_sha256": "2c32350b5922cf96851094425a15b4f334b51013ddef549e3266a14ca3394c6a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "compile-variants",
+      "command": [
+        "/workspace/scratch/d0298adcd22a/validation_license/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "--packages=/workspace/scratch/d0298adcd22a/quds_office_suite/.dart_tool/package_config.json",
+        "-O2",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/grammar_review_suite.dart",
+        "-o",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/grammar-review.js"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.0541677690052893,
+      "stdout_sha256": "2a53ead6db4c4866aaf851392af8ab47853126ac0709bc20d7e1351801f912e3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "candidate-node-variants",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self=globalThis; require(process.argv[1]);",
+        "/workspace/scratch/d0298adcd22a/quds_office_suite/docs/validation/proofing-grammar-expansion-20261117/independent/qualified/grammar-review.js"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.0827435159881134,
+      "stdout_sha256": "2c32350b5922cf96851094425a15b4f334b51013ddef549e3266a14ca3394c6a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "This is a deliberately targeted first-party regression corpus, not population precision/recall or general German accuracy.",
+    "Both baseline and candidate comparisons use the identical de-DE texts and successful provider status. de-AT/de-CH and source/protection variants are separate candidate checks.",
+    "Original review false positives and unsupported helfst fixture are preserved in earlier review logs; final positive uses actual wrong-person hilfst.",
+    "An unflagged construction outside this finite grammar is not a correctness guarantee."
+  ]
+}

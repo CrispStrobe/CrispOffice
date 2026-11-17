@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "positive_sentences": 22,
+  "negative_sentences": 147,
+  "positive_variants": 110,
+  "correction_rechecks": 63,
+  "requests": 320,
+  "failures": [
+    {
+      "stage": "base",
+      "text": "Die Datei ist ebenso wichtig als der Bericht.",
+      "detail": {
+        "expectedRule": "de.grammar.comparison",
+        "actualRules": []
+      }
+    },
+    {
+      "stage": "offset",
+      "text": "🙂 Die Datei ist ebenso wichtig als der Bericht.",
+      "detail": {
+        "expectedRule": "de.grammar.comparison",
+        "actualRules": []
+      }
+    },
+    {
+      "stage": "soft-hyphen",
+      "text": "🙂 Die Datei ist ebenso wichtig a­ls der Bericht.",
+      "detail": {
+        "expectedRule": "de.grammar.comparison",
+        "actualRules": []
+      }
+    }
+  ],
+  "scope": "First-party independent behavioral cases; variants and rechecks are not separate language examples."
+}
+Unhandled exception:
+Bad state: Independent grammar review failed
+#0      main (file:///workspace/scratch/d0298adcd22a/validation_license/grammar_review_suite.dart:77:28)
+<asynchronous suspension>

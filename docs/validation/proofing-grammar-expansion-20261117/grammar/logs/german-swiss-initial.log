@@ -1,0 +1,327 @@
+00:00 +0: loading test/proofing/german_grammar_test.dart
+00:00 +0: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +1: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +2: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +3: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +4: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +5: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +6: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +7: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +8: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +9: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +10: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +11: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +12: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +13: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +14: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +15: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +16: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +17: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +18: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +19: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +20: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +21: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +22: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +23: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +24: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +25: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +26: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +27: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +28: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +29: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +30: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +31: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +32: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +33: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +34: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +35: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +36: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +37: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +38: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +39: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +40: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +41: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +42: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +43: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +44: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +45: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +46: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +47: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +48: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +49: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +50: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +51: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +52: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +53: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +54: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +55: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +56: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +57: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +58: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +59: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +60: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +61: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +62: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +63: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +64: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +65: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +66: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +67: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +68: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +69: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +70: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +71: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +72: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +73: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +74: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +75: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +76: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+00:00 +76 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +77 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +78 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +79 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +80 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +81 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +82 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +83 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +84 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +85 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +86 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +87 -1: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +88 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne mir weh zu tun kommt sie.
+00:00 +89 -1: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +90 -1: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +91 -1: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +92 -1: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +93 -1: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +94 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Um mir einen Gefallen zu tun kommt sie.
+00:00 +95 -1: test/proofing/german_writing_rules_test.dart: lexical verb corrections retain regional and uppercase behavior
+00:00 +96 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er bittet um seiner Kinder willen.
+00:00 +97 -1: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +98 -1: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +99 -1: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +99 -1: test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography [E]
+  Expected: an object with length of <1>
+    Actual: []
+     Which: has length of <0>
+  Weisst man das?
+  
+  package:matcher                                        expect
+  test/proofing/german_agreement_context_test.dart 37:9  main.<fn>
+  
+00:00 +100 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Datei ist mit die wichtigste Datei.
+00:00 +101 -1: test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +102 -1: test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +103 -1: test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +104 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +105 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +106 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +107 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +108 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +109 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +110 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +111 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +112 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bleibt hier.
+00:00 +113 -1: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection preserves adjacent controls and valid text
+00:00 +114 -1: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection preserves adjacent controls and valid text
+00:00 +115 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich stehst hier.
+00:00 +116 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt bis nächsten Dienstag. Wir können bis zu zehn Leute aufnehmen.
+00:00 +117 -1: test/proofing/german_writing_rules_test.dart: projected findings never replace part of a joined or accented grapheme
+00:00 +118 -1: test/proofing/german_writing_rules_test.dart: projected findings never replace part of a joined or accented grapheme
+00:00 +119 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er geht den Weg entlang. Entlang des Weges stehen Häuser.
+00:00 +120 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du liegt hier.
+00:00 +121 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +122 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +123 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +124 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +125 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +126 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +127 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +128 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +129 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +130 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +131 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +132 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +133 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +134 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +135 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +136 -1: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +137 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich verstehst das.
+00:00 +138 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich verstehst das.
+00:00 +139 -1: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +140 -1: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +141 -1: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +142 -1: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +143 -1: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +144 -1: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +145 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bringt das Buch.
+00:00 +146 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bringt das Buch.
+00:00 +147 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bringt das Buch.
+00:00 +148 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du bringt das Buch.
+00:00 +149 -1: test/proofing/german_writing_rules_test.dart: declined determiners and fused prepositions preserve nominal pronouns
+00:00 +150 -1: test/proofing/german_writing_rules_test.dart: declined determiners and fused prepositions preserve nominal pronouns
+00:00 +151 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wir kaufe das Buch.
+00:00 +152 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Diese gute Datei kommt mit diesen guten Dateien.
+00:00 +153 -1: test/proofing/german_writing_rules_test.dart: word-internal apostrophes do not close enclosing single quotes
+00:00 +154 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du schreibt das.
+00:00 +155 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du schreibt das.
+00:00 +156 -1: test/proofing/german_writing_rules_test.dart: decorated punctuation preserves ordinary paragraph findings
+00:00 +157 -1: test/proofing/german_writing_rules_test.dart: decorated punctuation preserves ordinary paragraph findings
+00:00 +158 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich hörst das.
+00:00 +159 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein größeres Haus. Wir kommen mit dem größeren Auto.
+00:00 +160 -1: test/proofing/german_writing_rules_test.dart: unsafe grammar and spacing matches leave ordinary corrections available
+00:00 +161 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du hilft ihr.
+00:00 +162 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein kleiner Mann kommt. Ein kleines Kind kommt.
+00:00 +163 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wir fragt nach.
+00:00 +164 -1: test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:00 +165 -1: test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:00 +166 -1: test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:00 +167 -1: test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:00 +168 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich wartest hier.
+00:00 +169 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Ich wartest hier.
+00:00 +170 -1: test/proofing/german_writing_rules_test.dart: unmatched delimiters and quotes remain advisory with no guessed correction
+00:00 +171 -1: test/proofing/german_writing_rules_test.dart: unmatched delimiters and quotes remain advisory with no guessed correction
+00:00 +172 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du wohnt hier.
+00:00 +173 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Eine leicht beschädigte Tür ist hier.
+00:00 +174 -1: test/proofing/german_writing_rules_test.dart: URLs, inline code and rule opt-outs remain untouched
+00:00 +175 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wir lebt hier.
+00:00 +176 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein vollständig geänderter Text ist hier.
+00:00 +177 -1: test/proofing/german_writing_rules_test.dart: matching multi-backtick spans protect grammar and punctuation
+00:00 +178 -1: test/proofing/german_writing_rules_test.dart: matching multi-backtick spans protect grammar and punctuation
+00:00 +179 -1: test/proofing/german_writing_rules_test.dart: matching multi-backtick spans protect grammar and punctuation
+00:00 +180 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein leise geschlossenes Fenster hilft dem Kind.
+00:00 +181 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein leise geschlossenes Fenster hilft dem Kind.
+00:00 +182 -1: test/proofing/german_writing_rules_test.dart: protected tokens cannot supply a subject for following prose
+00:00 +183 -1: test/proofing/german_writing_rules_test.dart: protected tokens cannot supply a subject for following prose
+00:00 +184 -1: test/proofing/german_writing_rules_test.dart: protected tokens cannot supply a subject for following prose
+00:00 +185 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wir stellt das hierhin.
+00:00 +186 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wir stellt das hierhin.
+00:00 +187 -1: test/proofing/german_writing_rules_test.dart: URL protection preserves enclosing brackets and typographic quotes
+00:00 +188 -1: test/proofing/german_writing_rules_test.dart: URL protection preserves enclosing brackets and typographic quotes
+00:00 +189 -1: test/proofing/german_writing_rules_test.dart: URL protection preserves enclosing brackets and typographic quotes
+00:00 +190 -1: test/proofing/german_writing_rules_test.dart: URL protection preserves enclosing brackets and typographic quotes
+00:00 +191 -1: test/proofing/german_writing_rules_test.dart: URL protection preserves enclosing brackets and typographic quotes
+00:00 +192 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Kinder spielen schön. Der Mann ist freundlich.
+00:00 +193 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du trägt das.
+00:00 +194 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, dass du kommst.
+00:00 +195 -1: test/proofing/german_writing_rules_test.dart: unmatched punctuation after a URL still has exact source ranges
+00:00 +196 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du trifft ihn.
+00:00 +197 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du trifft ihn.
+00:00 +198 -1: test/proofing/german_writing_rules_test.dart: language and disposed availability are explicit
+00:00 +199 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich sage das, was ich denke.
+00:00 +200 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Du schläft hier.
+00:00 +201 -1: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:00 +202 -1: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:00 +203 -1: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:00 +204 -1: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:00 +205 -1: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:00 +206 -1: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:00 +207 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich glaube das gerne.
+00:00 +208 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Er bist hier.
+00:00 +209 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich.
+00:00 +210 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Er haben Zeit.
+00:00 +211 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich Wort für Wort.
+00:00 +212 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Man kannst hier bleiben.
+00:00 +213 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +214 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +215 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +216 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +217 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +218 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +219 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +220 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +221 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:00 +222 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Bist ich hier richtig?
+00:00 +223 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist größer als ich. Sie ist genauso groß wie er.
+00:00 +224 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Hat du Zeit?
+00:00 +225 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist kleiner, wie ich gestern bemerkt habe.
+00:00 +226 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Kann wir kommen?
+00:00 +227 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Lage war früher wie heute schwierig.
+00:00 +228 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Müssen er gehen?
+00:00 +229 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war früher wie ein Bruder für mich.
+00:00 +230 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Weißt man das?
+00:00 +231 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie sah später wie ihre Mutter aus.
+00:00 +232 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich komme später wie vereinbart.
+00:00 +233 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Warum hat du Zeit?
+00:00 +234 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist schneller wie auch zuverlässiger geworden.
+00:00 +235 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Heute bin wir hier.
+00:00 +236 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie ist schneller wie beispielsweise das Auto.
+00:00 +237 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Dort kannst man warten.
+00:00 +238 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Dort kannst man warten.
+00:00 +239 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so groß als ob er gewachsen wäre.
+00:00 +240 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wo hilft du ihr?
+00:00 +241 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so groß als wenn er gewachsen wäre.
+00:00 +242 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Was liest wir heute?
+00:00 +243 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er geboren wurde.
+00:00 +244 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Wann tragt er das?
+00:00 +245 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er kam.
+00:00 +246 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er kam.
+00:00 +247 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er kam.
+00:00 +248 -1: test/proofing/german_agreement_context_test.dart: expanded finite forms and clear inverted subjects Kann wir lesen?
+00:00 +249 -1: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der Besser ist ein Name. Besser wie früher ist ein Titel.
+00:00 +250 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er ist hier. Man hat Zeit. Er kommt später.
+00:00 +251 -1: test/proofing/german_grammar_test.dart: every new rule has a stable independently ignorable identity
+00:00 +252 -1: test/proofing/german_grammar_test.dart: every new rule has a stable independently ignorable identity
+00:00 +253 -1: test/proofing/german_grammar_test.dart: every new rule has a stable independently ignorable identity
+00:00 +254 -1: test/proofing/german_grammar_test.dart: every new rule has a stable independently ignorable identity
+00:00 +255 -1: test/proofing/german_grammar_test.dart: every new rule has a stable independently ignorable identity
+00:00 +256 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er gehe nach Hause, sagte sie.
+00:00 +257 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +258 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +259 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +260 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +261 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +262 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +263 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +264 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +265 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +266 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +267 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +268 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +269 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +270 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +271 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +272 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +273 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +274 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +275 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +276 -1: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:00 +277 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Haben du und ich Zeit?
+00:00 +278 -1: test/proofing/german_grammar_test.dart: subordinate correction and insertion retain soft hyphen ownership
+00:00 +279 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Können er und ich kommen?
+00:00 +280 -1: test/proofing/german_grammar_test.dart: protected context cannot govern or supply phrase corrections
+00:00 +281 -1: test/proofing/german_grammar_test.dart: protected context cannot govern or supply phrase corrections
+00:00 +282 -1: test/proofing/german_grammar_test.dart: protected context cannot govern or supply phrase corrections
+00:00 +283 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Kommen du sowie ich heute?
+00:00 +284 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ich sagte Du und meinte Ich.
+00:00 +285 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wir haben du gesagt.
+00:00 +286 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Der Er ist ein Ausdruck. Das Man ist ein Begriff.
+00:00 +287 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Das Er haben wir gelesen. Das Man haben wir besprochen.
+00:00 +288 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Sein wahres Ich hat Grenzen. Ein gutes Du ist wichtig.
+00:00 +289 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Die Macht ich im Text benenne.
+00:00 +290 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er Essen kocht, bleibt er.
+00:00 +291 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er Lesen lernt, bleibt er.
+00:00 +292 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil er eine Frage hat, bleibt er.
+00:00 +293 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Weil du Frage und Antwort kennst, bleibst du.
+00:00 +294 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU FRAGE UND ANTWORT KENNST, BLEIBST DU.
+00:00 +295 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU GLAUBE HAST, BLEIBST DU.
+00:00 +296 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched WEIL DU SUCHE UND FRAGE KENNST, BLEIBST DU.
+00:00 +297 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched IHR MACHT Freude. Ihr macht Freude.
+00:00 +298 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ihr schreiben wir. Ihr helfen wir. Ihr tragen wir das nach.
+00:00 +299 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Ihr hilft man. Ihr schreibt man.
+00:00 +300 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wie er haben wir Zeit. Anders als man haben wir Zeit.
+00:00 +301 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er und ich haben Zeit. Peter und er haben Zeit.
+00:00 +302 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Nicht nur sie, sondern auch er haben Zeit.
+00:00 +303 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er hätte Zeit. Er könnte kommen. Man müsste gehen.
+00:00 +304 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Wie geht es dir? Was hat er gesagt? Warum haben wir Zeit?
+00:00 +305 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Kann ich gehen? Will er lesen? Muss man gehen?
+00:00 +306 -1: test/proofing/german_agreement_context_test.dart: mood, coordination, nominal pronouns and objects remain untouched Er heißt Martin. Man heißt ihn willkommen.
+00:00 +307 -1: test/proofing/german_agreement_context_test.dart: inverted findings retain original ranges through soft hyphens
+00:00 +308 -1: test/proofing/german_agreement_context_test.dart: inverted grammar cannot be inferred from protected or joined tokens
+00:00 +309 -1: Some tests failed.
+
+Failing tests:
+  test/proofing/german_agreement_context_test.dart: Swiss conjugation and phrase corrections preserve ss orthography
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.

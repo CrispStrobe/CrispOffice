@@ -1,0 +1,1 @@
+{"status":"passed","checks":5,"worker":"file:///workspace/scratch/d0298adcd22a/quds_office_suite/packages/quds_proofing_harper/build/web/harper_worker.mjs","scope":"Exact shipped module worker and real Wasm; Node bridge substitutes file fetch and Worker messaging only."}

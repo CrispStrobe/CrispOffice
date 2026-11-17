@@ -1,0 +1,195 @@
+00:00 +0: loading test/proofing/german_grammar_test.dart
+00:00 +0: test/proofing/german_writing_rules_test.dart: ordinary German, valid repetitions and regional quotes stay clean
+00:00 +1: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme mit mich.
+00:00 +2: test/proofing/german_writing_rules_test.dart: spacing checks return precise reviewable replacements
+00:00 +3: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +4: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +5: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +6: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +7: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +8: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +9: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das kommt von dich.
+00:00 +10: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +11: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +12: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +13: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +14: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +15: test/proofing/german_writing_rules_test.dart: finite auxiliary and modal agreement preserves exact source offsets
+00:00 +16: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir kommen ohne dir.
+00:00 +17: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:00 +18: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:00 +19: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:00 +20: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:00 +21: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:00 +22: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:00 +23: test/proofing/german_writing_rules_test.dart: valid German constructions remain outside finite agreement findings
+00:00 +24: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir reden von diese Frage.
+00:00 +25: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +26: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +27: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +28: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +29: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +30: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +31: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +32: test/proofing/german_writing_rules_test.dart: finite agreement handles horizontal spaces, regions and capitals
+00:00 +33: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist für einem Frau.
+00:00 +34: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:00 +35: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:00 +36: test/proofing/german_writing_rules_test.dart: finite agreement preserves exclusions and narrow ihr checks
+00:00 +37: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das spricht gegen diesem Plan.
+00:00 +38: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +39: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +40: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +41: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +42: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +43: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +44: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +45: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +46: test/proofing/german_writing_rules_test.dart: common lexical verbs receive finite agreement corrections
+00:00 +47: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er wartet seit diesen Tage.
+00:00 +48: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +49: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +50: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +51: test/proofing/german_writing_rules_test.dart: lexical verb expansion preserves valid and ambiguous constructions
+00:00 +52: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Der gutes Mann kommt.
+00:00 +53: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Der gutes Mann kommt.
+00:00 +54: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +55: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +56: test/proofing/german_writing_rules_test.dart: seit and seid are distinguished only in reviewed contexts
+00:00 +57: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich sehe einen gute Mann.
+00:00 +58: test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +59: test/proofing/german_writing_rules_test.dart: seit-seid controls preserve auxiliaries, imperatives and dative ihr
+00:00 +60: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie kommt mit einer gute Frau.
+00:00 +61: test/proofing/german_writing_rules_test.dart: seit-seid remains opt-out, protected and source-grapheme safe
+00:00 +62: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er kommt aus dem schöne Haus.
+00:00 +63: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection retains exact original UTF-16 ranges
+00:00 +64: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection retains exact original UTF-16 ranges
+00:00 +65: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich komme ohne einen guter Plan.
+00:00 +66: test/proofing/german_writing_rules_test.dart: soft-hyphen projection preserves phrase and insertion ownership
+00:00 +67: test/proofing/german_writing_rules_test.dart: soft-hyphen projection preserves phrase and insertion ownership
+00:00 +68: test/proofing/german_writing_rules_test.dart: soft-hyphen grammar projection preserves adjacent controls and valid text
+00:00 +69: test/proofing/german_writing_rules_test.dart: projected findings never replace part of a joined or accented grapheme
+00:00 +70: test/proofing/german_writing_rules_test.dart: projected findings never replace part of a joined or accented grapheme
+00:00 +71: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Diese guter Datei ist hier.
+00:00 +72: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +73: test/proofing/german_writing_rules_test.dart: grammar does not infer subjects or verbs from joined identifiers
+00:00 +74: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Wir glauben, das er hier ist.
+00:00 +75: test/proofing/german_writing_rules_test.dart: capitalized nominal verb objects do not become agreement corrections
+00:00 +76: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er weiß, das wir Zeit haben.
+00:00 +77: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er weiß, das wir Zeit haben.
+00:00 +78: test/proofing/german_writing_rules_test.dart: word-internal apostrophes do not close enclosing single quotes
+00:00 +79: test/proofing/german_writing_rules_test.dart: word-internal apostrophes do not close enclosing single quotes
+00:00 +80: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Ich glaube dass du kommst.
+00:00 +81: test/proofing/german_writing_rules_test.dart: decorated punctuation preserves ordinary paragraph findings
+00:00 +82: test/proofing/german_writing_rules_test.dart: decorated punctuation preserves ordinary paragraph findings
+00:01 +83: test/proofing/german_writing_rules_test.dart: decorated punctuation preserves ordinary paragraph findings
+00:01 +84: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist besser wie vorher.
+00:01 +85: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Das ist besser wie vorher.
+00:01 +86: test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:01 +87: test/proofing/german_writing_rules_test.dart: terminology substring rules do not replace partial graphemes
+00:01 +88: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er ist so groß als ich.
+00:01 +89: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er ist so groß als ich.
+00:01 +90: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er ist so groß als ich.
+00:01 +91: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er ist so groß als ich.
+00:01 +92: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Er ist so groß als ich.
+00:01 +93: test/proofing/german_writing_rules_test.dart: URL protection preserves enclosing brackets and typographic quotes
+00:01 +94: test/proofing/german_grammar_test.dart: first-party phrase and clause corrections Sie ist genauso gut als er.
+00:01 +95: test/proofing/german_writing_rules_test.dart: unmatched punctuation after a URL still has exact source ranges
+00:01 +96: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich komme mit dir. Sie kommt mit ihm. Wir sprechen mit ihnen.
+00:01 +97: test/proofing/german_writing_rules_test.dart: language and disposed availability are explicit
+00:01 +98: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für mich. Sie kommt ohne ihn. Wir sind gegen euch.
+00:01 +99: test/proofing/german_writing_rules_test.dart: terminology uses literal terms, Unicode word boundaries and correct offsets
+00:01 +100: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Bei mir ist alles gut. Nach dir bin ich dran.
+00:01 +101: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Für ihr Kind ist das wichtig. Das ist für ihre Kinder.
+00:01 +102: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie spricht mit Ihr und Sie in einer Sprachübung.
+00:01 +103: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für das Ich. Wir sprechen vom Du.
+00:01 +104: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit ich hier bin, ist alles gut.
+00:01 +105: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit mich der Mann kennt, ist alles gut.
+00:01 +106: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Seit er die Frau kennt, ist alles gut.
+00:01 +107: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne mir zu helfen geht er.
+00:01 +108: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne ihm helfen zu können bleibt er.
+00:01 +109: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt, ohne dem Kind zu helfen.
+00:01 +110: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt, ohne der Frau bekannt zu sein.
+00:01 +111: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne ihm böse zu sein kommt sie.
+00:01 +112: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne mir weh zu tun kommt sie.
+00:01 +113: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ohne dem Kind weh zu tun kommt sie.
+00:01 +114: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir kommen, um ihm zu helfen.
+00:01 +115: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt, um dem Kind zu helfen.
+00:01 +116: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Um ihm nahe zu sein kommt sie.
+00:01 +117: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Um mir einen Gefallen zu tun kommt sie.
+00:01 +118: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er bittet um seiner Kinder willen.
+00:01 +119: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie bittet um ihrer kleinen Kinder willen.
+00:01 +120: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist mit ein schönes Buch.
+00:01 +121: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Datei ist mit die wichtigste Datei.
+00:01 +122: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er wollte mit den Mann begleiten.
+00:01 +123: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie wollte mit ihn begleiten.
+00:01 +124: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wegen dem Kind kommt sie. Trotz dem Fehler bleibt sie.
+00:01 +125: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wegen des Kindes kommt sie. Trotz des Fehlers bleibt sie.
+00:01 +126: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Außer ich kommt niemand. Alle außer mir kommen.
+00:01 +127: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen in die Stadt. Wir sind in der Stadt.
+00:01 +128: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen auf den Weg. Wir stehen auf dem Weg.
+00:01 +129: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Wir gehen an das Haus. Wir stehen an dem Haus.
+00:01 +130: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt bis nächsten Dienstag. Wir können bis zu zehn Leute aufnehmen.
+00:01 +131: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er geht den Weg entlang. Entlang des Weges stehen Häuser.
+00:01 +132: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das steht bei dem Mann. Sie kommt mit einem Mann.
+00:01 +133: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für das Kind. Er kommt ohne einen Mann.
+00:01 +134: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das steht bei den Kindern, den Büchern und den Fehlern.
+00:01 +135: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit den Frauen. Sie kommt mit den Autos.
+00:01 +136: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie kommt mit den Büros. Wir reden von den Regeln.
+00:01 +137: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für den Ordner. Das ist für die Ordner.
+00:01 +138: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem Fehler. Er kommt mit den Fehlern.
+00:01 +139: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Von diesem Tage an bleibt sie.
+00:01 +140: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Nach dem Jahre 1990 kommt sie.
+00:01 +141: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Aus dem Texte liest sie.
+00:01 +142: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Mit dem Tage kommt sie.
+00:01 +143: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist für dem Qudsbrand.
+00:01 +144: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem Mensch. Sie redet mit einem Student.
+00:01 +145: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit den Bänder. Sie redet mit der Leiter.
+00:01 +146: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein gutes Buch liegt neben einem guten Buch.
+00:01 +147: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Eine gute Frau kommt mit einer guten Frau.
+00:01 +148: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein guter Mann kommt mit einem guten Mann.
+00:01 +149: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das gute Kind kommt. Die guten Kinder kommen.
+00:01 +150: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der gute Mann kommt. Die gute Frau kommt.
+00:01 +151: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Diese gute Datei kommt mit diesen guten Dateien.
+00:01 +152: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er kommt mit einem neuen, guten Buch.
+00:01 +153: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein besseres Buch. Wir lesen die besseren Bücher.
+00:01 +154: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein größeres Haus. Wir kommen mit dem größeren Auto.
+00:01 +155: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein kleiner Mann kommt. Ein kleines Kind kommt.
+00:01 +156: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das ist ein gut lesbares Buch.
+00:01 +157: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die automatisch geänderte Datei ist hier.
+00:01 +158: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der öffentlich geprüfte Bericht ist hier.
+00:01 +159: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die endgültig geschlossene Tür ist hier.
+00:01 +160: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Eine leicht beschädigte Tür ist hier.
+00:01 +161: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein vollständig geänderter Text ist hier.
+00:01 +162: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein einfach schönes Haus ist hier.
+00:01 +163: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ein besonders gutes Buch liegt hier.
+00:01 +164: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Kinder spielen schön. Der Mann ist freundlich.
+00:01 +165: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, dass du kommst.
+00:01 +166: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke das. Du kommst.
+00:01 +167: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich sage das, was ich denke.
+00:01 +168: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Das Buch, das ich lese, ist gut.
+00:01 +169: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich sehe das Buch, das du liest.
+00:01 +170: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich hoffe, das reicht.
+00:01 +171: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich glaube das gerne.
+00:01 +172: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich.
+00:01 +173: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich Wort für Wort.
+00:01 +174: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich denke, das ich „komme“ sage.
+00:01 +175: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist größer als ich. Sie ist genauso groß wie er.
+00:01 +176: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist kleiner, wie ich gestern bemerkt habe.
+00:01 +177: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Die Lage war früher wie heute schwierig.
+00:01 +178: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war früher wie ein Bruder für mich.
+00:01 +179: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie sah später wie ihre Mutter aus.
+00:01 +180: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Ich komme später wie vereinbart.
+00:01 +181: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist schneller wie auch zuverlässiger geworden.
+00:01 +182: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Sie ist schneller wie beispielsweise das Auto.
+00:01 +183: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er arbeitet so schnell als möglich.
+00:01 +184: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so groß als ob er gewachsen wäre.
+00:01 +185: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er ist so groß als wenn er gewachsen wäre.
+00:01 +186: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er geboren wurde.
+00:01 +187: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Er war so klein als er kam.
+00:01 +188: test/proofing/german_grammar_test.dart: valid and unresolved structures remain untouched Der Besser ist ein Name. Besser wie früher ist ein Titel.
+00:01 +189: test/proofing/german_grammar_test.dart: every new rule has a stable independently ignorable identity
+00:01 +190: test/proofing/german_grammar_test.dart: phrase corrections preserve Unicode source and regional aliases
+00:01 +191: test/proofing/german_grammar_test.dart: subordinate correction and insertion retain soft hyphen ownership
+00:01 +192: test/proofing/german_grammar_test.dart: protected context cannot govern or supply phrase corrections
+00:01 +193: All tests passed!

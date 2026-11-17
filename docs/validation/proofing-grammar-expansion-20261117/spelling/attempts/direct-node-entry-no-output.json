@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "status": "incomplete-no-output",
+  "observed_date": "2026-11-17",
+  "command": "node benchmark.js",
+  "exit_code": 0,
+  "stdout_bytes": 0,
+  "interpretation": "This invocation produced no benchmark JSON and is not a successful benchmark result.",
+  "original_empty_output_preserved": false,
+  "original_empty_output_note": "The temporary empty destination was overwritten by the corrected invocation; this receipt records the observed result, not a retained raw log.",
+  "corrected_command": "node -e 'globalThis.self=globalThis;require(process.argv[1]);' benchmark.js",
+  "corrected_result": "../benchmark-node-before.json"
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "packaged_at_utc": "2026-11-17T06:35:34.198751+00:00",
+  "frozen_source_commit": "3a2ada5a04395fd2fa01c7878f4df9f1b9215558",
+  "final_focused_result": {
+    "passed": 346,
+    "failed": 0,
+    "log": "logs/german-agreement-checkpoint.log"
+  },
+  "evidence_scope": [
+    "Logs are verbatim copies of actual retained local expanded-reporter output.",
+    "The final 346 tests overlap the full integration gate; do not add counts together.",
+    "Earlier logs cover intermediate implementations and are not current acceptance.",
+    "Individual intermediate source inventories were not captured; no commit binding is claimed for those earlier logs.",
+    "Source hashes below were captured during packaging after the final focused run and verified against the frozen remote checkpoint; the full gate owns before/after source provenance.",
+    "Some intermediate attempts reused an output filename; this is the retained log set, not a complete execution history.",
+    "Strict analysis completed with No issues found in the execution transcript; this package does not invent a standalone analyzer log."
+  ],
+  "logs": [
+    {
+      "path": "logs/german-existing-initial.log",
+      "sha256": "05d9f4842ed981e28c8d6a9c1fb3193a7339ea4186ea9fce049bc339cd523e4e",
+      "bytes": 2857,
+      "source_file_name": "german-existing-initial.log",
+      "command": "dart test test/proofing/german_writing_rules_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "passed": 37,
+      "failed": 0,
+      "reported_result": "All tests passed!",
+      "is_final_focused_run": false
+    },
+    {
+      "path": "logs/german-new-initial.log",
+      "sha256": "ea648059742f3a8ea37a94da8053894cbe11aca5393df80ddb882719d7fe9b2f",
+      "bytes": 14439,
+      "source_file_name": "german-new-initial.log",
+      "command": "dart test test/proofing/german_grammar_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "passed": 146,
+      "failed": 1,
+      "reported_result": "Some tests failed.",
+      "is_final_focused_run": false
+    },
+    {
+      "path": "logs/german-phrase-checkpoint.log",
+      "sha256": "1ea011310b73cab696001774be487c46ce3084f80b0e318a3eb6a619bcd2ebc8",
+      "bytes": 25307,
+      "source_file_name": "german-phrase-checkpoint.log",
+      "command": "dart test test/proofing/german_grammar_test.dart test/proofing/german_writing_rules_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "passed": 193,
+      "failed": 0,
+      "reported_result": "All tests passed!",
+      "is_final_focused_run": false
+    },
+    {
+      "path": "logs/german-agreement-initial.log",
+      "sha256": "d30a94be1b078988a19623930b328e636e7cc1f404f6fdb4bc63617250576daa",
+      "bytes": 39919,
+      "source_file_name": "german-agreement-initial.log",
+      "command": "dart test test/proofing/german_grammar_test.dart test/proofing/german_writing_rules_test.dart test/proofing/german_agreement_context_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "passed": 300,
+      "failed": 2,
+      "reported_result": "Some tests failed.",
+      "is_final_focused_run": false
+    },
+    {
+      "path": "logs/german-agreement-pass2.log",
+      "sha256": "4c3865f8e0c13f5dadc31ac61993a90e807ac6bff8f86fb0752b8fdb412a29cf",
+      "bytes": 38159,
+      "source_file_name": "german-agreement-pass2.log",
+      "command": "dart test test/proofing/german_grammar_test.dart test/proofing/german_writing_rules_test.dart test/proofing/german_agreement_context_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "passed": 305,
+      "failed": 0,
+      "reported_result": "All tests passed!",
+      "is_final_focused_run": false
+    },
+    {
+      "path": "logs/german-swiss-initial.log",
+      "sha256": "3392c06ec314ae01a0dbf1986bddbfd41b64fbce0735d61d4a4cf5a89a78041a",
+      "bytes": 41928,
+      "source_file_name": "german-swiss-initial.log",
+      "command": "dart test test/proofing/german_grammar_test.dart test/proofing/german_writing_rules_test.dart test/proofing/german_agreement_context_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "passed": 309,
+      "failed": 1,
+      "reported_result": "Some tests failed.",
+      "is_final_focused_run": false
+    },
+    {
+      "path": "logs/german-agreement-checkpoint.log",
+      "sha256": "bf7eca21cecbb1ad55d9a072afc319c839b74deb2de0b2d8f7c03b88d2b5ffbd",
+      "bytes": 45073,
+      "source_file_name": "german-agreement-checkpoint.log",
+      "command": "dart test test/proofing/german_grammar_test.dart test/proofing/german_writing_rules_test.dart test/proofing/german_agreement_context_test.dart --reporter expanded",
+      "working_directory": "packages/quds_office_engine",
+      "passed": 346,
+      "failed": 0,
+      "reported_result": "All tests passed!",
+      "is_final_focused_run": true
+    }
+  ],
+  "source_files_at_packaging": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_writing_rules.dart",
+      "sha256": "1dd1165f9145af9a02dae29c6dbe98025c52be97df1f48b8c3368ef07b199dc1",
+      "bytes": 38576
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+      "sha256": "aac167c18943c338eaf657abf2654de51837e792b7de99f705aa359a600bc9bb",
+      "bytes": 33560
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "sha256": "64c38adeebc59e1b0a0145433db08ce5a12206bdfb849c573f925f016178890d",
+      "bytes": 14106
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/proofing_text_ranges.dart",
+      "sha256": "4760ffde9a19bcaa6bb09f43e31a52d0e84bdbfb4b7940086938c098f0c47b17",
+      "bytes": 3906
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+      "sha256": "9212c9cb0a84da8f8c4ae56e397c6160e38d430026f14bf8b7ab41e28fb8b32d",
+      "bytes": 40064
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+      "sha256": "82dc2679e3445c19b49e6cc23fd34d026ca06fbb316e90072d50fdc95c2b0e71",
+      "bytes": 16187
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/german_agreement_context_test.dart",
+      "sha256": "35dcb37e8bff79aa6efa333048ac0af865724d8034abfeff5289364341a9f431",
+      "bytes": 11890
+    }
+  ]
+}

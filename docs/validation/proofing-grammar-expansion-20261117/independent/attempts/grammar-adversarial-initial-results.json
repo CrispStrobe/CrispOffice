@@ -1,0 +1,206 @@
+[
+  {
+    "text": "Die automatisch geänderte Datei ist neu.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "automatisch",
+        "start": 4,
+        "end": 15,
+        "replacements": [
+          "automatische"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Der öffentlich geprüfte Bericht ist vollständig.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "öffentlich",
+        "start": 4,
+        "end": 14,
+        "replacements": [
+          "öffentliche"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Die endgültig geschlossene Tür bleibt zu.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "endgültig",
+        "start": 4,
+        "end": 13,
+        "replacements": [
+          "endgültige"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Eine leicht beschädigte Tür wird ersetzt.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "leicht",
+        "start": 5,
+        "end": 11,
+        "replacements": [
+          "leichte"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ein vollständig geänderter Text liegt vor.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "vollständig",
+        "start": 4,
+        "end": 15,
+        "replacements": [
+          "vollständiger"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ein einfach schönes Haus steht dort.",
+    "findings": [
+      {
+        "rule": "de.grammar.adjective-ending",
+        "text": "einfach",
+        "start": 4,
+        "end": 11,
+        "replacements": [
+          "einfaches"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Die Lage war früher wie heute schwierig.",
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 20,
+        "end": 23,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er war früher wie ein Bruder für mich.",
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 14,
+        "end": 17,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Sie sah später wie ihre Mutter aus.",
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 15,
+        "end": 18,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Das bleibt früher wie heute wichtig.",
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 18,
+        "end": 21,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Ich komme später wie vereinbart.",
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 17,
+        "end": 20,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Er ist schneller wie auch zuverlässiger geworden.",
+    "findings": [
+      {
+        "rule": "de.grammar.comparison",
+        "text": "wie",
+        "start": 17,
+        "end": 20,
+        "replacements": [
+          "als"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Das sind meine neuen Bücher.",
+    "findings": []
+  },
+  {
+    "text": "Mit den neuen Bücherregalen ist alles gut.",
+    "findings": []
+  },
+  {
+    "text": "Er hilft mit, die neuen Bücher zu tragen.",
+    "findings": []
+  },
+  {
+    "text": "Ohne ihm helfen zu können, geht sie.",
+    "findings": []
+  },
+  {
+    "text": "Um dem Mann zu helfen, bleibt sie.",
+    "findings": []
+  },
+  {
+    "text": "Um des Mannes willen bleibt sie.",
+    "findings": []
+  },
+  {
+    "text": "Das ist mit ein wichtiger Satz.",
+    "findings": []
+  },
+  {
+    "text": "Seit ich hier bin, läuft es besser.",
+    "findings": []
+  },
+  {
+    "text": "Er stellt sich so klein als möglich dar.",
+    "findings": []
+  }
+]

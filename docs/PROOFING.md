@@ -4,15 +4,46 @@ Roadmap accepted and implementation resumed: 16 November 2026. Original
 baseline: `bad2d9d30fd94db8de92a4f4bf83a55b0692b884`.
 
 The CrispStrobe fork implements offline German spelling, automatic German and
-US/UK English hyphenation, eight German writing-rule categories, and a
+US/UK English hyphenation, fifteen German writing-rule categories, and a
 document-wide Word proofing session with reviewable corrections. Local Harper
 English spelling and grammar remain optional and require packaged native or
 web assets. Mobile system spelling has an adapter with protocol tests; the
 experimental German model remains a separate evaluation.
 
-## Current English/German continuation — 17 November 2026
+## Current grammar expansion — 17 November 2026
 
-The [current continuation report](validation/proofing-en-de-20261117/README.md)
+The [grammar expansion report](validation/proofing-grammar-expansion-20261117/README.md)
+records the continuation from `62563c61`, incoming fork/upstream reconciliation,
+incremental remote saves, and fresh local validation. The source adds finite
+phrase morphology and contextual grammar, stronger spelling suggestions, and
+consistent language aliases without adding a dependency or third-party corpus.
+
+Seven new German rule categories cover pronoun/article case after fixed-case
+prepositions, dative plurals, adjective agreement, selected `das/dass` contexts,
+missing commas in selected complement clauses, and `als/wie` comparisons.
+Agreement now covers 57 present-indicative verb families, including bounded
+verb-before-pronoun constructions and unambiguous `er`/`man` contexts. Swiss
+forms and replacements retain `ss` spelling. A reviewed first-party
+noun/adjective inventory resolves local morphology;
+unknown or competing analyses cause abstention. These rules do not establish
+complete sentence parsing or unrestricted grammatical coverage.
+
+German spelling now offers a bounded indexed two-edit fallback and exact
+personal-name suggestions. Modern Latin-script locale tags, German `1996`, and
+Unicode locale preferences select the same reviewed dictionaries and patterns
+as their canonical region. Unsupported scripts, historical orthography and
+unprovided dialects remain visible as unsupported. English Harper dispatch
+retains US, UK, Canadian, Australian and Indian dialects; automatic English
+hyphenation remains limited to the reviewed US/UK patterns.
+
+The review dialog centers a bounded, grapheme-safe passage on each finding and
+highlights the exact source or insertion point. New grammar rules have readable
+restore labels, and correction/undo is exercised across formatting runs,
+locale aliases, authored soft hyphens and nonzero source offsets.
+
+## Earlier English/German continuation — 17 November 2026
+
+The [earlier continuation report](validation/proofing-en-de-20261117/README.md)
 records the integrated incoming histories, incremental remote checkpoints,
 local runtime receipts and qualification boundaries. The qualified source is
 `b9ac68fbbb33c7731a3241e4065f6dfb71e36a57`: all 135 distinct heads across the
@@ -107,7 +138,7 @@ Harper contracts passed **8 provider tests and 3 native guards**, with the real
 native-library test explicitly skipped. All recorded inputs remained unchanged
 during the final runs. Groups overlap and are not a repository-wide total.
 
-The [current verification report](validation/proofing-20261116/continuation-hardening/README.md)
+The [current verification report](validation/proofing-grammar-expansion-20261117/README.md)
 retains commands, full logs, failed attempts, runtime/dependency receipts,
 compressed manifests and reproduction instructions. Dictionary/pattern data,
 Harper source, model evaluation inputs and package manifests match the handoff.
@@ -205,11 +236,11 @@ live model properties and Word serialization coverage.
 | P1 | Shared asynchronous proofing contract, language selection and availability | Implemented | Distinct unavailable, unsupported, failed and successful results; stable document/block identity, revision, UTF-16 ranges, category, rule ID, explanation and literal replacements. |
 | P2 | Automatic German/US/UK English and explicit discretionary hyphenation | Implemented | Licensed patterns and measured break candidates in shared editor/PDF layout; source text unchanged, grapheme/bidi and source-hit coverage, Word setting round-trips. |
 | P3 | Offline German spelling and user vocabulary | Implemented | Pinned MIT finite word forms, locale/case handling, bounded suggestions, host-owned vocabulary and ignore controls; no claim of complete German morphology. |
-| P4 | German style and limited grammar rules | Implemented | Eight independently authored checks and a host terminology provider; explicit exclusions and reviewable suggestions. |
+| P4 | German style and finite grammar rules | Implemented | Fifteen independently authored categories, including phrase morphology and contextual clauses, plus a host terminology provider; explicit exclusions and reviewable suggestions. |
 | P5 | Word proofing UI and lifecycle | Implemented | Whole-story traversal, manual/background checks, stale-result rejection, squiggles, F7 review, correction menu and guarded undoable corrections. |
 | P6 | Optional English Harper and mobile spelling adapters | Implemented with runtime limits | Actual Linux native and Node/Wasm integration exercised; browser startup blocked before loading a page; mobile adapter protocol tested without Android/iOS device acceptance. |
 | P7 | German model evaluation | Evaluated; not enabled | Exact artifacts and original notices retained; recorded probe matched 9/18 error cases and changed 1/12 valid controls. No application provider or automatic model download. |
-| P8 | Integration and documentation | Current source locally qualified and remotely saved | Source `b9ac68f` passed strict analysis, VM/JavaScript language checks, 376 incoming regressions, 304 selected editor tests, separate IME regression and release web packaging. Matching-source real Linux native and Node/Wasm Harper evidence is verified. All 2,083 input hashes stayed unchanged; browser startup and device acceptance limits are explicit in the current report. |
+| P8 | Integration and documentation | Current source locally qualified and remotely saved | Source `3a2ada5a` passed four strict analyzers, 258 VM/23 Node hyphenation checks, 424 VM/424 Node proofing tests, 515 incoming regressions, 335 editor tests, separate IME regression and release web packaging. All 2,102 source inputs and nine runtime files stayed unchanged. Independent targeted grammar comparison improved 0/39 to 39/39 exact corrections and 4/213 to 0/213 false findings; actual native/Wasm English and license continuity also passed. Browser/device limits remain explicit. |
 
 ## Chosen components and data
 
@@ -292,11 +323,19 @@ unknown constituent while retaining the other constituents' case and authored
 U+2010/U+2011 separator style. This reuses one bounded component search; it does
 not infer unrestricted closed compounds or import morphology data.
 Suggestions use bounded local edits and German accent/sharp-s variants, with
-defaults of at most five suggestions and 6,000 candidate checks. Dictionary
-decoding and token batches yield cooperatively, including in compiled JavaScript.
+defaults of at most five suggestions and 6,000 candidate checks. A shared
+length/anchor index supports an additional distance-two shortlist, including
+first-letter errors and adjacent transpositions. Searched lexical candidates
+and compound components must be exact shipped dictionary forms or declared
+personal terms; an explicit compound can be reconstructed from those components. This improves
+suggestions without accepting additional inferred words. The shortlist is
+bounded and is not an exhaustive edit-distance search. Dictionary decoding and
+checking yield cooperatively, including in compiled JavaScript.
 A bounded search of at most 32 orthographic variants combines umlaut and
-sharp-s transformations; every suggestion must occur in the shipped dictionary.
-Declared personal words may be components of explicit hyphenated compounds,
+sharp-s transformations; dictionary candidates must occur in the shipped data.
+Mixed-case personal suggestions preserve the user's exact declared spelling.
+Only personal terms in the active locale are used; ignored words never become
+correction candidates. Declared personal words may be components of explicit hyphenated compounds,
 with exact case and locale. Session-ignored words remain exact-token exemptions.
 Vocabulary restoration merges canonical language aliases instead of discarding
 an earlier alias's entries.
@@ -307,8 +346,8 @@ competing spelling engines in this implementation.
 
 ### German writing rules and terminology
 
-`GermanWritingRulesProvider` contains eight independently authored
-checks. It is not a general German grammar parser.
+`GermanWritingRulesProvider` contains fifteen independently authored
+rule categories. It is not a general German grammar parser.
 
 | Rule ID | Category | Implemented boundary |
 | --- | --- | --- |
@@ -316,19 +355,39 @@ checks. It is not a general German grammar parser.
 | `de.spacing.before-punctuation` | Style | Spaces before `, ; : ! ?`. |
 | `de.spacing.after-punctuation` | Style | A comma or semicolon immediately followed by a letter; offers a zero-length space insertion. |
 | `de.repetition.conjunction` | Style | Immediate repeated `und`, `oder` or `aber`; valid repetitions such as “Ist das das Haus?” remain accepted. |
-| `de.grammar.pronoun-verb` | Grammar | Immediate `ich`/`du`/`wir` with 25 enumerated present-indicative verb families; narrow `ihr`/`sein` checks, nominal-word and context guards. |
+| `de.grammar.pronoun-verb` | Grammar | 57 enumerated present-indicative verb families with adjacent `ich`/`du`/`er`/`man`/`wir`, including bounded inversion; narrow `ihr`/`sein` checks. Subjunctive, imperative, finite-governor, coordination and nominal-context guards. |
 | `de.grammar.seit-seid` | Grammar | `ihr seit` before listed predicates, or `seid` between a listed finite verb and a reviewed temporal expression; never a generic `seid + time` rewrite. |
+| `de.grammar.preposition-pronoun` | Grammar | Reviewed wrong pronoun cases after fixed-case prepositions, such as `mit mich → mit mir` and `für ihm → für ihn`; competing infinitive/additive/nominal contexts are excluded. |
+| `de.grammar.preposition-case` | Grammar | Article case/gender for reviewed nouns after fixed-case prepositions, such as `mit den Mann → mit dem Mann`. |
+| `de.grammar.dative-plural` | Grammar | Missing dative plural `n` in reviewed forms, such as `mit den Kinder → mit den Kindern`; plural `n`/`s` forms and optional literary singular dative `e` are preserved. |
+| `de.grammar.adjective-ending` | Grammar | Weak/mixed adjective endings when all retained determiner/noun analyses agree, such as `ein gute Buch → ein gutes Buch`; adverb modifiers and unresolved analyses are preserved. |
+| `de.grammar.das-dass` | Grammar | Selected matrix subject/verb plus a complement clause with its own subject and known finite final verb, such as `Ich denke, das du kommst.` |
+| `de.grammar.subordinate-comma` | Grammar | Missing comma at the boundary of the same selected complement clauses, offered as a source-bound insertion. |
+| `de.grammar.comparison` | Grammar | Reviewed comparative/equality constructions with `als`/`wie`; temporal clauses, irrealis and regional `als möglich` contexts are excluded. |
 | `de.delimiter.balance` | Style | Paragraph-local bracket balancing. |
 | `de.quote.balance` | Style | Paragraph-local German/English typographic quotes and guillemets, with apostrophe handling. |
 
-The finite families are `sein`, `haben`, `werden`, `können`, `müssen`, `dürfen`,
-`sollen`, `wollen`, `mögen`, `gehen`, `kommen`, `machen`, `sagen`, `arbeiten`,
-`lernen`, `brauchen`, `finden`, `geben`, `nehmen`, `sehen`, `lesen`, `sprechen`,
-`fahren`, `laufen` and `essen`. Agreement accepts horizontal spaces, tabs and
-nonbreaking spaces, and preserves uppercase replacement style. Valid constructions such as `Ihr ist kalt`,
-`Ihr bin ich dankbar`, `Du und ich sind hier` and coordinated subjects with
-relative clauses remain outside this bounded rule. Unlisted verbs,
-subjunctives, separated subjects/verbs and broad sentence parsing are not added.
+The 57 finite families are `sein`, `haben`, `werden`, `können`, `müssen`, `dürfen`,
+`sollen`, `wollen`, `mögen`, `gehen`, `kommen`, `machen`, `sagen`, `arbeiten`, `lernen`,
+`brauchen`, `finden`, `geben`, `nehmen`, `sehen`, `lesen`, `sprechen`, `fahren`,
+`laufen`, `essen`, `bleiben`, `stehen`, `sitzen`, `liegen`, `heißen`, `wissen`,
+`denken`, `glauben`, `hoffen`, `kennen`, `verstehen`, `bringen`, `kaufen`, `schreiben`,
+`hören`, `helfen`, `fragen`, `antworten`, `warten`, `wohnen`, `leben`, `spielen`,
+`suchen`, `zeigen`, `stellen`, `legen`, `halten`, `tragen`, `treffen`, `schlafen`,
+`vergessen` and `trinken`.
+Agreement accepts horizontal spaces, tabs and nonbreaking spaces and preserves
+uppercase replacement style. Adjacent `er`/`man` forms are checked only when
+reviewed indicative and subjunctive readings differ. Bounded verb-before-pronoun
+checks cover questions such as `Hast ich Zeit?`, while preserving imperatives
+such as `Habe du Geduld` and reported-speech forms such as `Habe er gesagt`.
+Finite verbs on either side can own a following infinitive: `Kann ich gehen?`
+and `wenn ich helfen kann` remain unchanged. Swiss `weiss`, `heisst` and
+`Strassen` variants participate in the same grammar; de-CH replacements use `ss`.
+
+Valid constructions such as `Ihr ist kalt`, `Ihr bin ich dankbar`, `Du und ich
+sind hier`, coordinated subjects with relative clauses, and nominal pronouns
+remain outside this bounded rule. Unlisted verbs, general tense/mood analysis,
+separated subjects/verbs and broad sentence parsing are not added.
 
 Title-cased noun homographs and nominalized infinitives are conservatively
 excluded: `Wenn du Essen brauchst` and `Weil ich Macht habe` must not receive
@@ -344,6 +403,20 @@ internal controls and nonzero segment origins. URLs, email addresses and
 closed matching-backtick spans are protected from these rules. Quote/bracket findings are review items: a legitimate quotation spanning
 paragraphs can be unbalanced within an individual paragraph. No rule rewrites
 text without a user-selected correction.
+
+The phrase rules intentionally omit variable-case prepositions such as
+`wegen`, `trotz` and `dank`, two-way prepositions, unlisted noun forms, weak-noun
+inference and arbitrary compound analysis. Adverb/adjective phrases such as
+`die automatisch geänderte Datei`, `ohne/um ... zu` infinitives, and valid
+relative clauses have explicit negative controls. A bounded lookahead that
+cannot establish a complete context abstains. Overlapping article/adjective
+repairs are staged by rechecking after the user's first selected correction.
+
+The implementation, small lexicons and example corpus are independently
+authored. Conceptual references include the IDS descriptions of
+[prepositional case](https://grammis.ids-mannheim.de/kontrastive-grammatik/5747)
+and [adjective inflection](https://grammis.ids-mannheim.de/progr%40mm/5255).
+No external rule files or example corpus are included.
 
 `OfficeTerminologyProvider` accepts immutable host-authored literal term rules
 with language scope, case/whole-word options, stable IDs, explanations and
@@ -395,14 +468,17 @@ authorized by this roadmap.
 ## Using Word proofing
 
 `WordEditorController.proofing` owns a lazy `WordProofingSession`. Its built-in
-providers are German spelling and the eight German writing rules. Background
+providers are German spelling and the fifteen German writing-rule categories. Background
 checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced
 background checks. A manual check works with that switch off.
 
 The review shows findings, explanations, offered replacements and availability
-or coverage messages. It supports ignore-once, language-scoped ignored/personal
+or coverage messages. Each finding includes a bounded source excerpt centered
+on its location, with a highlighted source span or accessible insertion marker.
+Excerpt truncation preserves complete Unicode graphemes and does not change
+the document. Context remains visible at narrow widths and larger text scales. It supports ignore-once, language-scoped ignored/personal
 words and rule opt-outs. Squiggles use the renderer's source-to-geometry mapping
 across wrapped and bidi text, including visible markers for zero-length
 findings. A secondary click at a source position exposes the relevant correction
@@ -420,8 +496,12 @@ remain available in read-only review and do not create document undo entries.
 ### Language and document coverage
 
 Effective language inherits from **run → paragraph → document → `de-DE`**.
-The dialog offers `de-DE`, `de-AT`, `de-CH`, `en-US` and `en-GB`, and preserves
-other imported language tags. Changing the document default does not overwrite
+The dialog offers `de-DE`, `de-AT`, `de-CH`, `en-US`, `en-GB`, `en-CA`, `en-AU`
+and `en-IN`, and preserves other imported language tags. Proofing and
+hyphenation share canonicalization for modern EN/DE Latin-script tags, German
+`1996`, and Unicode locale preferences, while retaining the region's available
+coverage. Unknown variants, non-Latin scripts, historical `1901` German and
+unprovided regions remain unsupported. Changing the document default does not overwrite
 explicit paragraph/run languages. Interface translation is independent of
 proofing language. Imported comment paragraphs now participate in the same
 document style cascade, including inherited language/`noProof` and explicit
@@ -581,8 +661,11 @@ controller.proofing.configure(
 The example host already registers this optional provider lazily; selecting
 English requests it. Registration alone does not install the backend. Missing
 or incompatible libraries and missing worker assets report **unavailable**.
-Harper supports `en`, `en-US`, `en-GB`, `en-CA`, `en-AU` and `en-IN`; other tags
-are **unsupported**, never silently sent to an English checker.
+Harper supports the canonical dialect tags `en`, `en-US`, `en-GB`, `en-CA`,
+`en-AU` and `en-IN`, plus their reviewed Latin-script and Unicode-preference
+aliases, such as `en-Latn-GB-u-co-standard`. Other scripts, unknown variants
+and unprovided dialects are **unsupported**, never silently sent to another
+English dialect.
 
 Discretionary U+00AD is omitted only from English checker input so it cannot
 split words. Indexed scalar ranges map back to the unchanged original UTF-16
@@ -654,7 +737,7 @@ Check real behavior rather than mirroring implementation:
 ## Verification record
 
 The latest continuation results are in the
-[current verification report](validation/proofing-20261116/continuation-hardening/README.md)
+[current verification report](validation/proofing-grammar-expansion-20261117/README.md)
 and the current section above. The following tables preserve the earlier
 component runs against the exact sources identified in their receipts.
 

@@ -1,0 +1,453 @@
+{
+  "status": "passed",
+  "supported_dialects": 5,
+  "tags": 10,
+  "successful_requests": 20,
+  "unsupported_requests": 4,
+  "records": [
+    {
+      "phase": "sequential",
+      "language": "en-US",
+      "canonical_language": "en-US",
+      "status": "success",
+      "accepted_regional_words": [
+        "color",
+        "center"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 139,
+          "end": 141,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-GB",
+      "canonical_language": "en-GB",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-CA",
+      "canonical_language": "en-CA",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-AU",
+      "canonical_language": "en-AU",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-IN",
+      "canonical_language": "en-IN",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-Latn-US-u-co-standard",
+      "canonical_language": "en-US",
+      "status": "success",
+      "accepted_regional_words": [
+        "color",
+        "center"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 139,
+          "end": 141,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-Latn-GB-u-co-standard",
+      "canonical_language": "en-GB",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-Latn-CA-u-co-standard",
+      "canonical_language": "en-CA",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-Latn-AU-u-co-standard",
+      "canonical_language": "en-AU",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "sequential",
+      "language": "en-Latn-IN-u-co-standard",
+      "canonical_language": "en-IN",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-Latn-IN-u-co-standard",
+      "canonical_language": "en-IN",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-Latn-AU-u-co-standard",
+      "canonical_language": "en-AU",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-Latn-CA-u-co-standard",
+      "canonical_language": "en-CA",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-Latn-GB-u-co-standard",
+      "canonical_language": "en-GB",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-Latn-US-u-co-standard",
+      "canonical_language": "en-US",
+      "status": "success",
+      "accepted_regional_words": [
+        "color",
+        "center"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 139,
+          "end": 141,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-IN",
+      "canonical_language": "en-IN",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-AU",
+      "canonical_language": "en-AU",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-CA",
+      "canonical_language": "en-CA",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-GB",
+      "canonical_language": "en-GB",
+      "status": "success",
+      "accepted_regional_words": [
+        "colour",
+        "centre"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 140,
+          "end": 142,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "concurrent-reuse",
+      "language": "en-US",
+      "canonical_language": "en-US",
+      "status": "success",
+      "accepted_regional_words": [
+        "color",
+        "center"
+      ],
+      "findings": [
+        {
+          "rule": "harper.AnA",
+          "text": "an",
+          "start": 139,
+          "end": 141,
+          "replacements": [
+            "a"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "unsupported",
+      "language": "en-NZ",
+      "status": "unsupported"
+    },
+    {
+      "phase": "unsupported",
+      "language": "en-Cyrl",
+      "status": "unsupported"
+    },
+    {
+      "phase": "unsupported",
+      "language": "en-GB-oxendict",
+      "status": "unsupported"
+    },
+    {
+      "phase": "unsupported",
+      "language": "de-DE",
+      "status": "unsupported"
+    }
+  ],
+  "failures": [],
+  "scope": "Actual provider/runtime: regional valid spelling, grammar correction, canonical aliases, persistent provider reuse, concurrent dispatch, UTF-16 origins, URLs/email/backticks.",
+  "workers_created": 1,
+  "workers_terminated": 1
+}
