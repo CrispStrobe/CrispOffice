@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Compile the qualification runner once and bind its AOT output to inputs.
+"""Compile a known qualification runner and bind its AOT output to inputs.
 
-The selected source contract matches run_gector_dart.dart::_sources. This tool
-does not download dependencies or change source files. Both destinations must
-be fresh files outside the source tree and SDK; failed builds retain a receipt
-and any partial compiler output. The caller's environment, including TMPDIR,
-is inherited unchanged.
+The default provider contract matches run_gector_dart.dart::_sources. The
+opt-in incremental-quality target matches run_incremental_quality.dart::_sources
+apart from its separately declared runtime corpus. This tool does not download
+dependencies or change source files. Both destinations must be fresh files
+outside the source tree and SDK; failed builds retain a receipt and any partial
+compiler output. The caller's environment, including TMPDIR, is inherited
+unchanged.
 """
 from __future__ import annotations
 
@@ -39,6 +41,31 @@ SOURCE_DIRECTORIES = (
     "packages/quds_office_engine/lib/src/proofing/data/",
     "packages/quds_office_engine/lib/src/opc/zip/",
 )
+QUALITY_ENTRYPOINT = "tools/proofing/german_model/run_incremental_quality.dart"
+QUALITY_SOURCE_FILES = (
+    "pubspec.yaml",
+    "pubspec.lock",
+    "packages/quds_office_engine/pubspec.yaml",
+    "packages/quds_proofing_gector/pubspec.yaml",
+    ".dart_tool/package_config.json",
+    QUALITY_ENTRYPOINT,
+    "tools/proofing/german_model/incremental_quality.dart",
+    "tools/proofing/german_model/artifacts.json",
+)
+QUALITY_SOURCE_DIRECTORIES = (
+    "packages/quds_office_engine/lib/src/proofing/",
+    "packages/quds_office_engine/lib/src/opc/zip/",
+    "packages/quds_proofing_gector/lib/",
+)
+TARGETS = ("provider", "incremental-quality")
+
+
+def _target_inputs(target: str):
+    if target == "provider":
+        return ENTRYPOINT, SOURCE_FILES, SOURCE_DIRECTORIES
+    if target == "incremental-quality":
+        return QUALITY_ENTRYPOINT, QUALITY_SOURCE_FILES, QUALITY_SOURCE_DIRECTORIES
+    raise ValueError("Build target must be provider or incremental-quality.")
 
 
 def digest(path: Path) -> str:
@@ -62,9 +89,10 @@ def _dart_files(directory: Path, ancestors=frozenset()):
             yield entry
 
 
-def source_snapshot(root: Path) -> dict[str, str]:
-    paths = set(SOURCE_FILES)
-    for directory in SOURCE_DIRECTORIES:
+def source_snapshot(root: Path, *, target: str = "provider") -> dict[str, str]:
+    _, fixed_files, directories = _target_inputs(target)
+    paths = set(fixed_files)
+    for directory in directories:
         paths.update(p.relative_to(root).as_posix()
                      for p in _dart_files(root / directory))
     return {name: digest(root / name) for name in sorted(paths)}
@@ -130,7 +158,9 @@ def public_text(value: str, replacements: dict[Path, str]) -> str:
                   "<host-path>", value)
 
 
-def build(dart: Path, source_root: Path, output: Path, receipt: Path) -> int:
+def build(dart: Path, source_root: Path, output: Path, receipt: Path, *,
+          target: str = "provider") -> int:
+    entrypoint, _, _ = _target_inputs(target)
     root = source_root.resolve(strict=True)
     dart = dart.resolve(strict=True)
     sdk_root = dart.parent.parent
@@ -162,20 +192,22 @@ def build(dart: Path, source_root: Path, output: Path, receipt: Path) -> int:
         "dependency_digest": "SHA256 of compact sorted JSON mapping library-relative paths "
                              "to their SHA256 digests, encoded as UTF-8.",
         "command": ["<dart>", "compile", "aot-snapshot",
-                    "--packages=.dart_tool/package_config.json", ENTRYPOINT,
+                    "--packages=.dart_tool/package_config.json", entrypoint,
                     "-o", "<staged-output>"],
     }
+    if target != "provider":
+        report["target"] = target
     receipt.parent.mkdir(parents=True, exist_ok=True)
     with receipt.open("x", encoding="utf-8") as stream:
         try:
-            before = source_snapshot(root)
+            before = source_snapshot(root, target=target)
             dependencies_before = dependency_snapshot(root)
             inputs = sdk_files(dart)
             sdk_before = {name: file_pin(path) for name, path in inputs.items()}
             report.update(source_files=before, sdk_inputs=sdk_before,
                           dependency_inputs=dependencies_before,
                           compiler={"executable": sdk_before["dart"]},
-                          source_entrypoint=file_pin(root / ENTRYPOINT))
+                          source_entrypoint=file_pin(root / entrypoint))
             report["stage"] = "compile"
             json.dump(report, stream, indent=2)
             stream.flush()
@@ -186,7 +218,7 @@ def build(dart: Path, source_root: Path, output: Path, receipt: Path) -> int:
             replacements[staged_output] = "<staged-output>"
             result = subprocess.run(
                 [str(dart), "compile", "aot-snapshot",
-                 "--packages=.dart_tool/package_config.json", ENTRYPOINT,
+                 "--packages=.dart_tool/package_config.json", entrypoint,
                  "-o", str(staged_output)],
                 cwd=root, capture_output=True, shell=False, check=False,
             )
@@ -196,7 +228,7 @@ def build(dart: Path, source_root: Path, output: Path, receipt: Path) -> int:
                 report["compile"][name + "_sha256"] = hashlib.sha256(data).hexdigest()
                 report["compile"][name] = public_text(data.decode("utf-8", "replace"), replacements)
             report["stage"] = "verify-output-and-inputs"
-            after = source_snapshot(root)
+            after = source_snapshot(root, target=target)
             dependencies_after = dependency_snapshot(root)
             sdk_after = {name: file_pin(path) for name, path in sdk_files(dart).items()}
             report.update(source_files_after=after, source_stable=before == after,
@@ -236,9 +268,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("dart", "source-root", "output", "receipt"):
         parser.add_argument("--" + name, type=Path, required=True)
+    parser.add_argument("--target", choices=TARGETS, default="provider")
     arguments = parser.parse_args()
     try:
-        return build(arguments.dart, arguments.source_root, arguments.output, arguments.receipt)
+        return build(arguments.dart, arguments.source_root, arguments.output, arguments.receipt,
+                     target=arguments.target)
     except (OSError, ValueError) as error:
         print("Build admission failed: " + public_text(str(error), {}), file=sys.stderr)
         return 1

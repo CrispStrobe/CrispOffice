@@ -325,9 +325,12 @@ final text or suggestion spans on this panel. These counts do not estimate
 general German accuracy. Broader held-out evaluation and incremental value
 over existing deterministic rules remain required.
 
-### Completed native and application continuation
+### Earlier morphology-branch native and application continuation
 
-The earlier Quds feature checkpoint `216d9a4ba11d87d27f861d84d26bf74ca1d4f298`
+This historical checkpoint precedes the v2/v3 continuation described above.
+Its separate measurements and evidence remain retained.
+
+The Quds feature checkpoint `216d9a4ba11d87d27f861d84d26bf74ca1d4f298`
 adds the optional application provider after the native conversion and
 qualification commits. It is integrated with the morphology and ODT fixes in
 PR #105. The [provider README](../../packages/quds_proofing_gector/README.md)

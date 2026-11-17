@@ -100,3 +100,19 @@ changing source partition semantics or relaxing the model limit.
 `fa3b67675d7f0f567fc88551fe6e4b87deea5065` before this review fix. No inference
 result is attributed to that earlier binary. Final native runs will rebuild the
 reviewed integrated source using fresh output and receipt paths.
+
+## Second incoming snapshot
+
+A fresh inventory at 2026-11-17 15:32:37 UTC found 130 Quds branch tips, including
+new morphology and Office-fidelity heads and merged PR #108 for ODP text-shape
+hyperlinks. `latest-refs-observation.json` and `latest-pr-observation.json`
+record this fixed snapshot. The following integration precedes final native
+measurements; those measurements will not claim to cover later moving refs.
+
+Morphology `7808a8711c91d721e8bb2b7034349008be80895b` adds the shared production
+policy for deterministic/manual report merging, a prospectively frozen 76-case
+synthetic German challenge and a separate incremental-quality runner. The merge
+retains this branch's segmentation options and native-runner controls, combines
+the historical roadmap descriptions, and preserves the incoming tooling and
+corpus unchanged. New report-merge, quality-tool and manual/F7 tests will run
+against the final combined source.

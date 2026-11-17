@@ -500,7 +500,10 @@ final class WordProofingSession extends ChangeNotifier {
           final ordinary = await _service.check(request);
           if (!current()) return _summary;
           report = useManual
-              ? _withManualResults(ordinary, await manual!.check(request))
+              ? mergeOfficeProofingReports(
+                  primary: ordinary,
+                  secondary: await manual!.check(request),
+                )
               : ordinary;
         }
         if (!current()) return _summary;
@@ -580,41 +583,6 @@ final class WordProofingSession extends ChangeNotifier {
       }
     }
     return false;
-  }
-
-  /// Existing deterministic findings take precedence over overlapping model
-  /// proposals. Preserve every provider's operational result even when a
-  /// duplicate or competing suggestion is suppressed.
-  static OfficeProofingReport _withManualResults(
-    OfficeProofingReport ordinary,
-    OfficeProofingReport manual,
-  ) {
-    final accepted = <OfficeProofingFinding>[...ordinary.findings];
-    final results = <OfficeProofingResult>[...ordinary.results];
-    for (final result in manual.results) {
-      final findings = <OfficeProofingFinding>[];
-      for (final finding in result.findings) {
-        if (accepted.any((previous) => _conflicts(previous, finding))) continue;
-        findings.add(finding);
-        accepted.add(finding);
-      }
-      results.add(
-        OfficeProofingResult(
-          request: ordinary.request,
-          providerId: result.providerId,
-          status: result.status,
-          findings: findings,
-          message: result.message,
-        ),
-      );
-    }
-    return OfficeProofingReport(request: ordinary.request, results: results);
-  }
-
-  static bool _conflicts(OfficeProofingFinding a, OfficeProofingFinding b) {
-    if (a.start == a.end) return a.start >= b.start && a.start <= b.end;
-    if (b.start == b.end) return b.start >= a.start && b.start <= a.end;
-    return a.start < b.end && b.start < a.end;
   }
 
   _DocumentSnapshot _capture(WmlDocument document) {

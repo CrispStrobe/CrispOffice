@@ -1,0 +1,105 @@
+{
+  "observed_at": "2026-11-17T15:32:37.589Z",
+  "prs": [
+    {
+      "number": 105,
+      "state": "open",
+      "title": "Broaden offline German grammar with morphology and optional GECToR",
+      "updated_at": "2026-11-17T15:31:48Z",
+      "head_ref": "codex/german-morphology-20261117",
+      "head_sha": "7808a8711c91d721e8bb2b7034349008be80895b",
+      "merge_commit_sha": null,
+      "merged_at": null
+    },
+    {
+      "number": 101,
+      "state": "open",
+      "title": "Preserve ODF tables, notes, comments and centered slide rotation",
+      "updated_at": "2026-11-17T15:31:29Z",
+      "head_ref": "codex/office-fidelity-20261117",
+      "head_sha": "28fb08e61682913184e2a3c089bd5290a665c78e",
+      "merge_commit_sha": null,
+      "merged_at": null
+    },
+    {
+      "number": 108,
+      "state": "closed",
+      "title": "Write ODP text-shape hyperlinks",
+      "updated_at": "2026-11-17T15:21:10Z",
+      "head_ref": "feat/odp-shape-links",
+      "head_sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "merge_commit_sha": "4af75017a9b7df726c1f80741809f5bccdb70f4c",
+      "merged_at": "2026-11-17T15:21:10Z"
+    },
+    {
+      "number": 107,
+      "state": "closed",
+      "title": "Write ODT bookmarks and linked ranges",
+      "updated_at": "2026-11-17T14:52:11Z",
+      "head_ref": "feat/odt-links-bookmarks",
+      "head_sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "merge_commit_sha": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "merged_at": "2026-11-17T14:52:11Z"
+    },
+    {
+      "number": 106,
+      "state": "closed",
+      "title": "Write nested ODT list levels",
+      "updated_at": "2026-11-17T14:40:23Z",
+      "head_ref": "feat/odt-nested-lists",
+      "head_sha": "7686ec52876288e6799023fd686af79228236826",
+      "merge_commit_sha": "2277634a33b77405f045321ee3ea9ae432066f9a",
+      "merged_at": "2026-11-17T14:40:22Z"
+    },
+    {
+      "number": 104,
+      "state": "closed",
+      "title": "Write ODT section layouts and page breaks",
+      "updated_at": "2026-11-17T14:18:03Z",
+      "head_ref": "feat/odt-sections2",
+      "head_sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "merge_commit_sha": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+      "merged_at": "2026-11-17T14:18:03Z"
+    },
+    {
+      "number": 103,
+      "state": "closed",
+      "title": "Write ODT comments",
+      "updated_at": "2026-11-17T13:47:00Z",
+      "head_ref": "feat/odt-comments",
+      "head_sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "merge_commit_sha": "3458c8977cef969a86a07b39734c761ba62e4b40",
+      "merged_at": "2026-11-17T13:47:00Z"
+    },
+    {
+      "number": 102,
+      "state": "closed",
+      "title": "Land combined Zotero and ODF source with fresh local qualification [skip ci]",
+      "updated_at": "2026-11-17T09:42:21Z",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "merge_commit_sha": "518fb28b1cff7aeefad446cbf41c2832673c4d33",
+      "merged_at": "2026-11-17T09:35:15Z"
+    },
+    {
+      "number": 85,
+      "state": "closed",
+      "title": "Complete Zotero recovery, incoming sync and local qualification [skip ci]",
+      "updated_at": "2026-11-17T09:36:10Z",
+      "head_ref": "codex/zotero-recovery-20261116",
+      "head_sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "merge_commit_sha": "0e6951703827257ed6f12844e3e12b3f209f5174",
+      "merged_at": "2026-11-17T08:13:44Z"
+    },
+    {
+      "number": 100,
+      "state": "closed",
+      "title": "Write ODT footnotes and endnotes",
+      "updated_at": "2026-11-17T09:02:36Z",
+      "head_ref": "feat/odt-footnotes",
+      "head_sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "merge_commit_sha": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+      "merged_at": "2026-11-17T09:02:35Z"
+    }
+  ]
+}
