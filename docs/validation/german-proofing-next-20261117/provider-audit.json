@@ -1,0 +1,454 @@
+{
+  "schema_version": 1,
+  "kind": "independent-segmented-provider-evidence-audit",
+  "passed": true,
+  "source_sha": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+  "scope": "Raw retained findings, original UTF-16 partitions, timing samples, build/run input closure and CLI rejection controls.",
+  "limits": [
+    "Only warmup and first measured output are retained; stability of all repeats is reported by the producer.",
+    "Repeated grammatical sentences establish bounded operational scaling, not representative quality or target-device performance.",
+    "Independent WordPiece counting covers only the explicit small probe vocabulary."
+  ],
+  "raw_inputs": {
+    "build-final.json": {
+      "file": "build-final.json",
+      "bytes": 65663,
+      "sha256": "a1769417cb74a1a3943898301f2476f30c8e0efc91f6488f642ff565952774b6"
+    },
+    "run.json": {
+      "file": "run.json",
+      "bytes": 73987,
+      "sha256": "c3c080963e64a9efaaad7c58fea206eb9de133844142d6008a3c803985154e1f"
+    },
+    "provider.json": {
+      "file": "provider.json",
+      "bytes": 341760,
+      "sha256": "2dffe88b845e82317e7c6d0532ef4a6d6b834f8595091aea31649062bedd0940"
+    },
+    "provider.log": {
+      "file": "provider.log",
+      "bytes": 1065,
+      "sha256": "e5c203622d8a0bf3f878f3ed2f6ab0513d6d3f6b75418944e4a0f9be53d23c57"
+    }
+  },
+  "independent_probe_vocabulary": {
+    "tokenizer_sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+    "tokens": {
+      "Das": 347,
+      "Haus": 860,
+      "ist": 215,
+      "schön": 2602,
+      ".": 566,
+      "Du": 840,
+      "geht": 1125,
+      "heute": 1181,
+      "nach": 333,
+      "Hause": 3873,
+      "`": null,
+      "😀": null,
+      "[UNK]": 101,
+      "[CLS]": 102,
+      "[SEP]": 103
+    }
+  },
+  "historical_comparison": {
+    "schema_version": 1,
+    "kind": "quds-gector-guarded-provider-comparison",
+    "scope": "Nonregression on the frozen 30-case synthetic panel: 18 de-DE error cases, 10 de-DE clean controls, and 2 explicitly unsupported de-CH controls. The eight integration controls and three structural length probes are checked separately. This is not broad precision/recall, target-device qualification, or a release decision. Repeated outcome stability is reported by the producer; only its first result and warmup are retained.",
+    "frozen_baseline_sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc",
+    "baseline_sha256": "9fda0f778fe36c72af8141d7dd5f0c012b43882bb40046adc89b7bf76b9fd8bc",
+    "candidate_sha256": "2dffe88b845e82317e7c6d0532ef4a6d6b834f8595091aea31649062bedd0940",
+    "cases_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+    "evidence_valid": true,
+    "operational_passed": true,
+    "guarded_nonregression_passed": true,
+    "passed": true,
+    "evidence_errors": [],
+    "baseline": {
+      "supported_error_cases": 18,
+      "exact_fixes": 5,
+      "supported_clean_controls": 10,
+      "unchanged_clean_controls": 10,
+      "operational_passed": true,
+      "product_mode": true,
+      "setup_ms": 3384.501,
+      "peak_process_rss_bytes": 309854208,
+      "short_timing": {
+        "median_ms": 21.91,
+        "p95_ms": 62.017,
+        "maximum_ms": 165.94
+      },
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      }
+    },
+    "candidate": {
+      "supported_error_cases": 18,
+      "exact_fixes": 6,
+      "supported_clean_controls": 10,
+      "unchanged_clean_controls": 10,
+      "operational_passed": true,
+      "product_mode": true,
+      "setup_ms": 3222.758,
+      "peak_process_rss_bytes": 377159680,
+      "short_timing": {
+        "median_ms": 22.886,
+        "p95_ms": 62.875,
+        "maximum_ms": 167.485
+      },
+      "engineering_budgets": {
+        "p95_at_most_500_ms": true,
+        "peak_rss_at_most_768_mib": true,
+        "gguf_at_most_160_mib": true,
+        "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+      }
+    },
+    "gates": {
+      "status_policy_preserved": true,
+      "previous_exact_fixes_preserved": true,
+      "supported_clean_text_unchanged": true,
+      "no_new_unexpected_error_edits": true,
+      "integration_controls_preserved": true,
+      "structural_controls_preserved": true
+    },
+    "added_exact_fixes": [
+      "verb-wir"
+    ],
+    "lost_exact_fixes": [],
+    "supported_clean_changes": [],
+    "new_unexpected_error_edits": [],
+    "status_changes": [],
+    "finding_changes": [
+      {
+        "section": "cases",
+        "id": "verb-wir",
+        "baseline": [],
+        "candidate": [
+          {
+            "start": 11,
+            "end": 14,
+            "original": "ist",
+            "replacement": "sind",
+            "rule_id": "gector.de.grammar"
+          }
+        ]
+      }
+    ],
+    "outcome_changes": [
+      {
+        "section": "cases",
+        "id": "verb-wir",
+        "baseline": {
+          "status": "success",
+          "corrected": "Wir ist zufrieden.",
+          "findings": []
+        },
+        "candidate": {
+          "status": "success",
+          "corrected": "Wir sind zufrieden.",
+          "findings": [
+            {
+              "start": 11,
+              "end": 14,
+              "original": "ist",
+              "replacement": "sind",
+              "rule_id": "gector.de.grammar"
+            }
+          ]
+        }
+      }
+    ],
+    "source_changes": [
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/data/german_common_00.dart",
+        "baseline": "43976662c5b2b1d42ea5a1a6a8e5538f1d52496de3dc768a883d638cdf5fdd5f",
+        "candidate": "68b4d849635c1f6587f7e58e4c3bcb2fc03ad9c72c10265fa0bf122fec846bfa"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "baseline": "4d258454b159e8be85a3375710003a300333d73eb0250579ba6873307a894082",
+        "candidate": "57b79a6833cb3b0be5222c1f6c5811a9d0dcf2626874ba5fec2804884f599385"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "baseline": "64c38adeebc59e1b0a0145433db08ce5a12206bdfb849c573f925f016178890d",
+        "candidate": "406ebbb33e00d547bf9dbeaaa603de56f8517fbd81109284e00358052fcf40ef"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/quds_proofing_gector.dart",
+        "baseline": "1bea719acbd541ea07bb546030e7cb2f8c1c30a00e41a9363ad60907127fe77f",
+        "candidate": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/decoder.dart",
+        "baseline": "9a2053cb8ba37ff6a003d2c8100bc1b46d6cf09410ce25d7c3eef8f535e10c91",
+        "candidate": "674bd409d579c6a58c60d6b5c6bef2b04824a554b685389d9fe5cdc7508e2096"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/guards.dart",
+        "baseline": "79244938eb6ad4195167be4dff2df66257c9b31fe2ca8819ab2fe52837846191",
+        "candidate": "6c9684c05e8f925df5d8d66cf1c4f5fa7bd772abd7658648ec950ec0803408e1"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/segmentation.dart",
+        "baseline": null,
+        "candidate": "2dd791265fa98c35fe55cb9256ac8de2276729d37711aec690a186e3c594677f"
+      },
+      {
+        "path": "packages/quds_proofing_gector/lib/src/worker_native.dart",
+        "baseline": "4f1deea357d637929e5d972199cfdff6a0c29b980dad920fc328cf285143c1ef",
+        "candidate": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231"
+      },
+      {
+        "path": "packages/quds_proofing_gector/pubspec.yaml",
+        "baseline": "1d6733795533cab7421471cc437cf1d50f4c0921eeac3091fb528e7564958ba9",
+        "candidate": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1"
+      },
+      {
+        "path": "pubspec.lock",
+        "baseline": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b",
+        "candidate": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+      },
+      {
+        "path": "tools/proofing/german_model/run_gector_dart.dart",
+        "baseline": "b9dd9f6f98d3fa57a9614b730bb106f084677fe580ad38a2817038e691dc6598",
+        "candidate": "cdb5f8332bd57183b922d989ad269797f07d2057217f4cf0dc62b113d2f46672"
+      }
+    ],
+    "performance_note": "Engineering budget flags are reported separately and do not prove target-device performance."
+  },
+  "parser_controls": {
+    "receipt": {
+      "file": "parser-controls.json",
+      "bytes": 8012,
+      "sha256": "2809efe18ea5e3699f708476aca77129be01349d0cc847957ceec8292f0edfad"
+    },
+    "passed": true,
+    "count": 5
+  },
+  "metrics": {
+    "supported_errors": 18,
+    "exact_fixes": 6,
+    "supported_clean": 10,
+    "changed_clean": 0,
+    "status_counts": {
+      "success": 28,
+      "unsupported": 2
+    },
+    "original_controls_passed": 8,
+    "segmented_controls_passed": 6,
+    "segmented_probes_passed": 2,
+    "setup_ms": 3222.758,
+    "peak_process_rss_bytes": 377159680,
+    "short_timing": {
+      "samples_ms": [
+        39.021,
+        37.907,
+        36.071,
+        17.774,
+        21.508,
+        19.394,
+        33.253,
+        39.279,
+        34.908,
+        28.036,
+        27.509,
+        26.706,
+        28.631,
+        33.241,
+        30.043,
+        16.213,
+        21.769,
+        21.88,
+        25.402,
+        22.889,
+        18.032,
+        17.293,
+        18.945,
+        16.965,
+        15.8,
+        14.026,
+        21.28,
+        22.886,
+        19.254,
+        19.139,
+        46.27,
+        41.202,
+        45.603,
+        62.515,
+        53.28,
+        65.344,
+        26.291,
+        29.673,
+        24.906,
+        19.178,
+        18.036,
+        19.572,
+        62.875,
+        59.946,
+        33.499,
+        25.523,
+        24.986,
+        16.364,
+        18.556,
+        19.736,
+        20.13,
+        21.159,
+        21.757,
+        20.932,
+        22.269,
+        19.092,
+        22.301,
+        21.579,
+        21.442,
+        16.935,
+        24.415,
+        28.594,
+        24.476,
+        17.902,
+        17.262,
+        16.935,
+        15.892,
+        16.472,
+        15.957,
+        33.607,
+        26.305,
+        27.122,
+        20.714,
+        21.287,
+        21.287,
+        19.449,
+        19.309,
+        20.634,
+        22.935,
+        25.247,
+        23.309,
+        25.139,
+        29.997,
+        39.712,
+        164.528,
+        167.485,
+        132.294
+      ],
+      "median_ms": 22.886,
+      "p95_ms": 62.875,
+      "maximum_ms": 167.485
+    },
+    "engineering_budgets": {
+      "p95_at_most_500_ms": true,
+      "peak_rss_at_most_768_mib": true,
+      "gguf_at_most_160_mib": true,
+      "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+    },
+    "probe_timings": [
+      {
+        "id": "repeated-sentences-up-to-64",
+        "tokens_first_pass": 61,
+        "initial_model_tokens_total": 61,
+        "initial_segment_count": 1,
+        "timing": {
+          "samples_ms": [
+            164.528,
+            167.485,
+            132.294
+          ],
+          "median_ms": 164.528,
+          "p95_ms": 167.485,
+          "maximum_ms": 167.485
+        }
+      },
+      {
+        "id": "repeated-sentences-up-to-128",
+        "tokens_first_pass": 126,
+        "initial_model_tokens_total": 128,
+        "initial_segment_count": 3,
+        "timing": {
+          "samples_ms": [
+            395.586,
+            310.208,
+            341.061
+          ],
+          "median_ms": 341.061,
+          "p95_ms": 395.586,
+          "maximum_ms": 395.586
+        }
+      },
+      {
+        "id": "repeated-sentences-up-to-256",
+        "tokens_first_pass": 256,
+        "initial_model_tokens_total": 260,
+        "initial_segment_count": 5,
+        "timing": {
+          "samples_ms": [
+            840.74,
+            655.838,
+            627.886
+          ],
+          "median_ms": 655.838,
+          "p95_ms": 840.74,
+          "maximum_ms": 840.74
+        }
+      },
+      {
+        "id": "segmented-repeated-sentences-up-to-640",
+        "tokens_first_pass": 636,
+        "initial_model_tokens_total": 646,
+        "initial_segment_count": 11,
+        "timing": {
+          "samples_ms": [
+            1705.884,
+            1678.997,
+            1491.65
+          ],
+          "median_ms": 1678.997,
+          "p95_ms": 1705.884,
+          "maximum_ms": 1705.884
+        }
+      },
+      {
+        "id": "segmented-repeated-sentences-up-to-1280",
+        "tokens_first_pass": 1276,
+        "initial_model_tokens_total": 1297,
+        "initial_segment_count": 22,
+        "timing": {
+          "samples_ms": [
+            3304.152,
+            3732.003,
+            3616.351
+          ],
+          "median_ms": 3616.351,
+          "p95_ms": 3732.003,
+          "maximum_ms": 3732.003
+        }
+      }
+    ]
+  },
+  "source_binding": {
+    "tracked_sources": 62,
+    "workspace_sources": [
+      {
+        "path": "pubspec.lock",
+        "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+      }
+    ],
+    "resolved_packages": 109,
+    "resolved_dart_files": 4756,
+    "sdk_pins": 10
+  },
+  "counts": {
+    "assertions": 1874,
+    "reconstructed_results": 84,
+    "reconstructed_findings": 15,
+    "checked_source_segments": 94,
+    "measured_rows_with_three_samples": 35,
+    "samples_in_those_rows": 105
+  },
+  "audit_script": {
+    "file": "audit_provider.py",
+    "bytes": 21086,
+    "sha256": "43ebeedb2d37b099dd27202395fdb94a1aad04cfd812be31ff979a07d47a8c7a"
+  }
+}

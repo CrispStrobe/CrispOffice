@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "accepted_product_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+  "branch": "codex/german-morphology-20261117",
+  "followup_pr": 114,
+  "prior_pr": {
+    "number": 105,
+    "merged_externally": true,
+    "merged_head": "6f1abf273bd10d7ebe5641661dd307c492f897c2"
+  },
+  "ci": "No GitHub Actions workflow dispatched, awaited, or used as a gate. No CI-status endpoints queried.",
+  "tests": [
+    {
+      "name": "Engine proofing, VM",
+      "passed": 602,
+      "skipped": 0,
+      "failed": 0,
+      "tested_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "evidence": {
+        "archive_member": "validation/final/proofing/engine_vm/receipt.json",
+        "bytes": 19273,
+        "sha256": "a151f77d813cfbaeb904b02635a22334fb24b59066b1cf28e15d6b828b68cd92"
+      }
+    },
+    {
+      "name": "Engine proofing, compiled JavaScript/Node",
+      "passed": 602,
+      "skipped": 0,
+      "failed": 0,
+      "tested_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "evidence": {
+        "archive_member": "validation/final/proofing/engine_node/receipt.json",
+        "bytes": 19329,
+        "sha256": "7dbb5593645aeea2126c9af8954f9f53951e331d31b92202a32ae0645293fe14"
+      }
+    },
+    {
+      "name": "Flutter proofing/correction/hyphenation",
+      "passed": 176,
+      "skipped": 0,
+      "failed": 0,
+      "tested_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb",
+      "evidence": {
+        "archive_member": "validation/final/proofing/editor/receipt.json",
+        "bytes": 20558,
+        "sha256": "490287b1739e523361296b01da0b843ef399b418c4222485dd6a865de4d80837"
+      }
+    },
+    {
+      "name": "GECToR, including real native fixture",
+      "passed": 194,
+      "skipped": 0,
+      "failed": 0,
+      "tested_source": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+      "evidence": {
+        "archive_member": "validation/integrated-final/proofing/gector/receipt.json",
+        "bytes": 19048,
+        "sha256": "67ae76a03cd26bb47e2fc73e3535fb845be2ffbbe173c121f010a39ce1923eed"
+      }
+    },
+    {
+      "name": "Office preservation, VM",
+      "passed": 380,
+      "skipped": 0,
+      "failed": 0,
+      "tested_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "evidence": {
+        "archive_member": "validation/accepted-final/integration/receipt.json",
+        "bytes": 5630,
+        "sha256": "f7887f120fb3933fbb2034b208512a89047d1a4b5cb7aa353671e3f465b0df4e"
+      }
+    },
+    {
+      "name": "Portable Office and separately selected shading regression, Node",
+      "passed": 307,
+      "skipped": 0,
+      "failed": 0,
+      "tested_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "evidence": {
+        "archive_member": "validation/accepted-final/integration-node/receipt.json",
+        "bytes": 5030,
+        "sha256": "38caba8838593e2b3b6d700122e7a9a0da172e0b847ab73280c4f81a664b2bc7"
+      }
+    },
+    {
+      "name": "Python qualification controls",
+      "passed": 107,
+      "skipped": 1,
+      "failed": 0,
+      "tested_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+      "evidence": {
+        "archive_member": "validation/tooling/python-integrated.json",
+        "bytes": 7162,
+        "sha256": "3ed9eb4019229eeab5512f7b8716b2870f84e5c62667babd55a8d57df0335bea"
+      }
+    }
+  ],
+  "counting_policy": "Cohorts overlap; VM and Node repeat the same cases. Do not sum these counts as unique tests. Evidence assertions are not tests.",
+  "analysis": [
+    {
+      "scope": "Full engine and affected Office",
+      "status": "no issues",
+      "tested_source": "6971819edfb53ed40e97fc2b4cd436e89a39a648"
+    },
+    {
+      "scope": "GECToR, native and incremental-quality runners",
+      "status": "no issues",
+      "tested_source": "121f3be504a89e56bde40bda8f93f4e81d8c2503"
+    },
+    {
+      "scope": "Editor proofing",
+      "status": "no issues",
+      "tested_source": "c9bf20a6f35e6c4607b9377716968f84c3bc67bb"
+    }
+  ],
+  "source_binding": "source-binding.json",
+  "native_quality": {
+    "source": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+    "summary": "integrated-quality/summary.json",
+    "comparison": "quality-comparison.json"
+  },
+  "segmented_native": {
+    "source": "6971819edfb53ed40e97fc2b4cd436e89a39a648",
+    "report": "provider-segmented.json.gz",
+    "setup_ms": 3222.758,
+    "short_timing": {
+      "samples_ms": [
+        39.021,
+        37.907,
+        36.071,
+        17.774,
+        21.508,
+        19.394,
+        33.253,
+        39.279,
+        34.908,
+        28.036,
+        27.509,
+        26.706,
+        28.631,
+        33.241,
+        30.043,
+        16.213,
+        21.769,
+        21.88,
+        25.402,
+        22.889,
+        18.032,
+        17.293,
+        18.945,
+        16.965,
+        15.8,
+        14.026,
+        21.28,
+        22.886,
+        19.254,
+        19.139,
+        46.27,
+        41.202,
+        45.603,
+        62.515,
+        53.28,
+        65.344,
+        26.291,
+        29.673,
+        24.906,
+        19.178,
+        18.036,
+        19.572,
+        62.875,
+        59.946,
+        33.499,
+        25.523,
+        24.986,
+        16.364,
+        18.556,
+        19.736,
+        20.13,
+        21.159,
+        21.757,
+        20.932,
+        22.269,
+        19.092,
+        22.301,
+        21.579,
+        21.442,
+        16.935,
+        24.415,
+        28.594,
+        24.476,
+        17.902,
+        17.262,
+        16.935,
+        15.892,
+        16.472,
+        15.957,
+        33.607,
+        26.305,
+        27.122,
+        20.714,
+        21.287,
+        21.287,
+        19.449,
+        19.309,
+        20.634,
+        22.935,
+        25.247,
+        23.309,
+        25.139,
+        29.997,
+        39.712,
+        164.528,
+        167.485,
+        132.294
+      ],
+      "median_ms": 22.886,
+      "p95_ms": 62.875,
+      "maximum_ms": 167.485
+    },
+    "peak_process_rss_bytes": 377159680,
+    "engineering_budgets": {
+      "p95_at_most_500_ms": true,
+      "peak_rss_at_most_768_mib": true,
+      "gguf_at_most_160_mib": true,
+      "note": "GGUF size excludes sidecars; target hardware remains unqualified."
+    },
+    "operational_controls_passed": 8,
+    "segmentation_controls_passed": 6,
+    "interpretation": "One Linux host, two native threads, one warmup and three measured repetitions per input. Repeated-sentence structural probes are not a representative long-document quality evaluation or evidence of a speedup over previous runs."
+  },
+  "morphology": {
+    "comparison": "morphology-comparison.json",
+    "records_per_runtime": 1700,
+    "changed_records": 0,
+    "core_exact": "70/81",
+    "core_clean_flags": "0/175",
+    "review_exact": "24/24",
+    "review_clean_flags": "0/60"
+  },
+  "preserved_failures_and_qualifications": [
+    "Exact quotation regression and six lexical tests fail before the spelling repairs.",
+    "Initial Flutter wrapper stamp race; accepted analysis uses the direct SDK.",
+    "Earlier incomplete GECToR input capture and Flutter hidden-lifecycle counting correction are retained.",
+    "At121f the Office VM and Node selections each fail the same conflicting empty-document test. Both corrected selections pass at6971819.",
+    "First provider AOT build fails because the default temporary directory is absent; fresh output paths and an existing scratch TMPDIR produce sealed successful builds.",
+    "An initial continuity audit treats declared-corpus as a literal path; the corrected alias-aware audit and correction receipt are both retained.",
+    "One tiny ONNX converter control remains explicitly skipped because optional development dependencies are absent."
+  ],
+  "remaining_limits": [
+    "Synthetic panels establish bounded regressions, not representative German precision/recall or exclusion from model training.",
+    "Post-repair measurements use a panel that informed repairs and are not fresh prospective evidence.",
+    "First-replacement projection is a diagnostic convention; the editor presents reviewable suggestions.",
+    "Contextual accusative, participle and word-order errors remain.",
+    "de-AT/de-CH model support, target-device performance, exact native distribution acceptance and default/background inference remain unqualified or unimplemented.",
+    "Segmented structural probes at256 logical tokens and above exceed500ms; the500ms budget applies only to the pooled short cohort."
+  ]
+}
