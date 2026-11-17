@@ -4,6 +4,8 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep ODT paragraph shading and border colors independent when paragraph
+  styles are cached, while reusing styles with equivalent serialized colors.
 - Keep physical paragraph indents when exporting RTL paragraphs and headings
   to ODT's direction-dependent margin properties.
 - Extract paragraph-anchored ODF text boxes in generic extraction and search,

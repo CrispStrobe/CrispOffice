@@ -70,3 +70,52 @@ Fresh runtime qualification of this combined source is still pending. The
 formatting operations and source review recorded here are not substitutes
 for those runtime checks; previous evidence remains attributed to its
 original immutable source.
+
+## Bounded destination-main amendment
+
+The merged source was published as
+`b32dee6f1fb6993c928a466b553226209cf27fb8`. The next checkpoint,
+`104b239c971ef3b2d62495a27ad04b519398a1fc`, made four test files conform to the
+resolved Dart 3.12 formatter after the first broad run stopped at formatting.
+Its production source is unchanged.
+
+Opening draft PR #113 revealed destination main
+`7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad`. This exact observed commit is the
+only addition to the bounded incoming set. The amendment merges it as an
+explicit parent and preserves its historical evidence and ONNX diagnostic tools.
+No additional remote-ref refresh or CI-status query was performed.
+
+`destination-main-amendment.json` records the source delta and conflict
+resolution. The sole library change relative to the prior published checkpoint
+is the ODT writer: incoming PAGE fields, paragraph fills and borders, plus a
+confirmed fix to paragraph-style cache identity. The cache includes the same
+lower-case fill/border strings that XML serialization uses, treating null and
+empty as the same absence. The incoming writer emitted those properties while
+omitting them from the cache key, so otherwise-equal paragraphs could acquire
+each other's decoration. The exact correction from incoming main is retained
+in `paragraph-decoration-cache.patch`. The ODP test remains byte-exact to the
+prior published version, retaining both its hyperlink and SMIL checks.
+
+The new two-case regression checks red/green color independence, normalized
+color reuse, null/empty absence, the other decoration's absence, paragraph text
+and unchanged model properties. Identical final test bytes pass both cases with
+the corrected writer and fail both by matcher assertion with the exact incoming
+writer. The two earlier setup failures are preserved separately and excluded.
+`cache-control-evidence.tar.xz` and its index retain all logs, runner code, source
+bindings, package graphs, runtime hashes and the dependency map. All 43 archive
+members were read back and hash-verified. The sole between-variant source change
+is the writer; all 399 input files per variant and 5,099 dependency files stayed
+unchanged during execution.
+
+`canonical-controls-evidence.tar.xz` and its index also preserve the recovered
+annotation/comment-note controls. The positive annotation suite has 11 passes;
+the old-source suite has six matcher failures, the specific hidden-annotation
+content-limit exception and four passes. Both positive note cases pass and both
+old-writer note cases fail by matcher assertion. No cases are skipped and no
+load failures are accepted. The original overstrict wrapper rejection and its
+narrow follow-up log verification are both retained without rerunning or editing
+the tests. All 38 archive members were read back and hash-verified.
+
+These controls do not replace the broad immutable-source run, which remains
+pending publication of this amended checkpoint. Imported diagnostic model
+evidence retains its original input and runtime attribution.

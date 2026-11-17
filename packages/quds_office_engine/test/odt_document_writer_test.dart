@@ -29,6 +29,8 @@ XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(
 ).root!.firstChild('body')!.firstChild('text')!;
 
 void main() {
+  paragraphShadingTests();
+  pageFieldTests();
   linkTests();
   nestedListTests();
   sectionTests();
@@ -501,5 +503,56 @@ void linkTests() {
     expect(content, contains('text:name="Target"'));
     expect(content, contains('xlink:href="#Target"'));
     expect(content, contains('xlink:href="https://example.com"'));
+  });
+}
+
+void pageFieldTests() {
+  test('writes header page-number fields', () {
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          header: [
+            WmlParagraph(
+              properties: WmlParagraphProps(pageNumberField: true),
+              inlines: [WmlRun(text: '1')],
+            ),
+          ],
+          blocks: [
+            WmlParagraph(inlines: [WmlRun(text: 'Body')]),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final styles = package.getPart('/styles.xml')!.readText();
+    expect(styles, contains('<text:page-number/>'));
+  });
+}
+
+void paragraphShadingTests() {
+  test('writes paragraph shading and borders', () {
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          blocks: [
+            WmlParagraph(
+              properties: WmlParagraphProps(
+                shadingFill: 'FFFF00',
+                borderColor: 'FF0000',
+              ),
+              inlines: [WmlRun(text: 'Shaded')],
+            ),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final content = package.getPart('/content.xml')!.readText();
+    expect(content, contains('fo:background-color="#ffff00"'));
+    expect(content, contains('fo:border="0.5pt solid #ff0000"'));
   });
 }
