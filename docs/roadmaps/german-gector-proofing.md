@@ -96,10 +96,21 @@ implemented.
 The continuation also supplies a source/dependency/SDK-bound AOT builder and an
 [offline local development pack](../../tools/proofing/german_model/NATIVE_PACK.md).
 The verified pack has 23 files totaling 86,356,331 bytes, including its manifest.
-A real compiled run through it passes all 30 operational cases, eight controls
-and guarded nonregression, at 98.249 ms short-input p95 and 294,555,648 bytes
-peak process RSS. These are separate local observations; they do not establish
-a speed change from the guard repair or intended-device qualification.
+The final v3 compiled run through it binds the integrated source at `a15d173`
+and passes all 30 operational cases, eight controls and guarded nonregression,
+at 66.072 ms short-input p95 and 360,497,152 bytes peak process RSS. Its case
+outputs match v2 exactly; v1 and v2 measurements remain retained. These are
+separate local observations and do not establish a speed change or
+intended-device qualification. The 256-token structural probe takes 816.225 ms
+at p95; the 500 ms budget applies to the short-input cohort.
+
+That integration retains all 128 Quds branch tips captured at
+2026-11-17 14:54:15 UTC. It includes explicit genitive corrections, bounded
+worker request coalescing, locale-aware manual coverage and the newer ODT
+section/nested-list/bookmark work. The continuation evidence records 103
+GECToR, 268 deterministic German grammar, 97 editor proofing, 148 ODT and 45
+tooling checks. Later incoming branch activity is listed separately from this
+fixed validation snapshot.
 
 The owner requested incremental remote checkpoints and local validation because
 GitHub Actions capacity is starved. No new hosted job or Actions completion is

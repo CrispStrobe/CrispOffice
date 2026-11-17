@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "files": {
+    "gector-package-tests-v3.log": {
+      "file": "gector-package-tests-v3.log.gz",
+      "raw_sha256": "0c41e5ad7088e6fcbd5fb15784c4702aa558405faa479722c5e2350530527c74",
+      "public_uncompressed_sha256": "0c41e5ad7088e6fcbd5fb15784c4702aa558405faa479722c5e2350530527c74",
+      "public_archive_sha256": "981b0861e9557de56cee87030ffdbcf2ad2580c9299a8fbe880c2e12055f125f",
+      "host_path_redaction_applied": false
+    },
+    "german-grammar-tests-v3.log": {
+      "file": "german-grammar-tests-v3.log.gz",
+      "raw_sha256": "1efb629a154ca6ab3bcac7749193549190de2f63dfbe43e2f966e079d0c5f15f",
+      "public_uncompressed_sha256": "1efb629a154ca6ab3bcac7749193549190de2f63dfbe43e2f966e079d0c5f15f",
+      "public_archive_sha256": "be825b60e1326cc76bebe90ca5083b9da277b3ab5ddf104c606b2b12bf5a58fe",
+      "host_path_redaction_applied": false
+    },
+    "editor-proofing-tests-v3.log": {
+      "file": "editor-proofing-tests-v3.log.gz",
+      "raw_sha256": "ca9b3cbf5e76b85530a722202689838353f88c62fead8fc567ee46c45eed04a3",
+      "public_uncompressed_sha256": "3875cc0ec8d8d32d8979c3257ccb42a51f1c8c6ca9fa8ed6428feba13423c125",
+      "public_archive_sha256": "5c7e8d1cff0063e179df2332bf57d399c18d3edfc86997fd2d176ff4404c7c41",
+      "host_path_redaction_applied": true
+    },
+    "second-odt-tests.log": {
+      "file": "second-odt-tests.log.gz",
+      "raw_sha256": "eebc43fae1bcff3054ccecd631e9584ac953c16f9932f10d2342e612cd6a4c73",
+      "public_uncompressed_sha256": "eebc43fae1bcff3054ccecd631e9584ac953c16f9932f10d2342e612cd6a4c73",
+      "public_archive_sha256": "56193072b10ba3dd723674a79bccd16439455e094194462a8388803bd1c3a9bf",
+      "host_path_redaction_applied": false
+    }
+  },
+  "redaction": "Replace only known absolute repository/runtime/workspace path prefixes; keep all test results and failure text.",
+  "tests": {
+    "gector_package": 103,
+    "german_grammar": 268,
+    "editor_proofing": 97,
+    "odt": 148
+  }
+}
