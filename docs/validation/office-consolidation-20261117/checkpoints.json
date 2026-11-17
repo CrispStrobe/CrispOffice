@@ -91,6 +91,14 @@
         "4e79249d69e5b78b6e7696a1e4ab8c0a6287f4cf"
       ],
       "message": "Preserve ODT tab styles, minimum row heights and valid cell decorations [skip ci]"
+    },
+    {
+      "sha": "84283211709fba069564c181476f577c34bd2d64",
+      "tree": "323b689e2c1d41d7f409d995173129b039c7f8c3",
+      "parents": [
+        "f5021f1c364baf010049fda2dd4bf7f414deda79"
+      ],
+      "message": "Publish full local qualification and independent Office consumer evidence [skip ci]"
     }
   ]
 }

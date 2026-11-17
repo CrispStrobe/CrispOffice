@@ -101,7 +101,15 @@ unavailable private fixtures, all-device acceptance and new live AOT-daemon
 inference remain outside these measurements. Incoming historical evidence keeps
 its original source/runtime attribution.
 
-Independent code/integration and raw-evidence reviews are retained under
-[independent-review](independent-review/). The [checkpoint ledger](checkpoints.json)
-records published trees and parents. Publications after the qualified source
-contain documentation/evidence only; the product source stays fixed.
+The [independent audit](independent-review/README.md) reconstructed the raw
+outcomes, exact suite/case coverage, input identities and consumer measurements
+with **zero discrepancies**. All **508 members** of the two main evidence
+archives were independently verified. These audit checks are separate from
+product test counts. Complete archive bytes were then
+[read back from GitHub](publication/github-archive-readback.json) and matched
+the saved files exactly.
+
+The [checkpoint ledger](checkpoints.json) records published trees and parents.
+Publications after the qualified source contain documentation/evidence only;
+the [published-tree check](publication/published-tree-review.json) verifies
+unchanged product source.

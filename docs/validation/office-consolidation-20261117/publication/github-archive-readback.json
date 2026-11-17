@@ -1,0 +1,22 @@
+{
+  "published_commit": "84283211709fba069564c181476f577c34bd2d64",
+  "method": "Complete base64 contents fetched through connected GitHub file API at the published commit, compared byte-for-byte via canonical base64 to the saved Git objects, with matching Git blob SHA and SHA-256.",
+  "archives": [
+    {
+      "path": "docs/validation/office-consolidation-20261117/qualification/qualification-f5021f1c.tar.xz",
+      "published_commit": "84283211709fba069564c181476f577c34bd2d64",
+      "sha": "c187559b4033990324e3e345ccc4236f695b491c",
+      "bytes": 975320,
+      "sha256": "560eef7a14ebc90b011ff41a711fa5036487631461ecbecdfd41d51d251f3efc",
+      "github_full_content_readback_equal": true
+    },
+    {
+      "path": "docs/validation/office-consolidation-20261117/consumer/consumer-f5021f1c.tar.xz",
+      "published_commit": "84283211709fba069564c181476f577c34bd2d64",
+      "sha": "caf0e0e68823da5f5d5da7b9ca1b6bf7540bb2f5",
+      "bytes": 937068,
+      "sha256": "3c5c324e79581d0eb8fff4b0c829e54947f7c60281e288e6368476c6608319fd",
+      "github_full_content_readback_equal": true
+    }
+  ]
+}
