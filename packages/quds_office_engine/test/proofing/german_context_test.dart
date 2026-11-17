@@ -173,11 +173,12 @@ void main() {
       expect(actual, qualified);
       expect((await provider.check(request(qualified))).findings, isEmpty);
       final ignored = {for (final f in findings) f.ruleId};
-      if (ignored.isNotEmpty)
+      if (ignored.isNotEmpty) {
         expect(
           (await provider.check(request(source, ignored: ignored))).findings,
           isEmpty,
         );
+      }
     });
   }
   for (final source in [
