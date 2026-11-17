@@ -164,6 +164,16 @@ def main():
         runtime = audit.runtime_audit(tree)
         cohorts = {name: audit.cohort_audit(name, args.head, tree, runtime)
                    for name in audit.EXPECTED_TESTS}
+        # The inherited auditor covers render/logical-render. Bind the new
+        # fixture directories and their independent verification receipts too.
+        for name in ['conditional-render', 'odf-fixtures']:
+            directory = HERE / 'engine' / name
+            require(directory.is_dir(), 'Missing new fixture directory: ' + name)
+            for path in sorted(directory.rglob('*')):
+                if path.is_file():
+                    cohorts['engine']['artifacts'][str(path.relative_to(HERE / 'engine'))] = audit.verify_committed(path, tree)
+        for name in ['verify_conditional_pdf.py', 'verify_odf_fixtures.py']:
+            audit.verify_committed(HERE / name, tree)
         report['runtime'] = runtime
         report['cohorts'] = cohorts
         report['incoming'] = verify_inventory(args.head, tree)

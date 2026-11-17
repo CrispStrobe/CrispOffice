@@ -1,0 +1,56 @@
+{
+  "pdf-text": {
+    "archive": "pdf-text.tar.gz",
+    "sha256": "8d8f15082a64b39d8c22f6c18bc79afea14a62b33b82299fa3323eaf686d037f",
+    "files": {
+      "command.json": "22562aae896b904f052e337b3311977e15295f52e620ec7329febfdeb7375718",
+      "inputs.json": "b667759fba10619773f93c4fc4b22c534c21113ddeaab77747c097719013a360",
+      "pdf_cos.dart": "f1ae143582f1cc51a47cfb15976c96fecf024d4487cb3b08d70a298fc4613264",
+      "pdf_interpreter.dart": "5649e3b6860a367078834623f83df53a2ef624ed925bd7fcc16fa85b9055c703",
+      "pdf_text_string_encoding_test.dart": "11ba737253d317f2ce5a1b65adbf770f81be1f4207996f12d59682fa980052ff",
+      "summary.json": "5fd2fcdebeb8f1f38e2263b9b70db4804f8588c483b25b392f052155923deafe",
+      "test.jsonl": "fc97eb3ec96b9e443e469634f004e2aa02bd6b29f2ac11e8f68ce9b0dbc9fb60",
+      "test.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "conditional-rendering": {
+    "archive": "conditional-rendering.tar.gz",
+    "sha256": "2ab2877a3fc2a5ba5cbc25f7d62d3586a9d811b3790ccd41d2383e9450d80d15",
+    "files": {
+      "negative-test.dart": "b4b63c441f81e149e6d107b9eac2a8b0c95d5ebc1ed871ace263e72ba6ee1474",
+      "negative.jsonl": "f6545b3717f7d9991e4c977970b3b3e1b245431b663ec2e1b3ebea043e2b0142"
+    }
+  },
+  "odf-text": {
+    "archive": "odf-text.tar.gz",
+    "sha256": "5a5dfd0ff05771235493c0a31db7ad27f440225eb196a4f7f7a2e50586abd7b0",
+    "files": {
+      "README.md": "780e319a350f2a542f729344e4b93b0341a2e3e9d9b2256637b7ae626c232fcf",
+      "attempt-compile-error/odt_structure_fidelity_test.dart": "adafcfe4909c05a3ccf1d071429a259639dbbf19e1b599f54049cd1ab8fbebb1",
+      "attempt-compile-error/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "attempt-compile-error/tests.jsonl": "1e7efa7f5f449f5b5962e5cf291671cbcc831d3a89de965e79a751d0340e22d6",
+      "attempt-compile-error-2/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "attempt-compile-error-2/tests.jsonl": "60c51eaa96011d63f426bb9f238e5436821099c4a69a753eef994b165472c247",
+      "odf_export_text_fidelity_test.dart": "978195385d9d81b82a3dabd9cdff129b758e56c5fd6e92c5434fc01dcf0d39ee",
+      "odt_structure_fidelity_test.dart": "5ce393aeb7999c1237b628983a326b72a3b6127c7a832062fd6771b8726f5349",
+      "receipt.json": "c1236b05c417f768287f78fb4523415537f0c54ecd1c60cae0aae10ddc816a3b",
+      "source.json": "800b4acf52785780b6425e6480f82715cac0c4b710feff2a67a293f3cafe077f",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests.jsonl": "aa7bbe4a607019a751619800f40be3c297d41846549a76c97db1b21c9e5c933a"
+    }
+  },
+  "conditional-dxf": {
+    "archive": "conditional-dxf.tar.gz",
+    "sha256": "82d9810c99950bc7dc6f7d94fe147fe9d389019d6e3c22e5f12de13c59627e05",
+    "files": {
+      "command.json": "c0327fe9ed101b450366108d033670840be318eacc8a432a497e39f77436f71d",
+      "inputs.json": "fbe8515649573d61abcc53d193139f0e3c2eac722b1cc9a6a23d8deb521b341b",
+      "sheet_conditional_dxf_edit_test.dart": "3c6008e1f0643f545b6345dc118a986f3b3c8ec31a7bb94a4a23a3b790c661c7",
+      "sheet_serial.dart": "26d0d99ffd3378eb344ff8ac576b80fc56a84b25117c72085dc9bfe77a3010ff",
+      "sml_styles.dart": "0e67f3a761f6a97981d81bbc16b55b6954dbafd597c30a74022f062603394e6b",
+      "summary.json": "a1b435c5f303190a8df39b1a3e8d6eac559ab0fe99da92f6231c195082df34c3",
+      "test.jsonl": "4aa3215c9358a64e2fe9128888730455078e2981674bddb8fba201b7e4dd8d0e",
+      "test.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
