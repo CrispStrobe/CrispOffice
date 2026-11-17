@@ -27,20 +27,22 @@ Uint8List _archive(String xml) {
   return writer.close();
 }
 
-Future<void> _expectBody(String body, List<String> expected) async {
+Future<void> _expectBody(
+  String body,
+  List<String> expected, {
+  List<List<List<String>>>? expectedTables,
+  String? expectedText,
+}) async {
   final xml = _document(body);
   final bytes = _archive(xml);
-  expect(
-    OfficeTextExtractor.extract(bytes, name: 'native.odt').paragraphs,
-    expected,
-  );
-  expect(
-    await officeSearchText(bytes, 'native.odt', 65536),
-    expected.join('\n'),
-  );
+  final extracted = OfficeTextExtractor.extract(bytes, name: 'native.odt');
+  expect(extracted.paragraphs, expected);
+  if (expectedTables != null) expect(extracted.tables, expectedTables);
+  final fullText = expectedText ?? expected.join('\n');
+  expect(await officeSearchText(bytes, 'native.odt', 65536), fullText);
   final root = XmlDocument.parse(xml).root!;
   final before = XmlDocument(root: root).toXmlString();
-  expect(readOdfText(root, OdfTextBudget()), expected.join('\n'));
+  expect(readOdfText(root, OdfTextBudget()), fullText);
   expect(XmlDocument(root: root).toXmlString(), before);
   expect(utf8.decode(ZipReader.fromBytes(bytes).read('content.xml')), xml);
 }
@@ -198,30 +200,42 @@ void main() {
       '</table:table-cell><table:covered-table-cell><text:p>$hidden</text:p>'
       '</table:covered-table-cell></table:table-row></table:table>')}'
       '</text:p>',
-      ['AB', 'Visible'],
+      ['AB'],
+      expectedTables: [
+        [
+          ["Visible"],
+        ],
+      ],
+      expectedText: 'AB\nVisible',
     );
   });
 
-  test('inline notes and ruby annotations do not leak their anchored stories', () async {
-    final hidden = _frame('<text:p>Hidden</text:p>');
-    await _expectBody(
-      '<text:p>A<text:note><text:note-citation>1</text:note-citation>'
-      '<text:note-body><text:p>$hidden</text:p></text:note-body></text:note>B'
-      '<text:ruby><text:ruby-base>R${_frame('<text:p>Ruby base box</text:p>')}'
-      '</text:ruby-base><text:ruby-text>$hidden</text:ruby-text></text:ruby>C'
-      '<text:soft-page-break>$hidden</text:soft-page-break></text:p>',
-      ['ABRC', 'Ruby base box'],
-    );
-  });
+  test(
+    'inline notes and ruby annotations do not leak their anchored stories',
+    () async {
+      final hidden = _frame('<text:p>Hidden</text:p>');
+      await _expectBody(
+        '<text:p>A<text:note><text:note-citation>1</text:note-citation>'
+        '<text:note-body><text:p>$hidden</text:p></text:note-body></text:note>B'
+        '<text:ruby><text:ruby-base>R${_frame('<text:p>Ruby base box</text:p>')}'
+        '</text:ruby-base><text:ruby-text>$hidden</text:ruby-text></text:ruby>C'
+        '<text:soft-page-break>$hidden</text:soft-page-break></text:p>',
+        ['ABRC', 'Ruby base box'],
+      );
+    },
+  );
 
-  test('empty and annotation-only text boxes retain blank anchors without hidden text', () async {
-    await _expectBody(
-      '<text:p>${_frame('')}</text:p>'
-      '<text:p>${_frame('<office:annotation><text:p>Hidden</text:p>'
-      '</office:annotation>')}</text:p>',
-      ['', ''],
-    );
-  });
+  test(
+    'empty and annotation-only text boxes retain blank anchors without hidden text',
+    () async {
+      await _expectBody(
+        '<text:p>${_frame('')}</text:p>'
+        '<text:p>${_frame('<office:annotation><text:p>Hidden</text:p>'
+        '</office:annotation>')}</text:p>',
+        ['', ''],
+      );
+    },
+  );
 
   test(
     'text-box whitespace and separators share the cumulative UTF-8 budget',

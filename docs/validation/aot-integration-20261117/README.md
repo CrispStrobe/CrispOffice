@@ -18,6 +18,10 @@ Merge decisions:
   ruby-base handling and hidden note/annotation/soft-page-break exclusions.
 - Preserve authored empty frame-anchor paragraphs. Update the older empty-box
   regression to that explicit policy; retain the newer empty-frame regression.
+- Keep frame tables structured in generic extraction while retaining their text
+  in search. Reconcile the older flattened-table test with both assertions.
+- Keep the newer empty-document policy (default page geometry, no invented body
+  paragraph), and reconcile the incoming older section test to that policy.
 - Keep current page fields, paragraph shading and model-tool documentation.
 - Preserve the prior `readOdfParagraphs` entry point as a forwarding alias.
 
