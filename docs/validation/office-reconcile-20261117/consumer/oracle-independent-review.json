@@ -1,0 +1,85 @@
+{
+  "scope": "Independent read-only review of the original failed consumer oracle and the corrected non-bidi table constraint",
+  "attempt_source": "60a116d2df566793720bfb4f76d7f6523529bcb2",
+  "current_source": "ec5ecbff742580c0e7d1136507b953e8cc877e4c",
+  "exact_attempt_harness": {
+    "check_current_fixtures.py": {
+      "expected": "003878318558279aeed5110ffd5238d351cf186dbe7c3ca10bfe31ed503acb77",
+      "actual": "003878318558279aeed5110ffd5238d351cf186dbe7c3ca10bfe31ed503acb77",
+      "equal": true
+    },
+    "check_recovery_fixtures.py": {
+      "expected": "27bd7ef3dcca7f6c44f7cbe6a778a527924700e83199df56cc9ae0d6ce087a49",
+      "actual": "27bd7ef3dcca7f6c44f7cbe6a778a527924700e83199df56cc9ae0d6ce087a49",
+      "equal": true
+    },
+    "historical-fixtures-26.json": {
+      "expected": "19bf753029ae5bf2549b451ee518b1d960478b2f6d6dc9af0f566037e4659845",
+      "actual": "19bf753029ae5bf2549b451ee518b1d960478b2f6d6dc9af0f566037e4659845",
+      "equal": true
+    },
+    "make_fixtures.dart": {
+      "expected": "f5fb150259a9a491bc29140ee5b8c879ef77c80f33c5a873c03c97e4aeefb732",
+      "actual": "f5fb150259a9a491bc29140ee5b8c879ef77c80f33c5a873c03c97e4aeefb732",
+      "equal": true
+    },
+    "verify_consumers.py": {
+      "expected": "aa684901682f610b549143a0015eb2e9fe20a4145e3f641e4f87f0b95348309d",
+      "actual": "aa684901682f610b549143a0015eb2e9fe20a4145e3f641e4f87f0b95348309d",
+      "equal": true
+    }
+  },
+  "document_bidiVisual_count": 0,
+  "style_bidiVisual_count": 0,
+  "referenced_table_styles": [],
+  "cells": [
+    {
+      "text": "InvalidOne",
+      "borders": [
+        {
+          "edge": "end",
+          "style": "single",
+          "size_eighth_points": "4",
+          "color": "000000"
+        }
+      ],
+      "fill": []
+    },
+    {
+      "text": "InvalidTwo",
+      "borders": [
+        {
+          "edge": "end",
+          "style": "single",
+          "size_eighth_points": "4",
+          "color": "000000"
+        }
+      ],
+      "fill": []
+    },
+    {
+      "text": "InvalidThree",
+      "borders": [
+        {
+          "edge": "end",
+          "style": "single",
+          "size_eighth_points": "4",
+          "color": "000000"
+        }
+      ],
+      "fill": []
+    }
+  ],
+  "current_checker_sha256": "7eaf1c839872ba70e431321357117e22118efee3996ea3065439b97233f51ebc",
+  "standards_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.rightborder?view=openxml-3.0.1",
+      "finding": "In table cells, right is semantically equivalent to the trailing edge end border; bidiVisual changes the displayed edge."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.bidivisual?view=openxml-3.0.1",
+      "finding": "An omitted bidiVisual element means the table is not presented right-to-left."
+    }
+  ],
+  "conclusion": "The original fixture has no direct or style bidiVisual and no referenced table style. All three preserved borders are logical end, single, half-point and black. The corrected right-or-end oracle with an explicit false/absent bidi guard is justified for this fixture. The input binding exactly preserves all five executed attempt-1 harness files. This review does not count the failed attempt as accepted qualification."
+}
