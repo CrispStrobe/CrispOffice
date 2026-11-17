@@ -123,13 +123,13 @@
   {
     "id": "context-12-error",
     "kind": "error",
-    "input": "Das ist ein beste Lösung.",
-    "expected": "Das ist eine beste Lösung."
+    "input": "Das ist ein gute Lösung.",
+    "expected": "Das ist eine gute Lösung."
   },
   {
     "id": "context-12-valid",
     "kind": "clean",
-    "input": "Das ist eine beste Lösung."
+    "input": "Das ist eine gute Lösung."
   },
   {
     "id": "context-13-error",
@@ -293,11 +293,6 @@
     "input": "Er schenkt der Frau ein Buch."
   },
   {
-    "id": "context-control-9",
-    "kind": "clean",
-    "input": "Ich arbeite ein roten Mantel."
-  },
-  {
     "id": "context-control-10",
     "kind": "clean",
     "input": "Das sind meine Kinder."
@@ -368,11 +363,6 @@
     "input": "Weil er müde ist, bleibt er hier."
   },
   {
-    "id": "context-control-24",
-    "kind": "clean",
-    "input": "Weil er müde sind, wir bleiben hier."
-  },
-  {
     "id": "context-control-25",
     "kind": "clean",
     "input": "Er hat das Wort gelest genannt."
@@ -401,11 +391,6 @@
     "id": "context-control-30",
     "kind": "clean",
     "input": "Er hat das Buch nicht gelesen."
-  },
-  {
-    "id": "context-control-31",
-    "kind": "clean",
-    "input": "Die Kinder spielt!"
   },
   {
     "id": "context-control-32",
