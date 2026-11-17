@@ -102,6 +102,8 @@ void main() {
     _word('Hund', sourceText: '', start: 0, end: 0),
     <String, Object?>{
       ..._word('Hund', sourceText: 'Hund', start: 0, end: 4),
+      // Fractional offsets are invalid on VM and JS; JS cannot distinguish
+      // integral numeric representations such as 0 and 0.0.
       'sourceStart': 0.5,
     },
   ].indexed) {

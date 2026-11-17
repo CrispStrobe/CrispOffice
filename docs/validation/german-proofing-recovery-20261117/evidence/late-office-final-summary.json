@@ -1,0 +1,41 @@
+{
+  "qualifiedSourceHead": "7002d750e20e44392c6c9ba1a92d910fd87fe593",
+  "vm": {
+    "receipt": "late-office-final-vm.json",
+    "testsPassed": 174,
+    "testFiles": 12,
+    "sourceInputs": 334
+  },
+  "node": {
+    "receipt": "late-office-final-node.json",
+    "testsPassed": 131,
+    "testFiles": 9,
+    "sourceInputs": 331
+  },
+  "analysis": {
+    "receipt": "late-office-final-analysis.json",
+    "passed": true,
+    "noIssuesFound": true
+  },
+  "newRegressionTests": {
+    "odtParagraphBreakStyles": 8,
+    "odpChartFallback": 9,
+    "retainedSectionColumns": 14
+  },
+  "allPortableOutcomesAgreeAfterNameNormalization": true,
+  "portableOutcomeCount": 131,
+  "platformTestNameAliases": {
+    "test/odt_section_columns_test.dart :: invalid gap -1 is omitted without losing columns or text": "test/odt_section_columns_test.dart :: invalid gap -1.0 is omitted without losing columns or text"
+  },
+  "nameAliasReason": "Dart VM formats the column test-case double as -1.0; compiled JavaScript formats it as -1. Only this test label differs.",
+  "missingPortableTests": [],
+  "differingPortableOutcomes": [],
+  "currentInputMismatches": [],
+  "regressionComparison": "late-office-regression-comparison.json",
+  "notes": [
+    "The VM and Node cohorts overlap; their counts are not unique totals.",
+    "The final source passes all 31 new Office regression tests across the section-column and late-main repairs.",
+    "The broader Office qualification of 438 VM tests and 357 Node tests remains bound to 8d640302, before this final bounded main integration.",
+    "Chart export emits fallback data tables or rotated cell text frames. Native chart objects remain outside this writer's bounded behavior."
+  ]
+}

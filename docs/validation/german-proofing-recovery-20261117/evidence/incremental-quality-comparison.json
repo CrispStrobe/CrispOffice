@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-native-quality-recovery-comparison",
+  "source": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "historical_source": "121f3be504a89e56bde40bda8f93f4e81d8c2503",
+  "interpretation": "Existing synthetic development regression inputs, unchanged declarations and expected answers. Fresh compiled native functional comparisons ran concurrently with unrelated local validation; timings are not used for performance claims.",
+  "source_binding": {
+    "tracked_count": 66,
+    "workspace_only": {
+      ".dart_tool/package_config.json": "0475199c8346363a05e130c2f535c9aa5205199180638652e3fb58de8edaa7b4",
+      "pubspec.lock": "bc29947532fcbd4f1e3e9cd059620b8d9a52073150a968895af7b7794556978b"
+    }
+  },
+  "retained": {
+    "build": {
+      "path": "incremental-quality-build-receipt.json.gz",
+      "uncompressed_bytes": 67445,
+      "uncompressed_sha256": "b96a77afbc5ad2c4a7a2db87becc32ea40b5cb34dc6dcd8ecab05fc645b44646",
+      "compressed_sha256": "fb0c791af99caae8de265a74e43052f505de2d305dc5c8e66cfc916d9ae1211b"
+    },
+    "frozen": {
+      "path": "incremental-quality-frozen-result.json.gz",
+      "uncompressed_bytes": 222890,
+      "uncompressed_sha256": "be51c16580bbcfc9de6c33ec0600e1211fe7dd91ad71320822135a980ef66a17",
+      "compressed_sha256": "6dc87c01b7fb5aeae05b567838ed161dca1021aa92303fb4b368550f86c25f40"
+    },
+    "prospective": {
+      "path": "incremental-quality-prospective-result.json.gz",
+      "uncompressed_bytes": 543511,
+      "uncompressed_sha256": "a121cb26436847676690a067d9cb50d9fe5c56f0957c91a4b2ac545bb25da5de",
+      "compressed_sha256": "1472cd42da397a8dc8e26d3d17f17698f4196b950b2d0bc40bb186bbb8766da9"
+    }
+  },
+  "panels": {
+    "frozen": {
+      "rows": 30,
+      "corpus_sha256": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "counts": {
+        "writing_only": {
+          "exact_errors": 8,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 9,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 6,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 11,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "new_exact_ids_since_prior": {
+        "writing_only": [
+          "verb-plural"
+        ],
+        "deterministic": [
+          "verb-plural",
+          "participle"
+        ],
+        "model_only": [],
+        "combined": [
+          "verb-plural",
+          "participle"
+        ]
+      },
+      "lost_exact_ids_since_prior": {
+        "writing_only": [],
+        "deterministic": [],
+        "model_only": [],
+        "combined": []
+      },
+      "model_added_exact_ids": [
+        "verb-ihr",
+        "das-relative"
+      ],
+      "model_lost_exact_ids": [],
+      "changed_cases": [
+        {
+          "id": "verb-plural",
+          "kind": "error",
+          "locale": "de-DE",
+          "input": "Die Kinder spielt im Garten.",
+          "expected": "Die Kinder spielen im Garten.",
+          "changed_lanes": {
+            "writing_only": {
+              "before": "Die Kinder spielt im Garten.",
+              "after": "Die Kinder spielen im Garten.",
+              "before_exact": false,
+              "after_exact": true
+            },
+            "deterministic": {
+              "before": "Die Kinder spielt im Garten.",
+              "after": "Die Kinder spielen im Garten.",
+              "before_exact": false,
+              "after_exact": true
+            },
+            "combined": {
+              "before": "Die Kinder spielt im Garten.",
+              "after": "Die Kinder spielen im Garten.",
+              "before_exact": false,
+              "after_exact": true
+            }
+          }
+        },
+        {
+          "id": "participle",
+          "kind": "error",
+          "locale": "de-DE",
+          "input": "Er hat das Buch gelest.",
+          "expected": "Er hat das Buch gelesen.",
+          "changed_lanes": {
+            "deterministic": {
+              "before": "Er hat das Buch genest.",
+              "after": "Er hat das Buch gelesen.",
+              "before_exact": false,
+              "after_exact": true
+            },
+            "combined": {
+              "before": "Er hat das Buch genest.",
+              "after": "Er hat das Buch gelesen.",
+              "before_exact": false,
+              "after_exact": true
+            }
+          }
+        }
+      ],
+      "accepted_model_findings": 2,
+      "suppressed_model_findings": 4
+    },
+    "prospective": {
+      "rows": 76,
+      "corpus_sha256": "2fcdfd6aba46c854960588dc09cc2fd74af1fba08ffe86c4dc8d3a86a5eb4d42",
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "counts": {
+        "writing_only": {
+          "exact_errors": 14,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "deterministic": {
+          "exact_errors": 16,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "model_only": {
+          "exact_errors": 12,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        },
+        "combined": {
+          "exact_errors": 22,
+          "clean_flagged": 0,
+          "clean_changed": 0
+        }
+      },
+      "new_exact_ids_since_prior": {
+        "writing_only": [],
+        "deterministic": [
+          "prospective-participle-schreiben-error",
+          "prospective-participle-finden-error"
+        ],
+        "model_only": [],
+        "combined": [
+          "prospective-participle-schreiben-error",
+          "prospective-participle-finden-error"
+        ]
+      },
+      "lost_exact_ids_since_prior": {
+        "writing_only": [],
+        "deterministic": [],
+        "model_only": [],
+        "combined": []
+      },
+      "model_added_exact_ids": [
+        "prospective-verb-ihr-lesen-error",
+        "prospective-verb-ihr-koennen-error",
+        "prospective-dass-hoffen-error",
+        "prospective-dass-freuen-error",
+        "prospective-relative-subject-error",
+        "prospective-relative-object-error"
+      ],
+      "model_lost_exact_ids": [],
+      "changed_cases": [
+        {
+          "id": "prospective-participle-schreiben-error",
+          "kind": "error",
+          "locale": "de-DE",
+          "input": "Sie hat den Brief geschreibt.",
+          "expected": "Sie hat den Brief geschrieben.",
+          "changed_lanes": {
+            "deterministic": {
+              "before": "Sie hat den Brief beschreibt.",
+              "after": "Sie hat den Brief geschrieben.",
+              "before_exact": false,
+              "after_exact": true
+            },
+            "combined": {
+              "before": "Sie hat den Brief beschreibt.",
+              "after": "Sie hat den Brief geschrieben.",
+              "before_exact": false,
+              "after_exact": true
+            }
+          }
+        },
+        {
+          "id": "prospective-participle-finden-error",
+          "kind": "error",
+          "locale": "de-DE",
+          "input": "Wir haben den Fehler gefindet.",
+          "expected": "Wir haben den Fehler gefunden.",
+          "changed_lanes": {
+            "deterministic": {
+              "before": "Wir haben den Fehler befindet.",
+              "after": "Wir haben den Fehler gefunden.",
+              "before_exact": false,
+              "after_exact": true
+            },
+            "combined": {
+              "before": "Wir haben den Fehler befindet.",
+              "after": "Wir haben den Fehler gefunden.",
+              "before_exact": false,
+              "after_exact": true
+            }
+          }
+        }
+      ],
+      "accepted_model_findings": 6,
+      "suppressed_model_findings": 6
+    }
+  },
+  "issues": [],
+  "passed": true
+}

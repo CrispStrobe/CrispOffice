@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "acceptedFinalProductSource": "7002d750e20e44392c6c9ba1a92d910fd87fe593",
+  "freshProofingSource": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+  "capturedRefs": 266,
+  "missingCapturedAncestors": [],
+  "closingMain": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+  "changedPathsSinceProofing": [
+    "docs/validation/german-proofing-recovery-20261117/closing-main-observation.json",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/test/odp_chart_fallback_test.dart",
+    "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+    "packages/quds_office_engine/test/odt_document_writer_test.dart",
+    "packages/quds_office_engine/test/odt_paragraph_break_style_test.dart",
+    "packages/quds_proofing_aot/test/native_source_mapping_test.dart"
+  ],
+  "changedProductImplementations": [
+    "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+  ],
+  "unchangedScopes": [
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing",
+      "testedObject": "248fb7c7387b71267d615287d42476964e264a78",
+      "finalObject": "248fb7c7387b71267d615287d42476964e264a78"
+    },
+    {
+      "path": "packages/quds_proofing_gector",
+      "testedObject": "4e0e6cf829e74db69a477c45b52ff4d07e670f9f",
+      "finalObject": "4e0e6cf829e74db69a477c45b52ff4d07e670f9f"
+    },
+    {
+      "path": "packages/quds_proofing_harper",
+      "testedObject": "3ee0cee5f338e872b09cfe66cdf6a949804db33e",
+      "finalObject": "3ee0cee5f338e872b09cfe66cdf6a949804db33e"
+    },
+    {
+      "path": "packages/quds_proofing_aot/lib",
+      "testedObject": "58ac98170ae7cb02434989ff616789feb6e9c251",
+      "finalObject": "58ac98170ae7cb02434989ff616789feb6e9c251"
+    },
+    {
+      "path": "packages/quds_proofing_aot/native",
+      "testedObject": "e7ffa97a8274f5048e183741b41efa98ee629c65",
+      "finalObject": "e7ffa97a8274f5048e183741b41efa98ee629c65"
+    },
+    {
+      "path": "packages/quds_proofing_aot/tool",
+      "testedObject": "c1f54ea123f670092ae676d74f0f42b94e9db586",
+      "finalObject": "c1f54ea123f670092ae676d74f0f42b94e9db586"
+    },
+    {
+      "path": "packages/quds_office_editor",
+      "testedObject": "4b2a2b6a56924483c60205b76e8ce685e40671b8",
+      "finalObject": "4b2a2b6a56924483c60205b76e8ce685e40671b8"
+    },
+    {
+      "path": "tools/proofing",
+      "testedObject": "7115353a2ca94b7cc2e85505c8b3ebecf82d8cc6",
+      "finalObject": "7115353a2ca94b7cc2e85505c8b3ebecf82d8cc6"
+    }
+  ],
+  "qualificationContinuity": [
+    {
+      "label": "engine-proofing-vm",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 340,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 338,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "engine-proofing-node-accepted",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 340,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 338,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "gector-native-tests",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 398,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 396,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "editor-proofing-hyphenation",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 561,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 559,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "editor-german-platform",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 561,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 559,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "studio-aot",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 448,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 446,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "aot-package-vm",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 351,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_proofing_aot/test/native_source_mapping_test.dart"
+      ],
+      "unchangedInputCount": 348,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "aot-mapping-vm-portable-fix",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 351,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 349,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "aot-package-node-portable-fix",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 351,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 349,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "office-final-vm",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 347,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart"
+      ],
+      "unchangedInputCount": 344,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "office-final-node",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 342,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 340,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "late-office-final-vm",
+      "testedHead": "7002d750e20e44392c6c9ba1a92d910fd87fe593",
+      "inputCount": 334,
+      "changedInputsAtFinalSource": [],
+      "unchangedInputCount": 334,
+      "interpretation": "Every recorded input matches final source or preserved workspace lock."
+    },
+    {
+      "label": "late-office-final-node",
+      "testedHead": "7002d750e20e44392c6c9ba1a92d910fd87fe593",
+      "inputCount": 331,
+      "changedInputsAtFinalSource": [],
+      "unchangedInputCount": 331,
+      "interpretation": "Every recorded input matches final source or preserved workspace lock."
+    },
+    {
+      "label": "engine-strict-analysis",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 663,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart"
+      ],
+      "unchangedInputCount": 659,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "aot-package-analysis",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 351,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_proofing_aot/test/native_source_mapping_test.dart"
+      ],
+      "unchangedInputCount": 348,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "office-final-analysis",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 325,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 323,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "late-office-final-analysis",
+      "testedHead": "7002d750e20e44392c6c9ba1a92d910fd87fe593",
+      "inputCount": 326,
+      "changedInputsAtFinalSource": [],
+      "unchangedInputCount": 326,
+      "interpretation": "Every recorded input matches final source or preserved workspace lock."
+    },
+    {
+      "label": "python-qualification",
+      "testedHead": "04f66dbc01c33402fb719913d067a7e9fdaa8447",
+      "inputCount": 46,
+      "changedInputsAtFinalSource": [],
+      "unchangedInputCount": 46,
+      "interpretation": "Every recorded input matches final source or preserved workspace lock."
+    },
+    {
+      "label": "incremental-quality-aot-build",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 383,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 381,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "incremental-quality-frozen",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 383,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 381,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "incremental-quality-prospective",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 383,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 381,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "morphology-core",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 326,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 324,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    },
+    {
+      "label": "morphology-review",
+      "testedHead": "8d6403021f797a05e9c9fc49052c3d19d3766844",
+      "inputCount": 326,
+      "changedInputsAtFinalSource": [
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "unchangedInputCount": 324,
+      "interpretation": "Earlier execution keeps original source attribution. Listed subsequent Office or fixture changes are covered by their later accepted qualification."
+    }
+  ],
+  "passed": true
+}

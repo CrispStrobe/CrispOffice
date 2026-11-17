@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "audit_recovery_quality.py": {
+      "path": "tools/audit_recovery_quality.py",
+      "sha256": "b72a9fa375c22c451126bcc781738e89f84ef806a375f1e9480cec864753d40e"
+    },
+    "audit_recovery_morphology.py": {
+      "path": "tools/audit_recovery_morphology.py",
+      "sha256": "9de13348ca725e8f65de27488d6fcbfd4ec3adeae76dcfe770783fee83d04fe9"
+    }
+  },
+  "reproduction": "Audit scripts retain their original workspace and source constants; use the preserved compressed report data and adjust those paths explicitly for another environment. They refuse to overwrite existing copied evidence."
+}

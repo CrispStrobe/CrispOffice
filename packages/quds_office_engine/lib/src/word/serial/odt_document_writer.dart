@@ -20,9 +20,9 @@ import '../properties/wml_properties.dart';
 /// This is an export path. It emits the modeled text, paragraph/run formatting,
 /// tables, pictures, frames, page geometry and basic headers/footers. It does
 /// not claim to preserve arbitrary imported ODF XML or every Word feature.
-/// Simple paragraph PAGE fields use a native ODF page number. Other Word and
-/// Zotero fields export their visible cached results; their native instructions
-/// and editable field metadata are not part of this export.
+/// Simple paragraph PAGE fields and bounded inline PAGE/NUMPAGES fields use
+/// native ODF fields. Other Word and Zotero fields export their visible cached
+/// results; their native instructions and editable metadata are not exported.
 abstract final class OdtDocumentWriter {
   /// Serializes [document] as a new ODT package.
   static Uint8List writeBytes(WmlDocument document) {
@@ -61,7 +61,7 @@ abstract final class OdtDocumentWriter {
       final body = XmlWriter();
       final section = layout.sections[index];
       final start = layout.sectionStarts[index];
-      final columns = section.columnCount;
+      final columns = section.resolvedColumnCount;
       if (columns > 1) {
         body.writeStartElement('section', prefix: 'text');
         body.writeAttribute('text:name', 'Section$index');
@@ -71,13 +71,13 @@ abstract final class OdtDocumentWriter {
         );
       }
       _writeBlocks(body, section.blocks, layout, sectionStart: start);
-      if (columns > 1) body.writeEndElement();
       // Empty and entirely unmodeled sections still own a page boundary. The
       // small empty anchor cannot consume a later section's first paragraph.
       if (!start.consumed) {
         start.empty = true;
         _writeSectionAnchor(body, layout, start);
       }
+      if (columns > 1) body.writeEndElement();
       parts.add((xml: body.toXml(), start: start));
     }
     return parts;
@@ -634,7 +634,8 @@ abstract final class OdtDocumentWriter {
       styleOverride ??
           layout.paragraphStyle(paragraph.properties, heading: heading),
     );
-    final pageField = _isPageNumberParagraph(paragraph);
+    final pageField =
+        layout.fieldDepth == 0 && _isPageNumberParagraph(paragraph);
     if (layout.noteReferenceSpacePending) {
       layout.noteReferenceSpacePending = false;
       final text = paragraph.text;
@@ -645,11 +646,152 @@ abstract final class OdtDocumentWriter {
     if (pageField) {
       _writePageNumberInlines(w, paragraph, layout);
     } else {
-      for (final inline in paragraph.inlines) {
-        _writeInline(w, inline, layout);
-      }
+      _writeParagraphInlines(w, paragraph.inlines, layout);
     }
     w.writeEndElement();
+  }
+
+  static void _writeParagraphInlines(
+    XmlWriter w,
+    List<WmlInline> inlines,
+    _OdtLayout layout,
+  ) {
+    final fields = <int, ({int end, String element, WmlRun cache})>{};
+    var depth = layout.fieldDepth;
+    var start = -1;
+    var nested = false;
+    for (var index = 0; index < inlines.length; index++) {
+      final inline = inlines[index];
+      if (inline is! WmlFieldBoundary) continue;
+      if (inline.kind == WmlFieldBoundaryKind.begin) {
+        if (depth == 0) {
+          start = index;
+          nested = false;
+        } else {
+          nested = true;
+        }
+        depth++;
+      } else if (inline.kind == WmlFieldBoundaryKind.end && depth > 0) {
+        depth--;
+        if (depth == 0 && start >= 0 && !nested) {
+          final field = _simpleInlineField(inlines.sublist(start, index + 1));
+          if (field != null) {
+            fields[start] = (
+              end: index,
+              element: field.element,
+              cache: field.cache,
+            );
+          }
+        }
+        if (depth == 0) start = -1;
+      }
+    }
+    // A field spanning paragraphs prevents conversion of nested packets, but
+    // never suppresses any cached text. Independent stories reset this guard.
+    layout.fieldDepth = depth;
+    for (var index = 0; index < inlines.length; index++) {
+      final field = fields[index];
+      if (field == null) {
+        _writeInline(w, inlines[index], layout);
+      } else {
+        _writeInline(w, field.cache, layout, nativeField: field.element);
+        index = field.end;
+      }
+    }
+  }
+
+  static ({String element, WmlRun cache})? _simpleInlineField(
+    List<WmlInline> packet,
+  ) {
+    final instruction = StringBuffer();
+    var separated = false;
+    WmlRun? cache;
+    for (final inline in packet) {
+      if (inline is WmlFieldBoundary) {
+        if (!_plainFieldBoundary(inline)) return null;
+        if (inline.kind == WmlFieldBoundaryKind.instruction) {
+          if (separated) return null;
+          instruction.write(inline.text);
+        } else if (inline.kind == WmlFieldBoundaryKind.separate) {
+          if (separated) return null;
+          separated = true;
+        }
+      } else if (inline is WmlRun &&
+          separated &&
+          cache == null &&
+          !inline.isAtomic &&
+          !inline.fieldLocked) {
+        cache = inline;
+      } else {
+        return null;
+      }
+    }
+    if (!separated || cache == null) return null;
+    // Other switches may change the displayed value or number format. Retain
+    // that authored cache instead of guessing at an equivalent ODF field.
+    final match = RegExp(
+      r'^\s*(PAGE|NUMPAGES)(?:\s+\\\*\s+MERGEFORMAT)?\s*$',
+      caseSensitive: false,
+    ).firstMatch(instruction.toString());
+    if (match == null) return null;
+    return (
+      element: match[1]!.toUpperCase() == 'PAGE' ? 'page-number' : 'page-count',
+      cache: cache,
+    );
+  }
+
+  static bool _plainFieldBoundary(WmlFieldBoundary boundary) {
+    if (boundary.runPropertiesXml?.trim().isNotEmpty == true) return false;
+    final source = boundary.sourceXml;
+    if (source == null) return true;
+    if (boundary.kind == WmlFieldBoundaryKind.instruction) return false;
+    try {
+      final reader = XmlPullReader(source.trim());
+      if (!reader.next() ||
+          reader.eventType != XmlEventType.startElement ||
+          reader.localName != 'fldChar' ||
+          reader.namespaceUri != OfficeNamespaces.w ||
+          reader.getAttribute(
+                'fldCharType',
+                namespaceUri: OfficeNamespaces.w,
+              ) !=
+              boundary.kind.name) {
+        return false;
+      }
+      final seen = <String>{};
+      for (var index = 0; index < reader.attributeCount; index++) {
+        if (reader.attributePrefix(index) == 'xmlns' ||
+            reader.attributeQualifiedName(index) == 'xmlns') {
+          continue;
+        }
+        final name = reader.attributeLocalName(index);
+        final value = reader.attributeValue(index);
+        if (reader.attributeNamespace(index) != OfficeNamespaces.w ||
+            !seen.add(name) ||
+            !{'fldCharType', 'fldLock', 'dirty'}.contains(name)) {
+          return false;
+        }
+        if (name == 'fldLock' && !{'0', 'false', 'off'}.contains(value)) {
+          return false;
+        }
+        if (name == 'dirty' &&
+            !{'0', 'false', 'off', '1', 'true', 'on'}.contains(value)) {
+          return false;
+        }
+      }
+      // Require exactly one complete empty boundary element. Form data,
+      // malformed XML and foreign source metadata retain the visible cache.
+      return reader.next() &&
+          reader.eventType == XmlEventType.endElement &&
+          reader.next() &&
+          reader.eventType == XmlEventType.endDocument;
+    } on XmlParseException {
+      return false;
+    } on FormatException {
+      return false;
+    } on RangeError {
+      return false;
+    }
   }
 
   static bool _isPageNumberParagraph(WmlParagraph paragraph) {
@@ -717,10 +859,10 @@ abstract final class OdtDocumentWriter {
     _OdtLayout layout, {
     bool pageNumber = false,
     String? textOverride,
+    String? nativeField,
   }) {
     switch (inline) {
       case WmlRun():
-        if (layout.fieldResultSuppressed) break;
         final style = layout.runStyle(inline.properties);
         final href = switch (inline.hyperlink) {
           final link? =>
@@ -750,6 +892,15 @@ abstract final class OdtDocumentWriter {
           if (textOverride != null && textOverride.isNotEmpty) {
             writeOdfText(w, textOverride);
           }
+          if (!commentLink) w.writeEndElement();
+        } else if (nativeField != null) {
+          if (!commentLink) {
+            w.writeStartElement('span', prefix: 'text');
+            w.writeAttribute('text:style-name', style);
+          }
+          w.writeStartElement(nativeField, prefix: 'text');
+          w.writeText(inline.text);
+          w.writeEndElement();
           if (!commentLink) w.writeEndElement();
         } else if (inline.noteRefId != null) {
           final note = layout.notes.resolve(inline);
@@ -800,29 +951,8 @@ abstract final class OdtDocumentWriter {
           prefix: 'text',
         );
       case WmlFieldBoundary():
-        if (inline.kind == WmlFieldBoundaryKind.begin) {
-          layout.beginField();
-        } else if (inline.kind == WmlFieldBoundaryKind.instruction) {
-          final name = inline.text
-              .trim()
-              .split(RegExp(r'\s+'))
-              .first
-              .toUpperCase();
-          final element = switch (name) {
-            'PAGE' => 'page-number',
-            'NUMPAGES' => 'page-count',
-            'DATE' => 'date',
-            'TIME' => 'time',
-            'TITLE' => 'title',
-            _ => null,
-          };
-          if (element != null) {
-            w.writeEmptyElement(element, prefix: 'text');
-            layout.suppressFieldResult();
-          }
-        } else if (inline.kind == WmlFieldBoundaryKind.end) {
-          layout.endField();
-        }
+        // Converted packets are handled as a unit by _writeParagraphInlines.
+        // Other boundaries are hidden metadata around ordinary cached runs.
         break;
       case WmlBookmarkBoundary():
         final name = inline.name;
@@ -1515,20 +1645,7 @@ class _OdtLayout {
   bool inCommentBody = false;
   bool inNoteBody = false;
   bool noteReferenceSpacePending = false;
-  int _fieldDepth = 0;
-  int? _suppressFieldDepth;
-
-  void beginField() => _fieldDepth++;
-
-  void suppressFieldResult() => _suppressFieldDepth = _fieldDepth;
-
-  bool get fieldResultSuppressed =>
-      _suppressFieldDepth != null && _fieldDepth >= _suppressFieldDepth!;
-
-  void endField() {
-    if (_suppressFieldDepth == _fieldDepth) _suppressFieldDepth = null;
-    if (_fieldDepth > 0) _fieldDepth--;
-  }
+  int fieldDepth = 0;
 
   final Map<String, String> _runStyles = <String, String>{};
   final Map<String, String> _paragraphStyles = <String, String>{};
@@ -1605,7 +1722,7 @@ class _OdtLayout {
     // Invalid positions are omitted and positions share the XML's precision.
     final tabs = _tabStops(props.tabs);
     final key =
-        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabs';
+        '${heading == null ? 'body' : heading.clamp(1, 9)}|${props.justification.index}|${props.rightToLeft}|${props.lineSpacingRule.index}|${props.lineSpacing}|${props.spacingBefore}|${props.spacingAfter}|${props.indent.left}|${props.indent.right}|${props.indent.firstLine}|${props.indent.hanging}|${props.pageBreakBefore}|${props.columnBreakBefore}|${props.keepTogether}|${sectionStart?.index}|$emptyAnchor|$shading|$border|$tabs';
     return _paragraphStyles.putIfAbsent(key, () {
       final name = sectionStart == null
           ? 'P${_paragraphStyles.length + 1}'
@@ -1847,14 +1964,17 @@ class _OdtLayout {
     });
   }
 
-  /// Auxiliary stories and hidden cell stories must not consume body numbers.
+  /// Auxiliary stories do not share body list numbers or complex field scope.
   void withListStory(void Function() write) {
     final previous = _listCounters;
+    final previousFieldDepth = fieldDepth;
     _listCounters = <int, List<BigInt?>>{};
+    fieldDepth = 0;
     try {
       write();
     } finally {
       _listCounters = previous;
+      fieldDepth = previousFieldDepth;
     }
   }
 
@@ -1947,15 +2067,27 @@ class _OdtLayout {
   }
 
   String sectionColumnsStyle(int columns, double gap) {
-    final key = '$columns|${gap.toStringAsFixed(2)}';
+    // Keep invalid imported lengths out of ODF without changing the model.
+    // Omission leaves the gap unspecified; zero, including negative zero,
+    // remains an explicit zero-length gap. Cache the emitted representation.
+    final normalizedGap = gap < 0
+        ? null
+        : _paragraphDecimal(gap == 0 ? 0 : gap);
+    final key = '$columns|$normalizedGap';
     return _sectionColumnStyles.putIfAbsent(key, () {
       final name = 'Sect${_sectionColumnStyles.length + 1}';
-      _styleBuffers.add(
+      // ODF 1.3 sections 17.11 and 17.12 put column attributes on a
+      // style:columns child, not on style:section-properties itself.
+      final buffer = StringBuffer(
         '<style:style style:name="$name" style:family="section">'
-        '<style:section-properties><style:columns fo:column-count="$columns" '
-        'fo:column-gap="${gap.toStringAsFixed(2)}pt"/>'
-        '</style:section-properties></style:style>',
+        '<style:section-properties>'
+        '<style:columns fo:column-count="$columns"',
       );
+      if (normalizedGap != null) {
+        buffer.write(' fo:column-gap="${normalizedGap}pt"');
+      }
+      buffer.write('/></style:section-properties></style:style>');
+      _styleBuffers.add(buffer.toString());
       return name;
     });
   }

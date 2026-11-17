@@ -1,0 +1,26 @@
+{
+  "baselineHead": "0e73c748815628ef1531e3cebd521e2a535d1b2f",
+  "beforeReceipt": "late-office-before.json",
+  "afterReceipt": "late-office-after.json",
+  "beforeCounts": {
+    "failure": 8,
+    "success": 9
+  },
+  "afterCounts": {
+    "success": 17
+  },
+  "identicalTestSources": {
+    "packages/quds_office_engine/test/odt_paragraph_break_style_test.dart": "ef0320b657dbe3644c22b1509e331b8097833b682b7f7f328f2a7c2fa3f0247a",
+    "packages/quds_office_engine/test/odp_chart_fallback_test.dart": "03c87ff2628408d110e4050724f3beed615ba222303d89e6e9fa8899b96eb621"
+  },
+  "changedCommonInputs": [
+    "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+  ],
+  "allAcceptedReceiptsPassed": true,
+  "notes": [
+    "The two new test files are identical before and after the repair.",
+    "Only the ODT and ODP writer inputs changed; expected outcomes were not edited.",
+    "The final checkpoint and affected VM/Node/analysis results will be bound separately."
+  ]
+}

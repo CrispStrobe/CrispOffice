@@ -4,6 +4,19 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve cached ODT field text and its style/link while converting complete,
+  simple PAGE/NUMPAGES fields. Retain visible caches for unsupported or malformed
+  fields, and keep incomplete fields from consuming later paragraphs or stories.
+
+- Keep ODT column breaks and keep-together settings independent in cached
+  paragraph styles, while retaining page-break priority.
+- Preserve rotated ODP chart data through the existing table fallback frames,
+  keeping images and explicitly modeled tables ahead of chart fallback data.
+
+- Write ODT section columns with the required nested column properties, keep
+  empty-section page anchors inside their column section, and omit invalid
+  column gaps without changing the document model.
+
 - Prefer verified irregular participles for unknown overregularized spellings
   in bounded pronoun-and-haben contexts, keeping ordinary ranking elsewhere.
 

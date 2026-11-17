@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "Independent read-only source and test review; no test execution by reviewer",
+  "acceptedProductSource": "898c4c07f421d86a8cea460b13fd3e136088b553",
+  "writer": {
+    "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "gitBlob": "22587d35eeb304d46a82094098db32842964902f",
+    "sha256": "1a444fa754277a1fbb9840542b7a9d28eb76bb2d768a032279e8bbaae81bd873"
+  },
+  "blockingFindings": [],
+  "findings": [
+    "Complete same-paragraph packets are validated before any replacement; instruction fragments are assembled.",
+    "Only PAGE/NUMPAGES with optional MERGEFORMAT and a sole ordinary unlocked cached run are promoted.",
+    "Converted fields preserve the cached display once in the existing style/link and attached-comment path.",
+    "Unsupported, malformed, locked, nested, atomic, multi-run and mixed-content packets use ordinary cached serialization.",
+    "XML, numeric-format and out-of-range codepoint errors safely retain the cache.",
+    "No text-suppression state remains; the cross-paragraph guard only prevents nested promotion.",
+    "Independent auxiliary stories save/reset/restore the guard.",
+    "Prior column, tab, paragraph-break, keep-together, note, table and page-suffix implementations remain unchanged."
+  ],
+  "testHelperReview": "Corrected helper decodes ODF spaces, tabs and line breaks; final malformed-metadata loop covers negative and out-of-range numeric entities.",
+  "passed": true
+}
