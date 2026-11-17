@@ -168,6 +168,11 @@ Spelling, automatic German hyphenation and grammar work is tracked in the
 [proofing roadmap](docs/PROOFING.md). It records the existing callback-only
 spelling baseline, the MIT/BSD/Apache/MPL component and language-data policy,
 implementation order, and the checks required before claiming each feature.
+The optional [AOT integration](packages/quds_proofing_aot/README.md) adds German
+and Russian linguistic analysis, word morphology, and conservative de-DE grammar
+diagnostics through a separately configured local SynanDaemon. Studio exposes a
+read-only analysis dialog and includes AOT in explicit document checks when
+`QUDS_AOT_ENDPOINT` is set. No engine or dictionaries are bundled.
 
 Legacy `.doc`/`.dot` parsing and separate DOCX/DOCM conversion are maintained in [legacy-doc-parser](https://github.com/CrispStrobe/legacy-doc-parser). The engine exposes compatibility exports from the pinned workspace copy in `packages/legacy_doc_parser`; its `UPSTREAM.json` records the source and workspace-only patches. The suite's MIT license does not replace that dependency's MPL-2.0 license or its third-party notices.
 
