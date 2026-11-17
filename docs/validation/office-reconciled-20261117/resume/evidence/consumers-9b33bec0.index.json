@@ -1,5 +1,5 @@
 {
-  "archive": "consumers-9b33bec0.tar.xz",
+  "archive": "consumer-9b33bec0.tar.xz",
   "bytes": 2209444,
   "sha256": "1b75f527804c5621174e0bab13199065064063e7f810443a249e3ddf124247f9",
   "member_count": 708,
@@ -3600,5 +3600,6 @@
       "bytes": 23991,
       "sha256": "d4b208ccbd0ab76e780c7438ae7eb77e2e463c32596c293c480bdceb6947d12d"
     }
-  ]
+  ],
+  "published_filename": "consumers-9b33bec0.tar.xz"
 }
