@@ -30,13 +30,13 @@
     "scope": "Finite lexical morphology, not dependency parsing or a full grammar checker."
   },
   "statistics": {
-    "lemmas": 67497,
-    "readings": 127997,
+    "lemmas": 67498,
+    "readings": 127998,
     "patterns": 189,
-    "surface_forms": 186621,
+    "surface_forms": 186623,
     "unresolved_surface_keys": 2885,
-    "suggestion_safe_standard": 118088,
-    "suggestion_safe_swiss": 118086,
+    "suggestion_safe_standard": 118090,
+    "suggestion_safe_swiss": 118088,
     "excluded": {
       "context_dependent_patterns": 290,
       "unattested_generated_form": 21792,
@@ -94,7 +94,7 @@
     "literary_dative_limits": "https://grammis.ids-mannheim.de/fragen/25"
   },
   "spelling_inputs_sha256": {
-    "lib/src/proofing/data/german_common_00.dart": "394cc77f5ddec4b806c987cb6e47617c89826887e3a43224d433f1f6841e5acb",
+    "lib/src/proofing/data/german_common_00.dart": "3a41eb74e53bd167105211b275de2af73d91077fb2c4441e1bbbb1daa880ebcd",
     "lib/src/proofing/data/german_lexicon_data.dart": "beb4e809b577fc950e39ffb759b9435834d1f2763e7d00911816da21b8b5d3a1",
     "lib/src/proofing/data/german_standard_00.dart": "dfc3548af79c27f6d306ae91fc8711e6f5013295d4deaab6442f9fda964f54a4",
     "lib/src/proofing/data/german_standard_01.dart": "75216e458beeeade0c3b647fda64064f3a2468887f716d8ee00947b1e1a319f1",
@@ -112,7 +112,7 @@
     "lib/src/proofing/data/german_standard_13.dart": "6cff772cc350ac0e892be55837ec3b1d19543e410fe13ddf22047588eb6d4364",
     "lib/src/proofing/data/german_swiss_00.dart": "5719e81653cd5aea685be2359f92b64cb94e9dbbe4f999556394fe43867243a6"
   },
-  "logical_sha256": "02872650403fafb5c0d184bdab066b15d1347d7360d517cd8fe74b3f9e0bbd32",
+  "logical_sha256": "d4a742fffc3adbb84a2c384df5d4a9b9e1082bae4db4496e77c5335b9db82af7",
   "encoding": {
     "format": "base64 raw DEFLATE UTF-8 TSV; surface/read-id/lemma/stem/pattern/standard-mask/swiss-mask",
     "unresolved_reading": "read-id -1, five empty remaining fields; known unmodeled analyses veto corrections and first-party fallbacks",
@@ -120,27 +120,27 @@
     "hash": "UTF-16 code units: h=(h*31+unit)&255, h0=0",
     "mask_order": "Sorted distinct pattern suffixes; one bit per suffix, max 30 bits",
     "zlib_version": "1.2.11",
-    "max_bucket_rows": 901,
-    "max_bucket_utf8_bytes": 47541
+    "max_bucket_rows": 902,
+    "max_bucket_utf8_bytes": 47575
   },
   "generated_files": {
-    "lib/src/proofing/data/german_morphology_data.dart": "e3c240544fc2ddf9d82a143c69740292fdd64f59925e8ad17ca5f0af9d10bfac",
-    "lib/src/proofing/data/german_morphology_surfaces_00.dart": "763f84ec088d1d0fa14e737e0fde595974b3848687af37365d8004ee64ec130e",
-    "lib/src/proofing/data/german_morphology_surfaces_01.dart": "0ed8478c16fb97bee519fa353a9f30f5e8785fa66d0059315d7e5c56bd66f755",
-    "lib/src/proofing/data/german_morphology_surfaces_02.dart": "e412fa1cac2601ad0753026b8076d683160bbf34d88c71ad9a20d355fb4d1a81",
-    "lib/src/proofing/data/german_morphology_surfaces_03.dart": "96a06fed5c21d5d178bd5eb2907a9f795178042ee863a2d6cea8141f563d9e50",
-    "lib/src/proofing/data/german_morphology_surfaces_04.dart": "f23e1d143efa6141ad7f406e27733b4065c03bc9932e8bbdb5ca67877a62a0d7",
-    "lib/src/proofing/data/german_morphology_surfaces_05.dart": "bbcf5e3581403407c17060685e28948b1909ee1d03ae9e94abe9642511ee5f44",
-    "lib/src/proofing/data/german_morphology_surfaces_06.dart": "d51e69b614366b633bc376015621abcd0acb54029020ee45565b6da56ea66aec",
-    "lib/src/proofing/data/german_morphology_surfaces_07.dart": "6b71e1254c5ffa5f1ef841590c698d3d640af262a6abc7867d6d1b99ddacc254",
-    "lib/src/proofing/data/german_morphology_surfaces_08.dart": "7a5fd45c89cb92259220cdb92d1b8b0f7a45a02956ef1d70deb1ac4916ef8514",
-    "lib/src/proofing/data/german_morphology_surfaces_09.dart": "b08542f396fffc6fc9e8abebf77cb32d071c5987a1ec13c059900b4d2a43ad79",
-    "lib/src/proofing/data/german_morphology_surfaces_10.dart": "4b23a57ea556477a46c743c6563763506e4f7fc8bba25001b7f158d2f739446d",
-    "lib/src/proofing/data/german_morphology_surfaces_11.dart": "c6a3dbb0acd6beee4878b92ab0db504968cbd2d563439a067ab820713a872282",
-    "lib/src/proofing/data/german_morphology_surfaces_12.dart": "508f8c0321506872e84575fe217162f7b1df9b434ed65815e086a10c20fe93d6",
-    "lib/src/proofing/data/german_morphology_surfaces_13.dart": "0c5ed728706e544df32b5aa46164aec4a43b4d40ead0e1b1ca8f45ef05f0b240",
-    "lib/src/proofing/data/german_morphology_surfaces_14.dart": "4119dac2d487cb075c28537ce34fd4c4a72defa3af2f8895b3d6515cbb55963c",
-    "lib/src/proofing/data/german_morphology_surfaces_15.dart": "c039f0b778a059c7ebcd6758d14d3e27736a88ff03651559b81808adf09e3a85",
+    "lib/src/proofing/data/german_morphology_data.dart": "61490ac85c93299f0013a9d672a0b73890b52d1b4a359a314a60c89306fe2600",
+    "lib/src/proofing/data/german_morphology_surfaces_00.dart": "f5aa0f186ca63697c222724c0f5110e3219183aa5c95ee8909076bb6940cfbe7",
+    "lib/src/proofing/data/german_morphology_surfaces_01.dart": "1850efb5ea8a2493fe01cb0f24c2221c343fb14e0af8d84120e83a6a4c1a5e02",
+    "lib/src/proofing/data/german_morphology_surfaces_02.dart": "f7845f9835afdd0b79108139bf460ce31e0d9d1ecdd563cea6b0e9d0f6e08c94",
+    "lib/src/proofing/data/german_morphology_surfaces_03.dart": "711315bd94ec7293d98114a2ccca543c2e41dc52c016004066760f57842f969d",
+    "lib/src/proofing/data/german_morphology_surfaces_04.dart": "7edba1db064bdc78b6f1364800a323d3319932dcdb513b0423b8aacc59e38c63",
+    "lib/src/proofing/data/german_morphology_surfaces_05.dart": "ce7db36f9c80e7697ca31dec359ca1216ece4e6bb8baa548f9f615dfff0198f9",
+    "lib/src/proofing/data/german_morphology_surfaces_06.dart": "44395ed692c38c2d8f58c40da5e043af5d5ac9abf4e1ee291d231caad9956066",
+    "lib/src/proofing/data/german_morphology_surfaces_07.dart": "5905557b74da75f3ba62605bcb4f25f2d964d777f1a1e4e8c735ff160ed8a2d3",
+    "lib/src/proofing/data/german_morphology_surfaces_08.dart": "19ecd9aa098c6733f726ab97d8388349e158107ab0c3f005f07b71cb9f8f431b",
+    "lib/src/proofing/data/german_morphology_surfaces_09.dart": "0b141a25e52bc2f7bc894a1cd34740b0903f7c2a68c0d4b5ff87cf985f66fcf1",
+    "lib/src/proofing/data/german_morphology_surfaces_10.dart": "0711e5b3d8583ad414b2bc4c5152910cbba6655be29ee857754f1e1f18e6c809",
+    "lib/src/proofing/data/german_morphology_surfaces_11.dart": "a664e3de9b96b6d9a941acd67ebdcc690a352a3b08e546bf9e0d62fdf6b34230",
+    "lib/src/proofing/data/german_morphology_surfaces_12.dart": "5ecfac1d0b436f47d2f5b8e5064948a71b770ac5c974b783f2bc5744e91a1f65",
+    "lib/src/proofing/data/german_morphology_surfaces_13.dart": "a56c4497404309f814ef234ab2666b6aa48c963a76bab0422b2d85da19de05eb",
+    "lib/src/proofing/data/german_morphology_surfaces_14.dart": "c71b6162f2ce4eb57a30ac46e6f5ae695f783d2d437fda00f45c4752a2c75f5f",
+    "lib/src/proofing/data/german_morphology_surfaces_15.dart": "319d5f1e8733e83c7d9e1e715207c9e9a0d37e63e63d4188407ce45ace1cad78",
     "third_party/proofing/UNICODE_INFLECTION_LICENSE": "b2d3b5d59972767d52997d9f47e67cd30661bcfc3eeb6e3e1ada1ee06634be52",
     "third_party/proofing/UNICODE_INFLECTION_NOTICE": "6c3b259b688a278e42f70c8b1b99ac0729111bec980c487e4f3245cd08899e22"
   }

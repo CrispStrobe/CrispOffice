@@ -20,3 +20,5 @@ bekam bekamst bekamen bekommen bekamst blieb bliebst blieben bleibe bleibst blei
 
 # Ordinary noun and conjunction gaps found in the frozen contextual controls.
 Frage Gerät trotzdem
+Wissen
+Wissens
