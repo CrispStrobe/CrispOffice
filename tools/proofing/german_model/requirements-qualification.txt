@@ -1,0 +1,4 @@
+# Keep the native oracle identical to the original pinned evaluation.
+-r requirements.txt
+# Exact converter/census version; MatMulNBits API is pinned by ORT 1.23.2 above.
+onnx==1.19.1

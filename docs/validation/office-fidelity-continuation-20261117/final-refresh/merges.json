@@ -1,0 +1,85 @@
+[
+  {
+    "head": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+    "refs": [
+      "origin:refs/heads/main"
+    ],
+    "local_before": "ec80a13421260badf92ab31bc399aca801b4d2e0",
+    "exit_code": 0,
+    "stdout": "Auto-merging packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart\nAuto-merging packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart\nAuto-merging packages/quds_office_engine/test/odp_presentation_writer_test.dart\nAuto-merging packages/quds_office_engine/test/odt_document_writer_test.dart\nMerge made by the 'ort' strategy.\n packages/quds_office_engine/README.md              |  2 +-\n .../src/slide/serial/odp_presentation_writer.dart  | 60 ++++++++++++++++++++++\n .../lib/src/word/serial/odt_document_writer.dart   | 42 ++++++++++++++-\n .../test/odp_presentation_writer_test.dart         |  8 +++\n .../test/odt_document_writer_test.dart             | 37 +++++++++++++\n 5 files changed, 147 insertions(+), 2 deletions(-)\n",
+    "stderr": ""
+  },
+  {
+    "head": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+    "refs": [
+      "origin:refs/heads/feat/odp-transitions",
+      "origin:refs/pull/98/head"
+    ],
+    "local_before": "856ef723439e587afa39eea052c8be3d4fa18dfd",
+    "exit_code": 0,
+    "stdout": "Auto-merging packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart\nAuto-merging packages/quds_office_engine/test/odp_presentation_writer_test.dart\nMerge made by the 'ort' strategy.\n",
+    "stderr": ""
+  },
+  {
+    "head": "946942a1e30332892aaf19a068ca5a29470d682a",
+    "refs": [
+      "origin:refs/heads/feat/odt-footnotes",
+      "origin:refs/pull/100/head"
+    ],
+    "local_before": "c9c3ee658d85ac5e33c9808b1620a678d91ac6ac",
+    "exit_code": 0,
+    "stdout": "Auto-merging packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart\nAuto-merging packages/quds_office_engine/test/odt_document_writer_test.dart\nMerge made by the 'ort' strategy.\n",
+    "stderr": ""
+  },
+  {
+    "head": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+    "refs": [
+      "origin:refs/heads/docs/odp-transitions",
+      "origin:refs/pull/99/head"
+    ],
+    "local_before": "99ec8081d10ca2fd11616771ca1644cce7b0e806",
+    "exit_code": 0,
+    "stdout": "Merge made by the 'ort' strategy.\n",
+    "stderr": ""
+  },
+  {
+    "head": "f6c9be054b016192673ba82e608ae0ae987b5308",
+    "refs": [
+      "origin:refs/heads/vendor/odt-footnotes"
+    ],
+    "local_before": "3db55d67f9b14559fea54a3b8003c0da93f43ed2",
+    "exit_code": 0,
+    "stdout": "Auto-merging packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart\nAuto-merging packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart\nAuto-merging packages/quds_office_engine/test/odp_presentation_writer_test.dart\nAuto-merging packages/quds_office_engine/test/odt_document_writer_test.dart\nMerge made by the 'ort' strategy.\n",
+    "stderr": ""
+  },
+  {
+    "head": "6bd03365ba3b146586148658b0e03998b36bdc9d",
+    "refs": [
+      "origin:refs/heads/feat/german-gector-proofing"
+    ],
+    "local_before": "fd2afea1c4450245d886ff6b09121f9425da3428",
+    "exit_code": 0,
+    "stdout": "Merge made by the 'ort' strategy.\n .github/workflows/german-gector-qualification.yml  | 282 +++++++++++++\n docs/roadmaps/german-gector-proofing.md            | 198 ++++++++++\n tools/proofing/german_model/README.md              |  13 +\n tools/proofing/german_model/REFERENCE_FIXTURES.md  | 156 ++++++++\n tools/proofing/german_model/export_reference.py    | 434 +++++++++++++++++++++\n tools/proofing/german_model/quantize_int4.py       | 256 ++++++++++++\n .../german_model/requirements-qualification.txt    |   4 +\n tools/proofing/german_model/run_stage.py           | 100 +++++\n .../german_model/summarize_qualification.py        | 236 +++++++++++\n .../proofing/german_model/test_export_reference.py | 206 ++++++++++\n tools/proofing/german_model/test_qualification.py  |  86 ++++\n 11 files changed, 1971 insertions(+)\n create mode 100644 .github/workflows/german-gector-qualification.yml\n create mode 100644 docs/roadmaps/german-gector-proofing.md\n create mode 100644 tools/proofing/german_model/REFERENCE_FIXTURES.md\n create mode 100644 tools/proofing/german_model/export_reference.py\n create mode 100644 tools/proofing/german_model/quantize_int4.py\n create mode 100644 tools/proofing/german_model/requirements-qualification.txt\n create mode 100644 tools/proofing/german_model/run_stage.py\n create mode 100644 tools/proofing/german_model/summarize_qualification.py\n create mode 100644 tools/proofing/german_model/test_export_reference.py\n create mode 100644 tools/proofing/german_model/test_qualification.py\n",
+    "stderr": ""
+  },
+  {
+    "head": "d95701cffb7bd6ca9085d073c2297373932f374e",
+    "refs": [
+      "origin:refs/heads/codex/zotero-recovery-20261116"
+    ],
+    "local_before": "42bf5b02a45f0122a3f63dd5073ab5e114e30465",
+    "exit_code": 0,
+    "stdout": "Merge made by the 'ort' strategy.\n docs/validation/zotero-landing-20261117/README.md  |    20 +\n .../canonical-evidence.tar.xz                      |   Bin 0 -> 768560 bytes\n .../zotero-landing-20261117/canonical-full-run.md  |   183 +\n .../zotero-landing-20261117/canonical-index.json   |   371 +\n .../zotero-landing-20261117/canonical-receipt.json | 16582 +++++++++++++++++++\n .../independent-full-review.json                   |   530 +\n 6 files changed, 17686 insertions(+)\n create mode 100644 docs/validation/zotero-landing-20261117/canonical-evidence.tar.xz\n create mode 100644 docs/validation/zotero-landing-20261117/canonical-full-run.md\n create mode 100644 docs/validation/zotero-landing-20261117/canonical-index.json\n create mode 100644 docs/validation/zotero-landing-20261117/canonical-receipt.json\n create mode 100644 docs/validation/zotero-landing-20261117/independent-full-review.json\n",
+    "stderr": ""
+  },
+  {
+    "head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
+    "refs": [
+      "origin:refs/heads/codex/german-morphology-20261117"
+    ],
+    "local_before": "a7ac1f37acaf479dca115460c7f85f1e9cb7ea37",
+    "exit_code": 0,
+    "stdout": "Merge made by the 'ort' strategy.\n LICENSE                                            |   48 +\n .../continuation-checkpoint.json                   |   11 +\n .../incoming-resume.json                           |  863 ++++++\n .../lib/src/embed/word_proofing_dialog.dart        |    1 +\n packages/quds_office_engine/LICENSE                |   48 +\n .../lib/src/proofing/data/german_common_00.dart    |   16 +-\n .../src/proofing/data/german_morphology_data.dart  |  277 ++\n .../data/german_morphology_surfaces_00.dart        | 2958 +++++++++++++++++++\n .../data/german_morphology_surfaces_01.dart        | 2904 +++++++++++++++++++\n .../data/german_morphology_surfaces_02.dart        | 2854 +++++++++++++++++++\n .../data/german_morphology_surfaces_03.dart        | 2894 +++++++++++++++++++\n .../data/german_morphology_surfaces_04.dart        | 2977 ++++++++++++++++++++\n .../data/german_morphology_surfaces_05.dart        | 2926 +++++++++++++++++++\n .../data/german_morphology_surfaces_06.dart        | 2943 +++++++++++++++++++\n .../data/german_morphology_surfaces_07.dart        | 2928 +++++++++++++++++++\n .../data/german_morphology_surfaces_08.dart        | 2891 +++++++++++++++++++\n .../data/german_morphology_surfaces_09.dart        | 2917 +++++++++++++++++++\n .../data/german_morphology_surfaces_10.dart        | 2887 +++++++++++++++++++\n .../data/german_morphology_surfaces_11.dart        | 2907 +++++++++++++++++++\n .../data/german_morphology_surfaces_12.dart        | 2915 +++++++++++++++++++\n .../data/german_morphology_surfaces_13.dart        | 2945 +++++++++++++++++++\n .../data/german_morphology_surfaces_14.dart        | 2920 +++++++++++++++++++\n .../data/german_morphology_surfaces_15.dart        | 2948 +++++++++++++++++++\n .../lib/src/proofing/german_grammar.dart           |  361 ++-\n .../lib/src/proofing/german_morphology.dart        |  284 ++\n .../lib/src/proofing/german_writing_rules.dart     |   24 +-\n .../test/proofing/german_grammar_test.dart         |    7 +-\n .../proofing/german_morphology_grammar_test.dart   |  228 ++\n .../proofing/german_morphology_loading_test.dart   |  109 +\n .../test/proofing/german_spelling_test.dart        |   12 +\n .../proofing/UNICODE_INFLECTION_LICENSE            |   41 +\n .../third_party/proofing/UNICODE_INFLECTION_NOTICE |   44 +\n .../third_party/proofing/manifest.json             |   12 +-\n .../third_party/proofing/morphology_manifest.json  |  147 +\n .../tool/proofing/generate_german_morphology.py    |  381 +++\n .../tool/proofing/german_common_words.txt          |    3 +\n tools/proofing/german_morphology_review_cases.json |  805 ++++++\n tools/proofing/run_morphology_qualification.py     |    3 +-\n tools/proofing/validate_morphology_buckets.dart    |   50 +\n 39 files changed, 50384 insertions(+), 105 deletions(-)\n create mode 100644 docs/validation/german-morphology-20261117/continuation-checkpoint.json\n create mode 100644 docs/validation/german-morphology-20261117/incoming-resume.json\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_data.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_00.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_01.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_02.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_03.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_04.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_05.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_06.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_07.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_08.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_09.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_10.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_11.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_12.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_13.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_14.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/data/german_morphology_surfaces_15.dart\n create mode 100644 packages/quds_office_engine/lib/src/proofing/german_morphology.dart\n create mode 100644 packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart\n create mode 100644 packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart\n create mode 100644 packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE\n create mode 100644 packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_NOTICE\n create mode 100644 packages/quds_office_engine/third_party/proofing/morphology_manifest.json\n create mode 100644 packages/quds_office_engine/tool/proofing/generate_german_morphology.py\n create mode 100644 tools/proofing/german_morphology_review_cases.json\n create mode 100644 tools/proofing/validate_morphology_buckets.dart\n",
+    "stderr": ""
+  }
+]

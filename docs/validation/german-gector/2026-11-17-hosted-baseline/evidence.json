@@ -1,0 +1,819 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-hosted-baseline",
+  "record_id": "2026-11-17-hosted-baseline-before-runtime-optimization",
+  "job_correctness_and_frozen_nonregression_passed": true,
+  "application_qualified": false,
+  "shipping_backend_selected": false,
+  "workflow": {
+    "repository": "CrispStrobe/quds_office_suite",
+    "workflow": "German GECToR qualification",
+    "run_id": 44053903485,
+    "job_id": 133938202847,
+    "run_attempt": 1,
+    "event": "push",
+    "branch": "feat/german-gector-proofing",
+    "head_sha": "6bd03365ba3b146586148658b0e03998b36bdc9d",
+    "status": "completed",
+    "conclusion": "success",
+    "run_created_at_utc": "2026-11-17T09:15:26Z",
+    "run_updated_at_utc": "2026-11-17T09:48:49Z",
+    "status_checked_at_utc": "2026-11-17T09:56:27Z",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485",
+    "job_url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485/job/133938202847"
+  },
+  "artifacts": {
+    "evidence": {
+      "id": 14316019589,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485/artifacts/14316019589",
+      "downloaded_zip_sha256": "78804130ca5af6dac93c194f415f98e634d750fdd8601701676052a08ad473b8"
+    },
+    "candidate": {
+      "id": 14317990056,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/actions/runs/44053903485/artifacts/14317990056",
+      "model_sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "model_size_bytes": 158365857
+    },
+    "configured_retention_days": 30,
+    "retention_note": "The committed compact evidence persists independently of the hosted artifact retention period."
+  },
+  "source_identity": {
+    "quds_commit": "6bd03365ba3b146586148658b0e03998b36bdc9d",
+    "onnx_runtime_dart_declared_commit": "0b49ca47fa056e6fc122ffe0192a9abb05627622",
+    "onnx_runtime_dart_actual_commit": "0b49ca47fa056e6fc122ffe0192a9abb05627622",
+    "quds_file_sha256": {
+      ".github/workflows/german-gector-qualification.yml": "956d47bb38df1f09de210122af2de4e498c4fe8acde8d721df7fa52e6f5c7e54",
+      "tools/proofing/german_model/artifacts.json": "ffbdbaf01be47fe7b09b4e893460b1b0acbfb16e6b22a67571bd14884f617bb0",
+      "tools/proofing/german_model/cases.json": "ec3309ebf99a3b1be9bb065fc91cd2afce2e362ebaa81f2d64d39a231c6defb9",
+      "tools/proofing/german_model/requirements.txt": "3a2f382b748e6d01a2890b164ee52751bbc6f5b43e820081f982694342df5b61",
+      "tools/proofing/german_model/requirements-qualification.txt": "12f94e12c2629a7374e261f353427598e7f9371424d1951a002a7c726764ed73",
+      "tools/proofing/german_model/export_reference.py": "72db08102013c6999e6664299beaf40c6339e73d80ea1f4a1709db06a1772f7c",
+      "tools/proofing/german_model/quantize_int4.py": "e2739095ab37e66bd0cac8b734eadec48b1fc1bc39bf86bd81fce6113cbbb0e8",
+      "tools/proofing/german_model/run_stage.py": "5b91badb10edeaa8823b73b4cf3e81df5108be18a04fee21063f4501773c9373",
+      "tools/proofing/german_model/summarize_qualification.py": "c8e978f38d76119198e4992e1f401a0bacdc485e43d1de9d6d2906a311612a22"
+    },
+    "dart_artifact_identity": {
+      "pubspec.yaml": {
+        "sha256": "f18af5414027e95bf3cfca2df23812242eed832719e22a1cc7d9f08715fe80df",
+        "size_bytes": 490
+      },
+      "pubspec.lock": {
+        "sha256": "c0509a7d97a68e018f71d86a5759e09aaff4b6fd7038d69edca9c16bc71dc87f",
+        "size_bytes": 12316
+      },
+      "tool/gector_benchmark.dart": {
+        "sha256": "16bbc53313e60ecfc4288208a718bf03b7838b007922680cbdafedbc11f2751a",
+        "size_bytes": 26744
+      },
+      "build/gector_benchmark": {
+        "sha256": "a018a172931c2c5cb22743dbde1da1032f05db54cb8461e0b81bd56640d66dff",
+        "size_bytes": 8192336
+      }
+    },
+    "evaluator_sha256": "4ef9f05add47c308155ed107051e2aea686a31ecac0918c6de03b6f6ea48eb35",
+    "source_evidence_sha256": {
+      "reports/qualification-summary.json": "21aeb18229e8d8318cb26a89807e374e69ca9d65416ac2f9d6b7b15f324e2ffa",
+      "reports/provenance.json": "c15dfc14870640171952b8ec255dd2722ceabc05bdfd3b20d4903633fb7d0adb",
+      "reports/dart-f32.json": "aa62269dba85a58a42a2a78e7a07a1a093a6ef9a2271823b40124ba0b51d7d27",
+      "reports/dart-int4.json": "64e800d40ccb4406c1217cc8e13e50efd75494cd284497b8ce90744ffe22c526",
+      "reports/dart-artifact-identity.json": "4948cdd8e0180a647f6a3e38608487b613289eef062af3000a1f4bbfbd87df81",
+      "reports/dart-pubspec.lock": "c0509a7d97a68e018f71d86a5759e09aaff4b6fd7038d69edca9c16bc71dc87f",
+      "reports/python-tests.log": "0a9a1859c3ccb35031f625961a7404f063aff11a052fb0c3731ab3263f29447b",
+      "reference-f32/reference.json": "560a7ca9284e798fc39bc3a2998440c5e99c9ced81c209cbe1549a5b2ab186b2",
+      "reference-f32/onnx-census.json": "71893dc62e7a6c45093cf2796608d3b7417f14fa40ceb2b136a7f38a8c791839",
+      "reference-int4/reference.json": "80c99ee00081994f9bfbb92d9cb640be0bb45d15e10c2033fce51cd4e58f2961",
+      "candidate/candidate.json": "ab10f7f97dcf8f2f060bc20d281fad2f19ff61f7500e3ab1a7ee6bd026d9572c",
+      "reports/dart-compile.status.json": "2d83399cca41e7bdda03c11bafa0b4c0fff65a2a3d0b30dc22d1661149f5bafc",
+      "reports/dart-dependencies.status.json": "0022ec719743d3b9e72f5f90efa754c9336da2706fea35a7968a755bbdb3ba4a",
+      "reports/dart-f32.status.json": "d84f2126004c05ca114a01474c442b497c2a0a5deddc06dd9af45b21e55313d1",
+      "reports/dart-int4.status.json": "86b21fc8c3605d87b017158fec111419a46298b0dc639447efefa1d602161db8",
+      "reports/python-dependencies.status.json": "ef8590f42c02c8fc49c9a9dbbc9a8947cbb9b89c6d70b7ef7add7ed85107ae80",
+      "reports/python-tests.status.json": "39b56a71c382894dfc4251a3f6becd3c286f7b99d535de1a642875dce704f1aa",
+      "reports/quantize-int4.status.json": "7baf758c034a0129609592efae145e04b3a9db7209102e0bd1b9de9774c4f8ef",
+      "reports/reference-f32.status.json": "8fee3d3b5c5e5914321e4c15bb8d49d0bb0ed36fd58df6de260f5f21f34cd7b4",
+      "reports/reference-int4.status.json": "bd93b45d0b0cf175e99a3a176ad704e5ce431baca92a27bbf87de49529b253dd"
+    },
+    "conditional_backend_roadmaps": {
+      "CrispEmbed": "85e973fba7c1be3f8bf028bb43de82ce0537174f",
+      "fastembed-rs": "99d21fbc830e3dbaaafff3d60a0864097b1b795b",
+      "native_backends_executed": false
+    }
+  },
+  "host": {
+    "runner_os": "Linux",
+    "runner_arch": "X64",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpus": 4,
+    "cores_per_socket": 2,
+    "threads_per_core": 2,
+    "sockets": 1,
+    "online_cpu_list": "0-3",
+    "hypervisor": "Microsoft",
+    "memory_total_bytes": 16760348672,
+    "selected_cpu_flags": {
+      "sse2": true,
+      "fma": true,
+      "avx2": true,
+      "avx512f": true,
+      "avx512_bf16": true
+    },
+    "thread_settings": {
+      "ort_intra": 2,
+      "ort_inter": 1,
+      "dart_workers": 2,
+      "note": "Dart uses two GEMM workers plus its caller; this is not an identical ORT thread schedule."
+    },
+    "timing_controls": {
+      "warmups": 1,
+      "repeats": 3,
+      "overall_budget_seconds": 2100,
+      "maximum_dart_arm_seconds": 720
+    },
+    "cpu_affinity": "No explicit affinity constraint in this workflow; do not import the separate local two-CPU controls.",
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "python_packages": {
+      "onnxruntime": "1.23.2",
+      "onnx": "1.19.1",
+      "tokenizers": "0.22.1",
+      "huggingface-hub": "0.36.0",
+      "numpy": "2.3.5"
+    },
+    "dart": "Dart SDK version: 3.14.0 (stable) (Wed Nov 4 16:28:39 2026 -0800) on \"linux_x64\""
+  },
+  "scope": {
+    "frozen_case_count": 30,
+    "error_cases": 18,
+    "clean_controls": 12,
+    "saved_pass_count_per_model": 40,
+    "first_pass_wordpiece_min": 5,
+    "first_pass_wordpiece_max": 12,
+    "measured_samples_per_arm": 90,
+    "warmup_iterations_per_case": 1,
+    "measured_iterations_per_case": 3,
+    "dart_complete_correction_measured": false,
+    "native_complete_reference_correction_measured": true,
+    "rust_backend_measured": false,
+    "crispembed_ggml_backend_measured": false,
+    "q4_k_measured": false,
+    "local_timings_included": false,
+    "optimization_applied": false
+  },
+  "model": {
+    "repository": "proofbird/gector-bert-de",
+    "upstream_tag": "v2.1.0",
+    "revision": "8e3b50beef7d775cedb7b876009e88bcf2e8d6af",
+    "input_sha256": {
+      "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "NOTICE": "52b20b1d66a7eeb6765f1829f08daddca2c36cd2e6c995439a4860e8b71e29e3",
+      "README.md": "e2e5120e6c25299f962120463936427056fd9b468c714a1bf785f555edabf00f",
+      "quickstart.py": "f5ce68cc466b5891fc3f13280dc9db3a55bf9016505c2b2d84eb1d2cb07c2b40",
+      "gector-meta.json": "acb7edf298f6ac4ba8b83c628ad512404eadb6c43120c1878d4f3356ebd8b5a5",
+      "config.json": "c870008059c0f354e1ebc30c816ae5f55fa14a77ffa7da5271310ccf5e24e170",
+      "gector-guards.json": "57c4824e541d323e9cff4c543bd80cfd93c333d3be64cce83297bf5b8a44627a",
+      "language-rules.json": "901b350a9c751fc95d51eb5ee3ba7b7f0d11b61c6cc17e67bce2996e17bc5815",
+      "tokenizer_config.json": "4e5738ad97f034b944ce8b7b8c3165f7a6333b524b7b77044f7e9e9b963f4dea",
+      "model.onnx": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "tokenizer.json": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "vocab.txt": "bf186f7fb9cb667d811c08b45ce64d1e8e262277bb053f05d1aef3e9f13039a3",
+      "verb-form-vocab.txt": "7582e7c2f480d7e49ac18677195cfff4ad1d0c350b0448f1271aacf290205b68"
+    },
+    "decoder": {
+      "keep_label_id": 0,
+      "incorrect_label_id": 1,
+      "keep_confidence": 0.0,
+      "min_error_prob": 0.0
+    },
+    "f32": {
+      "file": "model.onnx",
+      "variant": "float32",
+      "sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "size_bytes": 452972247,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+    },
+    "int4": {
+      "file": "model.int4.onnx",
+      "variant": "matmulnbits-int4",
+      "sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "size_bytes": 158365857,
+      "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "candidate_manifest_sha256": "ab10f7f97dcf8f2f060bc20d281fad2f19ff61f7500e3ab1a7ee6bd026d9572c"
+    },
+    "quantization_recipe": {
+      "format": "ONNX MatMulNBits",
+      "algorithm": "ORT DEFAULT round-to-nearest",
+      "bits": 4,
+      "block_size": 128,
+      "symmetric": true,
+      "accuracy_level": 0,
+      "quantized_ops": [
+        "MatMul"
+      ],
+      "excluded_heads": [
+        {
+          "output": "logits_labels",
+          "node": "/m/labels_head/MatMul",
+          "op_type": "MatMul",
+          "weight": "onnx::MatMul_1682",
+          "shape": [
+            768,
+            5000
+          ],
+          "dtype": "FLOAT",
+          "tensor_proto_sha256": "1a9af2bc338483bc606686818dc64e6e5ce169df8424047d79a72db51ef9f301"
+        },
+        {
+          "output": "logits_d",
+          "node": "/m/detect_head/MatMul",
+          "op_type": "MatMul",
+          "weight": "onnx::MatMul_1683",
+          "shape": [
+            768,
+            2
+          ],
+          "dtype": "FLOAT",
+          "tensor_proto_sha256": "8cf60803d117a0dd49a7b19c8cb5d26b1d17014aa4db70bdda5484241fcb0db8"
+        }
+      ],
+      "non_matmul_policy": "Original precision; embeddings, bias and norms unchanged"
+    },
+    "quantized_encoder_matmul_count": 72,
+    "converter_versions": {
+      "onnx": "1.19.1",
+      "onnxruntime": "1.23.2",
+      "numpy": "2.3.5"
+    },
+    "format_note": "ONNX MatMulNBits INT4 is not ggml/GGUF Q4_K."
+  },
+  "measurements": {
+    "native_ort_f32": {
+      "inference_model": {
+        "variant": "float32",
+        "sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+        "size_bytes": 452972247,
+        "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+      },
+      "setup_seconds": 0.669123605999971,
+      "peak_process_rss_bytes": 655937536,
+      "setup_peak_process_rss_bytes": 655937536,
+      "ort_session": {
+        "providers": [
+          "CPUExecutionProvider"
+        ],
+        "intra_op_num_threads": 2,
+        "inter_op_num_threads": 1,
+        "execution_mode": "ExecutionMode.ORT_SEQUENTIAL",
+        "graph_optimization_level": "GraphOptimizationLevel.ORT_ENABLE_ALL",
+        "thread_count_note": "Zero requests ONNX Runtime's automatic thread selection."
+      },
+      "case_count": 30,
+      "pass_count": 40,
+      "first_pass_inference": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.013730180999999675,
+        "aggregate_sample_p95_seconds": 0.016431087000000844,
+        "maximum_sample_seconds": 0.018261833999986266,
+        "worst_case": {
+          "id": "clean-date",
+          "token_count": 11,
+          "median_seconds": 0.016682860000003075,
+          "p95_seconds": 0.018261833999986266,
+          "maximum_seconds": 0.018261833999986266
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "complete_reference_correction": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.015107376500026248,
+        "aggregate_sample_p95_seconds": 0.03144787299999052,
+        "maximum_sample_seconds": 0.05027899800001023,
+        "worst_case": {
+          "id": "dass-conjunction",
+          "token_count": 8,
+          "median_seconds": 0.03144787299999052,
+          "p95_seconds": 0.05027899800001023,
+          "maximum_seconds": 0.05027899800001023
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      }
+    },
+    "native_ort_int4": {
+      "inference_model": {
+        "variant": "matmulnbits-int4",
+        "sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+        "size_bytes": 158365857,
+        "source_model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464"
+      },
+      "setup_seconds": 0.2724423989999991,
+      "peak_process_rss_bytes": 358764544,
+      "setup_peak_process_rss_bytes": 358764544,
+      "ort_session": {
+        "providers": [
+          "CPUExecutionProvider"
+        ],
+        "intra_op_num_threads": 2,
+        "inter_op_num_threads": 1,
+        "execution_mode": "ExecutionMode.ORT_SEQUENTIAL",
+        "graph_optimization_level": "GraphOptimizationLevel.ORT_ENABLE_ALL",
+        "thread_count_note": "Zero requests ONNX Runtime's automatic thread selection."
+      },
+      "case_count": 30,
+      "pass_count": 40,
+      "first_pass_inference": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.016209322000008797,
+        "aggregate_sample_p95_seconds": 0.020035407000023042,
+        "maximum_sample_seconds": 0.020650860999978704,
+        "worst_case": {
+          "id": "das-relative",
+          "token_count": 12,
+          "median_seconds": 0.020154875000002903,
+          "p95_seconds": 0.020650860999978704,
+          "maximum_seconds": 0.020650860999978704
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "complete_reference_correction": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.018257109500012803,
+        "aggregate_sample_p95_seconds": 0.03653625199996213,
+        "maximum_sample_seconds": 0.04089446699998689,
+        "worst_case": {
+          "id": "das-relative",
+          "token_count": 12,
+          "median_seconds": 0.04086724699999422,
+          "p95_seconds": 0.04089446699998689,
+          "maximum_seconds": 0.04089446699998689
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      }
+    },
+    "dart_f32": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "stage": "complete",
+      "error": null,
+      "model_variant": "float32",
+      "graph_load_seconds": 0.837562,
+      "pool_setup_seconds": 0.354969,
+      "cold_first_inference_seconds": 0.207612,
+      "inference_peak_rss_bytes": 1713364992,
+      "checkpoint_peak_rss_bytes": 1713364992,
+      "post_validation_peak_rss_bytes": 1713364992,
+      "rss_before_load_bytes": 22323200,
+      "rss_after_load_bytes": 1020534784,
+      "rss_after_pool_bytes": 1362735104,
+      "expected_cases": 30,
+      "expected_passes": 40,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "thread_scope": "workers controls the Dart GEMM isolate pool, not total process threads. Operators without pool support stay on the caller isolate, including MatMulNBits; it is not equivalent to ORT intra-op thread scheduling.",
+      "inference_timing": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.225419,
+        "aggregate_sample_p95_seconds": 0.286384,
+        "maximum_sample_seconds": 0.310756,
+        "worst_case": {
+          "id": "clean-subclause",
+          "token_count": 12,
+          "median_seconds": 0.275601,
+          "p95_seconds": 0.310756,
+          "maximum_seconds": 0.310756
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "top_profile_operators": [
+        {
+          "op": "MatMul",
+          "calls": 98,
+          "seconds": 0.199042
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.015658
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.006514
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.003228
+        },
+        {
+          "op": "Mul",
+          "calls": 28,
+          "seconds": 0.000894
+        },
+        {
+          "op": "Transpose",
+          "calls": 48,
+          "seconds": 0.000874
+        }
+      ],
+      "first_tokenizer_failures": [],
+      "first_runtime_failures": []
+    },
+    "dart_int4": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "stage": "complete",
+      "error": null,
+      "model_variant": "matmulnbits-int4",
+      "graph_load_seconds": 0.308415,
+      "pool_setup_seconds": 0.020303,
+      "cold_first_inference_seconds": 0.765172,
+      "inference_peak_rss_bytes": 499945472,
+      "checkpoint_peak_rss_bytes": 499945472,
+      "post_validation_peak_rss_bytes": 499945472,
+      "rss_before_load_bytes": 22847488,
+      "rss_after_load_bytes": 449896448,
+      "rss_after_pool_bytes": 358309888,
+      "expected_cases": 30,
+      "expected_passes": 40,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "thread_scope": "workers controls the Dart GEMM isolate pool, not total process threads. Operators without pool support stay on the caller isolate, including MatMulNBits; it is not equivalent to ORT intra-op thread scheduling.",
+      "inference_timing": {
+        "cases": 30,
+        "samples": 90,
+        "token_count_min": 5,
+        "token_count_max": 12,
+        "aggregate_sample_median_seconds": 0.7672555,
+        "aggregate_sample_p95_seconds": 0.835173,
+        "maximum_sample_seconds": 0.862381,
+        "worst_case": {
+          "id": "clean-three-das",
+          "token_count": 11,
+          "median_seconds": 0.835173,
+          "p95_seconds": 0.862381,
+          "maximum_seconds": 0.862381
+        },
+        "aggregation_note": "Sample statistics combine the recorded sentence lengths; inspect per-case rows too."
+      },
+      "top_profile_operators": [
+        {
+          "op": "MatMulNBits",
+          "calls": 72,
+          "seconds": 0.740269
+        },
+        {
+          "op": "MatMul",
+          "calls": 26,
+          "seconds": 0.010793
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.008817
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.006877
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.002507
+        },
+        {
+          "op": "Transpose",
+          "calls": 48,
+          "seconds": 0.000655
+        }
+      ],
+      "first_tokenizer_failures": [],
+      "first_runtime_failures": []
+    },
+    "candidate_artifact": {
+      "status": "passed",
+      "output": {
+        "file": "model.int4.onnx",
+        "sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+        "size_bytes": 158365857
+      },
+      "quantized_node_count": 72,
+      "elapsed_seconds": 2.624110081000026,
+      "peak_process_rss_bytes": 1009348608,
+      "error": null
+    },
+    "stage_resources": {
+      "dart-compile": {
+        "status": "passed",
+        "elapsed_seconds": 3.3729439859999957,
+        "child_peak_rss_bytes": 172101632,
+        "error": null
+      },
+      "dart-dependencies": {
+        "status": "passed",
+        "elapsed_seconds": 1.3674333339999976,
+        "child_peak_rss_bytes": 126259200,
+        "error": null
+      },
+      "dart-f32": {
+        "status": "passed",
+        "elapsed_seconds": 42.56506864800002,
+        "child_peak_rss_bytes": 1713364992,
+        "error": null
+      },
+      "dart-int4": {
+        "status": "passed",
+        "elapsed_seconds": 127.59138282999999,
+        "child_peak_rss_bytes": 499945472,
+        "error": null
+      },
+      "python-dependencies": {
+        "status": "passed",
+        "elapsed_seconds": 15.100240056000018,
+        "child_peak_rss_bytes": 128696320,
+        "error": null
+      },
+      "python-tests": {
+        "status": "passed",
+        "elapsed_seconds": 1.3674258859999782,
+        "child_peak_rss_bytes": 147415040,
+        "error": null
+      },
+      "quantize-int4": {
+        "status": "passed",
+        "elapsed_seconds": 2.87126654299999,
+        "child_peak_rss_bytes": 1009348608,
+        "error": null
+      },
+      "reference-f32": {
+        "status": "passed",
+        "elapsed_seconds": 12.974748328999965,
+        "child_peak_rss_bytes": 1496141824,
+        "error": null
+      },
+      "reference-int4": {
+        "status": "passed",
+        "elapsed_seconds": 6.428545751999991,
+        "child_peak_rss_bytes": 358764544,
+        "error": null
+      }
+    }
+  },
+  "same_model_dart_ort_parity": {
+    "f32": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "model_sha256": "6d7b43b4bd95c7a00c02c8babc7569d28558df894afe4874d96c202e6ab9a464",
+      "tokenizer_sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "fixture_sha256": "560a7ca9284e798fc39bc3a2998440c5e99c9ced81c209cbe1549a5b2ab186b2",
+      "raw_tag_mismatches": 0,
+      "thresholded_tag_mismatches": 0,
+      "max_label_probability_error": 1.2785544040161412e-06,
+      "max_incorrect_probability_error": 6.926992944800148e-07,
+      "heads": {
+        "logits_labels": {
+          "max_absolute_error": 4.00543212890625e-05,
+          "minimum_cosine": 0.9999999999996759,
+          "all_passed": true
+        },
+        "logits_d": {
+          "max_absolute_error": 1.0967254638671875e-05,
+          "minimum_cosine": 0.9999999999996585,
+          "all_passed": true
+        }
+      },
+      "numeric_thresholds": {
+        "minimum_cosine": 0.999999,
+        "absolute_floor": 0.001,
+        "relative_to_max_magnitude": 0.00025,
+        "selected_probability_absolute": 0.0001
+      }
+    },
+    "int4": {
+      "passed": true,
+      "complete": true,
+      "runtime_passed": true,
+      "tokenizer_passed": true,
+      "cases_timed": 30,
+      "passes_validated": 40,
+      "model_sha256": "6c92deb88469e2fce2ddded5159014200d8681a7853722714224539a48285d70",
+      "tokenizer_sha256": "45253db94c657c7b89880de2c8872e10cd0561577e9393e1f5f4df27b0165087",
+      "fixture_sha256": "80c99ee00081994f9bfbb92d9cb640be0bb45d15e10c2033fce51cd4e58f2961",
+      "raw_tag_mismatches": 0,
+      "thresholded_tag_mismatches": 0,
+      "max_label_probability_error": 2.639683996052966e-06,
+      "max_incorrect_probability_error": 2.554306205881929e-06,
+      "heads": {
+        "logits_labels": {
+          "max_absolute_error": 2.86102294921875e-05,
+          "minimum_cosine": 0.9999999999996388,
+          "all_passed": true
+        },
+        "logits_d": {
+          "max_absolute_error": 1.33514404296875e-05,
+          "minimum_cosine": 0.9999999999994571,
+          "all_passed": true
+        }
+      },
+      "numeric_thresholds": {
+        "minimum_cosine": 0.999999,
+        "absolute_floor": 0.001,
+        "relative_to_max_magnitude": 0.00025,
+        "selected_probability_absolute": 0.0001
+      }
+    }
+  },
+  "quantization_task_comparison": {
+    "complete": true,
+    "case_count": 30,
+    "baseline_error_fixes": 9,
+    "candidate_error_fixes": 9,
+    "baseline_changed_clean_controls": 1,
+    "candidate_changed_clean_controls": 1,
+    "lost_baseline_fixes": [],
+    "new_or_changed_false_edits_on_clean": [],
+    "differences": [],
+    "frozen_probe_nonregression_passed": true,
+    "error_cases": 18,
+    "clean_controls": 12,
+    "all_40_cross_model_pass_inputs_and_raw_and_thresholded_label_ids_equal": true,
+    "retained_false_edit": {
+      "id": "clean-swiss-name",
+      "locale": "de-CH",
+      "input": "Grüezi, ich heisse André.",
+      "output_both_models": "Grüezi, ich heiße André."
+    }
+  },
+  "memory_interpretation": {
+    "native_f32_before_optional_census_peak_bytes": 655937536,
+    "native_f32_entire_stage_child_peak_bytes": 1496141824,
+    "native_f32_difference": "The exporter writes reference.json before the optional ONNX census. The later census loads the graph/protobuf and raises the stage peak; the stage peak is not the reference inference-phase figure.",
+    "native_int4_optional_census_requested": false,
+    "rss_scope": "Whole process including runtime, weights and allocations; not tensor-weight storage alone.",
+    "dart_scope": "inference_peak_rss_bytes is captured before profile/reference-output validation; post-validation peaks are preserved separately.",
+    "load_scope": "Hash verification warms filesystem caches before graph loading; load measurements are not cold disk I/O."
+  },
+  "provisional_product_budget_observations": {
+    "complete_checker_p95_seconds": 0.5,
+    "peak_process_rss_budget_bytes": 805306368,
+    "preferred_model_pack_bytes": 167772160,
+    "dart_f32_short_forward_p95_below_500ms": true,
+    "dart_f32_peak_memory_budget_passed": false,
+    "dart_int4_short_forward_p95_below_500ms": false,
+    "dart_int4_peak_memory_budget_passed_on_this_host": true,
+    "int4_artifact_pack_size_budget_passed": true,
+    "complete_dart_checker_latency_qualified": false
+  },
+  "lightweight_tests": {
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "test_runner_elapsed_seconds": 0.849,
+    "includes_real_tiny_onnx_conversion_control": true,
+    "note": "These are hosted results, distinct from the separately recorded local test duration."
+  },
+  "documentation_audit": {
+    "passed": true,
+    "raw_tensor_files_hashed": 160,
+    "raw_tensor_bytes_hashed": 12324928,
+    "quds_source_file_hashes_checked_against_pinned_git": 9,
+    "dart_benchmark_and_pubspec_hashes_checked_against_pinned_git": true,
+    "archived_dart_dependency_lock_hash_checked": true,
+    "case_file_hash_and_order_checked_against_pinned_git": true,
+    "model_fixture_candidate_source_links_checked": true,
+    "all_aggregate_medians_and_p95_recomputed_from_samples": true,
+    "no_new_inference_or_model_loading_performed": true
+  },
+  "licenses": [
+    {
+      "component": "Quds evaluation code",
+      "license": "MIT",
+      "source": "https://github.com/CrispStrobe/quds_office_suite/blob/6bd03365ba3b146586148658b0e03998b36bdc9d/LICENSE"
+    },
+    {
+      "component": "onnx_runtime_dart",
+      "license": "MIT",
+      "source": "https://github.com/CrispStrobe/onnx_runtime_dart/blob/0b49ca47fa056e6fc122ffe0192a9abb05627622/LICENSE"
+    },
+    {
+      "component": "Proofbird frozen model/reference bundle",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/proofbird/gector-bert-de/blob/8e3b50beef7d775cedb7b876009e88bcf2e8d6af/LICENSE",
+      "notice": "https://huggingface.co/proofbird/gector-bert-de/blob/8e3b50beef7d775cedb7b876009e88bcf2e8d6af/NOTICE"
+    }
+  ],
+  "limits": [
+    "Successful correctness/nonregression CI is not a product latency, memory or accuracy approval.",
+    "The frozen panel is small and synthetic; 9/18 exact fixes and 1/12 changed clean controls do not estimate population accuracy.",
+    "The de-CH heisse-to-heiße false edit remains in both models.",
+    "Reference corrections omit application guards and spelling checks.",
+    "Dart times saved first-pass forwards, not a complete independently implemented correction loop.",
+    "First-pass lengths are only 5 to 12 wordpieces, not the planned 64/128/256-token coverage.",
+    "Aggregate medians/p95 combine 90 samples across different short sentence lengths; each per-case p95 is the maximum of only three measurements.",
+    "Hosted and local CPU results are separate experiments and must not be pooled.",
+    "No Rust, ggml, Q4_K, mobile, browser or editor integration was measured."
+  ],
+  "followup_policy": "Preserve this baseline and its source identities. Store every runtime optimization and longer-input/complete-checker experiment as separate evidence; do not replace the original samples.",
+  "diagnostic_profiles": {
+    "f32": {
+      "id": "verb-du",
+      "pass": 1,
+      "wall_seconds": 0.228753,
+      "operator_total_seconds": 0.227276,
+      "top_operators": [
+        {
+          "op": "MatMul",
+          "calls": 98,
+          "seconds": 0.199042
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.015658
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.006514
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.003228
+        },
+        {
+          "op": "Mul",
+          "calls": 28,
+          "seconds": 0.000894
+        },
+        {
+          "op": "Transpose",
+          "calls": 48,
+          "seconds": 0.000874
+        }
+      ],
+      "separate_from_timing_samples": true
+    },
+    "int4": {
+      "id": "verb-du",
+      "pass": 1,
+      "wall_seconds": 0.773086,
+      "operator_total_seconds": 0.771451,
+      "top_operators": [
+        {
+          "op": "MatMulNBits",
+          "calls": 72,
+          "seconds": 0.740269
+        },
+        {
+          "op": "MatMul",
+          "calls": 26,
+          "seconds": 0.010793
+        },
+        {
+          "op": "Add",
+          "calls": 113,
+          "seconds": 0.008817
+        },
+        {
+          "op": "_FusedGelu",
+          "calls": 12,
+          "seconds": 0.006877
+        },
+        {
+          "op": "LayerNormalization",
+          "calls": 25,
+          "seconds": 0.002507
+        },
+        {
+          "op": "Transpose",
+          "calls": 48,
+          "seconds": 0.000655
+        }
+      ],
+      "separate_from_timing_samples": true
+    }
+  }
+}

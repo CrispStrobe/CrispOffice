@@ -1,0 +1,24 @@
+{
+  "initial_references": 207,
+  "refreshed_references": 217,
+  "refreshed_distinct_commits": 147,
+  "union_ref_revision_pairs": 220,
+  "union_distinct_commits": 150,
+  "all_observed_heads_are_ancestors": true,
+  "merge_conflicts": [],
+  "remote_integration_parents": [
+    "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+    "0eb60d0fc706a4da54df07ae86df029c1caac074",
+    "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+    "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+    "be465bfba548006cc5fd5c3798cd166cdbcc5c63",
+    "d52f0786916e69a1673705abe5158769be2c92b6"
+  ],
+  "decisions": [
+    "Actual ort merges retain the first continuation checkpoint and all captured original/vendor histories.",
+    "Retain incoming flat bullet and decimal list grouping through the existing paragraph writer.",
+    "Remove redundant loext:num-list-format and its unused namespace; retain core decimal format and suffix. Independent strict ODF schema and unchanged LibreOffice rendering confirm the correction.",
+    "Keep paragraph units/direction, header/footer style contexts/shared media, merged table topology, blank grid normalization and covered-story extraction suppression."
+  ],
+  "github_actions_queried_or_awaited": false
+}
