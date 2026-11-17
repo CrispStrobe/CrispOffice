@@ -1,8 +1,6 @@
 # German grammar proofing: scoped implementation roadmap
 
-Status: optional verified de-DE provider and manual/F7 integration implemented;
-CrispEmbed F32 and mixed Q4_K bounded qualification retained; broader quality,
-target-device performance and native distribution approval remain open.
+Status: optional de-DE manual provider, native F32/mixed Q4_K qualification and bounded complete-check AOT measurement implemented; broader quality, device and distribution gates remain open.
 Date: 2026-11-17.
 Coordinated branch: `feat/german-gector-proofing`.
 Integrated continuation: `codex/german-morphology-20261117`, PR #105.
@@ -93,8 +91,12 @@ Swiss controls are explicitly unsupported. This small synthetic panel does not
 establish general German accuracy. de-AT/de-CH, representative held-out quality,
 benefit beyond deterministic rules, intended-device responsiveness and the
 exact distribution/license closure remain open. Inputs beyond the model's
-512-token context fail explicitly; long-paragraph segmentation is not yet
-implemented.
+512-token context fail explicitly in the original single-sequence mode.
+The [long-input continuation](../validation/german-gector/2026-11-17-long-input/README.md)
+adds opt-in bounded sentence segmentation for the manual provider, preserving
+whole-request failure reporting and original UTF-16 offsets. Its conservative
+boundary policy, native measurements and remaining quality limits are recorded
+separately from the frozen single-sequence results.
 
 The continuation also supplies a source/dependency/SDK-bound AOT builder and an
 [offline local development pack](../../tools/proofing/german_model/NATIVE_PACK.md).
@@ -179,7 +181,7 @@ before mobile/browser rollout, not after viewing results to make a run pass.
   unpublished Proofbird built-ins.
 - [x] Expose tested de-DE support first. Explicitly return unsupported for
   de-AT/de-CH; their locale policy and quality qualification remain future work.
-- [ ] Add qualified de-AT/de-CH policies and controls before advertising those locales.
+- [ ] Qualify de-AT/de-CH policies before advertising those locales.
 - [x] Construct results around the original request object; forRequest receives
   request-relative offsets and adds startOffset exactly once.
 - [x] Reuse protected ranges, personal-vocabulary and duplicate/conflict
@@ -352,7 +354,7 @@ replay independently matches all 30 original cases and 40 passes. These are
 different checks: unguarded replay parity is not guarded product quality.
 
 The retained JIT run has a 93.618 ms warm p95 up to 64 WordPieces and an
-819,101,696-byte process peak, exceeding the 768 MiB memory budget. The fresh
+819,101,696-byte process peak, exceeding the 768 MiB memory budget. The morphology continuation
 compiled-provider run has a 58.877 ms pooled warm p95 through 64 WordPieces and
 a 404,336,640-byte (385.61 MiB) process peak, passing those provisional budgets
 on its Linux host. Its 256-token structural probe has an 803.379 ms p95. Keep
@@ -368,6 +370,10 @@ native packaging and locale policy. Web model inference, automatic background
 model checking and default promotion remain unimplemented. The Rust roadmap
 retains the API-24/native-runtime version check and outstanding fallback
 packaging work. None of these results authorizes a release or main merge.
+
+The later compiled GECToR continuation in the Current implemented state
+section above preserves these earlier receipts and advances the guarded result
+to 6/18; the two reports describe distinct, explicitly pinned source states.
 
 ### Durable evidence
 

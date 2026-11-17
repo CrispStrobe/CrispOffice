@@ -13,7 +13,7 @@ verified, manual-only de-DE option; no model is downloaded or enabled by default
 
 ## German proofing continuation — 17 November 2026
 
-The [current continuation report](validation/german-proofing-continuation-20261117/README.md)
+The [morphology continuation report](validation/german-proofing-continuation-20261117/README.md)
 records the integration of the newer optional GECToR provider and native
 qualification into the morphology PR, together with fresh local checks.
 The existing ODT comment/note, annotation visibility, section-layout and
@@ -35,20 +35,28 @@ host preloads a reviewed model and library, then registers the provider through
 include it; typing checks use the ordinary providers. Unsupported manual-model
 languages do not make an otherwise complete background check incomplete.
 
-This remains an experimental host opt-in. The retained real-model guarded
-panel fixes 5/18 error cases and leaves all ten supported clean controls
-unchanged; de-AT and de-CH are explicitly unsupported. The unguarded reference
+This remains an experimental host opt-in. The earlier morphology report
+retains 5/18 guarded fixes. The [later compiled GECToR continuation](validation/german-gector/2026-11-17-continuation/README.md)
+recovers the authenticated same-number verb-person alias for `Wir ist` →
+`Wir sind`, giving 6/18 expected fixes while leaving all ten supported clean
+controls unchanged; de-AT and de-CH are explicitly unsupported. The unguarded reference
 fixes 9/18 and includes a known Swiss false correction. Neither finite panel
 establishes general accuracy. Model quality, target-device performance and the
 exact native distribution's dependency/license closure remain separate gates;
 see the [GECToR roadmap](roadmaps/german-gector-proofing.md).
 
-The fresh compiled-provider run meets the provisional engineering budgets on
-the measured Linux host: 58.877 ms pooled warm p95 for the bounded inputs through
+The morphology report's compiled-provider run meets the provisional engineering
+budgets on its measured Linux host: 58.877 ms pooled warm p95 for the bounded inputs through
 64 WordPieces and 385.61 MiB peak process memory. The 256-token structural probe
 takes 803.379 ms at p95. These complete-check timings include worker transport,
 all inference passes and guards; they do not qualify other devices or general
 sentence distributions. The full report retains the earlier JIT memory miss.
+
+The later GECToR continuation through the verified development pack records
+66.072 ms short-input p95, 343.80 MiB peak process memory and 816.225 ms p95
+for the 256-token structural probe. These are separate source-bound local
+observations, not a controlled speed comparison. Its validation and the earlier
+morphology measurements are both preserved.
 
 ## Earlier licensed morphology expansion — 17 November 2026
 

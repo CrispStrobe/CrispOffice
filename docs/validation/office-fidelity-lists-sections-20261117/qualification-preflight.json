@@ -1,0 +1,8 @@
+{
+  "attempted_source": "4fdac35c8da50e9c62ffab4a86dd2397c21186b4",
+  "observed_local_head": "59b8d494fcc6a2bc1f527577f36b7aabc0b93b53",
+  "tests_started": false,
+  "gate": "Expected published HEAD did not match after git fetch received CONNECT tunnel403.",
+  "recovery": "Exact unsigned commit object read through GitHub connector, reconstructed and accepted only after SHA1 matched4fdac35; local and published tree8f2bd001ef09e2bf8eba45f08701196d760e662f match. No source bytes changed.",
+  "recovered_head": "4fdac35c8da50e9c62ffab4a86dd2397c21186b4"
+}

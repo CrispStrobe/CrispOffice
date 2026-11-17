@@ -29,6 +29,7 @@ XmlElement _odtBody(OpcPackage package) => XmlDocument.parse(
 ).root!.firstChild('body')!.firstChild('text')!;
 
 void main() {
+  pageFieldTests();
   linkTests();
   nestedListTests();
   sectionTests();
@@ -36,7 +37,11 @@ void main() {
   footnoteTests();
   test('writes modeled Word text, runs, tables and pictures as ODT', () {
     final document = WmlDocument(
-      properties: OfficeDocumentProperties(title: 'Writer smoke'),
+      properties: OfficeDocumentProperties(
+        title: 'Writer smoke',
+        subject: 'Metadata',
+        creator: 'Author',
+      ),
       sections: [
         WmlSection(
           blocks: [
@@ -110,6 +115,10 @@ void main() {
     );
     final content = package.getPart('/content.xml')!.readText();
     final styles = package.getPart('/styles.xml')!.readText();
+    final meta = package.getPart('/meta.xml')!.readText();
+    expect(meta, contains('<dc:title>Writer smoke</dc:title>'));
+    expect(meta, contains('<dc:subject>Metadata</dc:subject>'));
+    expect(meta, contains('<dc:creator>Author</dc:creator>'));
     expect(content, contains('<text:h'));
     expect(content, contains('Quarterly review'));
     expect(
@@ -493,5 +502,30 @@ void linkTests() {
     expect(content, contains('text:name="Target"'));
     expect(content, contains('xlink:href="#Target"'));
     expect(content, contains('xlink:href="https://example.com"'));
+  });
+}
+
+void pageFieldTests() {
+  test('writes header page-number fields', () {
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          header: [
+            WmlParagraph(
+              properties: WmlParagraphProps(pageNumberField: true),
+              inlines: [WmlRun(text: '1')],
+            ),
+          ],
+          blocks: [
+            WmlParagraph(inlines: [WmlRun(text: 'Body')]),
+          ],
+        ),
+      ],
+    );
+    final package = OpcPackage.openBytes(
+      OdtDocumentWriter.writeBytes(document),
+    );
+    final styles = package.getPart('/styles.xml')!.readText();
+    expect(styles, contains('<text:page-number/>'));
   });
 }

@@ -6,6 +6,7 @@ import 'dart:math' as math;
 import 'backend.dart';
 import 'bundle.dart';
 import 'guards.dart';
+import 'segmentation.dart';
 import 'source_text.dart';
 import 'tokenizer.dart';
 import 'unicode_case.dart';
@@ -17,6 +18,7 @@ final class GectorDecodeOptions {
     this.maximumTextCodeUnits = 32768,
     this.keepConfidence = 0.0,
     this.minimumErrorProbability = 0.0,
+    this.segmentation,
   }) {
     if (maximumPasses < 1 ||
         maximumPasses > 5 ||
@@ -24,6 +26,7 @@ final class GectorDecodeOptions {
         maximumTokens > 512 ||
         maximumTextCodeUnits < 1 ||
         maximumTextCodeUnits > 32768 ||
+        (segmentation != null && segmentation!.targetTokens > maximumTokens) ||
         !keepConfidence.isFinite ||
         keepConfidence < 0 ||
         keepConfidence > 1 ||
@@ -38,6 +41,10 @@ final class GectorDecodeOptions {
   final int maximumTextCodeUnits;
   final double keepConfidence;
   final double minimumErrorProbability;
+
+  /// Opt-in sentence planning for the guarded provider. Null retains the
+  /// original single-sequence behavior and its frozen reference contract.
+  final GectorSegmentationOptions? segmentation;
 }
 
 final class GectorTag {
@@ -54,6 +61,7 @@ final class GectorPass {
     required Iterable<GectorTag> tags,
     required Iterable<String> editedWords,
     required this.inferenceMicroseconds,
+    this.sourceStart = 0,
   }) : words = List<String>.unmodifiable(words),
        tags = List<GectorTag>.unmodifiable(tags),
        editedWords = List<String>.unmodifiable(editedWords);
@@ -62,6 +70,9 @@ final class GectorPass {
   final List<GectorTag> tags;
   final List<String> editedWords;
   final int inferenceMicroseconds;
+
+  /// Original request-relative UTF-16 start of this pass's segment.
+  final int sourceStart;
 }
 
 enum GectorStopReason { stable, cycle, passLimit }
@@ -74,6 +85,7 @@ final class GectorDecodedText {
     required Iterable<GectorPass> passes,
     required this.stopReason,
     required this.guarded,
+    this.segmentCount = 1,
   }) : edits = List<GectorEdit>.unmodifiable(edits),
        passes = List<GectorPass>.unmodifiable(passes);
   final String original;
@@ -82,6 +94,9 @@ final class GectorDecodedText {
   final List<GectorPass> passes;
   final GectorStopReason stopReason;
   final bool guarded;
+  final int segmentCount;
+  int get forwardTokens =>
+      passes.fold(0, (total, pass) => total + pass.input.tokenCount);
   bool get complete => stopReason == GectorStopReason.stable;
 }
 
@@ -102,7 +117,11 @@ final class GectorDecoder {
     required this.backend,
     GectorDecodeOptions? options,
   }) : guards = null,
-       options = options ?? GectorDecodeOptions();
+       options = options ?? GectorDecodeOptions() {
+    if (this.options.segmentation != null) {
+      throw ArgumentError('Sentence segmentation requires guarded decoding.');
+    }
+  }
 
   final GectorConfiguration configuration;
   final GectorTokenizer tokenizer;
@@ -125,12 +144,104 @@ final class GectorDecoder {
     }
 
     cancellationPoint();
+    guards?.beginRequest();
+    final segmentation = options.segmentation;
+    if (segmentation == null) {
+      return _correctSegment(
+        text,
+        personalWords: personalWords,
+        cancellationPoint: cancellationPoint,
+      );
+    }
+
+    // Preflight every source span before admitting the first native forward.
+    // A late oversized/invalid sentence must never imply partial coverage.
+    final segments = GectorSegmenter(
+      configuration: configuration,
+      tokenizer: tokenizer,
+      options: segmentation,
+      maximumTokens: options.maximumTokens,
+      maximumTextCodeUnits: options.maximumTextCodeUnits,
+    ).plan(text);
+    var forwardTokens = 0;
+    void chargeForward(GectorPreparedInput input) {
+      forwardTokens += input.tokenCount;
+      if (forwardTokens >
+          segmentation.maximumTotalTokens * options.maximumPasses) {
+        throw const GectorCapacityException(
+          'GECToR exceeded the request-wide forward-token budget.',
+        );
+      }
+    }
+
+    final passes = <GectorPass>[];
+    final edits = <GectorEdit>[];
+    final corrected = StringBuffer();
+    for (final segment in segments) {
+      cancellationPoint();
+      final result = await _correctSegment(
+        segment.text,
+        personalWords: personalWords,
+        cancellationPoint: cancellationPoint,
+        sourceStart: segment.start,
+        beforeForward: chargeForward,
+      );
+      passes.addAll(result.passes);
+      if (!result.complete) {
+        // Keep diagnostic passes, but no speculative edits from earlier
+        // segments. The Office provider reports this request as incomplete.
+        return GectorDecodedText(
+          original: text,
+          corrected: text,
+          edits: const <GectorEdit>[],
+          passes: passes,
+          stopReason: result.stopReason,
+          guarded: true,
+          segmentCount: segments.length,
+        );
+      }
+      corrected.write(result.corrected);
+      for (final edit in result.edits) {
+        edits.add(
+          GectorEdit(
+            start: segment.start + edit.start,
+            end: segment.start + edit.end,
+            original: edit.original,
+            replacement: edit.replacement,
+          ),
+        );
+      }
+    }
+    cancellationPoint();
+    final correctedText = corrected.toString();
+    if (GectorSourceText(text, configuration).apply(edits) != correctedText) {
+      throw const FormatException(
+        'Segment edits do not reconstruct the source.',
+      );
+    }
+    return GectorDecodedText(
+      original: text,
+      corrected: correctedText,
+      edits: edits,
+      passes: passes,
+      stopReason: GectorStopReason.stable,
+      guarded: true,
+      segmentCount: segments.length,
+    );
+  }
+
+  Future<GectorDecodedText> _correctSegment(
+    String text, {
+    required Set<String> personalWords,
+    required void Function() cancellationPoint,
+    int sourceStart = 0,
+    void Function(GectorPreparedInput)? beforeForward,
+  }) async {
     final source = GectorSourceText(text, configuration);
     var words = source.words(source.plain);
     final passes = <GectorPass>[];
     final seen = <String>{jsonEncode(words)};
     var reason = GectorStopReason.passLimit;
-    guards?.beginRequest();
     if (words.isEmpty) {
       return GectorDecodedText(
         original: text,
@@ -150,6 +261,7 @@ final class GectorDecoder {
         words,
         maximumTokens: options.maximumTokens,
       );
+      beforeForward?.call(input);
       final timer = Stopwatch()..start();
       final logits = await backend.forward(input);
       timer.stop();
@@ -171,6 +283,7 @@ final class GectorDecoder {
             label: tags[i].label,
             replacement: replacement,
             personalWords: personalWords,
+            isSourceStart: sourceStart == 0,
           );
         }
         edited.add(replacement);
@@ -195,6 +308,7 @@ final class GectorDecoder {
           tags: tags,
           editedWords: newWords,
           inferenceMicroseconds: timer.elapsedMicroseconds,
+          sourceStart: sourceStart,
         ),
       );
       if (_equalWords(newWords, words)) {

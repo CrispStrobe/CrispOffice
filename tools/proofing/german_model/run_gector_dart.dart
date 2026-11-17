@@ -49,6 +49,45 @@ Future<void> _run(
   final root = options['source-root'] == null
       ? Directory.fromUri(Platform.script.resolve('../../../'))
       : Directory(options['source-root']!).absolute;
+  final segmentationTarget = options['segment-target-tokens'];
+  final decodeOptions = GectorDecodeOptions(
+    segmentation: segmentationTarget == null
+        ? null
+        : GectorSegmentationOptions(
+            targetTokens: int.parse(segmentationTarget),
+          ),
+  );
+  final segmentation = decodeOptions.segmentation;
+  final decodeConfiguration = <String, Object?>{
+    'mode': segmentation == null ? 'single-sequence' : 'sentence-segments',
+    'maximum_passes': decodeOptions.maximumPasses,
+    'maximum_tokens_per_sequence': decodeOptions.maximumTokens,
+    'maximum_text_code_units': decodeOptions.maximumTextCodeUnits,
+    'keep_confidence': decodeOptions.keepConfidence,
+    'minimum_error_probability': decodeOptions.minimumErrorProbability,
+    'segmentation': segmentation == null
+        ? null
+        : {
+            'target_tokens': segmentation.targetTokens,
+            'maximum_segments': segmentation.maximumSegments,
+            'maximum_total_initial_tokens': segmentation.maximumTotalTokens,
+            'maximum_total_forward_tokens':
+                segmentation.maximumTotalTokens * decodeOptions.maximumPasses,
+          },
+    'token_accounting': {
+      'tokens_first_pass':
+          'Logical original-source encoding with one CLS/SEP pair, retained '
+          'for the frozen comparison. Counts above the native limit are summed '
+          'from individual word encodings without encoding an oversized sequence.',
+      'initial_model_tokens_total':
+          'Sum of the actual planned initial sequence lengths. Each segment '
+          'has its own CLS/SEP and source-terminal normalization.',
+      'initial_segments':
+          'Complete original-source UTF-16 partition planned outside the '
+          'measurement. Full worker planning remains inside each timed check.',
+    },
+  };
+  partial['decode_configuration'] = decodeConfiguration;
   partial['stage'] = 'source-and-reference-admission';
   final sourcesBefore = await _sources(root);
   partial['source_files'] = sourcesBefore;
@@ -123,18 +162,25 @@ Future<void> _run(
     ),
     lexiconFactory: const GectorGermanLexiconFactory(),
     vocabulary: vocabulary,
+    options: decodeOptions,
   );
   final service = OfficeProofingService(providers: [provider]);
   setup.stop();
   final results = <Map<String, Object?>>[];
   final probes = <Map<String, Object?>>[];
   final controls = <Map<String, Object?>>[];
+  final segmentedProbes = <Map<String, Object?>>[];
+  final segmentationControls = <Map<String, Object?>>[];
   final shortSamples = <double>[];
   partial.addAll({
     'stage': 'complete-checks',
     'cases': results,
     'long_complete_check_probes': probes,
     'controls': controls,
+    if (segmentation != null) ...{
+      'segmented_long_complete_check_probes': segmentedProbes,
+      'segmentation_controls': segmentationControls,
+    },
   });
   var revision = 0;
   Future<Map<String, Object?>> check(
@@ -142,6 +188,7 @@ Future<void> _run(
     String text, {
     String language = 'de-DE',
     Set<String> ignored = const {},
+    int startOffset = 7,
   }) async {
     final request = OfficeProofingRequest(
       documentId: 'native-dart-qualification',
@@ -149,7 +196,7 @@ Future<void> _run(
       revision: revision++,
       text: text,
       language: language,
-      startOffset: 7,
+      startOffset: startOffset,
       ignoredRuleIds: ignored,
     );
     final timer = Stopwatch()..start();
@@ -207,12 +254,11 @@ Future<void> _run(
           run['status'] == runs.first['status'] &&
           jsonEncode(run['findings']) == jsonEncode(runs.first['findings']),
     );
-    final words = GectorSourceText(text, bundle.configuration);
-    final tokens = bundle.tokenizer.encode(words.words(words.plain)).tokenCount;
+    final inputEvidence = _inputEvidence(text, bundle, decodeOptions);
     final samples = runs.map((r) => r['elapsed_ms']! as double).toList();
     return {
       ...runs.first,
-      'tokens_first_pass': tokens,
+      ...inputEvidence,
       'expected_status': language == 'de-DE' ? 'success' : 'unsupported',
       'warmup': warmup,
       'stable_repeats': stable,
@@ -337,6 +383,149 @@ Future<void> _run(
       List.filled(600, 'Haus').join(' '),
       expectedStatus: 'failed',
     );
+    if (segmentation != null) {
+      // These are separately retained additions. The frozen 30 cases, eight
+      // controls and three original length probes keep their original inputs
+      // and result keys so the strict historical comparator remains usable.
+      for (final target in [640, 1280]) {
+        final text = _repeatedSentences(target, bundle);
+        final probe = await measured(
+          'segmented-repeated-sentences-up-to-$target',
+          text,
+        );
+        probe.addAll({
+          'logical_token_budget': target,
+          'expected': text,
+          'matches_expected': probe['corrected'] == text,
+          'exceeds_single_sequence_capacity':
+              (probe['tokens_first_pass']! as int) >
+              decodeOptions.maximumTokens,
+        });
+        segmentedProbes.add(probe);
+      }
+
+      Future<void> segmentedControl(
+        String id,
+        String text, {
+        required String expectedStatus,
+        required String expectedText,
+        int startOffset = 137,
+        List<Map<String, Object?>>? expectedFindings,
+      }) async {
+        final result = await check(id, text, startOffset: startOffset);
+        Map<String, Object?>? inputEvidence;
+        try {
+          inputEvidence = _inputEvidence(text, bundle, decodeOptions);
+          result.addAll(inputEvidence);
+          result['planning_admitted'] = true;
+        } on GectorCapacityException catch (error) {
+          result['planning_admitted'] = false;
+          result['planning_rejection'] = error.toString();
+        }
+        result.addAll({
+          'expected_status': expectedStatus,
+          'expected': expectedText,
+          'expected_findings': ?expectedFindings,
+          'passed':
+              result['status'] == expectedStatus &&
+              result['corrected'] == expectedText &&
+              (expectedFindings == null ||
+                  jsonEncode(result['findings']) ==
+                      jsonEncode(expectedFindings)) &&
+              (expectedStatus != 'success' ||
+                  inputEvidence?['source_coverage_complete'] == true) &&
+              (expectedStatus == 'success' ||
+                  ((result['findings']! as List<Object?>).isEmpty &&
+                      result['planning_admitted'] == false &&
+                      (result['message'] as String? ?? '').contains(
+                        result['planning_rejection']! as String,
+                      ))),
+        });
+        segmentationControls.add(result);
+      }
+
+      // A known frozen correction occurs after more than one native sequence
+      // worth of clean source. The initial emoji and nondefault request offset
+      // distinguish original UTF-16 coordinates from segment-relative offsets.
+      final prefix = '😀 ${List.filled(120, 'Das Haus ist schön.').join(' ')} ';
+      final late = '$prefix$sentence';
+      final expectedStart = 137 + late.lastIndexOf('geht');
+      await segmentedControl(
+        'segmented-late-correction-utf16-offset',
+        late,
+        expectedStatus: 'success',
+        expectedText: '${prefix}Du gehst heute nach Hause.',
+        expectedFindings: [
+          {
+            'start': expectedStart,
+            'end': expectedStart + 'geht'.length,
+            'original': 'geht',
+            'replacement': 'gehst',
+            'rule_id': 'gector.de.grammar',
+          },
+        ],
+      );
+      final protectedText = '$prefix`$sentence` Das Haus ist schön.';
+      await segmentedControl(
+        'segmented-protected-code',
+        protectedText,
+        expectedStatus: 'success',
+        expectedText: protectedText,
+        expectedFindings: const [],
+      );
+      final lateOversize = '$sentence ${List.filled(600, 'Haus').join(' ')}';
+      await segmentedControl(
+        'segmented-late-capacity-fails-whole-request',
+        lateOversize,
+        expectedStatus: 'failed',
+        expectedText: lateOversize,
+        expectedFindings: const [],
+      );
+      // Independently exceed total initial tokens using intact sentences that
+      // each fit the native hard limit, rather than one oversized sentence.
+      final longSentence = '${List.filled(256, 'Haus').join(' ')}.';
+      final longSentenceTokens = _logicalTokens(longSentence, bundle);
+      final overTotal = List.filled(
+        segmentation.maximumTotalTokens ~/ longSentenceTokens + 1,
+        longSentence,
+      ).join(' ');
+      await segmentedControl(
+        'segmented-total-token-cap-fails-whole-request',
+        overTotal,
+        expectedStatus: 'failed',
+        expectedText: overTotal,
+        expectedFindings: const [],
+      );
+      // At target=64 this reaches the segment-count bound before the total
+      // token or source-length bound. Other explicit targets may encounter an
+      // earlier request-wide bound; the actual admission rejection is retained.
+      final nearTarget = _repeatedSentences(
+        math.max(segmentation.targetTokens, 6),
+        bundle,
+      );
+      final overSegments = List.filled(
+        segmentation.maximumSegments + 1,
+        nearTarget,
+      ).join(' ');
+      await segmentedControl(
+        'segmented-segment-cap-fails-whole-request',
+        overSegments,
+        expectedStatus: 'failed',
+        expectedText: overSegments,
+        expectedFindings: const [],
+      );
+      final overText = List.filled(
+        decodeOptions.maximumTextCodeUnits + 1,
+        'x',
+      ).join();
+      await segmentedControl(
+        'segmented-text-cap-fails-whole-request',
+        overText,
+        expectedStatus: 'failed',
+        expectedText: overText,
+        expectedFindings: const [],
+      );
+    }
   } finally {
     await service.dispose();
   }
@@ -356,12 +545,34 @@ Future<void> _run(
         (r) => r['status'] == 'success' && r['stable_repeats'] == true,
       ) &&
       controls.every((r) => r['passed'] == true);
+  final segmentationPass = segmentation == null
+      ? null
+      : segmentedProbes.length == 2 &&
+            segmentationControls.length == 6 &&
+            segmentedProbes.every(
+              (r) =>
+                  r['status'] == 'success' &&
+                  r['stable_repeats'] == true &&
+                  r['matches_expected'] == true &&
+                  r['exceeds_single_sequence_capacity'] == true &&
+                  (r['initial_segment_count']! as int) > 1 &&
+                  r['source_coverage_complete'] == true,
+            ) &&
+            segmentationControls.every((r) => r['passed'] == true);
+  final allRequestedChecksPass = operationalPass && segmentationPass != false;
   final report = <String, Object?>{
     'schema_version': 1,
     'kind': 'quds-gector-native-dart-complete-check',
     'timestamp_utc': DateTime.now().toUtc().toIso8601String(),
     'completed': true,
     'operational_passed': operationalPass,
+    'decode_configuration': decodeConfiguration,
+    'segmentation_operational_passed': segmentationPass,
+    'all_requested_checks_passed': allRequestedChecksPass,
+    'operational_passed_scope':
+        'The original frozen corpus, eight controls and three structural probes. '
+        'Opt-in segmentation additions are evaluated separately and also gate '
+        'all_requested_checks_passed and the process exit status.',
     'interpretation':
         'Guarded provider and service, including persistent-isolate '
         'IPC, tokenization, all model passes, dictionary checks and source-bound '
@@ -405,6 +616,10 @@ Future<void> _run(
     'cases': results,
     'long_complete_check_probes': probes,
     'controls': controls,
+    if (segmentation != null) ...{
+      'segmented_long_complete_check_probes': segmentedProbes,
+      'segmentation_controls': segmentationControls,
+    },
   };
   await output.parent.create(recursive: true);
   await output.writeAsString(
@@ -413,6 +628,8 @@ Future<void> _run(
   stdout.writeln(
     jsonEncode({
       'operational_passed': operationalPass,
+      'segmentation_operational_passed': segmentationPass,
+      'all_requested_checks_passed': allRequestedChecksPass,
       'cases': results.length,
       'controls': controls.length,
       'setup_ms': report['setup_ms'],
@@ -421,7 +638,98 @@ Future<void> _run(
       'engineering_budgets': report['engineering_budgets'],
     }),
   );
-  if (!operationalPass) exitCode = 1;
+  if (!allRequestedChecksPass) exitCode = 1;
+}
+
+/// The old single-source token count is additive per source word. Counting
+/// oversized inputs this way does not ask the model tokenizer to admit a
+/// sequence beyond its hard limit, or mistake per-segment terminal stripping
+/// for the original-source normalization used by the frozen comparator.
+int _logicalTokens(String text, GectorVerifiedBundle bundle) {
+  final source = GectorSourceText(text, bundle.configuration);
+  final words = source.words(source.plain);
+  try {
+    return bundle.tokenizer.encode(words).tokenCount;
+  } on GectorCapacityException {
+    return 2 +
+        words.fold<int>(
+          0,
+          (total, word) =>
+              total + bundle.tokenizer.encode([word]).tokenCount - 2,
+        );
+  }
+}
+
+Map<String, Object?> _inputEvidence(
+  String text,
+  GectorVerifiedBundle bundle,
+  GectorDecodeOptions options,
+) {
+  final logicalTokens = _logicalTokens(text, bundle);
+  final segmentation = options.segmentation;
+  if (segmentation == null) {
+    return {
+      'tokens_first_pass': logicalTokens,
+      'initial_model_tokens_total': logicalTokens,
+      'initial_segment_count': 1,
+      'initial_segments': [
+        {'start': 0, 'end': text.length, 'tokens': logicalTokens},
+      ],
+      'source_code_units': text.length,
+      'source_coverage_complete': true,
+    };
+  }
+  final segments = GectorSegmenter(
+    configuration: bundle.configuration,
+    tokenizer: bundle.tokenizer,
+    options: segmentation,
+    maximumTokens: options.maximumTokens,
+    maximumTextCodeUnits: options.maximumTextCodeUnits,
+  ).plan(text);
+  var cursor = 0;
+  var complete = true;
+  var actualTokens = 0;
+  for (final segment in segments) {
+    complete =
+        complete &&
+        segment.start == cursor &&
+        text.substring(segment.start, segment.end) == segment.text;
+    cursor = segment.end;
+    actualTokens += segment.initialTokenCount;
+  }
+  complete = complete && cursor == text.length;
+  if (!complete) throw StateError('Planned segments do not cover the source.');
+  return {
+    'tokens_first_pass': logicalTokens,
+    'initial_model_tokens_total': actualTokens,
+    'initial_segment_count': segments.length,
+    'initial_segments': [
+      for (final segment in segments)
+        {
+          'start': segment.start,
+          'end': segment.end,
+          'tokens': segment.initialTokenCount,
+        },
+    ],
+    'source_code_units': text.length,
+    'source_coverage_complete': complete,
+  };
+}
+
+String _repeatedSentences(int logicalBudget, GectorVerifiedBundle bundle) {
+  const sentence = 'Das Haus ist schön.';
+  final first = _logicalTokens(sentence, bundle);
+  final step = _logicalTokens('$sentence $sentence', bundle) - first;
+  if (logicalBudget < first || step <= 0) {
+    throw ArgumentError('The structural probe budget must fit one sentence.');
+  }
+  final repeats = 1 + (logicalBudget - first) ~/ step;
+  final text = List.filled(repeats, sentence).join(' ');
+  if (_logicalTokens(text, bundle) > logicalBudget ||
+      _logicalTokens('$text $sentence', bundle) <= logicalBudget) {
+    throw StateError('Structural probe token accounting is inconsistent.');
+  }
+  return text;
 }
 
 Map<String, Object?> _map(Object? value) => value! as Map<String, Object?>;
@@ -499,7 +807,8 @@ Map<String, String> _arguments(List<String> arguments) {
       );
     }
     final key = arguments[index].substring(2);
-    if ((!required.contains(key) && key != 'source-root') ||
+    if ((!required.contains(key) &&
+            !const {'source-root', 'segment-target-tokens'}.contains(key)) ||
         result.containsKey(key)) {
       throw ArgumentError('Unknown or duplicated option: $key');
     }
@@ -507,6 +816,12 @@ Map<String, String> _arguments(List<String> arguments) {
   }
   if (!required.every(result.containsKey)) {
     throw ArgumentError('Required options: ${required.join(', ')}');
+  }
+  if (result['segment-target-tokens'] case final target?) {
+    final parsed = int.tryParse(target);
+    if (parsed == null || parsed < 2 || parsed > 512) {
+      throw ArgumentError('--segment-target-tokens must be between 2 and 512.');
+    }
   }
   return result;
 }

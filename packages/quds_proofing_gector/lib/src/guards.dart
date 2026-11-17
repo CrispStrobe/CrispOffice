@@ -109,8 +109,12 @@ final class GectorGermanGuards {
     required String label,
     required String replacement,
     required Set<String> personalWords,
+    bool isSourceStart = true,
   }) async {
     final word = index < 0 ? r'$START' : words[index];
+    // A later sentence segment is not a new paragraph. Do not grant it the
+    // original request's START insertion or case-differing duplicate exception.
+    if (index < 0 && !isSourceStart) return word;
     if (replacement == word) return word;
     if (personalWords.contains(normalizeGermanWord(word))) return word;
     final lower = gectorLower(word);
@@ -139,7 +143,9 @@ final class GectorGermanGuards {
           if (index < 0 || (before != lower && after != lower)) return word;
           final other = before == lower ? words[index - 1] : words[index + 1];
           final first = before == lower ? index - 1 : index;
-          if (rule['keepCaseDiffering'] == true && first > 0 && word != other) {
+          if (rule['keepCaseDiffering'] == true &&
+              (first > 0 || !isSourceStart) &&
+              word != other) {
             return word;
           }
           final preceding = first > 0 ? gectorLower(words[first - 1]) : '';

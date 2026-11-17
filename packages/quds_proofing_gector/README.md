@@ -165,6 +165,58 @@ revision change during inference invalidates that result. Unsupported inputs,
 non-convergence, and backend failures are reported through proofing status;
 they are never presented as a successful clean document.
 
+### Opt-in long paragraphs
+
+Hosts can enable sentence segmentation on the existing manual provider:
+
+```dart
+final options = GectorDecodeOptions(
+  segmentation: GectorSegmentationOptions(
+    targetTokens: 64,
+    maximumSegments: 32,
+    maximumTotalTokens: 4096,
+  ),
+);
+// Pass options: options to GectorProofingProvider.load(...).
+```
+
+Without this option, the existing 512-token whole-input limit remains in
+effect. Reference decoding rejects segmentation, preserving its frozen oracle.
+With the option, inputs fitting the preferred 64-token size retain the same
+single source slice and prepared input. Longer paragraphs are greedily grouped
+at conservative sentence boundaries. An individual sentence may exceed the
+preferred size up to the hard 512-token limit. An ambiguous or unsplittable
+sentence above that hard limit fails; no words are dropped or cut into windows.
+
+Planning preserves a contiguous partition of every original UTF-16 source unit,
+including all whitespace, quotation marks and punctuation. It excludes breaks
+inside protected URLs, email addresses and code, and conservatively handles
+abbreviations, initials, numbers, ellipses and paired delimiters. This bounded
+heuristic is not a complete German sentence parser. Each segment has its own
+model-only final-terminator handling, so longer-input neural decisions can
+differ from a whole-paragraph check and need separate language evaluation.
+
+All segments and admission budgets are checked before the first forward. The
+default 4,096 initial-token budget counts each segment's CLS/SEP tokens. Across
+all subsequent passes, the decoder also caps actual forwarded tokens at that
+budget multiplied by the maximum passes (20,480 by default). The existing
+32,768 UTF-16 source ceiling and one 15-second provider deadline still apply to
+the complete request; the deadline is not restarted for each segment.
+
+Each segment's edits are rebased directly to its original location. A new
+paragraph-wide diff cannot relocate edits among repeated phrases. Later
+segments do not acquire `$START` insertions or the original-start exception for
+case-differing duplicate deletion. The provider still validates and filters
+edits against the whole source, its protected ranges and personal vocabulary.
+
+Any segment failure, non-convergence, deadline or cancellation prevents partial
+suggestions from being published. `GectorDecodedText.segmentCount` records the
+planned count. Its flat `passes` list contains forwards across all segments,
+each with a request-relative `sourceStart`; it is no longer a paragraph-wide
+iteration count. `forwardTokens` is the sum of tokens actually forwarded in the
+retained passes. Cancellation continues between native forwards; an active
+native call cannot be interrupted mid-call.
+
 ## Guard policy and its limits
 
 `gector-guards.json` contains both declarative rules and notes describing

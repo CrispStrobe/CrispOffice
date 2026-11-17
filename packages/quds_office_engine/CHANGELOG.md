@@ -10,6 +10,20 @@ All notable changes to `quds_office_engine` are documented here.
   the existing first-party word supplement; retain all pinned upstream shards.
 - Share the editor's deterministic-first manual proofing report merge with
   local quality evaluation, preserving statuses, snapshot identity and offsets.
+- Keep physical paragraph indents when exporting RTL paragraphs and headings
+  to ODT's direction-dependent margin properties.
+- Extract paragraph-anchored ODF text boxes in generic extraction and search,
+  preserving their whitespace and paragraph boundaries without duplicating
+  surrounding inline text or exposing hidden annotation and covered-cell text.
+- Preserve ODT section page styles when the first content is a list, nested
+  control, table, picture, frame, or empty section. Keep resolved first-paragraph
+  formatting, honor odd/even starts, and avoid extra page breaks or empty
+  anchors in equivalent continuous sections.
+- Preserve nested-list sibling structure, mixed marker kinds, supported decimal
+  starts/restarts and continuation, exact large counters, and literal cached
+  markers for unsupported numbering. Keep auxiliary and covered-cell list
+  counters independent from visible document numbering.
+
 - Expose a read-only, language-scoped German dictionary query for optional
   grammar guards, using the existing dictionary and owner vocabulary without
   generating suggestions or accepting partial tokens.

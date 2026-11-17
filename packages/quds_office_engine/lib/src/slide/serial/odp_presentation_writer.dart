@@ -369,10 +369,16 @@ abstract final class OdpPresentationWriter {
       w.writeStartElement('p', prefix: 'text');
       w.writeAttribute('text:style-name', paragraphStyle);
       if (line.isNotEmpty) {
+        final link = shape?.hyperlinkUrl ?? '';
+        if (link.isNotEmpty) {
+          w.writeStartElement('a', prefix: 'text');
+          w.writeAttribute('xlink:href', link);
+        }
         w.writeStartElement('span', prefix: 'text');
         w.writeAttribute('text:style-name', textStyle);
         writeOdfText(w, line);
         w.writeEndElement();
+        if (link.isNotEmpty) w.writeEndElement();
       }
       w.writeEndElement();
     }
@@ -455,11 +461,22 @@ abstract final class OdpPresentationWriter {
     _namespaces(w);
     w.writeAttribute('office:version', '1.3');
     w.writeStartElement('meta', prefix: 'office');
-    if (presentation.properties.title.isNotEmpty) {
-      w.writeStartElement('title', prefix: 'dc');
-      w.writeText(presentation.properties.title);
+    void value(String tag, String prefix, String text) {
+      if (text.isEmpty) return;
+      w.writeStartElement(tag, prefix: prefix);
+      w.writeText(text);
       w.writeEndElement();
     }
+
+    value('title', 'dc', presentation.properties.title);
+    value('subject', 'dc', presentation.properties.subject);
+    value('creator', 'dc', presentation.properties.creator);
+    value('description', 'dc', presentation.properties.description);
+    value('keyword', 'meta', presentation.properties.keywords);
+    value('initial-creator', 'meta', presentation.properties.creator);
+    value('creation-date', 'meta', presentation.properties.createdIso);
+    value('date', 'dc', presentation.properties.modifiedIso);
+    value('generator', 'meta', 'Quds Office');
     w.writeEndElement();
     w.writeEndElement();
     return w.toXml();

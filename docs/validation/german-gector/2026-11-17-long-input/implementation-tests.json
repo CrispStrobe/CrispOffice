@@ -1,0 +1,65 @@
+{
+  "recorded_at": "2026-11-17T15:30:04.278520+00:00",
+  "base_commit": "b2dd510b3cc057f84fc05783c520856131e495c4",
+  "scope": "Uncommitted implementation tested before this checkpoint; retained source hashes are captured after the successful run. AOT build/run will seal selected source before and after compilation/inference.",
+  "package_tests": {
+    "passed": 174,
+    "skipped": 0,
+    "exit_code": 0,
+    "real_native_fixture": true,
+    "command": "dart test --reporter expanded",
+    "working_directory": "packages/quds_proofing_gector",
+    "model_sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+    "native_library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604"
+  },
+  "analysis": {
+    "command": "dart analyze lib test tool",
+    "exit_code": 0,
+    "issues": 0
+  },
+  "source_files_after_run": {
+    "packages/quds_proofing_gector/lib/quds_proofing_gector.dart": "e64d6eb8db223f6bb64bbb4d2e55a1e246eb7847f123e3306982e7344b1b27f9",
+    "packages/quds_proofing_gector/lib/quds_proofing_gector_native.dart": "449f0543d9d6d3e42778b4dc9aba8fcf3e7a5ce880fbe55aec7c92697c55a81d",
+    "packages/quds_proofing_gector/lib/src/backend.dart": "b8dac86a9e4ab1a9c824ccd346f1896a5a2f4ea9d79aaa1bbd9e51eb2641dad3",
+    "packages/quds_proofing_gector/lib/src/bundle.dart": "0e2c94f1058e59b454a63e49c1b1e3c1c83af6fdff4c6d6d38c21cb813137fcb",
+    "packages/quds_proofing_gector/lib/src/decoder.dart": "674bd409d579c6a58c60d6b5c6bef2b04824a554b685389d9fe5cdc7508e2096",
+    "packages/quds_proofing_gector/lib/src/guards.dart": "6c9684c05e8f925df5d8d66cf1c4f5fa7bd772abd7658648ec950ec0803408e1",
+    "packages/quds_proofing_gector/lib/src/lexicon.dart": "614272c159ab283c1fef83b5a76ea28a21a6f8901741115ed08a57b43355ff60",
+    "packages/quds_proofing_gector/lib/src/native_backend.dart": "9d25812acd0efb0e8d583392092d4ef803d5b164a7b832e6aa2adb9b9f95d6c7",
+    "packages/quds_proofing_gector/lib/src/provider.dart": "67cf9c2b7ec95f16cfa56bdac3caffc07267298bec830ac083d0817b0f5f0f56",
+    "packages/quds_proofing_gector/lib/src/segmentation.dart": "45c060380562607b6d263de1867e5a7e33198a6097fd4cae76b769d668348d58",
+    "packages/quds_proofing_gector/lib/src/source_text.dart": "f56767a78475b1f6e696aa022af5b5a121bd3f963271a946bfc6b617b207da42",
+    "packages/quds_proofing_gector/lib/src/tokenizer.dart": "cc4685f1dc6610203d5abc8f2d425849ca0bf58e879be8ed3c9ef455cfaa035d",
+    "packages/quds_proofing_gector/lib/src/transport.dart": "f708264af615715b3e6e5bd1098ec027166ad20313a60ea9139bebc02bc84ba6",
+    "packages/quds_proofing_gector/lib/src/unicode_case.dart": "c74b978155404e7a9370b1b4fdc548bcd352edd6cd5ce6aaf91355e8007db464",
+    "packages/quds_proofing_gector/lib/src/worker_native.dart": "76e18e15c78fd884a2c43d621fdc388797e2f77c989d73899eb1dd965a3d8231",
+    "packages/quds_proofing_gector/lib/src/worker_unsupported.dart": "57dc1adcecf92a39307fb661d1c39e854275796058b1b5b06f5e837da5b46319",
+    "packages/quds_proofing_gector/test/bundle_test.dart": "60d9c15b9d89a94c56cf8b294e0fa5e9b5ad0c52d91a5ff148147a9a40f27260",
+    "packages/quds_proofing_gector/test/decoder_test.dart": "764468da8e7a357c6c82390160338abaffcc296eadf930d129f6a30b605753f9",
+    "packages/quds_proofing_gector/test/guards_test.dart": "1a8dbf825700cc95fedbf1a5c11f601de633c5f939c742613e74633e519b834f",
+    "packages/quds_proofing_gector/test/native_backend_test.dart": "a7f1f43453886a5c0e8a1d053bf4494e4885f85778861248206788a71fdab9c8",
+    "packages/quds_proofing_gector/test/provider_test.dart": "6e1e49eabbc67f28ff24c33f123b2e8ebe94a7fed23e1c0e347129cf51f5f6aa",
+    "packages/quds_proofing_gector/test/segmentation_test.dart": "f43366a155dedfeaccee4e49d762025a26a014e8f435422b3fb1835cfb0ac025",
+    "packages/quds_proofing_gector/test/segmented_decoder_test.dart": "02ba053740e7f1fc987ba9289f2a4ced4c194d831384fa6656140e80e8d79997",
+    "packages/quds_proofing_gector/test/source_text_test.dart": "3377c81f477e1d56555d7d15b23382f828dddd18cdf2a8bc92d4b9962a314f98",
+    "packages/quds_proofing_gector/test/support.dart": "b37e7edc87283d3e76798f76f0fd101d9023ee6e4cdadde115430e75b43d1bf3",
+    "packages/quds_proofing_gector/test/tokenizer_test.dart": "ff712ce0e7cc922fa9b0df4435281cdda48f34ce9008e3d7f4251a92b3e31580",
+    "packages/quds_proofing_gector/test/worker_test.dart": "5db100db13fc6674b068f28a5ba9ad819fec276da21744d18d3d3244a1411cc0",
+    "packages/quds_proofing_gector/tool/replay_reference.dart": "5b9c9b59abc864ebcbeb1278c272b7209d9e9a7860193354e8f833df29aaa3b6",
+    "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1"
+  },
+  "logs": {
+    "gector-package.log": {
+      "raw_sha256": "8615e2d99a76f0a97270663855dcffbd99e9706478fccf79f3b78ffe6b29e6af",
+      "archive": "gector-package.log.gz",
+      "archive_sha256": "29c16e38255685331e96b6498d610d47724f7a2e39d02b84ca3a91e7051b244b",
+      "archive_bytes": 706
+    },
+    "gector-analysis.log": {
+      "raw_sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65",
+      "archive": "gector-analysis.log.gz",
+      "archive_sha256": "83af2bc8a131de312201aee2da82d7a79c99f288c5c0577aee45eeec5dac8770",
+      "archive_bytes": 64
+    }
+  }
+}
