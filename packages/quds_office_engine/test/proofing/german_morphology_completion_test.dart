@@ -89,7 +89,7 @@ void main() {
     ('Ich habe ein schönen Tag.', ['einen schönen Tag', 'ein schönes Tag']),
     ('Ich sehe der neue Kunde.', ['den neuen Kunden', 'die neue Kunde']),
     ('Das ist für dem Leiter.', ['den Leiter', 'die Leiter']),
-    ('Ich sehe dieser Leiter.', ['den Leiter', 'die Leiter']),
+    ('Ich sehe dieser Leiter.', ['diesen Leiter', 'diese Leiter']),
     ('Ich sehe einem Mensch.', ['einen Menschen', 'ein Mensch']),
     ('Sie kommt mit das Band.', ['dem Band', 'der Band']),
   ]) {
