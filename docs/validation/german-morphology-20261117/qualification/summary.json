@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "qualified_source": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
+  "github_actions_used": false,
+  "strict_analysis": [
+    "engine",
+    "editor",
+    "harper"
+  ],
+  "engine_proofing": {
+    "vm": 503,
+    "node": 503
+  },
+  "selected_hyphenation": {
+    "vm": 43,
+    "node": 23
+  },
+  "focused_editor": 156,
+  "all_buckets": 256,
+  "all_readings": 127987,
+  "exact_generation_files": {
+    "morphology": 20,
+    "spelling": 18
+  },
+  "web_build": true,
+  "full_unicode_license_in_web_notices": true,
+  "corpora": {
+    "frozen": {
+      "targeted_exact": 68,
+      "targeted_errors": 73,
+      "challenge_exact": 1,
+      "challenge_errors": 8,
+      "flagged_controls": 0,
+      "controls": 175
+    },
+    "review": {
+      "exact_errors": 24,
+      "errors": 24,
+      "flagged_controls": 0,
+      "controls": 60
+    },
+    "requests_per_runtime": 1700,
+    "vm_node_identical": true
+  },
+  "scope": "Focused local qualification; groups overlap. No new actual-browser/device or native Rust library execution."
+}

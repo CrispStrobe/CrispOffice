@@ -1,0 +1,53 @@
+[
+  {
+    "head": "0eb60d0fc706a4da54df07ae86df029c1caac074",
+    "refs": [
+      "origin:refs/heads/vendor/odt-ordered-lists2"
+    ],
+    "local_before": "8cf5897198ca9d8230d14734857b116728a7df01",
+    "exit_code": 0,
+    "stdout": "Auto-merging packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart\nMerge made by the 'ort' strategy.\n",
+    "stderr": ""
+  },
+  {
+    "head": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+    "refs": [
+      "origin:refs/heads/feat/odt-ordered-lists",
+      "origin:refs/pull/97/head"
+    ],
+    "local_before": "dccc5f340ba4ae8c97b4632190cac6fa7c08a1a4",
+    "exit_code": 0,
+    "stdout": "Auto-merging packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart\nMerge made by the 'ort' strategy.\n",
+    "stderr": ""
+  },
+  {
+    "head": "aa346a296e8b19bb937c345f7142c60720c3d6e4",
+    "refs": [
+      "origin:refs/heads/vendor/odt-ordered-lists"
+    ],
+    "local_before": "5b6533652826e676b37626d8009441052c1b53b2",
+    "exit_code": 0,
+    "stdout": "Auto-merging packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart\nAuto-merging packages/quds_office_engine/test/odt_document_writer_test.dart\nMerge made by the 'ort' strategy.\n",
+    "stderr": ""
+  },
+  {
+    "head": "be465bfba548006cc5fd5c3798cd166cdbcc5c63",
+    "refs": [
+      "origin:refs/heads/codex/german-morphology-20261117"
+    ],
+    "local_before": "2a4331c91bc3f93c4874b13c6d4cf4cd6cbbaca2",
+    "exit_code": 0,
+    "stdout": "Merge made by the 'ort' strategy.\n .../independent/baseline/morphology-probe.js       | 11121 ++++++++\n .../independent/baseline/morphology-probe.js.deps  |   231 +\n .../independent/baseline/morphology-probe.js.map   |    16 +\n .../independent/baseline/node-results.json         | 27216 +++++++++++++++++++\n .../independent/baseline/package-config.json       |   658 +\n .../independent/baseline/receipt.json              |   129 +\n .../independent/baseline/vm-results.json           | 27216 +++++++++++++++++++\n docs/validation/zotero-landing-20261117/README.md  |    39 +\n .../zotero-landing-20261117/checkpoint-index.json  |   181 +\n .../zotero-landing-20261117/checkpoints/README.md  |    18 +\n .../checkpoints/preflight-attempt-1.tar.gz         |   Bin 0 -> 991237 bytes\n .../checkpoints/preflight-index.json               |   516 +\n .../zotero-landing-20261117/runtime-setup.tar.gz   |   Bin 0 -> 118044 bytes\n .../source-setup-checkpoint.tar.gz                 |   Bin 0 -> 81942 bytes\n tools/proofing/german_morphology_cases.json        |  2309 ++\n tools/proofing/qualify_german_morphology.dart      |   276 +\n tools/proofing/run_morphology_qualification.py     |   106 +\n 17 files changed, 70032 insertions(+)\n create mode 100644 docs/validation/german-morphology-20261117/independent/baseline/morphology-probe.js\n create mode 100644 docs/validation/german-morphology-20261117/independent/baseline/morphology-probe.js.deps\n create mode 100644 docs/validation/german-morphology-20261117/independent/baseline/morphology-probe.js.map\n create mode 100644 docs/validation/german-morphology-20261117/independent/baseline/node-results.json\n create mode 100644 docs/validation/german-morphology-20261117/independent/baseline/package-config.json\n create mode 100644 docs/validation/german-morphology-20261117/independent/baseline/receipt.json\n create mode 100644 docs/validation/german-morphology-20261117/independent/baseline/vm-results.json\n create mode 100644 docs/validation/zotero-landing-20261117/README.md\n create mode 100644 docs/validation/zotero-landing-20261117/checkpoint-index.json\n create mode 100644 docs/validation/zotero-landing-20261117/checkpoints/README.md\n create mode 100644 docs/validation/zotero-landing-20261117/checkpoints/preflight-attempt-1.tar.gz\n create mode 100644 docs/validation/zotero-landing-20261117/checkpoints/preflight-index.json\n create mode 100644 docs/validation/zotero-landing-20261117/runtime-setup.tar.gz\n create mode 100644 docs/validation/zotero-landing-20261117/source-setup-checkpoint.tar.gz\n create mode 100644 tools/proofing/german_morphology_cases.json\n create mode 100644 tools/proofing/qualify_german_morphology.dart\n create mode 100644 tools/proofing/run_morphology_qualification.py\n",
+    "stderr": ""
+  },
+  {
+    "head": "d52f0786916e69a1673705abe5158769be2c92b6",
+    "refs": [
+      "origin:refs/heads/codex/zotero-recovery-20261116"
+    ],
+    "local_before": "50afeaee075c6608b36d4690f1f9116082ae858a",
+    "exit_code": 0,
+    "stdout": "Merge made by the 'ort' strategy.\n .../zotero-landing-20261117/checkpoints/README.md  |  13 ++\n .../checkpoints/suite-path-attempt-2.tar.xz        | Bin 0 -> 464564 bytes\n .../checkpoints/suite-path-index.json              | 176 +++++++++++++++++++++\n 3 files changed, 189 insertions(+)\n create mode 100644 docs/validation/zotero-landing-20261117/checkpoints/suite-path-attempt-2.tar.xz\n create mode 100644 docs/validation/zotero-landing-20261117/checkpoints/suite-path-index.json\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,174 @@
+{
+  "baseline": "ee72594686c17e508740e1b446c87593da9ffbda",
+  "qualified_head": "8649b79efe0f2ad57d8f187233ed3f8b8177b3a0",
+  "all_groups_unchanged": true,
+  "groups": {
+    "dependency_manifests": {
+      "tracked_files": 21,
+      "changed": [],
+      "file_git_blob_sha1": {
+        "apps/quds_report_studio/pubspec.yaml": "ac479981a30f9917e0817de6c79f2392b6f4bf87",
+        "docs/validation/proofing-20261116/final/pubspec.lock": "bafa332db4f09903cbd975e0f9b48fe12df35b6d",
+        "docs/validation/proofing-en-de-20261117/integration/pubspec.lock": "bafa332db4f09903cbd975e0f9b48fe12df35b6d",
+        "docs/validation/proofing-grammar-expansion-20261117/integration/pubspec.lock": "bafa332db4f09903cbd975e0f9b48fe12df35b6d",
+        "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.lock": "51c26f3b0569da9d97d155696ad37b1d1e539ac6",
+        "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.yaml": "3e00fab2b9cb671503c4465f343a2e9d7016084f",
+        "docs/validation/zotero-desktop-20261115/pubspec.lock": "4ae485e5e93fcd421a93a0f01ec685dfa57e2ace",
+        "docs/validation/zotero-desktop-20261115/pubspec.yaml": "b40490037b826e648a7a2eea22e000a6d51956f6",
+        "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.lock": "dc418f296d0e1926782c92ccd0c8d0c9c0236acb",
+        "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.yaml": "4ca8a77a7e1d3c21032d546f8ce3de685cf28487",
+        "packages/legacy_doc_parser/pubspec.yaml": "f0389f352656d281988db1d853d6e86df67b51e7",
+        "packages/quds_office_editor/example/pubspec.yaml": "3c4a4bc74976e5c4800e6bc20346a175538f385b",
+        "packages/quds_office_editor/pubspec.yaml": "b5ce396826a085e04308a9917693ff33b47f795a",
+        "packages/quds_office_engine/example/pubspec.yaml": "9e7cc2d8f24500c0403d39cd88ed1e9649d650df",
+        "packages/quds_office_engine/pubspec.yaml": "b8df6a55e457b42e258a3cc7724df1be087464fb",
+        "packages/quds_proofing_harper/native/Cargo.lock": "145751e865553d9496f32bf66ecd849fdbdfe797",
+        "packages/quds_proofing_harper/native/Cargo.toml": "535f423556d7875890058037fb95aed350716c91",
+        "packages/quds_proofing_harper/pubspec.yaml": "21617bc027119539ebe87a94a97b622499d48c98",
+        "packages/quds_reports/pubspec.yaml": "206c04007457d37895bac387ddb78ff4813b9511",
+        "pubspec.yaml": "c46e3c83272694b8cda24431ce5f89159798540e",
+        "tools/proofing/german_model/requirements.txt": "4ba75111a8d9c078c44e2c597be6d413a2b95d1b"
+      }
+    },
+    "english_harper": {
+      "tracked_files": 41,
+      "changed": [],
+      "file_git_blob_sha1": {
+        "packages/quds_proofing_harper/.gitignore": "f68523bb026b5c0376042ea9011934ad52793cfc",
+        "packages/quds_proofing_harper/CHANGELOG.md": "126cecfe8174517c7dc5862df221145e84fc13da",
+        "packages/quds_proofing_harper/LICENSE": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+        "packages/quds_proofing_harper/README.md": "fe503fd2eddbbcb3599f1e986bbaa900ad569861",
+        "packages/quds_proofing_harper/lib/quds_proofing_harper.dart": "9f897664e89eeae5ca44eda03685d4749c98484f",
+        "packages/quds_proofing_harper/lib/src/harper_provider.dart": "f56098d7057579df5419426cf48e47249d269605",
+        "packages/quds_proofing_harper/lib/src/harper_source_text.dart": "a2c15500aa8ebd32c78eab74f71674c98a919cc7",
+        "packages/quds_proofing_harper/lib/src/harper_transport.dart": "8554d7c0c3a3c965d6e0107d05a0eff5917d7b3d",
+        "packages/quds_proofing_harper/lib/src/harper_transport_native.dart": "e6457c6219490dc1c79a71767323b82c1e6ce634",
+        "packages/quds_proofing_harper/lib/src/harper_transport_stub.dart": "cc282fb22aa72a623454b0abf05c93e10c078923",
+        "packages/quds_proofing_harper/lib/src/harper_transport_web.dart": "04eb18dc215d9ec7715b9df7efd81fa9f34e9bb5",
+        "packages/quds_proofing_harper/licenses/manifest.json": "04aa70397dc6bcc2933d9062c89e61b6efae0fe8",
+        "packages/quds_proofing_harper/licenses/notices-and-mpl-sources.tar.gz": "72e27e15c633ec23fedc3711c481717b59f32c43",
+        "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-APACHE": "cc8180554d61e267eb1d68fdd38104499aa73742",
+        "packages/quds_proofing_harper/licenses/upstream/BURN-LICENSE-MIT": "6b220b3d008f9161986ab2678498472f1f8275a6",
+        "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-APACHE": "a18fcc67f20ed25de2c3305e994cca2481b2ad1c",
+        "packages/quds_proofing_harper/licenses/upstream/CUBECL-LICENSE-MIT": "6fca47c9fe75a38ac9940e808026534dab28fcba",
+        "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-APACHE": "8f7956e2054b5f0c2731d8e53988cebb69510b65",
+        "packages/quds_proofing_harper/licenses/upstream/EMBASSY-LICENSE-MIT": "1fe5730a49b22d22611e5eb8747ab709fb1146ca",
+        "packages/quds_proofing_harper/licenses/upstream/HARPER-LICENSE": "28d2cac5045bb6add164520569a6ebff5f1df9d7",
+        "packages/quds_proofing_harper/licenses/upstream/fallback-notices.json": "0dd9f717c7387076134e18d564eb11a689ee7189",
+        "packages/quds_proofing_harper/native/Cargo.lock": "145751e865553d9496f32bf66ecd849fdbdfe797",
+        "packages/quds_proofing_harper/native/Cargo.toml": "535f423556d7875890058037fb95aed350716c91",
+        "packages/quds_proofing_harper/native/rust-toolchain.toml": "0a4aef2e51b797306de476ea2d622059a31ec5e1",
+        "packages/quds_proofing_harper/native/src/lib.rs": "354ff4c6be0efbe84e9cef635a88512649dcc7e4",
+        "packages/quds_proofing_harper/pubspec.yaml": "21617bc027119539ebe87a94a97b622499d48c98",
+        "packages/quds_proofing_harper/test/harper_native_test.dart": "7ac8199d78cfdd481ae98531a93fa9634eae4299",
+        "packages/quds_proofing_harper/test/harper_provider_test.dart": "6dda8cc477150217a2295954597aa2b97d7ecc07",
+        "packages/quds_proofing_harper/test/harper_source_contract_test.dart": "b8907f01b0e6ee2f785c0252748c41737b1aa3c8",
+        "packages/quds_proofing_harper/test/harper_source_text_test.dart": "1fbd49b3821f7825e744867b7dec708109fb7a69",
+        "packages/quds_proofing_harper/tool/build.py": "589015bf0daad5752923c5c8099d97d90ef897df",
+        "packages/quds_proofing_harper/tool/license_bundle.py": "6381e803a88c79d7c344506d828ce4ce0938daf0",
+        "packages/quds_proofing_harper/tool/node_worker_bridge.mjs": "cb4c3c3bb997d3fe047962a76ca410d91d5b44c5",
+        "packages/quds_proofing_harper/tool/run_web_transport_smoke.mjs": "124105895711b1d37094298b57c4cbad9da4d65c",
+        "packages/quds_proofing_harper/tool/smoke_worker.mjs": "b953c829970e1d91cc7bb3d41da0fbdd4a80bbc8",
+        "packages/quds_proofing_harper/tool/source_projection_probe.mjs": "74cc5600904f0e63490a3839b0d09540b7f7ea68",
+        "packages/quds_proofing_harper/tool/test_build_packaging.py": "c4d80dee196203a71511447405aa617c30830b86",
+        "packages/quds_proofing_harper/tool/test_license_bundle.py": "c8ad4082aa9ec3e75de28b25dcb5e5803f6c6a64",
+        "packages/quds_proofing_harper/tool/verify.py": "b454ae339435c0288d43077beba298bd5aca542e",
+        "packages/quds_proofing_harper/tool/web_transport_smoke.dart": "ea55b201e8e4305bb06fb8eaf6041eb4b960c1a6",
+        "packages/quds_proofing_harper/web/harper_worker.mjs": "599e0cdf0e505437256304000ddc34b32c389ecf"
+      }
+    },
+    "hyphenation_sources_and_notices": {
+      "tracked_files": 16,
+      "changed": [],
+      "file_git_blob_sha1": {
+        "packages/quds_office_engine/lib/src/bidi/english_gb_hyphenation_data.dart": "44af454c915b8653b3701b4c038138ecbe8f1d62",
+        "packages/quds_office_engine/lib/src/bidi/english_hyphenator.dart": "c76cfce824dc3863158d950833bc8188423dfe54",
+        "packages/quds_office_engine/lib/src/bidi/english_us_hyphenation_data.dart": "4398544149b0e7da21e36c3d9aaafd8696ce76ae",
+        "packages/quds_office_engine/lib/src/bidi/german_hyphenation_data.dart": "21a92de63ac7e9dcaa3f45f5aa937683013a6cdc",
+        "packages/quds_office_engine/lib/src/bidi/german_hyphenator.dart": "efa75837f0e0bb8331a8e9c34058d216468d0a2f",
+        "packages/quds_office_engine/lib/src/bidi/hyphenation_words.dart": "c06d30ad7585f068dc3c5a9afdbfe16add86685a",
+        "packages/quds_office_engine/lib/src/bidi/office_hyphenator.dart": "fdec98fe6a409f71113debfa66307c94d0f01cfb",
+        "packages/quds_office_engine/third_party/hyphenation/ENGLISH.md": "8478143b3fc63072bfdb9cd52b94251643fb1154",
+        "packages/quds_office_engine/third_party/hyphenation/ENGLISH_GB_LICENSE": "63bc9b2a9952e8d3ced7cda81f6f287a4bca91f3",
+        "packages/quds_office_engine/third_party/hyphenation/ENGLISH_US_LICENSE": "3adb22869fa55fe570be51277686528a24ce3eee",
+        "packages/quds_office_engine/third_party/hyphenation/LICENSE": "08a83386136303c78a76029837514310eb986fa8",
+        "packages/quds_office_engine/third_party/hyphenation/README.md": "5d2be8fc0bd6c4d190fa322a88c59094a8a364d9",
+        "packages/quds_office_engine/third_party/hyphenation/english-manifest.json": "0b20ffb501908c7519ff111e89b706151a02294b",
+        "packages/quds_office_engine/third_party/hyphenation/hyph-de-1996.tex": "15641e1ec1619b89ec2939d31f37762cb8f1d12e",
+        "packages/quds_office_engine/third_party/hyphenation/hyph-en-gb.tex": "a668f67d756532694a5d160740487cda435ee1f7",
+        "packages/quds_office_engine/third_party/hyphenation/hyph-en-us.tex": "bd9b757d89074e3e11b590311ce13ba6667544aa"
+      }
+    },
+    "modern_spelling_base_shards": {
+      "tracked_files": 15,
+      "changed": [],
+      "file_git_blob_sha1": {
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_00.dart": "04c3c29326db061b112056929620f0c945d9f383",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_01.dart": "23626dd5de7a13cc47a343db868406b07141d3d3",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_02.dart": "39dcf2dddb717030d42334e5df980a2620906ed8",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_03.dart": "1496a30f00a49ad797b52a26741cc7be33ae7d1a",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_04.dart": "88d250fb4b76f9b839cf6014444206988d21ca67",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_05.dart": "1b00c34f0983fb87d0ea51ee25c694cd4d1a2c6f",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_06.dart": "56872249b72eab7c4c2a46cd2db19b5ebb5d0a48",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_07.dart": "1de49879083874f929be5057caf23c859bbdc348",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_08.dart": "8451faaef625b88ed8f77aab4b2721cf315541ab",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_09.dart": "ef9539e9e365a6d160ad4f5a4b496cecce5688e2",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_10.dart": "e21532a43d39cbc79489198d1453c824af41b431",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_11.dart": "b0c3c806061f98fc2f1d684121c58bafeb6ea864",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_12.dart": "6e924797682775c9a38dac7b735b92bcbd3cd478",
+        "packages/quds_office_engine/lib/src/proofing/data/german_standard_13.dart": "565a4e8df2db99547454b22882d030ad0628ce57",
+        "packages/quds_office_engine/lib/src/proofing/data/german_swiss_00.dart": "bf40de2844f45e770a41db1493e2d9f667622701"
+      }
+    }
+  },
+  "unicode_actual_pinned_inputs_verified": [
+    "dictionary_de.lst",
+    "inflectional_de.xml",
+    "LICENSE"
+  ],
+  "unicode_complete_license_locations": [
+    "LICENSE",
+    "packages/quds_office_engine/LICENSE",
+    "packages/quds_office_engine/third_party/proofing/UNICODE_INFLECTION_LICENSE"
+  ],
+  "generator_verification": "20 morphology and18 spelling generated files matched their exact pinned generation",
+  "spelling_change": "14 explicit first-party common noun forms added, seven net new accepted standard forms; Unicode morphology does not broaden spelling acceptance.",
+  "reviewed_factual_overlays": [
+    {
+      "lemma": "Architekt",
+      "reason": "corrected-weak-declension",
+      "form": "Architekten"
+    },
+    {
+      "lemma": "Assistent",
+      "reason": "corrected-weak-declension",
+      "form": "Assistenten"
+    },
+    {
+      "lemma": "Bonbon",
+      "reason": "alternative-gender",
+      "form": "masculine"
+    },
+    {
+      "lemma": "Herz",
+      "reason": "optional-dative",
+      "form": "Herzen"
+    },
+    {
+      "lemma": "Nachbar",
+      "reason": "strong-and-weak-variants",
+      "form": "Nachbar|Nachbarn|Nachbars"
+    },
+    {
+      "lemma": "Stift",
+      "reason": "alternative-gender",
+      "form": "neuter"
+    },
+    {
+      "lemma": "Teil",
+      "reason": "alternative-gender",
+      "form": "neuter"
+    }
+  ],
+  "github_actions_used": false
+}

@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "vm_summary": {
+    "sentences": 84,
+    "requests_recorded": 420,
+    "errors": 24,
+    "exact_errors": 24,
+    "expanded_errors": 0,
+    "exact_expanded_errors": 0,
+    "challenge_errors": 0,
+    "exact_challenge_errors": 0,
+    "valid_controls": 60,
+    "flagged_controls": 0,
+    "operational_failures": 0,
+    "protection_failures": 0,
+    "ignore_failures": 0,
+    "recheck_failures": 0
+  },
+  "node_summary": {
+    "sentences": 84,
+    "requests_recorded": 420,
+    "errors": 24,
+    "exact_errors": 24,
+    "expanded_errors": 0,
+    "exact_expanded_errors": 0,
+    "challenge_errors": 0,
+    "exact_challenge_errors": 0,
+    "valid_controls": 60,
+    "flagged_controls": 0,
+    "operational_failures": 0,
+    "protection_failures": 0,
+    "ignore_failures": 0,
+    "recheck_failures": 0
+  },
+  "vm_node_semantically_equal": true,
+  "source_unchanged": true,
+  "probe_unchanged": true
+}

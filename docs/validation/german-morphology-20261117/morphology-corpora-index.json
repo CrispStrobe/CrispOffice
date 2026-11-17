@@ -1,0 +1,96 @@
+{
+  "archive": "morphology-corpora.tar.gz",
+  "bytes": 98537,
+  "sha256": "ed9edba7c7c391eec6008d1fa2bfa2a9cb1c17e568fb8897f2b099f61c4b6a10",
+  "members": {
+    "checks/morphology-final-generation-check.log": {
+      "bytes": 459,
+      "sha256": "63af8f9d6efcb45bc99db35ddcbf7c01a8d0761c3ab732b89d261d7daa4774da"
+    },
+    "checks/morphology-final-guard-analysis.log": {
+      "bytes": 209,
+      "sha256": "4c5513b4e4252c4ee2cce80b43187aca30d76c771cb61577676480b33de0148b"
+    },
+    "checks/morphology-final-guard-tests.log": {
+      "bytes": 31200,
+      "sha256": "0c1a038b9d98d4d4ecb8860bfa4b8064affa88047d42a4d77bb74f769f52959a"
+    },
+    "checks/morphology-final-spelling-check.log": {
+      "bytes": 116,
+      "sha256": "4059ad7a68351285a140fc9c0aaa5c62a4bc7189d29e1a6e9f1f3a868b84f132"
+    },
+    "exploratory/morphology-candidate-reviewed/receipt.json": {
+      "bytes": 15329,
+      "sha256": "a489fab4eb359fa7eb739218b8032fe23d6fe6b8deabac6b7cae5b50c5b6f5e7"
+    },
+    "exploratory/morphology-candidate-reviewed/vm-results.json": {
+      "bytes": 169674,
+      "sha256": "7c4218be650afa4bde9dc8d5a5abbd50b85e733272811b47f0c2ece4c934cbfd"
+    },
+    "exploratory/morphology-review-reviewed/receipt.json": {
+      "bytes": 15322,
+      "sha256": "84016182f4ce21b82fb4de44503f4167e903e76d86d9f3cb4ee93c16aebb499d"
+    },
+    "exploratory/morphology-review-reviewed/vm-results.json": {
+      "bytes": 58102,
+      "sha256": "977c828b30ca617d8abc323ee58becfe72666ea02e7fb166ccc6662f970a0180"
+    },
+    "morphology-final-buckets/compile-js.log": {
+      "bytes": 114,
+      "sha256": "2d429cec1185a1b68eabae3975b8cc6ea6911e2908000d817b4e206e65356724"
+    },
+    "morphology-final-buckets/node.json": {
+      "bytes": 298,
+      "sha256": "c73f7d4d9c6eb239d4a99258d8bc4edeb60340eb4376d449d41e7bdff82a1e32"
+    },
+    "morphology-final-buckets/receipt.json": {
+      "bytes": 9681,
+      "sha256": "538fdcde265674ad85fbfe7691bd71dc987d2735ffe3e2bd23a967b908fe9364"
+    },
+    "morphology-final-buckets/vm.json": {
+      "bytes": 298,
+      "sha256": "a1dbb18cb302298f555a5270f444e59d0b30e45e94fa76cc4f2f258fbc750a94"
+    },
+    "morphology-final-frozen/compile-js.log": {
+      "bytes": 114,
+      "sha256": "75d8f7b44f906298524e596adee36f5662403a7a69a8a9d79f7d7df9583f439d"
+    },
+    "morphology-final-frozen/node-results.json": {
+      "bytes": 781313,
+      "sha256": "a1ab03b20071674b71ea39f4a108e207bbb18e1108cb3aad7738ff0a6cb067db"
+    },
+    "morphology-final-frozen/package-config.json": {
+      "bytes": 23658,
+      "sha256": "89acbb2cb89fe3bf3fd05d2c4d57cfb6da7f4ff2482bfd36079d5803a6d95074"
+    },
+    "morphology-final-frozen/receipt.json": {
+      "bytes": 10879,
+      "sha256": "1c5d9f43da0f41961f03147fa12db68f738728eb839f45c6a457a908660220dd"
+    },
+    "morphology-final-frozen/vm-results.json": {
+      "bytes": 781313,
+      "sha256": "a1ab03b20071674b71ea39f4a108e207bbb18e1108cb3aad7738ff0a6cb067db"
+    },
+    "morphology-review-final-frozen/compile-js.log": {
+      "bytes": 114,
+      "sha256": "1eb203e80c58f4c72e5fef8ad7cf081315ba5a262d509224810254e1e795f6ff"
+    },
+    "morphology-review-final-frozen/node-results.json": {
+      "bytes": 265401,
+      "sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4"
+    },
+    "morphology-review-final-frozen/package-config.json": {
+      "bytes": 23658,
+      "sha256": "89acbb2cb89fe3bf3fd05d2c4d57cfb6da7f4ff2482bfd36079d5803a6d95074"
+    },
+    "morphology-review-final-frozen/receipt.json": {
+      "bytes": 10897,
+      "sha256": "7786c64c0ee1fc7002c874763a6169bb7a74e954adf1e286f17e7f70f615f2ee"
+    },
+    "morphology-review-final-frozen/vm-results.json": {
+      "bytes": 265401,
+      "sha256": "65ea54d112b6c72bd81196b34d61d976d4c83f2bb0d45e9bbaa938382a23c5c4"
+    }
+  },
+  "omitted_reproducible_outputs": "Generated JavaScript, maps and dependency lists are not versioned. Their hashes and exact build command are retained in receipts; checked-in harness, corpora and source recreate them."
+}
