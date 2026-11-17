@@ -1,0 +1,48 @@
+{
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "observed_at": "2026-11-17T06:13:53.438458+00:00",
+  "refs": [
+    {
+      "ref": "refs/remotes/upstream-pr/1",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "ancestor_of_checkpoint": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/5",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_checkpoint": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/6",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_checkpoint": true
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/7",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_checkpoint": true
+    },
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_checkpoint": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_checkpoint": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_checkpoint": true
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor_of_checkpoint": true
+    }
+  ],
+  "count": 8,
+  "unique_heads": 5
+}
