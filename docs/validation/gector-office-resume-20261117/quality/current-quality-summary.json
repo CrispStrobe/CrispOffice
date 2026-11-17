@@ -1,0 +1,393 @@
+{
+  "schema": "quds.gector.six-panel-current-comparison.v1",
+  "created_utc": "2026-11-17T21:41:22.847688+00:00",
+  "passed": true,
+  "baseline_commit": "db453d88d82700e9b8c96b0d9c00c1061e6ac18d",
+  "current_compiler_source_commit": "8c98daf5ff7b72f8f73017c5747eb4fe4dde25de",
+  "case_rows": 377,
+  "lanes": 4,
+  "outcomes_per_source": 1508,
+  "independent_checks": [
+    "frozen corpus and metadata-only syntax adapter identities",
+    "source and AOT build bindings",
+    "UTF-16 source finding ranges",
+    "first-replacement projection and skipped overlaps",
+    "deterministic/model merge reconstruction",
+    "provider status contracts including regional unsupported model",
+    "producer summary independently reconstructed from raw results",
+    "no previously exact correction lost",
+    "no newly changed or flagged clean input"
+  ],
+  "panels": [
+    {
+      "name": "original-30",
+      "de_DE_errors": 18,
+      "de_DE_clean": 10,
+      "lanes": {
+        "writing_only": {
+          "before_exact": 18,
+          "final_exact": 18,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before_exact": 18,
+          "final_exact": 18,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before_exact": 6,
+          "final_exact": 6,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "combined": {
+          "before_exact": 18,
+          "final_exact": 18,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        }
+      }
+    },
+    {
+      "name": "development-76",
+      "de_DE_errors": 32,
+      "de_DE_clean": 40,
+      "lanes": {
+        "writing_only": {
+          "before_exact": 17,
+          "final_exact": 17,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before_exact": 17,
+          "final_exact": 17,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before_exact": 12,
+          "final_exact": 12,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "combined": {
+          "before_exact": 23,
+          "final_exact": 23,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        }
+      }
+    },
+    {
+      "name": "syntax-56",
+      "de_DE_errors": 20,
+      "de_DE_clean": 34,
+      "lanes": {
+        "writing_only": {
+          "before_exact": 12,
+          "final_exact": 12,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before_exact": 12,
+          "final_exact": 12,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before_exact": 5,
+          "final_exact": 5,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "combined": {
+          "before_exact": 15,
+          "final_exact": 15,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        }
+      }
+    },
+    {
+      "name": "context-83",
+      "de_DE_errors": 23,
+      "de_DE_clean": 60,
+      "lanes": {
+        "writing_only": {
+          "before_exact": 21,
+          "final_exact": 21,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before_exact": 21,
+          "final_exact": 21,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before_exact": 2,
+          "final_exact": 2,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "combined": {
+          "before_exact": 21,
+          "final_exact": 21,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        }
+      }
+    },
+    {
+      "name": "completion-28",
+      "de_DE_errors": 8,
+      "de_DE_clean": 20,
+      "lanes": {
+        "writing_only": {
+          "before_exact": 8,
+          "final_exact": 8,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before_exact": 8,
+          "final_exact": 8,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before_exact": 8,
+          "final_exact": 8,
+          "before_changed_clean": 3,
+          "final_changed_clean": 3,
+          "before_flagged_clean": 3,
+          "final_flagged_clean": 3,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "combined": {
+          "before_exact": 8,
+          "final_exact": 8,
+          "before_changed_clean": 3,
+          "final_changed_clean": 3,
+          "before_flagged_clean": 3,
+          "final_flagged_clean": 3,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        }
+      }
+    },
+    {
+      "name": "holdout-104",
+      "de_DE_errors": 46,
+      "de_DE_clean": 57,
+      "lanes": {
+        "writing_only": {
+          "before_exact": 45,
+          "final_exact": 46,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [
+            "holdout-17-error"
+          ],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "deterministic": {
+          "before_exact": 45,
+          "final_exact": 46,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [
+            "holdout-17-error"
+          ],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "model_only": {
+          "before_exact": 0,
+          "final_exact": 0,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        },
+        "combined": {
+          "before_exact": 45,
+          "final_exact": 46,
+          "before_changed_clean": 0,
+          "final_changed_clean": 0,
+          "before_flagged_clean": 0,
+          "final_flagged_clean": 0,
+          "lost_exact_ids": [],
+          "added_exact_ids": [
+            "holdout-17-error"
+          ],
+          "new_changed_clean_ids": [],
+          "new_flagged_clean_ids": []
+        }
+      }
+    }
+  ],
+  "scope": "Reused synthetic regression panels, including historically named holdout. Not a new prospective or representative German accuracy estimate. No durations are benchmark evidence.",
+  "new_default_or_release_qualification": false,
+  "observed_gain": {
+    "case": "holdout-17-error",
+    "input": "Wir helfen die Freundin.",
+    "expected": "Wir helfen der Freundin.",
+    "lanes": [
+      "writing_only",
+      "deterministic",
+      "combined"
+    ],
+    "interpretation": "Gain belongs to integrated grammar source, not to model changes."
+  },
+  "sein_ranking": {
+    "contexts": 3,
+    "before_first": "gebangt",
+    "final_first": "gegangen",
+    "merged_output_count_change": 0,
+    "note": "Existing writing grammar already offered the exact correction; first spelling suggestion now independently matches it."
+  },
+  "retained_declared_clean_changes": [
+    {
+      "input": "Ihr hat viel Zeit geholfen.",
+      "projected": "Ihr habt viel Zeit geholfen."
+    },
+    {
+      "input": "Ihr hat Geld gefehlt.",
+      "projected": "Ihr habt Geld gefehlt."
+    },
+    {
+      "input": "Das Buch, dass ich heute lese, ist gut.",
+      "projected": "Das Buch, das ich heute lese, ist gut."
+    }
+  ]
+}
