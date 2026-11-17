@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-local-pack-verification",
+  "verified": true,
+  "manifest": {
+    "file": "development-pack-manifest.json",
+    "bytes": 9315,
+    "sha256": "70187da9248c829ab511f566ba4db9093a0ec5a9c922ad4438d63db372880841"
+  },
+  "file_count_including_manifest": 23,
+  "total_bytes_including_manifest": 86356331,
+  "development_only": true,
+  "inference_executed": false,
+  "sources": {
+    "build_native_pack.py": "46a0b5d9aea450316d7683929d7285ebc2c9768ce7dc86fe61a365984da72bc8",
+    "test_native_pack.py": "5243ae60cfc597c7b37e09fc5858b6a700af5c7906964651e8cd88e5fb0baeaa"
+  },
+  "scope": "Exact qualified mixed model, all twelve frozen sidecars, native binary/header/license/notices and native qualification/build/license evidence. System libraries are not bundled; intended platforms and shipping approval remain separate."
+}

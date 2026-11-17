@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "kind": "quds-gector-continuation-integration",
+  "captured_at_utc": "2026-11-17T14:39:47Z",
+  "starting_head": "216d9a4ba11d87d27f861d84d26bf74ca1d4f298",
+  "integration_commit": "aa6c50ed3736cea2c871f4bed7ae18a60e0cbb8b",
+  "integrated_tree": "2a83fde9dedc71303287b9deaa254c17d3c5bccd",
+  "incoming_parents": {
+    "main": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+    "codex/german-morphology-20261117": "b63d76a2dbdd18d1a2fb3a46943632966368916c",
+    "codex/office-fidelity-20261117": "86242782115fa3433f03d00f3f98c08b890904b9",
+    "codex/office-continuation-20261117": "a63f23db60d34b4da274ff89e29c69668291216b",
+    "feat/odt-sections2": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+    "vendor/odt-sections": "a5cd1f30aa4764e990ed81b9ac8387efe3182f82"
+  },
+  "remote_inventory": {
+    "file": "incoming-refs.json.gz",
+    "bytes": 23420,
+    "sha256": "2e1f7338beb40a7f1e11a4de5660edfa909bf567be8aa9fe4c33d028c8016a47"
+  },
+  "branch_counts": {
+    "quds_office_suite": 124,
+    "CrispEmbed": 243,
+    "onnx_runtime_dart": 4,
+    "fastembed-rs": 10
+  },
+  "all_captured_quds_branch_tips_ancestral": true,
+  "other_three_grammar_branches_unchanged": true,
+  "preservation_review": {
+    "gector_code": "byte-identical to original provider checkpoint before new guard work",
+    "odp_and_comment_fidelity": "latest fidelity implementation and new tests preserved",
+    "annotation_extraction": "latest formatted morphology implementation and tests preserved",
+    "note_regressions": "complete continuation regression file retained",
+    "odt_sections": "main section layout/style methods and regression preserved",
+    "odt_conflict_resolution": "retain bounded comment/note implementation and sectionBreakStyle; do not restore legacy numbering or duplicate annotation loop"
+  },
+  "equivalent_section_histories": {
+    "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d": {
+      "root_tree_equal_to": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+      "tree": "2909598a199b8a6a0bd839b0dcc5b5146d663553"
+    },
+    "a5cd1f30aa4764e990ed81b9ac8387efe3182f82": {
+      "delta_files": 2,
+      "all_delta_blobs_equal_to_main": true,
+      "parent": "04505306af39c47bd0fe96423d1515ee6ca5027e"
+    }
+  },
+  "local_tests": {
+    "distinct_tests": 119,
+    "passed": true,
+    "initial_log": "integration-tests-initial.log",
+    "retry_log": "integration-tests-fixture-retry.log",
+    "initial_failure": "one fixture-dependent test invoked from repository root; the same file passed all 8 tests from its package directory"
+  },
+  "github_actions_dispatched_or_awaited": false
+}

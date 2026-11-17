@@ -1,0 +1,132 @@
+00:00 +0: loading packages/quds_office_engine/test/odt_document_writer_test.dart
+00:00 +0: packages/quds_office_engine/test/odt_document_writer_test.dart: writes section page layouts and breaks
+00:00 +1: packages/quds_office_engine/test/odt_document_writer_test.dart: writes ODT comments
+00:00 +2: packages/quds_office_engine/test/odt_document_writer_test.dart: writes footnote references and bodies
+00:00 +3: packages/quds_office_engine/test/odt_document_writer_test.dart: writes modeled Word text, runs, tables and pictures as ODT
+00:00 +4: packages/quds_office_engine/test/odt_document_writer_test.dart: table lists retain paragraph layout and use standard number styles
+00:00 +5: packages/quds_office_engine/test/odt_document_writer_test.dart: empty documents keep the list catalog within ODF core attributes
+00:00 +6: packages/quds_office_engine/test/odt_document_writer_test.dart: exports Zotero cached results without hidden field instructions
+00:00 +6 -1: packages/quds_office_engine/test/odt_document_writer_test.dart: exports Zotero cached results without hidden field instructions [E]
+  PathNotFoundException: Cannot open file, path = 'test/fixtures/zotero/word_document.xml' (OS Error: No such file or directory, errno = 2)
+  dart:io                                                                _File.readAsStringSync
+  packages/quds_office_engine/test/odt_document_writer_test.dart 226:58  main.<fn>
+  
+00:00 +6 -1: packages/quds_office_engine/test/odt_document_writer_test.dart: preserves whitespace in body runs and basic headers and footers
+00:00 +7 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: a hidden covered anchor does not consume a visible comment
+00:00 +8 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: comments anchored only in covered stories stay hidden
+00:00 +9 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: an orphan continuation remains a visible comment anchor
+00:00 +10 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: rejects 2 ambiguous definitions without changing anchor
+00:00 +11 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: rejects 3 ambiguous definitions without changing anchor
+00:00 +12 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: missing definitions leave the visible run intact
+00:00 +13 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: repeated IDs emit one body without mutating the source
+00:00 +14 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: shared IDs are deduplicated while unique master-story comments remain
+00:00 +15 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: recursive comment references do not nest or consume later anchors
+00:00 +16 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: note references in comments retain marks without consuming bodies
+00:00 +17 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: visible frame comments retain their bodies
+00:00 +18 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: main body anchor takes precedence over an earlier note anchor
+00:00 +19 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: main body anchor takes precedence over an earlier frame anchor
+00:00 +20 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: empty comment bodies have a valid empty paragraph
+00:00 +21 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: comment headings use legal paragraph children and retain heading style
+00:00 +22 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains valid annotation date 2026-11-17T15:30:42Z
+00:00 +23 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains valid annotation date 2024-02-29T15:30:42.125+01:00
+00:00 +24 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains valid annotation date 2026-11-17T15:30:42
+00:00 +25 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains valid annotation date  2026-11-17T15:30:42Z 
+00:00 +26 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains valid annotation date 2026-11-17T24:00:00Z
+00:00 +27 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains valid annotation date 12026-11-17T15:30:42-14:00
+00:00 +28 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains valid annotation date -0004-02-29T00:00:00Z
+00:00 +29 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: 2026-02-29T12:00:00Z
+00:00 +30 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: 2026-11-17
+00:00 +31 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: Yesterday & tomorrow
+00:00 +32 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: 2026-11-17T24:00:01Z
+00:00 +33 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: 2026-11-17T00:00:00+14:01
+00:00 +34 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: 0000-01-01T00:00:00Z
+00:00 +35 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: 012026-11-17T00:00:00Z
+00:00 +36 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: <NBSP>2026-11-17T00:00:00Z
+00:00 +37 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: retains non-date metadata as date-string: 2026-11-17T00:00:00Z<LINE SEPARATOR>
+00:00 +38 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: long malformed date metadata retains exact internal whitespace
+00:00 +39 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: rich comment text, links, fields, initials and pictures survive
+00:00 +40 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: detached visual fallbacks are legal comment paragraphs
+00:00 +41 -1: packages/quds_office_engine/test/odt_comment_fidelity_test.dart: empty optional metadata is omitted
+00:00 +42 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: uses independent native footnote and endnote numbering
+00:00 +43 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: numbers empty authored reference markers in their body sequence
+00:00 +44 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: freezes resolved labels so consumers cannot silently renumber them
+00:00 +45 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: preserves authored citation labels and excludes them from numbering
+00:00 +46 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: emits one body and a resolvable field for repeated references
+00:00 +47 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: missing note definitions retain visible reference text
+00:00 +48 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: a differently authored repeat mark retains its visible cached text
+00:00 +49 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: ambiguous duplicate definitions retain visible reference text
+00:00 +50 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: self references cannot recursively expand note bodies
+00:00 +51 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: mutually referenced notes stay flat and terminate
+00:00 +52 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: comment references cannot consume the visible body note
+00:00 +53 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: header and footer references preserve text without duplicate note bodies
+00:00 +54 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: empty note bodies get a consumer-compatible blank paragraph
+00:00 +55 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: rich note paragraphs retain spacing, breaks, colors and hyperlinks
+00:00 +56 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: reference run styling surrounds the note and repeated reference field
+00:00 +57 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: custom-mark references remain unnumbered while their bodies survive
+00:00 +58 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: covered cell references cannot consume the only visible note body
+00:00 +59 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: footnote references in comments cannot consume visible note bodies
+00:00 +60 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: endnote references in comments cannot consume visible note bodies
+00:00 +61 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: repeated exports preserve source IDs, reference strings and native settings
+00:00 +62 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: visible note numbering respects covered continuation cells
+00:00 +63 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: visible note numbering respects orphan continuation cells
+00:00 +64 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: note tables preserve visible nested cell paragraphs without hidden stories
+00:00 +65 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: honors authored automatic note reference spacing false
+00:00 +66 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: honors authored automatic note reference spacing true
+00:00 +67 -1: packages/quds_office_engine/test/odt_note_fidelity_test.dart: does not duplicate an existing note-body separator
+00:00 +68 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: odt annotations do not create body paragraphs or table text
+00:00 +69 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: ods annotations do not create body paragraphs or table text
+00:00 +70 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: inline annotation omission preserves authored spaces and CDATA
+00:00 +71 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: annotation recognition uses namespace identity and keeps foreign text
+00:00 +72 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: empty annotations do not consume following paragraphs or tables
+00:00 +73 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: annotation-only documents do not fall back to comment metadata
+00:00 +74 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: namespace-less fallback excludes only ODF annotations
+00:00 +75 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: hidden annotation text is neither expanded nor charged to output
+00:00 +76 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: annotations still count toward the package byte budget
+00:00 +77 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: ODS writer comments stay in the package without becoming cell text
+00:01 +78 -1: packages/quds_office_engine/test/odf_annotation_extraction_test.dart: ODT writer comments retain their body and do not enter body search
+00:01 +79 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: rotates 90 degrees clockwise about a nonzero center
+00:01 +80 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: rotates 180 degrees clockwise about a nonzero center
+00:01 +81 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: rotates 270 degrees clockwise about a nonzero center
+00:01 +82 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: rotates -90 degrees clockwise about a nonzero center
+00:01 +83 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: arbitrary positive rotation preserves the authored center
+00:01 +84 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: arbitrary negative rotation retains sign and center
+00:01 +85 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: 0 degrees keeps ordinary frame position without a transform
+00:01 +86 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: 360 degrees keeps ordinary frame position without a transform
+00:01 +87 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: -360 degrees keeps ordinary frame position without a transform
+00:01 +88 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: 720 degrees keeps ordinary frame position without a transform
+00:01 +89 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: equivalent large and wrapped angles share bounded transform values
+00:01 +90 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: the smallest modeled rotation is retained instead of rounded to zero
+00:01 +91 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: negative origins and zero dimensions still produce finite geometry
+00:01 +92 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: picture frame uses the same transform without modifying embedded bytes
+00:01 +93 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: rotated table exports grouped cell frames without changing source cells
+00:01 +94 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: rotated RTL table puts first logical cell at the physical right
+00:01 +95 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: table at 0 degrees retains native editable structure
+00:01 +96 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: table at 360 degrees retains native editable structure
+00:01 +97 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: rotated table retains its authored outline above cell fills
+00:01 +98 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: empty rotated table exports one background and leaves the model empty
+00:01 +99 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: ragged rotated grids emit physical cells without expanding blank rows
+00:01 +100 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: fractional rotated cell sizes meet at their shared boundaries
+00:01 +101 -1: packages/quds_office_engine/test/odp_transform_fidelity_test.dart: grouped model shapes keep independent authored centers and source values
+00:01 +102 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: table cell text colors survive independently of fill colors
+00:01 +103 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: equal text colors reuse styles without bleeding into other cells
+00:01 +104 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: right-to-left tables export physical positions and paragraph direction
+00:01 +105 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: physical table layout and paragraph direction remain independent
+00:01 +106 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: header intent keeps every presentation row directly visible
+00:01 +107 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: table without header exports all rows as body rows
+00:01 +108 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: table geometry follows equal-sized modeled rows and columns
+00:01 +109 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: different table dimensions do not alias size styles
+00:01 +110 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: ragged rows export a rectangular grid without mutating the model
+00:01 +111 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: empty tables export a valid minimal grid without adding model cells
+00:01 +112 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: trailing empty grid positions are represented compactly
+00:01 +113 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: table text keeps multiline whitespace and its color on every paragraph
+00:01 +114 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: table insertion order true preserves shape and note styles
+00:01 +115 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: table insertion order false preserves shape and note styles
+00:01 +116 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: RTL empty header remains rectangular across repeated exports
+00:01 +117 -1: packages/quds_office_engine/test/odp_table_fidelity_test.dart: RTL ragged rows place missing logical cells on the physical left
+00:01 +118 -1: Some tests failed.
+
+Failing tests:
+  packages/quds_office_engine/test/odt_document_writer_test.dart: exports Zotero cached results without hidden field instructions
+
+Consider enabling the flag chain-stack-traces to receive more detailed exceptions.
+For example, 'dart test --chain-stack-traces'.
