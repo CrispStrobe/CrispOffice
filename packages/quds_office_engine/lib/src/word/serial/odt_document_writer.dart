@@ -368,7 +368,15 @@ abstract final class OdtDocumentWriter {
             w.writeText(comment.dateIso);
             w.writeEndElement();
           }
-          _writeBlocks(w, comment.paragraphs, layout);
+          // Annotation stories preserve note marks without consuming the
+          // definition which belongs to a visible body reference.
+          final notesAllowed = layout.noteBodiesAllowed;
+          layout.noteBodiesAllowed = false;
+          try {
+            _writeBlocks(w, comment.paragraphs, layout);
+          } finally {
+            layout.noteBodiesAllowed = notesAllowed;
+          }
           w.writeEndElement();
         }
         if (inline.inlineVisual case final visual?) {
