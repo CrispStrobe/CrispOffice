@@ -1,0 +1,186 @@
+{
+  "started_utc": "2026-11-17T06:44:40.632415+00:00",
+  "script_sha256": "9b1a06f23b29ce376f2484deb99ccf50f5d2d36acc6aa132bc1236d901cc711d",
+  "dpi": 120,
+  "scope": "Three one-page fixtures, identical painted PDF content with and without ActualText wrappers.",
+  "text_scope": "Raw external extraction is observational; exact authored-text equality is not the raster gate.",
+  "render_policy": "Reject diagnostics, unequal image dimensions, and empty rasters before comparing pixels.",
+  "commands": [
+    [
+      "pdfinfo",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source.pdf"
+    ],
+    [
+      "pdftoppm",
+      "-r",
+      "120",
+      "-singlefile",
+      "-png",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source.pdf",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source"
+    ],
+    [
+      "pdfinfo",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source-paint-control.pdf"
+    ],
+    [
+      "pdftoppm",
+      "-r",
+      "120",
+      "-singlefile",
+      "-png",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source-paint-control.pdf",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source-paint-control"
+    ],
+    [
+      "pdftotext",
+      "-raw",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/word-logical-source.pdf",
+      "-"
+    ],
+    [
+      "pdfinfo",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source.pdf"
+    ],
+    [
+      "pdftoppm",
+      "-r",
+      "120",
+      "-singlefile",
+      "-png",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source.pdf",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source"
+    ],
+    [
+      "pdfinfo",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source-paint-control.pdf"
+    ],
+    [
+      "pdftoppm",
+      "-r",
+      "120",
+      "-singlefile",
+      "-png",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source-paint-control.pdf",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source-paint-control"
+    ],
+    [
+      "pdftotext",
+      "-raw",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/worksheet-logical-source.pdf",
+      "-"
+    ],
+    [
+      "pdfinfo",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source.pdf"
+    ],
+    [
+      "pdftoppm",
+      "-r",
+      "120",
+      "-singlefile",
+      "-png",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source.pdf",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source"
+    ],
+    [
+      "pdfinfo",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source-paint-control.pdf"
+    ],
+    [
+      "pdftoppm",
+      "-r",
+      "120",
+      "-singlefile",
+      "-png",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source-paint-control.pdf",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source-paint-control"
+    ],
+    [
+      "pdftotext",
+      "-raw",
+      "/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-fidelity-20261117/engine/logical-render/rotated-slide-logical-source.pdf",
+      "-"
+    ]
+  ],
+  "fixtures": [
+    {
+      "name": "word-logical-source",
+      "size_pixels": [
+        993,
+        1404
+      ],
+      "nonwhite_pixels": [
+        1126,
+        1126
+      ],
+      "different_pixels": 0,
+      "raster_equal": true,
+      "source_text": "English (مرحبا 123) end",
+      "poppler_raw_text": "English (‫ ابحرم‬123) end\n\f",
+      "external_text_matches_source_exactly": false,
+      "files_sha256": {
+        "word-logical-source.pdf": "590b5305b56bf3dd9b3ae5031d9aaab8362454d4c1baa4236130e452c805805b",
+        "word-logical-source-paint-control.pdf": "5a0daf26c96eb43587f22d403d55e668938bbfcf26d37683849fd5e619b27abe",
+        "word-logical-source.png": "0ed54906503901245520bcc326b4964286b821e314e3efb11f4ae36e1adc1b08",
+        "word-logical-source-paint-control.png": "0ed54906503901245520bcc326b4964286b821e314e3efb11f4ae36e1adc1b08",
+        "word-logical-source-source.txt": "4a8fbfe8f9f8ea9becd92e00f01386ac9a34bc48e8c7c598a5847997ae75d1f7",
+        "word-logical-source-poppler-raw.txt": "ad6fb85ae81451662b03d8c31e0a61963b0cba80a2df84b7c0a64b96aafbda4c"
+      }
+    },
+    {
+      "name": "worksheet-logical-source",
+      "size_pixels": [
+        993,
+        1404
+      ],
+      "nonwhite_pixels": [
+        5323,
+        5323
+      ],
+      "different_pixels": 0,
+      "raster_equal": true,
+      "source_text": "Sheet1  -  1 / 1A1Report (مرحبا لا) 123",
+      "poppler_raw_text": "Sheet1 - 1 / 1\nA\n1 Report \n(‫ )ال ابحرم‬\n123\n\f",
+      "external_text_matches_source_exactly": false,
+      "files_sha256": {
+        "worksheet-logical-source.pdf": "5deb00d64a7cfb957de946881d34d888ad0ae374cf0df1d0ac47267a6145bf1b",
+        "worksheet-logical-source-paint-control.pdf": "e4743e21dd0fb5d649a0015c4cd4062bc584fd20aa9c1e34c01c21cfd48401cf",
+        "worksheet-logical-source.png": "dfcc1724afd2fdc2c4a34c1f6b450b0e087b6620794069fcffc584916cb23797",
+        "worksheet-logical-source-paint-control.png": "dfcc1724afd2fdc2c4a34c1f6b450b0e087b6620794069fcffc584916cb23797",
+        "worksheet-logical-source-source.txt": "664e1dd7777a9eaa37314015774ed84881c31dad37196f597a6d99c961402dc9",
+        "worksheet-logical-source-poppler-raw.txt": "af1c5a7477eac3e84cc68967c016ea6ea5c0162cc97aac096107989c039b5794"
+      }
+    },
+    {
+      "name": "rotated-slide-logical-source",
+      "size_pixels": [
+        1200,
+        675
+      ],
+      "nonwhite_pixels": [
+        222854,
+        222854
+      ],
+      "different_pixels": 0,
+      "raster_equal": true,
+      "source_text": "Rotated (مرحبا لا) 123",
+      "poppler_raw_text": "Rotated (‫ )ال ابحرم‬123\n\f",
+      "external_text_matches_source_exactly": false,
+      "files_sha256": {
+        "rotated-slide-logical-source.pdf": "613417c158e52924a2769e639cc512aaebf467ad7fb40efb9bdc0605bf9e9b65",
+        "rotated-slide-logical-source-paint-control.pdf": "cd9d46e5d786081635ee16d5b8f577e05c652775d27f308dd4ca571aad48e8f4",
+        "rotated-slide-logical-source.png": "9ff3f9ba0c8c9fb2c2e3f165bb9f81fd7e083c6ed72089edd38c993371e0577d",
+        "rotated-slide-logical-source-paint-control.png": "9ff3f9ba0c8c9fb2c2e3f165bb9f81fd7e083c6ed72089edd38c993371e0577d",
+        "rotated-slide-logical-source-source.txt": "200206650a0647e3c264d9b0c9d37f2e81b903eade9d8d9f55e97c2dfe5d6f15",
+        "rotated-slide-logical-source-poppler-raw.txt": "9ff586ca1413b5c4be89433cc9012bf80905e1a168a89ea400f8e47497872387"
+      }
+    }
+  ],
+  "github_actions_used": false,
+  "pdfinfo_version": "pdfinfo version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+  "pdftoppm_version": "pdftoppm version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+  "pdftotext_version": "pdftotext version 25.03.0\nCopyright 2005-2025 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+  "passed": true,
+  "finished_utc": "2026-11-17T06:44:45.019781+00:00"
+}

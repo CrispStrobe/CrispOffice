@@ -1,0 +1,12 @@
+/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-continuation-20261117/verify_pdf_visuals.py:64: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  ink_pixels = [sum(pixel != (255, 255, 255) for pixel in image.getdata())
+/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-continuation-20261117/verify_pdf_visuals.py:69: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  different_pixels = sum(pixel != (0, 0, 0) for pixel in difference.getdata())
+/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-continuation-20261117/verify_pdf_visuals.py:64: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  ink_pixels = [sum(pixel != (255, 255, 255) for pixel in image.getdata())
+/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-continuation-20261117/verify_pdf_visuals.py:69: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  different_pixels = sum(pixel != (0, 0, 0) for pixel in difference.getdata())
+/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-continuation-20261117/verify_pdf_visuals.py:64: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  ink_pixels = [sum(pixel != (255, 255, 255) for pixel in image.getdata())
+/workspace/scratch/f570a2d34350/quds_office_suite/docs/validation/office-continuation-20261117/verify_pdf_visuals.py:69: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  different_pixels = sum(pixel != (0, 0, 0) for pixel in difference.getdata())

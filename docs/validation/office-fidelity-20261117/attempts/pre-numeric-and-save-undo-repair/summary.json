@@ -1,0 +1,49 @@
+{
+  "engine": {
+    "head": "fa0f9c201a147bbf8a88fd17d48b77fa00300812",
+    "passed": true,
+    "outcomes": {
+      "success": 1380
+    },
+    "failures": [],
+    "inputs_unchanged": true,
+    "commands": {
+      "tests": 0,
+      "analyze": 0,
+      "format": 0
+    }
+  },
+  "editor": {
+    "head": "fa0f9c201a147bbf8a88fd17d48b77fa00300812",
+    "passed": false,
+    "outcomes": {
+      "success": 367,
+      "error": 3
+    },
+    "failures": [
+      "pending formula type survives rename, save and history: =\"#REF!\"",
+      "pending formula type survives rename, save and history: =IF(TRUE,\"#N/A\",\"other\")",
+      "pending formula type survives rename, save and history: =NA()"
+    ],
+    "inputs_unchanged": true,
+    "commands": {
+      "tests": 1,
+      "analyze": 0,
+      "format": 0
+    }
+  },
+  "harper": {
+    "head": "fa0f9c201a147bbf8a88fd17d48b77fa00300812",
+    "passed": true,
+    "outcomes": {
+      "success": 29
+    },
+    "failures": [],
+    "inputs_unchanged": true,
+    "commands": {
+      "tests": 0,
+      "analyze": 0,
+      "format": 0
+    }
+  }
+}
