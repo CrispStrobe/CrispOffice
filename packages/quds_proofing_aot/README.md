@@ -239,7 +239,7 @@ Raw grammar strings and nested morphology remain available for inspection.
 | Response | 4 MiB |
 | Admitted requests | 4, processed serially |
 | Client request deadline | 60 seconds, including startup, queueing and response consumption |
-| Worker stderr drain | 256 KiB for the worker lifetime; content is not exposed |
+| Worker stderr drain | 256 KiB per request interval, reset when the next request starts; content is not exposed |
 | Distinct morphology lookups per grammar check | 24 |
 | Findings per grammar check | 100 |
 

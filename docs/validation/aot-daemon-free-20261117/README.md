@@ -194,7 +194,8 @@ coverage, or performance on every target device.
 | `0b4c0107` | Local client default, bounded cache, exact source spans and doctor CLI |
 | `9297f077` | Qualified real native runtime, reusable Studio workflow and local evidence |
 | `940148b0` | Final 277-reference integration, debug dump removal and retained incoming features |
-| Current final branch head | Column XML repair, final revalidation and complete source/evidence index |
+| `89715289` | Column XML repair, final revalidation and complete source/evidence index |
+| Current final branch head | Final reviewed stderr-limit documentation and publication record |
 
 GitHub plugin-created commit trees were checked against the local Git tree SHA.
 All ref updates use an expected-head lease and preserve original branch history.
