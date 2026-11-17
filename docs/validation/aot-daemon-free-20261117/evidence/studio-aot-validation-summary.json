@@ -1,0 +1,81 @@
+{
+  "tests": {
+    "studio-aot-tests-development": {
+      "results": {
+        "success": 24,
+        "error": 1
+      },
+      "skips": 0,
+      "complete": true,
+      "success": false,
+      "log": "studio-aot-tests-development.jsonl.gz"
+    },
+    "studio-aot-tests": {
+      "results": {
+        "success": 25
+      },
+      "skips": 0,
+      "complete": true,
+      "success": true,
+      "log": "studio-aot-tests.jsonl.gz"
+    }
+  },
+  "analysis": {
+    "output": "Analyzing studio_aot.dart, suite_workspace.dart, studio_aot_test.dart, widget_test.dart...\nNo issues found!\n",
+    "passed": true,
+    "log": "studio-aot-analysis.log.gz"
+  },
+  "source": {
+    "base_commit": "0b4c0107f6b7651bd77e95670e4f2f4f8b58e038",
+    "sha256": {
+      "packages/quds_office_editor/example/lib/studio_aot.dart": "30b994167a73f27ce5254dc970c7f163b12c273dedfe276138121ea22dafd780",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart": "96b29d50d3df7f8ac6914eac4c61bc372685007a4bccbb5ed3ca4cc1aa28bfaa",
+      "packages/quds_office_editor/example/test/studio_aot_test.dart": "8c128d060fff75f09ece862b4aa93e9993a86f9aef2e3eda1f56381176e4de49",
+      "packages/quds_office_editor/example/test/widget_test.dart": "33a924013f1e6096b178b8ec711dbd39148c9d8f0b71517dd9eb3627f5fc60f9"
+    }
+  },
+  "commands": {
+    "cwd": "packages/quds_office_editor/example",
+    "test": [
+      "dart",
+      "--disable-dart-dev",
+      "<flutter-sdk>/bin/cache/flutter_tools.snapshot",
+      "--suppress-analytics",
+      "test",
+      "--no-pub",
+      "test/studio_aot_test.dart",
+      "test/widget_test.dart",
+      "--reporter",
+      "json"
+    ],
+    "analysis": [
+      "dart",
+      "analyze",
+      "lib/studio_aot.dart",
+      "lib/suite_workspace.dart",
+      "test/studio_aot_test.dart",
+      "test/widget_test.dart"
+    ],
+    "environment": {
+      "BOT": "true",
+      "CI": "true",
+      "TMPDIR": "<scratch>/odf-test-tmp",
+      "PUB_CACHE": "<resolved offline cache>",
+      "FLUTTER_SUPPRESS_ANALYTICS": "true",
+      "DART_SUPPRESS_ANALYTICS": "true"
+    }
+  },
+  "scope": [
+    "Lazy default local analysis and an always-visible Review entry without an endpoint setting.",
+    "One analyzer reused for repeated syntax and morphology within a dialog.",
+    "Release on Cancel, Close, stale document, language switch and operational error; reject late results.",
+    "English selected-word morphology, multiword selection guard and read-only selection/document preservation.",
+    "Explicit local/manual/HTTP configuration; mixed backend rejection and sanitized operational errors.",
+    "Normalized analyzed token details, with multiword source morphology lookup disabled."
+  ],
+  "notes": [
+    "The first development run had 24 passing cases and one workspace harness timeout: pumpAndSettle cannot settle a blinking editor caret. The corrected bounded animation pump passes in the final 25-case run.",
+    "Widget analyzers are controlled fakes; these tests are lifecycle/configuration/UI evidence and do not establish linguistic accuracy or real worker dictionary loading.",
+    "No GitHub Actions/check/status endpoints used or awaited."
+  ]
+}

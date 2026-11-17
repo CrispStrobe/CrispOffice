@@ -1,61 +1,112 @@
-# Optional AOT analysis and German grammar checking
+# Local AOT analysis and German grammar checking
 
-This package connects Quds Office to the AOT/RML `SynanDaemon` through its real
-HTTP interface. It supplies two separate features:
+Quds runs the real AOT/RML engine in a private local worker. **SynanDaemon is not
+required.** The default client starts the worker only when analysis is requested,
+reuses its dictionaries for later requests, and closes it on disposal. Document
+text travels through stdin/stdout; no server, listening port, shell invocation or
+automatic network fallback is involved.
 
-- **Linguistic analysis:** typed tokens, lemma alternatives, grammatical
-  readings, syntax variants, phrase groups and subject–predicate relations.
-- **German grammar checking:** three conservative diagnostic families that
-  verify suspected disagreements against recognized morphological paradigms
-  and return reviewable suggestions through `OfficeProofingProvider`.
+The package provides two features:
+
+- **Linguistic analysis:** tokens, lemma alternatives, grammatical readings,
+  syntax variants, phrase groups, subject–predicate relations and inflected forms.
+- **German grammar checking:** conservative, paradigm-verified suggestions through
+  the existing Word review, correction, ignore-rule and undo workflow.
 
 Here AOT means the linguistic analyzer from
 [`sokirko74/aot`](https://github.com/sokirko74/aot), not Dart ahead-of-time
-compilation. No native analyzer, language dictionaries or automatic downloads
-are included. Install and run a daemon separately. The package defaults to
-`http://127.0.0.1:17018/`; constructing a client does not send a request.
+compilation. Engine binaries and dictionaries are built separately in one
+explicit setup step. Runtime analysis does not download anything.
+
+## Quick start: build, verify, use
+
+Install C++17, CMake 3.24+, flex (including `FlexLexer.h`), bison, zlib development
+files, Git and Python 3. On Debian/Ubuntu:
+
+```sh
+sudo apt-get install build-essential cmake flex libfl-dev bison zlib1g-dev git python3
+```
+
+From the repository root, after workspace dependency resolution:
+
+```sh
+python3 packages/quds_proofing_aot/tool/build_native.py --jobs 4
+dart run packages/quds_proofing_aot/tool/aot.dart --mode doctor
+dart run packages/quds_proofing_aot/tool/aot.dart --mode check --text 'Ich geht.'
+```
+
+The build obtains exact pinned AOT/nlp_base revisions, compiles the analysis
+libraries and dictionaries without Qt, and assembles
+`.dart_tool/quds_aot_native/runtime`. It verifies the assembled runtime before
+replacing an existing installation. `doctor` uses synthetic text to check the
+selected language's real dictionaries and syntax support. It accepts no document
+input and returns JSON with `status: ready` when those probes succeed.
+
+The CLI finds the built runtime relative to its own checkout. Applications can
+use its executable path or put `runtime/Bin` on `PATH`. The executable discovers
+its adjacent resource directory; `RML` is needed only to override that layout.
+
+See [native setup and protocol](native/README.md) for a custom `--install`
+destination, an existing pinned `--source` checkout, build-cache options,
+packaging and native smoke commands. Linux x86-64 is locally built and tested.
+macOS/Windows have source support but require platform validation. Browser and
+mobile hosts explicitly report local-worker unavailability; they do not silently
+switch to HTTP.
 
 ## Enable the Studio example
 
-With a local daemon running, start the example from its directory:
+After the build, run from the repository root:
 
 ```sh
-flutter run --dart-define=QUDS_AOT_ENDPOINT=http://127.0.0.1:17018/
+QUDS_WORKER="$PWD/.dart_tool/quds_aot_native/runtime/Bin/quds_aot_worker"
+cd packages/quds_office_editor/example
+flutter run --dart-define=QUDS_AOT_EXECUTABLE="$QUDS_WORKER"
 ```
 
-The define is empty by default. Setting it enables **Review → AOT analysis** and
-adds the AOT provider to the Word editor's manual proofing service. **Check
-document / F7** includes the configured provider. Typing checks keep the existing
-ordinary providers. AOT suggestions use the existing review, apply and undo
-flow; the analyzer never edits text directly.
+**Review → AOT analysis** is always visible. Opening the dialog does not start
+the worker; choose **Analyze** to run it. A missing installation produces a
+setup message instead of hiding the feature. Setting the executable or resource
+path also enables AOT in **Check document / F7**. If the worker is already on
+`PATH`, use `--dart-define=QUDS_AOT_ENABLE=true` to enable these manual grammar
+checks. Ordinary typing checks retain their existing providers.
 
-The analysis dialog captures selected body, comment, header or footer text. With
-no selection it captures document body text. Choose German or Russian and press
-**Analyze**. Inspect a clause's alternatives and select a token to request its
-morphology and inflected forms. The analysis language is independent of the
-document's proofing locale. Changing the document marks results stale; reload
-the snapshot before another analysis. Cancel/close disposes that operation's
-client without interrupting the separate grammar client.
+| Studio setting | Meaning |
+| --- | --- |
+| `QUDS_AOT_EXECUTABLE` | Path to `quds_aot_worker`; defaults to its name on `PATH` |
+| `QUDS_AOT_RML` | Optional separate resource root containing `Bin/rml.ini` |
+| `QUDS_AOT_ENABLE=true` | Add local AOT to manual document checks when using the default executable |
+| `QUDS_AOT_ENDPOINT` | Explicit legacy HTTP backend; cannot be combined with local paths |
+| `QUDS_AOT_USE_GET=true` | Optional GET compatibility for an explicitly configured HTTP backend |
 
-For an older daemon that accepts only GET, also pass
-`--dart-define=QUDS_AOT_USE_GET=true`. GET puts submitted text in the request URL;
-POST remains the default and there is no automatic fallback.
+The dialog captures selected body, comment, header or footer text; without a
+selection, it captures document body text. **Syntax** supports German and Russian.
+Inspect alternate parses, groups and directed subject–predicate relations, then
+select a token to look up its morphology.
 
-The example accepts loopback endpoints. Custom hosts can explicitly opt into
-remote processing through the API below. A web host also needs an endpoint
-reachable under its browser's CORS, mixed-content and local-network policies.
-No browser permission policy is changed by this package.
+**Word forms** is a separate mode for a selected single word and supports German,
+Russian and English. English automatically uses this mode rather than attempting
+unsupported syntax. Analysis language is independent of the document's grammar
+locale. Repeated syntax and word-form actions share the dialog's private client
+and morphology cache. Cancel, close or a document change invalidates pending
+results and disposes that session; it does not interrupt the separate manual
+grammar client. Reload the captured text when the document has changed.
 
 ## Library API
+
+`AotClient()` and `AotClient.local()` select the local worker. Construction does
+not launch a process. Dispose the client when the owning view or service closes:
 
 ```dart
 import 'package:quds_proofing_aot/quds_proofing_aot.dart';
 
-final client = AotClient();
+final client = AotClient.local(
+  executable: '/absolute/path/to/runtime/Bin/quds_aot_worker',
+);
 try {
   final analysis = await client.analyze('Der kleine Hund schläft.');
   for (final token in analysis.tokens) {
     print('${token.text}: ${token.homonyms} [${token.start}, ${token.end})');
+    if (token.isNormalized) print('Analyzer form: ${token.analysisText}');
   }
   final morphology = await client.morphology('Hund', withParadigms: true);
   for (final reading in morphology.readings) {
@@ -69,203 +120,218 @@ try {
 }
 ```
 
-`AotLanguage.german` and `.russian` support syntax and morphology.
-`.english` supports morphology; English syntax reports `unsupportedLanguage`
-without making a request. Analysis language does not imply a grammar-checking
-provider for that language. The initial diagnostic provider supports modern
-**de-DE**, including aliases normalized by the shared proofing contract.
-de-AT, de-CH and other locales report **unsupported**.
+`AotLanguage.german` and `.russian` support syntax and morphology. `.english`
+supports morphology only; English syntax reports `unsupportedLanguage` before
+requesting engine work. Analysis-language support does not imply a grammar
+provider for that language: diagnostics are qualified for modern **de-DE**,
+including aliases normalized by the shared proofing contract. de-AT, de-CH and
+other grammar locales explicitly report `unsupported`.
 
-To configure a Word host:
+Successful morphology results use a bounded least-recently-used cache. Keys
+include the **exact surface string**, language and paradigm mode; casing is not
+folded. Concurrent identical lookups share one request. Defaults are 64 entries
+and a retention budget of 524,288 UTF-16 code units, measured from re-encoded raw
+JSON plus surface keys. This is a deterministic cache-admission estimate, not a
+heap-memory cap. Oversized results are returned without retention. Syntax input
+and failed requests are never cached. Set `maximumMorphologyCacheEntries: 0` to
+disable retention; disposal clears retained entries.
+
+### Connect manual Word grammar checks
 
 ```dart
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_proofing_aot/quds_proofing_aot.dart';
 
 final aot = AotProofingProvider(
-  analyzer: AotClient(),
+  analyzer: AotClient.local(), // quds_aot_worker on PATH
   vocabulary: controller.proofing.vocabulary,
+  timeout: const Duration(seconds: 60),
 );
 controller.proofing.configureManual(
   OfficeProofingService(
     providers: [aot],
-    timeout: const Duration(seconds: 30),
+    timeout: const Duration(seconds: 90),
   ),
 );
 ```
 
 `configureManual` replaces that host's manual service. Hosts also using GECToR
-should construct one service containing both distinct providers rather than
-calling it twice. Ordinary deterministic findings retain the editor's existing
-precedence when manual reports are combined.
+should create one service containing both providers instead of configuring it
+twice. Ordinary deterministic findings retain the editor's existing precedence
+when reports are combined. The analyzer never edits text directly.
 
-The provider owns its analyzer by default. A host sharing an analyzer can pass
-`ownsAnalyzer: false` and dispose it itself. The Studio example uses independent
-clients so cancellation remains local to each operation.
+The provider owns its analyzer by default. A host sharing one can set
+`ownsAnalyzer: false` and dispose it itself. The provider's library default
+deadline remains 15 seconds; choose a provider/service budget appropriate to
+the configured transport. Studio uses 60 seconds for the client and AOT provider,
+with 90 seconds for the surrounding manual service.
 
-Custom endpoints and test transports are explicit:
-
-```dart
-final client = AotClient(
-  transport: AotHttpTransport(
-    endpoint: Uri.parse('https://your-analysis-service.example/aot/'),
-    allowRemote: true,
-    timeout: const Duration(seconds: 20),
-  ),
-);
-```
-
-`AotHttpTransport(requestMethod: AotRequestMethod.get)` explicitly supports
-older GET-only deployments. POST is preferred because it keeps submitted text
-out of request URLs. Request-size limits and redirect rejection also apply to
-GET. A server returning HTTP 400 does not trigger an automatic method change.
-
-`allowRemote: true` allows the configured service to receive submitted text.
-URLs with credentials, query parameters or fragments are rejected. Redirects
-are disabled. Hosts may inject an `http.Client` or implement `AotTransport` /
-`AotAnalyzer`; the transport owns and closes its injected HTTP client.
+Hosts can implement `AotAnalyzer` or inject `AotTransport`. `AotProcessTransport`
+also exposes request, response, stderr and admission bounds. The supplied worker
+is a direct executable that starts no descendants. An alternate executable must
+honor that lifecycle contract.
 
 ## Diagnostic scope
 
-| Rule ID | Checked pattern | Representative fixture |
+| Rule ID | Checked pattern | Verified example |
 | --- | --- | --- |
 | `aot.de.subject-verb-agreement` | Clause-initial, unambiguous personal pronoun followed by an adjacent finite verb | `Ich geht.` → `Ich gehe.` |
-| `aot.de.preposition-case` | Selected fixed-case preposition followed by a personal pronoun or a simple article–noun phrase | `mit den Hund` → `mit dem Hund` |
-| `aot.de.adjective-agreement` | Adjacent definite/indefinite article, adjective and noun, including weak/mixed declension | `Der kleines Hund` → `Der kleine Hund` |
+| `aot.de.preposition-case` | Selected fixed-case preposition followed by a personal pronoun or simple article–noun phrase | `mit den Hund` → `mit dem Hund` |
+| `aot.de.adjective-agreement` | Adjacent definite/indefinite article, adjective and noun, with weak/mixed declension | `Der kleines Hund` → `Der kleine Hund` |
 
-These are supported **pattern fixtures**, not measured production accuracy.
-Actual suggestions depend on the daemon's available dictionary readings and
-paradigms. Unknown or predicted words, missing forms, ambiguous valid analyses,
-mixed parts of speech, ambiguous `sie/Sie`, expletive `es`, quoted constructions,
-coordination and unsupported
-patterns lead to abstention. The provider does not treat missing syntax groups,
-missing subject relations or parser failure as grammatical errors. It does not
-provide a general German punctuation, spelling or word-order checker.
+These finite patterns do not establish general grammar accuracy. Every proposed
+replacement must come from a recognized paradigm for the same lemma. Concrete
+feature tuples remain separate; a union of possible features cannot justify a
+correction that lacks a compatible form. Checks preserve source casing and an
+adjective's comparison degree and do not cross a newline.
 
-Every proposed replacement comes from a recognized paradigm for the same lemma.
-Concrete feature tuples stay separate; a union of possible features cannot
-justify a correction that has no concrete compatible form. Ambiguity work and
-generated alternatives are bounded. Rules do not cross a newline and preserve
-the source's casing and an adjective's comparison degree. Source offsets are validated against UTF-16/grapheme
-boundaries, and a request's segment origin is added exactly once.
+Unknown or predicted words, missing forms, a valid ambiguous reading, mixed parts
+of speech, ambiguous `sie/Sie`, expletive `es`, compatible imperatives, quotations,
+coordination and unsupported constructions lead to abstention. Rule contexts
+containing a normalized analyzer token also abstain, even when its source span is
+known. Missing groups, missing subject relations or a parser failure are never
+treated as evidence of a grammar error. This is not a general German spelling,
+punctuation or word-order checker.
 
-Shared protected URL/email/backtick ranges, personal and ignored vocabulary,
-and request-scoped ignored rule IDs suppress affected findings. Vocabulary
-changes during a check invalidate its result. A successful empty finding list
-means these configured rules found no supported issue; it is not a claim that
-the entire passage is grammatically correct.
+Protected URL/email/backtick ranges, personal and ignored vocabulary, and
+request-scoped ignored rule IDs suppress affected findings. Vocabulary changes
+during a check invalidate its result. A successful empty finding list means these
+configured rules found no supported issue; it does not certify the whole passage.
 
-## Real upstream response contract
+## Exact source mapping and normalized forms
 
-The inspected revision and source links are recorded in [UPSTREAM.json](UPSTREAM.json).
-The HTTP endpoint accepts form-encoded POST fields `action`, `langua`, and
-`query`; `langua` uses `German`, `Russian` or `English`. `withparadigms` is
-included only when requested because the daemon checks the flag's presence.
+Native results add optional `sourceStart`, `sourceEnd` and `sourceText` to the
+existing syntax word shape. Offsets are in the untouched input's UTF-16 code
+units. The worker verifies retained native word positions against an original
+graphan token snapshot and the exact source substring. Dart independently checks
+all three fields, ordering, whitespace-only gaps, grapheme boundaries and final
+source coverage.
 
-HTTP syntax responses are nested arrays: sentences contain clauses, each with
-`words` and `variants`. A word has a surface `str` and string `homonyms`; a
-variant selects a homonym through `homNo` and carries a `grm` string per word.
-Grammatical alternatives are separated by semicolons. Group coordinates are
-inclusive **clause-local token indexes**. A subject relation points from subject
-to predicate and may run backwards. They are not character positions.
+`AotToken.text` is the verified original text; `analysisText` retains the engine's
+surface. For example, AOT emits `zu-helfen` for the original `helfen` in
+`Wir versuchen, dir zu helfen.`. The native worker verifies the original `zu`
+token and the engine's explicit infinitive reading, preserves the two original
+spans, and provides fully aligned analysis. It does not blindly strip a prefix.
+`isNormalized` exposes the distinction, and grammar rules abstain in affected
+contexts.
 
-The daemon provides no source character offsets. The client aligns surface
-tokens exactly and sequentially, skipping only whitespace. If a token is
-omitted or normalized, later offsets remain null. Analysis remains inspectable,
-but incomplete/mismatched coverage cannot produce an apparently clean grammar
-result or a correction at a guessed position. `fullyAligned` includes trailing
-source coverage. The CLI `TestSynan` fixture shape differs from the HTTP format
-and is deliberately not accepted by this parser.
+Other transformations, unsupported characters or missing tokens can still make
+coverage incomplete. Their analysis remains inspectable, but no correction is
+attached to a guessed location. Without native metadata, including ordinary HTTP
+responses, the existing exact sequential surface alignment remains in force:
+only whitespace can be skipped. Thus the HTTP daemon's normalized infinitive
+responses can still produce explicit incomplete alignment.
 
-Morphology operates on one word. `wordForm` is a lemma, `found` distinguishes
-dictionary matches from predictions, and `morphInfo` may contain unioned
-features. Flattened concrete forms inherit grammar from their paradigm part,
-form group and individual form. Original nested data and raw grammar strings
-remain available for inspection.
+Syntax JSON contains sentences, clauses, words and variants. A variant's `homNo`
+selects a word homonym and `grm` describes its readings. Group coordinates are
+inclusive **clause-local token indexes**, not character positions. Subject
+relations point from subject to predicate and can run backwards. Morphology's
+`wordForm` is a lemma, `found` distinguishes dictionary matches from predictions,
+and flattened concrete forms inherit grammar from their nested paradigm data.
+Raw grammar strings and nested morphology remain available for inspection.
 
-## Bounds and operational outcomes
+## Bounds, cancellation and outcomes
 
-Default transport bounds are 32,768 UTF-16 code units per query, 256 KiB encoded
-request, 4 MiB response and four admitted requests. Requests are serialized to
-match the daemon's own serialized processing. A 15-second deadline includes
-queueing and response consumption; cancellation uses the HTTP abort protocol.
-Disposal cancels pending requests and closes the client. Error messages exclude
-document text and raw response bodies.
+| Bound or deadline | Local default |
+| --- | --- |
+| Query text | 32,768 UTF-16 code units |
+| Encoded request | 256 KiB |
+| Response | 4 MiB |
+| Admitted requests | 4, processed serially |
+| Client request deadline | 60 seconds, including startup, queueing and response consumption |
+| Worker stderr drain | 256 KiB for the worker lifetime; content is not exposed |
+| Distinct morphology lookups per grammar check | 24 |
+| Findings per grammar check | 100 |
 
-The grammar provider additionally bounds a check to 24 distinct morphology
-lookups and 100 findings, and caches repeated word lookups within that check.
-Limits report failure instead of truncating text or returning partial success.
-Provider timeout invalidates the provider; recreate it before retrying. No
-automatic retry or background polling is added.
+A crash, malformed protocol, output-limit breach or active-request timeout
+terminates the worker and fails pending requests. Disposal also terminates it.
+Create a new client to retry; document text is not automatically resubmitted.
+The provider separately invalidates itself after its own timeout. Limits report
+failure rather than truncating text or returning partial success.
 
 | Condition | Provider result |
 | --- | --- |
-| Successful, fully covered analysis and completed rule pass | `success`, with zero or more findings |
-| Unsupported grammar locale | `unsupported`, no network request |
-| Unreachable/disposed analyzer | `unavailable` |
-| HTTP error, malformed data, incomplete alignment, timeout, exceeded bound or stale configuration | `failed` |
+| Fully covered analysis and completed rule pass | `success`, with zero or more findings |
+| Unsupported grammar locale | `unsupported`, without requesting analysis |
+| Missing/disposed analyzer or unavailable runtime | `unavailable` |
+| Malformed data, incomplete alignment, timeout, exceeded bound or stale configuration | `failed` |
+
+The headless build makes two exact, recorded changes in generated copies of
+pinned upstream sources: it removes an unconditional `input.lem` document dump
+and copies temporary group-description strings into owned JSON storage. Native
+smokes verify no working-directory files and stable descriptions across clauses.
+The pinned source checkout itself remains unchanged. See the runtime manifest
+and [native notices](native/NOTICE.md) for the patch/source hashes and licenses.
 
 ## Command-line use
 
-Run from the repository root after workspace dependency resolution:
-
 ```sh
-dart run packages/quds_proofing_aot/tool/aot.dart --text 'Ich gehe nach Hause.'
+dart run packages/quds_proofing_aot/tool/aot.dart --mode doctor
+dart run packages/quds_proofing_aot/tool/aot.dart --text 'Der kleine Hund schläft.'
 dart run packages/quds_proofing_aot/tool/aot.dart --mode check --text 'Ich geht.'
-dart run packages/quds_proofing_aot/tool/aot.dart --mode morphology --text Hund
+dart run packages/quds_proofing_aot/tool/aot.dart --mode morphology --text children --language English
 dart run packages/quds_proofing_aot/tool/aot.dart --file sample.txt --language Russian
+cat sample.txt | dart run packages/quds_proofing_aot/tool/aot.dart --stdin
 ```
 
-Use `--endpoint URL` for another local port/path. Add `--get` only for an
-explicit legacy GET endpoint; submitted text then appears in the request URL. `--allow-remote` is an explicit
-remote-processing opt-in. `--help` does not connect. Output is JSON; operational
-failures use exit code 2, and findings remain successful suggestions rather
-than document modifications.
+Choose exactly one of `--text`, `--file` or `--stdin`, except for `doctor`, which
+uses only its built-in synthetic probes. Input files/stdin are bounded and decoded
+as UTF-8. Use `--executable PATH`, `--rml PATH` and `--timeout SECONDS` for a custom
+native setup. CLI environment defaults are `QUDS_AOT_EXECUTABLE` and
+`QUDS_AOT_RML`; the built runtime is discovered next, then `PATH`. `--help` starts
+no engine. Output is JSON with `schemaVersion` and `backend`; operational failures
+use exit code 2, while findings are successful suggestions, never document edits.
 
-## Run a separate daemon
+## Optional legacy HTTP backend
 
-The inspected upstream build needs a C++17 compiler, CMake, zlib, flex/bison and
-Qt6. Its HTTP server is disabled by default. Follow the pinned upstream
-[build instructions](https://github.com/sokirko74/aot/blob/0d591d972c7bb2729f4764d3bc32611ea6fd142a/readme)
-for your platform. A Linux checkout/build sequence is:
+To use a separately managed daemon, select HTTP explicitly:
 
-```sh
-git clone https://github.com/sokirko74/aot.git RML
-cd RML
-git checkout --detach 0d591d972c7bb2729f4764d3bc32611ea6fd142a
-git submodule update --init --recursive
-export RML="$PWD"
-printf 'set(BUILD_HTTP_SERVERS 1)\n' > CMakeLists.my
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build --parallel 2
-DESTDIR="$RML" cmake --install build
-"$RML/Bin/SynanDaemon" --host 127.0.0.1 --port 17018 --skipbigrams
+```dart
+final client = AotClient.http(
+  endpoint: Uri.parse('http://127.0.0.1:17018/'),
+);
 ```
 
-Dictionary generation remains enabled. `--skipbigrams` omits optional bigram
-data; the daemon still initializes its other language resources. The inspected
-server supplies no authentication. Keep it on loopback for the local setup.
-Upstream AOT uses LGPL-2.1; its separately installed engine and language data
-retain their own notices. This independently authored HTTP client redistributes
-neither the engine nor dictionaries and does not change the existing component
-policy for bundled Quds code/data.
+Existing callers that relied on the old no-argument HTTP default should migrate
+to `AotClient.http()` or an injected `AotHttpTransport`. Custom transport injection
+continues to work. The native setup above does not need a daemon installation.
 
-## Validation
+The CLI accepts `--endpoint URL` (selects HTTP), or `--backend http`. Studio
+accepts a loopback `QUDS_AOT_ENDPOINT`. Older GET-only daemons require explicit
+`--get`, `QUDS_AOT_USE_GET=true`, or
+`requestMethod: AotRequestMethod.get`. POST is the default; GET places submitted
+text in URLs. There is no automatic method fallback.
 
-The package has source-authored contract fixtures and local tests for schemas,
-Unicode positions, ambiguous/valid/error grammar cases, transport limits,
-failure states, cancellation and provider integration. Studio widget tests
-cover explicit invocation, token/word-form inspection and stale-result handling.
-The final local suite passes 99 tests on both Dart VM and JavaScript/Node. A
-separate production GET-transport smoke against the public demo confirmed the
-three representative corrections and six clean/guard controls. Two infinitive
-samples returned explicit incomplete alignment because the daemon rewrites
-`helfen` to `zu-helfen`; their analysis can be inspected, but no correction is
-attached to an invented range. The remote server revision is unknown; only
-synthetic snippets were submitted. Its POST endpoint rejected the requests.
+The library can opt into a non-loopback service with `allowRemote: true`. Endpoint
+credentials, query strings, fragments and redirects are rejected. A web host also
+needs the endpoint to satisfy its browser's CORS, mixed-content and local-network
+policies. No browser policy is changed. An injected HTTP client is owned and
+closed by the transport. The HTTP library default deadline is 15 seconds, with
+the same query/request/response/admission limits as the local transport.
 
-See the [integration report](../../docs/validation/aot-integration-20261117/README.md)
-for exact local results, raw live responses, source reconciliation and the
-smoke's extended timeout/cache configuration. Neither these finite examples nor
-the source-authored fixtures establish general grammar accuracy, local native
-packaging or target-device performance.
+The inspected upstream contract uses form fields `action`, `langua` and `query`;
+`langua` is `German`, `Russian` or `English`. `withparadigms` is sent only when
+requested because the daemon tests the flag's presence. `TestSynan` produces a
+different, lossy fixture format and is not substituted for this interface.
+Pinned sources and interoperability details are recorded in [UPSTREAM.json](UPSTREAM.json).
+
+## Validation and distribution
+
+The real local native smoke passes 22 checks, including all supported syntax and
+morphology languages, normalized German infinitives, strict request types, UTF-16
+and byte limits, protocol recovery, missing dictionaries and no document-file
+writes. The production Dart client/provider smoke independently passes 17 checks,
+including the three grammar corrections above, grammatical/ambiguity controls,
+native syntax, morphology and cache reuse.
+
+The [current validation report](../../docs/validation/aot-daemon-free-20261117/README.md)
+records the complete local Dart/JavaScript/editor cohorts, exact source revisions,
+raw event logs and real native evidence. These finite results do not establish
+general grammar accuracy or target-device performance. GitHub Actions are not
+required for the documented local validation.
+
+Upstream AOT uses LGPL-2.1; its engine and data retain their own notices. Generated
+native binaries and dictionaries are not committed to this repository. The
+explicit builder preserves the upstream license and records reproducible source
+pins and patches. Read [native/NOTICE.md](native/NOTICE.md) before distributing a
+built runtime; the Quds component policy does not replace upstream license terms.

@@ -105,6 +105,15 @@ def assemble(source: Path, build: Path, install: Path) -> dict[str, object]:
             "executableSha256": sha256(staging / "Bin" / executable_name),
             "workerSourceSha256": sha256(PACKAGE / "native/worker.cpp"),
             "cmakeSourceSha256": sha256(PACKAGE / "native/CMakeLists.txt"),
+            "patches": [{
+                "source": "Source/synan/SimpleGrammarLib/Parser.cpp",
+                "change": "Remove unconditional input.lem document diagnostic write",
+                "generatedSourceSha256": sha256(build / "patched/Parser.cpp"),
+            }, {
+                "source": "Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp",
+                "change": "Copy temporary group description strings into RapidJSON-owned storage",
+                "generatedSourceSha256": sha256(build / "patched/JVisualSynAnParamBuilder.cpp"),
+            }],
             "smoke": json.loads(smoke.stdout),
             "runtimeNetwork": False,
             "licenseNotice": "notices/QUDS-NATIVE-NOTICE.md",

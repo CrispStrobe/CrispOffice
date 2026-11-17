@@ -52,11 +52,7 @@ class SuiteWorkspace extends StatefulWidget {
 }
 
 class _SuiteWorkspaceState extends State<SuiteWorkspace> {
-  static const String _aotEndpointSetting = String.fromEnvironment(
-    'QUDS_AOT_ENDPOINT',
-  );
-  static const bool _aotUseGet = bool.fromEnvironment('QUDS_AOT_USE_GET');
-  Uri? _aotEndpoint;
+  StudioAotConfiguration? _aotConfiguration;
   String? _aotConfigurationError;
   SuiteApp _app = SuiteApp.word;
   SuiteLook _look = SuiteLook.light;
@@ -2823,12 +2819,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _canMutate ? _openReplace : null,
           ),
           _cmd(Icons.spellcheck, _arabic ? 'تدقيق' : 'Spelling', _showSpelling),
-          if (_aotEndpointSetting.trim().isNotEmpty)
-            _cmd(
-              Icons.account_tree_outlined,
-              _arabic ? 'تحليل AOT' : 'AOT analysis',
-              _opening ? null : _showAotAnalysis,
-            ),
+          _cmd(
+            Icons.account_tree_outlined,
+            _arabic ? 'تحليل AOT' : 'AOT analysis',
+            _opening ? null : _showAotAnalysis,
+          ),
           _cmd(
             Icons.info_outline,
             _arabic ? 'خصائص' : 'Properties',
@@ -4791,26 +4786,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ],
         ),
       );
-      if (_aotEndpointSetting.trim().isNotEmpty) {
-        try {
-          final endpoint = Uri.parse(_aotEndpointSetting.trim());
-          final analyzer = AotClient(
-            transport: AotHttpTransport(
-              endpoint: endpoint,
-              requestMethod: _aotUseGet
-                  ? AotRequestMethod.get
-                  : AotRequestMethod.post,
-            ),
-          );
-          // This service owns its client. The analysis dialog owns separate
-          // clients, so canceling its requests cannot interrupt grammar checks.
-          // Only Check document/F7 invokes this service; typing stays local.
+      try {
+        final configuration = StudioAotConfiguration.fromEnvironment();
+        _aotConfiguration = configuration;
+        _aotConfigurationError = null;
+        if (configuration.manualEnabled) {
+          // This service owns its client. The analysis dialog owns a separate
+          // session, so cancellation cannot interrupt manual grammar checks.
+          // Construction is lazy; only Check document/F7 starts AOT work.
           final manual = OfficeProofingService(
-            timeout: const Duration(seconds: 30),
+            timeout: const Duration(seconds: 90),
             providers: [
               AotProofingProvider(
-                analyzer: analyzer,
+                analyzer: configuration.createAnalyzer(),
                 vocabulary: controller.proofing.vocabulary,
+                timeout: const Duration(seconds: 60),
               ),
             ],
           );
@@ -4820,10 +4810,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             unawaited(manual.dispose());
             rethrow;
           }
-          _aotEndpoint = endpoint;
-        } on Object catch (error) {
-          _aotConfigurationError = 'AOT could not be configured: $error';
         }
+      } on Object catch (error) {
+        _aotConfigurationError = error is StateError
+            ? error.message.toString()
+            : 'AOT could not be configured. Check the local worker or service '
+                  'settings, then restart Studio.';
       }
     }
     controller.onFindRequested = () {
@@ -4929,14 +4921,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _showAotAnalysis() async {
-    final endpoint = _aotEndpoint;
-    if (endpoint == null) {
+    final configuration = _aotConfiguration;
+    if (configuration == null || _aotConfigurationError != null) {
       await showDialog<void>(
         context: context,
         builder: (context) => AlertDialog(
           title: const Text('AOT analysis unavailable'),
           content: SelectableText(
-            _aotConfigurationError ?? 'No AOT endpoint is configured.',
+            _aotConfigurationError ?? 'AOT could not be configured.',
           ),
           actions: [
             TextButton(
@@ -4953,16 +4945,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       context: context,
       builder: (context) => StudioAotAnalysisDialog(
         controller: _word,
-        createAnalyzer: () => AotClient(
-          transport: AotHttpTransport(
-            endpoint: endpoint,
-            requestMethod: _aotUseGet
-                ? AotRequestMethod.get
-                : AotRequestMethod.post,
-          ),
-        ),
+        createAnalyzer: configuration.createAnalyzer,
+        isLocal: configuration.isLocal,
         initialLanguage: _word.proofing.language.startsWith('ru')
             ? AotLanguage.russian
+            : _word.proofing.language.startsWith('en')
+            ? AotLanguage.english
             : AotLanguage.german,
       ),
     );

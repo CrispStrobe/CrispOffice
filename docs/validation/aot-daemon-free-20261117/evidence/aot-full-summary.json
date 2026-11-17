@@ -1,0 +1,31 @@
+{
+  "vm": {
+    "passed": 153,
+    "failed": 0,
+    "skipped": 0,
+    "success": true,
+    "elapsed_ms": 26261
+  },
+  "node": {
+    "passed": 129,
+    "failed": 0,
+    "skipped": 0,
+    "success": true,
+    "elapsed_ms": 41217
+  },
+  "node_scope": "Portable tests; native subprocess cases run on VM. Node is repeated contract coverage, not additional unique cases.",
+  "node_development_failure": "One test assumed 0.0 is distinguishable from int 0 on JavaScript. Changed invalid source offset fixture to 0.5; all portable tests pass. Original output retained.",
+  "native_mapping_fixture": "VM source mapping tests were initially run with 0.0 as invalid offset; Node final uses fractional 0.5. No production source changed for this fixture correction.",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "source_sha256": {
+    "packages/quds_proofing_aot/lib/quds_proofing_aot.dart": "d71d07662338d2399fed2c694428d7aba43a3915ebafb07a13934b2611065b40",
+    "packages/quds_proofing_aot/lib/src/client.dart": "5d3dbc86dca10928c686f8b8c192f3cbd88e4ca54aecc33c4b81df12ad1e8161",
+    "packages/quds_proofing_aot/lib/src/german_rules.dart": "aaf63a954b188d2cf74a3a5b77c7fdd577ed494a0addae1608101138a649a9a8",
+    "packages/quds_proofing_aot/lib/src/models.dart": "0758f04667e859aa2ebfb4446af995ba823cc8ffc5ea73da014736540e4a15e6",
+    "packages/quds_proofing_aot/lib/src/provider.dart": "8183bb0f9c1f9034a93effd6bb5f76942d954aeec86f5fb47291a5137d424046",
+    "packages/quds_proofing_aot/lib/src/transport.dart": "c8587cd1c356543855844adc5cc6a287cb86474a494f8347c6a380a92629a828",
+    "packages/quds_proofing_aot/lib/src/transport_process.dart": "def313586f73d42741ff4a490c20f1985519aa1c8744736ea665505c6d5f0abe",
+    "packages/quds_proofing_aot/lib/src/transport_process_io.dart": "9239e07fd93dac3787217ddbbf731442555717ef88affe300a489d3979909def",
+    "packages/quds_proofing_aot/lib/src/transport_process_stub.dart": "d386a547e1ce8ed6fe88de7099582686f012399a6de03fae7fdd67073e22744d"
+  }
+}

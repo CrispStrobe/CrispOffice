@@ -11,6 +11,9 @@ final class _Analyzer implements AotAnalyzer {
   final morphRequests =
       <({String word, AotLanguage language, bool paradigms})>[];
   Completer<AotAnalysis>? gate;
+  Completer<AotMorphology>? morphologyGate;
+  AotAnalysis? analysisResult;
+  Object? morphologyFailure;
   Object? failure;
   int disposals = 0;
 
@@ -22,7 +25,8 @@ final class _Analyzer implements AotAnalyzer {
     syntaxRequests.add((text: text, language: language));
     if (failure case final Object error) throw error;
     if (gate != null) return gate!.future;
-    return text == 'Schläft er?'
+    if (analysisResult != null) return analysisResult!;
+    return text == 'Schläft er?' && language == AotLanguage.german
         ? _analysis()
         : AotAnalysis(text: text, language: language, sentences: const []);
   }
@@ -38,6 +42,8 @@ final class _Analyzer implements AotAnalyzer {
       language: language,
       paradigms: withParadigms,
     ));
+    if (morphologyFailure case final Object error) throw error;
+    if (morphologyGate != null) return morphologyGate!.future;
     return AotMorphology(
       word: word,
       language: language,
@@ -112,8 +118,10 @@ AotAnalysis _analysis() => AotAnalysis.fromJson([
 Future<void> _open(
   WidgetTester tester,
   WordEditorController controller,
-  AotAnalyzer Function() factory,
-) async {
+  AotAnalyzer Function() factory, {
+  AotLanguage initialLanguage = AotLanguage.german,
+  bool isLocal = true,
+}) async {
   await tester.binding.setSurfaceSize(const Size(1200, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(
@@ -126,6 +134,8 @@ Future<void> _open(
               builder: (context) => StudioAotAnalysisDialog(
                 controller: controller,
                 createAnalyzer: factory,
+                initialLanguage: initialLanguage,
+                isLocal: isLocal,
               ),
             ),
             child: const Text('Open AOT'),
@@ -140,6 +150,72 @@ Future<void> _open(
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  test(
+    'default analysis is local and manual checking remains opt-in',
+    () async {
+      final configuration = StudioAotConfiguration.fromSettings();
+      expect(configuration.isLocal, isTrue);
+      expect(configuration.executable, 'quds_aot_worker');
+      expect(configuration.endpoint, isNull);
+      expect(configuration.rmlDirectory, isNull);
+      expect(configuration.manualEnabled, isFalse);
+      // Construction and disposal do not require an installed executable.
+      final analyzer = configuration.createAnalyzer();
+      await analyzer.dispose();
+    },
+  );
+
+  test('local settings and explicit enable admit manual checking', () {
+    for (final configuration in [
+      StudioAotConfiguration.fromSettings(enableManual: true),
+      StudioAotConfiguration.fromSettings(executable: '/installed/aot-worker'),
+      StudioAotConfiguration.fromSettings(rmlDirectory: '/installed/rml'),
+    ]) {
+      expect(configuration.isLocal, isTrue);
+      expect(configuration.manualEnabled, isTrue);
+    }
+  });
+
+  test(
+    'explicit HTTP settings retain service mode and GET compatibility',
+    () async {
+      final configuration = StudioAotConfiguration.fromSettings(
+        endpoint: ' http://127.0.0.1:17018/ ',
+        useGet: true,
+      );
+      expect(configuration.isLocal, isFalse);
+      expect(configuration.endpoint, Uri.parse('http://127.0.0.1:17018/'));
+      expect(configuration.useGet, isTrue);
+      expect(configuration.manualEnabled, isTrue);
+      await configuration.createAnalyzer().dispose();
+    },
+  );
+
+  test(
+    'mixed and unsafe backend settings fail before constructing an analyzer',
+    () {
+      expect(
+        () => StudioAotConfiguration.fromSettings(
+          endpoint: 'http://127.0.0.1:17018/',
+          executable: '/installed/aot-worker',
+        ),
+        throwsStateError,
+      );
+      for (final endpoint in [
+        'not a URL',
+        'file:///tmp/aot',
+        'https://localhost/?query=private',
+        'https://user:password@localhost/',
+        'http://example.com/',
+      ]) {
+        expect(
+          () => StudioAotConfiguration.fromSettings(endpoint: endpoint),
+          throwsStateError,
+        );
+      }
+    },
+  );
 
   test('captures body in document order without changing selection', () {
     final document = WmlDocument(
@@ -241,6 +317,7 @@ void main() {
       });
       expect(clients, 0);
       expect(analyzer.syntaxRequests, isEmpty);
+      expect(find.text('Local AOT · stays on this device'), findsOneWidget);
       expect(find.textContaining('de-AT and de-CH'), findsOneWidget);
       await tester.tap(find.text('Analyze'));
       await tester.pumpAndSettle();
@@ -249,9 +326,17 @@ void main() {
       expect(find.text('SCHLAFEN'), findsOneWidget);
       expect(find.text('VER sg,3,präs'), findsOneWidget);
       expect(find.text('er → Schläft'), findsOneWidget);
-      expect(analyzer.disposals, 1);
-      await tester.tap(find.text('Close'));
+      expect(analyzer.disposals, 0);
+      await tester.tap(find.text('Analyze'));
       await tester.pumpAndSettle();
+      expect(clients, 1);
+      expect(analyzer.syntaxRequests, hasLength(2));
+      expect(analyzer.disposals, 0);
+      await tester.tap(find.text('Close'));
+      await tester.pump();
+      expect(analyzer.disposals, 1);
+      await tester.pumpAndSettle();
+      expect(analyzer.disposals, 1);
       controller.dispose();
     },
   );
@@ -278,7 +363,8 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(lookup);
       await tester.pumpAndSettle();
-      expect(analyzers, hasLength(2));
+      expect(analyzers, hasLength(1));
+      expect(analyzers.single.syntaxRequests, hasLength(1));
       expect(analyzers.last.morphRequests.single, (
         word: 'Schläft',
         language: AotLanguage.german,
@@ -291,9 +377,10 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('schlafe'), findsOneWidget);
       expect(find.text('schläfst'), findsOneWidget);
-      expect(analyzers.last.disposals, 1);
+      expect(analyzers.single.disposals, 0);
       await tester.tap(find.text('Close'));
       await tester.pumpAndSettle();
+      expect(analyzers.single.disposals, 1);
       controller.dispose();
     },
   );
@@ -392,15 +479,16 @@ void main() {
       final analyzer = _Analyzer()
         ..failure = const AotException(
           AotErrorCode.unavailable,
-          'Local AOT daemon is unavailable.',
+          'sensitive raw worker stderr',
         );
       await _open(tester, controller, () => analyzer);
       await tester.tap(find.text('Analyze'));
       await tester.pumpAndSettle();
       expect(
-        find.textContaining('Local AOT daemon is unavailable'),
+        find.textContaining('Install the AOT worker and language dictionaries'),
         findsOneWidget,
       );
+      expect(find.textContaining('sensitive raw worker stderr'), findsNothing);
       expect(find.textContaining('0 sentences'), findsNothing);
       expect(find.byType(LinearProgressIndicator), findsNothing);
       expect(analyzer.disposals, 1);
@@ -429,6 +517,259 @@ void main() {
         isNull,
       );
       expect(clients, 0);
+      await tester.tap(find.text('Close'));
+      await tester.pumpAndSettle();
+      controller.dispose();
+    },
+  );
+
+  testWidgets(
+    'English selected word uses morphology without a syntax request',
+    (tester) async {
+      final controller = WordEditorController(
+        document: WmlDocument.empty(text: 'Keep running today.'),
+      );
+      controller.caret
+        ..selectionAnchor = 5
+        ..logicalIndex = 12;
+      final analyzer = _Analyzer();
+      var clients = 0;
+      await _open(tester, controller, () {
+        clients++;
+        return analyzer;
+      }, initialLanguage: AotLanguage.english);
+      expect(find.text('Word forms'), findsOneWidget);
+      expect(clients, 0);
+      await tester.tap(find.text('Analyze'));
+      await tester.pumpAndSettle();
+      expect(analyzer.syntaxRequests, isEmpty);
+      expect(analyzer.morphRequests.single, (
+        word: 'running',
+        language: AotLanguage.english,
+        paradigms: true,
+      ));
+      expect(find.text('Word forms: running'), findsOneWidget);
+      expect(analyzer.disposals, 0);
+      expect(controller.document.paragraphs.single.text, 'Keep running today.');
+      expect(controller.caret.logicalIndex, 12);
+      await tester.tap(find.text('Close'));
+      await tester.pumpAndSettle();
+      expect(analyzer.disposals, 1);
+      controller.dispose();
+    },
+  );
+
+  testWidgets('Word forms rejects a phrase before starting a worker', (
+    tester,
+  ) async {
+    final controller = WordEditorController(
+      document: WmlDocument.empty(text: 'two words'),
+    );
+    var clients = 0;
+    await _open(tester, controller, () {
+      clients++;
+      return _Analyzer();
+    }, initialLanguage: AotLanguage.english);
+    expect(find.byKey(const ValueKey('aot-word-selection')), findsOneWidget);
+    expect(
+      tester
+          .widget<FilledButton>(find.widgetWithText(FilledButton, 'Analyze'))
+          .onPressed,
+      isNull,
+    );
+    expect(clients, 0);
+    await tester.tap(find.text('Close'));
+    await tester.pumpAndSettle();
+    controller.dispose();
+  });
+
+  testWidgets(
+    'language switch cancels pending work and releases an idle session',
+    (tester) async {
+      final controller = WordEditorController(
+        document: WmlDocument.empty(text: 'Schläft er?'),
+      );
+      final first = _Analyzer()..gate = Completer<AotAnalysis>();
+      final second = _Analyzer();
+      var clients = 0;
+      await _open(tester, controller, () => clients++ == 0 ? first : second);
+      await tester.tap(find.text('Analyze'));
+      await tester.pump();
+      tester
+          .widget<DropdownButton<AotLanguage>>(
+            find.byKey(const ValueKey('aot-language')),
+          )
+          .onChanged!(AotLanguage.russian);
+      await tester.pump();
+      expect(first.disposals, 1);
+      first.gate!.complete(_analysis());
+      await tester.pumpAndSettle();
+      expect(find.text('SCHLAFEN'), findsNothing);
+      await tester.tap(find.text('Analyze'));
+      await tester.pumpAndSettle();
+      expect(second.syntaxRequests.single.language, AotLanguage.russian);
+      expect(second.disposals, 0);
+      tester
+          .widget<DropdownButton<AotLanguage>>(
+            find.byKey(const ValueKey('aot-language')),
+          )
+          .onChanged!(AotLanguage.english);
+      await tester.pumpAndSettle();
+      expect(second.disposals, 1);
+      expect(find.text('Word forms'), findsOneWidget);
+      expect(clients, 2);
+      await tester.tap(find.text('Close'));
+      await tester.pumpAndSettle();
+      expect(first.disposals, 1);
+      expect(second.disposals, 1);
+      controller.dispose();
+    },
+  );
+
+  testWidgets('idle analyzer is discarded when the source document changes', (
+    tester,
+  ) async {
+    final controller = WordEditorController(
+      document: WmlDocument.empty(text: 'Schläft er?'),
+    );
+    final analyzer = _Analyzer();
+    await _open(tester, controller, () => analyzer);
+    await tester.tap(find.text('Analyze'));
+    await tester.pumpAndSettle();
+    expect(analyzer.disposals, 0);
+    controller.document = WmlDocument.empty(text: 'Current text.');
+    controller.refresh();
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('aot-stale')), findsOneWidget);
+    expect(analyzer.disposals, 1);
+    await tester.tap(find.text('Close'));
+    await tester.pumpAndSettle();
+    expect(analyzer.disposals, 1);
+    controller.dispose();
+  });
+
+  testWidgets(
+    'morphology cancellation suppresses a late result and allows a fresh session',
+    (tester) async {
+      final controller = WordEditorController(
+        document: WmlDocument.empty(text: 'running'),
+      );
+      final first = _Analyzer()..morphologyGate = Completer<AotMorphology>();
+      final second = _Analyzer();
+      var clients = 0;
+      await _open(
+        tester,
+        controller,
+        () => clients++ == 0 ? first : second,
+        initialLanguage: AotLanguage.english,
+      );
+      await tester.tap(find.text('Analyze'));
+      await tester.pump();
+      await tester.tap(find.text('Cancel analysis'));
+      await tester.pump();
+      expect(first.disposals, 1);
+      first.morphologyGate!.complete(
+        AotMorphology(
+          word: 'late result',
+          language: AotLanguage.english,
+          readings: const [],
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Word forms: late result'), findsNothing);
+      await tester.tap(find.text('Analyze'));
+      await tester.pumpAndSettle();
+      expect(clients, 2);
+      expect(second.morphRequests.single.word, 'running');
+      await tester.tap(find.text('Close'));
+      await tester.pumpAndSettle();
+      expect(second.disposals, 1);
+      controller.dispose();
+    },
+  );
+
+  testWidgets(
+    'failed session resets and service errors do not expose worker output',
+    (tester) async {
+      final controller = WordEditorController(
+        document: WmlDocument.empty(text: 'Schläft er?'),
+      );
+      final failed = _Analyzer()
+        ..failure = StateError('private document text in stderr');
+      final recovered = _Analyzer();
+      var clients = 0;
+      await _open(
+        tester,
+        controller,
+        () => clients++ == 0 ? failed : recovered,
+        isLocal: false,
+      );
+      expect(find.text('Configured AOT service'), findsOneWidget);
+      expect(find.textContaining('stays on this device'), findsNothing);
+      await tester.tap(find.text('Analyze'));
+      await tester.pumpAndSettle();
+      expect(failed.disposals, 1);
+      expect(find.textContaining('private document'), findsNothing);
+      expect(find.textContaining('AOT could not complete'), findsOneWidget);
+      await tester.tap(find.text('Analyze'));
+      await tester.pumpAndSettle();
+      expect(clients, 2);
+      expect(recovered.syntaxRequests, hasLength(1));
+      expect(find.text('SCHLAFEN'), findsOneWidget);
+      await tester.tap(find.text('Close'));
+      await tester.pumpAndSettle();
+      expect(recovered.disposals, 1);
+      controller.dispose();
+    },
+  );
+
+  testWidgets(
+    'normalized multiword token shows source and analyzed forms without invalid lookup',
+    (tester) async {
+      final controller = WordEditorController(
+        document: WmlDocument.empty(text: 'zu helfen'),
+      );
+      final analyzer = _Analyzer()
+        ..analysisResult = AotAnalysis(
+          text: 'zu helfen',
+          language: AotLanguage.german,
+          sentences: [
+            AotSentence(
+              clauses: [
+                AotClause(
+                  words: [
+                    AotToken(
+                      text: 'zu helfen',
+                      analysisText: 'zu-helfen',
+                      homonyms: const ['HELFEN'],
+                      start: 0,
+                      end: 9,
+                    ),
+                  ],
+                  variants: const [],
+                ),
+              ],
+            ),
+          ],
+        );
+      await _open(tester, controller, () => analyzer);
+      await tester.tap(find.text('Analyze'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(ChoiceChip, 'zu helfen'));
+      await tester.pumpAndSettle();
+      expect(find.text('Analyzed form: zu-helfen'), findsOneWidget);
+      expect(
+        tester
+            .widget<OutlinedButton>(
+              find.widgetWithText(
+                OutlinedButton,
+                'Look up morphology and forms',
+              ),
+            )
+            .onPressed,
+        isNull,
+      );
+      expect(analyzer.morphRequests, isEmpty);
       await tester.tap(find.text('Close'));
       await tester.pumpAndSettle();
       controller.dispose();

@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import tempfile
 import time
 
 
@@ -39,10 +40,11 @@ def main() -> None:
     lines += ["{", "x" * (256 * 1024 + 1),
               '{"id":12,"id":13,"action":"morph","langua":"German","query":"Hund"}',
               json.dumps({"id": 14, "action": "morph", "langua": "German", "query": "Hund"})]
-    start = time.monotonic()
-    result = subprocess.run([executable], input="\n".join(lines) + "\n", text=True,
-                            capture_output=True, env=env, timeout=150)
-    elapsed = time.monotonic() - start
+    began = time.monotonic()
+    with tempfile.TemporaryDirectory(prefix="quds-aot-smoke-") as working_directory:
+        result = subprocess.run([executable], input="\n".join(lines) + "\n", text=True,
+                                capture_output=True, env=env, timeout=150, cwd=working_directory)
+        assert not list(Path(working_directory).iterdir()), "Analysis must not create document/log files"
     assert result.returncode == 0, (result.returncode, result.stdout, result.stderr)
     assert result.stderr == "", "Engine diagnostics must not expose document text"
     responses = [json.loads(line) for line in result.stdout.splitlines()]
@@ -64,6 +66,45 @@ def main() -> None:
     for response, code in zip(responses[6:14], expected_errors, strict=True):
         assert response.get("code") == code and "result" not in response, response
     assert responses[-1]["id"] == 14 and "result" in responses[-1], responses[-1]
+    source_queries = [
+        "Es ist schön, dir zu helfen.",
+        "Wir versuchen, dir zu helfen.",
+        "Äpfel sind süß.",
+        "Ich gehe.\nWir gehen.",
+        "Ich denke, dass du gehst.",
+        "😀 Der kleine Hund schläft.",
+    ]
+    source_requests = [json.dumps({"id": index, "action": "syntax", "langua": "German", "query": query},
+                                  ensure_ascii=False) for index, query in enumerate(source_queries)]
+    with tempfile.TemporaryDirectory(prefix="quds-aot-source-smoke-") as working_directory:
+        source_result = subprocess.run([executable], input="\n".join(source_requests) + "\n", text=True,
+                                       capture_output=True, env=env, timeout=30, cwd=working_directory)
+        assert not list(Path(working_directory).iterdir()), "Syntax must not create document/log files"
+    assert source_result.returncode == 0 and source_result.stderr == "", source_result
+    source_responses = [json.loads(line) for line in source_result.stdout.splitlines()]
+    assert len(source_responses) == len(source_queries)
+    for index, (query, response) in enumerate(zip(source_queries, source_responses, strict=True)):
+        assert "result" in response, response
+        words = [word for sentence in response["result"] for clause in sentence for word in clause["words"]]
+        groups = [group for sentence in response["result"] for clause in sentence
+                  for variant in clause["variants"] for group in variant["groups"]]
+        assert all(all(ord(character) >= 32 for character in group["descr"]) for group in groups), groups
+        if index == len(source_queries) - 1:
+            assert all("sourceStart" not in word for word in words), words
+            continue
+        utf16 = query.encode("utf-16-le")
+        cursor = 0
+        for word in words:
+            assert all(key in word for key in ("sourceStart", "sourceEnd", "sourceText")), word
+            start, end = word["sourceStart"], word["sourceEnd"]
+            assert start >= cursor and end > start, word
+            assert not utf16[cursor * 2:start * 2].decode("utf-16-le").strip(), word
+            assert utf16[start * 2:end * 2].decode("utf-16-le") == word["sourceText"], word
+            cursor = end
+        assert not utf16[cursor * 2:].decode("utf-16-le").strip(), words
+        if index < 2:
+            infinitives = [word for word in words if word["str"] == "zu-helfen"]
+            assert len(infinitives) == 1 and infinitives[0]["sourceText"] == "helfen", words
     invalid_env = env.copy()
     invalid_env["RML"] = str(arguments.executable.resolve().parent / "missing-data-for-smoke")
     missing = subprocess.run([executable], input=lines[0] + "\n", text=True,
@@ -74,16 +115,19 @@ def main() -> None:
     assert requests[0]["query"] not in missing.stdout, missing_response
     print(json.dumps({
         "worker": version,
-        "cases": len(lines) + 1,
-        "passed": len(lines) + 1,
+        "cases": len(lines) + len(source_queries) + 1,
+        "passed": len(lines) + len(source_queries) + 1,
         "failed": 0,
-        "elapsedSeconds": round(elapsed, 3),
+        "elapsedSeconds": round(time.monotonic() - began, 3),
         "realEngine": True,
         "syntheticTextOnly": True,
         "coverage": ["German syntax", "German paradigm", "Russian syntax", "Russian paradigm",
                      "English paradigm", "unsupported language", "strict request types",
                      "UTF-16 text limits", "JSON-line byte limit and recovery", "NUL rejection",
-                     "duplicate keys", "missing runtime data", "redacted errors", "clean EOF"],
+                     "duplicate keys", "missing runtime data", "redacted errors", "clean EOF",
+                     "no document/log file writes", "exact original UTF-16 source spans",
+                     "normalized German infinitives", "unsupported Unicode alignment abstention",
+                     "owned syntax description strings"],
         "limits": "Finite integration smoke; does not establish general grammar accuracy.",
     }, indent=2, ensure_ascii=False))
 

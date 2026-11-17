@@ -65,12 +65,58 @@ add_subdirectory("${QUDS_AOT_SOURCE}/Source/common" upstream/common)
 add_subdirectory("${QUDS_AOT_SOURCE}/Source/dicts/RmlThesLib" upstream/RmlThesLib)
 add_subdirectory("${QUDS_AOT_SOURCE}/Source/morphan/LemmatizerLib" upstream/LemmatizerLib)
 add_subdirectory("${QUDS_AOT_SOURCE}/Source/synan" upstream/synan)
+
+# The pinned upstream grammar parser unconditionally writes document text to
+# input.lem. Disable that diagnostic in a generated build copy; never modify the
+# source checkout or permit an analysis to write a user's text to its cwd.
+set(grammar_parser "${QUDS_AOT_SOURCE}/Source/synan/SimpleGrammarLib/Parser.cpp")
+file(READ "${grammar_parser}" grammar_parser_text)
+string(REGEX MATCHALL "text\\.SaveToFile\\(\"input\\.lem\"\\)" diagnostic_writes "${grammar_parser_text}")
+list(LENGTH diagnostic_writes diagnostic_count)
+if(NOT diagnostic_count EQUAL 1)
+  message(FATAL_ERROR "The pinned grammar parser diagnostic changed; review the no-file-write patch")
+endif()
+string(REPLACE "text.SaveToFile(\"input.lem\");"
+  "/* Quds: document text must not be written to a diagnostic file. */"
+  grammar_parser_text "${grammar_parser_text}")
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/patched")
+function(write_changed_source path content)
+  set(previous "")
+  if(EXISTS "${path}")
+    file(READ "${path}" previous)
+  endif()
+  if(NOT previous STREQUAL content)
+    file(WRITE "${path}" "${content}")
+  endif()
+endfunction()
+write_changed_source("${CMAKE_BINARY_DIR}/patched/Parser.cpp" "${grammar_parser_text}")
+get_target_property(grammar_sources SimpleGrammarLib SOURCES)
+list(REMOVE_ITEM grammar_sources Parser.cpp)
+set_property(TARGET SimpleGrammarLib PROPERTY SOURCES "${grammar_sources}")
+target_sources(SimpleGrammarLib PRIVATE "${CMAKE_BINARY_DIR}/patched/Parser.cpp")
+target_include_directories(SimpleGrammarLib PRIVATE
+  "${QUDS_AOT_SOURCE}/Source/synan/SimpleGrammarLib")
+
 add_subdirectory("${QUDS_AOT_SOURCE}/Dicts" upstream/Dicts)
 add_subdirectory("${QUDS_AOT_SOURCE}/Thes" upstream/Thes)
 
+# Group descriptions belong to temporary per-clause vectors in the upstream
+# serializer. Copy them into RapidJSON's allocator before those vectors die.
+file(READ "${QUDS_AOT_SOURCE}/Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp" serializer_text)
+string(REGEX MATCHALL "o\\.add_string\\(\"descr\", m_strDescr\\)" description_writes "${serializer_text}")
+list(LENGTH description_writes description_count)
+if(NOT description_count EQUAL 1)
+  message(FATAL_ERROR "The pinned syntax serializer changed; review the string-ownership patch")
+endif()
+string(REPLACE "o.add_string(\"descr\", m_strDescr);"
+  "o.add_string_copy(\"descr\", m_strDescr);" serializer_text "${serializer_text}")
+write_changed_source("${CMAKE_BINARY_DIR}/patched/JVisualSynAnParamBuilder.cpp" "${serializer_text}")
+
 add_executable(quds_aot_worker
   worker.cpp
-  "${QUDS_AOT_SOURCE}/Source/www/SynanDaemon/JVisualSynAnParamBuilder.cpp")
+  "${CMAKE_BINARY_DIR}/patched/JVisualSynAnParamBuilder.cpp")
+target_include_directories(quds_aot_worker PRIVATE
+  "${QUDS_AOT_SOURCE}/Source/www/SynanDaemon")
 target_link_libraries(quds_aot_worker PRIVATE SynanLib Threads::Threads)
 target_compile_definitions(quds_aot_worker PRIVATE
   QUDS_AOT_REVISION="${QUDS_AOT_REVISION}"
