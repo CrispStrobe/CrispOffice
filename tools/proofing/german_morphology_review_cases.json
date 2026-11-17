@@ -1,0 +1,805 @@
+{
+  "description": "Original independently chosen German noun-phrase regression probes, authored after inspecting source-format risks but before running the implementation. Controls deliberately include supported literary and regional variants. This is a targeted safety review, not an accuracy benchmark. No external example corpus was imported.",
+  "authorship": "First-party Quds Office engineering review, 2026-11-17",
+  "policy": "Do not delete authentic source ambiguities to meet an expected correction. Report false negatives separately from invalid rewrites. Unknown/unsupported cases may abstain.",
+  "fact_references": [
+    {
+      "area": "heart-dative",
+      "url": "https://grammis.ids-mannheim.de/fragen/6979",
+      "fact": "Herz and Herzen occur as singular dative alternatives; Hearts surface also represents plural."
+    },
+    {
+      "area": "literary-dative",
+      "url": "https://grammis.ids-mannheim.de/fragen/25",
+      "fact": "Dative-e is grammatically possible for selected masculine/neuter nouns, subject to lexical restrictions; do not impose it generally."
+    },
+    {
+      "area": "missing-gender",
+      "url": "https://www.duden.de/rechtschreibung/Teil",
+      "fact": "Teil has masculine and neuter readings."
+    },
+    {
+      "area": "missing-gender",
+      "url": "https://www.duden.de/rechtschreibung/Kiefer_Knochen",
+      "fact": "Kiefer as jaw is masculine, regionally neuter; Kiefer as tree is feminine."
+    },
+    {
+      "area": "unknown-gender",
+      "url": "https://www.duden.de/sprachwissen/sprachratgeber/Genus-und-Schreibung-von-Joghurt",
+      "fact": "Joghurt has standard masculine/neuter and regional feminine uses."
+    },
+    {
+      "area": "weak-strong-variant",
+      "url": "https://www.duden.de/deklination/substantive/Nachbar",
+      "fact": "Duden gives both strong Nachbar/Nachbars and weak Nachbarn singular paradigms."
+    },
+    {
+      "area": "missing-gender",
+      "url": "https://www.duden.de/rechtschreibung/Bonbon",
+      "fact": "Bonbon is masculine or neuter; in Austrian usage neuter."
+    },
+    {
+      "area": "missing-gender",
+      "url": "https://www.duden.de/rechtschreibung/Stift_Koerperschaft",
+      "fact": "Stift denoting a religious institution is neuter, unlike the masculine writing implement."
+    }
+  ],
+  "cases": [
+    {
+      "id": "ind-control-001",
+      "kind": "control",
+      "area": "heart-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Herzen.",
+      "expected": "Wir sprechen mit dem Herzen."
+    },
+    {
+      "id": "ind-control-002",
+      "kind": "control",
+      "area": "heart-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie hilft mit einem guten Herzen.",
+      "expected": "Sie hilft mit einem guten Herzen."
+    },
+    {
+      "id": "ind-control-003",
+      "kind": "control",
+      "area": "heart-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Der Arzt arbeitet mit dem Herz des Patienten.",
+      "expected": "Der Arzt arbeitet mit dem Herz des Patienten."
+    },
+    {
+      "id": "ind-control-004",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Aus diesem Grunde bleibt die Tür zu.",
+      "expected": "Aus diesem Grunde bleibt die Tür zu."
+    },
+    {
+      "id": "ind-control-005",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Mit dem Gelde kaufe ich ein Buch.",
+      "expected": "Mit dem Gelde kaufe ich ein Buch."
+    },
+    {
+      "id": "ind-control-006",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Seit dem Kriege steht das Haus leer.",
+      "expected": "Seit dem Kriege steht das Haus leer."
+    },
+    {
+      "id": "ind-control-007",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Von diesem Orte ist die Stadt weit weg.",
+      "expected": "Von diesem Orte ist die Stadt weit weg."
+    },
+    {
+      "id": "ind-control-008",
+      "kind": "control",
+      "area": "missing-gender",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Die Spende ist für das alte Stift.",
+      "expected": "Die Spende ist für das alte Stift."
+    },
+    {
+      "id": "ind-control-009",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Nach dem Siege war die Freude groß.",
+      "expected": "Nach dem Siege war die Freude groß."
+    },
+    {
+      "id": "ind-control-010",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Mit dem Schwerte schützt er das Tor.",
+      "expected": "Mit dem Schwerte schützt er das Tor."
+    },
+    {
+      "id": "ind-control-011",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Von einem hohen Berge sieht man die Stadt.",
+      "expected": "Von einem hohen Berge sieht man die Stadt."
+    },
+    {
+      "id": "ind-control-012",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Mit dem alten Weine gelingt die Soße.",
+      "expected": "Mit dem alten Weine gelingt die Soße."
+    },
+    {
+      "id": "ind-control-013",
+      "kind": "control",
+      "area": "literary-dative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Aus dem Tale kommt ein kalter Wind.",
+      "expected": "Aus dem Tale kommt ein kalter Wind."
+    },
+    {
+      "id": "ind-control-014",
+      "kind": "control",
+      "area": "strong-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Autor.",
+      "expected": "Wir sprechen mit dem Autor."
+    },
+    {
+      "id": "ind-control-015",
+      "kind": "control",
+      "area": "strong-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie reist mit dem Doktor.",
+      "expected": "Sie reist mit dem Doktor."
+    },
+    {
+      "id": "ind-control-016",
+      "kind": "control",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Nachbarn.",
+      "expected": "Wir sprechen mit dem Nachbarn."
+    },
+    {
+      "id": "ind-control-017",
+      "kind": "control",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das ist ein Geschenk für den Jungen.",
+      "expected": "Das ist ein Geschenk für den Jungen."
+    },
+    {
+      "id": "ind-control-018",
+      "kind": "control",
+      "area": "weak-strong-variant",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Nachbar.",
+      "expected": "Wir sprechen mit dem Nachbar."
+    },
+    {
+      "id": "ind-control-019",
+      "kind": "control",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das reicht für den Kameraden.",
+      "expected": "Das reicht für den Kameraden."
+    },
+    {
+      "id": "ind-control-020",
+      "kind": "control",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir suchen nach dem Herrn.",
+      "expected": "Wir suchen nach dem Herrn."
+    },
+    {
+      "id": "ind-control-021",
+      "kind": "control",
+      "area": "variant-lemma",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem Bauern.",
+      "expected": "Wir arbeiten mit dem Bauern."
+    },
+    {
+      "id": "ind-control-022",
+      "kind": "control",
+      "area": "variant-lemma",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir spielen mit dem Drachen.",
+      "expected": "Wir spielen mit dem Drachen."
+    },
+    {
+      "id": "ind-control-023",
+      "kind": "control",
+      "area": "variant-lemma",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Der Pfad führt zu dem Felsen.",
+      "expected": "Der Pfad führt zu dem Felsen."
+    },
+    {
+      "id": "ind-control-024",
+      "kind": "control",
+      "area": "variant-lemma",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das geschieht gegen seinen Willen.",
+      "expected": "Das geschieht gegen seinen Willen."
+    },
+    {
+      "id": "ind-control-025",
+      "kind": "control",
+      "area": "variant-lemma",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Der Versuch gelingt mit einem kleinen Funken.",
+      "expected": "Der Versuch gelingt mit einem kleinen Funken."
+    },
+    {
+      "id": "ind-control-026",
+      "kind": "control",
+      "area": "variant-lemma",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen von einem festen Glauben.",
+      "expected": "Wir sprechen von einem festen Glauben."
+    },
+    {
+      "id": "ind-control-027",
+      "kind": "control",
+      "area": "variant-lemma",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Nach dem Frieden begann der Aufbau.",
+      "expected": "Nach dem Frieden begann der Aufbau."
+    },
+    {
+      "id": "ind-control-028",
+      "kind": "control",
+      "area": "nominal-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem neuen Beamten.",
+      "expected": "Wir sprechen mit dem neuen Beamten."
+    },
+    {
+      "id": "ind-control-029",
+      "kind": "control",
+      "area": "nominal-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie spricht mit einer Bekannten.",
+      "expected": "Sie spricht mit einer Bekannten."
+    },
+    {
+      "id": "ind-control-030",
+      "kind": "control",
+      "area": "nominal-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir warten bei den Angestellten.",
+      "expected": "Wir warten bei den Angestellten."
+    },
+    {
+      "id": "ind-control-031",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie spielt mit der Band.",
+      "expected": "Sie spielt mit der Band."
+    },
+    {
+      "id": "ind-control-032",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem Leiter.",
+      "expected": "Wir arbeiten mit dem Leiter."
+    },
+    {
+      "id": "ind-control-033",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit der Leiter.",
+      "expected": "Wir arbeiten mit der Leiter."
+    },
+    {
+      "id": "ind-control-034",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir fahren zu der See.",
+      "expected": "Wir fahren zu der See."
+    },
+    {
+      "id": "ind-control-035",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir fahren zu dem See.",
+      "expected": "Wir fahren zu dem See."
+    },
+    {
+      "id": "ind-control-036",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das ist für das neue Schild.",
+      "expected": "Das ist für das neue Schild."
+    },
+    {
+      "id": "ind-control-037",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das ist für den neuen Schild.",
+      "expected": "Das ist für den neuen Schild."
+    },
+    {
+      "id": "ind-control-038",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir kämpfen um das Erbe.",
+      "expected": "Wir kämpfen um das Erbe."
+    },
+    {
+      "id": "ind-control-039",
+      "kind": "control",
+      "area": "gender-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir kämpfen für den Erben.",
+      "expected": "Wir kämpfen für den Erben."
+    },
+    {
+      "id": "ind-control-040",
+      "kind": "control",
+      "area": "missing-gender",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Die Rechnung ist für das neue Teil.",
+      "expected": "Die Rechnung ist für das neue Teil."
+    },
+    {
+      "id": "ind-control-041",
+      "kind": "control",
+      "area": "missing-gender",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das ist schlecht für den Kiefer.",
+      "expected": "Das ist schlecht für den Kiefer."
+    },
+    {
+      "id": "ind-control-042",
+      "kind": "control",
+      "area": "missing-gender",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Die Bank steht bei der Kiefer.",
+      "expected": "Die Bank steht bei der Kiefer."
+    },
+    {
+      "id": "ind-control-043",
+      "kind": "control",
+      "area": "missing-gender",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Ich bezahle für den Bonbon.",
+      "expected": "Ich bezahle für den Bonbon."
+    },
+    {
+      "id": "ind-control-044",
+      "kind": "control",
+      "area": "unknown-gender",
+      "scope": "independent-review",
+      "language": "de-AT",
+      "text": "Das ist ein Deckel für das Joghurt.",
+      "expected": "Das ist ein Deckel für das Joghurt."
+    },
+    {
+      "id": "ind-control-045",
+      "kind": "control",
+      "area": "unknown-gender",
+      "scope": "independent-review",
+      "language": "de-AT",
+      "text": "Das ist ein Deckel für den Joghurt.",
+      "expected": "Das ist ein Deckel für den Joghurt."
+    },
+    {
+      "id": "ind-control-046",
+      "kind": "control",
+      "area": "foreign-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit den Museen.",
+      "expected": "Wir arbeiten mit den Museen."
+    },
+    {
+      "id": "ind-control-047",
+      "kind": "control",
+      "area": "foreign-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir reisen mit den Teams.",
+      "expected": "Wir reisen mit den Teams."
+    },
+    {
+      "id": "ind-control-048",
+      "kind": "control",
+      "area": "foreign-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit den Konten.",
+      "expected": "Sie arbeitet mit den Konten."
+    },
+    {
+      "id": "ind-control-049",
+      "kind": "control",
+      "area": "foreign-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit den Indizes.",
+      "expected": "Wir arbeiten mit den Indizes."
+    },
+    {
+      "id": "ind-control-050",
+      "kind": "control",
+      "area": "foreign-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das passt zu den Kommas.",
+      "expected": "Das passt zu den Kommas."
+    },
+    {
+      "id": "ind-control-051",
+      "kind": "control",
+      "area": "plural-with-n",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Mitarbeitern.",
+      "expected": "Wir sprechen mit den Mitarbeitern."
+    },
+    {
+      "id": "ind-control-052",
+      "kind": "control",
+      "area": "plural-with-n",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das liegt bei den Kellnern.",
+      "expected": "Das liegt bei den Kellnern."
+    },
+    {
+      "id": "ind-control-053",
+      "kind": "control",
+      "area": "plural-with-n",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Österreichern.",
+      "expected": "Wir sprechen mit den Österreichern."
+    },
+    {
+      "id": "ind-control-054",
+      "kind": "control",
+      "area": "plural-alternative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit den Worten des Dichters.",
+      "expected": "Sie arbeitet mit den Worten des Dichters."
+    },
+    {
+      "id": "ind-control-055",
+      "kind": "control",
+      "area": "plural-alternative",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit den Wörtern des Textes.",
+      "expected": "Sie arbeitet mit den Wörtern des Textes."
+    },
+    {
+      "id": "ind-control-056",
+      "kind": "control",
+      "area": "plural-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Die Halle ist mit den Banden verbunden.",
+      "expected": "Die Halle ist mit den Banden verbunden."
+    },
+    {
+      "id": "ind-control-057",
+      "kind": "control",
+      "area": "plural-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit den Muttern der Schrauben.",
+      "expected": "Wir arbeiten mit den Muttern der Schrauben."
+    },
+    {
+      "id": "ind-control-058",
+      "kind": "control",
+      "area": "plural-homograph",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit den Müttern der Kinder.",
+      "expected": "Wir arbeiten mit den Müttern der Kinder."
+    },
+    {
+      "id": "ind-control-059",
+      "kind": "control",
+      "area": "modifier-structure",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit dem automatisch geänderten Dokument.",
+      "expected": "Sie arbeitet mit dem automatisch geänderten Dokument."
+    },
+    {
+      "id": "ind-control-060",
+      "kind": "control",
+      "area": "regional-swiss",
+      "scope": "independent-review",
+      "language": "de-CH",
+      "text": "Wir arbeiten mit den grossen Flüssen.",
+      "expected": "Wir arbeiten mit den grossen Flüssen."
+    },
+    {
+      "id": "ind-error-001",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Kamerad.",
+      "expected": "Wir sprechen mit dem Kameraden."
+    },
+    {
+      "id": "ind-error-002",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie wartet bei dem Bursche.",
+      "expected": "Sie wartet bei dem Burschen."
+    },
+    {
+      "id": "ind-error-003",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das reicht für den Prinz.",
+      "expected": "Das reicht für den Prinzen."
+    },
+    {
+      "id": "ind-error-004",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen von dem Löwe.",
+      "expected": "Wir sprechen von dem Löwen."
+    },
+    {
+      "id": "ind-error-005",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Journalist.",
+      "expected": "Wir sprechen mit dem Journalisten."
+    },
+    {
+      "id": "ind-error-006",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit dem Laborant.",
+      "expected": "Sie arbeitet mit dem Laboranten."
+    },
+    {
+      "id": "ind-error-007",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir suchen nach dem Pädagoge.",
+      "expected": "Wir suchen nach dem Pädagogen."
+    },
+    {
+      "id": "ind-error-008",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das ist ein Brief für den Assistent.",
+      "expected": "Das ist ein Brief für den Assistenten."
+    },
+    {
+      "id": "ind-error-009",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Kandidat.",
+      "expected": "Wir sprechen mit dem Kandidaten."
+    },
+    {
+      "id": "ind-error-010",
+      "kind": "error",
+      "area": "weak-person-noun",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie wartet bei dem Lieferant.",
+      "expected": "Sie wartet bei dem Lieferanten."
+    },
+    {
+      "id": "ind-error-011",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Kellner.",
+      "expected": "Wir sprechen mit den Kellnern."
+    },
+    {
+      "id": "ind-error-012",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Mitarbeiter.",
+      "expected": "Wir sprechen mit den Mitarbeitern."
+    },
+    {
+      "id": "ind-error-013",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit den Maler.",
+      "expected": "Sie arbeitet mit den Malern."
+    },
+    {
+      "id": "ind-error-014",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Österreicher.",
+      "expected": "Wir sprechen mit den Österreichern."
+    },
+    {
+      "id": "ind-error-015",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das liegt bei den Kläger.",
+      "expected": "Das liegt bei den Klägern."
+    },
+    {
+      "id": "ind-error-016",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das kommt von den Täter.",
+      "expected": "Das kommt von den Tätern."
+    },
+    {
+      "id": "ind-error-017",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit den Dörfer.",
+      "expected": "Wir arbeiten mit den Dörfern."
+    },
+    {
+      "id": "ind-error-018",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das gilt für die Reise zu den Wälder.",
+      "expected": "Das gilt für die Reise zu den Wäldern."
+    },
+    {
+      "id": "ind-error-019",
+      "kind": "error",
+      "area": "article-and-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit eine gute Ärztin.",
+      "expected": "Wir sprechen mit einer guten Ärztin."
+    },
+    {
+      "id": "ind-error-020",
+      "kind": "error",
+      "area": "article-and-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Das ist für einem neuen Kurier.",
+      "expected": "Das ist für einen neuen Kurier."
+    },
+    {
+      "id": "ind-error-021",
+      "kind": "error",
+      "area": "article-and-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem neue Kandidaten.",
+      "expected": "Wir sprechen mit dem neuen Kandidaten."
+    },
+    {
+      "id": "ind-error-022",
+      "kind": "error",
+      "area": "article-and-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit der zuverlässig Assistentin.",
+      "expected": "Sie arbeitet mit der zuverlässigen Assistentin."
+    },
+    {
+      "id": "ind-error-023",
+      "kind": "error",
+      "area": "article-and-adjective",
+      "scope": "independent-review",
+      "language": "de-DE",
+      "text": "Wir warten bei dem freundlich Lieferanten.",
+      "expected": "Wir warten bei dem freundlichen Lieferanten."
+    },
+    {
+      "id": "ind-error-024",
+      "kind": "error",
+      "area": "regional-swiss",
+      "scope": "independent-review",
+      "language": "de-CH",
+      "text": "Wir arbeiten mit den grossen Flüsse.",
+      "expected": "Wir arbeiten mit den grossen Flüssen."
+    }
+  ]
+}

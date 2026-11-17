@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "bundle_files": 117,
+  "bundle_bytes": 64615057,
+  "notices_path": "assets/NOTICES",
+  "notices_encoding": "utf-8",
+  "notices_sha256": "95bcbd5801d3ffb204562aea0dbcdac21cf11be9d2e1b52a876d09098a535004",
+  "complete_unicode_license_verbatim_in_notices": true,
+  "complete_inflection_attribution_header_verbatim_in_notices": true,
+  "format_note": "The packaged notice adds one blank line between attribution and the complete unchanged license.",
+  "source_license_sha256": "b2d3b5d59972767d52997d9f47e67cd30661bcfc3eeb6e3e1ada1ee06634be52",
+  "source_notice_sha256": "6c3b259b688a278e42f70c8b1b99ac0729111bec980c487e4f3245cd08899e22",
+  "extracted_notice_sha256": "23292f851373a2a44b4d6ce0db05fb9fd31c056474ba93247f9658fb04998155",
+  "web_manifest_sha256": "1f83189bd62203fe270524af8b040d15b3ac7ebba3b6cabec1b89f34db9350c7",
+  "checker_sha256": "310b26447c5416b594c8a745b7263db2617c22c891349e2750e21e781ccaa1a2",
+  "acceptance_scope": "Successful release web compilation and packaged notice verification; no browser startup/interaction claim."
+}

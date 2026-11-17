@@ -1,0 +1,14 @@
+{
+  "final-validation.tar.gz": {
+    "bytes": 348465,
+    "sha256": "3b06be9800e34aa3c78dd20dfa548ade18772470916aebaba1dfc3f382056428",
+    "members": 66,
+    "manifest_hashes_verified": true
+  },
+  "exploratory-evidence.tar.gz": {
+    "bytes": 1906060,
+    "sha256": "2d66661101a3450432f9128004f4cd2513ffdb2291fc71a5af6fc75d0b34334b",
+    "members": 43,
+    "manifest_hashes_verified": true
+  }
+}
