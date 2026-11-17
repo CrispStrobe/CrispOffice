@@ -1,0 +1,2309 @@
+{
+  "description": "Independently authored targeted morphology errors, valid adversarial controls, and explicit broader-grammar challenges. Not population accuracy. No external example corpus imported.",
+  "cases": [
+    {
+      "id": "error-001",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Kunde.",
+      "expected": "Wir sprechen mit dem Kunden."
+    },
+    {
+      "id": "error-002",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Student.",
+      "expected": "Wir sprechen mit dem Studenten."
+    },
+    {
+      "id": "error-003",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Mensch.",
+      "expected": "Wir sprechen mit dem Menschen."
+    },
+    {
+      "id": "error-004",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Kollege.",
+      "expected": "Wir sprechen mit dem Kollegen."
+    },
+    {
+      "id": "error-005",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Journalist.",
+      "expected": "Wir sprechen mit dem Journalisten."
+    },
+    {
+      "id": "error-006",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Präsident.",
+      "expected": "Wir sprechen mit dem Präsidenten."
+    },
+    {
+      "id": "error-007",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Diplomat.",
+      "expected": "Wir sprechen mit dem Diplomaten."
+    },
+    {
+      "id": "error-008",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Architekt.",
+      "expected": "Wir sprechen mit dem Architekten."
+    },
+    {
+      "id": "error-009",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Experte.",
+      "expected": "Wir sprechen mit dem Experten."
+    },
+    {
+      "id": "error-010",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Polizist.",
+      "expected": "Wir sprechen mit dem Polizisten."
+    },
+    {
+      "id": "error-011",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Lieferant.",
+      "expected": "Wir sprechen mit dem Lieferanten."
+    },
+    {
+      "id": "error-012",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Assistent.",
+      "expected": "Wir sprechen mit dem Assistenten."
+    },
+    {
+      "id": "error-013",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Bär.",
+      "expected": "Wir sprechen mit dem Bären."
+    },
+    {
+      "id": "error-014",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Löwe.",
+      "expected": "Wir sprechen mit dem Löwen."
+    },
+    {
+      "id": "error-015",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Junge.",
+      "expected": "Wir sprechen mit dem Jungen."
+    },
+    {
+      "id": "error-016",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Herr.",
+      "expected": "Wir sprechen mit dem Herrn."
+    },
+    {
+      "id": "error-017",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Name.",
+      "expected": "Wir sprechen mit dem Namen."
+    },
+    {
+      "id": "error-018",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Gedanke.",
+      "expected": "Wir sprechen mit dem Gedanken."
+    },
+    {
+      "id": "error-019",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Buchstabe.",
+      "expected": "Wir sprechen mit dem Buchstaben."
+    },
+    {
+      "id": "error-020",
+      "kind": "error",
+      "area": "weak-singular",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Glaube.",
+      "expected": "Wir sprechen mit dem Glauben."
+    },
+    {
+      "id": "error-021",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Kunde.",
+      "expected": "Das Geschenk ist für den Kunden."
+    },
+    {
+      "id": "error-022",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Student.",
+      "expected": "Das Geschenk ist für den Studenten."
+    },
+    {
+      "id": "error-023",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Mensch.",
+      "expected": "Das Geschenk ist für den Menschen."
+    },
+    {
+      "id": "error-024",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Präsident.",
+      "expected": "Das Geschenk ist für den Präsidenten."
+    },
+    {
+      "id": "error-025",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Experte.",
+      "expected": "Das Geschenk ist für den Experten."
+    },
+    {
+      "id": "error-026",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Bär.",
+      "expected": "Das Geschenk ist für den Bären."
+    },
+    {
+      "id": "error-027",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Herr.",
+      "expected": "Das Geschenk ist für den Herrn."
+    },
+    {
+      "id": "error-028",
+      "kind": "error",
+      "area": "weak-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Junge.",
+      "expected": "Das Geschenk ist für den Jungen."
+    },
+    {
+      "id": "error-029",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei den Computer.",
+      "expected": "Wir stehen bei dem Computer."
+    },
+    {
+      "id": "error-030",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei das Krankenhaus.",
+      "expected": "Wir stehen bei dem Krankenhaus."
+    },
+    {
+      "id": "error-031",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei die Universität.",
+      "expected": "Wir stehen bei der Universität."
+    },
+    {
+      "id": "error-032",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei einem Bibliothek.",
+      "expected": "Wir stehen bei einer Bibliothek."
+    },
+    {
+      "id": "error-033",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei einen Flughafen.",
+      "expected": "Wir stehen bei einem Flughafen."
+    },
+    {
+      "id": "error-034",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei meinem Schwester.",
+      "expected": "Wir stehen bei meiner Schwester."
+    },
+    {
+      "id": "error-035",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei dieses Formular.",
+      "expected": "Wir stehen bei diesem Formular."
+    },
+    {
+      "id": "error-036",
+      "kind": "error",
+      "area": "new-noun-article",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir stehen bei jenes Gebäude.",
+      "expected": "Wir stehen bei jenem Gebäude."
+    },
+    {
+      "id": "error-037",
+      "kind": "error",
+      "area": "new-noun-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für dem Bildschirm.",
+      "expected": "Das ist für den Bildschirm."
+    },
+    {
+      "id": "error-038",
+      "kind": "error",
+      "area": "new-noun-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für der Maschine.",
+      "expected": "Das ist für die Maschine."
+    },
+    {
+      "id": "error-039",
+      "kind": "error",
+      "area": "new-noun-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für einem Fahrrad.",
+      "expected": "Das ist für ein Fahrrad."
+    },
+    {
+      "id": "error-040",
+      "kind": "error",
+      "area": "new-noun-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für diesem Schlüssel.",
+      "expected": "Das ist für diesen Schlüssel."
+    },
+    {
+      "id": "error-041",
+      "kind": "error",
+      "area": "new-noun-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für einer Behörde.",
+      "expected": "Das ist für eine Behörde."
+    },
+    {
+      "id": "error-042",
+      "kind": "error",
+      "area": "new-noun-accusative",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für unserem Tochter.",
+      "expected": "Das ist für unsere Tochter."
+    },
+    {
+      "id": "error-043",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Ärzte.",
+      "expected": "Wir rechnen mit den Ärzten."
+    },
+    {
+      "id": "error-044",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Gäste.",
+      "expected": "Wir rechnen mit den Gästen."
+    },
+    {
+      "id": "error-045",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Freunde.",
+      "expected": "Wir rechnen mit den Freunden."
+    },
+    {
+      "id": "error-046",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Vögel.",
+      "expected": "Wir rechnen mit den Vögeln."
+    },
+    {
+      "id": "error-047",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Bäume.",
+      "expected": "Wir rechnen mit den Bäumen."
+    },
+    {
+      "id": "error-048",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Stühle.",
+      "expected": "Wir rechnen mit den Stühlen."
+    },
+    {
+      "id": "error-049",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Mütter.",
+      "expected": "Wir rechnen mit den Müttern."
+    },
+    {
+      "id": "error-050",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Väter.",
+      "expected": "Wir rechnen mit den Vätern."
+    },
+    {
+      "id": "error-051",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Brüder.",
+      "expected": "Wir rechnen mit den Brüdern."
+    },
+    {
+      "id": "error-052",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Geschwister.",
+      "expected": "Wir rechnen mit den Geschwistern."
+    },
+    {
+      "id": "error-053",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Ämter.",
+      "expected": "Wir rechnen mit den Ämtern."
+    },
+    {
+      "id": "error-054",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Schränke.",
+      "expected": "Wir rechnen mit den Schränken."
+    },
+    {
+      "id": "error-055",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Köche.",
+      "expected": "Wir rechnen mit den Köchen."
+    },
+    {
+      "id": "error-056",
+      "kind": "error",
+      "area": "dative-plural",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Anträge.",
+      "expected": "Wir rechnen mit den Anträgen."
+    },
+    {
+      "id": "error-057",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Ein zuverlässige Computer steht hier.",
+      "expected": "Ein zuverlässiger Computer steht hier."
+    },
+    {
+      "id": "error-058",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Eine modernes Maschine steht hier.",
+      "expected": "Eine moderne Maschine steht hier."
+    },
+    {
+      "id": "error-059",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Ein helle Krankenhaus steht hier.",
+      "expected": "Ein helles Krankenhaus steht hier."
+    },
+    {
+      "id": "error-060",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist ein freundliche Nachbar.",
+      "expected": "Das ist ein freundlicher Nachbar."
+    },
+    {
+      "id": "error-061",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Sie kommt mit einer modernes Kamera.",
+      "expected": "Sie kommt mit einer modernen Kamera."
+    },
+    {
+      "id": "error-062",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Er kommt ohne einen gültiger Ausweis.",
+      "expected": "Er kommt ohne einen gültigen Ausweis."
+    },
+    {
+      "id": "error-063",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für das neugierigen Publikum.",
+      "expected": "Das ist für das neugierige Publikum."
+    },
+    {
+      "id": "error-064",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem zuverlässige Computer.",
+      "expected": "Wir arbeiten mit dem zuverlässigen Computer."
+    },
+    {
+      "id": "error-065",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Wir sprechen mit einem freundlichem Kunden.",
+      "expected": "Wir sprechen mit einem freundlichen Kunden."
+    },
+    {
+      "id": "error-066",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Sie wartet bei einer geschlossenes Apotheke.",
+      "expected": "Sie wartet bei einer geschlossenen Apotheke."
+    },
+    {
+      "id": "error-067",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Ein hochwertiges Bildschirm steht hier.",
+      "expected": "Ein hochwertiger Bildschirm steht hier."
+    },
+    {
+      "id": "error-068",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Eine deutliches Verbesserung ist nötig.",
+      "expected": "Eine deutliche Verbesserung ist nötig."
+    },
+    {
+      "id": "error-069",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Unser neues Drucker funktioniert.",
+      "expected": "Unser neuer Drucker funktioniert."
+    },
+    {
+      "id": "error-070",
+      "kind": "error",
+      "area": "lexical-adjectives",
+      "scope": "expanded",
+      "language": "de-DE",
+      "text": "Das ist für unseren neuen Krankenhaus.",
+      "expected": "Das ist für unser neues Krankenhaus."
+    },
+    {
+      "id": "error-071",
+      "kind": "error",
+      "area": "swiss-morphology",
+      "scope": "expanded",
+      "language": "de-CH",
+      "text": "Sie arbeitet mit einem große Drucker.",
+      "expected": "Sie arbeitet mit einem grossen Drucker."
+    },
+    {
+      "id": "error-072",
+      "kind": "error",
+      "area": "swiss-morphology",
+      "scope": "expanded",
+      "language": "de-CH",
+      "text": "Das ist ein weisses Bildschirm.",
+      "expected": "Das ist ein weisser Bildschirm."
+    },
+    {
+      "id": "error-073",
+      "kind": "error",
+      "area": "swiss-morphology",
+      "scope": "expanded",
+      "language": "de-CH",
+      "text": "Wir sprechen mit dem Strassenpolizist.",
+      "expected": "Wir sprechen mit dem Strassenpolizisten."
+    },
+    {
+      "id": "error-074",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Wir helfen der Kunde.",
+      "expected": "Wir helfen dem Kunden."
+    },
+    {
+      "id": "error-075",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Die Studenten arbeitet heute.",
+      "expected": "Die Studenten arbeiten heute."
+    },
+    {
+      "id": "error-076",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Das ist das Auto der Student.",
+      "expected": "Das ist das Auto des Studenten."
+    },
+    {
+      "id": "error-077",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Ich sehe der neue Kunde.",
+      "expected": "Ich sehe den neuen Kunden."
+    },
+    {
+      "id": "error-078",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Er ist stolz auf dem Ergebnis.",
+      "expected": "Er ist stolz auf das Ergebnis."
+    },
+    {
+      "id": "error-079",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Sie bedankt sich für der Hilfe.",
+      "expected": "Sie bedankt sich für die Hilfe."
+    },
+    {
+      "id": "error-080",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Sie wartet auf dem neuen Bus.",
+      "expected": "Sie wartet auf den neuen Bus."
+    },
+    {
+      "id": "error-081",
+      "kind": "error",
+      "area": "broader-grammar-challenge",
+      "scope": "challenge",
+      "language": "de-DE",
+      "text": "Das ist wegen des schlimmen Fehler.",
+      "expected": "Das ist wegen des schlimmen Fehlers."
+    },
+    {
+      "id": "control-001",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Kunden.",
+      "expected": "Wir sprechen mit dem Kunden."
+    },
+    {
+      "id": "control-002",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das Geschenk ist für den Studenten.",
+      "expected": "Das Geschenk ist für den Studenten."
+    },
+    {
+      "id": "control-003",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er arbeitet mit einem erfahrenen Journalisten.",
+      "expected": "Er arbeitet mit einem erfahrenen Journalisten."
+    },
+    {
+      "id": "control-004",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Die Wohnung gehört dem jungen Architekten.",
+      "expected": "Die Wohnung gehört dem jungen Architekten."
+    },
+    {
+      "id": "control-005",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie redet mit diesem Herrn.",
+      "expected": "Sie redet mit diesem Herrn."
+    },
+    {
+      "id": "control-006",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen über den neuen Namen.",
+      "expected": "Wir sprechen über den neuen Namen."
+    },
+    {
+      "id": "control-007",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit einem guten Gedanken.",
+      "expected": "Sie kommt mit einem guten Gedanken."
+    },
+    {
+      "id": "control-008",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Menschen.",
+      "expected": "Das ist für den Menschen."
+    },
+    {
+      "id": "control-009",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein Student und ein Kunde warten.",
+      "expected": "Ein Student und ein Kunde warten."
+    },
+    {
+      "id": "control-010",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Der neue Kollege ist hier.",
+      "expected": "Der neue Kollege ist hier."
+    },
+    {
+      "id": "control-011",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sehen einen Jungen.",
+      "expected": "Wir sehen einen Jungen."
+    },
+    {
+      "id": "control-012",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Der Präsident kommt morgen.",
+      "expected": "Der Präsident kommt morgen."
+    },
+    {
+      "id": "control-013",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit dem Namen zurecht.",
+      "expected": "Sie kommt mit dem Namen zurecht."
+    },
+    {
+      "id": "control-014",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er erklärt es mit einem Buchstaben.",
+      "expected": "Er erklärt es mit einem Buchstaben."
+    },
+    {
+      "id": "control-015",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir stehen bei einem Löwen.",
+      "expected": "Wir stehen bei einem Löwen."
+    },
+    {
+      "id": "control-016",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist ein Bär.",
+      "expected": "Das ist ein Bär."
+    },
+    {
+      "id": "control-017",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Lieferanten.",
+      "expected": "Das ist für den Lieferanten."
+    },
+    {
+      "id": "control-018",
+      "kind": "control",
+      "area": "weak-singular",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Assistenten.",
+      "expected": "Wir sprechen mit dem Assistenten."
+    },
+    {
+      "id": "control-019",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Ärzten.",
+      "expected": "Wir sprechen mit den Ärzten."
+    },
+    {
+      "id": "control-020",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit ihren Brüdern.",
+      "expected": "Sie kommt mit ihren Brüdern."
+    },
+    {
+      "id": "control-021",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Gästen.",
+      "expected": "Wir rechnen mit den Gästen."
+    },
+    {
+      "id": "control-022",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie steht bei den Bäumen.",
+      "expected": "Sie steht bei den Bäumen."
+    },
+    {
+      "id": "control-023",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir fahren zu den Ämtern.",
+      "expected": "Wir fahren zu den Ämtern."
+    },
+    {
+      "id": "control-024",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das kommt von den Müttern.",
+      "expected": "Das kommt von den Müttern."
+    },
+    {
+      "id": "control-025",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Es geht um die Vögel.",
+      "expected": "Es geht um die Vögel."
+    },
+    {
+      "id": "control-026",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kämpfen für die Freunde.",
+      "expected": "Wir kämpfen für die Freunde."
+    },
+    {
+      "id": "control-027",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Anträge.",
+      "expected": "Das ist für die Anträge."
+    },
+    {
+      "id": "control-028",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er fährt mit den Autos.",
+      "expected": "Er fährt mit den Autos."
+    },
+    {
+      "id": "control-029",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit den Taxis.",
+      "expected": "Sie kommt mit den Taxis."
+    },
+    {
+      "id": "control-030",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das geschieht in den Kinos.",
+      "expected": "Das geschieht in den Kinos."
+    },
+    {
+      "id": "control-031",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Teams.",
+      "expected": "Wir rechnen mit den Teams."
+    },
+    {
+      "id": "control-032",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er arbeitet mit den Laptops.",
+      "expected": "Er arbeitet mit den Laptops."
+    },
+    {
+      "id": "control-033",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Schwestern.",
+      "expected": "Wir sprechen mit den Schwestern."
+    },
+    {
+      "id": "control-034",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Schwestern.",
+      "expected": "Das ist für die Schwestern."
+    },
+    {
+      "id": "control-035",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit den Geschwistern.",
+      "expected": "Sie kommt mit den Geschwistern."
+    },
+    {
+      "id": "control-036",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Geschwister.",
+      "expected": "Das ist für die Geschwister."
+    },
+    {
+      "id": "control-037",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Es liegt bei den Schlüsseln.",
+      "expected": "Es liegt bei den Schlüsseln."
+    },
+    {
+      "id": "control-038",
+      "kind": "control",
+      "area": "dative-plural",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Es liegt bei dem Schlüssel.",
+      "expected": "Es liegt bei dem Schlüssel."
+    },
+    {
+      "id": "control-039",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein zuverlässiger Computer steht hier.",
+      "expected": "Ein zuverlässiger Computer steht hier."
+    },
+    {
+      "id": "control-040",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Eine moderne Maschine steht hier.",
+      "expected": "Eine moderne Maschine steht hier."
+    },
+    {
+      "id": "control-041",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein helles Krankenhaus steht hier.",
+      "expected": "Ein helles Krankenhaus steht hier."
+    },
+    {
+      "id": "control-042",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist ein freundlicher Nachbar.",
+      "expected": "Das ist ein freundlicher Nachbar."
+    },
+    {
+      "id": "control-043",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit einer modernen Kamera.",
+      "expected": "Sie kommt mit einer modernen Kamera."
+    },
+    {
+      "id": "control-044",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er kommt ohne einen gültigen Ausweis.",
+      "expected": "Er kommt ohne einen gültigen Ausweis."
+    },
+    {
+      "id": "control-045",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für das neugierige Publikum.",
+      "expected": "Das ist für das neugierige Publikum."
+    },
+    {
+      "id": "control-046",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem zuverlässigen Computer.",
+      "expected": "Wir arbeiten mit dem zuverlässigen Computer."
+    },
+    {
+      "id": "control-047",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit einem freundlichen Kunden.",
+      "expected": "Wir sprechen mit einem freundlichen Kunden."
+    },
+    {
+      "id": "control-048",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie wartet bei einer geschlossenen Apotheke.",
+      "expected": "Sie wartet bei einer geschlossenen Apotheke."
+    },
+    {
+      "id": "control-049",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein hochwertiger Bildschirm steht hier.",
+      "expected": "Ein hochwertiger Bildschirm steht hier."
+    },
+    {
+      "id": "control-050",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Eine deutliche Verbesserung ist nötig.",
+      "expected": "Eine deutliche Verbesserung ist nötig."
+    },
+    {
+      "id": "control-051",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Unser neuer Drucker funktioniert.",
+      "expected": "Unser neuer Drucker funktioniert."
+    },
+    {
+      "id": "control-052",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für unser neues Krankenhaus.",
+      "expected": "Das ist für unser neues Krankenhaus."
+    },
+    {
+      "id": "control-053",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein technisch versierter Experte kommt.",
+      "expected": "Ein technisch versierter Experte kommt."
+    },
+    {
+      "id": "control-054",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein leicht beschädigter Bildschirm bleibt hier.",
+      "expected": "Ein leicht beschädigter Bildschirm bleibt hier."
+    },
+    {
+      "id": "control-055",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit einer automatisch gespeicherten Kopie.",
+      "expected": "Sie kommt mit einer automatisch gespeicherten Kopie."
+    },
+    {
+      "id": "control-056",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein sehr guter Freund kommt.",
+      "expected": "Ein sehr guter Freund kommt."
+    },
+    {
+      "id": "control-057",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit dem sorgfältig geprüften Ergebnis.",
+      "expected": "Sie arbeitet mit dem sorgfältig geprüften Ergebnis."
+    },
+    {
+      "id": "control-058",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein dunkelblauer Mantel hängt hier.",
+      "expected": "Ein dunkelblauer Mantel hängt hier."
+    },
+    {
+      "id": "control-059",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist ein anderer Fall.",
+      "expected": "Das ist ein anderer Fall."
+    },
+    {
+      "id": "control-060",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein zusätzlicher Hinweis steht hier.",
+      "expected": "Ein zusätzlicher Hinweis steht hier."
+    },
+    {
+      "id": "control-061",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das sind schöne alte Fahrräder.",
+      "expected": "Das sind schöne alte Fahrräder."
+    },
+    {
+      "id": "control-062",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kommen mit ganz neuen Fahrrädern.",
+      "expected": "Wir kommen mit ganz neuen Fahrrädern."
+    },
+    {
+      "id": "control-063",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie arbeitet mit dieser roten Maschine.",
+      "expected": "Sie arbeitet mit dieser roten Maschine."
+    },
+    {
+      "id": "control-064",
+      "kind": "control",
+      "area": "article-adjective",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit ihrem roten Fahrrad.",
+      "expected": "Sie kommt mit ihrem roten Fahrrad."
+    },
+    {
+      "id": "control-065",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Leiter.",
+      "expected": "Wir sprechen mit dem Leiter."
+    },
+    {
+      "id": "control-066",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit einer Leiter.",
+      "expected": "Wir arbeiten mit einer Leiter."
+    },
+    {
+      "id": "control-067",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Leiter.",
+      "expected": "Das ist für den Leiter."
+    },
+    {
+      "id": "control-068",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Leiter.",
+      "expected": "Das ist für die Leiter."
+    },
+    {
+      "id": "control-069",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem Band.",
+      "expected": "Wir arbeiten mit dem Band."
+    },
+    {
+      "id": "control-070",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit der Band.",
+      "expected": "Wir arbeiten mit der Band."
+    },
+    {
+      "id": "control-071",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit einem Band.",
+      "expected": "Wir arbeiten mit einem Band."
+    },
+    {
+      "id": "control-072",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit einer Band.",
+      "expected": "Wir arbeiten mit einer Band."
+    },
+    {
+      "id": "control-073",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für das Band.",
+      "expected": "Das ist für das Band."
+    },
+    {
+      "id": "control-074",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Band.",
+      "expected": "Das ist für den Band."
+    },
+    {
+      "id": "control-075",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Band.",
+      "expected": "Das ist für die Band."
+    },
+    {
+      "id": "control-076",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir fahren zu dem See.",
+      "expected": "Wir fahren zu dem See."
+    },
+    {
+      "id": "control-077",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir fahren zu der See.",
+      "expected": "Wir fahren zu der See."
+    },
+    {
+      "id": "control-078",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den See.",
+      "expected": "Das ist für den See."
+    },
+    {
+      "id": "control-079",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die See.",
+      "expected": "Das ist für die See."
+    },
+    {
+      "id": "control-080",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir rechnen mit dem Steuer.",
+      "expected": "Wir rechnen mit dem Steuer."
+    },
+    {
+      "id": "control-081",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir rechnen mit der Steuer.",
+      "expected": "Wir rechnen mit der Steuer."
+    },
+    {
+      "id": "control-082",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für das Steuer.",
+      "expected": "Das ist für das Steuer."
+    },
+    {
+      "id": "control-083",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Steuer.",
+      "expected": "Das ist für die Steuer."
+    },
+    {
+      "id": "control-084",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem Kiefer.",
+      "expected": "Wir arbeiten mit dem Kiefer."
+    },
+    {
+      "id": "control-085",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit der Kiefer.",
+      "expected": "Wir arbeiten mit der Kiefer."
+    },
+    {
+      "id": "control-086",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Kiefer.",
+      "expected": "Das ist für den Kiefer."
+    },
+    {
+      "id": "control-087",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Kiefer.",
+      "expected": "Das ist für die Kiefer."
+    },
+    {
+      "id": "control-088",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein grüner See liegt vor uns.",
+      "expected": "Ein grüner See liegt vor uns."
+    },
+    {
+      "id": "control-089",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Die offene See liegt vor uns.",
+      "expected": "Die offene See liegt vor uns."
+    },
+    {
+      "id": "control-090",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein neues Band liegt hier.",
+      "expected": "Ein neues Band liegt hier."
+    },
+    {
+      "id": "control-091",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein neuer Band liegt hier.",
+      "expected": "Ein neuer Band liegt hier."
+    },
+    {
+      "id": "control-092",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Eine neue Band spielt heute.",
+      "expected": "Eine neue Band spielt heute."
+    },
+    {
+      "id": "control-093",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Die neue Leiter wartet.",
+      "expected": "Die neue Leiter wartet."
+    },
+    {
+      "id": "control-094",
+      "kind": "control",
+      "area": "gender-homographs",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Der neue Leiter wartet.",
+      "expected": "Der neue Leiter wartet."
+    },
+    {
+      "id": "control-095",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie spricht mit dem neuen Angestellten.",
+      "expected": "Sie spricht mit dem neuen Angestellten."
+    },
+    {
+      "id": "control-096",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit einem neuen Angestellten.",
+      "expected": "Wir sprechen mit einem neuen Angestellten."
+    },
+    {
+      "id": "control-097",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein neuer Angestellter kommt.",
+      "expected": "Ein neuer Angestellter kommt."
+    },
+    {
+      "id": "control-098",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die neue Angestellte.",
+      "expected": "Das ist für die neue Angestellte."
+    },
+    {
+      "id": "control-099",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie redet mit der neuen Vorsitzenden.",
+      "expected": "Sie redet mit der neuen Vorsitzenden."
+    },
+    {
+      "id": "control-100",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein guter Bekannter kommt.",
+      "expected": "Ein guter Bekannter kommt."
+    },
+    {
+      "id": "control-101",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit einem guten Bekannten.",
+      "expected": "Wir sprechen mit einem guten Bekannten."
+    },
+    {
+      "id": "control-102",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Kranken.",
+      "expected": "Das ist für den Kranken."
+    },
+    {
+      "id": "control-103",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kommen mit den Reisenden.",
+      "expected": "Wir kommen mit den Reisenden."
+    },
+    {
+      "id": "control-104",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie spricht mit einer Deutschen.",
+      "expected": "Sie spricht mit einer Deutschen."
+    },
+    {
+      "id": "control-105",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Ein Deutscher kommt heute.",
+      "expected": "Ein Deutscher kommt heute."
+    },
+    {
+      "id": "control-106",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie spricht mit dem Deutschen.",
+      "expected": "Sie spricht mit dem Deutschen."
+    },
+    {
+      "id": "control-107",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist etwas Gutes.",
+      "expected": "Das ist etwas Gutes."
+    },
+    {
+      "id": "control-108",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist nichts Neues.",
+      "expected": "Das ist nichts Neues."
+    },
+    {
+      "id": "control-109",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er kommt mit etwas Neuem.",
+      "expected": "Er kommt mit etwas Neuem."
+    },
+    {
+      "id": "control-110",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie berichtet von nichts Besonderem.",
+      "expected": "Sie berichtet von nichts Besonderem."
+    },
+    {
+      "id": "control-111",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir suchen das Beste.",
+      "expected": "Wir suchen das Beste."
+    },
+    {
+      "id": "control-112",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist im Wesentlichen bekannt.",
+      "expected": "Das ist im Wesentlichen bekannt."
+    },
+    {
+      "id": "control-113",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Armen.",
+      "expected": "Das ist für die Armen."
+    },
+    {
+      "id": "control-114",
+      "kind": "control",
+      "area": "nominalized-adjectives",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit einem Verwandten.",
+      "expected": "Sie kommt mit einem Verwandten."
+    },
+    {
+      "id": "control-115",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Eltern.",
+      "expected": "Wir rechnen mit den Eltern."
+    },
+    {
+      "id": "control-116",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Eltern.",
+      "expected": "Das ist für die Eltern."
+    },
+    {
+      "id": "control-117",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Kosten.",
+      "expected": "Wir rechnen mit den Kosten."
+    },
+    {
+      "id": "control-118",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Kosten.",
+      "expected": "Das ist für die Kosten."
+    },
+    {
+      "id": "control-119",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir rechnen mit den Ferien.",
+      "expected": "Wir rechnen mit den Ferien."
+    },
+    {
+      "id": "control-120",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Ferien.",
+      "expected": "Das ist für die Ferien."
+    },
+    {
+      "id": "control-121",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit den Daten.",
+      "expected": "Wir arbeiten mit den Daten."
+    },
+    {
+      "id": "control-122",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Daten.",
+      "expected": "Das ist für die Daten."
+    },
+    {
+      "id": "control-123",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit den Leuten.",
+      "expected": "Wir sprechen mit den Leuten."
+    },
+    {
+      "id": "control-124",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für die Leute.",
+      "expected": "Das ist für die Leute."
+    },
+    {
+      "id": "control-125",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kommen mit dem Personal.",
+      "expected": "Wir kommen mit dem Personal."
+    },
+    {
+      "id": "control-126",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für das Personal.",
+      "expected": "Das ist für das Personal."
+    },
+    {
+      "id": "control-127",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem Publikum.",
+      "expected": "Wir arbeiten mit dem Publikum."
+    },
+    {
+      "id": "control-128",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für das Publikum.",
+      "expected": "Das ist für das Publikum."
+    },
+    {
+      "id": "control-129",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Mitglied.",
+      "expected": "Wir sprechen mit dem Mitglied."
+    },
+    {
+      "id": "control-130",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für das Mitglied.",
+      "expected": "Das ist für das Mitglied."
+    },
+    {
+      "id": "control-131",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Chef.",
+      "expected": "Wir sprechen mit dem Chef."
+    },
+    {
+      "id": "control-132",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Chef.",
+      "expected": "Das ist für den Chef."
+    },
+    {
+      "id": "control-133",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kommen mit dem Kind.",
+      "expected": "Wir kommen mit dem Kind."
+    },
+    {
+      "id": "control-134",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kommen mit dem Herzen.",
+      "expected": "Wir kommen mit dem Herzen."
+    },
+    {
+      "id": "control-135",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für das Herz.",
+      "expected": "Das ist für das Herz."
+    },
+    {
+      "id": "control-136",
+      "kind": "control",
+      "area": "plural-only-and-invariants",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir fahren mit dem Fahrrad.",
+      "expected": "Wir fahren mit dem Fahrrad."
+    },
+    {
+      "id": "control-137",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Von diesem Tage an bleibt sie hier.",
+      "expected": "Von diesem Tage an bleibt sie hier."
+    },
+    {
+      "id": "control-138",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Nach dem Jahre 1990 kam sie.",
+      "expected": "Nach dem Jahre 1990 kam sie."
+    },
+    {
+      "id": "control-139",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Aus dem Buche liest sie vor.",
+      "expected": "Aus dem Buche liest sie vor."
+    },
+    {
+      "id": "control-140",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Mit dem Worte beginnt der Satz.",
+      "expected": "Mit dem Worte beginnt der Satz."
+    },
+    {
+      "id": "control-141",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er spricht aus tiefstem Herzen.",
+      "expected": "Er spricht aus tiefstem Herzen."
+    },
+    {
+      "id": "control-142",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit Peter.",
+      "expected": "Wir sprechen mit Peter."
+    },
+    {
+      "id": "control-143",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für Anna.",
+      "expected": "Das ist für Anna."
+    },
+    {
+      "id": "control-144",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit ihrem Freund Klaus.",
+      "expected": "Sie kommt mit ihrem Freund Klaus."
+    },
+    {
+      "id": "control-145",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir fahren zu Frau Meyer.",
+      "expected": "Wir fahren zu Frau Meyer."
+    },
+    {
+      "id": "control-146",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit Herrn Müller.",
+      "expected": "Wir sprechen mit Herrn Müller."
+    },
+    {
+      "id": "control-147",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für Professor Weber.",
+      "expected": "Das ist für Professor Weber."
+    },
+    {
+      "id": "control-148",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kommen mit dem Produkt QudsCloud.",
+      "expected": "Wir kommen mit dem Produkt QudsCloud."
+    },
+    {
+      "id": "control-149",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist für den Verein Quds.",
+      "expected": "Das ist für den Verein Quds."
+    },
+    {
+      "id": "control-150",
+      "kind": "control",
+      "area": "historic-and-names",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir stehen bei der Firma Siemens.",
+      "expected": "Wir stehen bei der Firma Siemens."
+    },
+    {
+      "id": "control-151",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt, ohne dem Studenten zu helfen.",
+      "expected": "Sie kommt, ohne dem Studenten zu helfen."
+    },
+    {
+      "id": "control-152",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er arbeitet, um dem Kunden einen Gefallen zu tun.",
+      "expected": "Er arbeitet, um dem Kunden einen Gefallen zu tun."
+    },
+    {
+      "id": "control-153",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie kommt mit einem Kunden und einer Kollegin.",
+      "expected": "Sie kommt mit einem Kunden und einer Kollegin."
+    },
+    {
+      "id": "control-154",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er kommt mit den Gästen, den Freunden und den Kindern.",
+      "expected": "Er kommt mit den Gästen, den Freunden und den Kindern."
+    },
+    {
+      "id": "control-155",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Das ist mit ein wichtiger Grund.",
+      "expected": "Das ist mit ein wichtiger Grund."
+    },
+    {
+      "id": "control-156",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie wollte mit den Studenten begleiten.",
+      "expected": "Sie wollte mit den Studenten begleiten."
+    },
+    {
+      "id": "control-157",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Er sagt: `mit dem Student` ist eine fehlerhafte Wendung.",
+      "expected": "Er sagt: `mit dem Student` ist eine fehlerhafte Wendung."
+    },
+    {
+      "id": "control-158",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Die Adresse https://example.test/mit/den/Kinder bleibt gültig.",
+      "expected": "Die Adresse https://example.test/mit/den/Kinder bleibt gültig."
+    },
+    {
+      "id": "control-159",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Schreibe an kunden@example.test.",
+      "expected": "Schreibe an kunden@example.test."
+    },
+    {
+      "id": "control-160",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Der Code lautet `für dem Computer`.",
+      "expected": "Der Code lautet `für dem Computer`."
+    },
+    {
+      "id": "control-161",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Die Schreibweise lautet ``mit `dem` Student``.",
+      "expected": "Die Schreibweise lautet ``mit `dem` Student``."
+    },
+    {
+      "id": "control-162",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem Computer. 👩🏽‍💻 Die Datei ist gespeichert.",
+      "expected": "Wir arbeiten mit dem Computer. 👩🏽‍💻 Die Datei ist gespeichert."
+    },
+    {
+      "id": "control-163",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir arbeiten mit dem Com­puter.",
+      "expected": "Wir arbeiten mit dem Com­puter."
+    },
+    {
+      "id": "control-164",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Sie spricht mit dem Stu­denten.",
+      "expected": "Sie spricht mit dem Stu­denten."
+    },
+    {
+      "id": "control-165",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir kommen mit den Gäs­ten.",
+      "expected": "Wir kommen mit den Gäs­ten."
+    },
+    {
+      "id": "control-166",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Mit dem Kunden ist alles gut.",
+      "expected": "Mit dem Kunden ist alles gut."
+    },
+    {
+      "id": "control-167",
+      "kind": "control",
+      "area": "scope-and-protection",
+      "scope": "valid",
+      "language": "de-DE",
+      "text": "Wir sprechen mit dem Studenten.",
+      "expected": "Wir sprechen mit dem Studenten."
+    },
+    {
+      "id": "control-168",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Wir arbeiten mit dem grossen Drucker.",
+      "expected": "Wir arbeiten mit dem grossen Drucker."
+    },
+    {
+      "id": "control-169",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Das ist ein weisser Bildschirm.",
+      "expected": "Das ist ein weisser Bildschirm."
+    },
+    {
+      "id": "control-170",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Wir sprechen mit dem Strassenpolizisten.",
+      "expected": "Wir sprechen mit dem Strassenpolizisten."
+    },
+    {
+      "id": "control-171",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Wir fahren mit dem grossen Fahrzeug.",
+      "expected": "Wir fahren mit dem grossen Fahrzeug."
+    },
+    {
+      "id": "control-172",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Ein schöner Strauss steht hier.",
+      "expected": "Ein schöner Strauss steht hier."
+    },
+    {
+      "id": "control-173",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Wir arbeiten mit einem weissen Blatt.",
+      "expected": "Wir arbeiten mit einem weissen Blatt."
+    },
+    {
+      "id": "control-174",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Das ist für den kleinen Fuss.",
+      "expected": "Das ist für den kleinen Fuss."
+    },
+    {
+      "id": "control-175",
+      "kind": "control",
+      "area": "swiss-valid",
+      "scope": "valid",
+      "language": "de-CH",
+      "text": "Das ist für die grossen Füsse.",
+      "expected": "Das ist für die grossen Füsse."
+    }
+  ]
+}
