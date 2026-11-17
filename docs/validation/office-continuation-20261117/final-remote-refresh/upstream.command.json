@@ -1,0 +1,15 @@
+{
+  "name": "upstream",
+  "command": [
+    "git",
+    "ls-remote",
+    "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+    "refs/heads/*",
+    "refs/pull/*/head"
+  ],
+  "started_at_utc": "2026-11-16T23:28:22.488173+00:00",
+  "finished_at_utc": "2026-11-16T23:28:29.870722+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -600,11 +600,11 @@ class SheetDeserializer {
           kind: kind,
           formula: text,
           rank: int.tryParse(reader.getAttribute('rank') ?? '') ?? 10,
+          priority: int.tryParse(reader.getAttribute('priority') ?? ''),
+          stopIfTrue: _readBoolean(reader.getAttribute('stopIfTrue')),
           fillRgb: dxfFill.isEmpty ? 'FFF2CC' : dxfFill,
           fontRgb: dxfFont,
           dxfId: dxfId,
-          priority: int.tryParse(reader.getAttribute('priority') ?? ''),
-          stopIfTrue: _readBoolean(reader.getAttribute('stopIfTrue')),
         );
         sheet.conditionalFormats.add(conditionalRule);
       }
