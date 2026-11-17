@@ -167,6 +167,10 @@ def check_fixture(spec, output):
         for word in spec['right_edge']['words']:
             require(abs(locations[word]['xMax'] - spec['right_edge']['points']) <= .3,
                     f'{name}: right edge for {word} is {locations[word]["xMax"]}')
+    if 'left_edge' in spec:
+        for word in spec['left_edge']['words']:
+            require(abs(locations[word]['xMin'] - spec['left_edge']['points']) <= .3,
+                    f'{name}: left edge for {word} is {locations[word]["xMin"]}')
     if 'same_layout_as' in spec:
         reference = page_words(output / 'converted' / (spec['same_layout_as'] + '.bbox.xhtml'))
         for word, location in locations.items():

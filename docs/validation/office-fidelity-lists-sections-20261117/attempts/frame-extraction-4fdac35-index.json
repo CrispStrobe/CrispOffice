@@ -1,0 +1,131 @@
+{
+  "archive": "frame-extraction-4fdac35.tar.xz",
+  "sha256": "a3ac75e987893690c7312e05d3822a2ec95dd20fe9e3396d465da0b15078f085",
+  "bytes": 495216,
+  "files": {
+    "attempt.json": {
+      "sha256": "52eff2b98f6d5de5be3db1ae4c64ee2b070dc47dcf3e4f021add9a20d8399b50",
+      "bytes": 572
+    },
+    "odt-vm/analyze.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/analyze.stdout.gz": {
+      "sha256": "e9efd54cd7ea5d940bbaba4cf8130f8f02bdf1b0fd90020d0e8b5bb837544a91",
+      "bytes": 232
+    },
+    "odt-vm/dart-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-vm/dart-version.stdout": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "odt-vm/flutter-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-vm/flutter-version.stdout": {
+      "sha256": "3e84cedd9fa2b7e8451d29ef69a603c8c56776ccaf16e073333e0ccdf98ab0e4",
+      "bytes": 665
+    },
+    "odt-vm/format.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/format.stdout.gz": {
+      "sha256": "6024c71d9ecdc156fb7826c571f2f2e249f4f8915fa035b106c2a736f81af303",
+      "bytes": 67
+    },
+    "odt-vm/node-version.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "odt-vm/node-version.stdout": {
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81",
+      "bytes": 9
+    },
+    "odt-vm/receipt.json": {
+      "sha256": "a2c10b230a18f7a56c6d022ef04dc7071520f21432c546c79e09b427b6bfbb3b",
+      "bytes": 524384
+    },
+    "odt-vm/runtime-after.json.gz": {
+      "sha256": "a5540d1bf0858a7e72dd72baa7f7909cc8bbf7c588b8ecc283f248e42a12743b",
+      "bytes": 402520
+    },
+    "odt-vm/runtime-before.json.gz": {
+      "sha256": "a5540d1bf0858a7e72dd72baa7f7909cc8bbf7c588b8ecc283f248e42a12743b",
+      "bytes": 402520
+    },
+    "odt-vm/test-1.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-1.stdout.gz": {
+      "sha256": "ec41f3069f5ca9559e1904710c4cfbd627f486fab27946250b7c60d8effad5c1",
+      "bytes": 2439
+    },
+    "odt-vm/test-2.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-2.stdout.gz": {
+      "sha256": "ed7186c7409186504f10fb3c3f1d170205a61886fb5297005b53bacb058239cd",
+      "bytes": 2643
+    },
+    "odt-vm/test-3.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-3.stdout.gz": {
+      "sha256": "eee00bec82486221ab268004a3407e4781e272757f817fdc584a9daee3335dee",
+      "bytes": 4932
+    },
+    "odt-vm/test-4.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-4.stdout.gz": {
+      "sha256": "246854a17e3ffc49969ab837e7f53e282cdeebfb5e09c3a3d106a9e90b38fc5e",
+      "bytes": 3247
+    },
+    "odt-vm/test-5.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-5.stdout.gz": {
+      "sha256": "d14f9379ce0b21c8062913fe356757088e346f1c82f191948a60432e480747a7",
+      "bytes": 2167
+    },
+    "odt-vm/test-6.stderr.gz": {
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20
+    },
+    "odt-vm/test-6.stdout.gz": {
+      "sha256": "f2ea15061642b858559a6a66e968b8796dc34249e5127159475c5287830d323c",
+      "bytes": 3026
+    },
+    "run_qualification.py": {
+      "sha256": "4d3e68a1f7024bf34c124cba7ca6bc95496c471b8066096093caebad88b1c248",
+      "bytes": 9606
+    }
+  },
+  "reconstruction_verified": true,
+  "attempt": {
+    "source_commit": "4fdac35c8da50e9c62ffab4a86dd2397c21186b4",
+    "status": "Rejected historical attempt, excluded from final totals",
+    "runtime_tests": {
+      "passed": 329,
+      "failed": 1,
+      "skipped": 0
+    },
+    "failed_case": "ODT exports preserved whitespace in headers footers and frame text",
+    "finding": "Paragraph-anchored frame text is not traversed by the public ODF text extraction/search path. Original assertion remains unchanged.",
+    "strict_analysis_and_format": true,
+    "source_unchanged": true,
+    "runtime_unchanged": true,
+    "lock_unchanged": true
+  }
+}

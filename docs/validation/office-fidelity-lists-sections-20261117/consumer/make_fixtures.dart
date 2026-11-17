@@ -367,6 +367,60 @@ void main(List<String> arguments) {
       },
     },
   );
+  save(
+    'paragraph-rtl-indent',
+    WmlDocument(
+      sections: [
+        section([
+          p(
+            'RightFirst\nRightSecond',
+            properties: WmlParagraphProps(
+              rightToLeft: true,
+              justification: WmlJustification.right,
+              lineSpacingRule: WmlLineSpacingRule.exact,
+              lineSpacing: 18,
+              spacingBefore: 6,
+              spacingAfter: 5,
+              indent: const WmlIndent(left: 30, right: 24),
+            ),
+          ),
+          p(
+            'LeftFirst\nLeftSecond',
+            properties: WmlParagraphProps(
+              rightToLeft: true,
+              justification: WmlJustification.left,
+              lineSpacingRule: WmlLineSpacingRule.exact,
+              lineSpacing: 18,
+              spacingBefore: 6,
+              spacingAfter: 5,
+              indent: const WmlIndent(left: 30, right: 24),
+            ),
+          ),
+        ], size: _secondSize),
+      ],
+    ),
+    pages: [
+      [600, 400],
+    ],
+    words: {'RightFirst': 1, 'RightSecond': 1, 'LeftFirst': 1, 'LeftSecond': 1},
+    order: ['RightFirst', 'RightSecond', 'LeftFirst', 'LeftSecond'],
+    extra: {
+      'line_step': {
+        'words': ['RightFirst', 'RightSecond'],
+        'points': 18,
+      },
+      'right_edge': {
+        'words': ['RightFirst', 'RightSecond'],
+        'points': 540,
+      },
+      'left_edge': {
+        'words': ['LeftFirst', 'LeftSecond'],
+        'points': 66,
+      },
+      'scope':
+          'Ordinary RTL paragraphs preserve physical 30 pt left and 24 pt right indents, independently of section activation.',
+    },
+  );
   for (final kind in [
     WmlSectionBreakKind.oddPage,
     WmlSectionBreakKind.evenPage,

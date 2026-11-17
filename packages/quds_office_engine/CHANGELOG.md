@@ -4,6 +4,8 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Keep physical paragraph indents when exporting RTL paragraphs and headings
+  to ODT's direction-dependent margin properties.
 - Preserve ODT section page styles when the first content is a list, nested
   control, table, picture, frame, or empty section. Keep resolved first-paragraph
   formatting, honor odd/even starts, and avoid extra page breaks or empty
