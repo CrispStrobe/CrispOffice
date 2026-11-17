@@ -501,8 +501,7 @@ abstract final class SmlAnalysis {
     final stops = rule.colorScaleStops;
     if (stops.length < 2) return;
     final values = <double>[
-      for (final ref in rule.range.cells)
-        ?sheet.cellOrNull(ref)?.asNumber,
+      for (final ref in rule.range.cells) ?sheet.cellOrNull(ref)?.asNumber,
     ];
     if (values.isEmpty) return;
     final sorted = [...values]..sort();
