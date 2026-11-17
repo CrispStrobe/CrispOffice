@@ -17,7 +17,11 @@ final _png = base64Decode(
 void main() {
   test('writes modeled slides, text, tables and pictures as ODP', () {
     final presentation = PmlPresentation(
-      properties: OfficeDocumentProperties(title: 'Deck smoke'),
+      properties: OfficeDocumentProperties(
+        title: 'Deck smoke',
+        subject: 'Slides',
+        creator: 'Author',
+      ),
       slides: [
         PmlSlide(
           id: 1,
@@ -87,13 +91,16 @@ void main() {
     );
     final content = package.getPart('/content.xml')!.readText();
     final styles = package.getPart('/styles.xml')!.readText();
+    final meta = package.getPart('/meta.xml')!.readText();
+    expect(meta, contains('<dc:title>Deck smoke</dc:title>'));
+    expect(meta, contains('<dc:subject>Slides</dc:subject>'));
+    expect(meta, contains('<dc:creator>Author</dc:creator>'));
     expect(content, contains('<draw:page'));
     expect(content, contains('Hello deck'));
     expect(content, contains('<table:table'));
     expect(content, contains('Pictures/image1.png'));
     expect(content, contains('xlink:type="simple"'));
     expect(content, contains('Speaker note'));
-    expect(content, contains('<text:a xlink:href="https://example.com/deck">'));
     final pageProperties = _pageProperties(XmlDocument.parse(content), 0);
     expect(
       pageProperties.getAttribute('type', namespaceUri: _smilNs),
@@ -107,6 +114,7 @@ void main() {
       pageProperties.getAttribute('duration', namespaceUri: _presentationNs),
       'PT5S',
     );
+    expect(content, contains('<text:a xlink:href="https://example.com/deck">'));
     expect(styles, contains('fo:page-width'));
     expect(package.getPart('/Pictures/image1.png'), isNotNull);
   });

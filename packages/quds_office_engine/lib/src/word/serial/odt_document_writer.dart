@@ -594,6 +594,11 @@ abstract final class OdtDocumentWriter {
       styleOverride ??
           layout.paragraphStyle(paragraph.properties, heading: heading),
     );
+    if (paragraph.properties.pageNumberField) {
+      w.writeEmptyElement('page-number', prefix: 'text');
+      w.writeEndElement();
+      return;
+    }
     if (layout.noteReferenceSpacePending) {
       layout.noteReferenceSpacePending = false;
       final text = paragraph.text;
@@ -901,6 +906,9 @@ abstract final class OdtDocumentWriter {
     for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
       final row = table.rows[rowIndex];
       w.writeStartElement('table-row', prefix: 'table');
+      if (row.height case final height?) {
+        w.writeAttribute('table:style-name', layout.rowStyle(height));
+      }
       _writeOmittedCells(
         w,
         BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0),
@@ -923,8 +931,19 @@ abstract final class OdtDocumentWriter {
             w.writeAttribute('table:number-rows-spanned', '${placement.rows}');
           }
         }
-        if (cell.fillColor case final fill?) {
-          w.writeAttribute('table:style-name', layout.cellStyle(fill));
+        if (cell.fillColor case final fill? when fill.isNotEmpty) {
+          w.writeAttribute(
+            'table:style-name',
+            layout.cellStyle(fill, cell: cell),
+          );
+        } else if (cell.borderTop == true ||
+            cell.borderBottom == true ||
+            cell.borderLeft == true ||
+            cell.borderRight == true) {
+          w.writeAttribute(
+            'table:style-name',
+            layout.cellStyle('', cell: cell),
+          );
         }
         final notesAllowed = layout.noteBodiesAllowed;
         final commentsAllowed = layout.commentsAllowed;
@@ -1079,11 +1098,22 @@ abstract final class OdtDocumentWriter {
     _namespaces(w);
     w.writeAttribute('office:version', '1.3');
     w.writeStartElement('meta', prefix: 'office');
-    if (document.properties.title.isNotEmpty) {
-      w.writeStartElement('title', prefix: 'dc');
-      w.writeText(document.properties.title);
+    void value(String tag, String prefix, String text) {
+      if (text.isEmpty) return;
+      w.writeStartElement(tag, prefix: prefix);
+      w.writeText(text);
       w.writeEndElement();
     }
+
+    value('title', 'dc', document.properties.title);
+    value('subject', 'dc', document.properties.subject);
+    value('creator', 'dc', document.properties.creator);
+    value('description', 'dc', document.properties.description);
+    value('keyword', 'meta', document.properties.keywords);
+    value('initial-creator', 'meta', document.properties.creator);
+    value('creation-date', 'meta', document.properties.createdIso);
+    value('date', 'dc', document.properties.modifiedIso);
+    value('generator', 'meta', 'Quds Office');
     w.writeEndElement();
     w.writeEndElement();
     return w.toXml();
@@ -1357,6 +1387,7 @@ class _OdtLayout {
   final Map<String, String> _paragraphStyles = <String, String>{};
   final Map<String, String> _columnStyles = <String, String>{};
   final Map<String, String> _cellStyles = <String, String>{};
+  final Map<String, String> _rowStyles = <String, String>{};
   final Map<(String?, String, String, String), String> _listStyles = {};
   late final _listDefinitions = _OdtListDefinitions(document);
   var _listCounters = <int, List<BigInt?>>{};
@@ -1512,7 +1543,45 @@ class _OdtLayout {
             buffer.write(' fo:text-indent="${points}pt"');
           }
         }
-        buffer.write('/>');
+        if (props.shadingFill case final fill? when fill.isNotEmpty) {
+          buffer.write(' fo:background-color="#${fill.toLowerCase()}"');
+        }
+        if (props.borderColor case final border? when border.isNotEmpty) {
+          buffer.write(' fo:border="0.5pt solid #${border.toLowerCase()}"');
+        }
+        if (props.tabs.isEmpty) {
+          buffer.write('/>');
+        } else {
+          buffer.write('><style:tab-stops>');
+          for (final tab in props.tabs) {
+            if (_paragraphDecimal(tab.position) case final position?) {
+              final type = switch (tab.alignment) {
+                WmlTabAlignment.center => 'center',
+                WmlTabAlignment.right => 'right',
+                WmlTabAlignment.decimal => 'char',
+                WmlTabAlignment.left => 'left',
+              };
+              buffer.write(
+                '<style:tab-stop style:position="${position}pt" '
+                'style:type="$type"',
+              );
+              if (tab.alignment == WmlTabAlignment.decimal) {
+                buffer.write(' style:char="."');
+              }
+              final leader = switch (tab.leader) {
+                WmlTabLeader.dot => 'dotted',
+                WmlTabLeader.hyphen => 'solid',
+                WmlTabLeader.underscore => 'solid',
+                WmlTabLeader.none => null,
+              };
+              if (leader != null) {
+                buffer.write(' style:leader-style="$leader"');
+              }
+              buffer.write('/>');
+            }
+          }
+          buffer.write('</style:tab-stops></style:paragraph-properties>');
+        }
         if (emptyAnchor) {
           buffer.write('<style:text-properties fo:font-size="1pt"/>');
         }
@@ -1749,12 +1818,43 @@ class _OdtLayout {
     );
   }
 
-  String cellStyle(String fill) {
-    return _cellStyles.putIfAbsent(fill, () {
+  String cellStyle(String fill, {WmlTableCell? cell}) {
+    final key =
+        '$fill|${cell?.borderTop}|${cell?.borderBottom}|${cell?.borderLeft}|${cell?.borderRight}';
+    return _cellStyles.putIfAbsent(key, () {
       final name = 'Ce${_cellStyles.length + 1}';
-      _styleBuffers.add(
+      final buffer = StringBuffer(
         '<style:style style:name="$name" style:family="table-cell">'
-        '<style:table-cell-properties fo:background-color="#${fill.toLowerCase()}"/>'
+        '<style:table-cell-properties',
+      );
+      if (fill.isNotEmpty) {
+        buffer.write(' fo:background-color="#${fill.toLowerCase()}"');
+      }
+      if (cell?.borderTop == true) {
+        buffer.write(' fo:border-top="0.5pt solid #000000"');
+      }
+      if (cell?.borderBottom == true) {
+        buffer.write(' fo:border-bottom="0.5pt solid #000000"');
+      }
+      if (cell?.borderLeft == true) {
+        buffer.write(' fo:border-left="0.5pt solid #000000"');
+      }
+      if (cell?.borderRight == true) {
+        buffer.write(' fo:border-right="0.5pt solid #000000"');
+      }
+      buffer.write('/></style:style>');
+      _styleBuffers.add(buffer.toString());
+      return name;
+    });
+  }
+
+  String rowStyle(double height) {
+    final key = height.toStringAsFixed(2);
+    return _rowStyles.putIfAbsent(key, () {
+      final name = 'Ro${_rowStyles.length + 1}';
+      _styleBuffers.add(
+        '<style:style style:name="$name" style:family="table-row">'
+        '<style:table-row-properties style:row-height="${key}pt"/>'
         '</style:style>',
       );
       return name;

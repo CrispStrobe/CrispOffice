@@ -9,6 +9,9 @@ All notable changes to `quds_office_engine` are documented here.
   stories out of body/search text and apply the shared text-expansion budget.
 - Keep physical paragraph indents when exporting RTL paragraphs and headings
   to ODT's direction-dependent margin properties.
+- Extract paragraph-anchored ODF text boxes in generic extraction and search,
+  preserving their whitespace and paragraph boundaries without duplicating
+  surrounding inline text or exposing hidden annotation and covered-cell text.
 - Preserve ODT section page styles when the first content is a list, nested
   control, table, picture, frame, or empty section. Keep resolved first-paragraph
   formatting, honor odd/even starts, and avoid extra page breaks or empty
