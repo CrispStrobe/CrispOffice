@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:quds_office_engine/quds_office_engine.dart';
-import 'package:quds_office_engine/src/proofing/german_literal_ranges.dart';
 
 import 'backend.dart';
 import 'bundle.dart';
