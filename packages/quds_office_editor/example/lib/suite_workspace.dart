@@ -6,11 +6,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
-import 'package:quds_proofing_aot/quds_proofing_aot.dart';
 import 'package:quds_proofing_harper/quds_proofing_harper.dart';
 
 import 'sample_library.dart';
-import 'studio_aot.dart';
 import 'studio_chrome.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
@@ -52,8 +50,6 @@ class SuiteWorkspace extends StatefulWidget {
 }
 
 class _SuiteWorkspaceState extends State<SuiteWorkspace> {
-  StudioAotConfiguration? _aotConfiguration;
-  String? _aotConfigurationError;
   SuiteApp _app = SuiteApp.word;
   SuiteLook _look = SuiteLook.light;
   OfficeInteractionMode _mode = OfficeInteractionMode.editing;
@@ -2820,11 +2816,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _cmd(Icons.spellcheck, _arabic ? 'تدقيق' : 'Spelling', _showSpelling),
           _cmd(
-            Icons.account_tree_outlined,
-            _arabic ? 'تحليل AOT' : 'AOT analysis',
-            _opening ? null : _showAotAnalysis,
-          ),
-          _cmd(
             Icons.info_outline,
             _arabic ? 'خصائص' : 'Properties',
             _showProperties,
@@ -4786,37 +4777,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ],
         ),
       );
-      try {
-        final configuration = StudioAotConfiguration.fromEnvironment();
-        _aotConfiguration = configuration;
-        _aotConfigurationError = null;
-        if (configuration.manualEnabled) {
-          // This service owns its client. The analysis dialog owns a separate
-          // session, so cancellation cannot interrupt manual grammar checks.
-          // Construction is lazy; only Check document/F7 starts AOT work.
-          final manual = OfficeProofingService(
-            timeout: const Duration(seconds: 90),
-            providers: [
-              AotProofingProvider(
-                analyzer: configuration.createAnalyzer(),
-                vocabulary: controller.proofing.vocabulary,
-                timeout: const Duration(seconds: 60),
-              ),
-            ],
-          );
-          try {
-            controller.proofing.configureManual(manual);
-          } on Object {
-            unawaited(manual.dispose());
-            rethrow;
-          }
-        }
-      } on Object catch (error) {
-        _aotConfigurationError = error is StateError
-            ? error.message.toString()
-            : 'AOT could not be configured. Check the local worker or service '
-                  'settings, then restart Studio.';
-      }
     }
     controller.onFindRequested = () {
       if (!mounted) {
@@ -4918,42 +4878,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     _toast(_arabic ? 'التدقيق للمستندات' : 'Spelling is available in Word');
-  }
-
-  Future<void> _showAotAnalysis() async {
-    final configuration = _aotConfiguration;
-    if (configuration == null || _aotConfigurationError != null) {
-      await showDialog<void>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('AOT analysis unavailable'),
-          content: SelectableText(
-            _aotConfigurationError ?? 'AOT could not be configured.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Close'),
-            ),
-          ],
-        ),
-      );
-      return;
-    }
-    _word.commitPendingEdits();
-    await showDialog<void>(
-      context: context,
-      builder: (context) => StudioAotAnalysisDialog(
-        controller: _word,
-        createAnalyzer: configuration.createAnalyzer,
-        isLocal: configuration.isLocal,
-        initialLanguage: _word.proofing.language.startsWith('ru')
-            ? AotLanguage.russian
-            : _word.proofing.language.startsWith('en')
-            ? AotLanguage.english
-            : AotLanguage.german,
-      ),
-    );
   }
 
   Future<void> _showProperties() async {

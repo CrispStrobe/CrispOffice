@@ -168,15 +168,6 @@ Spelling, automatic German hyphenation and grammar work is tracked in the
 [proofing roadmap](docs/PROOFING.md). It records the existing callback-only
 spelling baseline, the MIT/BSD/Apache/MPL component and language-data policy,
 implementation order, and the checks required before claiming each feature.
-The optional [AOT integration](packages/quds_proofing_aot/README.md) runs the real
-AOT engine locally **without SynanDaemon**. It supplies German/Russian syntax,
-German/Russian/English word forms, and conservative de-DE grammar suggestions.
-A pinned headless build installs a private worker; Studio's always-available
-Review → AOT analysis reuses it for explicit analysis and morphology requests.
-Set `QUDS_AOT_EXECUTABLE` to include AOT in manual document checks. A JSON CLI
-provides bounded stdin input and a `doctor` command. HTTP remains an explicit
-compatibility option; native engines/dictionaries are built separately.
-
 Legacy `.doc`/`.dot` parsing and separate DOCX/DOCM conversion are maintained in [legacy-doc-parser](https://github.com/CrispStrobe/legacy-doc-parser). The engine exposes compatibility exports from the pinned workspace copy in `packages/legacy_doc_parser`; its `UPSTREAM.json` records the source and workspace-only patches. The suite's MIT license does not replace that dependency's MPL-2.0 license or its third-party notices.
 
 Use Flutter **3.47.8**, pinned in `.fvmrc` and CI, and resolve dependencies from this workspace. This fork marks its modified engine/editor packages as source-only (`publish_to: none`) and records their sibling package dependencies explicitly. Use the complete workspace or its matching source checkout. Pub.dev badges describe published upstream packages; they do not imply that this fork's additions have been published.
