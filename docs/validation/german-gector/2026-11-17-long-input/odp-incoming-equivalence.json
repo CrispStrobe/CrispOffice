@@ -1,0 +1,39 @@
+{
+  "observed_utc": "2026-11-17T15:40:53.563965+00:00",
+  "refs": {
+    "main": {
+      "commit": "4af75017a9b7df726c1f80741809f5bccdb70f4c",
+      "tree": "0c93b9478e17353f921d3e987fd0c4b36d48e9cb",
+      "parent": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "patch_sha256": "e841cd6bbd77d223257ba9a9d3e98fe1726e657787a8caf5047d25e8bdc038ca",
+      "file_blobs": {
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": "c9b0447e844574c2a2194445bda4500a51185afe",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart": "774913b54453251ad2adeae5d8b1bad0f9dc51e4"
+      }
+    },
+    "feature": {
+      "commit": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "tree": "0c93b9478e17353f921d3e987fd0c4b36d48e9cb",
+      "parent": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "patch_sha256": "e841cd6bbd77d223257ba9a9d3e98fe1726e657787a8caf5047d25e8bdc038ca",
+      "file_blobs": {
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": "c9b0447e844574c2a2194445bda4500a51185afe",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart": "774913b54453251ad2adeae5d8b1bad0f9dc51e4"
+      }
+    },
+    "vendor": {
+      "commit": "0585fac1a56c3dc5c3d728962794299ddfe50bbb",
+      "tree": "608d5e9eecee011e47600f758d0e46d3cfb01713",
+      "parent": "109b49f5c8c0c50c5051a970e6cabbfd2d32af18",
+      "patch_sha256": "e841cd6bbd77d223257ba9a9d3e98fe1726e657787a8caf5047d25e8bdc038ca",
+      "file_blobs": {
+        "packages/quds_office_engine/lib/src/slide/serial/odp_presentation_writer.dart": "c9b0447e844574c2a2194445bda4500a51185afe",
+        "packages/quds_office_engine/test/odp_presentation_writer_test.dart": "774913b54453251ad2adeae5d8b1bad0f9dc51e4"
+      }
+    }
+  },
+  "feature_main_identical_tree": true,
+  "three_identical_patches": true,
+  "three_identical_file_blobs": true,
+  "scope": "The 8-line hyperlink delta only; newer rotation behavior in the receiving branch must remain."
+}

@@ -2,6 +2,7 @@
   "accepted_control_summary": "cache-control/summary.json",
   "archive": "cache-control-evidence.tar.xz",
   "archive_bytes": 350876,
+  "archive_root": "cache-control",
   "archive_sha256": "dfd729676f2f926e2a8a85a3a116c61fa15659011e9613cc60dd3764c1dad3ad",
   "excluded_setup_attempts": [
     "cache-control/setup-attempts/attempt-1",

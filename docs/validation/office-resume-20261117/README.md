@@ -119,3 +119,46 @@ the tests. All 38 archive members were read back and hash-verified.
 These controls do not replace the broad immutable-source run, which remains
 pending publication of this amended checkpoint. Imported diagnostic model
 evidence retains its original input and runtime attribution.
+
+## Isolated reconciliation of concurrent source
+
+The destination-main/cache amendment was published as Git commit
+`cc394ee2b8468d543ecd0b3ff1bc7f8ac10fd270`, with the same tree as local
+`e013c43dd5c81bda37e686c9716101af264a525b`. Its expected-head branch update
+correctly refused to overwrite concurrent continuation work. The candidate is
+therefore on `codex/office-qualified-resume-20261117`, associated with draft
+PR #116.
+
+Before the final source freeze, two exact observed commits are incorporated as
+additional parents: concurrent continuation
+`f29373cf29048a6a6b133e2e75628d58c4b2b23f` and destination main
+`2eb080e708257c36b54d3ade18b9e012ebc73ed3`. No other incoming head is refreshed.
+`concurrent-source-reconciliation.json` records these observations, complete
+source combinations, preservation checks and the limited test adaptation.
+
+The concurrent source adds structured ODF frame tables and visibility guards,
+an empty body for explicitly zero-section documents, German quotation casing
+and three lexical forms. The later observed main adds ODT table borders and row
+heights. Our paragraph decoration cache fix, its exact regression and both
+control archives remain intact. The only textual conflict combines both sets of
+CHANGELOG entries. All three section suites are retained; one existing
+continuation case now asserts the incoming empty-body contract while retaining
+all master/page geometry and model-immutability assertions. Its preceding source
+is preserved under `incoming`, alongside the concurrent writer and exact patches.
+
+The compressed first-party German supplement grows from 205 to 208 forms:
+`Grüezi`, `Hof` and `grüezi`, with no removals. The morphology manifest remains
+unchanged and continues to identify its original, earlier spelling inputs.
+This integration does not regenerate or reattribute that morphology output.
+The current lexical manifest identifies its updated supplement separately.
+
+All incoming evidence outside this continuation report is byte-exact to the
+captured concurrent commit. Those reports, model measurements, consumer checks
+and native runner receipts keep their original source/runtime attribution; they
+are not fresh evidence for the combined candidate. The two retained control
+archives have unchanged bytes. Their indexes now explicitly record each tar
+root prefix for unambiguous independent readback.
+
+The broad runner's existing scope selects the four new suites automatically,
+for an expected 179 unique test files. Fresh qualification remains pending the
+published immutable combined checkpoint.

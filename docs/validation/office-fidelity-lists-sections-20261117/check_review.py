@@ -267,6 +267,8 @@ def audit_command_events(directory, receipt, *, final=False, declared=None, audi
             require(item['exit_code'] == 0 and item['passed_with_recorded_scope'] is True,
                     'Final command failed: ' + item['name'])
             require(not item.get('timed_out'), 'Final command timed out')
+            require(item['command'][0] == receipt['runtime_before']['launchers']['dart']['path'],
+                    'Final command did not use the recorded Dart launcher')
             require(Path(item['cwd']).resolve() == REPO / 'packages/quds_office_engine',
                     'Final command used another source package')
         if not item['name'].startswith('test-'):
@@ -419,7 +421,14 @@ def audit_import_closure(tests, sources, runtime, activated):
     return len(seen)
 
 
-def audit_incoming(source):
+def audit_incoming(source, tree=None, auditor=None):
+    if auditor is not None:
+        for name in ('api-inventory.json', 'git-fetch-inventory.json', 'integration.json'):
+            path = HERE / 'incoming' / name
+            identity = auditor.identity(path)
+            relative = str(path.relative_to(REPO))
+            require(relative in tree and identity['git_blob'] == tree[relative][2],
+                    'Incoming snapshot differs from final published source tree: ' + name)
     inventories = [read_json(HERE / 'incoming' / name) for name in
                    ('api-inventory.json', 'git-fetch-inventory.json')]
     pairs = {(item['repository'], item['ref'], item['sha'])
@@ -437,6 +446,58 @@ def audit_incoming(source):
     return {'named_references': len(named), 'captured_reference_revision_pairs': len(pairs),
             'captured_distinct_heads': len(heads), 'all_captured_heads_are_ancestors': True,
             'prior_checkpoint_is_ancestor': True, 'finite_cutoff': integration['cutoff']}
+
+
+def audit_prior_evidence(source, tree, auditor):
+    directory = 'docs/validation/office-fidelity-resume-20261117'
+    prefix = directory + '/'
+    baseline = source_tree(BASELINE)
+    previous = {name: entry for name, entry in baseline.items() if name.startswith(prefix)}
+    final = {name: entry for name, entry in tree.items() if name.startswith(prefix)}
+    require(previous and previous == final, 'Prior office-fidelity evidence Git tree changed')
+    current = {str(path.relative_to(REPO)) for path in files_below(REPO / directory)}
+    require(current == set(previous), 'Prior evidence working-file inventory differs from preserved tree')
+    total_bytes = 0
+    for name, (mode, kind, blob) in previous.items():
+        require(mode in ('100644', '100755') and kind == 'blob', 'Unsupported prior evidence tree member')
+        identity = auditor.identity(REPO / name)
+        require(identity['git_blob'] == blob, 'Prior evidence current bytes differ: ' + name)
+        total_bytes += identity['bytes']
+    prior_tree = git('rev-parse', BASELINE + ':' + directory).decode().strip()
+    final_tree = git('rev-parse', source + ':' + directory).decode().strip()
+    require(prior_tree == final_tree, 'Prior evidence subtree identity differs')
+    return {'baseline_commit': BASELINE, 'qualified_source_commit': source,
+            'directory': directory, 'baseline_tree': prior_tree, 'final_tree': final_tree,
+            'verified_files': len(previous), 'verified_bytes': total_bytes,
+            'git_tree_and_current_bytes_identical': True,
+            'scope': 'Complete prior office-fidelity-resume validation directory: exact Git subtree, file inventory and current file bytes.'}
+
+
+def audit_proofing_scope(source, tree, auditor):
+    selection_path = HERE / 'proofing-equivalence-scope.json'
+    selection = read_json(selection_path)
+    reference = '56dc162bf9a1003189e36e1f2a4678620c824546'
+    require(selection['qualified_commit'] == reference, 'Unexpected proofing reference commit')
+    selected = selection['files']
+    require(selection['selected_file_count'] == len(selected) == 85, 'Selected proofing scope changed')
+    qualified = source_tree(reference)
+    for name, expected in selected.items():
+        path = PurePosixPath(name)
+        require(not path.is_absolute() and '..' not in path.parts and str(path) == name,
+                'Invalid selected proofing path')
+        require(name in qualified and name in tree and qualified[name] == tree[name],
+                'Selected proofing Git blob/mode differs: ' + name)
+        mode, kind, blob = qualified[name]
+        require(mode in ('100644', '100755') and kind == 'blob', 'Unsupported selected proofing tree member')
+        identity = auditor.check(REPO / name, expected)
+        require(identity['git_blob'] == blob, 'Selected proofing current bytes differ from qualified Git blob: ' + name)
+    return {'qualified_reference_commit': reference, 'final_source_commit': source,
+            'selection': label(selection_path),
+            'selection_sha256': auditor.identity(selection_path)['sha256'],
+            'selected_files': len(selected), 'different_paths': [],
+            'git_blobs_modes_and_current_sha256_identical': True,
+            'scope': selection['scope'],
+            'whole_historical_import_closure_equivalence_claimed': False}
 
 
 def audit_archives(restore_root, auditor):
@@ -458,7 +519,9 @@ def audit_archives(restore_root, auditor):
         destination.mkdir()
         observed = set()
         total_bytes = 0
-        prefix = index.get('archive_prefix', '')
+        prefix = index.get('archive_prefix', index.get('prefix', ''))
+        if prefix:
+            prefix = prefix.rstrip('/') + '/'
         with tarfile.open(archive, 'r:xz') as compressed:
             for member in compressed:
                 require(member.isfile(), 'Non-regular evidence archive member: ' + member.name)
@@ -667,7 +730,9 @@ def main():
         result['node_repeats_selected_vm_cases'] = True
         result['unique_final_source_inputs'] = len(source_union)
         result['unique_final_runtime_inputs'] = len(runtime_union)
-        result['incoming_ancestry'] = audit_incoming(args.source)
+        result['incoming_ancestry'] = audit_incoming(args.source, tree, auditor)
+        result['prior_evidence_preservation'] = audit_prior_evidence(args.source, tree, auditor)
+        result['selected_proofing_equivalence'] = audit_proofing_scope(args.source, tree, auditor)
         result['consumer'] = audit_consumer(args.consumer.resolve(), args.source, tree, auditor)
         restore_root = args.restore_root.resolve() if args.restore_root else Path(tempfile.mkdtemp(
             prefix='office-fidelity-independent-', dir=REPO.parent))
@@ -688,6 +753,7 @@ def main():
             'Node executions repeat selected VM cases and do not increase the unique-case count.',
             'Archived failed/development attempts are hash-verified historical evidence and are excluded from final passing totals.',
             'Historical incoming source/runtime receipts are reviewed as recorded executions, not asserted to equal final product bytes.',
+            'Only the saved 85-file proofing selection is asserted equal to corrected source 56dc; this is not historical whole-import-closure equivalence.',
             'Hash review does not repeat LibreOffice conversion or replace the consumer checker semantic assertions.',
         ]
     except Exception as error:

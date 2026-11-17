@@ -1,0 +1,38 @@
+{
+  "source_commit": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+  "source_tree": "4a1a29d5029d25da9700b56a1fd244f3f5679547",
+  "cohorts": {
+    "odt-vm": {
+      "passed": 353,
+      "test_file_count": 18,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "source_input_count": 1670,
+      "runtime_input_count": 8606,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true,
+      "head_unchanged": true
+    },
+    "odt-node": {
+      "passed": 236,
+      "test_file_count": 10,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "source_input_count": 1670,
+      "runtime_input_count": 8606,
+      "source_unchanged": true,
+      "runtime_unchanged": true,
+      "lock_unchanged": true,
+      "head_unchanged": true
+    }
+  },
+  "new_regression_cases": 89,
+  "github_actions": "Not queried or awaited.",
+  "passing_executions": 589,
+  "file_executions": 28,
+  "node_scope": "Node repeats ten VM files; its 236 passes are not additional unique cases.",
+  "historical_scope": "Incoming and extraction-correction qualifications and rejected attempts remain separate from these final-source totals."
+}

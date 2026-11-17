@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-11-17T15:52:07.511225+00:00",
+  "source_head": "0e31202fc8c59caf8b4713589c2ff2fa84cffd0b",
+  "failed_cohort_source_commit": "c89e7eedda4473eae98953e61d9244d0125f440f",
+  "failure": "ODT exports preserved whitespace in headers footers and frame text: expected [\"  Frame\\tend \"] but returned [\"\"]. Original assertion retained unchanged.",
+  "cause": "The incoming section-owning text:p wrapper contains draw:frame/draw:text-box paragraphs. The streaming extractor consumes the outer paragraph subtree, while its inline-only decoder omits draw namespace children; bounded search shared the same loss path.",
+  "fix": [
+    "Discover nearest owned draw:text-box roots using namespace identity, without descending into notes, annotations, covered cells, foreign inline markup or ruby annotations.",
+    "Keep parent inline text as one paragraph before its frame stories. Omit an empty anchor only if actual textbox paragraph blocks replace it; retain ordinary blank paragraphs, empty frames and explicit whitespace.",
+    "Decode each frame paragraph once with the same cumulative UTF-8 budget. Search and cell text account for each inserted paragraph separator.",
+    "Use a local block walker for consumed paragraph subtrees so frame tables retain rows/cells rather than appearing as body paragraphs. Do not revisit a table-cell subtree after decoding it.",
+    "Skip note stories consistently in structured traversal and namespace-less search fallback."
+  ],
+  "edited_paths": {
+    "packages/quds_office_engine/CHANGELOG.md": {
+      "sha256": "e979d4caee50af288a473a1e4bcfa5c1febc5a8b4e4cfcc7be30a475cc1261ae",
+      "bytes": 55675
+    },
+    "packages/quds_office_engine/lib/src/extract/office_search_text.dart": {
+      "sha256": "0674b8ccd6c9fea34cbe5c54fd342552d14328db3cc6078780ec38f50a201e65",
+      "bytes": 14770
+    },
+    "packages/quds_office_engine/lib/src/extract/office_text_extractor.dart": {
+      "sha256": "98ad8f1f01fb8329e29ee499c017f5324f0739646e18cf47abf82612d54731d0",
+      "bytes": 16857
+    },
+    "packages/quds_office_engine/lib/src/odf/odf_text.dart": {
+      "sha256": "c71d589968238c70efe8486c9132e8c8f9a9ce1dd1416fd028350fc7cc7a8a6b",
+      "bytes": 10079
+    },
+    "packages/quds_office_engine/test/odf_frame_extraction_test.dart": {
+      "sha256": "301c511c8027cd90e7a04940faa7722e5b22d3d902e16da7262fed3e897485ff",
+      "bytes": 8498
+    }
+  },
+  "unchanged_regression_sources": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "sha256": "ff0c28d40ebaccb09d75aa07e615b0ea2bb15ec482282f4533d20bb01f8f9522",
+      "bytes": 68320,
+      "matches_HEAD": true
+    },
+    "packages/quds_office_engine/test/odf_export_text_fidelity_test.dart": {
+      "sha256": "54e0bc87498a71e4c8fadc88c0912e93658a016245ecedb18fe3fd88fa4ed20a",
+      "bytes": 11502,
+      "matches_HEAD": true
+    }
+  },
+  "new_regression_cases": 9,
+  "regression_coverage": [
+    "section-owning frame whitespace and separate/blank paragraphs",
+    "parent inline text plus multiple/nested frame stories without duplicates",
+    "frame-contained tables and frames inside cells",
+    "hidden annotation/note/covered-cell/ruby stories with huge and malformed text:s counts",
+    "drawing namespace aliases and foreign lookalikes",
+    "ordinary blanks, empty frames, image anchors and explicit whitespace",
+    "negative and excessive visible text:s validation",
+    "exact cumulative UTF-8 and paragraph-separator limits"
+  ],
+  "validation": [
+    {
+      "name": "focused-extraction",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite/packages/quds_office_engine",
+      "command": "source /workspace/scratch/c4115a2a85e2/quds_env.sh && \"$QUDS_DART\" test test/odf_frame_extraction_test.dart test/odf_export_text_fidelity_test.dart test/odf_annotation_extraction_test.dart test/odf_covered_cell_extraction_test.dart --reporter expanded > /workspace/scratch/c4115a2a85e2/incoming-audit/odf-frame-focused.log 2>&1",
+      "exit_code": 0,
+      "log": {
+        "path": "/workspace/scratch/c4115a2a85e2/incoming-audit/odf-frame-focused.log",
+        "sha256": "cbf4716a091a6eb94904f82ca371ed5fb1b77b250f29d445f8e33466cf2b30fd",
+        "bytes": 6047
+      },
+      "passed": 51,
+      "failed": 0
+    },
+    {
+      "name": "full-ODT-ODF",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite/packages/quds_office_engine",
+      "command": "source /workspace/scratch/c4115a2a85e2/quds_env.sh && \"$QUDS_DART\" test test/odt_*_test.dart test/odf_*_test.dart --reporter expanded > /workspace/scratch/c4115a2a85e2/incoming-audit/odf-frame-full-odt.log 2>&1",
+      "exit_code": 0,
+      "log": {
+        "path": "/workspace/scratch/c4115a2a85e2/incoming-audit/odf-frame-full-odt.log",
+        "sha256": "4a8576375a815e2773c94ce75d78853974b98201e3bd635ef784583d31244b33",
+        "bytes": 29713
+      },
+      "passed": 259,
+      "failed": 0
+    },
+    {
+      "name": "analyze",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite/packages/quds_office_engine",
+      "command": "source /workspace/scratch/c4115a2a85e2/quds_env.sh && \"$QUDS_DART\" analyze lib/src/odf/odf_text.dart lib/src/extract/office_text_extractor.dart lib/src/extract/office_search_text.dart test/odf_frame_extraction_test.dart > /workspace/scratch/c4115a2a85e2/incoming-audit/odf-frame-analyze.log 2>&1",
+      "exit_code": 0,
+      "log": {
+        "path": "/workspace/scratch/c4115a2a85e2/incoming-audit/odf-frame-analyze.log",
+        "sha256": "2fea3caf73e07ac75f53c6438650765fc1876380bd3a446a44756778f66dd50e",
+        "bytes": 129
+      },
+      "result": "No issues found!"
+    },
+    {
+      "name": "diff-whitespace",
+      "command": "git diff --check",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.quds-gector-work/worktrees/quds_office_suite",
+      "exit_code": 0
+    }
+  ],
+  "limitations": [
+    "No staging, commits or pushes by this agent.",
+    "No GitHub Actions.",
+    "No new consumer-application qualification. Root will run the final sealed cohorts after checkpointing."
+  ],
+  "independent_review": {
+    "reviewer": "long_input_design",
+    "scope": "Read-only production patch and nine regression cases; no tests or performance rerun by reviewer.",
+    "result": "No must-fix defect found.",
+    "confirmed": [
+      "Nearest-box discovery and paragraph/cell subtree returns avoid duplicate extraction.",
+      "Local DOM table/row state is scoped correctly; frames within cells stay in their owning cell.",
+      "Parent inline text precedes frame paragraphs; explicit whitespace and ordinary blanks remain intact.",
+      "Annotation, covered-cell and note namespace filtering agrees with search fallback.",
+      "The cumulative budget charges emitted text and search/cell separators once."
+    ]
+  }
+}

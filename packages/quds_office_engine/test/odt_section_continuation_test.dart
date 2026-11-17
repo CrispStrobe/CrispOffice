@@ -313,10 +313,9 @@ void main() {
       final document = WmlDocument(sections: []);
       final package = _package(document);
       final content = _part(package, 'content.xml');
-      final anchor = _body(content).childElements.single;
-      expect(anchor.localName, 'p');
-      expect(anchor.text, isEmpty);
-      expect(_attribute(anchor, 'style-name', _textNs), 'SB0');
+      // Default geometry is synthetic; an explicitly empty document has no
+      // authored section whose boundary needs a body anchor.
+      expect(_body(content).childElements, isEmpty);
       final styles = _part(package, 'styles.xml');
       final masters = styles.firstChild(
         'master-styles',

@@ -3,6 +3,7 @@
   "all_archive_members_fully_read_back_and_verified": true,
   "archive": "canonical-controls-evidence.tar.xz",
   "archive_bytes": 373648,
+  "archive_root": "canonical-controls-evidence",
   "archive_sha256": "f2051224efcb61032961a97dd943b0bb5f6d9b46647af4b8d1e1c6c92c673618",
   "file_count": 38,
   "files": [
