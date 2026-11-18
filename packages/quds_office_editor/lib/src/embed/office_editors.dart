@@ -547,12 +547,13 @@ class _QudsWordEditorState extends State<QudsWordEditor>
   void _showCaretContext() {
     if (!mounted ||
         !(_inputRoute?.isCurrent ?? true) ||
-        !_c.config.allowsSelection ||
         (_c.input.composing.isValid && !_c.input.composing.isCollapsed)) {
       return;
     }
     if (_c.isEditingComment) {
-      widget.onCommentContextMenuRequested?.call();
+      if (_c.config.allowsSelection) {
+        widget.onCommentContextMenuRequested?.call();
+      }
       return;
     }
     final canvas = _canvasKey.currentContext?.findRenderObject();

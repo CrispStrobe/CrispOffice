@@ -1,0 +1,647 @@
+{
+  "scope": "enough_mail runtime dependency graph from root workspace lock, including native adapters; excludes unrelated Office/Flutter and development tool graphs",
+  "target_commit": "record exact consuming Quds commit at release",
+  "package_count": 30,
+  "status": "selected portable source audited; per-product release artifact audit still required",
+  "packages": [
+    {
+      "package": "archive",
+      "version": "4.7.1",
+      "declared_and_selected_license": "MIT AND BSD-3-Clause AND bzip2-1.0.6 AND Zlib",
+      "dependencies": [
+        "path",
+        "posix"
+      ],
+      "source": "hosted",
+      "archive_sha256": "2fda90592c0afd219c5e285618a98da835cd10df38372666093d25dfe457a2d0",
+      "source_archive": "https://pub.dev/api/archives/archive-4.7.1.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "32f97d332eae7453ec4079858e6f1d74be85beeb6d3881068b47d02a379cccea",
+          "retained_at": "notices/archive/LICENSE"
+        },
+        {
+          "path": "LICENSE-other.md",
+          "sha256": "b8861b258b8eedd1605f5203b0f51e8022c5c156cb97da1c465e4e355672738b",
+          "retained_at": "notices/archive/LICENSE-other.md"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "args",
+      "version": "2.7.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "d0481093c50b1da8910eb0bb301626d4d8eb7284aa739614d2b394ee09e3ea04",
+      "source_archive": "https://pub.dev/api/archives/args-2.7.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791",
+          "retained_at": "notices/args/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "asn1lib",
+      "version": "1.6.8",
+      "declared_and_selected_license": "BSD-2-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "cfb3cf6a53158918d52dda61bc26f0cc8612a0d3b9dc29e87eaa3423902ca636",
+      "source_archive": "https://pub.dev/api/archives/asn1lib-1.6.8.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "8d2c61936a79c1561a92c0c4813411f10279b81e0c1bd49bd2f86a90f7538f9b",
+          "retained_at": "notices/asn1lib/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "async",
+      "version": "2.13.1",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "collection",
+        "meta"
+      ],
+      "source": "hosted",
+      "archive_sha256": "e2eb0491ba5ddb6177742d2da23904574082139b07c1e33b8503b9f46f3e1a37",
+      "source_archive": "https://pub.dev/api/archives/async-2.13.1.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+          "retained_at": "notices/async/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "basic_utils",
+      "version": "5.8.2",
+      "declared_and_selected_license": "MIT",
+      "dependencies": [
+        "archive",
+        "http",
+        "json_annotation",
+        "logging",
+        "pointycastle"
+      ],
+      "source": "hosted",
+      "archive_sha256": "548047bef0b3b697be19fa62f46de54d99c9019a69fb7db92c69e19d87f633c7",
+      "source_archive": "https://pub.dev/api/archives/basic_utils-5.8.2.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "d5d127e78b906bb0f77820bc1f01f8804075ecfcbc6954fbf2ed011f51e112a1",
+          "retained_at": "notices/basic_utils/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "clock",
+      "version": "1.1.3",
+      "declared_and_selected_license": "Apache-2.0",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "e51d50bca3217c9a9fa2b41a30e4a38971133f5f9ec7a3d57bae095007f1d28e",
+      "source_archive": "https://pub.dev/api/archives/clock-1.1.3.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+          "retained_at": "notices/clock/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "collection",
+      "version": "1.19.1",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76",
+      "source_archive": "https://pub.dev/api/archives/collection-1.19.1.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+          "retained_at": "notices/collection/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "convert",
+      "version": "3.1.2",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "typed_data"
+      ],
+      "source": "hosted",
+      "archive_sha256": "b30acd5944035672bc15c6b7a8b47d773e41e2f17de064350988c5d02adb1c68",
+      "source_archive": "https://pub.dev/api/archives/convert-3.1.2.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+          "retained_at": "notices/convert/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "crypto",
+      "version": "3.0.8",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "e3626ae6270383c9e3a549f34c9e4cd26c09ae6a9adaab2bf4737a00340efdc4",
+      "source_archive": "https://pub.dev/api/archives/crypto-3.0.8.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+          "retained_at": "notices/crypto/LICENSE"
+        },
+        {
+          "path": "third_party/wycheproof/LICENSE",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+          "retained_at": "notices/crypto/third_party/wycheproof/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "encrypter_plus",
+      "version": "5.1.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "args",
+        "asn1lib",
+        "clock",
+        "collection",
+        "crypto",
+        "pointycastle"
+      ],
+      "source": "hosted",
+      "archive_sha256": "6f6f3c73e26058af4fd138369a928ccae667e45d254cf6ded6301a2d99551a67",
+      "source_archive": "https://pub.dev/api/archives/encrypter_plus-5.1.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "1e315d9d3fa23e3730ef31eedeed503f6731208f2624a53ae85eeaa703ae2f34",
+          "retained_at": "notices/encrypter_plus/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "enough_convert",
+      "version": "1.7.1",
+      "declared_and_selected_license": "MPL-2.0 (selected non-CJK source closure only)",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "65bff24436f4da878435e80ba24a6f762870751a6f5fd4ea51cdec232d90a936",
+      "source_archive": "https://pub.dev/api/archives/enough_convert-1.7.1.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+          "retained_at": "notices/enough_convert/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "enough_mail",
+      "version": "3.0.0",
+      "declared_and_selected_license": "MPL-2.0",
+      "dependencies": [
+        "basic_utils",
+        "collection",
+        "crypto",
+        "encrypter_plus",
+        "enough_convert",
+        "intl",
+        "json_annotation",
+        "pointycastle",
+        "synchronized",
+        "xml"
+      ],
+      "source": "path",
+      "archive_sha256": null,
+      "source_archive": null,
+      "local_modifications": true,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+          "retained_at": "notices/enough_mail/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "ffi",
+      "version": "2.2.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "6d7fd89431262d8f3125e81b50d3847a091d846eafcd4fdb88dd06f36d705a45",
+      "source_archive": "https://pub.dev/api/archives/ffi-2.2.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744",
+          "retained_at": "notices/ffi/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "http",
+      "version": "1.6.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ],
+      "source": "hosted",
+      "archive_sha256": "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412",
+      "source_archive": "https://pub.dev/api/archives/http-1.6.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+          "retained_at": "notices/http/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "http_parser",
+      "version": "4.1.2",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ],
+      "source": "hosted",
+      "archive_sha256": "178d74305e7866013777bab2c3d8726205dc5a4dd935297175b19a23a2e66571",
+      "source_archive": "https://pub.dev/api/archives/http_parser-4.1.2.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+          "retained_at": "notices/http_parser/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "intl",
+      "version": "0.20.3",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "clock",
+        "meta",
+        "path"
+      ],
+      "source": "hosted",
+      "archive_sha256": "1ca20c894b1717686a2319b8548763d812bc0aabdac580420a44c5178c57a867",
+      "source_archive": "https://pub.dev/api/archives/intl-0.20.3.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "7e124af6a556f045cb3a20cafbdaa31602ac2c82cbcb3c3b15faaaf514b06028",
+          "retained_at": "notices/intl/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "json_annotation",
+      "version": "4.12.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "meta"
+      ],
+      "source": "hosted",
+      "archive_sha256": "2a743920d81b7910627f68ee2c9ac1fc0bfee32b9fc3403587d7c6791ca12f80",
+      "source_archive": "https://pub.dev/api/archives/json_annotation-4.12.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "143839f62c9b7f88143ea9f688361c27050888acde7696b34e04414bd254fafc",
+          "retained_at": "notices/json_annotation/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "logging",
+      "version": "1.3.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "c8245ada5f1717ed44271ed1c26b8ce85ca3228fd2ffdb75468ab01979309d61",
+      "source_archive": "https://pub.dev/api/archives/logging-1.3.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791",
+          "retained_at": "notices/logging/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "meta",
+      "version": "1.19.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "307249ce4ff29d58a18e97f6345f539382eb9c9c29ecda628900f31de0443dd9",
+      "source_archive": "https://pub.dev/api/archives/meta-1.19.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a",
+          "retained_at": "notices/meta/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "path",
+      "version": "1.9.1",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "75cca69d1490965be98c73ceaea117e8a04dd21217b37b292c9ddbec0d955bc5",
+      "source_archive": "https://pub.dev/api/archives/path-1.9.1.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+          "retained_at": "notices/path/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "petitparser",
+      "version": "7.1.0",
+      "declared_and_selected_license": "MIT",
+      "dependencies": [
+        "collection",
+        "meta"
+      ],
+      "source": "hosted",
+      "archive_sha256": "2f1564aadb14215e478563b5406cb80729d022158c01dc50c96013c2f7eb4790",
+      "source_archive": "https://pub.dev/api/archives/petitparser-7.1.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "0be767174b97278f17da4923a74169e8645631f03ea3d8482ec3523c9b1a0dd3",
+          "retained_at": "notices/petitparser/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "pointycastle",
+      "version": "4.0.0",
+      "declared_and_selected_license": "MIT AND Apache-2.0 (MPL-2.0 selected for bundled dual-license notice)",
+      "dependencies": [
+        "collection",
+        "convert"
+      ],
+      "source": "hosted",
+      "archive_sha256": "92aa3841d083cc4b0f4709b5c74fd6409a3e6ba833ffc7dc6a8fee096366acf5",
+      "source_archive": "https://pub.dev/api/archives/pointycastle-4.0.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "3a7bb295473da049a1c6edd2f8c41b9e526a4e80f200c0200cc5600b2634df3f",
+          "retained_at": "notices/pointycastle/LICENSE"
+        },
+        {
+          "path": "licenses/LICENSE-BouncyCastle.html",
+          "sha256": "157c06d78dfb0eabe54164f569bb6af94d298852198c29c6dd61fd51c98a79e6",
+          "retained_at": "notices/pointycastle/licenses/LICENSE-BouncyCastle.html"
+        },
+        {
+          "path": "licenses/LICENSE-scrypt.txt",
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+          "retained_at": "notices/pointycastle/licenses/LICENSE-scrypt.txt"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "posix",
+      "version": "6.5.4",
+      "declared_and_selected_license": "MIT",
+      "dependencies": [
+        "ffi",
+        "meta",
+        "path"
+      ],
+      "source": "hosted",
+      "archive_sha256": "613646d076944f3acc125830af935b48d4b8a57a388691547bbfd25b434f4d63",
+      "source_archive": "https://pub.dev/api/archives/posix-6.5.4.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "aaf6271abd048deb3125828613f1797b7556472de6c7acd7103bd43e9cb6a84b",
+          "retained_at": "notices/posix/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "source_span",
+      "version": "1.10.2",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ],
+      "source": "hosted",
+      "archive_sha256": "56a02f1f4cd1a2d96303c0144c93bd6d909eea6bee6bf5a0e0b685edbd4c47ab",
+      "source_archive": "https://pub.dev/api/archives/source_span-1.10.2.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+          "retained_at": "notices/source_span/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "string_scanner",
+      "version": "1.4.1",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "source_span"
+      ],
+      "source": "hosted",
+      "archive_sha256": "921cd31725b72fe181906c6a94d987c78e3b98c2e205b397ea399d4054872b43",
+      "source_archive": "https://pub.dev/api/archives/string_scanner-1.4.1.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+          "retained_at": "notices/string_scanner/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "synchronized",
+      "version": "3.6.1+1",
+      "declared_and_selected_license": "MIT",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "a77637ebe1460f3b48cac89a790d2eb634f0a8593cab0d3f340c6db174ba9b94",
+      "source_archive": "https://pub.dev/api/archives/synchronized-3.6.1+1.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "6d07c6bb60afb906049d507e19fcc4c6b59e35c0dd0f8a7302e87b3fb0576900",
+          "retained_at": "notices/synchronized/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "term_glyph",
+      "version": "1.2.2",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "7f554798625ea768a7518313e58f83891c7f5024f88e46e7182a4558850a4b8e",
+      "source_archive": "https://pub.dev/api/archives/term_glyph-1.2.2.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "ea97a7558a7bd7cee4e2355f7529e3cbebb0dcbb546ddb9a90f10c9eb6b08da5",
+          "retained_at": "notices/term_glyph/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "typed_data",
+      "version": "1.4.0",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [
+        "collection"
+      ],
+      "source": "hosted",
+      "archive_sha256": "f9049c039ebfeb4cf7a7104a675823cd72dba8297f264b6637062516699fa006",
+      "source_archive": "https://pub.dev/api/archives/typed_data-1.4.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+          "retained_at": "notices/typed_data/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "web",
+      "version": "1.1.2",
+      "declared_and_selected_license": "BSD-3-Clause",
+      "dependencies": [],
+      "source": "hosted",
+      "archive_sha256": "e119e82ac4795c7925103b7cf3768191f33941b99e7ccffbd6c645201d9f606b",
+      "source_archive": "https://pub.dev/api/archives/web-1.1.2.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "aa913ff50d7542eb8cc35b9f48a80928ac6819ba9057f85d424655e3e8dc271c",
+          "retained_at": "notices/web/LICENSE"
+        }
+      ],
+      "assets": []
+    },
+    {
+      "package": "xml",
+      "version": "7.1.0",
+      "declared_and_selected_license": "MIT",
+      "dependencies": [
+        "args",
+        "collection",
+        "meta",
+        "petitparser"
+      ],
+      "source": "hosted",
+      "archive_sha256": "0fe8cc98946def31cbcbc8734aa4067031e6f65ea3a78a508060bfed2200bfeb",
+      "source_archive": "https://pub.dev/api/archives/xml-7.1.0.tar.gz",
+      "local_modifications": false,
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "0be767174b97278f17da4923a74169e8645631f03ea3d8482ec3523c9b1a0dd3",
+          "retained_at": "notices/xml/LICENSE"
+        }
+      ],
+      "assets": []
+    }
+  ],
+  "notes": [
+    "enough_convert selected 30-file non-CJK MPL import closure recorded in PORTABLE_CLOSURE.json; Big5/GBK tables are not imported or registered in fork runtime. Full downloaded enough_convert archive is not blanket-approved.",
+    "pointycastle retains MIT root, Apache scrypt notice, and a bundled BouncyCastle HTML notice offering LGPL-3.0 OR MPL-2.0. This project selects MPL-2.0 for that dual notice. No LGPL-only component was selected.",
+    "archive retains additional BSD-3-Clause, bzip2 and Zlib notices; permissive conditions reviewed and retained.",
+    "Generated upstream Dart files retained under upstream MPL with original hashes in UPSTREAM.json. No runtime asset declarations were found in these package manifests. Native libraries/platform binaries in a consuming product require their own archive inventory.",
+    "Full source of MPL dependencies must be made available with recipients directed to exact build-matching source. Source archive URLs and SHA256 are included, not a claim that product About/source links are already implemented."
+  ],
+  "root_lock_sha256": "5214b05715c94294bfed7205b2820f78a8d802a18398802da32e485d7f0356b2"
+}

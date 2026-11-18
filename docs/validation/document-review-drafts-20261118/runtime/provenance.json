@@ -1,0 +1,74 @@
+{
+  "assembled_at_utc": "2026-11-18T19:32:51.899658+00:00",
+  "source_commit": "66919cf857fe2439a3512a821817f35981760a75",
+  "source_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+  "original": {
+    "runtime_receipt": "original/runtime.json",
+    "workspace_lock": "original/workspace-pubspec.lock",
+    "workspace_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "verified_hosted_archives": 162,
+    "baseline_lock_source": "docs/validation/proofing-20261116/integration-resume/workspace-pubspec.lock",
+    "resolved_packages": 111
+  },
+  "final": {
+    "runtime_receipt": "runtime.json",
+    "workspace_lock": "workspace-pubspec.lock",
+    "workspace_lock_sha256": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+    "verified_hosted_archives": 168,
+    "resolved_packages": 121
+  },
+  "late_merge": {
+    "observed_mail_commit": "86d6f5078c95a585dda70f4acd8bc9588be62844",
+    "dependency_update_local_commit": "20090caada5d8309e30ec0065c5ce1853aaaf72d",
+    "dependency_update_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+    "published_equivalent_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+    "published_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+    "added_hosted_archives": 6,
+    "added_path_dependency": "enough_mail",
+    "changed_or_removed_existing_lock_entries": 0
+  },
+  "scripts": {
+    "historical_bootstrap": "scripts/bootstrap_runtime.py.gz",
+    "historical_update": "scripts/refresh_mail_runtime.py.gz",
+    "replay_adapter": "restore_runtime.py",
+    "replay_adapter_executed": false,
+    "replay_adapter_validation": "Python AST syntax parse and static replacement assertions only; no Dart/Flutter launch during packaging."
+  },
+  "scope": "Runtime provenance only. No SDK binaries, package cache, user configuration, full process environment, or acceptance logs included.",
+  "credential_scan": {
+    "method": "Inspect explicit allowlist of runtime/development artifacts; scan uncompressed bytes for common private keys, service tokens, authenticated URLs, authorization values and credential assignments. Environment helper contains only runtime paths, analytics suppressions, CI and PATH.",
+    "patterns": [
+      "private_key",
+      "github_token",
+      "openai_key",
+      "slack_token",
+      "aws_access_key",
+      "jwt",
+      "authenticated_url",
+      "authorization_value",
+      "credential_assignment"
+    ],
+    "matches": 0,
+    "redactions": 0
+  },
+  "github_actions_queried": false,
+  "source_binding_status": "Candidate for the separate final gate; no acceptance claim in this runtime bundle.",
+  "source_rebinding": {
+    "updated_at_utc": "2026-11-18T19:42:38.623906+00:00",
+    "previous_source_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+    "previous_source_tree": "3418afd634efcaaa14c4712103f69ae5e817bffd",
+    "candidate_source_commit": "66919cf857fe2439a3512a821817f35981760a75",
+    "candidate_source_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+    "historical_runtime_receipts_unchanged": true,
+    "development_preflight_receipt": "../attempts/gates/preflight-fixes-corrected-verification.json",
+    "development_preflight_receipt_sha256": "97ef497c491cfbccd6db4691ca5e3fdfd39e8061f0fba007bff386f4092be57e",
+    "unchanged_environment_inputs": {
+      "workspace_lock": "43261dbd4acce9c423c8f19f5c86841a9f05aff3b3b968c94a7b48f94c9f8239",
+      "package_configuration": "43c7e9c5100096d3874a57a2c8ff8cb7d16820e5894ecf63c63af9c73eaf42f0",
+      "runtime_receipt": "832ca49151c4b20d1a32732d3461d93329085a4cab9ecf121ff6d672c4deab18"
+    },
+    "accepted": false,
+    "changes": "Body keyboard inspection guard, lint/format fixes, Mail UI development dependency on existing workspace example, Mail pubspec EOF, and pristine-vendor whitespace validation. Existing package versions, workspace lock, package configuration and runtime receipt unchanged."
+  },
+  "resolved_package_count_definition": "Total entries in the generated package_config.json, including local, SDK and hosted packages."
+}

@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-11-18T19:59:12.857171+00:00",
+  "accepted_source_commit": "66919cf857fe2439a3512a821817f35981760a75",
+  "accepted_source_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+  "checked_head": "005485eb5eee81e18eb8fef675b7cb306146bcc8",
+  "checked_head_tree": "08ee7b3753f11f8eecd81ec0c3c1bfa3736c4503",
+  "source_manifest": "accepted/source-before.json",
+  "source_manifest_sha256": "4e6d29260c46e34d6d53593967cf5e2c7c0845dee7708ef5fabb4e62756b07e2",
+  "accepted_receipt_sha256": "15b0792247d95d265c587e8f8cd68f99fb0b3ec2fed2b4e948dbe38b458bbf7f",
+  "source_file_count": 4946,
+  "source_files_match_accepted": true,
+  "missing_files": [],
+  "source_mismatches": [],
+  "unexpected_tracked_product_inputs": [],
+  "environment_input_count": 11,
+  "environment_inputs_match_accepted": true,
+  "environment_mismatches": [],
+  "pristine_vendor": {
+    "path": "third_party/enough_mail",
+    "imported_from": "46d7422d5ac356c327759872ff28adcd154b75ad",
+    "tree": "e9bc3047922df465b29806b47ea0b06858345169",
+    "source_tree_matches_import": true,
+    "whitespace_excluded_only_after_exact_tree_verification": true,
+    "all_files_still_bound_by_source_manifest": true
+  },
+  "github_actions_queried_or_awaited": false
+}

@@ -1,0 +1,62 @@
+{
+  "cohort": "web-import",
+  "started_at_utc": "2026-11-18T19:11:11.495393+00:00",
+  "source_sha": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "runs": [
+    {
+      "name": "web-compile",
+      "command": [
+        "/workspace/scratch/a686c23de6c7/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "--csp",
+        "--packages=/workspace/scratch/a686c23de6c7/zotero-validation/.dart_tool/package_config.json",
+        "-o",
+        "/workspace/scratch/a686c23de6c7/thesaurus-supplemental/web-import/studio-spacy-web.js",
+        "/workspace/scratch/a686c23de6c7/zotero-validation/packages/quds_office_editor/example/test/studio_spacy_web_import_gate.dart"
+      ],
+      "cwd": "/workspace/scratch/a686c23de6c7/zotero-validation",
+      "exit_code": 0,
+      "seconds": 0.9280700710005476,
+      "error": null,
+      "stdout": "logs/web-compile.stdout",
+      "stderr": "logs/web-compile.stderr",
+      "stdout_sha256": "083c10d2514eb04481a75c18cc0c17c1986ca40f0d7b720becd8bb17c4ec85b7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "node-import",
+      "command": [
+        "node",
+        "-e",
+        "global.self=globalThis;require(process.argv[1]);",
+        "/workspace/scratch/a686c23de6c7/thesaurus-supplemental/web-import/studio-spacy-web.js"
+      ],
+      "cwd": "/workspace/scratch/a686c23de6c7/zotero-validation",
+      "exit_code": 0,
+      "seconds": 0.11797640700024203,
+      "error": null,
+      "stdout": "logs/node-import.stdout",
+      "stderr": "logs/node-import.stderr",
+      "stdout_sha256": "e2f09d0e35af80e1ea518720e6c3fcbc6d5764883e4e6ab7b30837c32875cc66",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "status": "passed",
+  "github_actions_used": false,
+  "browser_executed": false,
+  "model_downloads_requested": false,
+  "source_files": 3308,
+  "input_digest": "efd9ec376bbbf396e9deb528f8cd3f71a7852faccf2575ce148b68fa8bf6f11d",
+  "artifact": {
+    "path": "studio-spacy-web.js",
+    "bytes": 155366,
+    "sha256": "b1dc630844c2fc0246ef553c155f11fb9c2ddcc08d7c932ae9e615f2aaf46671"
+  },
+  "output_digest": "efd9ec376bbbf396e9deb528f8cd3f71a7852faccf2575ce148b68fa8bf6f11d",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "source_sha_after": "b9e8c159cea315aa0a044c4b0a6fc2cd35d11055",
+  "finished_at_utc": "2026-11-18T19:11:13.991584+00:00"
+}
