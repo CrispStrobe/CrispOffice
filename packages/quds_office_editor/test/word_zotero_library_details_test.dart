@@ -269,8 +269,9 @@ List<String> _captureClipboard({bool fail = false}) {
       final arguments = call.arguments as Map<Object?, Object?>;
       copied.add(arguments['text']! as String);
     }
-    if (call.method == 'Clipboard.hasStrings')
+    if (call.method == 'Clipboard.hasStrings') {
       return {'value': copied.isNotEmpty};
+    }
     if (call.method == 'Clipboard.getData') return {'text': copied.lastOrNull};
     return null;
   });
@@ -554,8 +555,9 @@ void main() {
       final revision = controller.contentRevision;
       for (final title in ['First source', 'Later source', 'Final source']) {
         await _tap(tester, find.widgetWithText(CheckboxListTile, title));
-        if (title != 'Final source')
+        if (title != 'Final source') {
           await _tap(tester, find.byTooltip('Next page'));
+        }
       }
       final requests = catalog.requests.length;
       await _openReview(tester);
@@ -918,4 +920,55 @@ void main() {
       },
     );
   }
+
+  testWidgets('details copy feedback fits a short window with doubled text', (
+    tester,
+  ) async {
+    _size(tester, const Size(320, 480));
+    final copied = _captureClipboard();
+    final item = ZoteroItem(
+      library: ZoteroLibrary.user(42),
+      key: 'SOURCE01',
+      title: 'A long reference title ${'continued ' * 12}',
+      itemType: 'journalArticle',
+      abstractNote: _abstract,
+      publicationTitle: 'Journal of Studies',
+      tags: [
+        'Literal <tag> & research',
+        for (var index = 1; index < 25; index++) 'Topic $index',
+      ],
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: const TextScaler.linear(2)),
+          child: child!,
+        ),
+        home: Scaffold(
+          body: Builder(
+            builder: (context) => FilledButton(
+              onPressed: () => showDialog<void>(
+                context: context,
+                builder: (_) =>
+                    ZoteroItemDetailsDialog(item: item, activeTags: const []),
+              ),
+              child: const Text('Inspect'),
+            ),
+          ),
+        ),
+      ),
+    );
+    await _tap(tester, find.text('Inspect'));
+    await _tap(tester, find.byKey(const ValueKey('zotero-copy-item-details')));
+    expect(copied, hasLength(1));
+    expect(copied.single, contains('Abstract:\n$_abstract'));
+    expect(copied.single, contains('• Literal <tag> & research'));
+    expect(copied.single, contains('• Topic 24'));
+    expect(find.text('Reference details copied.'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await _tap(tester, find.widgetWithText(TextButton, 'Close'));
+    expect(_details(), findsNothing);
+  });
 }

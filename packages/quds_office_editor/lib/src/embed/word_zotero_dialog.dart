@@ -1390,7 +1390,10 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                         minHeight: _catalogMinHeight(size),
                       ),
                       _documentTab(),
-                      _scrollableTab(_importTab(), minHeight: 600),
+                      _scrollableTab(
+                        _importTab(),
+                        minHeight: size.width < 600 ? 656 : 600,
+                      ),
                     ],
                   ),
                 ),
@@ -1414,8 +1417,10 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
 
   double _catalogMinHeight(Size size) {
     final narrow = size.width < 600;
+    // Selection review adds another wrapped action row on narrow screens.
+    // Keep space for that row as well as the existing results viewport.
     final base = narrow
-        ? (widget.localTransport == null ? 820.0 : 960.0)
+        ? (widget.localTransport == null ? 876.0 : 1016.0)
         : (widget.localTransport == null ? 660.0 : 800.0);
     if (_session.library == null || !_searchOptionsExpanded) return base;
     // Expanded options wrap at narrow widths. Preserve a usable results list
