@@ -1,0 +1,18 @@
+{
+  "started_at_utc": "2026-11-18T18:44:55.162926+00:00",
+  "source_commit": "eedf2aee03964329a2e4c7ee3c771d43b5df4991",
+  "source_tree": "975389ed58d1851cf72c56b5e1cf594531762ad7",
+  "source_file_count": 3548,
+  "source_manifest_sha256": "39fff2337cce65c7c03d13f9d45411ec18e0fc61182e5e5cdae5c9232f3518a0",
+  "source_mismatches_before": [],
+  "tracked_worktree_clean_before": true,
+  "fixture_definitions": [
+    "render_comments.dart",
+    "render_text_options.dart"
+  ],
+  "fixture_definition_sha256": {
+    "render_comments.dart": "1e18039366722537103f1e2cfdd27771bb1a7c50c1ac41558b25622080fb800e",
+    "render_text_options.dart": "12862f483868682ca93600d7074eca495147b7df136e6b00d28e1b12e0c4c516"
+  },
+  "regression_gate_success": true
+}

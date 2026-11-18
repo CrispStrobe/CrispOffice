@@ -1,0 +1,4354 @@
+[
+  {
+    "id": 9,
+    "name": "inspection and options chrome never create text or history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 12,
+    "name": "collapsed caret changes the whole paragraph and preserves rich runs",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 13,
+    "name": "multiline reversed selection formats complete emoji and combining clusters only",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 14,
+    "name": "effective mixed states, inherited languages and no-op history are distinct",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 15,
+    "name": "live changes recheck language, suppress findings and reject late results without manual inference",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 17,
+    "name": "a captured target refuses stale caret without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 18,
+    "name": "a captured target refuses stale text without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 19,
+    "name": "a captured target refuses stale language without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 20,
+    "name": "a captured target refuses stale run language without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 21,
+    "name": "a captured target refuses stale suppression without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 22,
+    "name": "a captured target refuses stale run replacement without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 23,
+    "name": "a captured target refuses stale document without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 24,
+    "name": "a captured target refuses stale paragraph order without history",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 25,
+    "name": "a field in a multiline target refuses the entire change",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 26,
+    "name": "a note in a multiline target refuses the entire change",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 27,
+    "name": "a complex field in a multiline target refuses the entire change",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 28,
+    "name": "a generated paragraph in a multiline target refuses the entire change",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 29,
+    "name": "a complex field opened in a prior paragraph remains protected",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 30,
+    "name": "protected block controls refuse both proofing operations",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 31,
+    "name": "protected inline controls refuse both proofing operations",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 32,
+    "name": "protected wrapper controls refuse both proofing operations",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 33,
+    "name": "protected binding controls refuse both proofing operations",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 36,
+    "name": "unlocked control boundaries survive selected formatting and Undo",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 37,
+    "name": "formatting leaves tracked insertion/deletion ranges and authors intact",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 38,
+    "name": "comment target follows exact ownership and history preserves other story selections",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 39,
+    "name": "header target follows exact ownership and history preserves other story selections",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 40,
+    "name": "viewing mode, late protection and IME never mutate displayed targets",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 41,
+    "name": "language inheritance and explicit checking permission survive DOCX save",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 42,
+    "name": "resetting imported language preserves style inheritance live, through history and after save",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 43,
+    "name": "a style part replacement makes an already displayed language target stale",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 44,
+    "name": "aliased paragraph ownership cannot modify another story indirectly",
+    "suite_id": 0,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 16,
+    "name": "language status opens paragraph options without a dialog or document edit",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 49,
+    "name": "selection language updates live checking and preserves the selection with Undo",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 52,
+    "name": "text checking toggle excludes only the selected text and can restore it",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 35,
+    "name": "connected chooser supports keyboard search and selection beyond visible results",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 53,
+    "name": "mixed text settings display and enable the full selected range",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 48,
+    "name": "citation editing searches connected Zotero without leaving the editor",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 51,
+    "name": "a direct citation action starts once without navigating tabs",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 54,
+    "name": "connected Zotero search is explicit, paged and staged with fresh options",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 57,
+    "name": "a direct action edits the citation enclosing the selection",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 55,
+    "name": "inherited language follows paragraph defaults and supports Undo",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 59,
+    "name": "a direct refresh action uses its native command",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 60,
+    "name": "unchanged inherited language does not promise an Undo entry",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 61,
+    "name": "a direct setDocPrefs action uses its native command",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 63,
+    "name": "a direct addEditBibliography action uses its native command",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 62,
+    "name": "old dropdown action refuses a different selection",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 58,
+    "name": "connected selection review includes hidden sources and stages removal and order",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 64,
+    "name": "a direct desktop action without a transport keeps the document",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 56,
+    "name": "refresh batches 50 sources and duplicate citations into one undo",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 67,
+    "name": "desktop tools are absent when the host has no local transport",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 65,
+    "name": "text options cannot mutate through a covering modal",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 70,
+    "name": "viewing mode keeps inspection and disables text changes",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 69,
+    "name": "native picker inserts a linked footnote and preferences as one undo",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 68,
+    "name": "refresh batches 51 sources and duplicate citations into one undo",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 71,
+    "name": "pane follows caret context and keeps its open section across hiding",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 66,
+    "name": "removing hidden connected selections frees capacity and supports an empty selection",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 72,
+    "name": "Document style invokes Zotero preferences and persists its chosen locale",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 75,
+    "name": "failed connected search and cancellation leave the citation untouched",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 74,
+    "name": "language status reveals expanded settings again after scrolling",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 78,
+    "name": "narrow English text options remain usable with large text",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 79,
+    "name": "narrow RTL text options remain usable with large text",
+    "suite_id": 2,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 76,
+    "name": "native cancel without changes leaves the undo history clean",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 77,
+    "name": "connected search remains usable in narrow doubled-text RTL layout",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 84,
+    "name": "editing a custom locator requires text review and clears stale RTF",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 83,
+    "name": "unsupported capital variants are reviewed before mutation and can be discarded",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 85,
+    "name": "author options and affixes invalidate custom cache, undoing edits restores it",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 86,
+    "name": "native small caps apply without a simplification review",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 73,
+    "name": "refresh batches 101 sources and duplicate citations into one undo",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 87,
+    "name": "reordering duplicate IDs keeps edited options on the correct occurrence",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 92,
+    "name": "added sources reset occurrence options but keep complete data",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 90,
+    "name": "mixed formatting applies styled runs while retaining one protected field",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 93,
+    "name": "oversized combined citation keeps its draft and can be repaired",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 94,
+    "name": "moving the caret during review prevents a stale insertion",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 95,
+    "name": "chooser preserves hidden duplicate-ID selections and add order",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 97,
+    "name": "filtering scrolled source candidates starts at the first match",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 96,
+    "name": "Zotero alert button set 0 returns its exact OK code",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 98,
+    "name": "cancelled chooser and composer do not modify their inputs",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 99,
+    "name": "Zotero alert button set 1 returns its exact Cancel code",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 100,
+    "name": "empty citations cannot apply and can recover by adding a source",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 91,
+    "name": "refresh batches 1000 sources and duplicate citations into one undo",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 101,
+    "name": "Zotero alert button set 2 returns its exact No code",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 89,
+    "name": "a citation at the caret opens its document editing tools",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 103,
+    "name": "refresh isolates identical keys across libraries; incomplete=false",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 106,
+    "name": "refresh isolates identical keys across libraries; incomplete=true",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 102,
+    "name": "addition limit permits deselection and prevents a 21st source",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 104,
+    "name": "Zotero alert button set 3 returns its exact Yes code",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 105,
+    "name": "hosts can explicitly open Library from an existing citation",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 109,
+    "name": "desktop error alert 0 discards staged fields even after complete",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 110,
+    "name": "a plain-text caret keeps the Library as the default page",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 108,
+    "name": "larger imported clusters retain every source and remain editable",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 113,
+    "name": "custom text requires review after changing membership or order",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 111,
+    "name": "desktop error alert 2 discards staged fields even after complete",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 114,
+    "name": "confirming unchanged custom text discards old formatted cache",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 116,
+    "name": "restoring the original sequence preserves imported formatting",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 115,
+    "name": "cancel waits for a native response then drains without live mutation",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 117,
+    "name": "choosing basic format regenerates text for the revised sources",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 107,
+    "name": "refresh chunks each library without combining matching keys",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 112,
+    "name": "unlink all reviews counts, cancels, then converts as one undo",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 118,
+    "name": "stale editor target reports an error and drains the native transaction",
+    "suite_id": 45,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 119,
+    "name": "single-source preview receives the current source after edits",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 124,
+    "name": "failed preview keeps draft text and allows a successful retry",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 125,
+    "name": "pending preview cannot mutate sources or resurrect a closed draft",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 121,
+    "name": "a locked field rejects the complete conversion",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 126,
+    "name": "offline and malformed identities do not offer connected previews",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 128,
+    "name": "nested source details retain reordered options and custom review",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 120,
+    "name": "later same-library batch missing CSL keeps all citations",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 127,
+    "name": "a changed document cannot accept an old unlink confirmation",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 132,
+    "name": "caret selects the exact adjacent citation with half-open boundaries",
+    "suite_id": 122,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 134,
+    "name": "enclosed forward and backward selections resolve one exact field",
+    "suite_id": 122,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 133,
+    "name": "unlink is disabled for read-only documents",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 135,
+    "name": "lookup returns current handles after a field was unlinked and undone",
+    "suite_id": 122,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 137,
+    "name": "unrelated active stories never fall back to a body field",
+    "suite_id": 122,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 129,
+    "name": "composer and chooser work at doubled text in narrow TextDirection.rtl",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 136,
+    "name": "unlink is disabled for tracked documents",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 141,
+    "name": "unlink review remains usable at narrow RTL with doubled text",
+    "suite_id": 81,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 140,
+    "name": "composer and chooser work at doubled text in narrow TextDirection.ltr",
+    "suite_id": 4,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 130,
+    "name": "later same-library batch server error keeps all citations",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 145,
+    "name": "all story fields retain formatting and notes in one undo step",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 151,
+    "name": "locked field leaves other fields, revisions and redo untouched",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 152,
+    "name": "malformed field leaves other fields, revisions and redo untouched",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 153,
+    "name": "nested field leaves other fields, revisions and redo untouched",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 154,
+    "name": "missing begin in a modeled Zotero packet blocks the whole batch",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 155,
+    "name": "missing separator in a modeled Zotero packet blocks the whole batch",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 156,
+    "name": "missing end in a modeled Zotero packet blocks the whole batch",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 157,
+    "name": "pending tracked changes prevent the whole conversion",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 158,
+    "name": "viewing and empty documents do not create a history step",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 150,
+    "name": "display 1 for native ID 999 paints and hit-tests atomically",
+    "suite_id": 142,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 160,
+    "name": "display 108 for native ID 7 paints and hit-tests atomically",
+    "suite_id": 142,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 161,
+    "name": "display 10 for native ID 10 paints and hit-tests atomically",
+    "suite_id": 142,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 159,
+    "name": "a pending note draft is committed before the single unlink step",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 163,
+    "name": "preserved header citation prevents partial conversion",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 164,
+    "name": "preserved block citation prevents partial conversion",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 165,
+    "name": "preserved inline citation prevents partial conversion",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 162,
+    "name": "editing after a shortened label still uses the original source range",
+    "suite_id": 142,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 166,
+    "name": "prose, unrelated quoted fields and replaced preserved stories are safe",
+    "suite_id": 138,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 167,
+    "name": "earlier inserted notes renumber on insert, undo and redo without ID changes",
+    "suite_id": 142,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 172,
+    "name": "note edits keep formatting and undo as one step",
+    "suite_id": 146,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 173,
+    "name": "undo commits a pending note edit before undoing it",
+    "suite_id": 146,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 174,
+    "name": "deleting a note removes its mark and undo restores both",
+    "suite_id": 146,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 148,
+    "name": "successful batch backoff stops refresh without partial changes",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 170,
+    "name": "notes pane shows body order and keeps edit identity after insertion",
+    "suite_id": 142,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 180,
+    "name": "limited and orphaned note labels identify source IDs explicitly",
+    "suite_id": 142,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 175,
+    "name": "the notes pane edits, adds and deletes notes",
+    "suite_id": 146,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 176,
+    "name": "closing during the second batch stops further refresh requests",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 179,
+    "name": "Alt F7 opens writing and wraps without invoking manual tools",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 189,
+    "name": "keyboard hit preserves source, selection, layout and viewport",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 193,
+    "name": "keyboard hit follows the wrapped LTR caret",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 194,
+    "name": "keyboard hit follows the wrapped RTL caret",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 195,
+    "name": "offscreen hit clamps its anchor without revealing the caret",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 188,
+    "name": "Alt Shift F7 navigates backwards and wraps at the first issue",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 196,
+    "name": "keyboard hit uses exact active header",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 198,
+    "name": "keyboard hit uses exact active footer",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 199,
+    "name": "repeated header anchors to its visible source occurrence",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 200,
+    "name": "nested cell hit retains link and comment from its source run",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 201,
+    "name": "context metadata follows the caret, without stale selection",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 202,
+    "name": "invalid indices and detached source do not target another paragraph",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 203,
+    "name": "empty paragraphs need an identity-bound layout line for a hit",
+    "suite_id": 181,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 197,
+    "name": "issue navigation with no findings opens a usable writing pane",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 207,
+    "name": "review navigation and context shortcuts preserve active IME composition",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 192,
+    "name": "keyboard correction preserves an explicitly selected overlapping finding",
+    "suite_id": 183,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 185,
+    "name": "stale target after the second batch stops the third request",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 210,
+    "name": "standalone sessions do not start background checks",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 211,
+    "name": "keyboard change decisions preserve the selected adjacent revision",
+    "suite_id": 183,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 213,
+    "name": "default checking distinguishes debounce from running and repeated attachment does not restart it",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 215,
+    "name": "explicit false before attachment survives repeated attachment and edits",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 216,
+    "name": "explicit false after attachment survives repeated attachment and edits",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 217,
+    "name": "editing rejects late replies while the new pass is scheduled",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 218,
+    "name": "typing removes old findings and restarts the debounce",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 219,
+    "name": "default background passes never invoke manual providers",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 220,
+    "name": "disabling a running pass rejects its late results and stays off",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 221,
+    "name": "undo schedules a fresh pass and rebinds restored findings",
+    "suite_id": 205,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 208,
+    "name": "focused Writing filter limits both issue navigation shortcuts",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 212,
+    "name": "refresh refuses 1001 distinct sources before any request",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 225,
+    "name": "missing CSL in a later library refuses all staged updates",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 227,
+    "name": "explicit footnote selection survives an unchanged body caret",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 224,
+    "name": "issue navigation from a Changes search field opens Writing",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 229,
+    "name": "explicit first header selection survives an unchanged body caret",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 231,
+    "name": "explicit even footer selection survives an unchanged body caret",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 214,
+    "name": "covered pane shortcuts cannot navigate, check or close review",
+    "suite_id": 183,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 232,
+    "name": "revealing a finding does not select an adjacent endpoint finding",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 234,
+    "name": "subsequent caret navigation follows a different current finding",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 235,
+    "name": "unchanged selected text rebinds after another paragraph is corrected",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 236,
+    "name": "repeated current explicit checks share one manual-provider future",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 237,
+    "name": "a text edit allows a new explicit check during an old pass",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 238,
+    "name": "a provider configuration allows a new explicit check during an old pass",
+    "suite_id": 222,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_selection_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 233,
+    "name": "an open keyboard menu cannot act after its origin route is covered",
+    "suite_id": 183,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 228,
+    "name": "changed edit target stops refresh before the next library",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 230,
+    "name": "ordinary shortcuts in a focused reviewer field edit only the field",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 245,
+    "name": "Shift F10 opens suggestions without moving the caret and Enter corrects",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 246,
+    "name": "Context Menu key and Escape restore canvas focus and text input",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 244,
+    "name": "unsynced refresh keeps URI aliases and unknown citation data",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 250,
+    "name": "selected issue ending at the next issue uses its own keyboard correction",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 251,
+    "name": "wrong desktop profile with the same item key cannot refresh",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 254,
+    "name": "a short unfiltered context menu supports arrows and Enter",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 257,
+    "name": "source edits dismiss a keyboard suggestion before it can act",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 258,
+    "name": "viewing keeps keyboard findings inspectable without correction",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 259,
+    "name": "document protection keeps keyboard findings inspectable without correction",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 256,
+    "name": "online operations reject local-only references before a request",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 249,
+    "name": "automatic checks show pending and checking status without dialogs",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 260,
+    "name": "keyboard context resolves the current tracked change with Undo",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 261,
+    "name": "online refresh can use a numeric alias while retaining old local URI",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 262,
+    "name": "single marked-text click opens inline correction after double-click interval",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 265,
+    "name": "many inline suggestions retain editor focus and typing dismisses stale menu",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 263,
+    "name": "Check document upgrades a held background check and shares its full result",
+    "suite_id": 168,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_keyboard_review_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 264,
+    "name": "different local profiles are not combined through the same route",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 270,
+    "name": "unsynced single-source preview verifies identity: mismatch false",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 255,
+    "name": "editing stays available while live findings update in the pane",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 266,
+    "name": "F7 opens a nonmodal pane and shares one explicit manual check",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 276,
+    "name": "selection wheel scrolling and zoom preserve published findings",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 271,
+    "name": "unsynced single-source preview verifies identity: mismatch true",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 277,
+    "name": "double and triple clicks select text without opening suggestions",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 279,
+    "name": "dragging from marked text selects a range without opening suggestions",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 275,
+    "name": "opening and correcting do not implicitly run manual providers",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 278,
+    "name": "unsynced selected export verifies sources before copying reference data",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 281,
+    "name": "unavailable provider status is not presented as a clean document",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 282,
+    "name": "changed profile cannot copy another source under a selected item key",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 280,
+    "name": "single click on a revision opens its Changes pane and preserves focus",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 283,
+    "name": "a suggestion captured before an edit cannot change newer text",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 284,
+    "name": "unsynced bibliography verifies selection and requires review before insertion",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 285,
+    "name": "clicking a finding follows an open pane without stealing document focus",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 288,
+    "name": "Escape closes the pane from its focused reviewer field",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 274,
+    "name": "author type and text filters combine without editing the document",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 289,
+    "name": "selecting mode shows inline findings but cannot apply their replacements",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 287,
+    "name": "reviewed bibliography keeps rich runs through save and undo",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 286,
+    "name": "category filtering navigates only matching findings",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 291,
+    "name": "viewing mode inspects through the pane without enabling edits",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 292,
+    "name": "bibliography review offers an explicit editable plain result",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 290,
+    "name": "filtered navigation and resolution continue with the next shown change",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 294,
+    "name": "narrow English review retains a usable document canvas",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 293,
+    "name": "tracked changes resolve in place and undo restores them",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 295,
+    "name": "cancelling rich bibliography review keeps history unchanged",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 296,
+    "name": "accept shown affects exactly the filtered batch with one undo",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 297,
+    "name": "narrow Arabic review retains a usable document canvas",
+    "suite_id": 239,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_surface_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 299,
+    "name": "a changed caret rejects a reviewed rich bibliography",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 300,
+    "name": "reject shown affects exactly the filtered batch with one undo",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 298,
+    "name": "reviewer field affects future attribution and leaves document alone",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 305,
+    "name": "one stale filtered change blocks the entire shown batch",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 304,
+    "name": "a changed revision rejects a reviewed rich bibliography",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 306,
+    "name": "viewing mode allows inspection while disabling document mutations",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 310,
+    "name": "unchanged findings survive typing and the next in-flight check",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 312,
+    "name": "paused partial results never claim a clean whole-document check",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 313,
+    "name": "new findings are published before the whole document finishes",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 314,
+    "name": "editing after partial progress discards a late result generation",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 315,
+    "name": "direct structural edits are validated before intermediate publication",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 316,
+    "name": "detach invalidates affected findings and preserves other paragraphs",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 317,
+    "name": "story invalidates affected findings and preserves other paragraphs",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 318,
+    "name": "noProof invalidates affected findings and preserves other paragraphs",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 319,
+    "name": "language invalidates affected findings and preserves other paragraphs",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 320,
+    "name": "provider and document-language changes invalidate cached findings immediately",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 321,
+    "name": "new documents cannot inherit cached results even when paragraphs are reused",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 322,
+    "name": "background retains ordinary results from failed full checks without invoking manual providers",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 323,
+    "name": "ordinary previews stay actionable but do not count as full manual coverage",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 324,
+    "name": "explicit checks share their future after progress and invalidate it after edits",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 325,
+    "name": "a retained finding remains an undoable controller correction while another check waits",
+    "suite_id": 302,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 307,
+    "name": "paragraph previews project all changes without resolving them",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 308,
+    "name": "rich review and format limitation fit a narrow viewport",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 311,
+    "name": "stale checks stay pending until a current provider result arrives",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 328,
+    "name": "text previews remain available when native boundaries forbid resolving a valid span",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 329,
+    "name": "unchanged imported citation keeps its rich cache and native formatting metadata",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 331,
+    "name": "stale preview shows stored text with an explicit warning",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 330,
+    "name": "narrow English pane remains scrollable",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 333,
+    "name": "detached captured changes cannot become actionable through a cached target map",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 332,
+    "name": "older desktop cannot render an unverified aggregate bibliography",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 336,
+    "name": "local source without CSL or identity is not refetched by a bare key",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 334,
+    "name": "narrow Arabic pane remains scrollable",
+    "suite_id": 242,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_pane_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 335,
+    "name": "viewing mode keeps filters and previews but disables decisions",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 344,
+    "name": "F7 checks writing from a focused Changes pane search field",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 339,
+    "name": "desktop account source inserts without using the saved cloud key",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 345,
+    "name": "document language changes in the pane are undoable and keep manual checks explicit",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 346,
+    "name": "desktop unsynced source inserts without using the saved cloud key",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 348,
+    "name": "closed empty complex fields never reach providers",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 351,
+    "name": "empty paragraphs inside and ending a spanning field are excluded while later authored paragraphs are checked",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 352,
+    "name": "generated page-number paragraphs never reach providers",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 353,
+    "name": "page-number metadata invalidates findings without a text edit",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 354,
+    "name": "pending page-number metadata changes discard provider results",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 355,
+    "name": "nonempty findings use half-open hit ranges",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 356,
+    "name": "a new document reusing the same paragraph gets fresh provider results and no inherited ignore-once state",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 357,
+    "name": "language changes inside a combining cluster retain the full cluster and its first language",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 358,
+    "name": "a surrogate pair split across runs and languages remains one emoji in provider input",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 359,
+    "name": "noProof on part of a combining cluster excludes the entire cluster",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 349,
+    "name": "read-only writing inspection disables document language changes",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 360,
+    "name": "review traverses body, nested tables, frames, all headers/footers, notes and comments",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 362,
+    "name": "formatting fragments join while language and noProof boundaries preserve UTF-16 offsets",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 363,
+    "name": "run language overrides paragraph language, which overrides the document default",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 364,
+    "name": "late results after a revision change never become current findings",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 365,
+    "name": "direct model edits during a pending check invalidate its snapshot even without revision notification",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 366,
+    "name": "replacing a document with identical text and revision rejects the old document result",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 367,
+    "name": "provider reconfiguration cancels pending publication and disposes the previous provider",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 368,
+    "name": "unchanged paragraphs reuse results while rebinding findings to the current revision",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 369,
+    "name": "provider configuration revisions invalidate otherwise identical cached text",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 370,
+    "name": "moving a paragraph between stories invalidates its old finding and cache",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 371,
+    "name": "a document with no checkable paragraphs never claims a clean completed check",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 372,
+    "name": "no configured provider is visibly unavailable",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 373,
+    "name": "unavailable checks are incomplete and can be retried instead of cached as clean",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 374,
+    "name": "unsupported checks are incomplete and can be retried instead of cached as clean",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 375,
+    "name": "failed checks are incomplete and can be retried instead of cached as clean",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 376,
+    "name": "an unsupported document language reports its locale without calling the checker",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 377,
+    "name": "opaque body blocks and preserved header stories are explicit coverage gaps",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 378,
+    "name": "personal words are language-scoped and host snapshots preserve owner identity",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 379,
+    "name": "ignore once suppresses one occurrence and resets when its paragraph text changes",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 380,
+    "name": "ignored rules can be restored without changing source text or personal words",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 381,
+    "name": "restoring ignored occurrences preserves word and rule preferences",
+    "suite_id": 342,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 350,
+    "name": "desktop citation-key source inserts without using the saved cloud key",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 341,
+    "name": "inline correction stays open and undoable during unrelated paragraph progress",
+    "suite_id": 326,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 361,
+    "name": "restoring ignored findings preserves personal words and avoids manual providers",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 384,
+    "name": "switching sources makes no requests and preserves the cloud credential",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 389,
+    "name": "a host without desktop transport offers only the supported source",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 388,
+    "name": "current findings can be corrected while a different paragraph checks",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 390,
+    "name": "desktop connection and errors fit a 320 by 640 viewport",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 392,
+    "name": "offline CSL import inserts source metadata and can be undone",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 391,
+    "name": "narrow scaled English Changes pane supports filtering and review",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 394,
+    "name": "typing never invokes the manual model and reports omitted coverage",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 397,
+    "name": "manual and background caches cannot stand in for each other",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 398,
+    "name": "an unsupported manual locale does not reduce background coverage",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 399,
+    "name": "a supported run still reports omitted manual coverage in a mixed document",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 400,
+    "name": "manual failure stays visible alongside successful ordinary checking",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 401,
+    "name": "deterministic findings take precedence over competing model proposals",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 402,
+    "name": "configuration refuses shared ownership and duplicate provider IDs",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 403,
+    "name": "replacing a service cannot dispose providers still in the replacement",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 404,
+    "name": "replacing or clearing manual service disposes it and invalidates results",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 405,
+    "name": "changed document rejects an in-flight manual result",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 406,
+    "name": "session disposal owns both services exactly once",
+    "suite_id": 382,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_manual_proofing_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 396,
+    "name": "narrow scaled Arabic Changes pane supports filtering and review",
+    "suite_id": 268,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_live_review_changes_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 395,
+    "name": "cancelling the citation composer leaves document and history unchanged",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 412,
+    "name": "a changed caret while the composer is open blocks stale insertion",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 417,
+    "name": "a changed revision while the composer is open blocks stale insertion",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 421,
+    "name": "mixed bidi source ranges have disjoint boxes and span wrapped lines",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 422,
+    "name": "repeated header text maps only to its matching source occurrence",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 423,
+    "name": "note presentation labels cannot acquire authored source ranges",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 418,
+    "name": "mock Web API connection, pagination and search keep the key outside the document",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 425,
+    "name": "unchecking Remember removes the saved key immediately without connecting",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 416,
+    "name": "review centers a late finding and preserves Unicode clusters",
+    "suite_id": 407,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 424,
+    "name": "squiggles follow paragraph identity through body and table text and clear on refresh",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 427,
+    "name": "an insertion has a visible and accessible context marker",
+    "suite_id": 407,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 428,
+    "name": "generated field text receives no findings or squiggles",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 430,
+    "name": "generated header labels cannot paint source squiggles",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 431,
+    "name": "right-click source hits distinguish repeated body, table, and footnote text",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 432,
+    "name": "right-click header hits use measured glyphs and alignment",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 429,
+    "name": "short passages retain their complete context without ellipses",
+    "suite_id": 407,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 433,
+    "name": "compact proofing hits use story text inside default header bands",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 435,
+    "name": "full-page header keeps exact proofing pointer hits",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 436,
+    "name": "full-page footer keeps exact proofing pointer hits",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 437,
+    "name": "zero-length finding at body end remains visible",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 438,
+    "name": "zero-length finding at header end remains visible",
+    "suite_id": 413,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 434,
+    "name": "long findings remain bounded without splitting joined emoji",
+    "suite_id": 407,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 426,
+    "name": "imported bibliography customizations cannot be overwritten by basic update",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 440,
+    "name": "narrow review at large text scale does not hide its finding",
+    "suite_id": 407,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_context_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 410,
+    "name": "native spelling review preserves apostrophes and compounds through undo and redo",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 443,
+    "name": "dialog, offline import and composer fit a 320 by 640 viewport",
+    "suite_id": 6,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 450,
+    "name": "caret lookup leaves an empty read-only document unchanged",
+    "suite_id": 441,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 446,
+    "name": "German grammar correction preserves source and undo: seid",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 451,
+    "name": "caret lookup uses half-open findings and exact insertion positions",
+    "suite_id": 441,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 453,
+    "name": "header and footer navigation synchronizes the exact IME paragraph",
+    "suite_id": 441,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 454,
+    "name": "body navigation leaves equation editing and routes subsequent IME text",
+    "suite_id": 441,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 455,
+    "name": "body navigation clears picture cropping and frame editing states",
+    "suite_id": 441,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 456,
+    "name": "body navigation replaces a prior header IME selection",
+    "suite_id": 441,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_navigation_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 452,
+    "name": "German grammar correction preserves source and undo: habe",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 459,
+    "name": "German grammar correction preserves source and undo: gibst",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 462,
+    "name": "seit-seid ignore can be restored by its visible rule name",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 466,
+    "name": "author configuration trims names and rejects empty attribution",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 468,
+    "name": "typing and deletion keep their original authors through history",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 467,
+    "name": "spacing correction Insert space is visible and undoable",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 469,
+    "name": "hyperlink changes and fromBytes use the configured future author",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 471,
+    "name": "proofing replacements attribute both tracked halves and redo",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 472,
+    "name": "accept filtered changes is one undo step and rebases the remainder",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 464,
+    "name": "header tracked typing rejects in its own story after close and reopen",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 473,
+    "name": "reject batch deduplicates targets and preserves a different author",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 475,
+    "name": "accept batch prevalidates every span",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 476,
+    "name": "reject batch prevalidates every span",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 477,
+    "name": "resolving a middle change keeps the successor through undo and redo (accept)",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 478,
+    "name": "resolving a middle change keeps the successor through undo and redo (reject)",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 479,
+    "name": "resolving another batch preserves an unaffected explicit selection",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 480,
+    "name": "navigation starts at first or last pending and wraps exact spans",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 474,
+    "name": "header tracked link rejects in its own story after close and reopen",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 481,
+    "name": "header revision selects the actual source and synchronizes IME",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 483,
+    "name": "footer revision selects the actual source and synchronizes IME",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 484,
+    "name": "comment revision selects the actual source and synchronizes IME",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 485,
+    "name": "notes and alternate headers never fall back to a matching body span",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 486,
+    "name": "stale and detached targets do not move the body caret",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 482,
+    "name": "header tracked backspace accepts only its own text with history",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 470,
+    "name": "spacing correction Use space is visible and undoable",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 487,
+    "name": "body revision navigation leaves object editing and another story",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 490,
+    "name": "OfficeInteractionMode.viewing prevents review mutations and honors selection capability",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 491,
+    "name": "OfficeInteractionMode.selecting prevents review mutations and honors selection capability",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 492,
+    "name": "comparison in viewing mode changes neither document nor controller state",
+    "suite_id": 457,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_controller_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 488,
+    "name": "header tracked range keeps paragraphs and body drawings until accepted",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 495,
+    "name": "footer tracked typing rejects in its own story after close and reopen",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 496,
+    "name": "footer tracked link rejects in its own story after close and reopen",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 497,
+    "name": "footer tracked backspace accepts only its own text with history",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 498,
+    "name": "footer tracked range keeps paragraphs and body drawings until accepted",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 499,
+    "name": "comment tracked typing rejects in its own story after close and reopen",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 489,
+    "name": "ignored words can be restored in their run language without clearing other preferences",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 500,
+    "name": "comment tracked link rejects in its own story after close and reopen",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 502,
+    "name": "comment tracked backspace accepts only its own text with history",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 503,
+    "name": "comment tracked range keeps paragraphs and body drawings until accepted",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 504,
+    "name": "revision retains body target after an unrelated paragraph split",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 501,
+    "name": "an ignored writing rule can be restored from review",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 506,
+    "name": "ignored occurrences can be reviewed again in a read-only document",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 505,
+    "name": "auxiliary revisions do not paint changes over body text",
+    "suite_id": 447,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_revision_story_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 507,
+    "name": "swapping the dialog controller checks its document and clears old notices",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 512,
+    "name": "a previous controller completing its check cannot replace the new results",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 461,
+    "name": "tracking and reviewer controls affect future edits with undo",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 514,
+    "name": "ignore once dismisses a finding without adding or ignoring its word",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 516,
+    "name": "opening proofing checks the document and offers undoable corrections",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 517,
+    "name": "unavailable provider never produces a clean-document message",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 518,
+    "name": "unsupported provider never produces a clean-document message",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 520,
+    "name": "covered editors reject late IME text, actions and macOS selectors",
+    "suite_id": 508,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/office_input_ownership_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 522,
+    "name": "headless controller input retains its existing behavior",
+    "suite_id": 508,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/office_input_ownership_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 521,
+    "name": "failed provider never produces a clean-document message",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 525,
+    "name": "read-only documents retain review but disable correction and formatting",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 526,
+    "name": "adding a personal word dismisses its finding without changing document text",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 527,
+    "name": "ignore word applies to the session and leaves personal words unchanged",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 515,
+    "name": "author, kind and text filters intersect without changing sources",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 513,
+    "name": "modal text input retains ownership over stale Word IME traffic",
+    "suite_id": 493,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 530,
+    "name": "covered route rejects stale input even when Word keeps focus",
+    "suite_id": 493,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 528,
+    "name": "language and hyphenation controls save source settings with undo",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 533,
+    "name": "controller replacement transfers the focused input guard",
+    "suite_id": 493,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 534,
+    "name": "unsupported existing language and a narrow viewport remain reviewable",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 529,
+    "name": "accept shown is a filtered undoable batch",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 535,
+    "name": "unmounted editor rejects stale traffic and can be mounted again",
+    "suite_id": 493,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 538,
+    "name": "focused selecting mode preserves navigation and rejects edits",
+    "suite_id": 493,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_input_focus_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 536,
+    "name": "show in document selects the current finding and closes review",
+    "suite_id": 386,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_proofing_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 532,
+    "name": "bare Ctrl Shift direction chord false runs once on release",
+    "suite_id": 523,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/office_direction_chord_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 544,
+    "name": "bare Ctrl Shift direction chord true runs once on release",
+    "suite_id": 523,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/office_direction_chord_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 545,
+    "name": "Ctrl Shift Z and S never emit a direction change",
+    "suite_id": 523,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/office_direction_chord_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 537,
+    "name": "reject shown is a filtered undoable batch",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 548,
+    "name": "command pipeline undo/redo insert and delete",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 549,
+    "name": "paint run rebuilds logical Arabic for HarfBuzz",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 546,
+    "name": "final and original previews leave tracked changes untouched",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 550,
+    "name": "script runs stay in their own paint group and sit off the baseline",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 552,
+    "name": "caret selects a word and a paragraph",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 553,
+    "name": "flagged caret points with the writing direction",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 554,
+    "name": "justified caret and selection share the same word X",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 555,
+    "name": "justified hitTest and range rects stay on word edges",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 556,
+    "name": "caret X snaps to TextPainter glyph edges after fitLine",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 557,
+    "name": "caret stays on an RTL line whose visual order is reversed",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 558,
+    "name": "caret covers a contiguous range of table paragraphs",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 559,
+    "name": "selection matrix and table resizer",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 563,
+    "name": "ReportDesignerController nudge records one undo step and redo re-applies it",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 564,
+    "name": "ReportDesignerController a saved template with a broken variable opens with diagnostics",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 551,
+    "name": "viewing mode exposes review but disables document mutations",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 565,
+    "name": "ReportDesignerController problems are live and reveal takes the user to each one",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 560,
+    "name": "Word canvas and sheet grid mount as RenderBoxes",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 568,
+    "name": "header edit paints a usable header band",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 567,
+    "name": "ReportDesignerController the ready-made templates have no problems",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 570,
+    "name": "ReportDesignerController align and size tools use the primary element",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 571,
+    "name": "ReportDesignerController setProperty applies valid values and ignores invalid ones",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 572,
+    "name": "ReportDesignerController addElement uses default sizes for clicks and undo removes it",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 573,
+    "name": "ReportDesignerController mirrored RTL templates edit in physical coordinates",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 574,
+    "name": "ReportDesignerController copy and paste clone elements with fresh ids",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 575,
+    "name": "ReportDesignerController bands can be added and removed",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 569,
+    "name": "Word canvas pans from a trackpad swipe",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 577,
+    "name": "Word canvas cursor follows handles, objects, and text",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 578,
+    "name": "word canvas click hits the second table cell",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 579,
+    "name": "caret coversIndex includes the selected range",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 576,
+    "name": "ReportDesignerController XML round-trips and the live preview uses inferred data",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 580,
+    "name": "right click inside a text selection keeps the range",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 582,
+    "name": "right click outside a text selection keeps the range",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 581,
+    "name": "ReportDesignerController charts are added, edited, previewed, and round-tripped",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 583,
+    "name": "right click keeps a multi-cell table selection",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 584,
+    "name": "ReportDesignerController a shape map embeds its file and binds the value table",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 586,
+    "name": "ReportDesignerController a map is its own tool and its file can be removed",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 587,
+    "name": "ReportDesignerController a map file opens as a data table",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 588,
+    "name": "ReportDesignerController page fields, a total, a rounded box, and a signature insert",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 585,
+    "name": "sheet drag extends a contiguous cell range",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 590,
+    "name": "header drag keeps whole columns and whole rows",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 591,
+    "name": "rtl sheet places column A on the right",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 592,
+    "name": "sheet scroll and hit-test reach past the used-range window",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 593,
+    "name": "frozen row stays put after vertical scroll",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 594,
+    "name": "frozen column stays put and hides scrolled columns under it",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 566,
+    "name": "two picked documents compare, display redlines and export without edits",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 595,
+    "name": "dragging a column header edge resizes the column",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 597,
+    "name": "dragging a row header edge resizes the row",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 598,
+    "name": "viewport clamp stops endless scrolling",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 599,
+    "name": "slide snap guidelines and transform handles",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 600,
+    "name": "Slide stage mounts as a RenderBox",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 601,
+    "name": "leaving slide text edit does not rotate the shape",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 602,
+    "name": "styled runs do not overlap after paint fit",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 603,
+    "name": "paint fit keeps justified wrapped lines flush to the column",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 604,
+    "name": "paint fit places glyphs next to each other without justify gaps",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 605,
+    "name": "embedded host unpacks a nested workbook",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 606,
+    "name": "Word controller inserts and edits an equation",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 607,
+    "name": "Word equation cells navigate and stay editable after reopen",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 608,
+    "name": "equation arrows move by character and cross cells at the edges",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 609,
+    "name": "equation backspace deletes letters then the empty tool",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 610,
+    "name": "clicking an equation cell routes IME into that cell",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 611,
+    "name": "Word text frame can be selected, moved, and resized",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 612,
+    "name": "Word text frame edit mode keeps the box and hides transform",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 613,
+    "name": "Word picture handles resize, move, and crop on the canvas",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 614,
+    "name": "Word comments can be inserted, edited, and deleted",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 615,
+    "name": "ribbon formatting bolds only the selected comment range",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 596,
+    "name": "export cancellation and errors preserve the report for retry",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 616,
+    "name": "rejected native TOC refresh preserves heading aliases, selection and history",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 618,
+    "name": "Word headings feed a live table of contents",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 619,
+    "name": "ruler first-line drag sets firstLine and hanging stays exclusive",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 620,
+    "name": "ruler hanging drag keeps the first-line page position",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 621,
+    "name": "ruler left-indent square moves both markers together",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 622,
+    "name": "ruler tab alignment cycles left-center-right-decimal",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 623,
+    "name": "ruler zero sits at the content origin",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 624,
+    "name": "ruler drag guide follows the active marker",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 625,
+    "name": "ruler paragraph box follows page, cell, column, and frame",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 626,
+    "name": "ruler selected frame follows native insets and the laid-out width",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 627,
+    "name": "ruler focus line follows the active page caret",
+    "suite_id": 540,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/editor_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 617,
+    "name": "current-document edits mark comparison stale and disable export",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 628,
+    "name": "picker cancellation and errors preserve selections and recover",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 629,
+    "name": "closing during a pending picker ignores its later completion",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 630,
+    "name": "narrow LTR dialog keeps both workflows usable",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 631,
+    "name": "narrow RTL dialog keeps both workflows usable",
+    "suite_id": 444,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/word_review_dialog_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 589,
+    "name": "ReportDesignerController ready-made templates load with their sample data",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 632,
+    "name": "ReportDesignerController template files match the built-in catalog they replace",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 633,
+    "name": "ReportDesignerController the library reads templates from an asset bundle",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 634,
+    "name": "ReportDesignerController calculated columns complete with their computed values",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 635,
+    "name": "ReportDesignerController bindings complete from data, functions, and formats",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 636,
+    "name": "ReportDesignerController template variables are typed, renamed, inserted, and previewed",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 637,
+    "name": "ReportDesignerController inspector metadata drives steppers, presets, and pairs",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 638,
+    "name": "ReportDesignerController property editing commits through the inline editor",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 640,
+    "name": "QudsReportDesigner inspector paints sections and the color palette",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 641,
+    "name": "QudsReportDesigner inspector tabs switch pages and the splitter resizes it",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 642,
+    "name": "QudsReportDesigner variables explorer, cards, font picker, and Arabic layout",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 643,
+    "name": "QudsReportDesigner tap selects and drag moves an element as one undo step",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 644,
+    "name": "QudsReportDesigner keyboard nudges and deletes the selection",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 645,
+    "name": "QudsReportDesigner toolbar switches tools and the preview",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 646,
+    "name": "QudsReportDesigner templates menu groups families and asks for a language",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 647,
+    "name": "QudsReportDesigner pinching with two fingers zooms the canvas and the preview",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 648,
+    "name": "QudsReportDesigner problems panel opens, takes the user to a problem, closes",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 649,
+    "name": "QudsReportDesigner print button and Ctrl+P hand the host a PDF",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 650,
+    "name": "QudsReportDesigner creating with a tool adds an element where clicked",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 651,
+    "name": "QudsReportDesigner chart templates paint in design and preview",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 652,
+    "name": "QudsReportDesigner keyboard picks a suggestion while editing on the canvas",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 653,
+    "name": "QudsReportDesigner editor text keeps contrast on dark fills",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 655,
+    "name": "Report package images saves and reopens embedded images with the layout",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 656,
+    "name": "Report package images rename, remove and import are undoable",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 657,
+    "name": "Report package images replacing an image keeps its name and updates its elements",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 658,
+    "name": "Report package images report inspector lists embedded images",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 660,
+    "name": "Report package fonts embeds faces, saves them in the package, and undoes",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 661,
+    "name": "Report package fonts fonts page imports files and embeds installed fonts",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 663,
+    "name": "Element names every element gets a unique name it keeps on rename",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 665,
+    "name": "Report data explorer lists inferred tables and fields; edits create sample data",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 666,
+    "name": "Report data explorer rows, typed and calculated columns, and renames",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 667,
+    "name": "Report data explorer fields, tables, imports and host data",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 668,
+    "name": "Report data explorer designer shows the explorer and edits cells",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 669,
+    "name": "Report data explorer the field tree shows a scrollbar and scrolls",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 670,
+    "name": "Report data explorer a long choice menu scrolls and filters as you type",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 671,
+    "name": "Report data explorer closing a choice menu and opening another does not throw",
+    "suite_id": 542,
+    "suite": "/workspace/scratch/887f66647834/quds_office_suite/packages/quds_office_editor/test/report_designer_test.dart",
+    "result": "success",
+    "skipped": false
+  }
+]
