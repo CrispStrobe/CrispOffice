@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Preserve the active Notes editor, selection and composition when opening,
+  closing or resizing the Review pane so language and checking actions keep
+  targeting the selected footnote or endnote text.
+
 - Keep imported Zotero research-note lists and their numbering definitions in
   the same undo step as the note and its citations. Restore existing numbering
   on undo while preserving unrelated package parts and relationships.

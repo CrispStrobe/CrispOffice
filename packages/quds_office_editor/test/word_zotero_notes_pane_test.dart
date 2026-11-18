@@ -169,9 +169,15 @@ Future<void> _select(
   WmlNote note,
   TextSelection selection,
 ) async {
-  await tester.tap(_field(note));
+  final field = _field(note);
+  await tester.ensureVisible(field);
   await tester.pump();
-  tester.widget<TextField>(_field(note)).controller!.selection = selection;
+  expect(field.hitTestable(), findsOneWidget);
+  await tester.tap(field);
+  await tester.pump();
+  final widget = tester.widget<TextField>(field);
+  expect(widget.focusNode!.hasFocus, isTrue);
+  widget.controller!.selection = selection;
   await tester.pump();
 }
 

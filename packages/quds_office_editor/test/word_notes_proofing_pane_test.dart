@@ -385,19 +385,39 @@ void main() {
       );
       final body = controller.document.paragraphs.single;
       final bodyText = body.text;
-      await tester.tap(_field(note));
-      final edit = tester.widget<TextField>(_field(note)).controller!;
-      edit.selection = const TextSelection(baseOffset: 0, extentOffset: 5);
+      final field = _field(note);
+      await tester.ensureVisible(field);
+      await tester.pump();
+      expect(field.hitTestable(), findsOneWidget);
+      await tester.tap(field);
+      await tester.pump();
+      final edit = tester.widget<TextField>(field).controller!;
+      final focus = tester.widget<TextField>(field).focusNode!;
+      expect(focus.hasFocus, isTrue);
+      const selection = TextSelection(baseOffset: 0, extentOffset: 5);
+      edit.selection = selection;
       await _pump(tester);
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(controller.noteEditingTarget?.selection, selection);
       await tester.tap(
         find.byKey(const ValueKey<String>('word-review-language-status')),
       );
       await _pump(tester);
       expect(find.byType(AlertDialog), findsNothing);
+      expect(tester.widget<TextField>(field).controller, same(edit));
+      expect(tester.widget<TextField>(field).focusNode, same(focus));
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(controller.noteEditingTarget?.selection, selection);
       final language = find.byKey(
         const ValueKey<String>('live-proofing-text-language'),
       );
       await tester.ensureVisible(language);
+      await tester.pump();
+      expect(language.hitTestable(), findsOneWidget);
+      expect(
+        tester.widget<DropdownButton<String>>(language).onChanged,
+        isNotNull,
+      );
       await tester.tap(language);
       await _pump(tester);
       await tester.tap(find.text('Deutsch (Deutschland)').last);
@@ -437,6 +457,22 @@ void main() {
         isTrue,
       );
       expect(provider.requests, isNotEmpty);
+      for (final size in [const Size(650, 820), const Size(1100, 820)]) {
+        await tester.binding.setSurfaceSize(size);
+        await _pump(tester);
+        expect(tester.widget<TextField>(field).controller, same(edit));
+        expect(tester.widget<TextField>(field).focusNode, same(focus));
+        expect(controller.noteEditingTarget?.note, same(note));
+        expect(controller.noteEditingTarget?.selection, selection);
+      }
+      await tester.tap(find.byKey(const ValueKey<String>('live-review-close')));
+      await _pump(tester);
+      expect(controller.reviewPaneVisible, isFalse);
+      expect(tester.widget<TextField>(field).controller, same(edit));
+      expect(tester.widget<TextField>(field).focusNode, same(focus));
+      expect(focus.hasFocus, isTrue);
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(controller.noteEditingTarget?.selection, selection);
       await _finish(tester, controller);
     });
   }
