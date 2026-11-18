@@ -6990,7 +6990,13 @@ class WordEditorController extends OfficeController {
   /// A fresh field handle at the body caret or enclosing a selection in one
   /// paragraph. A collapsed caret at a field's end belongs to the following
   /// text. Other editor stories retain their explicit field-list actions.
-  WmlZoteroField? get zoteroFieldAtCaret {
+  WmlZoteroField? get zoteroFieldAtCaret => findZoteroFieldAtCaret();
+
+  /// Resolves the current body caret using a fresh field inventory when the
+  /// caller already inspected this document during the same synchronous build.
+  /// Omit [fields] to inspect the document here. Do not retain supplied handles
+  /// across document changes or undo/redo.
+  WmlZoteroField? findZoteroFieldAtCaret({Iterable<WmlZoteroField>? fields}) {
     if (_disposed ||
         isEditingHeaderFooter ||
         isEditingComment ||
@@ -7007,7 +7013,7 @@ class WordEditorController extends OfficeController {
     }
     final paragraph = paragraphs[range.startPara];
     if (range.startIdx < 0 || range.endIdx > paragraph.text.length) return null;
-    return zoteroFields.where((field) {
+    return (fields ?? zoteroFields).where((field) {
       final index = field.paragraphs.indexOf(paragraph);
       if (index < 0) return false;
       final start = index == 0 ? field.start : 0;

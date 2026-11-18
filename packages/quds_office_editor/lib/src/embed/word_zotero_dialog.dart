@@ -65,12 +65,7 @@ Future<void> showWordZoteroDialog(
       localTransport: localTransport,
       session: session ?? ZoteroSession(),
       persistApiKey: persistApiKey,
-      initialTab: initialCommand != null
-          ? WordZoteroTab.document
-          : initialTab ??
-                (controller.zoteroFieldAtCaret == null
-                    ? WordZoteroTab.library
-                    : WordZoteroTab.document),
+      initialTab: initialTab,
       initialCommand: initialCommand,
     ),
   );
@@ -113,13 +108,15 @@ class _WordZoteroDialog extends StatefulWidget {
   final ZoteroTransport? localTransport;
   final ZoteroSession session;
   final Future<void> Function(String? apiKey)? persistApiKey;
-  final WordZoteroTab initialTab;
+  final WordZoteroTab? initialTab;
   final ZoteroCitingCommand? initialCommand;
   @override
   State<_WordZoteroDialog> createState() => _WordZoteroDialogState();
 }
 
 class _WordZoteroDialogState extends State<_WordZoteroDialog> {
+  late final WordZoteroTab _initialTab;
+  List<WmlZoteroField>? _initialFields;
   late final TextEditingController _key;
   late final TextEditingController _style;
   late final TextEditingController _locale;
@@ -174,6 +171,16 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   void initState() {
     super.initState();
     _target = _editTarget(_controller);
+    // Share the opening scan with the initial Document page. This keeps a
+    // 1000-citation document to one parse even when choosing the page from the
+    // current caret. Later builds always obtain fresh, short-lived handles.
+    final fields = _initialFields = _controller.zoteroFields;
+    _initialTab = widget.initialCommand != null
+        ? WordZoteroTab.document
+        : widget.initialTab ??
+              (_controller.findZoteroFieldAtCaret(fields: fields) == null
+                  ? WordZoteroTab.library
+                  : WordZoteroTab.document);
     _key = TextEditingController(text: _session.apiKey ?? '');
     _style = TextEditingController(text: _session.style);
     _locale = TextEditingController(text: _session.locale);
@@ -1539,7 +1546,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
           height: max(160, min(760, size.height - 32)),
           child: DefaultTabController(
             length: 3,
-            initialIndex: widget.initialTab.index,
+            initialIndex: _initialTab.index,
             child: Column(
               children: [
                 Padding(
@@ -2518,8 +2525,9 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   };
 
   Widget _documentTab() {
-    final fields = _controller.zoteroFields;
-    final current = _controller.zoteroFieldAtCaret;
+    final fields = _initialFields ?? _controller.zoteroFields;
+    _initialFields = null;
+    final current = _controller.findZoteroFieldAtCaret(fields: fields);
     // The field list already parsed every citation for this build. Reuse it
     // for action availability instead of rescanning the entire document for
     // each button, including while the Library tab is visible.

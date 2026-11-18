@@ -346,9 +346,20 @@ void main() {
         'companion',
       );
       expect(requests, isEmpty);
-      await tester.tap(
-        find.byKey(const ValueKey('zotero-connected-source-search')),
+      // Typing schedules the empty-query button's enabled-state rebuild.
+      // Wait for that frame before attempting an explicit search.
+      await tester.pump();
+      final submitSearch = find.byKey(
+        const ValueKey('zotero-connected-source-search'),
       );
+      expect(
+        tester.widget<FilledButton>(submitSearch).onPressed,
+        isNotNull,
+      );
+      await tester.ensureVisible(submitSearch);
+      await tester.pump();
+      expect(submitSearch.hitTestable(), findsOneWidget);
+      await tester.tap(submitSearch);
       await tester.pumpAndSettle();
       expect(requests, hasLength(1));
       expect(find.text('Companion study'), findsOneWidget);
