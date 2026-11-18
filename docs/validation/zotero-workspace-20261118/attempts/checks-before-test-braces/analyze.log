@@ -1,0 +1,6 @@
+Analyzing zotero_models.dart, zotero_client.dart, zotero_item_details_test.dart, word_zotero_dialog.dart, word_zotero_library.dart, word_zotero_library_details_test.dart...
+
+   info - packages/quds_office_editor/test/word_zotero_library_details_test.dart:273:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - packages/quds_office_editor/test/word_zotero_library_details_test.dart:558:11 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+2 issues found.
