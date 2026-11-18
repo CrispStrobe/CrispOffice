@@ -1,0 +1,24 @@
+commit e397671e815232847d7223314ba946d1d6740f44
+Author:     CrispStrobe <154636388+CrispStrobe@users.noreply.github.com>
+AuthorDate: Wed Nov 18 06:21:28 2026 +0100
+Commit:     CrispStrobe <154636388+CrispStrobe@users.noreply.github.com>
+CommitDate: Wed Nov 18 06:21:28 2026 +0100
+
+    Save all50 passing current-source Office consumers and verified archives [skip ci]
+    
+    Frozen source9e591cc6 passes retained40,boundary5,and frame/field5;220 accepted XMLparts. Preserve rawconsumer archives,memberhashes,recovery map,and independently checked source/runtime guards. Broadcanonical,spaCy UI,and native timing remain pending.
+
+ .../consumer-tools/pack_gate.py                    |    58 +
+ .../consumer-tools/run_consumer_gate.py            |    83 +
+ .../consumer-tools/runtime-recovery.json           | 21079 +++++++++++++++++++
+ .../consumer-tools/summarize_consumer_gates.py     |    86 +
+ .../consumer50-summary.json                        |   105 +
+ .../consumer-boundary5-9e591cc6.tar.index.json     |   588 +
+ .../consumers/consumer-boundary5-9e591cc6.tar.xz   |   Bin 0 -> 709992 bytes
+ .../consumer-current7-9e591cc6.tar.index.json      |  1113 +
+ .../consumers/consumer-current7-9e591cc6.tar.xz    |   Bin 0 -> 1241952 bytes
+ .../consumer-frame5-9e591cc6.tar.index.json        |   298 +
+ .../consumers/consumer-frame5-9e591cc6.tar.xz      |   Bin 0 -> 937168 bytes
+ .../consumer-retained33-9e591cc6.tar.index.json    |  2148 ++
+ .../consumers/consumer-retained33-9e591cc6.tar.xz  |   Bin 0 -> 1507856 bytes
+ 13 files changed, 25558 insertions(+)

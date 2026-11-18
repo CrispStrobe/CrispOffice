@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-11-18T05:44:43.089862+00:00",
+  "state": "runtime-restoration-in-progress",
+  "branch": "codex/office-local-qualification-20261118",
+  "execution_checkout": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "implementation_commit": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "non_documentation_diff_between_execution_and_implementation": [],
+  "main": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "remote_branches": 191,
+  "fetched_pr_heads": 154,
+  "new_w7_docs_head": "995a8cd500787f2fe3ae5f268201efa73a15dea6",
+  "new_office_source_to_integrate": false,
+  "prior_failed_attempt_acceptance": "rejected-preserved",
+  "prior_archive_member_audit": "complete-42-of-42",
+  "consumer_runtime_files_verified": 3504,
+  "fresh_qualification": "not-started",
+  "actions_workflow_check_status_endpoint_calls": 0,
+  "release_accepted": false
+}
