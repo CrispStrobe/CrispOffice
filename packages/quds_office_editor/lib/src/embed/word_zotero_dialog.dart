@@ -103,6 +103,7 @@ Object _editTarget(WordEditorController controller) => (
   note: controller.noteEditingTarget,
   headerFooter: controller.isEditingHeaderFooter,
   footer: controller.isEditingFooter,
+  headerFooterVariant: controller.editingHeaderFooterVariant,
   section: controller.isEditingHeaderFooter
       ? controller.editingSectionIndex
       : null,

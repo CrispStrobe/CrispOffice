@@ -618,6 +618,81 @@ final class WordProofingSession extends ChangeNotifier {
             issue.finding.originalText;
   }
 
+  /// Finds the equivalent current result after a host records already-applied
+  /// text in history. This is not permission to reuse an arbitrary stale UI
+  /// handle: the host must first validate the old handle before that boundary.
+  /// Configuration, story, complete source snapshot and finding contents must
+  /// remain identical; only one document revision may have advanced.
+  WordProofingIssue? rebindUnchangedIssue(WordProofingIssue issue) {
+    final old = issue.finding;
+    if (_disposed ||
+        old.revision + 1 != _revision() ||
+        old.documentId != _documentIds[_document()] ||
+        issue._snapshot.configuration != _configurationKey) {
+      return null;
+    }
+    WordProofingIssue? currentEquivalent() {
+      for (final candidate in _summary.issues) {
+        final finding = candidate.finding;
+        if (identical(candidate.paragraph, issue.paragraph) &&
+            candidate._snapshot.key == issue._snapshot.key &&
+            candidate.language == issue.language &&
+            finding.documentId == old.documentId &&
+            finding.blockId == old.blockId &&
+            finding.providerId == old.providerId &&
+            finding.ruleId == old.ruleId &&
+            finding.start == old.start &&
+            finding.end == old.end &&
+            finding.originalText == old.originalText &&
+            finding.message == old.message &&
+            finding.category == old.category &&
+            listEquals(finding.replacements, old.replacements) &&
+            isCurrent(candidate)) {
+          return candidate;
+        }
+      }
+      return null;
+    }
+
+    final current = currentEquivalent();
+    if (current != null) return current;
+    // The history notification publishes ordinary cached results and hides
+    // manual findings. A commit of already-checked text may retain those exact
+    // manual reports too, without running the provider again.
+    if (!(_manualService?.providers.any(
+          (provider) => provider.id == old.providerId,
+        ) ??
+        false)) {
+      return null;
+    }
+    final captured = _capture(_document());
+    final snapshot = captured.paragraphs
+        .where((entry) => identical(entry.paragraph, issue.paragraph))
+        .firstOrNull;
+    final cached = _cache[issue.paragraph];
+    if (snapshot == null ||
+        snapshot.key != issue._snapshot.key ||
+        cached == null ||
+        cached.key != snapshot.key ||
+        !cached.includesManual ||
+        cached.reports.length != snapshot.segments.length) {
+      return null;
+    }
+    final status = _summary;
+    _publishCached(
+      captured,
+      documentId: old.documentId,
+      revision: _revision(),
+      useManual: true,
+      checking: status.checking,
+      scheduled: status.scheduled,
+      finished: status.hasResults,
+    );
+    final rebound = currentEquivalent();
+    notifyListeners();
+    return rebound;
+  }
+
   bool canCorrect(WordProofingIssue issue) {
     if (!isCurrent(issue)) return false;
     return _canEditSnapshotRange(

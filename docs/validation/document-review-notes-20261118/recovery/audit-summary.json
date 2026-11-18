@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "recovery_status": "Reconstructed from observed tool stdout and successful patch calls after the filesystem sandbox exhausted storage; original receipt file cannot be read back.",
+  "captured_at_utc": "2026-11-18T20:37:34.031387+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "total_refs": 387,
+  "distinct_heads": 252,
+  "counts": {
+    "origin_branches": 211,
+    "pull_request_heads": 172,
+    "upstream_branches": 4
+  },
+  "classification": {
+    "ancestor": 359,
+    "historical_equivalent": 28
+  },
+  "coverage_heads": [
+    {
+      "ref": "refs/remotes/origin/main",
+      "sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/mail-reader-20261118",
+      "sha": "a39f786d5707af308b1f9899c3461a72e62b4b68"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-word-parity-20261118",
+      "sha": "5a68c2fdec18f723dd97e3435cd5e33a315a5006"
+    },
+    {
+      "ref": "refs/remotes/origin/codex/offline-thesaurus-20261118",
+      "sha": "7530f83a5503987dbee5b9678af56116ca98621f"
+    }
+  ],
+  "upstream_refs": [
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "historical_equivalences": {
+    "distinct_heads": 14,
+    "exact_raw_deltas": 10,
+    "identical_trees": 3,
+    "changed_file_identity_checks": 37,
+    "all_passed": true,
+    "seed": "a39f786d5707af308b1f9899c3461a72e62b4b68:docs/validation/mail-store-20261118/incoming/initial-audit.json"
+  },
+  "verification_commands": [
+    {
+      "command": "python docs/validation/document-review-notes-20261118/incoming/audit_refs.py --capture",
+      "exit_code": 0
+    },
+    {
+      "command": "python docs/validation/document-review-notes-20261118/incoming/audit_refs.py --head 8cc45db9e008330db087a4a4894806702dea6b2a",
+      "exit_code": 0
+    },
+    {
+      "command": "python docs/validation/document-review-notes-20261118/incoming/audit_refs.py --head 840809bbe23f95815a5ddcd2a7ee76c250b9fb8c",
+      "exit_code": 0
+    }
+  ],
+  "integrated_head": "840809bbe23f95815a5ddcd2a7ee76c250b9fb8c",
+  "all_historical_equivalences_verified": true,
+  "all_captured_refs_accounted_for": true,
+  "all_captured_refs_in_integrated_head": true,
+  "github_actions_or_status_calls": 0,
+  "network_calls_by_audit_script": 0,
+  "limits": "Ancestry/equivalence proof only. New Notes/controller code was not locally compiled or tested before sandbox storage failed. Full per-ref receipt remains inaccessible in local scratch and is not reproduced by this summary."
+}
