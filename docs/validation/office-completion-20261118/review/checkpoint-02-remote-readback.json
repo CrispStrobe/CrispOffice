@@ -1,0 +1,108 @@
+{
+  "observed_utc": "2026-11-18T06:16:12.787866+00:00",
+  "commit": "536ea0af12b1053b7466d95606edff52cc6ee615",
+  "parent": "eb628b66d82b809495d1391bbe36f2073fe2e772",
+  "tree": "42e63ccc45cc49ad8eb97084736f57bcd51515ff",
+  "all_files_verified": true,
+  "files": [
+    {
+      "path": "docs/validation/office-completion-20261118/README.md",
+      "bytes": 2402,
+      "git_blob": "76cc707d04cc3d0dfe97b0f7c38ceefd5250b31d",
+      "sha256": "00e98323f782d788fb3d68f148806ec7d79f16ed2594042bf2157b9478d810eb",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/flutter-runtime-restoration.tar.index.json",
+      "bytes": 6267,
+      "git_blob": "75e36bbcb03375be174459080a1f1bba8384c682",
+      "sha256": "971f974e86816f0fbd6d34d048c23a11172d7ee470411fa3275d062bddec0830",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/flutter-runtime-restoration.tar.xz",
+      "bytes": 808120,
+      "git_blob": "a018608c6bd366bfefb92fef5197fd139bb22ba0",
+      "sha256": "a32481f8e662a0588db8c2190eeee9aa6a891a5c7ba7c1891330899cced2087c",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-runtime-restoration.tar.index.json",
+      "bytes": 13774,
+      "git_blob": "452a2ab4cb129f1d227352561e432608295b88d9",
+      "sha256": "0216b04ae0dcc3d825ab9514a1efcf86dfb79c0cf98003ed57029b3718faabb2",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-runtime-restoration.tar.xz",
+      "bytes": 224324,
+      "git_blob": "f4ba1621a25e3ac73e657980026e890182bd873a",
+      "sha256": "da2a0a7aca91e076dcd448d91241ef821049d793a36ec65c375b9bf381d8b3ef",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/audit_saved_office.py",
+      "bytes": 25582,
+      "git_blob": "8dbd3f7408efa7172c8f9f21a0c47be85edadb80",
+      "sha256": "c6f7a8e8070fad23bb2e6570cad2fdc632a799ede4c746ab4c67c72f166645c5",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/checkpoint-01-remote-readback.json",
+      "bytes": 1903,
+      "git_blob": "dc3a2c402992bfaf9e6d0eae4a5714e5a760ade1",
+      "sha256": "70b41e800c4690d529fec247cb1fab36a6f5359622e99ecd2aaca968ebde3594",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/document-contract-replay.json",
+      "bytes": 12030,
+      "git_blob": "ef82d5cf9cad2183d1f6eb0cee7438edc940aa3f",
+      "sha256": "faa204499ed46e82b7ce509513c99eccc4cd719ee8f6c69f5ff3bfc6009de9e6",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/replay_document_contracts.py",
+      "bytes": 14264,
+      "git_blob": "4a317974ac673d6b838cfa82388fc9f2218fa4fe",
+      "sha256": "2df6d370081a37de7d0898630230becfc3e0e701d3aa21ec7833b675ebaa250d",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/saved-evidence-audit.json",
+      "bytes": 10774,
+      "git_blob": "73a1b0acf3d7679bfdd9eae35fb9e898b89c1f20",
+      "sha256": "1a6ce7725091ccb45c6e6abd73f68e0558642e76ef65cfe9006a4d8b99d9ef48",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/setup/snapshot_native.py",
+      "bytes": 2601,
+      "git_blob": "57f43c47f7614b1ad1b5dd2275a853e97d0bbcb6",
+      "sha256": "09af40a9233b322b673bb70c99b43d27b234d83388fd25e575edf1003043baeb",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/status.json",
+      "bytes": 1345,
+      "git_blob": "c22ec62508b041c94309bbce119e8b4e7254a02a",
+      "sha256": "3029a2bf38331571d110d43de8218f5ea65e2ee59f3e1edfd19d4d0ef62381bb",
+      "verified": true
+    }
+  ],
+  "archives": [
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/flutter-runtime-restoration.tar.xz",
+      "bytes": 808120,
+      "sha256": "a32481f8e662a0588db8c2190eeee9aa6a891a5c7ba7c1891330899cced2087c",
+      "members_verified": 35
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-runtime-restoration.tar.xz",
+      "bytes": 224324,
+      "sha256": "da2a0a7aca91e076dcd448d91241ef821049d793a36ec65c375b9bf381d8b3ef",
+      "members_verified": 78
+    }
+  ],
+  "scope": "Exact fetched Git objects; complete byte and member readback of newly added archive indexes."
+}

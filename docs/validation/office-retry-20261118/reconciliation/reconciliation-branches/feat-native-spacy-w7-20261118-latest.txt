@@ -1,0 +1,12 @@
+commit 995a8cd500787f2fe3ae5f268201efa73a15dea6
+Author:     CrispStrobe <154636388+CrispStrobe@users.noreply.github.com>
+AuthorDate: Wed Nov 18 06:41:33 2026 +0100
+Commit:     CrispStrobe <154636388+CrispStrobe@users.noreply.github.com>
+CommitDate: Wed Nov 18 06:41:33 2026 +0100
+
+    docs(spacy): preserve paired W7 resume state and execution limits [skip ci]
+
+ .../native-spacy-w7-20261118/CONTINUE.md           |  72 ++++++++++++++
+ docs/validation/native-spacy-w7-20261118/README.md |  19 +++-
+ .../checkpoint-status.json                         | 110 +++++++++++++++++++++
+ 3 files changed, 199 insertions(+), 2 deletions(-)

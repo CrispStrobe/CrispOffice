@@ -1,0 +1,15 @@
+{
+  "reason": "Shared-volume disk pressure after exact recovery and archive readback. Build-only dependencies and reproducible source/object/install duplicate removed before qualification. Trusted library, quantizer, model, native pack and required Python modules retained.",
+  "original_python_packages": 27,
+  "qualification_python_packages": 25,
+  "uninstalled_build_only": [
+    "cmake==4.4.5",
+    "ninja==1.13.2"
+  ],
+  "removed_reproducible_directories": [
+    "native-binary-recovery/CrispEmbed",
+    "native-binary-recovery/build/CMakeFiles",
+    "native-binary-recovery/install"
+  ],
+  "complete_original_recovery_archive": "/workspace/scratch/5e1b9c2fa60d/native-consumers/runtime-recovery.tar.xz"
+}

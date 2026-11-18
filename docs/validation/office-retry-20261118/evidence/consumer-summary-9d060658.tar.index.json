@@ -1,0 +1,50 @@
+{
+  "archive": "consumer-summary-9d060658.tar.xz",
+  "bytes": 4616,
+  "sha256": "9817ef9d8959d3e5a80255f6fda18a3595164692a5db1c262f9e1f7e5f8a9fef",
+  "classification": "All four current-source document consumer gates passed:50 fixture groups,220 schema parts,62 PDF artifacts; unchanged source/harness and stable package configuration",
+  "member_count": 8,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "boundary5.driver.log",
+      "bytes": 573,
+      "sha256": "585effd3521eb74b2a871b2bb8325ea371e34108f520f4ac30766e29b261dee4"
+    },
+    {
+      "path": "consumer-summary.json",
+      "bytes": 4514,
+      "sha256": "f1c4bbcfd96ae10b3ee8cf3e7e6f614b76f1ee7d7ac919baada1491100363e5b"
+    },
+    {
+      "path": "current7.driver.log",
+      "bytes": 569,
+      "sha256": "877355aabad251ae6593676f06a2ffcaa2d775bbf2cdfa679c54a1838196270e"
+    },
+    {
+      "path": "effective-paths.json",
+      "bytes": 1548,
+      "sha256": "840a859e6da6fe79911b8e2eaf5c5c6f92759ca2fff955fcaf0e254dced1688b"
+    },
+    {
+      "path": "frame5.driver.log",
+      "bytes": 557,
+      "sha256": "9e8c4fc33f930c6c70c8713a8115ae2c6da25bab5a25b7c56fa138d3810fa9ed"
+    },
+    {
+      "path": "retained33.driver.log",
+      "bytes": 579,
+      "sha256": "560f90c6fc8524280e96c9a2b9128c3a2a93b6b7b5e95386f25729d550cdc133"
+    },
+    {
+      "path": "run_consumers_after_supplemental.py",
+      "bytes": 4147,
+      "sha256": "6b7f875b893faa880257ebae4fcc0ce8ecf418a9dff99b2c57aacd0d8255c1c2"
+    },
+    {
+      "path": "sequence.json",
+      "bytes": 5186,
+      "sha256": "448605722cea521358fad0125ff5fefffa22983eb329ed62ec5a9a59927d6941"
+    }
+  ]
+}

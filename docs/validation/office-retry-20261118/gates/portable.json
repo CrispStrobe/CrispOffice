@@ -1,0 +1,21 @@
+{
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "passed": true,
+  "input_integrity": {
+    "dependencies_unchanged": true,
+    "harness_unchanged": true,
+    "node_unchanged": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "outer_exit_code": 0,
+  "duration_seconds": 98.31053306800004,
+  "selected_files": 17,
+  "outcomes": {
+    "success": 225
+  },
+  "raw_successes": 225,
+  "substantive_successes": 225
+}

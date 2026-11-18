@@ -1,0 +1,88 @@
+{
+  "archive": "flutter-runtime-recovery.tar.xz",
+  "archive_sha256": "58402817d7db88f96cf30d2433bff6f3e8bff577bc7c44182b98d8b645707bd9",
+  "archive_bytes": 123628,
+  "members": [
+    {
+      "path": "runtime/commands.json",
+      "bytes": 743,
+      "sha256": "fc6cf70f0becb7a7b24e602338449911c1ca31df0612a9bc2d3ae138ca376ecd"
+    },
+    {
+      "path": "runtime/flutter-install-receipt.json",
+      "bytes": 392122,
+      "sha256": "fd109d690d48143378cf28137ea9fc4be5d7491c28a27d09e5c694cd65b5e697"
+    },
+    {
+      "path": "runtime/flutter-shallow-identity.json",
+      "bytes": 979655,
+      "sha256": "187b9ccbfedf2ddffe6df8de8ddf1d88343b5027e84fbc162057713c9ffc400e"
+    },
+    {
+      "path": "runtime/flutter-tools-offline.log",
+      "bytes": 1174,
+      "sha256": "91accc12b69da31fba07bd65253e5e645e0d015907e0eb3507cce32c54264e43"
+    },
+    {
+      "path": "runtime/flutter-version.log",
+      "bytes": 631,
+      "sha256": "167668e5c06f130170c9c23c8bdf8165300ec77be4655a8e57d01c0c701822df"
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "bytes": 78540,
+      "sha256": "52b1728948b3e5801cd80ce4f6b58d0009522f5cad3271e6d52067e436160758"
+    },
+    {
+      "path": "runtime/ready.json",
+      "bytes": 985,
+      "sha256": "2d5b88fa11074d08f262af85a0148eaf44fcca83fea0e3ed0fec0a40e4025a90"
+    },
+    {
+      "path": "setup/restore_flutter.py",
+      "bytes": 6401,
+      "sha256": "726642262e5aae3e15925c9653cdedd0c7d9931188e8a256bcc0f1abd66dff50"
+    },
+    {
+      "path": "setup/restore_compact_flutter.py",
+      "bytes": 9172,
+      "sha256": "a231a116361356cbb3242fc2fdb0a131a5c7b06d25e3c4686a8074c6df87a4c6"
+    },
+    {
+      "path": "setup/restore-adaptation.json",
+      "bytes": 517,
+      "sha256": "aa45e3ef61ea989693c8129ef4772ccca81928a8234c8167f5778c27d82d2c70"
+    },
+    {
+      "path": "setup/compact-restoration-plan.json",
+      "bytes": 2005,
+      "sha256": "d8cf2711e7b8e6ba8f6a1745556af199cab74fde73fc4b8fc9a5f2b48c30944a"
+    },
+    {
+      "path": "setup/restore.log",
+      "bytes": 418,
+      "sha256": "5156ece63454b7320fba346ccba9ffccf360b260c2f92dd9536ee979b1238334"
+    },
+    {
+      "path": "setup/restore-compact.log",
+      "bytes": 495,
+      "sha256": "8cdb1f9c62cd1af8024985a86dd3ed218ac171edec7244c00d9b2c31dc666abb"
+    },
+    {
+      "path": "setup/restore-compact-resume.log",
+      "bytes": 273,
+      "sha256": "76a640934a6af9a818aee8d77f190567a9a2b28267cc4604d87d3e4309874f19"
+    },
+    {
+      "path": "workspace/setup.json",
+      "bytes": 26072,
+      "sha256": "870384f9383e2397eff34d9a4714312e15d520eb8dbecda837b094d4f84f18c0"
+    },
+    {
+      "path": "workspace/setup.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ],
+  "scope": "Verified exact official runtime identity and all pinned dependency archive hashes, with explicitly documented omissions of unrelated SDK/dependency development artifacts. Recovery only; fresh qualification outcomes separately recorded."
+}

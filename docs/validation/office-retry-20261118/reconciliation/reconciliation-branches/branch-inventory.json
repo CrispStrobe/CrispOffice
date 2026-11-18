@@ -1,0 +1,621 @@
+{
+  "fetchedAt": "2026-11-18T05:41:35.908Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "count": 191,
+  "pages": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "branches": [
+          {
+            "branch": "codex/aot-daemon-free-20261117"
+          },
+          {
+            "branch": "codex/aot-proofing-analysis-20261117"
+          },
+          {
+            "branch": "codex/gector-office-resume-20261117"
+          },
+          {
+            "branch": "codex/german-morphology-20261117"
+          },
+          {
+            "branch": "codex/odf-annotation-visibility-20261117"
+          },
+          {
+            "branch": "codex/odt-column-boundary-followup-20261117"
+          },
+          {
+            "branch": "codex/odt-field-continuation-20261117"
+          },
+          {
+            "branch": "codex/office-consolidation-20261117"
+          },
+          {
+            "branch": "codex/office-continuation-20261117"
+          },
+          {
+            "branch": "codex/office-continue-20261118"
+          },
+          {
+            "branch": "codex/office-fidelity-20261117"
+          },
+          {
+            "branch": "codex/office-fidelity-improvements-20261117-e1978379"
+          },
+          {
+            "branch": "codex/office-local-qualification-20261118"
+          },
+          {
+            "branch": "codex/office-qualified-resume-20261117"
+          },
+          {
+            "branch": "codex/office-reconciled-20261117"
+          },
+          {
+            "branch": "codex/office-resume-20261118"
+          },
+          {
+            "branch": "codex/office-union-qualification-20261117"
+          },
+          {
+            "branch": "codex/office-union-resume-20261118"
+          },
+          {
+            "branch": "codex/proofing-20261116-resume"
+          },
+          {
+            "branch": "codex/proofing-20261116"
+          },
+          {
+            "branch": "codex/proofing-en-de-20261116"
+          },
+          {
+            "branch": "codex/proofing-en-de-20261117"
+          },
+          {
+            "branch": "codex/proofing-en-hyphenation-20261116"
+          },
+          {
+            "branch": "codex/proofing-german-quality-20261116"
+          },
+          {
+            "branch": "codex/proofing-harper-source-20261116"
+          },
+          {
+            "branch": "codex/terminal-integration-ods-20261116"
+          },
+          {
+            "branch": "codex/terminal-recovery-office-20261116"
+          },
+          {
+            "branch": "codex/terminal-sharing-office-20261116"
+          },
+          {
+            "branch": "codex/text-rendering-20261116-continuation"
+          },
+          {
+            "branch": "codex/text-rendering-20261116"
+          },
+          {
+            "branch": "codex/zotero-capabilities-20261116"
+          },
+          {
+            "branch": "codex/zotero-optimization-20261116"
+          },
+          {
+            "branch": "codex/zotero-recovery-20261116"
+          },
+          {
+            "branch": "codex/zotero-support-20261115"
+          },
+          {
+            "branch": "codex/zotero-support-20261116"
+          },
+          {
+            "branch": "docs/aot-removal"
+          },
+          {
+            "branch": "docs/build30-validation-20261117"
+          },
+          {
+            "branch": "docs/conditional-top-bottom"
+          },
+          {
+            "branch": "docs/current-office-capabilities"
+          },
+          {
+            "branch": "docs/filter-operators"
+          },
+          {
+            "branch": "docs/filters-closed"
+          },
+          {
+            "branch": "docs/metadata-closed"
+          },
+          {
+            "branch": "docs/metadata-complete"
+          },
+          {
+            "branch": "docs/native-spacy-handoff-20261117"
+          },
+          {
+            "branch": "docs/odp-presentation-writer"
+          },
+          {
+            "branch": "docs/odp-transitions"
+          },
+          {
+            "branch": "docs/ods-color-scale"
+          },
+          {
+            "branch": "docs/ods-data-bar"
+          },
+          {
+            "branch": "docs/ods-dynamic-validation"
+          },
+          {
+            "branch": "docs/ods-filter-predicates"
+          },
+          {
+            "branch": "docs/ods-header-footer"
+          },
+          {
+            "branch": "docs/ods-icon-sets"
+          },
+          {
+            "branch": "docs/ods-row-groups"
+          },
+          {
+            "branch": "docs/ods-writer-images"
+          },
+          {
+            "branch": "docs/odt-frame-size"
+          },
+          {
+            "branch": "docs/odt-image-registry"
+          },
+          {
+            "branch": "docs/odt-odp-rows"
+          },
+          {
+            "branch": "docs/page-setup-fix"
+          },
+          {
+            "branch": "docs/readme-remaining-gaps"
+          },
+          {
+            "branch": "docs/remaining-gaps"
+          },
+          {
+            "branch": "docs/sheet-page-setup"
+          },
+          {
+            "branch": "docs/validation-complete"
+          },
+          {
+            "branch": "docs/validation-operators"
+          },
+          {
+            "branch": "feat/conditional-affix"
+          },
+          {
+            "branch": "feat/conditional-between"
+          },
+          {
+            "branch": "feat/conditional-dxf"
+          },
+          {
+            "branch": "feat/conditional-dxf-styles"
+          },
+          {
+            "branch": "feat/conditional-operators"
+          },
+          {
+            "branch": "feat/conditional-text"
+          },
+          {
+            "branch": "feat/conditional-top-bottom"
+          },
+          {
+            "branch": "feat/german-context-20261117"
+          },
+          {
+            "branch": "feat/german-gector-proofing"
+          },
+          {
+            "branch": "feat/german-morphology-completion-20261117"
+          },
+          {
+            "branch": "feat/grammar-release-20261117"
+          },
+          {
+            "branch": "feat/native-spacy-reference-20261117"
+          },
+          {
+            "branch": "feat/native-spacy-w7-20261118"
+          },
+          {
+            "branch": "feat/odf-metadata"
+          },
+          {
+            "branch": "feat/odf-story-fidelity"
+          },
+          {
+            "branch": "feat/odp-chart-data"
+          },
+          {
+            "branch": "feat/odp-presentation-writer"
+          },
+          {
+            "branch": "feat/odp-preset-shapes"
+          },
+          {
+            "branch": "feat/odp-shape-links"
+          },
+          {
+            "branch": "feat/odp-transitions"
+          },
+          {
+            "branch": "feat/ods-color-scale"
+          },
+          {
+            "branch": "feat/ods-conditional"
+          },
+          {
+            "branch": "feat/ods-custom-validation"
+          },
+          {
+            "branch": "feat/ods-data-bar"
+          },
+          {
+            "branch": "feat/ods-default-geometry"
+          },
+          {
+            "branch": "feat/ods-default-style"
+          },
+          {
+            "branch": "feat/ods-dynamic-validation-links"
+          },
+          {
+            "branch": "feat/ods-filter-conditions"
+          },
+          {
+            "branch": "feat/ods-filter-operators"
+          },
+          {
+            "branch": "feat/ods-filter-predicates"
+          },
+          {
+            "branch": "feat/ods-header-footer"
+          },
+          {
+            "branch": "feat/ods-hyperlinks"
+          },
+          {
+            "branch": "feat/ods-icon-sets"
+          },
+          {
+            "branch": "feat/ods-images"
+          },
+          {
+            "branch": "feat/ods-metadata"
+          },
+          {
+            "branch": "feat/ods-named-expressions"
+          },
+          {
+            "branch": "feat/ods-outline"
+          }
+        ],
+        "cursor": "MTAw"
+      },
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "branches": [
+          {
+            "branch": "feat/ods-row-groups"
+          },
+          {
+            "branch": "feat/ods-tab-color"
+          },
+          {
+            "branch": "feat/ods-time-period-conditions"
+          },
+          {
+            "branch": "feat/ods-validation-messages"
+          },
+          {
+            "branch": "feat/ods-validation-operators"
+          },
+          {
+            "branch": "feat/ods-validations"
+          },
+          {
+            "branch": "feat/ods-writer"
+          },
+          {
+            "branch": "feat/ods-writer-conditional"
+          },
+          {
+            "branch": "feat/ods-writer-images"
+          },
+          {
+            "branch": "feat/ods-writer-metadata"
+          },
+          {
+            "branch": "feat/odt-columns"
+          },
+          {
+            "branch": "feat/odt-comments"
+          },
+          {
+            "branch": "feat/odt-document-writer"
+          },
+          {
+            "branch": "feat/odt-fields"
+          },
+          {
+            "branch": "feat/odt-first-even-headers"
+          },
+          {
+            "branch": "feat/odt-footnotes"
+          },
+          {
+            "branch": "feat/odt-links-bookmarks"
+          },
+          {
+            "branch": "feat/odt-lists"
+          },
+          {
+            "branch": "feat/odt-nested-lists"
+          },
+          {
+            "branch": "feat/odt-ordered-lists"
+          },
+          {
+            "branch": "feat/odt-page-fields"
+          },
+          {
+            "branch": "feat/odt-paragraph-breaks"
+          },
+          {
+            "branch": "feat/odt-paragraph-shading"
+          },
+          {
+            "branch": "feat/odt-sections2"
+          },
+          {
+            "branch": "feat/odt-tab-stops"
+          },
+          {
+            "branch": "feat/odt-table-borders"
+          },
+          {
+            "branch": "feat/odt-toc"
+          },
+          {
+            "branch": "feat/office-proofing-followup-20261117"
+          },
+          {
+            "branch": "feat/sheet-hidden-sheets"
+          },
+          {
+            "branch": "feat/sheet-hidden-state"
+          },
+          {
+            "branch": "feat/sheet-page-setup"
+          },
+          {
+            "branch": "fix/ods-global-validations-20261116"
+          },
+          {
+            "branch": "fix/ods-writer-page-layout"
+          },
+          {
+            "branch": "fix/odt-inline-fields"
+          },
+          {
+            "branch": "fix/sdt-multi-section-control"
+          },
+          {
+            "branch": "fix/sdt-trailing-section-break"
+          },
+          {
+            "branch": "fix/utf16-custom-xml"
+          },
+          {
+            "branch": "fix/word-dialog-focus-rendering-20261116"
+          },
+          {
+            "branch": "integrate/aot-then-remove-20261117"
+          },
+          {
+            "branch": "integrate/codex-office-continuation-20261117"
+          },
+          {
+            "branch": "integrate/odt-column-boundary-144"
+          },
+          {
+            "branch": "integrate/office-union-148"
+          },
+          {
+            "branch": "integrate/office-union-150"
+          },
+          {
+            "branch": "main"
+          },
+          {
+            "branch": "vendor/conditional-dxf-styles"
+          },
+          {
+            "branch": "vendor/conditional-top-bottom"
+          },
+          {
+            "branch": "vendor/odf-metadata"
+          },
+          {
+            "branch": "vendor/odp-chart-data"
+          },
+          {
+            "branch": "vendor/odp-presentation-writer"
+          },
+          {
+            "branch": "vendor/odp-preset-shapes"
+          },
+          {
+            "branch": "vendor/odp-shape-links"
+          },
+          {
+            "branch": "vendor/odp-transitions"
+          },
+          {
+            "branch": "vendor/ods-custom-validation"
+          },
+          {
+            "branch": "vendor/ods-filter-conditions"
+          },
+          {
+            "branch": "vendor/ods-filter-conditions-correct"
+          },
+          {
+            "branch": "vendor/ods-filter-operators"
+          },
+          {
+            "branch": "vendor/ods-filter-predicates"
+          },
+          {
+            "branch": "vendor/ods-header-footer"
+          },
+          {
+            "branch": "vendor/ods-hyperlinks"
+          },
+          {
+            "branch": "vendor/ods-hyperlinks-current"
+          },
+          {
+            "branch": "vendor/ods-metadata"
+          },
+          {
+            "branch": "vendor/ods-metadata-zotero"
+          },
+          {
+            "branch": "vendor/ods-named-expressions"
+          },
+          {
+            "branch": "vendor/ods-outline"
+          },
+          {
+            "branch": "vendor/ods-row-groups"
+          },
+          {
+            "branch": "vendor/ods-tab-color"
+          },
+          {
+            "branch": "vendor/ods-validation"
+          },
+          {
+            "branch": "vendor/ods-validation-current"
+          },
+          {
+            "branch": "vendor/ods-validation-messages"
+          },
+          {
+            "branch": "vendor/ods-writer"
+          },
+          {
+            "branch": "vendor/ods-writer-conditional"
+          },
+          {
+            "branch": "vendor/ods-writer-images"
+          },
+          {
+            "branch": "vendor/ods-writer-metadata"
+          },
+          {
+            "branch": "vendor/ods-writer-page-layout"
+          },
+          {
+            "branch": "vendor/odt-columns"
+          },
+          {
+            "branch": "vendor/odt-comments"
+          },
+          {
+            "branch": "vendor/odt-document-writer"
+          },
+          {
+            "branch": "vendor/odt-fields"
+          },
+          {
+            "branch": "vendor/odt-footnotes"
+          },
+          {
+            "branch": "vendor/odt-links-bookmarks"
+          },
+          {
+            "branch": "vendor/odt-lists"
+          },
+          {
+            "branch": "vendor/odt-nested-lists"
+          },
+          {
+            "branch": "vendor/odt-ordered-lists"
+          },
+          {
+            "branch": "vendor/odt-ordered-lists2"
+          },
+          {
+            "branch": "vendor/odt-page-fields"
+          },
+          {
+            "branch": "vendor/odt-paragraph-breaks"
+          },
+          {
+            "branch": "vendor/odt-paragraph-shading"
+          },
+          {
+            "branch": "vendor/odt-sections"
+          },
+          {
+            "branch": "vendor/odt-tab-stops"
+          },
+          {
+            "branch": "vendor/odt-table-borders"
+          },
+          {
+            "branch": "vendor/sheet-page-setup"
+          }
+        ],
+        "cursor": "MTkx"
+      },
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "branches": [],
+        "cursor": null
+      },
+      "isError": false
+    }
+  ]
+}

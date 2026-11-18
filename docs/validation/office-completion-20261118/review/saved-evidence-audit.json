@@ -1,0 +1,307 @@
+{
+  "accepted": true,
+  "archives": {
+    "boundary5-9d060658": {
+      "bytes": 704284,
+      "index_sha256": "e730b3e680a5d93bf71ceffacccbed242384fa8894daf73b2542dac9a41be223",
+      "members_verified": 115,
+      "sha256": "8d9095eb8411eb211e131d34e3003c64c81aeb494bd0c9ba7e10b97398fd0968"
+    },
+    "calendar-timezones-9d060658": {
+      "bytes": 509372,
+      "index_sha256": "fddd3e2398b2b458aa5c19a32e0e103fb89af0084e87b34d39bda96017e606fa",
+      "members_verified": 23,
+      "sha256": "fa16b563cbb9b625a80640dce0ce4b92ca4535b0d647d6058c67472d44ebfff1"
+    },
+    "canonical-checkpoint-01": {
+      "bytes": 632028,
+      "index_sha256": "135535cd23836711ca40e4bdca12500f2276ca85ec4793b454e44843e9685afb",
+      "members_verified": 33,
+      "sha256": "3239bb9193f536e279af08391b3d95fbea38c51f884e7b44e5e853c78be0b365"
+    },
+    "canonical-complete": {
+      "bytes": 1038316,
+      "index_sha256": "d28ad7dd49f8672503d3a368986842fabd0f7a7812951fe0b559ad528d339a00",
+      "members_verified": 90,
+      "sha256": "be96febc6849fc31a365dc4a4fa96c759d080565555a7feeea7c942ef74d55dc"
+    },
+    "consumer-runtime-readiness": {
+      "bytes": 234608,
+      "index_sha256": "9d33edf5ddbc931685cde2564996dc6b4fa186c404a297a3a2d62b17b2f17fdc",
+      "members_verified": 26,
+      "sha256": "9af43704f93cd2f1530c6b72af8295bf15f5ec30ebaccf68061dace32f644b13"
+    },
+    "consumer-summary-9d060658": {
+      "bytes": 4616,
+      "index_sha256": "6afadd373c6130606e0a0565d0cbbe4e064486769114045288bbf1207f6ad853",
+      "members_verified": 8,
+      "sha256": "9817ef9d8959d3e5a80255f6fda18a3595164692a5db1c262f9e1f7e5f8a9fef"
+    },
+    "current7-9d060658": {
+      "bytes": 1247016,
+      "index_sha256": "da96d3d9ebebbe99b8fee7f7cc3b5103f58a3edc26bed32e10685af43295a45b",
+      "members_verified": 220,
+      "sha256": "e77378d40c7761a45583ac078a6e05e476eb8635e20ec2093e94c7dba5710a6d"
+    },
+    "editor-example-9d060658": {
+      "bytes": 506268,
+      "index_sha256": "f6ae7fe49e540ecfc3ecc08f808b507cdc995c2279273e50d2cb355b025e8f5f",
+      "members_verified": 9,
+      "sha256": "3764ba4865d6df0dfc568139714add8b730fd00935f2644042f249413eb1f093"
+    },
+    "flutter-restoration": {
+      "bytes": 805712,
+      "index_sha256": "416dda91c831eac9e1c76748c2634b2e51058f52f7ecffd759560be7ca07de17",
+      "members_verified": 32,
+      "sha256": "059e0447e37f86f735cdd80d5965caef46a762a873e2f3a04831d231a40381ba"
+    },
+    "frame5-9d060658": {
+      "bytes": 930512,
+      "index_sha256": "143521ee6625f9bae090fdca608b4566405eb553a72ce662c3da4fe0363fc31d",
+      "members_verified": 91,
+      "sha256": "2c72c30cf4e1d690f958937c216fae1145154cb1c30930b39ba2fb698a909dbf"
+    },
+    "native-prepare-9d060658": {
+      "bytes": 640428,
+      "index_sha256": "6ec84cdd9d928721ff8719b6b8328a40b8249606dd4b68e9b84a97c27db4e757",
+      "members_verified": 17,
+      "sha256": "6019ff89005687dc8d8554aa0beb893054b3b103867fe63888acc3e16d67dc56"
+    },
+    "native-runtime-recovery-20261118-resume": {
+      "bytes": 63256,
+      "index_sha256": "4224829699e377a1d59c0c7946c4f0018d292dd2ffad471ac8c6b8680e0993b4",
+      "members_verified": 45,
+      "sha256": "3c7012849580730d88ff219f4d660a0338c3a939961c5dbdd7d7c8cbfc757595"
+    },
+    "portable-9d060658": {
+      "bytes": 522200,
+      "index_sha256": "d50b403deaf6e85b3be53c1c9720b2c1e2de67ce89c47242abc069b4c32c17da",
+      "members_verified": 9,
+      "sha256": "8eb94b3f4fcc65c85706fe8854a4e6fc3e0158dab5018008d6c403121884860a"
+    },
+    "retained33-9d060658": {
+      "bytes": 1512684,
+      "index_sha256": "e5fad9cdaca4e60542fc99889aea44960ad943d43fa6db0d6bb156a47d50b81d",
+      "members_verified": 427,
+      "sha256": "60c595577df2ca9028d1d02a867a5f7f4ac4d5079cf896b803400756a0f4fdfd"
+    }
+  },
+  "audit_script_sha256": "c6f7a8e8070fad23bb2e6570cad2fdc632a799ede4c746ab4c67c72f166645c5",
+  "canonical": {
+    "cohorts": {
+      "editor-integration": {
+        "excluded_private_cases": [],
+        "hidden_loaders": 61,
+        "raw_successes": 415,
+        "selected_suites": 37,
+        "substantive_successes": 415,
+        "unexpected_skips": 0
+      },
+      "editor-zotero": {
+        "excluded_private_cases": [],
+        "hidden_loaders": 13,
+        "raw_successes": 186,
+        "selected_suites": 13,
+        "substantive_successes": 186,
+        "unexpected_skips": 0
+      },
+      "engine-integration": {
+        "excluded_private_cases": [
+          {
+            "matched_case_name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+            "test_id": 1273
+          },
+          {
+            "matched_case_name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+            "test_id": 1277
+          }
+        ],
+        "hidden_loaders": 138,
+        "raw_successes": 2965,
+        "selected_suites": 138,
+        "substantive_successes": 2963,
+        "unexpected_skips": 0
+      },
+      "engine-zotero": {
+        "excluded_private_cases": [],
+        "hidden_loaders": 19,
+        "raw_successes": 390,
+        "selected_suites": 19,
+        "substantive_successes": 390,
+        "unexpected_skips": 0
+      },
+      "gector-contract": {
+        "excluded_private_cases": [],
+        "hidden_loaders": 38,
+        "raw_successes": 251,
+        "selected_suites": 14,
+        "substantive_successes": 251,
+        "unexpected_skips": 0
+      },
+      "harper-contract": {
+        "excluded_private_cases": [],
+        "hidden_loaders": 3,
+        "raw_successes": 29,
+        "selected_suites": 3,
+        "substantive_successes": 29,
+        "unexpected_skips": 0
+      }
+    },
+    "input_integrity": {
+      "dependencies": {
+        "byte_identical": true,
+        "count": 3,
+        "sha256": "615c8c96a817517a35c5e55c12c84d65fb2e96b6e78bcc03ce5772a7a090f837"
+      },
+      "harness": {
+        "byte_identical": true,
+        "count": 12,
+        "sha256": "6c46f0fedfe2c95248d017891898a49fc9699144d0fbe46089c36667ed074de7"
+      },
+      "runtime": {
+        "byte_identical": true,
+        "count": 13,
+        "sha256": "f863e7cd1e857f2d143cad47d255e13df26a4e785e5af833603c8c3bad7edabc"
+      },
+      "source": {
+        "byte_identical": true,
+        "count": 4,
+        "sha256": "12ef37fe99574747b08c412e1f78e09724e3f4721d54a45ac43c90aea85fa4b0"
+      },
+      "system": {
+        "byte_identical": true,
+        "count": 8,
+        "sha256": "cd0044282c6f479fcab82737f6b60281e2a87bd04f3433f8ce5381c83e79cc1a"
+      },
+      "workspace": {
+        "byte_identical": true,
+        "count": 118,
+        "sha256": "4b6463a91d1dcc4f9ce6db043064c4cacf4955427703c157f9bc87b11e1b47a3"
+      }
+    },
+    "python_controls": 117,
+    "raw_successes": 4236,
+    "substantive_successes": 4234
+  },
+  "checks": 8381,
+  "completed_utc": "2026-11-18T06:13:09.040171+00:00",
+  "document_consumers_and_native_prepare": {
+    "boundary5": {
+      "accepted": true,
+      "bounded_controls": 1,
+      "command_count": 21,
+      "docx_reopens": 10,
+      "fixtures": 5,
+      "guard_runtime_files": 10091,
+      "guard_source_files": 2010,
+      "packages_with_valid_crc": 25,
+      "pdf_variants": 15,
+      "scope": "Four repaired section-boundary layouts plus one bounded native page-precedence/no-regression control; not five fully equivalent native document layouts.",
+      "strict_layouts": 4
+    },
+    "current7": {
+      "accepted": true,
+      "command_count": 61,
+      "failed": 0,
+      "fixtures": 7,
+      "guard_runtime_files": 10091,
+      "guard_source_files": 2010,
+      "lxml_false_negatives": 3,
+      "packages_with_valid_crc": 16,
+      "passed": 7,
+      "schema_parts_passed": 28,
+      "schema_parts_total": 28
+    },
+    "frame5": {
+      "accepted": true,
+      "command_count": 41,
+      "fixtures": 5,
+      "guard_runtime_files": 10093,
+      "guard_source_files": 2010,
+      "lxml_false_negatives": 1,
+      "packages_with_valid_crc": 10,
+      "passed": 5,
+      "schema_parts_passed": 20,
+      "scope": "Five final-writer generated packages in one installed headless LibreOffice build; no arbitrary imported ODF fidelity claim."
+    },
+    "native-prepare": {
+      "accepted": true,
+      "aot_build_passed": true,
+      "audit_controls": 23,
+      "guard_runtime_files": 10096,
+      "sweep_accepted": false
+    },
+    "retained33": {
+      "accepted": true,
+      "command_count": 107,
+      "failed": 0,
+      "fixtures": 33,
+      "guard_runtime_files": 10091,
+      "guard_source_files": 2010,
+      "packages_with_valid_crc": 68,
+      "passed": 33,
+      "schema_parts_passed": 132,
+      "schema_parts_total": 132
+    }
+  },
+  "evidence_commit": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+  "execution_source": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "findings": [],
+  "github_actions_endpoints_queried": 0,
+  "implementation_source": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "limitations": [
+    "Archive audit validates the saved run; it does not assert that a newly restored runtime has the same bytes.",
+    "Consumer assertions are inspected here; a separate offline replay can verify measured archived outputs against the preserved contracts.",
+    "Native preparation is not native semantic qualification.",
+    "Boundary5 includes one bounded control; document render results are LibreOffice, not Microsoft Word."
+  ],
+  "prior_independent_reviews": {
+    "canonical": {
+      "accepted": true,
+      "checks": 5747,
+      "sha256": "b19452004a419fb16d59ad148942abb1eb212fba019db5c6c4cc9989cdc784ef"
+    },
+    "supplemental": {
+      "accepted": true,
+      "checks": 9301,
+      "sha256": "7b576f17acfae3c020a9cbd3e971de4a3bb5b886b293978e9938aaf80e275ee3"
+    }
+  },
+  "product_gates_rerun": false,
+  "qualification_accepted": false,
+  "release_accepted": false,
+  "remaining_product_gate": "native serial 1/2/4/8-thread sweep with independent semantic audit",
+  "schema": "quds.office.saved_evidence_audit.v1",
+  "source_differences_are_documentation_only": true,
+  "source_files_bound_to_git": 3514,
+  "source_tree": "62c0dced2a33de6519b6e9e2c97e42e2edae1857",
+  "started_utc": "2026-11-18T06:12:59.930486+00:00",
+  "supplemental": {
+    "calendar-timezones": {
+      "additional_unique_tests": 0,
+      "test_executions": 24,
+      "zones": [
+        "UTC",
+        "Europe/Berlin",
+        "America/Los_Angeles"
+      ]
+    },
+    "editor-example": {
+      "excluded_private_cases": [],
+      "hidden_loaders": 1,
+      "raw_successes": 2,
+      "selected_suites": 1,
+      "substantive_successes": 2,
+      "unexpected_skips": 0
+    },
+    "portable": {
+      "excluded_private_cases": [],
+      "hidden_loaders": 17,
+      "raw_successes": 225,
+      "selected_suites": 17,
+      "substantive_successes": 225,
+      "unexpected_skips": 0
+    }
+  },
+  "total_verified_archive_members": 1145
+}

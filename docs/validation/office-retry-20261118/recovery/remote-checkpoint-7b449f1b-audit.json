@@ -1,0 +1,112 @@
+{
+  "schema": "quds.office.remote-canonical-readback.v1",
+  "commit": "7b449f1b2fde63d7c9c5f138a84f09358b6a7c20",
+  "completed_utc": "2026-11-18T06:00:32.851267+00:00",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "retrieval": "GitHub plugin fetch_file immutable ref; archive encoding base64; no producer local Git blobs",
+  "local_producer_git_objects_used": false,
+  "remote_archive_url": "https://github.com/CrispStrobe/quds_office_suite/blob/7b449f1b2fde63d7c9c5f138a84f09358b6a7c20/docs/validation/office-retry-20261118/evidence/canonical-complete.tar.xz",
+  "archive_bytes": 1038316,
+  "archive_sha256": "be96febc6849fc31a365dc4a4fa96c759d080565555a7feeea7c942ef74d55dc",
+  "archive_git_blob_sha": "6b9120b669b56d09f7b40ec72125d4d7ff10065a",
+  "index_sha256": "d28ad7dd49f8672503d3a368986842fabd0f7a7812951fe0b559ad528d339a00",
+  "review_sha256": "b19452004a419fb16d59ad148942abb1eb212fba019db5c6c4cc9989cdc784ef",
+  "all_remote_git_blob_identities_verified": true,
+  "members_verified": 90,
+  "all_members_match_remote_index": true,
+  "canonical_qualification_accepted": true,
+  "overall_office_qualification_accepted": false,
+  "supplemental_acceptance": "separate gates pending; not asserted by this audit",
+  "commands_verified": 13,
+  "input_integrity": {
+    "source": {
+      "sha256": "12ef37fe99574747b08c412e1f78e09724e3f4721d54a45ac43c90aea85fa4b0",
+      "byte_identical": true
+    },
+    "dependencies": {
+      "sha256": "615c8c96a817517a35c5e55c12c84d65fb2e96b6e78bcc03ce5772a7a090f837",
+      "byte_identical": true
+    },
+    "runtime": {
+      "sha256": "f863e7cd1e857f2d143cad47d255e13df26a4e785e5af833603c8c3bad7edabc",
+      "byte_identical": true
+    },
+    "workspace": {
+      "sha256": "4b6463a91d1dcc4f9ce6db043064c4cacf4955427703c157f9bc87b11e1b47a3",
+      "byte_identical": true
+    },
+    "system": {
+      "sha256": "cd0044282c6f479fcab82737f6b60281e2a87bd04f3433f8ce5381c83e79cc1a",
+      "byte_identical": true
+    },
+    "harness": {
+      "sha256": "6c46f0fedfe2c95248d017891898a49fc9699144d0fbe46089c36667ed074de7",
+      "byte_identical": true
+    }
+  },
+  "cohorts": {
+    "engine-zotero": {
+      "selected_files": 19,
+      "raw_visible_successes": 390,
+      "excluded_private_fixture_early_returns": 0,
+      "substantive_successes": 390,
+      "skipped": 0,
+      "errors": 0,
+      "runner_completed_successfully": true
+    },
+    "editor-zotero": {
+      "selected_files": 13,
+      "raw_visible_successes": 186,
+      "excluded_private_fixture_early_returns": 0,
+      "substantive_successes": 186,
+      "skipped": 0,
+      "errors": 0,
+      "runner_completed_successfully": true
+    },
+    "engine-integration": {
+      "selected_files": 138,
+      "raw_visible_successes": 2965,
+      "excluded_private_fixture_early_returns": 2,
+      "substantive_successes": 2963,
+      "skipped": 0,
+      "errors": 0,
+      "runner_completed_successfully": true
+    },
+    "editor-integration": {
+      "selected_files": 37,
+      "raw_visible_successes": 415,
+      "excluded_private_fixture_early_returns": 0,
+      "substantive_successes": 415,
+      "skipped": 0,
+      "errors": 0,
+      "runner_completed_successfully": true
+    },
+    "harper-contract": {
+      "selected_files": 3,
+      "raw_visible_successes": 29,
+      "excluded_private_fixture_early_returns": 0,
+      "substantive_successes": 29,
+      "skipped": 0,
+      "errors": 0,
+      "runner_completed_successfully": true
+    },
+    "gector-contract": {
+      "selected_files": 14,
+      "raw_visible_successes": 251,
+      "excluded_private_fixture_early_returns": 0,
+      "substantive_successes": 251,
+      "skipped": 0,
+      "errors": 0,
+      "runner_completed_successfully": true
+    }
+  },
+  "unique_selected_test_files": 224,
+  "raw_runner_success_total": 4236,
+  "substantive_success_total": 4234,
+  "python_controls": 117,
+  "skipped_tests": 0,
+  "tests_rerun": false,
+  "source_or_runtime_modified": false,
+  "github_actions_used": false,
+  "passed": true
+}

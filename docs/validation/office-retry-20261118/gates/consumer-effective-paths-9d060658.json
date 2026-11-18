@@ -1,0 +1,16 @@
+{
+  "kind": "consumer-effective-paths",
+  "recorded_utc": "2026-11-18T06:01:08.258119+00:00",
+  "adaptation_performed": false,
+  "wrapper_original_sha256": "05b7514d9463296e9559d434a8b47ec5193b950663ef802b92ce99c2029c4828",
+  "wrapper_executed_sha256": "05b7514d9463296e9559d434a8b47ec5193b950663ef802b92ce99c2029c4828",
+  "dart_assignment": "DART=ROOT.parent/'toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart'",
+  "dart_requested_path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+  "dart_resolved_path": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+  "FLUTTER_ROOT": "/workspace/scratch/eddfdfc8cc56/toolchains/flutter",
+  "PUB_CACHE": "/workspace/scratch/eddfdfc8cc56/toolchains/pub-cache",
+  "flutter_package_root_uri": "file:///workspace/scratch/eddfdfc8cc56/toolchains/flutter/packages/flutter",
+  "package_config_sha256": "31afc600794b0142b4e5ef1cf4462c61de25cac0e33a293f2b57d460d2421e18",
+  "package_config_identical_across_all_four_before_and_after_maps": true,
+  "rationale": "The existing wrapper had started the first gate before an optional path-assignment edit was requested. It was deliberately preserved unchanged throughout all four gates. Guard and child runners resolve the Dart executable path to the actual Flutter directory; FLUTTER_ROOT and PUB_CACHE were actual paths from the outset. Every guard passed and the package config was byte-identical before/after and across all four gates, so no alias drift or runtime input mutation occurred."
+}

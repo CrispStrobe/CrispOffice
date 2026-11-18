@@ -1,0 +1,10 @@
+{
+  "observed_utc": "2026-11-18T06:16:54.213300+00:00",
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "completed_audited_arms": [
+    1
+  ],
+  "full_sweep_completed_at_snapshot": false,
+  "final_guard_acceptance_claimed": false,
+  "scope": "Stable completed-arm reports and logs only. Final sweep comparison and after-input guard remain separate requirements."
+}

@@ -1,0 +1,258 @@
+{
+  "schema": "quds.office.independent_qualification_audit_plan.v1",
+  "created_utc": "2026-11-18T05:46:37.146Z",
+  "reviewer": "reconcile_prs independent agent",
+  "repository": "CrispStrobe/quds_office_suite",
+  "source_candidate": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "saved_branch_head_reviewed": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "review_scope": "Static audit of recovered Flutter recipe, external workspace preparation, canonical wrapper/base runner, Python controls, current portable runner, example runner, calendar runner and evidence publication helper. No runtime/source mutations or tests performed.",
+  "recipe_audit": {
+    "original_path": "flutter-qualification/recovered/setup/restore_compact_flutter.py",
+    "adapted_path": "flutter-qualification/setup/restore_compact_flutter.py",
+    "original_sha256": "a231a116361356cbb3242fc2fdb0a131a5c7b06d25e3c4686a8074c6df87a4c6",
+    "adapted_sha256": "4c4727b124eea955c18c76a94b8540cc1c057058da04bb40d3c5441c295e9e5d",
+    "exact_only_replacement": {
+      "from": "/workspace/scratch/5e1b9c2fa60d",
+      "to": "/workspace/scratch/eddfdfc8cc56"
+    },
+    "exact_only_replacement_verified": true,
+    "python_syntax_parsed": true,
+    "official_flutter_archive": {
+      "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+      "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+      "historically_recorded_bytes": 1581444364
+    },
+    "version_pins": {
+      "flutter": "3.47.8",
+      "dart": "3.13.7",
+      "framework": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "engine": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8"
+    },
+    "archive_verification": "Streams the entire official archive through SHA-256, drains unread tail and asserts exact hash before publishing the install receipt; selected extraction uses tarfile data filter.",
+    "sdk_selection": "Retains VM, Flutter tester, AOT analyzer, Dart2JS and required test platform cores. Omits unrelated Git history, web renderer, interactive DevTools, sanitizer variants, desktop GTK embedding and listed unused compiler variants. This is not a full desktop/web build qualification.",
+    "git_identity": "Initializes a shallow stable checkout of official refs/tags/3.47.8; actual HEAD must equal the pinned framework revision.",
+    "pub_verification": "Unions hosted packages from the official Flutter-tools lock and exact recorded workspace lock. Asserts official pub.dev host and archive SHA-256 before selective extraction. Historical union has 162 verified-download receipts.",
+    "pub_omissions": [
+      "test",
+      "tests",
+      "example",
+      "examples",
+      "doc",
+      "docs",
+      "benchmark",
+      "benchmarks",
+      "coverage"
+    ],
+    "residual_limits": [
+      "An existing install receipt is checked for its archive hash, but reused live SDK bytes are not all rehashed by this recipe. Independently hash consumed core/compiler bytes after restoration.",
+      "Existing Pub target plus matching .sha256 marker is accepted without rehashing every live file. Prefer fresh verified-download receipts; otherwise check actual consumed dependency files against a trusted prior map or archive.",
+      "The SDK extraction free-space floor is only 100 MiB. Keep a much larger practical reserve for compilation and generated fixture evidence.",
+      "The recipe asserts Flutter framework revision and Dart version; the canonical runner separately asserts engine revision."
+    ]
+  },
+  "audited_harnesses": [
+    {
+      "path": "docs/validation/office-reconciled-20261117/qualification/prior_run_qualification.py",
+      "sha256": "d5b52d06f778704d17aad737651c4b63548c6f1b5ad931cb7651d25314d6579a"
+    },
+    {
+      "path": "docs/validation/office-reconciled-20261117/qualification/run_qualification.py",
+      "sha256": "196165c41377f40ef3e97e25aad1d7580ba35602c5581b35384760571bf376c8"
+    },
+    {
+      "path": "docs/validation/gector-office-resume-20261117/run_portable.py",
+      "sha256": "ed6e4ed8d6f93864a9ed23eeacec3553a92af266a4ab78940034a271d008a2dd"
+    },
+    {
+      "path": "docs/validation/gector-office-resume-20261117/run_editor_example.py",
+      "sha256": "37f625e26a909389e5a27d15bd5f279be48604e2086eaf795f24aafeb84c6638"
+    }
+  ],
+  "pre_snapshot_requirements": [
+    "Detach the qualification checkout at the exact supplied source commit. It must be clean before each gate, and HEAD must remain that commit. Publish evidence using a separate index/checkout or direct Git Data objects.",
+    "Restore actual runtime and native/model pins. Do not prune or replace consumed runtime/dependency/font bytes once input snapshots exist.",
+    "Adapt external prepare_workspace.py to resolve toolchains/flutter as the actual Flutter path for both FLUTTER_ROOT and the Dart executable. The tracked historical preparation script hardcodes toolchains/flutter-sdk and must not be used unchanged for fresh setup.",
+    "Resolve external workspace offline with --enforce-lockfile. Exact workspace lock SHA-256 is 344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130; before/after bytes must match.",
+    "Prewarm Dart test CLI and Flutter CLI under the same actual Flutter root, same PUB_CACHE, workspace, XDG_CONFIG_HOME and TMPDIR that will be used by gates. Preserve warmup logs outside source.",
+    "Retain raw final package_config.json and package_graph.json before the first qualification snapshot. Verify flutterRoot uses the actual toolchains/flutter URI. Recheck the bytes after prewarming.",
+    "Verify 109 normalized package records if the source/dependency selection remains the same as the saved candidate; bind local package roots to the canonical frozen checkout.",
+    "Have all required public/bundled font fixtures present. Missing private PDF must remain an explicit two-case early-return exclusion, not substantive passed coverage.",
+    "Require GECTOR_TEST_LIBRARY/GECTOR_TEST_MODEL paths plus both _SHA256 environment variables with exact pinned hashes; native fixture skips are disallowed.",
+    "Use a new empty output directory per attempt; no prior attempt receipt may be overwritten.",
+    "Use the current 17-suite portable script under gector-office-resume-20261117, not the older 14-suite office-reconciled/resume variant."
+  ],
+  "canonical_selection": {
+    "unique_test_files": 224,
+    "cohorts": {
+      "engine-zotero": 19,
+      "editor-zotero": 13,
+      "engine-integration": 138,
+      "editor-integration": 37,
+      "harper-contract": 3,
+      "gector-contract": 14
+    },
+    "analysis_targets": {
+      "engine": 138,
+      "editor": 23,
+      "harper": 10,
+      "gector": 32,
+      "proofing-tools": 6
+    },
+    "strict_analysis_commands": 5,
+    "format_files": 145,
+    "generated_format_exclusions": 19,
+    "python_controls_expected": 117,
+    "total_commands_expected": 13,
+    "language_format_version": "3.12",
+    "historical_baseline_suite_files_retained": 179,
+    "current_native_skips_allowed": 0,
+    "aot_removal": "Deliberate AOT/RML removal must remain intact; historical removed package/Studio tests are not restored.",
+    "original_zotero_count_assertions": "Wrapper deliberately clears EXPECTED_ZOTERO_COUNTS. Validate fresh raw event outcomes and exact selected suite membership; do not infer success from old 390/186 expectations."
+  },
+  "integrity_surfaces": {
+    "source": {
+      "method": "All tracked non-docs blobs: SHA-256, Git blob SHA-1 and executable/symlink mode must match explicit frozen commit; every untracked non-evidence path must be absent.",
+      "docs_exclusion": "source_snapshot skips docs/**. Consumed harness/doc files must therefore be checked through the harness surface; unused historical reports are not qualified product inputs.",
+      "additional": "Check git HEAD exactly equals source_commit at entry and completion. Initial git status must be clean. Preserve temporary repository analyzer package config and restore byte-for-byte in finally."
+    },
+    "dependencies": {
+      "method": "Normalize package roots; skip repository-local roots already bound by source snapshot. Hash each external package's pubspec.yaml, pubspec.lock, analysis_options.yaml and files under lib/, bin/, assets/.",
+      "before_after": "All package root mappings and consumed file hashes must remain identical."
+    },
+    "runtime": {
+      "canonical_paths": [
+        "bin/cache/dart-sdk/bin/dart",
+        "bin/cache/dart-sdk/bin/dartaotruntime",
+        "bin/cache/dart-sdk/bin/snapshots/dartdev_aot.dart.snapshot",
+        "bin/cache/dart-sdk/bin/snapshots/frontend_server_aot.dart.snapshot",
+        "bin/cache/dart-sdk/bin/snapshots/analysis_server_aot.dart.snapshot",
+        "bin/cache/dart-sdk/bin/snapshots/kernel-service.dart.snapshot",
+        "bin/cache/flutter_tools.snapshot",
+        "bin/cache/flutter.version.json",
+        "bin/cache/artifacts/engine/linux-x64/flutter_tester",
+        "bin/cache/artifacts/engine/common/flutter_patched_sdk/platform_strong.dill",
+        "bin/cache/artifacts/engine/common/flutter_patched_sdk_product/platform_strong.dill",
+        "bin/internal/engine.version",
+        "packages/flutter_tools/pubspec.lock"
+      ],
+      "recommended_supplemental_hashes": [
+        "bin/cache/dart-sdk/bin/snapshots/dart2js_aot.dart.snapshot",
+        "bin/cache/dart-sdk/bin/snapshots/gen_kernel_aot.dart.snapshot",
+        "bin/cache/dart-sdk/lib/_internal/dart2js_platform.dill",
+        "bin/cache/dart-sdk/lib/_internal/dart2js_server_platform.dill",
+        "bin/cache/dart-sdk/lib/_internal/vm_platform_strong.dill",
+        "bin/cache/artifacts/engine/linux-x64/frontend_server_aot.dart.snapshot"
+      ],
+      "supplement_reason": "Generic canonical runtime map does not cover every compiler/platform input used by Node and Flutter compilation. Record these externally before/after without modifying the sealed harness or its acceptance flags.",
+      "node": "Portable gate separately records resolved Node executable SHA-256."
+    },
+    "workspace": {
+      "method": "Hash exact bytes of root pubspec.yaml, pubspec.lock, package_config.json and package_graph.json; member and example pubspec.yaml files; immediate member symlink targets; tools symlink.",
+      "start_assertions": "All manifests and analysis_options.yaml equal source bytes; canonical lib/test links resolve to exact source folders; tools resolves to repo/tools.",
+      "limitation": "workspace_snapshot does not separately retain root analysis_options.yaml, root tool/docs symlink targets, or every nested consumed fixture link. A supplemental map should bind these if used; tracked canonical analysis_options bytes are in source.",
+      "critical": "Actual-root stabilization must occur before snapshots. Any package_config byte drift rejects the run even if a semantic comparison later shows equivalent roots."
+    },
+    "system": {
+      "required_public_fonts": [
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Regular.ttf"
+      ],
+      "bundled_fonts": [
+        "packages/quds_office_editor/fonts/NotoNaskhArabic-Regular.ttf",
+        "packages/quds_office_editor/fonts/LiberationSans-Regular.ttf",
+        "packages/quds_office_editor/example/fonts/Cairo-Regular.ttf"
+      ],
+      "native_library_sha256": "9b0b7bcc0a5f19288d5ec3772594c6e64339becb56204276530d48e45c512604",
+      "mixed_model_sha256": "549ee3a5272726d48608cebdb435aaea6a984f3f53508b20b3194a7175a5ef5b",
+      "private_fixture": "Presence/hash tracked; absent fixture can subtract only the two explicitly named pdf_file success events."
+    },
+    "harness": {
+      "canonical": "Wrapper, inherited runner, Python wrapper/inherited controls, historical 179 plan, prepare_workspace.py, output plan.json/run-used.py/analysis-package-config.json/fixture-audit.json, office-fidelity cohorts.json and validate.py.",
+      "portable_example": "Own runner and prior_run_qualification.py.",
+      "calendar": "Own runner and generated timezone_probe.dart; additionally bind inherited audit helper via supplemental map because calendar helper does not itself include that imported file in its harness map."
+    },
+    "python": {
+      "own_before_after": "Python executable path/hash/version/platform; NumPy source/native/data files; ONNX, ONNX Runtime, ml_dtypes, google.protobuf, flatbuffers, sympy and packaging source/native/data files; Python wrapper/inherited runner hashes.",
+      "expected_versions": {
+        "onnx": "1.19.1",
+        "onnxruntime": "1.23.2",
+        "numpy": "2.3.5"
+      },
+      "accounting": "Seven discovered modules retaining all historical modules; unique selected IDs; every ID started; no failures/errors/unexpected skips/expected failures/unexpected successes; exactly 117 successes for unchanged candidate; runtime_before equals runtime_after."
+    }
+  },
+  "success_accounting": {
+    "required_process": "exit_code == 0, timed_out == false; successful JSON events cannot override exit 255 or any later disposal/compiler failure.",
+    "events": "Recompute from raw decompressed stdout. Require successful final done event, no error events, every selected suite present, no unexpected suite, all visible outcomes success, and zero unexpected skips. Reconcile testStart IDs with nonhidden testDone events; check duplicates/incomplete tests independently.",
+    "hidden_events": "Hidden loader/setup events are not substantive tests.",
+    "private_fixture_exclusions": [
+      "TrueType subsets without cmap get ToUnicode cmap for the host",
+      "JPEG with DCT SMask attaches softMaskJpeg for the host"
+    ],
+    "private_fixture_rule": "If private PDF is absent and pdf_file_test.dart selected, exactly these two inherited early-return success events are subtracted from raw success. Report raw and substantive counts separately.",
+    "canonical_final": "Require all 13 command rows passed, all six before/after map groups identical, original analyzer config restored, source matches frozen commit, and HEAD unchanged. Only then all_passed may be true.",
+    "portable": "17 exact selected suites; preserve exclusion of odt_complex_field_fidelity_test.dart because its dart:io fixture helper is VM-only and remains in canonical coverage. Require exit zero, event summary pass, all input maps identical and HEAD unchanged.",
+    "example": "One selected widget_test.dart suite containing two smoke tests; independently require both substantive cases. Runner itself verifies exact suite membership and no allowed skips, but does not hardcode two-event count.",
+    "timezone": "Eight tests in each of UTC, Europe/Berlin, America/Los_Angeles. Verify probe Jan/Jul/Nov offset minutes respectively [0,0,0], [60,120,60], [-480,-420,-480]. Report 24 overlapping executions, not 24 additional unique tests.",
+    "evidence_reuse": "Do not count historical passes, preflight-only passes or completed subcohorts from a rejected overall attempt as a completed canonical qualification."
+  },
+  "incremental_checkpoint_protocol": [
+    "Keep the qualification checkout HEAD/index/worktree untouched throughout gates. All new archives, reports and publication payloads remain external.",
+    "Poll the atomic canonical receipt.json. A command is closed only when its row has finished_utc, exit_code, status and both stream hashes. Never archive raw logs of a running command as completed evidence.",
+    "For each newly completed cohort, copy a point-in-time receipt plus stable plan, run-used.py, analysis-package-config.json, fixture-audit.json and all before maps into a new external staging directory; include only completed command directories and completed generated artifacts. Preserve original receipt bytes rather than rewriting its status.",
+    "Include a separate checkpoint description explicitly stating overall qualification is running and final integrity is pending. A passed row does not establish the final before/after contract.",
+    "Build a deterministic indexed archive. Index every regular member with safe relative path, byte count and SHA-256; reject duplicate/unsafe/symlink members. Bind archive size/hash and index hash.",
+    "Reopen the finished local archive and rehash every member; compare exact member set and all sizes/hashes to index.",
+    "Stage docs/evidence changes using GIT_INDEX_FILE pointing outside the source checkout and prepare_overlay.py, or use a separate publication checkout/direct Git Data APIs. Do not checkout or reset the active qualification source.",
+    "Push with [skip ci], a nonforced branch update and an expected-head lease. If remote head differs, inspect it before retrying.",
+    "Fetch/read back the exact committed archive blob and index at the new commit; verify full bytes/hash and member index. The remote checkpoint is durable only after readback succeeds.",
+    "After the runner ends, preserve every after map, final receipt, runner-error.json if any, and remaining artifacts. Independently recompute all final gates rather than accepting claimed booleans.",
+    "Do not delete reproducible caches or earlier raw files during a running qualification. Any cleanup after a gate requires first verifying the remote evidence checkpoint and retaining all inputs needed by remaining gates."
+  ],
+  "meaningful_risks": [
+    {
+      "risk": "Cold CLI or symlink Flutter-root normalization",
+      "handling": "Resolve actual root, offline locked resolution, prewarm, retain raw config bytes, freeze only afterward. Never waive original workspace_unchanged failure."
+    },
+    {
+      "risk": "Shared disk fills during compilation cleanup",
+      "handling": "Monitor free capacity/inodes externally, reserve ample free space, checkpoint completed cohorts immediately; exit failure still rejects cohort."
+    },
+    {
+      "risk": "Unchanged-looking receipts hide mutable cache bytes",
+      "handling": "Independently hash live consumed runtime/dependency maps and bind official archive/lock receipts; cache marker alone is insufficient."
+    },
+    {
+      "risk": "Timeout in portable/example loses captured stdout/stderr and leaves descendants",
+      "handling": "Both use subprocess.run(capture_output=True, timeout=900) without their own process-group cleanup/finally. Run under an external bounded supervisor with live outer logs and process-group cleanup; retain timeout as failure. Do not modify tracked harness during a run."
+    },
+    {
+      "risk": "Canonical process killed before finally",
+      "handling": "Atomic partial receipt and closed logs remain usable evidence, but no all-pass claim without complete after maps. Start a new full attempt when source/input state changes."
+    },
+    {
+      "risk": "Concurrent evidence publication changes source HEAD or tracked harness",
+      "handling": "Separate Git index/checkout/direct Git Data publication. Fetching refs is safe; checkout/commit on the active source is not."
+    },
+    {
+      "risk": "Selection silently narrows",
+      "handling": "Compare exact 224 package/file pairs, 179 retained baseline, 17 portable suites and two example cases; do not choose old 14-suite portable helper."
+    },
+    {
+      "risk": "Runtime map does not cover every used compiler input",
+      "handling": "Supplement Dart2JS/gen-kernel/platform/engine frontend hashes externally; preserve generic runner checks unchanged."
+    }
+  ],
+  "historical_evidence_followup": {
+    "prior_failed_attempt_archive_sha256": "14a2e5d6d0ae73501eb6e240d67896a3936482188a3344c1eee44c877e161e42",
+    "prior_failed_attempt_members": 42,
+    "pending_independent_check": "Complete the previously interrupted all-member archive/hash audit; preserve failed exit 255 and workspace-integrity false. Missing old post-attempt config bytes cannot be reconstructed or relabeled as observed evidence.",
+    "current_qualification_accepted": false
+  },
+  "no_tests_executed_by_this_review": true,
+  "source_runtime_mutations": 0,
+  "github_actions_workflow_check_status_endpoints_queried": 0
+}

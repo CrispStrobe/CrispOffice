@@ -1,0 +1,591 @@
+{
+  "schema_version": 1,
+  "kind": "independent-flutter-recovery-and-failed-preflight-review",
+  "created_utc": "2026-11-18T05:27:57.651891+00:00",
+  "reviewer": "remote_review independent agent",
+  "current_source": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "rejected_preflight_source": "401d012657881a54727d58bc35e537faa45d5fbe",
+  "source_head_clean_and_unchanged": true,
+  "runtime_archive": {
+    "archive": "flutter-runtime-recovery.tar.xz",
+    "sha256": "58402817d7db88f96cf30d2433bff6f3e8bff577bc7c44182b98d8b645707bd9",
+    "bytes": 123628,
+    "index_sha256": "4e8c02a2b687fd3808ad20cc5b98123723eadd70e91794dd6a1b24e194b2c758",
+    "members": [
+      {
+        "path": "runtime/commands.json",
+        "bytes": 743,
+        "sha256": "fc6cf70f0becb7a7b24e602338449911c1ca31df0612a9bc2d3ae138ca376ecd",
+        "matches": true
+      },
+      {
+        "path": "runtime/flutter-install-receipt.json",
+        "bytes": 392122,
+        "sha256": "fd109d690d48143378cf28137ea9fc4be5d7491c28a27d09e5c694cd65b5e697",
+        "matches": true
+      },
+      {
+        "path": "runtime/flutter-shallow-identity.json",
+        "bytes": 979655,
+        "sha256": "187b9ccbfedf2ddffe6df8de8ddf1d88343b5027e84fbc162057713c9ffc400e",
+        "matches": true
+      },
+      {
+        "path": "runtime/flutter-tools-offline.log",
+        "bytes": 1174,
+        "sha256": "91accc12b69da31fba07bd65253e5e645e0d015907e0eb3507cce32c54264e43",
+        "matches": true
+      },
+      {
+        "path": "runtime/flutter-version.log",
+        "bytes": 631,
+        "sha256": "167668e5c06f130170c9c23c8bdf8165300ec77be4655a8e57d01c0c701822df",
+        "matches": true
+      },
+      {
+        "path": "runtime/pub-cache-receipt.json",
+        "bytes": 78540,
+        "sha256": "52b1728948b3e5801cd80ce4f6b58d0009522f5cad3271e6d52067e436160758",
+        "matches": true
+      },
+      {
+        "path": "runtime/ready.json",
+        "bytes": 985,
+        "sha256": "2d5b88fa11074d08f262af85a0148eaf44fcca83fea0e3ed0fec0a40e4025a90",
+        "matches": true
+      },
+      {
+        "path": "setup/restore_flutter.py",
+        "bytes": 6401,
+        "sha256": "726642262e5aae3e15925c9653cdedd0c7d9931188e8a256bcc0f1abd66dff50",
+        "matches": true
+      },
+      {
+        "path": "setup/restore_compact_flutter.py",
+        "bytes": 9172,
+        "sha256": "a231a116361356cbb3242fc2fdb0a131a5c7b06d25e3c4686a8074c6df87a4c6",
+        "matches": true
+      },
+      {
+        "path": "setup/restore-adaptation.json",
+        "bytes": 517,
+        "sha256": "aa45e3ef61ea989693c8129ef4772ccca81928a8234c8167f5778c27d82d2c70",
+        "matches": true
+      },
+      {
+        "path": "setup/compact-restoration-plan.json",
+        "bytes": 2005,
+        "sha256": "d8cf2711e7b8e6ba8f6a1745556af199cab74fde73fc4b8fc9a5f2b48c30944a",
+        "matches": true
+      },
+      {
+        "path": "setup/restore.log",
+        "bytes": 418,
+        "sha256": "5156ece63454b7320fba346ccba9ffccf360b260c2f92dd9536ee979b1238334",
+        "matches": true
+      },
+      {
+        "path": "setup/restore-compact.log",
+        "bytes": 495,
+        "sha256": "8cdb1f9c62cd1af8024985a86dd3ed218ac171edec7244c00d9b2c31dc666abb",
+        "matches": true
+      },
+      {
+        "path": "setup/restore-compact-resume.log",
+        "bytes": 273,
+        "sha256": "76a640934a6af9a818aee8d77f190567a9a2b28267cc4604d87d3e4309874f19",
+        "matches": true
+      },
+      {
+        "path": "workspace/setup.json",
+        "bytes": 26072,
+        "sha256": "870384f9383e2397eff34d9a4714312e15d520eb8dbecda837b094d4f84f18c0",
+        "matches": true
+      },
+      {
+        "path": "workspace/setup.log",
+        "bytes": 68,
+        "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+        "matches": true
+      }
+    ],
+    "member_count": 16
+  },
+  "failed_preflight_archive": {
+    "archive": "canonical-preflight-401d0126.tar.xz",
+    "sha256": "6cca773d22116c3b11954b12d6bb3518e062427bb8827aa44daf2742d0be98b4",
+    "bytes": 443140,
+    "index_sha256": "a87e711483523630d7fe77709064aaea4a20daa7143f258c3e5e993b51f879ca",
+    "members": [
+      {
+        "path": "canonical-401d0126/analysis-package-config.json",
+        "bytes": 23881,
+        "sha256": "25e79c97ce0d7b245d63ec3b811d1b587597817d4882cf978f6ed8c8fef33150",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/dependencies-after.json",
+        "bytes": 973977,
+        "sha256": "5d3bce3a9f17b2166b881daa122f61356cfe0bad4235409ce9ea0c823ae4bfca",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/dependencies-before.json",
+        "bytes": 973977,
+        "sha256": "5d3bce3a9f17b2166b881daa122f61356cfe0bad4235409ce9ea0c823ae4bfca",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/editor-strict-analysis/stderr.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/editor-strict-analysis/stdout.gz",
+        "bytes": 386,
+        "sha256": "1742462899a2ff70b68adee1512280c15be7e4dd43d6700f275e142dd1b4f8ed",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/engine-strict-analysis/stderr.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/engine-strict-analysis/stdout.gz",
+        "bytes": 1070,
+        "sha256": "96f5cef05c031544744bc529cbb239d7ba0983bad2ca824702130816c4dac234",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/fixture-audit.json",
+        "bytes": 13603,
+        "sha256": "beecdd6f4fad6f68d39d147c5eb349681bfb0eea95ae21aa42d6bf8136911987",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/harness-after.json",
+        "bytes": 2228,
+        "sha256": "ed1e2d0b55a2a7d8ebadfea41163c7f349ad1653ff100fc2134d2f802639e5e4",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/harness-before.json",
+        "bytes": 2228,
+        "sha256": "ed1e2d0b55a2a7d8ebadfea41163c7f349ad1653ff100fc2134d2f802639e5e4",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/plan.json",
+        "bytes": 84042,
+        "sha256": "4203f7ed4cde8fdb3aea0ff2db4513888bdb76a964056bd148da418fda855f80",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/receipt.json",
+        "bytes": 17748,
+        "sha256": "cf9e79e92c629fb709811a518821b642462aedf693f152cdc76a674d57202944",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/run-used.py",
+        "bytes": 4784,
+        "sha256": "196165c41377f40ef3e97e25aad1d7580ba35602c5581b35384760571bf376c8",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/run.lock",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/runner-error.json",
+        "bytes": 752,
+        "sha256": "cb9429630476a7061c1094f6d9f98eb540097af09b430b65614a19f596ef3f68",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/runtime-after.json",
+        "bytes": 2274,
+        "sha256": "bdd9158ce5d8e06c81943698e611ab071d36ad7c4f635b643c8dbc05ad47adb2",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/runtime-before.json",
+        "bytes": 2274,
+        "sha256": "bdd9158ce5d8e06c81943698e611ab071d36ad7c4f635b643c8dbc05ad47adb2",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/source-after.json",
+        "bytes": 930439,
+        "sha256": "9783d8bf8a0bb23628816fec8fe0ccdf4afe05a2df4d31aaab7e1dacabe803fa",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/source-before.json",
+        "bytes": 930439,
+        "sha256": "9783d8bf8a0bb23628816fec8fe0ccdf4afe05a2df4d31aaab7e1dacabe803fa",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/system-after.json",
+        "bytes": 1253,
+        "sha256": "939f7608b2710c356f08fb9a4173a7bc735501b1c78245b80676a72513481311",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/system-before.json",
+        "bytes": 1253,
+        "sha256": "939f7608b2710c356f08fb9a4173a7bc735501b1c78245b80676a72513481311",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/workspace-after.json",
+        "bytes": 20803,
+        "sha256": "bf531d49e86c539c2da044e175ca8fa6d0ee918fa7d85e3a7de118f998fa22ba",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126/workspace-before.json",
+        "bytes": 20803,
+        "sha256": "bf531d49e86c539c2da044e175ca8fa6d0ee918fa7d85e3a7de118f998fa22ba",
+        "matches": true
+      },
+      {
+        "path": "format-preflight-401d0126/receipt.json",
+        "bytes": 10993,
+        "sha256": "3373c3d0db434035d3364652bc9875b4c5bafc91fb7b49779f5349febf7192c8",
+        "matches": true
+      },
+      {
+        "path": "format-preflight-401d0126/stderr.log",
+        "bytes": 8124,
+        "sha256": "50e3fd2d14a55444fa322831b0ab3f3fc262a016f04487e59beb9cbd2902fd58",
+        "matches": true
+      },
+      {
+        "path": "format-preflight-401d0126/stdout.log",
+        "bytes": 49,
+        "sha256": "592eb6bb314310adf7f6f1c4deb9bced0c457cf7eca9c86031f660d15d84c0b0",
+        "matches": true
+      },
+      {
+        "path": "canonical-401d0126.log",
+        "bytes": 676,
+        "sha256": "e4f6ef24f7b2948dd74aac7e24b95e9c828d218e91ae01929dd24181e7c9a583",
+        "matches": true
+      }
+    ],
+    "member_count": 27
+  },
+  "sdk": {
+    "version": {
+      "frameworkVersion": "3.47.8",
+      "channel": "stable",
+      "repositoryUrl": "https://github.com/flutter/flutter.git",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "flutterVersion": "3.47.8",
+      "flutterRoot": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter"
+    },
+    "official_archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "official_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "official_archive_bytes": 1581444364,
+    "retained_files_fully_read": 3277,
+    "retained_bytes": 572002795,
+    "retained_sdk_tracked_files_matching_pinned_git_blobs": 2202,
+    "retained_sdk_tracked_files_matching_without_normalization": 2191,
+    "tracked_sdk_matches_requiring_declared_crlf_normalization": [
+      {
+        "path": "bin/flutter.bat",
+        "archive_sha256": "f83bfed7ecd10fd1afd8ce19c0b0119d2c80e24fbf26f4ff4f63c1cc5f75dcd5",
+        "raw_git_blob": "db58b54b7ee04a6ba32e99502e4af8f971ed55b1",
+        "normalized_git_blob": "246cbb5d3fd0dc80c5fb8fab879cff170d6d4dd7",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 74
+      },
+      {
+        "path": "bin/internal/content_aware_hash.ps1",
+        "archive_sha256": "5a65cc90ae6df3d241ce51f63d3689b733afc18fa52ac6b1d376a762c8007d29",
+        "raw_git_blob": "be2cdaec034267ae3f7be4d8d928a469d9c07ec8",
+        "normalized_git_blob": "275af26df3648fce5566d39645ff39ad3cce9928",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 84
+      },
+      {
+        "path": "bin/internal/exit_with_errorlevel.bat",
+        "archive_sha256": "f4014bd05cc24391ff28f7bd5b22949cc80f0bb66ab9eda512c9c3997f0283e0",
+        "raw_git_blob": "683c0b1574fe7080b0be1f45e95b5da0c5e103e3",
+        "normalized_git_blob": "921624d5b0cb8d6f791f3f438da9c1a9b38ef5fe",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 13
+      },
+      {
+        "path": "bin/internal/update_dart_sdk.ps1",
+        "archive_sha256": "80b35d02219b9b2f59adac3f04f47ee95d8a7680656585fab7b3c84e939bdf65",
+        "raw_git_blob": "b29915e0a72037f6c09bc07cf5e50c17c0c70583",
+        "normalized_git_blob": "318ef62add853afbebedca0a194e6170047beee5",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 127
+      },
+      {
+        "path": "bin/internal/last_engine_commit.ps1",
+        "archive_sha256": "1db22f519548c7e208d9ca9399b9bf5a642c4090382aad629c15a58b72be69c1",
+        "raw_git_blob": "9c6e0f73c371518d2d8c6304e9efa0770e943339",
+        "normalized_git_blob": "a4789942c2b1f2d9ed54340fd5ce264a81239365",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 66
+      },
+      {
+        "path": "bin/internal/shared.bat",
+        "archive_sha256": "b1b8a1b696ecd1265c0cfdc1408c340f0d8351c0e1624710bb8fbf1ab218d4db",
+        "raw_git_blob": "3760deae5e00b9157e67e140bb2b620eb4d4064e",
+        "normalized_git_blob": "1a55bffb11b98bfd647e327256b0eb787b5aa772",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 240
+      },
+      {
+        "path": "bin/internal/update_engine_version.ps1",
+        "archive_sha256": "f2a743b9b0532ad7c22b1ea1fbfb80e1a946674a58327034c08b5471842c18bc",
+        "raw_git_blob": "ccf400625f1b3ab7582c2f63249b3634f9202e34",
+        "normalized_git_blob": "2eed1b0723d8203cdc01019e2bebd4ce1604d9b0",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 95
+      },
+      {
+        "path": "bin/flutter-dev.bat",
+        "archive_sha256": "d0718f626198f76ae34480f0c3f8c7a50cdf9e81bded0a82ef7fe565a9e0238b",
+        "raw_git_blob": "bf2c40c8b8c411bea9534d096fdad9823d2e2082",
+        "normalized_git_blob": "64a913ea1960a82dc4b33d5d60d1fcec337d5236",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 79
+      },
+      {
+        "path": "bin/dart.bat",
+        "archive_sha256": "c9ca7f8b003e19f290951d79fb5e403e4782137a3f1d2b21d02ff531cea7e73e",
+        "raw_git_blob": "ea3fd83b56575771382c060bc4bf197644f9f5b5",
+        "normalized_git_blob": "0bcd226dbdf9fd13418cc951a3d30da1d8c125db",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 49
+      },
+      {
+        "path": "flutter_console.bat",
+        "archive_sha256": "67cc46bac009fc036d0f9f6a08e03d149ba98471441b0a5bd256fa9ab0b1f8e0",
+        "raw_git_blob": "1d87707f020a628d4e085a56b9729c0eb8f27f0f",
+        "normalized_git_blob": "a27803aaf3184a37343a087e7964c03b967e4c78",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 38
+      },
+      {
+        "path": "packages/flutter_tools/bin/tool_backend.bat",
+        "archive_sha256": "314e44db292d9977ea0108b11b75d17f41632caaafbad888acfc0a60eeb92525",
+        "raw_git_blob": "23a402d9b85751fbc6522f0ff55a73b668fa22ef",
+        "normalized_git_blob": "7140f90b9e3cf4f48575fd0702cc692ef61e46d7",
+        "attributes": {
+          "text": "set",
+          "eol": "crlf"
+        },
+        "crlf_count": 9
+      }
+    ],
+    "restoration_recipe_pins_checked": {
+      "original": "e87a5739cf570c862aa3ab4a6f55c33760fc12080ca9b11c307438dcd537f809",
+      "adapted": "726642262e5aae3e15925c9653cdedd0c7d9931188e8a256bcc0f1abd66dff50",
+      "compact": "a231a116361356cbb3242fc2fdb0a131a5c7b06d25e3c4686a8074c6df87a4c6"
+    },
+    "live_sdk_map_sha256": "2a6f428699d56f17c74ca47190d8dab2964fe5e0b6591ae9e429df41f0d11f48",
+    "live_core_runtime_hashes": [
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk/platform_strong.dill",
+        "sha256": "abaace6dc36fd8def1cf65de612efd0b09d4855636b52ffc3dc51168bbb1cede",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk_product/platform_strong.dill",
+        "sha256": "1ae5541b4d93fb1de5a6af4a6bcfde4430f5fe5d03ad42f35a2da2acfa02fd0e",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester",
+        "sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+        "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/dart-sdk/bin/dartaotruntime",
+        "sha256": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server_aot.dart.snapshot",
+        "sha256": "2effb1def007ae4812cdc5d229587ca3df575586dd95ac7e36cd5c178490632a",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/dartdev_aot.dart.snapshot",
+        "sha256": "3f675fe483acfb56e752121c2cf0b1505d4db0edf0fc16ca996d3d76eb252b55",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/frontend_server_aot.dart.snapshot",
+        "sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/kernel-service.dart.snapshot",
+        "sha256": "c0d7084a95a873914091d661c45141560070c2d582d7989d5ce3881583fc84e8",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/flutter.version.json",
+        "sha256": "88121c782cf2e3fca1161dd8a3beecca36a9f61940f800d65a6ed897a4e8b42f",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/flutter_tools.snapshot",
+        "sha256": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/internal/engine.version",
+        "sha256": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c",
+        "matches": true
+      },
+      {
+        "path": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/packages/flutter_tools/pubspec.lock",
+        "sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+        "matches": true
+      }
+    ],
+    "excluded_prefixes": [
+      "flutter/.git",
+      "flutter/bin/cache/flutter_web_sdk",
+      "flutter/bin/cache/dart-sdk/bin/resources/devtools"
+    ],
+    "excluded_files": [
+      "flutter/bin/cache/artifacts/engine/linux-x64/libflutter_linux_gtk.so",
+      "flutter/bin/cache/dart-sdk/bin/dartaotruntime_asan",
+      "flutter/bin/cache/dart-sdk/bin/dartaotruntime_msan",
+      "flutter/bin/cache/dart-sdk/bin/dartaotruntime_tsan",
+      "flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
+      "flutter/bin/cache/dart-sdk/bin/snapshots/dart2bytecode.dart.snapshot",
+      "flutter/bin/cache/dart-sdk/bin/snapshots/dart2wasm_product.snapshot",
+      "flutter/bin/cache/dart-sdk/bin/snapshots/dartdevc.dart.snapshot"
+    ],
+    "functional_scope": "Retained VM/Flutter tester, AOT analyzer and Dart2JS cores. No Flutter web-renderer, DevTools, sanitizer or desktop-GTK build qualification is claimed."
+  },
+  "pub": {
+    "verified_archive_receipts": 162,
+    "all_pins_reconciled_to_two_locks": true,
+    "all_download_receipts_have_actual_matching_sha256": true,
+    "dependency_files_independently_rehashed_live": 5099,
+    "package_roots_in_execution_map": 99,
+    "omitted_development_members": 11284,
+    "omitted_top_level_components": [
+      "test",
+      "tests",
+      "example",
+      "examples",
+      "doc",
+      "docs",
+      "benchmark",
+      "benchmarks",
+      "coverage"
+    ],
+    "offline_workspace_enforced_lock_sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130",
+    "frozen_source_links_checked": 104
+  },
+  "failed_preflight": {
+    "input_map_groups_byte_identical": [
+      "source",
+      "dependencies",
+      "runtime",
+      "workspace",
+      "harness",
+      "system"
+    ],
+    "source_files": 3514,
+    "source_blob_bindings_match_rejected_commit": true,
+    "live_source_files_match_current_commit": 3514,
+    "current_source_deltas_from_failed_snapshot": [
+      "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart"
+    ],
+    "engine_strict_analysis_exit": 0,
+    "editor_strict_analysis_exit": 1,
+    "editor_failure": "curly_braces_in_flow_control_structures in sheet_conditional_rendering_test.dart:133:9",
+    "planned_unique_test_files": 224,
+    "planned_test_cohorts": 6,
+    "test_cohorts_started": 0,
+    "substantive_tests_passed": 0,
+    "formatting": {
+      "files": 145,
+      "changed": 0,
+      "exit": 0,
+      "retained_package_resolution_warnings": 25,
+      "warning_scope": "Formatting could not resolve some flutter_lints include URIs; these warnings are retained and are not counted as a strict-analysis pass."
+    }
+  },
+  "disk_recovery": {
+    "dedup_receipt_sha256": "7d82898ad0734f519100b455e4686c1661e52fa413a235fd66f6c0d9fe2a1cba",
+    "dedup_file_sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a",
+    "hardlink_same_inode_and_mode": true,
+    "dedup_bytes_reclaimed": 17153416,
+    "raw_release_receipt_sha256": "3abff2d2a2f2fbc198243456b0fefbd69aa89cae1020e3c6015a3009ef007d05",
+    "raw_release_archived_member_count": 27,
+    "released_raw_bytes": 4028096
+  },
+  "findings": [],
+  "recovery_and_rejected_attempt_evidence_accepted": true,
+  "current_source_qualification_accepted": false,
+  "github_actions_queried_or_awaited": false,
+  "limitations": [
+    "The large official SDK and hosted dependency download archives were not downloaded again. Full-download hash assertions, archived receipts, exact lock pins, retained tracked SDK source blobs, live core runtime hashes and live execution dependency maps were independently checked.",
+    "Selective SDK and dependency development-file omissions are explicit. This review does not establish support for omitted tooling or tests that require omitted development fixtures.",
+    "The failed401 preflight is retained as a failure. The corrected9a source needs its own completed qualification receipts; no result is inferred from this audit.",
+    "Archive byte readback here is local. Remote publication readback is a distinct check."
+  ]
+}

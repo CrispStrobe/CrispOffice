@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-11-18T06:20:47.626825+00:00",
+  "passed": true,
+  "kind": "preparation-runtime-coverage-by-final-sweep-rehash",
+  "preparation_runtime_inputs": 10096,
+  "identical_path_and_hash_inputs_already_rehashed_by_final_sweep_review": 10095,
+  "remaining_inputs_rehashed_live": [
+    {
+      "path": "/workspace/scratch/21605f06e47d/native-consumers/native_prepare_child.py",
+      "expected_sha256": "4804aaae09352ac52eda997873a744b15c8fa0c8a1472b635c5aa724b5f837fb",
+      "actual_sha256": "4804aaae09352ac52eda997873a744b15c8fa0c8a1472b635c5aa724b5f837fb",
+      "matches": true
+    }
+  ],
+  "final_review_sha256": "1bdff32d41e7e91f1cbef30382c7da02d1361fceaa661e41352eb57fef14b9c5",
+  "scope": "Every preparation runtime input is either identical to a final-sweep input already rehashed in the accepted final review, or independently rehashed here. No new inference/compilation."
+}

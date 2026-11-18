@@ -1,0 +1,1080 @@
+{
+  "schema": "quds.office.remote_pr_observation.v1",
+  "observed_at": "2026-11-18T06:07:55.574Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "open_prs": [
+    {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/154",
+      "number": 154,
+      "state": "open",
+      "merged": false,
+      "mergeable": true,
+      "draft": true,
+      "body": "## Why\n\nContinue the interrupted Office qualification from the latest main while preserving all saved work. Calendar-relative spreadsheet conditions used local midnight boundaries against UTC serial dates, producing timezone/DST endpoint errors.\n\n## Changes\n\n- Start from main `482e0817`, retaining merged #151/#152 and the later German grammar, formatting and icon-spacing work.\n- Adopt the reviewed civil-date repair and eight regression tests from `2bfac9b2`.\n- Add braces to an inherited rendering-test statement so strict analysis passes; its condition and assertions are unchanged.\n- Recover historical evidence omitted from the squash, preserving its original source attribution.\n- Publish exact runtime recovery, independent reviews, complete failed-run evidence, bounded helpers and a reproducible recovery handoff.\n\nThe incoming review covered 190 branch heads / 152 PR heads, then 191 branches / 152 PR records. Separate native spaCy and alternate Office continuations remain explicitly identified.\n\n## Local validation\n\nCorrected frozen source: `9a7c80be00258def2dcae3bb288c28558c83aa72`.\n\n- Five strict analysis commands passed.\n- Formatting passed for 145 files.\n- All 117 Python controls passed.\n- Engine Zotero emitted 390 successful test events across 19 suites, then exited **255** with **errno 28 / no space left on device** during compiler disposal.\n- The workspace byte-integrity check also rejected a Flutter-root symlink/actual-path normalization. A fresh run must stabilize that configuration before snapshots; the original failure is retained.\n\n**Final qualification is not accepted. This PR remains a draft.** The execution workspace became unavailable after repeated disk exhaustion. Remaining canonical cohorts, 17 Node suites, two example tests, the three-timezone calendar matrix, document consumers and serial native thread sweep are pending.\n\nThe complete 638,988-byte attempt archive and helper archive were fetched back from this branch and independently SHA-256 checked. Publication succeeded without relying on local disk access.\n\n## Handoff\n\n- [Current status and evidence](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/README.md)\n- [Exact recovery instructions](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/recovery-handoff.md)\n- [Machine-readable verification](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/verification.json)\n- [Remote byte readback](https://github.com/CrispStrobe/quds_office_suite/blob/codex/office-local-qualification-20261118/docs/validation/office-local-20261118/review/remote-readback.json)\n\nNo GitHub Actions, workflow, check or status endpoint was queried, awaited or rerun. Checkpoints use `[skip ci]` and non-forced expected-head branch updates. No merge or release acceptance is requested.\n",
+      "title": "Fix civil-date boundaries and preserve reconciled Office qualification",
+      "base": "main",
+      "base_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "head": "codex/office-local-qualification-20261118",
+      "head_sha": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+      "head_repo_id": 1446096841,
+      "head_repo_full_name": "CrispStrobe/quds_office_suite",
+      "merge_commit_sha": null,
+      "user": {
+        "login": "CrispStrobe",
+        "name": null,
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/154636388?v=4",
+        "id": 154636388
+      },
+      "requested_reviewers": null,
+      "requested_team_reviewers": null,
+      "diff": null,
+      "comments": null,
+      "created_at": "2026-11-18T05:37:16Z",
+      "updated_at": "2026-11-18T06:03:51Z",
+      "closed_at": null,
+      "merged_at": null,
+      "commits": 11,
+      "changed_files": null,
+      "additions": null,
+      "deletions": null,
+      "display_url": "https://github.com/CrispStrobe/quds_office_suite/pull/154",
+      "display_title": "Fix civil-date boundaries and preserve reconciled Office qualification"
+    },
+    {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/153",
+      "number": 153,
+      "state": "open",
+      "merged": false,
+      "mergeable": true,
+      "draft": true,
+      "body": "## Purpose\n\nContinue W7 from the completed W6 guarded-agreement qualification, integrating current main and preserving a consumer for the exact installed Linux package prepared in CrispEmbed PR #237.\n\n**Current status: paired package controls/build/install passed. The new Dart consumer is saved source-only and remains uncompiled because the workspace filled before commands could start. This PR remains draft.**\n\nThis PR is stacked on `feat/native-spacy-reference-20261117` / PR #139 so the W7 changes remain reviewable separately from the completed W6 work.\n\n## Changes\n\n- Merge main `482e0817` at `13747281`, retaining its 72 evidence files. No production source changes; all 342 sealed source blob identities still match the original candidate.\n- Preserve the complete source-refresh inventory, original native/model restoration evidence, package build/install receipts and frozen operational protocol.\n- Add `packages/quds_proofing_spacy/tool/consume_distribution.dart` as a source-only developer consumer. It is intended to authenticate the installed package and runtime, exercise the actual owned Quds worker, verify original coordinates and copied annotations, and observe explicit locale, caller-cancellation, disposal and reopen behavior.\n- Check the actual existing Quds APIs and distribution/protocol schemas; use typed checked JSON readers and explicit annotation comparisons. Static review is recorded separately from execution.\n- Correct the stale package notice and save exact checkpoints, evidence limitations and instructions for resuming in a workspace with capacity.\n\n## Observed validation and pending gates\n\nThe paired packager's 25 model-free controls, real package build and immutable installation passed. Native/model restoration matched the 15 native files, 5 model files and all 6 recorded system dependencies.\n\nAn authenticated minimal Dart 3.13.7 VM and three pinned packages successfully imported the existing native package, hashed `abc` and allocated an FFI Arena before later ENOSPC. That probe did not compile the new driver. The full raw SDK/review receipts could not be reread after ENOSPC; the checkpoint retains only the previously observed metadata and hashes.\n\nPending: compile/run the current driver's `--self-test`, save the checked source and outcomes, then execute the installed-package worker consumer with a fresh report and external timeout. The corrected paired Python consumer's current 21 controls and first operational run are also pending. No claim of Flutter UI observation, physical native-compute interruption, mobile coverage or broad Linux portability is made.\n\n## Boundaries and recovery\n\nThe accepted native/model bytes, consumed native acceptance and W6 grammar results are preserved. The manual provider stays disabled by default, with no automatic Studio registration. Hosted artifact publication/download readback and production activation remain separate work.\n\nLocal sandbox startup reports `No space left on device`; even task-owned cleanup could not launch. Remote saves used non-forced expected-head updates and exact file/tree readback. No GitHub Actions query, wait, rerun or dispatch was performed.\n\n- [Saved continuation instructions](https://github.com/CrispStrobe/quds_office_suite/blob/225eeb921856b8728caf7254c91badf541d3e683/docs/validation/native-spacy-w7-20261118/CONTINUE.md)\n- [Exact completed/pending status](https://github.com/CrispStrobe/quds_office_suite/blob/225eeb921856b8728caf7254c91badf541d3e683/docs/validation/native-spacy-w7-20261118/checkpoint-status.json)\n- [Dart source-only checkpoint](https://github.com/CrispStrobe/quds_office_suite/blob/225eeb921856b8728caf7254c91badf541d3e683/docs/validation/native-spacy-w7-20261118/dart-consumer-checkpoint.json)\n- Paired CrispEmbed package: https://github.com/CrispStrobe/CrispEmbed/pull/237\n\nA subsequent read-only workspace probe also failed before the command ran, with an execution-service `No such file or directory` error. Current local mounting, contents and free space cannot be verified; the error does not establish file deletion. The remote source and handoff were independently read back and verified.\n",
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "base": "feat/native-spacy-reference-20261117",
+      "base_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "head": "feat/native-spacy-w7-20261118",
+      "head_sha": "a6143772f048644187080ee6a1a44c070802af15",
+      "head_repo_id": 1446096841,
+      "head_repo_full_name": "CrispStrobe/quds_office_suite",
+      "merge_commit_sha": null,
+      "user": {
+        "login": "CrispStrobe",
+        "name": null,
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/154636388?v=4",
+        "id": 154636388
+      },
+      "requested_reviewers": null,
+      "requested_team_reviewers": null,
+      "diff": null,
+      "comments": null,
+      "created_at": "2026-11-18T05:25:37Z",
+      "updated_at": "2026-11-18T05:59:16Z",
+      "closed_at": null,
+      "merged_at": null,
+      "commits": 12,
+      "changed_files": null,
+      "additions": null,
+      "deletions": null,
+      "display_url": "https://github.com/CrispStrobe/quds_office_suite/pull/153",
+      "display_title": "Continue W7 spaCy packaging from the completed grammar qualification"
+    },
+    {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/139",
+      "number": 139,
+      "state": "open",
+      "merged": false,
+      "mergeable": true,
+      "draft": true,
+      "body": "## Why\n\nQuds needs optional local German linguistic analysis and conservative manual grammar suggestions while keeping its deterministic proofing behavior and editor ownership guarantees.\n\n## What this branch adds\n\n- An optional Linux x86-64/AVX2, de-DE, CPU/F32 adapter for the accepted CrispEmbed native spaCy ABI, with fixed model and notice hashes, authenticated native library, counted UTF-8 input, and independently checked byte/scalar/UTF-16 spans.\n- A persistent owned worker with bounded requests, stale-result rejection, cancellation settlement and awaited cleanup.\n- An explicit Studio annotation view and a separate default-disabled `SpacyGrammarProvider` manual API. The grammar planner requires reviewed lexical evidence; deterministic findings retain precedence. Stock Studio does not register the grammar provider automatically.\n\n## W6 result and scope\n\nThe first sealed 86-case panel is complete: combined exact corrections rise from 5/30 to 22/30, adding 17 and losing none of the baseline's five. Native findings are zero on all 42 valid and ten guard inputs. Four unsupported locales are explicit. All eight misses remain in the original result. All 22 corrected rechecks have no further finding; four conservatively abstain. This finite assistant-authored panel is not a population precision/recall estimate.\n\n[Complete W6 evidence and audited handoff](https://github.com/CrispStrobe/quds_office_suite/tree/20026ff49ac37391e2a1fd0947560a587f2f7332/docs/validation/native-spacy-w6-20261117)\n\nThe source seal at `84b4120ca29715d9b6f6555d1393f5fcb97e47cf` precedes the preserved first result at `3a8bca4f8f8744bbb0fbd6809a700b5768d5ceba`. Both the original native acceptance and W6 qualification are consumed and must not be rerun or used as a tuning set.\n\n## Local verification\n\nThe recorded current-source checks pass 73 package tests, 869 German/shared-facts tests, 75 existing editor proofing controls, 36 German editor integration tests and ten actual-native editor controls. Browser imports report native execution as unavailable. Native/model bytes remain unchanged.\n\nW7 packaging and device qualification continue on `feat/native-spacy-w7-20261118`; immutable hosted distribution, other platforms and production activation remain separate gates. No GitHub Actions/status endpoint has been queried, awaited or rerun for this continuation.",
+      "title": "Add optional native German analysis and qualified manual agreement corrections",
+      "base": "main",
+      "base_sha": "6245a6956a76a38f925e1eb18851c0086730112d",
+      "head": "feat/native-spacy-reference-20261117",
+      "head_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "head_repo_id": 1446096841,
+      "head_repo_full_name": "CrispStrobe/quds_office_suite",
+      "merge_commit_sha": null,
+      "user": {
+        "login": "CrispStrobe",
+        "name": null,
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/154636388?v=4",
+        "id": 154636388
+      },
+      "requested_reviewers": null,
+      "requested_team_reviewers": null,
+      "diff": null,
+      "comments": null,
+      "created_at": "2026-11-17T20:10:01Z",
+      "updated_at": "2026-11-18T05:16:02Z",
+      "closed_at": null,
+      "merged_at": null,
+      "commits": 215,
+      "changed_files": null,
+      "additions": null,
+      "deletions": null,
+      "display_url": "https://github.com/CrispStrobe/quds_office_suite/pull/139",
+      "display_title": "Add optional native German analysis and qualified manual agreement corrections"
+    }
+  ],
+  "recent_prs": [
+    {
+      "number": 154,
+      "title": "Fix civil-date boundaries and preserve reconciled Office qualification",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-local-qualification-20261118",
+      "head_sha": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+      "base": "main",
+      "base_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/154",
+      "updated_at": "2026-11-18T06:03:51Z",
+      "merged_at": null
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "head": "feat/native-spacy-w7-20261118",
+      "head_sha": "a6143772f048644187080ee6a1a44c070802af15",
+      "base": "feat/native-spacy-reference-20261117",
+      "base_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/153",
+      "updated_at": "2026-11-18T05:59:16Z",
+      "merged_at": null
+    },
+    {
+      "number": 152,
+      "title": "Reconcile Office union qualification and frame bookmarks",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/office-union-150",
+      "head_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "base": "main",
+      "base_sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/152",
+      "updated_at": "2026-11-17T22:10:11Z",
+      "merged_at": "2026-11-17T22:10:10Z"
+    },
+    {
+      "number": 151,
+      "title": "Support calendar-relative conditional periods",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/ods-time-period-conditions",
+      "head_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "base": "main",
+      "base_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/151",
+      "updated_at": "2026-11-17T22:05:17Z",
+      "merged_at": "2026-11-17T22:05:16Z"
+    },
+    {
+      "number": 150,
+      "title": "Complete local Office union qualification and preserve recovery evidence",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-union-resume-20261118",
+      "head_sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "base": "main",
+      "base_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/150",
+      "updated_at": "2026-11-17T22:10:14Z",
+      "merged_at": null
+    },
+    {
+      "number": 149,
+      "title": "Reconcile Office union and finish ODT boundary qualification",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/office-union-148",
+      "head_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "base": "main",
+      "base_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/149",
+      "updated_at": "2026-11-17T21:32:16Z",
+      "merged_at": "2026-11-17T21:32:16Z"
+    },
+    {
+      "number": 148,
+      "title": "Reconcile recent Office work and finish local qualification",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-union-qualification-20261117",
+      "head_sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "base": "main",
+      "base_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/148",
+      "updated_at": "2026-11-17T21:32:27Z",
+      "merged_at": null
+    },
+    {
+      "number": 147,
+      "title": "Reconcile ODT field, bookmark and column-break fidelity",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/odt-column-boundary-144",
+      "head_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "base": "main",
+      "base_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/147",
+      "updated_at": "2026-11-17T21:29:45Z",
+      "merged_at": "2026-11-17T21:29:45Z"
+    },
+    {
+      "number": 146,
+      "title": "Record icon sets",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "docs/ods-icon-sets",
+      "head_sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "base": "main",
+      "base_sha": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/146",
+      "updated_at": "2026-11-17T21:25:17Z",
+      "merged_at": "2026-11-17T21:25:17Z"
+    },
+    {
+      "number": 145,
+      "title": "Support icon-set conditional formats",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/ods-icon-sets",
+      "head_sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "base": "main",
+      "base_sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/145",
+      "updated_at": "2026-11-17T21:23:29Z",
+      "merged_at": "2026-11-17T21:23:29Z"
+    },
+    {
+      "number": 144,
+      "title": "Reconcile Office fidelity and preserve later-section column breaks",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/odt-column-boundary-followup-20261117",
+      "head_sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "base": "main",
+      "base_sha": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/144",
+      "updated_at": "2026-11-17T21:32:25Z",
+      "merged_at": null
+    },
+    {
+      "number": 143,
+      "title": "Fix ODT field and bookmark boundaries; reconcile German proofing controls",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-reconciled-20261117",
+      "head_sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "base": "main",
+      "base_sha": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/143",
+      "updated_at": "2026-11-17T21:32:22Z",
+      "merged_at": null
+    },
+    {
+      "number": 142,
+      "title": "Record data bars",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "docs/ods-data-bar",
+      "head_sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "base": "main",
+      "base_sha": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/142",
+      "updated_at": "2026-11-17T20:14:26Z",
+      "merged_at": "2026-11-17T20:14:26Z"
+    },
+    {
+      "number": 141,
+      "title": "Support data-bar conditional formats",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/ods-data-bar",
+      "head_sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "base": "main",
+      "base_sha": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/141",
+      "updated_at": "2026-11-17T20:13:20Z",
+      "merged_at": "2026-11-17T20:13:20Z"
+    },
+    {
+      "number": 140,
+      "title": "Preserve cached page fields through DOCX import and ODT export",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/odt-field-continuation-20261117",
+      "head_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "base": "main",
+      "base_sha": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/140",
+      "updated_at": "2026-11-17T20:14:56Z",
+      "merged_at": "2026-11-17T20:14:56Z"
+    }
+  ],
+  "recent_main_commits": [
+    {
+      "sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "message": "Record reviewed German coverage and build 31 delivery evidence [skip ci]",
+      "created_at": "2026-11-17T22:59:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/482e08176dea6bd8f5fc80d1c0064d96b712db43"
+    },
+    {
+      "sha": "6245a6956a76a38f925e1eb18851c0086730112d",
+      "message": "Keep per-word formatting and tracked history for complete grammar choices [skip ci]",
+      "created_at": "2026-11-17T22:25:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/6245a6956a76a38f925e1eb18851c0086730112d"
+    },
+    {
+      "sha": "b24b0469c268a007af5e75e44c873f08b21d9a8b",
+      "message": "Capture formatting loss when applying complete grammar phrases [skip ci]",
+      "created_at": "2026-11-17T22:19:59Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/b24b0469c268a007af5e75e44c873f08b21d9a8b"
+    },
+    {
+      "sha": "57d37c5978ce95c333068df23219f6b3065fe95f",
+      "message": "Retain the reconciled Office fidelity work before grammar release [skip ci]",
+      "created_at": "2026-11-17T22:18:21Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/57d37c5978ce95c333068df23219f6b3065fe95f"
+    },
+    {
+      "sha": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "message": "Reconcile Office union qualification and frame bookmarks (#152)",
+      "created_at": "2026-11-17T22:10:10Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/23f3b4204fce45d38a103e3159bdc7f1e8d37c4e"
+    },
+    {
+      "sha": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "message": "Retain the latest calendar-conditional work alongside German completion [skip ci]",
+      "created_at": "2026-11-17T22:07:13Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/6f40365ae7708172c58e9aee38bc363d99327355"
+    },
+    {
+      "sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "message": "feat(sheet): support calendar-relative conditional periods (#151)",
+      "created_at": "2026-11-17T22:05:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "sha": "34a78e54174609dc87f2a866ec32e2d4e6e6d379",
+      "message": "Reserve an icon slot so spreadsheet numbers cannot cover the marker [skip ci]",
+      "created_at": "2026-11-17T22:02:40Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/34a78e54174609dc87f2a866ec32e2d4e6e6d379"
+    },
+    {
+      "sha": "d76855e63eac0a2be38d873efee3048f26c4a7f4",
+      "message": "Exercise choosing full German phrase alternatives through real Word review [skip ci]",
+      "created_at": "2026-11-17T21:59:14Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/d76855e63eac0a2be38d873efee3048f26c4a7f4"
+    },
+    {
+      "sha": "39158b3729d7c9122221d67de5b3fc683c2f97ec",
+      "message": "Preserve the existing host icon painter during canonical source sync [skip ci]",
+      "created_at": "2026-11-17T21:55:35Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/39158b3729d7c9122221d67de5b3fc683c2f97ec"
+    },
+    {
+      "sha": "1b64ddf4ee6a9178a91f523d8c0fc94f11e42db4",
+      "message": "Qualify complete choices alongside the incoming object-case safety suite [skip ci]",
+      "created_at": "2026-11-17T21:50:10Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/1b64ddf4ee6a9178a91f523d8c0fc94f11e42db4"
+    },
+    {
+      "sha": "24b930f827be1fb174b8f8a8f61fdaae360c193f",
+      "message": "Exercise shared grammar ambiguity vetoes after source reconciliation [skip ci]",
+      "created_at": "2026-11-17T21:46:14Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/24b930f827be1fb174b8f8a8f61fdaae360c193f"
+    },
+    {
+      "sha": "905f1a1534cbcc6e0045590757b400cf0eb27e7d",
+      "message": "Reconcile current Office and grammar safety work with phrase completion [skip ci]",
+      "created_at": "2026-11-17T21:45:29Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/905f1a1534cbcc6e0045590757b400cf0eb27e7d"
+    },
+    {
+      "sha": "98fe873da0fbe6592db0c7754c5b8fa7ee069173",
+      "message": "Complete bounded German phrase repairs without erasing valid readings [skip ci]",
+      "created_at": "2026-11-17T21:41:08Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/98fe873da0fbe6592db0c7754c5b8fa7ee069173"
+    },
+    {
+      "sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "message": "Reconcile Office union and finish ODT boundary qualification (#149)",
+      "created_at": "2026-11-17T21:32:16Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    }
+  ],
+  "office_since_85098d52": {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "85098d52",
+    "head": "c9d86b3e543f8ffa7c8114d31c57922f134188ef",
+    "status": "ahead",
+    "ahead_by": 3,
+    "behind_by": 0,
+    "total_commits": 3,
+    "too_large": null,
+    "base_commit": {
+      "sha": "85098d52ac025994d140192ed3808fba3ed349fc",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/85098d52ac025994d140192ed3808fba3ed349fc",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/85098d52ac025994d140192ed3808fba3ed349fc"
+    },
+    "merge_base_commit": {
+      "sha": "85098d52ac025994d140192ed3808fba3ed349fc",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/85098d52ac025994d140192ed3808fba3ed349fc",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/85098d52ac025994d140192ed3808fba3ed349fc"
+    },
+    "files": [
+      {
+        "filename": "docs/validation/office-retry-20261118/README.md",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 2,
+        "changes": 12,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/boundary5-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 585,
+        "deletions": 0,
+        "changes": 585,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/boundary5-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/calendar-timezones-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 125,
+        "deletions": 0,
+        "changes": 125,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/calendar-timezones-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/canonical-checkpoint-01.tar.index.json",
+        "status": "added",
+        "additions": 175,
+        "deletions": 0,
+        "changes": 175,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/canonical-checkpoint-01.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/canonical-complete.tar.index.json",
+        "status": "added",
+        "additions": 460,
+        "deletions": 0,
+        "changes": 460,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/canonical-complete.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/consumer-runtime-readiness.tar.index.json",
+        "status": "added",
+        "additions": 140,
+        "deletions": 0,
+        "changes": 140,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/consumer-runtime-readiness.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/consumer-summary-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 50,
+        "deletions": 0,
+        "changes": 50,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/consumer-summary-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/current7-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 1110,
+        "deletions": 0,
+        "changes": 1110,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/current7-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/editor-example-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 55,
+        "deletions": 0,
+        "changes": 55,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/editor-example-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/flutter-restoration.tar.index.json",
+        "status": "added",
+        "additions": 170,
+        "deletions": 0,
+        "changes": 170,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/flutter-restoration.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/frame5-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 465,
+        "deletions": 0,
+        "changes": 465,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/frame5-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/native-prepare-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 95,
+        "deletions": 0,
+        "changes": 95,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/native-prepare-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/native-runtime-recovery-20261118-resume.tar.index.json",
+        "status": "added",
+        "additions": 235,
+        "deletions": 0,
+        "changes": 235,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/native-runtime-recovery-20261118-resume.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/portable-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 55,
+        "deletions": 0,
+        "changes": 55,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/portable-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/retained33-9d060658.tar.index.json",
+        "status": "added",
+        "additions": 2145,
+        "deletions": 0,
+        "changes": 2145,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/evidence/retained33-9d060658.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/boundary5-guard.json",
+        "status": "added",
+        "additions": 79,
+        "deletions": 0,
+        "changes": 79,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/calendar-timezones.json",
+        "status": "added",
+        "additions": 48,
+        "deletions": 0,
+        "changes": 48,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/canonical.json",
+        "status": "added",
+        "additions": 98,
+        "deletions": 0,
+        "changes": 98,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/consumer-effective-paths-9d060658.json",
+        "status": "added",
+        "additions": 16,
+        "deletions": 0,
+        "changes": 16,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/consumer-summary-9d060658.json",
+        "status": "added",
+        "additions": 96,
+        "deletions": 0,
+        "changes": 96,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/current7-guard.json",
+        "status": "added",
+        "additions": 79,
+        "deletions": 0,
+        "changes": 79,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/editor-example.json",
+        "status": "added",
+        "additions": 20,
+        "deletions": 0,
+        "changes": 20,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/frame5-guard.json",
+        "status": "added",
+        "additions": 79,
+        "deletions": 0,
+        "changes": 79,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/portable.json",
+        "status": "added",
+        "additions": 21,
+        "deletions": 0,
+        "changes": 21,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/gates/retained33-guard.json",
+        "status": "added",
+        "additions": 79,
+        "deletions": 0,
+        "changes": 79,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/reconciliation/qualification-audit-plan.json",
+        "status": "added",
+        "additions": 258,
+        "deletions": 0,
+        "changes": 258,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/recovery/audit_remote_canonical.py",
+        "status": "added",
+        "additions": 158,
+        "deletions": 0,
+        "changes": 158,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/recovery/first-checkpoint-preparation.json",
+        "status": "added",
+        "additions": 126,
+        "deletions": 0,
+        "changes": 126,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/recovery/first-checkpoint-remote.json",
+        "status": "added",
+        "additions": 9,
+        "deletions": 0,
+        "changes": 9,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/recovery/native-wrapper-path-adaptation.json",
+        "status": "added",
+        "additions": 11,
+        "deletions": 0,
+        "changes": 11,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/recovery/remote-checkpoint-7b449f1b-audit.json",
+        "status": "added",
+        "additions": 112,
+        "deletions": 0,
+        "changes": 112,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/recovery/remote-checkpoint-c2b5905d-audit.json",
+        "status": "added",
+        "additions": 102,
+        "deletions": 0,
+        "changes": 102,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/review/audit_canonical_completed.py",
+        "status": "added",
+        "additions": 288,
+        "deletions": 0,
+        "changes": 288,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/review/audit_supplemental_completed.py",
+        "status": "added",
+        "additions": 184,
+        "deletions": 0,
+        "changes": 184,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/review/canonical-review.json",
+        "status": "added",
+        "additions": 516,
+        "deletions": 0,
+        "changes": 516,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/review/supplemental-review.json",
+        "status": "added",
+        "additions": 781,
+        "deletions": 0,
+        "changes": 781,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/setup/run_supplemental_gates.py",
+        "status": "added",
+        "additions": 77,
+        "deletions": 0,
+        "changes": 77,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/setup/seal_canonical_checkpoint.py",
+        "status": "added",
+        "additions": 38,
+        "deletions": 0,
+        "changes": 38,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/office-retry-20261118/status.json",
+        "status": "modified",
+        "additions": 134,
+        "deletions": 4,
+        "changes": 138,
+        "previous_filename": null
+      }
+    ]
+  },
+  "w7_since_225eeb92": {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "225eeb921856b8728caf7254c91badf541d3e683",
+    "head": "a6143772f048644187080ee6a1a44c070802af15",
+    "status": "ahead",
+    "ahead_by": 5,
+    "behind_by": 0,
+    "total_commits": 5,
+    "too_large": null,
+    "base_commit": {
+      "sha": "225eeb921856b8728caf7254c91badf541d3e683",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/225eeb921856b8728caf7254c91badf541d3e683",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/225eeb921856b8728caf7254c91badf541d3e683"
+    },
+    "merge_base_commit": {
+      "sha": "225eeb921856b8728caf7254c91badf541d3e683",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/225eeb921856b8728caf7254c91badf541d3e683",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/225eeb921856b8728caf7254c91badf541d3e683"
+    },
+    "files": [
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/corrected-source-execution.json",
+        "status": "added",
+        "additions": 46,
+        "deletions": 0,
+        "changes": 46,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/corrected-source.json",
+        "status": "added",
+        "additions": 2623,
+        "deletions": 0,
+        "changes": 2623,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/corrected-source.log",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/first-execution.json",
+        "status": "added",
+        "additions": 43,
+        "deletions": 0,
+        "changes": 43,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/first.json",
+        "status": "added",
+        "additions": 2623,
+        "deletions": 0,
+        "changes": 2623,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-consumer/first.log",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/completion.json",
+        "status": "added",
+        "additions": 28,
+        "deletions": 0,
+        "changes": 28,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/independent-review.json",
+        "status": "added",
+        "additions": 28,
+        "deletions": 0,
+        "changes": 28,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/runtime-restoration.json",
+        "status": "added",
+        "additions": 2932,
+        "deletions": 0,
+        "changes": 2932,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/self-test-final.json",
+        "status": "added",
+        "additions": 31,
+        "deletions": 0,
+        "changes": 31,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/self-test-final.log",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/self-test-initial.json",
+        "status": "added",
+        "additions": 23,
+        "deletions": 0,
+        "changes": 23,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/self-test-initial.log",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-controls/source-inventory.json",
+        "status": "added",
+        "additions": 90,
+        "deletions": 0,
+        "changes": 90,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-source-labels/controls.json",
+        "status": "added",
+        "additions": 138,
+        "deletions": 0,
+        "changes": 138,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-source-labels/current-source-inventory.json",
+        "status": "added",
+        "additions": 40,
+        "deletions": 0,
+        "changes": 40,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-source-labels/independent-review.json",
+        "status": "added",
+        "additions": 16,
+        "deletions": 0,
+        "changes": 16,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/dart-source-labels/self-test.log",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/pre-native-publication.json",
+        "status": "added",
+        "additions": 26,
+        "deletions": 0,
+        "changes": 26,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/source-refresh-full.json.gz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/native-spacy-w7-20261118/resume-20261118/source-refresh.json",
+        "status": "added",
+        "additions": 163,
+        "deletions": 0,
+        "changes": 163,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_proofing_spacy/tool/consume_distribution.dart",
+        "status": "modified",
+        "additions": 58,
+        "deletions": 7,
+        "changes": 65,
+        "previous_filename": null
+      }
+    ]
+  },
+  "live_branch_enumeration": {
+    "page_counts": [
+      100,
+      91,
+      0
+    ],
+    "count": 191,
+    "terminal_cursor": null
+  },
+  "github_actions_workflow_check_status_endpoints_queried": 0,
+  "remote_mutations": 0
+}

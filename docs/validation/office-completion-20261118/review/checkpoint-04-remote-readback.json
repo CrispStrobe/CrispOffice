@@ -1,0 +1,81 @@
+{
+  "observed_utc": "2026-11-18T06:19:38.456424+00:00",
+  "commit": "7104a7363174420c4fc9c1812466cf6db3a824fd",
+  "parent": "17d9d0f03f5bd32d8e0fc9b3993806f863254f58",
+  "tree": "a96b5049d890219699471b0d5966617f9f4e7a8c",
+  "all_files_verified": true,
+  "files": [
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-4.tar.index.json",
+      "bytes": 2367,
+      "git_blob": "db436d55042e448f54f2ed70eeb5fb9099d56e25",
+      "sha256": "89b4047e53801a40ec6d312f2b96a75c6b524c63c09f6774ddc65dead53e6389",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-4.tar.xz",
+      "bytes": 678168,
+      "git_blob": "ffb8133322f01d1b39ebd70ae3166475bac3cda8",
+      "sha256": "f5ff84a1871a0938ee8e1187a5a20feaf08bbd5c753a3e1c1bde8c37cd411006",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/audit_native_completion.py",
+      "bytes": 32388,
+      "git_blob": "f4c3eec2abacf0c93724a182387e983f48503293",
+      "sha256": "9d7072f9d14539873dfc758274a65cb514898a4dd4d27c160843ef4c091d9493",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/auditor-controls.json",
+      "bytes": 4339,
+      "git_blob": "5ce4b2d2aba670e73f71e13b675248fcce3bf88f",
+      "sha256": "ffebce0ec30ebe40023d89dfed4fd7c19814cae73364b9330280a0301d71f2a5",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/checkpoint-03-remote-readback.json",
+      "bytes": 5843,
+      "git_blob": "16af5df0c59a4133e922d26cabb60b3f19707513",
+      "sha256": "a59c6b2080a319c2bd6cb53b4d9113dca8ec494733007b136cdd34c9d16af360",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/native-partial-threads1-2-review.json",
+      "bytes": 22786,
+      "git_blob": "7ccb6647a0c4a3ded3adfd2f3891db1be9d60d26",
+      "sha256": "778ea370fd63aa6735649e851d46a66ec971e9f72dcc71cdff15b1f4bc3c6a31",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/review/native-partial-threads1-review.json",
+      "bytes": 5486,
+      "git_blob": "c180718609642427cd102c40fc79400c7a2ca25b",
+      "sha256": "37c12ce4afe6046b0da65d4c34ba9adb492832d3ca984935033221f6a0dabda7",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/setup/snapshot_native.py",
+      "bytes": 2645,
+      "git_blob": "92beabc2ddc56dd22891de1e4ff948daf1442e29",
+      "sha256": "351d9923cd0ff4793c2c2627e0f9397c4e80e6836de027d898fada8541c4a4f6",
+      "verified": true
+    },
+    {
+      "path": "docs/validation/office-completion-20261118/status.json",
+      "bytes": 2718,
+      "git_blob": "a3db7f2c3aae9548db449be11f3ff95e9f1c6d84",
+      "sha256": "8ba4068b044445d44656f7b99c11e4aabdc9184f9559ca0bea061ba3e66edadc",
+      "verified": true
+    }
+  ],
+  "archives": [
+    {
+      "path": "docs/validation/office-completion-20261118/evidence/native-arms-through-4.tar.xz",
+      "bytes": 678168,
+      "sha256": "f5ff84a1871a0938ee8e1187a5a20feaf08bbd5c753a3e1c1bde8c37cd411006",
+      "members_verified": 13
+    }
+  ],
+  "scope": "Exact fetched Git objects; complete byte and member readback of newly added archive indexes."
+}

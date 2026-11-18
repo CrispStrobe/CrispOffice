@@ -1,0 +1,172 @@
+{
+  "kind": "reviewer-evidence-auditor-controls",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Original retained segmented report validates under independent reconstruction",
+      "passed": true,
+      "summary": {
+        "thread_count": 2,
+        "cohort_counts": {
+          "cases": 30,
+          "controls": 8,
+          "long_complete_check_probes": 3,
+          "segmented_long_complete_check_probes": 2,
+          "varied_segmented_long_complete_check_probes": 2,
+          "segmentation_controls": 6
+        },
+        "statuses": {
+          "cases": {
+            "success": 28,
+            "unsupported": 2
+          },
+          "controls": {
+            "unsupported": 2,
+            "success": 5,
+            "failed": 1
+          },
+          "long_complete_check_probes": {
+            "success": 3
+          },
+          "segmented_long_complete_check_probes": {
+            "success": 2
+          },
+          "varied_segmented_long_complete_check_probes": {
+            "success": 2
+          },
+          "segmentation_controls": {
+            "success": 2,
+            "failed": 4
+          }
+        },
+        "short_samples": 87,
+        "retained_output_records_validated": 88,
+        "actual_decoder_records_reconstructed": 147,
+        "complete_source_decoder_records": 142,
+        "additional_control_decoder_records": 5,
+        "supported_error_cases": 18,
+        "exact_error_fixes": 6,
+        "supported_clean_controls": 10,
+        "clean_controls_unchanged": 10,
+        "short_timing": {
+          "samples_ms": [
+            53.794,
+            54.009,
+            52.674,
+            22.927,
+            21.71,
+            22.343,
+            40.487,
+            36.073,
+            43.823,
+            42.721,
+            34.993,
+            36.413,
+            32.434,
+            37.961,
+            36.407,
+            19.37,
+            18.57,
+            25.965,
+            26.169,
+            25.376,
+            25.051,
+            24.116,
+            20.938,
+            22.554,
+            21.796,
+            18.33,
+            28.973,
+            22.296,
+            34.121,
+            40.384,
+            37.66,
+            38.826,
+            53.124,
+            57.043,
+            63.712,
+            65.58,
+            39.069,
+            29.43,
+            24.501,
+            22.48,
+            17.799,
+            21.023,
+            67.075,
+            22.883,
+            35.963,
+            20.559,
+            18.931,
+            20.469,
+            17.817,
+            14.405,
+            19.379,
+            27.159,
+            18.51,
+            23.578,
+            17.057,
+            17.778,
+            22.69,
+            18.448,
+            21.248,
+            28.357,
+            36.558,
+            28.319,
+            43.971,
+            18.607,
+            34.92,
+            19.956,
+            25.772,
+            17.198,
+            25.874,
+            41.244,
+            40.823,
+            38.358,
+            32.024,
+            32.077,
+            32.034,
+            21.854,
+            23.804,
+            26.512,
+            38.729,
+            25.37,
+            29.396,
+            35.536,
+            28.739,
+            27.856,
+            142.642,
+            184.781,
+            285.668
+          ],
+          "median_ms": 27.856,
+          "p95_ms": 65.58,
+          "maximum_ms": 285.668
+        },
+        "peak_rss_bytes": 384368640,
+        "setup_ms": 3284.082,
+        "engineering_budgets": {
+          "p95_at_most_500_ms": true,
+          "peak_rss_at_most_768_mib": true,
+          "gguf_at_most_160_mib": true
+        },
+        "semantics_accepted_independently_of_budget_flags": true
+      }
+    },
+    {
+      "name": "Reject changed actual forward count",
+      "passed": true
+    },
+    {
+      "name": "Reject retained finding corruption",
+      "passed": true
+    },
+    {
+      "name": "Reject invalid budget flag",
+      "passed": true
+    }
+  ],
+  "historical_report_sha256": "8cb827cff38804037326a00870ae9c3cb08346dc60a9fbf31cdb1d567b323659",
+  "review_script_sha256": "684869db6c6af2f775f409afb57b245761ce30889b3d35e24bcaadb8af628e2c",
+  "native_inference_or_compilation_executed": false,
+  "scope": "Historical receipt and memory-only corruptions validate reviewer checks; no current-source acceptance."
+}

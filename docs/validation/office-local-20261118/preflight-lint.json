@@ -1,0 +1,12 @@
+{
+  "rejected_source": "401d012657881a54727d58bc35e537faa45d5fbe",
+  "failure": "Inherited unbraced multi-line if in sheet_conditional_rendering_test.dart:133 violates curly_braces_in_flow_control_structures under fatal-infos.",
+  "changed_path": "packages/quds_office_editor/test/sheet_conditional_rendering_test.dart",
+  "change": "Add braces around changedPixels++ without changing the test logic.",
+  "engine_strict_analysis_passed": true,
+  "tests_started": false,
+  "prior_input_maps_unchanged": true,
+  "candidate_formatting": "145 files, zero changes; corrected test formatted separately.",
+  "qualification_accepted": false,
+  "next_step": "Re-freeze corrected checkpoint and rerun all required gates against that exact source."
+}

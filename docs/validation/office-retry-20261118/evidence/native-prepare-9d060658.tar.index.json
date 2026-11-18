@@ -1,0 +1,95 @@
+{
+  "archive": "native-prepare-9d060658.tar.xz",
+  "bytes": 640428,
+  "sha256": "6019ff89005687dc8d8554aa0beb893054b3b103867fe63888acc3e16d67dc56",
+  "classification": "Passed native prepare on frozen 9d060658ee6be8ec97d73f56b9aec10d346b7952; generated provider executable omitted, exact build receipt retained.",
+  "member_count": 17,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "guard.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "guard.stdout.log",
+      "bytes": 1506,
+      "sha256": "e1276a99729fe2d1eb3b5f9e4446194b1a744ecd0a5f251a254192c7b9af8b12"
+    },
+    {
+      "path": "guard/child.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "guard/child.stdout.log",
+      "bytes": 259,
+      "sha256": "e2b5ec586cb146ddb886d4338ae3cdc5a3450ff25503c95f9266ed360a1fa8f7"
+    },
+    {
+      "path": "guard/inputs-after.json.gz",
+      "bytes": 625967,
+      "sha256": "3c6e92092cfa0b060aaeb19941b163658ef6bded873e76d96a0424ac2d86d63d"
+    },
+    {
+      "path": "guard/inputs-before.json.gz",
+      "bytes": 625968,
+      "sha256": "10d97afa988c026d79b72501efe1b6ab4bc864268dc3462ca2228437b30048a3"
+    },
+    {
+      "path": "guard/receipt.json",
+      "bytes": 1506,
+      "sha256": "e1276a99729fe2d1eb3b5f9e4446194b1a744ecd0a5f251a254192c7b9af8b12"
+    },
+    {
+      "path": "native_prepare_child.py",
+      "bytes": 1701,
+      "sha256": "4804aaae09352ac52eda997873a744b15c8fa0c8a1472b635c5aa724b5f837fb"
+    },
+    {
+      "path": "orchestration.json",
+      "bytes": 2371,
+      "sha256": "7732e026f231aab0bb67d71a7c34a2f8165b454c37658af040569810eee6b9ca"
+    },
+    {
+      "path": "result/audit-controls.json",
+      "bytes": 3495,
+      "sha256": "a5940c00e183bd965cf90419240f0e2751f4b706f3a21c6fa561f0512cb3973a"
+    },
+    {
+      "path": "result/audit-controls.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result/audit-controls.stdout",
+      "bytes": 47,
+      "sha256": "d732affed965fe9478ad9def91539149972ca1b9572612eda0ffe6a34f1226f4"
+    },
+    {
+      "path": "result/commands.json",
+      "bytes": 1465,
+      "sha256": "3b873c81818bcad2d85fe346dcea380e27c916ba4152bbe995f809ab6d6ca4f1"
+    },
+    {
+      "path": "result/provider-build.json",
+      "bytes": 65657,
+      "sha256": "d4826a8230c2c4fd853daf10b23ca123851c7238cfe5ef51b023c232bd2fd757"
+    },
+    {
+      "path": "result/provider-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result/provider-build.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run_guarded_native.py",
+      "bytes": 4275,
+      "sha256": "1300e2415723cd0168916c5991523cb2f24358aa29cd7bb51b6b3b92513c55db"
+    }
+  ]
+}

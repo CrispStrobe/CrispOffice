@@ -1,0 +1,170 @@
+{
+  "archive": "flutter-restoration.tar.xz",
+  "bytes": 805712,
+  "sha256": "059e0447e37f86f735cdd80d5965caef46a762a873e2f3a04831d231a40381ba",
+  "classification": "Passed exact Flutter recovery, stable actual-root prewarm, and independent consumed-input audit before fresh gates",
+  "member_count": 32,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "independent/audit_current_restore.py",
+      "bytes": 15934,
+      "sha256": "71c5418d21517c4b4d2035352753f89d3ee361e2d489827d2cc1ec83c03aa5f3"
+    },
+    {
+      "path": "independent/current-restoration-audit.json",
+      "bytes": 11584,
+      "sha256": "020b8e4164ffd3505e064d70377af2c750fafcb9080bf5d71b1ef83755a13e88"
+    },
+    {
+      "path": "independent/dependency-baseline.json.gz",
+      "bytes": 242799,
+      "sha256": "34a64aaa0d44ac9b58d788432d71df686b2efc1caefc6c97d6f65f3359631201"
+    },
+    {
+      "path": "independent/package_config.before.json",
+      "bytes": 23227,
+      "sha256": "31afc600794b0142b4e5ef1cf4462c61de25cac0e33a293f2b57d460d2421e18"
+    },
+    {
+      "path": "independent/package_graph.before.json",
+      "bytes": 19236,
+      "sha256": "cb4447b19a5ff7a0ddbf8b8e7c75ebe9323310fcf1df00830decc26bf1e9c1d3"
+    },
+    {
+      "path": "independent/retained-sdk-inputs.json.gz",
+      "bytes": 162166,
+      "sha256": "5f8665348d41cc1c2a25f8d3a1bd97dc145bba0c819299e45835d5d1f0609c7d"
+    },
+    {
+      "path": "independent/runtime-baseline.json.gz",
+      "bytes": 819,
+      "sha256": "365c1a64f89df4a1f4022e74f91f58d62a1d9020f53e6e365e3bf1f4cdb1c836"
+    },
+    {
+      "path": "independent/source-baseline.json.gz",
+      "bytes": 251465,
+      "sha256": "a11a8b8a12156dca319d949eeac975489b02b577e9b8b380ae9127f576694b01"
+    },
+    {
+      "path": "independent/supplemental-runtime-baseline.json",
+      "bytes": 2465,
+      "sha256": "2dbc4531f9f3dd96d2331d1f61a221a40708af54d5ed377dbea6c73c0c244b42"
+    },
+    {
+      "path": "independent/test-cli-bootstrap-baseline.json",
+      "bytes": 716,
+      "sha256": "cd5633a73ce62aa3e01fbca78b9f93af6f6a7d989b4bf1e88c5bc851de649770"
+    },
+    {
+      "path": "independent/workspace-baseline.json.gz",
+      "bytes": 5621,
+      "sha256": "6e3b0243882d896074e5855cd0961b9fd8094e6f5b57b69d30f69838f702322b"
+    },
+    {
+      "path": "independent/workspace-extra-baseline.json.gz",
+      "bytes": 238,
+      "sha256": "bce46ada946d65d93ed97fe5b3fa22e6781906d60f2264ac3acf1aa3f3bee7ee"
+    },
+    {
+      "path": "runtime/commands.json",
+      "bytes": 743,
+      "sha256": "460de104d1ae32c747ce4c27ca651838661d7c44ec987bcacd90a16f98eecb63"
+    },
+    {
+      "path": "runtime/config/tool_state",
+      "bytes": 21,
+      "sha256": "b74b1eaf3ebb5dec3e407a1a458298f1f4311028f3d6b2e2bd6ba1ef5795c6b5"
+    },
+    {
+      "path": "runtime/flutter-install-receipt.json",
+      "bytes": 392122,
+      "sha256": "fd109d690d48143378cf28137ea9fc4be5d7491c28a27d09e5c694cd65b5e697"
+    },
+    {
+      "path": "runtime/flutter-shallow-identity.json",
+      "bytes": 979655,
+      "sha256": "f700cf7c16c0b782215439d1639d6790075e03704cc84767ae00b1f174995167"
+    },
+    {
+      "path": "runtime/flutter-tools-offline.log",
+      "bytes": 1174,
+      "sha256": "029086691c4a8e9af45985d54e9c9318f32393dbb94eb513f11f0fd8bc15a5c2"
+    },
+    {
+      "path": "runtime/flutter-version.log",
+      "bytes": 631,
+      "sha256": "480bf36a5ad684e6cc438feba4d610e070abbf1fcaf402d6f3114a3213e5359e"
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "bytes": 78540,
+      "sha256": "b9a4501eefa57c6d166cfa70ec4c15810c838a4f718077eb83e0c0e4cecb7539"
+    },
+    {
+      "path": "runtime/ready.json",
+      "bytes": 985,
+      "sha256": "83333fb4d9d92d04416d48ff4b0241bb30aefa1927e560e1f0af29df838ab145"
+    },
+    {
+      "path": "setup/dart-test-help.log",
+      "bytes": 6533,
+      "sha256": "23c711166086711d6321ba13ee83724bfb8e4084e60f2871941aa57908c43b8e"
+    },
+    {
+      "path": "setup/flutter-test-help.log",
+      "bytes": 9797,
+      "sha256": "5fa079668eb68aa603a9e68b40d2da15394b215dc8fb0b56f135de79a7501796"
+    },
+    {
+      "path": "setup/path-adaptation.json",
+      "bytes": 332,
+      "sha256": "6415f4ce8a065ba32ce03ef03a07c947bdf0231badb2b141a1bca660532ec3be"
+    },
+    {
+      "path": "setup/prepare_workspace_actual_path.py",
+      "bytes": 3484,
+      "sha256": "132bebad13b119536f1913f808a8a89cec1d571b417505227883fe57fcc313d7"
+    },
+    {
+      "path": "setup/prewarm-receipt.json",
+      "bytes": 1290,
+      "sha256": "c4f09a564ca4e24091d0cbd112bd5d4ad593b31606b37aab6a76fdeb043fe00c"
+    },
+    {
+      "path": "setup/restore.log",
+      "bytes": 273,
+      "sha256": "0eaa375b6e10c09eb9cca87c90efe750cb70af6f006c616ea2764dafbc03e23e"
+    },
+    {
+      "path": "setup/restore_compact_flutter.py",
+      "bytes": 9172,
+      "sha256": "4c4727b124eea955c18c76a94b8540cc1c057058da04bb40d3c5441c295e9e5d"
+    },
+    {
+      "path": "setup/workspace-adaptation.json",
+      "bytes": 491,
+      "sha256": "b15f768993b82461e626df50e638d8eef66c3251934d6899c20545929382028f"
+    },
+    {
+      "path": "workspace/package_config.json",
+      "bytes": 23227,
+      "sha256": "31afc600794b0142b4e5ef1cf4462c61de25cac0e33a293f2b57d460d2421e18"
+    },
+    {
+      "path": "workspace/pubspec.lock",
+      "bytes": 22686,
+      "sha256": "344190a0224b9e6dcc2161cbfb1be3b7a9569a3a03a809f42801d99f9052e130"
+    },
+    {
+      "path": "workspace/setup.json",
+      "bytes": 26064,
+      "sha256": "14b643972e1c3144aab04daf8aeb2c7187b5f70f4fa6290792c95140837b5267"
+    },
+    {
+      "path": "workspace/setup.log",
+      "bytes": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    }
+  ]
+}

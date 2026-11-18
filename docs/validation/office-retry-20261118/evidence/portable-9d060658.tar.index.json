@@ -1,0 +1,55 @@
+{
+  "archive": "portable-9d060658.tar.xz",
+  "bytes": 522200,
+  "sha256": "8eb94b3f4fcc65c85706fe8854a4e6fc3e0158dab5018008d6c403121884860a",
+  "classification": "Passed portable gate on frozen 9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "member_count": 9,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "orchestration.json",
+      "bytes": 1032,
+      "sha256": "3800076044a372005ccc1c7497aa774d34e8cbc93fa9023e2231a2750ed4548e"
+    },
+    {
+      "path": "outer.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "outer.stdout",
+      "bytes": 249,
+      "sha256": "1fb8f4eaddfb307a9a7df564d9e55ac3add9e1861dace35cd779d67e94cbc54c"
+    },
+    {
+      "path": "result/inputs-after.json.gz",
+      "bytes": 501458,
+      "sha256": "e13ea9aeda9f52cf3f82eaf5d027a26601ac77fa21c6a63b6ff85a586e335f78"
+    },
+    {
+      "path": "result/inputs-before.json.gz",
+      "bytes": 501458,
+      "sha256": "e13ea9aeda9f52cf3f82eaf5d027a26601ac77fa21c6a63b6ff85a586e335f78"
+    },
+    {
+      "path": "result/receipt.json",
+      "bytes": 46429,
+      "sha256": "461063c9a4e745b3c7ee95ce5a664d0e7fe91fc7f064c0484ddaa37df56b9d90"
+    },
+    {
+      "path": "result/stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "result/stdout.gz",
+      "bytes": 11223,
+      "sha256": "b03f5b034db0ab864786bc68858961e3f9940a54ab545aed787a1a66205863ee"
+    },
+    {
+      "path": "run_supplemental_gates.py",
+      "bytes": 4210,
+      "sha256": "3c9b0360852d3e4f27189543996e7e4690c011c7b58578c1055462c1a40419ec"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "source_commit": "9d060658ee6be8ec97d73f56b9aec10d346b7952",
+  "source_tree": "62c0dced2a33de6519b6e9e2c97e42e2edae1857",
+  "started_utc": "2026-11-18T05:50:33.061828+00:00",
+  "finished_utc": "2026-11-18T05:55:03.803835+00:00",
+  "status": "passed",
+  "all_passed": true,
+  "raw_runner_success_total": 4236,
+  "substantive_success_total": 4234,
+  "input_integrity": {
+    "dependencies_unchanged": true,
+    "harness_unchanged": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true,
+    "system_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "analysis_config_restored": true,
+  "source_matches_frozen_commit": true,
+  "tests_by_cohort": {
+    "editor-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 415
+      },
+      "raw_success_count": 415,
+      "substantive_success_count": 415
+    },
+    "editor-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 186
+      },
+      "raw_success_count": 186,
+      "substantive_success_count": 186
+    },
+    "engine-integration": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [
+        {
+          "matched_case_name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "name": "TrueType subsets without cmap get ToUnicode cmap for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "suite_id": 1237,
+          "test_id": 1273
+        },
+        {
+          "matched_case_name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "name": "JPEG with DCT SMask attaches softMaskJpeg for the host",
+          "outcome": "success",
+          "reason": "Unavailable optional private PDF fixture; inherited early return before assertions.",
+          "suite_id": 1237,
+          "test_id": 1277
+        }
+      ],
+      "raw_runner_outcomes": {
+        "success": 2965
+      },
+      "raw_success_count": 2965,
+      "substantive_success_count": 2963
+    },
+    "engine-zotero": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 390
+      },
+      "raw_success_count": 390,
+      "substantive_success_count": 390
+    },
+    "gector-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 251
+      },
+      "raw_success_count": 251,
+      "substantive_success_count": 251
+    },
+    "harper-contract": {
+      "allowed_skipped_cases": [],
+      "excluded_success_cases": [],
+      "raw_runner_outcomes": {
+        "success": 29
+      },
+      "raw_success_count": 29,
+      "substantive_success_count": 29
+    }
+  },
+  "selected_files": 224,
+  "strict_analysis_commands": 5,
+  "format_files": 145,
+  "python_controls": 117,
+  "canonical_process_exit": 0
+}

@@ -1,0 +1,10 @@
+{
+  "left": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/dart-sdk/bin/snapshots/frontend_server_aot.dart.snapshot",
+  "right": "/workspace/scratch/5e1b9c2fa60d/toolchains/flutter/bin/cache/artifacts/engine/linux-x64/frontend_server_aot.dart.snapshot",
+  "left_sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a",
+  "right_sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a",
+  "same_bytes": true,
+  "same_mode": true,
+  "bytes_reclaimed": 17153416,
+  "same_hash_after": true
+}

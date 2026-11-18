@@ -1,0 +1,55 @@
+{
+  "archive": "native-arms-through-1.tar.xz",
+  "bytes": 660148,
+  "sha256": "ccdaf547031fa818c98250783dd444f294c964d69d445cf77950c1ace4b79fd9",
+  "classification": "Partial native sweep; completed arms only; final qualification not yet accepted",
+  "member_count": 9,
+  "all_members_read_back_and_verified": true,
+  "members": [
+    {
+      "path": "checkpoint.json",
+      "bytes": 382,
+      "sha256": "a9e469119156ff116c9e609c8df81712c1e8e3b732f8bd597dcb425e23e33827"
+    },
+    {
+      "path": "guard/inputs-before.json.gz",
+      "bytes": 626061,
+      "sha256": "35a579425795d0de84df5650298a073056c5b12f02cc34a58842477e6a8d094d"
+    },
+    {
+      "path": "guard/receipt.json",
+      "bytes": 1329,
+      "sha256": "bb0f14add6bf8e0f1ccaf5969b4b1da4c86a8a8afd168bbbb43bc2386178c518"
+    },
+    {
+      "path": "orchestration.json",
+      "bytes": 3073,
+      "sha256": "95d9260f6cb039b79cb008ecfa6516efee8e8916997a631fa908a603e93590f5"
+    },
+    {
+      "path": "result/serial-receipt.json",
+      "bytes": 128569,
+      "sha256": "a4c0249b8600a9129916f44bcc26fcc19bc34a401a50e33abb46d9fffb42f838"
+    },
+    {
+      "path": "result/threads-1.json",
+      "bytes": 662914,
+      "sha256": "36570eee3ac075b024fc06605552c8382add027894b442f538a1ebfce370bee3"
+    },
+    {
+      "path": "result/threads-1.log",
+      "bytes": 1115,
+      "sha256": "e37c51fac31ac4edae6c6c3b089183a44bd44095b61066432f74653bd95bfd0e"
+    },
+    {
+      "path": "run_guarded_native.py",
+      "bytes": 4278,
+      "sha256": "d81d5fd371c05065b390974a8b22bf808c8ff750dd60c939519e863bd389ce96"
+    },
+    {
+      "path": "snapshot_native.py",
+      "bytes": 2601,
+      "sha256": "09af40a9233b322b673bb70c99b43d27b234d83388fd25e575edf1003043baeb"
+    }
+  ]
+}
