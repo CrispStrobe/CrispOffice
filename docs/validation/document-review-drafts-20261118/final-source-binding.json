@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-11-18T19:56:08.112636+00:00",
+  "checked_at_utc": "2026-11-18T19:59:12.857171+00:00",
   "accepted_source_commit": "66919cf857fe2439a3512a821817f35981760a75",
   "accepted_source_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
-  "checked_head": "66919cf857fe2439a3512a821817f35981760a75",
-  "checked_head_tree": "33faed80ab06c0d5aa3e8b9faa73ceff27892246",
+  "checked_head": "005485eb5eee81e18eb8fef675b7cb306146bcc8",
+  "checked_head_tree": "08ee7b3753f11f8eecd81ec0c3c1bfa3736c4503",
   "source_manifest": "accepted/source-before.json",
   "source_manifest_sha256": "4e6d29260c46e34d6d53593967cf5e2c7c0845dee7708ef5fabb4e62756b07e2",
   "accepted_receipt_sha256": "15b0792247d95d265c587e8f8cd68f99fb0b3ec2fed2b4e948dbe38b458bbf7f",

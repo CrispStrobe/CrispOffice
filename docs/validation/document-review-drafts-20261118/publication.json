@@ -191,10 +191,25 @@
       "expected_previous_head": "bfa88aab88a74028285619dfa07f3a81868fe59b",
       "published_tree_and_parents_verified": true,
       "ancestor_of_checked_head": true
+    },
+    {
+      "sha": "005485eb5eee81e18eb8fef675b7cb306146bcc8",
+      "parent": "66919cf857fe2439a3512a821817f35981760a75",
+      "tree": "08ee7b3753f11f8eecd81ec0c3c1bfa3736c4503",
+      "message": "Record passing local draft and keyboard review gates [skip ci]",
+      "expected_previous_head_verified": true,
+      "force": false,
+      "parents": [
+        "66919cf857fe2439a3512a821817f35981760a75"
+      ],
+      "committed_at": "2026-11-18T20:58:16+01:00",
+      "expected_previous_head": "66919cf857fe2439a3512a821817f35981760a75",
+      "published_tree_and_parents_verified": true,
+      "ancestor_of_checked_head": true
     }
   ],
-  "checkpoint_count": 11,
-  "receipt_through_commit": "66919cf857fe2439a3512a821817f35981760a75",
-  "checked_head": "66919cf857fe2439a3512a821817f35981760a75",
+  "checkpoint_count": 12,
+  "receipt_through_commit": "005485eb5eee81e18eb8fef675b7cb306146bcc8",
+  "checked_head": "005485eb5eee81e18eb8fef675b7cb306146bcc8",
   "receipt_scope": "Verified preceding source/evidence checkpoints; this receipt is stored in a subsequent documentation-only commit."
 }
