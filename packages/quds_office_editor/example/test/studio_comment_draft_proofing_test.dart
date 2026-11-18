@@ -455,7 +455,7 @@ void main() {
     await _finishCheck(tester);
     expect(provider.requests.where((r) => r.text.startsWith('Draft')), isEmpty);
     expect(tester.widget<Text>(_status()).data, contains('incomplete'));
-    expect(find.textContaining('16384'), findsWidgets);
+    expect(find.textContaining('too long for live checking'), findsOneWidget);
     await _close(tester, provider);
   });
 
@@ -500,6 +500,7 @@ void main() {
       await _enter(tester, 'Draft Commet are is very very useful.');
       await _finishCheck(tester);
       await tester.ensureVisible(_suggestion());
+      await _pump(tester);
       await tester.tap(_suggestion());
       await _pump(tester);
       expect(_text(tester).text, 'Draft Comment are is very very useful.');

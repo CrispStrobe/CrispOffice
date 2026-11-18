@@ -116,7 +116,7 @@ void main() {
       );
       expect(
         controller.proofing.summary.issues.single.story,
-        contains('comment'),
+        'Comment 8',
       );
       gate.complete();
       final summary = await check;
