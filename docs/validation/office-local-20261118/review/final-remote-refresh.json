@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "kind": "final-remote-frontier-refresh",
+  "observed_on": "2026-11-18",
+  "repository": "CrispStrobe/quds_office_suite",
+  "main_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+  "main_unchanged_since_reconciliation": true,
+  "our_pr": 154,
+  "our_branch": "codex/office-local-qualification-20261118",
+  "our_verified_head_before_this_documentation_checkpoint": "0f5a1259e7db28e4d224084fb25838097e4547b8",
+  "qualification_source": "9a7c80be00258def2dcae3bb288c28558c83aa72",
+  "new_separate_pr": {
+    "number": 153,
+    "draft": true,
+    "merged": false,
+    "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+    "base": "feat/native-spacy-reference-20261117",
+    "base_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+    "head": "feat/native-spacy-w7-20261118",
+    "head_sha": "2e57784093fd2d1f44fe27edb31077d4163693f2",
+    "decision": "Keep the separately owned native packaging continuation separate. Its PR reports no production backend/default changes and installed worker consumption still in progress."
+  },
+  "github_actions_queried_or_awaited": false,
+  "qualification_accepted": false
+}

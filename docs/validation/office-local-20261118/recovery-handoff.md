@@ -90,7 +90,9 @@ After canonical success, use the same five arguments and distinct fresh outputs 
 
 ### Document consumers and native sweep
 
-Restore the helpers archive to the external native-consumers workspace. Set:
+Restore the helpers archive to the external native-consumers workspace. Its index stores the three orchestration scripts under `helpers/`; place them at `$TASK_ROOT/native-consumers/`. Place `frame-harness/*` at `$TASK_ROOT/native-consumers/frame-consumers/harness/`. The `runtime/` members are recorded receipts, not an installed Python environment. Preserve their original archive paths/hashes in the evidence.
+
+Set:
 `REF="$TASK_ROOT/native-consumers/consumer-runtime/retained-reference"`,
 `DART="$FLUTTER_ROOT/bin/cache/dart-sdk/bin/dart"`,
 `NATIVE="$TASK_ROOT/native-consumers/native-qualification-runtime"`.
@@ -112,3 +114,7 @@ Package completed gates immediately, read back all members against their indexes
 Use non-forced expected-SHA branch updates and `[skip ci]` messages. Inspect a changed remote head before retrying. No additional publication permission is needed for this authorized continuation.
 Never query, await or rerun GitHub Actions/check/status endpoints for this work.
 Do not claim release acceptance until all required gates and independent evidence audits pass.
+
+## Final remote refresh and review link
+
+Draft PR #154 records this continuation. At the final refresh, main was still `482e0817`. Separate draft PR #153 now tracks W7 native spaCy packaging on `feat/native-spacy-w7-20261118` at `2e57784093fd2d1f44fe27edb31077d4163693f2`, stacked on #139. Its installed-worker acceptance is still reported as in progress. See `review/final-remote-refresh.json`; this separate packaging work was not silently merged into the Office qualification candidate.
