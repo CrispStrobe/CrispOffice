@@ -85,6 +85,7 @@ final class _WordTextProofingRange {
 typedef _WordTextProofingParagraph = ({
   WmlParagraph paragraph,
   List<WmlContentControlData> controls,
+  List<Object?> styleContext,
   bool generated,
 });
 
@@ -2860,11 +2861,16 @@ class WordEditorController extends OfficeController {
 
   @override
   /// cutToClipboard API.
-  Future<void> cutToClipboard() async {
-    if (!canCut) {
+  /// [isCurrent] can bind a contextual action to its original edit target while
+  /// the system clipboard write is pending.
+  Future<void> cutToClipboard({bool Function()? isCurrent}) async {
+    if (!canCut || !(isCurrent?.call() ?? true)) {
       return;
     }
     await copyToClipboard();
+    if (!(isCurrent?.call() ?? true)) {
+      return;
+    }
     if (selectedVisual != null) {
       deleteSelectedVisual();
       return;
@@ -2878,15 +2884,18 @@ class WordEditorController extends OfficeController {
 
   @override
   /// pasteFromClipboard API.
+  /// [isCurrent] can bind a contextual action to its original edit target while
+  /// the system clipboard read is pending.
   Future<void> pasteFromClipboard({
     OfficePasteMode mode = OfficePasteMode.keepSource,
+    bool Function()? isCurrent,
   }) async {
-    if (!canPaste) {
+    if (!canPaste || !(isCurrent?.call() ?? true)) {
       return;
     }
     final OfficeClipboardPayload payload = await OfficeClipboard.instance
         .read();
-    if (payload.isEmpty) {
+    if (!(isCurrent?.call() ?? true) || payload.isEmpty) {
       return;
     }
     if (payload.visual != null && selectedVisual == null && caret.isCollapsed) {
@@ -8211,7 +8220,11 @@ class WordEditorController extends OfficeController {
             paragraph: paragraph,
             start: from,
             end: to,
-            source: _textProofingSource(paragraph, entry.controls),
+            source: _textProofingSource(
+              paragraph,
+              entry.controls,
+              entry.styleContext,
+            ),
           ),
         );
       }
@@ -8273,6 +8286,7 @@ class WordEditorController extends OfficeController {
             : null,
         footer: _editingFooter,
         documentLanguage: document.proofingLanguage,
+        styles: _textProofingStylesToken,
         tracking: document.trackRevisions,
         restricted: document.restrictEditing,
         restriction: document.restrictMode,
@@ -8291,7 +8305,12 @@ class WordEditorController extends OfficeController {
       Iterable<WmlParagraph> paragraphs,
     ) sync* {
       for (final paragraph in paragraphs) {
-        yield (paragraph: paragraph, controls: const [], generated: false);
+        yield (
+          paragraph: paragraph,
+          controls: const [],
+          styleContext: const [],
+          generated: false,
+        );
       }
     }
 
@@ -8312,22 +8331,51 @@ class WordEditorController extends OfficeController {
     Iterable<_WordTextProofingParagraph> visit(
       Iterable<WmlBlock> blocks,
       List<WmlContentControlData> controls,
+      List<Object?> styleContext,
     ) sync* {
       for (final block in blocks) {
         if (block is WmlParagraph) {
-          yield (paragraph: block, controls: controls, generated: false);
+          yield (
+            paragraph: block,
+            controls: controls,
+            styleContext: styleContext,
+            generated: false,
+          );
         } else if (block is WmlContentControlBlock) {
-          yield* visit(block.blocks, [...controls, block.control]);
+          yield* visit(block.blocks, [
+            ...controls,
+            block.control,
+          ], styleContext);
+        } else if (block is WmlTable) {
+          for (final row in block.rows.indexed) {
+            for (final cell in row.$2.cells.indexed) {
+              yield* visit(cell.$2.blocks, controls, [
+                ...styleContext,
+                [
+                  block.properties.styleId,
+                  block.properties.sourcePropertiesXml,
+                  block.properties.importedValues,
+                  row.$1,
+                  cell.$1,
+                ],
+              ]);
+            }
+          }
         } else if (block is WmlToc) {
           for (final paragraph in [
             block.titleParagraph,
             ...block.itemParagraphs,
           ]) {
-            yield (paragraph: paragraph, controls: controls, generated: true);
+            yield (
+              paragraph: paragraph,
+              controls: controls,
+              styleContext: styleContext,
+              generated: true,
+            );
           }
         } else {
           for (final children in WordTree.childLists(block)) {
-            yield* visit(children, controls);
+            yield* visit(children, controls, styleContext);
           }
         }
       }
@@ -8336,7 +8384,28 @@ class WordEditorController extends OfficeController {
     yield* visit(
       document.sections.expand((section) => section.blocks),
       const [],
+      const [],
     );
+  }
+
+  // PackagePart replaces its payload on writes. Retaining its read-only view
+  // identity detects style edits without copying/decoding an entire styles XML
+  // on every caret or progress notification.
+  Object? get _textProofingStylesToken {
+    final package = document.package;
+    if (package == null) return null;
+    final office = package.packageRelationships.firstByType(
+      RelationshipTypes.officeDocument,
+    );
+    final uri = office == null
+        ? '/word/document.xml'
+        : package.packageRelationships.resolve(office);
+    final relationships = package.relationshipsFor(uri);
+    final style = relationships.firstByType(RelationshipTypes.styles);
+    final part = package.getPart(
+      style == null ? '/word/styles.xml' : relationships.resolve(style),
+    );
+    return (package, part, part?.bytesView);
   }
 
   static bool _textProofingControlLocked(WmlContentControlData control) {
@@ -8363,7 +8432,12 @@ class WordEditorController extends OfficeController {
   static String _textProofingSource(
     WmlParagraph paragraph,
     List<WmlContentControlData> controls,
+    List<Object?> styleContext,
   ) => jsonEncode([
+    styleContext,
+    paragraph.properties.styleId,
+    paragraph.properties.sourcePropertiesXml,
+    paragraph.properties.importedValues,
     paragraph.properties.proofingLanguage,
     paragraph.properties.fieldInstruction,
     paragraph.properties.pageNumberField,
@@ -8404,7 +8478,8 @@ class WordEditorController extends OfficeController {
   ]);
 
   /// Changes the language of exactly [target]. Null removes run overrides so
-  /// the text inherits its paragraph/document language. Returns false if the
+  /// the text inherits its character/paragraph styles and paragraph/document
+  /// defaults. Returns false if the
   /// displayed target became stale or cannot be changed safely.
   bool setTextProofingLanguage(
     String? language, {
@@ -8414,10 +8489,23 @@ class WordEditorController extends OfficeController {
         ? null
         : normalizeProofingLanguage(language);
     if (normalized != null && normalized.isEmpty) return false;
+    if (normalized == null) {
+      final reader = WordDeserializer();
+      return _setTextProofingOption(
+        target,
+        prepare: (source, preview, start, end) => reader
+            .clearRunProofingLanguage(document, source, preview, start, end),
+      );
+    }
     return _setTextProofingOption(
       target,
-      needsChange: (properties) => properties.proofingLanguage != normalized,
-      update: (properties) => properties.proofingLanguage = normalized,
+      prepare: (source, preview, start, end) => _prepareTextProofingRuns(
+        preview,
+        start,
+        end,
+        needsChange: (properties) => properties.proofingLanguage != normalized,
+        update: (properties) => properties.proofingLanguage = normalized,
+      ),
     );
   }
 
@@ -8428,20 +8516,80 @@ class WordEditorController extends OfficeController {
     required WordTextProofingTarget target,
   }) => _setTextProofingOption(
     target,
-    needsChange: (properties) => (properties.noProof != true) != enabled,
-    update: (properties) => properties.noProof = !enabled,
+    prepare: (source, preview, start, end) => _prepareTextProofingRuns(
+      preview,
+      start,
+      end,
+      needsChange: (properties) => (properties.noProof != true) != enabled,
+      update: (properties) => properties.noProof = !enabled,
+    ),
   );
+
+  static bool _prepareTextProofingRuns(
+    WmlParagraph preview,
+    int start,
+    int end, {
+    required bool Function(WmlRunProps) needsChange,
+    required void Function(WmlRunProps) update,
+  }) {
+    var offset = 0;
+    var changed = false;
+    for (final run in preview.inlines.whereType<WmlRun>()) {
+      final runEnd = offset + run.text.length;
+      if (offset < end && runEnd > start && needsChange(run.properties)) {
+        changed = true;
+      }
+      offset = runEnd;
+    }
+    if (!changed) return false;
+    WmlRunEdit.applyRange(preview, start, end, (properties) {
+      if (needsChange(properties)) update(properties);
+    });
+    return true;
+  }
 
   bool _setTextProofingOption(
     WordTextProofingTarget target, {
-    required bool Function(WmlRunProps) needsChange,
-    required void Function(WmlRunProps) update,
+    required bool Function(WmlParagraph, WmlParagraph, int, int) prepare,
   }) {
     if (!target.canEdit) return false;
     final current = textProofingTarget;
     if (current == null || !current.canEdit || !target._matches(current)) {
       return false;
     }
+    final owners = <WmlParagraph, int>{
+      for (final range in current._ranges) range.paragraph: 0,
+    };
+    void countOwners(Iterable<WmlParagraph> paragraphs) {
+      for (final paragraph in paragraphs) {
+        if (owners.containsKey(paragraph)) {
+          owners[paragraph] = owners[paragraph]! + 1;
+        }
+      }
+    }
+
+    // Full ownership validation is needed only for an explicit mutation. An
+    // aliased paragraph could otherwise also change a protected/hidden story.
+    for (final section in document.sections) {
+      countOwners(WordTree.paragraphs(section.blocks));
+      for (final story in [
+        section.header,
+        section.footer,
+        section.firstHeader,
+        section.firstFooter,
+        section.evenHeader,
+        section.evenFooter,
+      ]) {
+        countOwners(story);
+      }
+    }
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      countOwners(note.allParagraphs);
+    }
+    for (final comment in document.comments) {
+      countOwners(comment.paragraphs);
+    }
+    if (owners.values.any((count) => count != 1)) return false;
     final changes =
         <
           ({
@@ -8453,22 +8601,10 @@ class WordEditorController extends OfficeController {
     try {
       // Complete every preflight and detached edit before changing any source.
       for (final range in current._ranges) {
-        var offset = 0;
-        var changed = false;
-        for (final run in range.paragraph.inlines.whereType<WmlRun>()) {
-          final end = offset + run.text.length;
-          if (offset < range.end &&
-              end > range.start &&
-              needsChange(run.properties)) {
-            changed = true;
-          }
-          offset = end;
-        }
-        if (!changed) continue;
         final preview = WmlClone.paragraph(range.paragraph);
-        WmlRunEdit.applyRange(preview, range.start, range.end, (properties) {
-          if (needsChange(properties)) update(properties);
-        });
+        if (!prepare(range.paragraph, preview, range.start, range.end)) {
+          continue;
+        }
         if (preview.text != range.paragraph.text) return false;
         changes.add((
           paragraph: range.paragraph,

@@ -5994,6 +5994,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       return;
     }
     final document = _word.document;
+    if (!identical(comment, _word.selectedComment) ||
+        !identical(WordComment.byId(document, comment.id), comment)) {
+      return;
+    }
+    // A secondary click does not run the canvas's primary-click selection
+    // handler. Route ordinary editing commands to this comment as well as
+    // routing proofing commands by their explicit finding.
+    if (!_word.isEditingComment && _canMutate && _word.config.allowsMutation) {
+      _word.beginCommentEdit(comment.id);
+    }
     final root = WordComment.byId(
       document,
       WordComment.threadRootId(document, comment.id),
@@ -6030,6 +6040,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         _word.commentCaret.selectionAnchorParagraph == caret.anchorParagraph &&
         _word.commentCaret.selectionAnchor == caret.anchor &&
         (issue == null || _word.proofing.isCurrent(issue));
+    bool canMutateCurrent() =>
+        current() &&
+        _wordRouteIsCurrent &&
+        _canMutate &&
+        _word.config.allowsMutation &&
+        !(_word.input.composing.isValid && !_word.input.composing.isCollapsed);
     if (!current()) return;
     final actions = <OfficeContextAction>[
       if (issue != null) ...[
@@ -6128,9 +6144,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         } else if (_canMutate && _word.config.allowsMutation) {
           switch (id) {
             case 'cut':
-              _word.cutToClipboard();
+              _word.cutToClipboard(isCurrent: canMutateCurrent);
             case 'paste':
-              _word.pasteFromClipboard();
+              _word.pasteFromClipboard(isCurrent: canMutateCurrent);
             case 'replyComment':
               _replyWordComment(comment.id);
             case 'resolveComment':

@@ -96,6 +96,31 @@ void _refuse(WordEditorController controller, WordTextProofingTarget target) {
   expect(controller.canUndo, isFalse);
 }
 
+WmlDocument _styledDocument() {
+  final package = OpcPackage.create(OpcPackageKind.word);
+  package.getPart('/word/document.xml')!.writeText('''
+<w:document xmlns:w="${OfficeNamespaces.w}"><w:body>
+<w:p><w:pPr><w:pStyle w:val="ParagraphChild"/></w:pPr>
+<w:r><w:t>Paragraph </w:t></w:r>
+<w:r><w:rPr><w:rStyle w:val="CharacterChild"/></w:rPr><w:t>Character </w:t></w:r>
+<w:r><w:rPr><w:rStyle w:val="CharacterChild"/><w:lang w:val="en-GB" w:eastAsia="ja-JP" w:bidi="ar-SA"/><w:i/></w:rPr><w:t>Override</w:t></w:r>
+</w:p><w:sectPr/></w:body></w:document>''');
+  package
+      .createPart('/word/styles.xml', OfficeContentTypes.wordStyles)
+      .writeText('''
+<w:styles xmlns:w="${OfficeNamespaces.w}">
+<w:docDefaults><w:rPrDefault><w:rPr><w:lang w:val="de-DE"/></w:rPr></w:rPrDefault></w:docDefaults>
+<w:style w:type="paragraph" w:styleId="ParagraphBase"><w:rPr><w:lang w:val="de-AT"/><w:b/></w:rPr></w:style>
+<w:style w:type="paragraph" w:styleId="ParagraphChild"><w:basedOn w:val="ParagraphBase"/></w:style>
+<w:style w:type="character" w:styleId="CharacterBase"><w:rPr><w:lang w:val="de-CH"/><w:noProof w:val="0"/></w:rPr></w:style>
+<w:style w:type="character" w:styleId="CharacterChild"><w:basedOn w:val="CharacterBase"/></w:style>
+</w:styles>''');
+  package
+      .relationshipsFor('/word/document.xml')
+      .add(type: RelationshipTypes.styles, target: 'styles.xml');
+  return WordDeserializer().read(package);
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -103,10 +128,14 @@ void main() {
     final controller = _controller();
     final initialRevision = controller.contentRevision;
     expect(controller.reviewTextProofingOptionsVisible, isFalse);
+    expect(controller.textProofingOptionsRequest, 0);
     controller.showTextProofingOptions();
     expect(controller.reviewPaneVisible, isTrue);
     expect(controller.reviewPaneTab, WordReviewPaneTab.proofing);
     expect(controller.reviewTextProofingOptionsVisible, isTrue);
+    expect(controller.textProofingOptionsRequest, 1);
+    controller.showTextProofingOptions();
+    expect(controller.textProofingOptionsRequest, 2);
     controller.setTextProofingOptionsVisible(false);
     expect(controller.reviewTextProofingOptionsVisible, isFalse);
     expect(controller.contentRevision, initialRevision);
@@ -712,8 +741,112 @@ void main() {
           .whereType<WmlRun>()
           .single
           .properties;
-      expect(props.proofingLanguage, 'de-DE');
+      expect(
+        props.proofingLanguage ??
+            loaded.paragraphs.single.properties.proofingLanguage ??
+            loaded.proofingLanguage,
+        'de-DE',
+      );
       expect(props.noProof, isFalse);
+    },
+  );
+
+  test(
+    'resetting imported language preserves style inheritance live, through history and after save',
+    () async {
+      final controller = _controller(document: _styledDocument());
+      final paragraph = controller.document.paragraphs.single;
+      final before = _runs(paragraph);
+      expect(before.map((run) => run.language), ['de-AT', 'de-CH', 'en-GB']);
+      controller.caret
+        ..selectionAnchor = 'Paragraph Character '.length
+        ..logicalIndex = paragraph.text.length;
+      final provider = _LanguageProvider('swiss', 'de-CH');
+      controller.proofing.configure(
+        OfficeProofingService(providers: [provider]),
+      );
+      expect(
+        controller.setTextProofingLanguage(
+          null,
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.textProofingTarget!.language, 'de-CH');
+      final props = paragraph.inlines.whereType<WmlRun>().last.properties;
+      expect(props.bold, isTrue);
+      expect(props.italic, isTrue);
+      expect(props.noProof, isFalse);
+      expect(props.sourcePropertiesXml, contains('ja-JP'));
+      expect(props.sourcePropertiesXml, contains('ar-SA'));
+      final report = await controller.proofing.checkNow(
+        includeManualProviders: false,
+      );
+      expect(report.issues.last.language, 'de-CH');
+      expect(provider.requests.last.text, contains('Override'));
+      final revision = controller.contentRevision;
+      expect(
+        controller.setTextProofingLanguage(
+          null,
+          target: controller.textProofingTarget!,
+        ),
+        isTrue,
+      );
+      expect(controller.contentRevision, revision);
+      controller.undo();
+      expect(_runs(paragraph), before);
+      expect(controller.textProofingTarget!.language, 'en-GB');
+      controller.redo();
+      expect(controller.textProofingTarget!.language, 'de-CH');
+      final loaded = WordDeserializer().readBytes(controller.saveBytes());
+      expect(_runs(loaded.paragraphs.single).map((run) => run.language), [
+        'de-AT',
+        'de-CH',
+        'de-CH',
+      ]);
+      final loadedProps = loaded.paragraphs.single.inlines
+          .whereType<WmlRun>()
+          .last
+          .properties;
+      expect(loadedProps.bold, isTrue);
+      expect(loadedProps.italic, isTrue);
+    },
+  );
+
+  test(
+    'a style part replacement makes an already displayed language target stale',
+    () {
+      final controller = _controller(document: _styledDocument());
+      final target = controller.textProofingTarget!;
+      final part = controller.document.package!.getPart('/word/styles.xml')!;
+      part.writeText(part.readText().replaceAll('de-CH', 'de-DE'));
+      _refuse(controller, target);
+    },
+  );
+
+  test(
+    'aliased paragraph ownership cannot modify another story indirectly',
+    () {
+      final paragraph = _paragraph('Shared');
+      final controller = _controller(
+        document: WmlDocument(
+          sections: [
+            WmlSection(blocks: [paragraph], evenHeader: [paragraph]),
+          ],
+        ),
+      );
+      _refuse(controller, controller.textProofingTarget!);
+      expect(
+        controller.setTextProofingLanguage(
+          null,
+          target: controller.textProofingTarget!,
+        ),
+        isFalse,
+      );
+      expect(
+        controller.document.sections.single.evenHeader.single,
+        same(paragraph),
+      );
     },
   );
 }
