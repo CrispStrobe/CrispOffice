@@ -5,9 +5,14 @@ The integrated code at `5bcb20dec3169ce3e4c0162a94fe94dd53b7bc47`
 tests** locally, with no selected tests skipped. Strict analysis of the changed
 engine/editor and incoming spaCy sources reported no issues.
 
-The later delivery commit adds this record, logs, and documentation. It does not
-change the tested package source. [verification.json](verification.json) binds
-the tested commit, commands, logs, runtime, and changed Dart source/test hashes.
+[verification.json](verification.json) binds that tested commit, commands, logs,
+runtime, and 39 changed Dart source/test hashes. All 39 still match after the
+last main reconciliation at `15eb4bf1ca0fdc65375038de9031c00edd78e961`
+(tree `5516a02d0d22b415d003361eb8728bf2bcc33755`). The sole additional production
+library change is the incoming footer PAGE-field builder repair. **47 additional
+engine regressions passed**, with strict analysis reporting no issues. See
+[latest-main-verification.json](latest-main-verification.json) for the separate
+source binding and logs. This final evidence update changes documentation only.
 
 ## Incoming history
 
@@ -20,7 +25,7 @@ replayed over its later fixes.
 
 The first integration preserved the new Zotero reconciliation commit
 `146cdead`. A later fetch found three more branches updated during this task;
-the final integrated commit preserves all three histories as parents:
+the integrated source checkpoint preserves all three histories as parents:
 
 | Branch | Included tip | Incoming work |
 | --- | --- | --- |
@@ -33,6 +38,13 @@ alongside the document-review entries. There were no production-code merge
 conflicts. Full records: [initial audit](incoming-audit.json) and
 [follow-up audit](incoming-followup-audit.json).
 
+While draft PR #162 was being opened, main advanced again. The branch now also
+contains `5588726c705700ab8ab08c34472e0f88d059cf29`, including complete footer
+PAGE-field packets, separate reviewed macOS golden references, and the newer
+Zotero/spelling evidence. Only the two changelogs conflicted again; both sets of
+entries were kept. Existing Linux references and incoming Mac references were
+preserved byte-for-byte. GitHub reported PR #162 mergeable after reconciliation.
+
 ## Remote checkpoints
 
 Progress was saved on `codex/document-review-20261118` throughout the work:
@@ -43,6 +55,8 @@ Progress was saved on `codex/document-review-20261118` throughout the work:
 | `b0044f5a` | Comparison engine, review workspace and controller tests |
 | `213398ee` | Working UI, real file input, regression tests, guide and screenshots |
 | `5bcb20de` | Three latest incoming branches and final comparison hardening |
+| `9b7b2634` | Baseline validation logs, source bindings and final screenshots |
+| `15eb4bf1` | Latest main reconciliation, footer PAGE repair and Mac references |
 
 Direct Git push credentials were unavailable, so authenticated GitHub Git-data
 operations created the commits and updated the branch with an expected-head
@@ -50,7 +64,7 @@ check. Each uploaded tree matched the local Git tree exactly. No force push was
 used. Commit messages include `[skip ci]`; no Actions workflow status was
 queried, no Actions job was dispatched, and no CI queue was awaited.
 
-## Final local checks
+## Local checks and supplemental verification
 
 | Group | Result | Evidence |
 | --- | ---: | --- |
@@ -61,6 +75,8 @@ queried, no Actions job was dispatched, and no CI queue was awaited.
 | Engine strict analysis | No issues | [Engine analysis](integrated-engine-analysis.txt) |
 | Editor/Studio strict analysis | No issues | [Editor analysis](integrated-editor-analysis.txt) |
 | Incoming spaCy/Studio strict analysis | No issues | [spaCy analysis](integrated-spacy-analysis.txt) |
+| Latest-main field/builder/fidelity regressions | 47 passed | [Supplemental engine tests](latest-main-engine-tests.txt) |
+| Latest-main builder/fidelity strict analysis | No issues | [Supplemental analysis](latest-main-engine-analysis.txt) |
 
 The comparison controls include 180 seeded Unicode reconstruction scenarios at
 three work budgets, insertion/deletion alignment, repeated paragraphs, source
