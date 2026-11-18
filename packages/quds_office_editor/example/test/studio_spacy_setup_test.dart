@@ -72,6 +72,20 @@ class _FakeHost extends StudioSpacyHost {
   }
 
   @override
+  Future<void> installLanguage(
+    SpacyLanguage language, {
+    void Function(int received, int total)? onProgress,
+    StudioSpacyInstallCancellation? cancellation,
+  }) async {
+    calls.add('install:${language.code}');
+    onProgress?.call(1, 2);
+  }
+
+  @override
+  Future<void> removeLanguage(SpacyLanguage language) async =>
+      calls.add('remove:${language.code}');
+
+  @override
   Future<SpacyTransport> openTransport() async {
     calls.add('open');
     final transport = _Transport();
@@ -203,6 +217,55 @@ void main() {
     },
   );
 
+  testWidgets('English and French are offered as explicit downloads', (
+    tester,
+  ) async {
+    final host = _FakeHost(
+      StudioSpacyStatus(
+        platformLabel: 'linux-x86_64',
+        source: StudioSpacySource.none,
+        package: spacyLinuxX64Package,
+        languages: [
+          StudioSpacyLanguageStatus(
+            language: SpacyLanguage.english,
+            download: spacyEnglishDownload,
+            runtime: spacyRuntimePackage(SpacyPlatform.linuxX64),
+          ),
+          StudioSpacyLanguageStatus(
+            language: SpacyLanguage.french,
+            download: spacyFrenchDownload,
+            runtime: spacyRuntimePackage(SpacyPlatform.linuxX64),
+            installed: true,
+            runtimeInstalled: true,
+          ),
+        ],
+      ),
+    );
+    await _pumpSetup(tester, host);
+    expect(find.text('More analysis languages'), findsOneWidget);
+    expect(find.byKey(const Key('spacy-language-fr-install')), findsNothing);
+    expect(find.byKey(const Key('spacy-language-fr-remove')), findsOneWidget);
+    final install = find.byKey(const Key('spacy-language-en-install'));
+    await tester.ensureVisible(install);
+    await tester.tap(install);
+    await tester.pump();
+    final remove = find.byKey(const Key('spacy-language-fr-remove'));
+    await tester.ensureVisible(remove);
+    await tester.tap(remove);
+    await tester.pump();
+    expect(host.calls, ['refresh', 'install:en', 'remove:fr']);
+    final details = find.byKey(const Key('spacy-language-fr-details'));
+    await tester.ensureVisible(details);
+    await tester.tap(details);
+    await tester.pumpAndSettle();
+    final source = tester.widget<SelectableText>(
+      find.byKey(const Key('spacy-language-fr-source')),
+    );
+    expect(source.data, contains(spacyFrenchDownload.revision));
+    expect(source.data, contains('LGPL-LR'));
+    expect(source.data, contains('Native package already installed'));
+  });
+
   group('native host without downloads', () {
     late Directory root;
     setUp(() => root = Directory.systemTemp.createTempSync('studio-spacy-'));
@@ -264,6 +327,42 @@ void main() {
       expect(host.status.package, isNull);
       expect(host.status.unavailableReason, isNotEmpty);
       await expectLater(host.install(), throwsA(isA<Exception>()));
+    });
+
+    test('languages need a published v2 runtime for the platform', () async {
+      final linux = NativeStudioSpacyHost(
+        root: root,
+        environment: const {},
+        platform: SpacyPlatform.linuxX64,
+      );
+      await linux.refresh();
+      final english = linux.status.language(SpacyLanguage.english)!;
+      expect(english.offered, isTrue);
+      expect(english.installed, isFalse);
+      expect(english.runtime!.opensVersion2Bundles, isTrue);
+      expect(
+        english.downloadBytes,
+        spacyEnglishDownload.totalBytes + english.runtime!.archiveBytes,
+      );
+      await expectLater(
+        linux.openLanguageTransport(SpacyLanguage.french),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      final web = NativeStudioSpacyHost(
+        root: root,
+        environment: const {},
+        platform: SpacyPlatform.web,
+      );
+      await web.refresh();
+      for (final item in web.status.languages) {
+        expect(item.offered, isFalse);
+        expect(item.unavailableReason, isNotEmpty);
+      }
+      await expectLater(
+        web.installLanguage(SpacyLanguage.english),
+        throwsA(isA<Exception>()),
+      );
+      expect(Directory('${root.path}/bundles').existsSync(), isFalse);
     });
 
     test('damaged installation is reported, not used', () async {

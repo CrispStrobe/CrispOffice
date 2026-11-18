@@ -182,8 +182,9 @@ typedef OfficeThesaurusAssetLoader = Future<String?> Function(String path);
 
 /// Read one compressed asset. The service verifies its compressed digest before
 /// bounded inflation, then verifies the logical UTF-8 file digest and size.
-typedef OfficeThesaurusCompressedAssetLoader =
-    Future<List<int>?> Function(String path);
+typedef OfficeThesaurusCompressedAssetLoader = Future<List<int>?> Function(
+  String path,
+);
 
 /// Unicode whitespace from Python's str.split, used by the pack compiler.
 final RegExp _lookupWhitespace = RegExp(

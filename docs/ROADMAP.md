@@ -193,4 +193,3 @@ Do not skip sub-phases. Do not route OOXML export through `PdfFile`.
 - `quds_office_engine` — pure Dart, no `dart:ui`
 - `quds_office_editor` — Flutter `RenderBox` / `LeafRenderObjectWidget` only
 - No `TODO` stubs; no `dynamic`; general-purpose fixtures only in tests
-

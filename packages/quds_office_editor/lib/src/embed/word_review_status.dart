@@ -115,20 +115,29 @@ class WordReviewStatusBar extends StatelessWidget {
                 ),
                 Tooltip(
                   message: arabic
-                      ? 'مراجعة التغييرات المتعقبة'
-                      : 'Review tracked changes',
-                  child: TextButton.icon(
-                    key: const ValueKey('word-review-changes-status'),
-                    onPressed: () => controller.openReviewPane(
-                      tab: WordReviewPaneTab.changes,
+                      ? '$pending تغييرات · مراجعة التغييرات المتعقبة'
+                      : '$changesLabel · Review tracked changes',
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: constraints.maxWidth * .34,
                     ),
-                    icon: Icon(
-                      controller.document.trackRevisions
-                          ? Icons.track_changes
-                          : Icons.rate_review_outlined,
-                      size: 17,
+                    child: TextButton.icon(
+                      key: const ValueKey('word-review-changes-status'),
+                      onPressed: () => controller.openReviewPane(
+                        tab: WordReviewPaneTab.changes,
+                      ),
+                      icon: Icon(
+                        controller.document.trackRevisions
+                            ? Icons.track_changes
+                            : Icons.rate_review_outlined,
+                        size: 17,
+                      ),
+                      label: Text(
+                        arabic ? '$pending تغييرات' : changesLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                    label: Text(arabic ? '$pending تغييرات' : changesLabel),
                   ),
                 ),
                 IconButton(
