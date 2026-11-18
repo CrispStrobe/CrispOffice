@@ -146,6 +146,67 @@ Future<void> _add(WidgetTester tester, List<int> indexes) async {
 
 void main() {
   testWidgets(
+    'editing a custom locator requires text review and clears stale RTF',
+    (tester) async {
+      final first = _source('Citation with a page', options: {
+        'locator': '12',
+        'label': 'page',
+      });
+      final existing = _existing([first]);
+      final result = await _open(
+        tester,
+        items: existing.items,
+        existing: existing,
+      );
+      expect(_canApply(tester), isTrue);
+
+      await _tap(tester, _key('zotero-composer-options-0'));
+      await _enter(tester, 'zotero-composer-locator-0', '34');
+      expect(_preview(tester), 'Original custom text');
+      expect(_canApply(tester), isFalse);
+      expect(_key('zotero-composer-text-review-message'), findsOneWidget);
+      expect(existing.items.single.locator, '12');
+
+      await _tap(tester, _key('zotero-composer-confirm-text'));
+      expect(_canApply(tester), isTrue);
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.single.locator, '34');
+      expect(result.citation!.plainCitation, 'Original custom text');
+      expect(result.citation!.formattedCitation, 'Original custom text');
+      expect(result.citation!.properties['unknownProperty'], 'retain');
+      expect(existing.items.single.locator, '12');
+      expect(existing.formattedCitation, isNotNull);
+    },
+  );
+
+  testWidgets(
+    'author options and affixes invalidate custom cache, undoing edits restores it',
+    (tester) async {
+      final first = _source('Citation options', options: {'prefix': 'see'});
+      final existing = _existing([first]);
+      final result = await _open(
+        tester,
+        items: existing.items,
+        existing: existing,
+      );
+      await _tap(tester, _key('zotero-composer-options-0'));
+      await _enter(tester, 'zotero-composer-prefix-0', 'compare');
+      expect(_canApply(tester), isFalse);
+      await _enter(tester, 'zotero-composer-prefix-0', 'see');
+      expect(_canApply(tester), isTrue);
+
+      await _tap(tester, _key('zotero-composer-author-only-0'));
+      expect(_canApply(tester), isFalse);
+      await _tap(tester, _key('zotero-composer-confirm-text'));
+      await _tap(tester, _key('zotero-composer-apply'));
+      expect(result.citation!.items.single.authorOnly, isTrue);
+      expect(result.citation!.items.single.suppressAuthor, isFalse);
+      expect(result.citation!.formattedCitation, 'Original custom text');
+      expect(existing.items.single.authorOnly, isFalse);
+    },
+  );
+
+  testWidgets(
     'reordering duplicate IDs keeps edited options on the correct occurrence',
     (tester) async {
       final first = _source(

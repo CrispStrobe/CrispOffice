@@ -59,8 +59,25 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
       _sources.length != widget.items.length ||
       _sources.indexed.any((entry) => entry.$1 != entry.$2.key);
 
+  // A native or custom citation's visible text and formatted cache depend on
+  // the options of each occurrence, not just which sources are present. Keys
+  // identify the original occurrence even after a reorder (IDs may repeat).
+  bool get _sourceOptionsChanged => _sources.any((source) {
+    if (source.key >= widget.items.length) return false;
+    final before = widget.items[source.key];
+    final after = source.item;
+    return before.locator != after.locator ||
+        before.label != after.label ||
+        before.prefix != after.prefix ||
+        before.suffix != after.suffix ||
+        before.suppressAuthor != after.suppressAuthor ||
+        before.authorOnly != after.authorOnly;
+  });
+
+  bool get _citationChanged => _sourceOrderChanged || _sourceOptionsChanged;
+
   bool get _needsTextReview =>
-      !_basic && _sourceOrderChanged && !_customTextReviewed;
+      !_basic && _citationChanged && !_customTextReviewed;
 
   bool get _canApply =>
       !_loading &&
@@ -207,7 +224,7 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
       // Keep it only when both the source sequence and visible cache are intact.
       final formattedCitation =
           !_basic &&
-              !_sourceOrderChanged &&
+              !_citationChanged &&
               existing != null &&
               _text.text == (widget.existingCache ?? existing.plainCitation)
           ? existing.formattedCitation
@@ -360,10 +377,10 @@ class _ZoteroCitationComposerState extends State<ZoteroCitationComposer> {
               border: OutlineInputBorder(),
             ),
           ),
-          if (!_basic && _sourceOrderChanged) ...[
+          if (!_basic && _citationChanged) ...[
             const SizedBox(height: 8),
             const Text(
-              'The sources or their order changed. Edit the visible text or confirm that it matches the current sources before applying.',
+              'Sources, order or citation options changed. Edit the visible text or confirm that it matches the current sources and options before applying. Previous formatted styling will be discarded.',
               key: ValueKey('zotero-composer-text-review-message'),
             ),
             CheckboxListTile(
